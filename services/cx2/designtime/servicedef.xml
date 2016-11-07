@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="cx2" type="DataService" springFile="cx2.spring.xml">
+    <dataobjects>
+        <dataobject javaType="com.civicxpress.cx2.FormCategories">
+            <element name="category" typeRef="java.lang.String" allowNull="true"/>
+            <element name="description" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.FormStatuses">
+            <element name="allowAuthorEdits" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="allowInspections" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="allowPayment" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="allowReporting" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="allowSharedWithEdits" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="considerClosed" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="createAsRecord" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="emailSubjectLine" typeRef="java.lang.String" allowNull="true"/>
+            <element name="emailTextBody" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formStatus" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="processOwners" typeRef="java.lang.String" allowNull="true"/>
+            <element name="readAccess" typeRef="java.lang.String" allowNull="true"/>
+            <element name="recalculateAutoFees" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="sortOrder" typeRef="java.lang.Long" allowNull="true"/>
+            <element name="writeAccess" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.FormTypes">
+            <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="flatFee" typeRef="java.lang.String" allowNull="true"/>
+            <element name="flatFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formCategorieses" typeRef="com.civicxpress.cx2.FormCategories" isList="true" allowNull="true"/>
+            <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
+            <element name="formType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formTypeGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="permissionsReaders" typeRef="java.lang.String" allowNull="true"/>
+            <element name="permissionsWriters" typeRef="java.lang.String" allowNull="true"/>
+            <element name="report" typeRef="java.lang.String" allowNull="true"/>
+            <element name="sfFee" typeRef="java.lang.String" allowNull="true"/>
+            <element name="sfFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="stateFee" typeRef="java.lang.String" allowNull="true"/>
+            <element name="stateFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="tbLocation" typeRef="java.lang.String" allowNull="true"/>
+            <element name="unitFee" typeRef="java.lang.String" allowNull="true"/>
+            <element name="unitFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.Gisrecords">
+            <element name="city" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspectionZone" typeRef="java.lang.String" allowNull="true"/>
+            <element name="landGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="latitude" typeRef="java.lang.String" allowNull="true"/>
+            <element name="longitude" typeRef="java.lang.String" allowNull="true"/>
+            <element name="lot" typeRef="java.lang.String" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="parcel" typeRef="java.lang.String" allowNull="true"/>
+            <element name="section" typeRef="java.lang.String" allowNull="true"/>
+            <element name="sections" typeRef="java.lang.String" allowNull="true"/>
+            <element name="stateId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
+            <element name="streetDirection" typeRef="java.lang.String" allowNull="true"/>
+            <element name="streetName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="streetNumber" typeRef="java.lang.String" allowNull="true"/>
+            <element name="streetType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="subdivisionId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="subdivisions" typeRef="com.civicxpress.cx2.Subdivisions" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.ManualFeeTypes">
+            <element name="accountingCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="feeType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.Municipalities">
+            <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="address1" typeRef="java.lang.String" allowNull="true"/>
+            <element name="address2" typeRef="java.lang.String" allowNull="true"/>
+            <element name="allowManualPayment" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="city" typeRef="java.lang.String" allowNull="true"/>
+            <element name="email" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formTypeses" typeRef="com.civicxpress.cx2.FormTypes" isList="true" allowNull="true"/>
+            <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="manualFeeTypeses" typeRef="com.civicxpress.cx2.ManualFeeTypes" isList="true" allowNull="true"/>
+            <element name="manualPaymentPercent" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalityGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="municipalityName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="phone" typeRef="java.lang.String" allowNull="true"/>
+            <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="roleses" typeRef="com.civicxpress.cx2.Roles" isList="true" allowNull="true"/>
+            <element name="state" typeRef="java.lang.String" allowNull="true"/>
+            <element name="subdivisionses" typeRef="com.civicxpress.cx2.Subdivisions" isList="true" allowNull="true"/>
+            <element name="userSubscriptionses" typeRef="com.civicxpress.cx2.UserSubscriptions" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.Roles">
+            <element name="description" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="roleName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="userRoleses" typeRef="com.civicxpress.cx2.UserRoles" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.States">
+            <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="stateName" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.Subdivisions">
+            <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="subShortCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="subdivision" typeRef="java.lang.String" allowNull="true"/>
+            <element name="subdivisionGuid" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.UserRoles">
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="roleId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="roles" typeRef="com.civicxpress.cx2.Roles" allowNull="true"/>
+            <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.UserSubscriptions">
+            <element name="dateSubscribed" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.Users">
+            <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="address1" typeRef="java.lang.String" allowNull="true"/>
+            <element name="address2" typeRef="java.lang.String" allowNull="true"/>
+            <element name="city" typeRef="java.lang.String" allowNull="true"/>
+            <element name="communicationFrequency" typeRef="java.lang.String" allowNull="true"/>
+            <element name="email" typeRef="java.lang.String" allowNull="true"/>
+            <element name="firstName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="lastName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="phoneNumber" typeRef="java.lang.String" allowNull="true"/>
+            <element name="photo" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
+            <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="state" typeRef="java.lang.String" allowNull="true"/>
+            <element name="userRoleses" typeRef="com.civicxpress.cx2.UserRoles" isList="true" allowNull="true"/>
+            <element name="userSubscriptionses" typeRef="com.civicxpress.cx2.UserSubscriptions" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.wavemaker.runtime.data.expression.QueryFilter">
+            <element name="attributeName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="attributeType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="attributeValue" allowNull="true"/>
+            <element name="filterCondition" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.wavemaker.runtime.data.model.CustomProcedure">
+            <element name="procedureParams" typeRef="com.wavemaker.runtime.data.model.CustomProcedureParam" isList="true" allowNull="true"/>
+            <element name="procedureStr" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.wavemaker.runtime.data.model.CustomQuery">
+            <element name="nativeSql" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="queryParams" typeRef="com.wavemaker.runtime.data.model.CustomQueryParam" isList="true" allowNull="true"/>
+            <element name="queryStr" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+    </dataobjects>
+</service>
