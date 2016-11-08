@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="cx2" type="DataService" springFile="cx2.spring.xml">
+    <operation operationType="nativequery" name="MunicipalityCount">
+        <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UserCount">
+        <return typeRef="cx2UserCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="MunicipalityCount">
+        <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UserCount">
+        <return typeRef="cx2UserCountrtnType" isList="false"/>
+    </operation>
     <dataobjects>
         <dataobject javaType="com.civicxpress.cx2.FormCategories">
             <element name="category" typeRef="java.lang.String" allowNull="true"/>
@@ -180,6 +192,12 @@
             <element name="nativeSql" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="queryParams" typeRef="com.wavemaker.runtime.data.model.CustomQueryParam" isList="true" allowNull="true"/>
             <element name="queryStr" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="cx2MunicipalityCountrtnType">
+            <element name="municipalitiesCount" typeRef="java.lang.Integer"/>
+        </dataobject>
+        <dataobject javaType="cx2UserCountrtnType">
+            <element name="usersCount" typeRef="java.lang.Integer"/>
         </dataobject>
     </dataobjects>
 </service>

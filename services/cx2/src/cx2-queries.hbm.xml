@@ -1,3 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping/>
+<hibernate-mapping>
+  <sql-query name="MunicipalityCount">
+    <![CDATA[
+      select count(*) as municipalitiesCount from Municipalities
+    ]]>
+  </sql-query>
+  <sql-query name="UserCount">
+    <![CDATA[
+      select count(*) as usersCount from Users
+    ]]>
+  </sql-query>
+</hibernate-mapping>

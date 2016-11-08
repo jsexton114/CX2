@@ -1,5 +1,31 @@
 {
   "name" : "cx2",
   "description" : "Queries for cx2",
-  "queries" : [ ]
+  "queries" : [ {
+    "name" : "MunicipalityCount",
+    "query" : "select count(*) as municipalitiesCount from Municipalities",
+    "comment" : "MunicipalityCount",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ ],
+    "outputType" : "cx2MunicipalityCountrtnType",
+    "returnTypeMetadata" : {
+      "municipalitiesCount" : "java.lang.Integer"
+    }
+  }, {
+    "name" : "UserCount",
+    "query" : "select count(*) as usersCount from Users",
+    "comment" : "UserCount",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ ],
+    "outputType" : "cx2UserCountrtnType",
+    "returnTypeMetadata" : {
+      "usersCount" : "java.lang.Integer"
+    }
+  } ]
 }

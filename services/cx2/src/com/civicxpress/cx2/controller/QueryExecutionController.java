@@ -39,6 +39,26 @@ public class QueryExecutionController {
     @Autowired
     private Cx2QueryExecutorService queryService;
 
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/MunicipalityCount", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeMunicipalityCount(Pageable pageable) {
+        LOGGER.debug("Executing named query MunicipalityCount");
+        Page<Object> result = queryService.executeMunicipalityCount(pageable);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UserCount", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeUserCount(Pageable pageable) {
+        LOGGER.debug("Executing named query UserCount");
+        Page<Object> result = queryService.executeUserCount(pageable);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
     @ApiOperation(value = "Process request to execute customer queries")
     @RequestMapping(value = "/queries/wm_custom", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

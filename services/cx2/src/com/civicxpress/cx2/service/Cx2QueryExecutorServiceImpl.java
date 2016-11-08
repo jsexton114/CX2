@@ -32,6 +32,20 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	@Qualifier("cx2WMQueryExecutor")
 	private WMQueryExecutor queryExecutor;
 
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public Page<Object> executeMunicipalityCount(Pageable pageable)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        return queryExecutor.executeNamedQuery("MunicipalityCount", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public Page<Object> executeUserCount(Pageable pageable)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        return queryExecutor.executeNamedQuery("UserCount", params, pageable);
+	}
 
 	@Transactional(value = "cx2TransactionManager")
 	@Override

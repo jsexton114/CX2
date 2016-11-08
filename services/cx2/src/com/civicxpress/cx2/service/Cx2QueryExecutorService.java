@@ -15,6 +15,8 @@ import com.wavemaker.runtime.data.model.CustomQuery;
 import com.wavemaker.runtime.data.exception.QueryParameterMismatchException;
 
 public interface Cx2QueryExecutorService {
+    Page<Object> executeMunicipalityCount(Pageable pageable) throws QueryParameterMismatchException;
+    Page<Object> executeUserCount(Pageable pageable) throws QueryParameterMismatchException;
 
 	
 	Page<Object> executeWMCustomQuerySelect(CustomQuery query, Pageable pageable) ;
