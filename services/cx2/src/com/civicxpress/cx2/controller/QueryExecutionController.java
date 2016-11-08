@@ -50,6 +50,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdatePasswordAndCF", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdatePasswordAndCF(@RequestParam(value = "password", required = false) java.lang.String password, @RequestParam(value = "cf", required = false) java.lang.String cf, @RequestParam(value = "newUser", required = false) java.lang.Integer newUser) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdatePasswordAndCF");
+        int result = queryService.executeUpdatePasswordAndCF(password, cf, newUser);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UserCount", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeUserCount(Pageable pageable) {

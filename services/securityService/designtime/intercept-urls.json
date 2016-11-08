@@ -4,8 +4,48 @@
   "roles" : [ "CXAdmin" ],
   "httpMethod" : null
 }, {
+  "urlPattern" : "/pages/footer/**",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : null
+}, {
+  "urlPattern" : "/pages/header/**",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : null
+}, {
+  "urlPattern" : "/pages/UserCreation/**",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : null
+}, {
   "urlPattern" : "/**",
   "permission" : "Authenticated",
   "roles" : null,
   "httpMethod" : null
+}, {
+  "urlPattern" : "/services/cx2/queryExecutor/queries/UpdatePasswordAndCF",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "PUT"
+}, {
+  "urlPattern" : "/services/cx2/Municipalities/{id}",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "GET"
+}, {
+  "urlPattern" : "/services/cx2/Municipalities",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "GET"
+}, {
+  "urlPattern" : "/services/cx2/Users",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "POST"
+}, {
+  "urlPattern" : "/services/cx2/UserSubscriptions",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "POST"
 } ]

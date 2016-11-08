@@ -41,6 +41,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeUpdatePasswordAndCF( java.lang.String password ,java.lang.String cf ,java.lang.Integer newUser)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("password", password);
+        params.put("cf", cf);
+        params.put("newUser", newUser);
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePasswordAndCF", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeUserCount(Pageable pageable)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

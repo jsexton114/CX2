@@ -6,6 +6,11 @@
       select count(*) as municipalitiesCount from Municipalities
     ]]>
   </sql-query>
+  <sql-query name="UpdatePasswordAndCF">
+    <![CDATA[
+      UPDATE Users SET Password=:password, CommunicationFrequency=:cf where ID=:newUser
+    ]]>
+  </sql-query>
   <sql-query name="UserCount">
     <![CDATA[
       select count(*) as usersCount from Users

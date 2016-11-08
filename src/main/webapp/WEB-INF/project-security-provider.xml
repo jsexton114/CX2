@@ -23,6 +23,14 @@
         <security:intercept-url pattern="/j_spring_security_check" access="permitAll"/>
         <security:intercept-url pattern="/j_spring_security_logout" access="permitAll"/>
         <security:intercept-url pattern="/pages/CXAdmin/**" access="hasAnyRole('ROLE_CXAdmin')"/>
+        <security:intercept-url pattern="/pages/UserCreation/**" access="permitAll"/>
+        <security:intercept-url pattern="/pages/footer/**" access="permitAll"/>
+        <security:intercept-url pattern="/pages/header/**" access="permitAll"/>
+        <security:intercept-url pattern="/services/cx2/Municipalities" access="permitAll" method="GET"/>
+        <security:intercept-url pattern="/services/cx2/Municipalities/*" access="permitAll" method="GET"/>
+        <security:intercept-url pattern="/services/cx2/UserSubscriptions" access="permitAll" method="POST"/>
+        <security:intercept-url pattern="/services/cx2/Users" access="permitAll" method="POST"/>
+        <security:intercept-url pattern="/services/cx2/queryExecutor/queries/UpdatePasswordAndCF" access="permitAll" method="PUT"/>
         <security:intercept-url pattern="/services/prefabs/**/servicedefs" access="permitAll"/>
         <security:intercept-url pattern="/services/security/**" access="permitAll"/>
         <security:intercept-url pattern="/services/servicedefs" access="permitAll"/>
