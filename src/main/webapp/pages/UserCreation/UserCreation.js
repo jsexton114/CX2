@@ -3,6 +3,7 @@ Application.$controller("UserCreationPageController", ["$scope", function($scope
     $scope.newUser;
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
+        $scope.toDay = Date.parse(new Date().toDateString());
 
     };
 
@@ -22,6 +23,7 @@ Application.$controller("UserCreationPageController", ["$scope", function($scope
     $scope.wizard1Done = function($isolateScope, steps) {
         for (var i = 0; i < selectedMunicipalites.length; i++) {
             $scope.Variables.RegisterSubscriptions.setInput({
+                "dateSubscribed": $scope.toDay,
                 "users": $scope.newUser,
                 "userId": $scope.newUser.id,
                 "municipalities": selectedMunicipalites[i],
@@ -29,6 +31,8 @@ Application.$controller("UserCreationPageController", ["$scope", function($scope
             });
             $scope.Variables.RegisterSubscriptions.insertRecord();
         }
+        $scope.Variables.NewUserToLogin.navigate();
+
     };
 
 }]);

@@ -244,6 +244,20 @@
     "redirectTo" : "Login",
     "useDefaultSuccessHandler" : true
   },
+  "NewUserToLogin" : {
+    "_id" : "wm-NewUserToLogin-wm.NavigationVariable-1478606207596",
+    "name" : "NewUserToLogin",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "Login",
+      "type" : "list"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
   "supportedLocale" : {
     "_id" : "wm-wm.Variable1402640443182",
     "name" : "supportedLocale",

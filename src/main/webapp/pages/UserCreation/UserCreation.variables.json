@@ -462,7 +462,11 @@
     "name" : "RegisterSubscriptions",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "dateSubscribed",
+      "value" : "bind:toDay | toDate: 'yyyy, dd MMMM'",
+      "type" : "string"
+    } ],
     "operation" : "insert",
     "dataSet" : [ ],
     "type" : "UserSubscriptions",
