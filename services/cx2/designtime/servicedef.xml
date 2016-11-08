@@ -12,6 +12,9 @@
     <operation operationType="nativequery" name="UserCount">
         <return typeRef="cx2UserCountrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="userSubscriptionsCount">
+        <return typeRef="cx2userSubscriptionsCountrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
     </operation>
@@ -23,6 +26,9 @@
     </operation>
     <operation operationType="nativequery" name="UserCount">
         <return typeRef="cx2UserCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="userSubscriptionsCount">
+        <return typeRef="cx2userSubscriptionsCountrtnType" isList="false"/>
     </operation>
     <dataobjects>
         <dataobject javaType="com.civicxpress.cx2.FormCategories">
@@ -211,6 +217,9 @@
         <dataobject javaType="cx2UpdatePasswordAndCFrtnType"/>
         <dataobject javaType="cx2UserCountrtnType">
             <element name="usersCount" typeRef="java.lang.Integer"/>
+        </dataobject>
+        <dataobject javaType="cx2userSubscriptionsCountrtnType">
+            <element name="userSubscriptionsCount" typeRef="java.lang.Integer"/>
         </dataobject>
     </dataobjects>
 </service>

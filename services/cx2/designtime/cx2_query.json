@@ -59,5 +59,18 @@
     "returnTypeMetadata" : {
       "usersCount" : "java.lang.Integer"
     }
+  }, {
+    "name" : "userSubscriptionsCount",
+    "query" : "select count(*) as userSubscriptionsCount from UserSubscriptions",
+    "comment" : "userSubscriptionsCount",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ ],
+    "outputType" : "cx2userSubscriptionsCountrtnType",
+    "returnTypeMetadata" : {
+      "userSubscriptionsCount" : "java.lang.Integer"
+    }
   } ]
 }

@@ -44,5 +44,29 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
+  },
+  "userSubscriptionsCount" : {
+    "_id" : "wm-userSubscriptionsCount-wm.ServiceVariable-1478604476431",
+    "name" : "userSubscriptionsCount",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "cx2userSubscriptionsCountrtnType",
+    "service" : "cx2",
+    "operation" : "executeUserSubscriptionsCount",
+    "operationId" : "QueryExecutionController_executeUserSubscriptionsCount",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }

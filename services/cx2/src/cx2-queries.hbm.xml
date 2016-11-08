@@ -16,4 +16,9 @@
       select count(*) as usersCount from Users
     ]]>
   </sql-query>
+  <sql-query name="userSubscriptionsCount">
+    <![CDATA[
+      select count(*) as userSubscriptionsCount from UserSubscriptions
+    ]]>
+  </sql-query>
 </hibernate-mapping>

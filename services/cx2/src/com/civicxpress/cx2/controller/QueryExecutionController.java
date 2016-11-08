@@ -69,6 +69,16 @@ public class QueryExecutionController {
         return result;
     }
 
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/userSubscriptionsCount", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeUserSubscriptionsCount(Pageable pageable) {
+        LOGGER.debug("Executing named query userSubscriptionsCount");
+        Page<Object> result = queryService.executeUserSubscriptionsCount(pageable);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
     @ApiOperation(value = "Process request to execute customer queries")
     @RequestMapping(value = "/queries/wm_custom", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

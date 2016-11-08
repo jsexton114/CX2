@@ -8,9 +8,9 @@
                 <wm-gridrow name="gridrow4">
                     <wm-gridcolumn columnwidth="3" name="gridcolumn7"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn11" horizontalalign="center">
-                        <wm-livelist listclass="list-group" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="list-card" dataset="bind:Variables.CurrentUserDetails.dataSet" navigation="None" name="livelist1">
+                        <wm-livelist listclass="list-group" template="true" itemsperrow="xs-2 sm-1 md-1 lg-2" class="list-card" dataset="bind:Variables.CurrentUserDetails.dataSet" navigation="None" name="livelist1">
                             <wm-listtemplate layout="media" name="listtemplate1">
-                                <wm-card name="Picture" picturesource="bind:Variables.CurrentUserDetails.dataSet.photo" imageheight="200px">
+                                <wm-card name="Picture" picturesource="bind:&quot;services/cx2/Users/&quot;+Variables.CurrentUserDetails.dataSet.id+&quot;/content/photo&quot;" imageheight="200px">
                                     <wm-card-content name="card_content1">
                                         <wm-label caption="bind:Variables.CurrentUserDetails.dataSet.firstName+&quot; &quot;+Variables.CurrentUserDetails.dataSet.lastName" name="Name" margin="0px unset unset unset" fontunit="em" class="h4" color="#000" whitespace="nowrap"></wm-label>
                                         <wm-layoutgrid columns="2" name="layoutgrid1">

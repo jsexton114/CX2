@@ -56,6 +56,13 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         Map<String, Object> params = new HashMap<String, Object>();
         return queryExecutor.executeNamedQuery("UserCount", params, pageable);
 	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public Page<Object> executeUserSubscriptionsCount(Pageable pageable)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        return queryExecutor.executeNamedQuery("userSubscriptionsCount", params, pageable);
+	}
 
 	@Transactional(value = "cx2TransactionManager")
 	@Override
