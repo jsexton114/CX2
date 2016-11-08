@@ -1,0 +1,11 @@
+[ {
+  "urlPattern" : "/pages/CXAdmin/**",
+  "permission" : "Role",
+  "roles" : [ "CXAdmin" ],
+  "httpMethod" : null
+}, {
+  "urlPattern" : "/**",
+  "permission" : "Authenticated",
+  "roles" : null,
+  "httpMethod" : null
+} ]

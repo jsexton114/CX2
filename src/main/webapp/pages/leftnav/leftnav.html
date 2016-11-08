@@ -1,22 +1,25 @@
 <wm-partial data-ng-controller="leftnavPageController" name="leftnav" type="leftnav">
-    <wm-nav name="leftnavigation" type="pills" layout="stacked">
+    <wm-nav name="DevDataEntry" type="pills" layout="stacked">
         <wm-nav-item name="list_dashboard">
-            <wm-anchor caption="My Dashboard" name="dashboardLink" iconclass="wi wi-bar-graph"></wm-anchor>
+            <wm-anchor caption="My Dashboard" name="dashboardLink" iconclass="wi wi-bar-graph" on-click="Variables.goToPage_Main.invoke()"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="list_order">
-            <wm-anchor caption="My Municipality" name="orderLink" iconclass="wi wi-windows"></wm-anchor>
+            <wm-anchor caption="My Municipality" name="orderLink" iconclass="wi wi-windows" on-click="Variables.goToPage_MyMunicipality.invoke()"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="list_inventory">
-            <wm-anchor caption="Municipality Administration" name="inventoryLink" iconclass="wi wi-control-point"></wm-anchor>
+            <wm-anchor caption="Administration" name="inventoryLink" iconclass="wi wi-control-point" on-click="Variables.goToPage_MunicipalityAdministration.invoke()"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="list_support">
-            <wm-anchor caption="New Form" name="supportLink" iconclass="wi wi-playlist-add"></wm-anchor>
+            <wm-anchor caption="New Form" name="supportLink" iconclass="wi wi-playlist-add" on-click="Variables.goToPage_NewFrom.invoke()"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="nav_item5">
-            <wm-anchor name="anchor5" iconclass="wi wi-person" caption="CX Admin"></wm-anchor>
+            <wm-anchor name="anchor5" iconclass="wi wi-person" caption="CX Admin" on-click="Variables.goToPage_CXAdmin.invoke()" accessroles="CXAdmin"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="nav_item6">
-            <wm-anchor name="anchor6" iconclass="wi wi-phone" caption="Support"></wm-anchor>
+            <wm-anchor name="anchor6" iconclass="wi wi-phone" caption="Support" on-click="Variables.goToPage_Support.invoke()"></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="nav_item7">
+            <wm-anchor name="anchor7" iconclass="wi wi-file" caption="DevDataEntry" on-click="Variables.goToPage_DataEntry.invoke()"></wm-anchor>
         </wm-nav-item>
     </wm-nav>
 </wm-partial>

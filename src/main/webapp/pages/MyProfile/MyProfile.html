@@ -1,0 +1,64 @@
+<wm-page data-ng-controller="MyProfilePageController" pagetitle="My Profile" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid2">
+                <wm-gridrow name="gridrow4">
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn7"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn11" horizontalalign="center">
+                        <wm-livelist listclass="list-group" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="list-card" dataset="bind:Variables.CurrentUserDetails.dataSet" navigation="None" name="livelist1">
+                            <wm-listtemplate layout="media" name="listtemplate1">
+                                <wm-card name="Picture" picturesource="bind:Variables.CurrentUserDetails.dataSet.photo" imageheight="200px">
+                                    <wm-card-content name="card_content1">
+                                        <wm-label caption="bind:Variables.CurrentUserDetails.dataSet.firstName+&quot; &quot;+Variables.CurrentUserDetails.dataSet.lastName" name="Name" margin="0px unset unset unset" fontunit="em" class="h4" color="#000" whitespace="nowrap"></wm-label>
+                                        <wm-layoutgrid columns="2" name="layoutgrid1">
+                                            <wm-gridrow name="gridrow1">
+                                                <wm-gridcolumn colwidth="6" columnwidth="5" horizontalalign="left" name="gridcolumn1">
+                                                    <wm-icon iconclass="wi wi-contact-mail" iconsize="15pt" class="text-muted" name="icon1"></wm-icon>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn colwidth="6" padding="unset unset unset 1.25em" name="gridcolumn2">
+                                                    <wm-label name="ID" caption="bind:Variables.CurrentUserDetails.dataSet.id" fontunit="em" class="text-muted p" whitespace="nowrap"></wm-label>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow2">
+                                                <wm-gridcolumn colwidth="6" columnwidth="2" horizontalalign="left" name="gridcolumn3">
+                                                    <wm-icon iconclass="wi wi-user" iconsize="15pt" class="text-muted" name="icon2"></wm-icon>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn colwidth="6" padding="unset unset unset 1.25em" name="gridcolumn4">
+                                                    <wm-label name="JobTitle" caption="bind:Variables.CurrentUserDetails.dataSet.address1+&quot;,&quot;+Variables.CurrentUserDetails.dataSet.city" fontunit="em" class="text-muted p"></wm-label>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow6">
+                                                <wm-gridcolumn columnwidth="2" name="gridcolumn12"></wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn13"></wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow3">
+                                                <wm-gridcolumn colwidth="6" columnwidth="2" horizontalalign="left" name="gridcolumn5">
+                                                    <wm-icon iconclass="wi wi-email" iconsize="15pt" class="text-muted" name="icon3"></wm-icon>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn colwidth="6" padding="unset unset unset 1.25em" name="gridcolumn6" columnwidth="NaN">
+                                                    <wm-label name="Email" caption="bind:Variables.CurrentUserDetails.dataSet.email" fontunit="em" class="text-muted"></wm-label>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-layoutgrid>
+                                    </wm-card-content>
+                                    <wm-card-footer horizontalalign="right" name="card_footer1">
+                                        <wm-button class="btn-default" caption="Edit" type="button" margin="unset 0.5em" name="button2" iconclass="wi wi-mode-edit"></wm-button>
+                                    </wm-card-footer>
+                                </wm-card>
+                            </wm-listtemplate>
+                        </wm-livelist>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn8"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow5">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn9"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn10"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

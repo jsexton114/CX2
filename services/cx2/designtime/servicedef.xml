@@ -60,6 +60,14 @@
             <element name="lot" typeRef="java.lang.String" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="ownerAddress1" typeRef="java.lang.String" allowNull="true"/>
+            <element name="ownerAddress2" typeRef="java.lang.String" allowNull="true"/>
+            <element name="ownerCity" typeRef="java.lang.String" allowNull="true"/>
+            <element name="ownerEmail" typeRef="java.lang.String" allowNull="true"/>
+            <element name="ownerName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="ownerPhone" typeRef="java.lang.String" allowNull="true"/>
+            <element name="ownerPostalCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="ownerState" typeRef="java.lang.String" allowNull="true"/>
             <element name="parcel" typeRef="java.lang.String" allowNull="true"/>
             <element name="section" typeRef="java.lang.String" allowNull="true"/>
             <element name="sections" typeRef="java.lang.String" allowNull="true"/>
@@ -88,7 +96,9 @@
             <element name="email" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeses" typeRef="com.civicxpress.cx2.FormTypes" isList="true" allowNull="true"/>
             <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
+            <element name="globalEmailSig" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="logo" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
             <element name="manualFeeTypeses" typeRef="com.civicxpress.cx2.ManualFeeTypes" isList="true" allowNull="true"/>
             <element name="manualPaymentPercent" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="municipalityGuid" typeRef="java.lang.String" allowNull="true"/>
@@ -141,12 +151,14 @@
             <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="address1" typeRef="java.lang.String" allowNull="true"/>
             <element name="address2" typeRef="java.lang.String" allowNull="true"/>
+            <element name="banned" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="city" typeRef="java.lang.String" allowNull="true"/>
             <element name="communicationFrequency" typeRef="java.lang.String" allowNull="true"/>
             <element name="email" typeRef="java.lang.String" allowNull="true"/>
             <element name="firstName" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="lastName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="password" typeRef="java.lang.String" allowNull="true"/>
             <element name="phoneNumber" typeRef="java.lang.String" allowNull="true"/>
             <element name="photo" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
             <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>

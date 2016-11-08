@@ -1,0 +1,19 @@
+{
+  "modelName" : "cx2",
+  "entityName" : "Users",
+  "tableName" : "Users",
+  "unamePropertyName" : "firstName",
+  "unameColumnName" : "FirstName",
+  "uidPropertyName" : "id",
+  "uidColumnName" : "ID",
+  "pwPropertyName" : "password",
+  "pwColumnName" : "Password",
+  "rolePropertyName" : "",
+  "roleColumnName" : "",
+  "useRolesQuery" : true,
+  "rolesByUsernameQuery" : "select R.RoleName from Roles R,UserRoles UR,Users U where U.ID=UR.UserId and UR.RoleId=R.ID and U.FirstName=:LOGGED_IN_USERNAME\r\n",
+  "tenantIdField" : null,
+  "defTenantId" : 0,
+  "tenantIdPropertyName" : null,
+  "queryType" : "NATIVE_SQL"
+}

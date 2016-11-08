@@ -44,6 +44,8 @@ public class Users implements Serializable {
     private Boolean active;
     @JsonProperty(access = Access.READ_ONLY)
     private byte[] photo;
+    private Boolean banned;
+    private String password;
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
     private List<UserRoles> userRoleses = new ArrayList<>();
 
@@ -164,6 +166,24 @@ public class Users implements Serializable {
 
     public void setPhoto(byte[] photo) {
         this.photo = photo;
+    }
+
+    @Column(name = "`Banned`", nullable = true)
+    public Boolean getBanned() {
+        return this.banned;
+    }
+
+    public void setBanned(Boolean banned) {
+        this.banned = banned;
+    }
+
+    @Column(name = "`Password`", nullable = true, length = 255)
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")

@@ -15,6 +15,55 @@
     } ],
     "operation" : "toast"
   },
+  "CurrentUserDetails" : {
+    "_id" : "wm-CurrentUserDetails-wm.ServiceVariable-1478579290060",
+    "name" : "CurrentUserDetails",
+    "owner" : "App",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "id",
+      "value" : "bind:Variables.loggedInUser.dataSet.id | toNumber",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.Users",
+    "service" : "cx2",
+    "operation" : "getUsers",
+    "operationId" : "UsersController_getUsers",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Users"
+  },
+  "goToPage_CXAdmin" : {
+    "_id" : "wm-goToPage_CXAdmin-wm.NavigationVariable-1478577233423",
+    "name" : "goToPage_CXAdmin",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "CXAdmin",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
+  "goToPage_DataEntry" : {
+    "_id" : "wm-goToPage_DataEntry-wm.NavigationVariable-1478537977414",
+    "name" : "goToPage_DataEntry",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "DataEntry",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
   "goToPage_Main" : {
     "_id" : "wm-wm.NavigationVariable1389180517517",
     "name" : "goToPage_Main",
@@ -22,6 +71,134 @@
     "category" : "wm.NavigationVariable",
     "operation" : "gotoPage",
     "pageName" : "Main"
+  },
+  "goToPage_MunicipalityAdministration" : {
+    "_id" : "wm-goToPage_MunicipalityAdministration-wm.NavigationVariable-1478577191075",
+    "name" : "goToPage_MunicipalityAdministration",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "MunicipalityAdministration",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
+  "goToPage_MyCart" : {
+    "_id" : "wm-goToPage_MyCart-wm.NavigationVariable-1478577283252",
+    "name" : "goToPage_MyCart",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "MyCart",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
+  "goToPage_MyMunicipality" : {
+    "_id" : "wm-goToPage_MyMunicipality-wm.NavigationVariable-1478577159145",
+    "name" : "goToPage_MyMunicipality",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "MyMunicipality",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
+  "goToPage_MyProfile" : {
+    "_id" : "wm-goToPage_MyProfile-wm.NavigationVariable-1478577295407",
+    "name" : "goToPage_MyProfile",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "MyProfile",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
+  "goToPage_NewFrom" : {
+    "_id" : "wm-goToPage_NewFrom-wm.NavigationVariable-1478577221086",
+    "name" : "goToPage_NewFrom",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "NewFrom",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
+  "goToPage_Support" : {
+    "_id" : "wm-goToPage_Support-wm.NavigationVariable-1478577248530",
+    "name" : "goToPage_Support",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "Support",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
+  "loggedInUser" : {
+    "_id" : "wm-loggedInUser-wm.Variable-1478578831248",
+    "name" : "loggedInUser",
+    "owner" : "App",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "name" : "",
+      "id" : "",
+      "tenantId" : "",
+      "isAuthenticated" : false,
+      "isSecurityEnabled" : true,
+      "roles" : [ ]
+    },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "loginVariable" : {
+    "_id" : "wm-loginVariable-wm.LoginVariable-1478578831247",
+    "name" : "loginVariable",
+    "owner" : "App",
+    "category" : "wm.LoginVariable",
+    "dataBinding" : [ {
+      "target" : "username",
+      "value" : "bind:Widgets.usernametext.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "password",
+      "value" : "bind:Widgets.passwordtext.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "rememberme",
+      "value" : "bind:Widgets.remembermecheck.datavalue",
+      "type" : "boolean"
+    } ],
+    "dataSet" : {
+      "username" : "",
+      "password" : "",
+      "rememberme" : false
+    },
+    "type" : "string",
+    "saveInPhonegap" : false,
+    "onError" : "loginVariableonError($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "useDefaultSuccessHandler" : true
+  },
+  "logoutVariable" : {
+    "_id" : "wm-logoutVariable-wm.LogoutVariable-1478578831247",
+    "name" : "logoutVariable",
+    "owner" : "App",
+    "category" : "wm.LogoutVariable",
+    "type" : "string",
+    "saveInPhonegap" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "redirectTo" : "Login",
+    "useDefaultSuccessHandler" : true
   },
   "supportedLocale" : {
     "_id" : "wm-wm.Variable1402640443182",

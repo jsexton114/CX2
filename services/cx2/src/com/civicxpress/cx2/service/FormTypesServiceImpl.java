@@ -37,12 +37,12 @@ public class FormTypesServiceImpl implements FormTypesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FormTypesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.FormStatusesService")
-	private FormStatusesService formStatusesService;
-
-    @Autowired
 	@Qualifier("cx2.FormCategoriesService")
 	private FormCategoriesService formCategoriesService;
+
+    @Autowired
+	@Qualifier("cx2.FormStatusesService")
+	private FormStatusesService formStatusesService;
 
     @Autowired
     @Qualifier("cx2.FormTypesDao")
@@ -171,19 +171,19 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormStatusesService instance
+	 * @param service FormCategoriesService instance
 	 */
-	protected void setFormStatusesService(FormStatusesService service) {
-        this.formStatusesService = service;
+	protected void setFormCategoriesService(FormCategoriesService service) {
+        this.formCategoriesService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormCategoriesService instance
+	 * @param service FormStatusesService instance
 	 */
-	protected void setFormCategoriesService(FormCategoriesService service) {
-        this.formCategoriesService = service;
+	protected void setFormStatusesService(FormStatusesService service) {
+        this.formStatusesService = service;
     }
 
 }
