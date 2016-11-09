@@ -49,6 +49,26 @@
       "municipalitiesCount" : "java.lang.Integer"
     }
   }, {
+    "name" : "SubDivisonCount",
+    "query" : "select count(*) as SubDivisonCount from Subdivisions where MunicipalityId=:municipalityId",
+    "comment" : "SubDivisonCount",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "municipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2SubDivisonCountrtnType",
+    "returnTypeMetadata" : {
+      "SubDivisonCount" : "java.lang.Integer"
+    }
+  }, {
     "name" : "UpdatePasswordAndCF",
     "query" : "UPDATE Users SET Password=:password, CommunicationFrequency=:cf where ID=:newUser",
     "comment" : "UpdatePasswordAndCF",

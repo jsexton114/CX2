@@ -7,6 +7,10 @@
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="SubDivisonCount">
+        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2SubDivisonCountrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdatePasswordAndCF">
         <parameter name="password" typeRef="java.lang.String" isList="false"/>
         <parameter name="cf" typeRef="java.lang.String" isList="false"/>
@@ -25,6 +29,10 @@
     </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="SubDivisonCount">
+        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2SubDivisonCountrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdatePasswordAndCF">
         <parameter name="password" typeRef="java.lang.String" isList="false"/>
@@ -232,6 +240,9 @@
         </dataobject>
         <dataobject javaType="cx2MunicipalityCountrtnType">
             <element name="municipalitiesCount" typeRef="java.lang.Integer"/>
+        </dataobject>
+        <dataobject javaType="cx2SubDivisonCountrtnType">
+            <element name="SubDivisonCount" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2UpdatePasswordAndCFrtnType"/>
         <dataobject javaType="cx2UserCountrtnType">

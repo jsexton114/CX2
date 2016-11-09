@@ -25,5 +25,32 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
+  },
+  "SubDivisonCount" : {
+    "_id" : "wm-SubDivisonCount-wm.ServiceVariable-1478693252968",
+    "name" : "SubDivisonCount",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.select1.datavalue.ID | toNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2SubDivisonCountrtnType",
+    "service" : "cx2",
+    "operation" : "executeSubDivisonCount",
+    "operationId" : "QueryExecutionController_executeSubDivisonCount",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
   }
 }
