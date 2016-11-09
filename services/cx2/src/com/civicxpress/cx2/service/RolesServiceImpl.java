@@ -22,7 +22,6 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Roles;
-import com.civicxpress.cx2.UserRoles;
 
 
 /**
@@ -35,9 +34,6 @@ public class RolesServiceImpl implements RolesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RolesServiceImpl.class);
 
-    @Autowired
-	@Qualifier("cx2.UserRolesService")
-	private UserRolesService userRolesService;
 
     @Autowired
     @Qualifier("cx2.RolesDao")
@@ -52,13 +48,6 @@ public class RolesServiceImpl implements RolesService {
 	public Roles create(Roles roles) {
         LOGGER.debug("Creating a new Roles with information: {}", roles);
         Roles rolesCreated = this.wmGenericDao.create(roles);
-        if(rolesCreated.getUserRoleses() != null) {
-            for(UserRoles userRolese : rolesCreated.getUserRoleses()) {
-                userRolese.setRoles(rolesCreated);
-                LOGGER.debug("Creating a new child UserRoles with information: {}", userRolese);
-                userRolesService.create(userRolese);
-            }
-        }
         return rolesCreated;
     }
 
@@ -133,25 +122,7 @@ public class RolesServiceImpl implements RolesService {
         return this.wmGenericDao.count(query);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<UserRoles> findAssociatedUserRoleses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated userRoleses");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("roles.id = '" + id + "'");
-
-        return userRolesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service UserRolesService instance
-	 */
-	protected void setUserRolesService(UserRolesService service) {
-        this.userRolesService = service;
-    }
 
 }
 

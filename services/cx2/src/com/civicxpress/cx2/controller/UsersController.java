@@ -32,7 +32,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
-import com.civicxpress.cx2.UserRoles;
+import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.service.UsersService;
@@ -160,20 +160,19 @@ public class UsersController {
         return usersService.count(query);
     }
 
+    @RequestMapping(value = "/{id:.+}/roleses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the roleses instance associated with the given id.")
+    public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated roleses");
+        return usersService.findAssociatedRoleses(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/userSubscriptionses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the userSubscriptionses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<UserSubscriptions> findAssociatedUserSubscriptionses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userSubscriptionses");
         return usersService.findAssociatedUserSubscriptionses(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/userRoleses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the userRoleses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<UserRoles> findAssociatedUserRoleses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated userRoleses");
-        return usersService.findAssociatedUserRoleses(id, pageable);
     }
 
     /**

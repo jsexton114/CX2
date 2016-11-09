@@ -21,7 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.UserRoles;
+import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
 
@@ -37,12 +37,12 @@ public class UsersServiceImpl implements UsersService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.UserSubscriptionsService")
-	private UserSubscriptionsService userSubscriptionsService;
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
 
     @Autowired
-	@Qualifier("cx2.UserRolesService")
-	private UserRolesService userRolesService;
+	@Qualifier("cx2.UserSubscriptionsService")
+	private UserSubscriptionsService userSubscriptionsService;
 
     @Autowired
     @Qualifier("cx2.UsersDao")
@@ -57,19 +57,19 @@ public class UsersServiceImpl implements UsersService {
 	public Users create(Users users) {
         LOGGER.debug("Creating a new Users with information: {}", users);
         Users usersCreated = this.wmGenericDao.create(users);
+        if(usersCreated.getRoleses() != null) {
+            for(Roles rolese : usersCreated.getRoleses()) {
+                rolese.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child Roles with information: {}", rolese);
+                rolesService.create(rolese);
+            }
+        }
+
         if(usersCreated.getUserSubscriptionses() != null) {
             for(UserSubscriptions userSubscriptionse : usersCreated.getUserSubscriptionses()) {
                 userSubscriptionse.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child UserSubscriptions with information: {}", userSubscriptionse);
                 userSubscriptionsService.create(userSubscriptionse);
-            }
-        }
-
-        if(usersCreated.getUserRoleses() != null) {
-            for(UserRoles userRolese : usersCreated.getUserRoleses()) {
-                userRolese.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child UserRoles with information: {}", userRolese);
-                userRolesService.create(userRolese);
             }
         }
         return usersCreated;
@@ -148,6 +148,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated roleses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return rolesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<UserSubscriptions> findAssociatedUserSubscriptionses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userSubscriptionses");
 
@@ -157,15 +168,13 @@ public class UsersServiceImpl implements UsersService {
         return userSubscriptionsService.findAll(queryBuilder.toString(), pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<UserRoles> findAssociatedUserRoleses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated userRoleses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return userRolesService.findAll(queryBuilder.toString(), pageable);
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service RolesService instance
+	 */
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
     }
 
     /**
@@ -175,15 +184,6 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
         this.userSubscriptionsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service UserRolesService instance
-	 */
-	protected void setUserRolesService(UserRolesService service) {
-        this.userRolesService = service;
     }
 
 }

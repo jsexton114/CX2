@@ -14,7 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.UserRoles;
+import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
 
@@ -128,6 +128,18 @@ public interface UsersService {
 	long count(String query);
 
     /*
+     * Returns the associated roleses for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Roles instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated userSubscriptionses for given Users id.
      *
      * @param id value of id; value cannot be null
@@ -138,18 +150,6 @@ public interface UsersService {
      * @see Page
      */
     Page<UserSubscriptions> findAssociatedUserSubscriptionses(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated userRoleses for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated UserRoles instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<UserRoles> findAssociatedUserRoleses(Integer id, Pageable pageable);
 
 }
 

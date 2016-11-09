@@ -46,8 +46,8 @@ public class Users implements Serializable {
     private byte[] photo;
     private Boolean banned;
     private String password;
+    private List<Roles> roleses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
-    private List<UserRoles> userRoleses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -187,21 +187,21 @@ public class Users implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<Roles> getRoleses() {
+        return this.roleses;
+    }
+
+    public void setRoleses(List<Roles> roleses) {
+        this.roleses = roleses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<UserSubscriptions> getUserSubscriptionses() {
         return this.userSubscriptionses;
     }
 
     public void setUserSubscriptionses(List<UserSubscriptions> userSubscriptionses) {
         this.userSubscriptionses = userSubscriptionses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<UserRoles> getUserRoleses() {
-        return this.userRoleses;
-    }
-
-    public void setUserRoleses(List<UserRoles> userRoleses) {
-        this.userRoleses = userRoleses;
     }
 
     @Override

@@ -211,7 +211,7 @@
     </bean>
     <bean class="com.wavemaker.runtime.security.provider.database.users.DefaultUserProviderImpl" id="defaultUserProvider">
         <property name="usersByUsernameQuery">
-            <value>SELECT id, password, 1, firstName FROM Users WHERE firstName = ?</value>
+            <value>SELECT id, password, 1, email FROM Users WHERE email = ?</value>
         </property>
         <property name="hql" value="true"/>
         <property name="hibernateTemplate">
@@ -227,7 +227,7 @@
             <value>ROLE_</value>
         </property>
         <property name="authoritiesByUsernameQuery">
-            <value>select R.RoleName from Roles R,UserRoles UR,Users U where U.ID=UR.UserId and UR.RoleId=R.ID and U.FirstName=:LOGGED_IN_USERNAME
+            <value>select R.RoleName from Roles R,Users U where U.ID=R.UserId  and U.Email=:LOGGED_IN_USERNAME
 </value>
         </property>
         <property name="rolesByQuery" value="true"/>

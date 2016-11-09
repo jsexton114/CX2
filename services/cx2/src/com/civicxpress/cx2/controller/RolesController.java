@@ -26,7 +26,6 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Roles;
-import com.civicxpress.cx2.UserRoles;
 import com.civicxpress.cx2.service.RolesService;
 
 /**
@@ -117,14 +116,6 @@ public class RolesController {
     public Long countRoles(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting Roles");
         return rolesService.count(query);
-    }
-
-    @RequestMapping(value = "/{id}/userRoleses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the userRoleses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<UserRoles> findAssociatedUserRoleses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated userRoleses");
-        return rolesService.findAssociatedUserRoleses(id, pageable);
     }
 
     /**
