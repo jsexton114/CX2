@@ -49,6 +49,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeStandardUserMunicipalites(Pageable pageable, java.lang.Integer USER)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("USER", USER);
+        return queryExecutor.executeNamedQuery("StandardUserMunicipalites", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeSubDivisonCount(Pageable pageable, java.lang.Integer municipalityId)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -78,6 +86,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         return queryExecutor.executeNamedQuery("userSubscriptionsCount", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public Page<Object> executeUserSubscriptionsCountForMunicipality(Pageable pageable, java.lang.Integer municipalityId)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("municipalityId", municipalityId);
+        return queryExecutor.executeNamedQuery("userSubscriptionsCountForMunicipality", params, pageable);
 	}
 
 	@Transactional(value = "cx2TransactionManager")

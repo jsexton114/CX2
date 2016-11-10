@@ -60,6 +60,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/StandardUserMunicipalites", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeStandardUserMunicipalites(@RequestParam(value = "USER", required = false) java.lang.Integer USER, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query StandardUserMunicipalites");
+        Page<Object> result = queryService.executeStandardUserMunicipalites(pageable, USER);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/SubDivisonCount", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeSubDivisonCount(@RequestParam(value = "municipalityId", required = false) java.lang.Integer municipalityId, Pageable pageable) throws QueryParameterMismatchException {
@@ -95,6 +105,16 @@ public class QueryExecutionController {
     public Page<Object> executeUserSubscriptionsCount(Pageable pageable) {
         LOGGER.debug("Executing named query userSubscriptionsCount");
         Page<Object> result = queryService.executeUserSubscriptionsCount(pageable);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/userSubscriptionsCountForMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeUserSubscriptionsCountForMunicipality(@RequestParam(value = "municipalityId", required = false) java.lang.Integer municipalityId, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query userSubscriptionsCountForMunicipality");
+        Page<Object> result = queryService.executeUserSubscriptionsCountForMunicipality(pageable, municipalityId);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

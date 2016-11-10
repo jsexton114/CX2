@@ -49,6 +49,40 @@
       "municipalitiesCount" : "java.lang.Integer"
     }
   }, {
+    "name" : "StandardUserMunicipalites",
+    "query" : "select M.* from Municipalities M,UserSubscriptions US,Users U where U.ID=:USER and U.ID=US.UserId and US.MunicipalityId=M.ID",
+    "comment" : "StandardUserMunicipalites",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "USER",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2StandardUserMunicipalitesrtnType",
+    "returnTypeMetadata" : {
+      "Active" : "java.lang.Boolean",
+      "Address1" : "java.lang.String",
+      "Address2" : "java.lang.String",
+      "AllowManualPayment" : "java.lang.Boolean",
+      "City" : "java.lang.String",
+      "Email" : "java.lang.String",
+      "GlobalEmailSig" : "java.lang.String",
+      "ID" : "java.math.BigDecimal",
+      "Logo" : "[B",
+      "ManualPaymentPercent" : "java.math.BigDecimal",
+      "MunicipalityGuid" : "java.lang.String",
+      "MunicipalityName" : "java.lang.String",
+      "Phone" : "java.lang.String",
+      "PostalCode" : "java.lang.String",
+      "State" : "java.lang.String"
+    }
+  }, {
     "name" : "SubDivisonCount",
     "query" : "select count(*) as SubDivisonCount from Subdivisions where MunicipalityId=:municipalityId",
     "comment" : "SubDivisonCount",
@@ -125,6 +159,26 @@
     "outputType" : "cx2userSubscriptionsCountrtnType",
     "returnTypeMetadata" : {
       "userSubscriptionsCount" : "java.lang.Integer"
+    }
+  }, {
+    "name" : "userSubscriptionsCountForMunicipality",
+    "query" : "select count(*) as userSubscriptionsCountForMunicipality from UserSubscriptions where MunicipalityId=:municipalityId",
+    "comment" : "userSubscriptionsCountForMunicipality",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "municipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2userSubscriptionsCountForMunicipalityrtnType",
+    "returnTypeMetadata" : {
+      "userSubscriptionsCountForMunicipality" : "java.lang.Integer"
     }
   } ]
 }

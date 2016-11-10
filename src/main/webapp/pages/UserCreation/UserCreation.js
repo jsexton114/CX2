@@ -1,11 +1,10 @@
-Application.$controller("UserCreationPageController", ["$scope", function($scope) {
+Application.$controller("UserCreationPageController", ["$scope", "$timeout", function($scope, $timeout) {
     "use strict";
     $scope.newUser;
 
     $scope.onPageReady = function() {
         //Current Date for subscriptions
         $scope.toDay = Date.parse(new Date().toDateString());
-
     };
 
 
@@ -15,41 +14,36 @@ Application.$controller("UserCreationPageController", ["$scope", function($scope
     };
 
     $scope.CreateUseronSuccess = function(variable, data) {
-        // Saving newUser Object for Further trancastions(Subscribing & Roles)
-        $scope.newUser = data;
+        debugger
+        // Saving newUser id for updating password and communication frequency
         $scope.newUserId = data.id;
-
-    };
-
-
-    $scope.wizard1Done = function($isolateScope, steps) {
+        //Looping for selected no of municipalities
         for (var i = 0; i < selectedMunicipalites.length; i++) {
             // For Registering User  for subscribed municialities        
             $scope.Variables.RegisterSubscriptions.setInput({
                 "dateSubscribed": $scope.toDay,
-                "users": $scope.newUser,
-                "userId": $scope.newUser.id,
+                "users": data,
+                "userId": data.id,
                 "municipalities": selectedMunicipalites[i],
                 "municipalityId": selectedMunicipalites[i].id
             });
             $scope.Variables.RegisterSubscriptions.insertRecord();
-
             // For Registering User with Role as USER for subscribed municialities
             $scope.Variables.NewUserRole.setInput({
                 "roleName": "User",
                 "description": "User",
-                "users": $scope.newUser,
-                "userId": $scope.newUser.id,
+                "users": data,
+                "userId": data.id,
                 "municipalities": selectedMunicipalites[i],
                 "municipalityId": selectedMunicipalites[i].id
             });
             $scope.Variables.NewUserRole.insertRecord();
-
-
         }
+        $scope.Variables.UpdatePwdAndCF.update();
         $scope.Variables.NewUserToLogin.navigate();
 
     };
+
 
 }]);
 

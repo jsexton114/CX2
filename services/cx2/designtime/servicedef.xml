@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="cx2" type="DataService" springFile="cx2.spring.xml">
+    <operation operationType="nativequery" name="StandardUser">
+        <parameter name="USER" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2StandardUserrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AdminsMunicipalitiesrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="StandardUserMunicipalites">
+        <parameter name="USER" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2StandardUserMunicipalitesrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="SubDivisonCount">
         <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
@@ -23,12 +31,20 @@
     <operation operationType="nativequery" name="userSubscriptionsCount">
         <return typeRef="cx2userSubscriptionsCountrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="userSubscriptionsCountForMunicipality">
+        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2userSubscriptionsCountForMunicipalityrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AdminsMunicipalitiesrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="StandardUserMunicipalites">
+        <parameter name="USER" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2StandardUserMunicipalitesrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="SubDivisonCount">
         <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
@@ -45,6 +61,10 @@
     </operation>
     <operation operationType="nativequery" name="userSubscriptionsCount">
         <return typeRef="cx2userSubscriptionsCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="userSubscriptionsCountForMunicipality">
+        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2userSubscriptionsCountForMunicipalityrtnType" isList="false"/>
     </operation>
     <dataobjects>
         <dataobject javaType="com.civicxpress.cx2.FormCategories">
@@ -241,12 +261,32 @@
         <dataobject javaType="cx2MunicipalityCountrtnType">
             <element name="municipalitiesCount" typeRef="java.lang.Integer"/>
         </dataobject>
+        <dataobject javaType="cx2StandardUserMunicipalitesrtnType">
+            <element name="Active" typeRef="java.lang.Boolean"/>
+            <element name="Address1" typeRef="java.lang.String"/>
+            <element name="Address2" typeRef="java.lang.String"/>
+            <element name="AllowManualPayment" typeRef="java.lang.Boolean"/>
+            <element name="City" typeRef="java.lang.String"/>
+            <element name="Email" typeRef="java.lang.String"/>
+            <element name="GlobalEmailSig" typeRef="java.lang.String"/>
+            <element name="ID" typeRef="java.math.BigDecimal"/>
+            <element name="Logo" typeRef="[B"/>
+            <element name="ManualPaymentPercent" typeRef="java.math.BigDecimal"/>
+            <element name="MunicipalityGuid" typeRef="java.lang.String"/>
+            <element name="MunicipalityName" typeRef="java.lang.String"/>
+            <element name="Phone" typeRef="java.lang.String"/>
+            <element name="PostalCode" typeRef="java.lang.String"/>
+            <element name="State" typeRef="java.lang.String"/>
+        </dataobject>
         <dataobject javaType="cx2SubDivisonCountrtnType">
             <element name="SubDivisonCount" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2UpdatePasswordAndCFrtnType"/>
         <dataobject javaType="cx2UserCountrtnType">
             <element name="usersCount" typeRef="java.lang.Integer"/>
+        </dataobject>
+        <dataobject javaType="cx2userSubscriptionsCountForMunicipalityrtnType">
+            <element name="userSubscriptionsCountForMunicipality" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2userSubscriptionsCountrtnType">
             <element name="userSubscriptionsCount" typeRef="java.lang.Integer"/>

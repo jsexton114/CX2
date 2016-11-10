@@ -11,6 +11,11 @@
       select count(*) as municipalitiesCount from Municipalities
     ]]>
   </sql-query>
+  <sql-query name="StandardUserMunicipalites">
+    <![CDATA[
+      select M.* from Municipalities M,UserSubscriptions US,Users U where U.ID=:USER and U.ID=US.UserId and US.MunicipalityId=M.ID
+    ]]>
+  </sql-query>
   <sql-query name="SubDivisonCount">
     <![CDATA[
       select count(*) as SubDivisonCount from Subdivisions where MunicipalityId=:municipalityId
@@ -29,6 +34,11 @@
   <sql-query name="userSubscriptionsCount">
     <![CDATA[
       select count(*) as userSubscriptionsCount from UserSubscriptions
+    ]]>
+  </sql-query>
+  <sql-query name="userSubscriptionsCountForMunicipality">
+    <![CDATA[
+      select count(*) as userSubscriptionsCountForMunicipality from UserSubscriptions where MunicipalityId=:municipalityId
     ]]>
   </sql-query>
 </hibernate-mapping>

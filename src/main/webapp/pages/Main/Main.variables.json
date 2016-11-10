@@ -1,1 +1,29 @@
-{ }
+{
+  "StandardUserMunicipalites" : {
+    "_id" : "wm-StandardUserMunicipalites-wm.ServiceVariable-1478775230336",
+    "name" : "StandardUserMunicipalites",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "USER",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "cx2StandardUserMunicipalitesrtnType",
+    "service" : "cx2",
+    "operation" : "executeStandardUserMunicipalites",
+    "operationId" : "QueryExecutionController_executeStandardUserMunicipalites",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}
