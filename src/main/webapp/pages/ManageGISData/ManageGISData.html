@@ -22,21 +22,23 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn31">
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabpane1" title="Manage Subdivisions">
-                                <wm-livegrid formlayout="inline" name="livegrid1">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Subdivisions List" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" navigation="Classic" name="grid1">
-                                        <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
-                                        <wm-grid-column binding="subdivisionGuid" caption="Subdivision Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="subdivision" caption="Subdivision" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="subShortCode" caption="Sub Short Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="municipalities.id" caption="Municipalities Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Municipalities"
-                                        readonly="true"></wm-grid-column>
-                                        <wm-grid-column binding="municipalities.municipalityGuid" caption="Municipality Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities"></wm-grid-column>
-                                        <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                                <wm-livegrid formlayout="dialog" name="livegrid1">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Subdivisions List" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL">
+                                        <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
+                                        <wm-grid-column binding="subdivisionGuid" caption="Subdivision Guid" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="subdivision" caption="Subdivision" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="subShortCode" caption="Sub Short Code" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="municipalities.id" caption="Municipalities Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true" related-entity-name="Municipalities"></wm-grid-column>
+                                        <wm-grid-column binding="municipalities.municipalityGuid" caption="Municipality Guid" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities"
+                                        readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities"
+                                        readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Subdivisions Info" formlayout="inline" iconclass="wi wi-edit" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" captionalign="left" captionposition="top" name="liveform1">
+                                    <wm-liveform novalidate="false" errormessage="" title="Subdivisions Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" captionalign="left" captionposition="top" name="liveform1">
                                         <wm-layoutgrid columns="1" name="layoutgrid1">
                                             <wm-gridrow name="gridrow1">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn1">
@@ -56,8 +58,8 @@
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow1">
                                                 <wm-gridcolumn name="gridcolumn1" columnwidth="12">
-                                                    <wm-form-field name="municipalities" displayname="Municipalities" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" dataset="bind:Variables.AdminMunipalities.dataSet"
-                                                    datafield="All Fields" displayfield="MunicipalityName" defaultvalue="bind:Widgets.select1.datavalue"></wm-form-field>
+                                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" dataset="bind:Variables.SelectedMunicipalityObj.dataSet"
+                                                    datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
@@ -68,147 +70,128 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpane2" title="Parcels">
                                 <wm-livegrid formlayout="dialog" name="livegrid2">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Gisrecords List" dataset="bind:Variables.Cx2GisrecordsData.dataSet" navigation="Classic" name="grid2">
-                                        <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
-                                        <wm-grid-column binding="landGuid" caption="Land Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="parcel" caption="Parcel" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="lot" caption="Lot" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="section" caption="Section" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="streetNumber" caption="Street Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="streetName" caption="Street Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="city" caption="City" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="streetType" caption="Street Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="ownerName" caption="Owner Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="ownerPhone" caption="Owner Phone" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Gisrecords List" dataset="bind:Variables.Cx2GisrecordsData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL">
+                                        <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
+                                        <wm-grid-column binding="landGuid" caption="Land Guid" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="lot" caption="Lot" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="section" caption="Section" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="streetNumber" caption="Street Number" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="streetName" caption="Street Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="city" caption="City" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="streetType" caption="Street Type" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="ownerName" caption="Owner Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="ownerPhone" caption="Owner Phone" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                     <wm-liveform novalidate="false" errormessage="" title="Gisrecords Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2GisrecordsData.dataSet" captionalign="left" captionposition="top" name="liveform2">
                                         <wm-layoutgrid columns="2" name="layoutgrid2">
                                             <wm-gridrow name="gridrow5">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn5">
-                                                    <wm-form-field name="landGuid" displayname="Land Guid" required="false" show="true" generator="assigned" primary-key="false" key="landGuid" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="landGuid" displayname="Land Guid" show="true" primary-key="false" generator="assigned" key="landGuid" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn6">
-                                                    <wm-form-field name="parcel" displayname="Parcel" required="false" show="true" generator="assigned" primary-key="false" key="parcel" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                                    widget="text"></wm-form-field>
+                                                    <wm-form-field name="parcel" displayname="Parcel" show="true" primary-key="false" generator="assigned" key="parcel" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow6">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn7">
-                                                    <wm-form-field name="lot" displayname="Lot" required="false" show="true" generator="assigned" primary-key="false" key="lot" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                                    widget="text"></wm-form-field>
+                                                    <wm-form-field name="lot" displayname="Lot" show="true" primary-key="false" generator="assigned" key="lot" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn8">
-                                                    <wm-form-field name="section" displayname="Section" required="false" show="true" generator="assigned" primary-key="false" key="section" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                                    widget="text"></wm-form-field>
+                                                    <wm-form-field name="section" displayname="Section" show="true" primary-key="false" generator="assigned" key="section" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow7">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn9">
-                                                    <wm-form-field name="streetNumber" displayname="Street Number" required="false" show="true" generator="assigned" primary-key="false" key="streetNumber" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="streetNumber" displayname="Street Number" show="true" primary-key="false" generator="assigned" key="streetNumber" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn10">
-                                                    <wm-form-field name="streetName" displayname="Street Name" required="false" show="true" generator="assigned" primary-key="false" key="streetName" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="streetName" displayname="Street Name" show="true" primary-key="false" generator="assigned" key="streetName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow8">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn11">
-                                                    <wm-form-field name="city" displayname="City" required="false" show="true" generator="assigned" primary-key="false" key="city" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                                    widget="text"></wm-form-field>
+                                                    <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn12">
-                                                    <wm-form-field name="streetType" displayname="Street Type" required="false" show="true" generator="assigned" primary-key="false" key="streetType" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="streetType" displayname="Street Type" show="true" primary-key="false" generator="assigned" key="streetType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow9">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn13">
-                                                    <wm-form-field name="streetDirection" displayname="Street Direction" required="false" show="true" generator="assigned" primary-key="false" key="streetDirection" type="string" is-related="false" maxchars="255"
-                                                    pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="streetDirection" displayname="Street Direction" show="true" primary-key="false" generator="assigned" key="streetDirection" type="string" widget="text" maxchars="255" inputtype="text"
+                                                    placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn14">
-                                                    <wm-form-field name="sections" displayname="Sections" required="false" show="true" generator="assigned" primary-key="false" key="sections" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="sections" displayname="Sections" show="true" primary-key="false" generator="assigned" key="sections" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow10">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn15">
-                                                    <wm-form-field name="inspectionZone" displayname="Inspection Zone" required="false" show="true" generator="assigned" primary-key="false" key="inspectionZone" type="string" is-related="false" maxchars="255"
-                                                    pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="inspectionZone" displayname="Inspection Zone" show="true" primary-key="false" generator="assigned" key="inspectionZone" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn16">
-                                                    <wm-form-field name="latitude" displayname="Latitude" required="false" show="true" generator="assigned" primary-key="false" key="latitude" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="latitude" displayname="Latitude" show="true" primary-key="false" generator="assigned" key="latitude" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow11">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn17">
-                                                    <wm-form-field name="longitude" displayname="Longitude" required="false" show="true" generator="assigned" primary-key="false" key="longitude" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="longitude" displayname="Longitude" show="true" primary-key="false" generator="assigned" key="longitude" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn18">
-                                                    <wm-form-field name="ownerName" displayname="Owner Name" required="false" show="true" generator="assigned" primary-key="false" key="ownerName" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="ownerName" displayname="Owner Name" show="true" primary-key="false" generator="assigned" key="ownerName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow12">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn19">
-                                                    <wm-form-field name="ownerAddress1" displayname="Owner Address1" required="false" show="true" generator="assigned" primary-key="false" key="ownerAddress1" type="string" is-related="false" maxchars="255"
-                                                    pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="ownerAddress1" displayname="Owner Address1" show="true" primary-key="false" generator="assigned" key="ownerAddress1" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn20">
-                                                    <wm-form-field name="ownerAddress2" displayname="Owner Address2" required="false" show="true" generator="assigned" primary-key="false" key="ownerAddress2" type="string" is-related="false" maxchars="255"
-                                                    pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="ownerAddress2" displayname="Owner Address2" show="true" primary-key="false" generator="assigned" key="ownerAddress2" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow13">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn21">
-                                                    <wm-form-field name="ownerCity" displayname="Owner City" required="false" show="true" generator="assigned" primary-key="false" key="ownerCity" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="ownerCity" displayname="Owner City" show="true" primary-key="false" generator="assigned" key="ownerCity" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn22">
-                                                    <wm-form-field name="ownerState" displayname="Owner State" required="false" show="true" generator="assigned" primary-key="false" key="ownerState" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="ownerState" displayname="Owner State" show="true" primary-key="false" generator="assigned" key="ownerState" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow14">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn23">
-                                                    <wm-form-field name="ownerPostalCode" displayname="Owner Postal Code" required="false" show="true" generator="assigned" primary-key="false" key="ownerPostalCode" type="string" is-related="false" maxchars="255"
-                                                    pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="ownerPostalCode" displayname="Owner Postal Code" show="true" primary-key="false" generator="assigned" key="ownerPostalCode" type="string" widget="text" maxchars="255" inputtype="text"
+                                                    placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn24">
-                                                    <wm-form-field name="ownerPhone" displayname="Owner Phone" required="false" show="true" generator="assigned" primary-key="false" key="ownerPhone" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="ownerPhone" displayname="Owner Phone" show="true" primary-key="false" generator="assigned" key="ownerPhone" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow15">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn25">
-                                                    <wm-form-field name="ownerEmail" displayname="Owner Email" required="false" show="true" generator="assigned" primary-key="false" key="ownerEmail" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
+                                                    <wm-form-field name="ownerEmail" displayname="Owner Email" show="true" primary-key="false" generator="assigned" key="ownerEmail" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn26">
-                                                    <wm-form-field name="municipalities" displayname="Municipalities" required="false" show="true" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true"
-                                                    mobile-display="true" widget="select"></wm-form-field>
+                                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select value"
+                                                    dataset="bind:Variables.SelectedMunicipalityObj.dataSet" datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow16">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn27">
-                                                    <wm-form-field name="states" displayname="States" required="false" show="true" generator="assigned" primary-key="false" key="states" type="list" is-related="true" pc-display="true" mobile-display="true"
-                                                    widget="select"></wm-form-field>
+                                                    <wm-form-field name="states" displayname="States" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="stateName"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn28">
-                                                    <wm-form-field name="subdivisions" displayname="Subdivisions" required="false" show="true" generator="assigned" primary-key="false" key="subdivisions" type="list" is-related="true" pc-display="true" mobile-display="true"
-                                                    widget="select"></wm-form-field>
+                                                    <wm-form-field name="subdivisions" displayname="Subdivisions" show="true" primary-key="false" generator="assigned" key="subdivisions" type="list" is-related="true" widget="autocomplete" placeholder="Select value"
+                                                    displayexpression="subdivision" displaylabel="subdivision" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" searchkey="subdivision"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
-                                        <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                     </wm-liveform>
                                 </wm-livegrid>
                             </wm-tabpane>
