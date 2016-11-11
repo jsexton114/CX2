@@ -37,12 +37,12 @@ public class UsersServiceImpl implements UsersService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
-
-    @Autowired
 	@Qualifier("cx2.UserSubscriptionsService")
 	private UserSubscriptionsService userSubscriptionsService;
+
+    @Autowired
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
 
     @Autowired
     @Qualifier("cx2.UsersDao")
@@ -171,19 +171,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service RolesService instance
+	 * @param service UserSubscriptionsService instance
 	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
+	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
+        this.userSubscriptionsService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UserSubscriptionsService instance
+	 * @param service RolesService instance
 	 */
-	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
-        this.userSubscriptionsService = service;
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
     }
 
 }

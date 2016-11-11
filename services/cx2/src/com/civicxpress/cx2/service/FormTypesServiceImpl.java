@@ -37,12 +37,12 @@ public class FormTypesServiceImpl implements FormTypesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FormTypesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.FormCategoriesService")
-	private FormCategoriesService formCategoriesService;
-
-    @Autowired
 	@Qualifier("cx2.FormStatusesService")
 	private FormStatusesService formStatusesService;
+
+    @Autowired
+	@Qualifier("cx2.FormCategoriesService")
+	private FormCategoriesService formCategoriesService;
 
     @Autowired
     @Qualifier("cx2.FormTypesDao")
@@ -57,19 +57,19 @@ public class FormTypesServiceImpl implements FormTypesService {
 	public FormTypes create(FormTypes formTypes) {
         LOGGER.debug("Creating a new FormTypes with information: {}", formTypes);
         FormTypes formTypesCreated = this.wmGenericDao.create(formTypes);
-        if(formTypesCreated.getFormStatuseses() != null) {
-            for(FormStatuses formStatusese : formTypesCreated.getFormStatuseses()) {
-                formStatusese.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
-                formStatusesService.create(formStatusese);
-            }
-        }
-
         if(formTypesCreated.getFormCategorieses() != null) {
             for(FormCategories formCategoriese : formTypesCreated.getFormCategorieses()) {
                 formCategoriese.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child FormCategories with information: {}", formCategoriese);
                 formCategoriesService.create(formCategoriese);
+            }
+        }
+
+        if(formTypesCreated.getFormStatuseses() != null) {
+            for(FormStatuses formStatusese : formTypesCreated.getFormStatuseses()) {
+                formStatusese.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
+                formStatusesService.create(formStatusese);
             }
         }
         return formTypesCreated;
@@ -148,17 +148,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formStatuseses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return formStatusesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormCategories> findAssociatedFormCategorieses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formCategorieses");
 
@@ -168,13 +157,15 @@ public class FormTypesServiceImpl implements FormTypesService {
         return formCategoriesService.findAll(queryBuilder.toString(), pageable);
     }
 
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormCategoriesService instance
-	 */
-	protected void setFormCategoriesService(FormCategoriesService service) {
-        this.formCategoriesService = service;
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatuseses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formStatusesService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
@@ -184,6 +175,15 @@ public class FormTypesServiceImpl implements FormTypesService {
 	 */
 	protected void setFormStatusesService(FormStatusesService service) {
         this.formStatusesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormCategoriesService instance
+	 */
+	protected void setFormCategoriesService(FormCategoriesService service) {
+        this.formCategoriesService = service;
     }
 
 }

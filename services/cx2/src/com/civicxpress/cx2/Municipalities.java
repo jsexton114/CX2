@@ -46,12 +46,13 @@ public class Municipalities implements Serializable {
     private String globalEmailSig;
     @JsonProperty(access = Access.READ_ONLY)
     private byte[] logo;
-    private List<Roles> roleses = new ArrayList<>();
-    private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
     private List<FormTypes> formTypeses = new ArrayList<>();
+    private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
+    private List<Subdivisions> subdivisionses = new ArrayList<>();
+    private List<Roles> roleses = new ArrayList<>();
     private List<Gisrecords> gisrecordses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
-    private List<Subdivisions> subdivisionses = new ArrayList<>();
+    private List<ContractorApprovals> contractorApprovalses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -191,12 +192,12 @@ public class Municipalities implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<Roles> getRoleses() {
-        return this.roleses;
+    public List<FormTypes> getFormTypeses() {
+        return this.formTypeses;
     }
 
-    public void setRoleses(List<Roles> roleses) {
-        this.roleses = roleses;
+    public void setFormTypeses(List<FormTypes> formTypeses) {
+        this.formTypeses = formTypeses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
@@ -209,12 +210,21 @@ public class Municipalities implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<FormTypes> getFormTypeses() {
-        return this.formTypeses;
+    public List<Subdivisions> getSubdivisionses() {
+        return this.subdivisionses;
     }
 
-    public void setFormTypeses(List<FormTypes> formTypeses) {
-        this.formTypeses = formTypeses;
+    public void setSubdivisionses(List<Subdivisions> subdivisionses) {
+        this.subdivisionses = subdivisionses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<Roles> getRoleses() {
+        return this.roleses;
+    }
+
+    public void setRoleses(List<Roles> roleses) {
+        this.roleses = roleses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
@@ -236,12 +246,12 @@ public class Municipalities implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<Subdivisions> getSubdivisionses() {
-        return this.subdivisionses;
+    public List<ContractorApprovals> getContractorApprovalses() {
+        return this.contractorApprovalses;
     }
 
-    public void setSubdivisionses(List<Subdivisions> subdivisionses) {
-        this.subdivisionses = subdivisionses;
+    public void setContractorApprovalses(List<ContractorApprovals> contractorApprovalses) {
+        this.contractorApprovalses = contractorApprovalses;
     }
 
     @Override

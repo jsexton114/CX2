@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.Contractors;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.States;
 
@@ -40,6 +41,10 @@ public class StatesServiceImpl implements StatesService {
 	private GisrecordsService gisrecordsService;
 
     @Autowired
+	@Qualifier("cx2.ContractorsService")
+	private ContractorsService contractorsService;
+
+    @Autowired
     @Qualifier("cx2.StatesDao")
     private WMGenericDao<States, Integer> wmGenericDao;
 
@@ -52,6 +57,14 @@ public class StatesServiceImpl implements StatesService {
 	public States create(States states) {
         LOGGER.debug("Creating a new States with information: {}", states);
         States statesCreated = this.wmGenericDao.create(states);
+        if(statesCreated.getContractorses() != null) {
+            for(Contractors contractorse : statesCreated.getContractorses()) {
+                contractorse.setStates(statesCreated);
+                LOGGER.debug("Creating a new child Contractors with information: {}", contractorse);
+                contractorsService.create(contractorse);
+            }
+        }
+
         if(statesCreated.getGisrecordses() != null) {
             for(Gisrecords gisrecordse : statesCreated.getGisrecordses()) {
                 gisrecordse.setStates(statesCreated);
@@ -135,6 +148,17 @@ public class StatesServiceImpl implements StatesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Contractors> findAssociatedContractorses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated contractorses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("states.id = '" + id + "'");
+
+        return contractorsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gisrecordses");
 
@@ -151,6 +175,15 @@ public class StatesServiceImpl implements StatesService {
 	 */
 	protected void setGisrecordsService(GisrecordsService service) {
         this.gisrecordsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ContractorsService instance
+	 */
+	protected void setContractorsService(ContractorsService service) {
+        this.contractorsService = service;
     }
 
 }

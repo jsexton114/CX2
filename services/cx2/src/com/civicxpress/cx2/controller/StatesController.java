@@ -25,6 +25,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.Contractors;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.service.StatesService;
@@ -117,6 +118,14 @@ public class StatesController {
     public Long countStates(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting States");
         return statesService.count(query);
+    }
+
+    @RequestMapping(value = "/{id}/contractorses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the contractorses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Contractors> findAssociatedContractorses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated contractorses");
+        return statesService.findAssociatedContractorses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/gisrecordses", method = RequestMethod.GET)

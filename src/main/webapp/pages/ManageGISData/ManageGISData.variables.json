@@ -26,6 +26,25 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1478862013434",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/MunicipalityAdministration"
+    }, {
+      "label" : "ManageGISData",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/ManageGISData"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "Cx2GisrecordsData" : {
     "_id" : "wm-Cx2GisrecordsData-wm.LiveVariable-1478686416170",
     "name" : "Cx2GisrecordsData",

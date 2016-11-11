@@ -32,6 +32,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.ContractorApprovals;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.ManualFeeTypes;
@@ -164,12 +165,12 @@ public class MunicipalitiesController {
         return municipalitiesService.count(query);
     }
 
-    @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the roleses instance associated with the given id.")
+    @RequestMapping(value = "/{id}/formTypeses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formTypeses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated roleses");
-        return municipalitiesService.findAssociatedRoleses(id, pageable);
+    public Page<FormTypes> findAssociatedFormTypeses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formTypeses");
+        return municipalitiesService.findAssociatedFormTypeses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/manualFeeTypeses", method = RequestMethod.GET)
@@ -180,12 +181,20 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedManualFeeTypeses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/formTypeses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the formTypeses instance associated with the given id.")
+    @RequestMapping(value = "/{id}/subdivisionses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the subdivisionses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormTypes> findAssociatedFormTypeses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formTypeses");
-        return municipalitiesService.findAssociatedFormTypeses(id, pageable);
+    public Page<Subdivisions> findAssociatedSubdivisionses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated subdivisionses");
+        return municipalitiesService.findAssociatedSubdivisionses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the roleses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated roleses");
+        return municipalitiesService.findAssociatedRoleses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/gisrecordses", method = RequestMethod.GET)
@@ -204,12 +213,11 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedUserSubscriptionses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/subdivisionses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the subdivisionses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Subdivisions> findAssociatedSubdivisionses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subdivisionses");
-        return municipalitiesService.findAssociatedSubdivisionses(id, pageable);
+    @RequestMapping(value = "/{id:.+}/contractorApprovalses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the contractorApprovalses instance associated with the given id.")
+    public Page<ContractorApprovals> findAssociatedContractorApprovalses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated contractorApprovalses");
+        return municipalitiesService.findAssociatedContractorApprovalses(id, pageable);
     }
 
     /**

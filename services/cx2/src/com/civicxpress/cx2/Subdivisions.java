@@ -34,8 +34,8 @@ public class Subdivisions implements Serializable {
     private String subdivisionGuid;
     private String subdivision;
     private String subShortCode;
-    private List<Gisrecords> gisrecordses = new ArrayList<>();
     private Municipalities municipalities;
+    private List<Gisrecords> gisrecordses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -84,15 +84,6 @@ public class Subdivisions implements Serializable {
         this.subShortCode = subShortCode;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subdivisions")
-    public List<Gisrecords> getGisrecordses() {
-        return this.gisrecordses;
-    }
-
-    public void setGisrecordses(List<Gisrecords> gisrecordses) {
-        this.gisrecordses = gisrecordses;
-    }
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`MunicipalityId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public Municipalities getMunicipalities() {
@@ -105,6 +96,15 @@ public class Subdivisions implements Serializable {
         }
 
         this.municipalities = municipalities;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subdivisions")
+    public List<Gisrecords> getGisrecordses() {
+        return this.gisrecordses;
+    }
+
+    public void setGisrecordses(List<Gisrecords> gisrecordses) {
+        this.gisrecordses = gisrecordses;
     }
 
     @Override

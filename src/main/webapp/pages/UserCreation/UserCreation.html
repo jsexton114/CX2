@@ -36,12 +36,13 @@
                                     <wm-form-field name="state" displayname="State" show="true" primary-key="false" generator="assigned" key="state" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" required="false"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn18">
-                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" inputtype="number" placeholder="Enter value" required="false"></wm-form-field>
+                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" required="false"></wm-form-field>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow10">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn19">
-                                    <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" required="true"></wm-form-field>
+                                    <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" widget="text" maxchars="10" inputtype="number" placeholder="Enter value"
+                                    required="true"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn20">
                                     <wm-form-field name="photo" displayname="Photo" show="true" primary-key="false" generator="assigned" key="photo" type="blob" widget="upload" maxchars="255" required="false"></wm-form-field>
@@ -91,7 +92,7 @@
                                 <wm-composite name="composite3" margin="1em unset">
                                     <wm-label class="col-md-3 control-label" name="label5" caption="Password"></wm-label>
                                     <wm-container class="col-md-9" name="container3">
-                                        <wm-text name="textPwd" placeholder="Enter Password"></wm-text>
+                                        <wm-text name="textPwd" placeholder="Enter Password" type="password"></wm-text>
                                     </wm-container>
                                 </wm-composite>
                             </wm-gridcolumn>
@@ -101,7 +102,7 @@
                                 <wm-composite name="composite4" margin="1em unset">
                                     <wm-label class="col-md-3 control-label" name="label6" caption="Retype Password"></wm-label>
                                     <wm-container class="col-md-9" name="container4">
-                                        <wm-text name="textRePwd" placeholder="Enter Password" on-keyup="textRePwdKeyup($event, $scope)"></wm-text>
+                                        <wm-text name="textRePwd" placeholder="Enter Password" on-keyup="textRePwdKeyup($event, $scope)" type="password"></wm-text>
                                     </wm-container>
                                 </wm-composite>
                             </wm-gridcolumn>

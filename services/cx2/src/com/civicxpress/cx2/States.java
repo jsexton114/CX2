@@ -29,6 +29,7 @@ public class States implements Serializable {
 
     private Integer id;
     private String stateName;
+    private List<Contractors> contractorses = new ArrayList<>();
     private List<Gisrecords> gisrecordses = new ArrayList<>();
 
     @Id
@@ -49,6 +50,15 @@ public class States implements Serializable {
 
     public void setStateName(String stateName) {
         this.stateName = stateName;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
+    public List<Contractors> getContractorses() {
+        return this.contractorses;
+    }
+
+    public void setContractorses(List<Contractors> contractorses) {
+        this.contractorses = contractorses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")

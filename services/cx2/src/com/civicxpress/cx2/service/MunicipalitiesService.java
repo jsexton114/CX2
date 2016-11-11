@@ -14,6 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.ContractorApprovals;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.ManualFeeTypes;
@@ -132,16 +133,16 @@ public interface MunicipalitiesService {
 	long count(String query);
 
     /*
-     * Returns the associated roleses for given Municipalities id.
+     * Returns the associated formTypeses for given Municipalities id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated Roles instances.
+     * @return Paginated list of associated FormTypes instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable);
+    Page<FormTypes> findAssociatedFormTypeses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated manualFeeTypeses for given Municipalities id.
@@ -156,16 +157,28 @@ public interface MunicipalitiesService {
     Page<ManualFeeTypes> findAssociatedManualFeeTypeses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated formTypeses for given Municipalities id.
+     * Returns the associated subdivisionses for given Municipalities id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated FormTypes instances.
+     * @return Paginated list of associated Subdivisions instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<FormTypes> findAssociatedFormTypeses(Integer id, Pageable pageable);
+    Page<Subdivisions> findAssociatedSubdivisionses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated roleses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Roles instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated gisrecordses for given Municipalities id.
@@ -192,16 +205,16 @@ public interface MunicipalitiesService {
     Page<UserSubscriptions> findAssociatedUserSubscriptionses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated subdivisionses for given Municipalities id.
+     * Returns the associated contractorApprovalses for given Municipalities id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated Subdivisions instances.
+     * @return Paginated list of associated ContractorApprovals instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<Subdivisions> findAssociatedSubdivisionses(Integer id, Pageable pageable);
+    Page<ContractorApprovals> findAssociatedContractorApprovalses(Integer id, Pageable pageable);
 
 }
 

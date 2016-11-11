@@ -1,4 +1,23 @@
 {
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1478865135658",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/CXAdmin"
+    }, {
+      "label" : "ManageUsers",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/ManageUsers"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "Cx2UsersData" : {
     "_id" : "wm-Cx2UsersData-wm.LiveVariable-1478601572414",
     "name" : "Cx2UsersData",

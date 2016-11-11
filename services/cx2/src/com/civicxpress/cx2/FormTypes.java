@@ -47,8 +47,8 @@ public class FormTypes implements Serializable {
     private String report;
     private Boolean active;
     private Municipalities municipalities;
-    private List<FormStatuses> formStatuseses = new ArrayList<>();
     private List<FormCategories> formCategorieses = new ArrayList<>();
+    private List<FormStatuses> formStatuseses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -220,21 +220,21 @@ public class FormTypes implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<FormStatuses> getFormStatuseses() {
-        return this.formStatuseses;
-    }
-
-    public void setFormStatuseses(List<FormStatuses> formStatuseses) {
-        this.formStatuseses = formStatuseses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
     public List<FormCategories> getFormCategorieses() {
         return this.formCategorieses;
     }
 
     public void setFormCategorieses(List<FormCategories> formCategorieses) {
         this.formCategorieses = formCategorieses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<FormStatuses> getFormStatuseses() {
+        return this.formStatuseses;
+    }
+
+    public void setFormStatuseses(List<FormStatuses> formStatuseses) {
+        this.formStatuseses = formStatuseses;
     }
 
     @Override

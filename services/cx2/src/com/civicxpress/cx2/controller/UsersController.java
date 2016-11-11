@@ -160,8 +160,9 @@ public class UsersController {
         return usersService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/roleses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the roleses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated roleses");
         return usersService.findAssociatedRoleses(id, pageable);

@@ -120,20 +120,20 @@ public class FormTypesController {
         return formTypesService.count(query);
     }
 
-    @RequestMapping(value = "/{id}/formStatuseses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the formStatuseses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormStatuses> findAssociatedFormStatuseses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formStatuseses");
-        return formTypesService.findAssociatedFormStatuseses(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/formCategorieses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formCategorieses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormCategories> findAssociatedFormCategorieses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formCategorieses");
         return formTypesService.findAssociatedFormCategorieses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/formStatuseses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formStatuseses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<FormStatuses> findAssociatedFormStatuseses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatuseses");
+        return formTypesService.findAssociatedFormStatuseses(id, pageable);
     }
 
     /**
