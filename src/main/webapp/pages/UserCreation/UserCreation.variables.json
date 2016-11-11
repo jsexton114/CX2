@@ -969,6 +969,34 @@
     "inputFields" : { },
     "package" : "com.civicxpress.cx2.Roles"
   },
+  "PasswordMissMatch" : {
+    "_id" : "wm-PasswordMissMatch-wm.NotificationVariable-1478851095565",
+    "name" : "PasswordMissMatch",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "list"
+    }, {
+      "target" : "text",
+      "value" : "Passwords MissMatch",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "list"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "list"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "list"
+    } ],
+    "operation" : "toast"
+  },
   "RegisterSubscriptions" : {
     "_id" : "wm-RegisterSubscriptions-wm.LiveVariable-1478595414565",
     "name" : "RegisterSubscriptions",

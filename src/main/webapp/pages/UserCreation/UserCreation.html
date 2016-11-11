@@ -2,7 +2,7 @@
     <wm-header content="header" name="header1"></wm-header>
     <wm-content name="content1">
         <wm-page-content columnwidth="12" name="page_content1">
-            <wm-wizard name="wizard1" horizontalalign="left" on-done="Widgets.liveform2.save()" on-cancel="Widgets.liveform2.reset()">
+            <wm-wizard name="wizard1" horizontalalign="left" on-done="wizard1Done($scope, steps)" on-cancel="Widgets.liveform2.reset()">
                 <wm-wizardstep name="wizardstep1" title="Account Setup">
                     <wm-liveform novalidate="false" errormessage="" title="Register Userself" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left" captionposition="top" name="liveform2" insertmessage="Registration Success, Please Proceed"
                     updatemessage="User updated successfully" deletemessage="User deleted successfully">
@@ -101,7 +101,7 @@
                                 <wm-composite name="composite4" margin="1em unset">
                                     <wm-label class="col-md-3 control-label" name="label6" caption="Retype Password"></wm-label>
                                     <wm-container class="col-md-9" name="container4">
-                                        <wm-text name="textRePwd" placeholder="Enter Password"></wm-text>
+                                        <wm-text name="textRePwd" placeholder="Enter Password" on-keyup="textRePwdKeyup($event, $scope)"></wm-text>
                                     </wm-container>
                                 </wm-composite>
                             </wm-gridcolumn>

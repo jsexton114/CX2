@@ -6,15 +6,17 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         //Current Date for subscriptions
         $scope.toDay = Date.parse(new Date().toDateString());
     };
+    // For verifying password match
+    var proceedSubmission = false;
 
-
+    //unchecked municipalities
     var selectedMunicipalites = [];
+
     $scope.checkboxsetMunicipalitesChange = function($event, $isolateScope, newVal, oldVal) {
         selectedMunicipalites = newVal;
     };
 
     $scope.CreateUseronSuccess = function(variable, data) {
-        debugger
         //Looping for selected no of municipalities
         for (var i = 0; i < selectedMunicipalites.length; i++) {
             // For Registering User  for subscribed municialities        
@@ -48,6 +50,37 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
     };
 
+
+
+    $scope.wizard1Done = function($isolateScope, steps) {
+        // check for password match
+        if (proceedSubmission == true) {
+            $scope.Widgets.liveform2.save();
+        } else {
+            $scope.Variables.PasswordMissMatch.notify();
+        }
+    };
+
+
+    $scope.textRePwdKeyup = function($event, $isolateScope) {
+        //Store the password field objects into variables ...
+        var pass1 = document.getElementById('textPwd');
+        var pass2 = document.getElementById('textRePwd');
+        //Set the colorsfor use
+        var matchColor = "#fff";
+        var missmatchColor = "#ff6666";
+        //Compare the values in the password field and the confirmation field
+        //
+        if (pass1.value == pass2.value) {
+            pass2.style.backgroundColor = matchColor;
+            proceedSubmission = true;
+        } else {
+            pass2.style.backgroundColor = missmatchColor;
+            proceedSubmission = false;
+        }
+
+
+    };
 
 }]);
 
