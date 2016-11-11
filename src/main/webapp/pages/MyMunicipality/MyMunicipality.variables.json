@@ -1,18 +1,18 @@
 {
-  "StandardUserMunicipalites" : {
-    "_id" : "wm-StandardUserMunicipalites-wm.ServiceVariable-1478777383766",
-    "name" : "StandardUserMunicipalites",
+  "EmployeesMunicipalities" : {
+    "_id" : "wm-EmployeesMunicipalities-wm.ServiceVariable-1478840896695",
+    "name" : "EmployeesMunicipalities",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "USER",
+      "target" : "user",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2StandardUserMunicipalitesrtnType",
+    "type" : "cx2EmployeesMunicipalitiesrtnType",
     "service" : "cx2",
-    "operation" : "executeStandardUserMunicipalites",
-    "operationId" : "QueryExecutionController_executeStandardUserMunicipalites",
+    "operation" : "executeEmployeesMunicipalities",
+    "operationId" : "QueryExecutionController_executeEmployeesMunicipalities",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],

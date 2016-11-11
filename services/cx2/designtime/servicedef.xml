@@ -8,6 +8,10 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AdminsMunicipalitiesrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="EmployeesMunicipalities">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2EmployeesMunicipalitiesrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
     </operation>
@@ -38,6 +42,10 @@
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AdminsMunicipalitiesrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="EmployeesMunicipalities">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2EmployeesMunicipalitiesrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
@@ -242,6 +250,23 @@
             <element name="queryStr" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="cx2AdminsMunicipalitiesrtnType">
+            <element name="Active" typeRef="java.lang.Boolean"/>
+            <element name="Address1" typeRef="java.lang.String"/>
+            <element name="Address2" typeRef="java.lang.String"/>
+            <element name="AllowManualPayment" typeRef="java.lang.Boolean"/>
+            <element name="City" typeRef="java.lang.String"/>
+            <element name="Email" typeRef="java.lang.String"/>
+            <element name="GlobalEmailSig" typeRef="java.lang.String"/>
+            <element name="ID" typeRef="java.math.BigDecimal"/>
+            <element name="Logo" typeRef="[B"/>
+            <element name="ManualPaymentPercent" typeRef="java.math.BigDecimal"/>
+            <element name="MunicipalityGuid" typeRef="java.lang.String"/>
+            <element name="MunicipalityName" typeRef="java.lang.String"/>
+            <element name="Phone" typeRef="java.lang.String"/>
+            <element name="PostalCode" typeRef="java.lang.String"/>
+            <element name="State" typeRef="java.lang.String"/>
+        </dataobject>
+        <dataobject javaType="cx2EmployeesMunicipalitiesrtnType">
             <element name="Active" typeRef="java.lang.Boolean"/>
             <element name="Address1" typeRef="java.lang.String"/>
             <element name="Address2" typeRef="java.lang.String"/>

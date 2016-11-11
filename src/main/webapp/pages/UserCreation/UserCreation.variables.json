@@ -1477,19 +1477,7 @@
     "name" : "UpdatePwdAndCF",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "password",
-      "value" : "bind:Widgets.textPwd.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "cf",
-      "value" : "bind:Widgets.radioset1.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "newUser",
-      "value" : "bind:newUserId",
-      "type" : "integer"
-    } ],
+    "dataBinding" : [ ],
     "type" : "cx2UpdatePasswordAndCFrtnType",
     "service" : "cx2",
     "operation" : "executeUpdatePasswordAndCF",

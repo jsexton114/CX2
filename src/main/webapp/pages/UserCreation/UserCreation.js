@@ -15,8 +15,6 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
     $scope.CreateUseronSuccess = function(variable, data) {
         debugger
-        // Saving newUser id for updating password and communication frequency
-        $scope.newUserId = data.id;
         //Looping for selected no of municipalities
         for (var i = 0; i < selectedMunicipalites.length; i++) {
             // For Registering User  for subscribed municialities        
@@ -39,6 +37,12 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
             });
             $scope.Variables.NewUserRole.insertRecord();
         }
+        // For updating the password
+        $scope.Variables.UpdatePwdAndCF.setInput({
+            "cf": $scope.Widgets.radiosetCF.datavalue,
+            "password": $scope.Widgets.textPwd.datavalue,
+            "newUser": data.id,
+        });
         $scope.Variables.UpdatePwdAndCF.update();
         $scope.Variables.NewUserToLogin.navigate();
 
