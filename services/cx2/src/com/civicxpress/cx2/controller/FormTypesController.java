@@ -25,9 +25,9 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
-import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
+import com.civicxpress.cx2.SfnewResidentialStructure;
 import com.civicxpress.cx2.service.FormTypesService;
 
 /**
@@ -120,12 +120,12 @@ public class FormTypesController {
         return formTypesService.count(query);
     }
 
-    @RequestMapping(value = "/{id}/formCategorieses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the formCategorieses instance associated with the given id.")
+    @RequestMapping(value = "/{id}/sfnewResidentialStructures", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the sfnewResidentialStructures instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormCategories> findAssociatedFormCategorieses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formCategorieses");
-        return formTypesService.findAssociatedFormCategorieses(id, pageable);
+    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
+        return formTypesService.findAssociatedSfnewResidentialStructures(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/formStatuseses", method = RequestMethod.GET)

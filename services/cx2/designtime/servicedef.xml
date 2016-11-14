@@ -141,8 +141,7 @@
         <dataobject javaType="com.civicxpress.cx2.FormCategories">
             <element name="category" typeRef="java.lang.String" allowNull="true"/>
             <element name="description" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
+            <element name="formTypeses" typeRef="com.civicxpress.cx2.FormTypes" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormStatuses">
@@ -155,6 +154,7 @@
             <element name="createAsRecord" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="emailSubjectLine" typeRef="java.lang.String" allowNull="true"/>
             <element name="emailTextBody" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formStatus" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
@@ -162,6 +162,7 @@
             <element name="processOwners" typeRef="java.lang.String" allowNull="true"/>
             <element name="readAccess" typeRef="java.lang.String" allowNull="true"/>
             <element name="recalculateAutoFees" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="sfnewResidentialStructure" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" allowNull="true"/>
             <element name="sortOrder" typeRef="java.lang.Long" allowNull="true"/>
             <element name="writeAccess" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
@@ -169,7 +170,8 @@
             <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="flatFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="flatFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formCategorieses" typeRef="com.civicxpress.cx2.FormCategories" isList="true" allowNull="true"/>
+            <element name="formCategories" typeRef="com.civicxpress.cx2.FormCategories" allowNull="true"/>
+            <element name="formCategoryId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
             <element name="formType" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeGuid" typeRef="java.lang.String" allowNull="true"/>
@@ -181,6 +183,7 @@
             <element name="report" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="stateFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="stateFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="tbLocation" typeRef="java.lang.String" allowNull="true"/>
@@ -257,6 +260,22 @@
             <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.SfnewResidentialStructure">
+            <element name="basementSft" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
+            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
+            <element name="garageSft" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="propertyOwnerName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="propertyOwnerPhNo" typeRef="java.lang.String" allowNull="true"/>
+            <element name="sidingMaterial" typeRef="java.lang.String" allowNull="true"/>
+            <element name="stateName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="totalSft" typeRef="java.lang.String" allowNull="true"/>
+            <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+            <element name="valueOfWork" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.States">
             <element name="contractorses" typeRef="com.civicxpress.cx2.Contractors" isList="true" allowNull="true"/>
             <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
@@ -303,6 +322,7 @@
             <element name="photo" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
             <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="roleses" typeRef="com.civicxpress.cx2.Roles" isList="true" allowNull="true"/>
+            <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="state" typeRef="java.lang.String" allowNull="true"/>
             <element name="userPasswordResetTokenses" typeRef="com.civicxpress.cx2.UserPasswordResetTokens" isList="true" allowNull="true"/>
             <element name="userSubscriptionses" typeRef="com.civicxpress.cx2.UserSubscriptions" isList="true" allowNull="true"/>

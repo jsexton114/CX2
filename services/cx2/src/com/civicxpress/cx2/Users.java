@@ -48,6 +48,7 @@ public class Users implements Serializable {
     private byte[] photo;
     private Boolean banned;
     private String password;
+    private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
@@ -187,6 +188,15 @@ public class Users implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<SfnewResidentialStructure> getSfnewResidentialStructures() {
+        return this.sfnewResidentialStructures;
+    }
+
+    public void setSfnewResidentialStructures(List<SfnewResidentialStructure> sfnewResidentialStructures) {
+        this.sfnewResidentialStructures = sfnewResidentialStructures;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")

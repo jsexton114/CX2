@@ -11,10 +11,6 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
-  "name" : "ForgotPassword",
-  "type" : "PAGE",
-  "params" : [ ]
-}, {
   "name" : "Login",
   "type" : "PAGE",
   "params" : [ ]
@@ -62,6 +58,13 @@
   "name" : "NewFrom",
   "type" : "PAGE",
   "params" : [ ]
+}, {
+  "name" : "SFNewResidentialStructure",
+  "type" : "PAGE",
+  "params" : [ {
+    "name" : "FormId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "Support",
   "type" : "PAGE",

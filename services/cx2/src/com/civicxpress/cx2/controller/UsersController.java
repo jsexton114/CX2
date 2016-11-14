@@ -33,6 +33,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Roles;
+import com.civicxpress.cx2.SfnewResidentialStructure;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
@@ -128,6 +129,7 @@ public class UsersController {
 
     @RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching Users with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Users getByEmail(@PathVariable("email") String email) {
         LOGGER.debug("Getting Users with uniques key Email");
         return usersService.getByEmail(email);
@@ -168,8 +170,16 @@ public class UsersController {
         return usersService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/userPasswordResetTokenses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id:.+}/sfnewResidentialStructures", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the sfnewResidentialStructures instance associated with the given id.")
+    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
+        return usersService.findAssociatedSfnewResidentialStructures(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/userPasswordResetTokenses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the userPasswordResetTokenses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<UserPasswordResetTokens> findAssociatedUserPasswordResetTokenses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userPasswordResetTokenses");
         return usersService.findAssociatedUserPasswordResetTokenses(id, pageable);

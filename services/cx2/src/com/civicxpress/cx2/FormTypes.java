@@ -46,8 +46,10 @@ public class FormTypes implements Serializable {
     private String stateFeeAccountingCode;
     private String report;
     private Boolean active;
+    private Integer formCategoryId;
+    private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
+    private FormCategories formCategories;
     private Municipalities municipalities;
-    private List<FormCategories> formCategorieses = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
 
     @Id
@@ -205,6 +207,38 @@ public class FormTypes implements Serializable {
         this.active = active;
     }
 
+    @Column(name = "`FormCategoryId`", nullable = true, scale = 0, precision = 10)
+    public Integer getFormCategoryId() {
+        return this.formCategoryId;
+    }
+
+    public void setFormCategoryId(Integer formCategoryId) {
+        this.formCategoryId = formCategoryId;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<SfnewResidentialStructure> getSfnewResidentialStructures() {
+        return this.sfnewResidentialStructures;
+    }
+
+    public void setSfnewResidentialStructures(List<SfnewResidentialStructure> sfnewResidentialStructures) {
+        this.sfnewResidentialStructures = sfnewResidentialStructures;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`FormCategoryId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public FormCategories getFormCategories() {
+        return this.formCategories;
+    }
+
+    public void setFormCategories(FormCategories formCategories) {
+        if(formCategories != null) {
+            this.formCategoryId = formCategories.getId();
+        }
+
+        this.formCategories = formCategories;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`MunicipalityId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public Municipalities getMunicipalities() {
@@ -217,15 +251,6 @@ public class FormTypes implements Serializable {
         }
 
         this.municipalities = municipalities;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<FormCategories> getFormCategorieses() {
-        return this.formCategorieses;
-    }
-
-    public void setFormCategorieses(List<FormCategories> formCategorieses) {
-        this.formCategorieses = formCategorieses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")

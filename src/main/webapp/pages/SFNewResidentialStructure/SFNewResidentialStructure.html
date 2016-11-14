@@ -1,0 +1,76 @@
+<wm-page data-ng-controller="SFNewResidentialStructurePageController" pagetitle="Sf New Residential Structure" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-liveform novalidate="false" errormessage="" title="Sfnewresidentialstructure Info" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.Cx2SfnewResidentialStructureData.dataSet" captionalign="left" captionposition="top" name="liveform1">
+                <wm-layoutgrid columns="1" name="layoutgrid1">
+                    <wm-gridrow name="gridrow1">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn1">
+                            <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerName" type="string" is-related="false" maxchars="255" pc-display="true"
+                            mobile-display="true" widget="text"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow2">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn2">
+                            <wm-form-field name="stateName" displayname="State Name" required="false" show="true" generator="assigned" primary-key="false" key="stateName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow3">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                            <wm-form-field name="propertyOwnerPhNo" displayname="Property Owner Ph No" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerPhNo" type="string" is-related="false" maxchars="255" pc-display="true"
+                            mobile-display="true" widget="text"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow4">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn4">
+                            <wm-form-field name="basementSft" displayname="Basement Sft" required="false" show="true" generator="assigned" primary-key="false" key="basementSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow5">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn5">
+                            <wm-form-field name="garageSft" displayname="Garage Sft" required="false" show="true" generator="assigned" primary-key="false" key="garageSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow6">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                            <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow7">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn7">
+                            <wm-form-field name="totalSft" displayname="Total Sft" required="false" show="true" generator="assigned" primary-key="false" key="totalSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow8">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn8">
+                            <wm-form-field name="valueOfWork" displayname="Value Of Work" required="false" show="true" generator="assigned" primary-key="false" key="valueOfWork" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow9">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn9">
+                            <wm-form-field name="formTypes" displayname="Form Types" required="false" show="true" generator="assigned" primary-key="false" key="formTypes" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"
+                            dataset="bind:Variables.FormObj.dataSet" datafield="All Fields" defaultvalue="bind:Variables.FormObj.firstRecord"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow10">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn10">
+                            <wm-form-field name="users" displayname="Users" required="false" show="true" generator="assigned" primary-key="false" key="users" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select" dataset="bind:Variables.UserObj.dataSet"
+                            datafield="All Fields" defaultvalue="bind:Variables.UserObj.firstRecord" displayfield="email"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+                <wm-form-action key="reset" class="form-reset btn-secondary" iconclass="wi wi-refresh" action="reset()" display-name="Reset" show="true" type="button" update-mode="true"></wm-form-action>
+                <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+            </wm-liveform>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

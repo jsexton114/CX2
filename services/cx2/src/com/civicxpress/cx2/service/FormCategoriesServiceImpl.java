@@ -22,6 +22,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormCategories;
+import com.civicxpress.cx2.FormTypes;
 
 
 /**
@@ -34,6 +35,9 @@ public class FormCategoriesServiceImpl implements FormCategoriesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FormCategoriesServiceImpl.class);
 
+    @Autowired
+	@Qualifier("cx2.FormTypesService")
+	private FormTypesService formTypesService;
 
     @Autowired
     @Qualifier("cx2.FormCategoriesDao")
@@ -48,6 +52,13 @@ public class FormCategoriesServiceImpl implements FormCategoriesService {
 	public FormCategories create(FormCategories formCategories) {
         LOGGER.debug("Creating a new FormCategories with information: {}", formCategories);
         FormCategories formCategoriesCreated = this.wmGenericDao.create(formCategories);
+        if(formCategoriesCreated.getFormTypeses() != null) {
+            for(FormTypes formTypese : formCategoriesCreated.getFormTypeses()) {
+                formTypese.setFormCategories(formCategoriesCreated);
+                LOGGER.debug("Creating a new child FormTypes with information: {}", formTypese);
+                formTypesService.create(formTypese);
+            }
+        }
         return formCategoriesCreated;
     }
 
@@ -122,7 +133,25 @@ public class FormCategoriesServiceImpl implements FormCategoriesService {
         return this.wmGenericDao.count(query);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormTypes> findAssociatedFormTypeses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formTypeses");
 
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formCategories.id = '" + id + "'");
+
+        return formTypesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormTypesService instance
+	 */
+	protected void setFormTypesService(FormTypesService service) {
+        this.formTypesService = service;
+    }
 
 }
 

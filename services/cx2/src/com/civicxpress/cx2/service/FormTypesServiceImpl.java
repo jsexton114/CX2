@@ -21,9 +21,9 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
+import com.civicxpress.cx2.SfnewResidentialStructure;
 
 
 /**
@@ -37,12 +37,12 @@ public class FormTypesServiceImpl implements FormTypesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FormTypesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.FormStatusesService")
-	private FormStatusesService formStatusesService;
+	@Qualifier("cx2.SfnewResidentialStructureService")
+	private SfnewResidentialStructureService sfnewResidentialStructureService;
 
     @Autowired
-	@Qualifier("cx2.FormCategoriesService")
-	private FormCategoriesService formCategoriesService;
+	@Qualifier("cx2.FormStatusesService")
+	private FormStatusesService formStatusesService;
 
     @Autowired
     @Qualifier("cx2.FormTypesDao")
@@ -57,11 +57,11 @@ public class FormTypesServiceImpl implements FormTypesService {
 	public FormTypes create(FormTypes formTypes) {
         LOGGER.debug("Creating a new FormTypes with information: {}", formTypes);
         FormTypes formTypesCreated = this.wmGenericDao.create(formTypes);
-        if(formTypesCreated.getFormCategorieses() != null) {
-            for(FormCategories formCategoriese : formTypesCreated.getFormCategorieses()) {
-                formCategoriese.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormCategories with information: {}", formCategoriese);
-                formCategoriesService.create(formCategoriese);
+        if(formTypesCreated.getSfnewResidentialStructures() != null) {
+            for(SfnewResidentialStructure sfnewResidentialStructure : formTypesCreated.getSfnewResidentialStructures()) {
+                sfnewResidentialStructure.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child SfnewResidentialStructure with information: {}", sfnewResidentialStructure);
+                sfnewResidentialStructureService.create(sfnewResidentialStructure);
             }
         }
 
@@ -148,13 +148,13 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormCategories> findAssociatedFormCategorieses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formCategorieses");
+    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("formTypes.id = '" + id + "'");
 
-        return formCategoriesService.findAll(queryBuilder.toString(), pageable);
+        return sfnewResidentialStructureService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -171,19 +171,19 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormStatusesService instance
+	 * @param service SfnewResidentialStructureService instance
 	 */
-	protected void setFormStatusesService(FormStatusesService service) {
-        this.formStatusesService = service;
+	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
+        this.sfnewResidentialStructureService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormCategoriesService instance
+	 * @param service FormStatusesService instance
 	 */
-	protected void setFormCategoriesService(FormCategoriesService service) {
-        this.formCategoriesService = service;
+	protected void setFormStatusesService(FormStatusesService service) {
+        this.formStatusesService = service;
     }
 
 }

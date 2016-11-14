@@ -311,7 +311,134 @@
                         </wm-liveform>
                     </wm-livegrid>
                 </wm-tabpane>
-                <wm-tabpane name="tabpane8"></wm-tabpane>
+                <wm-tabpane name="tabpane8" title="FormCategories">
+                    <wm-livegrid formlayout="dialog" name="livegrid6_1">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Formcategories List" dataset="bind:Variables.Cx2FormCategoriesData.dataSet" navigation="Basic" name="grid7_1">
+                            <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="category" caption="Category" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="description" caption="Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        </wm-grid>
+                        <wm-liveform novalidate="false" errormessage="" title="Formcategories Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2FormCategoriesData.dataSet" captionalign="left" captionposition="top" name="liveform6_1">
+                            <wm-layoutgrid columns="1" name="layoutgrid6_1">
+                                <wm-gridrow name="gridrow24_1">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn38_1">
+                                        <wm-form-field name="category" displayname="Category" show="true" primary-key="false" generator="assigned" key="category" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow25">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn39">
+                                        <wm-form-field name="description" displayname="Description" show="true" primary-key="false" generator="assigned" key="description" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                        </wm-liveform>
+                    </wm-livegrid>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane8_1" title="FormType">
+                    <wm-livegrid formlayout="dialog" name="livegrid7">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Formtypes List" dataset="bind:Variables.Cx2FormTypesData.dataSet" navigation="Classic" name="grid8">
+                            <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities"></wm-grid-column>
+                            <wm-grid-column binding="formCategories.category" caption="Categories Category" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormCategories"></wm-grid-column>
+                            <wm-grid-column binding="formType" caption="Form Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="formTypeGuid" caption="Form Type Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="permissionsReaders" caption="Permissions Readers" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="permissionsWriters" caption="Permissions Writers" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="tbLocation" caption="Tb Location" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="flatFee" caption="Flat Fee" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="flatFeeAccountingCode" caption="Flat Fee Accounting Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="sfFee" caption="Sf Fee" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="sfFeeAccountingCode" caption="Sf Fee Accounting Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        </wm-grid>
+                        <wm-liveform novalidate="false" errormessage="" title="Formtypes Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2FormTypesData.dataSet" captionalign="left" captionposition="top" name="liveform7">
+                            <wm-layoutgrid columns="2" name="layoutgrid7">
+                                <wm-gridrow name="gridrow26">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn40">
+                                        <wm-form-field name="formTypeGuid" displayname="Form Type Guid" show="true" primary-key="false" generator="assigned" key="formTypeGuid" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn41">
+                                        <wm-form-field name="formType" displayname="Form Type" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow27">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn42">
+                                        <wm-form-field name="permissionsReaders" displayname="Permissions Readers" show="true" primary-key="false" generator="assigned" key="permissionsReaders" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn43">
+                                        <wm-form-field name="permissionsWriters" displayname="Permissions Writers" show="true" primary-key="false" generator="assigned" key="permissionsWriters" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow28">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn44">
+                                        <wm-form-field name="tbLocation" displayname="Tb Location" show="true" primary-key="false" generator="assigned" key="tbLocation" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn45">
+                                        <wm-form-field name="flatFee" displayname="Flat Fee" show="true" primary-key="false" generator="assigned" key="flatFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow29">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn46">
+                                        <wm-form-field name="flatFeeAccountingCode" displayname="Flat Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="flatFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text"
+                                        placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn47">
+                                        <wm-form-field name="sfFee" displayname="Sf Fee" show="true" primary-key="false" generator="assigned" key="sfFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow30">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn48">
+                                        <wm-form-field name="sfFeeAccountingCode" displayname="Sf Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="sfFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text"
+                                        placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn49">
+                                        <wm-form-field name="unitFee" displayname="Unit Fee" show="true" primary-key="false" generator="assigned" key="unitFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow31">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn50">
+                                        <wm-form-field name="unitFeeAccountingCode" displayname="Unit Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="unitFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text"
+                                        placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn51">
+                                        <wm-form-field name="stateFee" displayname="State Fee" show="true" primary-key="false" generator="assigned" key="stateFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow32">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn52">
+                                        <wm-form-field name="stateFeeAccountingCode" displayname="State Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="stateFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text"
+                                        placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn53">
+                                        <wm-form-field name="report" displayname="Report" show="true" primary-key="false" generator="assigned" key="report" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow33">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn54">
+                                        <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn55">
+                                        <wm-form-field name="formCategories" displayname="Form Categories" show="true" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="category"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow34">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn56">
+                                        <wm-form-field name="municipalities" displayname="Municipalities" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="municipalityName"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                        </wm-liveform>
+                    </wm-livegrid>
+                </wm-tabpane>
             </wm-tabs>
         </wm-page-content>
     </wm-content>

@@ -24,6 +24,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Roles;
+import com.civicxpress.cx2.SfnewResidentialStructure;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
@@ -40,16 +41,20 @@ public class UsersServiceImpl implements UsersService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
-
-    @Autowired
 	@Qualifier("cx2.UserSubscriptionsService")
 	private UserSubscriptionsService userSubscriptionsService;
 
     @Autowired
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
+
+    @Autowired
 	@Qualifier("cx2.UserPasswordResetTokensService")
 	private UserPasswordResetTokensService userPasswordResetTokensService;
+
+    @Autowired
+	@Qualifier("cx2.SfnewResidentialStructureService")
+	private SfnewResidentialStructureService sfnewResidentialStructureService;
 
     @Autowired
     @Qualifier("cx2.UsersDao")
@@ -64,6 +69,14 @@ public class UsersServiceImpl implements UsersService {
 	public Users create(Users users) {
         LOGGER.debug("Creating a new Users with information: {}", users);
         Users usersCreated = this.wmGenericDao.create(users);
+        if(usersCreated.getSfnewResidentialStructures() != null) {
+            for(SfnewResidentialStructure sfnewResidentialStructure : usersCreated.getSfnewResidentialStructures()) {
+                sfnewResidentialStructure.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child SfnewResidentialStructure with information: {}", sfnewResidentialStructure);
+                sfnewResidentialStructureService.create(sfnewResidentialStructure);
+            }
+        }
+
         if(usersCreated.getUserPasswordResetTokenses() != null) {
             for(UserPasswordResetTokens userPasswordResetTokense : usersCreated.getUserPasswordResetTokenses()) {
                 userPasswordResetTokense.setUsers(usersCreated);
@@ -179,6 +192,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return sfnewResidentialStructureService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<UserPasswordResetTokens> findAssociatedUserPasswordResetTokenses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userPasswordResetTokenses");
 
@@ -213,15 +237,6 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service RolesService instance
-	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service UserSubscriptionsService instance
 	 */
 	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
@@ -231,10 +246,28 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service RolesService instance
+	 */
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service UserPasswordResetTokensService instance
 	 */
 	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
         this.userPasswordResetTokensService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SfnewResidentialStructureService instance
+	 */
+	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
+        this.sfnewResidentialStructureService = service;
     }
 
 }
