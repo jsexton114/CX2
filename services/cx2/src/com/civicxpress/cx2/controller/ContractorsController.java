@@ -119,8 +119,9 @@ public class ContractorsController {
         return contractorsService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/contractorApprovalses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/contractorApprovalses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the contractorApprovalses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ContractorApprovals> findAssociatedContractorApprovalses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated contractorApprovalses");
         return contractorsService.findAssociatedContractorApprovalses(id, pageable);

@@ -1415,17 +1415,17 @@
       "javaType" : "string",
       "length" : 255,
       "name" : "Email",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "Email",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 19,
       "primaryKey" : false,
       "scale" : 0,
       "sqlType" : "string",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -1702,7 +1702,13 @@
       "sqlType" : "string",
       "unique" : false
     } ],
-    "constraints" : [ ],
+    "constraints" : [ {
+      "columns" : [ "Email" ],
+      "composite" : false,
+      "name" : "UK_Users_Email",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
     "entityName" : "Users",
     "fullyQualifiedName" : "com.civicxpress.cx2.Users",
     "name" : "Users",

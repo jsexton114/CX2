@@ -125,6 +125,13 @@ public class UsersController {
         return deletedUsers != null;
     }
 
+    @RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching Users with given unique key values.")
+    public Users getByEmail(@PathVariable("email") String email) {
+        LOGGER.debug("Getting Users with uniques key Email");
+        return usersService.getByEmail(email);
+    }
+
     /**
      * @deprecated Use {@link #findUsers(String, Pageable)} instead.
      */

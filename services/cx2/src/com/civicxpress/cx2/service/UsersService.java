@@ -51,6 +51,14 @@ public interface UsersService {
 	 */
 	Users findById(Integer usersId);
 
+    /**
+	 * Find and return the Users for given email  if exists.
+	 *
+	 * @param email value of email; value cannot be null.
+	 * @return Users associated with the given inputs.
+     * @throws EntityNotFoundException if no matching Users found.
+	 */
+    Users getByEmail(String email)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing Users. It replaces all fields of the existing Users with the given users.
