@@ -3,7 +3,6 @@ package com.civicxpress.cxpasswordresetservice.controller;
 
 import com.civicxpress.cxpasswordresetservice.CXPasswordResetService;
 import java.lang.String;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +22,8 @@ public class CXPasswordResetController {
     @RequestMapping(value = "/generateAndSendPasswordTokenForUser", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public boolean generateAndSendPasswordTokenForUser(@RequestParam(value = "userID", required = false) int userID) {
+    public int generateAndSendPasswordTokenForUser(@RequestParam(value = "userID", required = false) int userID) {
         return cXPasswordResetService.generateAndSendPasswordTokenForUser(userID);
-    }
-
-    @RequestMapping(value = "/generateUUID", produces = "application/json", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public String generateUUID() {
-        return cXPasswordResetService.generateUUID();
     }
 
     @RequestMapping(value = "/resetPasswordUsingToken", method = RequestMethod.GET)
@@ -41,17 +33,10 @@ public class CXPasswordResetController {
         return cXPasswordResetService.resetPasswordUsingToken(token, newPassword);
     }
 
-    @RequestMapping(value = "/sampleJavaOperation", produces = "application/json", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public String sampleJavaOperation(@RequestParam(value = "name", required = false) String name, HttpServletRequest request) {
-        return cXPasswordResetService.sampleJavaOperation(name, request);
-    }
-
     @RequestMapping(value = "/validateSignupToken", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public boolean validateSignupToken(@RequestParam(value = "token", required = false) String token) {
+    public int validateSignupToken(@RequestParam(value = "token", required = false) String token) {
         return cXPasswordResetService.validateSignupToken(token);
     }
 }
