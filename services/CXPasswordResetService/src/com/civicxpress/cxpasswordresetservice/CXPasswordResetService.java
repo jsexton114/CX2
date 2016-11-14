@@ -4,20 +4,13 @@
 package com.civicxpress.cxpasswordresetservice;
 
 import javax.servlet.http.HttpServletRequest;
-
 import com.civicxpress.cx2.service.Cx2QueryExecutorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
-
 import java.util.UUID;
-
-//import com.civicxpress.cxpasswordresetservice.model.*;
 
 @ExposeToClient
 public class CXPasswordResetService {
@@ -32,13 +25,15 @@ public class CXPasswordResetService {
     public int generateAndSendPasswordTokenForUser(int userID){
         return queryService.executeResetPasswordWithTokenForUser(userID, generateUUID());
     }
-    
+
     // Validates if the user clicked on the correct token
+    // This calls a SQL query on the backend
     public int validateSignupToken(String token){
         return queryService.executeVerifyPasswordResetToken(null,token).getSize();
     }
-    
-    //Given a valid token and password, reset user's password
+
+    // Given a valid token and password, reset user's password
+    // This calls a SQL query on the backend
     public boolean resetPasswordUsingToken(String token, String newPassword){
         //This method needs to check if the supplied token is invalid or not.
         return false;
