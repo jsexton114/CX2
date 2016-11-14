@@ -33,6 +33,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Roles;
+import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.service.UsersService;
@@ -165,6 +166,13 @@ public class UsersController {
     public Long countUsers(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting Users");
         return usersService.count(query);
+    }
+
+    @RequestMapping(value = "/{id:.+}/userPasswordResetTokenses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the userPasswordResetTokenses instance associated with the given id.")
+    public Page<UserPasswordResetTokens> findAssociatedUserPasswordResetTokenses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated userPasswordResetTokenses");
+        return usersService.findAssociatedUserPasswordResetTokenses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)

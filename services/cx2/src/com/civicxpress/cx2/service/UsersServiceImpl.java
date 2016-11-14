@@ -24,6 +24,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Roles;
+import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
 
@@ -47,6 +48,10 @@ public class UsersServiceImpl implements UsersService {
 	private UserSubscriptionsService userSubscriptionsService;
 
     @Autowired
+	@Qualifier("cx2.UserPasswordResetTokensService")
+	private UserPasswordResetTokensService userPasswordResetTokensService;
+
+    @Autowired
     @Qualifier("cx2.UsersDao")
     private WMGenericDao<Users, Integer> wmGenericDao;
 
@@ -59,6 +64,14 @@ public class UsersServiceImpl implements UsersService {
 	public Users create(Users users) {
         LOGGER.debug("Creating a new Users with information: {}", users);
         Users usersCreated = this.wmGenericDao.create(users);
+        if(usersCreated.getUserPasswordResetTokenses() != null) {
+            for(UserPasswordResetTokens userPasswordResetTokense : usersCreated.getUserPasswordResetTokenses()) {
+                userPasswordResetTokense.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child UserPasswordResetTokens with information: {}", userPasswordResetTokense);
+                userPasswordResetTokensService.create(userPasswordResetTokense);
+            }
+        }
+
         if(usersCreated.getRoleses() != null) {
             for(Roles rolese : usersCreated.getRoleses()) {
                 rolese.setUsers(usersCreated);
@@ -166,6 +179,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<UserPasswordResetTokens> findAssociatedUserPasswordResetTokenses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated userPasswordResetTokenses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return userPasswordResetTokensService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated roleses");
 
@@ -202,6 +226,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
         this.userSubscriptionsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service UserPasswordResetTokensService instance
+	 */
+	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
+        this.userPasswordResetTokensService = service;
     }
 
 }

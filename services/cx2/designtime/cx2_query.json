@@ -83,6 +83,56 @@
       "municipalitiesCount" : "java.lang.Integer"
     }
   }, {
+    "name" : "resetPasswordForUser",
+    "query" : "UPDATE Users SET Password=:newPassword where ID=:userID",
+    "comment" : "Resets password for a user, given user ID as Integer and password as String.",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "newPassword",
+      "paramType" : "java.lang.String",
+      "testValue" : "HelloWorld",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "userID",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2resetPasswordForUserrtnType",
+    "returnTypeMetadata" : { }
+  }, {
+    "name" : "resetPasswordWithTokenForUser",
+    "query" : "DELETE FROM UserPasswordResetTokens WHERE UserId = :userid \nINSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :userid, :token, DATEADD(day, 2, GETDATE()))",
+    "comment" : "This saves a reset password token in the DB given a User ID and Token.",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "userid",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "token",
+      "paramType" : "java.lang.String",
+      "testValue" : "asdfadsfasdfasd",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2resetPasswordWithTokenForUserrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "StandardUserMunicipalites",
     "query" : "select M.* from Municipalities M,UserSubscriptions US,Users U where U.ID=:USER and U.ID=US.UserId and US.MunicipalityId=M.ID",
     "comment" : "StandardUserMunicipalites",
@@ -213,6 +263,29 @@
     "outputType" : "cx2userSubscriptionsCountForMunicipalityrtnType",
     "returnTypeMetadata" : {
       "userSubscriptionsCountForMunicipality" : "java.lang.Integer"
+    }
+  }, {
+    "name" : "verifyPasswordResetToken",
+    "query" : "select * from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)",
+    "comment" : "Given a token, Validates token based on expiration date. Null returned if no tokens match or expiration date is past.",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "token",
+      "paramType" : "java.lang.String",
+      "testValue" : "asdfadsfasdfasd",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2verifyPasswordResetTokenrtnType",
+    "returnTypeMetadata" : {
+      "ExpirationDate" : "java.sql.Date",
+      "ID" : "java.math.BigDecimal",
+      "Token" : "java.lang.String",
+      "UserId" : "java.math.BigDecimal"
     }
   } ]
 }

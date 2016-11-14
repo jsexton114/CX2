@@ -57,6 +57,24 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeResetPasswordForUser( java.lang.String newPassword ,java.lang.Integer userID)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("newPassword", newPassword);
+        params.put("userID", userID);
+        return queryExecutor.executeNamedQueryForUpdate("resetPasswordForUser", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public int executeResetPasswordWithTokenForUser( java.lang.Integer userid ,java.lang.String token)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("userid", userid);
+        params.put("token", token);
+        return queryExecutor.executeNamedQueryForUpdate("resetPasswordWithTokenForUser", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeStandardUserMunicipalites(Pageable pageable, java.lang.Integer USER)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -102,6 +120,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("municipalityId", municipalityId);
         return queryExecutor.executeNamedQuery("userSubscriptionsCountForMunicipality", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public Page<Object> executeVerifyPasswordResetToken(Pageable pageable, java.lang.String token)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("token", token);
+        return queryExecutor.executeNamedQuery("verifyPasswordResetToken", params, pageable);
 	}
 
 	@Transactional(value = "cx2TransactionManager")

@@ -70,6 +70,26 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/resetPasswordForUser", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeResetPasswordForUser(@RequestParam(value = "newPassword", required = false) java.lang.String newPassword, @RequestParam(value = "userID", required = false) java.lang.Integer userID) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query resetPasswordForUser");
+        int result = queryService.executeResetPasswordForUser(newPassword, userID);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/resetPasswordWithTokenForUser", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeResetPasswordWithTokenForUser(@RequestParam(value = "userid", required = false) java.lang.Integer userid, @RequestParam(value = "token", required = false) java.lang.String token) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query resetPasswordWithTokenForUser");
+        int result = queryService.executeResetPasswordWithTokenForUser(userid, token);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/StandardUserMunicipalites", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeStandardUserMunicipalites(@RequestParam(value = "USER", required = false) java.lang.Integer USER, Pageable pageable) throws QueryParameterMismatchException {
@@ -125,6 +145,16 @@ public class QueryExecutionController {
     public Page<Object> executeUserSubscriptionsCountForMunicipality(@RequestParam(value = "municipalityId", required = false) java.lang.Integer municipalityId, Pageable pageable) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query userSubscriptionsCountForMunicipality");
         Page<Object> result = queryService.executeUserSubscriptionsCountForMunicipality(pageable, municipalityId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/verifyPasswordResetToken", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeVerifyPasswordResetToken(@RequestParam(value = "token", required = false) java.lang.String token, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query verifyPasswordResetToken");
+        Page<Object> result = queryService.executeVerifyPasswordResetToken(pageable, token);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

@@ -16,6 +16,17 @@
       select count(*) as municipalitiesCount from Municipalities
     ]]>
   </sql-query>
+  <sql-query name="resetPasswordForUser">
+    <![CDATA[
+      UPDATE Users SET Password=:newPassword where ID=:userID
+    ]]>
+  </sql-query>
+  <sql-query name="resetPasswordWithTokenForUser">
+    <![CDATA[
+      DELETE FROM UserPasswordResetTokens WHERE UserId = :userid
+      INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :userid, :token, DATEADD(day, 2, GETDATE()))
+    ]]>
+  </sql-query>
   <sql-query name="StandardUserMunicipalites">
     <![CDATA[
       select M.* from Municipalities M,UserSubscriptions US,Users U where U.ID=:USER and U.ID=US.UserId and US.MunicipalityId=M.ID
@@ -44,6 +55,11 @@
   <sql-query name="userSubscriptionsCountForMunicipality">
     <![CDATA[
       select count(*) as userSubscriptionsCountForMunicipality from UserSubscriptions where MunicipalityId=:municipalityId
+    ]]>
+  </sql-query>
+  <sql-query name="verifyPasswordResetToken">
+    <![CDATA[
+      select * from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)
     ]]>
   </sql-query>
 </hibernate-mapping>
