@@ -10,7 +10,8 @@
                         <wm-label padding="unset 0.5em" name="label1" caption="My Dashboard" fontsize="15" fontweight="bold"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
-                        <wm-composite name="composite1">
+                        <wm-search name="searchUser" placeholder="Select For User" dataset="bind:Variables.GetAllUsersForAdmin.dataSet" searchkey="email,firstName" displaylabel="email" displayimagesrc="photo" datafield="id" on-change="searchUserChange($event, $scope, newVal, oldVal)"></wm-search>
+                        <wm-composite name="composite1" margin="1em unset unset unset">
                             <wm-label class="col-md-3 control-label" name="label2" caption="Select Muncipality"></wm-label>
                             <wm-container class="col-md-9" name="container1">
                                 <wm-select name="selectStandardUserMunicipality" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.StandardUserMunicipalites.firstRecord"></wm-select>

@@ -18,28 +18,72 @@
                         <wm-composite name="composite1">
                             <wm-label class="col-md-3 control-label" name="label2" caption="Select Municipality"></wm-label>
                             <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectMunicipalityUser" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord"></wm-select>
+                                <wm-select name="selectMunicipality" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-grid title="Usersubscriptions List" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="grid2" on-click="Widgets.dialog1.open()">
-                            <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="dateSubscribed" caption="Date Subscribed" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.municipalityGuid" caption="Municipality Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="users.photo" widget-type="image" caption="Users Photo" generator="assigned" pcdisplay="true" mobiledisplay="true" type="blob" related-entity-name="Users" readonly="true"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
-                            </wm-grid-column>
-                            <wm-grid-column binding="users.id" caption="Users Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Users" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="users.firstName" caption="First Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="users.email" caption="Users Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="users.address1" caption="Users Address1" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="users.city" caption="Users City" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="users.state" caption="Users State" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="users.phoneNumber" caption="Phone Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
-                        </wm-grid>
+                        <wm-tabs name="tabs1">
+                            <wm-tabpane name="tabpane1" title="Users">
+                                <wm-grid title="Usersubscriptions List" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="grid2" on-click="Widgets.dialog1.open()">
+                                    <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
+                                    <wm-grid-column binding="dateSubscribed" caption="Date Subscribed" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" readonly="true"></wm-grid-column>
+                                    <wm-grid-column binding="municipalities.municipalityGuid" caption="Municipality Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                                    <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                                    <wm-grid-column binding="users.photo" widget-type="image" caption="Users Photo" generator="assigned" pcdisplay="true" mobiledisplay="true" type="blob" related-entity-name="Users" readonly="true"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
+                                    </wm-grid-column>
+                                    <wm-grid-column binding="users.id" caption="Users Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Users" readonly="true"></wm-grid-column>
+                                    <wm-grid-column binding="users.firstName" caption="First Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                                    <wm-grid-column binding="users.email" caption="Users Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                                    <wm-grid-column binding="users.address1" caption="Users Address1" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                                    <wm-grid-column binding="users.city" caption="Users City" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                                    <wm-grid-column binding="users.state" caption="Users State" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                                    <wm-grid-column binding="users.phoneNumber" caption="Phone Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                                </wm-grid>
+                            </wm-tabpane>
+                            <wm-tabpane name="tabpane2" title="Employees">
+                                <wm-livegrid formlayout="dialog" name="livegrid1">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Roles List" dataset="bind:Variables.Cx2RolesData.dataSet" navigation="Basic" name="grid2_1">
+                                        <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
+                                        <wm-grid-column binding="roleName" caption="Role Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                                        <wm-grid-column binding="description" caption="Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                                        <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities"></wm-grid-column>
+                                        <wm-grid-column binding="users.firstName" caption="First Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="users.email" caption="Users Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="users.phoneNumber" caption="Phone Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                                    </wm-grid>
+                                    <wm-liveform novalidate="false" errormessage="" title="Roles Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2RolesData.dataSet" captionalign="left" captionposition="top" name="liveform1">
+                                        <wm-layoutgrid columns="1" name="layoutgrid3">
+                                            <wm-gridrow name="gridrow10_1">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn23_1">
+                                                    <wm-form-field name="description" displayname="Description" show="true" primary-key="false" generator="assigned" key="description" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow11_1">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
+                                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Search"
+                                                    dataset="bind:Variables.MunicipalityObj.dataSet" datafield="All Fields" defaultvalue="bind:Variables.MunicipalityObj.firstRecord"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow12">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn25_1">
+                                                    <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="autocomplete" placeholder="Search" displaylabel="email"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-layoutgrid>
+                                        <wm-form-field name="roleName" displayname="Role Name" show="false" primary-key="false" generator="assigned" key="roleName" type="string" widget="null" maxchars="255" placeholder="Enter value" defaultvalue="MunicipalityEmployee"></wm-form-field>
+                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                    </wm-liveform>
+                                </wm-livegrid>
+                            </wm-tabpane>
+                            <wm-tabpane name="tabpane4" title="Admins"></wm-tabpane>
+                        </wm-tabs>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
@@ -74,7 +118,7 @@
                     <wm-gridcolumn columnwidth="2" name="gridcolumn18"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow9">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn19" padding="1em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn19" padding="1em unset 1em 1em">
                         <wm-label padding="unset 0.5em 0.5em 0.5em" name="label10" fontweight="bold" width="100%" caption="Address1"></wm-label>
                         <wm-label padding="unset 0.5em" name="label11" caption="bind:Variables.SelectedUser.dataSet.data[$i].address1"></wm-label>
                     </wm-gridcolumn>
@@ -85,7 +129,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow10">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn22" padding="unset unset 1em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn22" padding="unset unset 1em 1em">
                         <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="City" name="label14"></wm-label>
                         <wm-label padding="unset 0.5em" caption="bind:Variables.SelectedUser.dataSet.data[$i].city" name="label15"></wm-label>
                     </wm-gridcolumn>
@@ -96,7 +140,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow11">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn25" padding="unset unset 1em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn25" padding="unset unset 1em 1em">
                         <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="PostalCode" name="label18"></wm-label>
                         <wm-label padding="unset 0.5em" caption="bind:Variables.SelectedUser.dataSet.data[$i].postalCode" name="label20"></wm-label>
                     </wm-gridcolumn>

@@ -1,7 +1,7 @@
 <wm-partial data-ng-controller="leftnavPageController" name="leftnav" type="leftnav">
     <wm-nav name="DevDataEntry" type="pills" layout="stacked">
         <wm-nav-item name="list_dashboard">
-            <wm-anchor caption="My Dashboard" name="dashboardLink" iconclass="wi wi-bar-graph" on-click="Variables.goToPage_Main.invoke()" accessroles="User"></wm-anchor>
+            <wm-anchor caption="My Dashboard" name="dashboardLink" iconclass="wi wi-bar-graph" on-click="Variables.goToPage_Main.invoke()" accessroles="User,CXAdmin,MunicipalityAdmin,MunicipalityEmployee"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="list_order">
             <wm-anchor caption="My Municipality" name="orderLink" iconclass="wi wi-windows" on-click="Variables.goToPage_MyMunicipality.invoke()" accessroles="MunicipalityEmployee" badgevalue="bind:Variables.NoOfMunicipalitiesForUser.dataSet.dataValue"></wm-anchor>

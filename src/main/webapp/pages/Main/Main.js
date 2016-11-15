@@ -16,7 +16,20 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
 
     $scope.StandardUserMunicipalitesonSuccess = function(variable, data) {
+        // For count badge in left nav
         $scope.Variables.NoOfMunicipalitiesForUser.dataSet.dataValue = data.totalElements
+    };
+
+
+
+
+    $scope.GetAllUsersForAdminonSuccess = function(variable, data) {
+        // For Admin Behalf of User
+        data[0].id
+        $scope.Variables.CurrentUserDetails.setInput({
+            "id": data[0].id,
+        });
+        $scope.Variables.CurrentUserDetails.update();
     };
 
 }]);

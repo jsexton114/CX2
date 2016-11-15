@@ -91,6 +91,17 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         passwordCheck();
     };
 
+
+    $scope.GetMunicipalitiesonSuccess = function(variable, data) {
+        if (data.length == 0) {
+            $scope.Widgets.labelNoMunicipalities.show = true;
+            $scope.Widgets.compositeSelectMunicipalites.show = false;
+        } else {
+            $scope.Widgets.labelNoMunicipalities.show = false;
+            $scope.Widgets.compositeSelectMunicipalites.show = true;
+        }
+    };
+
 }]);
 
 Application.$controller("liveform2Controller", ["$scope",

@@ -51,12 +51,30 @@
                     </wm-liveform>
                 </wm-wizardstep>
                 <wm-wizardstep name="wizardstep2" title="Municipalities">
-                    <wm-composite name="composite1">
-                        <wm-label class="col-md-3 control-label" name="label1" caption="Select Municipalities"></wm-label>
-                        <wm-container class="col-md-9" name="container1">
-                            <wm-checkboxset height="auto" name="checkboxsetMunicipalites" dataset="bind:Variables.GetMunicipalities.dataSet" datafield="All Fields" displayfield="municipalityName" on-change="checkboxsetMunicipalitesChange($event, $scope, newVal, oldVal)"></wm-checkboxset>
-                        </wm-container>
-                    </wm-composite>
+                    <wm-layoutgrid name="layoutgrid4">
+                        <wm-gridrow name="gridrow13">
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn18_1"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn19_1">
+                                <wm-search name="search1" placeholder="Search Municipalites"></wm-search>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow14">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn20_1" padding="2em unset">
+                                <wm-composite name="compositeSelectMunicipalites">
+                                    <wm-label class="col-md-3 control-label" name="labelSM" caption="Select Municipalities"></wm-label>
+                                    <wm-container class="col-md-9" name="container4_1">
+                                        <wm-checkboxset height="auto" name="checkboxsetMunicipalites" dataset="bind:Variables.GetMunicipalities.dataSet" datafield="All Fields" displayfield="municipalityName" on-change="checkboxsetMunicipalitesChange($event, $scope, newVal, oldVal)"
+                                        margin="2em unset"></wm-checkboxset>
+                                    </wm-container>
+                                </wm-composite>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow15_1">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn22" padding="2em unset" horizontalalign="center">
+                                <wm-label padding="unset 0.5em" name="labelNoMunicipalities" fontweight="bold" fontsize="15" caption="No Municipalities Found"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
                 </wm-wizardstep>
                 <wm-wizardstep name="wizardstep3" title="Communication">
                     <wm-layoutgrid name="layoutgrid2_1" columns="1">
