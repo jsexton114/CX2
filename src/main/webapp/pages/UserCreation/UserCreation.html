@@ -2,7 +2,7 @@
     <wm-header content="header" name="header1"></wm-header>
     <wm-content name="content1">
         <wm-page-content columnwidth="12" name="page_content1">
-            <wm-wizard name="wizard1" horizontalalign="left" on-done="wizard1Done($scope, steps)" on-cancel="Widgets.liveform2.reset()">
+            <wm-wizard name="wizard1" horizontalalign="left" on-done="wizard1Done($scope, steps)" on-cancel="Variables.NewUserToLogin.invoke()">
                 <wm-wizardstep name="wizardstep1" title="Account Setup">
                     <wm-liveform novalidate="false" errormessage="User already exists, Please contact CivicXpress Support for any issues" title="Register Userself" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left"
                     captionposition="top" name="liveform2" insertmessage="Registration Success, Please Proceed" updatemessage="User updated successfully" deletemessage="User deleted successfully">

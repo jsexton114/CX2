@@ -15,3 +15,18 @@ Application.$controller("MyProfilePageController", ["$scope", function ($scope) 
     };
 
 }]);
+
+
+Application.$controller("dialog1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformUpdateController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
