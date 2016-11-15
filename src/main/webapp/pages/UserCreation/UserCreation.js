@@ -6,11 +6,31 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         //Current Date for subscriptions
         $scope.toDay = Date.parse(new Date().toDateString());
     };
-    // For verifying password match
-    var proceedSubmission = false;
 
     //unchecked municipalities
     var selectedMunicipalites = [];
+
+    // For verifying password match
+    var proceedSubmission = false;
+
+    function passwordCheck() {
+        //Store the password field objects into variables ...
+        var pass1 = document.getElementById('textPwd');
+        var pass2 = document.getElementById('textRePwd');
+        //Set the colorsfor use
+        var matchColor = "#fff";
+        var missmatchColor = "#ff6666";
+        //Compare the values in the password field and the confirmation field
+        //
+        if (pass1.value == pass2.value) {
+            pass2.style.backgroundColor = matchColor;
+            proceedSubmission = true;
+        } else {
+            pass2.style.backgroundColor = missmatchColor;
+            proceedSubmission = false;
+        }
+    }
+
 
     $scope.checkboxsetMunicipalitesChange = function($event, $isolateScope, newVal, oldVal) {
         selectedMunicipalites = newVal;
@@ -63,23 +83,12 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
 
     $scope.textRePwdKeyup = function($event, $isolateScope) {
-        //Store the password field objects into variables ...
-        var pass1 = document.getElementById('textPwd');
-        var pass2 = document.getElementById('textRePwd');
-        //Set the colorsfor use
-        var matchColor = "#fff";
-        var missmatchColor = "#ff6666";
-        //Compare the values in the password field and the confirmation field
-        //
-        if (pass1.value == pass2.value) {
-            pass2.style.backgroundColor = matchColor;
-            proceedSubmission = true;
-        } else {
-            pass2.style.backgroundColor = missmatchColor;
-            proceedSubmission = false;
-        }
+        passwordCheck();
+    };
 
 
+    $scope.textPwdKeyup = function($event, $isolateScope) {
+        passwordCheck();
     };
 
 }]);

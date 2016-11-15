@@ -23,6 +23,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Contractors;
 import com.civicxpress.cx2.Gisrecords;
+import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.States;
 
 
@@ -45,6 +46,10 @@ public class StatesServiceImpl implements StatesService {
 	private GisrecordsService gisrecordsService;
 
     @Autowired
+	@Qualifier("cx2.MunicipalitiesService")
+	private MunicipalitiesService municipalitiesService;
+
+    @Autowired
     @Qualifier("cx2.StatesDao")
     private WMGenericDao<States, Integer> wmGenericDao;
 
@@ -62,6 +67,14 @@ public class StatesServiceImpl implements StatesService {
                 contractorse.setStates(statesCreated);
                 LOGGER.debug("Creating a new child Contractors with information: {}", contractorse);
                 contractorsService.create(contractorse);
+            }
+        }
+
+        if(statesCreated.getMunicipalitieses() != null) {
+            for(Municipalities municipalitiese : statesCreated.getMunicipalitieses()) {
+                municipalitiese.setStates(statesCreated);
+                LOGGER.debug("Creating a new child Municipalities with information: {}", municipalitiese);
+                municipalitiesService.create(municipalitiese);
             }
         }
 
@@ -159,6 +172,17 @@ public class StatesServiceImpl implements StatesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Municipalities> findAssociatedMunicipalitieses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalitieses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("states.id = '" + id + "'");
+
+        return municipalitiesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gisrecordses");
 
@@ -184,6 +208,15 @@ public class StatesServiceImpl implements StatesService {
 	 */
 	protected void setGisrecordsService(GisrecordsService service) {
         this.gisrecordsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MunicipalitiesService instance
+	 */
+	protected void setMunicipalitiesService(MunicipalitiesService service) {
+        this.municipalitiesService = service;
     }
 
 }

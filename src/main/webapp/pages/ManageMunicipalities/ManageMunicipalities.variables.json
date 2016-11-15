@@ -40,6 +40,52 @@
     "matchMode" : "start",
     "propertiesMap" : {
       "columns" : [ {
+        "fieldName" : "states",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "StateId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : true,
+        "defaultValue" : "",
+        "relatedTableName" : "States",
+        "relatedEntityName" : "States",
+        "relatedColumnName" : "stateId",
+        "relatedFieldName" : "states.id",
+        "isList" : false,
+        "targetTable" : "States",
+        "scale" : 0,
+        "columns" : [ {
+          "fieldName" : "id",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ID",
+          "isPrimaryKey" : true,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 10,
+          "generator" : "identity",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "stateName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "StateName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        } ]
+      }, {
         "fieldName" : "id",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -109,19 +155,6 @@
         "type" : "string",
         "fullyQualifiedType" : "string",
         "columnName" : "City",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 19,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
-        "fieldName" : "state",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "State",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 255,
@@ -215,10 +248,11 @@
         "columnName" : "GlobalEmailSig",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 255,
+        "length" : 500,
         "precision" : 19,
         "generator" : "assigned",
         "isRelated" : false,
+        "defaultValue" : "",
         "scale" : 0
       }, {
         "fieldName" : "logo",
@@ -242,8 +276,14 @@
     "bindCount" : 1,
     "tableName" : "Municipalities",
     "tableType" : "TABLE",
-    "properties" : [ ],
-    "relatedTables" : [ ],
+    "properties" : [ "states" ],
+    "relatedTables" : [ {
+      "columnName" : "states",
+      "relationName" : "states",
+      "type" : "States",
+      "watchOn" : "Cx2StatesData",
+      "package" : "com.civicxpress.cx2.Municipalities"
+    } ],
     "package" : "com.civicxpress.cx2.Municipalities"
   }
 }

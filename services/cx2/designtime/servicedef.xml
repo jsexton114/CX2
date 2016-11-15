@@ -247,7 +247,8 @@
             <element name="phone" typeRef="java.lang.String" allowNull="true"/>
             <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="roleses" typeRef="com.civicxpress.cx2.Roles" isList="true" allowNull="true"/>
-            <element name="state" typeRef="java.lang.String" allowNull="true"/>
+            <element name="stateId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
             <element name="subdivisionses" typeRef="com.civicxpress.cx2.Subdivisions" isList="true" allowNull="true"/>
             <element name="userSubscriptionses" typeRef="com.civicxpress.cx2.UserSubscriptions" isList="true" allowNull="true"/>
         </dataobject>
@@ -280,6 +281,7 @@
             <element name="contractorses" typeRef="com.civicxpress.cx2.Contractors" isList="true" allowNull="true"/>
             <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalitieses" typeRef="com.civicxpress.cx2.Municipalities" isList="true" allowNull="true"/>
             <element name="stateName" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Subdivisions">

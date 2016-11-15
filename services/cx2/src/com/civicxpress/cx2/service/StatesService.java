@@ -16,6 +16,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Contractors;
 import com.civicxpress.cx2.Gisrecords;
+import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.States;
 
 /**
@@ -138,6 +139,18 @@ public interface StatesService {
      * @see Page
      */
     Page<Contractors> findAssociatedContractorses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated municipalitieses for given States id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Municipalities instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Municipalities> findAssociatedMunicipalitieses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated gisrecordses for given States id.

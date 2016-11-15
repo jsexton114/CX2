@@ -41,7 +41,7 @@
                             </wm-gridrow>
                             <wm-gridrow name="gridrow10">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn19">
-                                    <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" required="required" widget="text" maxchars="10" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" required="required" widget="text" maxchars="20" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn20">
                                     <wm-form-field name="photo" displayname="Photo" show="true" primary-key="false" generator="assigned" key="photo" type="blob" widget="upload" maxchars="255"></wm-form-field>
@@ -69,7 +69,7 @@
                             <wm-gridcolumn columnwidth="12" name="gridcolumn16_1">
                                 <wm-composite name="composite2">
                                     <wm-container class="col-md-9" name="container2">
-                                        <wm-radioset height="auto" name="radiosetCF" dataset="Daily(recommended),Weekly,Monthly,None"></wm-radioset>
+                                        <wm-radioset height="auto" name="radiosetCF" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="Daily(Recommended)"></wm-radioset>
                                     </wm-container>
                                 </wm-composite>
                             </wm-gridcolumn>
@@ -91,7 +91,7 @@
                                 <wm-composite name="composite3" margin="1em unset">
                                     <wm-label class="col-md-3 control-label" name="label5" caption="Password"></wm-label>
                                     <wm-container class="col-md-9" name="container3">
-                                        <wm-text name="textPwd" placeholder="Enter Password" type="password"></wm-text>
+                                        <wm-text name="textPwd" placeholder="Enter Password" type="password" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" required="true" on-keyup="textPwdKeyup($event, $scope)"></wm-text>
                                     </wm-container>
                                 </wm-composite>
                             </wm-gridcolumn>

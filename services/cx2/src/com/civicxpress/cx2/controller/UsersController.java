@@ -170,8 +170,9 @@ public class UsersController {
         return usersService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/sfnewResidentialStructures", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/sfnewResidentialStructures", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the sfnewResidentialStructures instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sfnewResidentialStructures");
         return usersService.findAssociatedSfnewResidentialStructures(id, pageable);

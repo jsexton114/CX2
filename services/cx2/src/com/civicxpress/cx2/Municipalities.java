@@ -17,6 +17,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -36,7 +38,6 @@ public class Municipalities implements Serializable {
     private String address1;
     private String address2;
     private String city;
-    private String state;
     private String postalCode;
     private String phone;
     private String email;
@@ -46,10 +47,12 @@ public class Municipalities implements Serializable {
     private String globalEmailSig;
     @JsonProperty(access = Access.READ_ONLY)
     private byte[] logo;
+    private Integer stateId;
     private List<FormTypes> formTypeses = new ArrayList<>();
     private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
     private List<Subdivisions> subdivisionses = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
+    private States states;
     private List<Gisrecords> gisrecordses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
     private List<ContractorApprovals> contractorApprovalses = new ArrayList<>();
@@ -110,15 +113,6 @@ public class Municipalities implements Serializable {
         this.city = city;
     }
 
-    @Column(name = "`State`", nullable = true, length = 255)
-    public String getState() {
-        return this.state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     @Column(name = "`PostalCode`", nullable = true, length = 255)
     public String getPostalCode() {
         return this.postalCode;
@@ -173,7 +167,7 @@ public class Municipalities implements Serializable {
         this.active = active;
     }
 
-    @Column(name = "`GlobalEmailSig`", nullable = true, length = 255)
+    @Column(name = "`GlobalEmailSig`", nullable = true, length = 500)
     public String getGlobalEmailSig() {
         return this.globalEmailSig;
     }
@@ -189,6 +183,15 @@ public class Municipalities implements Serializable {
 
     public void setLogo(byte[] logo) {
         this.logo = logo;
+    }
+
+    @Column(name = "`StateId`", nullable = true, scale = 0, precision = 10)
+    public Integer getStateId() {
+        return this.stateId;
+    }
+
+    public void setStateId(Integer stateId) {
+        this.stateId = stateId;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
@@ -225,6 +228,20 @@ public class Municipalities implements Serializable {
 
     public void setRoleses(List<Roles> roleses) {
         this.roleses = roleses;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`StateId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public States getStates() {
+        return this.states;
+    }
+
+    public void setStates(States states) {
+        if(states != null) {
+            this.stateId = states.getId();
+        }
+
+        this.states = states;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")

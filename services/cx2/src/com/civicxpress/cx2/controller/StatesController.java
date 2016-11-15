@@ -27,6 +27,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Contractors;
 import com.civicxpress.cx2.Gisrecords;
+import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.service.StatesService;
 
@@ -126,6 +127,13 @@ public class StatesController {
     public Page<Contractors> findAssociatedContractorses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated contractorses");
         return statesService.findAssociatedContractorses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/municipalitieses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the municipalitieses instance associated with the given id.")
+    public Page<Municipalities> findAssociatedMunicipalitieses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalitieses");
+        return statesService.findAssociatedMunicipalitieses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/gisrecordses", method = RequestMethod.GET)
