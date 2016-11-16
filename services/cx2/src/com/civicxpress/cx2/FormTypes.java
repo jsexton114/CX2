@@ -47,6 +47,7 @@ public class FormTypes implements Serializable {
     private String report;
     private Boolean active;
     private Integer formCategoryId;
+    private String pageName;
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private FormCategories formCategories;
     private Municipalities municipalities;
@@ -214,6 +215,15 @@ public class FormTypes implements Serializable {
 
     public void setFormCategoryId(Integer formCategoryId) {
         this.formCategoryId = formCategoryId;
+    }
+
+    @Column(name = "`PageName`", nullable = true, length = 255)
+    public String getPageName() {
+        return this.pageName;
+    }
+
+    public void setPageName(String pageName) {
+        this.pageName = pageName;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")

@@ -69,8 +69,16 @@
     "name" : "Cx2UsersData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
-    "operation" : "read",
+    "dataBinding" : [ {
+      "target" : "id",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "number"
+    }, {
+      "target" : "password",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.password",
+      "type" : "string"
+    } ],
+    "operation" : "update",
     "dataSet" : [ ],
     "type" : "Users",
     "isList" : true,
@@ -78,8 +86,8 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : true,
-    "autoUpdate" : true,
+    "startUpdate" : false,
+    "autoUpdate" : false,
     "transformationRequired" : false,
     "liveSource" : "cx2",
     "ignoreCase" : false,
@@ -290,7 +298,37 @@
     "tableType" : "TABLE",
     "properties" : [ ],
     "relatedTables" : [ ],
+    "filterFields" : { },
+    "inputFields" : { },
     "package" : "com.civicxpress.cx2.Users"
+  },
+  "PasswordMissMatch" : {
+    "_id" : "wm-PasswordMissMatch-wm.NotificationVariable-1479292771629",
+    "name" : "PasswordMissMatch",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "list"
+    }, {
+      "target" : "text",
+      "value" : "PasswordMissMatch",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "list"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "list"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "list"
+    } ],
+    "operation" : "toast"
   },
   "ProfileUpdateSuccess" : {
     "_id" : "wm-ProfileUpdateSuccess-wm.NotificationVariable-1479279086198",
@@ -410,6 +448,37 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "onSuccess" : "Variables.ProfileUpdateSuccess.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "UpdateNewPassword" : {
+    "_id" : "wm-UpdateNewPassword-wm.ServiceVariable-1479292463316",
+    "name" : "UpdateNewPassword",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "password",
+      "value" : "bind:Widgets.textPwd.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "newUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "cx2UpdateNewPasswordrtnType",
+    "service" : "cx2",
+    "operation" : "executeUpdateNewPassword",
+    "operationId" : "QueryExecutionController_executeUpdateNewPassword",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

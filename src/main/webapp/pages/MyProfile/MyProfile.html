@@ -12,8 +12,7 @@
                                 <wm-gridrow name="gridrow20">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn33" horizontalalign="center">
                                         <wm-picture name="picture1" picturesource="bind:&quot;services/cx2/Users/&quot;+Variables.CurrentUserDetails.dataSet.id+&quot;/content/photo&quot;" width="30em" height="30em" margin="unset unset 2% unset"></wm-picture>
-                                        <wm-button class="btn-default" caption="UPDATE PROFILE PICTURE" type="button" margin="unset 0.5em" name="buttonUpdateProfilePic" width="50%" iconclass="wi wi-file-upload"></wm-button>
-                                        <wm-fileupload name="fileuploadProPic" service="FileService" operation="uploadFile" mode="Upload"></wm-fileupload>
+                                        <wm-button class="btn-default" caption="UPDATE PROFILE PICTURE" type="button" margin="unset 0.5em" name="buttonUpdateProfilePic" width="50%" iconclass="wi wi-file-upload" on-click="Widgets.dialog1.open()"></wm-button>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn34" padding="unset unset unset 5%">
                                         <wm-composite name="composite1" width="80%" margin="2% unset unset unset">
@@ -82,21 +81,49 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow17_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn20_1">
+                        <wm-form errormessage="" captionposition="top" title="Update Password" enctype="application/x-www-form-urlencoded" method="put" dataset="UpdateNewPassword" captionalign="left" name="form1" postmessage="Password updated successfully"
+                        messagelayout="Toaster">
+                            <wm-layoutgrid columns="1" name="layoutgrid5_1">
+                                <wm-gridrow name="gridrow21">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
+                                        <wm-composite name="composite10">
+                                            <wm-label class="col-md-3 control-label" name="label14" caption="Password"></wm-label>
+                                            <wm-container class="col-md-9" name="container10">
+                                                <wm-text name="textPwd" on-keyup="textPwdKeyup($event, $scope)" required="true" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" type="password"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow22_2">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn25_2">
+                                        <wm-composite name="composite12">
+                                            <wm-label class="col-md-3 control-label" name="label16" caption="Confirm Password"></wm-label>
+                                            <wm-container class="col-md-9" name="container12">
+                                                <wm-text name="textRePwd" on-keyup="textRePwdKeyup($event, $scope)" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" required="true" type="password"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup1">
+                                <wm-button caption="Update" type="submit" class="btn-primary" name="buttonUpdate"></wm-button>
+                            </wm-buttongroup>
+                        </wm-form>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow7_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn16_1">
                         <wm-panel iconclass="wi wi-building" name="panelMyMunicipalities" title="My Municipalities">
-                            <wm-panel-footer name="panel_footer4">
-                                <wm-label padding="unset 0.5em" class="text-muted" caption="Addition Info" name="label30"></wm-label>
-                            </wm-panel-footer>
+                            <wm-panel-footer name="panel_footer4"></wm-panel-footer>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow22_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn36">
                         <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications">
-                            <wm-panel-footer name="panel_footer5">
-                                <wm-label padding="unset 0.5em" class="text-muted" caption="Addition Info" name="label31"></wm-label>
-                            </wm-panel-footer>
+                            <wm-panel-footer name="panel_footer5"></wm-panel-footer>
                             <wm-label padding="unset 0.5em" name="label32" caption="Please select your notification frequency" fontweight="bold" fontsize="15"></wm-label>
                             <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF"></wm-radioset>
                             <wm-button class="btn-default" caption="Save" type="button" margin="unset unset unset 80%" width="20%" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
@@ -108,61 +135,62 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view1">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Form" iconclass="wi wi-edit" name="dialog1">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="" iconclass="" name="dialog1">
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1"></wm-button>
                 <wm-button class="btn-primary" caption="Save" name="buttonSave" on-click="Widgets.liveformUpdate.save()"></wm-button>
             </wm-dialogactions>
-            <wm-liveform novalidate="false" errormessage="" title="Users Info" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.Cx2UsersData.dataSet" captionalign="left" captionposition="top" name="liveformUpdate">
+            <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.Cx2UsersData.dataSet" captionalign="left" captionposition="top" name="liveformUpdate">
                 <wm-layoutgrid columns="1" name="layoutgrid4">
                     <wm-gridrow name="gridrow8_1">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn19">
-                            <wm-form-field name="firstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.firstName"></wm-form-field>
+                            <wm-form-field name="firstName" displayname="First Name" show="false" primary-key="false" generator="assigned" key="firstName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.firstName"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow9">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn20">
-                            <wm-form-field name="lastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.lastName"></wm-form-field>
+                            <wm-form-field name="lastName" displayname="Last Name" show="false" primary-key="false" generator="assigned" key="lastName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.lastName"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow10">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn21">
-                            <wm-form-field name="email" displayname="Email" show="true" primary-key="false" generator="assigned" key="email" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.email"></wm-form-field>
+                            <wm-form-field name="email" displayname="Email" show="false" primary-key="false" generator="assigned" key="email" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.email"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow11">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn22">
-                            <wm-form-field name="address1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.address1"></wm-form-field>
+                            <wm-form-field name="address1" displayname="Address1" show="false" primary-key="false" generator="assigned" key="address1" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.address1"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow12">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn23">
-                            <wm-form-field name="address2" displayname="Address2" show="true" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.address2"></wm-form-field>
+                            <wm-form-field name="address2" displayname="Address2" show="false" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.address2"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow13">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn24">
-                            <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.city"></wm-form-field>
+                            <wm-form-field name="city" displayname="City" show="false" primary-key="false" generator="assigned" key="city" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.city"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow14">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn25">
-                            <wm-form-field name="state" displayname="State" show="true" primary-key="false" generator="assigned" key="state" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="state" displayname="State" show="false" primary-key="false" generator="assigned" key="state" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectSt.datavalue"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow15">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn26">
-                            <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.postalCode"></wm-form-field>
+                            <wm-form-field name="postalCode" displayname="Postal Code" show="false" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.postalCode"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow16">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn27">
-                            <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.phoneNumber"></wm-form-field>
+                            <wm-form-field name="phoneNumber" displayname="Phone Number" show="false" primary-key="false" generator="assigned" key="phoneNumber" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.phoneNumber"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow17">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn28">
-                            <wm-form-field name="communicationFrequency" displayname="Communication Frequency" show="true" primary-key="false" generator="assigned" key="communicationFrequency" type="string" widget="null" maxchars="255" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="communicationFrequency" displayname="Communication Frequency" show="false" primary-key="false" generator="assigned" key="communicationFrequency" type="string" widget="null" maxchars="255" placeholder="Enter value"
+                            defaultvalue="bind:Widgets.radiosetCF.datavalue"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow18">
@@ -171,6 +199,7 @@
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>
+                <wm-form-action key="edit" class="form-update btn-secondary" iconclass="wi wi-pencil" action="edit()" display-name="Edit" show="true" type="button" update-mode="false" shortcutkey=""></wm-form-action>
             </wm-liveform>
         </wm-dialog>
     </wm-view>

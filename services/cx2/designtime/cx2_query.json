@@ -293,6 +293,31 @@
     "outputType" : "cx2UpdateInfoFromMyProfilertnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "UpdateNewPassword",
+    "query" : "UPDATE Users SET Password=:password where ID=:newUser",
+    "comment" : "UpdateNewPassword",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "password",
+      "paramType" : "java.lang.String",
+      "testValue" : "civicxpress",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "newUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateNewPasswordrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "UpdatePasswordAndCF",
     "query" : "UPDATE Users SET Password=:password, CommunicationFrequency=:cf where ID=:newUser",
     "comment" : "UpdatePasswordAndCF",

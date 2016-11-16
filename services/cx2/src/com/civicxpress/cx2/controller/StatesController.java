@@ -129,8 +129,9 @@ public class StatesController {
         return statesService.findAssociatedContractorses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/municipalitieses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/municipalitieses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the municipalitieses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Municipalities> findAssociatedMunicipalitieses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated municipalitieses");
         return statesService.findAssociatedMunicipalitieses(id, pageable);
