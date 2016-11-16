@@ -59,10 +59,23 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
+  "name" : "SFNewElectricConnection",
+  "type" : "PAGE",
+  "params" : [ {
+    "name" : "FormId",
+    "type" : "integer"
+  }, {
+    "name" : "MunicipalityId",
+    "type" : "integer"
+  } ]
+}, {
   "name" : "SFNewResidentialStructure",
   "type" : "PAGE",
   "params" : [ {
     "name" : "FormId",
+    "type" : "integer"
+  }, {
+    "name" : "MunicipalityId",
     "type" : "integer"
   } ]
 }, {

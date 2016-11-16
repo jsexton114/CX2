@@ -27,6 +27,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
+import com.civicxpress.cx2.SfnewElectricConnection;
 import com.civicxpress.cx2.SfnewResidentialStructure;
 import com.civicxpress.cx2.service.FormTypesService;
 
@@ -118,6 +119,13 @@ public class FormTypesController {
     public Long countFormTypes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting FormTypes");
         return formTypesService.count(query);
+    }
+
+    @RequestMapping(value = "/{id:.+}/sfnewElectricConnections", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the sfnewElectricConnections instance associated with the given id.")
+    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewElectricConnections");
+        return formTypesService.findAssociatedSfnewElectricConnections(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/sfnewResidentialStructures", method = RequestMethod.GET)

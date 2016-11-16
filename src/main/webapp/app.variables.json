@@ -205,25 +205,6 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
-  "goToPage_SFNewResidentialStructure" : {
-    "_id" : "wm-goToPage_SFNewResidentialStructure-wm.NavigationVariable-1479115891779",
-    "name" : "goToPage_SFNewResidentialStructure",
-    "owner" : "App",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ {
-      "target" : "pageName",
-      "value" : "SFNewResidentialStructure",
-      "type" : "list"
-    } ],
-    "operation" : "gotoPage",
-    "pageName" : "SFNewResidentialStructure",
-    "dataSet" : [ {
-      "type" : "integer",
-      "target" : "FormId",
-      "value" : "bind:Widgets.selectForm.datavalue.id"
-    } ],
-    "pageTransitions" : "none"
-  },
   "goToPage_Support" : {
     "_id" : "wm-goToPage_Support-wm.NavigationVariable-1478577248530",
     "name" : "goToPage_Support",
@@ -334,6 +315,52 @@
     "type" : "number",
     "isList" : false,
     "saveInPhonegap" : false
+  },
+  "SFNewElectricConnection" : {
+    "_id" : "wm-goToPage_SFNewElectricConnection-wm.NavigationVariable-1479304018405",
+    "name" : "SFNewElectricConnection",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "SFNewElectricConnection",
+      "type" : "list"
+    } ],
+    "operation" : "gotoPage",
+    "pageName" : "SFNewElectricConnection",
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "FormId",
+      "value" : "bind:Widgets.selectForm.datavalue.id"
+    }, {
+      "type" : "integer",
+      "target" : "MunicipalityId",
+      "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | toNumber"
+    } ],
+    "pageTransitions" : "none"
+  },
+  "SFNewResidentialStructure" : {
+    "_id" : "wm-goToPage_SFNewResidentialStructure-wm.NavigationVariable-1479115891779",
+    "name" : "SFNewResidentialStructure",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "SFNewResidentialStructure",
+      "type" : "list"
+    } ],
+    "operation" : "gotoPage",
+    "pageName" : "SFNewResidentialStructure",
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "FormId",
+      "value" : "bind:Widgets.selectForm.datavalue.id"
+    }, {
+      "type" : "integer",
+      "target" : "MunicipalityId",
+      "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | toNumber"
+    } ],
+    "pageTransitions" : "none"
   },
   "supportedLocale" : {
     "_id" : "wm-wm.Variable1402640443182",

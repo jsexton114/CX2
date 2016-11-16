@@ -1,4 +1,4 @@
-Application.$controller("SFNewResidentialStructurePageController", ["$scope", function ($scope) {
+Application.$controller("SFNewElectricConnectionPageController", ["$scope", function ($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -17,14 +17,7 @@ Application.$controller("SFNewResidentialStructurePageController", ["$scope", fu
 }]);
 
 
-Application.$controller("liveformController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
-]);
-
-Application.$controller("liveformSFNewResidentialController", ["$scope",
+Application.$controller("liveform1Controller", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;

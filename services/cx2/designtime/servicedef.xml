@@ -51,6 +51,11 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateInfoFromMyProfilertnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateNewPassword">
+        <parameter name="password" typeRef="java.lang.String" isList="false"/>
+        <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateNewPasswordrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdatePasswordAndCF">
         <parameter name="password" typeRef="java.lang.String" isList="false"/>
         <parameter name="cf" typeRef="java.lang.String" isList="false"/>
@@ -70,11 +75,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UpdateNewPassword">
-        <parameter name="password" typeRef="java.lang.String" isList="false"/>
-        <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
@@ -230,6 +230,7 @@
             <element name="report" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="sfnewElectricConnections" typeRef="com.civicxpress.cx2.SfnewElectricConnection" isList="true" allowNull="true"/>
             <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="stateFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="stateFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
@@ -308,6 +309,21 @@
             <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.SfnewElectricConnection">
+            <element name="basementSft" typeRef="java.lang.String" allowNull="true"/>
+            <element name="connectionType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="electricLinesCount" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
+            <element name="garageSft" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="propertyOwnerName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="propertyOwnerPhNo" typeRef="java.lang.String" allowNull="true"/>
+            <element name="sidingMaterial" typeRef="java.lang.String" allowNull="true"/>
+            <element name="totalSft" typeRef="java.lang.String" allowNull="true"/>
+            <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.SfnewResidentialStructure">
             <element name="basementSft" typeRef="java.lang.String" allowNull="true"/>
             <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
@@ -318,7 +334,6 @@
             <element name="propertyOwnerName" typeRef="java.lang.String" allowNull="true"/>
             <element name="propertyOwnerPhNo" typeRef="java.lang.String" allowNull="true"/>
             <element name="sidingMaterial" typeRef="java.lang.String" allowNull="true"/>
-            <element name="stateName" typeRef="java.lang.String" allowNull="true"/>
             <element name="totalSft" typeRef="java.lang.String" allowNull="true"/>
             <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
@@ -371,6 +386,7 @@
             <element name="photo" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
             <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="roleses" typeRef="com.civicxpress.cx2.Roles" isList="true" allowNull="true"/>
+            <element name="sfnewElectricConnections" typeRef="com.civicxpress.cx2.SfnewElectricConnection" isList="true" allowNull="true"/>
             <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="state" typeRef="java.lang.String" allowNull="true"/>
             <element name="userPasswordResetTokenses" typeRef="com.civicxpress.cx2.UserPasswordResetTokens" isList="true" allowNull="true"/>

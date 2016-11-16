@@ -62,6 +62,11 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
         passwordCheck();
     };
 
+
+    $scope.Cx2UsersDataonSuccess = function(variable, data) {
+        $scope.Widgets.picture1.picturesource = "services/cx2/Users/" + data.id + "/content/photo?ts=" + moment().valueOf();
+    };
+
 }]);
 
 

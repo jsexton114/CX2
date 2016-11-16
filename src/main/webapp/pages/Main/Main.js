@@ -32,6 +32,7 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
         $scope.Variables.CurrentUserDetails.update();
     };
 
+
 }]);
 
 Application.$controller("dialog1Controller", ["$scope",
@@ -39,7 +40,10 @@ Application.$controller("dialog1Controller", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-
+        $scope.buttonCreateClick = function($event, $isolateScope) {
+            var pageName = $scope.Variables.FormTypes.dataSet.data[0].pageName;
+            $scope.Variables[pageName].navigate();
+        };
 
     }
 ]);
