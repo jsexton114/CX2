@@ -187,6 +187,112 @@
       "SubDivisonCount" : "java.lang.Integer"
     }
   }, {
+    "name" : "UpdateCFInProfile",
+    "query" : "Update Users set CommunicationFrequency=:cf where ID=:user",
+    "comment" : "UpdateCFInProfile",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "cf",
+      "paramType" : "java.lang.String",
+      "testValue" : "Immediately",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "user",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateCFInProfilertnType",
+    "returnTypeMetadata" : { }
+  }, {
+    "name" : "UpdateInfoFromMyProfile",
+    "query" : "Update Users set FirstName=:fn,LastName=:ln,Email=:em,PhoneNumber=:ph,Address1=:ad1,Address2=:ad2,State=:st,City=:ct,PostalCode=:pc where ID=:user",
+    "comment" : "UpdateInfoFromMyProfile",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "fn",
+      "paramType" : "java.lang.String",
+      "testValue" : "Test",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "ln",
+      "paramType" : "java.lang.String",
+      "testValue" : "User3",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "em",
+      "paramType" : "java.lang.String",
+      "testValue" : "Test.User3@gmail.com",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "ph",
+      "paramType" : "java.lang.String",
+      "testValue" : "36535656",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "ad1",
+      "paramType" : "java.lang.String",
+      "testValue" : "dfad",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "ad2",
+      "paramType" : "java.lang.String",
+      "testValue" : "adad",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "st",
+      "paramType" : "java.lang.String",
+      "testValue" : "adad",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "ct",
+      "paramType" : "java.lang.String",
+      "testValue" : "adad",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "pc",
+      "paramType" : "java.lang.String",
+      "testValue" : "1313",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "user",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateInfoFromMyProfilertnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "UpdatePasswordAndCF",
     "query" : "UPDATE Users SET Password=:password, CommunicationFrequency=:cf where ID=:newUser",
     "comment" : "UpdatePasswordAndCF",

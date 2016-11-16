@@ -91,6 +91,32 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeUpdateCFInProfile( java.lang.String cf ,java.lang.Integer user)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("cf", cf);
+        params.put("user", user);
+        return queryExecutor.executeNamedQueryForUpdate("UpdateCFInProfile", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public int executeUpdateInfoFromMyProfile( java.lang.String fn ,java.lang.String ln ,java.lang.String em ,java.lang.String ph ,java.lang.String ad1 ,java.lang.String ad2 ,java.lang.String st ,java.lang.String ct ,java.lang.String pc ,java.lang.Integer user)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("fn", fn);
+        params.put("ln", ln);
+        params.put("em", em);
+        params.put("ph", ph);
+        params.put("ad1", ad1);
+        params.put("ad2", ad2);
+        params.put("st", st);
+        params.put("ct", ct);
+        params.put("pc", pc);
+        params.put("user", user);
+        return queryExecutor.executeNamedQueryForUpdate("UpdateInfoFromMyProfile", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeUpdatePasswordAndCF( java.lang.String password ,java.lang.String cf ,java.lang.Integer newUser)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

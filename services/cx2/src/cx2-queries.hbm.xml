@@ -37,6 +37,16 @@
       select count(*) as SubDivisonCount from Subdivisions where MunicipalityId=:municipalityId
     ]]>
   </sql-query>
+  <sql-query name="UpdateCFInProfile">
+    <![CDATA[
+      Update Users set CommunicationFrequency=:cf where ID=:user
+    ]]>
+  </sql-query>
+  <sql-query name="UpdateInfoFromMyProfile">
+    <![CDATA[
+      Update Users set FirstName=:fn,LastName=:ln,Email=:em,PhoneNumber=:ph,Address1=:ad1,Address2=:ad2,State=:st,City=:ct,PostalCode=:pc where ID=:user
+    ]]>
+  </sql-query>
   <sql-query name="UpdatePasswordAndCF">
     <![CDATA[
       UPDATE Users SET Password=:password, CommunicationFrequency=:cf where ID=:newUser

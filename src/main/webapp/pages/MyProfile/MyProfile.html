@@ -5,84 +5,103 @@
         <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
         <wm-page-content columnwidth="10" name="page_content1">
             <wm-layoutgrid name="layoutgrid2">
-                <wm-gridrow name="gridrow4">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn7" horizontalalign="center">
-                        <wm-picture name="picture1" picturesource="bind:&quot;services/cx2/Users/&quot;+Variables.CurrentUserDetails.dataSet.id+&quot;/content/photo&quot;" width="20em" height="20em"></wm-picture>
-                        <wm-label padding="unset 0.5em" name="label15" caption="bind:Variables.CurrentUserDetails.dataSet.firstName+&quot; &quot;+Variables.CurrentUserDetails.dataSet.lastName" fontweight="bold" fontsize="20"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="7" name="gridcolumn11" horizontalalign="center" padding="2em unset unset unset">
-                        <wm-panel iconclass="wi wi-account-circle" name="panel1" title="My Info">
-                            <wm-panel-footer name="panel_footer1">
-                                <wm-anchor margin="unset 0.5em" name="anchor1" iconclass="wi wi-mode-edit" caption="Edit" fontweight="bold" class="pull-right" on-click="Widgets.dialog1.open()"></wm-anchor>
-                                <wm-anchor margin="unset 0.5em" name="anchor3" caption="Change Password" iconclass="wi wi-mode-edit" fontweight="bold" class="pull-left"></wm-anchor>
-                            </wm-panel-footer>
-                            <wm-layoutgrid name="layoutgrid3">
-                                <wm-gridrow name="gridrow7">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn14" padding="unset unset unset 1em">
-                                        <wm-label padding="0.5em" name="label6" caption="FirstName" fontweight="bold" width="100%"></wm-label>
-                                        <wm-label padding="unset 0.5em" name="label7" caption="bind:Variables.CurrentUserDetails.dataSet.firstName"></wm-label>
+                <wm-gridrow name="gridrow19">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn30">
+                        <wm-panel iconclass="wi wi-account-circle" name="panelProfileInfo" title="My Profile Information" badgetype="primary">
+                            <wm-layoutgrid name="layoutgrid5">
+                                <wm-gridrow name="gridrow20">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn33" horizontalalign="center">
+                                        <wm-picture name="picture1" picturesource="bind:&quot;services/cx2/Users/&quot;+Variables.CurrentUserDetails.dataSet.id+&quot;/content/photo&quot;" width="30em" height="30em" margin="unset unset 2% unset"></wm-picture>
+                                        <wm-button class="btn-default" caption="UPDATE PROFILE PICTURE" type="button" margin="unset 0.5em" name="buttonUpdateProfilePic" width="50%" iconclass="wi wi-file-upload"></wm-button>
+                                        <wm-fileupload name="fileuploadProPic" service="FileService" operation="uploadFile" mode="Upload"></wm-fileupload>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn15" padding="unset unset unset 1em">
-                                        <wm-label padding="0.5em" caption="LastName" fontweight="bold" width="100%" name="label8"></wm-label>
-                                        <wm-label padding="unset 0.5em" caption="bind:Variables.CurrentUserDetails.dataSet.lastName" name="label9"></wm-label>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn34" padding="unset unset unset 5%">
+                                        <wm-composite name="composite1" width="80%" margin="2% unset unset unset">
+                                            <wm-label class="col-md-3 control-label" name="label21" caption="FirstName"></wm-label>
+                                            <wm-container class="col-md-9" name="container1">
+                                                <wm-text name="textfn" datavalue="bind:Variables.CurrentUserDetails.dataSet.firstName"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite2">
+                                            <wm-label class="col-md-3 control-label" name="label22" caption="LastName"></wm-label>
+                                            <wm-container class="col-md-9" name="container2">
+                                                <wm-text name="textln" datavalue="bind:Variables.CurrentUserDetails.dataSet.lastName"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite4">
+                                            <wm-label class="col-md-3 control-label" name="label24" caption="Email"></wm-label>
+                                            <wm-container class="col-md-9" name="container4">
+                                                <wm-text name="textem" datavalue="bind:Variables.CurrentUserDetails.dataSet.email"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite5">
+                                            <wm-label class="col-md-3 control-label" name="label25" caption="Phone"></wm-label>
+                                            <wm-container class="col-md-9" name="container5">
+                                                <wm-text name="textph" datavalue="bind:Variables.CurrentUserDetails.dataSet.phoneNumber"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite6">
+                                            <wm-label class="col-md-3 control-label" name="label26" caption="Address1"></wm-label>
+                                            <wm-container class="col-md-9" name="container6">
+                                                <wm-text name="textad1" datavalue="bind:Variables.CurrentUserDetails.dataSet.address1"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite7">
+                                            <wm-label class="col-md-3 control-label" name="label27" caption="Address2"></wm-label>
+                                            <wm-container class="col-md-9" name="container7">
+                                                <wm-text name="textad2" datavalue="bind:Variables.CurrentUserDetails.dataSet.address2"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite7">
+                                            <wm-label class="col-md-3 control-label" name="label27" caption="State"></wm-label>
+                                            <wm-container class="col-md-9" name="container7">
+                                                <wm-text name="selectSt" datavalue="bind:Variables.CurrentUserDetails.dataSet.state"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite7">
+                                            <wm-label class="col-md-3 control-label" name="label27" caption="City"></wm-label>
+                                            <wm-container class="col-md-9" name="container7">
+                                                <wm-text name="textct" datavalue="bind:Variables.CurrentUserDetails.dataSet.city"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                        <wm-composite width="80%" margin="2% unset" name="composite8">
+                                            <wm-label class="col-md-3 control-label" name="label28" caption="PostalCode"></wm-label>
+                                            <wm-container class="col-md-9" name="container8">
+                                                <wm-text name="textpc" datavalue="bind:Variables.CurrentUserDetails.dataSet.postalCode"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                        <wm-button class="btn-default" caption="Save" type="button" margin="unset unset unset 60%" name="buttonSaveProInfo" width="20%" iconclass="wi wi-save" on-click="Variables.UpdateInfoFromMyProfile.invoke()"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow8">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn16" padding="unset unset unset 1em">
-                                        <wm-label padding="0.5em" caption="Email" fontweight="bold" width="100%" name="label10"></wm-label>
-                                        <wm-label padding="unset 0.5em" caption="bind:Variables.CurrentUserDetails.dataSet.email" name="label11"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn17" padding="unset unset unset 1em">
-                                        <wm-label padding="0.5em" caption="Phone" fontweight="bold" width="100%" name="label12"></wm-label>
-                                        <wm-label padding="unset 0.5em" caption="bind:Variables.CurrentUserDetails.dataSet.phoneNumber" name="label13"></wm-label>
-                                    </wm-gridcolumn>
+                                <wm-gridrow name="gridrow22">
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn37"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn38"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn39"></wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-panel>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn8"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow5">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn9" padding="1em"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="7" name="gridcolumn10">
-                        <wm-panel iconclass="wi wi-account-circle" title="My Address" name="panel2">
-                            <wm-panel-footer name="panel_footer2">
-                                <wm-anchor margin="unset 0.5em" iconclass="wi wi-mode-edit" caption="Edit" fontweight="bold" class="pull-right" name="anchor2"></wm-anchor>
-                            </wm-panel-footer>
-                            <wm-layoutgrid name="layoutgrid3_1">
-                                <wm-gridrow name="gridrow5_1">
-                                    <wm-gridcolumn columnwidth="6" padding="unset unset unset 1em" name="gridcolumn11_1">
-                                        <wm-label padding="0.5em" caption="Address1" fontweight="bold" width="100%" name="label10_1"></wm-label>
-                                        <wm-label padding="unset 0.5em" caption="bind:Variables.CurrentUserDetails.dataSet.address1" name="label11_1"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" padding="unset unset unset 1em" name="gridcolumn12">
-                                        <wm-label padding="0.5em" caption="Address1" fontweight="bold" width="100%" name="label12_1"></wm-label>
-                                        <wm-label padding="unset 0.5em" caption="bind:Variables.CurrentUserDetails.dataSet.address2" name="label13_1"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow6">
-                                    <wm-gridcolumn columnwidth="4" padding="unset unset unset 1em" name="gridcolumn13">
-                                        <wm-label padding="0.5em" caption="City" fontweight="bold" width="100%" name="label14"></wm-label>
-                                        <wm-label padding="unset 0.5em" caption="bind:Variables.CurrentUserDetails.dataSet.city" name="label15_1"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" padding="unset unset unset 1em" name="gridcolumn14_1">
-                                        <wm-label padding="0.5em" caption="State" fontweight="bold" width="100%" name="label16"></wm-label>
-                                        <wm-label padding="unset 0.5em" caption="bind:Variables.CurrentUserDetails.dataSet.state" name="label17"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn15_1">
-                                        <wm-label padding="0.5em" caption="PostalCode" fontweight="bold" width="100%" name="label18"></wm-label>
-                                        <wm-label padding="unset 0.5em" caption="bind:Variables.CurrentUserDetails.dataSet.postalCode" name="label19"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-panel>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn10_1"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow7_1">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn16_1"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="7" name="gridcolumn17_1"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn18"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn16_1">
+                        <wm-panel iconclass="wi wi-building" name="panelMyMunicipalities" title="My Municipalities">
+                            <wm-panel-footer name="panel_footer4">
+                                <wm-label padding="unset 0.5em" class="text-muted" caption="Addition Info" name="label30"></wm-label>
+                            </wm-panel-footer>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow22_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn36">
+                        <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications">
+                            <wm-panel-footer name="panel_footer5">
+                                <wm-label padding="unset 0.5em" class="text-muted" caption="Addition Info" name="label31"></wm-label>
+                            </wm-panel-footer>
+                            <wm-label padding="unset 0.5em" name="label32" caption="Please select your notification frequency" fontweight="bold" fontsize="15"></wm-label>
+                            <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF"></wm-radioset>
+                            <wm-button class="btn-default" caption="Save" type="button" margin="unset unset unset 80%" width="20%" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
+                        </wm-panel>
+                    </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
