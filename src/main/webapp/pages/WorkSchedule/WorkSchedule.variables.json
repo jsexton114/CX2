@@ -51,7 +51,11 @@
     "name" : "Cx2HolidaysData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber",
+      "type" : "number"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "Holidays",
@@ -470,6 +474,7 @@
       "watchOn" : "Cx2MunicipalitiesData",
       "package" : "com.civicxpress.cx2.Holidays"
     } ],
+    "filterFields" : { },
     "package" : "com.civicxpress.cx2.Holidays"
   },
   "SelectedMunicipalityObj" : {
@@ -860,7 +865,8 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 2,
+    "bindCount" : 11,
+    "spinnerContext" : "page",
     "tableName" : "Municipalities",
     "tableType" : "TABLE",
     "properties" : [ "states" ],

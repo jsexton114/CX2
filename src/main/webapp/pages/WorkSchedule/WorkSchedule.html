@@ -30,39 +30,39 @@
                                 <wm-gridrow name="gridrow4_1" padding="1em unset">
                                     <wm-gridcolumn columnwidth="3" name="gridcolumn5">
                                         <wm-composite name="composite3" horizontalalign="left">
-                                            <wm-checkbox caption="Sunday" class="col-md-push-3 col-md-9" name="checkboxSunday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].SundayYN"></wm-checkbox>
+                                            <wm-checkbox caption="Sunday" class="col-md-push-3 col-md-9" name="checkboxSunday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.sundayYn"></wm-checkbox>
                                         </wm-composite>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="3" name="gridcolumn6">
                                         <wm-composite name="composite4" horizontalalign="left">
-                                            <wm-checkbox caption="Monday" class="col-md-push-3 col-md-9" name="checkboxMonday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].MondayYN"></wm-checkbox>
+                                            <wm-checkbox caption="Monday" class="col-md-push-3 col-md-9" name="checkboxMonday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.mondayYn"></wm-checkbox>
                                         </wm-composite>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="3" name="gridcolumn14">
                                         <wm-composite name="composite5" horizontalalign="left">
-                                            <wm-checkbox caption="Tuesday" class="col-md-push-3 col-md-9" name="checkboxTuesday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].TuesdayYN"></wm-checkbox>
+                                            <wm-checkbox caption="Tuesday" class="col-md-push-3 col-md-9" name="checkboxTuesday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.tuesdayYn"></wm-checkbox>
                                         </wm-composite>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="3" name="gridcolumn15">
                                         <wm-composite name="composite6" horizontalalign="left">
-                                            <wm-checkbox caption="Wednesday" class="col-md-push-3 col-md-9" name="checkboxWednesday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].WednesdayYN"></wm-checkbox>
+                                            <wm-checkbox caption="Wednesday" class="col-md-push-3 col-md-9" name="checkboxWednesday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.wednesdayYn"></wm-checkbox>
                                         </wm-composite>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow5" padding="unset unset 1em unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn7" horizontalalign="center">
                                         <wm-composite horizontalalign="left" name="composite7">
-                                            <wm-checkbox caption="Thursday" class="col-md-push-3 col-md-9" name="checkboxThursday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].ThursdayYN"></wm-checkbox>
+                                            <wm-checkbox caption="Thursday" class="col-md-push-3 col-md-9" name="checkboxThursday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.thursdayYn"></wm-checkbox>
                                         </wm-composite>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn8" horizontalalign="center">
                                         <wm-composite horizontalalign="left" name="composite8">
-                                            <wm-checkbox caption="Friday" class="col-md-push-3 col-md-9" name="checkboxFriday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].FridayYN"></wm-checkbox>
+                                            <wm-checkbox caption="Friday" class="col-md-push-3 col-md-9" name="checkboxFriday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.fridayYn"></wm-checkbox>
                                         </wm-composite>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn16" horizontalalign="center">
                                         <wm-composite horizontalalign="left" name="composite9">
-                                            <wm-checkbox caption="Saturday" class="col-md-push-3 col-md-9" name="checkboxSaturday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].SaturdayYN"></wm-checkbox>
+                                            <wm-checkbox caption="Saturday" class="col-md-push-3 col-md-9" name="checkboxSaturday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.saturdayYn"></wm-checkbox>
                                         </wm-composite>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
@@ -72,7 +72,7 @@
                                         <wm-composite name="composite14">
                                             <wm-label class="col-md-3 control-label" name="label8" caption="Open Time"></wm-label>
                                             <wm-container class="col-md-9" name="container6" horizontalalign="center">
-                                                <wm-time name="timeOpenTime" timepattern="hh:mm:ss" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].OpenTime"></wm-time>
+                                                <wm-time name="timeOpenTime" timepattern="hh:mm:ss" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.openTime"></wm-time>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -84,7 +84,7 @@
                                         <wm-composite name="composite15">
                                             <wm-label class="col-md-3 control-label" name="label9" caption="Close Time"></wm-label>
                                             <wm-container class="col-md-9" name="container7" horizontalalign="center">
-                                                <wm-time name="timeCloseTime" timepattern="hh:mm:ss" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].CloseTime"></wm-time>
+                                                <wm-time name="timeCloseTime" timepattern="hh:mm:ss" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.closeTime"></wm-time>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -96,7 +96,7 @@
                                         <wm-composite name="composite12">
                                             <wm-label class="col-md-3 control-label" name="label6" caption="Timezone"></wm-label>
                                             <wm-container class="col-md-9" name="container4">
-                                                <wm-select name="selectTimezone" dataset="Eastern,Central,Mountain,Pacific" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].TimeZone"></wm-select>
+                                                <wm-select name="selectTimezone" dataset="Eastern,Central,Mountain,Pacific" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.timeZone"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
