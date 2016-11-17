@@ -7,6 +7,7 @@ package com.civicxpress.cx2;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,6 +22,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -48,6 +51,16 @@ public class Municipalities implements Serializable {
     @JsonProperty(access = Access.READ_ONLY)
     private byte[] logo;
     private Integer stateId;
+    private Boolean mondayYn;
+    private Boolean tuesdayYn;
+    private Boolean wednesdayYn;
+    private Boolean thursdayYn;
+    private Boolean fridayYn;
+    private Boolean saturdayYn;
+    private Boolean sundayYn;
+    private String timeZone;
+    private Date openTime;
+    private Date closeTime;
     private List<FormTypes> formTypeses = new ArrayList<>();
     private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
     private List<Subdivisions> subdivisionses = new ArrayList<>();
@@ -192,6 +205,98 @@ public class Municipalities implements Serializable {
 
     public void setStateId(Integer stateId) {
         this.stateId = stateId;
+    }
+
+    @Column(name = "`MondayYN`", nullable = true)
+    public Boolean getMondayYn() {
+        return this.mondayYn;
+    }
+
+    public void setMondayYn(Boolean mondayYn) {
+        this.mondayYn = mondayYn;
+    }
+
+    @Column(name = "`TuesdayYN`", nullable = true)
+    public Boolean getTuesdayYn() {
+        return this.tuesdayYn;
+    }
+
+    public void setTuesdayYn(Boolean tuesdayYn) {
+        this.tuesdayYn = tuesdayYn;
+    }
+
+    @Column(name = "`WednesdayYN`", nullable = true)
+    public Boolean getWednesdayYn() {
+        return this.wednesdayYn;
+    }
+
+    public void setWednesdayYn(Boolean wednesdayYn) {
+        this.wednesdayYn = wednesdayYn;
+    }
+
+    @Column(name = "`ThursdayYN`", nullable = true)
+    public Boolean getThursdayYn() {
+        return this.thursdayYn;
+    }
+
+    public void setThursdayYn(Boolean thursdayYn) {
+        this.thursdayYn = thursdayYn;
+    }
+
+    @Column(name = "`FridayYN`", nullable = true)
+    public Boolean getFridayYn() {
+        return this.fridayYn;
+    }
+
+    public void setFridayYn(Boolean fridayYn) {
+        this.fridayYn = fridayYn;
+    }
+
+    @Column(name = "`SaturdayYN`", nullable = true)
+    public Boolean getSaturdayYn() {
+        return this.saturdayYn;
+    }
+
+    public void setSaturdayYn(Boolean saturdayYn) {
+        this.saturdayYn = saturdayYn;
+    }
+
+    @Column(name = "`SundayYN`", nullable = true)
+    public Boolean getSundayYn() {
+        return this.sundayYn;
+    }
+
+    public void setSundayYn(Boolean sundayYn) {
+        this.sundayYn = sundayYn;
+    }
+
+    @Column(name = "`TimeZone`", nullable = true, length = 255)
+    public String getTimeZone() {
+        return this.timeZone;
+    }
+
+    public void setTimeZone(String timeZone) {
+        this.timeZone = timeZone;
+    }
+
+    @Temporal(TemporalType.TIME)
+    @Column(name = "`OpenTime`", nullable = true)
+    public Date getOpenTime() {
+        return this.openTime;
+    }
+
+    public void setOpenTime(Date openTime) {
+        this.openTime = openTime;
+    }
+
+    @Temporal(TemporalType.TIME)
+    @Column(name = "`CloseTime`", nullable = true)
+    public Date getCloseTime() {
+        return this.closeTime;
+    }
+
+    public void setCloseTime(Date closeTime) {
+        this.closeTime = closeTime;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")

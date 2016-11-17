@@ -21,7 +21,6 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.SfnewResidentialStructure;
 
 
@@ -35,9 +34,6 @@ public class SfnewResidentialStructureServiceImpl implements SfnewResidentialStr
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SfnewResidentialStructureServiceImpl.class);
 
-    @Autowired
-	@Qualifier("cx2.FormStatusesService")
-	private FormStatusesService formStatusesService;
 
     @Autowired
     @Qualifier("cx2.SfnewResidentialStructureDao")
@@ -52,13 +48,6 @@ public class SfnewResidentialStructureServiceImpl implements SfnewResidentialStr
 	public SfnewResidentialStructure create(SfnewResidentialStructure sfnewResidentialStructure) {
         LOGGER.debug("Creating a new SfnewResidentialStructure with information: {}", sfnewResidentialStructure);
         SfnewResidentialStructure sfnewResidentialStructureCreated = this.wmGenericDao.create(sfnewResidentialStructure);
-        if(sfnewResidentialStructureCreated.getFormStatuseses() != null) {
-            for(FormStatuses formStatusese : sfnewResidentialStructureCreated.getFormStatuseses()) {
-                formStatusese.setSfnewResidentialStructure(sfnewResidentialStructureCreated);
-                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
-                formStatusesService.create(formStatusese);
-            }
-        }
         return sfnewResidentialStructureCreated;
     }
 
@@ -133,25 +122,7 @@ public class SfnewResidentialStructureServiceImpl implements SfnewResidentialStr
         return this.wmGenericDao.count(query);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formStatuseses");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("sfnewResidentialStructure.id = '" + id + "'");
-
-        return formStatusesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormStatusesService instance
-	 */
-	protected void setFormStatusesService(FormStatusesService service) {
-        this.formStatusesService = service;
-    }
 
 }
 

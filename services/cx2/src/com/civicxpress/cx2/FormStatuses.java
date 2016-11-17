@@ -42,9 +42,7 @@ public class FormStatuses implements Serializable {
     private Boolean recalculateAutoFees;
     private Boolean createAsRecord;
     private Long sortOrder;
-    private Integer formId;
     private FormTypes formTypes;
-    private SfnewResidentialStructure sfnewResidentialStructure;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -201,15 +199,6 @@ public class FormStatuses implements Serializable {
         this.sortOrder = sortOrder;
     }
 
-    @Column(name = "`FormId`", nullable = true, scale = 0, precision = 10)
-    public Integer getFormId() {
-        return this.formId;
-    }
-
-    public void setFormId(Integer formId) {
-        this.formId = formId;
-    }
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`FormTypeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public FormTypes getFormTypes() {
@@ -222,20 +211,6 @@ public class FormStatuses implements Serializable {
         }
 
         this.formTypes = formTypes;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`FormId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public SfnewResidentialStructure getSfnewResidentialStructure() {
-        return this.sfnewResidentialStructure;
-    }
-
-    public void setSfnewResidentialStructure(SfnewResidentialStructure sfnewResidentialStructure) {
-        if(sfnewResidentialStructure != null) {
-            this.formId = sfnewResidentialStructure.getId();
-        }
-
-        this.sfnewResidentialStructure = sfnewResidentialStructure;
     }
 
     @Override

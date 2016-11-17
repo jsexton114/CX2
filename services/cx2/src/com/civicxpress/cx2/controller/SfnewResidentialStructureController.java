@@ -25,7 +25,6 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
-import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.SfnewResidentialStructure;
 import com.civicxpress.cx2.service.SfnewResidentialStructureService;
 
@@ -117,14 +116,6 @@ public class SfnewResidentialStructureController {
     public Long countSfnewResidentialStructures(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting SfnewResidentialStructures");
         return sfnewResidentialStructureService.count(query);
-    }
-
-    @RequestMapping(value = "/{id}/formStatuseses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the formStatuseses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormStatuses> findAssociatedFormStatuseses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formStatuseses");
-        return sfnewResidentialStructureService.findAssociatedFormStatuseses(id, pageable);
     }
 
     /**

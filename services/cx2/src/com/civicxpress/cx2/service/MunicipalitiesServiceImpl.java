@@ -46,12 +46,16 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	private UserSubscriptionsService userSubscriptionsService;
 
     @Autowired
-	@Qualifier("cx2.GisrecordsService")
-	private GisrecordsService gisrecordsService;
-
-    @Autowired
 	@Qualifier("cx2.SubdivisionsService")
 	private SubdivisionsService subdivisionsService;
+
+    @Autowired
+	@Qualifier("cx2.FormTypesService")
+	private FormTypesService formTypesService;
+
+    @Autowired
+	@Qualifier("cx2.GisrecordsService")
+	private GisrecordsService gisrecordsService;
 
     @Autowired
 	@Qualifier("cx2.ContractorApprovalsService")
@@ -60,10 +64,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     @Autowired
 	@Qualifier("cx2.ManualFeeTypesService")
 	private ManualFeeTypesService manualFeeTypesService;
-
-    @Autowired
-	@Qualifier("cx2.FormTypesService")
-	private FormTypesService formTypesService;
 
     @Autowired
 	@Qualifier("cx2.RolesService")
@@ -300,19 +300,28 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service GisrecordsService instance
+	 * @param service SubdivisionsService instance
 	 */
-	protected void setGisrecordsService(GisrecordsService service) {
-        this.gisrecordsService = service;
+	protected void setSubdivisionsService(SubdivisionsService service) {
+        this.subdivisionsService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SubdivisionsService instance
+	 * @param service FormTypesService instance
 	 */
-	protected void setSubdivisionsService(SubdivisionsService service) {
-        this.subdivisionsService = service;
+	protected void setFormTypesService(FormTypesService service) {
+        this.formTypesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service GisrecordsService instance
+	 */
+	protected void setGisrecordsService(GisrecordsService service) {
+        this.gisrecordsService = service;
     }
 
     /**
@@ -331,15 +340,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	 */
 	protected void setManualFeeTypesService(ManualFeeTypesService service) {
         this.manualFeeTypesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormTypesService instance
-	 */
-	protected void setFormTypesService(FormTypesService service) {
-        this.formTypesService = service;
     }
 
     /**

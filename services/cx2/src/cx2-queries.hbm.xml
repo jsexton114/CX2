@@ -57,6 +57,11 @@
       UPDATE Users SET Password=:password, CommunicationFrequency=:cf where ID=:newUser
     ]]>
   </sql-query>
+  <sql-query name="UpdateWorkMunicipality">
+    <![CDATA[
+      Update Municipalities set MondayYN=:monday,TuesdayYN=:tuesday,WednesdayYN=:wednesday,ThursdayYN=:thursday,FridayYN=:friday,SaturdayYN=:saturday,SundayYN=:sunday,TimeZone=:timezone,OpenTime=:openTime,CloseTime=:closeTime where ID=:municipalityId
+    ]]>
+  </sql-query>
   <sql-query name="UserCount">
     <![CDATA[
       select count(*) as usersCount from Users

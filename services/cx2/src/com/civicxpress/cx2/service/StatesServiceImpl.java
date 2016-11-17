@@ -38,16 +38,16 @@ public class StatesServiceImpl implements StatesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(StatesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.ContractorsService")
-	private ContractorsService contractorsService;
+	@Qualifier("cx2.MunicipalitiesService")
+	private MunicipalitiesService municipalitiesService;
 
     @Autowired
 	@Qualifier("cx2.GisrecordsService")
 	private GisrecordsService gisrecordsService;
 
     @Autowired
-	@Qualifier("cx2.MunicipalitiesService")
-	private MunicipalitiesService municipalitiesService;
+	@Qualifier("cx2.ContractorsService")
+	private ContractorsService contractorsService;
 
     @Autowired
     @Qualifier("cx2.StatesDao")
@@ -195,10 +195,10 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service ContractorsService instance
+	 * @param service MunicipalitiesService instance
 	 */
-	protected void setContractorsService(ContractorsService service) {
-        this.contractorsService = service;
+	protected void setMunicipalitiesService(MunicipalitiesService service) {
+        this.municipalitiesService = service;
     }
 
     /**
@@ -213,10 +213,10 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalitiesService instance
+	 * @param service ContractorsService instance
 	 */
-	protected void setMunicipalitiesService(MunicipalitiesService service) {
-        this.municipalitiesService = service;
+	protected void setContractorsService(ContractorsService service) {
+        this.contractorsService = service;
     }
 
 }

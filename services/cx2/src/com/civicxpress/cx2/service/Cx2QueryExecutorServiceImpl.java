@@ -136,6 +136,24 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeUpdateWorkMunicipality( java.lang.Boolean monday ,java.lang.Boolean tuesday ,java.lang.Boolean wednesday ,java.lang.Boolean thursday ,java.lang.Boolean friday ,java.lang.Boolean saturday ,java.lang.Boolean sunday ,java.lang.String timezone ,java.sql.Time openTime ,java.sql.Time closeTime ,java.lang.Integer municipalityId)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("monday", monday);
+        params.put("tuesday", tuesday);
+        params.put("wednesday", wednesday);
+        params.put("thursday", thursday);
+        params.put("friday", friday);
+        params.put("saturday", saturday);
+        params.put("sunday", sunday);
+        params.put("timezone", timezone);
+        params.put("openTime", openTime);
+        params.put("closeTime", closeTime);
+        params.put("municipalityId", municipalityId);
+        return queryExecutor.executeNamedQueryForUpdate("UpdateWorkMunicipality", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeUserCount(Pageable pageable)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

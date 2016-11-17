@@ -26,6 +26,7 @@ public interface Cx2QueryExecutorService {
 	int executeUpdateInfoFromMyProfile(  java.lang.String fn , java.lang.String ln , java.lang.String em , java.lang.String ph , java.lang.String ad1 , java.lang.String ad2 , java.lang.String st , java.lang.String ct , java.lang.String pc , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateNewPassword(  java.lang.String password , java.lang.Integer newUser) throws QueryParameterMismatchException;
 	int executeUpdatePasswordAndCF(  java.lang.String password , java.lang.String cf , java.lang.Integer newUser) throws QueryParameterMismatchException;
+	int executeUpdateWorkMunicipality(  java.lang.Boolean monday , java.lang.Boolean tuesday , java.lang.Boolean wednesday , java.lang.Boolean thursday , java.lang.Boolean friday , java.lang.Boolean saturday , java.lang.Boolean sunday , java.lang.String timezone , java.sql.Time openTime , java.sql.Time closeTime , java.lang.Integer municipalityId) throws QueryParameterMismatchException;
     Page<Object> executeUserCount(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeUserSubscriptionsCount(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeUserSubscriptionsCountForMunicipality(Pageable pageable, java.lang.Integer municipalityId) throws QueryParameterMismatchException;

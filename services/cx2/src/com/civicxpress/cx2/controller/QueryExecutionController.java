@@ -150,6 +150,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdateWorkMunicipality", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdateWorkMunicipality(@RequestParam(value = "monday", required = false) java.lang.Boolean monday, @RequestParam(value = "tuesday", required = false) java.lang.Boolean tuesday, @RequestParam(value = "wednesday", required = false) java.lang.Boolean wednesday, @RequestParam(value = "thursday", required = false) java.lang.Boolean thursday, @RequestParam(value = "friday", required = false) java.lang.Boolean friday, @RequestParam(value = "saturday", required = false) java.lang.Boolean saturday, @RequestParam(value = "sunday", required = false) java.lang.Boolean sunday, @RequestParam(value = "timezone", required = false) java.lang.String timezone, @RequestParam(value = "openTime", required = false) java.sql.Time openTime, @RequestParam(value = "closeTime", required = false) java.sql.Time closeTime, @RequestParam(value = "municipalityId", required = false) java.lang.Integer municipalityId) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdateWorkMunicipality");
+        int result = queryService.executeUpdateWorkMunicipality(monday, tuesday, wednesday, thursday, friday, saturday, sunday, timezone, openTime, closeTime, municipalityId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UserCount", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeUserCount(Pageable pageable) {

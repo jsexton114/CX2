@@ -4,7 +4,8 @@
     <wm-content name="content1">
         <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
         <wm-page-content columnwidth="10" name="page_content1">
-            <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.Cx2SfnewResidentialStructureData.dataSet" captionalign="left" captionposition="top" name="liveformSFNewResidential">
+            <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.Cx2SfnewResidentialStructureData.dataSet" captionalign="left" captionposition="top" name="liveformSFNewResidential" width="80%" margin="unset 10%"
+            backgroundcolor="#e3e1e1">
                 <wm-layoutgrid columns="1" name="layoutgrid1">
                     <wm-gridrow name="gridrow11">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn11" horizontalalign="center">
@@ -13,6 +14,7 @@
                     </wm-gridrow>
                     <wm-gridrow name="gridrow12">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn13" padding="2em unset">
+                            <wm-label padding="0.5em 0.5em 0em 0.5em" name="label1" width="100%" fontsize="20" fontweight="bold" horizontalalign="center" caption="New Residential Structure"></wm-label>
                             <wm-panel iconclass="wi wi-account-circle" name="panel1" title="Property Owner Details" badgetype="default" class="panel-info">
                                 <wm-gridrow name="gridrow1">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn1">
@@ -51,27 +53,31 @@
                             </wm-panel>
                         </wm-gridcolumn>
                     </wm-gridrow>
-                    <wm-gridrow name="gridrow6">
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                            <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text"></wm-form-field>
+                    <wm-gridrow name="gridrow11_2">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn15" padding="2em unset">
+                            <wm-panel iconclass="wi wi-account-circle" title="Property Details" badgetype="default" class="panel-info" name="panel3">
+                                <wm-gridrow name="gridrow12_1">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn16">
+                                        <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn17">
+                                        <wm-form-field name="valueOfWork" displayname="Value Of Work" required="false" show="true" generator="assigned" primary-key="false" key="valueOfWork" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-panel>
                         </wm-gridcolumn>
                     </wm-gridrow>
-                    <wm-gridrow name="gridrow8">
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn8">
-                            <wm-form-field name="valueOfWork" displayname="Value Of Work" required="false" show="true" generator="assigned" primary-key="false" key="valueOfWork" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text"></wm-form-field>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow9">
+                    <wm-gridrow name="gridrow9DontDelete">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn9">
-                            <wm-form-field name="formTypes" displayname="Form Types" required="false" show="true" generator="assigned" primary-key="false" key="formTypes" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"
+                            <wm-form-field name="formTypes" displayname="Form Types" required="false" show="false" generator="assigned" primary-key="false" key="formTypes" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"
                             dataset="bind:Variables.FormObj.dataSet" datafield="All Fields" defaultvalue="bind:Variables.FormObj.firstRecord"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
-                    <wm-gridrow name="gridrow10">
+                    <wm-gridrow name="gridrow10DontDelete">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn10">
-                            <wm-form-field name="users" displayname="Users" required="false" show="true" generator="assigned" primary-key="false" key="users" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select" dataset="bind:Variables.UserObj.dataSet"
+                            <wm-form-field name="users" displayname="Users" required="false" show="false" generator="assigned" primary-key="false" key="users" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select" dataset="bind:Variables.UserObj.dataSet"
                             datafield="All Fields" defaultvalue="bind:Variables.UserObj.firstRecord" displayfield="email"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>

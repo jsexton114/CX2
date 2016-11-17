@@ -24,16 +24,26 @@
       "Address2" : "java.lang.String",
       "AllowManualPayment" : "java.lang.Boolean",
       "City" : "java.lang.String",
+      "CloseTime" : "java.sql.Time",
       "Email" : "java.lang.String",
+      "FridayYN" : "java.lang.Boolean",
       "GlobalEmailSig" : "java.lang.String",
       "ID" : "java.math.BigDecimal",
       "Logo" : "[B",
       "ManualPaymentPercent" : "java.math.BigDecimal",
+      "MondayYN" : "java.lang.Boolean",
       "MunicipalityGuid" : "java.lang.String",
       "MunicipalityName" : "java.lang.String",
+      "OpenTime" : "java.sql.Time",
       "Phone" : "java.lang.String",
       "PostalCode" : "java.lang.String",
-      "State" : "java.lang.String"
+      "SaturdayYN" : "java.lang.Boolean",
+      "StateId" : "java.math.BigDecimal",
+      "SundayYN" : "java.lang.Boolean",
+      "ThursdayYN" : "java.lang.Boolean",
+      "TimeZone" : "java.lang.String",
+      "TuesdayYN" : "java.lang.Boolean",
+      "WednesdayYN" : "java.lang.Boolean"
     }
   }, {
     "name" : "EmployeesMunicipalities",
@@ -348,6 +358,94 @@
       "list" : false
     } ],
     "outputType" : "cx2UpdatePasswordAndCFrtnType",
+    "returnTypeMetadata" : { }
+  }, {
+    "name" : "UpdateWorkMunicipality",
+    "query" : "Update Municipalities set MondayYN=:monday,TuesdayYN=:tuesday,WednesdayYN=:wednesday,ThursdayYN=:thursday,FridayYN=:friday,SaturdayYN=:saturday,SundayYN=:sunday,TimeZone=:timezone,OpenTime=:openTime,CloseTime=:closeTime where ID=:municipalityId",
+    "comment" : "UpdateWorkMunicipality",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "monday",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "tuesday",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "wednesday",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "thursday",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "friday",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "saturday",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "sunday",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "timezone",
+      "paramType" : "java.lang.String",
+      "testValue" : "Eastern",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "openTime",
+      "paramType" : "java.sql.Time",
+      "testValue" : "10:00:00",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "closeTime",
+      "paramType" : "java.sql.Time",
+      "testValue" : "06:00:00",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "municipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateWorkMunicipalityrtnType",
     "returnTypeMetadata" : { }
   }, {
     "name" : "UserCount",

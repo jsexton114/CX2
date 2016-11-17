@@ -1,0 +1,120 @@
+<wm-page data-ng-controller="WorkSchedulePageController" pagetitle="Work Schedule" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow4">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn7_1" padding="2em unset">
+                        <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
+                        <wm-label padding="unset 0.5em" caption="Municipality Administration" fontweight="bold" fontsize="15" name="label1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
+                        <wm-composite name="composite1">
+                            <wm-label class="col-md-3 control-label" name="label2" caption="Select Municipality"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-select name="selectMunicipality" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                        <wm-panel iconclass="wi wi-account-circle" name="panel1" title="Work Schedule">
+                            <wm-layoutgrid name="layoutgrid2">
+                                <wm-gridrow name="gridrow4_1" padding="1em unset">
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn5">
+                                        <wm-composite name="composite3" horizontalalign="left">
+                                            <wm-checkbox caption="Sunday" class="col-md-push-3 col-md-9" name="checkboxSunday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].SundayYN"></wm-checkbox>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn6">
+                                        <wm-composite name="composite4" horizontalalign="left">
+                                            <wm-checkbox caption="Monday" class="col-md-push-3 col-md-9" name="checkboxMonday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].MondayYN"></wm-checkbox>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn14">
+                                        <wm-composite name="composite5" horizontalalign="left">
+                                            <wm-checkbox caption="Tuesday" class="col-md-push-3 col-md-9" name="checkboxTuesday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].TuesdayYN"></wm-checkbox>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn15">
+                                        <wm-composite name="composite6" horizontalalign="left">
+                                            <wm-checkbox caption="Wednesday" class="col-md-push-3 col-md-9" name="checkboxWednesday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].WednesdayYN"></wm-checkbox>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow5" padding="unset unset 1em unset">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn7" horizontalalign="center">
+                                        <wm-composite horizontalalign="left" name="composite7">
+                                            <wm-checkbox caption="Thursday" class="col-md-push-3 col-md-9" name="checkboxThursday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].ThursdayYN"></wm-checkbox>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn8" horizontalalign="center">
+                                        <wm-composite horizontalalign="left" name="composite8">
+                                            <wm-checkbox caption="Friday" class="col-md-push-3 col-md-9" name="checkboxFriday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].FridayYN"></wm-checkbox>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn16" horizontalalign="center">
+                                        <wm-composite horizontalalign="left" name="composite9">
+                                            <wm-checkbox caption="Saturday" class="col-md-push-3 col-md-9" name="checkboxSaturday" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].SaturdayYN"></wm-checkbox>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow6" padding="2em unset 1em unset">
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn17"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn18">
+                                        <wm-composite name="composite14">
+                                            <wm-label class="col-md-3 control-label" name="label8" caption="Open Time"></wm-label>
+                                            <wm-container class="col-md-9" name="container6" horizontalalign="center">
+                                                <wm-time name="timeOpenTime" timepattern="hh:mm:ss"></wm-time>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn19"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow7" padding="unset unset 2em unset">
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn20"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn21">
+                                        <wm-composite name="composite15">
+                                            <wm-label class="col-md-3 control-label" name="label9" caption="Close Time"></wm-label>
+                                            <wm-container class="col-md-9" name="container7" horizontalalign="center">
+                                                <wm-time name="timeCloseTime" timepattern="hh:mm:ss"></wm-time>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn22"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow8">
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn23"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn24">
+                                        <wm-composite name="composite12">
+                                            <wm-label class="col-md-3 control-label" name="label6" caption="Timezone"></wm-label>
+                                            <wm-container class="col-md-9" name="container4">
+                                                <wm-select name="selectTimezone" dataset="Eastern,Central,Mountain,Pacific" datavalue="bind:Variables.AdminsMunicipalities.dataSet[$i].TimeZone"></wm-select>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn25"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow9" padding="2em unset">
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn21_1"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn22_1" horizontalalign="center">
+                                        <wm-button class="btn-default" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdate" on-click="Variables.UpdateWorkMunicipality.invoke()" iconclass="wi wi-update"></wm-button>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn23_1"></wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>
