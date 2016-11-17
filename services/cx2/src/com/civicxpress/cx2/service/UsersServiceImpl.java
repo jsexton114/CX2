@@ -46,16 +46,16 @@ public class UsersServiceImpl implements UsersService {
 	private UserPasswordResetTokensService userPasswordResetTokensService;
 
     @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
-
-    @Autowired
 	@Qualifier("cx2.SfnewElectricConnectionService")
 	private SfnewElectricConnectionService sfnewElectricConnectionService;
 
     @Autowired
 	@Qualifier("cx2.UserSubscriptionsService")
 	private UserSubscriptionsService userSubscriptionsService;
+
+    @Autowired
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
 
     @Autowired
 	@Qualifier("cx2.SfnewResidentialStructureService")
@@ -74,19 +74,19 @@ public class UsersServiceImpl implements UsersService {
 	public Users create(Users users) {
         LOGGER.debug("Creating a new Users with information: {}", users);
         Users usersCreated = this.wmGenericDao.create(users);
-        if(usersCreated.getSfnewElectricConnections() != null) {
-            for(SfnewElectricConnection sfnewElectricConnection : usersCreated.getSfnewElectricConnections()) {
-                sfnewElectricConnection.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child SfnewElectricConnection with information: {}", sfnewElectricConnection);
-                sfnewElectricConnectionService.create(sfnewElectricConnection);
-            }
-        }
-
         if(usersCreated.getSfnewResidentialStructures() != null) {
             for(SfnewResidentialStructure sfnewResidentialStructure : usersCreated.getSfnewResidentialStructures()) {
                 sfnewResidentialStructure.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child SfnewResidentialStructure with information: {}", sfnewResidentialStructure);
                 sfnewResidentialStructureService.create(sfnewResidentialStructure);
+            }
+        }
+
+        if(usersCreated.getSfnewElectricConnections() != null) {
+            for(SfnewElectricConnection sfnewElectricConnection : usersCreated.getSfnewElectricConnections()) {
+                sfnewElectricConnection.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child SfnewElectricConnection with information: {}", sfnewElectricConnection);
+                sfnewElectricConnectionService.create(sfnewElectricConnection);
             }
         }
 
@@ -205,17 +205,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated sfnewElectricConnections");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return sfnewElectricConnectionService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sfnewResidentialStructures");
 
@@ -223,6 +212,17 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("users.id = '" + id + "'");
 
         return sfnewResidentialStructureService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewElectricConnections");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return sfnewElectricConnectionService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -270,15 +270,6 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service RolesService instance
-	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service SfnewElectricConnectionService instance
 	 */
 	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
@@ -292,6 +283,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
         this.userSubscriptionsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service RolesService instance
+	 */
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
     }
 
     /**

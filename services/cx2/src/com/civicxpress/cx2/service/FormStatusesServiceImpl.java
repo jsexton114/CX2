@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormProcessStatuses;
 import com.civicxpress.cx2.FormStatuses;
 
 
@@ -34,6 +35,9 @@ public class FormStatusesServiceImpl implements FormStatusesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FormStatusesServiceImpl.class);
 
+    @Autowired
+	@Qualifier("cx2.FormProcessStatusesService")
+	private FormProcessStatusesService formProcessStatusesService;
 
     @Autowired
     @Qualifier("cx2.FormStatusesDao")
@@ -48,6 +52,13 @@ public class FormStatusesServiceImpl implements FormStatusesService {
 	public FormStatuses create(FormStatuses formStatuses) {
         LOGGER.debug("Creating a new FormStatuses with information: {}", formStatuses);
         FormStatuses formStatusesCreated = this.wmGenericDao.create(formStatuses);
+        if(formStatusesCreated.getFormProcessStatuseses() != null) {
+            for(FormProcessStatuses formProcessStatusese : formStatusesCreated.getFormProcessStatuseses()) {
+                formProcessStatusese.setFormStatuses(formStatusesCreated);
+                LOGGER.debug("Creating a new child FormProcessStatuses with information: {}", formProcessStatusese);
+                formProcessStatusesService.create(formProcessStatusese);
+            }
+        }
         return formStatusesCreated;
     }
 
@@ -122,7 +133,25 @@ public class FormStatusesServiceImpl implements FormStatusesService {
         return this.wmGenericDao.count(query);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormProcessStatuses> findAssociatedFormProcessStatuseses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formProcessStatuseses");
 
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formStatuses.id = '" + id + "'");
+
+        return formProcessStatusesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormProcessStatusesService instance
+	 */
+	protected void setFormProcessStatusesService(FormProcessStatusesService service) {
+        this.formProcessStatusesService = service;
+    }
 
 }
 

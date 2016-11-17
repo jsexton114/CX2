@@ -49,11 +49,11 @@ public class FormTypes implements Serializable {
     private Integer formCategoryId;
     private String pageName;
     private Boolean municipalityInternalForm;
-    private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
+    private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private FormCategories formCategories;
     private Municipalities municipalities;
-    private List<FormStatuses> formStatuseses = new ArrayList<>();
+    private List<FormProcessStatuses> formProcessStatuseses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -238,21 +238,21 @@ public class FormTypes implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<SfnewElectricConnection> getSfnewElectricConnections() {
-        return this.sfnewElectricConnections;
-    }
-
-    public void setSfnewElectricConnections(List<SfnewElectricConnection> sfnewElectricConnections) {
-        this.sfnewElectricConnections = sfnewElectricConnections;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
     public List<SfnewResidentialStructure> getSfnewResidentialStructures() {
         return this.sfnewResidentialStructures;
     }
 
     public void setSfnewResidentialStructures(List<SfnewResidentialStructure> sfnewResidentialStructures) {
         this.sfnewResidentialStructures = sfnewResidentialStructures;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<SfnewElectricConnection> getSfnewElectricConnections() {
+        return this.sfnewElectricConnections;
+    }
+
+    public void setSfnewElectricConnections(List<SfnewElectricConnection> sfnewElectricConnections) {
+        this.sfnewElectricConnections = sfnewElectricConnections;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -284,12 +284,12 @@ public class FormTypes implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<FormStatuses> getFormStatuseses() {
-        return this.formStatuseses;
+    public List<FormProcessStatuses> getFormProcessStatuseses() {
+        return this.formProcessStatuseses;
     }
 
-    public void setFormStatuseses(List<FormStatuses> formStatuseses) {
-        this.formStatuseses = formStatuseses;
+    public void setFormProcessStatuseses(List<FormProcessStatuses> formProcessStatuseses) {
+        this.formProcessStatuseses = formProcessStatuseses;
     }
 
     @Override

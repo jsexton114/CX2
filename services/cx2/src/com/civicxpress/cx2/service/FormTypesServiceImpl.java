@@ -21,7 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.FormProcessStatuses;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.SfnewElectricConnection;
 import com.civicxpress.cx2.SfnewResidentialStructure;
@@ -38,12 +38,12 @@ public class FormTypesServiceImpl implements FormTypesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FormTypesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.SfnewElectricConnectionService")
-	private SfnewElectricConnectionService sfnewElectricConnectionService;
+	@Qualifier("cx2.FormProcessStatusesService")
+	private FormProcessStatusesService formProcessStatusesService;
 
     @Autowired
-	@Qualifier("cx2.FormStatusesService")
-	private FormStatusesService formStatusesService;
+	@Qualifier("cx2.SfnewElectricConnectionService")
+	private SfnewElectricConnectionService sfnewElectricConnectionService;
 
     @Autowired
 	@Qualifier("cx2.SfnewResidentialStructureService")
@@ -62,14 +62,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 	public FormTypes create(FormTypes formTypes) {
         LOGGER.debug("Creating a new FormTypes with information: {}", formTypes);
         FormTypes formTypesCreated = this.wmGenericDao.create(formTypes);
-        if(formTypesCreated.getSfnewElectricConnections() != null) {
-            for(SfnewElectricConnection sfnewElectricConnection : formTypesCreated.getSfnewElectricConnections()) {
-                sfnewElectricConnection.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child SfnewElectricConnection with information: {}", sfnewElectricConnection);
-                sfnewElectricConnectionService.create(sfnewElectricConnection);
-            }
-        }
-
         if(formTypesCreated.getSfnewResidentialStructures() != null) {
             for(SfnewResidentialStructure sfnewResidentialStructure : formTypesCreated.getSfnewResidentialStructures()) {
                 sfnewResidentialStructure.setFormTypes(formTypesCreated);
@@ -78,11 +70,19 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getFormStatuseses() != null) {
-            for(FormStatuses formStatusese : formTypesCreated.getFormStatuseses()) {
-                formStatusese.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
-                formStatusesService.create(formStatusese);
+        if(formTypesCreated.getSfnewElectricConnections() != null) {
+            for(SfnewElectricConnection sfnewElectricConnection : formTypesCreated.getSfnewElectricConnections()) {
+                sfnewElectricConnection.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child SfnewElectricConnection with information: {}", sfnewElectricConnection);
+                sfnewElectricConnectionService.create(sfnewElectricConnection);
+            }
+        }
+
+        if(formTypesCreated.getFormProcessStatuseses() != null) {
+            for(FormProcessStatuses formProcessStatusese : formTypesCreated.getFormProcessStatuseses()) {
+                formProcessStatusese.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormProcessStatuses with information: {}", formProcessStatusese);
+                formProcessStatusesService.create(formProcessStatusese);
             }
         }
         return formTypesCreated;
@@ -161,17 +161,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated sfnewElectricConnections");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return sfnewElectricConnectionService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sfnewResidentialStructures");
 
@@ -183,13 +172,33 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formStatuseses");
+    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewElectricConnections");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("formTypes.id = '" + id + "'");
 
-        return formStatusesService.findAll(queryBuilder.toString(), pageable);
+        return sfnewElectricConnectionService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormProcessStatuses> findAssociatedFormProcessStatuseses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formProcessStatuseses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formProcessStatusesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormProcessStatusesService instance
+	 */
+	protected void setFormProcessStatusesService(FormProcessStatusesService service) {
+        this.formProcessStatusesService = service;
     }
 
     /**
@@ -199,15 +208,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 	 */
 	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
         this.sfnewElectricConnectionService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormStatusesService instance
-	 */
-	protected void setFormStatusesService(FormStatusesService service) {
-        this.formStatusesService = service;
     }
 
     /**
