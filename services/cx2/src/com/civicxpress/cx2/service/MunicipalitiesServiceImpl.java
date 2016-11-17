@@ -42,12 +42,8 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(MunicipalitiesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
-
-    @Autowired
-	@Qualifier("cx2.FormTypesService")
-	private FormTypesService formTypesService;
+	@Qualifier("cx2.UserSubscriptionsService")
+	private UserSubscriptionsService userSubscriptionsService;
 
     @Autowired
 	@Qualifier("cx2.GisrecordsService")
@@ -58,16 +54,20 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	private SubdivisionsService subdivisionsService;
 
     @Autowired
+	@Qualifier("cx2.ContractorApprovalsService")
+	private ContractorApprovalsService contractorApprovalsService;
+
+    @Autowired
 	@Qualifier("cx2.ManualFeeTypesService")
 	private ManualFeeTypesService manualFeeTypesService;
 
     @Autowired
-	@Qualifier("cx2.UserSubscriptionsService")
-	private UserSubscriptionsService userSubscriptionsService;
+	@Qualifier("cx2.FormTypesService")
+	private FormTypesService formTypesService;
 
     @Autowired
-	@Qualifier("cx2.ContractorApprovalsService")
-	private ContractorApprovalsService contractorApprovalsService;
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
 
     @Autowired
     @Qualifier("cx2.MunicipalitiesDao")
@@ -291,19 +291,10 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service RolesService instance
+	 * @param service UserSubscriptionsService instance
 	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormTypesService instance
-	 */
-	protected void setFormTypesService(FormTypesService service) {
-        this.formTypesService = service;
+	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
+        this.userSubscriptionsService = service;
     }
 
     /**
@@ -327,6 +318,15 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service ContractorApprovalsService instance
+	 */
+	protected void setContractorApprovalsService(ContractorApprovalsService service) {
+        this.contractorApprovalsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service ManualFeeTypesService instance
 	 */
 	protected void setManualFeeTypesService(ManualFeeTypesService service) {
@@ -336,19 +336,19 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UserSubscriptionsService instance
+	 * @param service FormTypesService instance
 	 */
-	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
-        this.userSubscriptionsService = service;
+	protected void setFormTypesService(FormTypesService service) {
+        this.formTypesService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service ContractorApprovalsService instance
+	 * @param service RolesService instance
 	 */
-	protected void setContractorApprovalsService(ContractorApprovalsService service) {
-        this.contractorApprovalsService = service;
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
     }
 
 }

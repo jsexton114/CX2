@@ -171,8 +171,9 @@ public class UsersController {
         return usersService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/sfnewElectricConnections", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/sfnewElectricConnections", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the sfnewElectricConnections instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sfnewElectricConnections");
         return usersService.findAssociatedSfnewElectricConnections(id, pageable);

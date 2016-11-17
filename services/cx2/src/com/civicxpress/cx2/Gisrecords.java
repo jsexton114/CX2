@@ -50,6 +50,7 @@ public class Gisrecords implements Serializable {
     private String ownerPostalCode;
     private String ownerPhone;
     private String ownerEmail;
+    private String country;
     private Municipalities municipalities;
     private States states;
     private Subdivisions subdivisions;
@@ -279,6 +280,15 @@ public class Gisrecords implements Serializable {
 
     public void setOwnerEmail(String ownerEmail) {
         this.ownerEmail = ownerEmail;
+    }
+
+    @Column(name = "`Country`", nullable = true, length = 255)
+    public String getCountry() {
+        return this.country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
