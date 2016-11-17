@@ -290,6 +290,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "municipalityInternalForm",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "MunicipalityInternalForm",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",

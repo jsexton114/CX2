@@ -68,6 +68,7 @@ public class Municipalities implements Serializable {
     private States states;
     private List<Gisrecords> gisrecordses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
+    private List<Holidays> holidayses = new ArrayList<>();
     private List<ContractorApprovals> contractorApprovalses = new ArrayList<>();
 
     @Id
@@ -365,6 +366,15 @@ public class Municipalities implements Serializable {
 
     public void setUserSubscriptionses(List<UserSubscriptions> userSubscriptionses) {
         this.userSubscriptionses = userSubscriptionses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<Holidays> getHolidayses() {
+        return this.holidayses;
+    }
+
+    public void setHolidayses(List<Holidays> holidayses) {
+        this.holidayses = holidayses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")

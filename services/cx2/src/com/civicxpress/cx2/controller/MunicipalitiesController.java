@@ -35,6 +35,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.ContractorApprovals;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
+import com.civicxpress.cx2.Holidays;
 import com.civicxpress.cx2.ManualFeeTypes;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.Roles;
@@ -211,6 +212,13 @@ public class MunicipalitiesController {
     public Page<UserSubscriptions> findAssociatedUserSubscriptionses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userSubscriptionses");
         return municipalitiesService.findAssociatedUserSubscriptionses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/holidayses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the holidayses instance associated with the given id.")
+    public Page<Holidays> findAssociatedHolidayses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated holidayses");
+        return municipalitiesService.findAssociatedHolidayses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/contractorApprovalses", method = RequestMethod.GET)

@@ -32,13 +32,6 @@
                     <exclude>**/*.java</exclude>
                 </excludes>
             </resource>
-            <resource>
-                <filtering>true</filtering>
-                <directory>services/FileService/src</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
         </resources>
         <finalName>CivicXpress</finalName>
         <filters>
@@ -108,9 +101,6 @@
                         <configuration>
                             <sources>
                                 <source>services/cx2/src</source>
-                                <source>services/securityService/src</source>
-                                <source>services/CXPasswordResetService/src</source>
-                                <source>services/FileService/src</source>
                             </sources>
                         </configuration>
                     </execution>

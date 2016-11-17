@@ -4,6 +4,10 @@
         <parameter name="USER" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2StandardUserrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="AdminsMunicipalities">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2AdminsMunicipalitiesrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="EmployeesMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2EmployeesMunicipalitiesrtnType" isList="false"/>
@@ -85,10 +89,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="AdminsMunicipalities">
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
@@ -296,6 +296,13 @@
             <element name="subdivisionId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="subdivisions" typeRef="com.civicxpress.cx2.Subdivisions" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.Holidays">
+            <element name="date" typeRef="java.util.Date" allowNull="true"/>
+            <element name="holiday" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.ManualFeeTypes">
             <element name="accountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="feeType" typeRef="java.lang.String" allowNull="true"/>
@@ -316,6 +323,7 @@
             <element name="fridayYn" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
             <element name="globalEmailSig" typeRef="java.lang.String" allowNull="true"/>
+            <element name="holidayses" typeRef="com.civicxpress.cx2.Holidays" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="logo" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
             <element name="manualFeeTypeses" typeRef="com.civicxpress.cx2.ManualFeeTypes" isList="true" allowNull="true"/>

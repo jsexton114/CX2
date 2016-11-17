@@ -17,6 +17,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.ContractorApprovals;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
+import com.civicxpress.cx2.Holidays;
 import com.civicxpress.cx2.ManualFeeTypes;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.Roles;
@@ -203,6 +204,18 @@ public interface MunicipalitiesService {
      * @see Page
      */
     Page<UserSubscriptions> findAssociatedUserSubscriptionses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated holidayses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Holidays instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Holidays> findAssociatedHolidayses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated contractorApprovalses for given Municipalities id.

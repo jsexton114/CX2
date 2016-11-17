@@ -3890,6 +3890,22 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fieldName" : "holidayses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "MunicipalityId"
+      } ],
+      "name" : "FK_Municipalities_TO_Holh63h3",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "Municipalities",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Holidays",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
       "fieldName" : "contractorApprovalses",
       "mappings" : [ {
         "sourceColumn" : "ID",
@@ -5235,6 +5251,143 @@
       "sourceTable" : "UserSubscriptions",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Users",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "municipalityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "MunicipalityId",
+      "nullable" : true,
+      "oldName" : "MunicipalityId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "holiday",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "Holiday",
+      "nullable" : true,
+      "oldName" : "Holiday",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 19,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "date",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "date",
+      "length" : 10,
+      "name" : "Date",
+      "nullable" : true,
+      "oldName" : "Date",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 19,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "date",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "Holidays",
+    "fullyQualifiedName" : "com.civicxpress.cx2.Holidays",
+    "name" : "Holidays",
+    "oldName" : "Holidays",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__Holidays__3214EC2769BF5D44",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "municipalities",
+      "mappings" : [ {
+        "sourceColumn" : "MunicipalityId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_Municipalities_TO_Holh63h3",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "Holidays",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Municipalities",
       "virtual" : false
     } ],
     "schema" : "cx2",

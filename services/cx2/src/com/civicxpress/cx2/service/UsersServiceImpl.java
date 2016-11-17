@@ -42,24 +42,24 @@ public class UsersServiceImpl implements UsersService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.UserSubscriptionsService")
-	private UserSubscriptionsService userSubscriptionsService;
-
-    @Autowired
-	@Qualifier("cx2.SfnewResidentialStructureService")
-	private SfnewResidentialStructureService sfnewResidentialStructureService;
-
-    @Autowired
-	@Qualifier("cx2.SfnewElectricConnectionService")
-	private SfnewElectricConnectionService sfnewElectricConnectionService;
-
-    @Autowired
 	@Qualifier("cx2.UserPasswordResetTokensService")
 	private UserPasswordResetTokensService userPasswordResetTokensService;
 
     @Autowired
 	@Qualifier("cx2.RolesService")
 	private RolesService rolesService;
+
+    @Autowired
+	@Qualifier("cx2.SfnewElectricConnectionService")
+	private SfnewElectricConnectionService sfnewElectricConnectionService;
+
+    @Autowired
+	@Qualifier("cx2.UserSubscriptionsService")
+	private UserSubscriptionsService userSubscriptionsService;
+
+    @Autowired
+	@Qualifier("cx2.SfnewResidentialStructureService")
+	private SfnewResidentialStructureService sfnewResidentialStructureService;
 
     @Autowired
     @Qualifier("cx2.UsersDao")
@@ -261,19 +261,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UserSubscriptionsService instance
+	 * @param service UserPasswordResetTokensService instance
 	 */
-	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
-        this.userSubscriptionsService = service;
+	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
+        this.userPasswordResetTokensService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SfnewResidentialStructureService instance
+	 * @param service RolesService instance
 	 */
-	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
-        this.sfnewResidentialStructureService = service;
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
     }
 
     /**
@@ -288,19 +288,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UserPasswordResetTokensService instance
+	 * @param service UserSubscriptionsService instance
 	 */
-	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
-        this.userPasswordResetTokensService = service;
+	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
+        this.userSubscriptionsService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service RolesService instance
+	 * @param service SfnewResidentialStructureService instance
 	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
+	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
+        this.sfnewResidentialStructureService = service;
     }
 
 }

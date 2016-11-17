@@ -24,6 +24,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.ContractorApprovals;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
+import com.civicxpress.cx2.Holidays;
 import com.civicxpress.cx2.ManualFeeTypes;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.Roles;
@@ -42,32 +43,36 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(MunicipalitiesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.UserSubscriptionsService")
-	private UserSubscriptionsService userSubscriptionsService;
-
-    @Autowired
-	@Qualifier("cx2.SubdivisionsService")
-	private SubdivisionsService subdivisionsService;
-
-    @Autowired
 	@Qualifier("cx2.FormTypesService")
 	private FormTypesService formTypesService;
 
     @Autowired
-	@Qualifier("cx2.GisrecordsService")
-	private GisrecordsService gisrecordsService;
-
-    @Autowired
-	@Qualifier("cx2.ContractorApprovalsService")
-	private ContractorApprovalsService contractorApprovalsService;
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
 
     @Autowired
 	@Qualifier("cx2.ManualFeeTypesService")
 	private ManualFeeTypesService manualFeeTypesService;
 
     @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
+	@Qualifier("cx2.HolidaysService")
+	private HolidaysService holidaysService;
+
+    @Autowired
+	@Qualifier("cx2.UserSubscriptionsService")
+	private UserSubscriptionsService userSubscriptionsService;
+
+    @Autowired
+	@Qualifier("cx2.GisrecordsService")
+	private GisrecordsService gisrecordsService;
+
+    @Autowired
+	@Qualifier("cx2.SubdivisionsService")
+	private SubdivisionsService subdivisionsService;
+
+    @Autowired
+	@Qualifier("cx2.ContractorApprovalsService")
+	private ContractorApprovalsService contractorApprovalsService;
 
     @Autowired
     @Qualifier("cx2.MunicipalitiesDao")
@@ -127,6 +132,14 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
                 userSubscriptionse.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child UserSubscriptions with information: {}", userSubscriptionse);
                 userSubscriptionsService.create(userSubscriptionse);
+            }
+        }
+
+        if(municipalitiesCreated.getHolidayses() != null) {
+            for(Holidays holidayse : municipalitiesCreated.getHolidayses()) {
+                holidayse.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child Holidays with information: {}", holidayse);
+                holidaysService.create(holidayse);
             }
         }
 
@@ -279,6 +292,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Holidays> findAssociatedHolidayses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated holidayses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return holidaysService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<ContractorApprovals> findAssociatedContractorApprovalses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated contractorApprovalses");
 
@@ -286,24 +310,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
         queryBuilder.append("municipalities.id = '" + id + "'");
 
         return contractorApprovalsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service UserSubscriptionsService instance
-	 */
-	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
-        this.userSubscriptionsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubdivisionsService instance
-	 */
-	protected void setSubdivisionsService(SubdivisionsService service) {
-        this.subdivisionsService = service;
     }
 
     /**
@@ -318,19 +324,10 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service GisrecordsService instance
+	 * @param service RolesService instance
 	 */
-	protected void setGisrecordsService(GisrecordsService service) {
-        this.gisrecordsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service ContractorApprovalsService instance
-	 */
-	protected void setContractorApprovalsService(ContractorApprovalsService service) {
-        this.contractorApprovalsService = service;
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
     }
 
     /**
@@ -345,10 +342,46 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service RolesService instance
+	 * @param service HolidaysService instance
 	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
+	protected void setHolidaysService(HolidaysService service) {
+        this.holidaysService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service UserSubscriptionsService instance
+	 */
+	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
+        this.userSubscriptionsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service GisrecordsService instance
+	 */
+	protected void setGisrecordsService(GisrecordsService service) {
+        this.gisrecordsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SubdivisionsService instance
+	 */
+	protected void setSubdivisionsService(SubdivisionsService service) {
+        this.subdivisionsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ContractorApprovalsService instance
+	 */
+	protected void setContractorApprovalsService(ContractorApprovalsService service) {
+        this.contractorApprovalsService = service;
     }
 
 }
