@@ -50,6 +50,7 @@ public class Users implements Serializable {
     private Boolean banned;
     private String password;
     private Integer stateId;
+    private String country;
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
@@ -192,6 +193,15 @@ public class Users implements Serializable {
 
     public void setStateId(Integer stateId) {
         this.stateId = stateId;
+    }
+
+    @Column(name = "`Country`", nullable = true, length = 255)
+    public String getCountry() {
+        return this.country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")

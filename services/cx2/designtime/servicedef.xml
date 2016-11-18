@@ -38,19 +38,6 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateCFInProfilertnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="UpdateInfoFromMyProfile">
-        <parameter name="fn" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ln" typeRef="java.lang.String" isList="false"/>
-        <parameter name="em" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ph" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ad1" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ad2" typeRef="java.lang.String" isList="false"/>
-        <parameter name="st" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ct" typeRef="java.lang.String" isList="false"/>
-        <parameter name="pc" typeRef="java.lang.String" isList="false"/>
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2UpdateInfoFromMyProfilertnType" isList="false"/>
-    </operation>
     <operation operationType="nativequery" name="UpdateNewPassword">
         <parameter name="password" typeRef="java.lang.String" isList="false"/>
         <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
@@ -89,6 +76,20 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateInfoFromMyProfile">
+        <parameter name="fn" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ln" typeRef="java.lang.String" isList="false"/>
+        <parameter name="em" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ph" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ad1" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ad2" typeRef="java.lang.String" isList="false"/>
+        <parameter name="st" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="ct" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ctry" typeRef="java.lang.String" isList="false"/>
+        <parameter name="pc" typeRef="java.lang.String" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
@@ -131,8 +132,9 @@
         <parameter name="ph" typeRef="java.lang.String" isList="false"/>
         <parameter name="ad1" typeRef="java.lang.String" isList="false"/>
         <parameter name="ad2" typeRef="java.lang.String" isList="false"/>
-        <parameter name="st" typeRef="java.lang.String" isList="false"/>
+        <parameter name="st" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="ct" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ctry" typeRef="java.lang.String" isList="false"/>
         <parameter name="pc" typeRef="java.lang.String" isList="false"/>
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateInfoFromMyProfilertnType" isList="false"/>
@@ -430,6 +432,7 @@
             <element name="banned" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="city" typeRef="java.lang.String" allowNull="true"/>
             <element name="communicationFrequency" typeRef="java.lang.String" allowNull="true"/>
+            <element name="country" typeRef="java.lang.String" allowNull="true"/>
             <element name="email" typeRef="java.lang.String" allowNull="true"/>
             <element name="firstName" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>

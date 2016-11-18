@@ -223,7 +223,7 @@
     "returnTypeMetadata" : { }
   }, {
     "name" : "UpdateInfoFromMyProfile",
-    "query" : "Update Users set FirstName=:fn,LastName=:ln,Email=:em,PhoneNumber=:ph,Address1=:ad1,Address2=:ad2,State=:st,City=:ct,PostalCode=:pc where ID=:user",
+    "query" : "Update Users set FirstName=:fn,LastName=:ln,Email=:em,PhoneNumber=:ph,Address1=:ad1,Address2=:ad2,StateId=:st,City=:ct,Country=:ctry,PostalCode=:pc where ID=:user",
     "comment" : "UpdateInfoFromMyProfile",
     "description" : null,
     "nativeSql" : true,
@@ -273,8 +273,8 @@
       "list" : false
     }, {
       "paramName" : "st",
-      "paramType" : "java.lang.String",
-      "testValue" : "adad",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
@@ -282,6 +282,13 @@
       "paramName" : "ct",
       "paramType" : "java.lang.String",
       "testValue" : "adad",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "ctry",
+      "paramType" : "java.lang.String",
+      "testValue" : "USA",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false

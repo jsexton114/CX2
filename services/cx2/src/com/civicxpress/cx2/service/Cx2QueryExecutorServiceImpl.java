@@ -100,7 +100,7 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
-	public int executeUpdateInfoFromMyProfile( java.lang.String fn ,java.lang.String ln ,java.lang.String em ,java.lang.String ph ,java.lang.String ad1 ,java.lang.String ad2 ,java.lang.String st ,java.lang.String ct ,java.lang.String pc ,java.lang.Integer user)
+	public int executeUpdateInfoFromMyProfile( java.lang.String fn ,java.lang.String ln ,java.lang.String em ,java.lang.String ph ,java.lang.String ad1 ,java.lang.String ad2 ,java.lang.Integer st ,java.lang.String ct ,java.lang.String ctry ,java.lang.String pc ,java.lang.Integer user)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("fn", fn);
@@ -111,6 +111,7 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("ad2", ad2);
         params.put("st", st);
         params.put("ct", ct);
+        params.put("ctry", ctry);
         params.put("pc", pc);
         params.put("user", user);
         return queryExecutor.executeNamedQueryForUpdate("UpdateInfoFromMyProfile", params);

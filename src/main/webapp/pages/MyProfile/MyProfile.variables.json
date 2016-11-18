@@ -1,7 +1,7 @@
 {
-  "AllSates" : {
-    "_id" : "wm-AllSates-wm.LiveVariable-1479278188574",
-    "name" : "AllSates",
+  "AllStates" : {
+    "_id" : "wm-AllStates-wm.LiveVariable-1479457885476",
+    "name" : "AllStates",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
@@ -56,7 +56,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 0,
+    "bindCount" : 1,
     "tableName" : "States",
     "tableType" : "TABLE",
     "properties" : [ ],
@@ -95,6 +95,52 @@
     "matchMode" : "start",
     "propertiesMap" : {
       "columns" : [ {
+        "fieldName" : "states",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "StateId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : true,
+        "defaultValue" : "",
+        "relatedTableName" : "States",
+        "relatedEntityName" : "States",
+        "relatedColumnName" : "stateId",
+        "relatedFieldName" : "states.id",
+        "isList" : false,
+        "targetTable" : "States",
+        "scale" : 0,
+        "columns" : [ {
+          "fieldName" : "id",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ID",
+          "isPrimaryKey" : true,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 10,
+          "generator" : "identity",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "stateName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "StateName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        } ]
+      }, {
         "fieldName" : "id",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -177,19 +223,6 @@
         "type" : "string",
         "fullyQualifiedType" : "string",
         "columnName" : "City",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 19,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
-        "fieldName" : "state",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "State",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 255,
@@ -287,6 +320,19 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "country",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "Country",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 19,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "Users",
       "fullyQualifiedName" : "com.civicxpress.cx2.Users",
@@ -297,8 +343,14 @@
     "bindCount" : 1,
     "tableName" : "Users",
     "tableType" : "TABLE",
-    "properties" : [ ],
-    "relatedTables" : [ ],
+    "properties" : [ "states" ],
+    "relatedTables" : [ {
+      "columnName" : "states",
+      "relationName" : "states",
+      "type" : "States",
+      "watchOn" : "Cx2StatesData",
+      "package" : "com.civicxpress.cx2.Users"
+    } ],
     "filterFields" : { },
     "inputFields" : { },
     "package" : "com.civicxpress.cx2.Users"
@@ -424,7 +476,7 @@
     }, {
       "target" : "st",
       "value" : "bind:Widgets.selectSt.datavalue",
-      "type" : "string"
+      "type" : "integer"
     }, {
       "target" : "ct",
       "value" : "bind:Widgets.textct.datavalue",
@@ -437,6 +489,10 @@
       "target" : "user",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
+    }, {
+      "target" : "ctry",
+      "value" : "bind:Widgets.textctry.datavalue",
+      "type" : "string"
     } ],
     "type" : "cx2UpdateInfoFromMyProfilertnType",
     "service" : "cx2",
@@ -486,5 +542,70 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
+  },
+  "UserStateObj" : {
+    "_id" : "wm-UserStateObj-wm.LiveVariable-1479458753012",
+    "name" : "UserStateObj",
+    "owner" : "Page",
+    "category" : "wm.LiveVariable",
+    "dataBinding" : [ {
+      "target" : "id",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.stateId",
+      "type" : "number"
+    } ],
+    "operation" : "read",
+    "dataSet" : [ ],
+    "type" : "States",
+    "isList" : false,
+    "saveInPhonegap" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "inFlightBehavior" : "executeLast",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "transformationRequired" : false,
+    "liveSource" : "cx2",
+    "ignoreCase" : false,
+    "matchMode" : "start",
+    "propertiesMap" : {
+      "columns" : [ {
+        "fieldName" : "id",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "ID",
+        "isPrimaryKey" : true,
+        "notNull" : true,
+        "length" : 255,
+        "precision" : 10,
+        "generator" : "identity",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "stateName",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "StateName",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 19,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      } ],
+      "entityName" : "States",
+      "fullyQualifiedName" : "com.civicxpress.cx2.States",
+      "tableType" : "TABLE",
+      "primaryFields" : [ "id" ]
+    },
+    "bindCount" : 1,
+    "tableName" : "States",
+    "tableType" : "TABLE",
+    "properties" : [ ],
+    "relatedTables" : [ ],
+    "filterFields" : { },
+    "package" : "com.civicxpress.cx2.States"
   }
 }

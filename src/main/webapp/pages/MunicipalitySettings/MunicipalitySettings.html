@@ -1,10 +1,49 @@
-<wm-page data-ng-controller="MunicipalitySettingsPageController" pagetitle="Municipality Settings"> 
-    <wm-header content="header"></wm-header> 
-    <wm-top-nav content="topnav"></wm-top-nav> 
-    <wm-content> 
-        <wm-left-panel columnwidth="2" content="leftnav"></wm-left-panel> 
-        <wm-page-content columnwidth="10"> 
-        </wm-page-content> 
-    </wm-content> 
-    <wm-footer content="footer"></wm-footer> 
+<wm-page data-ng-controller="MunicipalitySettingsPageController" pagetitle="Municipality Settings" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1" columns="3">
+                <wm-gridrow name="gridrow7">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn17_1" padding="1em unset">
+                        <wm-label padding="unset 0.5em" name="label5" caption="Municipality Administration" fontweight="bold" fontsize="15"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn18_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn19_1" padding="2em unset">
+                        <wm-composite name="composite1">
+                            <wm-label class="col-md-3 control-label" name="label6" caption="Select Municipality"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-select name="select1" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow6">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn14" padding="unset 5em">
+                        <wm-panel iconclass="wi wi-settings" name="panel1" title="General Settings">
+                            <wm-layoutgrid name="layoutgrid8">
+                                <wm-gridrow name="gridrow12" padding="2em">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn28">
+                                        <wm-panel iconclass="wi wi-info-outline" name="panel2" title="Municipality Feilds"></wm-panel>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow13" padding="2em">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn30">
+                                        <wm-panel iconclass="wi wi-pen" name="panel3" title="Global Email Signature"></wm-panel>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow14" padding="2em">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn32">
+                                        <wm-panel iconclass="wi wi-insert-emoticon" name="panel4" title="Municipality Logo"></wm-panel>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
 </wm-page>

@@ -44,7 +44,7 @@
   </sql-query>
   <sql-query name="UpdateInfoFromMyProfile">
     <![CDATA[
-      Update Users set FirstName=:fn,LastName=:ln,Email=:em,PhoneNumber=:ph,Address1=:ad1,Address2=:ad2,State=:st,City=:ct,PostalCode=:pc where ID=:user
+      Update Users set FirstName=:fn,LastName=:ln,Email=:em,PhoneNumber=:ph,Address1=:ad1,Address2=:ad2,StateId=:st,City=:ct,Country=:ctry,PostalCode=:pc where ID=:user
     ]]>
   </sql-query>
   <sql-query name="UpdateNewPassword">
