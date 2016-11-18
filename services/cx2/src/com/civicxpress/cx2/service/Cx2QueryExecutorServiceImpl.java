@@ -118,6 +118,22 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeUpdateMunicipalityInfo( java.lang.String mn ,java.lang.String em ,java.lang.String ph ,java.lang.String ad1 ,java.lang.String ad2 ,java.lang.Integer st ,java.lang.String ct ,java.lang.Integer pc ,java.lang.Integer municipality)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("mn", mn);
+        params.put("em", em);
+        params.put("ph", ph);
+        params.put("ad1", ad1);
+        params.put("ad2", ad2);
+        params.put("st", st);
+        params.put("ct", ct);
+        params.put("pc", pc);
+        params.put("municipality", municipality);
+        return queryExecutor.executeNamedQueryForUpdate("UpdateMunicipalityInfo", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeUpdateNewPassword( java.lang.String password ,java.lang.Integer newUser)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

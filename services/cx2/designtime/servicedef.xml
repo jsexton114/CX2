@@ -38,6 +38,20 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateCFInProfilertnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateInfoFromMyProfile">
+        <parameter name="fn" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ln" typeRef="java.lang.String" isList="false"/>
+        <parameter name="em" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ph" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ad1" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ad2" typeRef="java.lang.String" isList="false"/>
+        <parameter name="st" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="ct" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ctry" typeRef="java.lang.String" isList="false"/>
+        <parameter name="pc" typeRef="java.lang.String" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateInfoFromMyProfilertnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateNewPassword">
         <parameter name="password" typeRef="java.lang.String" isList="false"/>
         <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
@@ -77,18 +91,16 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="UpdateInfoFromMyProfile">
-        <parameter name="fn" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ln" typeRef="java.lang.String" isList="false"/>
+    <operation operationType="nativequery" name="UpdateMunicipalityInfo">
+        <parameter name="mn" typeRef="java.lang.String" isList="false"/>
         <parameter name="em" typeRef="java.lang.String" isList="false"/>
         <parameter name="ph" typeRef="java.lang.String" isList="false"/>
         <parameter name="ad1" typeRef="java.lang.String" isList="false"/>
         <parameter name="ad2" typeRef="java.lang.String" isList="false"/>
         <parameter name="st" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="ct" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ctry" typeRef="java.lang.String" isList="false"/>
-        <parameter name="pc" typeRef="java.lang.String" isList="false"/>
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="pc" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
@@ -138,6 +150,18 @@
         <parameter name="pc" typeRef="java.lang.String" isList="false"/>
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateInfoFromMyProfilertnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateMunicipalityInfo">
+        <parameter name="mn" typeRef="java.lang.String" isList="false"/>
+        <parameter name="em" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ph" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ad1" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ad2" typeRef="java.lang.String" isList="false"/>
+        <parameter name="st" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="ct" typeRef="java.lang.String" isList="false"/>
+        <parameter name="pc" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateMunicipalityInfortnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdateNewPassword">
         <parameter name="password" typeRef="java.lang.String" isList="false"/>
@@ -533,6 +557,7 @@
         </dataobject>
         <dataobject javaType="cx2UpdateCFInProfilertnType"/>
         <dataobject javaType="cx2UpdateInfoFromMyProfilertnType"/>
+        <dataobject javaType="cx2UpdateMunicipalityInfortnType"/>
         <dataobject javaType="cx2UpdateNewPasswordrtnType"/>
         <dataobject javaType="cx2UpdatePasswordAndCFrtnType"/>
         <dataobject javaType="cx2UpdateWorkMunicipalityrtnType"/>
