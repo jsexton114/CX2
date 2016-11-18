@@ -2836,31 +2836,6 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "state",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "State",
-      "nullable" : true,
-      "oldName" : "State",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 19,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
       "fieldName" : "postalCode",
       "foreignKey" : false,
       "generatorType" : "assigned",
@@ -3029,6 +3004,31 @@
       "scale" : 0,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "stateId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "StateId",
+      "nullable" : true,
+      "oldName" : "StateId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
     } ],
     "constraints" : [ {
       "columns" : [ "Email" ],
@@ -3098,6 +3098,22 @@
       "sourceTable" : "Users",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "UserPasswordResetTokens",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "states",
+      "mappings" : [ {
+        "sourceColumn" : "StateId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_States_TO_Users_ID_StateId",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "Users",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "States",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -3395,6 +3411,22 @@
       "sourceTable" : "States",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Contractors",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "userses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "StateId"
+      } ],
+      "name" : "FK_States_TO_Users_ID_StateId",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "States",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",

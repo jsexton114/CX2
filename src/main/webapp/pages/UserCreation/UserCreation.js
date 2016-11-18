@@ -19,7 +19,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         var pass2 = document.getElementById('textRePwd');
         //Set the colorsfor use
         var matchColor = "#fff";
-        var missmatchColor = "#ff6666";
+        var missmatchColor = "#ff66";
         //Compare the values in the password field and the confirmation field
         //
         if (pass1.value == pass2.value) {
@@ -83,11 +83,13 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
 
     $scope.textRePwdKeyup = function($event, $isolateScope) {
+        debugger
         passwordCheck();
     };
 
 
     $scope.textPwdKeyup = function($event, $isolateScope) {
+        debugger
         passwordCheck();
     };
 

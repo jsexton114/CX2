@@ -25,6 +25,7 @@ import com.civicxpress.cx2.Contractors;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.States;
+import com.civicxpress.cx2.Users;
 
 
 /**
@@ -38,16 +39,20 @@ public class StatesServiceImpl implements StatesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(StatesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.MunicipalitiesService")
-	private MunicipalitiesService municipalitiesService;
+	@Qualifier("cx2.UsersService")
+	private UsersService usersService;
+
+    @Autowired
+	@Qualifier("cx2.ContractorsService")
+	private ContractorsService contractorsService;
 
     @Autowired
 	@Qualifier("cx2.GisrecordsService")
 	private GisrecordsService gisrecordsService;
 
     @Autowired
-	@Qualifier("cx2.ContractorsService")
-	private ContractorsService contractorsService;
+	@Qualifier("cx2.MunicipalitiesService")
+	private MunicipalitiesService municipalitiesService;
 
     @Autowired
     @Qualifier("cx2.StatesDao")
@@ -67,6 +72,14 @@ public class StatesServiceImpl implements StatesService {
                 contractorse.setStates(statesCreated);
                 LOGGER.debug("Creating a new child Contractors with information: {}", contractorse);
                 contractorsService.create(contractorse);
+            }
+        }
+
+        if(statesCreated.getUserses() != null) {
+            for(Users userse : statesCreated.getUserses()) {
+                userse.setStates(statesCreated);
+                LOGGER.debug("Creating a new child Users with information: {}", userse);
+                usersService.create(userse);
             }
         }
 
@@ -172,6 +185,17 @@ public class StatesServiceImpl implements StatesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Users> findAssociatedUserses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated userses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("states.id = '" + id + "'");
+
+        return usersService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Municipalities> findAssociatedMunicipalitieses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated municipalitieses");
 
@@ -195,10 +219,19 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalitiesService instance
+	 * @param service UsersService instance
 	 */
-	protected void setMunicipalitiesService(MunicipalitiesService service) {
-        this.municipalitiesService = service;
+	protected void setUsersService(UsersService service) {
+        this.usersService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ContractorsService instance
+	 */
+	protected void setContractorsService(ContractorsService service) {
+        this.contractorsService = service;
     }
 
     /**
@@ -213,10 +246,10 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service ContractorsService instance
+	 * @param service MunicipalitiesService instance
 	 */
-	protected void setContractorsService(ContractorsService service) {
-        this.contractorsService = service;
+	protected void setMunicipalitiesService(MunicipalitiesService service) {
+        this.municipalitiesService = service;
     }
 
 }

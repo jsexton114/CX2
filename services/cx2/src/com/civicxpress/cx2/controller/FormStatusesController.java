@@ -119,8 +119,9 @@ public class FormStatusesController {
         return formStatusesService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/formProcessStatuseses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/formProcessStatuseses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formProcessStatuseses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormProcessStatuses> findAssociatedFormProcessStatuseses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formProcessStatuseses");
         return formStatusesService.findAssociatedFormProcessStatuseses(id, pageable);

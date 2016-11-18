@@ -30,6 +30,7 @@ public class States implements Serializable {
     private Integer id;
     private String stateName;
     private List<Contractors> contractorses = new ArrayList<>();
+    private List<Users> userses = new ArrayList<>();
     private List<Municipalities> municipalitieses = new ArrayList<>();
     private List<Gisrecords> gisrecordses = new ArrayList<>();
 
@@ -60,6 +61,15 @@ public class States implements Serializable {
 
     public void setContractorses(List<Contractors> contractorses) {
         this.contractorses = contractorses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
+    public List<Users> getUserses() {
+        return this.userses;
+    }
+
+    public void setUserses(List<Users> userses) {
+        this.userses = userses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")

@@ -29,6 +29,7 @@ import com.civicxpress.cx2.Contractors;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.States;
+import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.service.StatesService;
 
 /**
@@ -127,6 +128,13 @@ public class StatesController {
     public Page<Contractors> findAssociatedContractorses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated contractorses");
         return statesService.findAssociatedContractorses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/userses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the userses instance associated with the given id.")
+    public Page<Users> findAssociatedUserses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated userses");
+        return statesService.findAssociatedUserses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/municipalitieses", method = RequestMethod.GET)

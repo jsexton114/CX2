@@ -17,6 +17,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -39,7 +41,6 @@ public class Users implements Serializable {
     private String address1;
     private String address2;
     private String city;
-    private String state;
     private String postalCode;
     private String phoneNumber;
     private String communicationFrequency;
@@ -48,9 +49,11 @@ public class Users implements Serializable {
     private byte[] photo;
     private Boolean banned;
     private String password;
+    private Integer stateId;
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
+    private States states;
     private List<Roles> roleses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
 
@@ -119,15 +122,6 @@ public class Users implements Serializable {
         this.city = city;
     }
 
-    @Column(name = "`State`", nullable = true, length = 255)
-    public String getState() {
-        return this.state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     @Column(name = "`PostalCode`", nullable = true, length = 255)
     public String getPostalCode() {
         return this.postalCode;
@@ -191,6 +185,15 @@ public class Users implements Serializable {
         this.password = password;
     }
 
+    @Column(name = "`StateId`", nullable = true, scale = 0, precision = 10)
+    public Integer getStateId() {
+        return this.stateId;
+    }
+
+    public void setStateId(Integer stateId) {
+        this.stateId = stateId;
+    }
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<SfnewResidentialStructure> getSfnewResidentialStructures() {
         return this.sfnewResidentialStructures;
@@ -216,6 +219,20 @@ public class Users implements Serializable {
 
     public void setUserPasswordResetTokenses(List<UserPasswordResetTokens> userPasswordResetTokenses) {
         this.userPasswordResetTokenses = userPasswordResetTokenses;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`StateId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public States getStates() {
+        return this.states;
+    }
+
+    public void setStates(States states) {
+        if(states != null) {
+            this.stateId = states.getId();
+        }
+
+        this.states = states;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
