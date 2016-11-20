@@ -222,6 +222,31 @@
     "outputType" : "cx2UpdateCFInProfilertnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "UpdateGlobalEmailSig",
+    "query" : "Update Municipalities set GlobalEmailSig=:gs where ID=:municipality",
+    "comment" : "UpdateGlobalEmailSig",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "gs",
+      "paramType" : "java.lang.String",
+      "testValue" : "Fishers",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "municipality",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateGlobalEmailSigrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "UpdateInfoFromMyProfile",
     "query" : "Update Users set FirstName=:fn,LastName=:ln,Email=:em,PhoneNumber=:ph,Address1=:ad1,Address2=:ad2,StateId=:st,City=:ct,Country=:ctry,PostalCode=:pc where ID=:user",
     "comment" : "UpdateInfoFromMyProfile",
@@ -368,8 +393,8 @@
       "list" : false
     }, {
       "paramName" : "pc",
-      "paramType" : "java.lang.Integer",
-      "testValue" : "424333",
+      "paramType" : "java.lang.String",
+      "testValue" : "",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false

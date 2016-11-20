@@ -120,6 +120,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdateGlobalEmailSig", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdateGlobalEmailSig(@RequestParam(value = "gs", required = false) java.lang.String gs, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdateGlobalEmailSig");
+        int result = queryService.executeUpdateGlobalEmailSig(gs, municipality);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UpdateInfoFromMyProfile", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeUpdateInfoFromMyProfile(@RequestParam(value = "fn", required = false) java.lang.String fn, @RequestParam(value = "ln", required = false) java.lang.String ln, @RequestParam(value = "em", required = false) java.lang.String em, @RequestParam(value = "ph", required = false) java.lang.String ph, @RequestParam(value = "ad1", required = false) java.lang.String ad1, @RequestParam(value = "ad2", required = false) java.lang.String ad2, @RequestParam(value = "st", required = false) java.lang.Integer st, @RequestParam(value = "ct", required = false) java.lang.String ct, @RequestParam(value = "ctry", required = false) java.lang.String ctry, @RequestParam(value = "pc", required = false) java.lang.String pc, @RequestParam(value = "user", required = false) java.lang.Integer user) throws QueryParameterMismatchException {
@@ -132,7 +142,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UpdateMunicipalityInfo", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public int executeUpdateMunicipalityInfo(@RequestParam(value = "mn", required = false) java.lang.String mn, @RequestParam(value = "em", required = false) java.lang.String em, @RequestParam(value = "ph", required = false) java.lang.String ph, @RequestParam(value = "ad1", required = false) java.lang.String ad1, @RequestParam(value = "ad2", required = false) java.lang.String ad2, @RequestParam(value = "st", required = false) java.lang.Integer st, @RequestParam(value = "ct", required = false) java.lang.String ct, @RequestParam(value = "pc", required = false) java.lang.Integer pc, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality) throws QueryParameterMismatchException {
+    public int executeUpdateMunicipalityInfo(@RequestParam(value = "mn", required = false) java.lang.String mn, @RequestParam(value = "em", required = false) java.lang.String em, @RequestParam(value = "ph", required = false) java.lang.String ph, @RequestParam(value = "ad1", required = false) java.lang.String ad1, @RequestParam(value = "ad2", required = false) java.lang.String ad2, @RequestParam(value = "st", required = false) java.lang.Integer st, @RequestParam(value = "ct", required = false) java.lang.String ct, @RequestParam(value = "pc", required = false) java.lang.String pc, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query UpdateMunicipalityInfo");
         int result = queryService.executeUpdateMunicipalityInfo(mn, em, ph, ad1, ad2, st, ct, pc, municipality);
         LOGGER.debug("got the result of named query {}", result);

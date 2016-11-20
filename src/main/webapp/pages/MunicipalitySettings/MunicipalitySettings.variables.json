@@ -26,6 +26,136 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
+  "AllSates" : {
+    "_id" : "wm-AllSates-wm.LiveVariable-1479636533779",
+    "name" : "AllSates",
+    "owner" : "Page",
+    "category" : "wm.LiveVariable",
+    "dataBinding" : [ {
+      "target" : "stateName",
+      "value" : "bind:Widgets.textState.query",
+      "type" : "string"
+    } ],
+    "operation" : "read",
+    "dataSet" : [ ],
+    "type" : "States",
+    "isList" : false,
+    "saveInPhonegap" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "inFlightBehavior" : "executeLast",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "transformationRequired" : false,
+    "liveSource" : "cx2",
+    "ignoreCase" : false,
+    "matchMode" : "start",
+    "propertiesMap" : {
+      "columns" : [ {
+        "fieldName" : "id",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "ID",
+        "isPrimaryKey" : true,
+        "notNull" : true,
+        "length" : 255,
+        "precision" : 10,
+        "generator" : "identity",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "stateName",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "StateName",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 19,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      } ],
+      "entityName" : "States",
+      "fullyQualifiedName" : "com.civicxpress.cx2.States",
+      "tableType" : "TABLE",
+      "primaryFields" : [ "id" ]
+    },
+    "bindCount" : 1,
+    "tableName" : "States",
+    "tableType" : "TABLE",
+    "properties" : [ ],
+    "relatedTables" : [ ],
+    "filterFields" : { },
+    "package" : "com.civicxpress.cx2.States"
+  },
+  "DefaultStateObj" : {
+    "_id" : "wm-DefaultStateObj-wm.LiveVariable-1479636468812",
+    "name" : "DefaultStateObj",
+    "owner" : "Page",
+    "category" : "wm.LiveVariable",
+    "dataBinding" : [ {
+      "target" : "id",
+      "value" : "bind:Variables.SelectedMunicipalityObj.firstRecord.stateId",
+      "type" : "number"
+    } ],
+    "operation" : "read",
+    "dataSet" : [ ],
+    "type" : "States",
+    "isList" : false,
+    "saveInPhonegap" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "inFlightBehavior" : "executeLast",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "transformationRequired" : false,
+    "liveSource" : "cx2",
+    "ignoreCase" : false,
+    "matchMode" : "start",
+    "propertiesMap" : {
+      "columns" : [ {
+        "fieldName" : "id",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "ID",
+        "isPrimaryKey" : true,
+        "notNull" : true,
+        "length" : 255,
+        "precision" : 10,
+        "generator" : "identity",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "stateName",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "StateName",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 19,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      } ],
+      "entityName" : "States",
+      "fullyQualifiedName" : "com.civicxpress.cx2.States",
+      "tableType" : "TABLE",
+      "primaryFields" : [ "id" ]
+    },
+    "bindCount" : 1,
+    "tableName" : "States",
+    "tableType" : "TABLE",
+    "properties" : [ ],
+    "relatedTables" : [ ],
+    "filterFields" : { },
+    "package" : "com.civicxpress.cx2.States"
+  },
   "SelectedMunicipalityObj" : {
     "_id" : "wm-SelectedMunicipalityObj-wm.LiveVariable-1479468387758",
     "name" : "SelectedMunicipalityObj",
@@ -414,6 +544,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
+    "bindCount" : 8,
     "tableName" : "Municipalities",
     "tableType" : "TABLE",
     "properties" : [ "states" ],
@@ -426,5 +557,95 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Municipalities"
+  },
+  "UpdateGlobalEmailSig" : {
+    "_id" : "wm-UpdateGlobalEmailSig-wm.ServiceVariable-1479638385550",
+    "name" : "UpdateGlobalEmailSig",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "gs",
+      "value" : "bind:Widgets.textareaSignature.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Widgets.select1.datavalue.ID | toNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2UpdateGlobalEmailSigrtnType",
+    "service" : "cx2",
+    "operation" : "executeUpdateGlobalEmailSig",
+    "operationId" : "QueryExecutionController_executeUpdateGlobalEmailSig",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "UpdateMunicipalitesInfo" : {
+    "_id" : "wm-UpdateMunicipalitesInfo-wm.ServiceVariable-1479636897952",
+    "name" : "UpdateMunicipalitesInfo",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "mn",
+      "value" : "bind:Widgets.textMunicipalityName.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "em",
+      "value" : "bind:Widgets.textEmail.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "ph",
+      "value" : "bind:Widgets.textPhone.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "ad1",
+      "value" : "bind:Widgets.textAddress1.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "ad2",
+      "value" : "bind:Widgets.textAddress2.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "st",
+      "value" : "bind:Widgets.textState.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "ct",
+      "value" : "bind:Widgets.textCity.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "pc",
+      "value" : "bind:Widgets.textPostalCode.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Widgets.select1.datavalue.ID | toNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2UpdateMunicipalityInfortnType",
+    "service" : "cx2",
+    "operation" : "executeUpdateMunicipalityInfo",
+    "operationId" : "QueryExecutionController_executeUpdateMunicipalityInfo",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
   }
 }

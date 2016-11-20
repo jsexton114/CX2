@@ -21,7 +21,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow6">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn14" padding="unset 5em">
-                        <wm-panel iconclass="wi wi-settings" name="panel1" title="General Settings">
+                        <wm-panel iconclass="wi wi-settings" name="panel1" title="General Settings" class="pcolor">
                             <wm-layoutgrid name="layoutgrid8">
                                 <wm-gridrow name="gridrow12" padding="2em">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn28">
@@ -33,7 +33,7 @@
                                                         <wm-composite name="composite2">
                                                             <wm-label class="col-md-3 control-label" name="label3" caption="MunicipalityName"></wm-label>
                                                             <wm-container class="col-md-9" name="container2">
-                                                                <wm-text name="textMunicipalityName"></wm-text>
+                                                                <wm-text name="textMunicipalityName" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.municipalityName"></wm-text>
                                                             </wm-container>
                                                         </wm-composite>
                                                     </wm-gridcolumn>
@@ -45,7 +45,7 @@
                                                         <wm-composite name="composite3">
                                                             <wm-label class="col-md-3 control-label" name="label4" caption="Address1"></wm-label>
                                                             <wm-container class="col-md-9" name="container3">
-                                                                <wm-text name="textAddress1"></wm-text>
+                                                                <wm-text name="textAddress1" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].address1"></wm-text>
                                                             </wm-container>
                                                         </wm-composite>
                                                     </wm-gridcolumn>
@@ -57,7 +57,7 @@
                                                         <wm-composite name="composite4">
                                                             <wm-label class="col-md-3 control-label" name="label5_1" caption="Address2"></wm-label>
                                                             <wm-container class="col-md-9" name="container4">
-                                                                <wm-text name="textAddress2"></wm-text>
+                                                                <wm-text name="textAddress2" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].address2"></wm-text>
                                                             </wm-container>
                                                         </wm-composite>
                                                     </wm-gridcolumn>
@@ -69,7 +69,7 @@
                                                         <wm-composite name="composite5">
                                                             <wm-label class="col-md-3 control-label" name="label6_1" caption="City"></wm-label>
                                                             <wm-container class="col-md-9" name="container5">
-                                                                <wm-text name="textCity"></wm-text>
+                                                                <wm-text name="textCity" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].city"></wm-text>
                                                             </wm-container>
                                                         </wm-composite>
                                                     </wm-gridcolumn>
@@ -81,7 +81,7 @@
                                                         <wm-composite name="composite6">
                                                             <wm-label class="col-md-3 control-label" name="label7" caption="State"></wm-label>
                                                             <wm-container class="col-md-9" name="container6">
-                                                                <wm-search name="textState"></wm-search>
+                                                                <wm-search name="textState" datavalue="bind:Variables.DefaultStateObj.firstRecord" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id"></wm-search>
                                                             </wm-container>
                                                         </wm-composite>
                                                     </wm-gridcolumn>
@@ -93,7 +93,7 @@
                                                         <wm-composite name="composite7">
                                                             <wm-label class="col-md-3 control-label" name="label8" caption="PostalCode"></wm-label>
                                                             <wm-container class="col-md-9" name="container7">
-                                                                <wm-text name="textPostalCode"></wm-text>
+                                                                <wm-text name="textPostalCode" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].postalCode"></wm-text>
                                                             </wm-container>
                                                         </wm-composite>
                                                     </wm-gridcolumn>
@@ -101,11 +101,11 @@
                                                 </wm-gridrow>
                                                 <wm-gridrow name="gridrow13_1">
                                                     <wm-gridcolumn columnwidth="2" name="gridcolumn28_1"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn29">
+                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn29" padding="1em unset">
                                                         <wm-composite name="composite8">
                                                             <wm-label class="col-md-3 control-label" name="label9" caption="Phone"></wm-label>
                                                             <wm-container class="col-md-9" name="container8">
-                                                                <wm-text name="textPhone"></wm-text>
+                                                                <wm-text name="textPhone" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].phone"></wm-text>
                                                             </wm-container>
                                                         </wm-composite>
                                                     </wm-gridcolumn>
@@ -113,21 +113,21 @@
                                                 </wm-gridrow>
                                                 <wm-gridrow name="gridrow14_1">
                                                     <wm-gridcolumn columnwidth="2" name="gridcolumn31"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn32_1">
+                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn32_1" padding="1em unset">
                                                         <wm-composite name="composite9">
                                                             <wm-label class="col-md-3 control-label" name="label10" caption="Email"></wm-label>
                                                             <wm-container class="col-md-9" name="container9">
-                                                                <wm-text name="textEmail"></wm-text>
+                                                                <wm-text name="textEmail" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].email"></wm-text>
                                                             </wm-container>
                                                         </wm-composite>
                                                     </wm-gridcolumn>
                                                     <wm-gridcolumn columnwidth="2" name="gridcolumn33"></wm-gridcolumn>
                                                 </wm-gridrow>
                                                 <wm-gridrow name="gridrow15">
-                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn34"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn35"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn36">
-                                                        <wm-button class="btn-default" caption="Save" type="button" margin="unset 0.5em" name="button1" iconclass="wi wi-save"></wm-button>
+                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn35"></wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn36"></wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn37" padding="1em unset">
+                                                        <wm-button class="btn-default" caption="Save" type="button" margin="unset 0.5em" name="button1" iconclass="wi wi-save" on-click="Variables.UpdateMunicipalitesInfo.invoke()"></wm-button>
                                                     </wm-gridcolumn>
                                                 </wm-gridrow>
                                             </wm-layoutgrid>
@@ -136,7 +136,25 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow13" padding="2em">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn30">
-                                        <wm-panel iconclass="wi wi-pen" name="panel3" title="Global Email Signature"></wm-panel>
+                                        <wm-panel iconclass="wi wi-pen" name="panel3" title="Global Email Signature">
+                                            <wm-layoutgrid name="layoutgrid4">
+                                                <wm-gridrow name="gridrow15_1">
+                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn35_1">
+                                                        <wm-composite name="composite10" margin="1em unset">
+                                                            <wm-label class="col-md-3 control-label" name="label11" caption="Global Email Signature"></wm-label>
+                                                            <wm-container class="col-md-9" name="container10">
+                                                                <wm-textarea name="textareaSignature" placeholder="Place your signature" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].globalEmailSig"></wm-textarea>
+                                                            </wm-container>
+                                                        </wm-composite>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                                <wm-gridrow name="gridrow16">
+                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn37_1" horizontalalign="right">
+                                                        <wm-button class="btn-default" caption="Save" type="button" margin="unset 0.5em" iconclass="wi wi-save" on-click="Variables.UpdateGlobalEmailSig.invoke()" name="button2"></wm-button>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                        </wm-panel>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow14" padding="2em">

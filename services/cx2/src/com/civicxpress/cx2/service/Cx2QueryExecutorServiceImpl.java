@@ -100,6 +100,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeUpdateGlobalEmailSig( java.lang.String gs ,java.lang.Integer municipality)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("gs", gs);
+        params.put("municipality", municipality);
+        return queryExecutor.executeNamedQueryForUpdate("UpdateGlobalEmailSig", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeUpdateInfoFromMyProfile( java.lang.String fn ,java.lang.String ln ,java.lang.String em ,java.lang.String ph ,java.lang.String ad1 ,java.lang.String ad2 ,java.lang.Integer st ,java.lang.String ct ,java.lang.String ctry ,java.lang.String pc ,java.lang.Integer user)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -118,7 +127,7 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
-	public int executeUpdateMunicipalityInfo( java.lang.String mn ,java.lang.String em ,java.lang.String ph ,java.lang.String ad1 ,java.lang.String ad2 ,java.lang.Integer st ,java.lang.String ct ,java.lang.Integer pc ,java.lang.Integer municipality)
+	public int executeUpdateMunicipalityInfo( java.lang.String mn ,java.lang.String em ,java.lang.String ph ,java.lang.String ad1 ,java.lang.String ad2 ,java.lang.Integer st ,java.lang.String ct ,java.lang.String pc ,java.lang.Integer municipality)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("mn", mn);
