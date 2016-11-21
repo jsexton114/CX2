@@ -25,7 +25,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-livegrid formlayout="inline" name="livegrid3">
+                        <wm-livegrid formlayout="dialog" name="livegrid3">
                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="Manualfeetypes List" dataset="bind:Variables.Cx2ManualFeeTypesData.dataSet" navigation="Basic" name="grid4">
                                 <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
                                 <wm-grid-column binding="feeType" caption="Fee Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
@@ -35,7 +35,7 @@
                                 <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
                                 <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
                             </wm-grid>
-                            <wm-liveform novalidate="false" errormessage="" title="Manualfeetypes Info" formlayout="inline" iconclass="wi wi-edit" dataset="bind:Variables.Cx2ManualFeeTypesData.dataSet" captionalign="left" captionposition="top" name="liveform3">
+                            <wm-liveform novalidate="false" errormessage="" title="Manualfeetypes Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2ManualFeeTypesData.dataSet" captionalign="left" captionposition="top" name="liveform3">
                                 <wm-layoutgrid columns="1" name="layoutgrid4">
                                     <wm-gridrow name="gridrow8">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn9" horizontalalign="center">
