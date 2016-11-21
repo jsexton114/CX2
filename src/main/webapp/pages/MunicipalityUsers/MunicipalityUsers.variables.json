@@ -50,7 +50,15 @@
     "name" : "Cx2RolesMunicipalityAdmins",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "roleName",
+      "value" : "bind:'MunicipalityAdmin'",
+      "type" : "string"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber",
+      "type" : "number"
+    } ],
     "operation" : "update",
     "dataSet" : [ ],
     "type" : "Roles",
@@ -618,6 +626,19 @@
           "type" : "string",
           "fullyQualifiedType" : "string",
           "columnName" : "Password",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "country",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "Country",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
@@ -699,7 +720,15 @@
     "name" : "Cx2RolesMunicipalityEmployee",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "roleName",
+      "value" : "bind:'MunicipalityEmployee'",
+      "type" : "string"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber",
+      "type" : "number"
+    } ],
     "operation" : "update",
     "dataSet" : [ ],
     "type" : "Roles",
@@ -1267,6 +1296,19 @@
           "type" : "string",
           "fullyQualifiedType" : "string",
           "columnName" : "Password",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "country",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "Country",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
@@ -1920,6 +1962,19 @@
           "type" : "string",
           "fullyQualifiedType" : "string",
           "columnName" : "Password",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "country",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "Country",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
@@ -2627,6 +2682,19 @@
         "type" : "string",
         "fullyQualifiedType" : "string",
         "columnName" : "Password",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 19,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "country",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "Country",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 255,

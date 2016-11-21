@@ -48,17 +48,18 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
                 "municipalityId": selectedMunicipalites[i].id
             });
             $scope.Variables.RegisterSubscriptions.insertRecord();
-            // For Registering User with Role as USER for subscribed municialities
-            $scope.Variables.NewUserRole.setInput({
-                "roleName": "User",
-                "description": "User",
-                "users": data,
-                "userId": data.id,
-                "municipalities": selectedMunicipalites[i],
-                "municipalityId": selectedMunicipalites[i].id
-            });
-            $scope.Variables.NewUserRole.insertRecord();
         }
+        // For Registering User with Role as USER for first municiality
+        $scope.Variables.NewUserRole.setInput({
+            "roleName": "User",
+            "description": "User",
+            "users": data,
+            "userId": data.id,
+            "municipalities": selectedMunicipalites[0],
+            "municipalityId": selectedMunicipalites[0].id
+        });
+        $scope.Variables.NewUserRole.insertRecord();
+
         // For updating the password
         $scope.Variables.UpdatePwdAndCF.setInput({
             "cf": $scope.Widgets.radiosetCF.datavalue,
@@ -83,13 +84,11 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
 
     $scope.textRePwdKeyup = function($event, $isolateScope) {
-        debugger
         passwordCheck();
     };
 
 
     $scope.textPwdKeyup = function($event, $isolateScope) {
-        debugger
         passwordCheck();
     };
 

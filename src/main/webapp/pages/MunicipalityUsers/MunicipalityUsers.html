@@ -43,7 +43,7 @@
                                 </wm-grid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpane2" title="Employees">
-                                <wm-livegrid formlayout="dialog" name="livegrid1">
+                                <wm-livegrid formlayout="inline" name="livegrid1">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="Roles List" dataset="bind:Variables.Cx2RolesMunicipalityEmployee.dataSet" navigation="Basic" name="grid2_1">
                                         <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
                                         <wm-grid-column binding="roleName" caption="Role Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
@@ -56,7 +56,7 @@
                                         <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Roles Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2RolesMunicipalityEmployee.dataSet" captionalign="left" captionposition="top" name="liveform1">
+                                    <wm-liveform novalidate="false" errormessage="" title="Roles Info" formlayout="inline" iconclass="wi wi-edit" dataset="bind:Variables.Cx2RolesMunicipalityEmployee.dataSet" captionalign="left" captionposition="top" name="liveform1">
                                         <wm-layoutgrid columns="1" name="layoutgrid3">
                                             <wm-gridrow name="gridrow10_1">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn23_1">
@@ -65,7 +65,7 @@
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
-                                        <wm-form-field name="roleName" displayname="Role Name" show="false" primary-key="false" generator="assigned" key="roleName" type="string" widget="null" maxchars="255" placeholder="Enter value" defaultvalue="MunicipalityEmployee"></wm-form-field>
+                                        <wm-form-field name="roleName" displayname="Role Name" show="true" primary-key="false" generator="assigned" key="roleName" type="string" widget="null" maxchars="255" placeholder="Enter value" defaultvalue="MunicipalityEmployee"></wm-form-field>
                                         <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Search"
                                         dataset="bind:Variables.MunicipalityObj.dataSet" datafield="All Fields" defaultvalue="bind:Variables.MunicipalityObj.firstRecord"></wm-form-field>
                                         <wm-form-field name="description" displayname="Description" show="false" primary-key="false" generator="assigned" key="description" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
