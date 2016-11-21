@@ -1,8 +1,8 @@
-Application.$controller("MunicipalityUsersPageController", ["$scope", function ($scope) {
+Application.$controller("MunicipalityUsersPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
+    $scope.onPageReady = function() {
         /*
          * variables can be accessed through '$scope.Variables' property here
          * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
@@ -14,6 +14,11 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", function (
          */
     };
 
+
+    $scope.buttonAddEmployeeClick = function($event, $isolateScope) {
+        $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityEmployee";
+    };
+
 }]);
 
 
@@ -21,62 +26,52 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", function (
 
 
 
-Application.$controller("grid2Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+Application.$controller("gridUsersubscriptionsListController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("dialog1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
-Application.$controller("grid2_1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
-]);
 
-Application.$controller("liveform1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
-]);
+
+
 
 
 
 
 
 Application.$controller("grid4Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveform3Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
-Application.$controller("grid5Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+Application.$controller("gridEmployeesController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
-Application.$controller("liveform4Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+Application.$controller("dialogAddEmployeeORAdminController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
