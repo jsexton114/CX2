@@ -15,3 +15,18 @@ Application.$controller("MunicipalitySettingsPageController", ["$scope", functio
     };
 
 }]);
+
+
+Application.$controller("dialog1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformUpdateLogoController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

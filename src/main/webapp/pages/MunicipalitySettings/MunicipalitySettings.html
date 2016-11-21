@@ -28,92 +28,15 @@
                                         <wm-panel iconclass="wi wi-info-outline" name="panel2" title="Municipality Feilds">
                                             <wm-layoutgrid name="layoutgrid3">
                                                 <wm-gridrow name="gridrow6_1">
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn8"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn9" padding="1em unset">
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn8" padding="1em unset">
                                                         <wm-composite name="composite2">
-                                                            <wm-label class="col-md-3 control-label" name="label3" caption="MunicipalityName"></wm-label>
-                                                            <wm-container class="col-md-9" name="container2">
+                                                            <wm-label class="col-md-4 control-label" name="label3" caption="MunicipalityName"></wm-label>
+                                                            <wm-container class="col-md-8" name="container2">
                                                                 <wm-text name="textMunicipalityName" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.municipalityName"></wm-text>
                                                             </wm-container>
                                                         </wm-composite>
                                                     </wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn12"></wm-gridcolumn>
-                                                </wm-gridrow>
-                                                <wm-gridrow name="gridrow8">
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn13"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn14_1" padding="1em unset">
-                                                        <wm-composite name="composite3">
-                                                            <wm-label class="col-md-3 control-label" name="label4" caption="Address1"></wm-label>
-                                                            <wm-container class="col-md-9" name="container3">
-                                                                <wm-text name="textAddress1" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].address1"></wm-text>
-                                                            </wm-container>
-                                                        </wm-composite>
-                                                    </wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
-                                                </wm-gridrow>
-                                                <wm-gridrow name="gridrow9">
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn16"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn17" padding="1em unset">
-                                                        <wm-composite name="composite4">
-                                                            <wm-label class="col-md-3 control-label" name="label5_1" caption="Address2"></wm-label>
-                                                            <wm-container class="col-md-9" name="container4">
-                                                                <wm-text name="textAddress2" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].address2"></wm-text>
-                                                            </wm-container>
-                                                        </wm-composite>
-                                                    </wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn18"></wm-gridcolumn>
-                                                </wm-gridrow>
-                                                <wm-gridrow name="gridrow10">
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn19"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn20" padding="1em unset">
-                                                        <wm-composite name="composite5">
-                                                            <wm-label class="col-md-3 control-label" name="label6_1" caption="City"></wm-label>
-                                                            <wm-container class="col-md-9" name="container5">
-                                                                <wm-text name="textCity" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].city"></wm-text>
-                                                            </wm-container>
-                                                        </wm-composite>
-                                                    </wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn21"></wm-gridcolumn>
-                                                </wm-gridrow>
-                                                <wm-gridrow name="gridrow11">
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn22"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn23" padding="1em unset">
-                                                        <wm-composite name="composite6">
-                                                            <wm-label class="col-md-3 control-label" name="label7" caption="State"></wm-label>
-                                                            <wm-container class="col-md-9" name="container6">
-                                                                <wm-search name="textState" datavalue="bind:Variables.DefaultStateObj.firstRecord" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id"></wm-search>
-                                                            </wm-container>
-                                                        </wm-composite>
-                                                    </wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn24"></wm-gridcolumn>
-                                                </wm-gridrow>
-                                                <wm-gridrow name="gridrow12_1">
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn25"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn26" padding="1em unset">
-                                                        <wm-composite name="composite7">
-                                                            <wm-label class="col-md-3 control-label" name="label8" caption="PostalCode"></wm-label>
-                                                            <wm-container class="col-md-9" name="container7">
-                                                                <wm-text name="textPostalCode" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].postalCode"></wm-text>
-                                                            </wm-container>
-                                                        </wm-composite>
-                                                    </wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn27"></wm-gridcolumn>
-                                                </wm-gridrow>
-                                                <wm-gridrow name="gridrow13_1">
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn28_1"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn29" padding="1em unset">
-                                                        <wm-composite name="composite8">
-                                                            <wm-label class="col-md-3 control-label" name="label9" caption="Phone"></wm-label>
-                                                            <wm-container class="col-md-9" name="container8">
-                                                                <wm-text name="textPhone" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].phone"></wm-text>
-                                                            </wm-container>
-                                                        </wm-composite>
-                                                    </wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn30_1"></wm-gridcolumn>
-                                                </wm-gridrow>
-                                                <wm-gridrow name="gridrow14_1">
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn31"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn32_1" padding="1em unset">
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn9" padding="1em unset 1em 1em">
                                                         <wm-composite name="composite9">
                                                             <wm-label class="col-md-3 control-label" name="label10" caption="Email"></wm-label>
                                                             <wm-container class="col-md-9" name="container9">
@@ -121,7 +44,60 @@
                                                             </wm-container>
                                                         </wm-composite>
                                                     </wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn33"></wm-gridcolumn>
+                                                </wm-gridrow>
+                                                <wm-gridrow name="gridrow8">
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn13" padding="1em unset">
+                                                        <wm-composite name="composite3">
+                                                            <wm-label class="col-md-4 control-label" name="label4" caption="Address1"></wm-label>
+                                                            <wm-container class="col-md-8" name="container3">
+                                                                <wm-text name="textAddress1" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].address1"></wm-text>
+                                                            </wm-container>
+                                                        </wm-composite>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn14_1" padding="1em unset 1em 1em">
+                                                        <wm-composite name="composite4">
+                                                            <wm-label class="col-md-3 control-label" name="label5_1" caption="Address2"></wm-label>
+                                                            <wm-container class="col-md-9" name="container4">
+                                                                <wm-text name="textAddress2" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].address2"></wm-text>
+                                                            </wm-container>
+                                                        </wm-composite>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                                <wm-gridrow name="gridrow9">
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn16" padding="1em unset">
+                                                        <wm-composite name="composite5">
+                                                            <wm-label class="col-md-4 control-label" name="label6_1" caption="City"></wm-label>
+                                                            <wm-container class="col-md-8" name="container5">
+                                                                <wm-text name="textCity" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].city"></wm-text>
+                                                            </wm-container>
+                                                        </wm-composite>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn17" padding="1em unset 1em 1em">
+                                                        <wm-composite name="composite6">
+                                                            <wm-label class="col-md-3 control-label" name="label7" caption="State"></wm-label>
+                                                            <wm-container class="col-md-9" name="container6">
+                                                                <wm-search name="textState" datavalue="bind:Variables.DefaultStateObj.firstRecord.id | toNumber" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id"></wm-search>
+                                                            </wm-container>
+                                                        </wm-composite>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                                <wm-gridrow name="gridrow10">
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn19" padding="1em unset">
+                                                        <wm-composite name="composite7">
+                                                            <wm-label class="col-md-4 control-label" name="label8" caption="PostalCode"></wm-label>
+                                                            <wm-container class="col-md-8" name="container7">
+                                                                <wm-text name="textPostalCode" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].postalCode"></wm-text>
+                                                            </wm-container>
+                                                        </wm-composite>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn20" padding="1em unset 1em 1em">
+                                                        <wm-composite name="composite8">
+                                                            <wm-label class="col-md-3 control-label" name="label9" caption="Phone"></wm-label>
+                                                            <wm-container class="col-md-9" name="container8">
+                                                                <wm-text name="textPhone" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].phone"></wm-text>
+                                                            </wm-container>
+                                                        </wm-composite>
+                                                    </wm-gridcolumn>
                                                 </wm-gridrow>
                                                 <wm-gridrow name="gridrow15">
                                                     <wm-gridcolumn columnwidth="2" name="gridcolumn35"></wm-gridcolumn>
@@ -159,7 +135,18 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow14" padding="2em">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn32">
-                                        <wm-panel iconclass="wi wi-insert-emoticon" name="panel4" title="Municipality Logo"></wm-panel>
+                                        <wm-panel iconclass="wi wi-insert-emoticon" name="panel4" title="Municipality Logo">
+                                            <wm-layoutgrid name="layoutgrid6">
+                                                <wm-gridrow name="gridrow41">
+                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn63"></wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn61" horizontalalign="center" padding="1em unset">
+                                                        <wm-button class="btn-default" caption="Upload" type="button" margin="unset 0.5em" name="button5" iconclass="wi wi-upload" on-click="Widgets.dialog1.open()" fontweight="bold"></wm-button>
+                                                        <wm-label padding="0.5em 0.5em unset 0.5em" name="label13" caption="Upload your Municipality Logo. Please use images with transparency" width="100%"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn62" horizontalalign="left"></wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                        </wm-panel>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -170,4 +157,140 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="view1">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Upload Logo" iconclass="wi wi-upload" name="dialog1">
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-primary" caption="Upload" name="button4" on-click="Widgets.liveformUpdateLogo.save()" iconclass="wi wi-file-upload"></wm-button>
+            </wm-dialogactions>
+            <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.UpdateLogoMunicipalities.dataSet" captionalign="left" captionposition="top" name="liveformUpdateLogo">
+                <wm-layoutgrid columns="1" name="layoutgrid5">
+                    <wm-gridrow name="gridrow17">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn37_2">
+                            <wm-form-field name="municipalityGuid" displayname="Municipality Guid" show="false" primary-key="false" generator="assigned" key="municipalityGuid" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                            defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].municipalityGuid"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow18">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn38">
+                            <wm-form-field name="municipalityName" displayname="Municipality Name" show="false" primary-key="false" generator="assigned" key="municipalityName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                            defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].municipalityName"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow19">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn39">
+                            <wm-form-field name="address1" displayname="Address1" show="false" primary-key="false" generator="assigned" key="address1" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].address1"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow20">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn40">
+                            <wm-form-field name="address2" displayname="Address2" show="false" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].address2"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow21">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn41">
+                            <wm-form-field name="city" displayname="City" show="false" primary-key="false" generator="assigned" key="city" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].city"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow22">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn42">
+                            <wm-form-field name="postalCode" displayname="Postal Code" show="false" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].postalCode"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow23">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn43">
+                            <wm-form-field name="phone" displayname="Phone" show="false" primary-key="false" generator="assigned" key="phone" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].phone"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow24">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn44">
+                            <wm-form-field name="email" displayname="Email" show="false" primary-key="false" generator="assigned" key="email" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].email"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow25">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn45">
+                            <wm-form-field name="allowManualPayment" displayname="Allow Manual Payment" show="false" primary-key="false" generator="assigned" key="allowManualPayment" type="boolean" widget="checkbox" placeholder="" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].allowManualPayment"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow26">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn46">
+                            <wm-form-field name="manualPaymentPercent" displayname="Manual Payment Percent" show="false" primary-key="false" generator="assigned" key="manualPaymentPercent" type="integer" step="0" widget="number" inputtype="number" placeholder="Enter value"
+                            defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].manualPaymentPercent"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow27">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn47">
+                            <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder="" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].active"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow28">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn48">
+                            <wm-form-field name="globalEmailSig" displayname="Global Email Sig" show="false" primary-key="false" generator="assigned" key="globalEmailSig" type="string" widget="text" maxchars="500" inputtype="text" placeholder="Enter value"
+                            defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].globalEmailSig"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow29">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn49" horizontalalign="left">
+                            <wm-form-field name="logo" displayname="Please upload image with transparency" show="true" primary-key="false" generator="assigned" key="logo" type="blob" widget="upload" maxchars="255"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow30">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn50">
+                            <wm-form-field name="mondayYn" displayname="Monday Yn" show="false" primary-key="false" generator="assigned" key="mondayYn" type="boolean" widget="checkbox" placeholder="" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].mondayYn"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow31">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn51">
+                            <wm-form-field name="tuesdayYn" displayname="Tuesday Yn" show="false" primary-key="false" generator="assigned" key="tuesdayYn" type="boolean" widget="checkbox" placeholder="" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].tuesdayYn"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow32">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn52">
+                            <wm-form-field name="wednesdayYn" displayname="Wednesday Yn" show="false" primary-key="false" generator="assigned" key="wednesdayYn" type="boolean" widget="checkbox" placeholder="" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].wednesdayYn"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow33">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn53">
+                            <wm-form-field name="thursdayYn" displayname="Thursday Yn" show="false" primary-key="false" generator="assigned" key="thursdayYn" type="boolean" widget="checkbox" placeholder="" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].thursdayYn"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow34">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn54">
+                            <wm-form-field name="fridayYn" displayname="Friday Yn" show="false" primary-key="false" generator="assigned" key="fridayYn" type="boolean" widget="checkbox" placeholder="" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].fridayYn"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow35">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn55">
+                            <wm-form-field name="saturdayYn" displayname="Saturday Yn" show="false" primary-key="false" generator="assigned" key="saturdayYn" type="boolean" widget="checkbox" placeholder="" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].saturdayYn"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow36">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn56">
+                            <wm-form-field name="sundayYn" displayname="Sunday Yn" show="false" primary-key="false" generator="assigned" key="sundayYn" type="boolean" widget="checkbox" placeholder="" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].sundayYn"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow37">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn57">
+                            <wm-form-field name="timeZone" displayname="Time Zone" show="false" primary-key="false" generator="assigned" key="timeZone" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].timeZone"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow38">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn58">
+                            <wm-form-field name="openTime" displayname="Open Time" show="false" primary-key="false" generator="assigned" key="openTime" type="time" widget="time" placeholder="Select time" outputformat="HH:mm:ss" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].openTime"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow39">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn59">
+                            <wm-form-field name="closeTime" displayname="Close Time" show="false" primary-key="false" generator="assigned" key="closeTime" type="time" widget="time" placeholder="Select time" outputformat="HH:mm:ss" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].closeTime"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow40">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn60">
+                            <wm-form-field name="states" displayname="States" show="false" primary-key="false" generator="assigned" key="states" type="list" is-related="true" widget="select" placeholder="Select value" defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].states"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+            </wm-liveform>
+        </wm-dialog>
+    </wm-view>
 </wm-page>
