@@ -60,6 +60,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/GetRolesForMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeGetRolesForMunicipality(@RequestParam(value = "role", required = false) java.lang.String role, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query GetRolesForMunicipality");
+        Page<Object> result = queryService.executeGetRolesForMunicipality(pageable, role, municipality);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/MunicipalityCount", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeMunicipalityCount(Pageable pageable) {
@@ -165,6 +175,16 @@ public class QueryExecutionController {
     public int executeUpdatePasswordAndCF(@RequestParam(value = "password", required = false) java.lang.String password, @RequestParam(value = "cf", required = false) java.lang.String cf, @RequestParam(value = "newUser", required = false) java.lang.Integer newUser) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query UpdatePasswordAndCF");
         int result = queryService.executeUpdatePasswordAndCF(password, cf, newUser);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdateRoleForMunicipality", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdateRoleForMunicipality(@RequestParam(value = "role", required = false) java.lang.String role, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, @RequestParam(value = "user", required = false) java.lang.Integer user) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdateRoleForMunicipality");
+        int result = queryService.executeUpdateRoleForMunicipality(role, municipality, user);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

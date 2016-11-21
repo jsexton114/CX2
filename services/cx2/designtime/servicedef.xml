@@ -12,109 +12,10 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2EmployeesMunicipalitiesrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="MunicipalityCount">
-        <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="resetPasswordForUser">
-        <parameter name="newPassword" typeRef="java.lang.String" isList="false"/>
-        <parameter name="userID" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2resetPasswordForUserrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="resetPasswordWithTokenForUser">
-        <parameter name="userid" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="token" typeRef="java.lang.String" isList="false"/>
-        <return typeRef="cx2resetPasswordWithTokenForUserrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="StandardUserMunicipalites">
-        <parameter name="USER" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2StandardUserMunicipalitesrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="SubDivisonCount">
-        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2SubDivisonCountrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UpdateCFInProfile">
-        <parameter name="cf" typeRef="java.lang.String" isList="false"/>
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2UpdateCFInProfilertnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UpdateInfoFromMyProfile">
-        <parameter name="fn" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ln" typeRef="java.lang.String" isList="false"/>
-        <parameter name="em" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ph" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ad1" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ad2" typeRef="java.lang.String" isList="false"/>
-        <parameter name="st" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="ct" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ctry" typeRef="java.lang.String" isList="false"/>
-        <parameter name="pc" typeRef="java.lang.String" isList="false"/>
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2UpdateInfoFromMyProfilertnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UpdateMunicipalityInfo">
-        <parameter name="mn" typeRef="java.lang.String" isList="false"/>
-        <parameter name="em" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ph" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ad1" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ad2" typeRef="java.lang.String" isList="false"/>
-        <parameter name="st" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="ct" typeRef="java.lang.String" isList="false"/>
-        <parameter name="pc" typeRef="java.lang.String" isList="false"/>
+    <operation operationType="nativequery" name="GetRolesForMunicipality">
+        <parameter name="role" typeRef="java.lang.String" isList="false"/>
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2UpdateMunicipalityInfortnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UpdateNewPassword">
-        <parameter name="password" typeRef="java.lang.String" isList="false"/>
-        <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2UpdateNewPasswordrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UpdatePasswordAndCF">
-        <parameter name="password" typeRef="java.lang.String" isList="false"/>
-        <parameter name="cf" typeRef="java.lang.String" isList="false"/>
-        <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2UpdatePasswordAndCFrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UpdateWorkMunicipality">
-        <parameter name="monday" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="tuesday" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="wednesday" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="thursday" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="friday" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="saturday" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="sunday" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="timezone" typeRef="java.lang.String" isList="false"/>
-        <parameter name="openTime" typeRef="java.sql.Time" isList="false"/>
-        <parameter name="closeTime" typeRef="java.sql.Time" isList="false"/>
-        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2UpdateWorkMunicipalityrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UserCount">
-        <return typeRef="cx2UserCountrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="userSubscriptionsCount">
-        <return typeRef="cx2userSubscriptionsCountrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="userSubscriptionsCountForMunicipality">
-        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2userSubscriptionsCountForMunicipalityrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="verifyPasswordResetToken">
-        <parameter name="token" typeRef="java.lang.String" isList="false"/>
-        <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UpdateGlobalEmailSig">
-        <parameter name="gs" typeRef="java.lang.String" isList="false"/>
-        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="AdminsMunicipalities">
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2AdminsMunicipalitiesrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="EmployeesMunicipalities">
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2EmployeesMunicipalitiesrtnType" isList="false"/>
+        <return typeRef="cx2GetRolesForMunicipalityrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
@@ -183,6 +84,127 @@
         <parameter name="cf" typeRef="java.lang.String" isList="false"/>
         <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdatePasswordAndCFrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateWorkMunicipality">
+        <parameter name="monday" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="tuesday" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="wednesday" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="thursday" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="friday" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="saturday" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="sunday" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="timezone" typeRef="java.lang.String" isList="false"/>
+        <parameter name="openTime" typeRef="java.sql.Time" isList="false"/>
+        <parameter name="closeTime" typeRef="java.sql.Time" isList="false"/>
+        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateWorkMunicipalityrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UserCount">
+        <return typeRef="cx2UserCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="userSubscriptionsCount">
+        <return typeRef="cx2userSubscriptionsCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="userSubscriptionsCountForMunicipality">
+        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2userSubscriptionsCountForMunicipalityrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="verifyPasswordResetToken">
+        <parameter name="token" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateRoleForMunicipality">
+        <parameter name="role" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="AdminsMunicipalities">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2AdminsMunicipalitiesrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="EmployeesMunicipalities">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2EmployeesMunicipalitiesrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="GetRolesForMunicipality">
+        <parameter name="role" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2GetRolesForMunicipalityrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="MunicipalityCount">
+        <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="resetPasswordForUser">
+        <parameter name="newPassword" typeRef="java.lang.String" isList="false"/>
+        <parameter name="userID" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2resetPasswordForUserrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="resetPasswordWithTokenForUser">
+        <parameter name="userid" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="token" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2resetPasswordWithTokenForUserrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="StandardUserMunicipalites">
+        <parameter name="USER" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2StandardUserMunicipalitesrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="SubDivisonCount">
+        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2SubDivisonCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateCFInProfile">
+        <parameter name="cf" typeRef="java.lang.String" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateCFInProfilertnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateGlobalEmailSig">
+        <parameter name="gs" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateGlobalEmailSigrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateInfoFromMyProfile">
+        <parameter name="fn" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ln" typeRef="java.lang.String" isList="false"/>
+        <parameter name="em" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ph" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ad1" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ad2" typeRef="java.lang.String" isList="false"/>
+        <parameter name="st" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="ct" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ctry" typeRef="java.lang.String" isList="false"/>
+        <parameter name="pc" typeRef="java.lang.String" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateInfoFromMyProfilertnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateMunicipalityInfo">
+        <parameter name="mn" typeRef="java.lang.String" isList="false"/>
+        <parameter name="em" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ph" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ad1" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ad2" typeRef="java.lang.String" isList="false"/>
+        <parameter name="st" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="ct" typeRef="java.lang.String" isList="false"/>
+        <parameter name="pc" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateMunicipalityInfortnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateNewPassword">
+        <parameter name="password" typeRef="java.lang.String" isList="false"/>
+        <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateNewPasswordrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdatePasswordAndCF">
+        <parameter name="password" typeRef="java.lang.String" isList="false"/>
+        <parameter name="cf" typeRef="java.lang.String" isList="false"/>
+        <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdatePasswordAndCFrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateRoleForMunicipality">
+        <parameter name="role" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateRoleForMunicipalityrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdateWorkMunicipality">
         <parameter name="monday" typeRef="java.lang.Boolean" isList="false"/>
@@ -542,6 +564,24 @@
             <element name="PostalCode" typeRef="java.lang.String"/>
             <element name="State" typeRef="java.lang.String"/>
         </dataobject>
+        <dataobject javaType="cx2GetRolesForMunicipalityrtnType">
+            <element name="Active" typeRef="java.lang.String"/>
+            <element name="Address1" typeRef="java.lang.String"/>
+            <element name="Address2" typeRef="java.lang.String"/>
+            <element name="Banned" typeRef="java.lang.String"/>
+            <element name="City" typeRef="java.lang.String"/>
+            <element name="CommunicationFrequency" typeRef="java.lang.String"/>
+            <element name="Country" typeRef="java.lang.String"/>
+            <element name="Email" typeRef="java.lang.String"/>
+            <element name="FirstName" typeRef="java.lang.String"/>
+            <element name="ID" typeRef="java.math.BigDecimal"/>
+            <element name="LastName" typeRef="java.lang.String"/>
+            <element name="Password" typeRef="java.lang.String"/>
+            <element name="PhoneNumber" typeRef="java.lang.String"/>
+            <element name="Photo" typeRef="[B"/>
+            <element name="PostalCode" typeRef="java.lang.String"/>
+            <element name="StateId" typeRef="java.math.BigDecimal"/>
+        </dataobject>
         <dataobject javaType="cx2MunicipalityCountrtnType">
             <element name="municipalitiesCount" typeRef="java.lang.Integer"/>
         </dataobject>
@@ -571,6 +611,7 @@
         <dataobject javaType="cx2UpdateMunicipalityInfortnType"/>
         <dataobject javaType="cx2UpdateNewPasswordrtnType"/>
         <dataobject javaType="cx2UpdatePasswordAndCFrtnType"/>
+        <dataobject javaType="cx2UpdateRoleForMunicipalityrtnType"/>
         <dataobject javaType="cx2UpdateWorkMunicipalityrtnType"/>
         <dataobject javaType="cx2UserCountrtnType">
             <element name="usersCount" typeRef="java.lang.Integer"/>

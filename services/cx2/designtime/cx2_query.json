@@ -80,6 +80,48 @@
       "State" : "java.lang.String"
     }
   }, {
+    "name" : "GetRolesForMunicipality",
+    "query" : "select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID",
+    "comment" : "GetRolesForMunicipality",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "role",
+      "paramType" : "java.lang.String",
+      "testValue" : "MunicipalityEmployee",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "municipality",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2GetRolesForMunicipalityrtnType",
+    "returnTypeMetadata" : {
+      "Active" : "java.lang.String",
+      "Address1" : "java.lang.String",
+      "Address2" : "java.lang.String",
+      "Banned" : "java.lang.String",
+      "City" : "java.lang.String",
+      "CommunicationFrequency" : "java.lang.String",
+      "Country" : "java.lang.String",
+      "Email" : "java.lang.String",
+      "FirstName" : "java.lang.String",
+      "ID" : "java.math.BigDecimal",
+      "LastName" : "java.lang.String",
+      "Password" : "java.lang.String",
+      "PhoneNumber" : "java.lang.String",
+      "Photo" : "[B",
+      "PostalCode" : "java.lang.String",
+      "StateId" : "java.math.BigDecimal"
+    }
+  }, {
     "name" : "MunicipalityCount",
     "query" : "select count(*) as municipalitiesCount from Municipalities",
     "comment" : "MunicipalityCount",
@@ -464,6 +506,38 @@
       "list" : false
     } ],
     "outputType" : "cx2UpdatePasswordAndCFrtnType",
+    "returnTypeMetadata" : { }
+  }, {
+    "name" : "UpdateRoleForMunicipality",
+    "query" : "update Roles set RoleName=:role where MunicipalityId=:municipality and UserId=:user",
+    "comment" : "UpdateRoleForMunicipality",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "role",
+      "paramType" : "java.lang.String",
+      "testValue" : "MunicipalityEmployee",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "municipality",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "user",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "67",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateRoleForMunicipalityrtnType",
     "returnTypeMetadata" : { }
   }, {
     "name" : "UpdateWorkMunicipality",

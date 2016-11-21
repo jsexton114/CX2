@@ -17,6 +17,7 @@ import com.wavemaker.runtime.data.exception.QueryParameterMismatchException;
 public interface Cx2QueryExecutorService {
     Page<Object> executeAdminsMunicipalities(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeEmployeesMunicipalities(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
+    Page<Object> executeGetRolesForMunicipality(Pageable pageable, java.lang.String role, java.lang.Integer municipality) throws QueryParameterMismatchException;
     Page<Object> executeMunicipalityCount(Pageable pageable) throws QueryParameterMismatchException;
 	int executeResetPasswordForUser(  java.lang.String newPassword , java.lang.Integer userID) throws QueryParameterMismatchException;
 	int executeResetPasswordWithTokenForUser(  java.lang.Integer userid , java.lang.String token) throws QueryParameterMismatchException;
@@ -28,6 +29,7 @@ public interface Cx2QueryExecutorService {
 	int executeUpdateMunicipalityInfo(  java.lang.String mn , java.lang.String em , java.lang.String ph , java.lang.String ad1 , java.lang.String ad2 , java.lang.Integer st , java.lang.String ct , java.lang.String pc , java.lang.Integer municipality) throws QueryParameterMismatchException;
 	int executeUpdateNewPassword(  java.lang.String password , java.lang.Integer newUser) throws QueryParameterMismatchException;
 	int executeUpdatePasswordAndCF(  java.lang.String password , java.lang.String cf , java.lang.Integer newUser) throws QueryParameterMismatchException;
+	int executeUpdateRoleForMunicipality(  java.lang.String role , java.lang.Integer municipality , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateWorkMunicipality(  java.lang.Boolean monday , java.lang.Boolean tuesday , java.lang.Boolean wednesday , java.lang.Boolean thursday , java.lang.Boolean friday , java.lang.Boolean saturday , java.lang.Boolean sunday , java.lang.String timezone , java.sql.Time openTime , java.sql.Time closeTime , java.lang.Integer municipalityId) throws QueryParameterMismatchException;
     Page<Object> executeUserCount(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeUserSubscriptionsCount(Pageable pageable) throws QueryParameterMismatchException;

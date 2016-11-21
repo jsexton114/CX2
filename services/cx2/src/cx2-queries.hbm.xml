@@ -11,6 +11,11 @@
       select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID
     ]]>
   </sql-query>
+  <sql-query name="GetRolesForMunicipality">
+    <![CDATA[
+      select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID
+    ]]>
+  </sql-query>
   <sql-query name="MunicipalityCount">
     <![CDATA[
       select count(*) as municipalitiesCount from Municipalities
@@ -65,6 +70,11 @@
   <sql-query name="UpdatePasswordAndCF">
     <![CDATA[
       UPDATE Users SET Password=:password, CommunicationFrequency=:cf where ID=:newUser
+    ]]>
+  </sql-query>
+  <sql-query name="UpdateRoleForMunicipality">
+    <![CDATA[
+      update Roles set RoleName=:role where MunicipalityId=:municipality and UserId=:user
     ]]>
   </sql-query>
   <sql-query name="UpdateWorkMunicipality">
