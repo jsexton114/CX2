@@ -74,15 +74,34 @@
                             </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow14">
-                            <wm-gridcolumn columnwidth="12" name="gridcolumn20_1" padding="2em unset">
-                                <wm-panel iconclass="wi wi-building" name="panel1" title="YourMuncipalities"></wm-panel>
+                            <wm-gridcolumn columnwidth="3" name="gridcolumn31"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn20_1" padding="2em unset">
+                                <wm-panel iconclass="wi wi-building" name="panel1" title="YourMuncipalities">
+                                    <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.MunicpalitiesList.dataSet" navigation="None" name="livelist1" nodatamessage="No Municipalities Selected">
+                                        <wm-listtemplate layout="media" name="listtemplate1">
+                                            <wm-layoutgrid name="layoutgrid5">
+                                                <wm-gridrow name="gridrow17_1">
+                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn25_1">
+                                                        <wm-label padding="unset 0.5em" name="label11" caption="bind:Variables.MunicpalitiesList.dataSet[$i].municipalityName"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn29" horizontalalign="right">
+                                                        <wm-button class="btn-default btn-primary" caption="Remove" type="button" margin="unset 0.5em" name="buttonRemove" iconclass="wi wi-delete" on-click="buttonRemoveClick($event, $scope, item, currentItemWidgets)"></wm-button>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                                <wm-gridrow name="gridrow18_1">
+                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn27_1">
+                                                        <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.MunicpalitiesList.dataSet[$i].state"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn32"></wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                        </wm-listtemplate>
+                                    </wm-livelist>
+                                </wm-panel>
                             </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="3" name="gridcolumn30"></wm-gridcolumn>
                         </wm-gridrow>
-                        <wm-gridrow name="gridrow15_1">
-                            <wm-gridcolumn columnwidth="12" name="gridcolumn22" padding="2em unset" horizontalalign="center">
-                                <wm-label padding="unset 0.5em" name="labelNoMunicipalities" fontweight="bold" fontsize="15" caption="No Municipalities Selected"></wm-label>
-                            </wm-gridcolumn>
-                        </wm-gridrow>
+                        <wm-gridrow name="gridrow15_1"></wm-gridrow>
                     </wm-layoutgrid>
                 </wm-wizardstep>
                 <wm-wizardstep name="wizardstep3" title="Communication">

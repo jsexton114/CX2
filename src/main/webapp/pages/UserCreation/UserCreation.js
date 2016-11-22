@@ -32,10 +32,6 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
     }
 
 
-    $scope.checkboxsetMunicipalitesChange = function($event, $isolateScope, newVal, oldVal) {
-        selectedMunicipalites = newVal;
-    };
-
     $scope.CreateUseronSuccess = function(variable, data) {
         //Looping for selected no of municipalities
         for (var i = 0; i < selectedMunicipalites.length; i++) {
@@ -93,22 +89,43 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
     };
 
 
-    $scope.GetMunicipalitiesonSuccess = function(variable, data) {
-        if (data.length == 0) {
-            $scope.Widgets.labelNoMunicipalities.show = true;
-            $scope.Widgets.compositeSelectMunicipalites.show = false;
-        } else {
-            $scope.Widgets.labelNoMunicipalities.show = false;
-            $scope.Widgets.compositeSelectMunicipalites.show = true;
-        }
-    };
 
 
     $scope.ButtonAddMuncipalitiesClick = function($event, $isolateScope) {
-        $scope.Widgets.textSearchMunicipalities.datavalue;
+        var temp = $scope.Widgets.textSearchMunicipalities.datavalue;
+        var data = $scope.Variables.MunicpalitiesList.dataSet;
+        // checking for any municipalities in MunicpalitiesList variable, if not add from search 
+        if (data.length == 0) {
+            data.push(temp);
+        } else {
+            // checking if adding value already exist in MunicpalitiesList variable 
+            var exist = 0;
+            for (let i = 0; i < data.length; i++) {
+                if (temp.id == data[i].id)
+                    exist = 1;
+            }
+            // If already added then notify user else push to MunicpalitiesList variable
+            if (exist == 1)
+                $scope.Variables.MunicipalityExist.notify();
+            else
+                data.push(temp);
+
+        }
+        // Setting for adding to subscriptions
+        selectedMunicipalites = $scope.Variables.MunicpalitiesList.dataSet;
     };
 
 
+
+
+    $scope.buttonRemoveClick = function($event, $isolateScope, item, currentItemWidgets) {
+        // Removing the deleted municipalities
+        _.remove($scope.Variables.MunicpalitiesList.dataSet, {
+            id: item.id
+        });
+        // Setting for adding to subscriptions
+        selectedMunicipalites = $scope.Variables.MunicpalitiesList.dataSet;
+    };
 
 }]);
 
