@@ -60,25 +60,27 @@
                 <wm-wizardstep name="wizardstep2" title="Municipalities">
                     <wm-layoutgrid name="layoutgrid4">
                         <wm-gridrow name="gridrow13">
-                            <wm-gridcolumn columnwidth="6" name="gridcolumn18_1"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="6" name="gridcolumn19_1">
-                                <wm-search name="search1" placeholder="Search Municipalites"></wm-search>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn18_1">
+                                <wm-composite name="composite5">
+                                    <wm-label class="col-md-3 control-label" name="label8" caption="Search Municipalities"></wm-label>
+                                    <wm-container class="col-md-9" name="container5">
+                                        <wm-search name="textSearchMunicipalities" placeholder="Start Typing" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="municipalityName" displaylabel="municipalityName" displayimagesrc="logo" datafield="All Fields"
+                                        on-submit="textSearchMunicipalitiesSubmit($event, $scope)"></wm-search>
+                                    </wm-container>
+                                </wm-composite>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn24">
+                                <wm-button class="btn-default" caption="AddMuncipalities" type="button" margin="unset 0.5em" name="ButtonAddMuncipalities" iconclass="wi wi-add" on-click="ButtonAddMuncipalitiesClick($event, $scope)"></wm-button>
                             </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow14">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn20_1" padding="2em unset">
-                                <wm-composite name="compositeSelectMunicipalites">
-                                    <wm-label class="col-md-3 control-label" name="labelSM" caption="Select Municipalities"></wm-label>
-                                    <wm-container class="col-md-9" name="container4_1">
-                                        <wm-checkboxset height="auto" name="checkboxsetMunicipalites" dataset="bind:Variables.GetMunicipalities.dataSet" datafield="All Fields" displayfield="municipalityName" on-change="checkboxsetMunicipalitesChange($event, $scope, newVal, oldVal)"
-                                        margin="2em unset"></wm-checkboxset>
-                                    </wm-container>
-                                </wm-composite>
+                                <wm-panel iconclass="wi wi-building" name="panel1" title="YourMuncipalities"></wm-panel>
                             </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow15_1">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn22" padding="2em unset" horizontalalign="center">
-                                <wm-label padding="unset 0.5em" name="labelNoMunicipalities" fontweight="bold" fontsize="15" caption="No Municipalities Found"></wm-label>
+                                <wm-label padding="unset 0.5em" name="labelNoMunicipalities" fontweight="bold" fontsize="15" caption="No Municipalities Selected"></wm-label>
                             </wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>

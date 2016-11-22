@@ -346,11 +346,7 @@
     "name" : "GetMunicipalities",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ {
-      "target" : "municipalityName",
-      "value" : "bind:Widgets.search1.query",
-      "type" : "string"
-    } ],
+    "dataBinding" : [ ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "Municipalities",
@@ -730,7 +726,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 1,
+    "bindCount" : 2,
     "spinnerContext" : "page",
     "tableName" : "Municipalities",
     "tableType" : "TABLE",

@@ -103,6 +103,13 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         }
     };
 
+
+    $scope.ButtonAddMuncipalitiesClick = function($event, $isolateScope) {
+        $scope.Widgets.textSearchMunicipalities.datavalue;
+    };
+
+
+
 }]);
 
 Application.$controller("liveform2Controller", ["$scope",

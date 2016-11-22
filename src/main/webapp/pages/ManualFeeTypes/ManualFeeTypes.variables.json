@@ -31,7 +31,11 @@
     "name" : "Cx2ManualFeeTypesData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber",
+      "type" : "number"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "ManualFeeTypes",
@@ -450,6 +454,7 @@
       "watchOn" : "Cx2MunicipalitiesData",
       "package" : "com.civicxpress.cx2.ManualFeeTypes"
     } ],
+    "filterFields" : { },
     "package" : "com.civicxpress.cx2.ManualFeeTypes"
   },
   "SelectedMunicipalityObj" : {
