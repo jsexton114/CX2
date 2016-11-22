@@ -36,6 +36,9 @@ public class CXPasswordResetService {
     // This calls a SQL query on the backend
     public boolean resetPasswordUsingToken(String token, String newPassword){
         //This method needs to check if the supplied token is invalid or not.
+
+        // find if the token exists in the database
+        // if the token, exists, then take the user supplied input and reset the password.
         return false;
     }
 

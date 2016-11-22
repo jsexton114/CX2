@@ -122,6 +122,26 @@
       "StateId" : "java.math.BigDecimal"
     }
   }, {
+    "name" : "getUserIdFromPasswordResetToken",
+    "query" : "select UserId from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)",
+    "comment" : "Returns a UserID, given a valid password reset token. Used internally",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "token",
+      "paramType" : "java.lang.String",
+      "testValue" : "asdfadsfasdfasd",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2getUserIdFromPasswordResetTokenrtnType",
+    "returnTypeMetadata" : {
+      "UserId" : "java.math.BigDecimal"
+    }
+  }, {
     "name" : "MunicipalityCount",
     "query" : "select count(*) as municipalitiesCount from Municipalities",
     "comment" : "MunicipalityCount",

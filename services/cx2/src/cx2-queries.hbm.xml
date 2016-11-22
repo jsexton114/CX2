@@ -16,6 +16,11 @@
       select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID
     ]]>
   </sql-query>
+  <sql-query name="getUserIdFromPasswordResetToken">
+    <![CDATA[
+      select UserId from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)
+    ]]>
+  </sql-query>
   <sql-query name="MunicipalityCount">
     <![CDATA[
       select count(*) as municipalitiesCount from Municipalities

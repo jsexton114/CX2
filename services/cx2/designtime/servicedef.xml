@@ -85,6 +85,12 @@
         <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdatePasswordAndCFrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateRoleForMunicipality">
+        <parameter name="role" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateRoleForMunicipalityrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateWorkMunicipality">
         <parameter name="monday" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="tuesday" typeRef="java.lang.Boolean" isList="false"/>
@@ -113,10 +119,8 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="UpdateRoleForMunicipality">
-        <parameter name="role" typeRef="java.lang.String" isList="false"/>
-        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+    <operation operationType="nativequery" name="getUserIdFromPasswordResetToken">
+        <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
@@ -131,6 +135,10 @@
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2GetRolesForMunicipalityrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="getUserIdFromPasswordResetToken">
+        <parameter name="token" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2getUserIdFromPasswordResetTokenrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
@@ -615,6 +623,9 @@
         <dataobject javaType="cx2UpdateWorkMunicipalityrtnType"/>
         <dataobject javaType="cx2UserCountrtnType">
             <element name="usersCount" typeRef="java.lang.Integer"/>
+        </dataobject>
+        <dataobject javaType="cx2getUserIdFromPasswordResetTokenrtnType">
+            <element name="UserId" typeRef="java.math.BigDecimal"/>
         </dataobject>
         <dataobject javaType="cx2resetPasswordForUserrtnType"/>
         <dataobject javaType="cx2resetPasswordWithTokenForUserrtnType"/>
