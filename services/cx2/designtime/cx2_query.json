@@ -46,6 +46,33 @@
       "WednesdayYN" : "java.lang.Boolean"
     }
   }, {
+    "name" : "CheckingUserWithMunicipalityInRoles",
+    "query" : "select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user",
+    "comment" : "CheckingUserWithMunicipalityInRoles",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "muncipality",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "user",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "58",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2CheckingUserWithMunicipalityInRolesrtnType",
+    "returnTypeMetadata" : {
+      "exist" : "java.lang.Integer"
+    }
+  }, {
     "name" : "EmployeesMunicipalities",
     "query" : "select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID",
     "comment" : "EmployeesMunicipalities",
@@ -141,6 +168,45 @@
     "returnTypeMetadata" : {
       "UserId" : "java.math.BigDecimal"
     }
+  }, {
+    "name" : "InsertNewRole",
+    "query" : "insert into Roles(RoleName,MunicipalityId,Description,UserId) values (:RoleName,:MunicipalityId,:Description,:UserId)",
+    "comment" : "InsertNewRole",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "RoleName",
+      "paramType" : "java.lang.String",
+      "testValue" : "MunicipalityEmployee",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "MunicipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "Description",
+      "paramType" : "java.lang.String",
+      "testValue" : "MunicipalityEmployee",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "UserId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "58",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2InsertNewRolertnType",
+    "returnTypeMetadata" : { }
   }, {
     "name" : "MunicipalityCount",
     "query" : "select count(*) as municipalitiesCount from Municipalities",

@@ -309,7 +309,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 1,
+    "bindCount" : 2,
     "spinnerContext" : "page",
     "tableName" : "Users",
     "tableType" : "TABLE",
@@ -342,6 +342,38 @@
     "type" : "string",
     "isList" : true,
     "saveInPhonegap" : false
+  },
+  "CheckingUserWithMunicipalityInRoles" : {
+    "_id" : "wm-CheckingUserWithMunicipalityInRoles-wm.ServiceVariable-1479797017181",
+    "name" : "CheckingUserWithMunicipalityInRoles",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "muncipality",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber",
+      "type" : "integer"
+    }, {
+      "target" : "user",
+      "value" : "bind:Widgets.textSelectUser.datavalue",
+      "type" : "integer"
+    } ],
+    "type" : "cx2CheckingUserWithMunicipalityInRolesrtnType",
+    "service" : "cx2",
+    "operation" : "executeCheckingUserWithMunicipalityInRoles",
+    "operationId" : "QueryExecutionController_executeCheckingUserWithMunicipalityInRoles",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "Cx2UserSubscriptionsData" : {
     "_id" : "wm-Cx2UserSubscriptionsData-wm.LiveVariable-1478765910572",
@@ -1025,7 +1057,8 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "isDefault" : true,
-    "controller" : "QueryExecution"
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "GetEmployeeRolesForMunicipality" : {
     "_id" : "wm-GetEmployeeRolesForMunicipality-wm.ServiceVariable-1479739101126",
@@ -1057,7 +1090,8 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "isDefault" : true,
-    "controller" : "QueryExecution"
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "MunicipalityObj" : {
     "_id" : "wm-MunicipalityObj-wm.LiveVariable-1479206533782",
@@ -1447,7 +1481,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 4,
+    "bindCount" : 6,
     "tableName" : "Municipalities",
     "tableType" : "TABLE",
     "properties" : [ "states" ],
@@ -1460,6 +1494,47 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Municipalities"
+  },
+  "NewRole" : {
+    "_id" : "wm-NewRole-wm.ServiceVariable-1479795290118",
+    "name" : "NewRole",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "RoleName",
+      "value" : "bind:Widgets.textSelectRole.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "MunicipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber",
+      "type" : "integer"
+    }, {
+      "target" : "Description",
+      "value" : "bind:Variables.AdminOrEmp.dataSet.dataValue",
+      "type" : "string"
+    }, {
+      "target" : "UserId",
+      "value" : "bind:Widgets.textSelectUser.datavalue",
+      "type" : "integer"
+    } ],
+    "type" : "cx2InsertNewRolertnType",
+    "service" : "cx2",
+    "operation" : "executeInsertNewRole",
+    "operationId" : "QueryExecutionController_executeInsertNewRole",
+    "operationType" : "post",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.GetEmployeeRolesForMunicipality.invoke();Variables.GetAdminRolesForMunicipality.invoke();Widgets.dialogAddEmployeeORAdmin.close()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "RemoveAdmin" : {
     "_id" : "wm-RemoveEmployee-wm.ServiceVariable-1479737508696",
@@ -1826,15 +1901,15 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "role",
-      "value" : "bind:Widgets.formMunicipalityEmployeeORAdmin.formWidgets.role.datavalue",
+      "value" : "bind:Widgets.textSelectRole.datavalue",
       "type" : "string"
     }, {
       "target" : "municipality",
-      "value" : "bind:Widgets.formMunicipalityEmployeeORAdmin.formWidgets.municipality.datavalue | toNumber",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber",
       "type" : "integer"
     }, {
       "target" : "user",
-      "value" : "bind:Widgets.formMunicipalityEmployeeORAdmin.formWidgets.user.datavalue",
+      "value" : "bind:Widgets.textSelectUser.datavalue",
       "type" : "integer"
     } ],
     "type" : "cx2UpdateRoleForMunicipalityrtnType",
@@ -1847,7 +1922,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.GetEmployeeRolesForMunicipality.invoke()",
+    "onSuccess" : "Variables.GetEmployeeRolesForMunicipality.invoke();Variables.GetAdminRolesForMunicipality.invoke();Widgets.dialogAddEmployeeORAdmin.close()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

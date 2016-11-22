@@ -19,6 +19,11 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", function($
         $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityEmployee";
     };
 
+
+    $scope.buttonAddAdminClick = function($event, $isolateScope) {
+        $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityAdmin";
+    };
+
 }]);
 
 
@@ -73,5 +78,14 @@ Application.$controller("dialogAddEmployeeORAdminController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.buttonRoleClick = function($event, $isolateScope) {
+            if ($scope.Variables.CheckingUserWithMunicipalityInRoles.dataSet.content[0].exist > 0) {
+                $scope.Variables.UpdateEmployeeORAdminRoleForMunicipality.update();
+            } else {
+                $scope.Variables.NewRole.update();
+            }
+        };
+
     }
 ]);

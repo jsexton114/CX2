@@ -42,6 +42,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeCheckingUserWithMunicipalityInRoles(Pageable pageable, java.lang.Integer muncipality, java.lang.Integer user)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("muncipality", muncipality);
+        params.put("user", user);
+        return queryExecutor.executeNamedQuery("CheckingUserWithMunicipalityInRoles", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeEmployeesMunicipalities(Pageable pageable, java.lang.Integer user)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -64,6 +73,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("token", token);
         return queryExecutor.executeNamedQuery("getUserIdFromPasswordResetToken", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public int executeInsertNewRole( java.lang.String RoleName ,java.lang.Integer MunicipalityId ,java.lang.String Description ,java.lang.Integer UserId)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("RoleName", RoleName);
+        params.put("MunicipalityId", MunicipalityId);
+        params.put("Description", Description);
+        params.put("UserId", UserId);
+        return queryExecutor.executeNamedQueryForUpdate("InsertNewRole", params);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override

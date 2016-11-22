@@ -50,6 +50,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/CheckingUserWithMunicipalityInRoles", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeCheckingUserWithMunicipalityInRoles(@RequestParam(value = "muncipality", required = false) java.lang.Integer muncipality, @RequestParam(value = "user", required = false) java.lang.Integer user, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query CheckingUserWithMunicipalityInRoles");
+        Page<Object> result = queryService.executeCheckingUserWithMunicipalityInRoles(pageable, muncipality, user);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/EmployeesMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeEmployeesMunicipalities(@RequestParam(value = "user", required = false) java.lang.Integer user, Pageable pageable) throws QueryParameterMismatchException {
@@ -75,6 +85,16 @@ public class QueryExecutionController {
     public Page<Object> executeGetUserIdFromPasswordResetToken(@RequestParam(value = "token", required = false) java.lang.String token, Pageable pageable) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query getUserIdFromPasswordResetToken");
         Page<Object> result = queryService.executeGetUserIdFromPasswordResetToken(pageable, token);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/InsertNewRole", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeInsertNewRole(@RequestParam(value = "RoleName", required = false) java.lang.String RoleName, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, @RequestParam(value = "Description", required = false) java.lang.String Description, @RequestParam(value = "UserId", required = false) java.lang.Integer UserId) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query InsertNewRole");
+        int result = queryService.executeInsertNewRole(RoleName, MunicipalityId, Description, UserId);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

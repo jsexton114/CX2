@@ -6,6 +6,11 @@
       select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID
     ]]>
   </sql-query>
+  <sql-query name="CheckingUserWithMunicipalityInRoles">
+    <![CDATA[
+      select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user
+    ]]>
+  </sql-query>
   <sql-query name="EmployeesMunicipalities">
     <![CDATA[
       select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID
@@ -19,6 +24,11 @@
   <sql-query name="getUserIdFromPasswordResetToken">
     <![CDATA[
       select UserId from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)
+    ]]>
+  </sql-query>
+  <sql-query name="InsertNewRole">
+    <![CDATA[
+      insert into Roles(RoleName,MunicipalityId,Description,UserId) values (:RoleName,:MunicipalityId,:Description,:UserId)
     ]]>
   </sql-query>
   <sql-query name="MunicipalityCount">
