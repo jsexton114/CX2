@@ -23,4 +23,10 @@ Application.$controller("ResetPasswordPageController", ["$scope", function($scop
         }
     };
 
+
+    $scope.resetPasswordonSuccess = function(variable, data) {
+        //if(data)
+        $scope.Variables.NewUserToLogin.navigate();
+    };
+
 }]);
