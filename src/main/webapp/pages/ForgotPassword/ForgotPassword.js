@@ -21,7 +21,7 @@ Application.$controller("ForgotPasswordPageController", ["$scope", "wmToaster", 
     $scope.getUserIDonSuccess = function(variable, data) {
         if (data.content.length === 0) {
             // if user not found in database
-            wmToaster.show('error', 'ERROR', 'User Not Found, Please signup', 5000);
+            wmToaster.show('error', 'User Not Found', 'Please Signup', 5000);
             $scope.Widgets.signup.show = true;
         } else {
             $scope.Variables.sendResetPasswordbyUserID.setInput('userID', data.content[0].ID);
