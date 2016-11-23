@@ -13,6 +13,10 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CheckingUserWithMunicipalityInRolesrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="DeleteExistingSubscriptionsForUser">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2DeleteExistingSubscriptionsForUserrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="EmployeesMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2EmployeesMunicipalitiesrtnType" isList="false"/>
@@ -145,10 +149,6 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="DeleteExistingSubscriptionsForUser">
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
-    </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AdminsMunicipalitiesrtnType" isList="false"/>
@@ -175,6 +175,10 @@
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2GetRolesForMunicipalityrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="getUserID">
+        <parameter name="Email" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2getUserIDrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="getUserIdFromPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2getUserIdFromPasswordResetTokenrtnType" isList="false"/>
@@ -197,7 +201,7 @@
     </operation>
     <operation operationType="nativequery" name="resetPasswordForUser">
         <parameter name="newPassword" typeRef="java.lang.String" isList="false"/>
-        <parameter name="userID" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2resetPasswordForUserrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="resetPasswordWithTokenForUser">
@@ -684,6 +688,9 @@
         </dataobject>
         <dataobject javaType="cx2getEmailIdrtnType">
             <element name="Email" typeRef="java.lang.String"/>
+        </dataobject>
+        <dataobject javaType="cx2getUserIDrtnType">
+            <element name="ID" typeRef="java.math.BigDecimal"/>
         </dataobject>
         <dataobject javaType="cx2getUserIdFromPasswordResetTokenrtnType">
             <element name="UserId" typeRef="java.math.BigDecimal"/>

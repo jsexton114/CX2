@@ -84,6 +84,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeGetUserID(Pageable pageable, java.lang.String Email)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("Email", Email);
+        return queryExecutor.executeNamedQuery("getUserID", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeGetUserIdFromPasswordResetToken(Pageable pageable, java.lang.String token)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -120,11 +128,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
-	public int executeResetPasswordForUser( java.lang.String newPassword ,java.lang.Integer userID)
+	public int executeResetPasswordForUser( java.lang.String newPassword ,java.lang.String token)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("newPassword", newPassword);
-        params.put("userID", userID);
+        params.put("token", token);
         return queryExecutor.executeNamedQueryForUpdate("resetPasswordForUser", params);
 	}
 	@Transactional(value = "cx2TransactionManager")

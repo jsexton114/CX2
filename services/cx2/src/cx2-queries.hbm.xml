@@ -31,6 +31,11 @@
       select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID
     ]]>
   </sql-query>
+  <sql-query name="getUserID">
+    <![CDATA[
+      select ID from Users where Email =:Email
+    ]]>
+  </sql-query>
   <sql-query name="getUserIdFromPasswordResetToken">
     <![CDATA[
       select UserId from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)
@@ -53,7 +58,7 @@
   </sql-query>
   <sql-query name="resetPasswordForUser">
     <![CDATA[
-      UPDATE Users SET Password=:newPassword where ID=:userID
+      UPDATE Users SET Password=:newPassword where ID in (select UserId from UserPasswordResetTokens where ExpirationDate >= GETDATE() and Token = :token)
     ]]>
   </sql-query>
   <sql-query name="resetPasswordWithTokenForUser">

@@ -100,6 +100,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/getUserID", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeGetUserID(@RequestParam(value = "Email", required = false) java.lang.String Email, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query getUserID");
+        Page<Object> result = queryService.executeGetUserID(pageable, Email);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/getUserIdFromPasswordResetToken", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeGetUserIdFromPasswordResetToken(@RequestParam(value = "token", required = false) java.lang.String token, Pageable pageable) throws QueryParameterMismatchException {
@@ -142,9 +152,9 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/resetPasswordForUser", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public int executeResetPasswordForUser(@RequestParam(value = "newPassword", required = false) java.lang.String newPassword, @RequestParam(value = "userID", required = false) java.lang.Integer userID) throws QueryParameterMismatchException {
+    public int executeResetPasswordForUser(@RequestParam(value = "newPassword", required = false) java.lang.String newPassword, @RequestParam(value = "token", required = false) java.lang.String token) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query resetPasswordForUser");
-        int result = queryService.executeResetPasswordForUser(newPassword, userID);
+        int result = queryService.executeResetPasswordForUser(newPassword, token);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }
