@@ -42,7 +42,7 @@ public class ResetPasswordMailService {
     private static final String RESET_NOTIFICATION_MAIL_ID ="civicxpress@gmail.com ";
     private static final String RESET_NOTIFICATION_MAIL_PASSWORD ="civicxpress2016!";
     private static final String EMAIL_SUBJECT = "Account Password Reset";
-    private static final String RESET_URL = "https://www.wavemakeronline.com/run-j4lrgncwgl/CivicXpress/#/ResetPassword?token=";
+    private static final String RESET_URL = "https://www.wavemakeronline.com/run-vqs2y8q615/CivicXpress/#/ResetPassword?token=";
     
     @Autowired
     private SecurityService securityService;

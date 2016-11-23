@@ -52,6 +52,7 @@ public class CXPasswordResetService {
     // This calls a SQL query on the backend
     //This method is used to display the Password Fields/Incorrect or Expired Token based on the return value
     public int validateSignupToken(String token){
+        logger.info("------------*****************"+queryService.executeVerifyPasswordResetToken(null,token));
         if(queryService.executeVerifyPasswordResetToken(null,token).getSize() > 0){
         return 1;
         }

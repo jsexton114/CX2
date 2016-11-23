@@ -78,4 +78,14 @@
   "permission" : "PermitAll",
   "roles" : [ ],
   "httpMethod" : "GET"
+}, {
+  "urlPattern" : "/services/cXPasswordReset/resetPasswordUsingToken",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "GET"
+}, {
+  "urlPattern" : "/services/cXPasswordReset/validateSignupToken",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "GET"
 } ]

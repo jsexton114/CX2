@@ -13,14 +13,14 @@ Application.$controller("ResetPasswordPageController", ["$scope", function($scop
          * '$scope.Widgets.username.datavalue'
          */
         $scope.token = $scope.pageParams.token;
-        // if ($scope.pageParams.token) {
-        //     $scope.Variables.verifyPasswordResetToken.setInput('token', $scope.pageParams.token);
-        //     $scope.Variables.verifyPasswordResetToken.update({}, function(data) {
+        if ($scope.pageParams.token) {
+            $scope.Variables.ValidateToken.setInput('token', $scope.pageParams.token);
+            $scope.Variables.ValidateToken.update({}, function(data) {
 
-        //     });
-        // } else {
-        //     // go to logi page
-        // }
+            });
+        } else {
+
+        }
     };
 
 }]);
