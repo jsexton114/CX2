@@ -21,7 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.FormProcessStatuses;
+import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.SfnewElectricConnection;
 import com.civicxpress.cx2.SfnewResidentialStructure;
@@ -42,12 +42,12 @@ public class FormTypesServiceImpl implements FormTypesService {
 	private SfnewElectricConnectionService sfnewElectricConnectionService;
 
     @Autowired
-	@Qualifier("cx2.FormProcessStatusesService")
-	private FormProcessStatusesService formProcessStatusesService;
-
-    @Autowired
 	@Qualifier("cx2.SfnewResidentialStructureService")
 	private SfnewResidentialStructureService sfnewResidentialStructureService;
+
+    @Autowired
+	@Qualifier("cx2.FormStatusesService")
+	private FormStatusesService formStatusesService;
 
     @Autowired
     @Qualifier("cx2.FormTypesDao")
@@ -62,14 +62,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 	public FormTypes create(FormTypes formTypes) {
         LOGGER.debug("Creating a new FormTypes with information: {}", formTypes);
         FormTypes formTypesCreated = this.wmGenericDao.create(formTypes);
-        if(formTypesCreated.getSfnewResidentialStructures() != null) {
-            for(SfnewResidentialStructure sfnewResidentialStructure : formTypesCreated.getSfnewResidentialStructures()) {
-                sfnewResidentialStructure.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child SfnewResidentialStructure with information: {}", sfnewResidentialStructure);
-                sfnewResidentialStructureService.create(sfnewResidentialStructure);
-            }
-        }
-
         if(formTypesCreated.getSfnewElectricConnections() != null) {
             for(SfnewElectricConnection sfnewElectricConnection : formTypesCreated.getSfnewElectricConnections()) {
                 sfnewElectricConnection.setFormTypes(formTypesCreated);
@@ -78,11 +70,19 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getFormProcessStatuseses() != null) {
-            for(FormProcessStatuses formProcessStatusese : formTypesCreated.getFormProcessStatuseses()) {
-                formProcessStatusese.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormProcessStatuses with information: {}", formProcessStatusese);
-                formProcessStatusesService.create(formProcessStatusese);
+        if(formTypesCreated.getSfnewResidentialStructures() != null) {
+            for(SfnewResidentialStructure sfnewResidentialStructure : formTypesCreated.getSfnewResidentialStructures()) {
+                sfnewResidentialStructure.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child SfnewResidentialStructure with information: {}", sfnewResidentialStructure);
+                sfnewResidentialStructureService.create(sfnewResidentialStructure);
+            }
+        }
+
+        if(formTypesCreated.getFormStatuseses() != null) {
+            for(FormStatuses formStatusese : formTypesCreated.getFormStatuseses()) {
+                formStatusese.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
+                formStatusesService.create(formStatusese);
             }
         }
         return formTypesCreated;
@@ -161,17 +161,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return sfnewResidentialStructureService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sfnewElectricConnections");
 
@@ -183,13 +172,24 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormProcessStatuses> findAssociatedFormProcessStatuseses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formProcessStatuseses");
+    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("formTypes.id = '" + id + "'");
 
-        return formProcessStatusesService.findAll(queryBuilder.toString(), pageable);
+        return sfnewResidentialStructureService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatuseses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formStatusesService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
@@ -204,19 +204,19 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormProcessStatusesService instance
+	 * @param service SfnewResidentialStructureService instance
 	 */
-	protected void setFormProcessStatusesService(FormProcessStatusesService service) {
-        this.formProcessStatusesService = service;
+	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
+        this.sfnewResidentialStructureService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SfnewResidentialStructureService instance
+	 * @param service FormStatusesService instance
 	 */
-	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
-        this.sfnewResidentialStructureService = service;
+	protected void setFormStatusesService(FormStatusesService service) {
+        this.formStatusesService = service;
     }
 
 }

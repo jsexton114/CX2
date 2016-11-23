@@ -25,7 +25,6 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
-import com.civicxpress.cx2.FormProcessStatuses;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.service.FormStatusesService;
 
@@ -117,14 +116,6 @@ public class FormStatusesController {
     public Long countFormStatuses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting FormStatuses");
         return formStatusesService.count(query);
-    }
-
-    @RequestMapping(value = "/{id}/formProcessStatuseses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the formProcessStatuseses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormProcessStatuses> findAssociatedFormProcessStatuseses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formProcessStatuseses");
-        return formStatusesService.findAssociatedFormProcessStatuseses(id, pageable);
     }
 
     /**

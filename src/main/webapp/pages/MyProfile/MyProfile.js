@@ -111,7 +111,6 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
 
 
     $scope.DeleteSubscriptionsonSuccess = function(variable, data) {
-        debugger
         var temp = $scope.Variables.MunicpalitiesList.dataSet;
         for (var i = 0; i < temp.length; i++) {
             // For Registering User  for subscribed municialities        

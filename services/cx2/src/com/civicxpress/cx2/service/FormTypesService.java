@@ -14,7 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.FormProcessStatuses;
+import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.SfnewElectricConnection;
 import com.civicxpress.cx2.SfnewResidentialStructure;
@@ -129,18 +129,6 @@ public interface FormTypesService {
 	long count(String query);
 
     /*
-     * Returns the associated sfnewResidentialStructures for given FormTypes id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SfnewResidentialStructure instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated sfnewElectricConnections for given FormTypes id.
      *
      * @param id value of id; value cannot be null
@@ -153,16 +141,28 @@ public interface FormTypesService {
     Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated formProcessStatuseses for given FormTypes id.
+     * Returns the associated sfnewResidentialStructures for given FormTypes id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated FormProcessStatuses instances.
+     * @return Paginated list of associated SfnewResidentialStructure instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<FormProcessStatuses> findAssociatedFormProcessStatuseses(Integer id, Pageable pageable);
+    Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated formStatuseses for given FormTypes id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormStatuses instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable);
 
 }
 

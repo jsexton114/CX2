@@ -52,7 +52,7 @@
     </operation>
     <operation operationType="nativequery" name="resetPasswordForUser">
         <parameter name="newPassword" typeRef="java.lang.String" isList="false"/>
-        <parameter name="userID" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2resetPasswordForUserrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="resetPasswordWithTokenForUser">
@@ -340,7 +340,7 @@
             <element name="formTypeses" typeRef="com.civicxpress.cx2.FormTypes" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
-        <dataobject javaType="com.civicxpress.cx2.FormProcessStatuses">
+        <dataobject javaType="com.civicxpress.cx2.FormStatuses">
             <element name="allowAuthorEdits" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="allowInspections" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="allowPayment" typeRef="java.lang.Boolean" allowNull="true"/>
@@ -348,10 +348,9 @@
             <element name="allowSharedWithEdits" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="considerClosed" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="createAsRecord" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="description" typeRef="java.lang.String" allowNull="true"/>
             <element name="emailSubjectLine" typeRef="java.lang.String" allowNull="true"/>
             <element name="emailTextBody" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
@@ -359,13 +358,8 @@
             <element name="readAccess" typeRef="java.lang.String" allowNull="true"/>
             <element name="recalculateAutoFees" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="sortOrder" typeRef="java.lang.Long" allowNull="true"/>
-            <element name="writeAccess" typeRef="java.lang.String" allowNull="true"/>
-        </dataobject>
-        <dataobject javaType="com.civicxpress.cx2.FormStatuses">
-            <element name="description" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formProcessStatuseses" typeRef="com.civicxpress.cx2.FormProcessStatuses" isList="true" allowNull="true"/>
-            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="status" typeRef="java.lang.String" allowNull="true"/>
+            <element name="writeAccess" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormTypes">
             <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
@@ -373,7 +367,7 @@
             <element name="flatFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="formCategories" typeRef="com.civicxpress.cx2.FormCategories" allowNull="true"/>
             <element name="formCategoryId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formProcessStatuseses" typeRef="com.civicxpress.cx2.FormProcessStatuses" isList="true" allowNull="true"/>
+            <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
             <element name="formType" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
