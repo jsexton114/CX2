@@ -4,6 +4,7 @@ package com.civicxpress.cxpasswordresetservice.controller;
 import com.civicxpress.cxpasswordresetservice.CXPasswordResetService;
 import javax.mail.MessagingException;
 import java.lang.String;
+import java.lang.Object;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,10 @@ public class CXPasswordResetController {
         return cXPasswordResetService.resetPasswordUsingToken(token, newPassword);
     }
 
-    @RequestMapping(value = "/validateSignupToken", method = RequestMethod.GET)
+    @RequestMapping(value = "/validateSignupToken", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public int validateSignupToken(@RequestParam(value = "token", required = false) String token) {
+    public Object validateSignupToken(@RequestParam(value = "token", required = false) String token) {
         return cXPasswordResetService.validateSignupToken(token);
     }
 }

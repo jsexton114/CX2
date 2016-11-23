@@ -11,7 +11,9 @@
     </operation>
     <operation name="validateSignupToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
-        <return typeRef="int" isList="false"/>
+        <return typeRef="java.lang.Object" isList="false"/>
     </operation>
-    <dataobjects/>
+    <dataobjects>
+        <dataobject javaType="java.lang.Object" name="Object" supportsQuickData="false"/>
+    </dataobjects>
 </service>
