@@ -32,6 +32,13 @@
                     <exclude>**/*.java</exclude>
                 </excludes>
             </resource>
+            <resource>
+                <filtering>true</filtering>
+                <directory>services/ResetPasswordMailService/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
         </resources>
         <finalName>CivicXpress</finalName>
         <filters>
@@ -101,6 +108,7 @@
                         <configuration>
                             <sources>
                                 <source>services/cx2/src</source>
+                                <source>services/ResetPasswordMailService/src</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -278,16 +286,23 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.38</version>
+        </dependency>
+        <dependency>
+            <groupId>mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/mail.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>sqljdbc4-4.0</groupId>
             <artifactId>sqljdbc4-4.0</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/sqljdbc4-4.0.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.38</version>
         </dependency>
     </dependencies>
     <dependencyManagement>

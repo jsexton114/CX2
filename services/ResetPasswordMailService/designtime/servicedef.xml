@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="ResetPasswordMailService" class="com.civicxpress.resetpasswordmailservice.ResetPasswordMailService" type="JavaService" springFile="ResetPasswordMailService.spring.xml">
+    <operation name="sendEmail">
+        <parameter name="recipient" typeRef="java.lang.String" isList="false"/>
+        <parameter name="token" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="java.lang.String" isList="false"/>
+    </operation>
+    <dataobjects/>
+</service>

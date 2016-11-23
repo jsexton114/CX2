@@ -18,6 +18,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeAdminsMunicipalities(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeCheckingUserWithMunicipalityInRoles(Pageable pageable, java.lang.Integer muncipality, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeEmployeesMunicipalities(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
+    Page<Object> executeGetEmailId(Pageable pageable, java.lang.Integer userID) throws QueryParameterMismatchException;
     Page<Object> executeGetRolesForMunicipality(Pageable pageable, java.lang.String role, java.lang.Integer municipality) throws QueryParameterMismatchException;
     Page<Object> executeGetUserIdFromPasswordResetToken(Pageable pageable, java.lang.String token) throws QueryParameterMismatchException;
 	int executeInsertNewRole(  java.lang.String RoleName , java.lang.Integer MunicipalityId , java.lang.String Description , java.lang.Integer UserId) throws QueryParameterMismatchException;

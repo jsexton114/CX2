@@ -9,6 +9,11 @@
   "roles" : [ ],
   "httpMethod" : null
 }, {
+  "urlPattern" : "/pages/ForgotPassword/**",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : null
+}, {
   "urlPattern" : "/pages/header/**",
   "permission" : "PermitAll",
   "roles" : [ ],
@@ -55,6 +60,11 @@
   "httpMethod" : "POST"
 }, {
   "urlPattern" : "/services/cx2/States",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "GET"
+}, {
+  "urlPattern" : "/services/cXPasswordReset/generateAndSendPasswordTokenForUser",
   "permission" : "PermitAll",
   "roles" : [ ],
   "httpMethod" : "GET"
