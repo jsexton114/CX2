@@ -3,15 +3,8 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
+        //Current Date for subscriptions
+        $scope.toDay = Date.parse(new Date().toDateString());
     };
 
 
@@ -118,16 +111,16 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
 
 
     $scope.DeleteSubscriptionsonSuccess = function(variable, data) {
+        debugger
         var temp = $scope.Variables.MunicpalitiesList.dataSet;
         for (var i = 0; i < temp.length; i++) {
             // For Registering User  for subscribed municialities        
-            $scope.Variables.RegisterSubscriptions.setInput({
-                "dateSubscribed": $scope.toDay,
-                "users": data,
-                "userId": data.id,
-                "municipalityId": temp[i].id
+            $scope.Variables.InsertSubscriptions.setInput({
+                "DateSubscribed": $scope.toDay,
+                "UserId": $scope.Variables.CurrentUserDetails.dataSet.id,
+                "MunicipalityId": temp[i].id
             });
-            $scope.Variables.RegisterSubscriptions.insertRecord();
+            $scope.Variables.InsertSubscriptions.update();
         }
     };
 

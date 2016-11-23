@@ -60,11 +60,11 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
-    @RequestMapping(value = "/queries/DeleteExistingSubscriptionsForUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/DeleteExistingSubscriptionsForUser", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Object> executeDeleteExistingSubscriptionsForUser(@RequestParam(value = "user", required = false) java.lang.Integer user, Pageable pageable) throws QueryParameterMismatchException {
+    public int executeDeleteExistingSubscriptionsForUser(@RequestParam(value = "user", required = false) java.lang.Integer user) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query DeleteExistingSubscriptionsForUser");
-        Page<Object> result = queryService.executeDeleteExistingSubscriptionsForUser(pageable, user);
+        int result = queryService.executeDeleteExistingSubscriptionsForUser(user);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

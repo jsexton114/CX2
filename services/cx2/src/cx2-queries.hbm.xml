@@ -13,7 +13,7 @@
   </sql-query>
   <sql-query name="DeleteExistingSubscriptionsForUser">
     <![CDATA[
-      select * from UserSubscriptions where UserId=:user
+      delete from UserSubscriptions where UserId=:user
     ]]>
   </sql-query>
   <sql-query name="EmployeesMunicipalities">

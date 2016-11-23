@@ -51,11 +51,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
-	public Page<Object> executeDeleteExistingSubscriptionsForUser(Pageable pageable, java.lang.Integer user)
+	public int executeDeleteExistingSubscriptionsForUser( java.lang.Integer user)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("user", user);
-        return queryExecutor.executeNamedQuery("DeleteExistingSubscriptionsForUser", params, pageable);
+        return queryExecutor.executeNamedQueryForUpdate("DeleteExistingSubscriptionsForUser", params);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override

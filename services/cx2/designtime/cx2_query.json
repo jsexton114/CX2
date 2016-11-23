@@ -74,27 +74,22 @@
     }
   }, {
     "name" : "DeleteExistingSubscriptionsForUser",
-    "query" : "select * from UserSubscriptions where UserId=:user",
+    "query" : "delete from UserSubscriptions where UserId=:user",
     "comment" : "DeleteExistingSubscriptionsForUser",
     "description" : null,
     "nativeSql" : true,
     "returnsSingleResult" : false,
-    "update" : false,
+    "update" : true,
     "queryParams" : [ {
       "paramName" : "user",
       "paramType" : "java.lang.Integer",
-      "testValue" : "76",
+      "testValue" : "42",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
     } ],
     "outputType" : "cx2DeleteExistingSubscriptionsForUserrtnType",
-    "returnTypeMetadata" : {
-      "DateSubscribed" : "java.lang.String",
-      "ID" : "java.math.BigDecimal",
-      "MunicipalityId" : "java.math.BigDecimal",
-      "UserId" : "java.math.BigDecimal"
-    }
+    "returnTypeMetadata" : { }
   }, {
     "name" : "EmployeesMunicipalities",
     "query" : "select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID",
