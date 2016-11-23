@@ -51,6 +51,7 @@ public class CXPasswordResetService {
     // Validates if the user clicked on the correct token
     // This calls a SQL query on the backend
     //This method is used to display the Password Fields/Incorrect or Expired Token based on the return value
+    // if the token, exists, then take the user supplied input and reset the password.
     public Object validateSignupToken(String token){
         logger.info("------------*****************"+queryService.executeVerifyPasswordResetToken(null,token));
         return queryService.executeVerifyPasswordResetToken(null,token).getTotalElements();
@@ -59,19 +60,12 @@ public class CXPasswordResetService {
     // Given a valid token and password, reset user's password
     // This calls a SQL query on the backend
     //This method reverifies the token and updates the password
-    public boolean resetPasswordUsingToken(String token, String newPassword){
+    public int resetPasswordUsingToken(String token, String newPassword){
        
         //This method needs to check if the supplied token is invalid or not.
         // find if the token exists in the database
-        // if the token, exists, then take the user supplied input and reset the password.
-
-         if(queryService.executeResetPasswordForUser(token,newPassword) == 1){
-             
-             return true;
-         }
-         else{
-            return false;
-         }
+        
+        return queryService.executeResetPasswordForUser(newPassword,token);
     }
 
     private String generateUUID(){

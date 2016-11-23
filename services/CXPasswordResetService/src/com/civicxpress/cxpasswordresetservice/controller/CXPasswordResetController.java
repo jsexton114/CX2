@@ -31,7 +31,7 @@ public class CXPasswordResetController {
     @RequestMapping(value = "/resetPasswordUsingToken", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public boolean resetPasswordUsingToken(@RequestParam(value = "token", required = false) String token, @RequestParam(value = "newPassword", required = false) String newPassword) {
+    public int resetPasswordUsingToken(@RequestParam(value = "token", required = false) String token, @RequestParam(value = "newPassword", required = false) String newPassword) {
         return cXPasswordResetService.resetPasswordUsingToken(token, newPassword);
     }
 

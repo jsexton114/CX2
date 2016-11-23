@@ -7,7 +7,7 @@
     <operation name="resetPasswordUsingToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <parameter name="newPassword" typeRef="java.lang.String" isList="false"/>
-        <return typeRef="boolean" isList="false"/>
+        <return typeRef="int" isList="false"/>
     </operation>
     <operation name="validateSignupToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
