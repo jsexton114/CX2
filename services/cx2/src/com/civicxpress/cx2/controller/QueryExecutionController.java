@@ -60,6 +60,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/DeleteExistingSubscriptionsForUser", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeDeleteExistingSubscriptionsForUser(@RequestParam(value = "user", required = false) java.lang.Integer user, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query DeleteExistingSubscriptionsForUser");
+        Page<Object> result = queryService.executeDeleteExistingSubscriptionsForUser(pageable, user);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/EmployeesMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeEmployeesMunicipalities(@RequestParam(value = "user", required = false) java.lang.Integer user, Pageable pageable) throws QueryParameterMismatchException {
@@ -105,6 +115,16 @@ public class QueryExecutionController {
     public int executeInsertNewRole(@RequestParam(value = "RoleName", required = false) java.lang.String RoleName, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, @RequestParam(value = "Description", required = false) java.lang.String Description, @RequestParam(value = "UserId", required = false) java.lang.Integer UserId) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query InsertNewRole");
         int result = queryService.executeInsertNewRole(RoleName, MunicipalityId, Description, UserId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/InsertSubscription", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeInsertSubscription(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, @RequestParam(value = "DateSubscribed", required = false) java.lang.String DateSubscribed) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query InsertSubscription");
+        int result = queryService.executeInsertSubscription(UserId, MunicipalityId, DateSubscribed);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

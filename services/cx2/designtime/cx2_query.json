@@ -73,6 +73,29 @@
       "exist" : "java.lang.Integer"
     }
   }, {
+    "name" : "DeleteExistingSubscriptionsForUser",
+    "query" : "select * from UserSubscriptions where UserId=:user",
+    "comment" : "DeleteExistingSubscriptionsForUser",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "user",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "76",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2DeleteExistingSubscriptionsForUserrtnType",
+    "returnTypeMetadata" : {
+      "DateSubscribed" : "java.lang.String",
+      "ID" : "java.math.BigDecimal",
+      "MunicipalityId" : "java.math.BigDecimal",
+      "UserId" : "java.math.BigDecimal"
+    }
+  }, {
     "name" : "EmployeesMunicipalities",
     "query" : "select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID",
     "comment" : "EmployeesMunicipalities",
@@ -226,6 +249,38 @@
       "list" : false
     } ],
     "outputType" : "cx2InsertNewRolertnType",
+    "returnTypeMetadata" : { }
+  }, {
+    "name" : "InsertSubscription",
+    "query" : "insert into UserSubscriptions(UserId,MunicipalityId,DateSubscribed) values(:UserId,:MunicipalityId,:DateSubscribed)",
+    "comment" : "InsertSubscription",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "UserId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "76",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "MunicipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "DateSubscribed",
+      "paramType" : "java.lang.String",
+      "testValue" : "1479894495",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2InsertSubscriptionrtnType",
     "returnTypeMetadata" : { }
   }, {
     "name" : "MunicipalityCount",

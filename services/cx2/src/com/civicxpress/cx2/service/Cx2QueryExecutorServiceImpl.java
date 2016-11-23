@@ -51,6 +51,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeDeleteExistingSubscriptionsForUser(Pageable pageable, java.lang.Integer user)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("user", user);
+        return queryExecutor.executeNamedQuery("DeleteExistingSubscriptionsForUser", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeEmployeesMunicipalities(Pageable pageable, java.lang.Integer user)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -92,6 +100,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("Description", Description);
         params.put("UserId", UserId);
         return queryExecutor.executeNamedQueryForUpdate("InsertNewRole", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public int executeInsertSubscription( java.lang.Integer UserId ,java.lang.Integer MunicipalityId ,java.lang.String DateSubscribed)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("UserId", UserId);
+        params.put("MunicipalityId", MunicipalityId);
+        params.put("DateSubscribed", DateSubscribed);
+        return queryExecutor.executeNamedQueryForUpdate("InsertSubscription", params);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override

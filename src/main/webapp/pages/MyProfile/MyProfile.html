@@ -127,14 +127,49 @@
                             <wm-panel-footer name="panel_footer4"></wm-panel-footer>
                             <wm-layoutgrid name="layoutgrid5_2">
                                 <wm-gridrow name="gridrow20_1">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn23_1"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn23_1">
+                                        <wm-composite name="composite13">
+                                            <wm-label class="col-md-3 control-label" name="label14_1" caption="Search Municipalities"></wm-label>
+                                            <wm-container class="col-md-9" name="container13">
+                                                <wm-search name="textSearchMunicipalities" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="email" displaylabel="municipalityName" displayimagesrc="logo" datafield="All Fields"></wm-search>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn26_1" horizontalalign="center">
+                                        <wm-button class="btn-default" caption="AddMunicipality" type="button" margin="unset 0.5em" name="buttonAddMunicipality" iconclass="wi wi-add" on-click="buttonAddMunicipalityClick($event, $scope)"></wm-button>
+                                    </wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow21_1">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn25_1"></wm-gridcolumn>
+                                <wm-gridrow name="gridrow21_1" padding="2em unset">
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn25_1"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn27_2">
+                                        <wm-panel iconclass="wi wi-building" name="panel1" title="YourMuncipalities">
+                                            <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.MunicpalitiesList.dataSet" navigation="None" name="livelist1" nodatamessage="No Municipalities Selected">
+                                                <wm-listtemplate layout="media" name="listtemplate1">
+                                                    <wm-layoutgrid name="layoutgrid5">
+                                                        <wm-gridrow name="gridrow17_1">
+                                                            <wm-gridcolumn columnwidth="8" name="gridcolumn25_1">
+                                                                <wm-label padding="unset 0.5em" name="label11" caption="bind:Variables.MunicpalitiesList.dataSet[$i].municipalityName"></wm-label>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn29" horizontalalign="right">
+                                                                <wm-button class="btn-default btn-primary" caption="Remove" type="button" margin="unset 0.5em" name="buttonRemove" iconclass="wi wi-delete" on-click="buttonRemoveClick($event, $scope, item, currentItemWidgets)"></wm-button>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow18_1">
+                                                            <wm-gridcolumn columnwidth="8" name="gridcolumn27_1">
+                                                                <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.MunicpalitiesList.dataSet[$i].state"></wm-label>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn32"></wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                    </wm-layoutgrid>
+                                                </wm-listtemplate>
+                                            </wm-livelist>
+                                        </wm-panel>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn28_1"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow22_3">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn27_1" horizontalalign="right">
-                                        <wm-button caption="Update" type="submit" class="btn-primary" name="buttonUpdateSubscriptions"></wm-button>
+                                        <wm-button caption="Update" type="submit" class="btn-primary" name="buttonUpdateSubscriptions" on-click="buttonUpdateSubscriptionsClick($event, $scope)"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -144,10 +179,9 @@
                 <wm-gridrow name="gridrow22_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn36">
                         <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications">
-                            <wm-panel-footer name="panel_footer5"></wm-panel-footer>
                             <wm-label padding="unset 0.5em" name="label32" caption="Please select your notification frequency" fontweight="bold" fontsize="15"></wm-label>
                             <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF"></wm-radioset>
-                            <wm-button class="btn-default" caption="Save" type="button" margin="unset unset unset 80%" width="20%" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
+                            <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="unset unset unset 80%" width="20%" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
