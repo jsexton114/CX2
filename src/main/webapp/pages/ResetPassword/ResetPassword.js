@@ -25,8 +25,11 @@ Application.$controller("ResetPasswordPageController", ["$scope", function($scop
 
 
     $scope.resetPasswordonSuccess = function(variable, data) {
-        //if(data)
-        $scope.Variables.NewUserToLogin.navigate();
+        $scope.Variables.deleteToken.setInput('token', $scope.pageParams.token);
+        $scope.Variables.deleteToken.update({}, function(data) {
+            $scope.Variables.NewUserToLogin.navigate();
+        });
+
     };
 
 }]);

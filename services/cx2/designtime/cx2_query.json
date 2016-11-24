@@ -91,6 +91,24 @@
     "outputType" : "cx2DeleteExistingSubscriptionsForUserrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "deleteToken",
+    "query" : "delete from UserPasswordResetTokens where Token =:token",
+    "comment" : "to deleted token after changing password",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "token",
+      "paramType" : "java.lang.String",
+      "testValue" : "f1930a32-dfaa-482f-a052-71d3194d3bc6",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2deleteTokenrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "EmployeesMunicipalities",
     "query" : "select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID",
     "comment" : "EmployeesMunicipalities",

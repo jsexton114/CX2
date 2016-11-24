@@ -47,6 +47,10 @@
         <parameter name="DateSubscribed" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2InsertSubscriptionrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="MunicipalitiesGroupsCounts">
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2MunicipalitiesGroupsCountsrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
     </operation>
@@ -149,10 +153,6 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="MunicipalitiesGroupsCounts">
-        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
-    </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AdminsMunicipalitiesrtnType" isList="false"/>
@@ -165,6 +165,10 @@
     <operation operationType="nativequery" name="DeleteExistingSubscriptionsForUser">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2DeleteExistingSubscriptionsForUserrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="deleteToken">
+        <parameter name="token" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2deleteTokenrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="EmployeesMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
@@ -709,6 +713,7 @@
         <dataobject javaType="cx2UserCountrtnType">
             <element name="usersCount" typeRef="java.lang.Integer"/>
         </dataobject>
+        <dataobject javaType="cx2deleteTokenrtnType"/>
         <dataobject javaType="cx2getEmailIdrtnType">
             <element name="Email" typeRef="java.lang.String"/>
         </dataobject>

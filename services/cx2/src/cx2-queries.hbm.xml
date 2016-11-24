@@ -16,6 +16,11 @@
       delete from UserSubscriptions where UserId=:user
     ]]>
   </sql-query>
+  <sql-query name="deleteToken">
+    <![CDATA[
+      delete from UserPasswordResetTokens where Token =:token
+    ]]>
+  </sql-query>
   <sql-query name="EmployeesMunicipalities">
     <![CDATA[
       select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID
