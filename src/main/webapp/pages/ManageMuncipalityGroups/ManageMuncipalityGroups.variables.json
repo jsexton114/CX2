@@ -26,6 +26,25 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1479980936680",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/MunicipalityAdministration"
+    }, {
+      "label" : "ManageMuncipalityGroups",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/ManageMuncipalityGroups"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "Cx2MunicipalityGroupMembersData" : {
     "_id" : "wm-Cx2MunicipalityGroupMembersData-wm.LiveVariable-1479977718370",
     "name" : "Cx2MunicipalityGroupMembersData",
