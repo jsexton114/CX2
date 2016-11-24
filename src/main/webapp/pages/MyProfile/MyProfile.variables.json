@@ -369,19 +369,20 @@
     "service" : "cx2",
     "operation" : "executeDeleteExistingSubscriptionsForUser",
     "operationId" : "QueryExecutionController_executeDeleteExistingSubscriptionsForUser",
-    "operationType" : "get",
+    "operationType" : "delete",
     "serviceType" : "DataService",
     "dataSet" : [ ],
-    "isList" : true,
+    "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "DeleteSubscriptionsonSuccess($event, $scope)",
+    "onSuccess" : "DeleteSubscriptionsonSuccess($event, $scope);Variables.YourSubscriptionsUpdated.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "GetMunicipalities" : {
     "_id" : "wm-GetMunicipalities-wm.LiveVariable-1479892411246",
@@ -1448,6 +1449,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.YourSubscriptionsUpdated.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -1775,5 +1777,29 @@
     "relatedTables" : [ ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.States"
+  },
+  "YourSubscriptionsUpdated" : {
+    "_id" : "wm-YourSubscriptionsUpdated-wm.NotificationVariable-1479983531723",
+    "name" : "YourSubscriptionsUpdated",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "list"
+    }, {
+      "target" : "text",
+      "value" : "Your Subscriptions are updated",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "list"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "list"
+    } ],
+    "operation" : "toast"
   }
 }
