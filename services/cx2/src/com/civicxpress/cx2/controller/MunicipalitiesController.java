@@ -38,6 +38,7 @@ import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
 import com.civicxpress.cx2.ManualFeeTypes;
 import com.civicxpress.cx2.Municipalities;
+import com.civicxpress.cx2.MunicipalityGroups;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.Subdivisions;
 import com.civicxpress.cx2.UserSubscriptions;
@@ -180,6 +181,14 @@ public class MunicipalitiesController {
     public Page<ManualFeeTypes> findAssociatedManualFeeTypeses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated manualFeeTypeses");
         return municipalitiesService.findAssociatedManualFeeTypeses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/municipalityGroupses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the municipalityGroupses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MunicipalityGroups> findAssociatedMunicipalityGroupses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalityGroupses");
+        return municipalitiesService.findAssociatedMunicipalityGroupses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/subdivisionses", method = RequestMethod.GET)

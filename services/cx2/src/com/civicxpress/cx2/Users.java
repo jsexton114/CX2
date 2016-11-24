@@ -51,8 +51,9 @@ public class Users implements Serializable {
     private String password;
     private Integer stateId;
     private String country;
-    private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
+    private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
+    private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
     private States states;
     private List<Roles> roleses = new ArrayList<>();
@@ -205,6 +206,15 @@ public class Users implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<SfnewResidentialStructure> getSfnewResidentialStructures() {
+        return this.sfnewResidentialStructures;
+    }
+
+    public void setSfnewResidentialStructures(List<SfnewResidentialStructure> sfnewResidentialStructures) {
+        this.sfnewResidentialStructures = sfnewResidentialStructures;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<SfnewElectricConnection> getSfnewElectricConnections() {
         return this.sfnewElectricConnections;
     }
@@ -214,12 +224,12 @@ public class Users implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<SfnewResidentialStructure> getSfnewResidentialStructures() {
-        return this.sfnewResidentialStructures;
+    public List<MunicipalityGroupMembers> getMunicipalityGroupMemberses() {
+        return this.municipalityGroupMemberses;
     }
 
-    public void setSfnewResidentialStructures(List<SfnewResidentialStructure> sfnewResidentialStructures) {
-        this.sfnewResidentialStructures = sfnewResidentialStructures;
+    public void setMunicipalityGroupMemberses(List<MunicipalityGroupMembers> municipalityGroupMemberses) {
+        this.municipalityGroupMemberses = municipalityGroupMemberses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")

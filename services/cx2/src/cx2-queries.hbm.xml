@@ -51,6 +51,11 @@
       insert into UserSubscriptions(UserId,MunicipalityId,DateSubscribed) values(:UserId,:MunicipalityId,:DateSubscribed)
     ]]>
   </sql-query>
+  <sql-query name="MunicipalitiesGroupsCounts">
+    <![CDATA[
+      select count(*) as groupsCount from MunicipalityGroups where MunicipalityId=:municipality
+    ]]>
+  </sql-query>
   <sql-query name="MunicipalityCount">
     <![CDATA[
       select count(*) as municipalitiesCount from Municipalities

@@ -14,6 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.MunicipalityGroupMembers;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SfnewElectricConnection;
 import com.civicxpress.cx2.SfnewResidentialStructure;
@@ -139,6 +140,18 @@ public interface UsersService {
 	long count(String query);
 
     /*
+     * Returns the associated sfnewResidentialStructures for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SfnewResidentialStructure instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated sfnewElectricConnections for given Users id.
      *
      * @param id value of id; value cannot be null
@@ -151,16 +164,16 @@ public interface UsersService {
     Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated sfnewResidentialStructures for given Users id.
+     * Returns the associated municipalityGroupMemberses for given Users id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SfnewResidentialStructure instances.
+     * @return Paginated list of associated MunicipalityGroupMembers instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable);
+    Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated userPasswordResetTokenses for given Users id.

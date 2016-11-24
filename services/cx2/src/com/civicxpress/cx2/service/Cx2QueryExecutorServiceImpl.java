@@ -121,6 +121,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeMunicipalitiesGroupsCounts(Pageable pageable, java.lang.Integer municipality)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("municipality", municipality);
+        return queryExecutor.executeNamedQuery("MunicipalitiesGroupsCounts", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeMunicipalityCount(Pageable pageable)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

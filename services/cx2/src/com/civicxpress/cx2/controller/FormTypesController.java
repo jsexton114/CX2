@@ -121,14 +121,6 @@ public class FormTypesController {
         return formTypesService.count(query);
     }
 
-    @RequestMapping(value = "/{id}/sfnewElectricConnections", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the sfnewElectricConnections instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated sfnewElectricConnections");
-        return formTypesService.findAssociatedSfnewElectricConnections(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/sfnewResidentialStructures", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the sfnewResidentialStructures instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -137,8 +129,17 @@ public class FormTypesController {
         return formTypesService.findAssociatedSfnewResidentialStructures(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/formStatuseses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/sfnewElectricConnections", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the sfnewElectricConnections instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewElectricConnections");
+        return formTypesService.findAssociatedSfnewElectricConnections(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/formStatuseses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formStatuseses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormStatuses> findAssociatedFormStatuseses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formStatuseses");
         return formTypesService.findAssociatedFormStatuseses(id, pageable);

@@ -49,8 +49,8 @@ public class FormTypes implements Serializable {
     private Integer formCategoryId;
     private String pageName;
     private Boolean municipalityInternalForm;
-    private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
+    private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private FormCategories formCategories;
     private Municipalities municipalities;
     private List<FormStatuses> formStatuseses = new ArrayList<>();
@@ -238,21 +238,21 @@ public class FormTypes implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<SfnewElectricConnection> getSfnewElectricConnections() {
-        return this.sfnewElectricConnections;
-    }
-
-    public void setSfnewElectricConnections(List<SfnewElectricConnection> sfnewElectricConnections) {
-        this.sfnewElectricConnections = sfnewElectricConnections;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
     public List<SfnewResidentialStructure> getSfnewResidentialStructures() {
         return this.sfnewResidentialStructures;
     }
 
     public void setSfnewResidentialStructures(List<SfnewResidentialStructure> sfnewResidentialStructures) {
         this.sfnewResidentialStructures = sfnewResidentialStructures;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<SfnewElectricConnection> getSfnewElectricConnections() {
+        return this.sfnewElectricConnections;
+    }
+
+    public void setSfnewElectricConnections(List<SfnewElectricConnection> sfnewElectricConnections) {
+        this.sfnewElectricConnections = sfnewElectricConnections;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -298,6 +298,26 @@
     "outputType" : "cx2InsertSubscriptionrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "MunicipalitiesGroupsCounts",
+    "query" : "select count(*) as groupsCount from MunicipalityGroups where MunicipalityId=:municipality",
+    "comment" : "MunicipalitiesGroupsCounts",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "municipality",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "3",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2MunicipalitiesGroupsCountsrtnType",
+    "returnTypeMetadata" : {
+      "groupsCount" : "java.lang.Integer"
+    }
+  }, {
     "name" : "MunicipalityCount",
     "query" : "select count(*) as municipalitiesCount from Municipalities",
     "comment" : "MunicipalityCount",

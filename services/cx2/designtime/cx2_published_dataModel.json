@@ -187,40 +187,15 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "electricLinesCount",
+      "fieldName" : "valueOfWork",
       "foreignKey" : false,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
       "length" : 255,
-      "name" : "ElectricLinesCount",
+      "name" : "ValueOfWork",
       "nullable" : true,
-      "oldName" : "ElectricLinesCount",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 19,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "connectionType",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "ConnectionType",
-      "nullable" : true,
-      "oldName" : "ConnectionType",
+      "oldName" : "ValueOfWork",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
@@ -282,10 +257,10 @@
       "unique" : false
     } ],
     "constraints" : [ ],
-    "entityName" : "SfnewElectricConnection",
-    "fullyQualifiedName" : "com.civicxpress.cx2.SfnewElectricConnection",
-    "name" : "SFNewElectricConnection",
-    "oldName" : "SFNewElectricConnection",
+    "entityName" : "SfnewResidentialStructure",
+    "fullyQualifiedName" : "com.civicxpress.cx2.SfnewResidentialStructure",
+    "name" : "SFNewResidentialStructure",
+    "oldName" : "SFNewResidentialStructure",
     "primaryKey" : {
       "columns" : [ "ID" ],
       "composite" : false,
@@ -293,7 +268,7 @@
         "generatorType" : "identity",
         "generatorValue" : null
       },
-      "name" : "PK__SFNewEle__3214EC2767E40590",
+      "name" : "PK__SFNewRes__3214EC2717B8D02E",
       "virtual" : false
     },
     "relations" : [ {
@@ -305,10 +280,10 @@
         "sourceColumn" : "FormTypeId",
         "targetColumn" : "ID"
       } ],
-      "name" : "FK_FormTypes_TO_SFNewEleAz3Sq",
+      "name" : "FK_FormTypes_TO_SFNewResq9hKe",
       "primary" : true,
       "selfRelation" : false,
-      "sourceTable" : "SFNewElectricConnection",
+      "sourceTable" : "SFNewResidentialStructure",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "FormTypes",
       "virtual" : false
@@ -321,10 +296,10 @@
         "sourceColumn" : "UserId",
         "targetColumn" : "ID"
       } ],
-      "name" : "FK_Users_TO_SFNewElectriAOMpG",
+      "name" : "FK_Users_TO_SFNewResidenwCVVH",
       "primary" : true,
       "selfRelation" : false,
-      "sourceTable" : "SFNewElectricConnection",
+      "sourceTable" : "SFNewResidentialStructure",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Users",
       "virtual" : false
@@ -515,15 +490,40 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "valueOfWork",
+      "fieldName" : "electricLinesCount",
       "foreignKey" : false,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
       "length" : 255,
-      "name" : "ValueOfWork",
+      "name" : "ElectricLinesCount",
       "nullable" : true,
-      "oldName" : "ValueOfWork",
+      "oldName" : "ElectricLinesCount",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 19,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "connectionType",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "ConnectionType",
+      "nullable" : true,
+      "oldName" : "ConnectionType",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
@@ -585,10 +585,10 @@
       "unique" : false
     } ],
     "constraints" : [ ],
-    "entityName" : "SfnewResidentialStructure",
-    "fullyQualifiedName" : "com.civicxpress.cx2.SfnewResidentialStructure",
-    "name" : "SFNewResidentialStructure",
-    "oldName" : "SFNewResidentialStructure",
+    "entityName" : "SfnewElectricConnection",
+    "fullyQualifiedName" : "com.civicxpress.cx2.SfnewElectricConnection",
+    "name" : "SFNewElectricConnection",
+    "oldName" : "SFNewElectricConnection",
     "primaryKey" : {
       "columns" : [ "ID" ],
       "composite" : false,
@@ -596,7 +596,7 @@
         "generatorType" : "identity",
         "generatorValue" : null
       },
-      "name" : "PK__SFNewRes__3214EC2717B8D02E",
+      "name" : "PK__SFNewEle__3214EC2767E40590",
       "virtual" : false
     },
     "relations" : [ {
@@ -608,10 +608,10 @@
         "sourceColumn" : "FormTypeId",
         "targetColumn" : "ID"
       } ],
-      "name" : "FK_FormTypes_TO_SFNewResq9hKe",
+      "name" : "FK_FormTypes_TO_SFNewEleAz3Sq",
       "primary" : true,
       "selfRelation" : false,
-      "sourceTable" : "SFNewResidentialStructure",
+      "sourceTable" : "SFNewElectricConnection",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "FormTypes",
       "virtual" : false
@@ -624,10 +624,138 @@
         "sourceColumn" : "UserId",
         "targetColumn" : "ID"
       } ],
-      "name" : "FK_Users_TO_SFNewResidenwCVVH",
+      "name" : "FK_Users_TO_SFNewElectriAOMpG",
       "primary" : true,
       "selfRelation" : false,
-      "sourceTable" : "SFNewResidentialStructure",
+      "sourceTable" : "SFNewElectricConnection",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "municipalityGroupId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "MunicipalityGroupId",
+      "nullable" : true,
+      "oldName" : "MunicipalityGroupId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "userId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "UserId",
+      "nullable" : true,
+      "oldName" : "UserId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "MunicipalityGroupMembers",
+    "fullyQualifiedName" : "com.civicxpress.cx2.MunicipalityGroupMembers",
+    "name" : "MunicipalityGroupMembers",
+    "oldName" : "MunicipalityGroupMembers",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__Municipa__3214EC272C042864",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "municipalityGroups",
+      "mappings" : [ {
+        "sourceColumn" : "MunicipalityGroupId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_MunicipalityGroups_TOKcoTM",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "MunicipalityGroupMembers",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "MunicipalityGroups",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "users",
+      "mappings" : [ {
+        "sourceColumn" : "UserId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_Users_TO_MunicipalityTIJ7c",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "MunicipalityGroupMembers",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Users",
       "virtual" : false
@@ -1293,22 +1421,6 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "sfnewElectricConnections",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "FormTypeId"
-      } ],
-      "name" : "FK_FormTypes_TO_SFNewEleAz3Sq",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceTable" : "FormTypes",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SFNewElectricConnection",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
       "fieldName" : "sfnewResidentialStructures",
       "mappings" : [ {
         "sourceColumn" : "ID",
@@ -1320,6 +1432,22 @@
       "sourceTable" : "FormTypes",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "SFNewResidentialStructure",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "sfnewElectricConnections",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "FormTypeId"
+      } ],
+      "name" : "FK_FormTypes_TO_SFNewEleAz3Sq",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "FormTypes",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SFNewElectricConnection",
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
@@ -2208,6 +2336,159 @@
         "updatable" : true,
         "defaultValue" : ""
       },
+      "fieldName" : "groupName",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "GroupName",
+      "nullable" : true,
+      "oldName" : "GroupName",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 19,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "groupDescription",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "GroupDescription",
+      "nullable" : true,
+      "oldName" : "GroupDescription",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 19,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "municipalityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "MunicipalityId",
+      "nullable" : true,
+      "oldName" : "MunicipalityId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "MunicipalityGroups",
+    "fullyQualifiedName" : "com.civicxpress.cx2.MunicipalityGroups",
+    "name" : "MunicipalityGroups",
+    "oldName" : "MunicipalityGroups",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__GroupDet__3214EC27EFB69D02",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "municipalityGroupMemberses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "MunicipalityGroupId"
+      } ],
+      "name" : "FK_MunicipalityGroups_TOKcoTM",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "MunicipalityGroups",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "MunicipalityGroupMembers",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "municipalities",
+      "mappings" : [ {
+        "sourceColumn" : "MunicipalityId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_Municipalities_TO_Gro1ci8l",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "MunicipalityGroups",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Municipalities",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
       "fieldName" : "firstName",
       "foreignKey" : false,
       "generatorType" : "assigned",
@@ -2602,6 +2883,22 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fieldName" : "sfnewResidentialStructures",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "UserId"
+      } ],
+      "name" : "FK_Users_TO_SFNewResidenwCVVH",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "Users",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SFNewResidentialStructure",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
       "fieldName" : "sfnewElectricConnections",
       "mappings" : [ {
         "sourceColumn" : "ID",
@@ -2618,17 +2915,17 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "sfnewResidentialStructures",
+      "fieldName" : "municipalityGroupMemberses",
       "mappings" : [ {
         "sourceColumn" : "ID",
         "targetColumn" : "UserId"
       } ],
-      "name" : "FK_Users_TO_SFNewResidenwCVVH",
+      "name" : "FK_Users_TO_MunicipalityTIJ7c",
       "primary" : false,
       "selfRelation" : false,
       "sourceTable" : "Users",
       "targetColumnsUniqueKey" : false,
-      "targetTable" : "SFNewResidentialStructure",
+      "targetTable" : "MunicipalityGroupMembers",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -3862,6 +4159,22 @@
       "sourceTable" : "Municipalities",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "ManualFeeTypes",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "municipalityGroupses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "MunicipalityId"
+      } ],
+      "name" : "FK_Municipalities_TO_Gro1ci8l",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "Municipalities",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "MunicipalityGroups",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -5108,6 +5421,31 @@
       "name" : "Country",
       "nullable" : true,
       "oldName" : "Country",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 19,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
+      "fieldName" : "unitNumber",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 25,
+      "name" : "UnitNumber",
+      "nullable" : true,
+      "oldName" : "UnitNumber",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,

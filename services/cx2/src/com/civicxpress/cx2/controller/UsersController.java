@@ -32,6 +32,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.MunicipalityGroupMembers;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SfnewElectricConnection;
 import com.civicxpress.cx2.SfnewResidentialStructure;
@@ -171,6 +172,14 @@ public class UsersController {
         return usersService.count(query);
     }
 
+    @RequestMapping(value = "/{id}/sfnewResidentialStructures", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the sfnewResidentialStructures instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
+        return usersService.findAssociatedSfnewResidentialStructures(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/sfnewElectricConnections", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the sfnewElectricConnections instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -179,12 +188,11 @@ public class UsersController {
         return usersService.findAssociatedSfnewElectricConnections(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/sfnewResidentialStructures", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the sfnewResidentialStructures instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
-        return usersService.findAssociatedSfnewResidentialStructures(id, pageable);
+    @RequestMapping(value = "/{id:.+}/municipalityGroupMemberses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the municipalityGroupMemberses instance associated with the given id.")
+    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
+        return usersService.findAssociatedMunicipalityGroupMemberses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/userPasswordResetTokenses", method = RequestMethod.GET)

@@ -149,6 +149,10 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="MunicipalitiesGroupsCounts">
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AdminsMunicipalitiesrtnType" isList="false"/>
@@ -195,6 +199,10 @@
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="DateSubscribed" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2InsertSubscriptionrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="MunicipalitiesGroupsCounts">
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2MunicipalitiesGroupsCountsrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
@@ -418,6 +426,7 @@
             <element name="streetType" typeRef="java.lang.String" allowNull="true"/>
             <element name="subdivisionId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="subdivisions" typeRef="com.civicxpress.cx2.Subdivisions" allowNull="true"/>
+            <element name="unitNumber" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Holidays">
             <element name="date" typeRef="java.util.Date" allowNull="true"/>
@@ -452,6 +461,7 @@
             <element name="manualFeeTypeses" typeRef="com.civicxpress.cx2.ManualFeeTypes" isList="true" allowNull="true"/>
             <element name="manualPaymentPercent" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="mondayYn" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="municipalityGroupses" typeRef="com.civicxpress.cx2.MunicipalityGroups" isList="true" allowNull="true"/>
             <element name="municipalityGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="municipalityName" typeRef="java.lang.String" allowNull="true"/>
             <element name="openTime" typeRef="java.util.Date" allowNull="true"/>
@@ -468,6 +478,21 @@
             <element name="tuesdayYn" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="userSubscriptionses" typeRef="com.civicxpress.cx2.UserSubscriptions" isList="true" allowNull="true"/>
             <element name="wednesdayYn" typeRef="java.lang.Boolean" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.MunicipalityGroupMembers">
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalityGroupId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
+            <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.MunicipalityGroups">
+            <element name="groupDescription" typeRef="java.lang.String" allowNull="true"/>
+            <element name="groupName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityGroupMemberses" typeRef="com.civicxpress.cx2.MunicipalityGroupMembers" isList="true" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Roles">
             <element name="description" typeRef="java.lang.String" allowNull="true"/>
@@ -551,6 +576,7 @@
             <element name="firstName" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="lastName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="municipalityGroupMemberses" typeRef="com.civicxpress.cx2.MunicipalityGroupMembers" isList="true" allowNull="true"/>
             <element name="password" typeRef="java.lang.String" allowNull="true"/>
             <element name="phoneNumber" typeRef="java.lang.String" allowNull="true"/>
             <element name="photo" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
@@ -646,6 +672,9 @@
         </dataobject>
         <dataobject javaType="cx2InsertNewRolertnType"/>
         <dataobject javaType="cx2InsertSubscriptionrtnType"/>
+        <dataobject javaType="cx2MunicipalitiesGroupsCountsrtnType">
+            <element name="groupsCount" typeRef="java.lang.Integer"/>
+        </dataobject>
         <dataobject javaType="cx2MunicipalityCountrtnType">
             <element name="municipalitiesCount" typeRef="java.lang.Integer"/>
         </dataobject>

@@ -20,6 +20,7 @@ import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
 import com.civicxpress.cx2.ManualFeeTypes;
 import com.civicxpress.cx2.Municipalities;
+import com.civicxpress.cx2.MunicipalityGroups;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.Subdivisions;
 import com.civicxpress.cx2.UserSubscriptions;
@@ -156,6 +157,18 @@ public interface MunicipalitiesService {
      * @see Page
      */
     Page<ManualFeeTypes> findAssociatedManualFeeTypeses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated municipalityGroupses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MunicipalityGroups instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MunicipalityGroups> findAssociatedMunicipalityGroupses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated subdivisionses for given Municipalities id.
