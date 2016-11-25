@@ -95,65 +95,6 @@
     "matchMode" : "start",
     "propertiesMap" : {
       "columns" : [ {
-        "fieldName" : "formCategories",
-        "type" : "integer",
-        "fullyQualifiedType" : "integer",
-        "columnName" : "FormCategoryId",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 10,
-        "generator" : "assigned",
-        "isRelated" : true,
-        "defaultValue" : "",
-        "relatedTableName" : "FormCategories",
-        "relatedEntityName" : "FormCategories",
-        "relatedColumnName" : "formCategoryId",
-        "relatedFieldName" : "formCategories.id",
-        "isList" : false,
-        "targetTable" : "FormCategories",
-        "scale" : 0,
-        "columns" : [ {
-          "fieldName" : "id",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "ID",
-          "isPrimaryKey" : true,
-          "notNull" : true,
-          "length" : 255,
-          "precision" : 10,
-          "generator" : "identity",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "category",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "Category",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 19,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "description",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "Description",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 19,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        } ]
-      }, {
         "fieldName" : "municipalities",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -733,6 +674,19 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "createdDate",
+        "type" : "date",
+        "fullyQualifiedType" : "date",
+        "columnName" : "CreatedDate",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 10,
+        "precision" : 19,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "FormTypes",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormTypes",
@@ -743,14 +697,8 @@
     "bindCount" : 1,
     "tableName" : "FormTypes",
     "tableType" : "TABLE",
-    "properties" : [ "formCategories", "municipalities" ],
+    "properties" : [ "municipalities" ],
     "relatedTables" : [ {
-      "columnName" : "formCategories",
-      "relationName" : "formCategories",
-      "type" : "FormCategories",
-      "watchOn" : "Cx2FormCategoriesData",
-      "package" : "com.civicxpress.cx2.FormTypes"
-    }, {
       "columnName" : "municipalities",
       "relationName" : "municipalities",
       "type" : "Municipalities",
@@ -1544,6 +1492,21 @@
         "targetTable" : "Users",
         "scale" : 0,
         "columns" : [ {
+          "fieldName" : "states",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "StateId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "defaultValue" : "",
+          "relatedColumnName" : "stateId",
+          "targetTable" : "States",
+          "scale" : 0
+        }, {
           "fieldName" : "id",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -1635,19 +1598,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "state",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "State",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 19,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "postalCode",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -1728,6 +1678,19 @@
           "type" : "string",
           "fullyQualifiedType" : "string",
           "columnName" : "Password",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "country",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "Country",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
@@ -1843,21 +1806,6 @@
         "targetTable" : "FormTypes",
         "scale" : 0,
         "columns" : [ {
-          "fieldName" : "formCategories",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "FormCategoryId",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "defaultValue" : "",
-          "relatedColumnName" : "formCategoryId",
-          "targetTable" : "FormCategories",
-          "scale" : 0
-        }, {
           "fieldName" : "municipalities",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -2106,6 +2054,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "createdDate",
+          "type" : "date",
+          "fullyQualifiedType" : "date",
+          "columnName" : "CreatedDate",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 10,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -2127,6 +2088,21 @@
         "targetTable" : "Users",
         "scale" : 0,
         "columns" : [ {
+          "fieldName" : "states",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "StateId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "defaultValue" : "",
+          "relatedColumnName" : "stateId",
+          "targetTable" : "States",
+          "scale" : 0
+        }, {
           "fieldName" : "id",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -2218,19 +2194,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "state",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "State",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 19,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "postalCode",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -2311,6 +2274,19 @@
           "type" : "string",
           "fullyQualifiedType" : "string",
           "columnName" : "Password",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "country",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "Country",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
@@ -2504,21 +2480,6 @@
         "targetTable" : "FormTypes",
         "scale" : 0,
         "columns" : [ {
-          "fieldName" : "formCategories",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "FormCategoryId",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "defaultValue" : "",
-          "relatedColumnName" : "formCategoryId",
-          "targetTable" : "FormCategories",
-          "scale" : 0
-        }, {
           "fieldName" : "municipalities",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -2767,6 +2728,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "createdDate",
+          "type" : "date",
+          "fullyQualifiedType" : "date",
+          "columnName" : "CreatedDate",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 10,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -2788,6 +2762,21 @@
         "targetTable" : "Users",
         "scale" : 0,
         "columns" : [ {
+          "fieldName" : "states",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "StateId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "defaultValue" : "",
+          "relatedColumnName" : "stateId",
+          "targetTable" : "States",
+          "scale" : 0
+        }, {
           "fieldName" : "id",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -2879,19 +2868,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "state",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "State",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 19,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "postalCode",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -2972,6 +2948,19 @@
           "type" : "string",
           "fullyQualifiedType" : "string",
           "columnName" : "Password",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "country",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "Country",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
@@ -3633,6 +3622,52 @@
     "matchMode" : "start",
     "propertiesMap" : {
       "columns" : [ {
+        "fieldName" : "states",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "StateId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : true,
+        "defaultValue" : "",
+        "relatedTableName" : "States",
+        "relatedEntityName" : "States",
+        "relatedColumnName" : "stateId",
+        "relatedFieldName" : "states.id",
+        "isList" : false,
+        "targetTable" : "States",
+        "scale" : 0,
+        "columns" : [ {
+          "fieldName" : "id",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ID",
+          "isPrimaryKey" : true,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 10,
+          "generator" : "identity",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "stateName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "StateName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        } ]
+      }, {
         "fieldName" : "id",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -3715,19 +3750,6 @@
         "type" : "string",
         "fullyQualifiedType" : "string",
         "columnName" : "City",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 19,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
-        "fieldName" : "state",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "State",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 255,
@@ -3825,6 +3847,19 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "country",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "Country",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 19,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "Users",
       "fullyQualifiedName" : "com.civicxpress.cx2.Users",
@@ -3835,8 +3870,14 @@
     "bindCount" : 1,
     "tableName" : "Users",
     "tableType" : "TABLE",
-    "properties" : [ ],
-    "relatedTables" : [ ],
+    "properties" : [ "states" ],
+    "relatedTables" : [ {
+      "columnName" : "states",
+      "relationName" : "states",
+      "type" : "States",
+      "watchOn" : "Cx2StatesData",
+      "package" : "com.civicxpress.cx2.Users"
+    } ],
     "package" : "com.civicxpress.cx2.Users"
   },
   "Cx2UserSubscriptionsData" : {
@@ -4226,6 +4267,21 @@
         "targetTable" : "Users",
         "scale" : 0,
         "columns" : [ {
+          "fieldName" : "states",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "StateId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "defaultValue" : "",
+          "relatedColumnName" : "stateId",
+          "targetTable" : "States",
+          "scale" : 0
+        }, {
           "fieldName" : "id",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -4317,19 +4373,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "state",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "State",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 19,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "postalCode",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -4410,6 +4453,19 @@
           "type" : "string",
           "fullyQualifiedType" : "string",
           "columnName" : "Password",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "country",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "Country",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,

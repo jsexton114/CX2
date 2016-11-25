@@ -188,8 +188,9 @@ public class UsersController {
         return usersService.findAssociatedSfnewElectricConnections(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/municipalityGroupMemberses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/municipalityGroupMemberses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the municipalityGroupMemberses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated municipalityGroupMemberses");
         return usersService.findAssociatedMunicipalityGroupMemberses(id, pageable);

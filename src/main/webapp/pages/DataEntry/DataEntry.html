@@ -433,7 +433,15 @@
                                         <wm-form-field name="municipalities" displayname="Municipalities" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="municipalityName"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn name="gridcolumn1" columnwidth="6">
-                                        <wm-form-field name="pageName" displayname="Page Name" show="true" primary-key="false" generator="assigned" key="pageName" type="string" widget="text" maxchars="255"></wm-form-field>
+                                        <wm-form-field name="pageName" displayname="Page Name" show="true" primary-key="false" generator="assigned" key="pageName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow1">
+                                    <wm-gridcolumn name="gridcolumn1" columnwidth="6">
+                                        <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="true" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" widget="checkbox"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn name="gridcolumn2" columnwidth="6">
+                                        <wm-form-field name="createdDate" displayname="Created Date" show="true" primary-key="false" generator="assigned" key="createdDate" type="date" widget="date"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>

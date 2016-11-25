@@ -1,4 +1,4 @@
-Application.$controller("ManageFormsPageController", ["$scope", function ($scope) {
+Application.$controller("EditFormPageController", ["$scope", function ($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -17,7 +17,7 @@ Application.$controller("ManageFormsPageController", ["$scope", function ($scope
 }]);
 
 
-Application.$controller("dialog1Controller", ["$scope",
+Application.$controller("liveformUpdateFormTypeController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;

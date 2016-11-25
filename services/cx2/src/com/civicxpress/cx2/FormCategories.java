@@ -30,7 +30,7 @@ public class FormCategories implements Serializable {
     private Integer id;
     private String category;
     private String description;
-    private List<FormTypes> formTypeses = new ArrayList<>();
+    private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,13 +61,13 @@ public class FormCategories implements Serializable {
         this.description = description;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formCategories")
-    public List<FormTypes> getFormTypeses() {
-        return this.formTypeses;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formCategoriesByFormCategories")
+    public List<FormCategoryMapping> getFormCategoryMappings() {
+        return this.formCategoryMappings;
     }
 
-    public void setFormTypeses(List<FormTypes> formTypeses) {
-        this.formTypeses = formTypeses;
+    public void setFormCategoryMappings(List<FormCategoryMapping> formCategoryMappings) {
+        this.formCategoryMappings = formCategoryMappings;
     }
 
     @Override

@@ -25,6 +25,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.FormCategoryMapping;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.SfnewElectricConnection;
@@ -135,6 +136,14 @@ public class FormTypesController {
     public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sfnewElectricConnections");
         return formTypesService.findAssociatedSfnewElectricConnections(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/formCategoryMappings", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formCategoryMappings instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<FormCategoryMapping> findAssociatedFormCategoryMappings(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formCategoryMappings");
+        return formTypesService.findAssociatedFormCategoryMappings(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/formStatuseses", method = RequestMethod.GET)

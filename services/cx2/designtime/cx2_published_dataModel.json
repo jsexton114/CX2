@@ -1333,31 +1333,6 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "formCategoryId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 255,
-      "name" : "FormCategoryId",
-      "nullable" : true,
-      "oldName" : "FormCategoryId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
       "fieldName" : "pageName",
       "foreignKey" : false,
       "generatorType" : "assigned",
@@ -1400,6 +1375,31 @@
       "primaryKey" : false,
       "scale" : 0,
       "sqlType" : "boolean",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "createdDate",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "date",
+      "length" : 10,
+      "name" : "CreatedDate",
+      "nullable" : true,
+      "oldName" : "CreatedDate",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 19,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "date",
       "unique" : false
     } ],
     "constraints" : [ ],
@@ -1453,22 +1453,6 @@
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "formCategories",
-      "mappings" : [ {
-        "sourceColumn" : "FormCategoryId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_FormCategories_TO_ForcRXMT",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceTable" : "FormTypes",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "FormCategories",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
       "fieldName" : "municipalities",
       "mappings" : [ {
         "sourceColumn" : "MunicipalityId",
@@ -1480,6 +1464,22 @@
       "sourceTable" : "FormTypes",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Municipalities",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "formCategoryMappings",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "FormTypeId"
+      } ],
+      "name" : "FK_FormTypes_TO_FormCate7roNO",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "FormTypes",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "FormCategoryMapping",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -2287,17 +2287,17 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "formTypeses",
+      "fieldName" : "formCategoryMappings",
       "mappings" : [ {
         "sourceColumn" : "ID",
-        "targetColumn" : "FormCategoryId"
+        "targetColumn" : "FormCategories"
       } ],
-      "name" : "FK_FormCategories_TO_ForcRXMT",
+      "name" : "FK_FormCategories_TO_ForjVYxX",
       "primary" : false,
       "selfRelation" : false,
       "sourceTable" : "FormCategories",
       "targetColumnsUniqueKey" : false,
-      "targetTable" : "FormTypes",
+      "targetTable" : "FormCategoryMapping",
       "virtual" : false
     } ],
     "schema" : "cx2",
@@ -3303,6 +3303,134 @@
       "sourceTable" : "States",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "GISRecords",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "formTypeId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "FormTypeId",
+      "nullable" : true,
+      "oldName" : "FormTypeId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "formCategories",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "FormCategories",
+      "nullable" : true,
+      "oldName" : "FormCategories",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "FormCategoryMapping",
+    "fullyQualifiedName" : "com.civicxpress.cx2.FormCategoryMapping",
+    "name" : "FormCategoryMapping",
+    "oldName" : "FormCategoryMapping",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__FormCate__3214EC275D81E25C",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "formCategoriesByFormCategories",
+      "mappings" : [ {
+        "sourceColumn" : "FormCategories",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_FormCategories_TO_ForjVYxX",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "FormCategoryMapping",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "FormCategories",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "formTypes",
+      "mappings" : [ {
+        "sourceColumn" : "FormTypeId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_FormTypes_TO_FormCate7roNO",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "FormCategoryMapping",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "FormTypes",
       "virtual" : false
     } ],
     "schema" : "cx2",

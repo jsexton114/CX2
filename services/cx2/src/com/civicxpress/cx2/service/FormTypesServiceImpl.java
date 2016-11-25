@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormCategoryMapping;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.SfnewElectricConnection;
@@ -38,16 +39,20 @@ public class FormTypesServiceImpl implements FormTypesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FormTypesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.SfnewResidentialStructureService")
-	private SfnewResidentialStructureService sfnewResidentialStructureService;
+	@Qualifier("cx2.FormStatusesService")
+	private FormStatusesService formStatusesService;
 
     @Autowired
 	@Qualifier("cx2.SfnewElectricConnectionService")
 	private SfnewElectricConnectionService sfnewElectricConnectionService;
 
     @Autowired
-	@Qualifier("cx2.FormStatusesService")
-	private FormStatusesService formStatusesService;
+	@Qualifier("cx2.FormCategoryMappingService")
+	private FormCategoryMappingService formCategoryMappingService;
+
+    @Autowired
+	@Qualifier("cx2.SfnewResidentialStructureService")
+	private SfnewResidentialStructureService sfnewResidentialStructureService;
 
     @Autowired
     @Qualifier("cx2.FormTypesDao")
@@ -75,6 +80,14 @@ public class FormTypesServiceImpl implements FormTypesService {
                 sfnewElectricConnection.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child SfnewElectricConnection with information: {}", sfnewElectricConnection);
                 sfnewElectricConnectionService.create(sfnewElectricConnection);
+            }
+        }
+
+        if(formTypesCreated.getFormCategoryMappings() != null) {
+            for(FormCategoryMapping formCategoryMapping : formTypesCreated.getFormCategoryMappings()) {
+                formCategoryMapping.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormCategoryMapping with information: {}", formCategoryMapping);
+                formCategoryMappingService.create(formCategoryMapping);
             }
         }
 
@@ -183,6 +196,17 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormCategoryMapping> findAssociatedFormCategoryMappings(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formCategoryMappings");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formStatuseses");
 
@@ -195,10 +219,10 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SfnewResidentialStructureService instance
+	 * @param service FormStatusesService instance
 	 */
-	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
-        this.sfnewResidentialStructureService = service;
+	protected void setFormStatusesService(FormStatusesService service) {
+        this.formStatusesService = service;
     }
 
     /**
@@ -213,10 +237,19 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormStatusesService instance
+	 * @param service FormCategoryMappingService instance
 	 */
-	protected void setFormStatusesService(FormStatusesService service) {
-        this.formStatusesService = service;
+	protected void setFormCategoryMappingService(FormCategoryMappingService service) {
+        this.formCategoryMappingService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SfnewResidentialStructureService instance
+	 */
+	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
+        this.sfnewResidentialStructureService = service;
     }
 
 }

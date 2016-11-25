@@ -349,7 +349,14 @@
         <dataobject javaType="com.civicxpress.cx2.FormCategories">
             <element name="category" typeRef="java.lang.String" allowNull="true"/>
             <element name="description" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formTypeses" typeRef="com.civicxpress.cx2.FormTypes" isList="true" allowNull="true"/>
+            <element name="formCategoryMappings" typeRef="com.civicxpress.cx2.FormCategoryMapping" isList="true" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.FormCategoryMapping">
+            <element name="formCategories" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formCategoriesByFormCategories" typeRef="com.civicxpress.cx2.FormCategories" allowNull="true"/>
+            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormStatuses">
@@ -375,10 +382,10 @@
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormTypes">
             <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="createdDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="flatFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="flatFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formCategories" typeRef="com.civicxpress.cx2.FormCategories" allowNull="true"/>
-            <element name="formCategoryId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formCategoryMappings" typeRef="com.civicxpress.cx2.FormCategoryMapping" isList="true" allowNull="true"/>
             <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
             <element name="formType" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeGuid" typeRef="java.lang.String" allowNull="true"/>
