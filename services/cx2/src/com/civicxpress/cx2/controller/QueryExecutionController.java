@@ -130,6 +130,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/InsertGroups", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeInsertGroups(@RequestParam(value = "GroupName", required = false) java.lang.String GroupName, @RequestParam(value = "GroupDescription", required = false) java.lang.String GroupDescription, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query InsertGroups");
+        int result = queryService.executeInsertGroups(GroupName, GroupDescription, MunicipalityId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/InsertNewRole", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeInsertNewRole(@RequestParam(value = "RoleName", required = false) java.lang.String RoleName, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, @RequestParam(value = "Description", required = false) java.lang.String Description, @RequestParam(value = "UserId", required = false) java.lang.Integer UserId) throws QueryParameterMismatchException {

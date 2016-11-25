@@ -108,6 +108,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeInsertGroups( java.lang.String GroupName ,java.lang.String GroupDescription ,java.lang.Integer MunicipalityId)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("GroupName", GroupName);
+        params.put("GroupDescription", GroupDescription);
+        params.put("MunicipalityId", MunicipalityId);
+        return queryExecutor.executeNamedQueryForUpdate("InsertGroups", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeInsertNewRole( java.lang.String RoleName ,java.lang.Integer MunicipalityId ,java.lang.String Description ,java.lang.Integer UserId)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

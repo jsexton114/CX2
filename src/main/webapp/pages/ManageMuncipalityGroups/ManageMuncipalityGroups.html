@@ -23,87 +23,138 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-tabs name="test">
-                            <wm-tabpane name="tabpane1" title="Groups">
-                                <wm-livegrid formlayout="dialog" name="livegrid1">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="MunicipalityGroups List" dataset="bind:Variables.Cx2MunicipalityGroupsData.dataSet" navigation="Basic" name="grid3">
-                                        <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
-                                        <wm-grid-column binding="groupName" caption="Group Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="groupDescription" caption="Group Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
-                                    </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Municipalitygroups Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2MunicipalityGroupsData.dataSet" captionalign="left" captionposition="top"
-                                    name="liveform1">
-                                        <wm-layoutgrid columns="1" name="layoutgrid5">
-                                            <wm-gridrow name="gridrow11">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn12">
-                                                    <wm-form-field name="groupName" displayname="Group Name" required="false" show="true" generator="assigned" primary-key="false" key="groupName" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow12">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn13">
-                                                    <wm-form-field name="groupDescription" displayname="Group Description" required="false" show="true" generator="assigned" primary-key="false" key="groupDescription" type="string" is-related="false" maxchars="255"
-                                                    pc-display="true" mobile-display="true" widget="text"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow13_1">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn14">
-                                                    <wm-form-field name="municipalities" displayname="Municipalities" required="false" show="false" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true"
-                                                    mobile-display="true" widget="select" dataset="bind:Variables.SelectedMunicipalityObj.dataSet" datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                        </wm-layoutgrid>
-                                        <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
-                                    </wm-liveform>
-                                </wm-livegrid>
-                            </wm-tabpane>
-                            <wm-tabpane name="tabpane2" title="Members">
-                                <wm-livegrid formlayout="dialog" name="livegrid2">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Municipalitygroupmembers List" dataset="bind:Variables.Cx2MunicipalityGroupMembersData.dataSet" navigation="Basic" name="grid2">
-                                        <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
-                                        <wm-grid-column binding="users.photo" widget-type="image" caption="Users Photo" generator="assigned" pcdisplay="true" mobiledisplay="true" type="blob" related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
-                                        </wm-grid-column>
-                                        <wm-grid-column binding="municipalityGroups.groupName" caption="Group Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="MunicipalityGroups"></wm-grid-column>
-                                        <wm-grid-column binding="municipalityGroups.groupDescription" caption="Group Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="MunicipalityGroups"></wm-grid-column>
-                                        <wm-grid-column binding="users.email" caption="Users Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="users.address1" caption="Users Address1" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
-                                    </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Municipalitygroupmembers Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2MunicipalityGroupMembersData.dataSet" captionalign="left" captionposition="top"
-                                    name="liveform2">
-                                        <wm-layoutgrid columns="1" name="layoutgrid4">
-                                            <wm-gridrow name="gridrow9">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn10">
-                                                    <wm-form-field name="municipalityGroups" displayname="Municipality Groups" show="true" primary-key="false" generator="assigned" key="municipalityGroups" type="list" is-related="true" widget="autocomplete"
-                                                    placeholder="Search" searchkey="groupName" displaylabel="groupName" orderby="groupName:desc" dataset="bind:Variables.Cx2MunicipalityGroupsData.dataSet" datafield="All Fields"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow10">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn11">
-                                                    <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="autocomplete" placeholder="Search" searchkey="email"
-                                                    displaylabel="email" orderby="email:desc"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                        </wm-layoutgrid>
-                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                    </wm-liveform>
-                                </wm-livegrid>
-                            </wm-tabpane>
-                        </wm-tabs>
+                <wm-gridrow name="gridrow7">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn8">
+                        <wm-panel iconclass="wi wi-account-circle" name="Municipalitygroups" title="Manage Municipality Groups">
+                            <wm-gridrow name="gridrow14">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn20_1">
+                                    <wm-search name="searchGroups" placeholder="Search Groups" datafield="All Fields" on-change="Variables.GetMunicipalityGroups.listRecords()"></wm-search>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-livelist listclass="list-group" template="true" itemsperrow="xs-1 sm-2 md-3 lg-4" class="list-card" dataset="bind:Variables.GetMunicipalityGroups.dataSet" navigation="None" name="MunicipalityLiveList" title="" on-click="Widgets.UsersDialog.open()">
+                                <wm-listtemplate layout="media" name="listtemplate2_1">
+                                    <wm-card title="" name="card2" imageheight="100px">
+                                        <wm-card-content fontsize="0.8" fontunit="em" name="card_content2">
+                                            <wm-layoutgrid columns="2" name="layoutgrid4_1">
+                                                <wm-gridrow name="gridrow11">
+                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn20" horizontalalign="left">
+                                                        <wm-label caption="bind:Variables.GetMunicipalityGroups.dataSet.data[$i].groupName" fontunit="em" color="#000" class="h4" margin="0px unset" whitespace="nowrap" name="label7"></wm-label>
+                                                        <wm-label caption="bind:Variables.GetMunicipalityGroups.dataSet.data[$i].groupDescription" class="p text-muted" margin="unset unset 0px unset" whitespace="nowrap" name="label8"></wm-label>
+                                                        <wm-anchor caption="" class="h5" hyperlink="tel:" margin="0px unset" whitespace="nowrap" name="anchor3"></wm-anchor>
+                                                        <wm-anchor class="p text-muted" hyperlink="mailto://" caption="" whitespace="nowrap" name="anchor4"></wm-anchor>
+                                                        <wm-button class="btn-default pull-right" caption="" type="button" margin="unset 0.5em" iconclass="wi wi-delete" on-click="Variables.deleteGroup.deleteRecord()" name="button2"></wm-button>
+                                                        <wm-button class="btn-default pull-right" caption="" type="button" margin="unset 0.5em" name="dialogOpen" iconclass="wi wi-mode-edit" on-click="Widgets.EditMunicipalitygroups.open()"></wm-button>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                        </wm-card-content>
+                                    </wm-card>
+                                </wm-listtemplate>
+                            </wm-livelist>
+                            <wm-layoutgrid name="layoutgrid6">
+                                <wm-gridrow name="gridrow15">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn22">
+                                        <wm-button class="btn-default pull-right btn-primary" caption="New" position="footer" type="button" margin="unset 0.5em" name="button4" width="10%" on-click="Widgets.AddGroups.open()"></wm-button>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="view1" backgroundsize="100%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Users" iconclass="" name="UsersDialog" width="80%" height="60%">
+            <wm-livegrid formlayout="dialog" name="livegrid1">
+                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Municipalitygroupmembers List" dataset="bind:Variables.GroupMembersData.dataSet" navigation="Basic" name="grid4">
+                    <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
+                    <wm-grid-column binding="municipalityGroups.groupName" caption="Group Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="MunicipalityGroups"></wm-grid-column>
+                    <wm-grid-column binding="users.email" caption="Users Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users"></wm-grid-column>
+                    <wm-grid-column binding="users.phoneNumber" caption="Phone Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users"></wm-grid-column>
+                    <wm-grid-column binding="users.photo" widget-type="image" caption="Users Photo" generator="assigned" pcdisplay="true" mobiledisplay="true" type="blob" related-entity-name="Users"><a data-ng-if="columnValue != null" class="col-md-9" target="_blank" data-ng-href="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}"><i class="wm-icon wm-icon24 wi wi-file"></i></a>
+                    </wm-grid-column>
+                    <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                    <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                    <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                </wm-grid>
+                <wm-liveform novalidate="false" errormessage="" title="Municipalitygroupmembers Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.GroupMembersData.dataSet" captionalign="left" captionposition="top" name="liveform1">
+                    <wm-layoutgrid columns="2" name="layoutgrid5">
+                        <wm-gridrow name="gridrow13">
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn14">
+                                <wm-form-field name="municipalityGroups" displayname="Municipality Groups" required="false" show="true" generator="assigned" primary-key="false" key="municipalityGroups" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                widget="select"></wm-form-field>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn15_1">
+                                <wm-form-field name="users" displayname="Users" required="false" show="true" generator="assigned" primary-key="false" key="users" type="list" is-related="true" pc-display="true" mobile-display="true" widget="autocomplete"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                    <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                    <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                </wm-liveform>
+            </wm-livegrid>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="EditMunicipalitygroup">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Municipalitygroups Info" iconclass="wi wi-edit" name="EditMunicipalitygroups">
+            <wm-layoutgrid name="layoutgrid4_2">
+                <wm-gridrow name="gridrow9_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn10_1" padding="1em unset unset unset">
+                        <wm-composite name="composite4">
+                            <wm-label class="col-md-3 control-label" name="label7_1" caption="Group Name" required="true"></wm-label>
+                            <wm-container class="col-md-9" name="container4">
+                                <wm-text name="groupNames" required="true" datavalue="bind:Widgets.MunicipalityLiveList.selecteditem.groupName" placeholder=""></wm-text>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow10_2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn12" padding="1em unset unset unset">
+                        <wm-composite name="composite6">
+                            <wm-label class="col-md-3 control-label" name="label9" caption="Group Description" required="true"></wm-label>
+                            <wm-container class="col-md-9" name="container6">
+                                <wm-textarea name="groupDescription" required="true" datavalue="bind:Widgets.MunicipalityLiveList.selecteditem.groupDescription" placeholder=""></wm-textarea>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow11_1" padding="1em unset unset unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn15">
+                        <wm-button class="btn-default pull-right btn-primary" caption="Update" type="button" margin="unset 0.5em" name="button3" on-click="Variables.UpdateCx2MunicipalityGroups.updateRecord()"></wm-button>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="AddGroup">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="AddGroups" iconclass="wi wi-edit" name="AddGroups">
+            <wm-gridrow name="gridrow9_1">
+                <wm-gridcolumn columnwidth="12" name="gridcolumn10_1" padding="1em unset unset unset">
+                    <wm-composite name="composite4">
+                        <wm-label class="col-md-3 control-label" name="label7_1" caption="Group Name" required="true"></wm-label>
+                        <wm-container class="col-md-9" name="container4">
+                            <wm-text name="InsertgroupNames" required="true" placeholder=""></wm-text>
+                        </wm-container>
+                    </wm-composite>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow10_2">
+                <wm-gridcolumn columnwidth="12" name="gridcolumn12" padding="1em unset unset unset">
+                    <wm-composite name="composite6">
+                        <wm-label class="col-md-3 control-label" name="label9" caption="Group Description" required="true"></wm-label>
+                        <wm-container class="col-md-9" name="container6">
+                            <wm-textarea name="InsertgroupDescription" required="true" placeholder=""></wm-textarea>
+                        </wm-container>
+                    </wm-composite>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow11_1" padding="1em unset unset unset">
+                <wm-gridcolumn columnwidth="12" name="gridcolumn15">
+                    <wm-button class="btn-default pull-right btn-primary" caption="Save" type="button" margin="unset 0.5em" name="button3" on-click="Variables.InsertGroups.invoke()"></wm-button>
+                </wm-gridcolumn>
+            </wm-gridrow>
+        </wm-dialog>
+    </wm-view>
 </wm-page>

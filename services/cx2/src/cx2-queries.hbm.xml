@@ -46,6 +46,11 @@
       select UserId from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)
     ]]>
   </sql-query>
+  <sql-query name="InsertGroups">
+    <![CDATA[
+      insert into MunicipalityGroups (GroupName,GroupDescription,MunicipalityId) values (:GroupName,:GroupDescription,:MunicipalityId)
+    ]]>
+  </sql-query>
   <sql-query name="InsertNewRole">
     <![CDATA[
       insert into Roles(RoleName,MunicipalityId,Description,UserId) values (:RoleName,:MunicipalityId,:Description,:UserId)
