@@ -17,7 +17,23 @@ Application.$controller("ManageFormsPageController", ["$scope", function ($scope
 }]);
 
 
-Application.$controller("dialog1Controller", ["$scope",
+Application.$controller("dialogCreateFormController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveform1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+
+
+Application.$controller("liveformCreateFormController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;
