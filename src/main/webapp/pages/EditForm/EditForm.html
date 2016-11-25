@@ -13,7 +13,7 @@
                 <wm-gridrow name="gridrow7">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn10" padding="unset unset 2em unset">
                         <wm-liveform novalidate="false" errormessage="" title="bind:Variables.ReadFormType.dataSet.data[$i].formType" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.UpdateFormTypes.dataSet" captionalign="left" captionposition="top"
-                        name="liveformUpdateFormType" backgroundcolor="#dbdbdb">
+                        name="liveformUpdateFormType" backgroundcolor="#dbdbdb" margin="unset 2em">
                             <wm-layoutgrid columns="2" name="layoutgrid2">
                                 <wm-gridrow name="gridrow15">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn25" padding="1em unset">
@@ -29,80 +29,109 @@
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow10">
-                                                <wm-gridcolumn columnwidth="6" name="gridcolumn17" horizontalalign="left">
+                                                <wm-gridcolumn columnwidth="2" name="gridcolumn24_1"></wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="2" name="gridcolumn17" horizontalalign="left">
                                                     <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder="" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].active"></wm-form-field>
                                                 </wm-gridcolumn>
-                                                <wm-gridcolumn columnwidth="6" name="gridcolumn19">
+                                                <wm-gridcolumn columnwidth="2" name="gridcolumn26"></wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="1" name="gridcolumn27"></wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="4" name="gridcolumn19" horizontalalign="left">
                                                     <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="true" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" widget="checkbox"
                                                     placeholder="" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].municipalityInternalForm"></wm-form-field>
                                                 </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="1" name="gridcolumn25_1"></wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-panel>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow15_1">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn23_1">
-                                        <wm-panel iconclass="wi wi-account-circle" name="panelPermissionSettings" title="PermissionSettings"></wm-panel>
+                                        <wm-panel iconclass="wi wi-settings" name="panelPermissionSettings" title="PermissionSettings" class="panel-info">
+                                            <wm-gridrow name="gridrow4">
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn5">
+                                                    <wm-form-field name="permissionsReaders" displayname="Permissions Readers" show="true" primary-key="false" generator="assigned" key="permissionsReaders" type="string" widget="text" maxchars="255" inputtype="text"
+                                                    placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.firstRecord.permissionsReaders"></wm-form-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn6">
+                                                    <wm-form-field name="permissionsWriters" displayname="Permissions Writers" show="true" primary-key="false" generator="assigned" key="permissionsWriters" type="string" widget="text" maxchars="255" inputtype="text"
+                                                    placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.firstRecord.permissionsWriters"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-panel>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow4">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn5">
-                                        <wm-form-field name="permissionsReaders" displayname="Permissions Readers" show="true" primary-key="false" generator="assigned" key="permissionsReaders" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                        defaultvalue="bind:Variables.ReadFormType.firstRecord.permissionsReaders"></wm-form-field>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn6">
-                                        <wm-form-field name="permissionsWriters" displayname="Permissions Writers" show="true" primary-key="false" generator="assigned" key="permissionsWriters" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                        defaultvalue="bind:Variables.ReadFormType.firstRecord.permissionsWriters"></wm-form-field>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow5">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn7">
-                                        <wm-form-field name="tbLocation" displayname="Tb Location" show="true" primary-key="false" generator="assigned" key="tbLocation" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                        defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].tbLocation"></wm-form-field>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn8">
-                                        <wm-form-field name="flatFee" displayname="Flat Fee" show="true" primary-key="false" generator="assigned" key="flatFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].flatFee"></wm-form-field>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow6">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn9">
-                                        <wm-form-field name="flatFeeAccountingCode" displayname="Flat Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="flatFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text"
-                                        placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].flatFeeAccountingCode"></wm-form-field>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn10_1">
-                                        <wm-form-field name="sfFee" displayname="Sf Fee" show="true" primary-key="false" generator="assigned" key="sfFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].sfFee"></wm-form-field>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow7_1">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn11">
-                                        <wm-form-field name="sfFeeAccountingCode" displayname="Sf Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="sfFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text"
-                                        placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].sfFeeAccountingCode"></wm-form-field>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn12_1">
-                                        <wm-form-field name="unitFee" displayname="Unit Fee" show="true" primary-key="false" generator="assigned" key="unitFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].unitFee"></wm-form-field>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow8_1">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn13">
-                                        <wm-form-field name="unitFeeAccountingCode" displayname="Unit Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="unitFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text"
-                                        placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].unitFeeAccountingCode"></wm-form-field>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn14">
-                                        <wm-form-field name="stateFee" displayname="State Fee" show="true" primary-key="false" generator="assigned" key="stateFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFee"></wm-form-field>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow9">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn15">
-                                        <wm-form-field name="stateFeeAccountingCode" displayname="State Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="stateFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text"
-                                        placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFeeAccountingCode"></wm-form-field>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn16">
-                                        <wm-form-field name="report" displayname="Report" show="true" primary-key="false" generator="assigned" key="report" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].report"></wm-form-field>
+                                <wm-gridrow name="gridrow16">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn28">
+                                        <wm-panel iconclass="wi wi-attach-money" name="panelFeeDetails" title="FeeDetails" class="panel-info">
+                                            <wm-layoutgrid name="layoutgrid3">
+                                                <wm-gridrow name="gridrow17">
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn30">
+                                                        <wm-form-field name="flatFee" displayname="Flat Fee" show="true" primary-key="false" generator="assigned" key="flatFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                        defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].flatFee"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn31">
+                                                        <wm-form-field name="flatFeeAccountingCode" displayname="Flat Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="flatFeeAccountingCode" type="string" widget="text" maxchars="255"
+                                                        inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].flatFeeAccountingCode"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                                <wm-gridrow name="gridrow18">
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn32">
+                                                        <wm-form-field name="sfFee" displayname="Sf Fee" show="true" primary-key="false" generator="assigned" key="sfFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                        defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].sfFee"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn33">
+                                                        <wm-form-field name="sfFeeAccountingCode" displayname="Sf Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="sfFeeAccountingCode" type="string" widget="text" maxchars="255"
+                                                        inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].sfFeeAccountingCode"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                                <wm-gridrow name="gridrow19">
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn34">
+                                                        <wm-form-field name="unitFee" displayname="Unit Fee" show="true" primary-key="false" generator="assigned" key="unitFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                        defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].unitFee"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn35">
+                                                        <wm-form-field name="unitFeeAccountingCode" displayname="Unit Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="unitFeeAccountingCode" type="string" widget="text" maxchars="255"
+                                                        inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].unitFeeAccountingCode"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                                <wm-gridrow name="gridrow20">
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn36">
+                                                        <wm-form-field name="stateFee" displayname="State Fee" show="true" primary-key="false" generator="assigned" key="stateFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                        defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFee"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn37">
+                                                        <wm-form-field name="stateFeeAccountingCode" displayname="State Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="stateFeeAccountingCode" type="string" widget="text" maxchars="255"
+                                                        inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFeeAccountingCode"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                        </wm-panel>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow11">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn18">
-                                        <wm-form-field name="pageName" displayname="Page Name" show="true" primary-key="false" generator="assigned" key="pageName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].pageName"></wm-form-field>
+                                <wm-gridrow name="gridrow22">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn39">
+                                        <wm-panel iconclass="wi wi-developer-mode" name="panel6" title="Dev Info" class="panel-info">
+                                            <wm-layoutgrid name="layoutgrid4_1">
+                                                <wm-gridrow name="gridrow23">
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn41">
+                                                        <wm-form-field name="tbLocation" displayname="Tb Location" show="true" primary-key="false" generator="assigned" key="tbLocation" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                        defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].tbLocation"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn42">
+                                                        <wm-form-field name="pageName" displayname="Page Name" show="true" primary-key="false" generator="assigned" key="pageName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                        defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].pageName"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                                <wm-gridrow name="gridrow24">
+                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn43"></wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="6" name="gridcolumn45">
+                                                        <wm-form-field name="report" displayname="Report" show="true" primary-key="false" generator="assigned" key="report" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                        defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].report"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn44"></wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                        </wm-panel>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
