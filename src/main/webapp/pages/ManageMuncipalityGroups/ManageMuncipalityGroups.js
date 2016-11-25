@@ -17,22 +17,6 @@ Application.$controller("ManageMuncipalityGroupsPageController", ["$scope", "Dia
 
 
 
-
-    // $scope.MunicipalitygroupsClick = function($event, $rowData) {
-    //     $scope.Variables.Cx2MunicipalityGroupMembersData.setFilter('municipalityGroupId', $rowData.id);
-    //     $scope.Variables.Cx2MunicipalityGroupMembersData.update({}, function(data) {
-    //         DialogService.open('UsersDialog');
-    //     })
-    // };
-
-
-
-
-    $scope.dialogOpenClick = function($event, $isolateScope, item, currentItemWidgets) {
-
-        DialogService.open('dialog2');
-    };
-
 }]);
 
 
@@ -75,24 +59,24 @@ Application.$controller("EditMunicipalitygroupsController", ["$scope",
 ]);
 
 Application.$controller("AddGroupsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 
 
 Application.$controller("grid4Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveform1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

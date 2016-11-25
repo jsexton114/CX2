@@ -31,24 +31,22 @@
                                     <wm-search name="searchGroups" placeholder="Search Groups" datafield="All Fields" on-change="Variables.GetMunicipalityGroups.listRecords()"></wm-search>
                                 </wm-gridcolumn>
                             </wm-gridrow>
-                            <wm-livelist listclass="list-group" template="true" itemsperrow="xs-1 sm-2 md-3 lg-4" class="list-card" dataset="bind:Variables.GetMunicipalityGroups.dataSet" navigation="None" name="MunicipalityLiveList" title="" on-click="Widgets.UsersDialog.open()">
+                            <wm-livelist listclass="list-group" template="true" itemsperrow="xs-1 sm-2 md-3 lg-4" class="list-card" dataset="bind:Variables.GetMunicipalityGroups.dataSet" navigation="None" name="MunicipalityLiveList" title="" on-click="MunicipalityLiveListClick($event, $scope)">
                                 <wm-listtemplate layout="media" name="listtemplate2_1">
-                                    <wm-card title="" name="card2" imageheight="100px">
-                                        <wm-card-content fontsize="0.8" fontunit="em" name="card_content2">
-                                            <wm-layoutgrid columns="2" name="layoutgrid4_1">
-                                                <wm-gridrow name="gridrow11">
-                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn20" horizontalalign="left">
-                                                        <wm-label caption="bind:Variables.GetMunicipalityGroups.dataSet.data[$i].groupName" fontunit="em" color="#000" class="h4" margin="0px unset" whitespace="nowrap" name="label7"></wm-label>
-                                                        <wm-label caption="bind:Variables.GetMunicipalityGroups.dataSet.data[$i].groupDescription" class="p text-muted" margin="unset unset 0px unset" whitespace="nowrap" name="label8"></wm-label>
-                                                        <wm-anchor caption="" class="h5" hyperlink="tel:" margin="0px unset" whitespace="nowrap" name="anchor3"></wm-anchor>
-                                                        <wm-anchor class="p text-muted" hyperlink="mailto://" caption="" whitespace="nowrap" name="anchor4"></wm-anchor>
-                                                        <wm-button class="btn-default pull-right" caption="" type="button" margin="unset 0.5em" iconclass="wi wi-delete" on-click="Variables.deleteGroup.deleteRecord()" name="button2"></wm-button>
-                                                        <wm-button class="btn-default pull-right" caption="" type="button" margin="unset 0.5em" name="dialogOpen" iconclass="wi wi-mode-edit" on-click="Widgets.EditMunicipalitygroups.open()"></wm-button>
-                                                    </wm-gridcolumn>
-                                                </wm-gridrow>
-                                            </wm-layoutgrid>
-                                        </wm-card-content>
-                                    </wm-card>
+                                    <wm-tile name="statTile" class="panel" on-click="Widgets.UsersDialog.open()">
+                                        <wm-layoutgrid columns="2" name="layoutgrid4_1">
+                                            <wm-gridrow name="gridrow11">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn20" horizontalalign="left">
+                                                    <wm-label caption="bind:Variables.GetMunicipalityGroups.dataSet.data[$i].groupName" fontunit="em" color="#000" class="h4" margin="0px unset" whitespace="nowrap" name="label7"></wm-label>
+                                                    <wm-label caption="bind:Variables.GetMunicipalityGroups.dataSet.data[$i].groupDescription" class="p text-muted" margin="unset unset 0px unset" whitespace="nowrap" name="label8"></wm-label>
+                                                    <wm-anchor caption="" class="h5" hyperlink="tel:" margin="0px unset" whitespace="nowrap" name="anchor3"></wm-anchor>
+                                                    <wm-anchor class="p text-muted" hyperlink="mailto://" caption="" whitespace="nowrap" name="anchor4"></wm-anchor>
+                                                    <wm-button class="btn-default pull-right" caption="" type="button" margin="unset 0.5em" iconclass="wi wi-delete" on-click="Variables.deleteGroup.deleteRecord()" name="button2"></wm-button>
+                                                    <wm-button class="btn-default pull-right" caption="" type="button" margin="unset 0.5em" name="dialogOpen" iconclass="wi wi-mode-edit" on-click="Widgets.EditMunicipalitygroups.open();$event.stopPropagation();"></wm-button>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-layoutgrid>
+                                    </wm-tile>
                                 </wm-listtemplate>
                             </wm-livelist>
                             <wm-layoutgrid name="layoutgrid6">
@@ -83,8 +81,7 @@
                     <wm-layoutgrid columns="2" name="layoutgrid5">
                         <wm-gridrow name="gridrow13">
                             <wm-gridcolumn columnwidth="6" name="gridcolumn14">
-                                <wm-form-field name="municipalityGroups" displayname="Municipality Groups" required="false" show="true" generator="assigned" primary-key="false" key="municipalityGroups" type="list" is-related="true" pc-display="true" mobile-display="true"
-                                widget="select"></wm-form-field>
+                                <wm-form-field name="municipalityGroups" displayname="Municipality Groups" required="false" show="true" generator="assigned" primary-key="false" key="municipalityGroups" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="6" name="gridcolumn15_1">
                                 <wm-form-field name="users" displayname="Users" required="false" show="true" generator="assigned" primary-key="false" key="users" type="list" is-related="true" pc-display="true" mobile-display="true" widget="autocomplete"></wm-form-field>
