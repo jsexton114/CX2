@@ -41,7 +41,7 @@ Application.$controller("dialog1Controller", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonCreateClick = function($event, $isolateScope) {
-            var pageName = $scope.Variables.FormTypes.dataSet.data[0].pageName;
+            var pageName = $scope.Widgets.selectForm.datavalue.PageName;
             $scope.Variables[pageName].navigate();
         };
 

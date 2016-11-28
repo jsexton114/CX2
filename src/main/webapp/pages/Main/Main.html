@@ -156,23 +156,25 @@
                 <wm-button class="btn-default" caption="Create" type="button" margin="unset 0.5em" name="buttonCreate" on-click="buttonCreateClick($event, $scope)"></wm-button>
             </wm-dialogactions>
             <wm-composite name="composite4_1" margin="1em unset 2em unset">
-                <wm-label class="col-md-3 control-label" caption="Select Municipality" name="label20"></wm-label>
-                <wm-container class="col-md-9" name="container4">
-                    <wm-select dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AllCategories.firstRecord.id" name="selectMunicipality"></wm-select>
+                <wm-label class="col-md-3 control-label" caption="Select Municipality" name="label20" width="40%"></wm-label>
+                <wm-container class="col-md-9" name="container4" width="60%">
+                    <wm-select dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.StandardUserMunicipalites.firstRecord" name="selectMunicipality"></wm-select>
                 </wm-container>
             </wm-composite>
             <wm-composite name="composite3">
-                <wm-label class="col-md-3 control-label" name="label18" caption="Select Category"></wm-label>
-                <wm-container class="col-md-9" name="container2">
+                <wm-label class="col-md-3 control-label" name="label18" caption="Select Category" width="40%"></wm-label>
+                <wm-container class="col-md-9" name="container2" width="60%">
                     <wm-select name="selectCategory" dataset="bind:Variables.AllCategories.dataSet" datafield="id" displayfield="category" datavalue="bind:Variables.AllCategories.firstRecord.id"></wm-select>
                 </wm-container>
             </wm-composite>
-            <wm-composite name="composite4" margin="2em unset">
-                <wm-label class="col-md-3 control-label" name="label19" caption="Select Type"></wm-label>
-                <wm-container class="col-md-9" name="container3">
-                    <wm-select name="selectForm" dataset="bind:Variables.FormTypes.dataSet" datafield="All Fields" displayfield="formType" datavalue="bind:Variables.FormTypes.firstRecord"></wm-select>
+            <wm-composite name="composite4" margin="2em unset" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements != 0">
+                <wm-label class="col-md-3 control-label" name="label19" caption="Select FormType" width="40%"></wm-label>
+                <wm-container class="col-md-9" name="container3" width="60%">
+                    <wm-select name="selectForm" dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" datavalue="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.firstRecord"></wm-select>
                 </wm-container>
             </wm-composite>
+            <wm-label padding="1em 0.5em" name="label21" caption="No forms are available for this municipality in selected category" fontweight="bold" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements == 0" width="100%"
+            horizontalalign="center"></wm-label>
         </wm-dialog>
     </wm-view>
 </wm-page>
