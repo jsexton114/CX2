@@ -252,7 +252,50 @@
                                     </wm-liveform>
                                 </wm-livegrid>
                             </wm-accordionpane>
-                            <wm-accordionpane name="accordionpane3" title="Categories"></wm-accordionpane>
+                            <wm-accordionpane name="accordionpane3" title="Categories">
+                                <wm-layoutgrid name="layoutgrid6">
+                                    <wm-gridrow name="gridrow26">
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn53" padding="unset unset unset 1em">
+                                            <wm-search name="searchCategory" placeholder="Search Category" dataset="bind:Variables.Categories.dataSet" searchkey="category" displaylabel="category" datafield="All Fields"></wm-search>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn54">
+                                            <wm-button class="btn-default" caption="Add" type="button" margin="unset 0.5em unset 1em" name="buttonAdd" iconclass="wi wi-plus" on-click="buttonAddClick($event, $scope)"></wm-button>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow27">
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn55"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="8" name="gridcolumn56">
+                                            <wm-panel iconclass="wi wi-class" name="panel7" title="Categories" margin="1em unset">
+                                                <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list" dataset="bind:Variables.CategoriesList.dataSet" navigation="None" name="livelist1"
+                                                nodatamessage="No Categories found">
+                                                    <wm-listtemplate layout="inline" name="listtemplate1">
+                                                        <wm-layoutgrid name="layoutgrid7">
+                                                            <wm-gridrow name="gridrow28">
+                                                                <wm-gridcolumn columnwidth="2" name="gridcolumn62"></wm-gridcolumn>
+                                                                <wm-gridcolumn columnwidth="4" name="gridcolumn58">
+                                                                    <wm-label padding="unset 0.5em" name="label2" caption="bind:Variables.CategoriesList.dataSet[$i].category"></wm-label>
+                                                                </wm-gridcolumn>
+                                                                <wm-gridcolumn columnwidth="4" name="gridcolumn59">
+                                                                    <wm-button class="btn-default btn-primary" caption="Delete" type="button" margin="unset 0.5em" name="buttonRemove" iconclass="wi wi-delete" on-click="buttonRemoveClick($event, $scope, item, currentItemWidgets)"></wm-button>
+                                                                </wm-gridcolumn>
+                                                                <wm-gridcolumn columnwidth="2" name="gridcolumn63"></wm-gridcolumn>
+                                                            </wm-gridrow>
+                                                        </wm-layoutgrid>
+                                                    </wm-listtemplate>
+                                                </wm-livelist>
+                                            </wm-panel>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn57"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow27_1">
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn59_1"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="8" name="gridcolumn60_1"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn61_1">
+                                            <wm-button class="btn-fab panel-info" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdate" iconclass="wi wi-update" on-click="buttonUpdateClick($event, $scope)"></wm-button>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-accordionpane>
                         </wm-accordion>
                     </wm-gridcolumn>
                 </wm-gridrow>

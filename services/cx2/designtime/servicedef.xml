@@ -25,6 +25,11 @@
         <parameter name="userID" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2getEmailIdrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
+        <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="GetRolesForMunicipality">
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
@@ -33,6 +38,11 @@
     <operation operationType="nativequery" name="getUserIdFromPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2getUserIdFromPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="InsertCategoryMapping">
+        <parameter name="FormTypeId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="FormCategoryId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2InsertCategoryMappingrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="InsertGroups">
         <parameter name="GroupName" typeRef="java.lang.String" isList="false"/>
@@ -159,9 +169,8 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
-        <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+    <operation operationType="nativequery" name="DeleteCategoryMapping">
+        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
@@ -172,6 +181,10 @@
         <parameter name="muncipality" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CheckingUserWithMunicipalityInRolesrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="DeleteCategoryMapping">
+        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2DeleteCategoryMappingrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="DeleteExistingSubscriptionsForUser">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
@@ -206,6 +219,11 @@
     <operation operationType="nativequery" name="getUserIdFromPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2getUserIdFromPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="InsertCategoryMapping">
+        <parameter name="FormTypeId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="FormCategoryId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2InsertCategoryMappingrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="InsertGroups">
         <parameter name="GroupName" typeRef="java.lang.String" isList="false"/>
@@ -673,6 +691,7 @@
         <dataobject javaType="cx2CheckingUserWithMunicipalityInRolesrtnType">
             <element name="exist" typeRef="java.lang.Integer"/>
         </dataobject>
+        <dataobject javaType="cx2DeleteCategoryMappingrtnType"/>
         <dataobject javaType="cx2DeleteExistingSubscriptionsForUserrtnType"/>
         <dataobject javaType="cx2EmployeesMunicipalitiesrtnType">
             <element name="Active" typeRef="java.lang.Boolean"/>
@@ -731,6 +750,7 @@
             <element name="PostalCode" typeRef="java.lang.String"/>
             <element name="StateId" typeRef="java.math.BigDecimal"/>
         </dataobject>
+        <dataobject javaType="cx2InsertCategoryMappingrtnType"/>
         <dataobject javaType="cx2InsertGroupsrtnType"/>
         <dataobject javaType="cx2InsertNewRolertnType"/>
         <dataobject javaType="cx2InsertSubscriptionrtnType"/>

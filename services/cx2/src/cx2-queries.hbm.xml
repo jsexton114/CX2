@@ -11,6 +11,11 @@
       select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user
     ]]>
   </sql-query>
+  <sql-query name="DeleteCategoryMapping">
+    <![CDATA[
+      delete from FormCategoryMapping where FormTypeId=:form
+    ]]>
+  </sql-query>
   <sql-query name="DeleteExistingSubscriptionsForUser">
     <![CDATA[
       delete from UserSubscriptions where UserId=:user
@@ -49,6 +54,11 @@
   <sql-query name="getUserIdFromPasswordResetToken">
     <![CDATA[
       select UserId from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)
+    ]]>
+  </sql-query>
+  <sql-query name="InsertCategoryMapping">
+    <![CDATA[
+      insert into FormCategoryMapping(FormTypeId,FormCategoryId) values(:FormTypeId,:FormCategoryId)
     ]]>
   </sql-query>
   <sql-query name="InsertGroups">

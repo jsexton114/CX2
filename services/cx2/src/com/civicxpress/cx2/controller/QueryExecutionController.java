@@ -60,6 +60,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/DeleteCategoryMapping", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeDeleteCategoryMapping(@RequestParam(value = "form", required = false) java.lang.Integer form) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query DeleteCategoryMapping");
+        int result = queryService.executeDeleteCategoryMapping(form);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/DeleteExistingSubscriptionsForUser", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeDeleteExistingSubscriptionsForUser(@RequestParam(value = "user", required = false) java.lang.Integer user) throws QueryParameterMismatchException {
@@ -135,6 +145,16 @@ public class QueryExecutionController {
     public Page<Object> executeGetUserIdFromPasswordResetToken(@RequestParam(value = "token", required = false) java.lang.String token, Pageable pageable) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query getUserIdFromPasswordResetToken");
         Page<Object> result = queryService.executeGetUserIdFromPasswordResetToken(pageable, token);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/InsertCategoryMapping", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeInsertCategoryMapping(@RequestParam(value = "FormTypeId", required = false) java.lang.Integer FormTypeId, @RequestParam(value = "FormCategoryId", required = false) java.lang.Integer FormCategoryId) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query InsertCategoryMapping");
+        int result = queryService.executeInsertCategoryMapping(FormTypeId, FormCategoryId);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

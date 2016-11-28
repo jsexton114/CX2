@@ -51,6 +51,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeDeleteCategoryMapping( java.lang.Integer form)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("form", form);
+        return queryExecutor.executeNamedQueryForUpdate("DeleteCategoryMapping", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeDeleteExistingSubscriptionsForUser( java.lang.Integer user)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -114,6 +122,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("token", token);
         return queryExecutor.executeNamedQuery("getUserIdFromPasswordResetToken", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public int executeInsertCategoryMapping( java.lang.Integer FormTypeId ,java.lang.Integer FormCategoryId)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("FormTypeId", FormTypeId);
+        params.put("FormCategoryId", FormCategoryId);
+        return queryExecutor.executeNamedQueryForUpdate("InsertCategoryMapping", params);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
