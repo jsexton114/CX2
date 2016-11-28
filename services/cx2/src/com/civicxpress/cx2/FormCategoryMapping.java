@@ -27,8 +27,8 @@ public class FormCategoryMapping implements Serializable {
 
     private Integer id;
     private Integer formTypeId;
-    private Integer formCategories;
-    private FormCategories formCategoriesByFormCategories;
+    private Integer formCategoryId;
+    private FormCategories formCategories;
     private FormTypes formTypes;
 
     @Id
@@ -51,27 +51,27 @@ public class FormCategoryMapping implements Serializable {
         this.formTypeId = formTypeId;
     }
 
-    @Column(name = "`FormCategories`", nullable = true, scale = 0, precision = 10)
-    public Integer getFormCategories() {
-        return this.formCategories;
+    @Column(name = "`FormCategoryId`", nullable = true, scale = 0, precision = 10)
+    public Integer getFormCategoryId() {
+        return this.formCategoryId;
     }
 
-    public void setFormCategories(Integer formCategories) {
-        this.formCategories = formCategories;
+    public void setFormCategoryId(Integer formCategoryId) {
+        this.formCategoryId = formCategoryId;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`FormCategories`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public FormCategories getFormCategoriesByFormCategories() {
-        return this.formCategoriesByFormCategories;
+    @JoinColumn(name = "`FormCategoryId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public FormCategories getFormCategories() {
+        return this.formCategories;
     }
 
-    public void setFormCategoriesByFormCategories(FormCategories formCategoriesByFormCategories) {
-        if(formCategoriesByFormCategories != null) {
-            this.formCategories = formCategoriesByFormCategories.getId();
+    public void setFormCategories(FormCategories formCategories) {
+        if(formCategories != null) {
+            this.formCategoryId = formCategories.getId();
         }
 
-        this.formCategoriesByFormCategories = formCategoriesByFormCategories;
+        this.formCategories = formCategories;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

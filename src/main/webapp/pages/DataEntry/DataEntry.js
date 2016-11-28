@@ -163,3 +163,17 @@ Application.$controller("liveform9Controller", ["$scope",
 		$scope.ctrlScope = $scope;
 	}
 ]);
+
+Application.$controller("grid11Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveform10Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

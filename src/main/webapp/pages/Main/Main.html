@@ -155,6 +155,12 @@
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-default" caption="Create" type="button" margin="unset 0.5em" name="buttonCreate" on-click="buttonCreateClick($event, $scope)"></wm-button>
             </wm-dialogactions>
+            <wm-composite name="composite4_1" margin="1em unset 2em unset">
+                <wm-label class="col-md-3 control-label" caption="Select Municipality" name="label20"></wm-label>
+                <wm-container class="col-md-9" name="container4">
+                    <wm-select dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AllCategories.firstRecord.id" name="selectMunicipality"></wm-select>
+                </wm-container>
+            </wm-composite>
             <wm-composite name="composite3">
                 <wm-label class="col-md-3 control-label" name="label18" caption="Select Category"></wm-label>
                 <wm-container class="col-md-9" name="container2">

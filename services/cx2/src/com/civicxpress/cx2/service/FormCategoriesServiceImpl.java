@@ -54,7 +54,7 @@ public class FormCategoriesServiceImpl implements FormCategoriesService {
         FormCategories formCategoriesCreated = this.wmGenericDao.create(formCategories);
         if(formCategoriesCreated.getFormCategoryMappings() != null) {
             for(FormCategoryMapping formCategoryMapping : formCategoriesCreated.getFormCategoryMappings()) {
-                formCategoryMapping.setFormCategoriesByFormCategories(formCategoriesCreated);
+                formCategoryMapping.setFormCategories(formCategoriesCreated);
                 LOGGER.debug("Creating a new child FormCategoryMapping with information: {}", formCategoryMapping);
                 formCategoryMappingService.create(formCategoryMapping);
             }
@@ -139,7 +139,7 @@ public class FormCategoriesServiceImpl implements FormCategoriesService {
         LOGGER.debug("Fetching all associated formCategoryMappings");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formCategoriesByFormCategories.id = '" + id + "'");
+        queryBuilder.append("formCategories.id = '" + id + "'");
 
         return formCategoryMappingService.findAll(queryBuilder.toString(), pageable);
     }

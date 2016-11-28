@@ -255,6 +255,31 @@
       "scale" : 0,
       "sqlType" : "number",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "formStatusId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "FormStatusId",
+      "nullable" : true,
+      "oldName" : "FormStatusId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "SfnewResidentialStructure",
@@ -272,6 +297,22 @@
       "virtual" : false
     },
     "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "formStatuses",
+      "mappings" : [ {
+        "sourceColumn" : "FormStatusId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_FormStatuses_TO_SFNewZpcph",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "SFNewResidentialStructure",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "FormStatuses",
+      "virtual" : false
+    }, {
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -583,6 +624,31 @@
       "scale" : 0,
       "sqlType" : "number",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "formStatusId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "FormStatusId",
+      "nullable" : true,
+      "oldName" : "FormStatusId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "SfnewElectricConnection",
@@ -600,6 +666,22 @@
       "virtual" : false
     },
     "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "formStatuses",
+      "mappings" : [ {
+        "sourceColumn" : "FormStatusId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_FormStatuses_TO_SFNewYG29C",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "SFNewElectricConnection",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "FormStatuses",
+      "virtual" : false
+    }, {
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -2290,7 +2372,7 @@
       "fieldName" : "formCategoryMappings",
       "mappings" : [ {
         "sourceColumn" : "ID",
-        "targetColumn" : "FormCategories"
+        "targetColumn" : "FormCategoryId"
       } ],
       "name" : "FK_FormCategories_TO_ForjVYxX",
       "primary" : false,
@@ -3366,15 +3448,15 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "formCategories",
+      "fieldName" : "formCategoryId",
       "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 255,
-      "name" : "FormCategories",
+      "name" : "FormCategoryId",
       "nullable" : true,
-      "oldName" : "FormCategories",
+      "oldName" : "FormCategoryId",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
@@ -3404,9 +3486,9 @@
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "formCategoriesByFormCategories",
+      "fieldName" : "formCategories",
       "mappings" : [ {
-        "sourceColumn" : "FormCategories",
+        "sourceColumn" : "FormCategoryId",
         "targetColumn" : "ID"
       } ],
       "name" : "FK_FormCategories_TO_ForjVYxX",
@@ -4437,7 +4519,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : false,
+      "partOfAnyRelation" : true,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -4888,6 +4970,38 @@
       "virtual" : false
     },
     "relations" : [ {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "sfnewResidentialStructures",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "FormStatusId"
+      } ],
+      "name" : "FK_FormStatuses_TO_SFNewZpcph",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "FormStatuses",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SFNewResidentialStructure",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "sfnewElectricConnections",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "FormStatusId"
+      } ],
+      "name" : "FK_FormStatuses_TO_SFNewYG29C",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "FormStatuses",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SFNewElectricConnection",
+      "virtual" : false
+    }, {
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,

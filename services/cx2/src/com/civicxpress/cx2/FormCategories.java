@@ -61,7 +61,7 @@ public class FormCategories implements Serializable {
         this.description = description;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formCategoriesByFormCategories")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formCategories")
     public List<FormCategoryMapping> getFormCategoryMappings() {
         return this.formCategoryMappings;
     }

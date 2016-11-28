@@ -365,8 +365,8 @@
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormCategoryMapping">
-            <element name="formCategories" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formCategoriesByFormCategories" typeRef="com.civicxpress.cx2.FormCategories" allowNull="true"/>
+            <element name="formCategories" typeRef="com.civicxpress.cx2.FormCategories" allowNull="true"/>
+            <element name="formCategoryId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
@@ -388,6 +388,8 @@
             <element name="processOwners" typeRef="java.lang.String" allowNull="true"/>
             <element name="readAccess" typeRef="java.lang.String" allowNull="true"/>
             <element name="recalculateAutoFees" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="sfnewElectricConnections" typeRef="com.civicxpress.cx2.SfnewElectricConnection" isList="true" allowNull="true"/>
+            <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="sortOrder" typeRef="java.lang.Long" allowNull="true"/>
             <element name="status" typeRef="java.lang.String" allowNull="true"/>
             <element name="writeAccess" typeRef="java.lang.String" allowNull="true"/>
@@ -530,6 +532,8 @@
             <element name="basementSft" typeRef="java.lang.String" allowNull="true"/>
             <element name="connectionType" typeRef="java.lang.String" allowNull="true"/>
             <element name="electricLinesCount" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="garageSft" typeRef="java.lang.String" allowNull="true"/>
@@ -543,6 +547,8 @@
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.SfnewResidentialStructure">
             <element name="basementSft" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="garageSft" typeRef="java.lang.String" allowNull="true"/>

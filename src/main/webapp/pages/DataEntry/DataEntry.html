@@ -577,6 +577,42 @@
                         </wm-liveform>
                     </wm-livegrid>
                 </wm-tabpane>
+                <wm-tabpane name="tabpane11" title="FormCategoryMapping">
+                    <wm-livegrid formlayout="dialog" name="livegrid10">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Formcategorymapping List" dataset="bind:Variables.Cx2FormCategoryMappingData.dataSet" navigation="Basic" name="grid11">
+                            <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="formCategoriesByFormCategories.id" caption="Categories Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="FormCategories"
+                            readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="formCategoriesByFormCategories.category" caption="Categories Category" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormCategories"></wm-grid-column>
+                            <wm-grid-column binding="formCategoriesByFormCategories.description" caption="Categories Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormCategories"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.id" caption="Types Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="FormTypes" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.formTypeGuid" caption="Type Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormTypes"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.formType" caption="Form Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormTypes"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.permissionsReaders" caption="Permissions Readers" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormTypes"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.permissionsWriters" caption="Permissions Writers" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormTypes"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.tbLocation" caption="Tb Location" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormTypes"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        </wm-grid>
+                        <wm-liveform novalidate="false" errormessage="" title="Formcategorymapping Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2FormCategoryMappingData.dataSet" captionalign="left" captionposition="top" name="liveform10">
+                            <wm-layoutgrid columns="2" name="layoutgrid10">
+                                <wm-gridrow name="gridrow44">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn79">
+                                        <wm-form-field name="formCategoriesByFormCategories" displayname="Form Categories By Form Categories" show="true" primary-key="false" generator="assigned" key="formCategoriesByFormCategories" type="list" is-related="true"
+                                        widget="select" placeholder="Select value" displayexpression="category"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn80">
+                                        <wm-form-field name="formTypes" displayname="Form Types" show="true" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="formType"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                            <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                        </wm-liveform>
+                    </wm-livegrid>
+                </wm-tabpane>
             </wm-tabs>
         </wm-page-content>
     </wm-content>

@@ -26,6 +26,8 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.SfnewElectricConnection;
+import com.civicxpress.cx2.SfnewResidentialStructure;
 import com.civicxpress.cx2.service.FormStatusesService;
 
 /**
@@ -116,6 +118,22 @@ public class FormStatusesController {
     public Long countFormStatuses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting FormStatuses");
         return formStatusesService.count(query);
+    }
+
+    @RequestMapping(value = "/{id}/sfnewResidentialStructures", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the sfnewResidentialStructures instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
+        return formStatusesService.findAssociatedSfnewResidentialStructures(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/sfnewElectricConnections", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the sfnewElectricConnections instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewElectricConnections");
+        return formStatusesService.findAssociatedSfnewElectricConnections(id, pageable);
     }
 
     /**

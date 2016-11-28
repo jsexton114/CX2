@@ -35,6 +35,8 @@ public class SfnewResidentialStructure implements Serializable {
     private String valueOfWork;
     private Integer formTypeId;
     private Integer userId;
+    private Integer formStatusId;
+    private FormStatuses formStatuses;
     private FormTypes formTypes;
     private Users users;
 
@@ -128,6 +130,29 @@ public class SfnewResidentialStructure implements Serializable {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    @Column(name = "`FormStatusId`", nullable = true, scale = 0, precision = 10)
+    public Integer getFormStatusId() {
+        return this.formStatusId;
+    }
+
+    public void setFormStatusId(Integer formStatusId) {
+        this.formStatusId = formStatusId;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`FormStatusId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public FormStatuses getFormStatuses() {
+        return this.formStatuses;
+    }
+
+    public void setFormStatuses(FormStatuses formStatuses) {
+        if(formStatuses != null) {
+            this.formStatusId = formStatuses.getId();
+        }
+
+        this.formStatuses = formStatuses;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

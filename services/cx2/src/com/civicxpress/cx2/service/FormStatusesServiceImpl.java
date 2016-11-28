@@ -22,6 +22,8 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.SfnewElectricConnection;
+import com.civicxpress.cx2.SfnewResidentialStructure;
 
 
 /**
@@ -34,6 +36,13 @@ public class FormStatusesServiceImpl implements FormStatusesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FormStatusesServiceImpl.class);
 
+    @Autowired
+	@Qualifier("cx2.SfnewResidentialStructureService")
+	private SfnewResidentialStructureService sfnewResidentialStructureService;
+
+    @Autowired
+	@Qualifier("cx2.SfnewElectricConnectionService")
+	private SfnewElectricConnectionService sfnewElectricConnectionService;
 
     @Autowired
     @Qualifier("cx2.FormStatusesDao")
@@ -48,6 +57,21 @@ public class FormStatusesServiceImpl implements FormStatusesService {
 	public FormStatuses create(FormStatuses formStatuses) {
         LOGGER.debug("Creating a new FormStatuses with information: {}", formStatuses);
         FormStatuses formStatusesCreated = this.wmGenericDao.create(formStatuses);
+        if(formStatusesCreated.getSfnewResidentialStructures() != null) {
+            for(SfnewResidentialStructure sfnewResidentialStructure : formStatusesCreated.getSfnewResidentialStructures()) {
+                sfnewResidentialStructure.setFormStatuses(formStatusesCreated);
+                LOGGER.debug("Creating a new child SfnewResidentialStructure with information: {}", sfnewResidentialStructure);
+                sfnewResidentialStructureService.create(sfnewResidentialStructure);
+            }
+        }
+
+        if(formStatusesCreated.getSfnewElectricConnections() != null) {
+            for(SfnewElectricConnection sfnewElectricConnection : formStatusesCreated.getSfnewElectricConnections()) {
+                sfnewElectricConnection.setFormStatuses(formStatusesCreated);
+                LOGGER.debug("Creating a new child SfnewElectricConnection with information: {}", sfnewElectricConnection);
+                sfnewElectricConnectionService.create(sfnewElectricConnection);
+            }
+        }
         return formStatusesCreated;
     }
 
@@ -122,7 +146,45 @@ public class FormStatusesServiceImpl implements FormStatusesService {
         return this.wmGenericDao.count(query);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
 
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formStatuses.id = '" + id + "'");
+
+        return sfnewResidentialStructureService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewElectricConnections");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formStatuses.id = '" + id + "'");
+
+        return sfnewElectricConnectionService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SfnewResidentialStructureService instance
+	 */
+	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
+        this.sfnewResidentialStructureService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SfnewElectricConnectionService instance
+	 */
+	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
+        this.sfnewElectricConnectionService = service;
+    }
 
 }
 
