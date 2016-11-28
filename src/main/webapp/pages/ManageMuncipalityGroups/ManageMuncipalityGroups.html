@@ -91,16 +91,16 @@
                     <wm-layoutgrid columns="2" name="layoutgrid5">
                         <wm-gridrow name="gridrow13">
                             <wm-gridcolumn columnwidth="6" name="gridcolumn14">
-                                <wm-form-field name="municipalityGroups" displayname="Municipality Groups" required="false" show="true" generator="assigned" primary-key="false" key="municipalityGroups" type="list" is-related="true" pc-display="true" mobile-display="true"
-                                widget="select"></wm-form-field>
+                                <wm-form-field name="municipalityGroups" displayname="Municipality Groups" show="true" primary-key="false" generator="assigned" key="municipalityGroups" type="list" is-related="true" widget="select" placeholder="Select value"
+                                displayexpression="groupName" dataset="bind:Variables.SelectedGroupObj.dataSet" displayfield="groupName" defaultvalue="bind:Variables.SelectedGroupObj.firstRecord"></wm-form-field>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="6" name="gridcolumn15_1">
-                                <wm-form-field name="users" displayname="Users" required="false" show="true" generator="assigned" primary-key="false" key="users" type="list" is-related="true" pc-display="true" mobile-display="true" widget="autocomplete"></wm-form-field>
+                                <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="autocomplete" placeholder="Search" displaylabel="email"></wm-form-field>
                             </wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>
-                    <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
-                    <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                 </wm-liveform>
             </wm-livegrid>
         </wm-dialog>
