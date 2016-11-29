@@ -26,6 +26,7 @@ import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
+import com.civicxpress.cx2.Vendor;
 
 
 /**
@@ -39,20 +40,24 @@ public class StatesServiceImpl implements StatesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(StatesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.MunicipalitiesService")
-	private MunicipalitiesService municipalitiesService;
+	@Qualifier("cx2.GisrecordsService")
+	private GisrecordsService gisrecordsService;
 
     @Autowired
 	@Qualifier("cx2.UsersService")
 	private UsersService usersService;
 
     @Autowired
+	@Qualifier("cx2.VendorService")
+	private VendorService vendorService;
+
+    @Autowired
 	@Qualifier("cx2.ContractorsService")
 	private ContractorsService contractorsService;
 
     @Autowired
-	@Qualifier("cx2.GisrecordsService")
-	private GisrecordsService gisrecordsService;
+	@Qualifier("cx2.MunicipalitiesService")
+	private MunicipalitiesService municipalitiesService;
 
     @Autowired
     @Qualifier("cx2.StatesDao")
@@ -96,6 +101,14 @@ public class StatesServiceImpl implements StatesService {
                 gisrecordse.setStates(statesCreated);
                 LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordse);
                 gisrecordsService.create(gisrecordse);
+            }
+        }
+
+        if(statesCreated.getVendors() != null) {
+            for(Vendor vendor : statesCreated.getVendors()) {
+                vendor.setStates(statesCreated);
+                LOGGER.debug("Creating a new child Vendor with information: {}", vendor);
+                vendorService.create(vendor);
             }
         }
         return statesCreated;
@@ -216,13 +229,24 @@ public class StatesServiceImpl implements StatesService {
         return gisrecordsService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Vendor> findAssociatedVendors(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendors");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("states.id = '" + id + "'");
+
+        return vendorService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalitiesService instance
+	 * @param service GisrecordsService instance
 	 */
-	protected void setMunicipalitiesService(MunicipalitiesService service) {
-        this.municipalitiesService = service;
+	protected void setGisrecordsService(GisrecordsService service) {
+        this.gisrecordsService = service;
     }
 
     /**
@@ -237,6 +261,15 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service VendorService instance
+	 */
+	protected void setVendorService(VendorService service) {
+        this.vendorService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service ContractorsService instance
 	 */
 	protected void setContractorsService(ContractorsService service) {
@@ -246,10 +279,10 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service GisrecordsService instance
+	 * @param service MunicipalitiesService instance
 	 */
-	protected void setGisrecordsService(GisrecordsService service) {
-        this.gisrecordsService = service;
+	protected void setMunicipalitiesService(MunicipalitiesService service) {
+        this.municipalitiesService = service;
     }
 
 }

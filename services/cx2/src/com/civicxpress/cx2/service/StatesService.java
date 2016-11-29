@@ -19,6 +19,7 @@ import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
+import com.civicxpress.cx2.Vendor;
 
 /**
  * Service object for domain model class {@link States}.
@@ -176,6 +177,18 @@ public interface StatesService {
      * @see Page
      */
     Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated vendors for given States id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Vendor instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Vendor> findAssociatedVendors(Integer id, Pageable pageable);
 
 }
 

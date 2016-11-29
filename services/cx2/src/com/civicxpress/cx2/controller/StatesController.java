@@ -30,6 +30,7 @@ import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
+import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.service.StatesService;
 
 /**
@@ -152,6 +153,14 @@ public class StatesController {
     public Page<Gisrecords> findAssociatedGisrecordses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gisrecordses");
         return statesService.findAssociatedGisrecordses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/vendors", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the vendors instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Vendor> findAssociatedVendors(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendors");
+        return statesService.findAssociatedVendors(id, pageable);
     }
 
     /**

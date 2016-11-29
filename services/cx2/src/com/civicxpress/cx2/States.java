@@ -33,6 +33,7 @@ public class States implements Serializable {
     private List<Users> userses = new ArrayList<>();
     private List<Municipalities> municipalitieses = new ArrayList<>();
     private List<Gisrecords> gisrecordses = new ArrayList<>();
+    private List<Vendor> vendors = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -88,6 +89,15 @@ public class States implements Serializable {
 
     public void setGisrecordses(List<Gisrecords> gisrecordses) {
         this.gisrecordses = gisrecordses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
+    public List<Vendor> getVendors() {
+        return this.vendors;
+    }
+
+    public void setVendors(List<Vendor> vendors) {
+        this.vendors = vendors;
     }
 
     @Override

@@ -13,6 +13,10 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CheckingUserWithMunicipalityInRolesrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="DeleteCategoryMapping">
+        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2DeleteCategoryMappingrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="DeleteExistingSubscriptionsForUser">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2DeleteExistingSubscriptionsForUserrtnType" isList="false"/>
@@ -168,10 +172,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="DeleteCategoryMapping">
-        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
@@ -361,6 +361,11 @@
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.ContractorTypes">
+            <element name="contractorType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="vendors" typeRef="com.civicxpress.cx2.Vendor" isList="true" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Contractors">
             <element name="address1" typeRef="java.lang.String" allowNull="true"/>
@@ -596,6 +601,7 @@
             <element name="municipalitieses" typeRef="com.civicxpress.cx2.Municipalities" isList="true" allowNull="true"/>
             <element name="stateName" typeRef="java.lang.String" allowNull="true"/>
             <element name="userses" typeRef="com.civicxpress.cx2.Users" isList="true" allowNull="true"/>
+            <element name="vendors" typeRef="com.civicxpress.cx2.Vendor" isList="true" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Subdivisions">
             <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
@@ -645,6 +651,33 @@
             <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
             <element name="userPasswordResetTokenses" typeRef="com.civicxpress.cx2.UserPasswordResetTokens" isList="true" allowNull="true"/>
             <element name="userSubscriptionses" typeRef="com.civicxpress.cx2.UserSubscriptions" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.Vendor">
+            <element name="address1" typeRef="java.lang.String" allowNull="true"/>
+            <element name="address2" typeRef="java.lang.String" allowNull="true"/>
+            <element name="altPhone" typeRef="java.lang.String" allowNull="true"/>
+            <element name="businessClassification" typeRef="java.lang.String" allowNull="true"/>
+            <element name="city" typeRef="java.lang.String" allowNull="true"/>
+            <element name="coi" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
+            <element name="companyEmail" typeRef="java.lang.String" allowNull="true"/>
+            <element name="companyName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="companyPhone" typeRef="java.lang.String" allowNull="true"/>
+            <element name="companyWebsite" typeRef="java.lang.String" allowNull="true"/>
+            <element name="contractorTypeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="contractorTypes" typeRef="com.civicxpress.cx2.ContractorTypes" allowNull="true"/>
+            <element name="country" typeRef="java.lang.String" allowNull="true"/>
+            <element name="faxNumber" typeRef="java.lang.String" allowNull="true"/>
+            <element name="feinNumber" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="insuranceCompany" typeRef="java.lang.String" allowNull="true"/>
+            <element name="insuranceExpires" typeRef="java.util.Date" allowNull="true"/>
+            <element name="lastUpdated" typeRef="java.util.Date" allowNull="true"/>
+            <element name="numberOfEmployees" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="stateId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="stateRegNumber" typeRef="java.lang.String" allowNull="true"/>
+            <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
+            <element name="typeOfBusiness" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.wavemaker.runtime.data.expression.QueryFilter">
             <element name="attributeName" typeRef="java.lang.String" allowNull="true"/>
