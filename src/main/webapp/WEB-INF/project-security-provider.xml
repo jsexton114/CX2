@@ -194,6 +194,11 @@
                         <property name="landingPage" value="Main"/>
                     </bean>
                 </entry>
+                <entry key="CXVendorAdmin">
+                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                        <property name="landingPage" value="Main"/>
+                    </bean>
+                </entry>
             </map>
         </property>
         <property name="sslConfig">
