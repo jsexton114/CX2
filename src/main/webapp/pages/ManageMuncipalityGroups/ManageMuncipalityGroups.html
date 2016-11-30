@@ -58,7 +58,7 @@
     </wm-content>
     <wm-view class="dialog-view" name="view1" backgroundsize="100%">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Users" iconclass="" name="UsersDialog" width="80%" height="60%">
-            <wm-livegrid formlayout="inline" name="livegrid1">
+            <wm-livegrid formlayout="dialog" name="livegrid1">
                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="Municipalitygroupmembers List" dataset="bind:Variables.GroupMembersData.dataSet" navigation="Basic" name="grid4">
                     <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                     <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" edit-widget-type="upload" searchable="false" show="true" related-entity-name="Users" readonly="false"><a data-ng-if="columnValue != null" class="col-md-9" target="_blank" data-ng-href="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}"><i class="wm-icon wm-icon24 wi wi-file"></i></a>
@@ -71,8 +71,8 @@
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                 </wm-grid>
-                <wm-liveform novalidate="false" errormessage="" title="Municipalitygroupmembers Info" formlayout="inline" iconclass="wi wi-edit" dataset="bind:Variables.GroupMembersData.dataSet" captionalign="left" captionposition="left" name="liveform1"
-                defaultmode="View">
+                <wm-liveform novalidate="false" errormessage="" title="Municipalitygroupmembers Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.GroupMembersData.dataSet" captionalign="left" captionposition="left" name="liveform1"
+                defaultmode="View" show="true">
                     <wm-layoutgrid columns="2" name="layoutgrid5">
                         <wm-gridrow name="gridrow13">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn14">
