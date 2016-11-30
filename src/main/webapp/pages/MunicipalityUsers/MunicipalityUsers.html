@@ -25,7 +25,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-tabs name="test">
+                        <wm-tabs name="Manage">
                             <wm-tabpane name="tabpane1" title="Municipality Subscriber List">
                                 <wm-grid title="Usersubscriptions List" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="gridUsersubscriptionsList" on-click="Widgets.dialog1.open()">
                                     <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
@@ -114,6 +114,7 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
+                            <wm-tabpane name="tabpane4_1" title="Manage Groups" content="ManageMuncipalityGroups"></wm-tabpane>
                         </wm-tabs>
                     </wm-gridcolumn>
                 </wm-gridrow>
