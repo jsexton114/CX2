@@ -58,7 +58,7 @@ public class ResetPasswordMailService {
      */
     public String sendEmail(String recipient, String token) throws MessagingException {
         
-        String emailBody = "Hi, Click on the Following Link to Reset your Password <br />";
+        String emailBody = "CivicXpress User, <br /><br />It looks like somebody forgot their password!  No problem, you can reset your password using the following link. <br /><br />";
         
         Properties props = System.getProperties();
         props.put("mail.smtp.starttls.enable", "true");
@@ -77,7 +77,8 @@ public class ResetPasswordMailService {
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
         
         String resetUrl = RESET_URL + token;
-        emailBody += "\n <a href ='"+resetUrl+ "'> Click Here to Reset </a>";
+        emailBody += "\n <a href ='"+resetUrl+ "'> Click Here to Reset </a> <br /><br />";
+        emailBody += "This link is only good for the next 48 hours, after which time it will expire like old milk!  Yuck!<br /><br />Your friends at CivicXpress<br />support@tekdoginc.com<br />614-737-3743<br />";
         
         message.setSubject(EMAIL_SUBJECT);
         message.setContent(emailBody, "text/html");
