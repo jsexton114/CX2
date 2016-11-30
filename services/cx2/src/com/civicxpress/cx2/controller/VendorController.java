@@ -159,8 +159,9 @@ public class VendorController {
         return vendorService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/vendorApprovalses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/vendorApprovalses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the vendorApprovalses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<VendorApprovals> findAssociatedVendorApprovalses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorApprovalses");
         return vendorService.findAssociatedVendorApprovalses(id, pageable);

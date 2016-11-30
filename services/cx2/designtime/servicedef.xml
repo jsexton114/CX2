@@ -92,6 +92,12 @@
         <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2SubDivisonCountrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateAsCXVendorAdmin">
+        <parameter name="role" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateAsCXVendorAdminrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateCFInProfile">
         <parameter name="cf" typeRef="java.lang.String" isList="false"/>
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
@@ -172,12 +178,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UpdateAsCXVendorAdmin">
-        <parameter name="role" typeRef="java.lang.String" isList="false"/>
-        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
@@ -658,6 +658,7 @@
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.VendorApprovals">
             <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="approvalStatus" typeRef="java.lang.String" allowNull="true"/>
             <element name="approvedBy" typeRef="java.lang.String" allowNull="true"/>
             <element name="dateApproved" typeRef="java.util.Date" allowNull="true"/>
             <element name="expiresDate" typeRef="java.util.Date" allowNull="true"/>

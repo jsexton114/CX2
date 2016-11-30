@@ -39,20 +39,20 @@ public class StatesServiceImpl implements StatesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(StatesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.UsersService")
-	private UsersService usersService;
-
-    @Autowired
-	@Qualifier("cx2.GisrecordsService")
-	private GisrecordsService gisrecordsService;
-
-    @Autowired
 	@Qualifier("cx2.VendorService")
 	private VendorService vendorService;
 
     @Autowired
+	@Qualifier("cx2.UsersService")
+	private UsersService usersService;
+
+    @Autowired
 	@Qualifier("cx2.MunicipalitiesService")
 	private MunicipalitiesService municipalitiesService;
+
+    @Autowired
+	@Qualifier("cx2.GisrecordsService")
+	private GisrecordsService gisrecordsService;
 
     @Autowired
     @Qualifier("cx2.StatesDao")
@@ -219,24 +219,6 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UsersService instance
-	 */
-	protected void setUsersService(UsersService service) {
-        this.usersService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service GisrecordsService instance
-	 */
-	protected void setGisrecordsService(GisrecordsService service) {
-        this.gisrecordsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service VendorService instance
 	 */
 	protected void setVendorService(VendorService service) {
@@ -246,10 +228,28 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service UsersService instance
+	 */
+	protected void setUsersService(UsersService service) {
+        this.usersService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service MunicipalitiesService instance
 	 */
 	protected void setMunicipalitiesService(MunicipalitiesService service) {
         this.municipalitiesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service GisrecordsService instance
+	 */
+	protected void setGisrecordsService(GisrecordsService service) {
+        this.gisrecordsService = service;
     }
 
 }
