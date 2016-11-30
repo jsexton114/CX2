@@ -63,6 +63,7 @@ public class Municipalities implements Serializable {
     private Date closeTime;
     private List<FormTypes> formTypeses = new ArrayList<>();
     private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
+    private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
     private List<MunicipalityGroups> municipalityGroupses = new ArrayList<>();
     private List<Subdivisions> subdivisionses = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
@@ -70,7 +71,6 @@ public class Municipalities implements Serializable {
     private List<Gisrecords> gisrecordses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
     private List<Holidays> holidayses = new ArrayList<>();
-    private List<ContractorApprovals> contractorApprovalses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -320,6 +320,15 @@ public class Municipalities implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<VendorApprovals> getVendorApprovalses() {
+        return this.vendorApprovalses;
+    }
+
+    public void setVendorApprovalses(List<VendorApprovals> vendorApprovalses) {
+        this.vendorApprovalses = vendorApprovalses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<MunicipalityGroups> getMunicipalityGroupses() {
         return this.municipalityGroupses;
     }
@@ -385,15 +394,6 @@ public class Municipalities implements Serializable {
 
     public void setHolidayses(List<Holidays> holidayses) {
         this.holidayses = holidayses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<ContractorApprovals> getContractorApprovalses() {
-        return this.contractorApprovalses;
-    }
-
-    public void setContractorApprovalses(List<ContractorApprovals> contractorApprovalses) {
-        this.contractorApprovalses = contractorApprovalses;
     }
 
     @Override

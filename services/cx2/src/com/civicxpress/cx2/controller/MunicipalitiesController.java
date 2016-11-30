@@ -32,7 +32,6 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
-import com.civicxpress.cx2.ContractorApprovals;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
@@ -42,6 +41,7 @@ import com.civicxpress.cx2.MunicipalityGroups;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.Subdivisions;
 import com.civicxpress.cx2.UserSubscriptions;
+import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.service.MunicipalitiesService;
 
 /**
@@ -183,6 +183,13 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedManualFeeTypeses(id, pageable);
     }
 
+    @RequestMapping(value = "/{id:.+}/vendorApprovalses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the vendorApprovalses instance associated with the given id.")
+    public Page<VendorApprovals> findAssociatedVendorApprovalses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorApprovalses");
+        return municipalitiesService.findAssociatedVendorApprovalses(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/municipalityGroupses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the municipalityGroupses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -229,14 +236,6 @@ public class MunicipalitiesController {
     public Page<Holidays> findAssociatedHolidayses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated holidayses");
         return municipalitiesService.findAssociatedHolidayses(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/contractorApprovalses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the contractorApprovalses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<ContractorApprovals> findAssociatedContractorApprovalses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated contractorApprovalses");
-        return municipalitiesService.findAssociatedContractorApprovalses(id, pageable);
     }
 
     /**

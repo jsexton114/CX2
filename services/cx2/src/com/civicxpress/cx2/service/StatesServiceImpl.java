@@ -21,7 +21,6 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.Contractors;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.States;
@@ -40,20 +39,16 @@ public class StatesServiceImpl implements StatesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(StatesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.GisrecordsService")
-	private GisrecordsService gisrecordsService;
-
-    @Autowired
 	@Qualifier("cx2.UsersService")
 	private UsersService usersService;
 
     @Autowired
-	@Qualifier("cx2.VendorService")
-	private VendorService vendorService;
+	@Qualifier("cx2.GisrecordsService")
+	private GisrecordsService gisrecordsService;
 
     @Autowired
-	@Qualifier("cx2.ContractorsService")
-	private ContractorsService contractorsService;
+	@Qualifier("cx2.VendorService")
+	private VendorService vendorService;
 
     @Autowired
 	@Qualifier("cx2.MunicipalitiesService")
@@ -72,14 +67,6 @@ public class StatesServiceImpl implements StatesService {
 	public States create(States states) {
         LOGGER.debug("Creating a new States with information: {}", states);
         States statesCreated = this.wmGenericDao.create(states);
-        if(statesCreated.getContractorses() != null) {
-            for(Contractors contractorse : statesCreated.getContractorses()) {
-                contractorse.setStates(statesCreated);
-                LOGGER.debug("Creating a new child Contractors with information: {}", contractorse);
-                contractorsService.create(contractorse);
-            }
-        }
-
         if(statesCreated.getUserses() != null) {
             for(Users userse : statesCreated.getUserses()) {
                 userse.setStates(statesCreated);
@@ -187,17 +174,6 @@ public class StatesServiceImpl implements StatesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Contractors> findAssociatedContractorses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated contractorses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("states.id = '" + id + "'");
-
-        return contractorsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<Users> findAssociatedUserses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userses");
 
@@ -243,15 +219,6 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service GisrecordsService instance
-	 */
-	protected void setGisrecordsService(GisrecordsService service) {
-        this.gisrecordsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service UsersService instance
 	 */
 	protected void setUsersService(UsersService service) {
@@ -261,19 +228,19 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorService instance
+	 * @param service GisrecordsService instance
 	 */
-	protected void setVendorService(VendorService service) {
-        this.vendorService = service;
+	protected void setGisrecordsService(GisrecordsService service) {
+        this.gisrecordsService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service ContractorsService instance
+	 * @param service VendorService instance
 	 */
-	protected void setContractorsService(ContractorsService service) {
-        this.contractorsService = service;
+	protected void setVendorService(VendorService service) {
+        this.vendorService = service;
     }
 
     /**

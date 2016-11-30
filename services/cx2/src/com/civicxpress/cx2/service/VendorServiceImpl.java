@@ -22,6 +22,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Vendor;
+import com.civicxpress.cx2.VendorApprovals;
 
 
 /**
@@ -34,6 +35,9 @@ public class VendorServiceImpl implements VendorService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(VendorServiceImpl.class);
 
+    @Autowired
+	@Qualifier("cx2.VendorApprovalsService")
+	private VendorApprovalsService vendorApprovalsService;
 
     @Autowired
     @Qualifier("cx2.VendorDao")
@@ -48,6 +52,13 @@ public class VendorServiceImpl implements VendorService {
 	public Vendor create(Vendor vendor) {
         LOGGER.debug("Creating a new Vendor with information: {}", vendor);
         Vendor vendorCreated = this.wmGenericDao.create(vendor);
+        if(vendorCreated.getVendorApprovalses() != null) {
+            for(VendorApprovals vendorApprovalse : vendorCreated.getVendorApprovalses()) {
+                vendorApprovalse.setVendor(vendorCreated);
+                LOGGER.debug("Creating a new child VendorApprovals with information: {}", vendorApprovalse);
+                vendorApprovalsService.create(vendorApprovalse);
+            }
+        }
         return vendorCreated;
     }
 
@@ -122,7 +133,25 @@ public class VendorServiceImpl implements VendorService {
         return this.wmGenericDao.count(query);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorApprovalses");
 
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("vendor.id = '" + id + "'");
+
+        return vendorApprovalsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service VendorApprovalsService instance
+	 */
+	protected void setVendorApprovalsService(VendorApprovalsService service) {
+        this.vendorApprovalsService = service;
+    }
 
 }
 

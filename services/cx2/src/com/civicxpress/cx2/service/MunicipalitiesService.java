@@ -14,7 +14,6 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.ContractorApprovals;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
@@ -24,6 +23,7 @@ import com.civicxpress.cx2.MunicipalityGroups;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.Subdivisions;
 import com.civicxpress.cx2.UserSubscriptions;
+import com.civicxpress.cx2.VendorApprovals;
 
 /**
  * Service object for domain model class {@link Municipalities}.
@@ -159,6 +159,18 @@ public interface MunicipalitiesService {
     Page<ManualFeeTypes> findAssociatedManualFeeTypeses(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated vendorApprovalses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated VendorApprovals instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated municipalityGroupses for given Municipalities id.
      *
      * @param id value of id; value cannot be null
@@ -229,18 +241,6 @@ public interface MunicipalitiesService {
      * @see Page
      */
     Page<Holidays> findAssociatedHolidayses(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated contractorApprovalses for given Municipalities id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated ContractorApprovals instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<ContractorApprovals> findAssociatedContractorApprovalses(Integer id, Pageable pageable);
 
 }
 

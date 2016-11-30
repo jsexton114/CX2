@@ -351,45 +351,10 @@
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
     <dataobjects>
-        <dataobject javaType="com.civicxpress.cx2.ContractorApprovals">
-            <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
-            <element name="approvedBy" typeRef="java.lang.String" allowNull="true"/>
-            <element name="contractorId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="contractors" typeRef="com.civicxpress.cx2.Contractors" allowNull="true"/>
-            <element name="dateApproved" typeRef="java.util.Date" allowNull="true"/>
-            <element name="expiresDate" typeRef="java.util.Date" allowNull="true"/>
-            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
-            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
-        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.ContractorTypes">
             <element name="contractorType" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="vendors" typeRef="com.civicxpress.cx2.Vendor" isList="true" allowNull="true"/>
-        </dataobject>
-        <dataobject javaType="com.civicxpress.cx2.Contractors">
-            <element name="address1" typeRef="java.lang.String" allowNull="true"/>
-            <element name="address2" typeRef="java.lang.String" allowNull="true"/>
-            <element name="city" typeRef="java.lang.String" allowNull="true"/>
-            <element name="coi" typeRef="java.lang.String" allowNull="true"/>
-            <element name="companyEmail" typeRef="java.lang.String" allowNull="true"/>
-            <element name="companyName" typeRef="java.lang.String" allowNull="true"/>
-            <element name="companyWebsite" typeRef="java.lang.String" allowNull="true"/>
-            <element name="contactEmail" typeRef="java.lang.String" allowNull="true"/>
-            <element name="contactFirst" typeRef="java.lang.String" allowNull="true"/>
-            <element name="contactLast" typeRef="java.lang.String" allowNull="true"/>
-            <element name="contactPhone" typeRef="java.lang.String" allowNull="true"/>
-            <element name="contractorApprovalses" typeRef="com.civicxpress.cx2.ContractorApprovals" isList="true" allowNull="true"/>
-            <element name="feinNumber" typeRef="java.lang.String" allowNull="true"/>
-            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="insuranceCompany" typeRef="java.lang.String" allowNull="true"/>
-            <element name="insuranceExpires" typeRef="java.lang.String" allowNull="true"/>
-            <element name="numberOfEmployees" typeRef="java.lang.String" allowNull="true"/>
-            <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
-            <element name="stateId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
-            <element name="typeOfBussiness" typeRef="java.lang.String" allowNull="true"/>
-            <element name="w9" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormCategories">
             <element name="category" typeRef="java.lang.String" allowNull="true"/>
@@ -507,7 +472,6 @@
             <element name="allowManualPayment" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="city" typeRef="java.lang.String" allowNull="true"/>
             <element name="closeTime" typeRef="java.util.Date" allowNull="true"/>
-            <element name="contractorApprovalses" typeRef="com.civicxpress.cx2.ContractorApprovals" isList="true" allowNull="true"/>
             <element name="email" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeses" typeRef="com.civicxpress.cx2.FormTypes" isList="true" allowNull="true"/>
             <element name="fridayYn" typeRef="java.lang.Boolean" allowNull="true"/>
@@ -535,6 +499,7 @@
             <element name="timeZone" typeRef="java.lang.String" allowNull="true"/>
             <element name="tuesdayYn" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="userSubscriptionses" typeRef="com.civicxpress.cx2.UserSubscriptions" isList="true" allowNull="true"/>
+            <element name="vendorApprovalses" typeRef="com.civicxpress.cx2.VendorApprovals" isList="true" allowNull="true"/>
             <element name="wednesdayYn" typeRef="java.lang.Boolean" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.MunicipalityGroupMembers">
@@ -595,7 +560,6 @@
             <element name="valueOfWork" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.States">
-            <element name="contractorses" typeRef="com.civicxpress.cx2.Contractors" isList="true" allowNull="true"/>
             <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="municipalitieses" typeRef="com.civicxpress.cx2.Municipalities" isList="true" allowNull="true"/>
@@ -678,6 +642,18 @@
             <element name="stateRegNumber" typeRef="java.lang.String" allowNull="true"/>
             <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
             <element name="typeOfBusiness" typeRef="java.lang.String" allowNull="true"/>
+            <element name="vendorApprovalses" typeRef="com.civicxpress.cx2.VendorApprovals" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.VendorApprovals">
+            <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="approvedBy" typeRef="java.lang.String" allowNull="true"/>
+            <element name="dateApproved" typeRef="java.util.Date" allowNull="true"/>
+            <element name="expiresDate" typeRef="java.util.Date" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="vendor" typeRef="com.civicxpress.cx2.Vendor" allowNull="true"/>
+            <element name="vendorId" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.wavemaker.runtime.data.expression.QueryFilter">
             <element name="attributeName" typeRef="java.lang.String" allowNull="true"/>

@@ -33,6 +33,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Vendor;
+import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.service.VendorService;
 
 /**
@@ -156,6 +157,13 @@ public class VendorController {
     public Long countVendors(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting Vendors");
         return vendorService.count(query);
+    }
+
+    @RequestMapping(value = "/{id:.+}/vendorApprovalses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the vendorApprovalses instance associated with the given id.")
+    public Page<VendorApprovals> findAssociatedVendorApprovalses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorApprovalses");
+        return vendorService.findAssociatedVendorApprovalses(id, pageable);
     }
 
     /**

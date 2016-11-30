@@ -21,7 +21,6 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.ContractorApprovals;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
@@ -31,6 +30,7 @@ import com.civicxpress.cx2.MunicipalityGroups;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.Subdivisions;
 import com.civicxpress.cx2.UserSubscriptions;
+import com.civicxpress.cx2.VendorApprovals;
 
 
 /**
@@ -44,8 +44,16 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(MunicipalitiesServiceImpl.class);
 
     @Autowired
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
+
+    @Autowired
 	@Qualifier("cx2.GisrecordsService")
 	private GisrecordsService gisrecordsService;
+
+    @Autowired
+	@Qualifier("cx2.HolidaysService")
+	private HolidaysService holidaysService;
 
     @Autowired
 	@Qualifier("cx2.MunicipalityGroupsService")
@@ -56,24 +64,16 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	private SubdivisionsService subdivisionsService;
 
     @Autowired
-	@Qualifier("cx2.ManualFeeTypesService")
-	private ManualFeeTypesService manualFeeTypesService;
-
-    @Autowired
 	@Qualifier("cx2.UserSubscriptionsService")
 	private UserSubscriptionsService userSubscriptionsService;
 
     @Autowired
-	@Qualifier("cx2.ContractorApprovalsService")
-	private ContractorApprovalsService contractorApprovalsService;
+	@Qualifier("cx2.ManualFeeTypesService")
+	private ManualFeeTypesService manualFeeTypesService;
 
     @Autowired
-	@Qualifier("cx2.HolidaysService")
-	private HolidaysService holidaysService;
-
-    @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
+	@Qualifier("cx2.VendorApprovalsService")
+	private VendorApprovalsService vendorApprovalsService;
 
     @Autowired
 	@Qualifier("cx2.FormTypesService")
@@ -105,6 +105,14 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
                 manualFeeTypese.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child ManualFeeTypes with information: {}", manualFeeTypese);
                 manualFeeTypesService.create(manualFeeTypese);
+            }
+        }
+
+        if(municipalitiesCreated.getVendorApprovalses() != null) {
+            for(VendorApprovals vendorApprovalse : municipalitiesCreated.getVendorApprovalses()) {
+                vendorApprovalse.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child VendorApprovals with information: {}", vendorApprovalse);
+                vendorApprovalsService.create(vendorApprovalse);
             }
         }
 
@@ -153,14 +161,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
                 holidayse.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child Holidays with information: {}", holidayse);
                 holidaysService.create(holidayse);
-            }
-        }
-
-        if(municipalitiesCreated.getContractorApprovalses() != null) {
-            for(ContractorApprovals contractorApprovalse : municipalitiesCreated.getContractorApprovalses()) {
-                contractorApprovalse.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child ContractorApprovals with information: {}", contractorApprovalse);
-                contractorApprovalsService.create(contractorApprovalse);
             }
         }
         return municipalitiesCreated;
@@ -261,6 +261,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorApprovalses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return vendorApprovalsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MunicipalityGroups> findAssociatedMunicipalityGroupses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated municipalityGroupses");
 
@@ -325,15 +336,13 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
         return holidaysService.findAll(queryBuilder.toString(), pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<ContractorApprovals> findAssociatedContractorApprovalses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated contractorApprovalses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalities.id = '" + id + "'");
-
-        return contractorApprovalsService.findAll(queryBuilder.toString(), pageable);
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service RolesService instance
+	 */
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
     }
 
     /**
@@ -343,6 +352,15 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	 */
 	protected void setGisrecordsService(GisrecordsService service) {
         this.gisrecordsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service HolidaysService instance
+	 */
+	protected void setHolidaysService(HolidaysService service) {
+        this.holidaysService = service;
     }
 
     /**
@@ -366,15 +384,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service ManualFeeTypesService instance
-	 */
-	protected void setManualFeeTypesService(ManualFeeTypesService service) {
-        this.manualFeeTypesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service UserSubscriptionsService instance
 	 */
 	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
@@ -384,28 +393,19 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service ContractorApprovalsService instance
+	 * @param service ManualFeeTypesService instance
 	 */
-	protected void setContractorApprovalsService(ContractorApprovalsService service) {
-        this.contractorApprovalsService = service;
+	protected void setManualFeeTypesService(ManualFeeTypesService service) {
+        this.manualFeeTypesService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service HolidaysService instance
+	 * @param service VendorApprovalsService instance
 	 */
-	protected void setHolidaysService(HolidaysService service) {
-        this.holidaysService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service RolesService instance
-	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
+	protected void setVendorApprovalsService(VendorApprovalsService service) {
+        this.vendorApprovalsService = service;
     }
 
     /**

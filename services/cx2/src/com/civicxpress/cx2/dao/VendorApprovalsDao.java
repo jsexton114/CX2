@@ -13,14 +13,14 @@ import org.springframework.stereotype.Repository;
 
 import com.wavemaker.runtime.data.dao.WMGenericDaoImpl;
 
-import com.civicxpress.cx2.ContractorApprovals;
+import com.civicxpress.cx2.VendorApprovals;
 
 /**
- * Specifies methods used to obtain and modify ContractorApprovals related information
+ * Specifies methods used to obtain and modify VendorApprovals related information
  * which is stored in the database.
  */
-@Repository("cx2.ContractorApprovalsDao")
-public class ContractorApprovalsDao extends WMGenericDaoImpl<ContractorApprovals, Integer> {
+@Repository("cx2.VendorApprovalsDao")
+public class VendorApprovalsDao extends WMGenericDaoImpl<VendorApprovals, Integer> {
 
     @Autowired
     @Qualifier("cx2Template")
