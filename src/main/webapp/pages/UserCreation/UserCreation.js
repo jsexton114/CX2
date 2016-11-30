@@ -33,18 +33,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
 
     $scope.CreateUseronSuccess = function(variable, data) {
-        //Looping for selected no of municipalities
-        for (var i = 0; i < selectedMunicipalites.length; i++) {
-            // For Registering User  for subscribed municialities        
-            $scope.Variables.RegisterSubscriptions.setInput({
-                "dateSubscribed": $scope.toDay,
-                "users": data,
-                "userId": data.id,
-                "municipalities": selectedMunicipalites[i],
-                "municipalityId": selectedMunicipalites[i].id
-            });
-            $scope.Variables.RegisterSubscriptions.insertRecord();
-        }
+        debugger
         // For Registering User with Role as USER for first municiality
         $scope.Variables.NewUserRole.setInput({
             "roleName": "User",
@@ -63,6 +52,18 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
             "newUser": data.id,
         });
         $scope.Variables.UpdatePwdAndCF.update();
+        //Looping for selected no of municipalities
+        for (var i = 0; i < selectedMunicipalites.length; i++) {
+            // For Registering User  for subscribed municialities        
+            $scope.Variables.RegisterSubscriptions.setInput({
+                "dateSubscribed": $scope.toDay,
+                "users": data,
+                "userId": data.id,
+                "municipalities": selectedMunicipalites[i],
+                "municipalityId": selectedMunicipalites[i].id
+            });
+            $scope.Variables.RegisterSubscriptions.insertRecord();
+        }
         $scope.Variables.NewUserToLogin.navigate();
 
     };

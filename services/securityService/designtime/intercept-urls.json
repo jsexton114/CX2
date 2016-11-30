@@ -19,6 +19,11 @@
   "roles" : [ ],
   "httpMethod" : null
 }, {
+  "urlPattern" : "/pages/MyCompany/**",
+  "permission" : "Role",
+  "roles" : [ "CXVendorAdmin", "CXAdmin" ],
+  "httpMethod" : null
+}, {
   "urlPattern" : "/pages/ResetPassword/**",
   "permission" : "PermitAll",
   "roles" : [ ],

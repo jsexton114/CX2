@@ -574,6 +574,38 @@
       "SubDivisonCount" : "java.lang.Integer"
     }
   }, {
+    "name" : "UpdateAsCXVendorAdmin",
+    "query" : "update Roles set roleName=:role,MunicipalityId=:municipality where UserId=:user",
+    "comment" : "UpdateAsCXVendorAdmin",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "role",
+      "paramType" : "java.lang.String",
+      "testValue" : "CXVendorAdmin",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "municipality",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "user",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "101",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateAsCXVendorAdminrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "UpdateCFInProfile",
     "query" : "Update Users set CommunicationFrequency=:cf where ID=:user",
     "comment" : "UpdateCFInProfile",

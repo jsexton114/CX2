@@ -173,6 +173,12 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateAsCXVendorAdmin">
+        <parameter name="role" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AdminsMunicipalitiesrtnType" isList="false"/>
@@ -268,6 +274,12 @@
     <operation operationType="nativequery" name="SubDivisonCount">
         <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2SubDivisonCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateAsCXVendorAdmin">
+        <parameter name="role" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateAsCXVendorAdminrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdateCFInProfile">
         <parameter name="cf" typeRef="java.lang.String" isList="false"/>
@@ -789,6 +801,7 @@
         <dataobject javaType="cx2SubDivisonCountrtnType">
             <element name="SubDivisonCount" typeRef="java.lang.Integer"/>
         </dataobject>
+        <dataobject javaType="cx2UpdateAsCXVendorAdminrtnType"/>
         <dataobject javaType="cx2UpdateCFInProfilertnType"/>
         <dataobject javaType="cx2UpdateGlobalEmailSigrtnType"/>
         <dataobject javaType="cx2UpdateInfoFromMyProfilertnType"/>

@@ -65,7 +65,7 @@
                                     <wm-label class="col-md-3 control-label" name="label8" caption="Search Municipalities"></wm-label>
                                     <wm-container class="col-md-9" name="container5">
                                         <wm-search name="textSearchMunicipalities" placeholder="Start Typing" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="municipalityName" displaylabel="municipalityName" displayimagesrc="logo" datafield="All Fields"
-                                        on-submit="textSearchMunicipalitiesSubmit($event, $scope)"></wm-search>
+                                        on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="true"></wm-search>
                                     </wm-container>
                                 </wm-composite>
                             </wm-gridcolumn>

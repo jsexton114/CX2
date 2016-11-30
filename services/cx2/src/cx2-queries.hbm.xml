@@ -107,6 +107,11 @@
       select count(*) as SubDivisonCount from Subdivisions where MunicipalityId=:municipalityId
     ]]>
   </sql-query>
+  <sql-query name="UpdateAsCXVendorAdmin">
+    <![CDATA[
+      update Roles set roleName=:role,MunicipalityId=:municipality where UserId=:user
+    ]]>
+  </sql-query>
   <sql-query name="UpdateCFInProfile">
     <![CDATA[
       Update Users set CommunicationFrequency=:cf where ID=:user

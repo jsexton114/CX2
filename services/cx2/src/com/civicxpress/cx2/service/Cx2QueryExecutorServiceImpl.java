@@ -214,6 +214,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeUpdateAsCXVendorAdmin( java.lang.String role ,java.lang.Integer municipality ,java.lang.Integer user)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("role", role);
+        params.put("municipality", municipality);
+        params.put("user", user);
+        return queryExecutor.executeNamedQueryForUpdate("UpdateAsCXVendorAdmin", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeUpdateCFInProfile( java.lang.String cf ,java.lang.Integer user)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

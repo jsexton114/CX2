@@ -1,4 +1,40 @@
 {
+  "UpdateAsCXVendorAdmin" : {
+    "_id" : "wm-UpdateAsCXVendorAdmin-wm.ServiceVariable-1480499074562",
+    "name" : "UpdateAsCXVendorAdmin",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "role",
+      "value" : "CXVendorAdmin",
+      "type" : "string"
+    }, {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:null",
+      "type" : "integer"
+    } ],
+    "type" : "cx2UpdateAsCXVendorAdminrtnType",
+    "service" : "cx2",
+    "operation" : "executeUpdateAsCXVendorAdmin",
+    "operationId" : "QueryExecutionController_executeUpdateAsCXVendorAdmin",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "VendorData" : {
     "_id" : "wm-VendorData-wm.LiveVariable-1480415501496",
     "name" : "VendorData",
@@ -12,9 +48,10 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.UpdateAsCXVendorAdmin.invoke()",
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : true,
-    "autoUpdate" : true,
+    "startUpdate" : false,
+    "autoUpdate" : false,
     "transformationRequired" : false,
     "liveSource" : "cx2",
     "ignoreCase" : false,
@@ -408,6 +445,7 @@
       "watchOn" : "Cx2StatesData",
       "package" : "com.civicxpress.cx2.Vendor"
     } ],
+    "filterFields" : { },
     "package" : "com.civicxpress.cx2.Vendor"
   }
 }

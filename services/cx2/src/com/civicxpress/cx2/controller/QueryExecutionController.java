@@ -250,6 +250,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdateAsCXVendorAdmin", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdateAsCXVendorAdmin(@RequestParam(value = "role", required = false) java.lang.String role, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, @RequestParam(value = "user", required = false) java.lang.Integer user) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdateAsCXVendorAdmin");
+        int result = queryService.executeUpdateAsCXVendorAdmin(role, municipality, user);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UpdateCFInProfile", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeUpdateCFInProfile(@RequestParam(value = "cf", required = false) java.lang.String cf, @RequestParam(value = "user", required = false) java.lang.Integer user) throws QueryParameterMismatchException {
