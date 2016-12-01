@@ -405,6 +405,21 @@
         "targetTable" : "Users",
         "scale" : 0,
         "columns" : [ {
+          "fieldName" : "states",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "StateId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "defaultValue" : "",
+          "relatedColumnName" : "stateId",
+          "targetTable" : "States",
+          "scale" : 0
+        }, {
           "fieldName" : "id",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -496,19 +511,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "state",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "State",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 19,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "postalCode",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -589,6 +591,19 @@
           "type" : "string",
           "fullyQualifiedType" : "string",
           "columnName" : "Password",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 19,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "country",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "Country",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
