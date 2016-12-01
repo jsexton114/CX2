@@ -55,6 +55,10 @@
       "target" : "municipalityId",
       "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID | toNumber",
       "type" : "number"
+    }, {
+      "target" : "approvalStatus",
+      "value" : "Pending",
+      "type" : "string"
     } ],
     "operation" : "read",
     "dataSet" : [ ],
@@ -836,7 +840,7 @@
       "primaryFields" : [ "id" ]
     },
     "isDefault" : true,
-    "bindCount" : 1,
+    "bindCount" : 0,
     "spinnerContext" : "page",
     "tableName" : "VendorApprovals",
     "tableType" : "TABLE",
