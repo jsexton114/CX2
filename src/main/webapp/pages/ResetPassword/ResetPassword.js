@@ -1,4 +1,4 @@
-Application.$controller("ResetPasswordPageController", ["$scope", function($scope) {
+Application.$controller("ResetPasswordPageController", ["$scope", "wmToaster", function($scope, wmToaster) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -24,11 +24,27 @@ Application.$controller("ResetPasswordPageController", ["$scope", function($scop
     };
 
 
-    $scope.resetPasswordonSuccess = function(variable, data) {
-        $scope.Variables.deleteToken.setInput('token', $scope.pageParams.token);
+
+
+    $scope.form1Beforesubmit = function($event, $isolateScope, $data) {
+        if ($isolateScope.dataoutput.newPassword === $isolateScope.dataoutput.retypePassword) {
+            $isolateScope.dataoutput.token = $scope.pageParams.token;
+            return true;
+        } else {
+            wmToaster.show('error', 'ERROR', 'Password Mismatch Please Re Enter Password ', 5000);
+            $isolateScope.reset();
+            return false;
+        }
+    };
+
+
+    $scope.form1Result = function($event, $isolateScope, $data) {
+
+        $scope.Variables.deleteToken.setInput('token', $isolateScope.dataoutput.token);
         $scope.Variables.deleteToken.update({}, function(data) {
             $scope.Variables.NewUserToLogin.navigate();
         });
+
 
     };
 
