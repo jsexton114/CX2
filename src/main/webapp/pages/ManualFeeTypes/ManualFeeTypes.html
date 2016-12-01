@@ -12,7 +12,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
-                        <wm-label padding="unset 0.5em" caption="Municipality Administration" fontweight="bold" fontsize="15" name="label1"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="Fee Administration" fontweight="bold" fontsize="15" name="label1"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
                         <wm-composite name="composite1">
@@ -26,7 +26,7 @@
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-livegrid formlayout="dialog" name="livegrid3">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="Manualfeetypes List" dataset="bind:Variables.Cx2ManualFeeTypesData.dataSet" navigation="Basic" name="grid4">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="Manual Fee Types" dataset="bind:Variables.Cx2ManualFeeTypesData.dataSet" navigation="Basic" name="grid4">
                                 <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
                                 <wm-grid-column binding="feeType" caption="Fee Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
                                 <wm-grid-column binding="accountingCode" caption="Accounting Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
