@@ -27,7 +27,7 @@ Application.$controller("ForgotPasswordPageController", ["$scope", "wmToaster", 
             $scope.Variables.sendResetPasswordbyUserID.setInput('userID', data.content[0].ID);
             $scope.Variables.sendResetPasswordbyUserID.update({}, function(data) {
                 // success Toaster
-                wmToaster.show('info', 'INFO', 'Please check email for reset Password', 5000);
+                wmToaster.show('info', 'INFO', 'An email with password reset instructions has been sent to your email address, if it exists on our system', 5000);
             });
 
         }
