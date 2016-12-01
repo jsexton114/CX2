@@ -4,13 +4,13 @@
             <wm-anchor caption="My Dashboard" name="dashboardLink" iconclass="wi wi-bar-graph" on-click="Variables.goToPage_Main.invoke()" accessroles="User,CXAdmin,MunicipalityAdmin,MunicipalityEmployee,CXVendorAdmin"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="list_order">
-            <wm-anchor caption="My Municipality" name="orderLink" iconclass="wi wi-windows" on-click="Variables.goToPage_MyMunicipality.invoke()" accessroles="MunicipalityEmployee" badgevalue="bind:Variables.NoOfMunicipalitiesForUser.dataSet.dataValue"></wm-anchor>
+            <wm-anchor caption="My Municipality" name="orderLink" iconclass="wi wi-windows" on-click="Variables.goToPage_MyMunicipality.invoke()" accessroles="MunicipalityEmployee,CXAdmin,MunicipalityAdmin" badgevalue="bind:Variables.NoOfMunicipalitiesForUser.dataSet.dataValue"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="list_inventory">
-            <wm-anchor caption="Administration" name="inventoryLink" iconclass="wi wi-control-point" on-click="Variables.goToPage_MunicipalityAdministration.invoke()" accessroles="MunicipalityAdmin"></wm-anchor>
+            <wm-anchor caption="Administration" name="inventoryLink" iconclass="wi wi-control-point" on-click="Variables.goToPage_MunicipalityAdministration.invoke()" accessroles="MunicipalityAdmin,CXAdmin"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="list_support">
-            <wm-anchor caption="New Form" name="supportLink" iconclass="wi wi-playlist-add" accessroles="User"></wm-anchor>
+            <wm-anchor caption="New Form" name="supportLink" iconclass="wi wi-playlist-add" accessroles="User,MunicipalityAdmin"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="nav_item5">
             <wm-anchor name="anchor15" iconclass="wi wi-work" caption="My Company" on-click="Variables.goToPage_MyCompany.invoke()" accessroles="CXVendorAdmin,CXAdmin"></wm-anchor>
