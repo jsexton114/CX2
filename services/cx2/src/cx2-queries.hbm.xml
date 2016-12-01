@@ -6,6 +6,11 @@
       select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID
     ]]>
   </sql-query>
+  <sql-query name="AdminVendorsList">
+    <![CDATA[
+      select V.* from Vendor V,VendorAdmins VM,Users U where U.ID=:user and VM.UserId=U.ID and VM.VendorId=V.ID
+    ]]>
+  </sql-query>
   <sql-query name="CheckingUserWithMunicipalityInRoles">
     <![CDATA[
       select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user

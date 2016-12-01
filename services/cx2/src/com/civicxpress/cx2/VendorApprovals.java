@@ -36,6 +36,7 @@ public class VendorApprovals implements Serializable {
     private Date expiresDate;
     private Boolean active;
     private String approvalStatus;
+    private String reviewer;
     private Municipalities municipalities;
     private Vendor vendor;
 
@@ -113,6 +114,15 @@ public class VendorApprovals implements Serializable {
 
     public void setApprovalStatus(String approvalStatus) {
         this.approvalStatus = approvalStatus;
+    }
+
+    @Column(name = "`Reviewer`", nullable = true, length = 255)
+    public String getReviewer() {
+        return this.reviewer;
+    }
+
+    public void setReviewer(String reviewer) {
+        this.reviewer = reviewer;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

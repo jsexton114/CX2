@@ -145,7 +145,7 @@
                         </wm-tile>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn23" padding="1em unset" horizontalalign="center">
-                        <wm-tile width="240px" height="160px" class="bg-primary" name="tile9" on-click="Variables.goToPage_VendorApplication.invoke()">
+                        <wm-tile width="240px" height="160px" class="bg-primary" name="tile9" on-click="Variables.goToPage_VendorApplication.invoke()" show="bind:(Variables.loggedInUser.dataSet.roles[0]==&quot;CXVendorAdmin&quot;)?false:true">
                             <wm-layoutgrid height="100%" name="layoutgrid10">
                                 <wm-gridrow height="100%" name="gridrow13">
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2em unset unset unset" class="col-xs-3" name="gridcolumn28">

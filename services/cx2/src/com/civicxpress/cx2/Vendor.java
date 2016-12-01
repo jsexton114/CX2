@@ -60,6 +60,7 @@ public class Vendor implements Serializable {
     private Date insuranceExpires;
     private Date lastUpdated;
     private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
+    private List<VendorAdmins> vendorAdminses = new ArrayList<>();
     private ContractorTypes contractorTypes;
     private States states;
 
@@ -281,6 +282,15 @@ public class Vendor implements Serializable {
 
     public void setVendorApprovalses(List<VendorApprovals> vendorApprovalses) {
         this.vendorApprovalses = vendorApprovalses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
+    public List<VendorAdmins> getVendorAdminses() {
+        return this.vendorAdminses;
+    }
+
+    public void setVendorAdminses(List<VendorAdmins> vendorAdminses) {
+        this.vendorAdminses = vendorAdminses;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

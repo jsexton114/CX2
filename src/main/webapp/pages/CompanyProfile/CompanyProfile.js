@@ -15,3 +15,11 @@ Application.$controller("CompanyProfilePageController", ["$scope", function ($sc
     };
 
 }]);
+
+
+Application.$controller("liveform1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

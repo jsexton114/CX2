@@ -46,6 +46,48 @@
       "WednesdayYN" : "java.lang.Boolean"
     }
   }, {
+    "name" : "AdminVendorsList",
+    "query" : "select V.* from Vendor V,VendorAdmins VM,Users U where U.ID=:user and VM.UserId=U.ID and VM.VendorId=V.ID",
+    "comment" : "AdminVendorsList",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "user",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "107",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2AdminVendorsListrtnType",
+    "returnTypeMetadata" : {
+      "Address1" : "java.lang.String",
+      "Address2" : "java.lang.String",
+      "AltPhone" : "java.lang.String",
+      "BusinessClassification" : "java.lang.String",
+      "COI" : "[B",
+      "City" : "java.lang.String",
+      "CompanyEmail" : "java.lang.String",
+      "CompanyName" : "java.lang.String",
+      "CompanyPhone" : "java.lang.String",
+      "CompanyWebsite" : "java.lang.String",
+      "ContractorTypeId" : "java.math.BigDecimal",
+      "Country" : "java.lang.String",
+      "FaxNumber" : "java.lang.String",
+      "FeinNumber" : "java.lang.String",
+      "ID" : "java.math.BigDecimal",
+      "InsuranceCompany" : "java.lang.String",
+      "InsuranceExpires" : "java.sql.Date",
+      "LastUpdated" : "java.sql.Date",
+      "NumberOfEmployees" : "java.math.BigDecimal",
+      "PostalCode" : "java.lang.String",
+      "StateId" : "java.math.BigDecimal",
+      "StateRegNumber" : "java.lang.String",
+      "TypeOfBusiness" : "java.lang.String"
+    }
+  }, {
     "name" : "CheckingUserWithMunicipalityInRoles",
     "query" : "select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user",
     "comment" : "CheckingUserWithMunicipalityInRoles",

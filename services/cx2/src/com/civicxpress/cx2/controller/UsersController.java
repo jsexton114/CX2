@@ -39,6 +39,7 @@ import com.civicxpress.cx2.SfnewResidentialStructure;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
+import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.service.UsersService;
 
 /**
@@ -202,6 +203,13 @@ public class UsersController {
     public Page<UserPasswordResetTokens> findAssociatedUserPasswordResetTokenses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userPasswordResetTokenses");
         return usersService.findAssociatedUserPasswordResetTokenses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/vendorAdminses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the vendorAdminses instance associated with the given id.")
+    public Page<VendorAdmins> findAssociatedVendorAdminses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorAdminses");
+        return usersService.findAssociatedVendorAdminses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)

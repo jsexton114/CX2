@@ -22,6 +22,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Vendor;
+import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
 
 
@@ -34,6 +35,10 @@ import com.civicxpress.cx2.VendorApprovals;
 public class VendorServiceImpl implements VendorService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(VendorServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.VendorAdminsService")
+	private VendorAdminsService vendorAdminsService;
 
     @Autowired
 	@Qualifier("cx2.VendorApprovalsService")
@@ -57,6 +62,14 @@ public class VendorServiceImpl implements VendorService {
                 vendorApprovalse.setVendor(vendorCreated);
                 LOGGER.debug("Creating a new child VendorApprovals with information: {}", vendorApprovalse);
                 vendorApprovalsService.create(vendorApprovalse);
+            }
+        }
+
+        if(vendorCreated.getVendorAdminses() != null) {
+            for(VendorAdmins vendorAdminse : vendorCreated.getVendorAdminses()) {
+                vendorAdminse.setVendor(vendorCreated);
+                LOGGER.debug("Creating a new child VendorAdmins with information: {}", vendorAdminse);
+                vendorAdminsService.create(vendorAdminse);
             }
         }
         return vendorCreated;
@@ -142,6 +155,26 @@ public class VendorServiceImpl implements VendorService {
         queryBuilder.append("vendor.id = '" + id + "'");
 
         return vendorApprovalsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<VendorAdmins> findAssociatedVendorAdminses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorAdminses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("vendor.id = '" + id + "'");
+
+        return vendorAdminsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service VendorAdminsService instance
+	 */
+	protected void setVendorAdminsService(VendorAdminsService service) {
+        this.vendorAdminsService = service;
     }
 
     /**
