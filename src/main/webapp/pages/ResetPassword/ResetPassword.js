@@ -48,4 +48,9 @@ Application.$controller("ResetPasswordPageController", ["$scope", "wmToaster", f
 
     };
 
+
+    $scope.button3Click = function($event, $isolateScope) {
+        $isolateScope.reset();
+    };
+
 }]);
