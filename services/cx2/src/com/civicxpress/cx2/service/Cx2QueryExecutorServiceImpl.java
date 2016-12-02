@@ -313,6 +313,21 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeUpdateVendorStatus( java.sql.Date DateApproved ,java.lang.String ApprovedBy ,java.sql.Date ExpiresDate ,java.lang.Boolean Active ,java.lang.String ApprovalStatus ,java.lang.String Reviewer ,java.lang.Integer municipality ,java.lang.Integer vendor)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("DateApproved", DateApproved);
+        params.put("ApprovedBy", ApprovedBy);
+        params.put("ExpiresDate", ExpiresDate);
+        params.put("Active", Active);
+        params.put("ApprovalStatus", ApprovalStatus);
+        params.put("Reviewer", Reviewer);
+        params.put("municipality", municipality);
+        params.put("vendor", vendor);
+        return queryExecutor.executeNamedQueryForUpdate("UpdateVendorStatus", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeUpdateWorkMunicipality( java.lang.Boolean monday ,java.lang.Boolean tuesday ,java.lang.Boolean wednesday ,java.lang.Boolean thursday ,java.lang.Boolean friday ,java.lang.Boolean saturday ,java.lang.Boolean sunday ,java.lang.String timezone ,java.sql.Time openTime ,java.sql.Time closeTime ,java.lang.Integer municipalityId)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

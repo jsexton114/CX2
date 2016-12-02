@@ -183,6 +183,17 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateVendorStatus">
+        <parameter name="DateApproved" typeRef="java.sql.Date" isList="false"/>
+        <parameter name="ApprovedBy" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ExpiresDate" typeRef="java.sql.Date" isList="false"/>
+        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="ApprovalStatus" typeRef="java.lang.String" isList="false"/>
+        <parameter name="Reviewer" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AdminsMunicipalitiesrtnType" isList="false"/>
@@ -341,6 +352,17 @@
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateRoleForMunicipalityrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateVendorStatus">
+        <parameter name="DateApproved" typeRef="java.sql.Date" isList="false"/>
+        <parameter name="ApprovedBy" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ExpiresDate" typeRef="java.sql.Date" isList="false"/>
+        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="ApprovalStatus" typeRef="java.lang.String" isList="false"/>
+        <parameter name="Reviewer" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateVendorStatusrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdateWorkMunicipality">
         <parameter name="monday" typeRef="java.lang.Boolean" isList="false"/>
@@ -853,6 +875,7 @@
         <dataobject javaType="cx2UpdateNewPasswordrtnType"/>
         <dataobject javaType="cx2UpdatePasswordAndCFrtnType"/>
         <dataobject javaType="cx2UpdateRoleForMunicipalityrtnType"/>
+        <dataobject javaType="cx2UpdateVendorStatusrtnType"/>
         <dataobject javaType="cx2UpdateWorkMunicipalityrtnType"/>
         <dataobject javaType="cx2UserCountrtnType">
             <element name="usersCount" typeRef="java.lang.Integer"/>

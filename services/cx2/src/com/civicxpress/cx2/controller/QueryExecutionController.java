@@ -340,6 +340,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdateVendorStatus", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdateVendorStatus(@RequestParam(value = "DateApproved", required = false) java.sql.Date DateApproved, @RequestParam(value = "ApprovedBy", required = false) java.lang.String ApprovedBy, @RequestParam(value = "ExpiresDate", required = false) java.sql.Date ExpiresDate, @RequestParam(value = "Active", required = false) java.lang.Boolean Active, @RequestParam(value = "ApprovalStatus", required = false) java.lang.String ApprovalStatus, @RequestParam(value = "Reviewer", required = false) java.lang.String Reviewer, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, @RequestParam(value = "vendor", required = false) java.lang.Integer vendor) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdateVendorStatus");
+        int result = queryService.executeUpdateVendorStatus(DateApproved, ApprovedBy, ExpiresDate, Active, ApprovalStatus, Reviewer, municipality, vendor);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UpdateWorkMunicipality", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeUpdateWorkMunicipality(@RequestParam(value = "monday", required = false) java.lang.Boolean monday, @RequestParam(value = "tuesday", required = false) java.lang.Boolean tuesday, @RequestParam(value = "wednesday", required = false) java.lang.Boolean wednesday, @RequestParam(value = "thursday", required = false) java.lang.Boolean thursday, @RequestParam(value = "friday", required = false) java.lang.Boolean friday, @RequestParam(value = "saturday", required = false) java.lang.Boolean saturday, @RequestParam(value = "sunday", required = false) java.lang.Boolean sunday, @RequestParam(value = "timezone", required = false) java.lang.String timezone, @RequestParam(value = "openTime", required = false) java.sql.Time openTime, @RequestParam(value = "closeTime", required = false) java.sql.Time closeTime, @RequestParam(value = "municipalityId", required = false) java.lang.Integer municipalityId) throws QueryParameterMismatchException {
