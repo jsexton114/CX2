@@ -15,7 +15,7 @@
                         <wm-livegrid formlayout="dialog" name="livegrid1">
                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="Manage Municipalities" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" navigation="Basic" name="grid1" confirmdelete="Are you sure you want to delete this Municipality?"
                             deletemessage="Municipality deleted successfully" nodatamessage="No Municipalities found." loadingdatamsg="Please Wait While Loading Municipalities..." exportformat="EXCEL">
-                                <wm-grid-column binding="municipalityGuid" caption="Municipality Guid" type="string" generator="assigned" show="true" readonly="undefined"></wm-grid-column>
+                                <wm-grid-column binding="municipalityGuid" caption="Municipality Guid" type="string" defaultvalue="bind:GUID" generator="assigned" show="true" readonly="true"></wm-grid-column>
                                 <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                                 <wm-grid-column binding="logo" caption="Logo" type="blob" widget-type="image" generator="assigned" edit-widget-type="upload" searchable="false" show="true" readonly="false"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
                                 </wm-grid-column>
@@ -86,7 +86,7 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow7">
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn13">
-                                            <wm-form-field name="logo" displayname="Logo" show="true" primary-key="false" generator="assigned" key="logo" type="blob" widget="upload" maxchars="255" permitted="undefined" href="services/cx2/Municipalities/1/content/logo?0.013534460121471081"></wm-form-field>
+                                            <wm-form-field name="logo" displayname="Logo" show="true" primary-key="false" generator="assigned" key="logo" type="blob" widget="upload" maxchars="255" permitted="undefined"></wm-form-field>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn14">
                                             <wm-form-field name="mondayYn" displayname="Monday Yn" show="true" primary-key="false" generator="assigned" key="mondayYn" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
@@ -129,7 +129,8 @@
                                             <wm-form-field name="closeTime" displayname="Close Time" show="true" primary-key="false" generator="assigned" key="closeTime" type="time" widget="time" placeholder="Select time" outputformat="HH:mm:ss"></wm-form-field>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn name="gridcolumn1" columnwidth="6">
-                                            <wm-form-field name="municipalityGuid" displayname="Municipality Guid" show="true" primary-key="false" generator="assigned" key="municipalityGuid" type="string" widget="text" maxchars="255" defaultvalue="bind:GUID"></wm-form-field>
+                                            <wm-form-field name="municipalityGuid" displayname="Municipality Guid" show="true" primary-key="false" generator="assigned" key="municipalityGuid" type="string" widget="text" maxchars="255" defaultvalue="bind:GUID"
+                                            disabled="true"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
