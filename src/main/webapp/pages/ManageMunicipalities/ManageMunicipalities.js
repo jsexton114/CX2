@@ -3,6 +3,25 @@ Application.$controller("ManageMunicipalitiesPageController", ["$scope", functio
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
+        console.log($scope.GUID);
+    };
+
+
+}]);
+
+
+Application.$controller("grid1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+    }
+]);
+
+Application.$controller("liveform1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
         $scope.GUID = (function(len) {
             var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             var randomString = '';
@@ -12,21 +31,5 @@ Application.$controller("ManageMunicipalitiesPageController", ["$scope", functio
             }
             return randomString;
         })(32);
-    };
-
-}]);
-
-
-Application.$controller("grid1Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-Application.$controller("liveform1Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
     }
 ]);
