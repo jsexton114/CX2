@@ -4,8 +4,8 @@
         <wm-page-content columnwidth="12" name="page_content1">
             <wm-wizard name="wizard1" horizontalalign="left" on-done="wizard1Done($scope, steps)" on-cancel="Variables.NewUserToLogin.invoke()">
                 <wm-wizardstep name="wizardstep1" title="Account Setup">
-                    <wm-liveform novalidate="false" errormessage="User already exists, Please contact CivicXpress Support for any issues" title="Register Yourself" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left"
-                    captionposition="top" name="liveform2" insertmessage="Registration Success, Please Proceed" updatemessage="User updated successfully" deletemessage="User deleted successfully">
+                    <wm-liveform novalidate="false" errormessage="User already exists, Please contact CivicXpress Support for any issues" title="Register for CivicXpress" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet"
+                    captionalign="left" captionposition="top" name="liveform2" insertmessage="Registration Success, Please Proceed" updatemessage="User updated successfully" deletemessage="User deleted successfully">
                         <wm-layoutgrid columns="2" name="layoutgrid2">
                             <wm-gridrow name="gridrow6">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn11">
@@ -68,10 +68,12 @@
                                     <wm-container class="col-md-9" name="container5" width="80%">
                                         <wm-search name="textSearchMunicipalities" placeholder="Start Typing" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="municipalityName" displaylabel="municipalityName" displayimagesrc="logo" datafield="All Fields"
                                         on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="true" width="100%"></wm-search>
+                                        <wm-label padding="unset 0.5em" name="Instructions" caption="To submit forms and interact with a municipality, search for a participating municipality and click “Add Municipality”.  You may manage these municipalities under your My Profile as well."
+                                        horizontalalign="center" fontweight="bold" textalign="left"></wm-label>
                                     </wm-container>
                                 </wm-composite>
                             </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="3" name="gridcolumn24">
+                            <wm-gridcolumn columnwidth="3" name="gridcolumn24" horizontalalign="center">
                                 <wm-button class="btn-default btn-primary" caption="Add Municipality" type="button" margin="unset 0.5em" name="ButtonAddMuncipalities" iconclass="wi wi-add" on-click="ButtonAddMuncipalitiesClick($event, $scope)" horizontalalign="left"></wm-button>
                             </wm-gridcolumn>
                         </wm-gridrow>
