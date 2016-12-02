@@ -31,7 +31,7 @@ Application.$controller("liveform2Controller", ["$scope",
 	}
 ]);
 
-Application.$controller("grid2Controller", ["$scope",
+Application.$controller("gridApprovedVendorsController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;
@@ -39,6 +39,20 @@ Application.$controller("grid2Controller", ["$scope",
 ]);
 
 Application.$controller("liveformApprovedVendorsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("gridSuspendedController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformSuspendedController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;
