@@ -28,29 +28,35 @@ Application.$controller("ResetPasswordPageController", ["$scope", "wmToaster", f
 
     $scope.form1Beforesubmit = function($event, $isolateScope, $data) {
         if ($isolateScope.dataoutput.newPassword === $isolateScope.dataoutput.retypePassword) {
+            $scope.Variables.resetPassword.setInput('token', $scope.pageParams.token);
             $isolateScope.dataoutput.token = $scope.pageParams.token;
             return true;
         } else {
-            wmToaster.show('error', 'ERROR', 'Password Mismatch Please Re Enter Password ', 5000);
+            wmToaster.show('info', 'INFO', 'Password Mismatch Please Re Enter Password ', 5000);
             $isolateScope.reset();
             return false;
         }
     };
 
 
-    $scope.form1Result = function($event, $isolateScope, $data) {
-
-        $scope.Variables.deleteToken.setInput('token', $isolateScope.dataoutput.token);
-        $scope.Variables.deleteToken.update({}, function(data) {
-            $scope.Variables.NewUserToLogin.navigate();
-        });
-
-
-    };
 
 
     $scope.button3Click = function($event, $isolateScope) {
         $isolateScope.reset();
+    };
+
+
+    $scope.resetPasswordonSuccess = function(variable, data) {
+        if (data == 0) {
+            wmToaster.show('info', 'INFO', 'Unable to update Password Please try Again or Contact us ', 5000);
+            return false;
+        } else {
+            $scope.Variables.deleteToken.setInput('token', $scope.token);
+            $scope.Variables.deleteToken.update({}, function(data) {
+                $scope.Variables.NewUserToLogin.navigate();
+            });
+
+        }
     };
 
 }]);

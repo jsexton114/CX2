@@ -1,15 +1,16 @@
-Application.run(function ($rootScope) {
+Application.run(function($rootScope) {
     "use strict";
     /* perform any action on the variables within this block(on-page-load) */
-    $rootScope.onAppVariablesReady = function () {
+    $rootScope.onAppVariablesReady = function() {
         /*
          * variables can be accessed through '$rootScope.Variables' property here
          * e.g. $rootScope.Variables.staticVariable1.getData()
          */
+
     };
 
     /* perform any action on session timeout here, e.g clearing some data, etc */
-    $rootScope.onSessionTimeout = function () {
+    $rootScope.onSessionTimeout = function() {
         /*
          * NOTE:
          * On re-login after session timeout:
@@ -17,4 +18,13 @@ Application.run(function ($rootScope) {
          * if a different user logs in, app will be reloaded and user is redirected to respective landing page configured in Security.
          */
     };
+    $rootScope.GUID = (function(len) {
+        var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var randomString = '';
+        for (var i = 0; i < len; i++) {
+            var randomPoz = Math.floor(Math.random() * charSet.length);
+            randomString += charSet.substring(randomPoz, randomPoz + 1);
+        }
+        return randomString;
+    })(32);
 });

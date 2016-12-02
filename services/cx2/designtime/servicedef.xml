@@ -155,6 +155,17 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateRoleForMunicipalityrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateVendorStatus">
+        <parameter name="DateApproved" typeRef="java.sql.Date" isList="false"/>
+        <parameter name="ApprovedBy" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ExpiresDate" typeRef="java.sql.Date" isList="false"/>
+        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="ApprovalStatus" typeRef="java.lang.String" isList="false"/>
+        <parameter name="Reviewer" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateVendorStatusrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateWorkMunicipality">
         <parameter name="monday" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="tuesday" typeRef="java.lang.Boolean" isList="false"/>
@@ -182,17 +193,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UpdateVendorStatus">
-        <parameter name="DateApproved" typeRef="java.sql.Date" isList="false"/>
-        <parameter name="ApprovedBy" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ExpiresDate" typeRef="java.sql.Date" isList="false"/>
-        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="ApprovalStatus" typeRef="java.lang.String" isList="false"/>
-        <parameter name="Reviewer" typeRef="java.lang.String" isList="false"/>
-        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
