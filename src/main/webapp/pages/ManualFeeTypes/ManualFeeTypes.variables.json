@@ -26,6 +26,25 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1480662714762",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/MunicipalityAdministration"
+    }, {
+      "label" : "ManualFeeTypes",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/ManualFeeTypes"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "Cx2ManualFeeTypesData" : {
     "_id" : "wm-Cx2ManualFeeTypesData-wm.LiveVariable-1479722834523",
     "name" : "Cx2ManualFeeTypesData",
