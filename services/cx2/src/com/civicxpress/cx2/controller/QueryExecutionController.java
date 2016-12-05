@@ -70,6 +70,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/CountOfVendors", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeCountOfVendors(@RequestParam(value = "vendor", required = false) java.lang.Integer vendor, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query CountOfVendors");
+        Page<Object> result = queryService.executeCountOfVendors(pageable, vendor);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/DeleteCategoryMapping", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeDeleteCategoryMapping(@RequestParam(value = "form", required = false) java.lang.Integer form) throws QueryParameterMismatchException {

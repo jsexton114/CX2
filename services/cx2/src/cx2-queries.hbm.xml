@@ -16,6 +16,11 @@
       select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user
     ]]>
   </sql-query>
+  <sql-query name="CountOfVendors">
+    <![CDATA[
+      select count(*) as CountOfVendors from VendorAdmins where UserId=:vendor
+    ]]>
+  </sql-query>
   <sql-query name="DeleteCategoryMapping">
     <![CDATA[
       delete from FormCategoryMapping where FormTypeId=:form

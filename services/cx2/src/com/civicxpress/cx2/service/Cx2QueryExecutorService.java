@@ -18,6 +18,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeAdminsMunicipalities(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeAdminVendorsList(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeCheckingUserWithMunicipalityInRoles(Pageable pageable, java.lang.Integer muncipality, java.lang.Integer user) throws QueryParameterMismatchException;
+    Page<Object> executeCountOfVendors(Pageable pageable, java.lang.Integer vendor) throws QueryParameterMismatchException;
 	int executeDeleteCategoryMapping(  java.lang.Integer form) throws QueryParameterMismatchException;
 	int executeDeleteExistingSubscriptionsForUser(  java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeDeleteToken(  java.lang.String token) throws QueryParameterMismatchException;

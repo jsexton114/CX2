@@ -26,5 +26,33 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "CountOfVendors" : {
+    "_id" : "wm-CountOfVendors-wm.ServiceVariable-1480937206592",
+    "name" : "CountOfVendors",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "vendor",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "cx2CountOfVendorsrtnType",
+    "service" : "cx2",
+    "operation" : "executeCountOfVendors",
+    "operationId" : "QueryExecutionController_executeCountOfVendors",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "CountOfVendorsonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
   }
 }

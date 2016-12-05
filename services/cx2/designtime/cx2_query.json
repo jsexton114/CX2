@@ -115,6 +115,26 @@
       "exist" : "java.lang.Integer"
     }
   }, {
+    "name" : "CountOfVendors",
+    "query" : "select count(*) as CountOfVendors from VendorAdmins where UserId=:vendor",
+    "comment" : "CountOfVendors",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "vendor",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "107",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2CountOfVendorsrtnType",
+    "returnTypeMetadata" : {
+      "CountOfVendors" : "java.lang.Integer"
+    }
+  }, {
     "name" : "DeleteCategoryMapping",
     "query" : "delete from FormCategoryMapping where FormTypeId=:form",
     "comment" : "DeleteCategoryMapping",

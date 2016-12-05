@@ -13,7 +13,7 @@
             <wm-anchor caption="New Form" name="supportLink" iconclass="wi wi-playlist-add" accessroles="User,MunicipalityAdmin"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="nav_item5">
-            <wm-anchor name="anchor15" iconclass="wi wi-work" caption="My Company" on-click="Variables.goToPage_MyCompany.invoke()" accessroles="CXVendorAdmin,CXAdmin"></wm-anchor>
+            <wm-anchor name="anchor15" iconclass="wi wi-work" caption="My Company" on-click="Variables.goToPage_MyCompany.invoke()" accessroles="CXVendorAdmin,CXAdmin" badgevalue="bind:Variables.MyCompaniesCount.dataSet.dataValue"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="nav_item5">
             <wm-anchor name="anchor5" iconclass="wi wi-person" caption="CX Admin" on-click="Variables.goToPage_CXAdmin.invoke()" accessroles="CXAdmin"></wm-anchor>

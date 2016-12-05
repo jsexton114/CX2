@@ -59,6 +59,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeCountOfVendors(Pageable pageable, java.lang.Integer vendor)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("vendor", vendor);
+        return queryExecutor.executeNamedQuery("CountOfVendors", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeDeleteCategoryMapping( java.lang.Integer form)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
