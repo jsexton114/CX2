@@ -27,6 +27,25 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1480921403817",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/MyCompany"
+    }, {
+      "label" : "CompanyProfile",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/CompanyProfile"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "CurrentVendorObj" : {
     "_id" : "wm-CurrentVendorObj-wm.LiveVariable-1480581872111",
     "name" : "CurrentVendorObj",
@@ -34,7 +53,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "id",
-      "value" : "bind:Variables.AdminVendorsList.firstRecord.ID | toNumber",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | toNumber",
       "type" : "number"
     } ],
     "operation" : "read",
@@ -449,7 +468,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "id",
-      "value" : "bind:Variables.CurrentVendorObj.firstRecord.id",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | toNumber",
       "type" : "number"
     } ],
     "operation" : "update",

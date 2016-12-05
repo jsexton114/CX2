@@ -1,0 +1,30 @@
+{
+  "AdminVendorsList" : {
+    "_id" : "wm-AdminVendorsList-wm.ServiceVariable-1480921073966",
+    "name" : "AdminVendorsList",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "cx2AdminVendorsListrtnType",
+    "service" : "cx2",
+    "operation" : "executeAdminVendorsList",
+    "operationId" : "QueryExecutionController_executeAdminVendorsList",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  }
+}
