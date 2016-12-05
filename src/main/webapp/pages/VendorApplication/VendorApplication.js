@@ -1,8 +1,8 @@
-Application.$controller("VendorApplicationPageController", ["$scope", function ($scope) {
+Application.$controller("VendorApplicationPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
+    $scope.onPageReady = function() {
         /*
          * variables can be accessed through '$scope.Variables' property here
          * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
@@ -15,9 +15,13 @@ Application.$controller("VendorApplicationPageController", ["$scope", function (
     };
 
 
-	$scope.VendorDataonSuccess = function(variable, data){
-			
-	};
+    $scope.VendorDataonSuccess = function(variable, data) {
+        $scope.Variables.MapAsAdminForVendor.setInput({
+            "UserId": $scope.Variables.CurrentUserDetails.dataSet.id,
+            "VendorId": data.id
+        });
+        $scope.Variables.MapAsAdminForVendor.update();
+    };
 
 }]);
 
@@ -25,8 +29,8 @@ Application.$controller("VendorApplicationPageController", ["$scope", function (
 
 
 Application.$controller("liveformVendorApplicationController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

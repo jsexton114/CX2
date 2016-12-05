@@ -1,4 +1,28 @@
 {
+  "MapAsAdminForVendor" : {
+    "_id" : "wm-MapAsAdminForVendor-wm.ServiceVariable-1480918775212",
+    "name" : "MapAsAdminForVendor",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "cx2MapAsAdminForVendorrtnType",
+    "service" : "cx2",
+    "operation" : "executeMapAsAdminForVendor",
+    "operationId" : "QueryExecutionController_executeMapAsAdminForVendor",
+    "operationType" : "post",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "UpdateAsCXVendorAdmin" : {
     "_id" : "wm-UpdateAsCXVendorAdmin-wm.ServiceVariable-1480499074562",
     "name" : "UpdateAsCXVendorAdmin",
