@@ -21,6 +21,10 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CheckingUserWithMunicipalityInRolesrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="CountOfVendors">
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CountOfVendorsrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="DeleteCategoryMapping">
         <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2DeleteCategoryMappingrtnType" isList="false"/>
@@ -202,10 +206,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="CountOfVendors">
-        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AdminsMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
