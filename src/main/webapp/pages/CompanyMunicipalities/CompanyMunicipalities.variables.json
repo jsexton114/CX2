@@ -53,7 +53,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "id",
-      "value" : "bind:Variables.AdminVendorsList.firstRecord.ID | toNumber",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | toNumber",
       "type" : "number"
     } ],
     "operation" : "read",
@@ -469,7 +469,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "vendorId",
-      "value" : "bind:Variables.CurrentVendorObj.firstRecord.id",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | toNumber",
       "type" : "number"
     } ],
     "operation" : "read",

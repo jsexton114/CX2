@@ -25,7 +25,33 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3" padding="unset 2em">
-                        <wm-panel iconclass="wi wi-pages" name="panelManageForms" title="Manage Forms" class="pColor" badgetype="default"></wm-panel>
+                        <wm-panel iconclass="wi wi-pages" name="panelManageForms" title="Manage Forms" class="pColor" badgetype="default">
+                            <wm-layoutgrid name="layoutgrid3">
+                                <wm-gridrow name="gridrow7">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn10">
+                                        <wm-search name="searchForm" placeholder="Search Form..."></wm-search>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn11_1"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn12" horizontalalign="right" padding="unset unset 1em unset">
+                                        <wm-button class="btn-default btn-inverse btn-primary" caption="Create Form" type="button" margin="unset 0.5em" name="buttonCreateForm" iconclass="wi wi-plus" on-click="Widgets.dialogCreateForm.open()"></wm-button>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow6">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn9" padding="2em unset">
+                                        <wm-grid title="Formtypes List" dataset="bind:Variables.Cx2FormTypesData.dataSet" navigation="Basic" name="gridFormtypes">
+                                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="formTypeGuid" caption="Form Type Guid" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="formType" caption="Form Type" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="pageName" caption="Page Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="createdDate" caption="Created Date" type="date" generator="assigned" readonly="true" edit-widget-type="date" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="150px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                            <wm-grid-row-action key="customRow" display-name="Edit" show="true" class="btn-transparent" iconclass="wi wi-edit" title="Custom rowActions" action="Variables.goToPage_EditForm.invoke()" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="customRow1" display-name="Delete" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Custom rowActions" disabled="false"></wm-grid-row-action>
+                                        </wm-grid>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
