@@ -32,7 +32,7 @@ Application.$controller("ResetPasswordPageController", ["$scope", "wmToaster", f
             $isolateScope.dataoutput.token = $scope.pageParams.token;
             return true;
         } else {
-            wmToaster.show('info', 'INFO', 'Password Mismatch Please Re Enter Password ', 5000);
+            wmToaster.show('info', 'INFO', 'The passwords must match in both fields before you can proceed', 5000);
             $isolateScope.reset();
             return false;
         }
