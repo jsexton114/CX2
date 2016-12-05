@@ -36,10 +36,9 @@
                                     <wm-grid-column binding="users.id" caption="Users Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true" related-entity-name="Users"></wm-grid-column>
                                     <wm-grid-column binding="users.firstName" caption="First Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                     <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                    <wm-grid-column binding="users.address1" caption="Users Address1" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                    <wm-grid-column binding="users.city" caption="Users City" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                    <wm-grid-column binding="users.state" caption="Users State" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                    <wm-grid-column binding="users.phoneNumber" caption="Phone Number" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="150px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                    <wm-grid-row-action key="customRow" display-name="View Profile" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="Custom rowActions" action="Widgets.dialog1.open()"
+                                    disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpane2" title="Employees">
@@ -47,7 +46,7 @@
                                     <wm-gridrow name="gridrow13">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn28">
                                             <wm-grid title="" dataset="bind:Variables.GetEmployeeRolesForMunicipality.dataSet" navigation="Classic" name="gridEmployees">
-                                                <wm-grid-column binding="Photo" caption="Photo" type="string" widget-type="image" readonly="true" edit-widget-type="text" show="true"><img data-ng-src="{{row.getProperty('Photo')}}" alt="{{row.getProperty('Photo')}}" class="" data-ng-class="">
+                                                <wm-grid-column binding="Photo" caption="Photo" type="string" widget-type="image" readonly="true" edit-widget-type="text" show="true"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{'services/cx2/Users/'+ row['ID'] + '/content/photo'}}">
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
@@ -56,9 +55,9 @@
                                                 <wm-grid-column binding="Address1" caption="Address1" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="Address2" caption="Address2" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="City" caption="City" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-row-action key="customRow" display-name="Remove" title="Custom rowActions" value="" iconclass="wi wi-delete" class="btn-transparent" show="true" action="Variables.RemoveEmployee.invoke()"
-                                                icon="wi wi-delete"></wm-grid-row-action>
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-row-action key="customRow" display-name="Remove" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Custom rowActions" action="Variables.RemoveEmployee.invoke()"
+                                                disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>

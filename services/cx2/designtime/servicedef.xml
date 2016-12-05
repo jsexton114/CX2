@@ -25,6 +25,10 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2DeleteExistingSubscriptionsForUserrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="DeleteFormType">
+        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2DeleteFormTypertnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="EmployeesMunicipalities">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2EmployeesMunicipalitiesrtnType" isList="false"/>

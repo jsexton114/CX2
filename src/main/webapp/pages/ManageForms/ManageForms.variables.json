@@ -691,6 +691,35 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.FormTypes"
   },
+  "DeleteFormType" : {
+    "_id" : "wm-DeleteFormType-wm.ServiceVariable-1480930762193",
+    "name" : "DeleteFormType",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "id",
+      "value" : "bind:Widgets.gridFormtypes.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "boolean",
+    "service" : "cx2",
+    "operation" : "deleteFormTypes",
+    "operationId" : "FormTypesController_deleteFormTypes",
+    "operationType" : "delete",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.Cx2FormTypesData.listRecords()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "FormTypes",
+    "spinnerContext" : "page"
+  },
   "SelectedMunicipalityObj" : {
     "_id" : "wm-SelectedMunicipalityObj-wm.LiveVariable-1480067517718",
     "name" : "SelectedMunicipalityObj",
