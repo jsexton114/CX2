@@ -39,20 +39,20 @@ public class FormTypesServiceImpl implements FormTypesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FormTypesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.SfnewResidentialStructureService")
-	private SfnewResidentialStructureService sfnewResidentialStructureService;
-
-    @Autowired
 	@Qualifier("cx2.SfnewElectricConnectionService")
 	private SfnewElectricConnectionService sfnewElectricConnectionService;
+
+    @Autowired
+	@Qualifier("cx2.FormCategoryMappingService")
+	private FormCategoryMappingService formCategoryMappingService;
 
     @Autowired
 	@Qualifier("cx2.FormStatusesService")
 	private FormStatusesService formStatusesService;
 
     @Autowired
-	@Qualifier("cx2.FormCategoryMappingService")
-	private FormCategoryMappingService formCategoryMappingService;
+	@Qualifier("cx2.SfnewResidentialStructureService")
+	private SfnewResidentialStructureService sfnewResidentialStructureService;
 
     @Autowired
     @Qualifier("cx2.FormTypesDao")
@@ -219,19 +219,19 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SfnewResidentialStructureService instance
+	 * @param service SfnewElectricConnectionService instance
 	 */
-	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
-        this.sfnewResidentialStructureService = service;
+	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
+        this.sfnewElectricConnectionService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SfnewElectricConnectionService instance
+	 * @param service FormCategoryMappingService instance
 	 */
-	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
-        this.sfnewElectricConnectionService = service;
+	protected void setFormCategoryMappingService(FormCategoryMappingService service) {
+        this.formCategoryMappingService = service;
     }
 
     /**
@@ -246,10 +246,10 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormCategoryMappingService instance
+	 * @param service SfnewResidentialStructureService instance
 	 */
-	protected void setFormCategoryMappingService(FormCategoryMappingService service) {
-        this.formCategoryMappingService = service;
+	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
+        this.sfnewResidentialStructureService = service;
     }
 
 }

@@ -41,14 +41,14 @@
     "owner" : "Page",
     "category" : "wm.LiveVariable",
     "dataBinding" : [ ],
-    "operation" : "read",
+    "operation" : "insert",
     "dataSet" : [ ],
     "type" : "Vendor",
     "isList" : true,
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.UpdateAsCXVendorAdmin.invoke()",
+    "onSuccess" : "Variables.UpdateAsCXVendorAdmin.invoke();VendorDataonSuccess($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
@@ -446,6 +446,7 @@
       "package" : "com.civicxpress.cx2.Vendor"
     } ],
     "filterFields" : { },
+    "inputFields" : { },
     "package" : "com.civicxpress.cx2.Vendor"
   }
 }

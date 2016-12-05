@@ -6481,12 +6481,12 @@
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 19,
       "primaryKey" : false,
       "scale" : 0,
       "sqlType" : "string",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -6588,7 +6588,13 @@
       "sqlType" : "date",
       "unique" : false
     } ],
-    "constraints" : [ ],
+    "constraints" : [ {
+      "columns" : [ "FeinNumber" ],
+      "composite" : false,
+      "name" : "UK_Vendor_FeinNumber",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
     "entityName" : "Vendor",
     "fullyQualifiedName" : "com.civicxpress.cx2.Vendor",
     "name" : "Vendor",

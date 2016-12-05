@@ -205,8 +205,9 @@ public class UsersController {
         return usersService.findAssociatedUserPasswordResetTokenses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/vendorAdminses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/vendorAdminses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the vendorAdminses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<VendorAdmins> findAssociatedVendorAdminses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorAdminses");
         return usersService.findAssociatedVendorAdminses(id, pageable);

@@ -14,6 +14,11 @@ Application.$controller("VendorApplicationPageController", ["$scope", function (
          */
     };
 
+
+	$scope.VendorDataonSuccess = function(variable, data){
+			
+	};
+
 }]);
 
 

@@ -1,4 +1,23 @@
 {
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1480682495929",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/CXAdmin"
+    }, {
+      "label" : "ManageSubscriptions",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/ManageSubscriptions"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "ContractorTypesData" : {
     "_id" : "wm-ContractorTypesData-wm.LiveVariable-1480415775916",
     "name" : "ContractorTypesData",

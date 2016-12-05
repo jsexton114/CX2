@@ -125,6 +125,13 @@ public class VendorController {
         return deletedVendor != null;
     }
 
+    @RequestMapping(value = "/feinNumber/{feinNumber}", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching Vendor with given unique key values.")
+    public Vendor getByFeinNumber(@PathVariable("feinNumber") String feinNumber) {
+        LOGGER.debug("Getting Vendor with uniques key FeinNumber");
+        return vendorService.getByFeinNumber(feinNumber);
+    }
+
     /**
      * @deprecated Use {@link #findVendors(String, Pageable)} instead.
      */
@@ -168,8 +175,9 @@ public class VendorController {
         return vendorService.findAssociatedVendorApprovalses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/vendorAdminses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/vendorAdminses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the vendorAdminses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<VendorAdmins> findAssociatedVendorAdminses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorAdminses");
         return vendorService.findAssociatedVendorAdminses(id, pageable);

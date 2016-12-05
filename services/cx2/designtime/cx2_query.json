@@ -479,6 +479,31 @@
     "outputType" : "cx2InsertSubscriptionrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "MapAsAdminForVendor",
+    "query" : "insert into VendorAdmins(UserId,VendorId) values(:UserId,:VendorId)",
+    "comment" : "MapAsAdminForVendor",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "UserId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "107",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "VendorId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "35",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2MapAsAdminForVendorrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "MunicipalitiesGroupsCounts",
     "query" : "select count(*) as groupsCount from MunicipalityGroups where MunicipalityId=:municipality",
     "comment" : "MunicipalitiesGroupsCounts",

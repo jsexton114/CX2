@@ -200,6 +200,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/MapAsAdminForVendor", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeMapAsAdminForVendor(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "VendorId", required = false) java.lang.Integer VendorId) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query MapAsAdminForVendor");
+        int result = queryService.executeMapAsAdminForVendor(UserId, VendorId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/MunicipalitiesGroupsCounts", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeMunicipalitiesGroupsCounts(@RequestParam(value = "municipality", required = false) java.lang.Integer municipality, Pageable pageable) throws QueryParameterMismatchException {
