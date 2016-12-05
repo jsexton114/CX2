@@ -25,43 +25,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3" padding="unset 2em">
-                        <wm-panel iconclass="wi wi-pages" name="panelManageForms" title="Manage Forms" class="pColor" badgetype="default">
-                            <wm-layoutgrid name="layoutgrid3">
-                                <wm-gridrow name="gridrow7">
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn10">
-                                        <wm-search name="searchForm" placeholder="Start typing..."></wm-search>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn11_1"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn12" horizontalalign="right" padding="unset unset 1em unset">
-                                        <wm-button class="btn-default btn-inverse btn-primary" caption="Create Form" type="button" margin="unset 0.5em" name="buttonCreateForm" iconclass="wi wi-plus" on-click="Widgets.dialogCreateForm.open()"></wm-button>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow6">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn9" padding="2em unset">
-                                        <wm-livelist listclass="list-group" template="true" itemsperrow="xs-1 sm-2 md-3 lg-4" class="list-card" dataset="bind:Variables.Cx2FormTypesData.dataSet" navigation="Basic" name="livelist1" nodatamessage="No forms found">
-                                            <wm-listtemplate layout="media" name="listtemplate1">
-                                                <wm-card name="card1">
-                                                    <wm-card-content fontsize="0.8" fontunit="em" name="card_content1">
-                                                        <wm-layoutgrid columns="2" name="layoutgrid2">
-                                                            <wm-gridrow name="gridrow4_1">
-                                                                <wm-gridcolumn colwidth="6" columnwidth="12" padding="unset 1.25em" class="col-xs-6" name="gridcolumn6">
-                                                                    <wm-label name="Name" caption="bind:Variables.Cx2FormTypesData.dataSet.formType" fontunit="em" color="#000" class="h4" margin="0px unset" whitespace="nowrap"></wm-label>
-                                                                    <wm-label name="JobTitle" caption="bind:&quot;Created On :&quot;+(Variables.Cx2FormTypesData.dataSet.data[$i].createdDate | toDate: 'dd MMMM, yyyy')" class="p text-muted" margin="0px unset unset unset"
-                                                                    whitespace="nowrap"></wm-label>
-                                                                    <wm-anchor name="PhoneNumber" caption="" class="h5" hyperlink="tel:" margin="0px unset" whitespace="nowrap"></wm-anchor>
-                                                                    <wm-anchor name="EmailID" class="p text-muted" hyperlink="mailto://" caption="" whitespace="nowrap"></wm-anchor>
-                                                                    <wm-button class="btn-default pull-right" caption="" type="button" name="buttonEdit" iconclass="wi wi-mode-edit" on-click="Variables.goToPage_EditForm.invoke()"></wm-button>
-                                                                </wm-gridcolumn>
-                                                            </wm-gridrow>
-                                                        </wm-layoutgrid>
-                                                    </wm-card-content>
-                                                </wm-card>
-                                            </wm-listtemplate>
-                                        </wm-livelist>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-panel>
+                        <wm-panel iconclass="wi wi-pages" name="panelManageForms" title="Manage Forms" class="pColor" badgetype="default"></wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
@@ -73,7 +37,7 @@
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-primary" caption="Save" name="buttonSaveForm" on-click="Widgets.liveformCreateForm.save()"></wm-button>
             </wm-dialogactions>
-            <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.Cx2FormTypesData.dataSet" captionalign="left" captionposition="top" name="liveformCreateForm">
+            <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.Cx2FormTypesData.dataSet" captionalign="left" captionposition="top" name="liveformCreateForm" on-beforeservicecall="liveformCreateFormBeforeservicecall($event, $operation, $data)">
                 <wm-layoutgrid columns="3" name="layoutgrid5">
                     <wm-gridrow name="gridrow18">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn32">

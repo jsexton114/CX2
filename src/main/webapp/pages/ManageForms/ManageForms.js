@@ -1,8 +1,8 @@
-Application.$controller("ManageFormsPageController", ["$scope", function ($scope) {
+Application.$controller("ManageFormsPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
+    $scope.onPageReady = function() {
         /*
          * variables can be accessed through '$scope.Variables' property here
          * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
@@ -14,28 +14,36 @@ Application.$controller("ManageFormsPageController", ["$scope", function ($scope
          */
     };
 
+
+
+
 }]);
 
 
 Application.$controller("dialogCreateFormController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    
+        $scope.liveformCreateFormBeforeservicecall = function ($event, $operation, $data) { 
+
+        };
+ 
+    }
 ]);
 
 Application.$controller("liveform1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 
 
 Application.$controller("liveformCreateFormController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
