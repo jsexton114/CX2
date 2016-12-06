@@ -54,8 +54,11 @@ public class FormTypes implements Serializable {
     private Date createdDate;
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
+    private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private Municipalities municipalities;
+    private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
+    private List<Pudapplication> pudapplications = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
 
     @Id
@@ -259,6 +262,15 @@ public class FormTypes implements Serializable {
         this.sfnewElectricConnections = sfnewElectricConnections;
     }
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<McnewElectricConnection> getMcnewElectricConnections() {
+        return this.mcnewElectricConnections;
+    }
+
+    public void setMcnewElectricConnections(List<McnewElectricConnection> mcnewElectricConnections) {
+        this.mcnewElectricConnections = mcnewElectricConnections;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`MunicipalityId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public Municipalities getMunicipalities() {
@@ -274,12 +286,30 @@ public class FormTypes implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<McnewResidentialStructure> getMcnewResidentialStructures() {
+        return this.mcnewResidentialStructures;
+    }
+
+    public void setMcnewResidentialStructures(List<McnewResidentialStructure> mcnewResidentialStructures) {
+        this.mcnewResidentialStructures = mcnewResidentialStructures;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
     public List<FormCategoryMapping> getFormCategoryMappings() {
         return this.formCategoryMappings;
     }
 
     public void setFormCategoryMappings(List<FormCategoryMapping> formCategoryMappings) {
         this.formCategoryMappings = formCategoryMappings;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<Pudapplication> getPudapplications() {
+        return this.pudapplications;
+    }
+
+    public void setPudapplications(List<Pudapplication> pudapplications) {
+        this.pudapplications = pudapplications;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")

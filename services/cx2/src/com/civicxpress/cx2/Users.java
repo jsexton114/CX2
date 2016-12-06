@@ -53,12 +53,15 @@ public class Users implements Serializable {
     private String country;
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
+    private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
     private States states;
     private List<VendorUsers> vendorUserses = new ArrayList<>();
+    private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
     private List<VendorAdmins> vendorAdminses = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
+    private List<Pudapplication> pudapplications = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
 
     @Id
@@ -226,6 +229,15 @@ public class Users implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<McnewElectricConnection> getMcnewElectricConnections() {
+        return this.mcnewElectricConnections;
+    }
+
+    public void setMcnewElectricConnections(List<McnewElectricConnection> mcnewElectricConnections) {
+        this.mcnewElectricConnections = mcnewElectricConnections;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<MunicipalityGroupMembers> getMunicipalityGroupMemberses() {
         return this.municipalityGroupMemberses;
     }
@@ -267,6 +279,15 @@ public class Users implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<McnewResidentialStructure> getMcnewResidentialStructures() {
+        return this.mcnewResidentialStructures;
+    }
+
+    public void setMcnewResidentialStructures(List<McnewResidentialStructure> mcnewResidentialStructures) {
+        this.mcnewResidentialStructures = mcnewResidentialStructures;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<VendorAdmins> getVendorAdminses() {
         return this.vendorAdminses;
     }
@@ -282,6 +303,15 @@ public class Users implements Serializable {
 
     public void setRoleses(List<Roles> roleses) {
         this.roleses = roleses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<Pudapplication> getPudapplications() {
+        return this.pudapplications;
+    }
+
+    public void setPudapplications(List<Pudapplication> pudapplications) {
+        this.pudapplications = pudapplications;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")

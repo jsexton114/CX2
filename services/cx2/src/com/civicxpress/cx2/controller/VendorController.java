@@ -177,8 +177,9 @@ public class VendorController {
         return vendorService.findAssociatedVendorApprovalses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/vendorUserses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/vendorUserses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the vendorUserses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<VendorUsers> findAssociatedVendorUserses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorUserses");
         return vendorService.findAssociatedVendorUserses(id, pageable);

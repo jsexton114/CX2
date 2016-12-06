@@ -49,6 +49,9 @@ public class FormStatuses implements Serializable {
     private String description;
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
+    private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
+    private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
+    private List<Pudapplication> pudapplications = new ArrayList<>();
     private FormTypes formTypes;
 
     @Id
@@ -231,6 +234,33 @@ public class FormStatuses implements Serializable {
 
     public void setSfnewElectricConnections(List<SfnewElectricConnection> sfnewElectricConnections) {
         this.sfnewElectricConnections = sfnewElectricConnections;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
+    public List<McnewElectricConnection> getMcnewElectricConnections() {
+        return this.mcnewElectricConnections;
+    }
+
+    public void setMcnewElectricConnections(List<McnewElectricConnection> mcnewElectricConnections) {
+        this.mcnewElectricConnections = mcnewElectricConnections;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
+    public List<McnewResidentialStructure> getMcnewResidentialStructures() {
+        return this.mcnewResidentialStructures;
+    }
+
+    public void setMcnewResidentialStructures(List<McnewResidentialStructure> mcnewResidentialStructures) {
+        this.mcnewResidentialStructures = mcnewResidentialStructures;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
+    public List<Pudapplication> getPudapplications() {
+        return this.pudapplications;
+    }
+
+    public void setPudapplications(List<Pudapplication> pudapplications) {
+        this.pudapplications = pudapplications;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

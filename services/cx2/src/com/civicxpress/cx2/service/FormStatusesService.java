@@ -15,6 +15,9 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.McnewElectricConnection;
+import com.civicxpress.cx2.McnewResidentialStructure;
+import com.civicxpress.cx2.Pudapplication;
 import com.civicxpress.cx2.SfnewElectricConnection;
 import com.civicxpress.cx2.SfnewResidentialStructure;
 
@@ -150,6 +153,42 @@ public interface FormStatusesService {
      * @see Page
      */
     Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated mcnewElectricConnections for given FormStatuses id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated McnewElectricConnection instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated mcnewResidentialStructures for given FormStatuses id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated McnewResidentialStructure instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<McnewResidentialStructure> findAssociatedMcnewResidentialStructures(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated pudapplications for given FormStatuses id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Pudapplication instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Pudapplication> findAssociatedPudapplications(Integer id, Pageable pageable);
 
 }
 

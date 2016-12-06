@@ -23,7 +23,10 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.McnewElectricConnection;
+import com.civicxpress.cx2.McnewResidentialStructure;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
+import com.civicxpress.cx2.Pudapplication;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SfnewElectricConnection;
 import com.civicxpress.cx2.SfnewResidentialStructure;
@@ -45,36 +48,48 @@ public class UsersServiceImpl implements UsersService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.MunicipalityGroupMembersService")
-	private MunicipalityGroupMembersService municipalityGroupMembersService;
-
-    @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
-
-    @Autowired
-	@Qualifier("cx2.SfnewElectricConnectionService")
-	private SfnewElectricConnectionService sfnewElectricConnectionService;
-
-    @Autowired
 	@Qualifier("cx2.SfnewResidentialStructureService")
 	private SfnewResidentialStructureService sfnewResidentialStructureService;
-
-    @Autowired
-	@Qualifier("cx2.UserSubscriptionsService")
-	private UserSubscriptionsService userSubscriptionsService;
 
     @Autowired
 	@Qualifier("cx2.UserPasswordResetTokensService")
 	private UserPasswordResetTokensService userPasswordResetTokensService;
 
     @Autowired
-	@Qualifier("cx2.VendorAdminsService")
-	private VendorAdminsService vendorAdminsService;
+	@Qualifier("cx2.PudapplicationService")
+	private PudapplicationService pudapplicationService;
+
+    @Autowired
+	@Qualifier("cx2.McnewResidentialStructureService")
+	private McnewResidentialStructureService mcnewResidentialStructureService;
+
+    @Autowired
+	@Qualifier("cx2.McnewElectricConnectionService")
+	private McnewElectricConnectionService mcnewElectricConnectionService;
+
+    @Autowired
+	@Qualifier("cx2.MunicipalityGroupMembersService")
+	private MunicipalityGroupMembersService municipalityGroupMembersService;
+
+    @Autowired
+	@Qualifier("cx2.SfnewElectricConnectionService")
+	private SfnewElectricConnectionService sfnewElectricConnectionService;
+
+    @Autowired
+	@Qualifier("cx2.UserSubscriptionsService")
+	private UserSubscriptionsService userSubscriptionsService;
 
     @Autowired
 	@Qualifier("cx2.VendorUsersService")
 	private VendorUsersService vendorUsersService;
+
+    @Autowired
+	@Qualifier("cx2.VendorAdminsService")
+	private VendorAdminsService vendorAdminsService;
+
+    @Autowired
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
 
     @Autowired
     @Qualifier("cx2.UsersDao")
@@ -105,6 +120,14 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getMcnewElectricConnections() != null) {
+            for(McnewElectricConnection mcnewElectricConnection : usersCreated.getMcnewElectricConnections()) {
+                mcnewElectricConnection.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child McnewElectricConnection with information: {}", mcnewElectricConnection);
+                mcnewElectricConnectionService.create(mcnewElectricConnection);
+            }
+        }
+
         if(usersCreated.getMunicipalityGroupMemberses() != null) {
             for(MunicipalityGroupMembers municipalityGroupMemberse : usersCreated.getMunicipalityGroupMemberses()) {
                 municipalityGroupMemberse.setUsers(usersCreated);
@@ -129,6 +152,14 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getMcnewResidentialStructures() != null) {
+            for(McnewResidentialStructure mcnewResidentialStructure : usersCreated.getMcnewResidentialStructures()) {
+                mcnewResidentialStructure.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child McnewResidentialStructure with information: {}", mcnewResidentialStructure);
+                mcnewResidentialStructureService.create(mcnewResidentialStructure);
+            }
+        }
+
         if(usersCreated.getVendorAdminses() != null) {
             for(VendorAdmins vendorAdminse : usersCreated.getVendorAdminses()) {
                 vendorAdminse.setUsers(usersCreated);
@@ -142,6 +173,14 @@ public class UsersServiceImpl implements UsersService {
                 rolese.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child Roles with information: {}", rolese);
                 rolesService.create(rolese);
+            }
+        }
+
+        if(usersCreated.getPudapplications() != null) {
+            for(Pudapplication pudapplication : usersCreated.getPudapplications()) {
+                pudapplication.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child Pudapplication with information: {}", pudapplication);
+                pudapplicationService.create(pudapplication);
             }
         }
 
@@ -266,6 +305,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated mcnewElectricConnections");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return mcnewElectricConnectionService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated municipalityGroupMemberses");
 
@@ -299,6 +349,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<McnewResidentialStructure> findAssociatedMcnewResidentialStructures(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated mcnewResidentialStructures");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return mcnewResidentialStructureService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<VendorAdmins> findAssociatedVendorAdminses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorAdminses");
 
@@ -321,6 +382,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Pudapplication> findAssociatedPudapplications(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated pudapplications");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return pudapplicationService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<UserSubscriptions> findAssociatedUserSubscriptionses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userSubscriptionses");
 
@@ -328,33 +400,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("users.id = '" + id + "'");
 
         return userSubscriptionsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service MunicipalityGroupMembersService instance
-	 */
-	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
-        this.municipalityGroupMembersService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service RolesService instance
-	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SfnewElectricConnectionService instance
-	 */
-	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
-        this.sfnewElectricConnectionService = service;
     }
 
     /**
@@ -369,6 +414,60 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service UserPasswordResetTokensService instance
+	 */
+	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
+        this.userPasswordResetTokensService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service PudapplicationService instance
+	 */
+	protected void setPudapplicationService(PudapplicationService service) {
+        this.pudapplicationService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service McnewResidentialStructureService instance
+	 */
+	protected void setMcnewResidentialStructureService(McnewResidentialStructureService service) {
+        this.mcnewResidentialStructureService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service McnewElectricConnectionService instance
+	 */
+	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
+        this.mcnewElectricConnectionService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MunicipalityGroupMembersService instance
+	 */
+	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
+        this.municipalityGroupMembersService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SfnewElectricConnectionService instance
+	 */
+	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
+        this.sfnewElectricConnectionService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service UserSubscriptionsService instance
 	 */
 	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
@@ -378,10 +477,10 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UserPasswordResetTokensService instance
+	 * @param service VendorUsersService instance
 	 */
-	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
-        this.userPasswordResetTokensService = service;
+	protected void setVendorUsersService(VendorUsersService service) {
+        this.vendorUsersService = service;
     }
 
     /**
@@ -396,10 +495,10 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorUsersService instance
+	 * @param service RolesService instance
 	 */
-	protected void setVendorUsersService(VendorUsersService service) {
-        this.vendorUsersService = service;
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
     }
 
 }

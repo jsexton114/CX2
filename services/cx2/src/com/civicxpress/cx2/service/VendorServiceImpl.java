@@ -44,12 +44,12 @@ public class VendorServiceImpl implements VendorService {
 	private VendorApprovalsService vendorApprovalsService;
 
     @Autowired
-	@Qualifier("cx2.VendorAdminsService")
-	private VendorAdminsService vendorAdminsService;
-
-    @Autowired
 	@Qualifier("cx2.VendorUsersService")
 	private VendorUsersService vendorUsersService;
+
+    @Autowired
+	@Qualifier("cx2.VendorAdminsService")
+	private VendorAdminsService vendorAdminsService;
 
     @Autowired
     @Qualifier("cx2.VendorDao")
@@ -222,19 +222,19 @@ public class VendorServiceImpl implements VendorService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorAdminsService instance
+	 * @param service VendorUsersService instance
 	 */
-	protected void setVendorAdminsService(VendorAdminsService service) {
-        this.vendorAdminsService = service;
+	protected void setVendorUsersService(VendorUsersService service) {
+        this.vendorUsersService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorUsersService instance
+	 * @param service VendorAdminsService instance
 	 */
-	protected void setVendorUsersService(VendorUsersService service) {
-        this.vendorUsersService = service;
+	protected void setVendorAdminsService(VendorAdminsService service) {
+        this.vendorAdminsService = service;
     }
 
 }
