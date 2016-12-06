@@ -26,6 +26,11 @@
       select count(*) as CountOfVendors from VendorAdmins where UserId=:vendor
     ]]>
   </sql-query>
+  <sql-query name="CountOfVendorUsers">
+    <![CDATA[
+      select count(*) as CountOfVendorUsers from VendorUsers where VendorId=:vendor
+    ]]>
+  </sql-query>
   <sql-query name="DeleteCategoryMapping">
     <![CDATA[
       delete from FormCategoryMapping where FormTypeId=:form
