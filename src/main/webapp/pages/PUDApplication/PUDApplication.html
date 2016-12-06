@@ -1,0 +1,82 @@
+<wm-page data-ng-controller="PUDApplicationPageController" pagetitle="Pud Application" name="page1">
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.Cx2PUDApplication.dataSet" captionalign="left" captionposition="top" name="liveformPDApplication" width="80%" margin="unset 10%" backgroundcolor="#e3e1e1">
+                <wm-layoutgrid columns="1" name="layoutgrid1">
+                    <wm-gridrow name="gridrow11">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn11" horizontalalign="center">
+                            <wm-picture name="picture1" picturesource="bind:&quot;services/cx2/Municipalities/&quot;+Variables.MunicipalityObj.firstRecord.id+&quot;/content/logo&quot;" width="22em" height="20em"></wm-picture>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow1">
+                        <wm-gridcolumn show="show" name="gridcolumn1" columnwidth="12">
+                            <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" show="true" generator="assigned" primary-key="false" key="propertyOwnerName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"
+                            inputtype="text" regexp=".*" placeholder="Enter value"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow2">
+                        <wm-gridcolumn show="show" name="gridcolumn2" columnwidth="12">
+                            <wm-form-field name="propertyOwnerPhNo" displayname="Property Owner Ph No" show="true" generator="assigned" primary-key="false" key="propertyOwnerPhNo" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"
+                            inputtype="text" regexp=".*" placeholder="Enter value"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow3">
+                        <wm-gridcolumn show="show" name="gridcolumn3" columnwidth="12">
+                            <wm-form-field name="basementSft" displayname="Basement Sft" show="true" generator="assigned" primary-key="false" key="basementSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text" inputtype="text"
+                            regexp=".*" placeholder="Enter value"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow4">
+                        <wm-gridcolumn show="show" name="gridcolumn4" columnwidth="12">
+                            <wm-form-field name="garageSft" displayname="Garage Sft" show="true" generator="assigned" primary-key="false" key="garageSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text" inputtype="text" regexp=".*"
+                            placeholder="Enter value"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow5">
+                        <wm-gridcolumn show="show" name="gridcolumn5" columnwidth="12">
+                            <wm-form-field name="totalSft" displayname="Total Sft" show="true" generator="assigned" primary-key="false" key="totalSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text" inputtype="text" regexp=".*"
+                            placeholder="Enter value"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow6">
+                        <wm-gridcolumn show="show" name="gridcolumn6" columnwidth="12">
+                            <wm-form-field name="sidingMaterial" displayname="Siding Material" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text" inputtype="text"
+                            regexp=".*" placeholder="Enter value"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow7">
+                        <wm-gridcolumn show="show" name="gridcolumn7" columnwidth="12">
+                            <wm-form-field name="electricLinesCount" displayname="Electric Lines Count" show="true" generator="assigned" primary-key="false" key="electricLinesCount" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"
+                            inputtype="text" regexp=".*" placeholder="Enter value"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow8">
+                        <wm-gridcolumn show="show" name="gridcolumn8" columnwidth="12">
+                            <wm-form-field name="connectionType" displayname="Connection Type" show="true" generator="assigned" primary-key="false" key="connectionType" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text" inputtype="text"
+                            regexp=".*" placeholder="Enter value"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow9">
+                        <wm-gridcolumn show="hide" name="gridcolumn9" columnwidth="12">
+                            <wm-form-field name="formTypes" displayname="Form Types" show="false" generator="assigned" primary-key="false" key="formTypes" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select" dataset="bind:Variables.FormObj.dataSet"
+                            datafield="All Fields" displayfield="formType" defaultvalue="bind:Variables.FormObj.firstRecord" regexp=".*" placeholder="Select value"></wm-form-field>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn show="hide" name="gridcolumn10" columnwidth="12">
+                            <wm-form-field name="users" displayname="Users" show="false" generator="assigned" primary-key="false" key="users" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select" dataset="bind:Variables.UserObj.dataSet" datafield="All Fields"
+                            displayfield="email" defaultvalue="bind:Variables.UserObj.firstRecord" regexp=".*" placeholder="Select value"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+                <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+            </wm-liveform>
+            <!--  __________________Main______________________________ -->
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="view1">
+        <wm-alertdialog name="notificationalertdialog" controller="NotificationDialogController" notificationdialog="alert" message="{{notification.text}}" title="{{notification.title}}" oktext="{{notification.okButtonText}}" alerttype="{{notification.alerttype}}"
+        on-ok="variableOnOk()" on-close="variableOnClose()"></wm-alertdialog>
+    </wm-view>
+</wm-page>

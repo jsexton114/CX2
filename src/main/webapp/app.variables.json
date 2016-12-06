@@ -439,6 +439,48 @@
     "redirectTo" : "Login",
     "useDefaultSuccessHandler" : true
   },
+  "MCNewElectricConnection" : {
+    "_id" : "wm-goToPage_MCNewElectricConnection-wm.NavigationVariable-1481013591760",
+    "name" : "MCNewElectricConnection",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "MCNewElectricConnection",
+      "type" : "list"
+    } ],
+    "operation" : "gotoPage",
+    "pageName" : "MCNewElectricConnection",
+    "dataSet" : [ {
+      "type" : "string",
+      "target" : "FormId",
+      "value" : "bind:Widgets.selectForm.datavalue.ID"
+    } ],
+    "pageTransitions" : "none"
+  },
+  "MCNewResidentialStructure" : {
+    "_id" : "wm-goToPage_MCNewResidentialStructure-wm.NavigationVariable-1481017443320",
+    "name" : "MCNewResidentialStructure",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "MCNewResidentialStructure",
+      "type" : "list"
+    } ],
+    "operation" : "gotoPage",
+    "pageName" : "MCNewResidentialStructure",
+    "dataSet" : [ {
+      "type" : "string",
+      "target" : "FormId",
+      "value" : "bind:Widgets.selectForm.datavalue.ID"
+    }, {
+      "type" : "string",
+      "target" : "MunicipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID"
+    } ],
+    "pageTransitions" : "none"
+  },
   "MyCompaniesCount" : {
     "_id" : "wm-MyCompaniesCount-wm.Variable-1480937483790",
     "name" : "MyCompaniesCount",
@@ -478,6 +520,29 @@
     "type" : "number",
     "isList" : false,
     "saveInPhonegap" : false
+  },
+  "PUDApplication" : {
+    "_id" : "wm-goToPage_PUDApplication-wm.NavigationVariable-1481015708845",
+    "name" : "PUDApplication",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "PUDApplication",
+      "type" : "list"
+    } ],
+    "operation" : "gotoPage",
+    "pageName" : "PUDApplication",
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "FormId",
+      "value" : "bind:Widgets.selectForm.datavalue.ID"
+    }, {
+      "type" : "integer",
+      "target" : "MunicipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID"
+    } ],
+    "pageTransitions" : "none"
   },
   "SFNewElectricConnection" : {
     "_id" : "wm-goToPage_SFNewElectricConnection-wm.NavigationVariable-1479304018405",
