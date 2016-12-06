@@ -38,7 +38,7 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
-                                            <wm-grid title="Vendorusers List" dataset="bind:Variables.VendorUsers.dataSet" navigation="Classic" name="gridVendorUsers">
+                                            <wm-grid title="VendorUsers List" dataset="bind:Variables.VendorUsers.dataSet" navigation="Classic" name="gridVendorUsers">
                                                 <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" edit-widget-type="upload" searchable="false" show="true"
                                                 related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}" alt="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}"
@@ -66,7 +66,14 @@
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow5">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn7"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn7">
+                                            <wm-grid title="VendorAdmins List" dataset="bind:Variables.VendorAdmins.dataSet" navigation="Basic" name="gridAdmins">
+                                                <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
+                                                <wm-grid-column binding="users.photo" widget-type="image" caption="Users Photo" generator="assigned" pcdisplay="true" mobiledisplay="true" type="blob" related-entity-name="Users" readonly="true"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
+                                                </wm-grid-column>
+                                                <wm-grid-column binding="users.email" caption="Users Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                                            </wm-grid>
+                                        </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
@@ -151,6 +158,21 @@
                     <wm-gridcolumn columnwidth="6" name="gridcolumn27" padding="unset unset 1em unset">
                         <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="PhoneNumber" name="label17"></wm-label>
                         <wm-label padding="unset 0.5em" caption="bind:Widgets.gridVendorUsers.selecteditem.users.phoneNumber" name="label21"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewAddAdmin">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="AddAdmin" iconclass="wi wi-person-add" name="dialogAddAdmin">
+            <wm-dialogactions name="dialogactions3">
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7_2"></wm-button>
+                <wm-button class="btn-primary" caption="Save" name="buttonSaveAdmin" on-click="Variables.MapAsAdminForVendor.invoke()"></wm-button>
+            </wm-dialogactions>
+            <wm-layoutgrid name="layoutgrid6">
+                <wm-gridrow name="gridrow15">
+                    <wm-gridcolumn columnwidth="12" padding="1em unset" name="gridcolumn32">
+                        <wm-search dataset="bind:Variables.AllUsers.dataSet" searchkey="email" displaylabel="email" displayimagesrc="photo" datafield="All Fields" name="searchForAdmin"></wm-search>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
