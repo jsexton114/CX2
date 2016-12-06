@@ -46,9 +46,10 @@
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="joiningDate" caption="Joining Date" type="date" generator="assigned" readonly="true" edit-widget-type="date" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="150px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="250px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-row-action key="customRow" display-name="ViewProfile" show="true" class="btn-transparent" iconclass="wi wi-user" title="Custom rowActions" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="Remove" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Custom rowActions" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow1" display-name="Remove" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Custom rowActions" action="Variables.DeleteFromVendorUsers.invoke()"
+                                                disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>

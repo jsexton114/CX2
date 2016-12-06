@@ -110,6 +110,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/DeleteFromVendorUsers", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeDeleteFromVendorUsers(@RequestParam(value = "vendor", required = false) java.lang.Integer vendor) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query DeleteFromVendorUsers");
+        int result = queryService.executeDeleteFromVendorUsers(vendor);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/deleteToken", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeDeleteToken(@RequestParam(value = "token", required = false) java.lang.String token) throws QueryParameterMismatchException {

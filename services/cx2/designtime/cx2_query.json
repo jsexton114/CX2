@@ -203,6 +203,24 @@
     "outputType" : "cx2DeleteExistingSubscriptionsForUserrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "DeleteFromVendorUsers",
+    "query" : "delete from VendorUsers where ID=:vendor",
+    "comment" : "DeleteFromVendorUsers",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "vendor",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "3",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2DeleteFromVendorUsersrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "deleteToken",
     "query" : "delete from UserPasswordResetTokens where Token =:token",
     "comment" : "to deleted token after changing password",

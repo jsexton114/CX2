@@ -36,6 +36,11 @@
       delete from UserSubscriptions where UserId=:user
     ]]>
   </sql-query>
+  <sql-query name="DeleteFromVendorUsers">
+    <![CDATA[
+      delete from VendorUsers where ID=:vendor
+    ]]>
+  </sql-query>
   <sql-query name="deleteToken">
     <![CDATA[
       delete from UserPasswordResetTokens where Token =:token
