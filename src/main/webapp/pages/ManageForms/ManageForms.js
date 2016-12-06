@@ -24,11 +24,25 @@ Application.$controller("dialogCreateFormController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-    
-        $scope.liveformCreateFormBeforeservicecall = function ($event, $operation, $data) { 
+
+
+
+
+        $scope.liveformCreateFormBeforeservicecall = function($event, $operation, $data) {
 
         };
- 
+
+
+        $scope.dialogCreateFormOpened = function($event, $isolateScope) {
+            var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var randomString = '';
+            for (var i = 0; i < 32; i++) {
+                var randomPoz = Math.floor(Math.random() * charSet.length);
+                randomString += charSet.substring(randomPoz, randomPoz + 1);
+            }
+            $scope.Widgets.liveformCreateForm.GUID = randomString;
+        };
+
     }
 ]);
 
@@ -49,8 +63,8 @@ Application.$controller("liveformCreateFormController", ["$scope",
 ]);
 
 Application.$controller("gridFormtypesController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

@@ -60,21 +60,22 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view1">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Create Form" iconclass="wi wi-edit" name="dialogCreateForm" width="75%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Create Form" iconclass="wi wi-edit" name="dialogCreateForm" width="75%" on-opened="dialogCreateFormOpened($event, $scope)">
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-warning" caption="Cancel" type="button" margin="unset 0.5em" name="buttonCancel" on-click="Widgets.dialogCreateForm.close()"></wm-button>
-                <wm-button class="btn-primary" caption="Save" name="buttonSaveForm" on-click="Widgets.liveformCreateForm.save()"></wm-button>
+                <wm-button class="btn-primary" caption="Save" name="buttonSaveForm"></wm-button>
             </wm-dialogactions>
             <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.Cx2FormTypesData.dataSet" captionalign="left" captionposition="top" name="liveformCreateForm" on-beforeservicecall="liveformCreateFormBeforeservicecall($event, $operation, $data)">
                 <wm-layoutgrid columns="3" name="layoutgrid5">
                     <wm-gridrow name="gridrow18">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn32">
-                            <wm-form-field name="formTypeGuid" displayname="Form Type Guid" show="true" primary-key="false" generator="assigned" key="formTypeGuid" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="formTypeGuid" displayname="Form Type Guid" show="true" primary-key="false" generator="assigned" key="formTypeGuid" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:GUID"
+                            readonly="true"></wm-form-field>
                         </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn33">
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn33">
                             <wm-form-field name="formType" displayname="Form Type" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn34">
+                        <wm-gridcolumn columnwidth="5" name="gridcolumn34">
                             <wm-form-field name="permissionsReaders" displayname="Permissions Readers" show="true" primary-key="false" generator="assigned" key="permissionsReaders" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
