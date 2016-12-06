@@ -41,6 +41,11 @@
       delete from UserSubscriptions where UserId=:user
     ]]>
   </sql-query>
+  <sql-query name="DeleteFromVendorAdmins">
+    <![CDATA[
+      delete from VendorAdmins where UserId=:user
+    ]]>
+  </sql-query>
   <sql-query name="DeleteFromVendorUsers">
     <![CDATA[
       delete from VendorUsers where ID=:vendor

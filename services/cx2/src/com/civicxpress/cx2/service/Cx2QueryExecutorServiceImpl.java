@@ -101,6 +101,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeDeleteFromVendorAdmins( java.lang.Integer user)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("user", user);
+        return queryExecutor.executeNamedQueryForUpdate("DeleteFromVendorAdmins", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeDeleteFromVendorUsers( java.lang.Integer vendor)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

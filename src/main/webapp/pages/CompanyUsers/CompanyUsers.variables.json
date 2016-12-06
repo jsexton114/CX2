@@ -345,6 +345,34 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Users"
   },
+  "DeleteFromVendorAdmins" : {
+    "_id" : "wm-DeleteFromVendorAdmins-wm.ServiceVariable-1481034476996",
+    "name" : "DeleteFromVendorAdmins",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Widgets.gridAdmins.selecteditem.userId",
+      "type" : "integer"
+    } ],
+    "type" : "cx2DeleteFromVendorAdminsrtnType",
+    "service" : "cx2",
+    "operation" : "executeDeleteFromVendorAdmins",
+    "operationId" : "QueryExecutionController_executeDeleteFromVendorAdmins",
+    "operationType" : "delete",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "DeleteFromVendorUsers" : {
     "_id" : "wm-DeleteFromVendorUsers-wm.ServiceVariable-1481018475331",
     "name" : "DeleteFromVendorUsers",
@@ -381,7 +409,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "UserId",
-      "value" : "bind:Widgets.gridAdmins.selecteditem.userId",
+      "value" : "bind:Widgets.searchForAdmin.datavalue.id",
       "type" : "integer"
     }, {
       "target" : "VendorId",
@@ -398,7 +426,71 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.UserSuccess.invoke();Variables.VendorAdmins.listRecords();Widgets.dialogAddAdmin.close()",
+    "onSuccess" : "Variables.UserSuccess.invoke();Variables.VendorAdmins.listRecords();Widgets.dialogAddAdmin.close();Variables.UpdateAsCXVendorAdmin.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "RemoveCXVendorAdminToUser" : {
+    "_id" : "wm-RemoveCXVendorAdminToUser-wm.ServiceVariable-1481033745731",
+    "name" : "RemoveCXVendorAdminToUser",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "role",
+      "value" : "User",
+      "type" : "string"
+    }, {
+      "target" : "user",
+      "value" : "bind:Widgets.gridAdmins.selecteditem.userId",
+      "type" : "integer"
+    } ],
+    "type" : "cx2UpdateAsCXVendorAdminrtnType",
+    "service" : "cx2",
+    "operation" : "executeUpdateAsCXVendorAdmin",
+    "operationId" : "QueryExecutionController_executeUpdateAsCXVendorAdmin",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "UpdateAsCXVendorAdmin" : {
+    "_id" : "wm-UpdateAsCXVendorAdmin-wm.ServiceVariable-1481033432768",
+    "name" : "UpdateAsCXVendorAdmin",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "role",
+      "value" : "CXVendorAdmin",
+      "type" : "string"
+    }, {
+      "target" : "user",
+      "value" : "bind:Widgets.searchForAdmin.datavalue.id",
+      "type" : "integer"
+    } ],
+    "type" : "cx2UpdateAsCXVendorAdminrtnType",
+    "service" : "cx2",
+    "operation" : "executeUpdateAsCXVendorAdmin",
+    "operationId" : "QueryExecutionController_executeUpdateAsCXVendorAdmin",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
