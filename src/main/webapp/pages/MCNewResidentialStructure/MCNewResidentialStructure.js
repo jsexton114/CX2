@@ -15,3 +15,11 @@ Application.$controller("MCNewResidentialStructurePageController", ["$scope", fu
     };
 
 }]);
+
+
+Application.$controller("liveformSFNewElectricConnectionController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

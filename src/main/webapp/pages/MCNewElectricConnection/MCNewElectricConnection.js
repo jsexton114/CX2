@@ -23,3 +23,10 @@ Application.$controller("liveformSFNewElectricConnectionController", ["$scope",
 		$scope.ctrlScope = $scope;
 	}
 ]);
+
+Application.$controller("liveformMCNewElectricConnectionController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
