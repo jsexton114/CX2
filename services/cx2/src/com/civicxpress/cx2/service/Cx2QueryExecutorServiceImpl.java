@@ -34,6 +34,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeAddUsersToVendor( java.lang.Integer VendorId ,java.lang.Integer UserId ,java.sql.Date JoiningDate)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("VendorId", VendorId);
+        params.put("UserId", UserId);
+        params.put("JoiningDate", JoiningDate);
+        return queryExecutor.executeNamedQueryForUpdate("AddUsersToVendor", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeAdminsMunicipalities(Pageable pageable, java.lang.Integer user)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

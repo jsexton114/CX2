@@ -40,6 +40,16 @@ public class QueryExecutionController {
     private Cx2QueryExecutorService queryService;
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/AddUsersToVendor", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeAddUsersToVendor(@RequestParam(value = "VendorId", required = false) java.lang.Integer VendorId, @RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "JoiningDate", required = false) java.sql.Date JoiningDate) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query AddUsersToVendor");
+        int result = queryService.executeAddUsersToVendor(VendorId, UserId, JoiningDate);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/AdminsMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeAdminsMunicipalities(@RequestParam(value = "user", required = false) java.lang.Integer user, Pageable pageable) throws QueryParameterMismatchException {

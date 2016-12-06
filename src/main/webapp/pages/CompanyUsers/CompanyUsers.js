@@ -15,3 +15,11 @@ Application.$controller("CompanyUsersPageController", ["$scope", function ($scop
     };
 
 }]);
+
+
+Application.$controller("gridVendorUsersController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
