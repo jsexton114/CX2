@@ -22,6 +22,7 @@ import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.VendorAdmins;
+import com.civicxpress.cx2.VendorUsers;
 
 /**
  * Service object for domain model class {@link Users}.
@@ -187,6 +188,18 @@ public interface UsersService {
      * @see Page
      */
     Page<UserPasswordResetTokens> findAssociatedUserPasswordResetTokenses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated vendorUserses for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated VendorUsers instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated vendorAdminses for given Users id.

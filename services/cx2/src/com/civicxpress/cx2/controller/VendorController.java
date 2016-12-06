@@ -35,6 +35,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
+import com.civicxpress.cx2.VendorUsers;
 import com.civicxpress.cx2.service.VendorService;
 
 /**
@@ -127,6 +128,7 @@ public class VendorController {
 
     @RequestMapping(value = "/feinNumber/{feinNumber}", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching Vendor with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Vendor getByFeinNumber(@PathVariable("feinNumber") String feinNumber) {
         LOGGER.debug("Getting Vendor with uniques key FeinNumber");
         return vendorService.getByFeinNumber(feinNumber);
@@ -173,6 +175,13 @@ public class VendorController {
     public Page<VendorApprovals> findAssociatedVendorApprovalses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorApprovalses");
         return vendorService.findAssociatedVendorApprovalses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/vendorUserses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the vendorUserses instance associated with the given id.")
+    public Page<VendorUsers> findAssociatedVendorUserses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorUserses");
+        return vendorService.findAssociatedVendorUserses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/vendorAdminses", method = RequestMethod.GET)

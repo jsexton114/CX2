@@ -56,6 +56,7 @@ public class Users implements Serializable {
     private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
     private States states;
+    private List<VendorUsers> vendorUserses = new ArrayList<>();
     private List<VendorAdmins> vendorAdminses = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
@@ -254,6 +255,15 @@ public class Users implements Serializable {
         }
 
         this.states = states;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<VendorUsers> getVendorUserses() {
+        return this.vendorUserses;
+    }
+
+    public void setVendorUserses(List<VendorUsers> vendorUserses) {
+        this.vendorUserses = vendorUserses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")

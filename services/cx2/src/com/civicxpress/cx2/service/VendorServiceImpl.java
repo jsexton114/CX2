@@ -26,6 +26,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
+import com.civicxpress.cx2.VendorUsers;
 
 
 /**
@@ -47,6 +48,10 @@ public class VendorServiceImpl implements VendorService {
 	private VendorAdminsService vendorAdminsService;
 
     @Autowired
+	@Qualifier("cx2.VendorUsersService")
+	private VendorUsersService vendorUsersService;
+
+    @Autowired
     @Qualifier("cx2.VendorDao")
     private WMGenericDao<Vendor, Integer> wmGenericDao;
 
@@ -64,6 +69,14 @@ public class VendorServiceImpl implements VendorService {
                 vendorApprovalse.setVendor(vendorCreated);
                 LOGGER.debug("Creating a new child VendorApprovals with information: {}", vendorApprovalse);
                 vendorApprovalsService.create(vendorApprovalse);
+            }
+        }
+
+        if(vendorCreated.getVendorUserses() != null) {
+            for(VendorUsers vendorUserse : vendorCreated.getVendorUserses()) {
+                vendorUserse.setVendor(vendorCreated);
+                LOGGER.debug("Creating a new child VendorUsers with information: {}", vendorUserse);
+                vendorUsersService.create(vendorUserse);
             }
         }
 
@@ -177,6 +190,17 @@ public class VendorServiceImpl implements VendorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorUserses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("vendor.id = '" + id + "'");
+
+        return vendorUsersService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<VendorAdmins> findAssociatedVendorAdminses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorAdminses");
 
@@ -202,6 +226,15 @@ public class VendorServiceImpl implements VendorService {
 	 */
 	protected void setVendorAdminsService(VendorAdminsService service) {
         this.vendorAdminsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service VendorUsersService instance
+	 */
+	protected void setVendorUsersService(VendorUsersService service) {
+        this.vendorUsersService = service;
     }
 
 }
