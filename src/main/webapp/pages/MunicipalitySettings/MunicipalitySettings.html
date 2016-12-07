@@ -76,7 +76,8 @@
                                                         <wm-composite name="composite6">
                                                             <wm-label class="col-md-3 control-label" name="label7" caption="State"></wm-label>
                                                             <wm-container class="col-md-9" name="container6">
-                                                                <wm-search name="textState" datavalue="bind:Variables.DefaultStateObj.firstRecord.id | toNumber" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id"></wm-search>
+                                                                <wm-select name="textState" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].stateId" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName"
+                                                                datafield="id" orderby="stateName:desc" displayfield="stateName"></wm-select>
                                                             </wm-container>
                                                         </wm-composite>
                                                     </wm-gridcolumn>
