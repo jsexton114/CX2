@@ -21,7 +21,7 @@ Application.$controller("ForgotPasswordPageController", ["$scope", "wmToaster", 
     $scope.getUserIDonSuccess = function(variable, data) {
         if (data.content.length === 0) {
             // if user not found in database
-            wmToaster.show('error', '“No CivicXpress account found with that email address', 'Please Sign Up', 5000);
+            wmToaster.show('info', 'INFO', 'An email with password reset instructions has been sent to your email address, if it exists on our system', 5000);
             $scope.Widgets.signup.show = true;
         } else {
             $scope.Variables.sendResetPasswordbyUserID.setInput('userID', data.content[0].ID);
