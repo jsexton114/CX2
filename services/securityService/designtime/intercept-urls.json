@@ -34,6 +34,11 @@
   "roles" : [ ],
   "httpMethod" : null
 }, {
+  "urlPattern" : "/prefabs/Google_reCAPTCHA/**",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : null
+}, {
   "urlPattern" : "/**",
   "permission" : "Authenticated",
   "roles" : null,

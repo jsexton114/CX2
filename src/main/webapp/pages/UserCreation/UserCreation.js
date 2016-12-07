@@ -74,7 +74,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
     $scope.wizard1Done = function($isolateScope, steps) {
         // check for password match
-        if (proceedSubmission == true) {
+        if (proceedSubmission == true && $scope.Widgets.Google_reCAPTCHA1.tokenresponse) {
             $scope.Widgets.liveform2.save();
         } else {
             $scope.Variables.PasswordMissMatch.notify();
