@@ -32,8 +32,6 @@ public class FormStatuses implements Serializable {
     private Integer id;
     private Integer formTypeId;
     private String processOwners;
-    private String readAccess;
-    private String writeAccess;
     private String emailTextBody;
     private String emailSubjectLine;
     private Boolean allowSharedWithEdits;
@@ -47,6 +45,8 @@ public class FormStatuses implements Serializable {
     private Long sortOrder;
     private String status;
     private String description;
+    private Integer readAccess;
+    private Integer writeAccess;
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
@@ -81,24 +81,6 @@ public class FormStatuses implements Serializable {
 
     public void setProcessOwners(String processOwners) {
         this.processOwners = processOwners;
-    }
-
-    @Column(name = "`ReadAccess`", nullable = true, length = 255)
-    public String getReadAccess() {
-        return this.readAccess;
-    }
-
-    public void setReadAccess(String readAccess) {
-        this.readAccess = readAccess;
-    }
-
-    @Column(name = "`WriteAccess`", nullable = true, length = 255)
-    public String getWriteAccess() {
-        return this.writeAccess;
-    }
-
-    public void setWriteAccess(String writeAccess) {
-        this.writeAccess = writeAccess;
     }
 
     @Column(name = "`EmailTextBody`", nullable = true, length = 255)
@@ -216,6 +198,24 @@ public class FormStatuses implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Column(name = "`ReadAccess`", nullable = true, scale = 0, precision = 10)
+    public Integer getReadAccess() {
+        return this.readAccess;
+    }
+
+    public void setReadAccess(Integer readAccess) {
+        this.readAccess = readAccess;
+    }
+
+    @Column(name = "`WriteAccess`", nullable = true, scale = 0, precision = 10)
+    public Integer getWriteAccess() {
+        return this.writeAccess;
+    }
+
+    public void setWriteAccess(Integer writeAccess) {
+        this.writeAccess = writeAccess;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")

@@ -40,24 +40,24 @@ public class FormStatusesServiceImpl implements FormStatusesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FormStatusesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.SfnewResidentialStructureService")
-	private SfnewResidentialStructureService sfnewResidentialStructureService;
-
-    @Autowired
 	@Qualifier("cx2.PudapplicationService")
 	private PudapplicationService pudapplicationService;
 
     @Autowired
-	@Qualifier("cx2.McnewResidentialStructureService")
-	private McnewResidentialStructureService mcnewResidentialStructureService;
+	@Qualifier("cx2.SfnewElectricConnectionService")
+	private SfnewElectricConnectionService sfnewElectricConnectionService;
 
     @Autowired
 	@Qualifier("cx2.McnewElectricConnectionService")
 	private McnewElectricConnectionService mcnewElectricConnectionService;
 
     @Autowired
-	@Qualifier("cx2.SfnewElectricConnectionService")
-	private SfnewElectricConnectionService sfnewElectricConnectionService;
+	@Qualifier("cx2.SfnewResidentialStructureService")
+	private SfnewResidentialStructureService sfnewResidentialStructureService;
+
+    @Autowired
+	@Qualifier("cx2.McnewResidentialStructureService")
+	private McnewResidentialStructureService mcnewResidentialStructureService;
 
     @Autowired
     @Qualifier("cx2.FormStatusesDao")
@@ -243,15 +243,6 @@ public class FormStatusesServiceImpl implements FormStatusesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SfnewResidentialStructureService instance
-	 */
-	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
-        this.sfnewResidentialStructureService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service PudapplicationService instance
 	 */
 	protected void setPudapplicationService(PudapplicationService service) {
@@ -261,10 +252,10 @@ public class FormStatusesServiceImpl implements FormStatusesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service McnewResidentialStructureService instance
+	 * @param service SfnewElectricConnectionService instance
 	 */
-	protected void setMcnewResidentialStructureService(McnewResidentialStructureService service) {
-        this.mcnewResidentialStructureService = service;
+	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
+        this.sfnewElectricConnectionService = service;
     }
 
     /**
@@ -279,10 +270,19 @@ public class FormStatusesServiceImpl implements FormStatusesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SfnewElectricConnectionService instance
+	 * @param service SfnewResidentialStructureService instance
 	 */
-	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
-        this.sfnewElectricConnectionService = service;
+	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
+        this.sfnewResidentialStructureService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service McnewResidentialStructureService instance
+	 */
+	protected void setMcnewResidentialStructureService(McnewResidentialStructureService service) {
+        this.mcnewResidentialStructureService = service;
     }
 
 }

@@ -249,8 +249,9 @@ public class UsersController {
         return usersService.findAssociatedRoleses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/pudapplications", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/pudapplications", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the pudapplications instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Pudapplication> findAssociatedPudapplications(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated pudapplications");
         return usersService.findAssociatedPudapplications(id, pageable);

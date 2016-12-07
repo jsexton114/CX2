@@ -44,40 +44,40 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(MunicipalitiesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.SubdivisionsService")
-	private SubdivisionsService subdivisionsService;
-
-    @Autowired
-	@Qualifier("cx2.VendorApprovalsService")
-	private VendorApprovalsService vendorApprovalsService;
-
-    @Autowired
-	@Qualifier("cx2.FormTypesService")
-	private FormTypesService formTypesService;
-
-    @Autowired
-	@Qualifier("cx2.UserSubscriptionsService")
-	private UserSubscriptionsService userSubscriptionsService;
-
-    @Autowired
-	@Qualifier("cx2.MunicipalityGroupsService")
-	private MunicipalityGroupsService municipalityGroupsService;
-
-    @Autowired
-	@Qualifier("cx2.HolidaysService")
-	private HolidaysService holidaysService;
-
-    @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
-
-    @Autowired
 	@Qualifier("cx2.GisrecordsService")
 	private GisrecordsService gisrecordsService;
 
     @Autowired
 	@Qualifier("cx2.ManualFeeTypesService")
 	private ManualFeeTypesService manualFeeTypesService;
+
+    @Autowired
+	@Qualifier("cx2.HolidaysService")
+	private HolidaysService holidaysService;
+
+    @Autowired
+	@Qualifier("cx2.UserSubscriptionsService")
+	private UserSubscriptionsService userSubscriptionsService;
+
+    @Autowired
+	@Qualifier("cx2.FormTypesService")
+	private FormTypesService formTypesService;
+
+    @Autowired
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
+
+    @Autowired
+	@Qualifier("cx2.MunicipalityGroupsService")
+	private MunicipalityGroupsService municipalityGroupsService;
+
+    @Autowired
+	@Qualifier("cx2.VendorApprovalsService")
+	private VendorApprovalsService vendorApprovalsService;
+
+    @Autowired
+	@Qualifier("cx2.SubdivisionsService")
+	private SubdivisionsService subdivisionsService;
 
     @Autowired
     @Qualifier("cx2.MunicipalitiesDao")
@@ -339,46 +339,19 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SubdivisionsService instance
+	 * @param service GisrecordsService instance
 	 */
-	protected void setSubdivisionsService(SubdivisionsService service) {
-        this.subdivisionsService = service;
+	protected void setGisrecordsService(GisrecordsService service) {
+        this.gisrecordsService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorApprovalsService instance
+	 * @param service ManualFeeTypesService instance
 	 */
-	protected void setVendorApprovalsService(VendorApprovalsService service) {
-        this.vendorApprovalsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormTypesService instance
-	 */
-	protected void setFormTypesService(FormTypesService service) {
-        this.formTypesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service UserSubscriptionsService instance
-	 */
-	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
-        this.userSubscriptionsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service MunicipalityGroupsService instance
-	 */
-	protected void setMunicipalityGroupsService(MunicipalityGroupsService service) {
-        this.municipalityGroupsService = service;
+	protected void setManualFeeTypesService(ManualFeeTypesService service) {
+        this.manualFeeTypesService = service;
     }
 
     /**
@@ -393,6 +366,24 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service UserSubscriptionsService instance
+	 */
+	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
+        this.userSubscriptionsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormTypesService instance
+	 */
+	protected void setFormTypesService(FormTypesService service) {
+        this.formTypesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service RolesService instance
 	 */
 	protected void setRolesService(RolesService service) {
@@ -402,19 +393,28 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service GisrecordsService instance
+	 * @param service MunicipalityGroupsService instance
 	 */
-	protected void setGisrecordsService(GisrecordsService service) {
-        this.gisrecordsService = service;
+	protected void setMunicipalityGroupsService(MunicipalityGroupsService service) {
+        this.municipalityGroupsService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service ManualFeeTypesService instance
+	 * @param service VendorApprovalsService instance
 	 */
-	protected void setManualFeeTypesService(ManualFeeTypesService service) {
-        this.manualFeeTypesService = service;
+	protected void setVendorApprovalsService(VendorApprovalsService service) {
+        this.vendorApprovalsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SubdivisionsService instance
+	 */
+	protected void setSubdivisionsService(SubdivisionsService service) {
+        this.subdivisionsService = service;
     }
 
 }
