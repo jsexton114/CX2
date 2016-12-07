@@ -12,7 +12,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow9" padding="1em unset">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn23">
-                        <wm-label padding="unset 0.5em" name="label1" caption="My Company" fontsize="20" fontweight="bold"></wm-label>
+                        <wm-label padding="unset 0.5em" name="labelMyCompany" caption="My Company" fontsize="20" fontweight="bold"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn24">
                         <wm-composite name="composite1">
@@ -41,7 +41,7 @@
                                             <wm-grid title="VendorUsers List" dataset="bind:Variables.VendorUsers.dataSet" navigation="Classic" name="gridVendorUsers">
                                                 <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" edit-widget-type="upload" searchable="false" show="true"
-                                                related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridvendorusers.selecteditem.users.id+ "=" " content=" " photo"="">
+                                                related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridvendorusers.selecteditem.users.id+="" "=" " content=" " photo"="">
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="joiningDate" caption="Joining Date" type="date" generator="assigned" readonly="true" edit-widget-type="date" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
@@ -69,7 +69,7 @@
                                             <wm-grid title="VendorAdmins List" dataset="bind:Variables.VendorAdmins.dataSet" navigation="Basic" name="gridAdmins">
                                                 <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" edit-widget-type="upload" searchable="false" show="true"
-                                                related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridadmins.selecteditem.users.id+ "=" " content=" " photo"="">
+                                                related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridadmins.selecteditem.users.id+="" "=" " content=" " photo"="">
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="250px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
