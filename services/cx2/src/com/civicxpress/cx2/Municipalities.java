@@ -71,6 +71,7 @@ public class Municipalities implements Serializable {
     private List<Gisrecords> gisrecordses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
     private List<Holidays> holidayses = new ArrayList<>();
+    private List<FormFee> formFees = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -394,6 +395,15 @@ public class Municipalities implements Serializable {
 
     public void setHolidayses(List<Holidays> holidayses) {
         this.holidayses = holidayses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<FormFee> getFormFees() {
+        return this.formFees;
+    }
+
+    public void setFormFees(List<FormFee> formFees) {
+        this.formFees = formFees;
     }
 
     @Override

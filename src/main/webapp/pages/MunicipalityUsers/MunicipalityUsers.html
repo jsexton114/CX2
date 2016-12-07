@@ -27,9 +27,10 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-tabs name="Manage">
                             <wm-tabpane name="tabpane1" title="Municipality Subscriber List">
-                                <wm-grid title="Usersubscriptions List" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="gridUsersubscriptionsList" on-click="Widgets.dialog1.open()">
+                                <wm-grid title="Usersubscriptions List" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="gridUsersubscriptionsList" on-click="Widgets.dialog1.open()" filtermode="multicolumn">
                                     <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
-                                    <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" edit-widget-type="upload" searchable="false" show="true" related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{'services/cx2/Users/'+ row['users.id'] + '/content/photo'}}">
+                                    <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" edit-widget-type="upload" searchable="false" show="true" filterwidget="text"
+                                    related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{'services/cx2/Users/'+ row['users.id'] + '/content/photo'}}">
                                     </wm-grid-column>
                                     <wm-grid-column binding="dateSubscribed" caption="Date Subscribed" type="string" generator="assigned" readonly="true" datepattern="dd MMM, yyyy" formatpattern="toDate" edit-widget-type="text" show="true"></wm-grid-column>
                                     <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Municipalities"></wm-grid-column>

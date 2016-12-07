@@ -23,6 +23,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormFee;
 import com.civicxpress.cx2.McnewElectricConnection;
 import com.civicxpress.cx2.McnewResidentialStructure;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
@@ -48,8 +49,8 @@ public class UsersServiceImpl implements UsersService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.PudapplicationService")
-	private PudapplicationService pudapplicationService;
+	@Qualifier("cx2.McnewResidentialStructureService")
+	private McnewResidentialStructureService mcnewResidentialStructureService;
 
     @Autowired
 	@Qualifier("cx2.SfnewElectricConnectionService")
@@ -60,36 +61,40 @@ public class UsersServiceImpl implements UsersService {
 	private MunicipalityGroupMembersService municipalityGroupMembersService;
 
     @Autowired
-	@Qualifier("cx2.VendorUsersService")
-	private VendorUsersService vendorUsersService;
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
 
     @Autowired
-	@Qualifier("cx2.UserSubscriptionsService")
-	private UserSubscriptionsService userSubscriptionsService;
-
-    @Autowired
-	@Qualifier("cx2.UserPasswordResetTokensService")
-	private UserPasswordResetTokensService userPasswordResetTokensService;
-
-    @Autowired
-	@Qualifier("cx2.McnewElectricConnectionService")
-	private McnewElectricConnectionService mcnewElectricConnectionService;
+	@Qualifier("cx2.PudapplicationService")
+	private PudapplicationService pudapplicationService;
 
     @Autowired
 	@Qualifier("cx2.VendorAdminsService")
 	private VendorAdminsService vendorAdminsService;
 
     @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
+	@Qualifier("cx2.UserPasswordResetTokensService")
+	private UserPasswordResetTokensService userPasswordResetTokensService;
+
+    @Autowired
+	@Qualifier("cx2.VendorUsersService")
+	private VendorUsersService vendorUsersService;
+
+    @Autowired
+	@Qualifier("cx2.McnewElectricConnectionService")
+	private McnewElectricConnectionService mcnewElectricConnectionService;
+
+    @Autowired
+	@Qualifier("cx2.FormFeeService")
+	private FormFeeService formFeeService;
 
     @Autowired
 	@Qualifier("cx2.SfnewResidentialStructureService")
 	private SfnewResidentialStructureService sfnewResidentialStructureService;
 
     @Autowired
-	@Qualifier("cx2.McnewResidentialStructureService")
-	private McnewResidentialStructureService mcnewResidentialStructureService;
+	@Qualifier("cx2.UserSubscriptionsService")
+	private UserSubscriptionsService userSubscriptionsService;
 
     @Autowired
     @Qualifier("cx2.UsersDao")
@@ -189,6 +194,14 @@ public class UsersServiceImpl implements UsersService {
                 userSubscriptionse.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child UserSubscriptions with information: {}", userSubscriptionse);
                 userSubscriptionsService.create(userSubscriptionse);
+            }
+        }
+
+        if(usersCreated.getFormFees() != null) {
+            for(FormFee formFee : usersCreated.getFormFees()) {
+                formFee.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child FormFee with information: {}", formFee);
+                formFeeService.create(formFee);
             }
         }
         return usersCreated;
@@ -402,13 +415,24 @@ public class UsersServiceImpl implements UsersService {
         return userSubscriptionsService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formFees");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return formFeeService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service PudapplicationService instance
+	 * @param service McnewResidentialStructureService instance
 	 */
-	protected void setPudapplicationService(PudapplicationService service) {
-        this.pudapplicationService = service;
+	protected void setMcnewResidentialStructureService(McnewResidentialStructureService service) {
+        this.mcnewResidentialStructureService = service;
     }
 
     /**
@@ -432,37 +456,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorUsersService instance
+	 * @param service RolesService instance
 	 */
-	protected void setVendorUsersService(VendorUsersService service) {
-        this.vendorUsersService = service;
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UserSubscriptionsService instance
+	 * @param service PudapplicationService instance
 	 */
-	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
-        this.userSubscriptionsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service UserPasswordResetTokensService instance
-	 */
-	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
-        this.userPasswordResetTokensService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service McnewElectricConnectionService instance
-	 */
-	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
-        this.mcnewElectricConnectionService = service;
+	protected void setPudapplicationService(PudapplicationService service) {
+        this.pudapplicationService = service;
     }
 
     /**
@@ -477,10 +483,37 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service RolesService instance
+	 * @param service UserPasswordResetTokensService instance
 	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
+	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
+        this.userPasswordResetTokensService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service VendorUsersService instance
+	 */
+	protected void setVendorUsersService(VendorUsersService service) {
+        this.vendorUsersService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service McnewElectricConnectionService instance
+	 */
+	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
+        this.mcnewElectricConnectionService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormFeeService instance
+	 */
+	protected void setFormFeeService(FormFeeService service) {
+        this.formFeeService = service;
     }
 
     /**
@@ -495,10 +528,10 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service McnewResidentialStructureService instance
+	 * @param service UserSubscriptionsService instance
 	 */
-	protected void setMcnewResidentialStructureService(McnewResidentialStructureService service) {
-        this.mcnewResidentialStructureService = service;
+	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
+        this.userSubscriptionsService = service;
     }
 
 }

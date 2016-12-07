@@ -32,6 +32,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.FormFee;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
@@ -237,6 +238,13 @@ public class MunicipalitiesController {
     public Page<Holidays> findAssociatedHolidayses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated holidayses");
         return municipalitiesService.findAssociatedHolidayses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formFees", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formFees instance associated with the given id.")
+    public Page<FormFee> findAssociatedFormFees(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formFees");
+        return municipalitiesService.findAssociatedFormFees(id, pageable);
     }
 
     /**

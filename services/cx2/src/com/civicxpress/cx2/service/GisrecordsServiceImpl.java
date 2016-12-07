@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormFee;
 import com.civicxpress.cx2.Gisrecords;
 
 
@@ -34,6 +35,9 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GisrecordsServiceImpl.class);
 
+    @Autowired
+	@Qualifier("cx2.FormFeeService")
+	private FormFeeService formFeeService;
 
     @Autowired
     @Qualifier("cx2.GisrecordsDao")
@@ -48,6 +52,13 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 	public Gisrecords create(Gisrecords gisrecords) {
         LOGGER.debug("Creating a new Gisrecords with information: {}", gisrecords);
         Gisrecords gisrecordsCreated = this.wmGenericDao.create(gisrecords);
+        if(gisrecordsCreated.getFormFees() != null) {
+            for(FormFee formFee : gisrecordsCreated.getFormFees()) {
+                formFee.setGisrecords(gisrecordsCreated);
+                LOGGER.debug("Creating a new child FormFee with information: {}", formFee);
+                formFeeService.create(formFee);
+            }
+        }
         return gisrecordsCreated;
     }
 
@@ -122,7 +133,25 @@ public class GisrecordsServiceImpl implements GisrecordsService {
         return this.wmGenericDao.count(query);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formFees");
 
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("gisrecords.id = '" + id + "'");
+
+        return formFeeService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormFeeService instance
+	 */
+	protected void setFormFeeService(FormFeeService service) {
+        this.formFeeService = service;
+    }
 
 }
 

@@ -63,6 +63,7 @@ public class Users implements Serializable {
     private List<Roles> roleses = new ArrayList<>();
     private List<Pudapplication> pudapplications = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
+    private List<FormFee> formFees = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -321,6 +322,15 @@ public class Users implements Serializable {
 
     public void setUserSubscriptionses(List<UserSubscriptions> userSubscriptionses) {
         this.userSubscriptionses = userSubscriptionses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<FormFee> getFormFees() {
+        return this.formFees;
+    }
+
+    public void setFormFees(List<FormFee> formFees) {
+        this.formFees = formFees;
     }
 
     @Override

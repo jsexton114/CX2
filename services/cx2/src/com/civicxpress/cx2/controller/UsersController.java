@@ -32,6 +32,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.FormFee;
 import com.civicxpress.cx2.McnewElectricConnection;
 import com.civicxpress.cx2.McnewResidentialStructure;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
@@ -263,6 +264,13 @@ public class UsersController {
     public Page<UserSubscriptions> findAssociatedUserSubscriptionses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userSubscriptionses");
         return usersService.findAssociatedUserSubscriptionses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formFees", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formFees instance associated with the given id.")
+    public Page<FormFee> findAssociatedFormFees(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formFees");
+        return usersService.findAssociatedFormFees(id, pageable);
     }
 
     /**

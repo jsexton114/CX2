@@ -40,16 +40,16 @@ public class VendorServiceImpl implements VendorService {
     private static final Logger LOGGER = LoggerFactory.getLogger(VendorServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.VendorUsersService")
-	private VendorUsersService vendorUsersService;
+	@Qualifier("cx2.VendorApprovalsService")
+	private VendorApprovalsService vendorApprovalsService;
 
     @Autowired
 	@Qualifier("cx2.VendorAdminsService")
 	private VendorAdminsService vendorAdminsService;
 
     @Autowired
-	@Qualifier("cx2.VendorApprovalsService")
-	private VendorApprovalsService vendorApprovalsService;
+	@Qualifier("cx2.VendorUsersService")
+	private VendorUsersService vendorUsersService;
 
     @Autowired
     @Qualifier("cx2.VendorDao")
@@ -213,10 +213,10 @@ public class VendorServiceImpl implements VendorService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorUsersService instance
+	 * @param service VendorApprovalsService instance
 	 */
-	protected void setVendorUsersService(VendorUsersService service) {
-        this.vendorUsersService = service;
+	protected void setVendorApprovalsService(VendorApprovalsService service) {
+        this.vendorApprovalsService = service;
     }
 
     /**
@@ -231,10 +231,10 @@ public class VendorServiceImpl implements VendorService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorApprovalsService instance
+	 * @param service VendorUsersService instance
 	 */
-	protected void setVendorApprovalsService(VendorApprovalsService service) {
-        this.vendorApprovalsService = service;
+	protected void setVendorUsersService(VendorUsersService service) {
+        this.vendorUsersService = service;
     }
 
 }

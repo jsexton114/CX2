@@ -25,6 +25,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.FormFee;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.service.GisrecordsService;
 
@@ -116,6 +117,13 @@ public class GisrecordsController {
     public Long countGisrecords(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting Gisrecords");
         return gisrecordsService.count(query);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formFees", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formFees instance associated with the given id.")
+    public Page<FormFee> findAssociatedFormFees(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formFees");
+        return gisrecordsService.findAssociatedFormFees(id, pageable);
     }
 
     /**

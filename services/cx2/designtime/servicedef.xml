@@ -473,6 +473,25 @@
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.FormFee">
+            <element name="accountingCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="amount" typeRef="java.lang.String" allowNull="true"/>
+            <element name="autoFeeYn" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="comments" typeRef="java.lang.String" allowNull="true"/>
+            <element name="feeType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="gisid" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="gisrecords" typeRef="com.civicxpress.cx2.Gisrecords" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="masterFormsId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="paidByUserId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="paidDate" typeRef="java.util.Date" allowNull="true"/>
+            <element name="paidStatus" typeRef="java.lang.String" allowNull="true"/>
+            <element name="transactionId" typeRef="java.lang.String" allowNull="true"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormStatuses">
             <element name="allowAuthorEdits" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="allowInspections" typeRef="java.lang.Boolean" allowNull="true"/>
@@ -532,6 +551,7 @@
         <dataobject javaType="com.civicxpress.cx2.Gisrecords">
             <element name="city" typeRef="java.lang.String" allowNull="true"/>
             <element name="country" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formFees" typeRef="com.civicxpress.cx2.FormFee" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="inspectionZone" typeRef="java.lang.String" allowNull="true"/>
             <element name="landGuid" typeRef="java.lang.String" allowNull="true"/>
@@ -615,6 +635,7 @@
             <element name="city" typeRef="java.lang.String" allowNull="true"/>
             <element name="closeTime" typeRef="java.util.Date" allowNull="true"/>
             <element name="email" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formFees" typeRef="com.civicxpress.cx2.FormFee" isList="true" allowNull="true"/>
             <element name="formTypeses" typeRef="com.civicxpress.cx2.FormTypes" isList="true" allowNull="true"/>
             <element name="fridayYn" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
@@ -760,6 +781,7 @@
             <element name="country" typeRef="java.lang.String" allowNull="true"/>
             <element name="email" typeRef="java.lang.String" allowNull="true"/>
             <element name="firstName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formFees" typeRef="com.civicxpress.cx2.FormFee" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="lastName" typeRef="java.lang.String" allowNull="true"/>
             <element name="mcnewElectricConnections" typeRef="com.civicxpress.cx2.McnewElectricConnection" isList="true" allowNull="true"/>
