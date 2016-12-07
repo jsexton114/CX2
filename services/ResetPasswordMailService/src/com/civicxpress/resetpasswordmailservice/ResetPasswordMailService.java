@@ -42,6 +42,7 @@ public class ResetPasswordMailService {
     private static final String RESET_NOTIFICATION_MAIL_ID ="civicxpress@gmail.com ";
     private static final String RESET_NOTIFICATION_MAIL_PASSWORD ="civicxpress2016!";
     private static final String EMAIL_SUBJECT = "Account Password Reset";
+    private static final String EMAIL_SUBJECT_WELCOME = "Welcome to CivicXpress";
     private static final String RESET_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/ResetPassword?token=";
     
     @Autowired
@@ -81,6 +82,41 @@ public class ResetPasswordMailService {
         emailBody += "This link is only good for the next 48 hours, after which time it will expire like old milk!  Yuck!<br /><br />Your friends at CivicXpress<br />support@tekdoginc.com<br />614-737-3743<br />";
         
         message.setSubject(EMAIL_SUBJECT);
+        message.setContent(emailBody, "text/html");
+        // Send smtp message
+        Transport tr = session.getTransport("smtp");
+        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
+        message.saveChanges();
+        tr.sendMessage(message, message.getAllRecipients());
+        tr.close();
+        String displayMessage = "Message sent successfully with body " + emailBody;
+        logger.info(displayMessage);
+        return displayMessage;
+    }
+    
+     public String sendWelcomeEmail(String username ,String recipient) throws MessagingException {
+        
+        String emailBody = "Hi" + " "+username+","+"<br /><br />";
+        
+        Properties props = System.getProperties();
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.ssl.enabled","true");
+        props.put("mail.imap.ssl.enabled", "true");
+
+        Session session = Session.getDefaultInstance(props, null);
+
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
+        
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+        
+        emailBody += "Thank you for creating a CivicXpress account.  You can now subscribe to participating CivicXpress municipalities and start submitting digital forms today!  We strongly recommend you checkout our FREE CivicXpress training available under the support link once you’ve login to CivicXpress.  If you have any questions about your CX account, please feel free to contact support from our support page located within CivicXpress.  If you have any questions about your submitted forms please contact the municipality you submitted your form to as they will be your primary contact for anything related to submitted forms and their associated processes.  Once again, thank you for joining the CivicXpress community!<br /><br />";
+        emailBody += "Thank you!<br/>CivicXpress Support Team<br/>";
+        message.setSubject(EMAIL_SUBJECT_WELCOME);
         message.setContent(emailBody, "text/html");
         // Send smtp message
         Transport tr = session.getTransport("smtp");

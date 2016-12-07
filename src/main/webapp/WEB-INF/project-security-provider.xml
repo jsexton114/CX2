@@ -42,6 +42,7 @@
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/deleteToken" access="permitAll" method="DELETE"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/getUserID" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/prefabs/**/servicedefs" access="permitAll"/>
+        <security:intercept-url pattern="/services/resetPasswordMail/sendWelcomeEmail" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/security/**" access="permitAll"/>
         <security:intercept-url pattern="/services/servicedefs" access="permitAll"/>
         <security:intercept-url pattern="/" access="isAuthenticated()"/>

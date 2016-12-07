@@ -5,5 +5,10 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="java.lang.String" isList="false"/>
     </operation>
+    <operation name="sendWelcomeEmail">
+        <parameter name="username" typeRef="java.lang.String" isList="false"/>
+        <parameter name="recipient" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="java.lang.String" isList="false"/>
+    </operation>
     <dataobjects/>
 </service>

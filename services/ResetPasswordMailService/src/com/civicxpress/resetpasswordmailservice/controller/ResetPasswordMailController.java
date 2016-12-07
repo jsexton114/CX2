@@ -26,4 +26,11 @@ public class ResetPasswordMailController {
     public String sendEmail(@RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "token", required = false) String token) throws MessagingException {
         return resetPasswordMailService.sendEmail(recipient, token);
     }
+
+    @RequestMapping(value = "/sendWelcomeEmail", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public String sendWelcomeEmail(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "recipient", required = false) String recipient) throws MessagingException {
+        return resetPasswordMailService.sendWelcomeEmail(username, recipient);
+    }
 }

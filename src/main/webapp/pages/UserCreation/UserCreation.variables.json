@@ -2140,5 +2140,28 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
+  },
+  "welcomeEmail" : {
+    "_id" : "wm-welcomeEmail-wm.ServiceVariable-1481091802220",
+    "name" : "welcomeEmail",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "string",
+    "service" : "ResetPasswordMailService",
+    "operation" : "sendWelcomeEmail",
+    "operationId" : "ResetPasswordMailController_sendWelcomeEmail",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ResetPasswordMail"
   }
 }

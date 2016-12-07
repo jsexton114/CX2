@@ -33,7 +33,9 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
 
     $scope.CreateUseronSuccess = function(variable, data) {
-        debugger
+        $scope.Variables.welcomeEmail.setInput('username', data.firstName);
+        $scope.Variables.welcomeEmail.setInput('recipient', data.email);
+        $scope.Variables.welcomeEmail.update({}, function(data) {});
         // For Registering User with Role as USER for first municiality
         $scope.Variables.NewUserRole.setInput({
             "roleName": "User",
