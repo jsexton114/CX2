@@ -1,4 +1,23 @@
 {
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1481178589839",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/MyCompany"
+    }, {
+      "label" : "VendorApplication",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/VendorApplication"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "MapAsAdminForVendor" : {
     "_id" : "wm-MapAsAdminForVendor-wm.ServiceVariable-1480918775212",
     "name" : "MapAsAdminForVendor",
