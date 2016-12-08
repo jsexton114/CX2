@@ -18,15 +18,9 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         var pass1 = document.getElementById('textPwd');
         var pass2 = document.getElementById('textRePwd');
         //Set the colorsfor use
-        var matchColor = "#fff";
-        var missmatchColor = "#ff66";
-        //Compare the values in the password field and the confirmation field
-        //
         if (pass1.value == pass2.value) {
-            pass2.style.backgroundColor = matchColor;
             proceedSubmission = true;
         } else {
-            pass2.style.backgroundColor = missmatchColor;
             proceedSubmission = false;
         }
     }
@@ -45,7 +39,10 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
             "municipalities": selectedMunicipalites[0],
             "municipalityId": selectedMunicipalites[0].id
         });
-        $scope.Variables.NewUserRole.insertRecord();
+
+        $scope.Variables.NewUserRole.insertRecord({}, function(data) {
+
+        });
 
         // For updating the password
         $scope.Variables.UpdatePwdAndCF.setInput({
@@ -74,9 +71,13 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
     $scope.wizard1Done = function($isolateScope, steps) {
         // check for password match
-        if (proceedSubmission == true && $scope.Widgets.Google_reCAPTCHA1.tokenresponse) {
+        if (proceedSubmission == true) {
+            //$scope.Widgets.Google_reCAPTCHA1.tokenresponse
             $scope.Widgets.liveform2.save();
+            proceedSubmission = false;
+            $scope.Variables.NewUserToLogin.navigate();
         } else {
+            $scope.Widgets.
             $scope.Variables.PasswordMissMatch.notify();
         }
     };
