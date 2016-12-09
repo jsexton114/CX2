@@ -90,7 +90,7 @@ Application.$controller("dialogAddEmployeeORAdminController", ["$scope",
     }
 ]);
 
-Application.$controller("grid3Controller", ["$scope",
+Application.$controller("MunicipalitygroupsgridController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;
@@ -98,6 +98,27 @@ Application.$controller("grid3Controller", ["$scope",
 ]);
 
 Application.$controller("liveform1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("ManageUsersController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("GroupMembersDataController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveform2Controller", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;
