@@ -4,6 +4,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
     $scope.onPageReady = function() {
         //Current Date for subscriptions
+        //$scope.Widgets.Google_reCAPTCHA1.tokenresponse = false;
         $scope.toDay = Date.parse(new Date().toDateString());
     };
 
@@ -11,19 +12,21 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
     var selectedMunicipalites = [];
 
     // For verifying password match
-    var proceedSubmission = false;
+    // var proceedSubmission = false;
 
-    function passwordCheck() {
-        //Store the password field objects into variables ...
-        var pass1 = document.getElementById('textPwd');
-        var pass2 = document.getElementById('textRePwd');
-        //Set the colorsfor use
-        if (pass1.value == pass2.value) {
-            proceedSubmission = true;
-        } else {
-            proceedSubmission = false;
-        }
-    }
+    // function passwordCheck() {
+    //     //Store the password field objects into variables ...
+    //     var pass1 = document.getElementById('textPwd');
+    //     var pass2 = document.getElementById('textRePwd');
+    //     //Set the colorsfor use
+    //     if (pass1.value == pass2.value) {
+    //         proceedSubmission = true;
+    //     } else {
+    //         proceedSubmission = false;
+    //         // $scope.Widgets.Google_reCAPTCHA1.tokenresponse = false;
+    //         grecaptcha.reset();
+    //     }
+    // }
 
 
     $scope.CreateUseronSuccess = function(variable, data) {
@@ -44,7 +47,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
         });
 
-        // For updating the password
+        // For updating the password 
         $scope.Variables.UpdatePwdAndCF.setInput({
             "cf": $scope.Widgets.radiosetCF.datavalue,
             "password": $scope.Widgets.textPwd.datavalue,
@@ -68,29 +71,33 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
     };
 
 
+    function passwordCheck() {
+        if ($scope.Widgets.textPwd.datavalue === $scope.Widgets.textRePwd.datavalue && $scope.Widgets.textPwd.datavalue != undefined && $scope.Widgets.textRePwd.datavalue != undefined) {
 
+            return true;
+        } else {
+
+            grecaptcha.reset();
+            //$scope.Widgets.Google_reCAPTCHA1.tokenresponse = "";
+            return false;
+        }
+
+    }
     $scope.wizard1Done = function($isolateScope, steps) {
         // check for password match
-        if (proceedSubmission == true) {
+        //passwordCheck();
+
+        if (passwordCheck() && (grecaptcha.getResponse() != '')) {
             //$scope.Widgets.Google_reCAPTCHA1.tokenresponse
             $scope.Widgets.liveform2.save();
-            proceedSubmission = false;
+            //proceedSubmission = false;
             $scope.Variables.NewUserToLogin.navigate();
         } else {
-            $scope.Widgets.
             $scope.Variables.PasswordMissMatch.notify();
         }
     };
 
 
-    $scope.textRePwdKeyup = function($event, $isolateScope) {
-        passwordCheck();
-    };
-
-
-    $scope.textPwdKeyup = function($event, $isolateScope) {
-        passwordCheck();
-    };
 
 
 
