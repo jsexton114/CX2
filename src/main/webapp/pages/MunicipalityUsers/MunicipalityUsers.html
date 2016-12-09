@@ -131,55 +131,55 @@
                 <wm-gridrow name="gridrow6">
                     <wm-gridcolumn columnwidth="2" name="gridcolumn10"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="8" name="gridcolumn11" horizontalalign="center">
-                        <wm-picture name="picture1" picturesource="bind:&quot;services/cx2/Users/&quot;+Variables.SelectedUser.dataSet.data[$i].id+&quot;/content/photo&quot;" shape="circle" width="100pt" height="100pt"></wm-picture>
+                        <wm-picture name="picture1" picturesource="bind:&quot;services/cx2/Users/&quot;+Widgets.gridUsersubscriptionsList.selecteditem.users.id+&quot;/content/photo&quot;" shape="circle" width="100pt" height="100pt"></wm-picture>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="2" name="gridcolumn14"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow7">
                     <wm-gridcolumn columnwidth="2" name="gridcolumn12"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="8" name="gridcolumn15" horizontalalign="center">
-                        <wm-label padding="unset 0.5em" name="label8" fontweight="bold" fontsize="20" caption="bind:Variables.SelectedUser.dataSet.data[$i].firstName+&quot; &quot;+Variables.SelectedUser.dataSet.data[$i].lastName"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label8" fontweight="bold" fontsize="20" caption="bind:Widgets.gridUsersubscriptionsList.selecteditem.users.firstName+&quot; &quot;+Widgets.gridUsersubscriptionsList.selecteditem.users.lastName"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="2" name="gridcolumn13"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow8">
                     <wm-gridcolumn columnwidth="2" name="gridcolumn16"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="8" name="gridcolumn17" horizontalalign="center">
-                        <wm-label padding="unset 0.5em" name="label9" caption="bind:Variables.SelectedUser.dataSet.data[$i].email"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label9" caption="bind:Widgets.gridUsersubscriptionsList.selecteditem.users.email"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="2" name="gridcolumn18"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow9">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn19" padding="1em unset 1em 1em">
                         <wm-label padding="unset 0.5em 0.5em 0.5em" name="label10" fontweight="bold" width="100%" caption="Address1"></wm-label>
-                        <wm-label padding="unset 0.5em" name="label11" caption="bind:Variables.SelectedUser.dataSet.data[$i].address1"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label11" caption="bind:Widgets.gridUsersubscriptionsList.selecteditem.users.address1"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn20"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn21" padding="1em unset">
                         <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" name="label12" caption="Address2"></wm-label>
-                        <wm-label padding="unset 0.5em" caption="bind:Variables.SelectedUser.dataSet.data[$i].address2" name="label13"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridUsersubscriptionsList.selecteditem.users.address2" name="label13"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow10">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn22" padding="unset unset 1em 1em">
                         <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="City" name="label14"></wm-label>
-                        <wm-label padding="unset 0.5em" caption="bind:Variables.SelectedUser.dataSet.data[$i].city" name="label15"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridUsersubscriptionsList.selecteditem.users.city" name="label15"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn23"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn24" padding="unset unset 1em unset">
                         <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="State" name="label16"></wm-label>
-                        <wm-label padding="unset 0.5em" caption="bind:Variables.SelectedUser.dataSet.data[$i].city" name="label19"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridUsersubscriptionsList.selecteditem.users.city" name="label19"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow11">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn25" padding="unset unset 1em 1em">
                         <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="PostalCode" name="label18"></wm-label>
-                        <wm-label padding="unset 0.5em" caption="bind:Variables.SelectedUser.dataSet.data[$i].postalCode" name="label20"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridUsersubscriptionsList.selecteditem.users.postalCode" name="label20"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn26"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn27" padding="unset unset 1em unset">
                         <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="PhoneNumber" name="label17"></wm-label>
-                        <wm-label padding="unset 0.5em" caption="bind:Variables.SelectedUser.dataSet.data[$i].phoneNumber" name="label21"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridUsersubscriptionsList.selecteditem.users.phoneNumber" name="label21"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
