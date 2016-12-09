@@ -17,7 +17,6 @@ Application.$controller("leftnavPageController", ["$scope", function($scope) {
 
     $scope.supportLinkClick = function($event, $isolateScope) {
         $scope.$parent.Widgets.dialog1.open();
-
     };
 
 }]);
