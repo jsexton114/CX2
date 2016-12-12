@@ -47,6 +47,7 @@ public class FormStatuses implements Serializable {
     private Integer readAccess;
     private String report;
     private Integer processOwners;
+    private Boolean allowAttachmentsYn;
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
@@ -219,6 +220,15 @@ public class FormStatuses implements Serializable {
 
     public void setProcessOwners(Integer processOwners) {
         this.processOwners = processOwners;
+    }
+
+    @Column(name = "`AllowAttachmentsYN`", nullable = true)
+    public Boolean getAllowAttachmentsYn() {
+        return this.allowAttachmentsYn;
+    }
+
+    public void setAllowAttachmentsYn(Boolean allowAttachmentsYn) {
+        this.allowAttachmentsYn = allowAttachmentsYn;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
