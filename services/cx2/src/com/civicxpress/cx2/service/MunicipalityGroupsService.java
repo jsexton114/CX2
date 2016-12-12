@@ -129,18 +129,6 @@ public interface MunicipalityGroupsService {
 	long count(String query);
 
     /*
-     * Returns the associated municipalityGroupMemberses for given MunicipalityGroups id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated MunicipalityGroupMembers instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated masterFormses for given MunicipalityGroups id.
      *
      * @param id value of id; value cannot be null
@@ -175,6 +163,18 @@ public interface MunicipalityGroupsService {
      * @see Page
      */
     Page<FormStatuses> findAssociatedFormStatusesesForProcessOwners(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated municipalityGroupMemberses for given MunicipalityGroups id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MunicipalityGroupMembers instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable);
 
 }
 

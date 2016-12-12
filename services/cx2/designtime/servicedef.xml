@@ -787,6 +787,9 @@
             <element name="subdivision" typeRef="java.lang.String" allowNull="true"/>
             <element name="subdivisionGuid" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.Table291">
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.UserPasswordResetTokens">
             <element name="expirationDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>

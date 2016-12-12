@@ -63,9 +63,9 @@ public class Vendor implements Serializable {
     private Date lastUpdated;
     private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
     private List<VendorUsers> vendorUserses = new ArrayList<>();
-    private List<VendorAdmins> vendorAdminses = new ArrayList<>();
     private ContractorTypes contractorTypes;
     private States states;
+    private List<VendorAdmins> vendorAdminses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -296,15 +296,6 @@ public class Vendor implements Serializable {
         this.vendorUserses = vendorUserses;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
-    public List<VendorAdmins> getVendorAdminses() {
-        return this.vendorAdminses;
-    }
-
-    public void setVendorAdminses(List<VendorAdmins> vendorAdminses) {
-        this.vendorAdminses = vendorAdminses;
-    }
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`ContractorTypeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public ContractorTypes getContractorTypes() {
@@ -331,6 +322,15 @@ public class Vendor implements Serializable {
         }
 
         this.states = states;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
+    public List<VendorAdmins> getVendorAdminses() {
+        return this.vendorAdminses;
+    }
+
+    public void setVendorAdminses(List<VendorAdmins> vendorAdminses) {
+        this.vendorAdminses = vendorAdminses;
     }
 
     @Override

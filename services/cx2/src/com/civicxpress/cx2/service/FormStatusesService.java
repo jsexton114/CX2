@@ -132,18 +132,6 @@ public interface FormStatusesService {
 	long count(String query);
 
     /*
-     * Returns the associated sfnewResidentialStructures for given FormStatuses id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SfnewResidentialStructure instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated sfnewElectricConnections for given FormStatuses id.
      *
      * @param id value of id; value cannot be null
@@ -156,16 +144,16 @@ public interface FormStatusesService {
     Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated mcnewElectricConnections for given FormStatuses id.
+     * Returns the associated sfnewResidentialStructures for given FormStatuses id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated McnewElectricConnection instances.
+     * @return Paginated list of associated SfnewResidentialStructure instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(Integer id, Pageable pageable);
+    Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable);
 
     /*
      * Returns the associated masterFormses for given FormStatuses id.
@@ -178,6 +166,18 @@ public interface FormStatusesService {
      * @see Page
      */
     Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated mcnewElectricConnections for given FormStatuses id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated McnewElectricConnection instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(Integer id, Pageable pageable);
 
     /*
      * Returns the associated mcnewResidentialStructures for given FormStatuses id.
