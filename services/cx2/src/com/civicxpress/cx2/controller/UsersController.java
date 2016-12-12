@@ -266,8 +266,9 @@ public class UsersController {
         return usersService.findAssociatedUserSubscriptionses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/formFees", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/formFees", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formFees instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormFee> findAssociatedFormFees(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formFees");
         return usersService.findAssociatedFormFees(id, pageable);

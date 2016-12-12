@@ -36,8 +36,6 @@ public class FormTypes implements Serializable {
     private String formTypeGuid;
     private Integer municipalityId;
     private String formType;
-    private String permissionsReaders;
-    private String permissionsWriters;
     private String tbLocation;
     private String flatFee;
     private String flatFeeAccountingCode;
@@ -97,24 +95,6 @@ public class FormTypes implements Serializable {
 
     public void setFormType(String formType) {
         this.formType = formType;
-    }
-
-    @Column(name = "`PermissionsReaders`", nullable = true, length = 255)
-    public String getPermissionsReaders() {
-        return this.permissionsReaders;
-    }
-
-    public void setPermissionsReaders(String permissionsReaders) {
-        this.permissionsReaders = permissionsReaders;
-    }
-
-    @Column(name = "`PermissionsWriters`", nullable = true, length = 255)
-    public String getPermissionsWriters() {
-        return this.permissionsWriters;
-    }
-
-    public void setPermissionsWriters(String permissionsWriters) {
-        this.permissionsWriters = permissionsWriters;
     }
 
     @Column(name = "`TbLocation`", nullable = true, length = 255)

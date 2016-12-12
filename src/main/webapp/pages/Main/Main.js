@@ -29,11 +29,6 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
 
 
-    $scope.anchor9Click = function($event, $isolateScope) {
-        debugger
-        $scope.Widgets
-    };
-
 }]);
 
 Application.$controller("dialog1Controller", ["$scope",
@@ -46,5 +41,12 @@ Application.$controller("dialog1Controller", ["$scope",
             $scope.Variables[pageName].navigate();
         };
 
+    }
+]);
+
+Application.$controller("pagedialogNewFormController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

@@ -119,8 +119,9 @@ public class GisrecordsController {
         return gisrecordsService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/formFees", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/formFees", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formFees instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormFee> findAssociatedFormFees(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formFees");
         return gisrecordsService.findAssociatedFormFees(id, pageable);

@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
 import com.civicxpress.cx2.MunicipalityGroups;
 
@@ -40,6 +41,10 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
 	private MunicipalityGroupMembersService municipalityGroupMembersService;
 
     @Autowired
+	@Qualifier("cx2.FormStatusesService")
+	private FormStatusesService formStatusesService;
+
+    @Autowired
     @Qualifier("cx2.MunicipalityGroupsDao")
     private WMGenericDao<MunicipalityGroups, Integer> wmGenericDao;
 
@@ -57,6 +62,22 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
                 municipalityGroupMemberse.setMunicipalityGroups(municipalityGroupsCreated);
                 LOGGER.debug("Creating a new child MunicipalityGroupMembers with information: {}", municipalityGroupMemberse);
                 municipalityGroupMembersService.create(municipalityGroupMemberse);
+            }
+        }
+
+        if(municipalityGroupsCreated.getFormStatusesesForReadAccess() != null) {
+            for(FormStatuses formStatusesesForReadAcces : municipalityGroupsCreated.getFormStatusesesForReadAccess()) {
+                formStatusesesForReadAcces.setMunicipalityGroupsByReadAccess(municipalityGroupsCreated);
+                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusesesForReadAcces);
+                formStatusesService.create(formStatusesesForReadAcces);
+            }
+        }
+
+        if(municipalityGroupsCreated.getFormStatusesesForProcessOwners() != null) {
+            for(FormStatuses formStatusesesForProcessOwner : municipalityGroupsCreated.getFormStatusesesForProcessOwners()) {
+                formStatusesesForProcessOwner.setMunicipalityGroupsByProcessOwners(municipalityGroupsCreated);
+                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusesesForProcessOwner);
+                formStatusesService.create(formStatusesesForProcessOwner);
             }
         }
         return municipalityGroupsCreated;
@@ -144,6 +165,28 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
         return municipalityGroupMembersService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormStatuses> findAssociatedFormStatusesesForReadAccess(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatusesesForReadAccess");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalityGroupsByReadAccess.id = '" + id + "'");
+
+        return formStatusesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormStatuses> findAssociatedFormStatusesesForProcessOwners(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatusesesForProcessOwners");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalityGroupsByProcessOwners.id = '" + id + "'");
+
+        return formStatusesService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -151,6 +194,15 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
 	 */
 	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
         this.municipalityGroupMembersService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormStatusesService instance
+	 */
+	protected void setFormStatusesService(FormStatusesService service) {
+        this.formStatusesService = service;
     }
 
 }

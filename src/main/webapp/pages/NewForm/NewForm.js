@@ -1,4 +1,4 @@
-Application.$controller("leftnavPageController", ["$scope", function($scope) {
+Application.$controller("NewFormPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -15,8 +15,10 @@ Application.$controller("leftnavPageController", ["$scope", function($scope) {
     };
 
 
-    $scope.supportLinkClick = function($event, $isolateScope) {
-        $scope.$parent.Widgets.pagedialogNewForm.open();
+    // For navigation to selected form page
+    $scope.buttonCreateClick = function($event, $isolateScope) {
+        var pageName = $scope.Widgets.selectForm.datavalue.PageName;
+        $scope.Variables[pageName].navigate();
     };
 
 }]);

@@ -25,6 +25,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
 import com.civicxpress.cx2.MunicipalityGroups;
 import com.civicxpress.cx2.service.MunicipalityGroupsService;
@@ -125,6 +126,20 @@ public class MunicipalityGroupsController {
     public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated municipalityGroupMemberses");
         return municipalityGroupsService.findAssociatedMunicipalityGroupMemberses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formStatusesesForReadAccess", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formStatusesesForReadAccess instance associated with the given id.")
+    public Page<FormStatuses> findAssociatedFormStatusesesForReadAccess(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatusesesForReadAccess");
+        return municipalityGroupsService.findAssociatedFormStatusesesForReadAccess(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formStatusesesForProcessOwners", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formStatusesesForProcessOwners instance associated with the given id.")
+    public Page<FormStatuses> findAssociatedFormStatusesesForProcessOwners(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatusesesForProcessOwners");
+        return municipalityGroupsService.findAssociatedFormStatusesesForProcessOwners(id, pageable);
     }
 
     /**

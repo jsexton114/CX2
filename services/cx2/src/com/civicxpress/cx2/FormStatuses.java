@@ -31,7 +31,6 @@ public class FormStatuses implements Serializable {
 
     private Integer id;
     private Integer formTypeId;
-    private String processOwners;
     private String emailTextBody;
     private String emailSubjectLine;
     private Boolean allowSharedWithEdits;
@@ -46,13 +45,16 @@ public class FormStatuses implements Serializable {
     private String status;
     private String description;
     private Integer readAccess;
-    private Integer writeAccess;
+    private String report;
+    private Integer processOwners;
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
     private List<Pudapplication> pudapplications = new ArrayList<>();
     private FormTypes formTypes;
+    private MunicipalityGroups municipalityGroupsByReadAccess;
+    private MunicipalityGroups municipalityGroupsByProcessOwners;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -72,15 +74,6 @@ public class FormStatuses implements Serializable {
 
     public void setFormTypeId(Integer formTypeId) {
         this.formTypeId = formTypeId;
-    }
-
-    @Column(name = "`ProcessOwners`", nullable = true, length = 255)
-    public String getProcessOwners() {
-        return this.processOwners;
-    }
-
-    public void setProcessOwners(String processOwners) {
-        this.processOwners = processOwners;
     }
 
     @Column(name = "`EmailTextBody`", nullable = true, length = 255)
@@ -209,13 +202,22 @@ public class FormStatuses implements Serializable {
         this.readAccess = readAccess;
     }
 
-    @Column(name = "`WriteAccess`", nullable = true, scale = 0, precision = 10)
-    public Integer getWriteAccess() {
-        return this.writeAccess;
+    @Column(name = "`Report`", nullable = true, length = 255)
+    public String getReport() {
+        return this.report;
     }
 
-    public void setWriteAccess(Integer writeAccess) {
-        this.writeAccess = writeAccess;
+    public void setReport(String report) {
+        this.report = report;
+    }
+
+    @Column(name = "`ProcessOwners`", nullable = true, scale = 0, precision = 10)
+    public Integer getProcessOwners() {
+        return this.processOwners;
+    }
+
+    public void setProcessOwners(Integer processOwners) {
+        this.processOwners = processOwners;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
@@ -275,6 +277,34 @@ public class FormStatuses implements Serializable {
         }
 
         this.formTypes = formTypes;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`ReadAccess`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public MunicipalityGroups getMunicipalityGroupsByReadAccess() {
+        return this.municipalityGroupsByReadAccess;
+    }
+
+    public void setMunicipalityGroupsByReadAccess(MunicipalityGroups municipalityGroupsByReadAccess) {
+        if(municipalityGroupsByReadAccess != null) {
+            this.readAccess = municipalityGroupsByReadAccess.getId();
+        }
+
+        this.municipalityGroupsByReadAccess = municipalityGroupsByReadAccess;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`ProcessOwners`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public MunicipalityGroups getMunicipalityGroupsByProcessOwners() {
+        return this.municipalityGroupsByProcessOwners;
+    }
+
+    public void setMunicipalityGroupsByProcessOwners(MunicipalityGroups municipalityGroupsByProcessOwners) {
+        if(municipalityGroupsByProcessOwners != null) {
+            this.processOwners = municipalityGroupsByProcessOwners.getId();
+        }
+
+        this.municipalityGroupsByProcessOwners = municipalityGroupsByProcessOwners;
     }
 
     @Override
