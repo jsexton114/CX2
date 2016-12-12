@@ -37,6 +37,7 @@ public class SfnewElectricConnection implements Serializable {
     private Integer formTypeId;
     private Integer userId;
     private Integer formStatusId;
+    private String guid;
     private FormStatuses formStatuses;
     private FormTypes formTypes;
     private Users users;
@@ -149,6 +150,15 @@ public class SfnewElectricConnection implements Serializable {
 
     public void setFormStatusId(Integer formStatusId) {
         this.formStatusId = formStatusId;
+    }
+
+    @Column(name = "`GUID`", nullable = true, length = 255)
+    public String getGuid() {
+        return this.guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

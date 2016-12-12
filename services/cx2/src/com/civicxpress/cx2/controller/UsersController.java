@@ -219,8 +219,9 @@ public class UsersController {
         return usersService.findAssociatedUserPasswordResetTokenses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/masterFormses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
         return usersService.findAssociatedMasterFormses(id, pageable);

@@ -36,6 +36,7 @@ public class McnewResidentialStructure implements Serializable {
     private Integer formTypeId;
     private Integer formStatusId;
     private Integer userId;
+    private String guid;
     private FormStatuses formStatuses;
     private FormTypes formTypes;
     private Users users;
@@ -139,6 +140,15 @@ public class McnewResidentialStructure implements Serializable {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    @Column(name = "`GUID`", nullable = true, length = 255)
+    public String getGuid() {
+        return this.guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

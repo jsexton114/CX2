@@ -46,36 +46,20 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(MunicipalitiesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.FormFeeService")
-	private FormFeeService formFeeService;
-
-    @Autowired
-	@Qualifier("cx2.HolidaysService")
-	private HolidaysService holidaysService;
+	@Qualifier("cx2.UserSubscriptionsService")
+	private UserSubscriptionsService userSubscriptionsService;
 
     @Autowired
 	@Qualifier("cx2.VendorApprovalsService")
 	private VendorApprovalsService vendorApprovalsService;
 
     @Autowired
-	@Qualifier("cx2.MasterFormsService")
-	private MasterFormsService masterFormsService;
-
-    @Autowired
-	@Qualifier("cx2.ManualFeeTypesService")
-	private ManualFeeTypesService manualFeeTypesService;
-
-    @Autowired
-	@Qualifier("cx2.FormTypesService")
-	private FormTypesService formTypesService;
+	@Qualifier("cx2.FormFeeService")
+	private FormFeeService formFeeService;
 
     @Autowired
 	@Qualifier("cx2.RolesService")
 	private RolesService rolesService;
-
-    @Autowired
-	@Qualifier("cx2.SubdivisionsService")
-	private SubdivisionsService subdivisionsService;
 
     @Autowired
 	@Qualifier("cx2.MunicipalityGroupsService")
@@ -86,8 +70,24 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	private GisrecordsService gisrecordsService;
 
     @Autowired
-	@Qualifier("cx2.UserSubscriptionsService")
-	private UserSubscriptionsService userSubscriptionsService;
+	@Qualifier("cx2.HolidaysService")
+	private HolidaysService holidaysService;
+
+    @Autowired
+	@Qualifier("cx2.ManualFeeTypesService")
+	private ManualFeeTypesService manualFeeTypesService;
+
+    @Autowired
+	@Qualifier("cx2.FormTypesService")
+	private FormTypesService formTypesService;
+
+    @Autowired
+	@Qualifier("cx2.SubdivisionsService")
+	private SubdivisionsService subdivisionsService;
+
+    @Autowired
+	@Qualifier("cx2.MasterFormsService")
+	private MasterFormsService masterFormsService;
 
     @Autowired
     @Qualifier("cx2.MunicipalitiesDao")
@@ -387,19 +387,10 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormFeeService instance
+	 * @param service UserSubscriptionsService instance
 	 */
-	protected void setFormFeeService(FormFeeService service) {
-        this.formFeeService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service HolidaysService instance
-	 */
-	protected void setHolidaysService(HolidaysService service) {
-        this.holidaysService = service;
+	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
+        this.userSubscriptionsService = service;
     }
 
     /**
@@ -414,28 +405,10 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MasterFormsService instance
+	 * @param service FormFeeService instance
 	 */
-	protected void setMasterFormsService(MasterFormsService service) {
-        this.masterFormsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service ManualFeeTypesService instance
-	 */
-	protected void setManualFeeTypesService(ManualFeeTypesService service) {
-        this.manualFeeTypesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormTypesService instance
-	 */
-	protected void setFormTypesService(FormTypesService service) {
-        this.formTypesService = service;
+	protected void setFormFeeService(FormFeeService service) {
+        this.formFeeService = service;
     }
 
     /**
@@ -445,15 +418,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	 */
 	protected void setRolesService(RolesService service) {
         this.rolesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubdivisionsService instance
-	 */
-	protected void setSubdivisionsService(SubdivisionsService service) {
-        this.subdivisionsService = service;
     }
 
     /**
@@ -477,10 +441,46 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UserSubscriptionsService instance
+	 * @param service HolidaysService instance
 	 */
-	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
-        this.userSubscriptionsService = service;
+	protected void setHolidaysService(HolidaysService service) {
+        this.holidaysService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ManualFeeTypesService instance
+	 */
+	protected void setManualFeeTypesService(ManualFeeTypesService service) {
+        this.manualFeeTypesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormTypesService instance
+	 */
+	protected void setFormTypesService(FormTypesService service) {
+        this.formTypesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SubdivisionsService instance
+	 */
+	protected void setSubdivisionsService(SubdivisionsService service) {
+        this.subdivisionsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MasterFormsService instance
+	 */
+	protected void setMasterFormsService(MasterFormsService service) {
+        this.masterFormsService = service;
     }
 
 }
