@@ -137,7 +137,7 @@
                                         </wm-composite>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn26_1" horizontalalign="center">
-                                        <wm-button class="btn-default" caption="AddMunicipality" type="button" margin="unset 0.5em" name="buttonAddMunicipality" iconclass="wi wi-add" on-click="buttonAddMunicipalityClick($event, $scope)"></wm-button>
+                                        <wm-button class="btn-default" caption="Add Municipality" type="button" margin="unset 0.5em" name="buttonAddMunicipality" iconclass="wi wi-add" on-click="buttonAddMunicipalityClick($event, $scope)"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow21_1" padding="2em unset">
@@ -181,7 +181,7 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn36">
                         <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications">
                             <wm-label padding="unset 0.5em" name="label32" caption="Please select your notification frequency" fontweight="bold" fontsize="15"></wm-label>
-                            <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF"></wm-radioset>
+                            <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF" required="true"></wm-radioset>
                             <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="unset unset unset 80%" width="20%" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
                         </wm-panel>
                     </wm-gridcolumn>
