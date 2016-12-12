@@ -455,6 +455,10 @@
       "type" : "string",
       "target" : "FormId",
       "value" : "bind:Widgets.selectForm.datavalue.ID"
+    }, {
+      "type" : "string",
+      "target" : "MunicipalityId",
+      "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | toNumber"
     } ],
     "pageTransitions" : "none"
   },
@@ -477,7 +481,7 @@
     }, {
       "type" : "string",
       "target" : "MunicipalityId",
-      "value" : "bind:Widgets.selectMunicipality.datavalue.ID"
+      "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | toNumber"
     } ],
     "pageTransitions" : "none"
   },
