@@ -311,17 +311,6 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
-  "goToPage_NewFrom" : {
-    "_id" : "wm-goToPage_NewFrom-wm.NavigationVariable-1478577221086",
-    "name" : "goToPage_NewFrom",
-    "owner" : "App",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
-    "operation" : "gotoPage",
-    "pageName" : "NewFrom",
-    "dataSet" : [ ],
-    "pageTransitions" : "none"
-  },
   "goToPage_ResetPassword" : {
     "_id" : "wm-goToPage_ResetPassword-wm.NavigationVariable-1479884962543",
     "name" : "goToPage_ResetPassword",
@@ -451,15 +440,7 @@
     } ],
     "operation" : "gotoPage",
     "pageName" : "MCNewElectricConnection",
-    "dataSet" : [ {
-      "type" : "string",
-      "target" : "FormId",
-      "value" : "bind:Widgets.selectForm.datavalue.ID"
-    }, {
-      "type" : "string",
-      "target" : "MunicipalityId",
-      "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | toNumber"
-    } ],
+    "dataSet" : [ ],
     "pageTransitions" : "none"
   },
   "MCNewResidentialStructure" : {
@@ -474,15 +455,7 @@
     } ],
     "operation" : "gotoPage",
     "pageName" : "MCNewResidentialStructure",
-    "dataSet" : [ {
-      "type" : "string",
-      "target" : "FormId",
-      "value" : "bind:Widgets.selectForm.datavalue.ID"
-    }, {
-      "type" : "string",
-      "target" : "MunicipalityId",
-      "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | toNumber"
-    } ],
+    "dataSet" : [ ],
     "pageTransitions" : "none"
   },
   "MyCompaniesCount" : {
@@ -537,15 +510,7 @@
     } ],
     "operation" : "gotoPage",
     "pageName" : "PUDApplication",
-    "dataSet" : [ {
-      "type" : "integer",
-      "target" : "FormId",
-      "value" : "bind:Widgets.selectForm.datavalue.ID"
-    }, {
-      "type" : "integer",
-      "target" : "MunicipalityId",
-      "value" : "bind:Widgets.selectMunicipality.datavalue.ID"
-    } ],
+    "dataSet" : [ ],
     "pageTransitions" : "none"
   },
   "SFNewElectricConnection" : {
@@ -560,15 +525,7 @@
     } ],
     "operation" : "gotoPage",
     "pageName" : "SFNewElectricConnection",
-    "dataSet" : [ {
-      "type" : "integer",
-      "target" : "FormId",
-      "value" : "bind:Widgets.selectForm.datavalue.id"
-    }, {
-      "type" : "integer",
-      "target" : "MunicipalityId",
-      "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | toNumber"
-    } ],
+    "dataSet" : [ ],
     "pageTransitions" : "none"
   },
   "SFNewResidentialStructure" : {
@@ -583,15 +540,7 @@
     } ],
     "operation" : "gotoPage",
     "pageName" : "SFNewResidentialStructure",
-    "dataSet" : [ {
-      "type" : "integer",
-      "target" : "FormId",
-      "value" : "bind:Widgets.selectForm.datavalue.id"
-    }, {
-      "type" : "integer",
-      "target" : "MunicipalityId",
-      "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | toNumber"
-    } ],
+    "dataSet" : [ ],
     "pageTransitions" : "none"
   },
   "supportedLocale" : {

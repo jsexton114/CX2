@@ -4,7 +4,7 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
         //current date
-        $scope.Variables.Today.dataSet.dataValue = Date.parse(new Date().toDateString());
+        //$scope.Variables.Today.dataSet.dataValue = Date.parse(new Date().toDateString());
 
     };
 
@@ -36,10 +36,10 @@ Application.$controller("dialog1Controller", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
         // For navigation to selected form page
-        $scope.buttonCreateClick = function($event, $isolateScope) {
-            var pageName = $scope.Widgets.selectForm.datavalue.PageName;
-            $scope.Variables[pageName].navigate();
-        };
+        // $scope.buttonCreateClick = function($event, $isolateScope) {
+        //     var pageName = $scope.Widgets.selectForm.datavalue.PageName;
+        //     $scope.Variables[pageName].navigate();
+        // };
 
     }
 ]);

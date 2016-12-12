@@ -22,7 +22,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn3" horizontalalign="center" padding="2em unset">
-                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Widgets.dialog1.open()">
+                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Widgets.pagedialogNewForm.open()">
                             <wm-layoutgrid height="100%" name="layoutgrid9">
                                 <wm-gridrow height="100%" name="gridrow12">
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2em unset unset unset" name="gridcolumn26">
@@ -192,6 +192,6 @@
     <!--    </wm-dialog>-->
     <!--</wm-view>-->
     <wm-view class="dialog-view" name="viewNewForm">
-        <wm-pagedialog name="pagedialogNewForm" title="NewForm" content="NewForm"></wm-pagedialog>
+        <wm-pagedialog name="pagedialogNewForm" title="NewForm" content="NewForm" oktext="Close"></wm-pagedialog>
     </wm-view>
 </wm-page>

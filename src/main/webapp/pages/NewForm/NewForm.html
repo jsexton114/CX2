@@ -37,8 +37,8 @@
             </wm-gridcolumn>
         </wm-gridrow>
         <wm-gridrow name="gridrow5">
-            <wm-gridcolumn columnwidth="12" name="gridcolumn7" horizontalalign="right">
-                <wm-button class="btn-default btn-primary" caption="Create" type="button" margin="unset 0.5em" name="buttonCreate" on-click="buttonCreateClick($event, $scope)"></wm-button>
+            <wm-gridcolumn columnwidth="12" name="gridcolumn7" horizontalalign="center">
+                <wm-button class="btn-raised btn-error" caption="Create" type="button" margin="unset 0.5em" name="buttonCreate" on-click="buttonCreateClick($event, $scope)" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements != 0"></wm-button>
             </wm-gridcolumn>
         </wm-gridrow>
     </wm-layoutgrid>

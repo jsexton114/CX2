@@ -4,8 +4,12 @@
     "name" : "Cx2McnewElectricConnectionData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
-    "operation" : "read",
+    "dataBinding" : [ {
+      "target" : "guid",
+      "value" : "bind:setGUID",
+      "type" : "string"
+    } ],
+    "operation" : "insert",
     "dataSet" : [ ],
     "type" : "McnewElectricConnection",
     "isList" : false,
@@ -866,6 +870,19 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "guid",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "GUID",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 19,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "McnewElectricConnection",
       "fullyQualifiedName" : "com.civicxpress.cx2.McnewElectricConnection",
@@ -896,6 +913,7 @@
       "package" : "com.civicxpress.cx2.McnewElectricConnection"
     } ],
     "filterFields" : { },
+    "inputFields" : { },
     "package" : "com.civicxpress.cx2.McnewElectricConnection"
   },
   "FormObj" : {
