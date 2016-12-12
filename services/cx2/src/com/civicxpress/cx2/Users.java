@@ -56,6 +56,7 @@ public class Users implements Serializable {
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
+    private List<MasterForms> masterFormses = new ArrayList<>();
     private States states;
     private List<VendorUsers> vendorUserses = new ArrayList<>();
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
@@ -254,6 +255,15 @@ public class Users implements Serializable {
 
     public void setUserPasswordResetTokenses(List<UserPasswordResetTokens> userPasswordResetTokenses) {
         this.userPasswordResetTokenses = userPasswordResetTokenses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<MasterForms> getMasterFormses() {
+        return this.masterFormses;
+    }
+
+    public void setMasterFormses(List<MasterForms> masterFormses) {
+        this.masterFormses = masterFormses;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -50,6 +50,7 @@ public class FormStatuses implements Serializable {
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
+    private List<MasterForms> masterFormses = new ArrayList<>();
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
     private List<Pudapplication> pudapplications = new ArrayList<>();
     private FormTypes formTypes;
@@ -245,6 +246,15 @@ public class FormStatuses implements Serializable {
 
     public void setMcnewElectricConnections(List<McnewElectricConnection> mcnewElectricConnections) {
         this.mcnewElectricConnections = mcnewElectricConnections;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
+    public List<MasterForms> getMasterFormses() {
+        return this.masterFormses;
+    }
+
+    public void setMasterFormses(List<MasterForms> masterFormses) {
+        this.masterFormses = masterFormses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")

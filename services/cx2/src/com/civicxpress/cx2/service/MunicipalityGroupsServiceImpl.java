@@ -22,6 +22,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
 import com.civicxpress.cx2.MunicipalityGroups;
 
@@ -37,12 +38,16 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
     private static final Logger LOGGER = LoggerFactory.getLogger(MunicipalityGroupsServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.MunicipalityGroupMembersService")
-	private MunicipalityGroupMembersService municipalityGroupMembersService;
-
-    @Autowired
 	@Qualifier("cx2.FormStatusesService")
 	private FormStatusesService formStatusesService;
+
+    @Autowired
+	@Qualifier("cx2.MasterFormsService")
+	private MasterFormsService masterFormsService;
+
+    @Autowired
+	@Qualifier("cx2.MunicipalityGroupMembersService")
+	private MunicipalityGroupMembersService municipalityGroupMembersService;
 
     @Autowired
     @Qualifier("cx2.MunicipalityGroupsDao")
@@ -62,6 +67,14 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
                 municipalityGroupMemberse.setMunicipalityGroups(municipalityGroupsCreated);
                 LOGGER.debug("Creating a new child MunicipalityGroupMembers with information: {}", municipalityGroupMemberse);
                 municipalityGroupMembersService.create(municipalityGroupMemberse);
+            }
+        }
+
+        if(municipalityGroupsCreated.getMasterFormses() != null) {
+            for(MasterForms masterFormse : municipalityGroupsCreated.getMasterFormses()) {
+                masterFormse.setMunicipalityGroups(municipalityGroupsCreated);
+                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
+                masterFormsService.create(masterFormse);
             }
         }
 
@@ -167,6 +180,17 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalityGroups.id = '" + id + "'");
+
+        return masterFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<FormStatuses> findAssociatedFormStatusesesForReadAccess(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formStatusesesForReadAccess");
 
@@ -190,19 +214,28 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalityGroupMembersService instance
+	 * @param service FormStatusesService instance
 	 */
-	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
-        this.municipalityGroupMembersService = service;
+	protected void setFormStatusesService(FormStatusesService service) {
+        this.formStatusesService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormStatusesService instance
+	 * @param service MasterFormsService instance
 	 */
-	protected void setFormStatusesService(FormStatusesService service) {
-        this.formStatusesService = service;
+	protected void setMasterFormsService(MasterFormsService service) {
+        this.masterFormsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MunicipalityGroupMembersService instance
+	 */
+	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
+        this.municipalityGroupMembersService = service;
     }
 
 }

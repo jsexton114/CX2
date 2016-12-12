@@ -54,6 +54,7 @@ public class FormTypes implements Serializable {
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private Municipalities municipalities;
+    private List<MasterForms> masterFormses = new ArrayList<>();
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<Pudapplication> pudapplications = new ArrayList<>();
@@ -263,6 +264,15 @@ public class FormTypes implements Serializable {
         }
 
         this.municipalities = municipalities;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<MasterForms> getMasterFormses() {
+        return this.masterFormses;
+    }
+
+    public void setMasterFormses(List<MasterForms> masterFormses) {
+        this.masterFormses = masterFormses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")

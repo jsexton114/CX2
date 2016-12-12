@@ -26,6 +26,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
 import com.civicxpress.cx2.McnewResidentialStructure;
 import com.civicxpress.cx2.Pudapplication;
@@ -145,6 +146,13 @@ public class FormStatusesController {
     public Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated mcnewElectricConnections");
         return formStatusesService.findAssociatedMcnewElectricConnections(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/masterFormses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
+    public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+        return formStatusesService.findAssociatedMasterFormses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/mcnewResidentialStructures", method = RequestMethod.GET)

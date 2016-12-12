@@ -15,6 +15,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
 import com.civicxpress.cx2.MunicipalityGroups;
 
@@ -138,6 +139,18 @@ public interface MunicipalityGroupsService {
      * @see Page
      */
     Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated masterFormses for given MunicipalityGroups id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterForms instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated formStatusesesForReadAccess for given MunicipalityGroups id.

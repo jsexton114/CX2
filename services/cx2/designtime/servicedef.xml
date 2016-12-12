@@ -506,6 +506,7 @@
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
             <element name="mcnewElectricConnections" typeRef="com.civicxpress.cx2.McnewElectricConnection" isList="true" allowNull="true"/>
             <element name="mcnewResidentialStructures" typeRef="com.civicxpress.cx2.McnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="municipalityGroupsByProcessOwners" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
@@ -530,6 +531,7 @@
             <element name="formType" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
             <element name="mcnewElectricConnections" typeRef="com.civicxpress.cx2.McnewElectricConnection" isList="true" allowNull="true"/>
             <element name="mcnewResidentialStructures" typeRef="com.civicxpress.cx2.McnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
@@ -595,6 +597,26 @@
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.MasterForms">
+            <element name="assignedToGroupId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="balanceDue" typeRef="java.lang.String" allowNull="true"/>
+            <element name="closed" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="cxvendorId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
+            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="recordType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="totalFees" typeRef="java.lang.String" allowNull="true"/>
+            <element name="totalPayment" typeRef="java.lang.String" allowNull="true"/>
+            <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.McnewElectricConnection">
             <element name="basementSft" typeRef="java.lang.String" allowNull="true"/>
             <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
@@ -645,6 +667,7 @@
             <element name="logo" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
             <element name="manualFeeTypeses" typeRef="com.civicxpress.cx2.ManualFeeTypes" isList="true" allowNull="true"/>
             <element name="manualPaymentPercent" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
             <element name="mondayYn" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="municipalityGroupses" typeRef="com.civicxpress.cx2.MunicipalityGroups" isList="true" allowNull="true"/>
             <element name="municipalityGuid" typeRef="java.lang.String" allowNull="true"/>
@@ -678,6 +701,7 @@
             <element name="groupDescription" typeRef="java.lang.String" allowNull="true"/>
             <element name="groupName" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityGroupMemberses" typeRef="com.civicxpress.cx2.MunicipalityGroupMembers" isList="true" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
@@ -786,6 +810,7 @@
             <element name="formFees" typeRef="com.civicxpress.cx2.FormFee" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="lastName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
             <element name="mcnewElectricConnections" typeRef="com.civicxpress.cx2.McnewElectricConnection" isList="true" allowNull="true"/>
             <element name="mcnewResidentialStructures" typeRef="com.civicxpress.cx2.McnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="municipalityGroupMemberses" typeRef="com.civicxpress.cx2.MunicipalityGroupMembers" isList="true" allowNull="true"/>

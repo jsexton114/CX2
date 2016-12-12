@@ -26,6 +26,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
 import com.civicxpress.cx2.MunicipalityGroups;
 import com.civicxpress.cx2.service.MunicipalityGroupsService;
@@ -128,15 +129,24 @@ public class MunicipalityGroupsController {
         return municipalityGroupsService.findAssociatedMunicipalityGroupMemberses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/formStatusesesForReadAccess", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id:.+}/masterFormses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
+    public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+        return municipalityGroupsService.findAssociatedMasterFormses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/formStatusesesForReadAccess", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formStatusesesForReadAccess instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormStatuses> findAssociatedFormStatusesesForReadAccess(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formStatusesesForReadAccess");
         return municipalityGroupsService.findAssociatedFormStatusesesForReadAccess(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/formStatusesesForProcessOwners", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/formStatusesesForProcessOwners", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formStatusesesForProcessOwners instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormStatuses> findAssociatedFormStatusesesForProcessOwners(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formStatusesesForProcessOwners");
         return municipalityGroupsService.findAssociatedFormStatusesesForProcessOwners(id, pageable);
