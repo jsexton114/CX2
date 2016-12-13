@@ -1,10 +1,80 @@
-<wm-page data-ng-controller="CXGlobalSettingsPageController" pagetitle="Cx Global Settings"> 
-    <wm-header content="header"></wm-header> 
-    <wm-top-nav content="topnav"></wm-top-nav> 
-    <wm-content> 
-        <wm-left-panel columnwidth="2" content="leftnav"></wm-left-panel> 
-        <wm-page-content columnwidth="10"> 
-        </wm-page-content> 
-    </wm-content> 
-    <wm-footer content="footer"></wm-footer> 
+<wm-page data-ng-controller="CXGlobalSettingsPageController" pagetitle="Cx Global Settings" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn1" padding="2em">
+                        <wm-liveform novalidate="false" errormessage="" title="Global Settings" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.Cx2GlobalSettingsData.dataSet" captionalign="left" captionposition="top" name="liveformGlobalSettings"
+                        formdata="bind:Variables.DefaultData.firstRecord">
+                            <wm-layoutgrid columns="1" name="layoutgrid2">
+                                <wm-gridrow name="gridrow3">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn5">
+                                        <wm-form-field name="technologyFee" displayname="Technology Fee" required="false" show="true" generator="assigned" primary-key="false" key="technologyFee" type="integer" is-related="false" step="0" pc-display="true"
+                                        mobile-display="true" widget="number"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow4">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                                        <wm-form-field name="cxglobalSignature" displayname="Cxglobal Signature" required="false" show="true" generator="assigned" primary-key="false" key="cxglobalSignature" type="string" is-related="false" maxchars="500"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow5">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn7">
+                                        <wm-form-field name="cxphoneNumber" displayname="Cxphone Number" required="false" show="true" generator="assigned" primary-key="false" key="cxphoneNumber" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow6">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn8">
+                                        <wm-form-field name="cxaddress1" displayname="Cxaddress1" required="false" show="true" generator="assigned" primary-key="false" key="cxaddress1" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow7">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn9">
+                                        <wm-form-field name="cxaddress2" displayname="Cxaddress2" required="false" show="true" generator="assigned" primary-key="false" key="cxaddress2" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow8">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn10">
+                                        <wm-form-field name="cxcity" displayname="Cxcity" required="false" show="true" generator="assigned" primary-key="false" key="cxcity" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow9">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn11">
+                                        <wm-form-field name="cxwebsite" displayname="Cxwebsite" required="false" show="true" generator="assigned" primary-key="false" key="cxwebsite" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow10">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn12">
+                                        <wm-form-field name="cxemail" displayname="Cxemail" required="false" show="true" generator="assigned" primary-key="false" key="cxemail" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow11">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn13">
+                                        <wm-form-field name="states" displayname="States" required="false" show="true" generator="assigned" primary-key="false" key="states" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"
+                                        dataset="bind:Variables.AllStates.dataSet" datafield="All Fields" displayfield="stateName" orderby="stateName:asc"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-form-action key="reset" class="form-reset btn-secondary" iconclass="wi wi-refresh" action="reset()" display-name="Reset" show="true" type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                        </wm-liveform>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
 </wm-page>
