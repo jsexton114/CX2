@@ -61,7 +61,6 @@ public class Municipalities implements Serializable {
     private String timeZone;
     private Date openTime;
     private Date closeTime;
-    private List<FormTypes> formTypeses = new ArrayList<>();
     private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
@@ -70,9 +69,10 @@ public class Municipalities implements Serializable {
     private List<Roles> roleses = new ArrayList<>();
     private States states;
     private List<Gisrecords> gisrecordses = new ArrayList<>();
-    private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
     private List<Holidays> holidayses = new ArrayList<>();
     private List<FormFee> formFees = new ArrayList<>();
+    private List<FormTypes> formTypeses = new ArrayList<>();
+    private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -304,15 +304,6 @@ public class Municipalities implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<FormTypes> getFormTypeses() {
-        return this.formTypeses;
-    }
-
-    public void setFormTypeses(List<FormTypes> formTypeses) {
-        this.formTypeses = formTypeses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<ManualFeeTypes> getManualFeeTypeses() {
         return this.manualFeeTypeses;
     }
@@ -390,15 +381,6 @@ public class Municipalities implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<UserSubscriptions> getUserSubscriptionses() {
-        return this.userSubscriptionses;
-    }
-
-    public void setUserSubscriptionses(List<UserSubscriptions> userSubscriptionses) {
-        this.userSubscriptionses = userSubscriptionses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<Holidays> getHolidayses() {
         return this.holidayses;
     }
@@ -414,6 +396,24 @@ public class Municipalities implements Serializable {
 
     public void setFormFees(List<FormFee> formFees) {
         this.formFees = formFees;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<FormTypes> getFormTypeses() {
+        return this.formTypeses;
+    }
+
+    public void setFormTypeses(List<FormTypes> formTypeses) {
+        this.formTypeses = formTypeses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<UserSubscriptions> getUserSubscriptionses() {
+        return this.userSubscriptionses;
+    }
+
+    public void setUserSubscriptionses(List<UserSubscriptions> userSubscriptionses) {
+        this.userSubscriptionses = userSubscriptionses;
     }
 
     @Override

@@ -137,18 +137,6 @@ public interface MunicipalitiesService {
 	long count(String query);
 
     /*
-     * Returns the associated formTypeses for given Municipalities id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated FormTypes instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<FormTypes> findAssociatedFormTypeses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated manualFeeTypeses for given Municipalities id.
      *
      * @param id value of id; value cannot be null
@@ -233,18 +221,6 @@ public interface MunicipalitiesService {
     Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated userSubscriptionses for given Municipalities id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated UserSubscriptions instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<UserSubscriptions> findAssociatedUserSubscriptionses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated holidayses for given Municipalities id.
      *
      * @param id value of id; value cannot be null
@@ -267,6 +243,30 @@ public interface MunicipalitiesService {
      * @see Page
      */
     Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated formTypeses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormTypes instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormTypes> findAssociatedFormTypeses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated userSubscriptionses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated UserSubscriptions instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<UserSubscriptions> findAssociatedUserSubscriptionses(Integer id, Pageable pageable);
 
 }
 

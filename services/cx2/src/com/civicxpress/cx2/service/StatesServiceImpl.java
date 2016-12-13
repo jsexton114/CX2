@@ -22,6 +22,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Gisrecords;
+import com.civicxpress.cx2.GlobalSettings;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
@@ -39,20 +40,24 @@ public class StatesServiceImpl implements StatesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(StatesServiceImpl.class);
 
     @Autowired
+	@Qualifier("cx2.VendorService")
+	private VendorService vendorService;
+
+    @Autowired
 	@Qualifier("cx2.UsersService")
 	private UsersService usersService;
+
+    @Autowired
+	@Qualifier("cx2.GisrecordsService")
+	private GisrecordsService gisrecordsService;
 
     @Autowired
 	@Qualifier("cx2.MunicipalitiesService")
 	private MunicipalitiesService municipalitiesService;
 
     @Autowired
-	@Qualifier("cx2.VendorService")
-	private VendorService vendorService;
-
-    @Autowired
-	@Qualifier("cx2.GisrecordsService")
-	private GisrecordsService gisrecordsService;
+	@Qualifier("cx2.GlobalSettingsService")
+	private GlobalSettingsService globalSettingsService;
 
     @Autowired
     @Qualifier("cx2.StatesDao")
@@ -67,14 +72,6 @@ public class StatesServiceImpl implements StatesService {
 	public States create(States states) {
         LOGGER.debug("Creating a new States with information: {}", states);
         States statesCreated = this.wmGenericDao.create(states);
-        if(statesCreated.getUserses() != null) {
-            for(Users userse : statesCreated.getUserses()) {
-                userse.setStates(statesCreated);
-                LOGGER.debug("Creating a new child Users with information: {}", userse);
-                usersService.create(userse);
-            }
-        }
-
         if(statesCreated.getMunicipalitieses() != null) {
             for(Municipalities municipalitiese : statesCreated.getMunicipalitieses()) {
                 municipalitiese.setStates(statesCreated);
@@ -104,6 +101,22 @@ public class StatesServiceImpl implements StatesService {
                 vendor.setStates(statesCreated);
                 LOGGER.debug("Creating a new child Vendor with information: {}", vendor);
                 vendorService.create(vendor);
+            }
+        }
+
+        if(statesCreated.getUserses() != null) {
+            for(Users userse : statesCreated.getUserses()) {
+                userse.setStates(statesCreated);
+                LOGGER.debug("Creating a new child Users with information: {}", userse);
+                usersService.create(userse);
+            }
+        }
+
+        if(statesCreated.getGlobalSettingses() != null) {
+            for(GlobalSettings globalSettingse : statesCreated.getGlobalSettingses()) {
+                globalSettingse.setStates(statesCreated);
+                LOGGER.debug("Creating a new child GlobalSettings with information: {}", globalSettingse);
+                globalSettingsService.create(globalSettingse);
             }
         }
         return statesCreated;
@@ -182,17 +195,6 @@ public class StatesServiceImpl implements StatesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Users> findAssociatedUserses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated userses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("states.id = '" + id + "'");
-
-        return usersService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<Municipalities> findAssociatedMunicipalitieses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated municipalitieses");
 
@@ -235,22 +237,26 @@ public class StatesServiceImpl implements StatesService {
         return vendorService.findAll(queryBuilder.toString(), pageable);
     }
 
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service UsersService instance
-	 */
-	protected void setUsersService(UsersService service) {
-        this.usersService = service;
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Users> findAssociatedUserses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated userses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("states.id = '" + id + "'");
+
+        return usersService.findAll(queryBuilder.toString(), pageable);
     }
 
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service MunicipalitiesService instance
-	 */
-	protected void setMunicipalitiesService(MunicipalitiesService service) {
-        this.municipalitiesService = service;
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GlobalSettings> findAssociatedGlobalSettingses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated globalSettingses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("states.id = '" + id + "'");
+
+        return globalSettingsService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
@@ -265,10 +271,37 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service UsersService instance
+	 */
+	protected void setUsersService(UsersService service) {
+        this.usersService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service GisrecordsService instance
 	 */
 	protected void setGisrecordsService(GisrecordsService service) {
         this.gisrecordsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MunicipalitiesService instance
+	 */
+	protected void setMunicipalitiesService(MunicipalitiesService service) {
+        this.municipalitiesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service GlobalSettingsService instance
+	 */
+	protected void setGlobalSettingsService(GlobalSettingsService service) {
+        this.globalSettingsService = service;
     }
 
 }

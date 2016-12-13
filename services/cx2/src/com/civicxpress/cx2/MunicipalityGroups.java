@@ -33,11 +33,11 @@ public class MunicipalityGroups implements Serializable {
     private String groupName;
     private String groupDescription;
     private Integer municipalityId;
-    private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private Municipalities municipalities;
     private List<FormStatuses> formStatusesesForReadAccess = new ArrayList<>();
     private List<FormStatuses> formStatusesesForProcessOwners = new ArrayList<>();
+    private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,15 +75,6 @@ public class MunicipalityGroups implements Serializable {
 
     public void setMunicipalityId(Integer municipalityId) {
         this.municipalityId = municipalityId;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalityGroups")
-    public List<MunicipalityGroupMembers> getMunicipalityGroupMemberses() {
-        return this.municipalityGroupMemberses;
-    }
-
-    public void setMunicipalityGroupMemberses(List<MunicipalityGroupMembers> municipalityGroupMemberses) {
-        this.municipalityGroupMemberses = municipalityGroupMemberses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalityGroups")
@@ -125,6 +116,15 @@ public class MunicipalityGroups implements Serializable {
 
     public void setFormStatusesesForProcessOwners(List<FormStatuses> formStatusesesForProcessOwners) {
         this.formStatusesesForProcessOwners = formStatusesesForProcessOwners;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalityGroups")
+    public List<MunicipalityGroupMembers> getMunicipalityGroupMemberses() {
+        return this.municipalityGroupMemberses;
+    }
+
+    public void setMunicipalityGroupMemberses(List<MunicipalityGroupMembers> municipalityGroupMemberses) {
+        this.municipalityGroupMemberses = municipalityGroupMemberses;
     }
 
     @Override

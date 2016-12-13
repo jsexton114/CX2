@@ -26,6 +26,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Gisrecords;
+import com.civicxpress.cx2.GlobalSettings;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
@@ -122,14 +123,6 @@ public class StatesController {
         return statesService.count(query);
     }
 
-    @RequestMapping(value = "/{id}/userses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the userses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Users> findAssociatedUserses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated userses");
-        return statesService.findAssociatedUserses(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/municipalitieses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the municipalitieses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -138,15 +131,17 @@ public class StatesController {
         return statesService.findAssociatedMunicipalitieses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/gisrecordsesForOwnerState", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/gisrecordsesForOwnerState", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the gisrecordsesForOwnerState instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Gisrecords> findAssociatedGisrecordsesForOwnerState(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gisrecordsesForOwnerState");
         return statesService.findAssociatedGisrecordsesForOwnerState(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/gisrecordsesForStateId", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/gisrecordsesForStateId", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the gisrecordsesForStateId instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Gisrecords> findAssociatedGisrecordsesForStateId(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gisrecordsesForStateId");
         return statesService.findAssociatedGisrecordsesForStateId(id, pageable);
@@ -158,6 +153,21 @@ public class StatesController {
     public Page<Vendor> findAssociatedVendors(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendors");
         return statesService.findAssociatedVendors(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/userses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the userses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Users> findAssociatedUserses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated userses");
+        return statesService.findAssociatedUserses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/globalSettingses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the globalSettingses instance associated with the given id.")
+    public Page<GlobalSettings> findAssociatedGlobalSettingses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated globalSettingses");
+        return statesService.findAssociatedGlobalSettingses(id, pageable);
     }
 
     /**

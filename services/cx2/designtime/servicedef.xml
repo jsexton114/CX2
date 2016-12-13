@@ -584,6 +584,19 @@
             <element name="subdivisions" typeRef="com.civicxpress.cx2.Subdivisions" allowNull="true"/>
             <element name="unitNumber" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.GlobalSettings">
+            <element name="cxaddress1" typeRef="java.lang.String" allowNull="true"/>
+            <element name="cxaddress2" typeRef="java.lang.String" allowNull="true"/>
+            <element name="cxcity" typeRef="java.lang.String" allowNull="true"/>
+            <element name="cxemail" typeRef="java.lang.String" allowNull="true"/>
+            <element name="cxglobalSignature" typeRef="java.lang.String" allowNull="true"/>
+            <element name="cxphoneNumber" typeRef="java.lang.String" allowNull="true"/>
+            <element name="cxstate" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="cxwebsite" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
+            <element name="technologyFee" typeRef="java.lang.Integer" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Holidays">
             <element name="date" typeRef="java.util.Date" allowNull="true"/>
             <element name="holiday" typeRef="java.lang.String" allowNull="true"/>
@@ -774,6 +787,7 @@
         <dataobject javaType="com.civicxpress.cx2.States">
             <element name="gisrecordsesForOwnerState" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
             <element name="gisrecordsesForStateId" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
+            <element name="globalSettingses" typeRef="com.civicxpress.cx2.GlobalSettings" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="municipalitieses" typeRef="com.civicxpress.cx2.Municipalities" isList="true" allowNull="true"/>
             <element name="stateName" typeRef="java.lang.String" allowNull="true"/>

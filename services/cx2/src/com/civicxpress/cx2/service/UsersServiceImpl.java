@@ -50,24 +50,12 @@ public class UsersServiceImpl implements UsersService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.VendorAdminsService")
-	private VendorAdminsService vendorAdminsService;
-
-    @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
-
-    @Autowired
 	@Qualifier("cx2.MasterFormsService")
 	private MasterFormsService masterFormsService;
 
     @Autowired
-	@Qualifier("cx2.SfnewResidentialStructureService")
-	private SfnewResidentialStructureService sfnewResidentialStructureService;
-
-    @Autowired
-	@Qualifier("cx2.MunicipalityGroupMembersService")
-	private MunicipalityGroupMembersService municipalityGroupMembersService;
+	@Qualifier("cx2.FormFeeService")
+	private FormFeeService formFeeService;
 
     @Autowired
 	@Qualifier("cx2.UserSubscriptionsService")
@@ -78,20 +66,12 @@ public class UsersServiceImpl implements UsersService {
 	private McnewResidentialStructureService mcnewResidentialStructureService;
 
     @Autowired
-	@Qualifier("cx2.McnewElectricConnectionService")
-	private McnewElectricConnectionService mcnewElectricConnectionService;
-
-    @Autowired
-	@Qualifier("cx2.FormFeeService")
-	private FormFeeService formFeeService;
-
-    @Autowired
 	@Qualifier("cx2.SfnewElectricConnectionService")
 	private SfnewElectricConnectionService sfnewElectricConnectionService;
 
     @Autowired
-	@Qualifier("cx2.UserPasswordResetTokensService")
-	private UserPasswordResetTokensService userPasswordResetTokensService;
+	@Qualifier("cx2.McnewElectricConnectionService")
+	private McnewElectricConnectionService mcnewElectricConnectionService;
 
     @Autowired
 	@Qualifier("cx2.VendorUsersService")
@@ -100,6 +80,26 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.PudapplicationService")
 	private PudapplicationService pudapplicationService;
+
+    @Autowired
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
+
+    @Autowired
+	@Qualifier("cx2.VendorAdminsService")
+	private VendorAdminsService vendorAdminsService;
+
+    @Autowired
+	@Qualifier("cx2.UserPasswordResetTokensService")
+	private UserPasswordResetTokensService userPasswordResetTokensService;
+
+    @Autowired
+	@Qualifier("cx2.SfnewResidentialStructureService")
+	private SfnewResidentialStructureService sfnewResidentialStructureService;
+
+    @Autowired
+	@Qualifier("cx2.MunicipalityGroupMembersService")
+	private MunicipalityGroupMembersService municipalityGroupMembersService;
 
     @Autowired
     @Qualifier("cx2.UsersDao")
@@ -114,6 +114,14 @@ public class UsersServiceImpl implements UsersService {
 	public Users create(Users users) {
         LOGGER.debug("Creating a new Users with information: {}", users);
         Users usersCreated = this.wmGenericDao.create(users);
+        if(usersCreated.getSfnewElectricConnections() != null) {
+            for(SfnewElectricConnection sfnewElectricConnection : usersCreated.getSfnewElectricConnections()) {
+                sfnewElectricConnection.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child SfnewElectricConnection with information: {}", sfnewElectricConnection);
+                sfnewElectricConnectionService.create(sfnewElectricConnection);
+            }
+        }
+
         if(usersCreated.getSfnewResidentialStructures() != null) {
             for(SfnewResidentialStructure sfnewResidentialStructure : usersCreated.getSfnewResidentialStructures()) {
                 sfnewResidentialStructure.setUsers(usersCreated);
@@ -122,11 +130,35 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getSfnewElectricConnections() != null) {
-            for(SfnewElectricConnection sfnewElectricConnection : usersCreated.getSfnewElectricConnections()) {
-                sfnewElectricConnection.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child SfnewElectricConnection with information: {}", sfnewElectricConnection);
-                sfnewElectricConnectionService.create(sfnewElectricConnection);
+        if(usersCreated.getMasterFormses() != null) {
+            for(MasterForms masterFormse : usersCreated.getMasterFormses()) {
+                masterFormse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
+                masterFormsService.create(masterFormse);
+            }
+        }
+
+        if(usersCreated.getVendorUserses() != null) {
+            for(VendorUsers vendorUserse : usersCreated.getVendorUserses()) {
+                vendorUserse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child VendorUsers with information: {}", vendorUserse);
+                vendorUsersService.create(vendorUserse);
+            }
+        }
+
+        if(usersCreated.getRoleses() != null) {
+            for(Roles rolese : usersCreated.getRoleses()) {
+                rolese.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child Roles with information: {}", rolese);
+                rolesService.create(rolese);
+            }
+        }
+
+        if(usersCreated.getFormFees() != null) {
+            for(FormFee formFee : usersCreated.getFormFees()) {
+                formFee.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child FormFee with information: {}", formFee);
+                formFeeService.create(formFee);
             }
         }
 
@@ -154,22 +186,6 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getMasterFormses() != null) {
-            for(MasterForms masterFormse : usersCreated.getMasterFormses()) {
-                masterFormse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
-                masterFormsService.create(masterFormse);
-            }
-        }
-
-        if(usersCreated.getVendorUserses() != null) {
-            for(VendorUsers vendorUserse : usersCreated.getVendorUserses()) {
-                vendorUserse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child VendorUsers with information: {}", vendorUserse);
-                vendorUsersService.create(vendorUserse);
-            }
-        }
-
         if(usersCreated.getMcnewResidentialStructures() != null) {
             for(McnewResidentialStructure mcnewResidentialStructure : usersCreated.getMcnewResidentialStructures()) {
                 mcnewResidentialStructure.setUsers(usersCreated);
@@ -186,14 +202,6 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getRoleses() != null) {
-            for(Roles rolese : usersCreated.getRoleses()) {
-                rolese.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child Roles with information: {}", rolese);
-                rolesService.create(rolese);
-            }
-        }
-
         if(usersCreated.getPudapplications() != null) {
             for(Pudapplication pudapplication : usersCreated.getPudapplications()) {
                 pudapplication.setUsers(usersCreated);
@@ -207,14 +215,6 @@ public class UsersServiceImpl implements UsersService {
                 userSubscriptionse.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child UserSubscriptions with information: {}", userSubscriptionse);
                 userSubscriptionsService.create(userSubscriptionse);
-            }
-        }
-
-        if(usersCreated.getFormFees() != null) {
-            for(FormFee formFee : usersCreated.getFormFees()) {
-                formFee.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child FormFee with information: {}", formFee);
-                formFeeService.create(formFee);
             }
         }
         return usersCreated;
@@ -309,6 +309,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewElectricConnections");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return sfnewElectricConnectionService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sfnewResidentialStructures");
 
@@ -320,13 +331,46 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated sfnewElectricConnections");
+    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("users.id = '" + id + "'");
 
-        return sfnewElectricConnectionService.findAll(queryBuilder.toString(), pageable);
+        return masterFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorUserses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return vendorUsersService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated roleses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return rolesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formFees");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return formFeeService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -364,28 +408,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterFormses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return masterFormsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated vendorUserses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return vendorUsersService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<McnewResidentialStructure> findAssociatedMcnewResidentialStructures(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated mcnewResidentialStructures");
 
@@ -404,17 +426,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("users.id = '" + id + "'");
 
         return vendorAdminsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated roleses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return rolesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -439,35 +450,6 @@ public class UsersServiceImpl implements UsersService {
         return userSubscriptionsService.findAll(queryBuilder.toString(), pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formFees");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return formFeeService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service VendorAdminsService instance
-	 */
-	protected void setVendorAdminsService(VendorAdminsService service) {
-        this.vendorAdminsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service RolesService instance
-	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
-    }
-
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -480,19 +462,10 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SfnewResidentialStructureService instance
+	 * @param service FormFeeService instance
 	 */
-	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
-        this.sfnewResidentialStructureService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service MunicipalityGroupMembersService instance
-	 */
-	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
-        this.municipalityGroupMembersService = service;
+	protected void setFormFeeService(FormFeeService service) {
+        this.formFeeService = service;
     }
 
     /**
@@ -516,24 +489,6 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service McnewElectricConnectionService instance
-	 */
-	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
-        this.mcnewElectricConnectionService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormFeeService instance
-	 */
-	protected void setFormFeeService(FormFeeService service) {
-        this.formFeeService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service SfnewElectricConnectionService instance
 	 */
 	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
@@ -543,10 +498,10 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UserPasswordResetTokensService instance
+	 * @param service McnewElectricConnectionService instance
 	 */
-	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
-        this.userPasswordResetTokensService = service;
+	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
+        this.mcnewElectricConnectionService = service;
     }
 
     /**
@@ -565,6 +520,51 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setPudapplicationService(PudapplicationService service) {
         this.pudapplicationService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service RolesService instance
+	 */
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service VendorAdminsService instance
+	 */
+	protected void setVendorAdminsService(VendorAdminsService service) {
+        this.vendorAdminsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service UserPasswordResetTokensService instance
+	 */
+	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
+        this.userPasswordResetTokensService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SfnewResidentialStructureService instance
+	 */
+	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
+        this.sfnewResidentialStructureService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MunicipalityGroupMembersService instance
+	 */
+	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
+        this.municipalityGroupMembersService = service;
     }
 
 }

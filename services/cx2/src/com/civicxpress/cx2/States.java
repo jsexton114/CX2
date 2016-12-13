@@ -29,11 +29,12 @@ public class States implements Serializable {
 
     private Integer id;
     private String stateName;
-    private List<Users> userses = new ArrayList<>();
     private List<Municipalities> municipalitieses = new ArrayList<>();
     private List<Gisrecords> gisrecordsesForOwnerState = new ArrayList<>();
     private List<Gisrecords> gisrecordsesForStateId = new ArrayList<>();
     private List<Vendor> vendors = new ArrayList<>();
+    private List<Users> userses = new ArrayList<>();
+    private List<GlobalSettings> globalSettingses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,15 +54,6 @@ public class States implements Serializable {
 
     public void setStateName(String stateName) {
         this.stateName = stateName;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
-    public List<Users> getUserses() {
-        return this.userses;
-    }
-
-    public void setUserses(List<Users> userses) {
-        this.userses = userses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
@@ -98,6 +90,24 @@ public class States implements Serializable {
 
     public void setVendors(List<Vendor> vendors) {
         this.vendors = vendors;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
+    public List<Users> getUserses() {
+        return this.userses;
+    }
+
+    public void setUserses(List<Users> userses) {
+        this.userses = userses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
+    public List<GlobalSettings> getGlobalSettingses() {
+        return this.globalSettingses;
+    }
+
+    public void setGlobalSettingses(List<GlobalSettings> globalSettingses) {
+        this.globalSettingses = globalSettingses;
     }
 
     @Override
