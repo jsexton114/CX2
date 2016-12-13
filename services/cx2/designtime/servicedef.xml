@@ -479,6 +479,7 @@
             <element name="autoFeeYn" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="comments" typeRef="java.lang.String" allowNull="true"/>
             <element name="feeType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formTitle" typeRef="java.lang.String" allowNull="true"/>
             <element name="formType" typeRef="java.lang.String" allowNull="true"/>
             <element name="gisid" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="gisrecords" typeRef="com.civicxpress.cx2.Gisrecords" allowNull="true"/>
@@ -489,6 +490,7 @@
             <element name="paidByUserId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="paidDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="paidStatus" typeRef="java.lang.String" allowNull="true"/>
+            <element name="startingNumber" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="transactionId" typeRef="java.lang.String" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>
@@ -527,6 +529,7 @@
             <element name="flatFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="flatFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="formCategoryMappings" typeRef="com.civicxpress.cx2.FormCategoryMapping" isList="true" allowNull="true"/>
+            <element name="formPrefix" typeRef="java.lang.String" allowNull="true"/>
             <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
             <element name="formType" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeGuid" typeRef="java.lang.String" allowNull="true"/>
@@ -544,6 +547,7 @@
             <element name="sfFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfnewElectricConnections" typeRef="com.civicxpress.cx2.SfnewElectricConnection" isList="true" allowNull="true"/>
             <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
+            <element name="startingNumber" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="stateFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="stateFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="tbLocation" typeRef="java.lang.String" allowNull="true"/>
@@ -619,6 +623,7 @@
             <element name="formGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
+            <element name="formTitle" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>

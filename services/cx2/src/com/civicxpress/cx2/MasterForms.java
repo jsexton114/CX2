@@ -38,6 +38,7 @@ public class MasterForms implements Serializable {
     private String balanceDue;
     private Integer cxvendorId;
     private String recordType;
+    private String formTitle;
     private FormStatuses formStatuses;
     private FormTypes formTypes;
     private Municipalities municipalities;
@@ -161,6 +162,15 @@ public class MasterForms implements Serializable {
 
     public void setRecordType(String recordType) {
         this.recordType = recordType;
+    }
+
+    @Column(name = "`FormTitle`", nullable = true, length = 255)
+    public String getFormTitle() {
+        return this.formTitle;
+    }
+
+    public void setFormTitle(String formTitle) {
+        this.formTitle = formTitle;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

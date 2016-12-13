@@ -45,16 +45,16 @@ public class FormStatusesServiceImpl implements FormStatusesService {
 	private PudapplicationService pudapplicationService;
 
     @Autowired
+	@Qualifier("cx2.McnewElectricConnectionService")
+	private McnewElectricConnectionService mcnewElectricConnectionService;
+
+    @Autowired
 	@Qualifier("cx2.McnewResidentialStructureService")
 	private McnewResidentialStructureService mcnewResidentialStructureService;
 
     @Autowired
 	@Qualifier("cx2.SfnewResidentialStructureService")
 	private SfnewResidentialStructureService sfnewResidentialStructureService;
-
-    @Autowired
-	@Qualifier("cx2.McnewElectricConnectionService")
-	private McnewElectricConnectionService mcnewElectricConnectionService;
 
     @Autowired
 	@Qualifier("cx2.MasterFormsService")
@@ -276,6 +276,15 @@ public class FormStatusesServiceImpl implements FormStatusesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service McnewElectricConnectionService instance
+	 */
+	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
+        this.mcnewElectricConnectionService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service McnewResidentialStructureService instance
 	 */
 	protected void setMcnewResidentialStructureService(McnewResidentialStructureService service) {
@@ -289,15 +298,6 @@ public class FormStatusesServiceImpl implements FormStatusesService {
 	 */
 	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
         this.sfnewResidentialStructureService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service McnewElectricConnectionService instance
-	 */
-	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
-        this.mcnewElectricConnectionService = service;
     }
 
     /**

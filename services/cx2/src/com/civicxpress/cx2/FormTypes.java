@@ -50,6 +50,8 @@ public class FormTypes implements Serializable {
     private String pageName;
     private Boolean municipalityInternalForm;
     private Date createdDate;
+    private String formPrefix;
+    private Integer startingNumber;
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
@@ -223,6 +225,24 @@ public class FormTypes implements Serializable {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    @Column(name = "`FormPrefix`", nullable = true, length = 255)
+    public String getFormPrefix() {
+        return this.formPrefix;
+    }
+
+    public void setFormPrefix(String formPrefix) {
+        this.formPrefix = formPrefix;
+    }
+
+    @Column(name = "`StartingNumber`", nullable = true, scale = 0, precision = 10)
+    public Integer getStartingNumber() {
+        return this.startingNumber;
+    }
+
+    public void setStartingNumber(Integer startingNumber) {
+        this.startingNumber = startingNumber;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
