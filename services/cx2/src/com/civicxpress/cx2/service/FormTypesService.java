@@ -134,18 +134,6 @@ public interface FormTypesService {
 	long count(String query);
 
     /*
-     * Returns the associated sfnewElectricConnections for given FormTypes id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SfnewElectricConnection instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated sfnewResidentialStructures for given FormTypes id.
      *
      * @param id value of id; value cannot be null
@@ -158,40 +146,16 @@ public interface FormTypesService {
     Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated masterFormses for given FormTypes id.
+     * Returns the associated sfnewElectricConnections for given FormTypes id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated MasterForms instances.
+     * @return Paginated list of associated SfnewElectricConnection instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated formCategoryMappings for given FormTypes id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated FormCategoryMapping instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<FormCategoryMapping> findAssociatedFormCategoryMappings(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated formStatuseses for given FormTypes id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated FormStatuses instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable);
+    Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable);
 
     /*
      * Returns the associated mcnewElectricConnections for given FormTypes id.
@@ -206,6 +170,18 @@ public interface FormTypesService {
     Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated masterFormses for given FormTypes id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterForms instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated mcnewResidentialStructures for given FormTypes id.
      *
      * @param id value of id; value cannot be null
@@ -218,6 +194,18 @@ public interface FormTypesService {
     Page<McnewResidentialStructure> findAssociatedMcnewResidentialStructures(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated formCategoryMappings for given FormTypes id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormCategoryMapping instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormCategoryMapping> findAssociatedFormCategoryMappings(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated pudapplications for given FormTypes id.
      *
      * @param id value of id; value cannot be null
@@ -228,6 +216,18 @@ public interface FormTypesService {
      * @see Page
      */
     Page<Pudapplication> findAssociatedPudapplications(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated formStatuseses for given FormTypes id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormStatuses instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable);
 
 }
 

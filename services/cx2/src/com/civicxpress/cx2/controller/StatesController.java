@@ -122,6 +122,14 @@ public class StatesController {
         return statesService.count(query);
     }
 
+    @RequestMapping(value = "/{id}/userses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the userses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Users> findAssociatedUserses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated userses");
+        return statesService.findAssociatedUserses(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/municipalitieses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the municipalitieses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -144,14 +152,6 @@ public class StatesController {
     public Page<Vendor> findAssociatedVendors(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendors");
         return statesService.findAssociatedVendors(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/userses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the userses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Users> findAssociatedUserses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated userses");
-        return statesService.findAssociatedUserses(id, pageable);
     }
 
     /**

@@ -147,18 +147,6 @@ public interface UsersService {
 	long count(String query);
 
     /*
-     * Returns the associated sfnewElectricConnections for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SfnewElectricConnection instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated sfnewResidentialStructures for given Users id.
      *
      * @param id value of id; value cannot be null
@@ -171,52 +159,16 @@ public interface UsersService {
     Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated masterFormses for given Users id.
+     * Returns the associated sfnewElectricConnections for given Users id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated MasterForms instances.
+     * @return Paginated list of associated SfnewElectricConnection instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated vendorUserses for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated VendorUsers instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated roleses for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated Roles instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated formFees for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated FormFee instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable);
+    Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable);
 
     /*
      * Returns the associated mcnewElectricConnections for given Users id.
@@ -255,6 +207,30 @@ public interface UsersService {
     Page<UserPasswordResetTokens> findAssociatedUserPasswordResetTokenses(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated masterFormses for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterForms instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated vendorUserses for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated VendorUsers instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated mcnewResidentialStructures for given Users id.
      *
      * @param id value of id; value cannot be null
@@ -279,6 +255,18 @@ public interface UsersService {
     Page<VendorAdmins> findAssociatedVendorAdminses(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated roleses for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Roles instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated pudapplications for given Users id.
      *
      * @param id value of id; value cannot be null
@@ -301,6 +289,18 @@ public interface UsersService {
      * @see Page
      */
     Page<UserSubscriptions> findAssociatedUserSubscriptionses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated formFees for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormFee instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable);
 
 }
 

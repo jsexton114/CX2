@@ -47,16 +47,15 @@ public class FormStatuses implements Serializable {
     private Integer readAccess;
     private String report;
     private Integer processOwners;
-    private Boolean allowAttachmentsYn;
-    private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
+    private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
+    private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
+    private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
+    private List<Pudapplication> pudapplications = new ArrayList<>();
     private FormTypes formTypes;
     private MunicipalityGroups municipalityGroupsByReadAccess;
     private MunicipalityGroups municipalityGroupsByProcessOwners;
-    private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
-    private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
-    private List<Pudapplication> pudapplications = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -222,13 +221,13 @@ public class FormStatuses implements Serializable {
         this.processOwners = processOwners;
     }
 
-    @Column(name = "`AllowAttachmentsYN`", nullable = true)
-    public Boolean getAllowAttachmentsYn() {
-        return this.allowAttachmentsYn;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
+    public List<SfnewResidentialStructure> getSfnewResidentialStructures() {
+        return this.sfnewResidentialStructures;
     }
 
-    public void setAllowAttachmentsYn(Boolean allowAttachmentsYn) {
-        this.allowAttachmentsYn = allowAttachmentsYn;
+    public void setSfnewResidentialStructures(List<SfnewResidentialStructure> sfnewResidentialStructures) {
+        this.sfnewResidentialStructures = sfnewResidentialStructures;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
@@ -241,12 +240,12 @@ public class FormStatuses implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
-    public List<SfnewResidentialStructure> getSfnewResidentialStructures() {
-        return this.sfnewResidentialStructures;
+    public List<McnewElectricConnection> getMcnewElectricConnections() {
+        return this.mcnewElectricConnections;
     }
 
-    public void setSfnewResidentialStructures(List<SfnewResidentialStructure> sfnewResidentialStructures) {
-        this.sfnewResidentialStructures = sfnewResidentialStructures;
+    public void setMcnewElectricConnections(List<McnewElectricConnection> mcnewElectricConnections) {
+        this.mcnewElectricConnections = mcnewElectricConnections;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
@@ -256,6 +255,24 @@ public class FormStatuses implements Serializable {
 
     public void setMasterFormses(List<MasterForms> masterFormses) {
         this.masterFormses = masterFormses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
+    public List<McnewResidentialStructure> getMcnewResidentialStructures() {
+        return this.mcnewResidentialStructures;
+    }
+
+    public void setMcnewResidentialStructures(List<McnewResidentialStructure> mcnewResidentialStructures) {
+        this.mcnewResidentialStructures = mcnewResidentialStructures;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
+    public List<Pudapplication> getPudapplications() {
+        return this.pudapplications;
+    }
+
+    public void setPudapplications(List<Pudapplication> pudapplications) {
+        this.pudapplications = pudapplications;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -298,33 +315,6 @@ public class FormStatuses implements Serializable {
         }
 
         this.municipalityGroupsByProcessOwners = municipalityGroupsByProcessOwners;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
-    public List<McnewElectricConnection> getMcnewElectricConnections() {
-        return this.mcnewElectricConnections;
-    }
-
-    public void setMcnewElectricConnections(List<McnewElectricConnection> mcnewElectricConnections) {
-        this.mcnewElectricConnections = mcnewElectricConnections;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
-    public List<McnewResidentialStructure> getMcnewResidentialStructures() {
-        return this.mcnewResidentialStructures;
-    }
-
-    public void setMcnewResidentialStructures(List<McnewResidentialStructure> mcnewResidentialStructures) {
-        this.mcnewResidentialStructures = mcnewResidentialStructures;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
-    public List<Pudapplication> getPudapplications() {
-        return this.pudapplications;
-    }
-
-    public void setPudapplications(List<Pudapplication> pudapplications) {
-        this.pudapplications = pudapplications;
     }
 
     @Override

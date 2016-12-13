@@ -121,6 +121,14 @@ public class MunicipalityGroupsController {
         return municipalityGroupsService.count(query);
     }
 
+    @RequestMapping(value = "/{id}/municipalityGroupMemberses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the municipalityGroupMemberses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
+        return municipalityGroupsService.findAssociatedMunicipalityGroupMemberses(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -143,14 +151,6 @@ public class MunicipalityGroupsController {
     public Page<FormStatuses> findAssociatedFormStatusesesForProcessOwners(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formStatusesesForProcessOwners");
         return municipalityGroupsService.findAssociatedFormStatusesesForProcessOwners(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/municipalityGroupMemberses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the municipalityGroupMemberses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
-        return municipalityGroupsService.findAssociatedMunicipalityGroupMemberses(id, pageable);
     }
 
     /**

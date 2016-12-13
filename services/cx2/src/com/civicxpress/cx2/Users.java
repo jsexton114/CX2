@@ -51,20 +51,20 @@ public class Users implements Serializable {
     private String password;
     private Integer stateId;
     private String country;
-    private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
-    private List<MasterForms> masterFormses = new ArrayList<>();
-    private List<VendorUsers> vendorUserses = new ArrayList<>();
-    private List<Roles> roleses = new ArrayList<>();
-    private List<FormFee> formFees = new ArrayList<>();
+    private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
+    private List<MasterForms> masterFormses = new ArrayList<>();
     private States states;
+    private List<VendorUsers> vendorUserses = new ArrayList<>();
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
     private List<VendorAdmins> vendorAdminses = new ArrayList<>();
+    private List<Roles> roleses = new ArrayList<>();
     private List<Pudapplication> pudapplications = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
+    private List<FormFee> formFees = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -213,15 +213,6 @@ public class Users implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<SfnewElectricConnection> getSfnewElectricConnections() {
-        return this.sfnewElectricConnections;
-    }
-
-    public void setSfnewElectricConnections(List<SfnewElectricConnection> sfnewElectricConnections) {
-        this.sfnewElectricConnections = sfnewElectricConnections;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<SfnewResidentialStructure> getSfnewResidentialStructures() {
         return this.sfnewResidentialStructures;
     }
@@ -231,39 +222,12 @@ public class Users implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<MasterForms> getMasterFormses() {
-        return this.masterFormses;
+    public List<SfnewElectricConnection> getSfnewElectricConnections() {
+        return this.sfnewElectricConnections;
     }
 
-    public void setMasterFormses(List<MasterForms> masterFormses) {
-        this.masterFormses = masterFormses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<VendorUsers> getVendorUserses() {
-        return this.vendorUserses;
-    }
-
-    public void setVendorUserses(List<VendorUsers> vendorUserses) {
-        this.vendorUserses = vendorUserses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<Roles> getRoleses() {
-        return this.roleses;
-    }
-
-    public void setRoleses(List<Roles> roleses) {
-        this.roleses = roleses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<FormFee> getFormFees() {
-        return this.formFees;
-    }
-
-    public void setFormFees(List<FormFee> formFees) {
-        this.formFees = formFees;
+    public void setSfnewElectricConnections(List<SfnewElectricConnection> sfnewElectricConnections) {
+        this.sfnewElectricConnections = sfnewElectricConnections;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
@@ -293,6 +257,15 @@ public class Users implements Serializable {
         this.userPasswordResetTokenses = userPasswordResetTokenses;
     }
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<MasterForms> getMasterFormses() {
+        return this.masterFormses;
+    }
+
+    public void setMasterFormses(List<MasterForms> masterFormses) {
+        this.masterFormses = masterFormses;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`StateId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public States getStates() {
@@ -305,6 +278,15 @@ public class Users implements Serializable {
         }
 
         this.states = states;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<VendorUsers> getVendorUserses() {
+        return this.vendorUserses;
+    }
+
+    public void setVendorUserses(List<VendorUsers> vendorUserses) {
+        this.vendorUserses = vendorUserses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
@@ -326,6 +308,15 @@ public class Users implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<Roles> getRoleses() {
+        return this.roleses;
+    }
+
+    public void setRoleses(List<Roles> roleses) {
+        this.roleses = roleses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<Pudapplication> getPudapplications() {
         return this.pudapplications;
     }
@@ -341,6 +332,15 @@ public class Users implements Serializable {
 
     public void setUserSubscriptionses(List<UserSubscriptions> userSubscriptionses) {
         this.userSubscriptionses = userSubscriptionses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<FormFee> getFormFees() {
+        return this.formFees;
+    }
+
+    public void setFormFees(List<FormFee> formFees) {
+        this.formFees = formFees;
     }
 
     @Override
