@@ -84,9 +84,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
     }
     $scope.wizard1Done = function($isolateScope, steps) {
-        // check for password match
-        //passwordCheck();
-
+        // check for password match and captcha
         if (passwordCheck() && (grecaptcha.getResponse() != '')) {
             //$scope.Widgets.Google_reCAPTCHA1.tokenresponse
             $scope.Widgets.liveform2.save();
@@ -103,27 +101,32 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
 
     $scope.ButtonAddMuncipalitiesClick = function($event, $isolateScope) {
-        var temp = $scope.Widgets.textSearchMunicipalities.datavalue;
-        var data = $scope.Variables.MunicpalitiesList.dataSet;
-        // checking for any municipalities in MunicpalitiesList variable, if not add from search 
-        if (data.length == 0) {
-            data.push(temp);
-        } else {
-            // checking if adding value already exist in MunicpalitiesList variable 
-            var exist = 0;
-            for (let i = 0; i < data.length; i++) {
-                if (temp.id == data[i].id)
-                    exist = 1;
-            }
-            // If already added then notify user else push to MunicpalitiesList variable
-            if (exist == 1)
-                $scope.Variables.MunicipalityExist.notify();
-            else
+        debugger
+        if ($scope.Widgets.textSearchMunicipalities.datavalue != undefined) {
+            var temp = $scope.Widgets.textSearchMunicipalities.datavalue;
+            var data = $scope.Variables.MunicpalitiesList.dataSet;
+            // checking for any municipalities in MunicpalitiesList variable, if not add from search 
+            if (data.length == 0) {
                 data.push(temp);
+            } else {
+                // checking if adding value already exist in MunicpalitiesList variable 
+                var exist = 0;
+                for (let i = 0; i < data.length; i++) {
+                    if (temp.id == data[i].id)
+                        exist = 1;
+                }
+                // If already added then notify user else push to MunicpalitiesList variable
+                if (exist == 1)
+                    $scope.Variables.MunicipalityExist.notify();
+                else
+                    data.push(temp);
 
+            }
+            // Setting for adding to subscriptions
+            selectedMunicipalites = $scope.Variables.MunicpalitiesList.dataSet;
+        } else {
+            $scope.Variables.NoMuncipalitiesAdded.notify();
         }
-        // Setting for adding to subscriptions
-        selectedMunicipalites = $scope.Variables.MunicpalitiesList.dataSet;
     };
 
 

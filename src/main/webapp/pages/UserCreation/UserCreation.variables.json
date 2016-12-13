@@ -1438,6 +1438,34 @@
     "inputFields" : { },
     "package" : "com.civicxpress.cx2.Roles"
   },
+  "NoMuncipalitiesAdded" : {
+    "_id" : "wm-NoMuncipalitiesAdded-wm.NotificationVariable-1481627477996",
+    "name" : "NoMuncipalitiesAdded",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "list"
+    }, {
+      "target" : "text",
+      "value" : "No Muncipalities Selected",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "list"
+    }, {
+      "target" : "class",
+      "value" : "Warning",
+      "type" : "list"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "list"
+    } ],
+    "operation" : "toast"
+  },
   "PasswordMissMatch" : {
     "_id" : "wm-PasswordMissMatch-wm.NotificationVariable-1478851095565",
     "name" : "PasswordMissMatch",

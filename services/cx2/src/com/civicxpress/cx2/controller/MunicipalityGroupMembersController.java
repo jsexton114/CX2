@@ -83,6 +83,13 @@ public class MunicipalityGroupMembersController {
         return deletedMunicipalityGroupMembers != null;
     }
 
+    @RequestMapping(value = "/municipalityGroupId-userId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching MunicipalityGroupMembers with given unique key values.")
+    public MunicipalityGroupMembers getByMunicipalityGroupIdAndUserId(@RequestParam(name = "municipalityGroupId") Integer municipalityGroupId, @RequestParam(name = "userId") Integer userId) {
+        LOGGER.debug("Getting MunicipalityGroupMembers with uniques key MunicipalityGroupIdAndUserId");
+        return municipalityGroupMembersService.getByMunicipalityGroupIdAndUserId(municipalityGroupId, userId);
+    }
+
     /**
      * @deprecated Use {@link #findMunicipalityGroupMembers(String, Pageable)} instead.
      */

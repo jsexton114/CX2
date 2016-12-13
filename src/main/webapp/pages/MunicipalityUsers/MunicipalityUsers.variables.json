@@ -1541,6 +1541,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "onSuccess" : "Variables.SelectedGroupObj.listRecords()",
+    "onError" : "Variables.UserAlreadyExists.invoke()",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : true,
     "autoUpdate" : true,
@@ -3275,5 +3276,33 @@
     "saveInPhonegap" : false,
     "isDefault" : true,
     "controller" : "QueryExecution"
+  },
+  "UserAlreadyExists" : {
+    "_id" : "wm-UserAlreadyExists-wm.NotificationVariable-1481629458985",
+    "name" : "UserAlreadyExists",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "list"
+    }, {
+      "target" : "text",
+      "value" : "UserAlreadyExists",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "list"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "list"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "list"
+    } ],
+    "operation" : "toast"
   }
 }

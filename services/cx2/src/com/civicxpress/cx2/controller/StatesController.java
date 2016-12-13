@@ -163,8 +163,9 @@ public class StatesController {
         return statesService.findAssociatedUserses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/globalSettingses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/globalSettingses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the globalSettingses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<GlobalSettings> findAssociatedGlobalSettingses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated globalSettingses");
         return statesService.findAssociatedGlobalSettingses(id, pageable);

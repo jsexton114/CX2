@@ -49,6 +49,15 @@ public interface MunicipalityGroupMembersService {
 	 */
 	MunicipalityGroupMembers findById(Integer municipalitygroupmembersId);
 
+    /**
+	 * Find and return the MunicipalityGroupMembers for given municipalityGroupId  anduserId  if exists.
+	 *
+	 * @param municipalityGroupId value of municipalityGroupId; value cannot be null.
+	 * @param userId value of userId; value cannot be null.
+	 * @return MunicipalityGroupMembers associated with the given inputs.
+     * @throws EntityNotFoundException if no matching MunicipalityGroupMembers found.
+	 */
+    MunicipalityGroupMembers getByMunicipalityGroupIdAndUserId(Integer municipalityGroupId, Integer userId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing MunicipalityGroupMembers. It replaces all fields of the existing MunicipalityGroupMembers with the given municipalityGroupMembers.
