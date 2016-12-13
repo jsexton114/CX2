@@ -39,20 +39,20 @@ public class StatesServiceImpl implements StatesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(StatesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.MunicipalitiesService")
-	private MunicipalitiesService municipalitiesService;
-
-    @Autowired
 	@Qualifier("cx2.UsersService")
 	private UsersService usersService;
 
     @Autowired
-	@Qualifier("cx2.GisrecordsService")
-	private GisrecordsService gisrecordsService;
+	@Qualifier("cx2.MunicipalitiesService")
+	private MunicipalitiesService municipalitiesService;
 
     @Autowired
 	@Qualifier("cx2.VendorService")
 	private VendorService vendorService;
+
+    @Autowired
+	@Qualifier("cx2.GisrecordsService")
+	private GisrecordsService gisrecordsService;
 
     @Autowired
     @Qualifier("cx2.StatesDao")
@@ -83,11 +83,19 @@ public class StatesServiceImpl implements StatesService {
             }
         }
 
-        if(statesCreated.getGisrecordses() != null) {
-            for(Gisrecords gisrecordse : statesCreated.getGisrecordses()) {
-                gisrecordse.setStates(statesCreated);
-                LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordse);
-                gisrecordsService.create(gisrecordse);
+        if(statesCreated.getGisrecordsesForOwnerState() != null) {
+            for(Gisrecords gisrecordsesForOwnerState : statesCreated.getGisrecordsesForOwnerState()) {
+                gisrecordsesForOwnerState.setStatesByOwnerState(statesCreated);
+                LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordsesForOwnerState);
+                gisrecordsService.create(gisrecordsesForOwnerState);
+            }
+        }
+
+        if(statesCreated.getGisrecordsesForStateId() != null) {
+            for(Gisrecords gisrecordsesForStateId : statesCreated.getGisrecordsesForStateId()) {
+                gisrecordsesForStateId.setStatesByStateId(statesCreated);
+                LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordsesForStateId);
+                gisrecordsService.create(gisrecordsesForStateId);
             }
         }
 
@@ -196,11 +204,22 @@ public class StatesServiceImpl implements StatesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated gisrecordses");
+    public Page<Gisrecords> findAssociatedGisrecordsesForOwnerState(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated gisrecordsesForOwnerState");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("states.id = '" + id + "'");
+        queryBuilder.append("statesByOwnerState.id = '" + id + "'");
+
+        return gisrecordsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Gisrecords> findAssociatedGisrecordsesForStateId(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated gisrecordsesForStateId");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("statesByStateId.id = '" + id + "'");
 
         return gisrecordsService.findAll(queryBuilder.toString(), pageable);
     }
@@ -219,15 +238,6 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalitiesService instance
-	 */
-	protected void setMunicipalitiesService(MunicipalitiesService service) {
-        this.municipalitiesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service UsersService instance
 	 */
 	protected void setUsersService(UsersService service) {
@@ -237,10 +247,10 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service GisrecordsService instance
+	 * @param service MunicipalitiesService instance
 	 */
-	protected void setGisrecordsService(GisrecordsService service) {
-        this.gisrecordsService = service;
+	protected void setMunicipalitiesService(MunicipalitiesService service) {
+        this.municipalitiesService = service;
     }
 
     /**
@@ -250,6 +260,15 @@ public class StatesServiceImpl implements StatesService {
 	 */
 	protected void setVendorService(VendorService service) {
         this.vendorService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service GisrecordsService instance
+	 */
+	protected void setGisrecordsService(GisrecordsService service) {
+        this.gisrecordsService = service;
     }
 
 }

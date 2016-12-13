@@ -50,14 +50,15 @@ public class Gisrecords implements Serializable {
     private String ownerAddress1;
     private String ownerAddress2;
     private String ownerCity;
-    private String ownerState;
     private String ownerPostalCode;
     private String ownerPhone;
     private String ownerEmail;
     private String country;
     private String unitNumber;
+    private Integer ownerState;
     private Municipalities municipalities;
-    private States states;
+    private States statesByOwnerState;
+    private States statesByStateId;
     private Subdivisions subdivisions;
     private List<FormFee> formFees = new ArrayList<>();
 
@@ -252,15 +253,6 @@ public class Gisrecords implements Serializable {
         this.ownerCity = ownerCity;
     }
 
-    @Column(name = "`OwnerState`", nullable = true, length = 255)
-    public String getOwnerState() {
-        return this.ownerState;
-    }
-
-    public void setOwnerState(String ownerState) {
-        this.ownerState = ownerState;
-    }
-
     @Column(name = "`OwnerPostalCode`", nullable = true, length = 255)
     public String getOwnerPostalCode() {
         return this.ownerPostalCode;
@@ -306,6 +298,15 @@ public class Gisrecords implements Serializable {
         this.unitNumber = unitNumber;
     }
 
+    @Column(name = "`OwnerState`", nullable = true, scale = 0, precision = 10)
+    public Integer getOwnerState() {
+        return this.ownerState;
+    }
+
+    public void setOwnerState(Integer ownerState) {
+        this.ownerState = ownerState;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`MunicipalityId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public Municipalities getMunicipalities() {
@@ -321,17 +322,31 @@ public class Gisrecords implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`StateId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public States getStates() {
-        return this.states;
+    @JoinColumn(name = "`OwnerState`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public States getStatesByOwnerState() {
+        return this.statesByOwnerState;
     }
 
-    public void setStates(States states) {
-        if(states != null) {
-            this.stateId = states.getId();
+    public void setStatesByOwnerState(States statesByOwnerState) {
+        if(statesByOwnerState != null) {
+            this.ownerState = statesByOwnerState.getId();
         }
 
-        this.states = states;
+        this.statesByOwnerState = statesByOwnerState;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`StateId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public States getStatesByStateId() {
+        return this.statesByStateId;
+    }
+
+    public void setStatesByStateId(States statesByStateId) {
+        if(statesByStateId != null) {
+            this.stateId = statesByStateId.getId();
+        }
+
+        this.statesByStateId = statesByStateId;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

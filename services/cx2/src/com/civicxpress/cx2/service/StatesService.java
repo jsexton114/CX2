@@ -154,7 +154,7 @@ public interface StatesService {
     Page<Municipalities> findAssociatedMunicipalitieses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated gisrecordses for given States id.
+     * Returns the associated gisrecordsesForOwnerState for given States id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
@@ -163,7 +163,19 @@ public interface StatesService {
      * @see Pageable
      * @see Page
      */
-    Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable);
+    Page<Gisrecords> findAssociatedGisrecordsesForOwnerState(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated gisrecordsesForStateId for given States id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Gisrecords instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Gisrecords> findAssociatedGisrecordsesForStateId(Integer id, Pageable pageable);
 
     /*
      * Returns the associated vendors for given States id.

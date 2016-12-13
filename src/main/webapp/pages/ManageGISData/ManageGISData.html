@@ -171,27 +171,26 @@
                                                     <wm-form-field name="ownerCity" displayname="Owner City" show="true" primary-key="false" generator="assigned" key="ownerCity" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn24">
-                                                    <wm-form-field name="ownerState" displayname="Owner State" show="true" primary-key="false" generator="assigned" key="ownerState" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="ownerPostalCode" displayname="Owner Postal Code" show="true" primary-key="false" generator="assigned" key="ownerPostalCode" type="string" widget="text" maxchars="255" inputtype="text"
+                                                    placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow15">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn25">
-                                                    <wm-form-field name="ownerPostalCode" displayname="Owner Postal Code" show="true" primary-key="false" generator="assigned" key="ownerPostalCode" type="string" widget="text" maxchars="255" inputtype="text"
-                                                    placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="ownerPhone" displayname="Owner Phone" show="true" primary-key="false" generator="assigned" key="ownerPhone" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn26">
-                                                    <wm-form-field name="ownerPhone" displayname="Owner Phone" show="true" primary-key="false" generator="assigned" key="ownerPhone" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="ownerEmail" displayname="Owner Email" show="true" primary-key="false" generator="assigned" key="ownerEmail" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow16">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn27">
-                                                    <wm-form-field name="ownerEmail" displayname="Owner Email" show="true" primary-key="false" generator="assigned" key="ownerEmail" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                                </wm-gridcolumn>
-                                                <wm-gridcolumn name="gridcolumn2" columnwidth="6">
-                                                    <wm-form-field name="landGuid" displayname="Land Guid" show="false" primary-key="false" generator="assigned" key="landGuid" type="string" widget="text" maxchars="255" defaultvalue="bind:GUID"></wm-form-field>
+                                                    <wm-form-field name="statesByOwnerState" displayname="States By Owner State" show="true" primary-key="false" generator="assigned" key="statesByOwnerState" type="list" is-related="true" widget="select" displayexpression="stateName"
+                                                    orderby="stateName:desc" placeholder="Select value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
+                                        <wm-form-field name="landGuid" displayname="Land Guid" show="false" primary-key="false" generator="assigned" key="landGuid" type="string" widget="text" maxchars="255" defaultvalue="bind:GUID" inputtype="text" placeholder="Enter value"></wm-form-field>
                                         <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select value"
                                         dataset="bind:Variables.SelectedMunicipalityObj.dataSet" datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord"></wm-form-field>
                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>

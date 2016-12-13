@@ -31,7 +31,8 @@ public class States implements Serializable {
     private String stateName;
     private List<Users> userses = new ArrayList<>();
     private List<Municipalities> municipalitieses = new ArrayList<>();
-    private List<Gisrecords> gisrecordses = new ArrayList<>();
+    private List<Gisrecords> gisrecordsesForOwnerState = new ArrayList<>();
+    private List<Gisrecords> gisrecordsesForStateId = new ArrayList<>();
     private List<Vendor> vendors = new ArrayList<>();
 
     @Id
@@ -72,13 +73,22 @@ public class States implements Serializable {
         this.municipalitieses = municipalitieses;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
-    public List<Gisrecords> getGisrecordses() {
-        return this.gisrecordses;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "statesByOwnerState")
+    public List<Gisrecords> getGisrecordsesForOwnerState() {
+        return this.gisrecordsesForOwnerState;
     }
 
-    public void setGisrecordses(List<Gisrecords> gisrecordses) {
-        this.gisrecordses = gisrecordses;
+    public void setGisrecordsesForOwnerState(List<Gisrecords> gisrecordsesForOwnerState) {
+        this.gisrecordsesForOwnerState = gisrecordsesForOwnerState;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "statesByStateId")
+    public List<Gisrecords> getGisrecordsesForStateId() {
+        return this.gisrecordsesForStateId;
+    }
+
+    public void setGisrecordsesForStateId(List<Gisrecords> gisrecordsesForStateId) {
+        this.gisrecordsesForStateId = gisrecordsesForStateId;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
