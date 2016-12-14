@@ -11,23 +11,6 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
     //unchecked municipalities
     var selectedMunicipalites = [];
 
-    // For verifying password match
-    // var proceedSubmission = false;
-
-    // function passwordCheck() {
-    //     //Store the password field objects into variables ...
-    //     var pass1 = document.getElementById('textPwd');
-    //     var pass2 = document.getElementById('textRePwd');
-    //     //Set the colorsfor use
-    //     if (pass1.value == pass2.value) {
-    //         proceedSubmission = true;
-    //     } else {
-    //         proceedSubmission = false;
-    //         // $scope.Widgets.Google_reCAPTCHA1.tokenresponse = false;
-    //         grecaptcha.reset();
-    //     }
-    // }
-
 
     $scope.CreateUseronSuccess = function(variable, data) {
         $scope.Variables.welcomeEmail.setInput('username', data.firstName);
@@ -70,7 +53,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
     };
 
-
+    // For verifying password match
     function passwordCheck() {
         if ($scope.Widgets.textPwd.datavalue === $scope.Widgets.textRePwd.datavalue && $scope.Widgets.textPwd.datavalue != undefined && $scope.Widgets.textRePwd.datavalue != undefined) {
 
@@ -78,7 +61,6 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         } else {
 
             grecaptcha.reset();
-            //$scope.Widgets.Google_reCAPTCHA1.tokenresponse = "";
             return false;
         }
 
@@ -86,9 +68,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
     $scope.wizard1Done = function($isolateScope, steps) {
         // check for password match and captcha
         if (passwordCheck() && (grecaptcha.getResponse() != '')) {
-            //$scope.Widgets.Google_reCAPTCHA1.tokenresponse
             $scope.Widgets.liveform2.save();
-            //proceedSubmission = false;
             $scope.Variables.NewUserToLogin.navigate();
         } else {
             $scope.Variables.PasswordMissMatch.notify();
@@ -101,7 +81,6 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
 
     $scope.ButtonAddMuncipalitiesClick = function($event, $isolateScope) {
-        debugger
         if ($scope.Widgets.textSearchMunicipalities.datavalue != undefined) {
             var temp = $scope.Widgets.textSearchMunicipalities.datavalue;
             var data = $scope.Variables.MunicpalitiesList.dataSet;

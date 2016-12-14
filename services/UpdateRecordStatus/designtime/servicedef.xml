@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="UpdateRecordStatus" class="com.civicxpress.updaterecordstatus.UpdateRecordStatus" type="JavaService" springFile="UpdateRecordStatus.spring.xml">
+    <operation name="executeUpdateService">
+        <parameter name="tableName" typeRef="java.lang.String" isList="false"/>
+        <parameter name="formStatusId" typeRef="int" isList="false"/>
+        <parameter name="recordId" typeRef="int" isList="false"/>
+        <return typeRef="int" isList="false"/>
+    </operation>
+    <dataobjects/>
+</service>
