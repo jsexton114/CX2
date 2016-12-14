@@ -1540,7 +1540,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.SelectedGroupObj.listRecords();GroupMembersDataonSuccess($event, $scope)",
+    "onSuccess" : "Variables.SelectedGroupObj.listRecords()",
     "onError" : "GroupMembersDataonError($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : true,

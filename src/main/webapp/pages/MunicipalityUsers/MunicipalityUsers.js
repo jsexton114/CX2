@@ -25,14 +25,8 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", function($
     };
 
 
-    $scope.GroupMembersDataonError = function(variable, data) {
-        debugger;
-    };
 
 
-    $scope.GroupMembersDataonSuccess = function(variable, data) {
-        debugger
-    };
 
 }]);
 
@@ -121,11 +115,18 @@ Application.$controller("ManageUsersController", ["$scope",
     }
 ]);
 
-Application.$controller("GroupMembersDataController", ["$scope",
-    function($scope) {
+Application.$controller("GroupMembersDataController", ["$scope", "wmToaster",
+    function($scope, wmToaster) {
         "use strict";
         $scope.ctrlScope = $scope;
 
+
+
+
+        $scope.liveform2Error = function($event, $operation, $data) {
+            wmToaster.show('error', 'ERROR', 'User already Exists please select another user.', 5000);
+
+        };
 
     }
 ]);
