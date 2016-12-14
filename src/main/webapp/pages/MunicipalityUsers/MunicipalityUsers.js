@@ -124,7 +124,7 @@ Application.$controller("GroupMembersDataController", ["$scope", "wmToaster",
 
 
         $scope.liveform2Error = function($event, $operation, $data) {
-            wmToaster.show('error', 'ERROR', 'User already Exists please select another user.', 5000);
+            wmToaster.show('error', 'ERROR', 'The user you selected has already been added to this group.', 5000);
 
         };
 
