@@ -24,6 +24,16 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", function($
         $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityAdmin";
     };
 
+
+    $scope.GroupMembersDataonError = function(variable, data) {
+        debugger;
+    };
+
+
+    $scope.GroupMembersDataonSuccess = function(variable, data) {
+        debugger
+    };
+
 }]);
 
 
@@ -91,36 +101,38 @@ Application.$controller("dialogAddEmployeeORAdminController", ["$scope",
 ]);
 
 Application.$controller("MunicipalitygroupsgridController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveform1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("ManageUsersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("GroupMembersDataController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+
+    }
 ]);
 
 Application.$controller("liveform2Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
