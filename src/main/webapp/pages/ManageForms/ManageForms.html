@@ -33,7 +33,9 @@
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn11_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn12" horizontalalign="right" padding="unset unset 1em unset">
-                                        <wm-button class="btn-default btn-inverse btn-primary" caption="Create Form" type="button" margin="unset 0.5em" name="buttonCreateForm" iconclass="wi wi-plus" on-click="Widgets.dialogCreateForm.open()" accessroles="CXAdmin"></wm-button>
+                                        <wm-button class="btn-default pull-left btn-primary" caption="Create Category" type="button" margin="unset 0.5em" name="buttonCreateCategory" iconclass="wi wi-plus" on-click="Widgets.dialogCategories.open()"></wm-button>
+                                        <wm-button class="btn-default btn-inverse btn-primary" caption="Create Form" type="button" margin="unset 0.5em" name="buttonCreateForm" iconclass="wi wi-plus" on-click="Widgets.dialogCreateForm.open()"
+                                        accessroles="CXAdmin"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow6">
@@ -135,6 +137,28 @@
                 <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" action="Widgets.dialogCreateForm.close()" shortcutkey="" disabled="false" type="submit" update-mode="true"></wm-form-action>
                 <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="Widgets.dialogCreateForm.close()" shortcutkey="" disabled="false" type="button"
                 update-mode="true"></wm-form-action>
+            </wm-liveform>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view2">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add Categories" iconclass="wi wi-plus" name="dialogCategories">
+            <wm-dialogactions name="dialogactions2">
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button3"></wm-button>
+                <wm-button class="btn-primary" caption="Save" name="button4" on-click="Widgets.liveformFormCategories.save()"></wm-button>
+            </wm-dialogactions>
+            <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.FormCategoriesData.dataSet" captionalign="left" captionposition="top" name="liveformFormCategories">
+                <wm-layoutgrid columns="1" name="layoutgrid4">
+                    <wm-gridrow name="gridrow12">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn26">
+                            <wm-form-field name="category" displayname="Category" show="true" primary-key="false" generator="assigned" key="category" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow13">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn27">
+                            <wm-form-field name="description" displayname="Description" show="true" primary-key="false" generator="assigned" key="description" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
             </wm-liveform>
         </wm-dialog>
     </wm-view>
