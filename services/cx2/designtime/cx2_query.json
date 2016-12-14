@@ -377,6 +377,34 @@
       "UnitFeeAccountingCode" : "java.lang.String"
     }
   }, {
+    "name" : "getListofUsers",
+    "query" : "select a.UserId , b.Email from Roles a INNER JOIN Users b on a.UserId = b.ID where a.RoleName IN ('MunicipalityEmployee','MunicipalityAdmin') and a.MunicipalityId =:municipalityID and b.Email LIKE LOWER(concat('%',:Email,'%'))",
+    "comment" : "to get List of user based on municipality ID and role Name",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "municipalityID",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "Email",
+      "paramType" : "java.lang.String",
+      "testValue" : "an",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2getListofUsersrtnType",
+    "returnTypeMetadata" : {
+      "Email" : "java.lang.String",
+      "UserId" : "java.math.BigDecimal"
+    }
+  }, {
     "name" : "GetRolesForMunicipality",
     "query" : "select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID",
     "comment" : "GetRolesForMunicipality",

@@ -1,4 +1,4 @@
-Application.$controller("MunicipalityUsersPageController", ["$scope", function($scope) {
+Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster", function($scope, wmToaster) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -27,6 +27,11 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", function($
 
 
 
+
+
+    $scope.MunicipalityGroupMembersDataonError = function(variable, data) {
+        wmToaster.show('error', 'ERROR', 'The user you selected has already been added to this group.', 5000);
+    };
 
 }]);
 
@@ -128,12 +133,5 @@ Application.$controller("GroupMembersDataController", ["$scope", "wmToaster",
 
         };
 
-    }
-]);
-
-Application.$controller("liveform2Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
     }
 ]);

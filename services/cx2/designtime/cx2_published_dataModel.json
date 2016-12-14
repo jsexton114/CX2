@@ -1230,81 +1230,6 @@
       "scale" : 0,
       "sqlType" : "string",
       "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "formTitle",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "FormTitle",
-      "nullable" : true,
-      "oldName" : "FormTitle",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 19,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "issuedDate",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "timestamp",
-      "length" : 23,
-      "name" : "IssuedDate",
-      "nullable" : true,
-      "oldName" : "IssuedDate",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 19,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "timestamp",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "expiresDate",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "date",
-      "length" : 10,
-      "name" : "ExpiresDate",
-      "nullable" : true,
-      "oldName" : "ExpiresDate",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 19,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "date",
-      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "MasterForms",
@@ -1759,6 +1684,31 @@
       "scale" : 0,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
+      "fieldName" : "municipalityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 255,
+      "name" : "MunicipalityId",
+      "nullable" : true,
+      "oldName" : "MunicipalityId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "FormCategories",
@@ -1776,6 +1726,22 @@
       "virtual" : false
     },
     "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "municipalities",
+      "mappings" : [ {
+        "sourceColumn" : "MunicipalityId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_FormCategories_TO_MunSk8OE",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "FormCategories",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Municipalities",
+      "virtual" : false
+    }, {
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -3576,6 +3542,22 @@
       "sourceTable" : "Municipalities",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "VendorApprovals",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "formCategorieses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "MunicipalityId"
+      } ],
+      "name" : "FK_FormCategories_TO_MunSk8OE",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "Municipalities",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "FormCategories",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -6286,31 +6268,6 @@
       "scale" : 0,
       "sqlType" : "string",
       "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "formTitle",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "FormTitle",
-      "nullable" : true,
-      "oldName" : "FormTitle",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 19,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "FormFee",
@@ -6588,7 +6545,7 @@
         "defaultValue" : ""
       },
       "fieldName" : "formTypeId",
-      "foreignKey" : true,
+      "foreignKey" : false,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
@@ -6596,8 +6553,8 @@
       "name" : "FormTypeId",
       "nullable" : true,
       "oldName" : "FormTypeId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "precision" : 10,
@@ -6716,22 +6673,6 @@
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "formTypes",
-      "mappings" : [ {
-        "sourceColumn" : "FormTypeId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_FormTypes_TO_MCNewEleWxNFx",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceTable" : "MCNewElectricConnection",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "FormTypes",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
       "fieldName" : "users",
       "mappings" : [ {
         "sourceColumn" : "UserId",
@@ -6828,7 +6769,7 @@
     "constraints" : [ {
       "columns" : [ "MunicipalityGroupId", "UserId" ],
       "composite" : true,
-      "name" : "UK_MunicipalityGroupMembubNqV",
+      "name" : "UK_MunicipalityGroupMemb9h6n6",
       "type" : "UNIQUE",
       "virtual" : false
     } ],
@@ -6871,7 +6812,7 @@
         "sourceColumn" : "UserId",
         "targetColumn" : "ID"
       } ],
-      "name" : "FK_Users_TO_Municipalityb900s",
+      "name" : "FK_Users_TO_MunicipalityTIJ7c",
       "primary" : true,
       "selfRelation" : false,
       "sourceTable" : "MunicipalityGroupMembers",
@@ -7333,56 +7274,6 @@
       "scale" : 0,
       "sqlType" : "date",
       "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "formPrefix",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "FormPrefix",
-      "nullable" : true,
-      "oldName" : "FormPrefix",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 19,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "startingNumber",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 255,
-      "name" : "StartingNumber",
-      "nullable" : true,
-      "oldName" : "StartingNumber",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "FormTypes",
@@ -7478,22 +7369,6 @@
       "sourceTable" : "FormTypes",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "FormStatuses",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "mcnewElectricConnections",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "FormTypeId"
-      } ],
-      "name" : "FK_FormTypes_TO_MCNewEleWxNFx",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceTable" : "FormTypes",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "MCNewElectricConnection",
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
@@ -8228,7 +8103,7 @@
         "sourceColumn" : "ID",
         "targetColumn" : "UserId"
       } ],
-      "name" : "FK_Users_TO_Municipalityb900s",
+      "name" : "FK_Users_TO_MunicipalityTIJ7c",
       "primary" : false,
       "selfRelation" : false,
       "sourceTable" : "Users",

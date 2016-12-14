@@ -229,6 +229,11 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="getListofUsers">
+        <parameter name="municipalityID" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Email" typeRef="java.lang.String" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -288,6 +293,11 @@
         <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="getListofUsers">
+        <parameter name="municipalityID" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Email" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2getListofUsersrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="GetRolesForMunicipality">
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
@@ -465,6 +475,8 @@
             <element name="description" typeRef="java.lang.String" allowNull="true"/>
             <element name="formCategoryMappings" typeRef="com.civicxpress.cx2.FormCategoryMapping" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormCategoryMapping">
             <element name="formCategories" typeRef="com.civicxpress.cx2.FormCategories" allowNull="true"/>
@@ -479,7 +491,6 @@
             <element name="autoFeeYn" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="comments" typeRef="java.lang.String" allowNull="true"/>
             <element name="feeType" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formTitle" typeRef="java.lang.String" allowNull="true"/>
             <element name="formType" typeRef="java.lang.String" allowNull="true"/>
             <element name="gisid" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="gisrecords" typeRef="com.civicxpress.cx2.Gisrecords" allowNull="true"/>
@@ -528,13 +539,11 @@
             <element name="flatFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="flatFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="formCategoryMappings" typeRef="com.civicxpress.cx2.FormCategoryMapping" isList="true" allowNull="true"/>
-            <element name="formPrefix" typeRef="java.lang.String" allowNull="true"/>
             <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
             <element name="formType" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
-            <element name="mcnewElectricConnections" typeRef="com.civicxpress.cx2.McnewElectricConnection" isList="true" allowNull="true"/>
             <element name="mcnewResidentialStructures" typeRef="com.civicxpress.cx2.McnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
@@ -546,7 +555,6 @@
             <element name="sfFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfnewElectricConnections" typeRef="com.civicxpress.cx2.SfnewElectricConnection" isList="true" allowNull="true"/>
             <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
-            <element name="startingNumber" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="stateFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="stateFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="tbLocation" typeRef="java.lang.String" allowNull="true"/>
@@ -619,15 +627,12 @@
             <element name="balanceDue" typeRef="java.lang.String" allowNull="true"/>
             <element name="closed" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="cxvendorId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="expiresDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="formGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
-            <element name="formTitle" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="issuedDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
@@ -642,7 +647,6 @@
             <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="garageSft" typeRef="java.lang.String" allowNull="true"/>
             <element name="guid" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
@@ -679,6 +683,7 @@
             <element name="city" typeRef="java.lang.String" allowNull="true"/>
             <element name="closeTime" typeRef="java.util.Date" allowNull="true"/>
             <element name="email" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formCategorieses" typeRef="com.civicxpress.cx2.FormCategories" isList="true" allowNull="true"/>
             <element name="formFees" typeRef="com.civicxpress.cx2.FormFee" isList="true" allowNull="true"/>
             <element name="formTypeses" typeRef="com.civicxpress.cx2.FormTypes" isList="true" allowNull="true"/>
             <element name="fridayYn" typeRef="java.lang.Boolean" allowNull="true"/>
@@ -1099,6 +1104,10 @@
         <dataobject javaType="cx2deleteTokenrtnType"/>
         <dataobject javaType="cx2getEmailIdrtnType">
             <element name="Email" typeRef="java.lang.String"/>
+        </dataobject>
+        <dataobject javaType="cx2getListofUsersrtnType">
+            <element name="Email" typeRef="java.lang.String"/>
+            <element name="UserId" typeRef="java.math.BigDecimal"/>
         </dataobject>
         <dataobject javaType="cx2getUserIDrtnType">
             <element name="ID" typeRef="java.math.BigDecimal"/>

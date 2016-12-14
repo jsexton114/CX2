@@ -180,6 +180,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/getListofUsers", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeGetListofUsers(@RequestParam(value = "municipalityID", required = false) java.lang.Integer municipalityID, @RequestParam(value = "Email", required = false) java.lang.String Email, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query getListofUsers");
+        Page<Object> result = queryService.executeGetListofUsers(pageable, municipalityID, Email);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/GetRolesForMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeGetRolesForMunicipality(@RequestParam(value = "role", required = false) java.lang.String role, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, Pageable pageable) throws QueryParameterMismatchException {

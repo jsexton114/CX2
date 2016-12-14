@@ -17,6 +17,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,6 +32,8 @@ public class FormCategories implements Serializable {
     private Integer id;
     private String category;
     private String description;
+    private Integer municipalityId;
+    private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
 
     @Id
@@ -59,6 +63,29 @@ public class FormCategories implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Column(name = "`MunicipalityId`", nullable = true, scale = 0, precision = 10)
+    public Integer getMunicipalityId() {
+        return this.municipalityId;
+    }
+
+    public void setMunicipalityId(Integer municipalityId) {
+        this.municipalityId = municipalityId;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`MunicipalityId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Municipalities getMunicipalities() {
+        return this.municipalities;
+    }
+
+    public void setMunicipalities(Municipalities municipalities) {
+        if(municipalities != null) {
+            this.municipalityId = municipalities.getId();
+        }
+
+        this.municipalities = municipalities;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formCategories")

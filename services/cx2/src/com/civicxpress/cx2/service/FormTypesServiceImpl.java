@@ -25,7 +25,6 @@ import com.civicxpress.cx2.FormCategoryMapping;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.MasterForms;
-import com.civicxpress.cx2.McnewElectricConnection;
 import com.civicxpress.cx2.McnewResidentialStructure;
 import com.civicxpress.cx2.Pudapplication;
 import com.civicxpress.cx2.SfnewElectricConnection;
@@ -47,16 +46,8 @@ public class FormTypesServiceImpl implements FormTypesService {
 	private McnewResidentialStructureService mcnewResidentialStructureService;
 
     @Autowired
-	@Qualifier("cx2.SfnewElectricConnectionService")
-	private SfnewElectricConnectionService sfnewElectricConnectionService;
-
-    @Autowired
-	@Qualifier("cx2.PudapplicationService")
-	private PudapplicationService pudapplicationService;
-
-    @Autowired
-	@Qualifier("cx2.FormStatusesService")
-	private FormStatusesService formStatusesService;
+	@Qualifier("cx2.FormCategoryMappingService")
+	private FormCategoryMappingService formCategoryMappingService;
 
     @Autowired
 	@Qualifier("cx2.SfnewResidentialStructureService")
@@ -67,12 +58,16 @@ public class FormTypesServiceImpl implements FormTypesService {
 	private MasterFormsService masterFormsService;
 
     @Autowired
-	@Qualifier("cx2.McnewElectricConnectionService")
-	private McnewElectricConnectionService mcnewElectricConnectionService;
+	@Qualifier("cx2.PudapplicationService")
+	private PudapplicationService pudapplicationService;
 
     @Autowired
-	@Qualifier("cx2.FormCategoryMappingService")
-	private FormCategoryMappingService formCategoryMappingService;
+	@Qualifier("cx2.FormStatusesService")
+	private FormStatusesService formStatusesService;
+
+    @Autowired
+	@Qualifier("cx2.SfnewElectricConnectionService")
+	private SfnewElectricConnectionService sfnewElectricConnectionService;
 
     @Autowired
     @Qualifier("cx2.FormTypesDao")
@@ -124,14 +119,6 @@ public class FormTypesServiceImpl implements FormTypesService {
                 formStatusese.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
                 formStatusesService.create(formStatusese);
-            }
-        }
-
-        if(formTypesCreated.getMcnewElectricConnections() != null) {
-            for(McnewElectricConnection mcnewElectricConnection : formTypesCreated.getMcnewElectricConnections()) {
-                mcnewElectricConnection.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child McnewElectricConnection with information: {}", mcnewElectricConnection);
-                mcnewElectricConnectionService.create(mcnewElectricConnection);
             }
         }
 
@@ -281,17 +268,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated mcnewElectricConnections");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return mcnewElectricConnectionService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<McnewResidentialStructure> findAssociatedMcnewResidentialStructures(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated mcnewResidentialStructures");
 
@@ -324,28 +300,10 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SfnewElectricConnectionService instance
+	 * @param service FormCategoryMappingService instance
 	 */
-	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
-        this.sfnewElectricConnectionService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service PudapplicationService instance
-	 */
-	protected void setPudapplicationService(PudapplicationService service) {
-        this.pudapplicationService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormStatusesService instance
-	 */
-	protected void setFormStatusesService(FormStatusesService service) {
-        this.formStatusesService = service;
+	protected void setFormCategoryMappingService(FormCategoryMappingService service) {
+        this.formCategoryMappingService = service;
     }
 
     /**
@@ -369,19 +327,28 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service McnewElectricConnectionService instance
+	 * @param service PudapplicationService instance
 	 */
-	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
-        this.mcnewElectricConnectionService = service;
+	protected void setPudapplicationService(PudapplicationService service) {
+        this.pudapplicationService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormCategoryMappingService instance
+	 * @param service FormStatusesService instance
 	 */
-	protected void setFormCategoryMappingService(FormCategoryMappingService service) {
-        this.formCategoryMappingService = service;
+	protected void setFormStatusesService(FormStatusesService service) {
+        this.formStatusesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SfnewElectricConnectionService instance
+	 */
+	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
+        this.sfnewElectricConnectionService = service;
     }
 
 }

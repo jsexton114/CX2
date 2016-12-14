@@ -50,14 +50,11 @@ public class FormTypes implements Serializable {
     private String pageName;
     private Boolean municipalityInternalForm;
     private Date createdDate;
-    private String formPrefix;
-    private Integer startingNumber;
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
-    private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private Municipalities municipalities;
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
     private List<Pudapplication> pudapplications = new ArrayList<>();
@@ -227,24 +224,6 @@ public class FormTypes implements Serializable {
         this.createdDate = createdDate;
     }
 
-    @Column(name = "`FormPrefix`", nullable = true, length = 255)
-    public String getFormPrefix() {
-        return this.formPrefix;
-    }
-
-    public void setFormPrefix(String formPrefix) {
-        this.formPrefix = formPrefix;
-    }
-
-    @Column(name = "`StartingNumber`", nullable = true, scale = 0, precision = 10)
-    public Integer getStartingNumber() {
-        return this.startingNumber;
-    }
-
-    public void setStartingNumber(Integer startingNumber) {
-        this.startingNumber = startingNumber;
-    }
-
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
     public List<SfnewElectricConnection> getSfnewElectricConnections() {
         return this.sfnewElectricConnections;
@@ -288,15 +267,6 @@ public class FormTypes implements Serializable {
 
     public void setFormStatuseses(List<FormStatuses> formStatuseses) {
         this.formStatuseses = formStatuseses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<McnewElectricConnection> getMcnewElectricConnections() {
-        return this.mcnewElectricConnections;
-    }
-
-    public void setMcnewElectricConnections(List<McnewElectricConnection> mcnewElectricConnections) {
-        this.mcnewElectricConnections = mcnewElectricConnections;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

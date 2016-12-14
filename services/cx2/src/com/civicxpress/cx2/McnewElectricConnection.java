@@ -38,7 +38,6 @@ public class McnewElectricConnection implements Serializable {
     private Integer userId;
     private String guid;
     private FormStatuses formStatuses;
-    private FormTypes formTypes;
     private Users users;
 
     @Id
@@ -163,20 +162,6 @@ public class McnewElectricConnection implements Serializable {
         }
 
         this.formStatuses = formStatuses;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`FormTypeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public FormTypes getFormTypes() {
-        return this.formTypes;
-    }
-
-    public void setFormTypes(FormTypes formTypes) {
-        if(formTypes != null) {
-            this.formTypeId = formTypes.getId();
-        }
-
-        this.formTypes = formTypes;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

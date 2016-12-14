@@ -44,20 +44,20 @@ public class StatesServiceImpl implements StatesService {
 	private MunicipalitiesService municipalitiesService;
 
     @Autowired
-	@Qualifier("cx2.UsersService")
-	private UsersService usersService;
-
-    @Autowired
 	@Qualifier("cx2.GisrecordsService")
 	private GisrecordsService gisrecordsService;
 
     @Autowired
-	@Qualifier("cx2.VendorService")
-	private VendorService vendorService;
+	@Qualifier("cx2.UsersService")
+	private UsersService usersService;
 
     @Autowired
 	@Qualifier("cx2.GlobalSettingsService")
 	private GlobalSettingsService globalSettingsService;
+
+    @Autowired
+	@Qualifier("cx2.VendorService")
+	private VendorService vendorService;
 
     @Autowired
     @Qualifier("cx2.StatesDao")
@@ -271,15 +271,6 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UsersService instance
-	 */
-	protected void setUsersService(UsersService service) {
-        this.usersService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service GisrecordsService instance
 	 */
 	protected void setGisrecordsService(GisrecordsService service) {
@@ -289,10 +280,10 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorService instance
+	 * @param service UsersService instance
 	 */
-	protected void setVendorService(VendorService service) {
-        this.vendorService = service;
+	protected void setUsersService(UsersService service) {
+        this.usersService = service;
     }
 
     /**
@@ -302,6 +293,15 @@ public class StatesServiceImpl implements StatesService {
 	 */
 	protected void setGlobalSettingsService(GlobalSettingsService service) {
         this.globalSettingsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service VendorService instance
+	 */
+	protected void setVendorService(VendorService service) {
+        this.vendorService = service;
     }
 
 }

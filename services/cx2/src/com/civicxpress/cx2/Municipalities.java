@@ -64,6 +64,7 @@ public class Municipalities implements Serializable {
     private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
+    private List<FormCategories> formCategorieses = new ArrayList<>();
     private List<MunicipalityGroups> municipalityGroupses = new ArrayList<>();
     private List<Subdivisions> subdivisionses = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
@@ -328,6 +329,15 @@ public class Municipalities implements Serializable {
 
     public void setVendorApprovalses(List<VendorApprovals> vendorApprovalses) {
         this.vendorApprovalses = vendorApprovalses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<FormCategories> getFormCategorieses() {
+        return this.formCategorieses;
+    }
+
+    public void setFormCategorieses(List<FormCategories> formCategorieses) {
+        this.formCategorieses = formCategorieses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")

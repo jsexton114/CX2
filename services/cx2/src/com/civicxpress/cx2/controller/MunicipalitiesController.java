@@ -32,6 +32,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormFee;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
@@ -191,6 +192,13 @@ public class MunicipalitiesController {
     public Page<VendorApprovals> findAssociatedVendorApprovalses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorApprovalses");
         return municipalitiesService.findAssociatedVendorApprovalses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formCategorieses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formCategorieses instance associated with the given id.")
+    public Page<FormCategories> findAssociatedFormCategorieses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formCategorieses");
+        return municipalitiesService.findAssociatedFormCategorieses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/municipalityGroupses", method = RequestMethod.GET)
