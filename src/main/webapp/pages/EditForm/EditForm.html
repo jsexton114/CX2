@@ -128,22 +128,20 @@
                                 </wm-liveform>
                             </wm-accordionpane>
                             <wm-accordionpane name="accordionpane2" title="Statuses">
-                                <wm-livegrid formlayout="inline" name="livegrid1">
+                                <wm-livegrid formlayout="dialog" name="livegrid1">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="Formstatuses List" dataset="bind:Variables.StatusesData.dataSet" navigation="Basic" name="grid1">
-                                        <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
-                                        <wm-grid-column binding="status" caption="Status" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="description" caption="Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="processOwners" caption="Process Owners" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="readAccess" caption="Read Access" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="writeAccess" caption="Write Access" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="emailTextBody" caption="Email Text Body" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-column binding="sortOrder" caption="Sort Order" generator="assigned" pcdisplay="true" mobiledisplay="true" type="long"></wm-grid-column>
-                                        <wm-grid-column binding="emailSubjectLine" caption="Email Subject Line" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                                        <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
+                                        <wm-grid-column binding="status" caption="Status" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="description" caption="Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="sortOrder" caption="Sort Order" type="long" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="emailTextBody" caption="Email Text Body" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="emailSubjectLine" caption="Email Subject Line" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Formstatuses Info" formlayout="inline" iconclass="wi wi-edit" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top" name="liveform2">
+                                    <wm-liveform novalidate="false" errormessage="" title="Formstatuses Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top" name="liveform2">
                                         <wm-layoutgrid columns="3" name="layoutgrid5">
                                             <wm-gridrow name="gridrow19_1">
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn33_1">
