@@ -43,24 +43,20 @@ public class FormTypesServiceImpl implements FormTypesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FormTypesServiceImpl.class);
 
     @Autowired
+	@Qualifier("cx2.McnewResidentialStructureService")
+	private McnewResidentialStructureService mcnewResidentialStructureService;
+
+    @Autowired
+	@Qualifier("cx2.SfnewElectricConnectionService")
+	private SfnewElectricConnectionService sfnewElectricConnectionService;
+
+    @Autowired
 	@Qualifier("cx2.PudapplicationService")
 	private PudapplicationService pudapplicationService;
 
     @Autowired
-	@Qualifier("cx2.FormCategoryMappingService")
-	private FormCategoryMappingService formCategoryMappingService;
-
-    @Autowired
 	@Qualifier("cx2.FormStatusesService")
 	private FormStatusesService formStatusesService;
-
-    @Autowired
-	@Qualifier("cx2.McnewElectricConnectionService")
-	private McnewElectricConnectionService mcnewElectricConnectionService;
-
-    @Autowired
-	@Qualifier("cx2.McnewResidentialStructureService")
-	private McnewResidentialStructureService mcnewResidentialStructureService;
 
     @Autowired
 	@Qualifier("cx2.SfnewResidentialStructureService")
@@ -71,8 +67,12 @@ public class FormTypesServiceImpl implements FormTypesService {
 	private MasterFormsService masterFormsService;
 
     @Autowired
-	@Qualifier("cx2.SfnewElectricConnectionService")
-	private SfnewElectricConnectionService sfnewElectricConnectionService;
+	@Qualifier("cx2.McnewElectricConnectionService")
+	private McnewElectricConnectionService mcnewElectricConnectionService;
+
+    @Autowired
+	@Qualifier("cx2.FormCategoryMappingService")
+	private FormCategoryMappingService formCategoryMappingService;
 
     @Autowired
     @Qualifier("cx2.FormTypesDao")
@@ -315,6 +315,24 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service McnewResidentialStructureService instance
+	 */
+	protected void setMcnewResidentialStructureService(McnewResidentialStructureService service) {
+        this.mcnewResidentialStructureService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SfnewElectricConnectionService instance
+	 */
+	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
+        this.sfnewElectricConnectionService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service PudapplicationService instance
 	 */
 	protected void setPudapplicationService(PudapplicationService service) {
@@ -324,37 +342,10 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormCategoryMappingService instance
-	 */
-	protected void setFormCategoryMappingService(FormCategoryMappingService service) {
-        this.formCategoryMappingService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service FormStatusesService instance
 	 */
 	protected void setFormStatusesService(FormStatusesService service) {
         this.formStatusesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service McnewElectricConnectionService instance
-	 */
-	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
-        this.mcnewElectricConnectionService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service McnewResidentialStructureService instance
-	 */
-	protected void setMcnewResidentialStructureService(McnewResidentialStructureService service) {
-        this.mcnewResidentialStructureService = service;
     }
 
     /**
@@ -378,10 +369,19 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SfnewElectricConnectionService instance
+	 * @param service McnewElectricConnectionService instance
 	 */
-	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
-        this.sfnewElectricConnectionService = service;
+	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
+        this.mcnewElectricConnectionService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormCategoryMappingService instance
+	 */
+	protected void setFormCategoryMappingService(FormCategoryMappingService service) {
+        this.formCategoryMappingService = service;
     }
 
 }

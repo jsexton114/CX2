@@ -43,7 +43,6 @@ public class FormFee implements Serializable {
     private String transactionId;
     private String comments;
     private String formTitle;
-    private Integer startingNumber;
     private Gisrecords gisrecords;
     private Municipalities municipalities;
     private Users users;
@@ -184,15 +183,6 @@ public class FormFee implements Serializable {
 
     public void setFormTitle(String formTitle) {
         this.formTitle = formTitle;
-    }
-
-    @Column(name = "`StartingNumber`", nullable = true, scale = 0, precision = 10)
-    public Integer getStartingNumber() {
-        return this.startingNumber;
-    }
-
-    public void setStartingNumber(Integer startingNumber) {
-        this.startingNumber = startingNumber;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

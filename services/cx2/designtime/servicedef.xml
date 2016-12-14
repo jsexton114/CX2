@@ -490,7 +490,6 @@
             <element name="paidByUserId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="paidDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="paidStatus" typeRef="java.lang.String" allowNull="true"/>
-            <element name="startingNumber" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="transactionId" typeRef="java.lang.String" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>
@@ -620,6 +619,7 @@
             <element name="balanceDue" typeRef="java.lang.String" allowNull="true"/>
             <element name="closed" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="cxvendorId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="expiresDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="formGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
@@ -627,6 +627,7 @@
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="issuedDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
