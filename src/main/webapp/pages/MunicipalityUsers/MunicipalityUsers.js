@@ -140,3 +140,10 @@ Application.$controller("GroupMembersDataController", ["$scope", "wmToaster",
 
     }
 ]);
+
+Application.$controller("grid5Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
