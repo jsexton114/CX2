@@ -16,6 +16,11 @@
       select V.* from Vendor V,VendorAdmins VM,Users U where U.ID=:user and VM.UserId=U.ID and VM.VendorId=V.ID
     ]]>
   </sql-query>
+  <sql-query name="bannedDetails">
+    <![CDATA[
+      select Banned from Users where Email =:emailid
+    ]]>
+  </sql-query>
   <sql-query name="CheckingUserWithMunicipalityInRoles">
     <![CDATA[
       select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user

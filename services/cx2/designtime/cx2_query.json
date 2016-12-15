@@ -120,6 +120,26 @@
       "TypeOfBusiness" : "java.lang.String"
     }
   }, {
+    "name" : "bannedDetails",
+    "query" : "select Banned from Users where Email =:emailid",
+    "comment" : "user to display banner dertails based on user emailid",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "emailid",
+      "paramType" : "java.lang.String",
+      "testValue" : "anvesh.nara+1@wavemaker.com",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2bannedDetailsrtnType",
+    "returnTypeMetadata" : {
+      "Banned" : "java.lang.Boolean"
+    }
+  }, {
     "name" : "CheckingUserWithMunicipalityInRoles",
     "query" : "select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user",
     "comment" : "CheckingUserWithMunicipalityInRoles",

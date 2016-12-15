@@ -16,7 +16,7 @@
                         <wm-gridcolumn name="loginContentColumn" columnwidth="6" class="col-xs-10  col-md-4">
                             <wm-container name="container1" class="panel" backgroundcolor="#ffffff" color="#bdbdbd">
                                 <wm-label name="label1" caption="User Login" horizontalalign="center" class="p" backgroundcolor="#f7f7f7" margin="0px unset" fontsize="20" padding="1em unset" color="#1e1e1e"></wm-label>
-                                <wm-login name="loginForm" data-ng-controller="loginFormController" on-submit="Variables.loginVariable.invoke()" title="" autocomplete="nofill">
+                                <wm-login name="loginForm" data-ng-controller="loginFormController" on-submit="loginFormSubmit($event, $scope)" title="" autocomplete="nofill">
                                     <wm-layoutgrid name="layoutgrid2">
                                         <wm-gridrow name="gridrow2">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn4" padding="unset unset 1em unset">
@@ -48,7 +48,7 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow4">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn10">
-                                                <wm-button type="submit" caption="Login" width="100%" class="app-login-button btn-primary" name="loginButton" fontsize="1.2" fontunit="em"></wm-button>
+                                                <wm-button type="submit" caption="Login" width="100%" class="app-login-button btn-primary" name="loginButton" fontsize="1.2" fontunit="em" on-click="loginButtonClick($event, $scope)"></wm-button>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow8">

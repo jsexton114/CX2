@@ -70,6 +70,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/bannedDetails", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeBannedDetails(@RequestParam(value = "emailid", required = false) java.lang.String emailid, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query bannedDetails");
+        Page<Object> result = queryService.executeBannedDetails(pageable, emailid);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/CheckingUserWithMunicipalityInRoles", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeCheckingUserWithMunicipalityInRoles(@RequestParam(value = "muncipality", required = false) java.lang.Integer muncipality, @RequestParam(value = "user", required = false) java.lang.Integer user, Pageable pageable) throws QueryParameterMismatchException {

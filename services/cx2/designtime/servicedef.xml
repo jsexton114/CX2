@@ -26,6 +26,10 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AdminVendorsListrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="bannedDetails">
+        <parameter name="emailid" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2bannedDetailsrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="CheckingUserWithMunicipalityInRoles">
         <parameter name="muncipality" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
@@ -247,6 +251,10 @@
     <operation operationType="nativequery" name="AdminVendorsList">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AdminVendorsListrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="bannedDetails">
+        <parameter name="emailid" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2bannedDetailsrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="CheckingUserWithMunicipalityInRoles">
         <parameter name="muncipality" typeRef="java.lang.Integer" isList="false"/>
@@ -1101,6 +1109,9 @@
         <dataobject javaType="cx2UpdateWorkMunicipalityrtnType"/>
         <dataobject javaType="cx2UserCountrtnType">
             <element name="usersCount" typeRef="java.lang.Integer"/>
+        </dataobject>
+        <dataobject javaType="cx2bannedDetailsrtnType">
+            <element name="Banned" typeRef="java.lang.Boolean"/>
         </dataobject>
         <dataobject javaType="cx2deleteTokenrtnType"/>
         <dataobject javaType="cx2getEmailIdrtnType">

@@ -18,6 +18,7 @@ public interface Cx2QueryExecutorService {
 	int executeAddUsersToVendor(  java.lang.Integer VendorId , java.lang.Integer UserId , java.sql.Date JoiningDate) throws QueryParameterMismatchException;
     Page<Object> executeAdminsMunicipalities(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeAdminVendorsList(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
+    Page<Object> executeBannedDetails(Pageable pageable, java.lang.String emailid) throws QueryParameterMismatchException;
     Page<Object> executeCheckingUserWithMunicipalityInRoles(Pageable pageable, java.lang.Integer muncipality, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeCountOfVendors(Pageable pageable, java.lang.Integer vendor) throws QueryParameterMismatchException;
     Page<Object> executeCountOfVendorUsers(Pageable pageable, java.lang.Integer vendor) throws QueryParameterMismatchException;

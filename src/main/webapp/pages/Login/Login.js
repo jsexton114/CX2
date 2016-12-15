@@ -15,25 +15,28 @@ Application.$controller("LoginPageController", ["$scope", "wmToaster",
              */
 
         };
-
-        $scope.loginVariableonSuccess = function(variable, data) {
-            $scope.Variables.userDetails.setFilter('email', $("input[name='usernametext'").val());
-            $scope.Variables.userDetails.update({}, function(data) {
-                if (data[0].banned == true) {
-                    $scope.Variables.logoutVariable.invoke({}, function(data) {
-                        wmToaster.show('error', 'ERROR', 'Your account has been banned. If you have any questions, please contact support at 614-737-3743.', 5000);
-
-                    });
-                }
-            })
-        };
-
     }
+
 ]);
 
-Application.$controller("loginFormController", ["$scope",
-    function($scope) {
+Application.$controller("loginFormController", ["$scope", "wmToaster",
+    function($scope, wmToaster) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.loginFormSubmit = function($event, $isolateScope) {
+            $scope.Variables.bannedUser.setInput('emailid', $("input[name='usernametext'").val());
+            $scope.Variables.bannedUser.update({}, function(data) {
+
+                if (data.content[0].Banned === true) {
+                    wmToaster.show('error', 'ERROR', 'Your account has been banned. If you have any questions, please contact support at 614-737-3743.', 5000);
+                } else {
+                    $scope.Variables.loginVariable.invoke();
+                }
+
+            })
+
+        };
+
     }
 ]);
