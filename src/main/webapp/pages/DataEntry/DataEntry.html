@@ -911,6 +911,46 @@
                         </wm-liveform>
                     </wm-livegrid>
                 </wm-tabpane>
+                <wm-tabpane name="tabpane16_1" title="MunicipalityGroups">
+                    <wm-livegrid formlayout="dialog" name="livegrid15_2">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Municipalitygroups List" dataset="bind:Variables.Cx2MunicipalityGroupsData.dataSet" navigation="Basic" name="grid16_2">
+                            <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="groupName" caption="Group Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="groupDescription" caption="Group Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.id" caption="Municipalities Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityGuid" caption="Municipality Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.address1" caption="Municipalities Address1" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.address2" caption="Municipalities Address2" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.city" caption="Municipalities City" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.postalCode" caption="Postal Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        </wm-grid>
+                        <wm-liveform novalidate="false" errormessage="" title="Municipalitygroups Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2MunicipalityGroupsData.dataSet" captionalign="left" captionposition="top" name="liveform15_2">
+                            <wm-layoutgrid columns="3" name="layoutgrid16_1">
+                                <wm-gridrow name="gridrow62_2">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn128_2">
+                                        <wm-form-field name="groupName" displayname="Group Name" required="false" show="true" generator="assigned" primary-key="false" key="groupName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn129_2">
+                                        <wm-form-field name="groupDescription" displayname="Group Description" required="false" show="true" generator="assigned" primary-key="false" key="groupDescription" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn130_1">
+                                        <wm-form-field name="municipalities" displayname="Municipalities" required="false" show="true" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                            <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                        </wm-liveform>
+                    </wm-livegrid>
+                </wm-tabpane>
             </wm-tabs>
             <wm-layoutgrid name="layoutgrid15_1">
                 <wm-gridrow name="gridrow59_1">

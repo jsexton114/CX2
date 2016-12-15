@@ -52,10 +52,6 @@
     "owner" : "Page",
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
-      "target" : "formType",
-      "value" : "bind:Widgets.searchForm.query",
-      "type" : "string"
-    }, {
       "target" : "municipalityId",
       "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber",
       "type" : "number"
@@ -699,7 +695,11 @@
     "name" : "FormCategoriesData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber",
+      "type" : "number"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "FormCategories",
@@ -710,7 +710,7 @@
     "onSuccess" : "Widgets.dialogCategories.close()",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
-    "autoUpdate" : false,
+    "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
     "ignoreCase" : false,
@@ -727,7 +727,6 @@
         "precision" : 10,
         "generator" : "assigned",
         "isRelated" : true,
-        "defaultValue" : "",
         "relatedTableName" : "Municipalities",
         "relatedEntityName" : "Municipalities",
         "relatedColumnName" : "municipalityId",
@@ -1108,7 +1107,8 @@
       "primaryFields" : [ "id" ]
     },
     "isDefault" : true,
-    "bindCount" : 1,
+    "bindCount" : 3,
+    "spinnerContext" : "page",
     "tableName" : "FormCategories",
     "tableType" : "TABLE",
     "properties" : [ "municipalities" ],
@@ -1510,7 +1510,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 3,
+    "bindCount" : 7,
     "tableName" : "Municipalities",
     "tableType" : "TABLE",
     "properties" : [ "states" ],
