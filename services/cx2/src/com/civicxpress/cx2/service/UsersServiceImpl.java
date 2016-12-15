@@ -50,48 +50,48 @@ public class UsersServiceImpl implements UsersService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.UserPasswordResetTokensService")
-	private UserPasswordResetTokensService userPasswordResetTokensService;
-
-    @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
-
-    @Autowired
-	@Qualifier("cx2.FormFeeService")
-	private FormFeeService formFeeService;
-
-    @Autowired
-	@Qualifier("cx2.McnewElectricConnectionService")
-	private McnewElectricConnectionService mcnewElectricConnectionService;
+	@Qualifier("cx2.UserSubscriptionsService")
+	private UserSubscriptionsService userSubscriptionsService;
 
     @Autowired
 	@Qualifier("cx2.McnewResidentialStructureService")
 	private McnewResidentialStructureService mcnewResidentialStructureService;
 
     @Autowired
-	@Qualifier("cx2.VendorUsersService")
-	private VendorUsersService vendorUsersService;
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
+
+    @Autowired
+	@Qualifier("cx2.UserPasswordResetTokensService")
+	private UserPasswordResetTokensService userPasswordResetTokensService;
 
     @Autowired
 	@Qualifier("cx2.VendorAdminsService")
 	private VendorAdminsService vendorAdminsService;
 
     @Autowired
-	@Qualifier("cx2.MunicipalityGroupMembersService")
-	private MunicipalityGroupMembersService municipalityGroupMembersService;
+	@Qualifier("cx2.McnewElectricConnectionService")
+	private McnewElectricConnectionService mcnewElectricConnectionService;
 
     @Autowired
 	@Qualifier("cx2.SfnewResidentialStructureService")
 	private SfnewResidentialStructureService sfnewResidentialStructureService;
 
     @Autowired
-	@Qualifier("cx2.UserSubscriptionsService")
-	private UserSubscriptionsService userSubscriptionsService;
+	@Qualifier("cx2.FormFeeService")
+	private FormFeeService formFeeService;
+
+    @Autowired
+	@Qualifier("cx2.VendorUsersService")
+	private VendorUsersService vendorUsersService;
 
     @Autowired
 	@Qualifier("cx2.MasterFormsService")
 	private MasterFormsService masterFormsService;
+
+    @Autowired
+	@Qualifier("cx2.MunicipalityGroupMembersService")
+	private MunicipalityGroupMembersService municipalityGroupMembersService;
 
     @Autowired
 	@Qualifier("cx2.PudapplicationService")
@@ -453,37 +453,10 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UserPasswordResetTokensService instance
+	 * @param service UserSubscriptionsService instance
 	 */
-	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
-        this.userPasswordResetTokensService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service RolesService instance
-	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormFeeService instance
-	 */
-	protected void setFormFeeService(FormFeeService service) {
-        this.formFeeService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service McnewElectricConnectionService instance
-	 */
-	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
-        this.mcnewElectricConnectionService = service;
+	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
+        this.userSubscriptionsService = service;
     }
 
     /**
@@ -498,10 +471,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorUsersService instance
+	 * @param service RolesService instance
 	 */
-	protected void setVendorUsersService(VendorUsersService service) {
-        this.vendorUsersService = service;
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service UserPasswordResetTokensService instance
+	 */
+	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
+        this.userPasswordResetTokensService = service;
     }
 
     /**
@@ -516,10 +498,10 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalityGroupMembersService instance
+	 * @param service McnewElectricConnectionService instance
 	 */
-	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
-        this.municipalityGroupMembersService = service;
+	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
+        this.mcnewElectricConnectionService = service;
     }
 
     /**
@@ -534,10 +516,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UserSubscriptionsService instance
+	 * @param service FormFeeService instance
 	 */
-	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
-        this.userSubscriptionsService = service;
+	protected void setFormFeeService(FormFeeService service) {
+        this.formFeeService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service VendorUsersService instance
+	 */
+	protected void setVendorUsersService(VendorUsersService service) {
+        this.vendorUsersService = service;
     }
 
     /**
@@ -547,6 +538,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setMasterFormsService(MasterFormsService service) {
         this.masterFormsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MunicipalityGroupMembersService instance
+	 */
+	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
+        this.municipalityGroupMembersService = service;
     }
 
     /**

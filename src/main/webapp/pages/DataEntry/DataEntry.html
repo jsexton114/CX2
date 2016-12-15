@@ -37,7 +37,7 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow2">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn3">
-                                        <wm-form-field name="email" displayname="Email" show="true" primary-key="false" generator="assigned" key="email" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                        <wm-form-field name="email" displayname="Email" show="true" primary-key="false" generator="assigned" key="email" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn4">
                                         <wm-form-field name="lastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
@@ -75,15 +75,10 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow7">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn14">
-                                        <wm-form-field name="photo" displayname="Photo" show="true" primary-key="false" generator="assigned" key="photo" type="blob" widget="upload" maxchars="255" permitted="undefined" href="services/cx2/Users/1/content/photo?0.2530318613150806"></wm-form-field>
+                                        <wm-form-field name="photo" displayname="Photo" show="true" primary-key="false" generator="assigned" key="photo" type="blob" widget="upload" maxchars="255" permitted="undefined"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn name="gridcolumn1" columnwidth="6">
-                                        <wm-form-field name="password" displayname="Password" show="true" primary-key="false" generator="assigned" key="password" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow1">
-                                    <wm-gridcolumn name="gridcolumn2" columnwidth="6">
-                                        <wm-form-field name="banned" displayname="Banned" show="true" primary-key="false" generator="assigned" key="banned" type="boolean" widget="checkbox"></wm-form-field>
+                                        <wm-form-field name="banned" displayname="Banned" show="true" primary-key="false" generator="assigned" key="banned" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -440,12 +435,14 @@
                 <wm-tabpane name="tabpane8" title="FormCategories">
                     <wm-livegrid formlayout="dialog" name="livegrid6_1">
                         <wm-grid gridfirstrowselect="true" editmode="dialog" title="Formcategories List" dataset="bind:Variables.Cx2FormCategoriesData.dataSet" navigation="Basic" name="grid7_1">
-                            <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="category" caption="Category" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                            <wm-grid-column binding="description" caption="Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
+                            <wm-grid-column binding="category" caption="Category" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="description" caption="Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="undefined"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                         <wm-liveform novalidate="false" errormessage="" title="Formcategories Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2FormCategoriesData.dataSet" captionalign="left" captionposition="top" name="liveform6_1">
                             <wm-layoutgrid columns="1" name="layoutgrid6_1">
@@ -457,6 +454,12 @@
                                 <wm-gridrow name="gridrow25">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn39">
                                         <wm-form-field name="description" displayname="Description" show="true" primary-key="false" generator="assigned" key="description" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow1">
+                                    <wm-gridcolumn name="gridcolumn1" columnwidth="12">
+                                        <wm-form-field name="municipalities" displayname="Municipalities" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="autocomplete" displayexpression="municipalityName"
+                                        orderby="municipalityName:desc" searchkey="municipalityName" displaylabel="municipalityName"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>

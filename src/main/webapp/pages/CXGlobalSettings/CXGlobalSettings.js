@@ -17,7 +17,9 @@ Application.$controller("CXGlobalSettingsPageController", ["$scope", function ($
 }]);
 
 
-Application.$controller("liveformGlobalSettingsController", ["$scope",
+
+
+Application.$controller("liveform2Controller", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;

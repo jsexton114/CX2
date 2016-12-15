@@ -68,6 +68,11 @@
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="getListofUsers">
+        <parameter name="municipalityID" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Email" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2getListofUsersrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="GetRolesForMunicipality">
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
@@ -228,11 +233,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="getListofUsers">
-        <parameter name="municipalityID" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="Email" typeRef="java.lang.String" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
@@ -602,11 +602,12 @@
             <element name="cxemail" typeRef="java.lang.String" allowNull="true"/>
             <element name="cxglobalSignature" typeRef="java.lang.String" allowNull="true"/>
             <element name="cxphoneNumber" typeRef="java.lang.String" allowNull="true"/>
+            <element name="cxpostalCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="cxstate" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="cxwebsite" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
-            <element name="technologyFee" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="technologyFee" typeRef="java.lang.Float" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Holidays">
             <element name="date" typeRef="java.util.Date" allowNull="true"/>

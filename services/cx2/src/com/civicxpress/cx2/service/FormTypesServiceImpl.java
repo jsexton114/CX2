@@ -46,6 +46,10 @@ public class FormTypesServiceImpl implements FormTypesService {
 	private McnewResidentialStructureService mcnewResidentialStructureService;
 
     @Autowired
+	@Qualifier("cx2.FormStatusesService")
+	private FormStatusesService formStatusesService;
+
+    @Autowired
 	@Qualifier("cx2.FormCategoryMappingService")
 	private FormCategoryMappingService formCategoryMappingService;
 
@@ -60,10 +64,6 @@ public class FormTypesServiceImpl implements FormTypesService {
     @Autowired
 	@Qualifier("cx2.PudapplicationService")
 	private PudapplicationService pudapplicationService;
-
-    @Autowired
-	@Qualifier("cx2.FormStatusesService")
-	private FormStatusesService formStatusesService;
 
     @Autowired
 	@Qualifier("cx2.SfnewElectricConnectionService")
@@ -300,6 +300,15 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service FormStatusesService instance
+	 */
+	protected void setFormStatusesService(FormStatusesService service) {
+        this.formStatusesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service FormCategoryMappingService instance
 	 */
 	protected void setFormCategoryMappingService(FormCategoryMappingService service) {
@@ -331,15 +340,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 	 */
 	protected void setPudapplicationService(PudapplicationService service) {
         this.pudapplicationService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormStatusesService instance
-	 */
-	protected void setFormStatusesService(FormStatusesService service) {
-        this.formStatusesService = service;
     }
 
     /**

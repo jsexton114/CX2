@@ -10,8 +10,8 @@
     "type" : "States",
     "isList" : false,
     "saveInPhonegap" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
+    "maxResults" : 60,
+    "designMaxResults" : 60,
     "inFlightBehavior" : "executeLast",
     "startUpdate" : true,
     "autoUpdate" : true,
@@ -52,7 +52,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 1,
+    "bindCount" : 2,
     "tableName" : "States",
     "tableType" : "TABLE",
     "properties" : [ ],
@@ -146,8 +146,8 @@
         "scale" : 0
       }, {
         "fieldName" : "technologyFee",
-        "type" : "integer",
-        "fullyQualifiedType" : "integer",
+        "type" : "float",
+        "fullyQualifiedType" : "float",
         "columnName" : "TechnologyFee",
         "isPrimaryKey" : false,
         "notNull" : false,
@@ -156,7 +156,7 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
-        "scale" : 0
+        "scale" : 2
       }, {
         "fieldName" : "cxglobalSignature",
         "type" : "string",
@@ -240,6 +240,19 @@
         "type" : "string",
         "fullyQualifiedType" : "string",
         "columnName" : "CXEmail",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 19,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "cxpostalCode",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "CXPostalCode",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 255,
@@ -352,8 +365,8 @@
         "scale" : 0
       }, {
         "fieldName" : "technologyFee",
-        "type" : "integer",
-        "fullyQualifiedType" : "integer",
+        "type" : "float",
+        "fullyQualifiedType" : "float",
         "columnName" : "TechnologyFee",
         "isPrimaryKey" : false,
         "notNull" : false,
@@ -362,7 +375,7 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
-        "scale" : 0
+        "scale" : 2
       }, {
         "fieldName" : "cxglobalSignature",
         "type" : "string",
@@ -454,13 +467,26 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "cxpostalCode",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "CXPostalCode",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 19,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "GlobalSettings",
       "fullyQualifiedName" : "com.civicxpress.cx2.GlobalSettings",
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 1,
+    "bindCount" : 3,
     "tableName" : "GlobalSettings",
     "tableType" : "TABLE",
     "properties" : [ "states" ],

@@ -26,7 +26,7 @@ import javax.persistence.Table;
 public class GlobalSettings implements Serializable {
 
     private Integer id;
-    private Integer technologyFee;
+    private Float technologyFee;
     private String cxglobalSignature;
     private String cxphoneNumber;
     private String cxaddress1;
@@ -35,6 +35,7 @@ public class GlobalSettings implements Serializable {
     private Integer cxstate;
     private String cxwebsite;
     private String cxemail;
+    private String cxpostalCode;
     private States states;
 
     @Id
@@ -48,12 +49,12 @@ public class GlobalSettings implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "`TechnologyFee`", nullable = true, scale = 0, precision = 10)
-    public Integer getTechnologyFee() {
+    @Column(name = "`TechnologyFee`", nullable = true, scale = 2, precision = 10)
+    public Float getTechnologyFee() {
         return this.technologyFee;
     }
 
-    public void setTechnologyFee(Integer technologyFee) {
+    public void setTechnologyFee(Float technologyFee) {
         this.technologyFee = technologyFee;
     }
 
@@ -127,6 +128,15 @@ public class GlobalSettings implements Serializable {
 
     public void setCxemail(String cxemail) {
         this.cxemail = cxemail;
+    }
+
+    @Column(name = "`CXPostalCode`", nullable = true, length = 255)
+    public String getCxpostalCode() {
+        return this.cxpostalCode;
+    }
+
+    public void setCxpostalCode(String cxpostalCode) {
+        this.cxpostalCode = cxpostalCode;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
