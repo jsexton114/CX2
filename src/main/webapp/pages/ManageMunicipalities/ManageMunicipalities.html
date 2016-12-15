@@ -14,9 +14,9 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn17">
                         <wm-livegrid formlayout="dialog" name="livegrid1">
                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="Manage Municipalities" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" navigation="Basic" name="grid1" confirmdelete="Are you sure you want to delete this Municipality?"
-                            deletemessage="Municipality deleted successfully" nodatamessage="No Municipalities found." loadingdatamsg="Please Wait While Loading Municipalities..." exportformat="EXCEL">
+                            deletemessage="Municipality deleted successfully" nodatamessage="No Municipalities found." loadingdatamsg="Please Wait While Loading Municipalities..." exportformat="EXCEL" filtermode="multicolumn">
                                 <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
-                                <wm-grid-column binding="logo" caption="Logo" type="blob" widget-type="image" generator="assigned" edit-widget-type="upload" searchable="false" show="true" readonly="false"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
+                                <wm-grid-column binding="logo" caption="Logo" type="blob" widget-type="image" generator="assigned" edit-widget-type="upload" searchable="false" show="true" filterwidget="text" readonly="false"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
                                 </wm-grid-column>
                                 <wm-grid-column binding="municipalityName" caption="Municipality Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="address1" caption="Address1" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>

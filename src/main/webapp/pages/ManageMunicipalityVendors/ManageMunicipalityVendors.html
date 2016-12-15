@@ -33,7 +33,7 @@
                         <wm-accordion name="accordion1">
                             <wm-accordionpane name="accordionpane1" title="Pending Review">
                                 <wm-livegrid formlayout="dialog" name="livegrid2">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ReviewVendorApprovals.dataSet" navigation="Basic" name="gridPending">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ReviewVendorApprovals.dataSet" navigation="Basic" name="gridPending" filtermode="multicolumn" exportformat="EXCEL">
                                         <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
@@ -78,7 +78,7 @@
                             </wm-accordionpane>
                             <wm-accordionpane name="accordionpane2" title="Approved Vendors">
                                 <wm-livegrid formlayout="dialog" name="livegrid2_1">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendorapprovals List" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" navigation="Basic" name="gridApprovedVendors">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendorapprovals List" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" navigation="Basic" name="gridApprovedVendors" filtermode="multicolumn" exportformat="EXCEL">
                                         <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
@@ -121,7 +121,7 @@
                             </wm-accordionpane>
                             <wm-accordionpane name="accordionpane3" title="Suspended Vendors">
                                 <wm-livegrid formlayout="dialog" name="livegrid3">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendorapprovals List" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" navigation="Basic" name="gridSuspended">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendorapprovals List" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" navigation="Basic" name="gridSuspended" filtermode="multicolumn" exportformat="EXCEL">
                                         <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>

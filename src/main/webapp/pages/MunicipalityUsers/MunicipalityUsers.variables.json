@@ -1467,7 +1467,7 @@
       "type" : "integer"
     }, {
       "target" : "Email",
-      "value" : "bind:' '+Widgets.searchUsers.query",
+      "value" : "bind:'%'+Widgets.searchUsers.query+'%'",
       "type" : "string"
     } ],
     "type" : "cx2getListofUsersrtnType",
@@ -1480,12 +1480,14 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "startUpdate" : true,
+    "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Loading user data...."
   },
   "GetMunicipalityGroups" : {
     "_id" : "wm-GetMunicipalityGroups-wm.LiveVariable-1481272931293",

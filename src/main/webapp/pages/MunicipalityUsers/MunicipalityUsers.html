@@ -27,7 +27,7 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-tabs name="Manage">
                             <wm-tabpane name="tabpane1" title="Municipality Subscriber List">
-                                <wm-grid title="Usersubscriptions List" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="gridUsersubscriptionsList" on-click="Widgets.dialog1.open()" filtermode="multicolumn">
+                                <wm-grid title="Usersubscriptions List" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="gridUsersubscriptionsList" on-click="Widgets.dialog1.open()" filtermode="multicolumn" exportformat="EXCEL">
                                     <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                                     <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" edit-widget-type="upload" searchable="false" show="true" filterwidget="text"
                                     related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{'services/cx2/Users/'+ row['users.id'] + '/content/photo'}}">
@@ -46,7 +46,7 @@
                                 <wm-layoutgrid name="layoutgrid4_1">
                                     <wm-gridrow name="gridrow13">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn28">
-                                            <wm-grid title="" dataset="bind:Variables.GetEmployeeRolesForMunicipality.dataSet" navigation="Classic" name="gridEmployees">
+                                            <wm-grid title="" dataset="bind:Variables.GetEmployeeRolesForMunicipality.dataSet" navigation="Classic" name="gridEmployees" filtermode="multicolumn">
                                                 <wm-grid-column binding="Photo" caption="Photo" type="string" widget-type="image" readonly="true" edit-widget-type="text" show="true"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{'services/cx2/Users/'+ row['ID'] + '/content/photo'}}">
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
@@ -116,7 +116,7 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpane4_1" title="Manage Groups">
                                 <wm-livegrid formlayout="dialog" name="Municipalitygroups">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Municipalitygroups List" dataset="bind:Variables.GetMunicipalityGroups.dataSet" navigation="Pager" name="Municipalitygroupsgrid" filtermode="search">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Municipalitygroups List" dataset="bind:Variables.GetMunicipalityGroups.dataSet" navigation="Classic" name="Municipalitygroupsgrid" filtermode="multicolumn" exportformat="EXCEL">
                                         <wm-grid-column binding="groupName" caption="Group Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="groupDescription" caption="Group Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
@@ -257,7 +257,7 @@
     <wm-view class="dialog-view" name="view4" viewgroup="userdialog">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Manage Users" iconclass="wi wi-edit" name="GroupMembersData">
             <wm-livegrid formlayout="dialog" name="livegrid2">
-                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Municipalitygroupmembers List" dataset="bind:Variables.GroupMembersData.dataSet" navigation="Pager" name="grid4">
+                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Municipalitygroupmembers List" dataset="bind:Variables.GroupMembersData.dataSet" navigation="Pager" name="grid4" filtermode="multicolumn" exportformat="EXCEL">
                     <wm-grid-column binding="municipalityGroups.groupName" caption="Group Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="MunicipalityGroups" readonly="false"></wm-grid-column>
                     <wm-grid-column binding="users.firstName" caption="First Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
                     <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>

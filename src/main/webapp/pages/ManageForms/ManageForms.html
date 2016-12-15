@@ -40,7 +40,7 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow6">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn9" padding="2em unset">
-                                        <wm-grid title="Formtypes List" dataset="bind:Variables.Cx2FormTypesData.dataSet" navigation="Basic" name="gridFormtypes">
+                                        <wm-grid title="Formtypes List" dataset="bind:Variables.Cx2FormTypesData.dataSet" navigation="Basic" name="gridFormtypes" filtermode="multicolumn" exportformat="EXCEL">
                                             <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                                             <wm-grid-column binding="formType" caption="Form Type" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                             <wm-grid-column binding="pageName" caption="Page Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>

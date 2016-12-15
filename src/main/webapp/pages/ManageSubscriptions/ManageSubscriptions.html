@@ -13,7 +13,7 @@
                 <wm-gridrow name="gridrow4">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn6">
                         <wm-livegrid formlayout="dialog" name="livegrid2">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="Usersubscriptions List" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="Usersubscriptions List" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL">
                                 <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                                 <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" edit-widget-type="upload" searchable="false" show="true" filterwidget="text" related-entity-name="Users"
                                 readonly="false"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
