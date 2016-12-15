@@ -1487,7 +1487,7 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page",
-    "spinnerMessage" : "Loading user data...."
+    "spinnerMessage" : "Loading ..."
   },
   "GetMunicipalityGroups" : {
     "_id" : "wm-GetMunicipalityGroups-wm.LiveVariable-1481272931293",
@@ -2308,7 +2308,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.GroupMembersData.listRecords();Widgets.ManageUsers.close();Variables.userAdded.invoke()",
+    "onSuccess" : "Variables.GroupMembersData.listRecords();Widgets.ManageUsers.close();Variables.userAdded.invoke();Widgets.GroupMembersData.open()",
     "onError" : "MunicipalityGroupMembersDataonError($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
