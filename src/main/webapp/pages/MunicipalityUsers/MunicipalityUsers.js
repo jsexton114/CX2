@@ -15,9 +15,9 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
     };
 
 
-    $scope.buttonAddEmployeeClick = function($event, $isolateScope) {
-        $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityEmployee";
-    };
+    // $scope.buttonAddEmployeeClick = function($event, $isolateScope) {
+    //     $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityEmployee";
+    // };
 
 
     $scope.buttonAddAdminClick = function($event, $isolateScope) {
@@ -80,6 +80,11 @@ Application.$controller("gridEmployeesController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.customButtonAction = function($event) {
+            $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityEmployee";
+        };
+
     }
 ]);
 
