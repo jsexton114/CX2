@@ -40,12 +40,11 @@
                                             <wm-grid title="" dataset="bind:Variables.ExecuteGetFormsForMunicpality.dataSet" navigation="Classic" name="gridFormTypes">
                                                 <wm-grid-column binding="ID" caption="Id" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="FormType" caption="Form Type" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="PageName" caption="Page Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="TbLocation" caption="Tb Location" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="CreatedDate" caption="Created Date" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-row-action key="customRow" display-name="" title="Custom rowActions" value="" iconclass="wi wi-edit" class="btn-transparent" show="true" action="Variables.goToPage_EditForm.invoke()"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="" title="Custom rowActions" value="" iconclass="wi wi-trash" class="btn-transparent" show="true" action="Variables.DeleteFormType.invoke()"></wm-grid-row-action>
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-edit" title="Custom rowActions" action="Variables.goToPage_EditForm.invoke()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Custom rowActions" action="Variables.DeleteFormType.invoke()"
+                                                disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -56,8 +55,7 @@
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.FormCategoriesData.dataSet" navigation="Classic" name="gridFormcategories" filtermode="multicolumn">
                                         <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                                         <wm-grid-column binding="category" caption="Category" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="description" caption="Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
