@@ -105,15 +105,11 @@
                                                     placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
-                                            <wm-gridrow name="gridrow1">
-                                                <wm-gridcolumn name="gridcolumn1" columnwidth="12">
-                                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord"
-                                                    dataset="bind:Variables.SelectedMunicipalityObj.dataSet" datafield="All Fields" displayfield="id"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
                                         </wm-layoutgrid>
-                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                        <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord"
+                                        dataset="bind:Variables.SelectedMunicipalityObj.dataSet" datafield="All Fields" displayfield="id" placeholder="Select value"></wm-form-field>
+                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                     </wm-liveform>
                                 </wm-livegrid>
                             </wm-tabpane>
@@ -240,7 +236,7 @@
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7"></wm-button>
                 <wm-button class="btn-primary" caption="Save" name="button8" on-click="Variables.MunicipalityGroupMembersData.createRecord()" disabled="bind:Widgets.searchUsers.datavalue.UserId == null"></wm-button>
             </wm-dialogactions>
-            <wm-search name="searchUsers" placeholder="Search Users" dataset="bind:Variables.getListOfUsers.dataSet" searchkey="Email" displaylabel="Email" datafield="All Fields" orderby="Email:desc" on-focus="Variables.getListOfUsers.invoke()"></wm-search>
+            <wm-search name="searchUsers" placeholder="Search by Email Address" dataset="bind:Variables.getListOfUsers.dataSet" searchkey="Email" displaylabel="Email" datafield="All Fields" orderby="Email:desc" on-focus="Variables.getListOfUsers.invoke()"></wm-search>
         </wm-dialog>
     </wm-view>
 </wm-page>
