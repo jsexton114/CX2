@@ -3725,22 +3725,6 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "formTypeses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "MunicipalityId"
-      } ],
-      "name" : "FK_Municipalities_TO_ForCKxhV",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceTable" : "Municipalities",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "FormTypes",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
       "fieldName" : "userSubscriptionses",
       "mappings" : [ {
         "sourceColumn" : "ID",
@@ -6931,31 +6915,6 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "municipalityId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 255,
-      "name" : "MunicipalityId",
-      "nullable" : true,
-      "oldName" : "MunicipalityId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
       "fieldName" : "formType",
       "foreignKey" : false,
       "generatorType" : "assigned",
@@ -7419,22 +7378,6 @@
       "sourceTable" : "FormTypes",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "FormStatuses",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "municipalities",
-      "mappings" : [ {
-        "sourceColumn" : "MunicipalityId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_Municipalities_TO_ForCKxhV",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceTable" : "FormTypes",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Municipalities",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",

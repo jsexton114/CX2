@@ -18,8 +18,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -34,7 +32,6 @@ public class FormTypes implements Serializable {
 
     private Integer id;
     private String formTypeGuid;
-    private Integer municipalityId;
     private String formType;
     private String tbLocation;
     private String flatFee;
@@ -55,7 +52,6 @@ public class FormTypes implements Serializable {
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
-    private Municipalities municipalities;
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
     private List<Pudapplication> pudapplications = new ArrayList<>();
 
@@ -77,15 +73,6 @@ public class FormTypes implements Serializable {
 
     public void setFormTypeGuid(String formTypeGuid) {
         this.formTypeGuid = formTypeGuid;
-    }
-
-    @Column(name = "`MunicipalityId`", nullable = true, scale = 0, precision = 10)
-    public Integer getMunicipalityId() {
-        return this.municipalityId;
-    }
-
-    public void setMunicipalityId(Integer municipalityId) {
-        this.municipalityId = municipalityId;
     }
 
     @Column(name = "`FormType`", nullable = true, length = 255)
@@ -267,20 +254,6 @@ public class FormTypes implements Serializable {
 
     public void setFormStatuseses(List<FormStatuses> formStatuseses) {
         this.formStatuseses = formStatuseses;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`MunicipalityId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public Municipalities getMunicipalities() {
-        return this.municipalities;
-    }
-
-    public void setMunicipalities(Municipalities municipalities) {
-        if(municipalities != null) {
-            this.municipalityId = municipalities.getId();
-        }
-
-        this.municipalities = municipalities;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")

@@ -72,7 +72,6 @@ public class Municipalities implements Serializable {
     private List<Gisrecords> gisrecordses = new ArrayList<>();
     private List<Holidays> holidayses = new ArrayList<>();
     private List<FormFee> formFees = new ArrayList<>();
-    private List<FormTypes> formTypeses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
 
     @Id
@@ -406,15 +405,6 @@ public class Municipalities implements Serializable {
 
     public void setFormFees(List<FormFee> formFees) {
         this.formFees = formFees;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<FormTypes> getFormTypeses() {
-        return this.formTypeses;
-    }
-
-    public void setFormTypeses(List<FormTypes> formTypeses) {
-        this.formTypeses = formTypeses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
