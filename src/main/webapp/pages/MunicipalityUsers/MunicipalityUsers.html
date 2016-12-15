@@ -62,11 +62,7 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpane4" title="Admins">
                                 <wm-layoutgrid name="layoutgrid6_1">
-                                    <wm-gridrow name="gridrow18_1">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn30_1" horizontalalign="right" padding="1em unset">
-                                            <wm-button class="btn-default btn-primary" caption="AddAdmin" type="button" margin="unset 0.5em" iconclass="wi wi-add" on-click="buttonAddAdminClick($event, $scope);Widgets.dialogAddEmployeeORAdmin.open()" name="buttonAddAdmin"></wm-button>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow18_1"></wm-gridrow>
                                     <wm-gridrow name="gridrow19_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn32" horizontalalign="right">
                                             <wm-grid title="" dataset="bind:Variables.GetAdminRolesForMunicipality.dataSet" navigation="Classic" name="grid5" filtermode="multicolumn">
@@ -75,6 +71,8 @@
                                                 <wm-grid-column binding="Email" caption="Email" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="PhoneNumber" caption="Phone Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-action key="customButton" display-name="Add Admin" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Admin" action="customButtonAction($event);Widgets.dialogAddEmployeeORAdmin.open()"
+                                                shortcutkey="" disabled="false" icon="wi wi-plus"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="" action="Variables.RemoveAdmin.invoke()" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
