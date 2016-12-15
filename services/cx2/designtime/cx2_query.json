@@ -351,6 +351,42 @@
       "Email" : "java.lang.String"
     }
   }, {
+    "name" : "GetFormsForMunicpality",
+    "query" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.MunicipalityId=:MunicipalityId and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID",
+    "comment" : "GetFormsForMunicpality",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "MunicipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2GetFormsForMunicpalityrtnType",
+    "returnTypeMetadata" : {
+      "Active" : "java.lang.Boolean",
+      "CreatedDate" : "java.sql.Date",
+      "FlatFee" : "java.lang.String",
+      "FlatFeeAccountingCode" : "java.lang.String",
+      "FormType" : "java.lang.String",
+      "FormTypeGuid" : "java.lang.String",
+      "ID" : "java.math.BigDecimal",
+      "MunicipalityInternalForm" : "java.lang.Boolean",
+      "PageName" : "java.lang.String",
+      "Report" : "java.lang.String",
+      "SfFee" : "java.lang.String",
+      "SfFeeAccountingCode" : "java.lang.String",
+      "StateFee" : "java.lang.String",
+      "StateFeeAccountingCode" : "java.lang.String",
+      "TbLocation" : "java.lang.String",
+      "UnitFee" : "java.lang.String",
+      "UnitFeeAccountingCode" : "java.lang.String"
+    }
+  }, {
     "name" : "GetFormTypesByCategoriesAndMunicipalities",
     "query" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.MunicipalityId=:municipality",
     "comment" : "GetFormTypesByCategoriesAndMunicipalities",

@@ -145,7 +145,7 @@
     "dataSet" : [ {
       "type" : "integer",
       "target" : "FormTypeId",
-      "value" : "bind:Widgets.gridFormtypes.selecteditem.id"
+      "value" : "bind:Widgets.gridFormTypes.selecteditem.ID | toNumber"
     } ],
     "pageTransitions" : "none"
   },

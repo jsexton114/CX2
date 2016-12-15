@@ -28,9 +28,6 @@ Application.$controller("dialogCreateFormController", ["$scope",
 
 
 
-        $scope.liveformCreateFormBeforeservicecall = function($event, $operation, $data) {
-
-        };
 
 
         $scope.dialogCreateFormOpened = function($event, $isolateScope) {
@@ -62,30 +59,32 @@ Application.$controller("liveformCreateFormController", ["$scope",
     }
 ]);
 
-Application.$controller("gridFormtypesController", ["$scope",
+
+
+Application.$controller("dialogCategoriesController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
     }
 ]);
 
-Application.$controller("dialogCategoriesController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
-]);
-
 
 
 Application.$controller("gridFormcategoriesController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveform3Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridFormTypesController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;

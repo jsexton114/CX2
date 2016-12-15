@@ -146,30 +146,9 @@ Application.$controller("liveform6_1Controller", ["$scope",
     }
 ]);
 
-Application.$controller("grid8Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
 
-        $scope.addNewRowAction = function($event) {
-            var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            var randomString = '';
-            for (var i = 0; i < 32; i++) {
-                var randomPoz = Math.floor(Math.random() * charSet.length);
-                randomString += charSet.substring(randomPoz, randomPoz + 1);
-            }
-            $scope.Widgets.liveform7.GUID = randomString;
-        };
 
-    }
-]);
 
-Application.$controller("liveform7Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
 
 Application.$controller("grid9Controller", ["$scope",
     function($scope) {
@@ -199,19 +178,9 @@ Application.$controller("liveform9Controller", ["$scope",
     }
 ]);
 
-Application.$controller("grid11Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
 
-Application.$controller("liveform10Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
+
 
 Application.$controller("grid12Controller", ["$scope",
     function($scope) {
@@ -313,6 +282,34 @@ Application.$controller("grid16_2Controller", ["$scope",
 ]);
 
 Application.$controller("liveform15_2Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("grid17Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveform16Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("grid18Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveform17Controller", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;

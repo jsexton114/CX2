@@ -238,6 +238,10 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="GetFormsForMunicpality">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -296,6 +300,10 @@
     <operation operationType="nativequery" name="getEmailId">
         <parameter name="userID" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2getEmailIdrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="GetFormsForMunicpality">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2GetFormsForMunicpalityrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
         <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
@@ -1038,6 +1046,25 @@
             <element name="PageName" typeRef="java.lang.String"/>
             <element name="PermissionsReaders" typeRef="java.lang.String"/>
             <element name="PermissionsWriters" typeRef="java.lang.String"/>
+            <element name="Report" typeRef="java.lang.String"/>
+            <element name="SfFee" typeRef="java.lang.String"/>
+            <element name="SfFeeAccountingCode" typeRef="java.lang.String"/>
+            <element name="StateFee" typeRef="java.lang.String"/>
+            <element name="StateFeeAccountingCode" typeRef="java.lang.String"/>
+            <element name="TbLocation" typeRef="java.lang.String"/>
+            <element name="UnitFee" typeRef="java.lang.String"/>
+            <element name="UnitFeeAccountingCode" typeRef="java.lang.String"/>
+        </dataobject>
+        <dataobject javaType="cx2GetFormsForMunicpalityrtnType">
+            <element name="Active" typeRef="java.lang.Boolean"/>
+            <element name="CreatedDate" typeRef="java.sql.Date"/>
+            <element name="FlatFee" typeRef="java.lang.String"/>
+            <element name="FlatFeeAccountingCode" typeRef="java.lang.String"/>
+            <element name="FormType" typeRef="java.lang.String"/>
+            <element name="FormTypeGuid" typeRef="java.lang.String"/>
+            <element name="ID" typeRef="java.math.BigDecimal"/>
+            <element name="MunicipalityInternalForm" typeRef="java.lang.Boolean"/>
+            <element name="PageName" typeRef="java.lang.String"/>
             <element name="Report" typeRef="java.lang.String"/>
             <element name="SfFee" typeRef="java.lang.String"/>
             <element name="SfFeeAccountingCode" typeRef="java.lang.String"/>

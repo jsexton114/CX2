@@ -37,16 +37,15 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow6">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn9" padding="1em unset 2em unset">
-                                            <wm-grid title="" dataset="bind:Variables.Cx2FormTypesData.dataSet" navigation="Classic" name="gridFormtypes" filtermode="multicolumn" exportformat="EXCEL">
-                                                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="formType" caption="Form Type" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="pageName" caption="Page Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="createdDate" caption="Created Date" type="date" generator="assigned" readonly="true" edit-widget-type="date" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="150px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-row-action key="customRow" display-name="Edit" show="true" class="btn-transparent" iconclass="wi wi-edit" title="Custom rowActions" action="Variables.goToPage_EditForm.invoke()"
-                                                disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="Delete" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Custom rowActions" action="Variables.DeleteFormType.invoke()"
-                                                disabled="false"></wm-grid-row-action>
+                                            <wm-grid title="" dataset="bind:Variables.ExecuteGetFormsForMunicpality.dataSet" navigation="Classic" name="gridFormTypes">
+                                                <wm-grid-column binding="ID" caption="Id" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="FormType" caption="Form Type" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="PageName" caption="Page Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="TbLocation" caption="Tb Location" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="CreatedDate" caption="Created Date" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-row-action key="customRow" display-name="" title="Custom rowActions" value="" iconclass="wi wi-edit" class="btn-transparent" show="true" action="Variables.goToPage_EditForm.invoke()"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow1" display-name="" title="Custom rowActions" value="" iconclass="wi wi-trash" class="btn-transparent" show="true" action="Variables.DeleteFormType.invoke()"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
