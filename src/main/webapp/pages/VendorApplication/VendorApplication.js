@@ -1,4 +1,4 @@
-Application.$controller("VendorApplicationPageController", ["$scope", function($scope) {
+Application.$controller("VendorApplicationPageController", ["$scope", "wmToaster", function($scope, wmToaster) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -14,6 +14,11 @@ Application.$controller("VendorApplicationPageController", ["$scope", function($
             "VendorId": data.id
         });
         $scope.Variables.MapAsAdminForVendor.update();
+    };
+
+
+    $scope.liveformVendorApplicationError = function($event, $operation, $data) {
+        wmToaster.show('error', 'ERROR', 'A vendor with this FEIN number has already been entered in CivicXpress. If you have any questions, please email support@tekdoginc.com.', 5000);
     };
 
 }]);

@@ -83,7 +83,7 @@
   </sql-query>
   <sql-query name="GetFormTypesByCategoriesAndMunicipalities">
     <![CDATA[
-      select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.MunicipalityId=:municipality
+      select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID
     ]]>
   </sql-query>
   <sql-query name="getListofGroupName">

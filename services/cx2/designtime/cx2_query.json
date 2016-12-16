@@ -413,7 +413,7 @@
     }
   }, {
     "name" : "GetFormTypesByCategoriesAndMunicipalities",
-    "query" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.MunicipalityId=:municipality",
+    "query" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID",
     "comment" : "GetFormTypesByCategoriesAndMunicipalities",
     "description" : null,
     "nativeSql" : true,
@@ -421,13 +421,6 @@
     "update" : false,
     "queryParams" : [ {
       "paramName" : "formCategory",
-      "paramType" : "java.lang.Integer",
-      "testValue" : "1",
-      "systemParamName" : null,
-      "systemParam" : false,
-      "list" : false
-    }, {
-      "paramName" : "municipality",
       "paramType" : "java.lang.Integer",
       "testValue" : "2",
       "systemParamName" : null,
@@ -443,11 +436,8 @@
       "FormType" : "java.lang.String",
       "FormTypeGuid" : "java.lang.String",
       "ID" : "java.math.BigDecimal",
-      "MunicipalityId" : "java.math.BigDecimal",
       "MunicipalityInternalForm" : "java.lang.Boolean",
       "PageName" : "java.lang.String",
-      "PermissionsReaders" : "java.lang.String",
-      "PermissionsWriters" : "java.lang.String",
       "Report" : "java.lang.String",
       "SfFee" : "java.lang.String",
       "SfFeeAccountingCode" : "java.lang.String",

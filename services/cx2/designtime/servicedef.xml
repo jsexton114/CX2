@@ -71,11 +71,6 @@
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2GetFormsForMunicpalityrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
-        <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
-    </operation>
     <operation operationType="nativequery" name="getListofUsers">
         <parameter name="municipalityID" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="Email" typeRef="java.lang.String" isList="false"/>
@@ -154,6 +149,13 @@
         <parameter name="cf" typeRef="java.lang.String" isList="false"/>
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateCFInProfilertnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateDevFormDetailsForCXAdmin">
+        <parameter name="TbLocation" typeRef="java.lang.String" isList="false"/>
+        <parameter name="PageName" typeRef="java.lang.String" isList="false"/>
+        <parameter name="Report" typeRef="java.lang.String" isList="false"/>
+        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateDevFormDetailsForCXAdminrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdateGlobalEmailSig">
         <parameter name="gs" typeRef="java.lang.String" isList="false"/>
@@ -242,11 +244,8 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="UpdateDevFormDetailsForCXAdmin">
-        <parameter name="TbLocation" typeRef="java.lang.String" isList="false"/>
-        <parameter name="PageName" typeRef="java.lang.String" isList="false"/>
-        <parameter name="Report" typeRef="java.lang.String" isList="false"/>
-        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
+    <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
+        <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
@@ -319,7 +318,6 @@
     </operation>
     <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
         <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="getListofGroupName">
@@ -1068,11 +1066,8 @@
             <element name="FormType" typeRef="java.lang.String"/>
             <element name="FormTypeGuid" typeRef="java.lang.String"/>
             <element name="ID" typeRef="java.math.BigDecimal"/>
-            <element name="MunicipalityId" typeRef="java.math.BigDecimal"/>
             <element name="MunicipalityInternalForm" typeRef="java.lang.Boolean"/>
             <element name="PageName" typeRef="java.lang.String"/>
-            <element name="PermissionsReaders" typeRef="java.lang.String"/>
-            <element name="PermissionsWriters" typeRef="java.lang.String"/>
             <element name="Report" typeRef="java.lang.String"/>
             <element name="SfFee" typeRef="java.lang.String"/>
             <element name="SfFeeAccountingCode" typeRef="java.lang.String"/>
