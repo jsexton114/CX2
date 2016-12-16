@@ -26,12 +26,15 @@ public interface Cx2QueryExecutorService {
 	int executeDeleteExistingSubscriptionsForUser(  java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeDeleteFromVendorAdmins(  java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeDeleteFromVendorUsers(  java.lang.Integer vendor) throws QueryParameterMismatchException;
+	int executeDeleteMunicipalityGroup(  java.lang.Integer MunicipalityGroupId , java.lang.Integer UserId) throws QueryParameterMismatchException;
 	int executeDeleteToken(  java.lang.String token) throws QueryParameterMismatchException;
     Page<Object> executeEmployeesMunicipalities(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeGetEmailId(Pageable pageable, java.lang.Integer userID) throws QueryParameterMismatchException;
     Page<Object> executeGetFormsForMunicpality(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, java.lang.Integer formCategory, java.lang.Integer municipality) throws QueryParameterMismatchException;
+    Page<Object> executeGetListofGroupName(Pageable pageable,java.util.List<java.lang.Integer> MunicipalityID) throws QueryParameterMismatchException;
     Page<Object> executeGetListofUsers(Pageable pageable, java.lang.Integer municipalityID, java.lang.String Email) throws QueryParameterMismatchException;
+    Page<Object> executeGetMunicipalityGroupIdIDs(Pageable pageable, java.lang.Integer userID) throws QueryParameterMismatchException;
     Page<Object> executeGetRolesForMunicipality(Pageable pageable, java.lang.String role, java.lang.Integer municipality) throws QueryParameterMismatchException;
     Page<Object> executeGetUserID(Pageable pageable, java.lang.String Email) throws QueryParameterMismatchException;
     Page<Object> executeGetUserIdFromPasswordResetToken(Pageable pageable, java.lang.String token) throws QueryParameterMismatchException;

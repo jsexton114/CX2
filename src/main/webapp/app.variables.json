@@ -565,6 +565,34 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
+  "successfully" : {
+    "_id" : "wm-successfully-wm.NotificationVariable-1481869693445",
+    "name" : "successfully",
+    "owner" : "App",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "list"
+    }, {
+      "target" : "text",
+      "value" : "Record Added successfully",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "list"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "list"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "list"
+    } ],
+    "operation" : "toast"
+  },
   "supportedLocale" : {
     "_id" : "wm-wm.Variable1402640443182",
     "name" : "supportedLocale",

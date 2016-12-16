@@ -125,6 +125,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeDeleteMunicipalityGroup( java.lang.Integer MunicipalityGroupId ,java.lang.Integer UserId)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("MunicipalityGroupId", MunicipalityGroupId);
+        params.put("UserId", UserId);
+        return queryExecutor.executeNamedQueryForUpdate("deleteMunicipalityGroup", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeDeleteToken( java.lang.String token)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -166,12 +175,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeGetListofGroupName(Pageable pageable, java.util.List<java.lang.Integer> MunicipalityID)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("MunicipalityID", MunicipalityID);
+        return queryExecutor.executeNamedQuery("getListofGroupName", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeGetListofUsers(Pageable pageable, java.lang.Integer municipalityID, java.lang.String Email)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("municipalityID", municipalityID);
         params.put("Email", Email);
         return queryExecutor.executeNamedQuery("getListofUsers", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public Page<Object> executeGetMunicipalityGroupIdIDs(Pageable pageable, java.lang.Integer userID)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("userID", userID);
+        return queryExecutor.executeNamedQuery("getMunicipalityGroupIdIDs", params, pageable);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override

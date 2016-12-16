@@ -56,6 +56,11 @@
       delete from VendorUsers where ID=:vendor
     ]]>
   </sql-query>
+  <sql-query name="deleteMunicipalityGroup">
+    <![CDATA[
+      delete from MunicipalityGroupMembers where MunicipalityGroupId =:MunicipalityGroupId AND UserId =:UserId
+    ]]>
+  </sql-query>
   <sql-query name="deleteToken">
     <![CDATA[
       delete from UserPasswordResetTokens where Token =:token
@@ -81,9 +86,19 @@
       select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.MunicipalityId=:municipality
     ]]>
   </sql-query>
+  <sql-query name="getListofGroupName">
+    <![CDATA[
+      select ID,GroupName from MunicipalityGroups where ID IN :MunicipalityID
+    ]]>
+  </sql-query>
   <sql-query name="getListofUsers">
     <![CDATA[
       select a.UserId , b.Email from Roles a INNER JOIN Users b on a.UserId = b.ID where a.RoleName IN ('MunicipalityEmployee','MunicipalityAdmin') and a.MunicipalityId =:municipalityID and b.Email LIKE LOWER(concat('%',:Email,'%'))
+    ]]>
+  </sql-query>
+  <sql-query name="getMunicipalityGroupIdIDs">
+    <![CDATA[
+      select MunicipalityGroupId from MunicipalityGroupMembers where UserId =:userID
     ]]>
   </sql-query>
   <sql-query name="GetRolesForMunicipality">

@@ -33,6 +33,36 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
         wmToaster.show('error', 'ERROR', 'The user you selected has already been added to this group.', 5000);
     };
 
+
+    $scope.getMunicipalityGroupIdIDsonSuccess = function(variable, data) {
+
+        var items = [];
+        if (data.totalElements === 0) {
+            $scope.Variables.getListofGroupName.setInput('MunicipalityID', 1);
+            $scope.Variables.getListofGroupName.update({}, function(data) {
+
+            });
+            return;
+        } else {
+            for (var i = 0; i <= ((data.totalElements) - 1); i++) {
+                items.push(data.content[i].MunicipalityGroupId)
+
+            }
+
+            $scope.Variables.getListofGroupName.setInput('MunicipalityID', items);
+            $scope.Variables.getListofGroupName.update({}, function(data) {
+
+            });
+        }
+    };
+
+
+    $scope.deleteMunicipalityGrouponSuccess = function(variable, data) {
+        wmToaster.show('info', 'INFO', 'Group Deleted sucessfully', 5000);
+        $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $scope.Widgets.gridEmployees.selecteditem.ID);
+        $scope.Variables.getMunicipalityGroupIdIDs.update();
+    };
+
 }]);
 
 
@@ -145,10 +175,33 @@ Application.$controller("grid5Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+    }
+]);
 
-        $scope.customButtonAction = function($event) {
-            $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityAdmin";
-        };
+Application.$controller("dialog5Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
 
+Application.$controller("AddGroupstoMembersController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("EmployeeDialogController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("grid6Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

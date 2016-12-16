@@ -289,6 +289,11 @@
         <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2DeleteFromVendorUsersrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="deleteMunicipalityGroup">
+        <parameter name="MunicipalityGroupId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2deleteMunicipalityGrouprtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="deleteToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2deleteTokenrtnType" isList="false"/>
@@ -310,10 +315,18 @@
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="getListofGroupName">
+        <parameter name="MunicipalityID" typeRef="java.lang.Integer" isList="true"/>
+        <return typeRef="cx2getListofGroupNamertnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="getListofUsers">
         <parameter name="municipalityID" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="Email" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2getListofUsersrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="getMunicipalityGroupIdIDs">
+        <parameter name="userID" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2getMunicipalityGroupIdIDsrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="GetRolesForMunicipality">
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
@@ -1139,13 +1152,21 @@
         <dataobject javaType="cx2bannedDetailsrtnType">
             <element name="Banned" typeRef="java.lang.Boolean"/>
         </dataobject>
+        <dataobject javaType="cx2deleteMunicipalityGrouprtnType"/>
         <dataobject javaType="cx2deleteTokenrtnType"/>
         <dataobject javaType="cx2getEmailIdrtnType">
             <element name="Email" typeRef="java.lang.String"/>
         </dataobject>
+        <dataobject javaType="cx2getListofGroupNamertnType">
+            <element name="GroupName" typeRef="java.lang.String"/>
+            <element name="ID" typeRef="java.math.BigDecimal"/>
+        </dataobject>
         <dataobject javaType="cx2getListofUsersrtnType">
             <element name="Email" typeRef="java.lang.String"/>
             <element name="UserId" typeRef="java.math.BigDecimal"/>
+        </dataobject>
+        <dataobject javaType="cx2getMunicipalityGroupIdIDsrtnType">
+            <element name="MunicipalityGroupId" typeRef="java.math.BigDecimal"/>
         </dataobject>
         <dataobject javaType="cx2getUserIDrtnType">
             <element name="ID" typeRef="java.math.BigDecimal"/>

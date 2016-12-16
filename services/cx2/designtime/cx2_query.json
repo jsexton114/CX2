@@ -279,6 +279,31 @@
     "outputType" : "cx2DeleteFromVendorUsersrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "deleteMunicipalityGroup",
+    "query" : "delete from MunicipalityGroupMembers where MunicipalityGroupId =:MunicipalityGroupId AND UserId =:UserId",
+    "comment" : "deleteMunicipalityGroup based on userID and MunicipalityGroupId",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "MunicipalityGroupId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "UserId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "3",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2deleteMunicipalityGrouprtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "deleteToken",
     "query" : "delete from UserPasswordResetTokens where Token =:token",
     "comment" : "to deleted token after changing password",
@@ -433,6 +458,27 @@
       "UnitFeeAccountingCode" : "java.lang.String"
     }
   }, {
+    "name" : "getListofGroupName",
+    "query" : "select ID,GroupName from MunicipalityGroups where ID IN :MunicipalityID",
+    "comment" : "get all the list of group Names based on mun ID",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "MunicipalityID",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "3,33",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : true
+    } ],
+    "outputType" : "cx2getListofGroupNamertnType",
+    "returnTypeMetadata" : {
+      "GroupName" : "java.lang.String",
+      "ID" : "java.math.BigDecimal"
+    }
+  }, {
     "name" : "getListofUsers",
     "query" : "select a.UserId , b.Email from Roles a INNER JOIN Users b on a.UserId = b.ID where a.RoleName IN ('MunicipalityEmployee','MunicipalityAdmin') and a.MunicipalityId =:municipalityID and b.Email LIKE LOWER(concat('%',:Email,'%'))",
     "comment" : "to get List of user based on municipality ID and role Name",
@@ -459,6 +505,26 @@
     "returnTypeMetadata" : {
       "Email" : "java.lang.String",
       "UserId" : "java.math.BigDecimal"
+    }
+  }, {
+    "name" : "getMunicipalityGroupIdIDs",
+    "query" : "select MunicipalityGroupId from MunicipalityGroupMembers where UserId =:userID",
+    "comment" : "get all the group Details based on userID",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "userID",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2getMunicipalityGroupIdIDsrtnType",
+    "returnTypeMetadata" : {
+      "MunicipalityGroupId" : "java.math.BigDecimal"
     }
   }, {
     "name" : "GetRolesForMunicipality",

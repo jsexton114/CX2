@@ -150,6 +150,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/deleteMunicipalityGroup", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeDeleteMunicipalityGroup(@RequestParam(value = "MunicipalityGroupId", required = false) java.lang.Integer MunicipalityGroupId, @RequestParam(value = "UserId", required = false) java.lang.Integer UserId) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query deleteMunicipalityGroup");
+        int result = queryService.executeDeleteMunicipalityGroup(MunicipalityGroupId, UserId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/deleteToken", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeDeleteToken(@RequestParam(value = "token", required = false) java.lang.String token) throws QueryParameterMismatchException {
@@ -200,11 +210,31 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/getListofGroupName", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeGetListofGroupName(@RequestParam(value = "MunicipalityID", required = true) java.util.List<java.lang.Integer> MunicipalityID, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query getListofGroupName");
+        Page<Object> result = queryService.executeGetListofGroupName(pageable, MunicipalityID);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/getListofUsers", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeGetListofUsers(@RequestParam(value = "municipalityID", required = false) java.lang.Integer municipalityID, @RequestParam(value = "Email", required = false) java.lang.String Email, Pageable pageable) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query getListofUsers");
         Page<Object> result = queryService.executeGetListofUsers(pageable, municipalityID, Email);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/getMunicipalityGroupIdIDs", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeGetMunicipalityGroupIdIDs(@RequestParam(value = "userID", required = false) java.lang.Integer userID, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query getMunicipalityGroupIdIDs");
+        Page<Object> result = queryService.executeGetMunicipalityGroupIdIDs(pageable, userID);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }
