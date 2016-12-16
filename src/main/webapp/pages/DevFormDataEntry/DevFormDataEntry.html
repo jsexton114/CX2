@@ -7,7 +7,7 @@
             <wm-tabs name="tabs1">
                 <wm-tabpane name="tabpane1" title="Sfnewelectricconnection">
                     <wm-livegrid formlayout="dialog" name="livegrid10">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Sfnewelectricconnection List" dataset="bind:Variables.Cx2SfnewElectricConnectionData.dataSet" navigation="Basic" name="grid1" filtermode="multicolumn" exportformat="EXCEL">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Sfnewelectricconnection List" dataset="bind:Variables.Cx2SfnewElectricConnectionData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL">
                             <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                             <wm-grid-column binding="propertyOwnerName" caption="Property Owner Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="propertyOwnerPhNo" caption="Property Owner Ph No" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -18,7 +18,7 @@
                             <wm-grid-column binding="electricLinesCount" caption="Electric Lines Count" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="connectionType" caption="Connection Type" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="guid" caption="Guid" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -168,7 +168,7 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane3" title="Mcnewresidentialstructure">
                     <wm-livegrid formlayout="dialog" name="livegrid3">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Mcnewresidentialstructure List" dataset="bind:Variables.Cx2McnewResidentialStructureData.dataSet" navigation="Basic" name="grid3" filtermode="multicolumn" exportformat="EXCEL">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Mcnewresidentialstructure List" dataset="bind:Variables.Cx2McnewResidentialStructureData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" exportformat="EXCEL">
                             <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                             <wm-grid-column binding="propertyOwnerName" caption="Property Owner Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="propertyOwnerPhNo" caption="Property Owner Ph No" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -179,7 +179,7 @@
                             <wm-grid-column binding="valueOfWork" caption="Value Of Work" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="guid" caption="Guid" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="formStatuses.id" caption="Statuses Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true" related-entity-name="FormStatuses"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -247,7 +247,7 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane4" title="Mcnewelectricconnection">
                     <wm-livegrid formlayout="dialog" name="livegrid4">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Mcnewelectricconnection List" dataset="bind:Variables.Cx2McnewElectricConnectionData.dataSet" navigation="Basic" name="grid4" filtermode="multicolumn" exportformat="EXCEL">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Mcnewelectricconnection List" dataset="bind:Variables.Cx2McnewElectricConnectionData.dataSet" navigation="Classic" name="grid4" filtermode="multicolumn" exportformat="EXCEL">
                             <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                             <wm-grid-column binding="propertyOwnerName" caption="Property Owner Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="propertyOwnerPhNo" caption="Property Owner Ph No" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -258,7 +258,7 @@
                             <wm-grid-column binding="valueOfWork" caption="Value Of Work" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="guid" caption="Guid" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="formStatuses.id" caption="Statuses Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true" related-entity-name="FormStatuses"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -326,7 +326,7 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane5" title="Pudapplication">
                     <wm-livegrid formlayout="dialog" name="livegrid5">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Pudapplication List" dataset="bind:Variables.Cx2PudapplicationData.dataSet" navigation="Basic" name="grid5" filtermode="multicolumn" exportformat="EXCEL">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Pudapplication List" dataset="bind:Variables.Cx2PudapplicationData.dataSet" navigation="Classic" name="grid5" filtermode="multicolumn" exportformat="EXCEL">
                             <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                             <wm-grid-column binding="propertyOwnerName" caption="Property Owner Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="propertyOwnerPhNo" caption="Property Owner Ph No" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -337,7 +337,7 @@
                             <wm-grid-column binding="electricLinesCount" caption="Electric Lines Count" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="connectionType" caption="Connection Type" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="guid" caption="Guid" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
