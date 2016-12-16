@@ -47,6 +47,8 @@ public class FormStatuses implements Serializable {
     private Integer readAccess;
     private String report;
     private Integer processOwners;
+    private Boolean sendEmail;
+    private Boolean allowAttachments;
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
@@ -219,6 +221,24 @@ public class FormStatuses implements Serializable {
 
     public void setProcessOwners(Integer processOwners) {
         this.processOwners = processOwners;
+    }
+
+    @Column(name = "`SendEmail`", nullable = true)
+    public Boolean getSendEmail() {
+        return this.sendEmail;
+    }
+
+    public void setSendEmail(Boolean sendEmail) {
+        this.sendEmail = sendEmail;
+    }
+
+    @Column(name = "`AllowAttachments`", nullable = true)
+    public Boolean getAllowAttachments() {
+        return this.allowAttachments;
+    }
+
+    public void setAllowAttachments(Boolean allowAttachments) {
+        this.allowAttachments = allowAttachments;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
