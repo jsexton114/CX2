@@ -24,36 +24,34 @@
                                     <wm-layoutgrid columns="2" name="layoutgrid2">
                                         <wm-gridrow name="gridrow15">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn25" padding="1em unset">
-                                                <wm-panel iconclass="wi wi-info-outline" name="panelFormInfo" title="Form Info" class="panel-info">
+                                                <wm-panel iconclass="wi wi-info-outline" name="panelFormInfo" title="Form Type" class="panel-primary">
                                                     <wm-gridrow name="gridrow3">
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn3">
-                                                            <wm-form-field name="formTypeGuid" displayname="Form Type Guid" show="false" primary-key="false" generator="assigned" key="formTypeGuid" type="string" widget="text" maxchars="255" inputtype="text"
-                                                            placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.firstRecord.formTypeGuid" readonly="true"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn4">
+                                                        <wm-gridcolumn columnwidth="8" name="gridcolumn4">
                                                             <wm-form-field name="formType" displayname="Form Type" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
                                                             defaultvalue="bind:Variables.ReadFormType.firstRecord.formType"></wm-form-field>
                                                         </wm-gridcolumn>
-                                                    </wm-gridrow>
-                                                    <wm-gridrow name="gridrow10">
-                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn24_1"></wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn17" horizontalalign="left">
+                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn17" horizontalalign="left">
                                                             <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder="" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].active"></wm-form-field>
                                                         </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn26"></wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="1" name="gridcolumn27"></wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn19" horizontalalign="left">
+                                                        <wm-gridcolumn columnwidth="1" name="gridcolumn3">
+                                                            <wm-form-field name="formTypeGuid" displayname="Form Type Guid" show="false" primary-key="false" generator="assigned" key="formTypeGuid" type="string" widget="text" maxchars="255" inputtype="text"
+                                                            placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.firstRecord.formTypeGuid" readonly="true"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow10">
+                                                        <wm-gridcolumn columnwidth="8" name="gridcolumn59_2"></wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn19" horizontalalign="left">
                                                             <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="true" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" widget="checkbox"
                                                             placeholder="" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].municipalityInternalForm"></wm-form-field>
                                                         </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="1" name="gridcolumn25_1"></wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="1" name="gridcolumn58_3"></wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-panel>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow16">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn28">
-                                                <wm-panel iconclass="wi wi-attach-money" name="panelFeeDetails" title="FeeDetails" class="panel-info" margin="1em unset">
+                                                <wm-panel iconclass="wi wi-attach-money" name="panelFeeDetails" title="FeeDetails" class="panel-primary" margin="1em unset">
                                                     <wm-layoutgrid name="layoutgrid3">
                                                         <wm-gridrow name="gridrow17">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn30">
@@ -99,9 +97,9 @@
                                                 </wm-panel>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
-                                        <wm-gridrow name="gridrow22">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn39">
-                                                <wm-panel iconclass="wi wi-developer-mode" name="panel6" title="Dev Info" class="panel-info" margin="1em unset">
+                                        <wm-gridrow name="gridrowDontDelete">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumnDontDelete">
+                                                <wm-panel iconclass="wi wi-developer-mode" name="panel6" title="Dev Info" class="panel-info" margin="1em unset" show="false">
                                                     <wm-layoutgrid name="layoutgrid4_1">
                                                         <wm-gridrow name="gridrow23">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn41">
@@ -271,7 +269,45 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpaneCXADMIN" title="CX ADMIN"></wm-tabpane>
+                            <wm-tabpane name="tabpaneCXADMIN" title="CX ADMIN">
+                                <wm-layoutgrid name="layoutgrid8">
+                                    <wm-gridrow name="gridrow26_2">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn58_2" padding="2em unset 1em unset">
+                                            <wm-composite name="composite1">
+                                                <wm-label class="col-md-3 control-label" name="label3" caption="Table Location"></wm-label>
+                                                <wm-container class="col-md-9" name="container1">
+                                                    <wm-text name="textTableLocation" datavalue="bind:Variables.CurrentFormObj.firstRecord.tbLocation"></wm-text>
+                                                </wm-container>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow27_2">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn60" padding="1em unset">
+                                            <wm-composite name="composite2">
+                                                <wm-label class="col-md-3 control-label" name="label4" caption="Page Name"></wm-label>
+                                                <wm-container class="col-md-9" name="container2">
+                                                    <wm-text name="textPageName" datavalue="bind:Variables.CurrentFormObj.firstRecord.pageName"></wm-text>
+                                                </wm-container>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow28_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn62_1" padding="1em unset">
+                                            <wm-composite name="composite3">
+                                                <wm-label class="col-md-3 control-label" name="label5" caption="Report"></wm-label>
+                                                <wm-container class="col-md-9" name="container3">
+                                                    <wm-text name="textReport" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].report"></wm-text>
+                                                </wm-container>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow29">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn64" padding="1em unset" horizontalalign="center">
+                                            <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdateDevDetails" iconclass="wi wi-update" on-click="Variables.UpdateDevFormDetailsForCXAdmin.invoke()"></wm-button>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-tabpane>
                         </wm-tabs>
                     </wm-gridcolumn>
                 </wm-gridrow>

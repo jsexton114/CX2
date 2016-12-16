@@ -956,6 +956,45 @@
     "outputType" : "cx2UpdateCFInProfilertnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "UpdateDevFormDetailsForCXAdmin",
+    "query" : "UPDATE FormTypes set TbLocation=:TbLocation, PageName=:PageName, Report=:Report where ID=:form",
+    "comment" : "UpdateDevFormDetailsForCXAdmin",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "TbLocation",
+      "paramType" : "java.lang.String",
+      "testValue" : "PUDApplication",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "PageName",
+      "paramType" : "java.lang.String",
+      "testValue" : "PUDApplication",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "Report",
+      "paramType" : "java.lang.String",
+      "testValue" : "PUDApplication",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "form",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "7",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateDevFormDetailsForCXAdminrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "UpdateGlobalEmailSig",
     "query" : "Update Municipalities set GlobalEmailSig=:gs where ID=:municipality",
     "comment" : "UpdateGlobalEmailSig",

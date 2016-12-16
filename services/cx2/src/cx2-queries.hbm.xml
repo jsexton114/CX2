@@ -182,6 +182,11 @@
       Update Users set CommunicationFrequency=:cf where ID=:user
     ]]>
   </sql-query>
+  <sql-query name="UpdateDevFormDetailsForCXAdmin">
+    <![CDATA[
+      UPDATE FormTypes set TbLocation=:TbLocation, PageName=:PageName, Report=:Report where ID=:form
+    ]]>
+  </sql-query>
   <sql-query name="UpdateGlobalEmailSig">
     <![CDATA[
       Update Municipalities set GlobalEmailSig=:gs where ID=:municipality

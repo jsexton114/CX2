@@ -400,6 +400,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdateDevFormDetailsForCXAdmin", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdateDevFormDetailsForCXAdmin(@RequestParam(value = "TbLocation", required = false) java.lang.String TbLocation, @RequestParam(value = "PageName", required = false) java.lang.String PageName, @RequestParam(value = "Report", required = false) java.lang.String Report, @RequestParam(value = "form", required = false) java.lang.Integer form) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdateDevFormDetailsForCXAdmin");
+        int result = queryService.executeUpdateDevFormDetailsForCXAdmin(TbLocation, PageName, Report, form);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UpdateGlobalEmailSig", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeUpdateGlobalEmailSig(@RequestParam(value = "gs", required = false) java.lang.String gs, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality) throws QueryParameterMismatchException {

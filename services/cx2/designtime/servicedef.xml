@@ -242,6 +242,13 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateDevFormDetailsForCXAdmin">
+        <parameter name="TbLocation" typeRef="java.lang.String" isList="false"/>
+        <parameter name="PageName" typeRef="java.lang.String" isList="false"/>
+        <parameter name="Report" typeRef="java.lang.String" isList="false"/>
+        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -405,6 +412,13 @@
         <parameter name="cf" typeRef="java.lang.String" isList="false"/>
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateCFInProfilertnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateDevFormDetailsForCXAdmin">
+        <parameter name="TbLocation" typeRef="java.lang.String" isList="false"/>
+        <parameter name="PageName" typeRef="java.lang.String" isList="false"/>
+        <parameter name="Report" typeRef="java.lang.String" isList="false"/>
+        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateDevFormDetailsForCXAdminrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdateGlobalEmailSig">
         <parameter name="gs" typeRef="java.lang.String" isList="false"/>
@@ -1138,6 +1152,7 @@
         </dataobject>
         <dataobject javaType="cx2UpdateAsCXVendorAdminrtnType"/>
         <dataobject javaType="cx2UpdateCFInProfilertnType"/>
+        <dataobject javaType="cx2UpdateDevFormDetailsForCXAdminrtnType"/>
         <dataobject javaType="cx2UpdateGlobalEmailSigrtnType"/>
         <dataobject javaType="cx2UpdateInfoFromMyProfilertnType"/>
         <dataobject javaType="cx2UpdateMunicipalityInfortnType"/>

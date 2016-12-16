@@ -734,7 +734,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 1,
+    "bindCount" : 4,
     "tableName" : "FormTypes",
     "tableType" : "TABLE",
     "properties" : [ ],
@@ -2527,6 +2527,46 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.FormStatuses"
+  },
+  "UpdateDevFormDetailsForCXAdmin" : {
+    "_id" : "wm-UpdateDevFormDetailsForCXAdmin-wm.ServiceVariable-1481878761977",
+    "name" : "UpdateDevFormDetailsForCXAdmin",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "TbLocation",
+      "value" : "bind:Widgets.textTableLocation.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "PageName",
+      "value" : "bind:Widgets.textPageName.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Report",
+      "value" : "bind:Widgets.textReport.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "form",
+      "value" : "bind:pageParams.FormTypeId",
+      "type" : "integer"
+    } ],
+    "type" : "cx2UpdateDevFormDetailsForCXAdminrtnType",
+    "service" : "cx2",
+    "operation" : "executeUpdateDevFormDetailsForCXAdmin",
+    "operationId" : "QueryExecutionController_executeUpdateDevFormDetailsForCXAdmin",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "UpdateFormTypes" : {
     "_id" : "wm-UpdateFormTypes-wm.LiveVariable-1480050753997",
