@@ -54,7 +54,7 @@
                                                 <wm-grid-action key="customButton" display-name="Add Employee" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Employee" action="customButtonAction($event);Widgets.dialogAddEmployeeORAdmin.open()"
                                                 shortcutkey="" disabled="false" icon="wi wi-plus"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove" action="Variables.RemoveEmployee.invoke()" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Employees" action="Widgets.EmployeeDialog.open();Variables.getMunicipalityGroupIdIDs.invoke()"
+                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Employees" action="customRow1Action($event);Widgets.EmployeeDialog.open()"
                                                 disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
@@ -67,7 +67,7 @@
                                     <wm-gridrow name="gridrow18_1"></wm-gridrow>
                                     <wm-gridrow name="gridrow19_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn32" horizontalalign="right">
-                                            <wm-grid title="" dataset="bind:Variables.GetAdminRolesForMunicipality.dataSet" navigation="Classic" name="grid5" filtermode="multicolumn">
+                                            <wm-grid title="" dataset="bind:Variables.GetAdminRolesForMunicipality.dataSet" navigation="Classic" name="gridAdmin" filtermode="multicolumn">
                                                 <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="Email" caption="Email" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
@@ -76,6 +76,7 @@
                                                 <wm-grid-action key="customButton" display-name="Add Admin" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Admin" action="customButtonAction($event);Widgets.dialogAddEmployeeORAdmin.open()"
                                                 shortcutkey="" disabled="false" icon="wi wi-plus"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="" action="Variables.RemoveAdmin.invoke()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow1" display-name="" title="Manage Groups" value="" iconclass="wi wi-people" class="btn-transparent" show="true" action="Widgets.Admindialog.open()" icon="wi wi-people"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -233,7 +234,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view4_1">
-        <wm-dialog dialogtype="design-dialog" modal="false" title="Add Users" iconclass="wi wi-edit" name="ManageUsers">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add Users" iconclass="wi wi-edit" name="ManageUsers">
             <wm-dialogactions name="dialogactions3">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7"></wm-button>
                 <wm-button class="btn-primary" caption="Save" name="button8" on-click="Variables.MunicipalityGroupMembersData.createRecord()" disabled="bind:Widgets.searchUsers.datavalue.UserId == null"></wm-button>
@@ -313,7 +314,7 @@
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="customButton" display-name="Add Members to Groups" show="true" class="btn-primary" iconclass="wi wi-add" title="Add" action="Variables.GetMunicipalityGroups.listRecords();Widgets.AddGroupstoMembers.open()"
                             shortcutkey="" disabled="false" icon="wi wi-add"></wm-grid-action>
-                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Delete" action="Variables.deleteMunicipalityGroup.invoke()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>
@@ -331,6 +332,82 @@
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7_1"></wm-button>
                 <wm-button class="btn-primary" caption="Save" name="button8_1" on-click="Variables.addMunicipalityGroupMembers.createRecord()"></wm-button>
             </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view7">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Form" iconclass="wi wi-edit" name="Admindialog">
+            <wm-layoutgrid name="layoutgrid8_1">
+                <wm-gridrow name="gridrow27_1">
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn49_2"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" horizontalalign="center" name="gridcolumn50_1">
+                        <wm-picture picturesource="bind:&quot;services/cx2/Users/&quot;+Widgets.gridAdmin.selecteditem.ID+&quot;/content/photo&quot;" shape="circle" width="100pt" height="100pt" name="picture3_1"></wm-picture>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn51_1"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow28_2">
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn52_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" horizontalalign="center" name="gridcolumn53_2">
+                        <wm-label padding="unset 0.5em" fontweight="bold" fontsize="20" caption="bind:Widgets.gridUsersubscriptionsList.selecteditem.users.firstName+&quot; &quot;+Widgets.gridUsersubscriptionsList.selecteditem.users.lastName" name="label35_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn54_1"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow29_1">
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn55_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" horizontalalign="center" name="gridcolumn56_1">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridAdmin.selecteditem.Email" name="label36_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn57_1"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow30_1">
+                    <wm-gridcolumn columnwidth="6" padding="1em unset 1em 1em" name="gridcolumn58_1">
+                        <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="Address1" name="label37_1"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridAdmin.selecteditem.Address1" name="label38_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn59_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" padding="1em unset" name="gridcolumn60_1">
+                        <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="Address2" name="label39_1"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridAdmin.selecteditem.Address2" name="label40_1"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow31_1">
+                    <wm-gridcolumn columnwidth="6" padding="unset unset 1em 1em" name="gridcolumn61_1">
+                        <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="City" name="label41_1"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridAdmin.selecteditem.City" name="label42_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn62_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" padding="unset unset 1em unset" name="gridcolumn63_1">
+                        <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="State" name="label43_1"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridAdmin.selecteditem.City" name="label44_1"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow32">
+                    <wm-gridcolumn columnwidth="6" padding="unset unset 1em 1em" name="gridcolumn64_1">
+                        <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="PostalCode" name="label45_1"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridAdmin.selecteditem.PostalCode" name="label46_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn65_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" padding="unset unset 1em unset" name="gridcolumn66_1">
+                        <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="PhoneNumber" name="label47_1"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridAdmin.selecteditem.PhoneNumber" name="label48"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow33">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn67">
+                        <wm-label padding="unset 0.5em" caption="Groups" class="h2" name="label49"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow34">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn68">
+                        <wm-grid title="" dataset="bind:Variables.getListofGroupName.dataSet" navigation="Classic" nodatamessage="No Groups found." name="grid7">
+                            <wm-grid-column binding="GroupName" caption="Group Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-action key="customButton" display-name="Add Members to Groups" show="true" class="btn-primary" iconclass="wi wi-add" title="Add" action="Variables.GetMunicipalityGroups.listRecords();Widgets.AddGroupstoMembers.open()"
+                            shortcutkey="" disabled="false" icon="wi wi-add"></wm-grid-action>
+                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                        </wm-grid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
         </wm-dialog>
     </wm-view>
 </wm-page>

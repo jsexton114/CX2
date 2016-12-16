@@ -21,6 +21,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "onSuccess" : "Widgets.AddGroupstoMembers.close();Variables.successfully.invoke();Variables.getMunicipalityGroupIdIDs.invoke()",
+    "onError" : "addMunicipalityGroupMembersonError($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
@@ -1399,15 +1400,7 @@
     "name" : "deleteMunicipalityGroup",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "MunicipalityGroupId",
-      "value" : "bind:Widgets.grid6.selecteditem.ID",
-      "type" : "integer"
-    }, {
-      "target" : "UserId",
-      "value" : "bind:Widgets.gridEmployees.selecteditem.ID",
-      "type" : "integer"
-    } ],
+    "dataBinding" : [ ],
     "type" : "cx2deleteMunicipalityGrouprtnType",
     "service" : "cx2",
     "operation" : "executeDeleteMunicipalityGroup",

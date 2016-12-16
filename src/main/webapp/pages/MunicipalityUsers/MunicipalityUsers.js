@@ -63,6 +63,11 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
         $scope.Variables.getMunicipalityGroupIdIDs.update();
     };
 
+
+    $scope.addMunicipalityGroupMembersonError = function(variable, data) {
+        wmToaster.show('error', 'ERROR', 'The Group you selected has already been added to this user.', 5000);
+    };
+
 }]);
 
 
@@ -113,6 +118,14 @@ Application.$controller("gridEmployeesController", ["$scope",
 
         $scope.customButtonAction = function($event) {
             $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityEmployee";
+        };
+
+
+        $scope.customRow1Action = function($event, $rowData) {
+            $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
+            $scope.Variables.getMunicipalityGroupIdIDs.update();
+            $scope.Widgets.EmployeeDialog.open();
+
         };
 
     }
@@ -171,10 +184,18 @@ Application.$controller("GroupMembersDataController", ["$scope", "wmToaster",
     }
 ]);
 
-Application.$controller("grid5Controller", ["$scope",
+Application.$controller("gridAdminController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.customRow1Action = function($event, $rowData) {
+            debugger;
+            $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
+            $scope.Variables.getMunicipalityGroupIdIDs.update();
+            $scope.Widgets.Admindialog.open();
+        };
+
     }
 ]);
 
@@ -200,6 +221,34 @@ Application.$controller("EmployeeDialogController", ["$scope",
 ]);
 
 Application.$controller("grid6Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.deleteMunicipalityGroup.setInput('MunicipalityGroupId', $rowData.ID);
+            $scope.Variables.deleteMunicipalityGroup.setInput('UserId', $scope.Widgets.gridEmployees.selecteditem.ID);
+            $scope.Variables.deleteMunicipalityGroup.update();
+        };
+
+    }
+]);
+
+Application.$controller("AdmindialogController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("grid7Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridAdminController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
