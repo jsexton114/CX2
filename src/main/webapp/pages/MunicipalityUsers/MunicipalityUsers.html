@@ -306,7 +306,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow28_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn53_1">
-                        <wm-grid title="" dataset="bind:Variables.getListofGroupName.dataSet" navigation="Classic" name="grid6" nodatamessage="No Groups found.">
+                        <wm-grid title="" dataset="bind:Variables.getListofGroupName.dataSet" navigation="Classic" name="grid6" nodatamessage="No Groups found." filtermode="multicolumn">
                             <wm-grid-column binding="GroupName" caption="Group Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="customButton" display-name="Add Members to Groups" show="true" class="btn-primary" iconclass="wi wi-add" title="Add" action="Variables.GetMunicipalityGroups.listRecords();Widgets.AddGroupstoMembers.open()"
