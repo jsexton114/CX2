@@ -29,9 +29,6 @@
                             <wm-tabpane name="tabpane1" title="Subscribers">
                                 <wm-grid title="" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="gridUsersubscriptionsList" on-click="Widgets.dialog1.open()" filtermode="multicolumn" exportformat="EXCEL">
                                     <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Municipalities"></wm-grid-column>
-                                    <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" edit-widget-type="upload" searchable="false" show="true" filterwidget="text"
-                                    related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{'services/cx2/Users/'+ row['users.id'] + '/content/photo'}}">
-                                    </wm-grid-column>
                                     <wm-grid-column binding="users.firstName" caption="First Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                     <wm-grid-column binding="users.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                     <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
