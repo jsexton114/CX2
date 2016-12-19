@@ -29,6 +29,7 @@ import com.civicxpress.cx2.FormCategoryMapping;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.McnewElectricConnection;
 import com.civicxpress.cx2.McnewResidentialStructure;
 import com.civicxpress.cx2.Pudapplication;
 import com.civicxpress.cx2.SfnewElectricConnection;
@@ -163,6 +164,13 @@ public class FormTypesController {
     public Page<FormStatuses> findAssociatedFormStatuseses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formStatuseses");
         return formTypesService.findAssociatedFormStatuseses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/mcnewElectricConnections", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the mcnewElectricConnections instance associated with the given id.")
+    public Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated mcnewElectricConnections");
+        return formTypesService.findAssociatedMcnewElectricConnections(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/mcnewResidentialStructures", method = RequestMethod.GET)

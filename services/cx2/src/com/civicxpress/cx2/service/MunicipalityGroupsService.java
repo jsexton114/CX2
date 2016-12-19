@@ -141,6 +141,18 @@ public interface MunicipalityGroupsService {
     Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated formStatusesesForWriteAccess for given MunicipalityGroups id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormStatuses instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormStatuses> findAssociatedFormStatusesesForWriteAccess(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated formStatusesesForReadAccess for given MunicipalityGroups id.
      *
      * @param id value of id; value cannot be null

@@ -42,12 +42,12 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
 	private FormStatusesService formStatusesService;
 
     @Autowired
-	@Qualifier("cx2.MasterFormsService")
-	private MasterFormsService masterFormsService;
-
-    @Autowired
 	@Qualifier("cx2.MunicipalityGroupMembersService")
 	private MunicipalityGroupMembersService municipalityGroupMembersService;
+
+    @Autowired
+	@Qualifier("cx2.MasterFormsService")
+	private MasterFormsService masterFormsService;
 
     @Autowired
     @Qualifier("cx2.MunicipalityGroupsDao")
@@ -67,6 +67,14 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
                 masterFormse.setMunicipalityGroups(municipalityGroupsCreated);
                 LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
                 masterFormsService.create(masterFormse);
+            }
+        }
+
+        if(municipalityGroupsCreated.getFormStatusesesForWriteAccess() != null) {
+            for(FormStatuses formStatusesesForWriteAcces : municipalityGroupsCreated.getFormStatusesesForWriteAccess()) {
+                formStatusesesForWriteAcces.setMunicipalityGroupsByWriteAccess(municipalityGroupsCreated);
+                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusesesForWriteAcces);
+                formStatusesService.create(formStatusesesForWriteAcces);
             }
         }
 
@@ -180,6 +188,17 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormStatuses> findAssociatedFormStatusesesForWriteAccess(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatusesesForWriteAccess");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalityGroupsByWriteAccess.id = '" + id + "'");
+
+        return formStatusesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<FormStatuses> findAssociatedFormStatusesesForReadAccess(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formStatusesesForReadAccess");
 
@@ -223,19 +242,19 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MasterFormsService instance
+	 * @param service MunicipalityGroupMembersService instance
 	 */
-	protected void setMasterFormsService(MasterFormsService service) {
-        this.masterFormsService = service;
+	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
+        this.municipalityGroupMembersService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalityGroupMembersService instance
+	 * @param service MasterFormsService instance
 	 */
-	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
-        this.municipalityGroupMembersService = service;
+	protected void setMasterFormsService(MasterFormsService service) {
+        this.masterFormsService = service;
     }
 
 }

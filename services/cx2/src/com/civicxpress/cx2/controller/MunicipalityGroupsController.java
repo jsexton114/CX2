@@ -129,6 +129,14 @@ public class MunicipalityGroupsController {
         return municipalityGroupsService.findAssociatedMasterFormses(id, pageable);
     }
 
+    @RequestMapping(value = "/{id}/formStatusesesForWriteAccess", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formStatusesesForWriteAccess instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<FormStatuses> findAssociatedFormStatusesesForWriteAccess(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatusesesForWriteAccess");
+        return municipalityGroupsService.findAssociatedFormStatusesesForWriteAccess(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/formStatusesesForReadAccess", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formStatusesesForReadAccess instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

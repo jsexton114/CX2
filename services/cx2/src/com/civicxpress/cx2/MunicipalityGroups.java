@@ -35,6 +35,7 @@ public class MunicipalityGroups implements Serializable {
     private Integer municipalityId;
     private List<MasterForms> masterFormses = new ArrayList<>();
     private Municipalities municipalities;
+    private List<FormStatuses> formStatusesesForWriteAccess = new ArrayList<>();
     private List<FormStatuses> formStatusesesForReadAccess = new ArrayList<>();
     private List<FormStatuses> formStatusesesForProcessOwners = new ArrayList<>();
     private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
@@ -98,6 +99,15 @@ public class MunicipalityGroups implements Serializable {
         }
 
         this.municipalities = municipalities;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalityGroupsByWriteAccess")
+    public List<FormStatuses> getFormStatusesesForWriteAccess() {
+        return this.formStatusesesForWriteAccess;
+    }
+
+    public void setFormStatusesesForWriteAccess(List<FormStatuses> formStatusesesForWriteAccess) {
+        this.formStatusesesForWriteAccess = formStatusesesForWriteAccess;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalityGroupsByReadAccess")

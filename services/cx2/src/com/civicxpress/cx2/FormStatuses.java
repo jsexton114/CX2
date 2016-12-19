@@ -54,6 +54,7 @@ public class FormStatuses implements Serializable {
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private FormTypes formTypes;
+    private MunicipalityGroups municipalityGroupsByWriteAccess;
     private MunicipalityGroups municipalityGroupsByReadAccess;
     private MunicipalityGroups municipalityGroupsByProcessOwners;
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
@@ -290,6 +291,20 @@ public class FormStatuses implements Serializable {
         }
 
         this.formTypes = formTypes;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`WriteAccess`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public MunicipalityGroups getMunicipalityGroupsByWriteAccess() {
+        return this.municipalityGroupsByWriteAccess;
+    }
+
+    public void setMunicipalityGroupsByWriteAccess(MunicipalityGroups municipalityGroupsByWriteAccess) {
+        if(municipalityGroupsByWriteAccess != null) {
+            this.writeAccess = municipalityGroupsByWriteAccess.getId();
+        }
+
+        this.municipalityGroupsByWriteAccess = municipalityGroupsByWriteAccess;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

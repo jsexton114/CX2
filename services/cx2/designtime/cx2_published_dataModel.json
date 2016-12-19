@@ -1964,6 +1964,22 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fieldName" : "formStatusesesForWriteAccess",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "WriteAccess"
+      } ],
+      "name" : "FK_FormStatuses_TO_MunicV5Vf3",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "MunicipalityGroups",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "FormStatuses",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
       "fieldName" : "formStatusesesForReadAccess",
       "mappings" : [ {
         "sourceColumn" : "ID",
@@ -5026,7 +5042,7 @@
         "defaultValue" : ""
       },
       "fieldName" : "writeAccess",
-      "foreignKey" : false,
+      "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
@@ -5034,8 +5050,8 @@
       "name" : "WriteAccess",
       "nullable" : true,
       "oldName" : "WriteAccess",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "precision" : 10,
@@ -5122,6 +5138,22 @@
       "sourceTable" : "FormStatuses",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "FormTypes",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "municipalityGroupsByWriteAccess",
+      "mappings" : [ {
+        "sourceColumn" : "WriteAccess",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_FormStatuses_TO_MunicV5Vf3",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "FormStatuses",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "MunicipalityGroups",
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
@@ -6654,7 +6686,7 @@
         "defaultValue" : ""
       },
       "fieldName" : "formTypeId",
-      "foreignKey" : false,
+      "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
@@ -6662,8 +6694,8 @@
       "name" : "FormTypeId",
       "nullable" : true,
       "oldName" : "FormTypeId",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "precision" : 10,
@@ -6777,6 +6809,22 @@
       "sourceTable" : "MCNewElectricConnection",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "FormStatuses",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "formTypes",
+      "mappings" : [ {
+        "sourceColumn" : "FormTypeId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_MCNewElectricConnectimHeiO",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "MCNewElectricConnection",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "FormTypes",
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
@@ -7453,6 +7501,22 @@
       "sourceTable" : "FormTypes",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "FormStatuses",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "mcnewElectricConnections",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "FormTypeId"
+      } ],
+      "name" : "FK_MCNewElectricConnectimHeiO",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "FormTypes",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "MCNewElectricConnection",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
