@@ -152,8 +152,8 @@
                                                                 placeholder="Enter value"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn49">
-                                                                <wm-form-field name="sortOrder" displayname="Sort Order" show="true" primary-key="false" generator="assigned" key="sortOrder" type="long" step="0" widget="select" inputtype="number" placeholder="Enter value"
-                                                                dataset="bind:Variables.SortOrder.dataSet" datafield="dataValue" displayfield="dataValue" orderby="dataValue:asc"></wm-form-field>
+                                                                <wm-form-field name="sortOrder" displayname="Sort Order" show="true" primary-key="false" generator="assigned" key="sortOrder" type="long" step="0" widget="select" placeholder="Enter value" dataset="bind:Variables.SortOrder.dataSet"
+                                                                datafield="dataValue" displayfield="dataValue" orderby="dataValue:asc"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow129_1">
@@ -209,7 +209,6 @@
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow120_1">
-                                                            <wm-gridcolumn columnwidth="1" name="gridcolumn63_2"></wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="5" name="gridcolumn36_1">
                                                                 <wm-form-field name="allowSharedWithEdits" displayname="Allow Shared With Edits" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean" widget="checkbox"
                                                                 placeholder=""></wm-form-field>
@@ -217,7 +216,6 @@
                                                             <wm-gridcolumn columnwidth="5" name="gridcolumn42_1">
                                                                 <wm-form-field name="allowAuthorEdits" displayname="Allow Author Edits" show="true" primary-key="false" generator="assigned" key="allowAuthorEdits" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="1" name="gridcolumn64_2"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-panel>
                                                 </wm-gridcolumn>
@@ -254,17 +252,15 @@
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn45_1">
                                                                 <wm-form-field name="allowInspections" displayname="Allow Inspections" show="true" primary-key="false" generator="assigned" key="allowInspections" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn name="gridcolumn1" columnwidth="4">
-                                                                <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"
-                                                                placeholder="Select value"></wm-form-field>
-                                                            </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-panel>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
+                                        <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"
+                                        placeholder="Select value"></wm-form-field>
                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                     </wm-liveform>
                                 </wm-livegrid>
                             </wm-tabpane>
