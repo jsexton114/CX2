@@ -951,6 +951,85 @@
                         </wm-liveform>
                     </wm-livegrid>
                 </wm-tabpane>
+                <wm-tabpane name="tabpane17" title="VendorLicenseType">
+                    <wm-livegrid formlayout="dialog" name="livegrid16_1">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendorlicensetypes List" dataset="bind:Variables.Cx2VendorLicenseTypesData.dataSet" navigation="Basic" name="grid17_1">
+                            <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="licenseType" caption="License Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        </wm-grid>
+                        <wm-liveform novalidate="false" errormessage="" title="Vendorlicensetypes Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2VendorLicenseTypesData.dataSet" captionalign="left" captionposition="top" name="liveform16_1">
+                            <wm-layoutgrid columns="1" name="layoutgrid17_1">
+                                <wm-gridrow name="gridrow61_2">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn130_2">
+                                        <wm-form-field name="licenseType" displayname="License Type" required="false" show="true" generator="assigned" primary-key="false" key="licenseType" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                            <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                        </wm-liveform>
+                    </wm-livegrid>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane18" title="VendorLicenses">
+                    <wm-livegrid formlayout="dialog" name="livegrid17_1">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendorlicenses List" dataset="bind:Variables.Cx2VendorLicensesData.dataSet" navigation="Basic" name="grid18_1">
+                            <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="licenseNumber" caption="License Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="issuedDate" caption="Issued Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="date"></wm-grid-column>
+                            <wm-grid-column binding="issuingAuthority" caption="Issuing Authority" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="expirationDate" caption="Expiration Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="date"></wm-grid-column>
+                            <wm-grid-column binding="scope" caption="Scope" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="vendor.id" caption="Vendor Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Vendor" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="vendor.companyName" caption="Company Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Vendor"></wm-grid-column>
+                            <wm-grid-column binding="vendor.address1" caption="Vendor Address1" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Vendor"></wm-grid-column>
+                            <wm-grid-column binding="vendor.address2" caption="Vendor Address2" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Vendor"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        </wm-grid>
+                        <wm-liveform novalidate="false" errormessage="" title="Vendorlicenses Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2VendorLicensesData.dataSet" captionalign="left" captionposition="top" name="liveform17_1">
+                            <wm-layoutgrid columns="3" name="layoutgrid18_1">
+                                <wm-gridrow name="gridrow62_3">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn131_2">
+                                        <wm-form-field name="licenseNumber" displayname="License Number" show="true" primary-key="false" generator="assigned" key="licenseNumber" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn132_2">
+                                        <wm-form-field name="issuedDate" displayname="Issued Date" show="true" primary-key="false" generator="assigned" key="issuedDate" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn133_2">
+                                        <wm-form-field name="issuingAuthority" displayname="Issuing Authority" show="true" primary-key="false" generator="assigned" key="issuingAuthority" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow63_2">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn134_2">
+                                        <wm-form-field name="expirationDate" displayname="Expiration Date" show="true" primary-key="false" generator="assigned" key="expirationDate" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn135_2">
+                                        <wm-form-field name="scope" displayname="Scope" show="true" primary-key="false" generator="assigned" key="scope" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn136_2">
+                                        <wm-form-field name="vendor" displayname="Vendor" show="true" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="companyName"
+                                        orderby="companyName:desc"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow64_2">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn137_2">
+                                        <wm-form-field name="vendorLicenseTypes" displayname="Vendor License Types" show="true" primary-key="false" generator="assigned" key="vendorLicenseTypes" type="list" is-related="true" widget="select" placeholder="Select value"
+                                        displayexpression="licenseType" orderby="licenseType:desc"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                            <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                        </wm-liveform>
+                    </wm-livegrid>
+                </wm-tabpane>
             </wm-tabs>
             <wm-layoutgrid name="layoutgrid15_1">
                 <wm-gridrow name="gridrow59_1">
