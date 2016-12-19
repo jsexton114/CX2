@@ -83,6 +83,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.goToPage_MyCompany.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
