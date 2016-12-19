@@ -138,7 +138,7 @@
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Formstatuses Info" formlayout="inline" iconclass="wi wi-edit" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top" name="liveform2">
+                                    <wm-liveform novalidate="false" errormessage="" title="Form Statuses Info" formlayout="inline" iconclass="wi wi-edit" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top" name="liveform2">
                                         <wm-layoutgrid columns="3" name="layoutgrid5">
                                             <wm-gridrow name="gridrow19_1">
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn33_1">
@@ -226,7 +226,7 @@
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
-                                        <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"
+                                        <wm-form-field name="formTypes" displayname="Form Types" show="true" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"
                                         placeholder="Select value"></wm-form-field>
                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                         <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
