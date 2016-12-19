@@ -101,8 +101,8 @@
                                         <wm-form-field name="feinNumber" displayname="FEIN Number" show="true" primary-key="false" generator="assigned" key="feinNumber" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn22">
-                                        <wm-form-field name="insuranceExpires" displayname="Insurance Expires" show="true" primary-key="false" generator="assigned" key="insuranceExpires" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd"
-                                        required="true" mindate="bind:Variables.Today.dataSet.dataValue | toDate: 'yyyy-MM-dd'"></wm-form-field>
+                                        <wm-form-field name="insuranceExpires" displayname="Insurance Expires" show="true" primary-key="false" generator="assigned" key="insuranceExpires" type="date" required="required" widget="date" placeholder="Select date"
+                                        outputformat="yyyy-MM-dd" mindate="bind:Variables.Today.dataSet.dataValue | toDate: 'yyyy-MM-dd'"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn21">
                                         <wm-form-field name="contractorTypes" displayname="Contractor Types" show="true" primary-key="false" generator="assigned" key="contractorTypes" type="list" is-related="true" widget="select" placeholder="Select value"
@@ -111,13 +111,12 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow8">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn20">
-                                        <wm-form-field name="lastUpdated" displayname="Last Updated" show="true" primary-key="false" generator="assigned" key="lastUpdated" type="date" widget="date" defaultvalue="CURRENT_DATE" placeholder="Select date" outputformat="yyyy-MM-dd"
-                                        required="false"></wm-form-field>
+                                        <wm-form-field name="lastUpdated" displayname="Last Updated" show="true" primary-key="false" generator="assigned" key="lastUpdated" type="date" widget="date" defaultvalue="CURRENT_DATE" placeholder="Select date" outputformat="yyyy-MM-dd"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                             <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" action="" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" action="" disabled="false" type="submit" update-mode="true"></wm-form-action>
                         </wm-liveform>
                     </wm-gridcolumn>
                 </wm-gridrow>
