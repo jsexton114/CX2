@@ -6,7 +6,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "userId",
-      "value" : "bind:Widgets.gridEmployees.selecteditem.ID",
+      "value" : "bind:Widgets.gridEmployees.selecteditem.ID ? Widgets.gridEmployees.selecteditem.ID : Widgets.gridAdmin.selecteditem.ID",
       "type" : "number"
     }, {
       "target" : "municipalityGroupId",
@@ -1400,7 +1400,15 @@
     "name" : "deleteMunicipalityGroup",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "MunicipalityGroupId",
+      "value" : "bind:Widgets.form1.formWidgets.addGroupMembersSelect.datavalue.id",
+      "type" : "integer"
+    }, {
+      "target" : "UserId",
+      "value" : "bind:Widgets.gridEmployees.selecteditem.ID ? Widgets.gridEmployees.selecteditem.ID : Widgets.gridAdmin.selecteditem.ID",
+      "type" : "integer"
+    } ],
     "type" : "cx2deleteMunicipalityGrouprtnType",
     "service" : "cx2",
     "operation" : "executeDeleteMunicipalityGroup",
@@ -1426,7 +1434,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "id",
-      "value" : "bind:Widgets.grid4.selecteditem.id",
+      "value" : "bind:Widgets.form1.formWidgets.addGroupMembersSelect.datavalue.id",
       "type" : "number"
     } ],
     "operation" : "delete",
@@ -1915,7 +1923,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "userID",
-      "value" : "bind:Widgets.gridEmployees.selecteditem.ID",
+      "value" : "bind:Widgets.gridEmployees.selecteditem.ID ? Widgets.gridEmployees.selecteditem.ID : Widgets.gridAdmin.selecteditem.ID",
       "type" : "integer"
     } ],
     "type" : "cx2getMunicipalityGroupIdIDsrtnType",

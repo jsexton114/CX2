@@ -15,9 +15,6 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
     };
 
 
-    // $scope.buttonAddEmployeeClick = function($event, $isolateScope) {
-    //     $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityEmployee";
-    // };
 
 
     $scope.buttonAddAdminClick = function($event, $isolateScope) {
@@ -59,7 +56,7 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
 
     $scope.deleteMunicipalityGrouponSuccess = function(variable, data) {
         wmToaster.show('info', 'INFO', 'Group Deleted sucessfully', 5000);
-        $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $scope.Widgets.gridEmployees.selecteditem.ID);
+        $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $scope.Widgets.gridEmployees.selecteditem.ID ? $scope.Widgets.gridEmployees.selecteditem.ID : $scope.Widgets.gridAdmin.selecteditem.ID);
         $scope.Variables.getMunicipalityGroupIdIDs.update();
     };
 
@@ -190,7 +187,6 @@ Application.$controller("gridAdminController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRow1Action = function($event, $rowData) {
-            debugger;
             $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
             $scope.Variables.getMunicipalityGroupIdIDs.update();
             $scope.Widgets.Admindialog.open();
@@ -210,6 +206,8 @@ Application.$controller("AddGroupstoMembersController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+
     }
 ]);
 
@@ -229,6 +227,7 @@ Application.$controller("grid6Controller", ["$scope",
             $scope.Variables.deleteMunicipalityGroup.setInput('MunicipalityGroupId', $rowData.ID);
             $scope.Variables.deleteMunicipalityGroup.setInput('UserId', $scope.Widgets.gridEmployees.selecteditem.ID);
             $scope.Variables.deleteMunicipalityGroup.update();
+
         };
 
     }
@@ -245,6 +244,13 @@ Application.$controller("grid7Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.deleteMunicipalityGroup.setInput('MunicipalityGroupId', $rowData.ID);
+            $scope.Variables.deleteMunicipalityGroup.setInput('UserId', $scope.Widgets.gridAdmin.selecteditem.ID);
+            $scope.Variables.deleteMunicipalityGroup.update();
+        };
+
     }
 ]);
 
