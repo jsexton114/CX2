@@ -146,6 +146,10 @@
       "type" : "integer",
       "target" : "FormTypeId",
       "value" : "bind:Widgets.gridFormTypes.selecteditem.ID | toNumber"
+    }, {
+      "type" : "integer",
+      "target" : "MunicipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber"
     } ],
     "pageTransitions" : "none"
   },
