@@ -937,6 +937,7 @@
             <element name="typeOfBusiness" typeRef="java.lang.String" allowNull="true"/>
             <element name="vendorAdminses" typeRef="com.civicxpress.cx2.VendorAdmins" isList="true" allowNull="true"/>
             <element name="vendorApprovalses" typeRef="com.civicxpress.cx2.VendorApprovals" isList="true" allowNull="true"/>
+            <element name="vendorLicenseses" typeRef="com.civicxpress.cx2.VendorLicenses" isList="true" allowNull="true"/>
             <element name="vendorUserses" typeRef="com.civicxpress.cx2.VendorUsers" isList="true" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.VendorAdmins">
@@ -958,6 +959,23 @@
             <element name="reviewer" typeRef="java.lang.String" allowNull="true"/>
             <element name="vendor" typeRef="com.civicxpress.cx2.Vendor" allowNull="true"/>
             <element name="vendorId" typeRef="java.lang.Integer" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.VendorLicenseTypes">
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="licenseType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="vendorLicenseses" typeRef="com.civicxpress.cx2.VendorLicenses" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.VendorLicenses">
+            <element name="expirationDate" typeRef="java.util.Date" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="issuedDate" typeRef="java.util.Date" allowNull="true"/>
+            <element name="issuingAuthority" typeRef="java.lang.String" allowNull="true"/>
+            <element name="licenseNumber" typeRef="java.lang.String" allowNull="true"/>
+            <element name="licensesTypeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="scope" typeRef="java.lang.String" allowNull="true"/>
+            <element name="vendor" typeRef="com.civicxpress.cx2.Vendor" allowNull="true"/>
+            <element name="vendorId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="vendorLicenseTypes" typeRef="com.civicxpress.cx2.VendorLicenseTypes" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.VendorUsers">
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>

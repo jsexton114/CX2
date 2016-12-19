@@ -17,6 +17,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
+import com.civicxpress.cx2.VendorLicenses;
 import com.civicxpress.cx2.VendorUsers;
 
 /**
@@ -159,6 +160,18 @@ public interface VendorService {
      * @see Page
      */
     Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated vendorLicenseses for given Vendor id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated VendorLicenses instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<VendorLicenses> findAssociatedVendorLicenseses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated vendorAdminses for given Vendor id.

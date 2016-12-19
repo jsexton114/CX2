@@ -65,6 +65,7 @@ public class Vendor implements Serializable {
     private List<VendorUsers> vendorUserses = new ArrayList<>();
     private ContractorTypes contractorTypes;
     private States states;
+    private List<VendorLicenses> vendorLicenseses = new ArrayList<>();
     private List<VendorAdmins> vendorAdminses = new ArrayList<>();
 
     @Id
@@ -322,6 +323,15 @@ public class Vendor implements Serializable {
         }
 
         this.states = states;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
+    public List<VendorLicenses> getVendorLicenseses() {
+        return this.vendorLicenseses;
+    }
+
+    public void setVendorLicenseses(List<VendorLicenses> vendorLicenseses) {
+        this.vendorLicenseses = vendorLicenseses;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")

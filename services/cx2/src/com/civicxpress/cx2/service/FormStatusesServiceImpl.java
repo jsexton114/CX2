@@ -41,6 +41,10 @@ public class FormStatusesServiceImpl implements FormStatusesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FormStatusesServiceImpl.class);
 
     @Autowired
+	@Qualifier("cx2.MasterFormsService")
+	private MasterFormsService masterFormsService;
+
+    @Autowired
 	@Qualifier("cx2.PudapplicationService")
 	private PudapplicationService pudapplicationService;
 
@@ -53,16 +57,12 @@ public class FormStatusesServiceImpl implements FormStatusesService {
 	private McnewElectricConnectionService mcnewElectricConnectionService;
 
     @Autowired
-	@Qualifier("cx2.SfnewResidentialStructureService")
-	private SfnewResidentialStructureService sfnewResidentialStructureService;
-
-    @Autowired
 	@Qualifier("cx2.McnewResidentialStructureService")
 	private McnewResidentialStructureService mcnewResidentialStructureService;
 
     @Autowired
-	@Qualifier("cx2.MasterFormsService")
-	private MasterFormsService masterFormsService;
+	@Qualifier("cx2.SfnewResidentialStructureService")
+	private SfnewResidentialStructureService sfnewResidentialStructureService;
 
     @Autowired
     @Qualifier("cx2.FormStatusesDao")
@@ -267,6 +267,15 @@ public class FormStatusesServiceImpl implements FormStatusesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service MasterFormsService instance
+	 */
+	protected void setMasterFormsService(MasterFormsService service) {
+        this.masterFormsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service PudapplicationService instance
 	 */
 	protected void setPudapplicationService(PudapplicationService service) {
@@ -294,15 +303,6 @@ public class FormStatusesServiceImpl implements FormStatusesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SfnewResidentialStructureService instance
-	 */
-	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
-        this.sfnewResidentialStructureService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service McnewResidentialStructureService instance
 	 */
 	protected void setMcnewResidentialStructureService(McnewResidentialStructureService service) {
@@ -312,10 +312,10 @@ public class FormStatusesServiceImpl implements FormStatusesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MasterFormsService instance
+	 * @param service SfnewResidentialStructureService instance
 	 */
-	protected void setMasterFormsService(MasterFormsService service) {
-        this.masterFormsService = service;
+	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
+        this.sfnewResidentialStructureService = service;
     }
 
 }

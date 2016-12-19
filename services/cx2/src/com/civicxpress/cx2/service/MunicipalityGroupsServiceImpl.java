@@ -38,16 +38,16 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
     private static final Logger LOGGER = LoggerFactory.getLogger(MunicipalityGroupsServiceImpl.class);
 
     @Autowired
+	@Qualifier("cx2.MasterFormsService")
+	private MasterFormsService masterFormsService;
+
+    @Autowired
 	@Qualifier("cx2.FormStatusesService")
 	private FormStatusesService formStatusesService;
 
     @Autowired
 	@Qualifier("cx2.MunicipalityGroupMembersService")
 	private MunicipalityGroupMembersService municipalityGroupMembersService;
-
-    @Autowired
-	@Qualifier("cx2.MasterFormsService")
-	private MasterFormsService masterFormsService;
 
     @Autowired
     @Qualifier("cx2.MunicipalityGroupsDao")
@@ -233,6 +233,15 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service MasterFormsService instance
+	 */
+	protected void setMasterFormsService(MasterFormsService service) {
+        this.masterFormsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service FormStatusesService instance
 	 */
 	protected void setFormStatusesService(FormStatusesService service) {
@@ -246,15 +255,6 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
 	 */
 	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
         this.municipalityGroupMembersService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service MasterFormsService instance
-	 */
-	protected void setMasterFormsService(MasterFormsService service) {
-        this.masterFormsService = service;
     }
 
 }

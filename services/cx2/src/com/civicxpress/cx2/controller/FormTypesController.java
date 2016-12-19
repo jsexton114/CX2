@@ -166,8 +166,9 @@ public class FormTypesController {
         return formTypesService.findAssociatedFormStatuseses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/mcnewElectricConnections", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/mcnewElectricConnections", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the mcnewElectricConnections instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated mcnewElectricConnections");
         return formTypesService.findAssociatedMcnewElectricConnections(id, pageable);

@@ -26,6 +26,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
+import com.civicxpress.cx2.VendorLicenses;
 import com.civicxpress.cx2.VendorUsers;
 
 
@@ -40,16 +41,20 @@ public class VendorServiceImpl implements VendorService {
     private static final Logger LOGGER = LoggerFactory.getLogger(VendorServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.VendorAdminsService")
-	private VendorAdminsService vendorAdminsService;
+	@Qualifier("cx2.VendorUsersService")
+	private VendorUsersService vendorUsersService;
+
+    @Autowired
+	@Qualifier("cx2.VendorLicensesService")
+	private VendorLicensesService vendorLicensesService;
 
     @Autowired
 	@Qualifier("cx2.VendorApprovalsService")
 	private VendorApprovalsService vendorApprovalsService;
 
     @Autowired
-	@Qualifier("cx2.VendorUsersService")
-	private VendorUsersService vendorUsersService;
+	@Qualifier("cx2.VendorAdminsService")
+	private VendorAdminsService vendorAdminsService;
 
     @Autowired
     @Qualifier("cx2.VendorDao")
@@ -77,6 +82,14 @@ public class VendorServiceImpl implements VendorService {
                 vendorUserse.setVendor(vendorCreated);
                 LOGGER.debug("Creating a new child VendorUsers with information: {}", vendorUserse);
                 vendorUsersService.create(vendorUserse);
+            }
+        }
+
+        if(vendorCreated.getVendorLicenseses() != null) {
+            for(VendorLicenses vendorLicensese : vendorCreated.getVendorLicenseses()) {
+                vendorLicensese.setVendor(vendorCreated);
+                LOGGER.debug("Creating a new child VendorLicenses with information: {}", vendorLicensese);
+                vendorLicensesService.create(vendorLicensese);
             }
         }
 
@@ -201,6 +214,17 @@ public class VendorServiceImpl implements VendorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<VendorLicenses> findAssociatedVendorLicenseses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorLicenseses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("vendor.id = '" + id + "'");
+
+        return vendorLicensesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<VendorAdmins> findAssociatedVendorAdminses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorAdminses");
 
@@ -213,10 +237,19 @@ public class VendorServiceImpl implements VendorService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorAdminsService instance
+	 * @param service VendorUsersService instance
 	 */
-	protected void setVendorAdminsService(VendorAdminsService service) {
-        this.vendorAdminsService = service;
+	protected void setVendorUsersService(VendorUsersService service) {
+        this.vendorUsersService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service VendorLicensesService instance
+	 */
+	protected void setVendorLicensesService(VendorLicensesService service) {
+        this.vendorLicensesService = service;
     }
 
     /**
@@ -231,10 +264,10 @@ public class VendorServiceImpl implements VendorService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorUsersService instance
+	 * @param service VendorAdminsService instance
 	 */
-	protected void setVendorUsersService(VendorUsersService service) {
-        this.vendorUsersService = service;
+	protected void setVendorAdminsService(VendorAdminsService service) {
+        this.vendorAdminsService = service;
     }
 
 }
