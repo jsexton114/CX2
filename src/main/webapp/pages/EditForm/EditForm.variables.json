@@ -742,6 +742,34 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.FormTypes"
   },
+  "CXDevInfoUpdatedSuccess" : {
+    "_id" : "wm-CXDevInfoUpdatedSuccess-wm.NotificationVariable-1482129601503",
+    "name" : "CXDevInfoUpdatedSuccess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "list"
+    }, {
+      "target" : "text",
+      "value" : "Updated Successfully",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "list"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "list"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "list"
+    } ],
+    "operation" : "toast"
+  },
   "DeleteCategoryMapping" : {
     "_id" : "wm-DeleteCategoryMapping-wm.ServiceVariable-1480328392274",
     "name" : "DeleteCategoryMapping",
@@ -2666,6 +2694,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.CXDevInfoUpdatedSuccess.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
