@@ -48,16 +48,16 @@ public class StatesServiceImpl implements StatesService {
 	private UsersService usersService;
 
     @Autowired
-	@Qualifier("cx2.VendorService")
-	private VendorService vendorService;
+	@Qualifier("cx2.MunicipalitiesService")
+	private MunicipalitiesService municipalitiesService;
 
     @Autowired
 	@Qualifier("cx2.GlobalSettingsService")
 	private GlobalSettingsService globalSettingsService;
 
     @Autowired
-	@Qualifier("cx2.MunicipalitiesService")
-	private MunicipalitiesService municipalitiesService;
+	@Qualifier("cx2.VendorService")
+	private VendorService vendorService;
 
     @Autowired
     @Qualifier("cx2.StatesDao")
@@ -280,10 +280,10 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorService instance
+	 * @param service MunicipalitiesService instance
 	 */
-	protected void setVendorService(VendorService service) {
-        this.vendorService = service;
+	protected void setMunicipalitiesService(MunicipalitiesService service) {
+        this.municipalitiesService = service;
     }
 
     /**
@@ -298,10 +298,10 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalitiesService instance
+	 * @param service VendorService instance
 	 */
-	protected void setMunicipalitiesService(MunicipalitiesService service) {
-        this.municipalitiesService = service;
+	protected void setVendorService(VendorService service) {
+        this.vendorService = service;
     }
 
 }

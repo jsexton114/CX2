@@ -49,6 +49,7 @@ public class FormStatuses implements Serializable {
     private Integer processOwners;
     private Boolean sendEmail;
     private Boolean allowAttachments;
+    private Integer writeAccess;
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
@@ -187,7 +188,7 @@ public class FormStatuses implements Serializable {
         this.status = status;
     }
 
-    @Column(name = "`Description`", nullable = true, length = 255)
+    @Column(name = "`Description`", nullable = true, length = 500)
     public String getDescription() {
         return this.description;
     }
@@ -239,6 +240,15 @@ public class FormStatuses implements Serializable {
 
     public void setAllowAttachments(Boolean allowAttachments) {
         this.allowAttachments = allowAttachments;
+    }
+
+    @Column(name = "`WriteAccess`", nullable = true, scale = 0, precision = 10)
+    public Integer getWriteAccess() {
+        return this.writeAccess;
+    }
+
+    public void setWriteAccess(Integer writeAccess) {
+        this.writeAccess = writeAccess;
     }
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")

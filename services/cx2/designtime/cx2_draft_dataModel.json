@@ -1,6 +1,6 @@
 {
   "description" : null,
-  "draft" : false,
+  "draft" : true,
   "name" : "cx2",
   "packageName" : "com.civicxpress.cx2",
   "tables" : [ {
@@ -2007,6 +2007,22 @@
       "sourceTable" : "MunicipalityGroups",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "MunicipalityGroupMembers",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : null,
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "WriteAccess"
+      } ],
+      "name" : "FK_FormStatuses_TO_MunicV5Vf3",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceTable" : "MunicipalityGroups",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "FormStatuses",
       "virtual" : false
     } ],
     "schema" : "cx2",
@@ -5026,7 +5042,7 @@
         "defaultValue" : ""
       },
       "fieldName" : "writeAccess",
-      "foreignKey" : false,
+      "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
@@ -5034,8 +5050,8 @@
       "name" : "WriteAccess",
       "nullable" : true,
       "oldName" : "WriteAccess",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "precision" : 10,
@@ -5202,6 +5218,22 @@
       "sourceTable" : "FormStatuses",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "PUDApplication",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : null,
+      "mappings" : [ {
+        "sourceColumn" : "WriteAccess",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_FormStatuses_TO_MunicV5Vf3",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceTable" : "FormStatuses",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "MunicipalityGroups",
       "virtual" : false
     } ],
     "schema" : "cx2",

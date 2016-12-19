@@ -575,6 +575,7 @@
             <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="sortOrder" typeRef="java.lang.Long" allowNull="true"/>
             <element name="status" typeRef="java.lang.String" allowNull="true"/>
+            <element name="writeAccess" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormTypes">
             <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
