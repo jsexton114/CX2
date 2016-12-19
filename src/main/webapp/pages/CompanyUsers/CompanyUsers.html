@@ -38,7 +38,7 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
-                                            <wm-grid title="VendorUsers List" dataset="bind:Variables.VendorUsers.dataSet" navigation="Classic" name="gridVendorUsers" filtermode="multicolumn" exportformat="EXCEL">
+                                            <wm-grid title="" dataset="bind:Variables.VendorUsers.dataSet" navigation="Classic" name="gridVendorUsers" filtermode="multicolumn" exportformat="EXCEL">
                                                 <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" edit-widget-type="upload" searchable="false" show="true"
                                                 filterwidget="text" related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridvendorusers.selecteditem.users.id+="" "=" " content=" " photo"="">
@@ -66,10 +66,10 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
-                                            <wm-grid title="VendorAdmins List" dataset="bind:Variables.VendorAdmins.dataSet" navigation="Basic" name="gridAdmins">
+                                            <wm-grid title="" dataset="bind:Variables.VendorAdmins.dataSet" navigation="Classic" name="gridAdmins" filtermode="multicolumn" exportformat="EXCEL">
                                                 <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" edit-widget-type="upload" searchable="false" show="true"
-                                                related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridadmins.selecteditem.users.id+="" "=" " content=" " photo"="">
+                                                filterwidget="text" related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridadmins.selecteditem.users.id+="" "=" " content=" " photo"="">
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="250px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
