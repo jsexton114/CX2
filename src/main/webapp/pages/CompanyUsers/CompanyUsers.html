@@ -39,17 +39,15 @@
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                                             <wm-grid title="" dataset="bind:Variables.VendorUsers.dataSet" navigation="Classic" name="gridVendorUsers" filtermode="multicolumn" exportformat="EXCEL">
-                                                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" edit-widget-type="upload" searchable="false" show="true"
-                                                filterwidget="text" related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridvendorusers.selecteditem.users.id+="" "=" " content=" " photo"="">
+                                                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" searchable="false" show="true" filterwidget="text" related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridvendorusers.selecteditem.users.id+="" "=" " content=" " photo"="">
                                                 </wm-grid-column>
-                                                <wm-grid-column binding="joiningDate" caption="Joining Date" type="date" generator="assigned" readonly="true" edit-widget-type="date" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="250px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-row-action key="customRow" display-name="ViewProfile" show="true" class="btn-transparent" iconclass="wi wi-user" title="Custom rowActions" action="Widgets.dialogUserProfile.open()"
+                                                <wm-grid-column binding="joiningDate" caption="Joining Date" type="date" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="250px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="Widgets.dialogUserProfile.open()"
                                                 disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="Remove" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Custom rowActions" action="Variables.DeleteFromVendorUsers.invoke()"
-                                                disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Remove" action="Variables.DeleteFromVendorUsers.invoke()" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -67,15 +65,14 @@
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                                             <wm-grid title="" dataset="bind:Variables.VendorAdmins.dataSet" navigation="Classic" name="gridAdmins" filtermode="multicolumn" exportformat="EXCEL">
-                                                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" edit-widget-type="upload" searchable="false" show="true"
-                                                filterwidget="text" related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridadmins.selecteditem.users.id+="" "=" " content=" " photo"="">
+                                                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" searchable="false" show="true" filterwidget="text" related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridadmins.selecteditem.users.id+="" "=" " content=" " photo"="">
                                                 </wm-grid-column>
-                                                <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="250px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-row-action key="customRow" display-name="View Profile" show="true" class="btn-transparent" iconclass="wi wi-settings" title="Custom rowActions" action="Widgets.dialogAdminProfile.open()"
+                                                <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="250px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="Widgets.dialogAdminProfile.open()"
                                                 disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="Remove" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Custom rowActions" action="Variables.RemoveCXVendorAdminToUser.invoke();Variables.DeleteFromVendorAdmins.invoke();Variables.VendorAdmins.listRecords();Widgets.dialogAddAdmin.close()"
+                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Remove" action="Variables.RemoveCXVendorAdminToUser.invoke();Variables.DeleteFromVendorAdmins.invoke();Variables.VendorAdmins.listRecords();Widgets.dialogAddAdmin.close()"
                                                 disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
@@ -90,10 +87,10 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="viewAdd">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="AddUser" iconclass="wi wi-person-add" name="dialogAddUser">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add User" iconclass="wi wi-person-add" name="dialogAddUser">
             <wm-dialogactions name="dialogactionsAdd">
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7"></wm-button>
-                <wm-button class="btn-primary" caption="Add" name="buttonAdd" on-click="Variables.AddUsersToCompany.invoke()"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
+                <wm-button class="btn-primary" caption="Add" name="buttonAdd" on-click="Variables.AddUsersToCompany.invoke()" iconclass="wi wi-add"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid3">
                 <wm-gridrow name="gridrow6">
@@ -169,10 +166,10 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewAddAdmin">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="AddAdmin" iconclass="wi wi-person-add" name="dialogAddAdmin">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add Admin" iconclass="wi wi-person-add" name="dialogAddAdmin">
             <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7_2"></wm-button>
-                <wm-button class="btn-primary" caption="Save" name="buttonSaveAdmin" on-click="Variables.MapAsAdminForVendor.invoke()"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7_2" iconclass="wi wi-cancel"></wm-button>
+                <wm-button class="btn-primary" caption="Add" name="buttonSaveAdmin" on-click="Variables.MapAsAdminForVendor.invoke()" iconclass="wi wi-add"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid6">
                 <wm-gridrow name="gridrow15">
