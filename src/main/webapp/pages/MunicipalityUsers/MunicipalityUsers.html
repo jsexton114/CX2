@@ -43,15 +43,15 @@
                                     <wm-gridrow name="gridrow13">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn28">
                                             <wm-grid title="" dataset="bind:Variables.GetEmployeeRolesForMunicipality.dataSet" navigation="Classic" name="gridEmployees" filtermode="multicolumn">
-                                                <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="Email" caption="Email" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="PhoneNumber" caption="Phone Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="Email" caption="Email" type="string" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="PhoneNumber" caption="Phone Number" type="string" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="customButton" display-name="Add Employee" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Employee" action="customButtonAction($event);Widgets.dialogAddEmployeeORAdmin.open()"
                                                 shortcutkey="" disabled="false" icon="wi wi-plus"></wm-grid-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove" action="Variables.RemoveEmployee.invoke()" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Employees" action="customRow1Action($event);Widgets.EmployeeDialog.open()"
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.RemoveEmployee.invoke()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Groups" action="customRow1Action($event);Widgets.EmployeeDialog.open()"
                                                 disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
@@ -65,15 +65,15 @@
                                     <wm-gridrow name="gridrow19_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn32" horizontalalign="right">
                                             <wm-grid title="" dataset="bind:Variables.GetAdminRolesForMunicipality.dataSet" navigation="Classic" name="gridAdmin" filtermode="multicolumn">
-                                                <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="Email" caption="Email" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="PhoneNumber" caption="Phone Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="Email" caption="Email" type="string" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="PhoneNumber" caption="Phone Number" type="string" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="customButton" display-name="Add Admin" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Admin" action="customButtonAction($event);Widgets.dialogAddEmployeeORAdmin.open()"
                                                 shortcutkey="" disabled="false" icon="wi wi-plus"></wm-grid-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="" action="Variables.RemoveAdmin.invoke()" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="" title="Manage Groups" value="" iconclass="wi wi-people" class="btn-transparent" show="true" action="Widgets.Admindialog.open()" icon="wi wi-people"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.RemoveAdmin.invoke()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Groups" action="Widgets.Admindialog.open()" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -82,14 +82,14 @@
                             <wm-tabpane name="tabpane4_1" title="Groups">
                                 <wm-livegrid formlayout="dialog" name="Municipalitygroups">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GetMunicipalityGroups.dataSet" navigation="Classic" name="Municipalitygroupsgrid" filtermode="multicolumn" exportformat="EXCEL">
-                                        <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="groupName" caption="Group Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="groupDescription" caption="Group Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="groupName" caption="Group Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="groupDescription" caption="Group Description" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="ManageUsers" action="Widgets.GroupMembersData.open()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Users" action="Widgets.GroupMembersData.open()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                     <wm-liveform novalidate="false" errormessage="" title="Municipalitygroups Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.GetMunicipalityGroups.dataSet" captionalign="left" captionposition="top"
                                     name="liveform1" on-error="liveform1Error($event, $operation, $data)" on-success="liveform1Success($event, $operation, $data)">
