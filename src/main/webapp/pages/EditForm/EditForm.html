@@ -270,16 +270,15 @@
                                     <wm-gridrow name="gridrow26">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn53" padding="unset unset unset 1em">
                                             <wm-livegrid formlayout="dialog" name="livegrid2">
-                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Formcategorymapping List" dataset="bind:Variables.FormCategories.dataSet" navigation="Classic" name="grid2">
-                                                    <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
-                                                    <wm-grid-column binding="formCategories.category" caption="Categories Category" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormCategories"
-                                                    readonly="true"></wm-grid-column>
-                                                    <wm-grid-column binding="formCategories.description" caption="Categories Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormCategories"
-                                                    readonly="true"></wm-grid-column>
-                                                    <wm-grid-column binding="formTypes.formType" caption="Form Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormTypes" readonly="true"></wm-grid-column>
-                                                    <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                                                    <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.FormCategories.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL">
+                                                    <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="formCategories.category" caption="Category" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormCategories"></wm-grid-column>
+                                                    <wm-grid-column binding="formCategories.description" caption="Description" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormCategories"></wm-grid-column>
+                                                    <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormTypes"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                                 <wm-liveform novalidate="false" errormessage="" title="Formcategorymapping Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.FormCategories.dataSet" captionalign="left" captionposition="top"
                                                 name="liveform3">
