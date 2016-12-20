@@ -167,6 +167,26 @@
       "exist" : "java.lang.Integer"
     }
   }, {
+    "name" : "CountOfFormsForMunicipality",
+    "query" : "select count(*) from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.MunicipalityId=:MunicipalityId and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID",
+    "comment" : "CountOfFormsForMunicipality",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "MunicipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2CountOfFormsForMunicipalityrtnType",
+    "returnTypeMetadata" : {
+      "" : "java.lang.Integer"
+    }
+  }, {
     "name" : "CountOfVendors",
     "query" : "select count(*) as CountOfVendors from VendorAdmins where UserId=:vendor",
     "comment" : "CountOfVendors",

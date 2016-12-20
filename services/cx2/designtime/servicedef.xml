@@ -248,6 +248,10 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="CountOfFormsForMunicipality">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -270,6 +274,10 @@
         <parameter name="muncipality" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CheckingUserWithMunicipalityInRolesrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="CountOfFormsForMunicipality">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CountOfFormsForMunicipalityrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="CountOfVendors">
         <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
@@ -1055,6 +1063,9 @@
         </dataobject>
         <dataobject javaType="cx2CheckingUserWithMunicipalityInRolesrtnType">
             <element name="exist" typeRef="java.lang.Integer"/>
+        </dataobject>
+        <dataobject javaType="cx2CountOfFormsForMunicipalityrtnType">
+            <element name="" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2CountOfVendorUsersrtnType">
             <element name="CountOfVendorUsers" typeRef="java.lang.Integer"/>
