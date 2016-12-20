@@ -90,7 +90,7 @@ public class VendorUsersController {
     @ApiOperation(value = "Returns the list of VendorUsers instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<VendorUsers> findVendorUsers(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<VendorUsers> searchVendorUsersByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering VendorUsers list");
         return vendorUsersService.findAll(queryFilters, pageable);
     }

@@ -90,7 +90,7 @@ public class UserSubscriptionsController {
     @ApiOperation(value = "Returns the list of UserSubscriptions instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<UserSubscriptions> findUserSubscriptions(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<UserSubscriptions> searchUserSubscriptionsByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering UserSubscriptions list");
         return userSubscriptionsService.findAll(queryFilters, pageable);
     }

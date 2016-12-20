@@ -90,7 +90,7 @@ public class SfnewResidentialStructureController {
     @ApiOperation(value = "Returns the list of SfnewResidentialStructure instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SfnewResidentialStructure> findSfnewResidentialStructures(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<SfnewResidentialStructure> searchSfnewResidentialStructuresByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering SfnewResidentialStructures list");
         return sfnewResidentialStructureService.findAll(queryFilters, pageable);
     }

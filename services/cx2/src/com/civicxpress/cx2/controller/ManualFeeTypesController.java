@@ -90,7 +90,7 @@ public class ManualFeeTypesController {
     @ApiOperation(value = "Returns the list of ManualFeeTypes instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<ManualFeeTypes> findManualFeeTypes(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<ManualFeeTypes> searchManualFeeTypesByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering ManualFeeTypes list");
         return manualFeeTypesService.findAll(queryFilters, pageable);
     }

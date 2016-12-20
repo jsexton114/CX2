@@ -90,7 +90,7 @@ public class VendorApprovalsController {
     @ApiOperation(value = "Returns the list of VendorApprovals instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<VendorApprovals> findVendorApprovals(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<VendorApprovals> searchVendorApprovalsByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering VendorApprovals list");
         return vendorApprovalsService.findAll(queryFilters, pageable);
     }

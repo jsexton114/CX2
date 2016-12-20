@@ -91,7 +91,7 @@ public class SubdivisionsController {
     @ApiOperation(value = "Returns the list of Subdivisions instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Subdivisions> findSubdivisions(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<Subdivisions> searchSubdivisionsByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering Subdivisions list");
         return subdivisionsService.findAll(queryFilters, pageable);
     }

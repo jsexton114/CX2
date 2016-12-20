@@ -91,7 +91,7 @@ public class FormCategoriesController {
     @ApiOperation(value = "Returns the list of FormCategories instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormCategories> findFormCategories(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<FormCategories> searchFormCategoriesByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering FormCategories list");
         return formCategoriesService.findAll(queryFilters, pageable);
     }

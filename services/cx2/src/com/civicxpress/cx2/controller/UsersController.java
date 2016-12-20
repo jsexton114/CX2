@@ -151,7 +151,7 @@ public class UsersController {
     @ApiOperation(value = "Returns the list of Users instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Users> findUsers(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<Users> searchUsersByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering Users list");
         return usersService.findAll(queryFilters, pageable);
     }

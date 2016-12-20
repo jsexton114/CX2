@@ -90,7 +90,7 @@ public class UserPasswordResetTokensController {
     @ApiOperation(value = "Returns the list of UserPasswordResetTokens instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<UserPasswordResetTokens> findUserPasswordResetTokens(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<UserPasswordResetTokens> searchUserPasswordResetTokensByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering UserPasswordResetTokens list");
         return userPasswordResetTokensService.findAll(queryFilters, pageable);
     }

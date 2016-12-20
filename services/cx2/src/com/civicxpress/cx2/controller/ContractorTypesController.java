@@ -91,7 +91,7 @@ public class ContractorTypesController {
     @ApiOperation(value = "Returns the list of ContractorTypes instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<ContractorTypes> findContractorTypes(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<ContractorTypes> searchContractorTypesByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering ContractorTypes list");
         return contractorTypesService.findAll(queryFilters, pageable);
     }

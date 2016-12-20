@@ -98,7 +98,7 @@ public class MunicipalityGroupMembersController {
     @ApiOperation(value = "Returns the list of MunicipalityGroupMembers instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MunicipalityGroupMembers> findMunicipalityGroupMembers(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<MunicipalityGroupMembers> searchMunicipalityGroupMembersByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering MunicipalityGroupMembers list");
         return municipalityGroupMembersService.findAll(queryFilters, pageable);
     }

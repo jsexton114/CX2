@@ -90,7 +90,7 @@ public class PudapplicationController {
     @ApiOperation(value = "Returns the list of Pudapplication instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Pudapplication> findPudapplications(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<Pudapplication> searchPudapplicationsByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering Pudapplications list");
         return pudapplicationService.findAll(queryFilters, pageable);
     }

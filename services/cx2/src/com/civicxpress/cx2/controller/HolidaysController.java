@@ -90,7 +90,7 @@ public class HolidaysController {
     @ApiOperation(value = "Returns the list of Holidays instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Holidays> findHolidays(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<Holidays> searchHolidaysByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering Holidays list");
         return holidaysService.findAll(queryFilters, pageable);
     }

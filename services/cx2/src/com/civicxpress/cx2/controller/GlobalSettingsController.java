@@ -90,7 +90,7 @@ public class GlobalSettingsController {
     @ApiOperation(value = "Returns the list of GlobalSettings instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<GlobalSettings> findGlobalSettings(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<GlobalSettings> searchGlobalSettingsByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering GlobalSettings list");
         return globalSettingsService.findAll(queryFilters, pageable);
     }

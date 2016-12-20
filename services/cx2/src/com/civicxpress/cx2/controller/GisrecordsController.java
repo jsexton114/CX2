@@ -91,7 +91,7 @@ public class GisrecordsController {
     @ApiOperation(value = "Returns the list of Gisrecords instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Gisrecords> findGisrecords(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<Gisrecords> searchGisrecordsByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering Gisrecords list");
         return gisrecordsService.findAll(queryFilters, pageable);
     }

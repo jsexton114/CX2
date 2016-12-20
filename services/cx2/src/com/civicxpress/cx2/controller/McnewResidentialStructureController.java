@@ -90,7 +90,7 @@ public class McnewResidentialStructureController {
     @ApiOperation(value = "Returns the list of McnewResidentialStructure instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<McnewResidentialStructure> findMcnewResidentialStructures(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<McnewResidentialStructure> searchMcnewResidentialStructuresByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering McnewResidentialStructures list");
         return mcnewResidentialStructureService.findAll(queryFilters, pageable);
     }

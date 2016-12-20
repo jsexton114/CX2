@@ -95,7 +95,7 @@ public class StatesController {
     @ApiOperation(value = "Returns the list of States instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<States> findStates(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<States> searchStatesByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering States list");
         return statesService.findAll(queryFilters, pageable);
     }

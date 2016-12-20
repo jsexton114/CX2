@@ -90,7 +90,7 @@ public class FormCategoryMappingController {
     @ApiOperation(value = "Returns the list of FormCategoryMapping instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormCategoryMapping> findFormCategoryMappings(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<FormCategoryMapping> searchFormCategoryMappingsByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering FormCategoryMappings list");
         return formCategoryMappingService.findAll(queryFilters, pageable);
     }

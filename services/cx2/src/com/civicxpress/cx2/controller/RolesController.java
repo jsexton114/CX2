@@ -90,7 +90,7 @@ public class RolesController {
     @ApiOperation(value = "Returns the list of Roles instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Roles> findRoles(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<Roles> searchRolesByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering Roles list");
         return rolesService.findAll(queryFilters, pageable);
     }

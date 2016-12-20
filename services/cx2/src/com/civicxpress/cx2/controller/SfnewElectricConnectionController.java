@@ -90,7 +90,7 @@ public class SfnewElectricConnectionController {
     @ApiOperation(value = "Returns the list of SfnewElectricConnection instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SfnewElectricConnection> findSfnewElectricConnections(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<SfnewElectricConnection> searchSfnewElectricConnectionsByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering SfnewElectricConnections list");
         return sfnewElectricConnectionService.findAll(queryFilters, pageable);
     }

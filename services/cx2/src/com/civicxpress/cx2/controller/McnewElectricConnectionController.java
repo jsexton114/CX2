@@ -90,7 +90,7 @@ public class McnewElectricConnectionController {
     @ApiOperation(value = "Returns the list of McnewElectricConnection instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<McnewElectricConnection> findMcnewElectricConnections(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<McnewElectricConnection> searchMcnewElectricConnectionsByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering McnewElectricConnections list");
         return mcnewElectricConnectionService.findAll(queryFilters, pageable);
     }

@@ -90,7 +90,7 @@ public class MasterFormsController {
     @ApiOperation(value = "Returns the list of MasterForms instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MasterForms> findMasterForms(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<MasterForms> searchMasterFormsByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering MasterForms list");
         return masterFormsService.findAll(queryFilters, pageable);
     }

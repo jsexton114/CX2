@@ -141,7 +141,7 @@ public class MunicipalitiesController {
     @ApiOperation(value = "Returns the list of Municipalities instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Municipalities> findMunicipalities(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<Municipalities> searchMunicipalitiesByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering Municipalities list");
         return municipalitiesService.findAll(queryFilters, pageable);
     }

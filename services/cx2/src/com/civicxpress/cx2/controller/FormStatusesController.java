@@ -96,7 +96,7 @@ public class FormStatusesController {
     @ApiOperation(value = "Returns the list of FormStatuses instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormStatuses> findFormStatuses(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<FormStatuses> searchFormStatusesByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering FormStatuses list");
         return formStatusesService.findAll(queryFilters, pageable);
     }

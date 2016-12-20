@@ -63,12 +63,13 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onBeforeDatasetReady" : "CurrentVendorObjonBeforeDatasetReady($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
-    "ignoreCase" : false,
+    "ignoreCase" : true,
     "matchMode" : "start",
     "propertiesMap" : {
       "columns" : [ {
@@ -441,7 +442,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 6,
+    "bindCount" : 7,
     "tableName" : "Vendor",
     "tableType" : "TABLE",
     "properties" : [ "contractorTypes", "states" ],
@@ -479,12 +480,8 @@
     "name" : "UpdateVendorData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ {
-      "target" : "id",
-      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | toNumber",
-      "type" : "number"
-    } ],
-    "operation" : "update",
+    "dataBinding" : [ ],
+    "operation" : "read",
     "dataSet" : [ ],
     "type" : "Vendor",
     "isList" : true,
@@ -493,11 +490,11 @@
     "designMaxResults" : 10,
     "onResult" : "Variables.CurrentVendorObj.listRecords()",
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : false,
-    "autoUpdate" : false,
+    "startUpdate" : true,
+    "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
-    "ignoreCase" : false,
+    "ignoreCase" : true,
     "matchMode" : "start",
     "propertiesMap" : {
       "columns" : [ {
@@ -914,7 +911,7 @@
     "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
-    "ignoreCase" : false,
+    "ignoreCase" : true,
     "matchMode" : "start",
     "propertiesMap" : {
       "columns" : [ {

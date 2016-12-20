@@ -90,7 +90,7 @@ public class FormFeeController {
     @ApiOperation(value = "Returns the list of FormFee instances matching the search criteria.")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormFee> findFormFees(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+    public Page<FormFee> searchFormFeesByQueryFilters(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
         LOGGER.debug("Rendering FormFees list");
         return formFeeService.findAll(queryFilters, pageable);
     }
