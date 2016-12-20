@@ -27,7 +27,11 @@
     "name" : "Categories",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:pageParams.MunicipalityId",
+      "type" : "number"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "FormCategories",
@@ -36,7 +40,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : true,
+    "startUpdate" : false,
     "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
@@ -433,7 +437,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 1,
+    "bindCount" : 3,
     "tableName" : "FormCategories",
     "tableType" : "TABLE",
     "properties" : [ "municipalities" ],
@@ -734,7 +738,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 4,
+    "bindCount" : 5,
     "tableName" : "FormTypes",
     "tableType" : "TABLE",
     "properties" : [ ],
@@ -1158,6 +1162,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
+    "bindCount" : 2,
     "spinnerContext" : "page",
     "tableName" : "FormCategoryMapping",
     "tableType" : "TABLE",
