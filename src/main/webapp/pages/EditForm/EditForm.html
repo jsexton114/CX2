@@ -148,7 +148,7 @@
                                                                 <wm-form-field name="status" displayname="Status" show="true" primary-key="false" generator="assigned" key="status" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn34_1">
-                                                                <wm-form-field name="description" displayname="Description" show="true" primary-key="false" generator="assigned" key="description" type="string" widget="text" maxchars="255" inputtype="text"
+                                                                <wm-form-field name="description" displayname="Description" show="true" primary-key="false" generator="assigned" key="description" type="string" widget="textarea" maxchars="255" inputtype="text"
                                                                 placeholder="Enter value"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn49">
@@ -182,7 +182,7 @@
                                                                 inputtype="text" placeholder="Enter value"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn37_1">
-                                                                <wm-form-field name="emailTextBody" displayname="Email Text Body" show="true" primary-key="false" generator="assigned" key="emailTextBody" type="string" widget="text" maxchars="255" inputtype="text"
+                                                                <wm-form-field name="emailTextBody" displayname="Email Text Body" show="true" primary-key="false" generator="assigned" key="emailTextBody" type="string" widget="textarea" maxchars="255" inputtype="text"
                                                                 placeholder="Enter value"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
@@ -257,6 +257,7 @@
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
+                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
                                         <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"
                                         placeholder="Select value"></wm-form-field>
                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>

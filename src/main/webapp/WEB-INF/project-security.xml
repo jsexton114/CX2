@@ -14,6 +14,26 @@
         </property>
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
     </bean>
+    <bean class="com.wavemaker.runtime.security.config.WMAppSecurityConfig" id="WMAppSecurityConfig">
+        <property name="sslConfig" ref="sslConfig"/>
+        <property name="xssConfig" ref="xssConfig"/>
+        <property name="enforceSecurity">
+            <value>${enabled}</value>
+        </property>
+        <property name="loginConfig" ref="loginConfig"/>
+        <property name="rememberMeConfig" ref="rememberMeConfig"/>
+        <property name="csrfConfig" ref="csrfConfig"/>
+        <property name="rolesConfig" ref="rolesConfig"/>
+    </bean>
+    <bean class="com.wavemaker.studio.common.model.security.SSLConfig" id="sslConfig">
+        <property name="useSSL" value="${general.ssl.enabled}"/>
+        <property name="sslPort" value="${general.ssl.port}"/>
+    </bean>
+    <bean class="com.wavemaker.studio.common.model.security.XSSConfig" id="xssConfig">
+        <property name="enforceXssSecurity" value="${general.xss.enabled}"/>
+        <property name="policyFile" value="wm-xss-policies.xml"/>
+        <property name="xssFilterStrategy" value="NONE"/>
+    </bean>
     <security:global-method-security pre-post-annotations="enabled" authentication-manager-ref="authenticationManager"/>
     <security:http pattern="/app.css" security="none"/>
     <security:http pattern="/app.js" security="none"/>
@@ -34,7 +54,6 @@
     <security:http pattern="/**/wmmobile/**" security="none"/>
     <security:http pattern="/app/prefabs/**" security="none"/>
     <security:http auto-config="false" use-expressions="true" entry-point-ref="WMSecAuthEntryPoint" disable-url-rewriting="true" name="interceptUrlsBean" authentication-manager-ref="authenticationManager">
-        <security:headers disabled="true"/>
         <security:intercept-url pattern="/j_spring_security_check" access="permitAll"/>
         <security:intercept-url pattern="/j_spring_security_logout" access="permitAll"/>
         <security:intercept-url pattern="/pages/CXAdmin/**" access="hasAnyRole('ROLE_CXAdmin')"/>
@@ -64,15 +83,15 @@
         <security:intercept-url pattern="/services/servicedefs" access="permitAll"/>
         <security:intercept-url pattern="/" access="isAuthenticated()"/>
         <security:intercept-url pattern="/**" access="isAuthenticated()"/>
+        <security:headers disabled="true"/>
         <security:request-cache ref="nullRequestCache"/>
         <security:custom-filter before="PRE_AUTH_FILTER" ref="wmTokenBasedPreAuthenticatedProcessingFilter"/>
-        <security:custom-filter position="BASIC_AUTH_FILTER" ref="WMBasicAuthenticationFilter"/>
-        <security:custom-filter position="FORM_LOGIN_FILTER" ref="WMSecAuthFilter"/>
         <security:custom-filter position="REMEMBER_ME_FILTER" ref="rememberMeAuthFilter"/>
+        <security:csrf request-matcher-ref="csrfSecurityRequestMatcher" token-repository-ref="csrfTokenRepository"/>
         <security:custom-filter position="LOGOUT_FILTER" ref="logoutFilter"/>
         <security:session-management session-authentication-strategy-ref="compositeSessionAuthenticationStrategy"/>
-        <security:csrf disabled="false" request-matcher-ref="csrfSecurityRequestMatcher" token-repository-ref="csrfTokenRepository"/>
-        <security:access-denied-handler ref="wmAppAccessDeniedHandler"/>
+        <security:custom-filter position="BASIC_AUTH_FILTER" ref="WMBasicAuthenticationFilter"/>
+        <security:custom-filter position="FORM_LOGIN_FILTER" ref="WMSecAuthFilter"/>
     </security:http>
     <bean class="org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy" id="compositeSessionAuthenticationStrategy">
         <constructor-arg>
@@ -118,31 +137,8 @@
             </bean>
         </constructor-arg>
     </bean>
-    <bean class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler" id="logoutSuccessHandler">
-        <property name="defaultTargetUrl" value="/"/>
-        <property name="redirectStrategy" ref="redirectStrategyBean"/>
-    </bean>
-    <bean class="org.springframework.security.web.DefaultRedirectStrategy" id="redirectStrategyBean"/>
     <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" id="securityContextLogoutHandler"/>
     <bean class="org.springframework.security.web.savedrequest.NullRequestCache" id="nullRequestCache"/>
-    <bean class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter" id="WMSecAuthFilter">
-        <property name="authenticationSuccessHandler" ref="successHandler"/>
-        <property name="authenticationFailureHandler" ref="failureHandler"/>
-        <property name="authenticationManager" ref="authenticationManager"/>
-        <property name="filterProcessesUrl" value="/j_spring_security_check"/>
-        <property name="authenticationDetailsSource" ref="WMWebAuthenticationDetailsSource"/>
-        <property name="rememberMeServices" ref="rememberMeServices"/>
-        <property name="usernameParameter" value="j_username"/>
-        <property name="passwordParameter" value="j_password"/>
-    </bean>
-    <bean class="org.springframework.security.web.authentication.www.BasicAuthenticationFilter" id="WMBasicAuthenticationFilter">
-        <constructor-arg ref="authenticationManager"/>
-        <property name="authenticationDetailsSource" ref="WMWebAuthenticationDetailsSource"/>
-    </bean>
-    <bean class="com.wavemaker.runtime.security.WMWebAuthenticationDetailsSource" id="WMWebAuthenticationDetailsSource"/>
-    <bean class="com.wavemaker.runtime.security.WMAuthenticationEntryPoint" id="WMSecAuthEntryPoint">
-        <constructor-arg value="/index.html"/>
-    </bean>
     <bean class="com.wavemaker.runtime.security.filter.WMTokenBasedPreAuthenticatedProcessingFilter" id="wmTokenBasedPreAuthenticatedProcessingFilter">
         <constructor-arg ref="authenticationManager"/>
         <constructor-arg ref="wmTokenBasedAuthenticationService"/>
@@ -162,21 +158,84 @@
     <bean class="org.springframework.security.authentication.RememberMeAuthenticationProvider" id="rememberMeAuthenticationProvider">
         <constructor-arg value="WM_APP_KEY"/>
     </bean>
-    <bean class="com.wavemaker.runtime.security.config.WMAppSecurityConfig" id="WMAppSecurityConfig">
-        <property name="enforceSecurity">
-            <value>${enabled}</value>
+    <bean class="com.wavemaker.studio.common.model.security.LoginConfig" id="loginConfig">
+        <property name="pageName" value="Login"/>
+        <property name="sessionTimeout">
+            <bean class="com.wavemaker.studio.common.model.security.SessionTimeoutConfig">
+                <property name="pageName" value=""/>
+                <property name="timeoutValue" value="${general.session.timeout}"/>
+                <property name="type">
+                    <value type="com.wavemaker.studio.common.model.security.LoginType">DIALOG</value>
+                </property>
+            </bean>
         </property>
-        <property name="loginConfig" ref="loginConfig"/>
-        <property name="rememberMeConfig" ref="rememberMeConfig"/>
-        <property name="sslConfig" ref="sslConfig"/>
-        <property name="xssConfig" ref="xssConfig"/>
-        <property name="csrfConfig" ref="csrfConfig"/>
-        <property name="rolesConfig" ref="rolesConfig"/>
+        <property name="type">
+            <value type="com.wavemaker.studio.common.model.security.LoginType">PAGE</value>
+        </property>
     </bean>
     <bean class="com.wavemaker.studio.common.model.security.CSRFConfig" id="csrfConfig">
         <property name="enforceCsrfSecurity" value="${general.xsrf.enabled}"/>
         <property name="headerName" value="X-WM-XSRF-TOKEN"/>
     </bean>
+    <bean class="com.wavemaker.studio.common.model.security.RememberMeConfig" id="rememberMeConfig">
+        <property name="enabled" value="${general.rememberMe.enabled}"/>
+        <property name="tokenValiditySeconds" value="${general.rememberMe.timeOut}"/>
+    </bean>
+    <bean class="com.wavemaker.studio.common.model.security.RolesConfig" id="rolesConfig">
+        <property name="roleMap">
+            <description>Roles based landing page definitions</description>
+            <map key-type="java.lang.String" value-type="com.wavemaker.studio.common.model.security.RoleConfig">
+                <entry key="CXAdmin">
+                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                        <property name="landingPage" value="CXAdmin"/>
+                    </bean>
+                </entry>
+                <entry key="MunicipalityAdmin">
+                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                        <property name="landingPage" value="MunicipalityAdministration"/>
+                    </bean>
+                </entry>
+                <entry key="MunicipalityEmployee">
+                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                        <property name="landingPage" value="MyMunicipality"/>
+                    </bean>
+                </entry>
+                <entry key="User">
+                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                        <property name="landingPage" value="Main"/>
+                    </bean>
+                </entry>
+                <entry key="CXVendorAdmin">
+                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                        <property name="landingPage" value="MyCompany"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    <bean class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter" id="WMSecAuthFilter">
+        <property name="authenticationSuccessHandler" ref="successHandler"/>
+        <property name="authenticationFailureHandler" ref="failureHandler"/>
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="filterProcessesUrl" value="/j_spring_security_check"/>
+        <property name="usernameParameter" value="j_username"/>
+        <property name="passwordParameter" value="j_password"/>
+        <property name="authenticationDetailsSource" ref="WMWebAuthenticationDetailsSource"/>
+        <property name="rememberMeServices" ref="rememberMeServices"/>
+    </bean>
+    <bean class="org.springframework.security.web.authentication.www.BasicAuthenticationFilter" id="WMBasicAuthenticationFilter">
+        <constructor-arg ref="authenticationManager"/>
+        <property name="authenticationDetailsSource" ref="WMWebAuthenticationDetailsSource"/>
+    </bean>
+    <bean class="com.wavemaker.runtime.security.WMWebAuthenticationDetailsSource" id="WMWebAuthenticationDetailsSource"/>
+    <bean class="com.wavemaker.runtime.security.WMAuthenticationEntryPoint" id="WMSecAuthEntryPoint">
+        <constructor-arg value="/index.html"/>
+    </bean>
+    <bean class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler" id="logoutSuccessHandler">
+        <property name="defaultTargetUrl" value="/"/>
+        <property name="redirectStrategy" ref="redirectStrategyBean"/>
+    </bean>
+    <bean class="org.springframework.security.web.DefaultRedirectStrategy" id="redirectStrategyBean"/>
     <bean class="org.springframework.security.authentication.dao.DaoAuthenticationProvider" id="databaseAuthenticationProvider">
         <property name="userDetailsService" ref="jdbcDaoImpl"/>
     </bean>
@@ -215,66 +274,6 @@
         </property>
         <property name="authoritiesProvider">
             <ref bean="defaultAuthoritiesProvider"/>
-        </property>
-    </bean>
-    <bean class="com.wavemaker.studio.common.model.security.XSSConfig" id="xssConfig">
-        <property name="enforceXssSecurity" value="${general.xss.enabled}"/>
-        <property name="policyFile" value="wm-xss-policies.xml"/>
-        <property name="xssFilterStrategy" value="NONE"/>
-    </bean>
-    <bean class="com.wavemaker.studio.common.model.security.SSLConfig" id="sslConfig">
-        <property name="useSSL" value="${general.ssl.enabled}"/>
-        <property name="sslPort" value="${general.ssl.port}"/>
-    </bean>
-    <bean class="com.wavemaker.studio.common.model.security.LoginConfig" id="loginConfig">
-        <property name="pageName" value="Login"/>
-        <property name="sessionTimeout">
-            <bean class="com.wavemaker.studio.common.model.security.SessionTimeoutConfig">
-                <property name="pageName" value=""/>
-                <property name="timeoutValue" value="${general.session.timeout}"/>
-                <property name="type">
-                    <value type="com.wavemaker.studio.common.model.security.LoginType">DIALOG</value>
-                </property>
-            </bean>
-        </property>
-        <property name="type">
-            <value type="com.wavemaker.studio.common.model.security.LoginType">PAGE</value>
-        </property>
-    </bean>
-    <bean class="com.wavemaker.studio.common.model.security.RememberMeConfig" id="rememberMeConfig">
-        <property name="enabled" value="${general.rememberMe.enabled}"/>
-        <property name="tokenValiditySeconds" value="${general.rememberMe.timeOut}"/>
-    </bean>
-    <bean class="com.wavemaker.studio.common.model.security.RolesConfig" id="rolesConfig">
-        <property name="roleMap">
-            <description>Roles based landing page definitions</description>
-            <map key-type="java.lang.String" value-type="com.wavemaker.studio.common.model.security.RoleConfig">
-                <entry key="CXAdmin">
-                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
-                        <property name="landingPage" value="CXAdmin"/>
-                    </bean>
-                </entry>
-                <entry key="MunicipalityAdmin">
-                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
-                        <property name="landingPage" value="MunicipalityAdministration"/>
-                    </bean>
-                </entry>
-                <entry key="MunicipalityEmployee">
-                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
-                        <property name="landingPage" value="MyMunicipality"/>
-                    </bean>
-                </entry>
-                <entry key="User">
-                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
-                        <property name="landingPage" value="Main"/>
-                    </bean>
-                </entry>
-                <entry key="CXVendorAdmin">
-                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
-                        <property name="landingPage" value="MyCompany"/>
-                    </bean>
-                </entry>
-            </map>
         </property>
     </bean>
 </beans>
