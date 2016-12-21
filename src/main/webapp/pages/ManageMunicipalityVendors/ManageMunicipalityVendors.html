@@ -39,8 +39,7 @@
                                         <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="230px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="editRow()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="ViewProfile" action="Variables.VendorProfile.listRecords();Variables.VendorLicensesData.listRecords();Widgets.viewCompanyDetails.open()"
-                                        disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="View Profile" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                     <wm-liveform novalidate="false" errormessage="" title="Vendorapprovals Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ReviewVendorApprovals.dataSet" captionalign="left" captionposition="top"
                                     name="liveform2">
@@ -80,13 +79,14 @@
                             <wm-accordionpane name="accordionpane2" title="Approved Vendors">
                                 <wm-livegrid formlayout="dialog" name="livegrid2_1">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendorapprovals List" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" navigation="Basic" name="gridApprovedVendors" filtermode="multicolumn" exportformat="EXCEL">
-                                        <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-column binding="dateApproved" caption="Date Approved" type="date" generator="assigned" datepattern="dd MMMM,yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="approvedBy" caption="Approved By" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="dateApproved" caption="Date Approved" type="date" generator="assigned" datepattern="dd MMMM,yyyy" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="approvedBy" caption="Approved By" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                                        <wm-grid-row-action key="customRow" display-name="" title="View Profile" value="" iconclass="wi wi-people" class="btn-transparent" show="true" action="customRowAction($event)"></wm-grid-row-action>
                                     </wm-grid>
                                     <wm-liveform novalidate="false" errormessage="" title="Vendorapprovals Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" captionalign="left" captionposition="top"
                                     name="liveformApprovedVendors">
@@ -123,13 +123,14 @@
                             <wm-accordionpane name="accordionpane3" title="Suspended Vendors">
                                 <wm-livegrid formlayout="dialog" name="livegrid3">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendorapprovals List" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" navigation="Basic" name="gridSuspended" filtermode="multicolumn" exportformat="EXCEL">
-                                        <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-column binding="dateApproved" caption="Date Suspended" type="date" generator="assigned" datepattern="MMM dd,yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="approvedBy" caption="Suspended By" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="dateApproved" caption="Date Suspended" type="date" generator="assigned" datepattern="MMM dd,yyyy" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="approvedBy" caption="Suspended By" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="View Profile" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                     <wm-liveform novalidate="false" errormessage="" title="Vendorapprovals Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" captionalign="left" captionposition="top"
                                     name="liveformSuspended">
