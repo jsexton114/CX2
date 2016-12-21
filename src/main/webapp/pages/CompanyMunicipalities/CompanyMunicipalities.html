@@ -52,8 +52,10 @@
                                 datafield="All Fields" displayfield="companyName" defaultvalue="bind:Variables.CurrentVendorObj.firstRecord"></wm-form-field>
                                 <wm-form-field name="approvalStatus" displayname="Approval Status" show="false" primary-key="false" generator="assigned" key="approvalStatus" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
                                 defaultvalue="Pending"></wm-form-field>
+                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
+                                placeholder=""></wm-form-field>
                                 <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                <wm-form-action key="save" display-name="Submit Application" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                <wm-form-action key="save" display-name="Submit Application" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" action="saveAction($event)" disabled="false" type="button" update-mode="true"></wm-form-action>
                             </wm-liveform>
                         </wm-livegrid>
                     </wm-gridcolumn>
