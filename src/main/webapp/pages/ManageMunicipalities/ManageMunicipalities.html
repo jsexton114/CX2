@@ -13,20 +13,20 @@
                 <wm-gridrow name="gridrow9">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn17">
                         <wm-livegrid formlayout="dialog" name="livegrid1">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="Manage Municipalities" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" navigation="Basic" name="grid1" confirmdelete="Are you sure you want to delete this Municipality?"
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="Manage Municipalities" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" navigation="Classic" name="grid1" confirmdelete="Are you sure you want to delete this Municipality?"
                             deletemessage="Municipality deleted successfully" nodatamessage="No Municipalities found." loadingdatamsg="Please Wait While Loading Municipalities..." exportformat="EXCEL" filtermode="multicolumn">
-                                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
-                                <wm-grid-column binding="logo" caption="Logo" type="blob" widget-type="image" generator="assigned" edit-widget-type="upload" searchable="false" show="true" filterwidget="text" readonly="false"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
+                                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid-column binding="logo" caption="Logo" type="blob" widget-type="image" generator="assigned" searchable="false" show="true" filterwidget="text" readonly="false"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
                                 </wm-grid-column>
-                                <wm-grid-column binding="municipalityName" caption="Municipality Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="address1" caption="Address1" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="address2" caption="Address2" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="city" caption="City" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="states.stateName" caption="State Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="States" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="postalCode" caption="Postal Code" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="phone" caption="Phone" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="email" caption="Email" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                <wm-grid-column binding="municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="address1" caption="Address1" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="address2" caption="Address2" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="city" caption="City" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="states.stateName" caption="State Name" type="string" generator="assigned" show="true" related-entity-name="States" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="postalCode" caption="Postal Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="phone" caption="Phone" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="email" caption="Email" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow();addNewRowAction($event)" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
