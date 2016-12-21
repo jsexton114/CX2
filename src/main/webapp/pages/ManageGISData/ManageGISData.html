@@ -29,7 +29,7 @@
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabpane1" title="Subdivisions">
                                 <wm-livegrid formlayout="dialog" name="livegrid1">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Subdivisions List" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL">
                                         <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" pcdisplay="false" edit-widget-type="number" show="true"></wm-grid-column>
                                         <wm-grid-column binding="subdivisionGuid" caption="Subdivision Guid" type="string" generator="assigned" pcdisplay="false" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="subdivision" caption="Subdivision" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -72,7 +72,7 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpane2" title="Parcels">
                                 <wm-livegrid formlayout="dialog" name="livegrid2">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Parcels List" dataset="bind:Variables.Cx2GisrecordsData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2GisrecordsData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL">
                                         <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" pcdisplay="false" edit-widget-type="number" show="true"></wm-grid-column>
                                         <wm-grid-column binding="landGuid" caption="Land Guid" type="string" generator="assigned" pcdisplay="false" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
