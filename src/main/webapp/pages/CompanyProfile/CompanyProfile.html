@@ -84,8 +84,8 @@
                                         required="true" validationmessage="Type of Business is required"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn14">
-                                        <wm-form-field name="businessClassification" displayname="Business Classification" show="true" primary-key="false" generator="assigned" key="businessClassification" type="string" widget="text" maxchars="255" inputtype="text"
-                                        placeholder="Enter value" required="true" validationmessage="Business Classification is required"></wm-form-field>
+                                        <wm-form-field displayname="Business Classification" show="true" primary-key="false" generator="assigned" key="businessClassification" type="string" required="required" widget="select" maxchars="255" placeholder="Select value"
+                                        validationmessage="Business Classification is required" dataset="Individual,LLC,LLP,Corporation,Partnership,Professional Association, Other" name="form_field31"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn15">
                                         <wm-form-field name="contractorTypes" displayname="Contractor Types" show="true" primary-key="false" generator="assigned" key="contractorTypes" type="list" is-related="true" widget="select" placeholder="Select value"
@@ -169,7 +169,7 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow15">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn32">
-                                                <wm-form-field name="scope" displayname="Scope" show="true" primary-key="false" generator="assigned" key="scope" type="string" widget="select" maxchars="255" inputtype="text" placeholder="Enter value" dataset="City,Country,State,Fedral"
+                                                <wm-form-field name="scope" displayname="Scope" show="true" primary-key="false" generator="assigned" key="scope" type="string" widget="select" maxchars="255" inputtype="text" placeholder="Enter value" dataset="City,County,State,Federal"
                                                 defaultvalue="City"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn33">
