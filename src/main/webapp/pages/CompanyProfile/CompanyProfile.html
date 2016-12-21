@@ -26,7 +26,7 @@
                 <wm-gridrow name="gridrow10">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn25">
                         <wm-liveform novalidate="false" errormessage="" title="Vendor Info" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.UpdateVendorData.dataSet" captionalign="left" captionposition="top" name="liveform1" formdata="bind:Variables.CurrentVendorObj.firstRecord"
-                        class="panel-primary">
+                        class="panel-primary" on-beforeservicecall="liveform1Beforeservicecall($event, $operation, $data)">
                             <wm-layoutgrid columns="3" name="layoutgrid1">
                                 <wm-gridrow name="gridrow1">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn1">
@@ -120,8 +120,8 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow8">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn20">
-                                        <wm-form-field name="lastUpdated" displayname="Last Updated" show="true" primary-key="false" generator="assigned" key="lastUpdated" type="date" widget="date" defaultvalue="CURRENT_DATE" placeholder="Select date" outputformat="yyyy-MM-dd"
-                                        readonly="true" datepattern="MM-dd-yyyy"></wm-form-field>
+                                        <wm-form-field name="lastUpdated" displayname="Last Updated" show="true" primary-key="false" generator="assigned" key="lastUpdated" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd" readonly="true"
+                                        datepattern="MM-dd-yyyy" disabled="true" defaultvalue="CURRENT_DATE"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>

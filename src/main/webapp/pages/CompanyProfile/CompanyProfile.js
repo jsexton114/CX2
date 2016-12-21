@@ -19,6 +19,10 @@ Application.$controller("CompanyProfilePageController", ["$scope", function($sco
     };
 
 
+    $scope.liveform1Beforeservicecall = function($event, $operation, $data) {
+        $data.lastUpdated = $scope.Variables.Today.dataSet.dataValue;
+    };
+
 }]);
 
 

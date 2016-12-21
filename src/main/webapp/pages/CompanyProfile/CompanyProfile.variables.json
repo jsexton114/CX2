@@ -443,6 +443,7 @@
       "primaryFields" : [ "id" ]
     },
     "bindCount" : 7,
+    "spinnerContext" : "page",
     "tableName" : "Vendor",
     "tableType" : "TABLE",
     "properties" : [ "contractorTypes", "states" ],
@@ -469,7 +470,7 @@
     "category" : "wm.Variable",
     "dataBinding" : [ ],
     "dataSet" : {
-      "dataValue" : 1481049000000
+      "dataValue" : null
     },
     "type" : "date",
     "isList" : false,
@@ -481,7 +482,7 @@
     "owner" : "Page",
     "category" : "wm.LiveVariable",
     "dataBinding" : [ ],
-    "operation" : "read",
+    "operation" : "update",
     "dataSet" : [ ],
     "type" : "Vendor",
     "isList" : true,
@@ -490,8 +491,8 @@
     "designMaxResults" : 10,
     "onResult" : "Variables.CurrentVendorObj.listRecords()",
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : true,
-    "autoUpdate" : true,
+    "startUpdate" : false,
+    "autoUpdate" : false,
     "transformationRequired" : false,
     "liveSource" : "cx2",
     "ignoreCase" : true,
@@ -869,6 +870,7 @@
     },
     "isDefault" : true,
     "bindCount" : 1,
+    "spinnerContext" : "page",
     "tableName" : "Vendor",
     "tableType" : "TABLE",
     "properties" : [ "contractorTypes", "states" ],
