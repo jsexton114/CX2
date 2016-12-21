@@ -469,19 +469,26 @@
     }
   }, {
     "name" : "getListofGroupName",
-    "query" : "select ID,GroupName from MunicipalityGroups where ID IN :MunicipalityID",
+    "query" : "select ID,GroupName from MunicipalityGroups where ID IN :MunicipalityGroupID AND MunicipalityId =:MunicipalityID",
     "comment" : "get all the list of group Names based on mun ID",
     "description" : null,
     "nativeSql" : true,
     "returnsSingleResult" : false,
     "update" : false,
     "queryParams" : [ {
-      "paramName" : "MunicipalityID",
+      "paramName" : "MunicipalityGroupID",
       "paramType" : "java.lang.Integer",
       "testValue" : "3,33",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : true
+    }, {
+      "paramName" : "MunicipalityID",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
     } ],
     "outputType" : "cx2getListofGroupNamertnType",
     "returnTypeMetadata" : {

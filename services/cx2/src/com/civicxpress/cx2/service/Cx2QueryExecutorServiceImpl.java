@@ -182,9 +182,10 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
-	public Page<Object> executeGetListofGroupName(Pageable pageable, java.util.List<java.lang.Integer> MunicipalityID)
+	public Page<Object> executeGetListofGroupName(Pageable pageable, java.util.List<java.lang.Integer> MunicipalityGroupID, java.lang.Integer MunicipalityID)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
+        params.put("MunicipalityGroupID", MunicipalityGroupID);
         params.put("MunicipalityID", MunicipalityID);
         return queryExecutor.executeNamedQuery("getListofGroupName", params, pageable);
 	}

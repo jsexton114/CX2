@@ -93,7 +93,7 @@
   </sql-query>
   <sql-query name="getListofGroupName">
     <![CDATA[
-      select ID,GroupName from MunicipalityGroups where ID IN :MunicipalityID
+      select ID,GroupName from MunicipalityGroups where ID IN :MunicipalityGroupID AND MunicipalityId =:MunicipalityID
     ]]>
   </sql-query>
   <sql-query name="getListofUsers">

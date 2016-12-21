@@ -222,9 +222,9 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/getListofGroupName", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Object> executeGetListofGroupName(@RequestParam(value = "MunicipalityID", required = true) java.util.List<java.lang.Integer> MunicipalityID, Pageable pageable) throws QueryParameterMismatchException {
+    public Page<Object> executeGetListofGroupName(@RequestParam(value = "MunicipalityGroupID", required = true) java.util.List<java.lang.Integer> MunicipalityGroupID, @RequestParam(value = "MunicipalityID", required = false) java.lang.Integer MunicipalityID, Pageable pageable) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query getListofGroupName");
-        Page<Object> result = queryService.executeGetListofGroupName(pageable, MunicipalityID);
+        Page<Object> result = queryService.executeGetListofGroupName(pageable, MunicipalityGroupID, MunicipalityID);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

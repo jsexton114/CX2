@@ -329,7 +329,8 @@
         <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="getListofGroupName">
-        <parameter name="MunicipalityID" typeRef="java.lang.Integer" isList="true"/>
+        <parameter name="MunicipalityGroupID" typeRef="java.lang.Integer" isList="true"/>
+        <parameter name="MunicipalityID" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2getListofGroupNamertnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="getListofUsers">

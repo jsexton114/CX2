@@ -35,7 +35,8 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
 
         var items = [];
         if (data.totalElements === 0) {
-            $scope.Variables.getListofGroupName.setInput('MunicipalityID', 1);
+            $scope.Variables.getListofGroupName.setInput('MunicipalityGroupID', 1);
+            $scope.Variables.getListofGroupName.setInput('MunicipalityID', $scope.Widgets.selectMunicipality.datavalue.ID);
             $scope.Variables.getListofGroupName.update({}, function(data) {
 
             });
@@ -46,7 +47,8 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
 
             }
 
-            $scope.Variables.getListofGroupName.setInput('MunicipalityID', items);
+            $scope.Variables.getListofGroupName.setInput('MunicipalityGroupID', items);
+            $scope.Variables.getListofGroupName.setInput('MunicipalityID', $scope.Widgets.selectMunicipality.datavalue.ID);
             $scope.Variables.getListofGroupName.update({}, function(data) {
 
             });
