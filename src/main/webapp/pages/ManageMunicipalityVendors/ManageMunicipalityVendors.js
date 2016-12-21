@@ -58,3 +58,31 @@ Application.$controller("liveformSuspendedController", ["$scope",
 		$scope.ctrlScope = $scope;
 	}
 ]);
+
+Application.$controller("viewCompanyDetailsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveform1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("grid4Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveform5Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
