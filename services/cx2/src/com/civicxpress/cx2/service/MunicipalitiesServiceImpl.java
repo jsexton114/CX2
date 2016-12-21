@@ -46,48 +46,48 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(MunicipalitiesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.FormFeeService")
-	private FormFeeService formFeeService;
+	@Qualifier("cx2.VendorApprovalsService")
+	private VendorApprovalsService vendorApprovalsService;
 
     @Autowired
 	@Qualifier("cx2.MasterFormsService")
 	private MasterFormsService masterFormsService;
 
     @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
-
-    @Autowired
-	@Qualifier("cx2.VendorApprovalsService")
-	private VendorApprovalsService vendorApprovalsService;
-
-    @Autowired
-	@Qualifier("cx2.GisrecordsService")
-	private GisrecordsService gisrecordsService;
-
-    @Autowired
-	@Qualifier("cx2.MunicipalityGroupsService")
-	private MunicipalityGroupsService municipalityGroupsService;
-
-    @Autowired
-	@Qualifier("cx2.UserSubscriptionsService")
-	private UserSubscriptionsService userSubscriptionsService;
+	@Qualifier("cx2.ManualFeeTypesService")
+	private ManualFeeTypesService manualFeeTypesService;
 
     @Autowired
 	@Qualifier("cx2.SubdivisionsService")
 	private SubdivisionsService subdivisionsService;
 
     @Autowired
-	@Qualifier("cx2.ManualFeeTypesService")
-	private ManualFeeTypesService manualFeeTypesService;
+	@Qualifier("cx2.MunicipalityGroupsService")
+	private MunicipalityGroupsService municipalityGroupsService;
+
+    @Autowired
+	@Qualifier("cx2.FormCategoriesService")
+	private FormCategoriesService formCategoriesService;
+
+    @Autowired
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
 
     @Autowired
 	@Qualifier("cx2.HolidaysService")
 	private HolidaysService holidaysService;
 
     @Autowired
-	@Qualifier("cx2.FormCategoriesService")
-	private FormCategoriesService formCategoriesService;
+	@Qualifier("cx2.FormFeeService")
+	private FormFeeService formFeeService;
+
+    @Autowired
+	@Qualifier("cx2.GisrecordsService")
+	private GisrecordsService gisrecordsService;
+
+    @Autowired
+	@Qualifier("cx2.UserSubscriptionsService")
+	private UserSubscriptionsService userSubscriptionsService;
 
     @Autowired
     @Qualifier("cx2.MunicipalitiesDao")
@@ -102,30 +102,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	public Municipalities create(Municipalities municipalities) {
         LOGGER.debug("Creating a new Municipalities with information: {}", municipalities);
         Municipalities municipalitiesCreated = this.wmGenericDao.create(municipalities);
-        if(municipalitiesCreated.getManualFeeTypeses() != null) {
-            for(ManualFeeTypes manualFeeTypese : municipalitiesCreated.getManualFeeTypeses()) {
-                manualFeeTypese.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child ManualFeeTypes with information: {}", manualFeeTypese);
-                manualFeeTypesService.create(manualFeeTypese);
-            }
-        }
-
-        if(municipalitiesCreated.getMasterFormses() != null) {
-            for(MasterForms masterFormse : municipalitiesCreated.getMasterFormses()) {
-                masterFormse.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
-                masterFormsService.create(masterFormse);
-            }
-        }
-
-        if(municipalitiesCreated.getVendorApprovalses() != null) {
-            for(VendorApprovals vendorApprovalse : municipalitiesCreated.getVendorApprovalses()) {
-                vendorApprovalse.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child VendorApprovals with information: {}", vendorApprovalse);
-                vendorApprovalsService.create(vendorApprovalse);
-            }
-        }
-
         if(municipalitiesCreated.getFormCategorieses() != null) {
             for(FormCategories formCategoriese : municipalitiesCreated.getFormCategorieses()) {
                 formCategoriese.setMunicipalities(municipalitiesCreated);
@@ -134,27 +110,11 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
             }
         }
 
-        if(municipalitiesCreated.getMunicipalityGroupses() != null) {
-            for(MunicipalityGroups municipalityGroupse : municipalitiesCreated.getMunicipalityGroupses()) {
-                municipalityGroupse.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child MunicipalityGroups with information: {}", municipalityGroupse);
-                municipalityGroupsService.create(municipalityGroupse);
-            }
-        }
-
-        if(municipalitiesCreated.getSubdivisionses() != null) {
-            for(Subdivisions subdivisionse : municipalitiesCreated.getSubdivisionses()) {
-                subdivisionse.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child Subdivisions with information: {}", subdivisionse);
-                subdivisionsService.create(subdivisionse);
-            }
-        }
-
-        if(municipalitiesCreated.getRoleses() != null) {
-            for(Roles rolese : municipalitiesCreated.getRoleses()) {
-                rolese.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child Roles with information: {}", rolese);
-                rolesService.create(rolese);
+        if(municipalitiesCreated.getFormFees() != null) {
+            for(FormFee formFee : municipalitiesCreated.getFormFees()) {
+                formFee.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child FormFee with information: {}", formFee);
+                formFeeService.create(formFee);
             }
         }
 
@@ -174,11 +134,43 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
             }
         }
 
-        if(municipalitiesCreated.getFormFees() != null) {
-            for(FormFee formFee : municipalitiesCreated.getFormFees()) {
-                formFee.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child FormFee with information: {}", formFee);
-                formFeeService.create(formFee);
+        if(municipalitiesCreated.getManualFeeTypeses() != null) {
+            for(ManualFeeTypes manualFeeTypese : municipalitiesCreated.getManualFeeTypeses()) {
+                manualFeeTypese.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child ManualFeeTypes with information: {}", manualFeeTypese);
+                manualFeeTypesService.create(manualFeeTypese);
+            }
+        }
+
+        if(municipalitiesCreated.getMasterFormses() != null) {
+            for(MasterForms masterFormse : municipalitiesCreated.getMasterFormses()) {
+                masterFormse.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
+                masterFormsService.create(masterFormse);
+            }
+        }
+
+        if(municipalitiesCreated.getMunicipalityGroupses() != null) {
+            for(MunicipalityGroups municipalityGroupse : municipalitiesCreated.getMunicipalityGroupses()) {
+                municipalityGroupse.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child MunicipalityGroups with information: {}", municipalityGroupse);
+                municipalityGroupsService.create(municipalityGroupse);
+            }
+        }
+
+        if(municipalitiesCreated.getRoleses() != null) {
+            for(Roles rolese : municipalitiesCreated.getRoleses()) {
+                rolese.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child Roles with information: {}", rolese);
+                rolesService.create(rolese);
+            }
+        }
+
+        if(municipalitiesCreated.getSubdivisionses() != null) {
+            for(Subdivisions subdivisionse : municipalitiesCreated.getSubdivisionses()) {
+                subdivisionse.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child Subdivisions with information: {}", subdivisionse);
+                subdivisionsService.create(subdivisionse);
             }
         }
 
@@ -187,6 +179,14 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
                 userSubscriptionse.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child UserSubscriptions with information: {}", userSubscriptionse);
                 userSubscriptionsService.create(userSubscriptionse);
+            }
+        }
+
+        if(municipalitiesCreated.getVendorApprovalses() != null) {
+            for(VendorApprovals vendorApprovalse : municipalitiesCreated.getVendorApprovalses()) {
+                vendorApprovalse.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child VendorApprovals with information: {}", vendorApprovalse);
+                vendorApprovalsService.create(vendorApprovalse);
             }
         }
         return municipalitiesCreated;
@@ -265,39 +265,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<ManualFeeTypes> findAssociatedManualFeeTypeses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated manualFeeTypeses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalities.id = '" + id + "'");
-
-        return manualFeeTypesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterFormses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalities.id = '" + id + "'");
-
-        return masterFormsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated vendorApprovalses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalities.id = '" + id + "'");
-
-        return vendorApprovalsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormCategories> findAssociatedFormCategorieses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formCategorieses");
 
@@ -309,35 +276,13 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MunicipalityGroups> findAssociatedMunicipalityGroupses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated municipalityGroupses");
+    public Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formFees");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("municipalities.id = '" + id + "'");
 
-        return municipalityGroupsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Subdivisions> findAssociatedSubdivisionses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subdivisionses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalities.id = '" + id + "'");
-
-        return subdivisionsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated roleses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalities.id = '" + id + "'");
-
-        return rolesService.findAll(queryBuilder.toString(), pageable);
+        return formFeeService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -364,13 +309,57 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formFees");
+    public Page<ManualFeeTypes> findAssociatedManualFeeTypeses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated manualFeeTypeses");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("municipalities.id = '" + id + "'");
 
-        return formFeeService.findAll(queryBuilder.toString(), pageable);
+        return manualFeeTypesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return masterFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MunicipalityGroups> findAssociatedMunicipalityGroupses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalityGroupses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return municipalityGroupsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated roleses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return rolesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Subdivisions> findAssociatedSubdivisionses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated subdivisionses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return subdivisionsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -384,31 +373,15 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
         return userSubscriptionsService.findAll(queryBuilder.toString(), pageable);
     }
 
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormFeeService instance
-	 */
-	protected void setFormFeeService(FormFeeService service) {
-        this.formFeeService = service;
-    }
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorApprovalses");
 
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service MasterFormsService instance
-	 */
-	protected void setMasterFormsService(MasterFormsService service) {
-        this.masterFormsService = service;
-    }
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
 
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service RolesService instance
-	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
+        return vendorApprovalsService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
@@ -423,37 +396,10 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service GisrecordsService instance
+	 * @param service MasterFormsService instance
 	 */
-	protected void setGisrecordsService(GisrecordsService service) {
-        this.gisrecordsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service MunicipalityGroupsService instance
-	 */
-	protected void setMunicipalityGroupsService(MunicipalityGroupsService service) {
-        this.municipalityGroupsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service UserSubscriptionsService instance
-	 */
-	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
-        this.userSubscriptionsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubdivisionsService instance
-	 */
-	protected void setSubdivisionsService(SubdivisionsService service) {
-        this.subdivisionsService = service;
+	protected void setMasterFormsService(MasterFormsService service) {
+        this.masterFormsService = service;
     }
 
     /**
@@ -468,10 +414,19 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service HolidaysService instance
+	 * @param service SubdivisionsService instance
 	 */
-	protected void setHolidaysService(HolidaysService service) {
-        this.holidaysService = service;
+	protected void setSubdivisionsService(SubdivisionsService service) {
+        this.subdivisionsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MunicipalityGroupsService instance
+	 */
+	protected void setMunicipalityGroupsService(MunicipalityGroupsService service) {
+        this.municipalityGroupsService = service;
     }
 
     /**
@@ -481,6 +436,51 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	 */
 	protected void setFormCategoriesService(FormCategoriesService service) {
         this.formCategoriesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service RolesService instance
+	 */
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service HolidaysService instance
+	 */
+	protected void setHolidaysService(HolidaysService service) {
+        this.holidaysService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormFeeService instance
+	 */
+	protected void setFormFeeService(FormFeeService service) {
+        this.formFeeService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service GisrecordsService instance
+	 */
+	protected void setGisrecordsService(GisrecordsService service) {
+        this.gisrecordsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service UserSubscriptionsService instance
+	 */
+	protected void setUserSubscriptionsService(UserSubscriptionsService service) {
+        this.userSubscriptionsService = service;
     }
 
 }

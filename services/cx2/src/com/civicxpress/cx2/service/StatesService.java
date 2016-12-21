@@ -131,18 +131,6 @@ public interface StatesService {
 	long count(String query);
 
     /*
-     * Returns the associated municipalitieses for given States id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated Municipalities instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<Municipalities> findAssociatedMunicipalitieses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated gisrecordsesForOwnerState for given States id.
      *
      * @param id value of id; value cannot be null
@@ -167,16 +155,28 @@ public interface StatesService {
     Page<Gisrecords> findAssociatedGisrecordsesForStateId(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated vendors for given States id.
+     * Returns the associated globalSettingses for given States id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated Vendor instances.
+     * @return Paginated list of associated GlobalSettings instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<Vendor> findAssociatedVendors(Integer id, Pageable pageable);
+    Page<GlobalSettings> findAssociatedGlobalSettingses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated municipalitieses for given States id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Municipalities instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Municipalities> findAssociatedMunicipalitieses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated userses for given States id.
@@ -191,16 +191,16 @@ public interface StatesService {
     Page<Users> findAssociatedUserses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated globalSettingses for given States id.
+     * Returns the associated vendors for given States id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated GlobalSettings instances.
+     * @return Paginated list of associated Vendor instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<GlobalSettings> findAssociatedGlobalSettingses(Integer id, Pageable pageable);
+    Page<Vendor> findAssociatedVendors(Integer id, Pageable pageable);
 
 }
 

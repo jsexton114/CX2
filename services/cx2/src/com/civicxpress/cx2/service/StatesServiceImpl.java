@@ -40,8 +40,8 @@ public class StatesServiceImpl implements StatesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(StatesServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.GlobalSettingsService")
-	private GlobalSettingsService globalSettingsService;
+	@Qualifier("cx2.MunicipalitiesService")
+	private MunicipalitiesService municipalitiesService;
 
     @Autowired
 	@Qualifier("cx2.VendorService")
@@ -52,12 +52,12 @@ public class StatesServiceImpl implements StatesService {
 	private UsersService usersService;
 
     @Autowired
-	@Qualifier("cx2.GisrecordsService")
-	private GisrecordsService gisrecordsService;
+	@Qualifier("cx2.GlobalSettingsService")
+	private GlobalSettingsService globalSettingsService;
 
     @Autowired
-	@Qualifier("cx2.MunicipalitiesService")
-	private MunicipalitiesService municipalitiesService;
+	@Qualifier("cx2.GisrecordsService")
+	private GisrecordsService gisrecordsService;
 
     @Autowired
     @Qualifier("cx2.StatesDao")
@@ -72,14 +72,6 @@ public class StatesServiceImpl implements StatesService {
 	public States create(States states) {
         LOGGER.debug("Creating a new States with information: {}", states);
         States statesCreated = this.wmGenericDao.create(states);
-        if(statesCreated.getMunicipalitieses() != null) {
-            for(Municipalities municipalitiese : statesCreated.getMunicipalitieses()) {
-                municipalitiese.setStates(statesCreated);
-                LOGGER.debug("Creating a new child Municipalities with information: {}", municipalitiese);
-                municipalitiesService.create(municipalitiese);
-            }
-        }
-
         if(statesCreated.getGisrecordsesForOwnerState() != null) {
             for(Gisrecords gisrecordsesForOwnerState : statesCreated.getGisrecordsesForOwnerState()) {
                 gisrecordsesForOwnerState.setStatesByOwnerState(statesCreated);
@@ -96,11 +88,19 @@ public class StatesServiceImpl implements StatesService {
             }
         }
 
-        if(statesCreated.getVendors() != null) {
-            for(Vendor vendor : statesCreated.getVendors()) {
-                vendor.setStates(statesCreated);
-                LOGGER.debug("Creating a new child Vendor with information: {}", vendor);
-                vendorService.create(vendor);
+        if(statesCreated.getGlobalSettingses() != null) {
+            for(GlobalSettings globalSettingse : statesCreated.getGlobalSettingses()) {
+                globalSettingse.setStates(statesCreated);
+                LOGGER.debug("Creating a new child GlobalSettings with information: {}", globalSettingse);
+                globalSettingsService.create(globalSettingse);
+            }
+        }
+
+        if(statesCreated.getMunicipalitieses() != null) {
+            for(Municipalities municipalitiese : statesCreated.getMunicipalitieses()) {
+                municipalitiese.setStates(statesCreated);
+                LOGGER.debug("Creating a new child Municipalities with information: {}", municipalitiese);
+                municipalitiesService.create(municipalitiese);
             }
         }
 
@@ -112,11 +112,11 @@ public class StatesServiceImpl implements StatesService {
             }
         }
 
-        if(statesCreated.getGlobalSettingses() != null) {
-            for(GlobalSettings globalSettingse : statesCreated.getGlobalSettingses()) {
-                globalSettingse.setStates(statesCreated);
-                LOGGER.debug("Creating a new child GlobalSettings with information: {}", globalSettingse);
-                globalSettingsService.create(globalSettingse);
+        if(statesCreated.getVendors() != null) {
+            for(Vendor vendor : statesCreated.getVendors()) {
+                vendor.setStates(statesCreated);
+                LOGGER.debug("Creating a new child Vendor with information: {}", vendor);
+                vendorService.create(vendor);
             }
         }
         return statesCreated;
@@ -195,17 +195,6 @@ public class StatesServiceImpl implements StatesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Municipalities> findAssociatedMunicipalitieses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated municipalitieses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("states.id = '" + id + "'");
-
-        return municipalitiesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<Gisrecords> findAssociatedGisrecordsesForOwnerState(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gisrecordsesForOwnerState");
 
@@ -228,13 +217,24 @@ public class StatesServiceImpl implements StatesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Vendor> findAssociatedVendors(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated vendors");
+    public Page<GlobalSettings> findAssociatedGlobalSettingses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated globalSettingses");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("states.id = '" + id + "'");
 
-        return vendorService.findAll(queryBuilder.toString(), pageable);
+        return globalSettingsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Municipalities> findAssociatedMunicipalitieses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalitieses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("states.id = '" + id + "'");
+
+        return municipalitiesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -250,22 +250,22 @@ public class StatesServiceImpl implements StatesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GlobalSettings> findAssociatedGlobalSettingses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated globalSettingses");
+    public Page<Vendor> findAssociatedVendors(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendors");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("states.id = '" + id + "'");
 
-        return globalSettingsService.findAll(queryBuilder.toString(), pageable);
+        return vendorService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service GlobalSettingsService instance
+	 * @param service MunicipalitiesService instance
 	 */
-	protected void setGlobalSettingsService(GlobalSettingsService service) {
-        this.globalSettingsService = service;
+	protected void setMunicipalitiesService(MunicipalitiesService service) {
+        this.municipalitiesService = service;
     }
 
     /**
@@ -289,19 +289,19 @@ public class StatesServiceImpl implements StatesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service GisrecordsService instance
+	 * @param service GlobalSettingsService instance
 	 */
-	protected void setGisrecordsService(GisrecordsService service) {
-        this.gisrecordsService = service;
+	protected void setGlobalSettingsService(GlobalSettingsService service) {
+        this.globalSettingsService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalitiesService instance
+	 * @param service GisrecordsService instance
 	 */
-	protected void setMunicipalitiesService(MunicipalitiesService service) {
-        this.municipalitiesService = service;
+	protected void setGisrecordsService(GisrecordsService service) {
+        this.gisrecordsService = service;
     }
 
 }

@@ -150,18 +150,6 @@ public interface VendorService {
     Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated vendorUserses for given Vendor id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated VendorUsers instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated vendorLicenseses for given Vendor id.
      *
      * @param id value of id; value cannot be null
@@ -184,6 +172,18 @@ public interface VendorService {
      * @see Page
      */
     Page<VendorAdmins> findAssociatedVendorAdminses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated vendorUserses for given Vendor id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated VendorUsers instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable);
 
 }
 

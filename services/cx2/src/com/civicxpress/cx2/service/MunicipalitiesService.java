@@ -137,42 +137,6 @@ public interface MunicipalitiesService {
 	long count(String query);
 
     /*
-     * Returns the associated manualFeeTypeses for given Municipalities id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated ManualFeeTypes instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<ManualFeeTypes> findAssociatedManualFeeTypeses(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated masterFormses for given Municipalities id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated MasterForms instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated vendorApprovalses for given Municipalities id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated VendorApprovals instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated formCategorieses for given Municipalities id.
      *
      * @param id value of id; value cannot be null
@@ -185,40 +149,16 @@ public interface MunicipalitiesService {
     Page<FormCategories> findAssociatedFormCategorieses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated municipalityGroupses for given Municipalities id.
+     * Returns the associated formFees for given Municipalities id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated MunicipalityGroups instances.
+     * @return Paginated list of associated FormFee instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<MunicipalityGroups> findAssociatedMunicipalityGroupses(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated subdivisionses for given Municipalities id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated Subdivisions instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<Subdivisions> findAssociatedSubdivisionses(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated roleses for given Municipalities id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated Roles instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable);
+    Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable);
 
     /*
      * Returns the associated gisrecordses for given Municipalities id.
@@ -245,16 +185,64 @@ public interface MunicipalitiesService {
     Page<Holidays> findAssociatedHolidayses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated formFees for given Municipalities id.
+     * Returns the associated manualFeeTypeses for given Municipalities id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated FormFee instances.
+     * @return Paginated list of associated ManualFeeTypes instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable);
+    Page<ManualFeeTypes> findAssociatedManualFeeTypeses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated masterFormses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterForms instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated municipalityGroupses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MunicipalityGroups instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MunicipalityGroups> findAssociatedMunicipalityGroupses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated roleses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Roles instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated subdivisionses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Subdivisions instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Subdivisions> findAssociatedSubdivisionses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated userSubscriptionses for given Municipalities id.
@@ -267,6 +255,18 @@ public interface MunicipalitiesService {
      * @see Page
      */
     Page<UserSubscriptions> findAssociatedUserSubscriptionses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated vendorApprovalses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated VendorApprovals instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable);
 
 }
 

@@ -179,6 +179,54 @@ public class UsersController {
         return usersService.count(query);
     }
 
+    @RequestMapping(value = "/{id}/formFees", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formFees instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<FormFee> findAssociatedFormFees(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formFees");
+        return usersService.findAssociatedFormFees(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+        return usersService.findAssociatedMasterFormses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/mcnewElectricConnections", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the mcnewElectricConnections instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated mcnewElectricConnections");
+        return usersService.findAssociatedMcnewElectricConnections(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/mcnewResidentialStructures", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the mcnewResidentialStructures instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<McnewResidentialStructure> findAssociatedMcnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated mcnewResidentialStructures");
+        return usersService.findAssociatedMcnewResidentialStructures(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/pudapplications", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the pudapplications instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Pudapplication> findAssociatedPudapplications(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated pudapplications");
+        return usersService.findAssociatedPudapplications(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the roleses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated roleses");
+        return usersService.findAssociatedRoleses(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/sfnewElectricConnections", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the sfnewElectricConnections instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -193,46 +241,6 @@ public class UsersController {
     public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sfnewResidentialStructures");
         return usersService.findAssociatedSfnewResidentialStructures(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterFormses");
-        return usersService.findAssociatedMasterFormses(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/vendorUserses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the vendorUserses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<VendorUsers> findAssociatedVendorUserses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated vendorUserses");
-        return usersService.findAssociatedVendorUserses(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the roleses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated roleses");
-        return usersService.findAssociatedRoleses(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/formFees", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the formFees instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormFee> findAssociatedFormFees(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formFees");
-        return usersService.findAssociatedFormFees(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/mcnewElectricConnections", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the mcnewElectricConnections instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated mcnewElectricConnections");
-        return usersService.findAssociatedMcnewElectricConnections(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/municipalityGroupMemberses", method = RequestMethod.GET)
@@ -251,12 +259,12 @@ public class UsersController {
         return usersService.findAssociatedUserPasswordResetTokenses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/mcnewResidentialStructures", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the mcnewResidentialStructures instance associated with the given id.")
+    @RequestMapping(value = "/{id}/userSubscriptionses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the userSubscriptionses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<McnewResidentialStructure> findAssociatedMcnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated mcnewResidentialStructures");
-        return usersService.findAssociatedMcnewResidentialStructures(id, pageable);
+    public Page<UserSubscriptions> findAssociatedUserSubscriptionses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated userSubscriptionses");
+        return usersService.findAssociatedUserSubscriptionses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/vendorAdminses", method = RequestMethod.GET)
@@ -267,20 +275,12 @@ public class UsersController {
         return usersService.findAssociatedVendorAdminses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/pudapplications", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the pudapplications instance associated with the given id.")
+    @RequestMapping(value = "/{id}/vendorUserses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the vendorUserses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Pudapplication> findAssociatedPudapplications(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pudapplications");
-        return usersService.findAssociatedPudapplications(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/userSubscriptionses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the userSubscriptionses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<UserSubscriptions> findAssociatedUserSubscriptionses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated userSubscriptionses");
-        return usersService.findAssociatedUserSubscriptionses(id, pageable);
+    public Page<VendorUsers> findAssociatedVendorUserses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorUserses");
+        return usersService.findAssociatedVendorUserses(id, pageable);
     }
 
     /**

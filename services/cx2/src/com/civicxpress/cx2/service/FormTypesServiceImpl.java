@@ -43,6 +43,10 @@ public class FormTypesServiceImpl implements FormTypesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FormTypesServiceImpl.class);
 
     @Autowired
+	@Qualifier("cx2.FormStatusesService")
+	private FormStatusesService formStatusesService;
+
+    @Autowired
 	@Qualifier("cx2.MasterFormsService")
 	private MasterFormsService masterFormsService;
 
@@ -51,16 +55,16 @@ public class FormTypesServiceImpl implements FormTypesService {
 	private PudapplicationService pudapplicationService;
 
     @Autowired
-	@Qualifier("cx2.FormStatusesService")
-	private FormStatusesService formStatusesService;
-
-    @Autowired
-	@Qualifier("cx2.SfnewElectricConnectionService")
-	private SfnewElectricConnectionService sfnewElectricConnectionService;
+	@Qualifier("cx2.SfnewResidentialStructureService")
+	private SfnewResidentialStructureService sfnewResidentialStructureService;
 
     @Autowired
 	@Qualifier("cx2.McnewElectricConnectionService")
 	private McnewElectricConnectionService mcnewElectricConnectionService;
+
+    @Autowired
+	@Qualifier("cx2.SfnewElectricConnectionService")
+	private SfnewElectricConnectionService sfnewElectricConnectionService;
 
     @Autowired
 	@Qualifier("cx2.McnewResidentialStructureService")
@@ -69,10 +73,6 @@ public class FormTypesServiceImpl implements FormTypesService {
     @Autowired
 	@Qualifier("cx2.FormCategoryMappingService")
 	private FormCategoryMappingService formCategoryMappingService;
-
-    @Autowired
-	@Qualifier("cx2.SfnewResidentialStructureService")
-	private SfnewResidentialStructureService sfnewResidentialStructureService;
 
     @Autowired
     @Qualifier("cx2.FormTypesDao")
@@ -87,30 +87,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 	public FormTypes create(FormTypes formTypes) {
         LOGGER.debug("Creating a new FormTypes with information: {}", formTypes);
         FormTypes formTypesCreated = this.wmGenericDao.create(formTypes);
-        if(formTypesCreated.getSfnewElectricConnections() != null) {
-            for(SfnewElectricConnection sfnewElectricConnection : formTypesCreated.getSfnewElectricConnections()) {
-                sfnewElectricConnection.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child SfnewElectricConnection with information: {}", sfnewElectricConnection);
-                sfnewElectricConnectionService.create(sfnewElectricConnection);
-            }
-        }
-
-        if(formTypesCreated.getSfnewResidentialStructures() != null) {
-            for(SfnewResidentialStructure sfnewResidentialStructure : formTypesCreated.getSfnewResidentialStructures()) {
-                sfnewResidentialStructure.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child SfnewResidentialStructure with information: {}", sfnewResidentialStructure);
-                sfnewResidentialStructureService.create(sfnewResidentialStructure);
-            }
-        }
-
-        if(formTypesCreated.getMasterFormses() != null) {
-            for(MasterForms masterFormse : formTypesCreated.getMasterFormses()) {
-                masterFormse.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
-                masterFormsService.create(masterFormse);
-            }
-        }
-
         if(formTypesCreated.getFormCategoryMappings() != null) {
             for(FormCategoryMapping formCategoryMapping : formTypesCreated.getFormCategoryMappings()) {
                 formCategoryMapping.setFormTypes(formTypesCreated);
@@ -124,6 +100,14 @@ public class FormTypesServiceImpl implements FormTypesService {
                 formStatusese.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
                 formStatusesService.create(formStatusese);
+            }
+        }
+
+        if(formTypesCreated.getMasterFormses() != null) {
+            for(MasterForms masterFormse : formTypesCreated.getMasterFormses()) {
+                masterFormse.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
+                masterFormsService.create(masterFormse);
             }
         }
 
@@ -148,6 +132,22 @@ public class FormTypesServiceImpl implements FormTypesService {
                 pudapplication.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child Pudapplication with information: {}", pudapplication);
                 pudapplicationService.create(pudapplication);
+            }
+        }
+
+        if(formTypesCreated.getSfnewElectricConnections() != null) {
+            for(SfnewElectricConnection sfnewElectricConnection : formTypesCreated.getSfnewElectricConnections()) {
+                sfnewElectricConnection.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child SfnewElectricConnection with information: {}", sfnewElectricConnection);
+                sfnewElectricConnectionService.create(sfnewElectricConnection);
+            }
+        }
+
+        if(formTypesCreated.getSfnewResidentialStructures() != null) {
+            for(SfnewResidentialStructure sfnewResidentialStructure : formTypesCreated.getSfnewResidentialStructures()) {
+                sfnewResidentialStructure.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child SfnewResidentialStructure with information: {}", sfnewResidentialStructure);
+                sfnewResidentialStructureService.create(sfnewResidentialStructure);
             }
         }
         return formTypesCreated;
@@ -226,39 +226,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated sfnewElectricConnections");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return sfnewElectricConnectionService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return sfnewResidentialStructureService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterFormses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return masterFormsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormCategoryMapping> findAssociatedFormCategoryMappings(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formCategoryMappings");
 
@@ -277,6 +244,17 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return formStatusesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return masterFormsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -312,6 +290,37 @@ public class FormTypesServiceImpl implements FormTypesService {
         return pudapplicationService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewElectricConnections");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return sfnewElectricConnectionService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return sfnewResidentialStructureService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormStatusesService instance
+	 */
+	protected void setFormStatusesService(FormStatusesService service) {
+        this.formStatusesService = service;
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -333,19 +342,10 @@ public class FormTypesServiceImpl implements FormTypesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormStatusesService instance
+	 * @param service SfnewResidentialStructureService instance
 	 */
-	protected void setFormStatusesService(FormStatusesService service) {
-        this.formStatusesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SfnewElectricConnectionService instance
-	 */
-	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
-        this.sfnewElectricConnectionService = service;
+	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
+        this.sfnewResidentialStructureService = service;
     }
 
     /**
@@ -355,6 +355,15 @@ public class FormTypesServiceImpl implements FormTypesService {
 	 */
 	protected void setMcnewElectricConnectionService(McnewElectricConnectionService service) {
         this.mcnewElectricConnectionService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SfnewElectricConnectionService instance
+	 */
+	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
+        this.sfnewElectricConnectionService = service;
     }
 
     /**
@@ -373,15 +382,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 	 */
 	protected void setFormCategoryMappingService(FormCategoryMappingService service) {
         this.formCategoryMappingService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SfnewResidentialStructureService instance
-	 */
-	protected void setSfnewResidentialStructureService(SfnewResidentialStructureService service) {
-        this.sfnewResidentialStructureService = service;
     }
 
 }

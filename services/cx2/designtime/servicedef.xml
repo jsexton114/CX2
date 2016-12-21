@@ -589,25 +589,35 @@
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormTypes">
             <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="attachments" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="automaticFees" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="collectFees" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="createdDate" typeRef="java.util.Date" allowNull="true"/>
+            <element name="digitalSignatures" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="flatFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="flatFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="formCategoryMappings" typeRef="com.civicxpress.cx2.FormCategoryMapping" isList="true" allowNull="true"/>
             <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
             <element name="formType" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="gismap" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="gisrecord" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspections" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
             <element name="mcnewElectricConnections" typeRef="com.civicxpress.cx2.McnewElectricConnection" isList="true" allowNull="true"/>
             <element name="mcnewResidentialStructures" typeRef="com.civicxpress.cx2.McnewResidentialStructure" isList="true" allowNull="true"/>
+            <element name="multipleGisrecords" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="municipalityInternalForm" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="pageName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="payments" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="pudapplications" typeRef="com.civicxpress.cx2.Pudapplication" isList="true" allowNull="true"/>
             <element name="report" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfnewElectricConnections" typeRef="com.civicxpress.cx2.SfnewElectricConnection" isList="true" allowNull="true"/>
             <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
+            <element name="sharedWith" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="stateFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="stateFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="tbLocation" typeRef="java.lang.String" allowNull="true"/>

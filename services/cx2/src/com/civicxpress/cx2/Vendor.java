@@ -26,6 +26,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -61,12 +63,12 @@ public class Vendor implements Serializable {
     private String insuranceCompany;
     private Date insuranceExpires;
     private Date lastUpdated;
-    private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
-    private List<VendorUsers> vendorUserses = new ArrayList<>();
     private ContractorTypes contractorTypes;
     private States states;
+    private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
     private List<VendorLicenses> vendorLicenseses = new ArrayList<>();
     private List<VendorAdmins> vendorAdminses = new ArrayList<>();
+    private List<VendorUsers> vendorUserses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -279,24 +281,6 @@ public class Vendor implements Serializable {
         this.lastUpdated = lastUpdated;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
-    public List<VendorApprovals> getVendorApprovalses() {
-        return this.vendorApprovalses;
-    }
-
-    public void setVendorApprovalses(List<VendorApprovals> vendorApprovalses) {
-        this.vendorApprovalses = vendorApprovalses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
-    public List<VendorUsers> getVendorUserses() {
-        return this.vendorUserses;
-    }
-
-    public void setVendorUserses(List<VendorUsers> vendorUserses) {
-        this.vendorUserses = vendorUserses;
-    }
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`ContractorTypeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public ContractorTypes getContractorTypes() {
@@ -325,6 +309,17 @@ public class Vendor implements Serializable {
         this.states = states;
     }
 
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
+    public List<VendorApprovals> getVendorApprovalses() {
+        return this.vendorApprovalses;
+    }
+
+    public void setVendorApprovalses(List<VendorApprovals> vendorApprovalses) {
+        this.vendorApprovalses = vendorApprovalses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
     public List<VendorLicenses> getVendorLicenseses() {
         return this.vendorLicenseses;
@@ -334,6 +329,7 @@ public class Vendor implements Serializable {
         this.vendorLicenseses = vendorLicenseses;
     }
 
+    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
     public List<VendorAdmins> getVendorAdminses() {
         return this.vendorAdminses;
@@ -341,6 +337,16 @@ public class Vendor implements Serializable {
 
     public void setVendorAdminses(List<VendorAdmins> vendorAdminses) {
         this.vendorAdminses = vendorAdminses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
+    public List<VendorUsers> getVendorUserses() {
+        return this.vendorUserses;
+    }
+
+    public void setVendorUserses(List<VendorUsers> vendorUserses) {
+        this.vendorUserses = vendorUserses;
     }
 
     @Override

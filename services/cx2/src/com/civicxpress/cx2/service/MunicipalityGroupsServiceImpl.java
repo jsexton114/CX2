@@ -38,16 +38,16 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
     private static final Logger LOGGER = LoggerFactory.getLogger(MunicipalityGroupsServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.MasterFormsService")
-	private MasterFormsService masterFormsService;
-
-    @Autowired
 	@Qualifier("cx2.FormStatusesService")
 	private FormStatusesService formStatusesService;
 
     @Autowired
 	@Qualifier("cx2.MunicipalityGroupMembersService")
 	private MunicipalityGroupMembersService municipalityGroupMembersService;
+
+    @Autowired
+	@Qualifier("cx2.MasterFormsService")
+	private MasterFormsService masterFormsService;
 
     @Autowired
     @Qualifier("cx2.MunicipalityGroupsDao")
@@ -62,14 +62,6 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
 	public MunicipalityGroups create(MunicipalityGroups municipalityGroups) {
         LOGGER.debug("Creating a new MunicipalityGroups with information: {}", municipalityGroups);
         MunicipalityGroups municipalityGroupsCreated = this.wmGenericDao.create(municipalityGroups);
-        if(municipalityGroupsCreated.getMasterFormses() != null) {
-            for(MasterForms masterFormse : municipalityGroupsCreated.getMasterFormses()) {
-                masterFormse.setMunicipalityGroups(municipalityGroupsCreated);
-                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
-                masterFormsService.create(masterFormse);
-            }
-        }
-
         if(municipalityGroupsCreated.getFormStatusesesForWriteAccess() != null) {
             for(FormStatuses formStatusesesForWriteAcces : municipalityGroupsCreated.getFormStatusesesForWriteAccess()) {
                 formStatusesesForWriteAcces.setMunicipalityGroupsByWriteAccess(municipalityGroupsCreated);
@@ -91,6 +83,14 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
                 formStatusesesForProcessOwner.setMunicipalityGroupsByProcessOwners(municipalityGroupsCreated);
                 LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusesesForProcessOwner);
                 formStatusesService.create(formStatusesesForProcessOwner);
+            }
+        }
+
+        if(municipalityGroupsCreated.getMasterFormses() != null) {
+            for(MasterForms masterFormse : municipalityGroupsCreated.getMasterFormses()) {
+                masterFormse.setMunicipalityGroups(municipalityGroupsCreated);
+                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
+                masterFormsService.create(masterFormse);
             }
         }
 
@@ -177,17 +177,6 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterFormses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalityGroups.id = '" + id + "'");
-
-        return masterFormsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormStatuses> findAssociatedFormStatusesesForWriteAccess(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formStatusesesForWriteAccess");
 
@@ -221,6 +210,17 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalityGroups.id = '" + id + "'");
+
+        return masterFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated municipalityGroupMemberses");
 
@@ -228,15 +228,6 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
         queryBuilder.append("municipalityGroups.id = '" + id + "'");
 
         return municipalityGroupMembersService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service MasterFormsService instance
-	 */
-	protected void setMasterFormsService(MasterFormsService service) {
-        this.masterFormsService = service;
     }
 
     /**
@@ -255,6 +246,15 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
 	 */
 	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
         this.municipalityGroupMembersService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MasterFormsService instance
+	 */
+	protected void setMasterFormsService(MasterFormsService service) {
+        this.masterFormsService = service;
     }
 
 }

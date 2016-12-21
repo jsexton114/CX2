@@ -43,10 +43,10 @@ public class MasterForms implements Serializable {
     private String recordType;
     private Date issuedDate;
     private Date expiresDate;
-    private FormStatuses formStatuses;
     private FormTypes formTypes;
-    private Municipalities municipalities;
+    private FormStatuses formStatuses;
     private MunicipalityGroups municipalityGroups;
+    private Municipalities municipalities;
     private Users users;
 
     @Id
@@ -189,20 +189,6 @@ public class MasterForms implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`FormStatusId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public FormStatuses getFormStatuses() {
-        return this.formStatuses;
-    }
-
-    public void setFormStatuses(FormStatuses formStatuses) {
-        if(formStatuses != null) {
-            this.formStatusId = formStatuses.getId();
-        }
-
-        this.formStatuses = formStatuses;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`FormTypeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public FormTypes getFormTypes() {
         return this.formTypes;
@@ -217,17 +203,17 @@ public class MasterForms implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`MunicipalityId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public Municipalities getMunicipalities() {
-        return this.municipalities;
+    @JoinColumn(name = "`FormStatusId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public FormStatuses getFormStatuses() {
+        return this.formStatuses;
     }
 
-    public void setMunicipalities(Municipalities municipalities) {
-        if(municipalities != null) {
-            this.municipalityId = municipalities.getId();
+    public void setFormStatuses(FormStatuses formStatuses) {
+        if(formStatuses != null) {
+            this.formStatusId = formStatuses.getId();
         }
 
-        this.municipalities = municipalities;
+        this.formStatuses = formStatuses;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -242,6 +228,20 @@ public class MasterForms implements Serializable {
         }
 
         this.municipalityGroups = municipalityGroups;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`MunicipalityId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Municipalities getMunicipalities() {
+        return this.municipalities;
+    }
+
+    public void setMunicipalities(Municipalities municipalities) {
+        if(municipalities != null) {
+            this.municipalityId = municipalities.getId();
+        }
+
+        this.municipalities = municipalities;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -124,22 +124,6 @@ public class FormStatusesController {
         return formStatusesService.count(query);
     }
 
-    @RequestMapping(value = "/{id}/sfnewElectricConnections", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the sfnewElectricConnections instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated sfnewElectricConnections");
-        return formStatusesService.findAssociatedSfnewElectricConnections(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/sfnewResidentialStructures", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the sfnewResidentialStructures instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
-        return formStatusesService.findAssociatedSfnewResidentialStructures(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -170,6 +154,22 @@ public class FormStatusesController {
     public Page<Pudapplication> findAssociatedPudapplications(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated pudapplications");
         return formStatusesService.findAssociatedPudapplications(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/sfnewElectricConnections", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the sfnewElectricConnections instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewElectricConnections");
+        return formStatusesService.findAssociatedSfnewElectricConnections(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/sfnewResidentialStructures", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the sfnewResidentialStructures instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
+        return formStatusesService.findAssociatedSfnewResidentialStructures(id, pageable);
     }
 
     /**

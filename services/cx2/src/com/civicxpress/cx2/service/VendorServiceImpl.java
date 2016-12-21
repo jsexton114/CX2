@@ -41,16 +41,16 @@ public class VendorServiceImpl implements VendorService {
     private static final Logger LOGGER = LoggerFactory.getLogger(VendorServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.VendorUsersService")
-	private VendorUsersService vendorUsersService;
+	@Qualifier("cx2.VendorApprovalsService")
+	private VendorApprovalsService vendorApprovalsService;
 
     @Autowired
 	@Qualifier("cx2.VendorLicensesService")
 	private VendorLicensesService vendorLicensesService;
 
     @Autowired
-	@Qualifier("cx2.VendorApprovalsService")
-	private VendorApprovalsService vendorApprovalsService;
+	@Qualifier("cx2.VendorUsersService")
+	private VendorUsersService vendorUsersService;
 
     @Autowired
 	@Qualifier("cx2.VendorAdminsService")
@@ -77,14 +77,6 @@ public class VendorServiceImpl implements VendorService {
             }
         }
 
-        if(vendorCreated.getVendorUserses() != null) {
-            for(VendorUsers vendorUserse : vendorCreated.getVendorUserses()) {
-                vendorUserse.setVendor(vendorCreated);
-                LOGGER.debug("Creating a new child VendorUsers with information: {}", vendorUserse);
-                vendorUsersService.create(vendorUserse);
-            }
-        }
-
         if(vendorCreated.getVendorLicenseses() != null) {
             for(VendorLicenses vendorLicensese : vendorCreated.getVendorLicenseses()) {
                 vendorLicensese.setVendor(vendorCreated);
@@ -98,6 +90,14 @@ public class VendorServiceImpl implements VendorService {
                 vendorAdminse.setVendor(vendorCreated);
                 LOGGER.debug("Creating a new child VendorAdmins with information: {}", vendorAdminse);
                 vendorAdminsService.create(vendorAdminse);
+            }
+        }
+
+        if(vendorCreated.getVendorUserses() != null) {
+            for(VendorUsers vendorUserse : vendorCreated.getVendorUserses()) {
+                vendorUserse.setVendor(vendorCreated);
+                LOGGER.debug("Creating a new child VendorUsers with information: {}", vendorUserse);
+                vendorUsersService.create(vendorUserse);
             }
         }
         return vendorCreated;
@@ -203,17 +203,6 @@ public class VendorServiceImpl implements VendorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated vendorUserses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("vendor.id = '" + id + "'");
-
-        return vendorUsersService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<VendorLicenses> findAssociatedVendorLicenseses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorLicenseses");
 
@@ -234,13 +223,24 @@ public class VendorServiceImpl implements VendorService {
         return vendorAdminsService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorUserses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("vendor.id = '" + id + "'");
+
+        return vendorUsersService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorUsersService instance
+	 * @param service VendorApprovalsService instance
 	 */
-	protected void setVendorUsersService(VendorUsersService service) {
-        this.vendorUsersService = service;
+	protected void setVendorApprovalsService(VendorApprovalsService service) {
+        this.vendorApprovalsService = service;
     }
 
     /**
@@ -255,10 +255,10 @@ public class VendorServiceImpl implements VendorService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorApprovalsService instance
+	 * @param service VendorUsersService instance
 	 */
-	protected void setVendorApprovalsService(VendorApprovalsService service) {
-        this.vendorApprovalsService = service;
+	protected void setVendorUsersService(VendorUsersService service) {
+        this.vendorUsersService = service;
     }
 
     /**

@@ -119,8 +119,9 @@ public class VendorLicenseTypesController {
         return vendorLicenseTypesService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/vendorLicenseses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/vendorLicenseses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the vendorLicenseses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<VendorLicenses> findAssociatedVendorLicenseses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorLicenseses");
         return vendorLicenseTypesService.findAssociatedVendorLicenseses(id, pageable);

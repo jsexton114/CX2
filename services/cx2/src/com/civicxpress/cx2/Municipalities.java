@@ -25,6 +25,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -61,18 +63,18 @@ public class Municipalities implements Serializable {
     private String timeZone;
     private Date openTime;
     private Date closeTime;
-    private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
-    private List<MasterForms> masterFormses = new ArrayList<>();
-    private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
-    private List<FormCategories> formCategorieses = new ArrayList<>();
-    private List<MunicipalityGroups> municipalityGroupses = new ArrayList<>();
-    private List<Subdivisions> subdivisionses = new ArrayList<>();
-    private List<Roles> roleses = new ArrayList<>();
     private States states;
+    private List<FormCategories> formCategorieses = new ArrayList<>();
+    private List<FormFee> formFees = new ArrayList<>();
     private List<Gisrecords> gisrecordses = new ArrayList<>();
     private List<Holidays> holidayses = new ArrayList<>();
-    private List<FormFee> formFees = new ArrayList<>();
+    private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
+    private List<MasterForms> masterFormses = new ArrayList<>();
+    private List<MunicipalityGroups> municipalityGroupses = new ArrayList<>();
+    private List<Roles> roleses = new ArrayList<>();
+    private List<Subdivisions> subdivisionses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
+    private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -303,69 +305,6 @@ public class Municipalities implements Serializable {
         this.closeTime = closeTime;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<ManualFeeTypes> getManualFeeTypeses() {
-        return this.manualFeeTypeses;
-    }
-
-    public void setManualFeeTypeses(List<ManualFeeTypes> manualFeeTypeses) {
-        this.manualFeeTypeses = manualFeeTypeses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<MasterForms> getMasterFormses() {
-        return this.masterFormses;
-    }
-
-    public void setMasterFormses(List<MasterForms> masterFormses) {
-        this.masterFormses = masterFormses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<VendorApprovals> getVendorApprovalses() {
-        return this.vendorApprovalses;
-    }
-
-    public void setVendorApprovalses(List<VendorApprovals> vendorApprovalses) {
-        this.vendorApprovalses = vendorApprovalses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<FormCategories> getFormCategorieses() {
-        return this.formCategorieses;
-    }
-
-    public void setFormCategorieses(List<FormCategories> formCategorieses) {
-        this.formCategorieses = formCategorieses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<MunicipalityGroups> getMunicipalityGroupses() {
-        return this.municipalityGroupses;
-    }
-
-    public void setMunicipalityGroupses(List<MunicipalityGroups> municipalityGroupses) {
-        this.municipalityGroupses = municipalityGroupses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<Subdivisions> getSubdivisionses() {
-        return this.subdivisionses;
-    }
-
-    public void setSubdivisionses(List<Subdivisions> subdivisionses) {
-        this.subdivisionses = subdivisionses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<Roles> getRoleses() {
-        return this.roleses;
-    }
-
-    public void setRoleses(List<Roles> roleses) {
-        this.roleses = roleses;
-    }
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`StateId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public States getStates() {
@@ -380,24 +319,17 @@ public class Municipalities implements Serializable {
         this.states = states;
     }
 
+    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<Gisrecords> getGisrecordses() {
-        return this.gisrecordses;
+    public List<FormCategories> getFormCategorieses() {
+        return this.formCategorieses;
     }
 
-    public void setGisrecordses(List<Gisrecords> gisrecordses) {
-        this.gisrecordses = gisrecordses;
+    public void setFormCategorieses(List<FormCategories> formCategorieses) {
+        this.formCategorieses = formCategorieses;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<Holidays> getHolidayses() {
-        return this.holidayses;
-    }
-
-    public void setHolidayses(List<Holidays> holidayses) {
-        this.holidayses = holidayses;
-    }
-
+    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<FormFee> getFormFees() {
         return this.formFees;
@@ -407,6 +339,77 @@ public class Municipalities implements Serializable {
         this.formFees = formFees;
     }
 
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<Gisrecords> getGisrecordses() {
+        return this.gisrecordses;
+    }
+
+    public void setGisrecordses(List<Gisrecords> gisrecordses) {
+        this.gisrecordses = gisrecordses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<Holidays> getHolidayses() {
+        return this.holidayses;
+    }
+
+    public void setHolidayses(List<Holidays> holidayses) {
+        this.holidayses = holidayses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<ManualFeeTypes> getManualFeeTypeses() {
+        return this.manualFeeTypeses;
+    }
+
+    public void setManualFeeTypeses(List<ManualFeeTypes> manualFeeTypeses) {
+        this.manualFeeTypeses = manualFeeTypeses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<MasterForms> getMasterFormses() {
+        return this.masterFormses;
+    }
+
+    public void setMasterFormses(List<MasterForms> masterFormses) {
+        this.masterFormses = masterFormses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<MunicipalityGroups> getMunicipalityGroupses() {
+        return this.municipalityGroupses;
+    }
+
+    public void setMunicipalityGroupses(List<MunicipalityGroups> municipalityGroupses) {
+        this.municipalityGroupses = municipalityGroupses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<Roles> getRoleses() {
+        return this.roleses;
+    }
+
+    public void setRoleses(List<Roles> roleses) {
+        this.roleses = roleses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<Subdivisions> getSubdivisionses() {
+        return this.subdivisionses;
+    }
+
+    public void setSubdivisionses(List<Subdivisions> subdivisionses) {
+        this.subdivisionses = subdivisionses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<UserSubscriptions> getUserSubscriptionses() {
         return this.userSubscriptionses;
@@ -414,6 +417,16 @@ public class Municipalities implements Serializable {
 
     public void setUserSubscriptionses(List<UserSubscriptions> userSubscriptionses) {
         this.userSubscriptionses = userSubscriptionses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<VendorApprovals> getVendorApprovalses() {
+        return this.vendorApprovalses;
+    }
+
+    public void setVendorApprovalses(List<VendorApprovals> vendorApprovalses) {
+        this.vendorApprovalses = vendorApprovalses;
     }
 
     @Override
