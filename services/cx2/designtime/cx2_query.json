@@ -397,7 +397,7 @@
     }
   }, {
     "name" : "GetFormsForMunicpality",
-    "query" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.MunicipalityId=:MunicipalityId and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID",
+    "query" : "select DISTINCT FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.MunicipalityId=:MunicipalityId and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID",
     "comment" : "GetFormsForMunicpality",
     "description" : null,
     "nativeSql" : true,
@@ -406,7 +406,7 @@
     "queryParams" : [ {
       "paramName" : "MunicipalityId",
       "paramType" : "java.lang.Integer",
-      "testValue" : "2",
+      "testValue" : "1",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
@@ -420,7 +420,7 @@
       "FormType" : "java.lang.String",
       "FormTypeGuid" : "java.lang.String",
       "ID" : "java.math.BigDecimal",
-      "MunicipalityInternalForm" : "java.lang.Boolean",
+      "MunicipalityInternalForm" : "java.lang.String",
       "PageName" : "java.lang.String",
       "Report" : "java.lang.String",
       "SfFee" : "java.lang.String",

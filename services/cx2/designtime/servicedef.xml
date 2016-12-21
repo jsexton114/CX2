@@ -71,10 +71,6 @@
         <parameter name="userID" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2getEmailIdrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="GetFormsForMunicpality">
-        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2GetFormsForMunicpalityrtnType" isList="false"/>
-    </operation>
     <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
         <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
@@ -251,6 +247,10 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="GetFormsForMunicpality">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
@@ -1121,7 +1121,7 @@
             <element name="FormType" typeRef="java.lang.String"/>
             <element name="FormTypeGuid" typeRef="java.lang.String"/>
             <element name="ID" typeRef="java.math.BigDecimal"/>
-            <element name="MunicipalityInternalForm" typeRef="java.lang.Boolean"/>
+            <element name="MunicipalityInternalForm" typeRef="java.lang.String"/>
             <element name="PageName" typeRef="java.lang.String"/>
             <element name="Report" typeRef="java.lang.String"/>
             <element name="SfFee" typeRef="java.lang.String"/>
