@@ -313,16 +313,16 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane16" title="Parcels">
                     <wm-livegrid formlayout="dialog" name="livegrid15_1">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Gisrecords List" dataset="bind:Variables.Cx2GisrecordsData.dataSet" navigation="Classic" name="grid16_1" filtermode="multicolumn">
-                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
-                            <wm-grid-column binding="landGuid" caption="Land Guid" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="streetName" caption="Street Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="city" caption="City" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.municipalityGuid" caption="Municipality Guid" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="subdivisions.subdivisionGuid" caption="Subdivision Guid" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Subdivisions" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="subdivisions.subdivision" caption="Subdivisions Subdivision" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Subdivisions" readonly="false"></wm-grid-column>
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Gisrecords List" dataset="bind:Variables.Cx2GisrecordsData.dataSet" navigation="Classic" name="grid16_1" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="landGuid" caption="Land Guid" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="streetName" caption="Street Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="city" caption="City" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityGuid" caption="Municipality Guid" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="subdivisions.subdivisionGuid" caption="Subdivision Guid" type="string" generator="assigned" show="true" related-entity-name="Subdivisions" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="subdivisions.subdivision" caption="Subdivisions Subdivision" type="string" generator="assigned" show="true" related-entity-name="Subdivisions" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
@@ -474,17 +474,17 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane8_1" title="FormType">
                     <wm-livegrid formlayout="dialog" name="livegrid16">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Formtypes List" dataset="bind:Variables.Cx2FormTypesData.dataSet" navigation="Classic" name="grid17" filtermode="multicolumn">
-                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
-                            <wm-grid-column binding="formTypeGuid" caption="Form Type Guid" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="formType" caption="Form Type" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="tbLocation" caption="Tb Location" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="flatFee" caption="Flat Fee" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="flatFeeAccountingCode" caption="Flat Fee Accounting Code" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="sfFee" caption="Sf Fee" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="sfFeeAccountingCode" caption="Sf Fee Accounting Code" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="unitFee" caption="Unit Fee" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="unitFeeAccountingCode" caption="Unit Fee Accounting Code" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Formtypes List" dataset="bind:Variables.Cx2FormTypesData.dataSet" navigation="Classic" name="grid17" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="formTypeGuid" caption="Form Type Guid" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formType" caption="Form Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="tbLocation" caption="Tb Location" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="flatFee" caption="Flat Fee" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="flatFeeAccountingCode" caption="Flat Fee Accounting Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="sfFee" caption="Sf Fee" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="sfFeeAccountingCode" caption="Sf Fee Accounting Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="unitFee" caption="Unit Fee" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="unitFeeAccountingCode" caption="Unit Fee Accounting Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
@@ -578,17 +578,17 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane11" title="FormCategoryMapping">
                     <wm-livegrid formlayout="dialog" name="livegrid17">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Formcategorymapping List" dataset="bind:Variables.Cx2FormCategoryMappingData.dataSet" navigation="Classic" name="grid18" filtermode="multicolumn">
-                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
-                            <wm-grid-column binding="formCategories.id" caption="Categories Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true" related-entity-name="FormCategories"></wm-grid-column>
-                            <wm-grid-column binding="formCategories.category" caption="Categories Category" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="FormCategories" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="formCategories.description" caption="Categories Description" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="FormCategories" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="formCategories.municipalityId" caption="Municipality Id" type="integer" generator="assigned" edit-widget-type="number" show="true" related-entity-name="FormCategories" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="formTypes.id" caption="Types Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true" related-entity-name="FormTypes"></wm-grid-column>
-                            <wm-grid-column binding="formTypes.formTypeGuid" caption="Type Guid" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="FormTypes" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="FormTypes" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="formTypes.tbLocation" caption="Tb Location" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="FormTypes" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="formTypes.flatFee" caption="Flat Fee" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="FormTypes" readonly="false"></wm-grid-column>
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Formcategorymapping List" dataset="bind:Variables.Cx2FormCategoryMappingData.dataSet" navigation="Classic" name="grid18" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="formCategories.id" caption="Categories Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true" related-entity-name="FormCategories"></wm-grid-column>
+                            <wm-grid-column binding="formCategories.category" caption="Categories Category" type="string" generator="assigned" show="true" related-entity-name="FormCategories" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formCategories.description" caption="Categories Description" type="string" generator="assigned" show="true" related-entity-name="FormCategories" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formCategories.municipalityId" caption="Municipality Id" type="integer" generator="assigned" show="true" related-entity-name="FormCategories" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.id" caption="Types Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true" related-entity-name="FormTypes"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.formTypeGuid" caption="Type Guid" type="string" generator="assigned" show="true" related-entity-name="FormTypes" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" show="true" related-entity-name="FormTypes" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.tbLocation" caption="Tb Location" type="string" generator="assigned" show="true" related-entity-name="FormTypes" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.flatFee" caption="Flat Fee" type="string" generator="assigned" show="true" related-entity-name="FormTypes" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
@@ -832,18 +832,18 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane15" title="Vendoradmins">
                     <wm-livegrid formlayout="dialog" name="livegrid14_1">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendoradmins List" dataset="bind:Variables.Cx2VendorAdminsData.dataSet" navigation="Classic" name="grid15_1" filtermode="multicolumn">
-                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
-                            <wm-grid-column binding="users.id" caption="Users Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true" related-entity-name="Users"></wm-grid-column>
-                            <wm-grid-column binding="users.firstName" caption="First Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="users.lastName" caption="Last Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="users.address1" caption="Users Address1" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="users.address2" caption="Users Address2" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="users.city" caption="Users City" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="users.postalCode" caption="Postal Code" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="users.phoneNumber" caption="Phone Number" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendoradmins List" dataset="bind:Variables.Cx2VendorAdminsData.dataSet" navigation="Classic" name="grid15_1" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="users.id" caption="Users Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                            <wm-grid-column binding="users.firstName" caption="First Name" type="string" generator="assigned" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="users.lastName" caption="Last Name" type="string" generator="assigned" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="users.address1" caption="Users Address1" type="string" generator="assigned" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="users.address2" caption="Users Address2" type="string" generator="assigned" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="users.city" caption="Users City" type="string" generator="assigned" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="users.postalCode" caption="Postal Code" type="string" generator="assigned" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="users.phoneNumber" caption="Phone Number" type="string" generator="assigned" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -869,18 +869,18 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane15_1" title="ManualFee">
                     <wm-livegrid formlayout="dialog" name="livegrid14">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Manualfeetypes List" dataset="bind:Variables.Cx2ManualFeeTypesData.dataSet" navigation="Classic" name="grid15" filtermode="multicolumn">
-                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
-                            <wm-grid-column binding="feeType" caption="Fee Type" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.id" caption="Municipalities Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true" related-entity-name="Municipalities"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.municipalityGuid" caption="Municipality Guid" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.address1" caption="Municipalities Address1" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.address2" caption="Municipalities Address2" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.city" caption="Municipalities City" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.postalCode" caption="Postal Code" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Manualfeetypes List" dataset="bind:Variables.Cx2ManualFeeTypesData.dataSet" navigation="Classic" name="grid15" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="feeType" caption="Fee Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.id" caption="Municipalities Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityGuid" caption="Municipality Guid" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.address1" caption="Municipalities Address1" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.address2" caption="Municipalities Address2" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.city" caption="Municipalities City" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.postalCode" caption="Postal Code" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -910,18 +910,18 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane16_1" title="MunicipalityGroups">
                     <wm-livegrid formlayout="dialog" name="livegrid15_2">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Municipalitygroups List" dataset="bind:Variables.Cx2MunicipalityGroupsData.dataSet" navigation="Classic" name="grid16_2" filtermode="multicolumn">
-                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
-                            <wm-grid-column binding="groupName" caption="Group Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="groupDescription" caption="Group Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.id" caption="Municipalities Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true" related-entity-name="Municipalities"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.municipalityGuid" caption="Municipality Guid" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.address1" caption="Municipalities Address1" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.address2" caption="Municipalities Address2" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.city" caption="Municipalities City" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.postalCode" caption="Postal Code" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Municipalitygroups List" dataset="bind:Variables.Cx2MunicipalityGroupsData.dataSet" navigation="Classic" name="grid16_2" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="groupName" caption="Group Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="groupDescription" caption="Group Description" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.id" caption="Municipalities Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityGuid" caption="Municipality Guid" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.address1" caption="Municipalities Address1" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.address2" caption="Municipalities Address2" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.city" caption="Municipalities City" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.postalCode" caption="Postal Code" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -951,12 +951,13 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane17" title="VendorLicenseType">
                     <wm-livegrid formlayout="dialog" name="livegrid16_1">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendorlicensetypes List" dataset="bind:Variables.Cx2VendorLicenseTypesData.dataSet" navigation="Basic" name="grid17_1">
-                            <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="licenseType" caption="License Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendorlicensetypes List" dataset="bind:Variables.Cx2VendorLicenseTypesData.dataSet" navigation="Classic" name="grid17_1" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="licenseType" caption="License Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                         <wm-liveform novalidate="false" errormessage="" title="Vendorlicensetypes Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2VendorLicenseTypesData.dataSet" captionalign="left" captionposition="top" name="liveform16_1">
                             <wm-layoutgrid columns="1" name="layoutgrid17_1">
@@ -975,20 +976,21 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane18" title="VendorLicenses">
                     <wm-livegrid formlayout="dialog" name="livegrid17_1">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendorlicenses List" dataset="bind:Variables.Cx2VendorLicensesData.dataSet" navigation="Basic" name="grid18_1">
-                            <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="licenseNumber" caption="License Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                            <wm-grid-column binding="issuedDate" caption="Issued Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="date"></wm-grid-column>
-                            <wm-grid-column binding="issuingAuthority" caption="Issuing Authority" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                            <wm-grid-column binding="expirationDate" caption="Expiration Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="date"></wm-grid-column>
-                            <wm-grid-column binding="scope" caption="Scope" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                            <wm-grid-column binding="vendor.id" caption="Vendor Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Vendor" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="vendor.companyName" caption="Company Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Vendor"></wm-grid-column>
-                            <wm-grid-column binding="vendor.address1" caption="Vendor Address1" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Vendor"></wm-grid-column>
-                            <wm-grid-column binding="vendor.address2" caption="Vendor Address2" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Vendor"></wm-grid-column>
-                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Vendorlicenses List" dataset="bind:Variables.Cx2VendorLicensesData.dataSet" navigation="Basic" name="grid18_1" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="licenseNumber" caption="License Number" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="issuedDate" caption="Issued Date" type="date" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="issuingAuthority" caption="Issuing Authority" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="expirationDate" caption="Expiration Date" type="date" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="scope" caption="Scope" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="vendor.id" caption="Vendor Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                            <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                            <wm-grid-column binding="vendor.address1" caption="Vendor Address1" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                            <wm-grid-column binding="vendor.address2" caption="Vendor Address2" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                         <wm-liveform novalidate="false" errormessage="" title="Vendorlicenses Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2VendorLicensesData.dataSet" captionalign="left" captionposition="top" name="liveform17_1">
                             <wm-layoutgrid columns="3" name="layoutgrid18_1">

@@ -20,13 +20,6 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
-                <directory>services/FileService/src</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <filtering>true</filtering>
                 <directory>services/ResetPasswordMailService/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -123,7 +116,6 @@
                             <sources>
                             
                                 <source>services/CXPasswordResetService/src</source>
-                                <source>services/FileService/src</source>
                                 <source>services/ResetPasswordMailService/src</source>
                                 <source>services/UpdateRecordStatus/src</source>
                                 <source>services/cx2/src</source>
