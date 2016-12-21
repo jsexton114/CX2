@@ -12,13 +12,31 @@
   "port" : "1433",
   "schemaName" : "cx2",
   "tableFilter" : [ {
-    "table" : "SFNewElectricConnection",
+    "table" : "FormCategories",
     "schema" : "cx2"
   }, {
-    "table" : "SFNewResidentialStructure",
+    "table" : "ContractorTypes",
     "schema" : "cx2"
   }, {
-    "table" : "VendorLicenseTypes",
+    "table" : "FormCategoryMapping",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormFee",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormStatuses",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormTypes",
+    "schema" : "cx2"
+  }, {
+    "table" : "GISRecords",
+    "schema" : "cx2"
+  }, {
+    "table" : "GlobalSettings",
+    "schema" : "cx2"
+  }, {
+    "table" : "Holidays",
     "schema" : "cx2"
   }, {
     "table" : "ManualFeeTypes",
@@ -27,13 +45,31 @@
     "table" : "MasterForms",
     "schema" : "cx2"
   }, {
-    "table" : "VendorApprovals",
+    "table" : "MCNewElectricConnection",
     "schema" : "cx2"
   }, {
-    "table" : "FormCategories",
+    "table" : "Municipalities",
+    "schema" : "cx2"
+  }, {
+    "table" : "MCNewResidentialStructure",
+    "schema" : "cx2"
+  }, {
+    "table" : "PUDApplication",
     "schema" : "cx2"
   }, {
     "table" : "MunicipalityGroups",
+    "schema" : "cx2"
+  }, {
+    "table" : "Roles",
+    "schema" : "cx2"
+  }, {
+    "table" : "SFNewElectricConnection",
+    "schema" : "cx2"
+  }, {
+    "table" : "SFNewResidentialStructure",
+    "schema" : "cx2"
+  }, {
+    "table" : "MunicipalityGroupMembers",
     "schema" : "cx2"
   }, {
     "table" : "States",
@@ -42,67 +78,31 @@
     "table" : "Subdivisions",
     "schema" : "cx2"
   }, {
-    "table" : "VendorUsers",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormCategoryMapping",
-    "schema" : "cx2"
-  }, {
-    "table" : "ContractorTypes",
-    "schema" : "cx2"
-  }, {
-    "table" : "Roles",
-    "schema" : "cx2"
-  }, {
-    "table" : "Municipalities",
-    "schema" : "cx2"
-  }, {
-    "table" : "GISRecords",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormStatuses",
-    "schema" : "cx2"
-  }, {
-    "table" : "Holidays",
+    "table" : "Users",
     "schema" : "cx2"
   }, {
     "table" : "Vendor",
     "schema" : "cx2"
   }, {
-    "table" : "FormFee",
+    "table" : "UserPasswordResetTokens",
+    "schema" : "cx2"
+  }, {
+    "table" : "UserSubscriptions",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorApprovals",
     "schema" : "cx2"
   }, {
     "table" : "VendorLicenses",
     "schema" : "cx2"
   }, {
-    "table" : "MCNewElectricConnection",
-    "schema" : "cx2"
-  }, {
-    "table" : "MunicipalityGroupMembers",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormTypes",
-    "schema" : "cx2"
-  }, {
-    "table" : "UserPasswordResetTokens",
-    "schema" : "cx2"
-  }, {
-    "table" : "Users",
-    "schema" : "cx2"
-  }, {
-    "table" : "MCNewResidentialStructure",
-    "schema" : "cx2"
-  }, {
     "table" : "VendorAdmins",
     "schema" : "cx2"
   }, {
-    "table" : "GlobalSettings",
+    "table" : "VendorLicenseTypes",
     "schema" : "cx2"
   }, {
-    "table" : "PUDApplication",
-    "schema" : "cx2"
-  }, {
-    "table" : "UserSubscriptions",
+    "table" : "VendorUsers",
     "schema" : "cx2"
   } ],
   "schemaFilter" : [ ],

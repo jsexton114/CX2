@@ -43,6 +43,7 @@ public class MasterForms implements Serializable {
     private String recordType;
     private Date issuedDate;
     private Date expiresDate;
+    private String formTitle;
     private FormTypes formTypes;
     private FormStatuses formStatuses;
     private MunicipalityGroups municipalityGroups;
@@ -186,6 +187,15 @@ public class MasterForms implements Serializable {
 
     public void setExpiresDate(Date expiresDate) {
         this.expiresDate = expiresDate;
+    }
+
+    @Column(name = "`FormTitle`", nullable = true, length = 255)
+    public String getFormTitle() {
+        return this.formTitle;
+    }
+
+    public void setFormTitle(String formTitle) {
+        this.formTitle = formTitle;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
