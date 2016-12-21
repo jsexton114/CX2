@@ -312,11 +312,9 @@
             <version>5.1.38</version>
         </dependency>
         <dependency>
-            <groupId>mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/mail.jar</systemPath>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.4.5</version>
         </dependency>
         <dependency>
             <groupId>sqljdbc4-4.0</groupId>

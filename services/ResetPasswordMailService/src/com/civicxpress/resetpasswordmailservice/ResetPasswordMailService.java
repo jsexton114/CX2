@@ -15,7 +15,7 @@ import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 import com.wavemaker.runtime.service.annotations.HideFromClient;
 
-import java.util.Properties;
+import java.util.Properties;   
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
