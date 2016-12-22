@@ -42,35 +42,30 @@
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="editRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Vendorapprovals Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ReviewVendorApprovals.dataSet" captionalign="left" captionposition="top"
-                                    name="liveform2">
+                                    <wm-liveform novalidate="false" errormessage="" title="Vendor Review" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ReviewVendorApprovals.dataSet" captionalign="left" captionposition="top" name="liveform2">
                                         <wm-layoutgrid columns="3" name="layoutgrid3">
                                             <wm-gridrow name="gridrow9">
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn18_1">
-                                                    <wm-form-field name="approvalStatus" displayname="Approval Status" show="true" primary-key="false" generator="assigned" key="approvalStatus" type="string" widget="select" maxchars="255" placeholder="Enter value"
-                                                    dataset="Pending,Approved,Suspended" defaultvalue="Pending"></wm-form-field>
+                                                    <wm-form-field name="approvalStatus" displayname="Approval Status" show="true" primary-key="false" generator="assigned" key="approvalStatus" type="string" widget="select" maxchars="255" placeholder="" dataset="Pending,Approved,Suspended" defaultvalue="Pending"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow8">
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn15">
-                                                    <wm-form-field name="expiresDate" displayname="Expires Date" show="true" primary-key="false" generator="assigned" key="expiresDate" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd"
-                                                    datepattern="yyyy-MM-dd"></wm-form-field>
+                                                    <wm-form-field name="expiresDate" displayname="Expiration Date" show="true" primary-key="false" generator="assigned" key="expiresDate" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd" datepattern="MM-dd-yyyy"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
                                         <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
                                         <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
-                                        <wm-form-field name="reviewer" displayname="Reviewer" show="false" primary-key="false" generator="assigned" key="reviewer" type="string" widget="text" maxchars="255" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.email"
-                                        inputtype="text" placeholder="Enter value"></wm-form-field>
+                                        <wm-form-field name="reviewer" displayname="Reviewer" show="false" primary-key="false" generator="assigned" key="reviewer" type="string" widget="text" maxchars="255" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.email" inputtype="text" placeholder="Enter value"></wm-form-field>
                                         <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select value"></wm-form-field>
                                         <wm-form-field name="vendor" displayname="Vendor" show="false" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" widget="select" placeholder="Select value"></wm-form-field>
-                                        <wm-form-field name="dateApproved" displayname="Date Approved" show="false" primary-key="false" generator="assigned" key="dateApproved" type="date" widget="date" defaultvalue="CURRENT_DATE" placeholder="Select date"
-                                        outputformat="yyyy-MM-dd" showbuttonbar="false" datepattern="yyyy-MM-dd"></wm-form-field>
-                                        <wm-form-field name="approvedBy" displayname="Approved By" show="false" primary-key="false" generator="assigned" key="approvedBy" type="string" widget="text" maxchars="255" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.email"
-                                        inputtype="text" placeholder="Enter value"></wm-form-field>
+                                        <wm-form-field name="dateApproved" displayname="Date Approved" show="false" primary-key="false" generator="assigned" key="dateApproved" type="date" widget="date" defaultvalue="CURRENT_DATE" placeholder="Select date" outputformat="yyyy-MM-dd" showbuttonbar="false"
+                                        datepattern="yyyy-MM-dd"></wm-form-field>
+                                        <wm-form-field name="approvedBy" displayname="Approved By" show="false" primary-key="false" generator="assigned" key="approvedBy" type="string" widget="text" maxchars="255" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.email" inputtype="text"
+                                        placeholder="Enter value"></wm-form-field>
                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" action="Variables.UpdateVendorStatusFromPending.invoke()" disabled="false"
-                                        type="button" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" action="Variables.UpdateVendorStatusFromPending.invoke()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                     </wm-liveform>
                                 </wm-livegrid>
                             </wm-accordionpane>
@@ -88,13 +83,12 @@
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Vendorapprovals Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" captionalign="left" captionposition="top"
-                                    name="liveformApprovedVendors">
+                                    <wm-liveform novalidate="false" errormessage="" title="Vendorapprovals Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" captionalign="left" captionposition="top" name="liveformApprovedVendors">
                                         <wm-layoutgrid columns="1" name="layoutgrid3_1">
                                             <wm-gridrow name="gridrow7">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn10">
-                                                    <wm-form-field name="approvalStatus" displayname="Approval Status" show="true" primary-key="false" generator="assigned" key="approvalStatus" type="string" widget="select" maxchars="255" placeholder="Enter value"
-                                                    dataset="Pending,Approved,Suspended" datafield="approvalStatus" displayfield="approvalStatus" defaultvalue="Approved"></wm-form-field>
+                                                    <wm-form-field name="approvalStatus" displayname="Approval Status" show="true" primary-key="false" generator="assigned" key="approvalStatus" type="string" widget="select" maxchars="255" placeholder="Enter value" dataset="Pending,Approved,Suspended" datafield="approvalStatus"
+                                                    displayfield="approvalStatus" defaultvalue="Approved"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow8_1">
@@ -109,16 +103,13 @@
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow2">
                                                 <wm-gridcolumn name="gridcolumn2" columnwidth="12">
-                                                    <wm-form-field name="dateApproved" displayname="Date Approved" show="true" primary-key="false" generator="assigned" key="dateApproved" type="date" widget="date" defaultvalue="CURRENT_DATE" placeholder="Select date"
-                                                    outputformat="yyyy-MM-dd"></wm-form-field>
+                                                    <wm-form-field name="dateApproved" displayname="Date Approved" show="true" primary-key="false" generator="assigned" key="dateApproved" type="date" widget="date" defaultvalue="CURRENT_DATE" placeholder="Select date" outputformat="yyyy-MM-dd"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
                                         <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
-                                        <wm-form-action key="reset" display-name="Cancel" show="true" class="form-reset btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" shortcutkey="" disabled="false" type="button"
-                                        update-mode="true"></wm-form-action>
-                                        <wm-form-action key="cancel" display-name="Save" show="true" class="form-cancel btn-primary" iconclass="wi wi-save" title="Save" action="Variables.UpdateVendorStatusFromApproved.invoke()" disabled="false"
-                                        type="button" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="reset" display-name="Cancel" show="true" class="form-reset btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" shortcutkey="" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="cancel" display-name="Save" show="true" class="form-cancel btn-primary" iconclass="wi wi-save" title="Save" action="Variables.UpdateVendorStatusFromApproved.invoke()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                         <wm-form-action key="edit" display-name="Edit" show="true" class="form-update btn-secondary" iconclass="wi wi-pencil" title="Edit" action="edit()" shortcutkey="" disabled="false" type="button" update-mode="false"></wm-form-action>
                                     </wm-liveform>
                                 </wm-livegrid>
@@ -136,23 +127,20 @@
                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                                 <wm-livegrid formlayout="dialog" name="livegrid3">
-                                    <wm-liveform novalidate="false" errormessage="" title="Vendorapprovals Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" captionalign="left" captionposition="top"
-                                    name="liveformSuspended">
+                                    <wm-liveform novalidate="false" errormessage="" title="Vendorapprovals Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" captionalign="left" captionposition="top" name="liveformSuspended">
                                         <wm-layoutgrid columns="1" name="layoutgrid4">
                                             <wm-gridrow name="gridrow10">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn13">
-                                                    <wm-form-field name="approvalStatus" displayname="Approval Status" show="true" primary-key="false" generator="assigned" key="approvalStatus" type="string" widget="select" maxchars="255" placeholder="Enter value"
-                                                    dataset="Pending,Approved,Suspended" datafield="approvalStatus" displayfield="approvalStatus" defaultvalue="Suspended"></wm-form-field>
+                                                    <wm-form-field name="approvalStatus" displayname="Approval Status" show="true" primary-key="false" generator="assigned" key="approvalStatus" type="string" widget="select" maxchars="255" placeholder="Enter value" dataset="Pending,Approved,Suspended" datafield="approvalStatus"
+                                                    displayfield="approvalStatus" defaultvalue="Suspended"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
                                         <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
-                                        <wm-form-field name="dateApproved" displayname="Date Approved" show="false" primary-key="false" generator="assigned" key="dateApproved" type="date" widget="date" outputformat="yyyy-MM-dd" placeholder="Select date"
-                                        defaultvalue="CURRENT_DATE"></wm-form-field>
+                                        <wm-form-field name="dateApproved" displayname="Date Approved" show="false" primary-key="false" generator="assigned" key="dateApproved" type="date" widget="date" outputformat="yyyy-MM-dd" placeholder="Select date" defaultvalue="CURRENT_DATE"></wm-form-field>
                                         <wm-form-field name="expiresDate" displayname="Expires Date" show="false" primary-key="false" generator="assigned" key="expiresDate" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd"></wm-form-field>
                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" action="Variables.UpdateVendorStatusFromSuspended.invoke()" disabled="false"
-                                        type="button" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" action="Variables.UpdateVendorStatusFromSuspended.invoke()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                     </wm-liveform>
                                 </wm-livegrid>
                             </wm-accordionpane>
