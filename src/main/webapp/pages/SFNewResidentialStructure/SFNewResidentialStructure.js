@@ -12,14 +12,22 @@ Application.$controller("SFNewResidentialStructurePageController", ["$scope", fu
         $scope.setGUID = randomString;
     };
 
-    // Updating the status to record
+
     $scope.Cx2SfnewResidentialStructureDataonSuccess = function(variable, data) {
+        // Updating the status to record
         $scope.Variables.UserUpdateRecordStatus.setInput({
             'tableName': data.formTypes.tbLocation,
             'formStatusId': $scope.Variables.GetDefaultStatusByFormAndSortOrder.dataSet.data[0].id,
             'recordId': data.id
         });
         $scope.Variables.UserUpdateRecordStatus.update();
+
+        // Recording Form Entry In Master Forms
+        $scope.Variables.MasterFormInsertion.setInput({
+            'formGuid': data.guid,
+            'formStatusId': $scope.Variables.GetDefaultStatusByFormAndSortOrder.dataSet.data[0].id
+        });
+        $scope.Variables.MasterFormInsertion.insertRecord();
     };
 
 
