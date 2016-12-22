@@ -1,4 +1,4 @@
-Application.$controller("EditFormPageController", ["$scope", function($scope) {
+Application.$controller("EditFormPageController", ["$scope", "wmToaster", function($scope, wmToaster) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -7,6 +7,11 @@ Application.$controller("EditFormPageController", ["$scope", function($scope) {
     };
 
 
+
+
+    $scope.liveform2Error = function($event, $operation, $data) {
+        wmToaster.show('error', 'ERROR', 'Sort Order cannot be duplicated.', 5000);
+    };
 
 }]);
 
@@ -33,15 +38,15 @@ Application.$controller("liveform2Controller", ["$scope",
 ]);
 
 Application.$controller("grid2Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveform3Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

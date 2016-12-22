@@ -22,7 +22,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "id",
-      "value" : "bind:Variables.loggedInUser.dataSet.id | toNumber",
+      "value" : "bind:Variables.loggedInUser.dataSet.id | stringToNumber",
       "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.Users",
@@ -35,7 +35,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "startUpdate" : true,
+    "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,

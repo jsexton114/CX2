@@ -164,7 +164,8 @@
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Form Statuses Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top" name="liveform2">
+                                    <wm-liveform novalidate="false" errormessage="" title="Form Statuses Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top" name="liveform2"
+                                    on-error="liveform2Error($event, $operation, $data)">
                                         <wm-layoutgrid columns="3" name="StatusLayout">
                                             <wm-gridrow name="gridrowSettings">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumnstatus">

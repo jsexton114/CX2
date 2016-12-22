@@ -117,6 +117,10 @@
         <parameter name="DateSubscribed" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2InsertSubscriptionrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="ManualFeeTypeCountForMunicipality">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2ManualFeeTypeCountForMunicipalityrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="MapAsAdminForVendor">
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
@@ -378,6 +382,10 @@
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="DateSubscribed" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2InsertSubscriptionrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="ManualFeeTypeCountForMunicipality">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2ManualFeeTypeCountForMunicipalityrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="MapAsAdminForVendor">
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -1166,6 +1174,9 @@
         <dataobject javaType="cx2InsertGroupsrtnType"/>
         <dataobject javaType="cx2InsertNewRolertnType"/>
         <dataobject javaType="cx2InsertSubscriptionrtnType"/>
+        <dataobject javaType="cx2ManualFeeTypeCountForMunicipalityrtnType">
+            <element name="" typeRef="java.lang.Integer"/>
+        </dataobject>
         <dataobject javaType="cx2MapAsAdminForVendorrtnType"/>
         <dataobject javaType="cx2MunicipalitiesGroupsCountsrtnType">
             <element name="groupsCount" typeRef="java.lang.Integer"/>

@@ -1,4 +1,28 @@
 {
+  "CXAdminFormsCount" : {
+    "_id" : "wm-CXAdminFormsCount-wm.ServiceVariable-1482389199067",
+    "name" : "CXAdminFormsCount",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "integer",
+    "service" : "cx2",
+    "operation" : "countFormTypes",
+    "operationId" : "FormTypesController_countFormTypes",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "FormTypes",
+    "spinnerContext" : "page"
+  },
   "MunicipalitiesCount" : {
     "_id" : "wm-MunicipalitiesCount-wm.ServiceVariable-1478585159855",
     "name" : "MunicipalitiesCount",

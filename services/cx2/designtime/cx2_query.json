@@ -754,6 +754,26 @@
     "outputType" : "cx2InsertSubscriptionrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "ManualFeeTypeCountForMunicipality",
+    "query" : "Select count(*) from ManualFeeTypes where MunicipalityId=:MunicipalityId",
+    "comment" : "ManualFeeTypeCountForMunicipality",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "MunicipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2ManualFeeTypeCountForMunicipalityrtnType",
+    "returnTypeMetadata" : {
+      "" : "java.lang.Integer"
+    }
+  }, {
     "name" : "MapAsAdminForVendor",
     "query" : "insert into VendorAdmins(UserId,VendorId) values(:UserId,:VendorId)",
     "comment" : "MapAsAdminForVendor",
