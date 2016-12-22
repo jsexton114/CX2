@@ -15,3 +15,11 @@ Application.$controller("MyCartPageController", ["$scope", function ($scope) {
     };
 
 }]);
+
+
+Application.$controller("pagedialogNewFormController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

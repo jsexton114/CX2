@@ -70,7 +70,7 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
 
 
     $scope.buttonAddMunicipalityClick = function($event, $isolateScope) {
-        var temp = $scope.Widgets.textSearchMunicipalities.datavalue;
+        var temp = $scope.Widgets.search2.datavalue;
         var data = $scope.Variables.MunicpalitiesList.dataSet;
         // checking for any municipalities in MunicpalitiesList variable, if not add from search 
         if (data.length == 0) {
