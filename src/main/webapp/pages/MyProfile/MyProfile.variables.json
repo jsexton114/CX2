@@ -1645,7 +1645,7 @@
       "type" : "string"
     }, {
       "target" : "st",
-      "value" : "bind:Widgets.selectSt.datavalue",
+      "value" : "bind:Widgets.selectSt.datavalue | stringToNumber",
       "type" : "integer"
     }, {
       "target" : "ct",
@@ -1657,7 +1657,7 @@
       "type" : "string"
     }, {
       "target" : "user",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id | stringToNumber",
       "type" : "integer"
     }, {
       "target" : "ctry",
