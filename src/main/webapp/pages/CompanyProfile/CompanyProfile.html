@@ -146,7 +146,7 @@
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
-                                <wm-liveform novalidate="false" errormessage="" title="Vendorlicenses Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.VendorLicensesData.dataSet" captionalign="left" captionposition="top" name="liveform2">
+                                <wm-liveform novalidate="false" errormessage="" title="License Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.VendorLicensesData.dataSet" captionalign="left" captionposition="top" name="liveform2">
                                     <wm-layoutgrid columns="2" name="layoutgrid3">
                                         <wm-gridrow name="gridrow13">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn28_1">
@@ -169,8 +169,8 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow15">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn32">
-                                                <wm-form-field name="scope" displayname="Scope" show="true" primary-key="false" generator="assigned" key="scope" type="string" widget="select" maxchars="255" placeholder="Enter value" dataset="City,County,State,Federal"
-                                                defaultvalue="City"></wm-form-field>
+                                                <wm-form-field name="scope" displayname="Scope" show="true" primary-key="false" generator="assigned" key="scope" type="string" widget="select" maxchars="255" placeholder="Select value" dataset="City,County,State,Federal"
+                                                defaultvalue="Select value"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn33">
                                                 <wm-form-field name="vendorLicenseTypes" displayname="Vendor License Types" show="true" primary-key="false" generator="assigned" key="vendorLicenseTypes" type="list" is-related="true" widget="select" placeholder="Select value"
@@ -178,10 +178,9 @@
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
-                                    <wm-form-field name="vendor" displayname="Vendor" show="false" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" required="required" widget="select" placeholder="Select value" defaultvalue="bind:Variables.CurrentVendorObj.firstRecord"
-                                    dataset="bind:Variables.CurrentVendorObj.dataSet" datafield="All Fields" displayfield="companyName" orderby="companyName:desc"></wm-form-field>
-                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                    placeholder=""></wm-form-field>
+                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
+                                    <wm-form-field name="vendor" displayname="Vendor" show="false" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" required="required" widget="select" placeholder="Select value"
+                                    defaultvalue="bind:Variables.CurrentVendorObj.firstRecord" dataset="bind:Variables.CurrentVendorObj.dataSet" datafield="All Fields" displayfield="companyName" orderby="companyName:desc"></wm-form-field>
                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                 </wm-liveform>
