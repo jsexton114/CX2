@@ -61,7 +61,8 @@
                                         <wm-composite width="80%" margin="2% unset unset unset" name="composite7">
                                             <wm-label class="col-md-3 control-label" name="label27" caption="State"></wm-label>
                                             <wm-container class="col-md-9" name="container7">
-                                                <wm-search name="selectSt" dataset="bind:Variables.AllStates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id" orderby="stateName:desc" datavalue="bind:Variables.UserStateObj.firstRecord"></wm-search>
+                                                <wm-select name="selectSt" dataset="bind:Variables.AllStates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="All Fields" orderby="stateName:desc" datavalue="bind:Variables.CurrentUserDetails.dataSet.states"
+                                                displayfield="stateName" placeholder=""></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                         <wm-composite width="80%" margin="2% unset unset unset" name="composite7">

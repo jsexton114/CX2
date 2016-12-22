@@ -14,8 +14,8 @@
     "type" : "States",
     "isList" : false,
     "saveInPhonegap" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
+    "maxResults" : 100,
+    "designMaxResults" : 100,
     "inFlightBehavior" : "executeLast",
     "startUpdate" : true,
     "autoUpdate" : true,
@@ -1645,7 +1645,7 @@
       "type" : "string"
     }, {
       "target" : "st",
-      "value" : "bind:Widgets.selectSt.datavalue | stringToNumber",
+      "value" : "bind:Widgets.selectSt.datavalue.id | stringToNumber",
       "type" : "integer"
     }, {
       "target" : "ct",
@@ -1712,71 +1712,6 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
-  },
-  "UserStateObj" : {
-    "_id" : "wm-UserStateObj-wm.LiveVariable-1479458753012",
-    "name" : "UserStateObj",
-    "owner" : "Page",
-    "category" : "wm.LiveVariable",
-    "dataBinding" : [ {
-      "target" : "id",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.stateId",
-      "type" : "number"
-    } ],
-    "operation" : "read",
-    "dataSet" : [ ],
-    "type" : "States",
-    "isList" : false,
-    "saveInPhonegap" : false,
-    "maxResults" : 60,
-    "designMaxResults" : 10,
-    "inFlightBehavior" : "executeLast",
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "transformationRequired" : false,
-    "liveSource" : "cx2",
-    "ignoreCase" : true,
-    "matchMode" : "start",
-    "propertiesMap" : {
-      "columns" : [ {
-        "fieldName" : "id",
-        "type" : "integer",
-        "fullyQualifiedType" : "integer",
-        "columnName" : "ID",
-        "isPrimaryKey" : true,
-        "notNull" : true,
-        "length" : 0,
-        "precision" : 10,
-        "generator" : "identity",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
-        "fieldName" : "stateName",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "StateName",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      } ],
-      "entityName" : "States",
-      "fullyQualifiedName" : "com.civicxpress.cx2.States",
-      "tableType" : "TABLE",
-      "primaryFields" : [ "id" ]
-    },
-    "bindCount" : 1,
-    "tableName" : "States",
-    "tableType" : "TABLE",
-    "properties" : [ ],
-    "relatedTables" : [ ],
-    "filterFields" : { },
-    "package" : "com.civicxpress.cx2.States"
   },
   "YourSubscriptionsUpdated" : {
     "_id" : "wm-YourSubscriptionsUpdated-wm.NotificationVariable-1479983531723",
