@@ -1605,7 +1605,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.ProfileUpdateSuccess.invoke()",
+    "onSuccess" : "Variables.ProfileUpdateSuccess.invoke();Variables.CurrentUserDetails.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
