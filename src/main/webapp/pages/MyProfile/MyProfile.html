@@ -7,7 +7,7 @@
             <wm-layoutgrid name="layoutgrid2">
                 <wm-gridrow name="gridrow19">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn30">
-                        <wm-panel iconclass="wi wi-account-circle" name="panelProfileInfo" title="My Profile Information" badgetype="primary">
+                        <wm-panel iconclass="wi wi-account-circle" name="panelProfileInfo" title="My Profile Information" badgetype="primary" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid5">
                                 <wm-gridrow name="gridrow20">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn33" horizontalalign="center">
@@ -93,7 +93,7 @@
                 <wm-gridrow name="gridrow17_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn20_1">
                         <wm-form errormessage="" captionposition="top" title="Update Password" enctype="application/x-www-form-urlencoded" method="put" dataset="UpdateNewPassword" captionalign="left" name="form1" postmessage="Password updated successfully"
-                        messagelayout="Toaster">
+                        messagelayout="Toaster" class="panel-primary">
                             <wm-layoutgrid columns="1" name="layoutgrid5_1">
                                 <wm-gridrow name="gridrow21">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
@@ -125,7 +125,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow7_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn16_1">
-                        <wm-panel iconclass="wi wi-building" name="panelMyMunicipalities" title="My Municipalities">
+                        <wm-panel iconclass="wi wi-building" name="panelMyMunicipalities" title="My Municipalities" class="panel-primary">
                             <wm-panel-footer name="panel_footer4"></wm-panel-footer>
                             <wm-layoutgrid name="layoutgrid5_2">
                                 <wm-gridrow name="gridrow21_1" padding="2em unset">
@@ -178,7 +178,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow22_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn36">
-                        <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications">
+                        <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications" class="panel-primary">
                             <wm-label padding="unset 0.5em" name="label32" caption="Please select your notification frequency" fontweight="bold" fontsize="15"></wm-label>
                             <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF" required="true"></wm-radioset>
                             <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="unset unset unset 80%" width="20%" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
