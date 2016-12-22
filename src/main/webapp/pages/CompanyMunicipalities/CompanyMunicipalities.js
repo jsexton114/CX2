@@ -38,7 +38,7 @@ Application.$controller("liveform2Controller", ["$scope", "wmToaster",
             var curDate = moment()
             var differnceDays = $scope.InsuranceDate.diff(curDate, 'days')
             if (differnceDays < 30) {
-                wmToaster.show('error', 'ERROR', 'insurance expiring next week', 5000);
+                wmToaster.show('error', 'ERROR', 'You may not add additional municipalities at this time since your business insurance expires in the next 30 days. Please navigate to the My Company tile to update your Insurance Expiration Date and provide a new Certificate of Insurance before requesting to be a vendor for any additional municipalities.', 5000);
                 return;
             } else {
                 $scope.Widgets.liveform2.save();
