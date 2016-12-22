@@ -55,6 +55,15 @@ public interface FormStatusesService {
 	 */
 	FormStatuses findById(Integer formstatusesId);
 
+    /**
+	 * Find and return the FormStatuses for given sortOrder  andformTypeId  if exists.
+	 *
+	 * @param sortOrder value of sortOrder; value cannot be null.
+	 * @param formTypeId value of formTypeId; value cannot be null.
+	 * @return FormStatuses associated with the given inputs.
+     * @throws EntityNotFoundException if no matching FormStatuses found.
+	 */
+    FormStatuses getBySortOrderAndFormTypeId(Long sortOrder, Integer formTypeId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing FormStatuses. It replaces all fields of the existing FormStatuses with the given formStatuses.

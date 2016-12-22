@@ -844,7 +844,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -1119,7 +1119,7 @@
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 19,
       "primaryKey" : false,
       "scale" : 0,
@@ -1326,7 +1326,13 @@
       "sqlType" : "number",
       "unique" : false
     } ],
-    "constraints" : [ ],
+    "constraints" : [ {
+      "columns" : [ "SortOrder", "FormTypeId" ],
+      "composite" : true,
+      "name" : "UK_FormStatuses_SortOrdeMvvHs",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
     "entityName" : "FormStatuses",
     "fullyQualifiedName" : "com.civicxpress.cx2.FormStatuses",
     "name" : "FormStatuses",

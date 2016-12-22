@@ -89,6 +89,13 @@ public class FormStatusesController {
         return deletedFormStatuses != null;
     }
 
+    @RequestMapping(value = "/sortOrder-formTypeId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching FormStatuses with given unique key values.")
+    public FormStatuses getBySortOrderAndFormTypeId(@RequestParam(name = "sortOrder") Long sortOrder, @RequestParam(name = "formTypeId") Integer formTypeId) {
+        LOGGER.debug("Getting FormStatuses with uniques key SortOrderAndFormTypeId");
+        return formStatusesService.getBySortOrderAndFormTypeId(sortOrder, formTypeId);
+    }
+
     /**
      * @deprecated Use {@link #findFormStatuses(String, Pageable)} instead.
      */
