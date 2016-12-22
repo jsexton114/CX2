@@ -91,7 +91,7 @@
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Users" action="Widgets.GroupMembersData.open()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Create a Group" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.GetMunicipalityGroups.dataSet" captionalign="left" captionposition="top" name="liveform1"
+                                    <wm-liveform novalidate="false" errormessage="" title="Group Details" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.GetMunicipalityGroups.dataSet" captionalign="left" captionposition="top" name="liveform1"
                                     on-error="liveform1Error($event, $operation, $data)" on-success="liveform1Success($event, $operation, $data)">
                                         <wm-layoutgrid columns="1" name="layoutgrid7">
                                             <wm-gridrow name="gridrow20_1">
@@ -188,7 +188,7 @@
         <wm-dialog dialogtype="design-dialog" modal="true" title="bind:&quot;Add &quot;+Variables.AdminOrEmp.dataSet.dataValue" iconclass="wi wi-edit" name="dialogAddEmployeeORAdmin">
             <wm-dialogactions name="dialogactions2">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button4" iconclass="wi wi-cancel"></wm-button>
-                <wm-button class="btn-primary" caption="Save" name="buttonRole" on-click="buttonRoleClick($event, $scope)" iconclass="wi wi-save"></wm-button>
+                <wm-button class="btn-primary" caption="Add" name="buttonRole" on-click="buttonRoleClick($event, $scope)" iconclass="wi wi-add"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid6">
                 <wm-gridrow name="gridrow18"></wm-gridrow>
@@ -235,7 +235,7 @@
         <wm-dialog dialogtype="design-dialog" modal="true" title="Add User to Group" iconclass="wi wi-edit" name="ManageUsers">
             <wm-dialogactions name="dialogactions3">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
-                <wm-button class="btn-primary" caption="Add User" name="button8" on-click="Variables.MunicipalityGroupMembersData.createRecord()" disabled="bind:Widgets.searchUsers.datavalue.UserId == null" iconclass="wi wi-add"></wm-button>
+                <wm-button class="btn-primary" caption="Add" name="button8" on-click="Variables.MunicipalityGroupMembersData.createRecord()" disabled="bind:Widgets.searchUsers.datavalue.UserId == null" iconclass="wi wi-add"></wm-button>
             </wm-dialogactions>
             <wm-search name="searchUsers" placeholder="Search by Email Address" dataset="bind:Variables.getListOfUsers.dataSet" searchkey="Email" displaylabel="Email" datafield="All Fields" orderby="Email:desc" on-focus="Variables.getListOfUsers.invoke()"></wm-search>
         </wm-dialog>
@@ -320,15 +320,15 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view6">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Add Group" iconclass="wi wi-edit" name="AddGroupstoMembers">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add User to Group" iconclass="wi wi-edit" name="AddGroupstoMembers">
             <wm-form errormessage="" captionposition="top" class="app-dialog-form" name="form1">
                 <wm-composite name="composite4_1">
-                    <wm-form-field displayname="Add User to a Group" widget="select" show="true" type="custom" name="addGroupMembersSelect" dataset="bind:Variables.MunicipalityGroups.dataSet" datafield="All Fields" displayfield="groupName" placeholder="Select Group"></wm-form-field>
+                    <wm-form-field displayname="Select a Group" widget="select" show="true" type="custom" name="addGroupMembersSelect" dataset="bind:Variables.MunicipalityGroups.dataSet" datafield="All Fields" displayfield="groupName" placeholder=""></wm-form-field>
                 </wm-composite>
             </wm-form>
             <wm-dialogactions name="dialogactions5">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7_1" iconclass="wi wi-cancel"></wm-button>
-                <wm-button class="btn-primary" caption="Add Group" name="button8_1" on-click="Variables.addMunicipalityGroupMembers.createRecord();button8_1Click($event, $scope)" iconclass="wi wi-add"></wm-button>
+                <wm-button class="btn-primary" caption="Add" name="button8_1" on-click="Variables.addMunicipalityGroupMembers.createRecord();button8_1Click($event, $scope)" iconclass="wi wi-add"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
