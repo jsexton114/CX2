@@ -8729,7 +8729,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -8754,7 +8754,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -8786,7 +8786,13 @@
       "sqlType" : "string",
       "unique" : false
     } ],
-    "constraints" : [ ],
+    "constraints" : [ {
+      "columns" : [ "MunicipalityId", "UserId" ],
+      "composite" : true,
+      "name" : "UK_UserSubscriptions_Munppet9",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
     "entityName" : "UserSubscriptions",
     "fullyQualifiedName" : "com.civicxpress.cx2.UserSubscriptions",
     "name" : "UserSubscriptions",

@@ -49,6 +49,15 @@ public interface UserSubscriptionsService {
 	 */
 	UserSubscriptions findById(Integer usersubscriptionsId);
 
+    /**
+	 * Find and return the UserSubscriptions for given municipalityId  anduserId  if exists.
+	 *
+	 * @param municipalityId value of municipalityId; value cannot be null.
+	 * @param userId value of userId; value cannot be null.
+	 * @return UserSubscriptions associated with the given inputs.
+     * @throws EntityNotFoundException if no matching UserSubscriptions found.
+	 */
+    UserSubscriptions getByMunicipalityIdAndUserId(Integer municipalityId, Integer userId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing UserSubscriptions. It replaces all fields of the existing UserSubscriptions with the given userSubscriptions.

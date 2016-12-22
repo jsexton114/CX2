@@ -91,7 +91,8 @@ public class FormStatusesController {
 
     @RequestMapping(value = "/sortOrder-formTypeId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching FormStatuses with given unique key values.")
-    public FormStatuses getBySortOrderAndFormTypeId(@RequestParam(name = "sortOrder") Long sortOrder, @RequestParam(name = "formTypeId") Integer formTypeId) {
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public FormStatuses getBySortOrderAndFormTypeId(@RequestParam(value = "null", required = true) Long sortOrder, @RequestParam(value = "null", required = true) Integer formTypeId) {
         LOGGER.debug("Getting FormStatuses with uniques key SortOrderAndFormTypeId");
         return formStatusesService.getBySortOrderAndFormTypeId(sortOrder, formTypeId);
     }

@@ -83,6 +83,13 @@ public class UserSubscriptionsController {
         return deletedUserSubscriptions != null;
     }
 
+    @RequestMapping(value = "/municipalityId-userId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching UserSubscriptions with given unique key values.")
+    public UserSubscriptions getByMunicipalityIdAndUserId(@RequestParam(name = "municipalityId") Integer municipalityId, @RequestParam(name = "userId") Integer userId) {
+        LOGGER.debug("Getting UserSubscriptions with uniques key MunicipalityIdAndUserId");
+        return userSubscriptionsService.getByMunicipalityIdAndUserId(municipalityId, userId);
+    }
+
     /**
      * @deprecated Use {@link #findUserSubscriptions(String, Pageable)} instead.
      */
