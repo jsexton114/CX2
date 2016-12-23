@@ -130,18 +130,18 @@
                                     <wm-layoutgrid columns="1" name="layoutgrid3">
                                         <wm-gridrow name="gridrow11">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn25_1">
-                                                <wm-form-field name="holiday" displayname="Holiday" show="true" primary-key="false" generator="assigned" key="holiday" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                <wm-form-field name="holiday" displayname="Holiday" show="true" primary-key="false" generator="assigned" key="holiday" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter Holiday Name"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow12">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn26">
-                                                <wm-form-field name="date" displayname="Date" show="true" primary-key="false" generator="assigned" key="date" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd"></wm-form-field>
+                                                <wm-form-field name="date" displayname="Date" show="true" primary-key="false" generator="assigned" key="date" type="date" widget="date" placeholder="Select date" outputformat="yyyy-mm-DD"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                     <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
-                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" dataset="bind:Variables.SelectedMunicipalityObj.dataSet"
-                                    datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord" placeholder="Select value"></wm-form-field>
+                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" dataset="bind:Variables.SelectedMunicipalityObj.dataSet" datafield="All Fields"
+                                    displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord" placeholder="Select value"></wm-form-field>
                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                 </wm-liveform>
