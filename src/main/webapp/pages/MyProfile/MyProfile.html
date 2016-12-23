@@ -5,6 +5,11 @@
         <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
         <wm-page-content columnwidth="10" name="page_content1">
             <wm-layoutgrid name="layoutgrid2">
+                <wm-gridrow name="gridrow24">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_3" padding="1em unset 2em unset">
+                        <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow19">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn30">
                         <wm-panel iconclass="wi wi-account-circle" name="panelProfileInfo" title="My Profile Information" badgetype="primary" class="panel-primary">
@@ -12,8 +17,7 @@
                                 <wm-gridrow name="gridrow20">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn33" horizontalalign="center">
                                         <wm-picture name="picture1" picturesource="bind:&quot;services/cx2/Users/&quot;+Variables.CurrentUserDetails.dataSet.id+&quot;/content/photo&quot;" width="30em" height="30em" margin="unset unset 2% unset"></wm-picture>
-                                        <wm-button class="btn-default" caption="UPDATE PROFILE PICTURE" type="button" margin="unset 0.5em" name="buttonUpdateProfilePic" width="50%" iconclass="wi wi-file-upload" on-click="Widgets.dialog1.open()"
-                                        fontweight="bold" fontsize="15"></wm-button>
+                                        <wm-button class="btn-default" caption="UPDATE PROFILE PICTURE" type="button" margin="unset 0.5em" name="buttonUpdateProfilePic" width="50%" iconclass="wi wi-file-upload" on-click="Widgets.dialog1.open()" fontweight="bold" fontsize="15"></wm-button>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn34" padding="unset unset unset 5%">
                                         <wm-composite name="composite1" width="80%" margin="2% unset unset unset">
@@ -61,8 +65,7 @@
                                         <wm-composite width="80%" margin="2% unset unset unset" name="composite7">
                                             <wm-label class="col-md-3 control-label" name="label27" caption="State"></wm-label>
                                             <wm-container class="col-md-9" name="container7">
-                                                <wm-select name="selectSt" dataset="bind:Variables.AllStates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="All Fields" orderby="stateName:asc" datavalue="bind:Variables.CurrentUserDetails.dataSet.states"
-                                                displayfield="stateName" placeholder=""></wm-select>
+                                                <wm-select name="selectSt" dataset="bind:Variables.AllStates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="All Fields" orderby="stateName:asc" datavalue="bind:Variables.CurrentUserDetails.dataSet.states" displayfield="stateName" placeholder=""></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                         <wm-composite width="80%" margin="2% unset unset unset" name="composite7">
@@ -77,8 +80,7 @@
                                                 <wm-text name="textpc" datavalue="bind:Variables.CurrentUserDetails.dataSet.postalCode"></wm-text>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-button class="btn-primary" caption="Save" type="button" margin="unset unset unset 60%" name="buttonSaveProInfo" width="20%" iconclass="wi wi-save" on-click="Variables.UpdateInfoFromMyProfile.invoke()" fontweight="bold"
-                                        fontsize="15"></wm-button>
+                                        <wm-button class="btn-primary" caption="Save" type="button" margin="unset unset unset 60%" name="buttonSaveProInfo" width="20%" iconclass="wi wi-save" on-click="Variables.UpdateInfoFromMyProfile.invoke()" fontweight="bold" fontsize="15"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow22">
@@ -92,8 +94,8 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn20_1">
-                        <wm-form errormessage="" captionposition="top" title="Update Password" enctype="application/x-www-form-urlencoded" method="put" dataset="UpdateNewPassword" captionalign="left" name="form1" postmessage="Password updated successfully"
-                        messagelayout="Toaster" class="panel-primary">
+                        <wm-form errormessage="" captionposition="top" title="Update Password" enctype="application/x-www-form-urlencoded" method="put" dataset="UpdateNewPassword" captionalign="left" name="form1" postmessage="Password updated successfully" messagelayout="Toaster"
+                        class="panel-primary">
                             <wm-layoutgrid columns="1" name="layoutgrid5_1">
                                 <wm-gridrow name="gridrow21">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
@@ -244,8 +246,7 @@
                     </wm-gridrow>
                     <wm-gridrow name="gridrow17">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn28">
-                            <wm-form-field name="communicationFrequency" displayname="Communication Frequency" show="false" primary-key="false" generator="assigned" key="communicationFrequency" type="string" widget="null" maxchars="255" placeholder="Enter value"
-                            defaultvalue="bind:Widgets.radiosetCF.datavalue"></wm-form-field>
+                            <wm-form-field name="communicationFrequency" displayname="Communication Frequency" show="false" primary-key="false" generator="assigned" key="communicationFrequency" type="string" widget="null" maxchars="255" placeholder="Enter value" defaultvalue="bind:Widgets.radiosetCF.datavalue"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow18">
