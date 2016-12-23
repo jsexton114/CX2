@@ -5,7 +5,96 @@
         <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
         <wm-page-content columnwidth="10" name="page_content1">
             <wm-tabs name="tabs1">
-                <wm-tabpane name="tabpane6" title="MasterForms"></wm-tabpane>
+                <wm-tabpane name="tabpane6" title="MasterForms">
+                    <wm-livegrid formlayout="dialog" name="livegrid6">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Masterforms List" dataset="bind:Variables.Cx2MasterFormsData.dataSet" navigation="Classic" name="grid6">
+                            <wm-grid-column binding="formGuid" caption="Form Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="closed" caption="Closed" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.id" caption="Types Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="FormTypes"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.formType" caption="Form Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormTypes" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="formStatuses.status" caption="Statuses Status" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormStatuses" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.email" caption="Users Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        </wm-grid>
+                        <wm-liveform novalidate="false" errormessage="" title="Masterforms Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2MasterFormsData.dataSet" captionalign="left" captionposition="top" name="liveform6">
+                            <wm-layoutgrid columns="3" name="layoutgrid6">
+                                <wm-gridrow name="gridrow21">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn61">
+                                        <wm-form-field name="formGuid" displayname="Form Guid" required="false" show="true" generator="assigned" primary-key="false" key="formGuid" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn62">
+                                        <wm-form-field name="closed" displayname="Closed" required="false" show="true" generator="assigned" primary-key="false" key="closed" type="boolean" is-related="false" pc-display="true" mobile-display="true" widget="checkbox"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn63">
+                                        <wm-form-field name="totalFees" displayname="Total Fees" required="false" show="true" generator="assigned" primary-key="false" key="totalFees" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow22">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn64">
+                                        <wm-form-field name="totalPayment" displayname="Total Payment" required="false" show="true" generator="assigned" primary-key="false" key="totalPayment" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn65">
+                                        <wm-form-field name="balanceDue" displayname="Balance Due" required="false" show="true" generator="assigned" primary-key="false" key="balanceDue" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn66">
+                                        <wm-form-field name="cxvendorId" displayname="Cxvendor Id" required="false" show="true" generator="assigned" primary-key="false" key="cxvendorId" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true"
+                                        widget="number"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow23">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn67">
+                                        <wm-form-field name="recordType" displayname="Record Type" required="false" show="true" generator="assigned" primary-key="false" key="recordType" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn68">
+                                        <wm-form-field name="issuedDate" displayname="Issued Date" required="false" show="true" generator="assigned" primary-key="false" key="issuedDate" type="date" is-related="false" pc-display="true" mobile-display="true"
+                                        widget="date"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn69">
+                                        <wm-form-field name="expiresDate" displayname="Expires Date" required="false" show="true" generator="assigned" primary-key="false" key="expiresDate" type="date" is-related="false" pc-display="true" mobile-display="true"
+                                        widget="date"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow24">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn70">
+                                        <wm-form-field name="formTitle" displayname="Form Title" required="false" show="true" generator="assigned" primary-key="false" key="formTitle" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn71">
+                                        <wm-form-field name="formTypes" displayname="Form Types" required="false" show="true" generator="assigned" primary-key="false" key="formTypes" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn72">
+                                        <wm-form-field name="formStatuses" displayname="Form Statuses" required="false" show="true" generator="assigned" primary-key="false" key="formStatuses" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow25">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn73">
+                                        <wm-form-field name="municipalityGroups" displayname="Municipality Groups" required="false" show="true" generator="assigned" primary-key="false" key="municipalityGroups" type="list" is-related="true" pc-display="true"
+                                        mobile-display="true" widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn74">
+                                        <wm-form-field name="municipalities" displayname="Municipalities" required="false" show="true" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn75">
+                                        <wm-form-field name="users" displayname="Users" required="false" show="true" generator="assigned" primary-key="false" key="users" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                            <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                        </wm-liveform>
+                    </wm-livegrid>
+                </wm-tabpane>
                 <wm-tabpane name="tabpane1" title="Sfnewelectricconnection">
                     <wm-livegrid formlayout="dialog" name="livegrid10">
                         <wm-grid gridfirstrowselect="true" editmode="dialog" title="Sfnewelectricconnection List" dataset="bind:Variables.Cx2SfnewElectricConnectionData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL">
@@ -24,47 +113,55 @@
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
-                        <wm-liveform novalidate="false" errormessage="" title="Sfnewelectricconnection Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2SfnewElectricConnectionData.dataSet" captionalign="left" captionposition="top" name="liveform1">
+                        <wm-liveform novalidate="false" errormessage="" title="Sfnewelectricconnection Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2SfnewElectricConnectionData.dataSet" captionalign="left" captionposition="top"
+                        name="liveform1">
                             <wm-layoutgrid columns="3" name="layoutgrid1">
                                 <wm-gridrow name="gridrow1">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn1">
-                                        <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                        widget="text"></wm-form-field>
+                                        <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerName" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn2">
-                                        <wm-form-field name="propertyOwnerPhNo" displayname="Property Owner Ph No" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerPhNo" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                        widget="text"></wm-form-field>
+                                        <wm-form-field name="propertyOwnerPhNo" displayname="Property Owner Ph No" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerPhNo" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn3">
-                                        <wm-form-field name="basementSft" displayname="Basement Sft" required="false" show="true" generator="assigned" primary-key="false" key="basementSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="basementSft" displayname="Basement Sft" required="false" show="true" generator="assigned" primary-key="false" key="basementSft" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow2">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn4">
-                                        <wm-form-field name="garageSft" displayname="Garage Sft" required="false" show="true" generator="assigned" primary-key="false" key="garageSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="garageSft" displayname="Garage Sft" required="false" show="true" generator="assigned" primary-key="false" key="garageSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn5">
-                                        <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn6">
-                                        <wm-form-field name="totalSft" displayname="Total Sft" required="false" show="true" generator="assigned" primary-key="false" key="totalSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="totalSft" displayname="Total Sft" required="false" show="true" generator="assigned" primary-key="false" key="totalSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow3">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn7">
-                                        <wm-form-field name="electricLinesCount" displayname="Electric Lines Count" required="false" show="true" generator="assigned" primary-key="false" key="electricLinesCount" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                        widget="text"></wm-form-field>
+                                        <wm-form-field name="electricLinesCount" displayname="Electric Lines Count" required="false" show="true" generator="assigned" primary-key="false" key="electricLinesCount" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn8">
-                                        <wm-form-field name="connectionType" displayname="Connection Type" required="false" show="true" generator="assigned" primary-key="false" key="connectionType" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="connectionType" displayname="Connection Type" required="false" show="true" generator="assigned" primary-key="false" key="connectionType" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn9">
-                                        <wm-form-field name="guid" displayname="Guid" required="false" show="true" generator="assigned" primary-key="false" key="guid" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="guid" displayname="Guid" required="false" show="true" generator="assigned" primary-key="false" key="guid" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow4">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn10">
-                                        <wm-form-field name="formStatuses" displayname="Form Statuses" required="false" show="true" generator="assigned" primary-key="false" key="formStatuses" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
+                                        <wm-form-field name="formStatuses" displayname="Form Statuses" required="false" show="true" generator="assigned" primary-key="false" key="formStatuses" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn11">
                                         <wm-form-field name="formTypes" displayname="Form Types" required="false" show="true" generator="assigned" primary-key="false" key="formTypes" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
@@ -94,41 +191,49 @@
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
-                        <wm-liveform novalidate="false" errormessage="" title="Sfnewresidentialstructure Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2SfnewResidentialStructureData.dataSet" captionalign="left" captionposition="top" name="liveform2">
+                        <wm-liveform novalidate="false" errormessage="" title="Sfnewresidentialstructure Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2SfnewResidentialStructureData.dataSet" captionalign="left" captionposition="top"
+                        name="liveform2">
                             <wm-layoutgrid columns="3" name="layoutgrid2">
                                 <wm-gridrow name="gridrow5">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn13">
-                                        <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                        widget="text"></wm-form-field>
+                                        <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerName" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn14">
-                                        <wm-form-field name="propertyOwnerPhNo" displayname="Property Owner Ph No" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerPhNo" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                        widget="text"></wm-form-field>
+                                        <wm-form-field name="propertyOwnerPhNo" displayname="Property Owner Ph No" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerPhNo" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn15">
-                                        <wm-form-field name="basementSft" displayname="Basement Sft" required="false" show="true" generator="assigned" primary-key="false" key="basementSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="basementSft" displayname="Basement Sft" required="false" show="true" generator="assigned" primary-key="false" key="basementSft" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow6">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn16">
-                                        <wm-form-field name="garageSft" displayname="Garage Sft" required="false" show="true" generator="assigned" primary-key="false" key="garageSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="garageSft" displayname="Garage Sft" required="false" show="true" generator="assigned" primary-key="false" key="garageSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn17">
-                                        <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn18">
-                                        <wm-form-field name="totalSft" displayname="Total Sft" required="false" show="true" generator="assigned" primary-key="false" key="totalSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="totalSft" displayname="Total Sft" required="false" show="true" generator="assigned" primary-key="false" key="totalSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow7">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn19">
-                                        <wm-form-field name="valueOfWork" displayname="Value Of Work" required="false" show="true" generator="assigned" primary-key="false" key="valueOfWork" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="valueOfWork" displayname="Value Of Work" required="false" show="true" generator="assigned" primary-key="false" key="valueOfWork" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn20">
-                                        <wm-form-field name="guid" displayname="Guid" required="false" show="true" generator="assigned" primary-key="false" key="guid" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="guid" displayname="Guid" required="false" show="true" generator="assigned" primary-key="false" key="guid" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn21">
-                                        <wm-form-field name="formStatuses" displayname="Form Statuses" required="false" show="true" generator="assigned" primary-key="false" key="formStatuses" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
+                                        <wm-form-field name="formStatuses" displayname="Form Statuses" required="false" show="true" generator="assigned" primary-key="false" key="formStatuses" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow8">
@@ -165,41 +270,49 @@
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
-                        <wm-liveform novalidate="false" errormessage="" title="Mcnewresidentialstructure Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2McnewResidentialStructureData.dataSet" captionalign="left" captionposition="top" name="liveform3">
+                        <wm-liveform novalidate="false" errormessage="" title="Mcnewresidentialstructure Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2McnewResidentialStructureData.dataSet" captionalign="left" captionposition="top"
+                        name="liveform3">
                             <wm-layoutgrid columns="3" name="layoutgrid3">
                                 <wm-gridrow name="gridrow9">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn25">
-                                        <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                        widget="text"></wm-form-field>
+                                        <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerName" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn26">
-                                        <wm-form-field name="propertyOwnerPhNo" displayname="Property Owner Ph No" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerPhNo" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                        widget="text"></wm-form-field>
+                                        <wm-form-field name="propertyOwnerPhNo" displayname="Property Owner Ph No" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerPhNo" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn27">
-                                        <wm-form-field name="basementSft" displayname="Basement Sft" required="false" show="true" generator="assigned" primary-key="false" key="basementSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="basementSft" displayname="Basement Sft" required="false" show="true" generator="assigned" primary-key="false" key="basementSft" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow10">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn28">
-                                        <wm-form-field name="garageSft" displayname="Garage Sft" required="false" show="true" generator="assigned" primary-key="false" key="garageSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="garageSft" displayname="Garage Sft" required="false" show="true" generator="assigned" primary-key="false" key="garageSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn29">
-                                        <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn30">
-                                        <wm-form-field name="totalSft" displayname="Total Sft" required="false" show="true" generator="assigned" primary-key="false" key="totalSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="totalSft" displayname="Total Sft" required="false" show="true" generator="assigned" primary-key="false" key="totalSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow11">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn31">
-                                        <wm-form-field name="valueOfWork" displayname="Value Of Work" required="false" show="true" generator="assigned" primary-key="false" key="valueOfWork" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="valueOfWork" displayname="Value Of Work" required="false" show="true" generator="assigned" primary-key="false" key="valueOfWork" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn32">
-                                        <wm-form-field name="guid" displayname="Guid" required="false" show="true" generator="assigned" primary-key="false" key="guid" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="guid" displayname="Guid" required="false" show="true" generator="assigned" primary-key="false" key="guid" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn33">
-                                        <wm-form-field name="formStatuses" displayname="Form Statuses" required="false" show="true" generator="assigned" primary-key="false" key="formStatuses" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
+                                        <wm-form-field name="formStatuses" displayname="Form Statuses" required="false" show="true" generator="assigned" primary-key="false" key="formStatuses" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow12">
@@ -236,41 +349,49 @@
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
-                        <wm-liveform novalidate="false" errormessage="" title="Mcnewelectricconnection Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2McnewElectricConnectionData.dataSet" captionalign="left" captionposition="top" name="liveform4">
+                        <wm-liveform novalidate="false" errormessage="" title="Mcnewelectricconnection Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2McnewElectricConnectionData.dataSet" captionalign="left" captionposition="top"
+                        name="liveform4">
                             <wm-layoutgrid columns="3" name="layoutgrid4">
                                 <wm-gridrow name="gridrow13">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn37">
-                                        <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                        widget="text"></wm-form-field>
+                                        <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerName" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn38">
-                                        <wm-form-field name="propertyOwnerPhNo" displayname="Property Owner Ph No" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerPhNo" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                        widget="text"></wm-form-field>
+                                        <wm-form-field name="propertyOwnerPhNo" displayname="Property Owner Ph No" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerPhNo" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn39">
-                                        <wm-form-field name="basementSft" displayname="Basement Sft" required="false" show="true" generator="assigned" primary-key="false" key="basementSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="basementSft" displayname="Basement Sft" required="false" show="true" generator="assigned" primary-key="false" key="basementSft" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow14">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn40">
-                                        <wm-form-field name="garageSft" displayname="Garage Sft" required="false" show="true" generator="assigned" primary-key="false" key="garageSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="garageSft" displayname="Garage Sft" required="false" show="true" generator="assigned" primary-key="false" key="garageSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn41">
-                                        <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn42">
-                                        <wm-form-field name="totalSft" displayname="Total Sft" required="false" show="true" generator="assigned" primary-key="false" key="totalSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="totalSft" displayname="Total Sft" required="false" show="true" generator="assigned" primary-key="false" key="totalSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow15">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn43">
-                                        <wm-form-field name="valueOfWork" displayname="Value Of Work" required="false" show="true" generator="assigned" primary-key="false" key="valueOfWork" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="valueOfWork" displayname="Value Of Work" required="false" show="true" generator="assigned" primary-key="false" key="valueOfWork" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn44">
-                                        <wm-form-field name="guid" displayname="Guid" required="false" show="true" generator="assigned" primary-key="false" key="guid" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="guid" displayname="Guid" required="false" show="true" generator="assigned" primary-key="false" key="guid" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn45">
-                                        <wm-form-field name="formStatuses" displayname="Form Statuses" required="false" show="true" generator="assigned" primary-key="false" key="formStatuses" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
+                                        <wm-form-field name="formStatuses" displayname="Form Statuses" required="false" show="true" generator="assigned" primary-key="false" key="formStatuses" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow16">
@@ -311,43 +432,50 @@
                             <wm-layoutgrid columns="3" name="layoutgrid5">
                                 <wm-gridrow name="gridrow17">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn49">
-                                        <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                        widget="text"></wm-form-field>
+                                        <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerName" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn50">
-                                        <wm-form-field name="propertyOwnerPhNo" displayname="Property Owner Ph No" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerPhNo" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                        widget="text"></wm-form-field>
+                                        <wm-form-field name="propertyOwnerPhNo" displayname="Property Owner Ph No" required="false" show="true" generator="assigned" primary-key="false" key="propertyOwnerPhNo" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn51">
-                                        <wm-form-field name="basementSft" displayname="Basement Sft" required="false" show="true" generator="assigned" primary-key="false" key="basementSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="basementSft" displayname="Basement Sft" required="false" show="true" generator="assigned" primary-key="false" key="basementSft" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow18">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn52">
-                                        <wm-form-field name="garageSft" displayname="Garage Sft" required="false" show="true" generator="assigned" primary-key="false" key="garageSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="garageSft" displayname="Garage Sft" required="false" show="true" generator="assigned" primary-key="false" key="garageSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn53">
-                                        <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="sidingMaterial" displayname="Siding Material" required="false" show="true" generator="assigned" primary-key="false" key="sidingMaterial" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn54">
-                                        <wm-form-field name="totalSft" displayname="Total Sft" required="false" show="true" generator="assigned" primary-key="false" key="totalSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="totalSft" displayname="Total Sft" required="false" show="true" generator="assigned" primary-key="false" key="totalSft" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow19">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn55">
-                                        <wm-form-field name="electricLinesCount" displayname="Electric Lines Count" required="false" show="true" generator="assigned" primary-key="false" key="electricLinesCount" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                        widget="text"></wm-form-field>
+                                        <wm-form-field name="electricLinesCount" displayname="Electric Lines Count" required="false" show="true" generator="assigned" primary-key="false" key="electricLinesCount" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn56">
-                                        <wm-form-field name="connectionType" displayname="Connection Type" required="false" show="true" generator="assigned" primary-key="false" key="connectionType" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="connectionType" displayname="Connection Type" required="false" show="true" generator="assigned" primary-key="false" key="connectionType" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn57">
-                                        <wm-form-field name="guid" displayname="Guid" required="false" show="true" generator="assigned" primary-key="false" key="guid" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        <wm-form-field name="guid" displayname="Guid" required="false" show="true" generator="assigned" primary-key="false" key="guid" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow20">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn58">
-                                        <wm-form-field name="formStatuses" displayname="Form Statuses" required="false" show="true" generator="assigned" primary-key="false" key="formStatuses" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
+                                        <wm-form-field name="formStatuses" displayname="Form Statuses" required="false" show="true" generator="assigned" primary-key="false" key="formStatuses" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn59">
                                         <wm-form-field name="formTypes" displayname="Form Types" required="false" show="true" generator="assigned" primary-key="false" key="formTypes" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
@@ -363,7 +491,6 @@
                         </wm-liveform>
                     </wm-livegrid>
                 </wm-tabpane>
-
             </wm-tabs>
         </wm-page-content>
     </wm-content>

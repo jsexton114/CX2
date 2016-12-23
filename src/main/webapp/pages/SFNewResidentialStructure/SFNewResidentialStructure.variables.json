@@ -1473,10 +1473,6 @@
       "target" : "formTypeId",
       "value" : "bind:pageParams.FormId",
       "type" : "number"
-    }, {
-      "target" : "sortOrder",
-      "value" : 1,
-      "type" : "number"
     } ],
     "operation" : "read",
     "dataSet" : [ ],
@@ -1488,7 +1484,7 @@
     "onSuccess" : "GetDefaultStatusByFormAndSortOrderonSuccess($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
-    "autoUpdate" : true,
+    "autoUpdate" : false,
     "transformationRequired" : false,
     "liveSource" : "cx2",
     "ignoreCase" : true,

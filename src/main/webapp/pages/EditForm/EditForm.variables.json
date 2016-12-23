@@ -2440,12 +2440,13 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : true,
+    "startUpdate" : false,
     "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
+    "orderBy" : "sortOrder asc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "municipalityGroupsByWriteAccess",

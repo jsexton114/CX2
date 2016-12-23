@@ -14,6 +14,7 @@ Application.$controller("SFNewResidentialStructurePageController", ["$scope", fu
 
 
     $scope.Cx2SfnewResidentialStructureDataonSuccess = function(variable, data) {
+        debugger
         // Updating the status to record
         $scope.Variables.UserUpdateRecordStatus.setInput({
             'tableName': data.formTypes.tbLocation,
@@ -31,6 +32,11 @@ Application.$controller("SFNewResidentialStructurePageController", ["$scope", fu
     };
 
 
+
+    $scope.GetDefaultStatusByFormAndSortOrderonSuccess = function(variable, data) {
+        $scope.Widgets.liveformSFNewResidential.save();
+    };
+
 }]);
 
 
@@ -45,5 +51,24 @@ Application.$controller("liveformSFNewResidentialController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.saveAction = function($event) {
+            // Setting sort order to be in "APPLICATION" status
+            $scope.Variables.GetDefaultStatusByFormAndSortOrder.setFilter({
+                'formTypeId': $scope.pageParams.FormId,
+                'sortOrder': '2'
+            });
+            $scope.Variables.GetDefaultStatusByFormAndSortOrder.update();
+        };
+
+        $scope.cancelAction = function($event) {
+            // Setting sort order to be in "DRAFT" status
+            $scope.Variables.GetDefaultStatusByFormAndSortOrder.setFilter({
+                'formTypeId': $scope.pageParams.FormId,
+                'sortOrder': '1'
+            });
+            $scope.Variables.GetDefaultStatusByFormAndSortOrder.update();
+        };
+
     }
 ]);
