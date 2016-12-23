@@ -49,6 +49,16 @@ public interface RolesService {
 	 */
 	Roles findById(Integer rolesId);
 
+    /**
+	 * Find and return the Roles for given roleName  andmunicipalityId  anduserId  if exists.
+	 *
+	 * @param roleName value of roleName; value cannot be null.
+	 * @param municipalityId value of municipalityId; value cannot be null.
+	 * @param userId value of userId; value cannot be null.
+	 * @return Roles associated with the given inputs.
+     * @throws EntityNotFoundException if no matching Roles found.
+	 */
+    Roles getByRoleNameAndMunicipalityIdAndUserId(String roleName, Integer municipalityId, Integer userId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing Roles. It replaces all fields of the existing Roles with the given roles.

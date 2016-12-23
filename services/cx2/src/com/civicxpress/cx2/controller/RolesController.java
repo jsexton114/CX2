@@ -83,6 +83,13 @@ public class RolesController {
         return deletedRoles != null;
     }
 
+    @RequestMapping(value = "/roleName-municipalityId-userId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching Roles with given unique key values.")
+    public Roles getByRoleNameAndMunicipalityIdAndUserId(@RequestParam(name = "roleName") String roleName, @RequestParam(name = "municipalityId") Integer municipalityId, @RequestParam(name = "userId") Integer userId) {
+        LOGGER.debug("Getting Roles with uniques key RoleNameAndMunicipalityIdAndUserId");
+        return rolesService.getByRoleNameAndMunicipalityIdAndUserId(roleName, municipalityId, userId);
+    }
+
     /**
      * @deprecated Use {@link #findRoles(String, Pageable)} instead.
      */
