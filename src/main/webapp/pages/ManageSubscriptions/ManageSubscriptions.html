@@ -23,17 +23,14 @@
                                 <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
-                            <wm-liveform novalidate="false" errormessage="" title="User Subscription" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" captionalign="left" captionposition="top" name="liveform2">
+                            <wm-liveform novalidate="false" errormessage="" title="Add Subscription" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" captionalign="left" captionposition="top" name="liveform2">
                                 <wm-layoutgrid columns="3" name="layoutgrid3">
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn6_1">
-                                            <wm-form-field name="dateSubscribed" displayname="Date Subscribed" show="true" primary-key="false" generator="assigned" key="dateSubscribed" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn7">
                                             <wm-form-field name="municipalities" displayname="Municipalities" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select value"
                                             displayexpression="municipalityName" orderby="municipalityName:asc"></wm-form-field>
                                         </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn8">
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn7">
                                             <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="autocomplete" placeholder="Search by Email" displaylabel="email"
                                             orderby="email:asc" searchkey="email"></wm-form-field>
                                         </wm-gridcolumn>
