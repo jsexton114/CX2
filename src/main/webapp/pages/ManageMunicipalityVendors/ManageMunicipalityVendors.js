@@ -25,6 +25,7 @@ Application.$controller("gridPendingController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
+            debugger;
             $scope.Variables.VendorProfile.setFilter('id', $rowData.vendorId)
             $scope.Variables.VendorProfile.update();
             $scope.Variables.VendorLicensesData.setFilter('id', $rowData.vendorId)
@@ -54,6 +55,7 @@ Application.$controller("gridApprovedVendorsController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
+            debugger;
             $scope.Variables.VendorProfile.setFilter('id', $rowData.vendorId)
             $scope.Variables.VendorProfile.update();
             $scope.Variables.VendorLicensesData.setFilter('id', $rowData.vendorId)
@@ -121,7 +123,9 @@ Application.$controller("grid4Controller", ["$scope",
     }
 ]);
 
-Application.$controller("grid6Controller", ["$scope",
+
+
+Application.$controller("liveform4Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
