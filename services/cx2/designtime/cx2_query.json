@@ -35,7 +35,7 @@
     "returnTypeMetadata" : { }
   }, {
     "name" : "AdminsMunicipalities",
-    "query" : "select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID",
+    "query" : "select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID  and R.RoleName='MunicipalityAdmin'",
     "comment" : "Admin'sMunicipalities",
     "description" : null,
     "nativeSql" : true,
@@ -44,7 +44,7 @@
     "queryParams" : [ {
       "paramName" : "user",
       "paramType" : "java.lang.Integer",
-      "testValue" : "2",
+      "testValue" : "95",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
@@ -69,9 +69,9 @@
       "OpenTime" : "java.sql.Time",
       "Phone" : "java.lang.String",
       "PostalCode" : "java.lang.String",
-      "SaturdayYN" : "java.lang.Boolean",
+      "SaturdayYN" : "java.lang.String",
       "StateId" : "java.math.BigDecimal",
-      "SundayYN" : "java.lang.Boolean",
+      "SundayYN" : "java.lang.String",
       "ThursdayYN" : "java.lang.Boolean",
       "TimeZone" : "java.lang.String",
       "TuesdayYN" : "java.lang.Boolean",
@@ -343,7 +343,7 @@
     "returnTypeMetadata" : { }
   }, {
     "name" : "EmployeesMunicipalities",
-    "query" : "select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID",
+    "query" : "select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName='MunicipalityEmployee'",
     "comment" : "EmployeesMunicipalities",
     "description" : null,
     "nativeSql" : true,
@@ -352,7 +352,7 @@
     "queryParams" : [ {
       "paramName" : "user",
       "paramType" : "java.lang.Integer",
-      "testValue" : "2",
+      "testValue" : "95",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
@@ -364,16 +364,26 @@
       "Address2" : "java.lang.String",
       "AllowManualPayment" : "java.lang.Boolean",
       "City" : "java.lang.String",
+      "CloseTime" : "java.sql.Time",
       "Email" : "java.lang.String",
+      "FridayYN" : "java.lang.Boolean",
       "GlobalEmailSig" : "java.lang.String",
       "ID" : "java.math.BigDecimal",
       "Logo" : "[B",
       "ManualPaymentPercent" : "java.math.BigDecimal",
+      "MondayYN" : "java.lang.Boolean",
       "MunicipalityGuid" : "java.lang.String",
       "MunicipalityName" : "java.lang.String",
+      "OpenTime" : "java.sql.Time",
       "Phone" : "java.lang.String",
       "PostalCode" : "java.lang.String",
-      "State" : "java.lang.String"
+      "SaturdayYN" : "java.lang.Boolean",
+      "StateId" : "java.math.BigDecimal",
+      "SundayYN" : "java.lang.Boolean",
+      "ThursdayYN" : "java.lang.Boolean",
+      "TimeZone" : "java.lang.String",
+      "TuesdayYN" : "java.lang.Boolean",
+      "WednesdayYN" : "java.lang.Boolean"
     }
   }, {
     "name" : "getEmailId",
