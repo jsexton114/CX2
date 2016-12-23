@@ -63,6 +63,10 @@
         <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2DeleteFromVendorUsersrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="EmployeesMunicipalities">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2EmployeesMunicipalitiesrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="getEmailId">
         <parameter name="userID" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2getEmailIdrtnType" isList="false"/>
@@ -251,10 +255,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="EmployeesMunicipalities">
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
