@@ -87,6 +87,81 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.States"
   },
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1482759648630",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/MunicipalityAdministration"
+    }, {
+      "label" : "Municipality Settings",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/MunicipalitySettings"
+    } ],
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "EmailInfoUpdated" : {
+    "_id" : "wm-EmailInfoUpdated-wm.NotificationVariable-1482751639777",
+    "name" : "EmailInfoUpdated",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Global Email Signature Updated",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "InfoUpdated" : {
+    "_id" : "wm-InfoUpdated-wm.NotificationVariable-1482751572595",
+    "name" : "InfoUpdated",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Municipality Information Updated",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "SelectedMunicipalityObj" : {
     "_id" : "wm-SelectedMunicipalityObj-wm.LiveVariable-1479468387758",
     "name" : "SelectedMunicipalityObj",
@@ -513,7 +588,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.SelectedMunicipalityObj.listRecords()",
+    "onSuccess" : "Variables.SelectedMunicipalityObj.listRecords();Variables.EmailInfoUpdated.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -977,7 +1052,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.SelectedMunicipalityObj.listRecords()",
+    "onSuccess" : "Variables.SelectedMunicipalityObj.listRecords();Variables.InfoUpdated.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
