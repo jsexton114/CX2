@@ -4006,7 +4006,7 @@
       "type" : "integer"
     }, {
       "target" : "user",
-      "value" : "bind:Widgets.grid5.selecteditem.ID | toNumber",
+      "value" : "bind:Widgets.gridAdmin.selecteditem.ID | stringToNumber",
       "type" : "integer"
     } ],
     "type" : "cx2UpdateRoleForMunicipalityrtnType",

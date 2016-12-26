@@ -16,16 +16,6 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
 
 
 
-
-    $scope.buttonAddAdminClick = function($event, $isolateScope) {
-        $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityAdmin";
-    };
-
-
-
-
-
-
     $scope.MunicipalityGroupMembersDataonError = function(variable, data) {
         wmToaster.show('error', 'ERROR', 'The user you selected has already been added to this group.', 5000);
     };
@@ -187,6 +177,10 @@ Application.$controller("gridAdminController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.customButtonAction = function($event) {
+            $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityEmployee";
+        };
 
         $scope.customRow1Action = function($event, $rowData) {
             $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
