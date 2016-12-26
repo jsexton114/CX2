@@ -34,6 +34,10 @@
                                             <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="autocomplete" placeholder="Search by Email" displaylabel="email"
                                             orderby="email:asc" searchkey="email"></wm-form-field>
                                         </wm-gridcolumn>
+                                        <wm-gridcolumn name="gridcolumn1" columnwidth="4">
+                                            <wm-form-field name="dateSubscribed" displayname="Date Subscribed" show="true" primary-key="false" generator="assigned" key="dateSubscribed" type="string" widget="date" maxchars="255" defaultvalue="CURRENT_DATE"
+                                            readonly="true" datepattern="MM-dd-yyyy"></wm-form-field>
+                                        </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                                 <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
