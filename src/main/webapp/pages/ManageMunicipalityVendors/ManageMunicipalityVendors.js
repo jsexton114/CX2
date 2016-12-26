@@ -19,35 +19,9 @@ Application.$controller("ManageMunicipalityVendorsPageController", ["$scope", fu
 
 }]);
 
-Application.$controller("gridPendingController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-
-        $scope.customRowAction = function($event, $rowData) {
-            debugger;
-            $scope.Variables.VendorProfile.setFilter('id', $rowData.vendorId)
-            $scope.Variables.VendorProfile.update();
-            $scope.Variables.VendorLicensesData.setFilter('id', $rowData.vendorId)
-            $scope.Variables.VendorLicensesData.update();
-            $scope.Widgets.viewCompanyDetails.open();
 
 
 
-        };
-
-
-
-
-    }
-]);
-
-Application.$controller("liveform2Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
 
 Application.$controller("gridApprovedVendorsController", ["$scope",
     function($scope) {
@@ -130,4 +104,18 @@ Application.$controller("liveform4Controller", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
     }
+]);
+
+Application.$controller("gridPendingController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveform2Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

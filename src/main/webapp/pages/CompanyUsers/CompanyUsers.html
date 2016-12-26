@@ -28,14 +28,6 @@
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabpane1" title="Company Users">
                                 <wm-layoutgrid name="layoutgrid2_1">
-                                    <wm-gridrow name="gridrow4" padding="1em unset">
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn5"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn6"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="right">
-                                            <wm-button class="btn-default btn-primary" caption="Add User" type="button" margin="unset 0.5em" name="buttonAddUser" iconclass="wi wi-person-add" on-click="Widgets.dialogAddUser.open()"></wm-button>
-                                            <wm-button class="btn-default btn-warning" caption="Invite User" type="button" margin="unset 0.5em" name="buttonInviteUser" iconclass="wi wi-contact-mail"></wm-button>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                                             <wm-grid title="" dataset="bind:Variables.VendorUsers.dataSet" navigation="Classic" name="gridVendorUsers" filtermode="multicolumn" exportformat="EXCEL">
@@ -51,17 +43,18 @@
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
+                                    <wm-gridrow name="gridrow22">
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn51"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn52"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn53" horizontalalign="right">
+                                            <wm-button class="btn-default btn-primary" caption="Add User" type="button" margin="unset 0.5em" name="buttonAddUser" iconclass="wi wi-person-add" on-click="Widgets.dialogAddUser.open()"></wm-button>
+                                            <wm-button class="btn-default btn-warning" caption="Invite User" type="button" margin="unset 0.5em" name="buttonInviteUser" iconclass="wi wi-contact-mail"></wm-button>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpane2" title="Company Admins">
                                 <wm-layoutgrid name="layoutgrid2_1">
-                                    <wm-gridrow name="gridrow4" padding="1em unset">
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn5"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn6"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="right">
-                                            <wm-button class="btn-default btn-primary" caption="Add Admin" type="button" margin="unset 0.5em" name="buttonAddAdmin" iconclass="wi wi-person-add" on-click="Widgets.dialogAddAdmin.open()"></wm-button>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                                             <wm-grid title="" dataset="bind:Variables.VendorAdmins.dataSet" navigation="Classic" name="gridAdmins" filtermode="multicolumn" exportformat="EXCEL">
@@ -75,6 +68,13 @@
                                                 <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Remove" action="Variables.RemoveCXVendorAdminToUser.invoke();Variables.DeleteFromVendorAdmins.invoke();Variables.VendorAdmins.listRecords();Widgets.dialogAddAdmin.close()"
                                                 disabled="false"></wm-grid-row-action>
                                             </wm-grid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow23">
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn54"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn55"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn56" horizontalalign="right">
+                                            <wm-button class="btn-default btn-primary" caption="Add Admin" type="button" margin="unset 0.5em" name="buttonAddAdmin" iconclass="wi wi-person-add" on-click="Widgets.dialogAddAdmin.open()"></wm-button>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
