@@ -139,3 +139,10 @@ Application.$controller("liveformUpdateController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("pagedialogNewFormController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
