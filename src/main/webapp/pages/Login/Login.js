@@ -27,13 +27,15 @@ Application.$controller("loginFormController", ["$scope", "wmToaster",
         $scope.loginFormSubmit = function($event, $isolateScope) {
             $scope.Variables.bannedUser.setInput('emailid', $("input[name='usernametext'").val());
             $scope.Variables.bannedUser.update({}, function(data) {
-
-                if (data.content[0].Banned === true) {
-                    wmToaster.show('error', 'ERROR', 'Your account has been banned. If you have any questions, please contact support at 614-737-3743.', 5000);
+                if (data.content.length > 0) {
+                    if (data.content[0].Banned === true) {
+                        wmToaster.show('error', 'ERROR', 'Your account has been banned. If you have any questions, please contact support at 614-737-3743.', 5000);
+                    } else {
+                        $scope.Variables.loginVariable.invoke();
+                    }
                 } else {
-                    $scope.Variables.loginVariable.invoke();
+                    wmToaster.show('error', 'ERROR', 'Invalid Email please check once', 5000);
                 }
-
             })
 
         };
