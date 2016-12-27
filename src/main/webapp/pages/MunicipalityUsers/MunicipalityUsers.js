@@ -22,7 +22,6 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
 
 
     $scope.getMunicipalityGroupIdIDsonSuccess = function(variable, data) {
-
         var items = [];
         if (data.totalElements === 0) {
             $scope.Variables.getListofGroupName.setInput('MunicipalityGroupID', 1);
@@ -33,6 +32,9 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
             return;
         } else {
             for (var i = 0; i <= ((data.totalElements) - 1); i++) {
+                if (data.content[i].MunicipalityGroupId === null) {
+                    continue;
+                }
                 items.push(data.content[i].MunicipalityGroupId)
 
             }
