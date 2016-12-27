@@ -30,8 +30,8 @@
                                 <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="approvalStatus" caption="Approval Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="approvedBy" caption="Approved By" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="dateApproved" caption="Date Approved" type="date" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="expiresDate" caption="Expires Date" type="date" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="dateApproved" caption="Date Approved" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="expiresDate" caption="Expires Date" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="active" caption="Active" type="boolean" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="reviewer" caption="Reviewer" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
