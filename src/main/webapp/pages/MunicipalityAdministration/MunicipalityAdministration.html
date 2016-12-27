@@ -14,7 +14,7 @@
                         <wm-composite name="composite1">
                             <wm-label class="col-md-3 control-label" name="label6" caption="Select Municipality"></wm-label>
                             <wm-container class="col-md-9" name="container1">
-                                <wm-select name="select1" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord"></wm-select>
+                                <wm-select name="select1" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -31,7 +31,7 @@
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-people"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="9" padding=".2em unset unset unset" horizontalalign="center" name="gridcolumn26" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="MANAGE USERS/GROUPS" class="p" fontsize="1.5" fontunit="em"></wm-label>
+                                        <wm-label name="tileTitle" caption="Manage Users / Groups" class="p" fontsize="1.5" fontunit="em"></wm-label>
                                         <wm-label name="tileStatLabel" caption="bind:Variables.UserSubscriptionsCountForMunicipality.dataSet[$i].userSubscriptionsCountForMunicipality" fontsize="3" fontunit="em" class="p"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
@@ -61,7 +61,7 @@
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-view-list"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="9" padding=".2em unset unset unset" horizontalalign="center" name="gridcolumn24" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="GIS MAINTENANCE" class="p" fontsize="1.5" fontunit="em"></wm-label>
+                                        <wm-label name="tileTitle" caption="GIS Maintenance" class="p" fontsize="1.5" fontunit="em"></wm-label>
                                         <wm-label name="tileStatLabel" caption="bind:Variables.SubDivisonCount.dataSet[$i].SubDivisonCount" fontsize="3" fontunit="em" class="p"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
@@ -78,7 +78,7 @@
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-settings"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="9" padding="2em unset unset unset" horizontalalign="center" name="gridcolumn23_1" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="GENERAL SETTINGS" class="p" fontsize="1.5" fontunit="em"></wm-label>
+                                        <wm-label name="tileTitle" caption="General Settings" class="p" fontsize="1.5" fontunit="em"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -92,7 +92,7 @@
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-schedule"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn25_1" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="WORK SCHEDULE" class="p" fontsize="1.5" fontunit="em"></wm-label>
+                                        <wm-label name="tileTitle" caption="Work Schedule" class="p" fontsize="1.5" fontunit="em"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -106,7 +106,7 @@
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-attach-money"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="9" padding=".2em unset unset unset" horizontalalign="center" name="gridcolumn27" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="MANUAL FEE TYPES" class="p" fontsize="1.5" fontunit="em"></wm-label>
+                                        <wm-label name="tileTitle" caption="Manual Fee Types" class="p" fontsize="1.5" fontunit="em"></wm-label>
                                         <wm-label name="tileStatLabel" caption="bind:Variables.ManualFeeTypeCountForMunicipality.firstRecord['']" fontsize="3" fontunit="em" class="p"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
