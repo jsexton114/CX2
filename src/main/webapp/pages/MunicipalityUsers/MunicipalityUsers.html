@@ -323,12 +323,13 @@
         <wm-dialog dialogtype="design-dialog" modal="true" title="Add User to Group" iconclass="wi wi-edit" name="AddGroupstoMembers">
             <wm-form errormessage="" captionposition="top" class="app-dialog-form" name="form1">
                 <wm-composite name="composite4_1">
-                    <wm-form-field displayname="Municipality User Groups" widget="select" show="true" type="custom" name="addGroupMembersSelect" dataset="bind:Variables.MunicipalityGroups.dataSet" datafield="All Fields" displayfield="groupName" placeholder="Select a Group"></wm-form-field>
+                    <wm-form-field displayname="Municipality User Groups" widget="select" show="true" type="custom" name="addGroupMembersSelect" dataset="bind:Variables.MunicipalityGroups.dataSet" datafield="All Fields" displayfield="groupName" placeholder="Select Group Members"
+                    defaultvalue="bind:Variables.GetMunicipalityGroups.firstRecord.groupName"></wm-form-field>
                 </wm-composite>
             </wm-form>
             <wm-dialogactions name="dialogactions5">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7_1" iconclass="wi wi-cancel"></wm-button>
-                <wm-button class="btn-primary" caption="Add" name="button8_1" on-click="Variables.addMunicipalityGroupMembers.createRecord();button8_1Click($event, $scope)" iconclass="wi wi-add"></wm-button>
+                <wm-button class="btn-primary" caption="Add" name="button8_1" on-click="Variables.addMunicipalityGroupMembers.createRecord();button8_1Click($event, $scope)" iconclass="wi wi-add" show="true" disabled="bind:!(Widgets.form1.formWidgets.addGroupMembersSelect.datavalue.id > 0)"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
