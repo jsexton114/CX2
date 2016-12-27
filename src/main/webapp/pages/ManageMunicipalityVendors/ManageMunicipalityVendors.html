@@ -18,7 +18,7 @@
                         <wm-composite name="composite1">
                             <wm-label class="col-md-3 control-label" name="label2" caption="Select Municipality"></wm-label>
                             <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectMunicipalites" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord"></wm-select>
+                                <wm-select name="selectMunicipalites" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -27,7 +27,7 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn31_1">
                         <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panel1" title="Pending Review" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid2">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Pending Review" dataset="bind:Variables.ReviewVendorApprovals.dataSet" navigation="Classic" name="gridPending" filtermode="multicolumn" exportformat="EXCEL">
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ReviewVendorApprovals.dataSet" navigation="Classic" name="gridPending" filtermode="multicolumn" exportformat="EXCEL">
                                     <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
@@ -73,7 +73,7 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn32">
                         <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panel2" title="Approved Vendors" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid2_1">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Approved Vendors" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" navigation="Classic" name="gridApprovedVendors" filtermode="multicolumn" exportformat="EXCEL">
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" navigation="Classic" name="gridApprovedVendors" filtermode="multicolumn" exportformat="EXCEL">
                                     <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
@@ -126,7 +126,7 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn33">
                         <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panel3" title="Suspended Vendors" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid3">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Suspended Vendors" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" navigation="Classic" name="gridSuspended" filtermode="multicolumn" exportformat="EXCEL">
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" navigation="Classic" name="gridSuspended" filtermode="multicolumn" exportformat="EXCEL">
                                     <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
