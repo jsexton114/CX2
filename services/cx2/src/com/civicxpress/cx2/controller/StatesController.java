@@ -25,6 +25,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.GlobalSettings;
 import com.civicxpress.cx2.Municipalities;
@@ -123,20 +124,18 @@ public class StatesController {
         return statesService.count(query);
     }
 
-    @RequestMapping(value = "/{id}/gisrecordsesForOwnerState", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the gisrecordsesForOwnerState instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Gisrecords> findAssociatedGisrecordsesForOwnerState(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated gisrecordsesForOwnerState");
-        return statesService.findAssociatedGisrecordsesForOwnerState(id, pageable);
+    @RequestMapping(value = "/{id:.+}/gisrecordses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the gisrecordses instance associated with the given id.")
+    public Page<Gisrecords> findAssociatedGisrecordses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated gisrecordses");
+        return statesService.findAssociatedGisrecordses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/gisrecordsesForStateId", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the gisrecordsesForStateId instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Gisrecords> findAssociatedGisrecordsesForStateId(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated gisrecordsesForStateId");
-        return statesService.findAssociatedGisrecordsesForStateId(id, pageable);
+    @RequestMapping(value = "/{id:.+}/giscontactses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the giscontactses instance associated with the given id.")
+    public Page<Giscontacts> findAssociatedGiscontactses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated giscontactses");
+        return statesService.findAssociatedGiscontactses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/globalSettingses", method = RequestMethod.GET)

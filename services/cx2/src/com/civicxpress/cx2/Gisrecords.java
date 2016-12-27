@@ -49,21 +49,13 @@ public class Gisrecords implements Serializable {
     private String inspectionZone;
     private String latitude;
     private String longitude;
-    private String ownerName;
-    private String ownerAddress1;
-    private String ownerAddress2;
-    private String ownerCity;
-    private String ownerPostalCode;
-    private String ownerPhone;
-    private String ownerEmail;
     private String country;
     private String unitNumber;
-    private Integer ownerState;
-    private States statesByOwnerState;
     private Municipalities municipalities;
-    private States statesByStateId;
+    private States states;
     private Subdivisions subdivisions;
     private List<FormFee> formFees = new ArrayList<>();
+    private List<Giscontacts> giscontactses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -220,69 +212,6 @@ public class Gisrecords implements Serializable {
         this.longitude = longitude;
     }
 
-    @Column(name = "`OwnerName`", nullable = true, length = 255)
-    public String getOwnerName() {
-        return this.ownerName;
-    }
-
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
-
-    @Column(name = "`OwnerAddress1`", nullable = true, length = 255)
-    public String getOwnerAddress1() {
-        return this.ownerAddress1;
-    }
-
-    public void setOwnerAddress1(String ownerAddress1) {
-        this.ownerAddress1 = ownerAddress1;
-    }
-
-    @Column(name = "`OwnerAddress2`", nullable = true, length = 255)
-    public String getOwnerAddress2() {
-        return this.ownerAddress2;
-    }
-
-    public void setOwnerAddress2(String ownerAddress2) {
-        this.ownerAddress2 = ownerAddress2;
-    }
-
-    @Column(name = "`OwnerCity`", nullable = true, length = 255)
-    public String getOwnerCity() {
-        return this.ownerCity;
-    }
-
-    public void setOwnerCity(String ownerCity) {
-        this.ownerCity = ownerCity;
-    }
-
-    @Column(name = "`OwnerPostalCode`", nullable = true, length = 255)
-    public String getOwnerPostalCode() {
-        return this.ownerPostalCode;
-    }
-
-    public void setOwnerPostalCode(String ownerPostalCode) {
-        this.ownerPostalCode = ownerPostalCode;
-    }
-
-    @Column(name = "`OwnerPhone`", nullable = true, length = 255)
-    public String getOwnerPhone() {
-        return this.ownerPhone;
-    }
-
-    public void setOwnerPhone(String ownerPhone) {
-        this.ownerPhone = ownerPhone;
-    }
-
-    @Column(name = "`OwnerEmail`", nullable = true, length = 255)
-    public String getOwnerEmail() {
-        return this.ownerEmail;
-    }
-
-    public void setOwnerEmail(String ownerEmail) {
-        this.ownerEmail = ownerEmail;
-    }
-
     @Column(name = "`Country`", nullable = true, length = 255)
     public String getCountry() {
         return this.country;
@@ -301,29 +230,6 @@ public class Gisrecords implements Serializable {
         this.unitNumber = unitNumber;
     }
 
-    @Column(name = "`OwnerState`", nullable = true, scale = 0, precision = 10)
-    public Integer getOwnerState() {
-        return this.ownerState;
-    }
-
-    public void setOwnerState(Integer ownerState) {
-        this.ownerState = ownerState;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`OwnerState`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public States getStatesByOwnerState() {
-        return this.statesByOwnerState;
-    }
-
-    public void setStatesByOwnerState(States statesByOwnerState) {
-        if(statesByOwnerState != null) {
-            this.ownerState = statesByOwnerState.getId();
-        }
-
-        this.statesByOwnerState = statesByOwnerState;
-    }
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`MunicipalityId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public Municipalities getMunicipalities() {
@@ -340,16 +246,16 @@ public class Gisrecords implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`StateId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public States getStatesByStateId() {
-        return this.statesByStateId;
+    public States getStates() {
+        return this.states;
     }
 
-    public void setStatesByStateId(States statesByStateId) {
-        if(statesByStateId != null) {
-            this.stateId = statesByStateId.getId();
+    public void setStates(States states) {
+        if(states != null) {
+            this.stateId = states.getId();
         }
 
-        this.statesByStateId = statesByStateId;
+        this.states = states;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -374,6 +280,16 @@ public class Gisrecords implements Serializable {
 
     public void setFormFees(List<FormFee> formFees) {
         this.formFees = formFees;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "gisrecords")
+    public List<Giscontacts> getGiscontactses() {
+        return this.giscontactses;
+    }
+
+    public void setGiscontactses(List<Giscontacts> giscontactses) {
+        this.giscontactses = giscontactses;
     }
 
     @Override

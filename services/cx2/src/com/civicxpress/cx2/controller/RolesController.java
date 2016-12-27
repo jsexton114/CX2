@@ -85,7 +85,8 @@ public class RolesController {
 
     @RequestMapping(value = "/roleName-municipalityId-userId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching Roles with given unique key values.")
-    public Roles getByRoleNameAndMunicipalityIdAndUserId(@RequestParam(name = "roleName") String roleName, @RequestParam(name = "municipalityId") Integer municipalityId, @RequestParam(name = "userId") Integer userId) {
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Roles getByRoleNameAndMunicipalityIdAndUserId(@RequestParam(value = "null", required = true) String roleName, @RequestParam(value = "null", required = true) Integer municipalityId, @RequestParam(value = "null", required = true) Integer userId) {
         LOGGER.debug("Getting Roles with uniques key RoleNameAndMunicipalityIdAndUserId");
         return rolesService.getByRoleNameAndMunicipalityIdAndUserId(roleName, municipalityId, userId);
     }

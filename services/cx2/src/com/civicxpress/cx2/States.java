@@ -32,8 +32,8 @@ public class States implements Serializable {
 
     private Integer id;
     private String stateName;
-    private List<Gisrecords> gisrecordsesForOwnerState = new ArrayList<>();
-    private List<Gisrecords> gisrecordsesForStateId = new ArrayList<>();
+    private List<Gisrecords> gisrecordses = new ArrayList<>();
+    private List<Giscontacts> giscontactses = new ArrayList<>();
     private List<GlobalSettings> globalSettingses = new ArrayList<>();
     private List<Municipalities> municipalitieses = new ArrayList<>();
     private List<Users> userses = new ArrayList<>();
@@ -60,23 +60,23 @@ public class States implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "statesByOwnerState")
-    public List<Gisrecords> getGisrecordsesForOwnerState() {
-        return this.gisrecordsesForOwnerState;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
+    public List<Gisrecords> getGisrecordses() {
+        return this.gisrecordses;
     }
 
-    public void setGisrecordsesForOwnerState(List<Gisrecords> gisrecordsesForOwnerState) {
-        this.gisrecordsesForOwnerState = gisrecordsesForOwnerState;
+    public void setGisrecordses(List<Gisrecords> gisrecordses) {
+        this.gisrecordses = gisrecordses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "statesByStateId")
-    public List<Gisrecords> getGisrecordsesForStateId() {
-        return this.gisrecordsesForStateId;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
+    public List<Giscontacts> getGiscontactses() {
+        return this.giscontactses;
     }
 
-    public void setGisrecordsesForStateId(List<Gisrecords> gisrecordsesForStateId) {
-        this.gisrecordsesForStateId = gisrecordsesForStateId;
+    public void setGiscontactses(List<Giscontacts> giscontactses) {
+        this.giscontactses = giscontactses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

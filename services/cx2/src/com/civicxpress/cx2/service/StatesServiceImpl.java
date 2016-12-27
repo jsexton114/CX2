@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.GlobalSettings;
 import com.civicxpress.cx2.Municipalities;
@@ -52,6 +53,10 @@ public class StatesServiceImpl implements StatesService {
 	private UsersService usersService;
 
     @Autowired
+	@Qualifier("cx2.GiscontactsService")
+	private GiscontactsService giscontactsService;
+
+    @Autowired
 	@Qualifier("cx2.GlobalSettingsService")
 	private GlobalSettingsService globalSettingsService;
 
@@ -72,19 +77,19 @@ public class StatesServiceImpl implements StatesService {
 	public States create(States states) {
         LOGGER.debug("Creating a new States with information: {}", states);
         States statesCreated = this.wmGenericDao.create(states);
-        if(statesCreated.getGisrecordsesForOwnerState() != null) {
-            for(Gisrecords gisrecordsesForOwnerState : statesCreated.getGisrecordsesForOwnerState()) {
-                gisrecordsesForOwnerState.setStatesByOwnerState(statesCreated);
-                LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordsesForOwnerState);
-                gisrecordsService.create(gisrecordsesForOwnerState);
+        if(statesCreated.getGisrecordses() != null) {
+            for(Gisrecords gisrecordse : statesCreated.getGisrecordses()) {
+                gisrecordse.setStates(statesCreated);
+                LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordse);
+                gisrecordsService.create(gisrecordse);
             }
         }
 
-        if(statesCreated.getGisrecordsesForStateId() != null) {
-            for(Gisrecords gisrecordsesForStateId : statesCreated.getGisrecordsesForStateId()) {
-                gisrecordsesForStateId.setStatesByStateId(statesCreated);
-                LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordsesForStateId);
-                gisrecordsService.create(gisrecordsesForStateId);
+        if(statesCreated.getGiscontactses() != null) {
+            for(Giscontacts giscontactse : statesCreated.getGiscontactses()) {
+                giscontactse.setStates(statesCreated);
+                LOGGER.debug("Creating a new child Giscontacts with information: {}", giscontactse);
+                giscontactsService.create(giscontactse);
             }
         }
 
@@ -195,24 +200,24 @@ public class StatesServiceImpl implements StatesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Gisrecords> findAssociatedGisrecordsesForOwnerState(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated gisrecordsesForOwnerState");
+    public Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated gisrecordses");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("statesByOwnerState.id = '" + id + "'");
+        queryBuilder.append("states.id = '" + id + "'");
 
         return gisrecordsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Gisrecords> findAssociatedGisrecordsesForStateId(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated gisrecordsesForStateId");
+    public Page<Giscontacts> findAssociatedGiscontactses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated giscontactses");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("statesByStateId.id = '" + id + "'");
+        queryBuilder.append("states.id = '" + id + "'");
 
-        return gisrecordsService.findAll(queryBuilder.toString(), pageable);
+        return giscontactsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -284,6 +289,15 @@ public class StatesServiceImpl implements StatesService {
 	 */
 	protected void setUsersService(UsersService service) {
         this.usersService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service GiscontactsService instance
+	 */
+	protected void setGiscontactsService(GiscontactsService service) {
+        this.giscontactsService = service;
     }
 
     /**

@@ -632,10 +632,30 @@
             <element name="unitFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="unitFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.Giscontacts">
+            <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="address1" typeRef="java.lang.String" allowNull="true"/>
+            <element name="address2" typeRef="java.lang.String" allowNull="true"/>
+            <element name="city" typeRef="java.lang.String" allowNull="true"/>
+            <element name="contactType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="country" typeRef="java.lang.String" allowNull="true"/>
+            <element name="email" typeRef="java.lang.String" allowNull="true"/>
+            <element name="firstName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="gisrecordId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="gisrecords" typeRef="com.civicxpress.cx2.Gisrecords" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="lastName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="notes" typeRef="java.lang.String" allowNull="true"/>
+            <element name="phone" typeRef="java.lang.String" allowNull="true"/>
+            <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="stateId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Gisrecords">
             <element name="city" typeRef="java.lang.String" allowNull="true"/>
             <element name="country" typeRef="java.lang.String" allowNull="true"/>
             <element name="formFees" typeRef="com.civicxpress.cx2.FormFee" isList="true" allowNull="true"/>
+            <element name="giscontactses" typeRef="com.civicxpress.cx2.Giscontacts" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="inspectionZone" typeRef="java.lang.String" allowNull="true"/>
             <element name="landGuid" typeRef="java.lang.String" allowNull="true"/>
@@ -644,20 +664,11 @@
             <element name="lot" typeRef="java.lang.String" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="ownerAddress1" typeRef="java.lang.String" allowNull="true"/>
-            <element name="ownerAddress2" typeRef="java.lang.String" allowNull="true"/>
-            <element name="ownerCity" typeRef="java.lang.String" allowNull="true"/>
-            <element name="ownerEmail" typeRef="java.lang.String" allowNull="true"/>
-            <element name="ownerName" typeRef="java.lang.String" allowNull="true"/>
-            <element name="ownerPhone" typeRef="java.lang.String" allowNull="true"/>
-            <element name="ownerPostalCode" typeRef="java.lang.String" allowNull="true"/>
-            <element name="ownerState" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="parcel" typeRef="java.lang.String" allowNull="true"/>
             <element name="section" typeRef="java.lang.String" allowNull="true"/>
             <element name="sections" typeRef="java.lang.String" allowNull="true"/>
             <element name="stateId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="statesByOwnerState" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
-            <element name="statesByStateId" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
+            <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
             <element name="streetDirection" typeRef="java.lang.String" allowNull="true"/>
             <element name="streetName" typeRef="java.lang.String" allowNull="true"/>
             <element name="streetNumber" typeRef="java.lang.String" allowNull="true"/>
@@ -872,8 +883,8 @@
             <element name="valueOfWork" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.States">
-            <element name="gisrecordsesForOwnerState" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
-            <element name="gisrecordsesForStateId" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
+            <element name="giscontactses" typeRef="com.civicxpress.cx2.Giscontacts" isList="true" allowNull="true"/>
+            <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
             <element name="globalSettingses" typeRef="com.civicxpress.cx2.GlobalSettings" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="municipalitieses" typeRef="com.civicxpress.cx2.Municipalities" isList="true" allowNull="true"/>

@@ -26,6 +26,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.FormFee;
+import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.service.GisrecordsService;
 
@@ -125,6 +126,13 @@ public class GisrecordsController {
     public Page<FormFee> findAssociatedFormFees(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formFees");
         return gisrecordsService.findAssociatedFormFees(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/giscontactses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the giscontactses instance associated with the given id.")
+    public Page<Giscontacts> findAssociatedGiscontactses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated giscontactses");
+        return gisrecordsService.findAssociatedGiscontactses(id, pageable);
     }
 
     /**

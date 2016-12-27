@@ -22,6 +22,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormFee;
+import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 
 
@@ -34,6 +35,10 @@ import com.civicxpress.cx2.Gisrecords;
 public class GisrecordsServiceImpl implements GisrecordsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GisrecordsServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.GiscontactsService")
+	private GiscontactsService giscontactsService;
 
     @Autowired
 	@Qualifier("cx2.FormFeeService")
@@ -57,6 +62,14 @@ public class GisrecordsServiceImpl implements GisrecordsService {
                 formFee.setGisrecords(gisrecordsCreated);
                 LOGGER.debug("Creating a new child FormFee with information: {}", formFee);
                 formFeeService.create(formFee);
+            }
+        }
+
+        if(gisrecordsCreated.getGiscontactses() != null) {
+            for(Giscontacts giscontactse : gisrecordsCreated.getGiscontactses()) {
+                giscontactse.setGisrecords(gisrecordsCreated);
+                LOGGER.debug("Creating a new child Giscontacts with information: {}", giscontactse);
+                giscontactsService.create(giscontactse);
             }
         }
         return gisrecordsCreated;
@@ -142,6 +155,26 @@ public class GisrecordsServiceImpl implements GisrecordsService {
         queryBuilder.append("gisrecords.id = '" + id + "'");
 
         return formFeeService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Giscontacts> findAssociatedGiscontactses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated giscontactses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("gisrecords.id = '" + id + "'");
+
+        return giscontactsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service GiscontactsService instance
+	 */
+	protected void setGiscontactsService(GiscontactsService service) {
+        this.giscontactsService = service;
     }
 
     /**
