@@ -19,7 +19,7 @@
                         <wm-composite name="composite1">
                             <wm-label class="col-md-3 control-label" name="label6" caption="Select Municipality"></wm-label>
                             <wm-container class="col-md-9" name="container1">
-                                <wm-select name="select1" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord"></wm-select>
+                                <wm-select name="select1" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -35,7 +35,7 @@
                                                 <wm-gridrow name="gridrow6_1">
                                                     <wm-gridcolumn columnwidth="6" name="gridcolumn8" padding="1em unset">
                                                         <wm-composite name="composite2">
-                                                            <wm-label class="col-md-4 control-label" name="label3" caption="MunicipalityName"></wm-label>
+                                                            <wm-label class="col-md-4 control-label" name="label3" caption="Municipality Name"></wm-label>
                                                             <wm-container class="col-md-8" name="container2">
                                                                 <wm-text name="textMunicipalityName" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.municipalityName"></wm-text>
                                                             </wm-container>
@@ -106,9 +106,7 @@
                                                     </wm-gridcolumn>
                                                 </wm-gridrow>
                                                 <wm-gridrow name="gridrow15">
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn35"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn36"></wm-gridcolumn>
-                                                    <wm-gridcolumn columnwidth="2" name="gridcolumn37" padding="1em unset">
+                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn36" horizontalalign="right">
                                                         <wm-button class="btn-primary" caption="Save" type="button" margin="unset 0.5em" name="button1" iconclass="wi wi-save" on-click="Variables.UpdateMunicipalitesInfo.invoke()"></wm-button>
                                                     </wm-gridcolumn>
                                                 </wm-gridrow>
@@ -125,7 +123,7 @@
                                                         <wm-composite name="composite10" margin="1em unset">
                                                             <wm-label class="col-md-3 control-label" name="label11" caption="Global Email Signature"></wm-label>
                                                             <wm-container class="col-md-9" name="container10">
-                                                                <wm-textarea name="textareaSignature" placeholder="Place your signature" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].globalEmailSig"></wm-textarea>
+                                                                <wm-textarea name="textareaSignature" placeholder="Write an email signature for your Municipality" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].globalEmailSig"></wm-textarea>
                                                             </wm-container>
                                                         </wm-composite>
                                                     </wm-gridcolumn>
@@ -173,8 +171,8 @@
     <wm-view class="dialog-view" name="view1">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Upload Logo" iconclass="wi wi-upload" name="dialog1">
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-danger" caption="Cancel" type="button" margin="unset 0.5em" name="button5_1" on-click="Widgets.dialog1.close()"></wm-button>
-                <wm-button class="btn-raised btn-success" caption="Upload" name="button4" on-click="Widgets.liveformUpdateLogo.save()" iconclass="wi wi-file-upload"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button5_1" on-click="Widgets.dialog1.close()" iconclass="wi wi-cancel"></wm-button>
+                <wm-button class="btn-raised btn-primary" caption="Upload" name="button4" on-click="Widgets.liveformUpdateLogo.save()" iconclass="wi wi-file-upload"></wm-button>
             </wm-dialogactions>
             <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.UpdateLogoMunicipalities.dataSet" captionalign="left" captionposition="top" name="liveformUpdateLogo">
                 <wm-layoutgrid columns="1" name="layoutgrid5">
