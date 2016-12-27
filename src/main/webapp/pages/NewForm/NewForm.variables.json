@@ -437,9 +437,9 @@
       "value" : "bind:Widgets.selectCategory.datavalue",
       "type" : "integer"
     }, {
-      "target" : "municipality",
-      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber",
-      "type" : "integer"
+      "target" : "MunicipalityInternalForm",
+      "value" : false,
+      "type" : "boolean"
     } ],
     "type" : "cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType",
     "service" : "cx2",

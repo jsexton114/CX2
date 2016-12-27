@@ -77,6 +77,7 @@
     </operation>
     <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
         <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="MunicipalityInternalForm" typeRef="java.lang.Boolean" isList="false"/>
         <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="getListofUsers">
@@ -330,6 +331,7 @@
     </operation>
     <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
         <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="MunicipalityInternalForm" typeRef="java.lang.Boolean" isList="false"/>
         <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="getListofGroupName">
@@ -1137,17 +1139,27 @@
         </dataobject>
         <dataobject javaType="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType">
             <element name="Active" typeRef="java.lang.Boolean"/>
+            <element name="Attachments" typeRef="java.lang.String"/>
+            <element name="AutomaticFees" typeRef="java.lang.Boolean"/>
+            <element name="CollectFees" typeRef="java.lang.Boolean"/>
             <element name="CreatedDate" typeRef="java.sql.Date"/>
+            <element name="DigitalSignatures" typeRef="java.lang.Boolean"/>
             <element name="FlatFee" typeRef="java.lang.String"/>
             <element name="FlatFeeAccountingCode" typeRef="java.lang.String"/>
             <element name="FormType" typeRef="java.lang.String"/>
             <element name="FormTypeGuid" typeRef="java.lang.String"/>
+            <element name="GISMap" typeRef="java.lang.String"/>
+            <element name="GISRecord" typeRef="java.lang.String"/>
             <element name="ID" typeRef="java.math.BigDecimal"/>
+            <element name="Inspections" typeRef="java.lang.String"/>
+            <element name="MultipleGISRecords" typeRef="java.lang.Boolean"/>
             <element name="MunicipalityInternalForm" typeRef="java.lang.Boolean"/>
             <element name="PageName" typeRef="java.lang.String"/>
+            <element name="Payments" typeRef="java.lang.String"/>
             <element name="Report" typeRef="java.lang.String"/>
             <element name="SfFee" typeRef="java.lang.String"/>
             <element name="SfFeeAccountingCode" typeRef="java.lang.String"/>
+            <element name="SharedWith" typeRef="java.lang.String"/>
             <element name="StateFee" typeRef="java.lang.String"/>
             <element name="StateFeeAccountingCode" typeRef="java.lang.String"/>
             <element name="TbLocation" typeRef="java.lang.String"/>
