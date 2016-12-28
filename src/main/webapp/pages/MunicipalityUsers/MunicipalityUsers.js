@@ -49,14 +49,14 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
 
 
     $scope.deleteMunicipalityGrouponSuccess = function(variable, data) {
-        wmToaster.show('info', 'INFO', 'Group Deleted sucessfully', 5000);
+        wmToaster.show('success', 'SUCCESS', 'The user has has been removed from the Group', 5000);
         $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $scope.Widgets.gridEmployees.selecteditem.ID ? $scope.Widgets.gridEmployees.selecteditem.ID : $scope.Widgets.gridAdmin.selecteditem.ID);
         $scope.Variables.getMunicipalityGroupIdIDs.update();
     };
 
 
     $scope.addMunicipalityGroupMembersonError = function(variable, data) {
-        wmToaster.show('error', 'ERROR', 'The Group you selected has already been added to this user.', 5000);
+        wmToaster.show('error', 'ERROR', 'The user has already been added to the selected Group', 5000);
     };
 
 }]);

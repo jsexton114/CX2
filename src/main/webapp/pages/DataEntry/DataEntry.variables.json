@@ -1416,52 +1416,6 @@
     "matchMode" : "start",
     "propertiesMap" : {
       "columns" : [ {
-        "fieldName" : "statesByOwnerState",
-        "type" : "integer",
-        "fullyQualifiedType" : "integer",
-        "columnName" : "OwnerState",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 10,
-        "generator" : "assigned",
-        "isRelated" : true,
-        "defaultValue" : "",
-        "relatedTableName" : "States",
-        "relatedEntityName" : "States",
-        "relatedColumnName" : "ownerState",
-        "relatedFieldName" : "statesByOwnerState.id",
-        "isList" : false,
-        "targetTable" : "States",
-        "scale" : 0,
-        "columns" : [ {
-          "fieldName" : "id",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "ID",
-          "isPrimaryKey" : true,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "identity",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "stateName",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "StateName",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        } ]
-      }, {
         "fieldName" : "municipalities",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -1808,7 +1762,7 @@
           "scale" : 0
         } ]
       }, {
-        "fieldName" : "statesByStateId",
+        "fieldName" : "states",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
         "columnName" : "StateId",
@@ -1822,7 +1776,7 @@
         "relatedTableName" : "States",
         "relatedEntityName" : "States",
         "relatedColumnName" : "stateId",
-        "relatedFieldName" : "statesByStateId.id",
+        "relatedFieldName" : "states.id",
         "isList" : false,
         "targetTable" : "States",
         "scale" : 0,
@@ -2123,90 +2077,6 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "ownerName",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "OwnerName",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "ownerAddress1",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "OwnerAddress1",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "ownerAddress2",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "OwnerAddress2",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "ownerCity",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "OwnerCity",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "ownerPostalCode",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "OwnerPostalCode",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "ownerPhone",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "OwnerPhone",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "ownerEmail",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "OwnerEmail",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
         "fieldName" : "country",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -2241,22 +2111,16 @@
     "bindCount" : 1,
     "tableName" : "GISRecords",
     "tableType" : "TABLE",
-    "properties" : [ "statesByOwnerState", "municipalities", "statesByStateId", "subdivisions" ],
+    "properties" : [ "municipalities", "states", "subdivisions" ],
     "relatedTables" : [ {
-      "columnName" : "statesByOwnerState",
-      "relationName" : "statesByOwnerState",
-      "type" : "States",
-      "watchOn" : "Cx2StatesData",
-      "package" : "com.civicxpress.cx2.Gisrecords"
-    }, {
       "columnName" : "municipalities",
       "relationName" : "municipalities",
       "type" : "Municipalities",
       "watchOn" : "Cx2MunicipalitiesData",
       "package" : "com.civicxpress.cx2.Gisrecords"
     }, {
-      "columnName" : "statesByStateId",
-      "relationName" : "statesByStateId",
+      "columnName" : "states",
+      "relationName" : "states",
       "type" : "States",
       "watchOn" : "Cx2StatesData",
       "package" : "com.civicxpress.cx2.Gisrecords"
