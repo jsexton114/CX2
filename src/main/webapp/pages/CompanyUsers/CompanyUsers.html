@@ -12,13 +12,13 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow9" padding="1em unset">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn23">
-                        <wm-label padding="unset 0.5em" name="labelMyCompany" caption="My Company" fontsize="20" fontweight="bold"></wm-label>
+                        <wm-label padding="unset 0.5em" name="labelMyCompany" caption="Company User Management" fontsize="15" fontweight="bold"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn24">
                         <wm-composite name="composite1">
                             <wm-label class="col-md-3 control-label" name="label2" caption="Select Company"></wm-label>
                             <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectSelectCompany" dataset="bind:Variables.AdminVendorsList.dataSet" datafield="All Fields" displayfield="CompanyName" datavalue="bind:Variables.AdminVendorsList.firstRecord"></wm-select>
+                                <wm-select name="selectSelectCompany" dataset="bind:Variables.AdminVendorsList.dataSet" datafield="All Fields" displayfield="CompanyName" datavalue="bind:Variables.AdminVendorsList.firstRecord" orderby="CompanyName:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -31,24 +31,19 @@
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                                             <wm-grid title="" dataset="bind:Variables.VendorUsers.dataSet" navigation="Classic" name="gridVendorUsers" filtermode="multicolumn" exportformat="EXCEL">
-                                                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" searchable="false" show="true" filterwidget="text" related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridvendorusers.selecteditem.users.id+="" "=" " content=" " photo"="">
-                                                </wm-grid-column>
+                                                <wm-grid-column binding="users.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                                <wm-grid-column binding="users.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                                <wm-grid-column binding="users.email" caption="Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                                <wm-grid-column binding="users.phoneNumber" caption="Phone Number" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="joiningDate" caption="Joining Date" type="date" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="250px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-action key="customButton" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-person-add" title="Add User" action="Widgets.dialogAddUser.open()" shortcutkey=""
+                                                disabled="false"></wm-grid-action>
+                                                <wm-grid-action key="customButton1" display-name="Invite User" show="true" class="btn-secondary" iconclass="wi wi-contact-mail" title="Invite User" shortcutkey="" disabled="false"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="Widgets.dialogUserProfile.open()"
                                                 disabled="false"></wm-grid-row-action>
                                                 <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Remove" action="Variables.DeleteFromVendorUsers.invoke()" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow22">
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn51"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn52"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn53" horizontalalign="right">
-                                            <wm-button class="btn-default btn-primary" caption="Add User" type="button" margin="unset 0.5em" name="buttonAddUser" iconclass="wi wi-person-add" on-click="Widgets.dialogAddUser.open()"></wm-button>
-                                            <wm-button class="btn-default btn-warning" caption="Invite User" type="button" margin="unset 0.5em" name="buttonInviteUser" iconclass="wi wi-contact-mail"></wm-button>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
@@ -58,23 +53,18 @@
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                                             <wm-grid title="" dataset="bind:Variables.VendorAdmins.dataSet" navigation="Classic" name="gridAdmins" filtermode="multicolumn" exportformat="EXCEL">
-                                                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="users.photo" caption="Users Photo" type="blob" widget-type="image" generator="assigned" readonly="true" searchable="false" show="true" filterwidget="text" related-entity-name="Users"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="services/cx2/Users/" +widgets.gridadmins.selecteditem.users.id+="" "=" " content=" " photo"="">
-                                                </wm-grid-column>
-                                                <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                                <wm-grid-column binding="users.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                                <wm-grid-column binding="users.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                                <wm-grid-column binding="users.email" caption="Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                                <wm-grid-column binding="users.phoneNumber" caption="Phone Number" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="250px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-action key="customButton" display-name="Add Admin" show="true" class="btn-primary" iconclass="wi wi-person-add" title="Add Admin" action="Widgets.dialogAddAdmin.open()" shortcutkey=""
+                                                disabled="false"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="Widgets.dialogAdminProfile.open()"
                                                 disabled="false"></wm-grid-row-action>
                                                 <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Remove" action="Variables.RemoveCXVendorAdminToUser.invoke();Variables.DeleteFromVendorAdmins.invoke();Variables.VendorAdmins.listRecords();Widgets.dialogAddAdmin.close()"
                                                 disabled="false"></wm-grid-row-action>
                                             </wm-grid>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow23">
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn54"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn55"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn56" horizontalalign="right">
-                                            <wm-button class="btn-default btn-primary" caption="Add Admin" type="button" margin="unset 0.5em" name="buttonAddAdmin" iconclass="wi wi-person-add" on-click="Widgets.dialogAddAdmin.open()"></wm-button>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
@@ -95,16 +85,16 @@
             <wm-layoutgrid name="layoutgrid3">
                 <wm-gridrow name="gridrow6">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn10" padding="1em unset">
-                        <wm-search name="searchUser" dataset="bind:Variables.AllUsers.dataSet" searchkey="email" displaylabel="email" displayimagesrc="photo" datafield="All Fields"></wm-search>
+                        <wm-search name="searchUser" dataset="bind:Variables.AllUsers.dataSet" searchkey="email" displaylabel="email" displayimagesrc="photo" datafield="All Fields" placeholder="Search by Email Address"></wm-search>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view2">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="UserProfile" iconclass="wi wi-edit" name="dialogUserProfile">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="User Details" iconclass="wi wi-user" name="dialogUserProfile">
             <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button7_1"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button7_1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid4">
                 <wm-gridrow name="gridrow6">
@@ -174,16 +164,16 @@
             <wm-layoutgrid name="layoutgrid6">
                 <wm-gridrow name="gridrow15">
                     <wm-gridcolumn columnwidth="12" padding="1em unset" name="gridcolumn32">
-                        <wm-search dataset="bind:Variables.AllUsers.dataSet" searchkey="email" displaylabel="email" displayimagesrc="photo" datafield="All Fields" name="searchForAdmin"></wm-search>
+                        <wm-search dataset="bind:Variables.AllUsers.dataSet" searchkey="email" displaylabel="email" displayimagesrc="photo" datafield="All Fields" name="searchForAdmin" placeholder="Search by Email Address"></wm-search>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewAdminProfile">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Admin" iconclass="wi wi-user" name="dialogAdminProfile">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Admin Details" iconclass="wi wi-user" name="dialogAdminProfile">
             <wm-dialogactions name="dialogactions4">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button9"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button9" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid4">
                 <wm-gridrow name="gridrow6">
