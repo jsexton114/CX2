@@ -14,7 +14,6 @@ Application.$controller("grid1Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-
         $scope.addNewRowAction = function($event) {
             var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             var randomString = '';
@@ -31,10 +30,6 @@ Application.$controller("grid1Controller", ["$scope",
 Application.$controller("liveform1Controller", ["$scope", "$rootScope",
     function($scope, $rootScope) {
         "use strict";
-        // $scope.ctrlScope = $scope;
-        //$scope.GUID = function() {
 
-        //};
-        //$scope.$apply();
     }
 ]);
