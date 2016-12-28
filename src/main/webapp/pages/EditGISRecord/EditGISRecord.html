@@ -13,7 +13,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn29" padding=".2em unset 1em unset">
-                        <wm-panel iconclass="wi wi-chrome-reader-mode" autoclose="outsideClick" name="panelGISRecord" title="GIS Record" class="panel-primary">
+                        <wm-panel iconclass="wi wi-chrome-reader-mode" autoclose="outsideClick" name="panelGISRecord" title="GIS Record" class="panel-primary" accessroles="CXAdmin,MunicipalityAdmin">
                             <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.Cx2GisrecordsData.dataSet" captionalign="left" captionposition="top" name="liveformGisrecords" formdata="bind:Variables.SelectedGISobj.firstRecord">
                                 <wm-layoutgrid columns="3" name="layoutgrid2">
                                     <wm-gridrow name="gridrow4">
@@ -175,13 +175,13 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow10">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn24">
-                        <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" name="panel3" title="Forms" class="panel-primary"></wm-panel>
+                        <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" name="panel3" title="Forms" class="panel-primary" accessroles="CXAdmin,MunicipalityAdmin"></wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow11">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn25">
                         <wm-panel iconclass="wi wi-map-marker" autoclose="outsideClick" name="panel4" title="GIS Map" class="panel-primary">
-                            <wm-prefab prefabname="googlemaps" name="googlemapsGis" address="city" margin="1em unset" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="Address"></wm-prefab>
+                            <wm-prefab prefabname="googlemaps" name="googlemapsGis" address="city" margin="1em unset" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="Address" zoom="16"></wm-prefab>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
