@@ -31,7 +31,8 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
 
 
 
-    $scope.buttonUpdateClick = function($event, $isolateScope) {
+
+    $scope.buttonUpdateNewClick = function($event, $isolateScope) {
         // check for password match
         if (proceedSubmission == true) {
             $scope.Variables.UpdateNewPassword.update();
@@ -39,9 +40,6 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
             $scope.Variables.PasswordMissMatch.notify();
         }
     };
-
-
-
 
 
 
@@ -141,8 +139,8 @@ Application.$controller("liveformUpdateController", ["$scope",
 ]);
 
 Application.$controller("pagedialogNewFormController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
