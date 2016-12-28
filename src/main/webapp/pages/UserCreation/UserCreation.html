@@ -4,8 +4,8 @@
         <wm-page-content columnwidth="12" name="page_content1">
             <wm-wizard name="wizard1" horizontalalign="left" on-done="wizard1Done($scope, steps)" on-cancel="Variables.NewUserToLogin.invoke()">
                 <wm-wizardstep name="wizardstep1" title="Account Setup">
-                    <wm-liveform novalidate="false" errormessage="User already exists" title="Register for CivicXpress" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left" captionposition="top" name="liveform2" insertmessage="Account has been created. Please proceed to Login"
-                    updatemessage="User updated successfully" deletemessage="User deleted successfully">
+                    <wm-liveform novalidate="false" errormessage="User already exists" title="Register for CivicXpress" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left" captionposition="top" name="liveform2"
+                    insertmessage="Account has been created. Please proceed to Login" updatemessage="User updated successfully" deletemessage="User deleted successfully">
                         <wm-layoutgrid columns="2" name="layoutgrid2">
                             <wm-gridrow name="gridrow6">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn11">
@@ -20,36 +20,38 @@
                                     <wm-form-field name="email" displayname="Email" show="true" primary-key="false" generator="assigned" key="email" type="string" required="required" widget="text" maxchars="255" inputtype="email" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn14">
-                                    <wm-form-field name="address1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" required="required" widget="text" maxchars="20" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow8">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn15">
-                                    <wm-form-field name="address2" displayname="Address2" show="true" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="address1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn16">
-                                    <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="address2" displayname="Address2" show="true" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow9">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn17">
-                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="required" widget="select" placeholder="Search" orderby="stateName:asc" displayexpression="stateName"></wm-form-field>
+                                    <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn18">
-                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="required" widget="select" placeholder="Search" orderby="stateName:asc"
+                                    displayexpression="stateName"></wm-form-field>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow10">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn19">
-                                    <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" required="required" widget="text" maxchars="20" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn20">
-                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="USA" readonly="true"></wm-form-field>
+                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                    defaultvalue="USA" readonly="true"></wm-form-field>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow1" padding="2em unset">
                                 <wm-gridcolumn name="gridcolumn1" columnwidth="4" horizontalalign="left">
-                                    <wm-label padding="unset 0.5em" name="label9" caption="Please upload a picture.  We would love to see your pretty smile!"></wm-label>
+                                    <wm-label padding="unset 0.5em" name="label9" caption="Please upload an image to use as your profile photo."></wm-label>
                                     <wm-form-field name="photo" displayname="Upload Your Photo" show="true" primary-key="false" generator="assigned" key="photo" type="blob" widget="upload" maxchars="255"></wm-form-field>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -64,8 +66,8 @@
                                 <wm-composite name="composite5">
                                     <wm-label class="col-md-3 control-label" name="label8" caption="Search Municipalities" width="20%"></wm-label>
                                     <wm-container class="col-md-9" name="container5" width="80%">
-                                        <wm-search name="textSearchMunicipalities" placeholder="Start Typing" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="municipalityName" displaylabel="municipalityName" displayimagesrc="logo" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)"
-                                        required="true" width="100%"></wm-search>
+                                        <wm-search name="textSearchMunicipalities" placeholder="Start Typing" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="municipalityName" displaylabel="municipalityName" displayimagesrc="logo" datafield="All Fields"
+                                        on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="true" width="100%"></wm-search>
                                         <wm-label padding="unset 0.5em" name="Instructions" caption="To get started, you will need to select at least 1 municipality that you would like to do business with.  You may add as many municipalities as you like by simply searching and clicking “Add Municipality”."
                                         horizontalalign="center" fontweight="bold" textalign="left"></wm-label>
                                     </wm-container>

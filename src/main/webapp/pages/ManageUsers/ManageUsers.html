@@ -27,7 +27,7 @@
                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
-                            <wm-liveform novalidate="false" errormessage="" title="Users Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2UsersData.dataSet" captionalign="left" captionposition="top" name="liveform2">
+                            <wm-liveform novalidate="false" errormessage="" title="User Details" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2UsersData.dataSet" captionalign="left" captionposition="top" name="liveform2">
                                 <wm-layoutgrid columns="3" name="layoutgrid3">
                                     <wm-gridrow name="gridrow10">
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn17">
@@ -53,7 +53,8 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow12">
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn23">
-                                            <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" widget="select" placeholder="Select value" orderby="stateName:asc" displayexpression="stateName"></wm-form-field>
+                                            <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" widget="select" placeholder="Select value" orderby="stateName:asc"
+                                            displayexpression="stateName"></wm-form-field>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn24">
                                             <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
