@@ -60,3 +60,17 @@ Application.$controller("liveform3Controller", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("dialogSubdivisonParcelsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("grid3_1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
