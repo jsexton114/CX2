@@ -21,7 +21,10 @@
 }, {
   "name" : "CompanyProfile",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "companyID",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "CompanyUsers",
   "type" : "PAGE",

@@ -81,7 +81,11 @@
     "name" : "goToPage_CompanyMunicipalities",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "CompanyMunicipalities",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "CompanyMunicipalities",
     "dataSet" : [ ],
@@ -92,10 +96,18 @@
     "name" : "goToPage_CompanyProfile",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "CompanyProfile",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "CompanyProfile",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "companyID",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_CompanyUsers" : {

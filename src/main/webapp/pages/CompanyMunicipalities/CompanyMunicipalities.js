@@ -21,34 +21,39 @@ Application.$controller("CompanyMunicipalitiesPageController", ["$scope", functi
 
 
 
-Application.$controller("grid2Controller", ["$scope",
+Application.$controller("grid2_1Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
     }
 ]);
 
-Application.$controller("liveform2_1Controller", ["$scope", "wmToaster",
+Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
     function($scope, wmToaster) {
         "use strict";
         //$scope.ctrlScope = $scope;
-        $scope.saveAction = function($event) {
+        $scope.saveAction1 = function($event) {
             $scope.InsuranceDate = $scope.Widgets.selectSelectCompany.datavalue.InsuranceExpires;
             $scope.InsuranceDate = moment($scope.InsuranceDate);
             var curDate = moment()
             var differnceDays = $scope.InsuranceDate.diff(curDate, 'days')
+            if (differnceDays <= 0) {
+                wmToaster.show('error', 'ERROR', 'You may not add municipalities at this time because your business insurance has expired.  Please provide a new Certificate of Insurance and update your Insurance Expiration Date then reapply to the municipality.', 5000);
+                $scope.Variables.goToPage_CompanyProfile.navigate();
+                return;
+            } else if (differnceDays <= 30) {
 
-            if (differnceDays <= 30) {
-
-                wmToaster.show('error', 'ERROR', 'You may not add additional municipalities at this time since your business insurance expires in the next 30 days. Please navigate to the My Company tile to update your Insurance Expiration Date and provide a new Certificate of Insurance before requesting to be a vendor for any additional municipalities.', 5000);
+                wmToaster.show('error', 'ERROR', 'You may not add municipalities at this time because your business insurance is expiring in the next 30 days.  Please provide a new Certificate of Insurance and update your Insurance Expiration Date then reapply to the municipality.', 5000);
                 $scope.Variables.goToPage_CompanyProfile.navigate();
                 return;
             } else {
                 $scope.Widgets.liveform2.save();
-                wmToaster.show('success', 'SUCCESS', 'Your application has been submitted to the municipality.', 5000);
+                wmToaster.show('success', 'SUCCESS', 'Your application has been submitted to the municipality. Check back later for updated application status.', 5000);
             }
 
         };
+
+
 
     }
 ]);
