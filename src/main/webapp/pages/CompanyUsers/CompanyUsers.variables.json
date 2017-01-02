@@ -345,6 +345,25 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Users"
   },
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1483343739498",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/MyCompany"
+    }, {
+      "label" : "Company Users",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/CompanyUsers"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "DeleteFromVendorAdmins" : {
     "_id" : "wm-DeleteFromVendorAdmins-wm.ServiceVariable-1481034476996",
     "name" : "DeleteFromVendorAdmins",
