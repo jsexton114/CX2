@@ -40,7 +40,7 @@ Application.$controller("grid3Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-        debugger
+
         $scope.addNewRowAction = function($event) {
             var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             var randomString = '';

@@ -113,6 +113,11 @@ Application.$controller("gridEmployeesController", ["$scope",
 
 
         $scope.customRow1Action = function($event, $rowData) {
+            debugger
+            $scope.Variables.StateInformation.setFilter('id', $scope.Widgets.gridEmployees.selecteditem.StateId);
+            $scope.Variables.StateInformation.update({}, function(data) {
+                debugger;
+            });
             $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
             $scope.Variables.getMunicipalityGroupIdIDs.update();
             $scope.Widgets.EmployeeDialog.open();
@@ -185,9 +190,15 @@ Application.$controller("gridAdminController", ["$scope",
         };
 
         $scope.customRow1Action = function($event, $rowData) {
+            debugger;
+            $scope.Variables.StateInformation.setInput('id', $scope.Widgets.gridAdmin.selecteditem.StateId);
+            $scope.Variables.StateInformation.update({}, function(data) {
+                debugger;
+                $scope.Widgets.Admindialog.open();
+            });
             $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
             $scope.Variables.getMunicipalityGroupIdIDs.update();
-            $scope.Widgets.Admindialog.open();
+
         };
 
     }

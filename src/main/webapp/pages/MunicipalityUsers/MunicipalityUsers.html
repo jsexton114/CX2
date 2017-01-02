@@ -51,7 +51,7 @@
                                                 <wm-grid-action key="customButton" display-name="Add Employee" show="true" class="btn-primary" iconclass="wi wi-person-add" title="Add Employee" action="customButtonAction($event);Widgets.dialogAddEmployeeORAdmin.open()"
                                                 shortcutkey="" disabled="false" icon="wi wi-plus"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.RemoveEmployee.invoke()" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Groups" action="customRow1Action($event);Widgets.EmployeeDialog.open()"
+                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Groups" action="customRow1Action($event);Variables.StateInformation.listRecords();Widgets.EmployeeDialog.open()"
                                                 disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
@@ -73,7 +73,7 @@
                                                 <wm-grid-action key="customButton" display-name="Add Admin" show="true" class="btn-primary" iconclass="wi wi-person-add" title="Add Admin" action="customButtonAction($event);Widgets.dialogAddEmployeeORAdmin.open()"
                                                 shortcutkey="" disabled="false" icon="wi wi-plus"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.RemoveAdmin.invoke()" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Groups" action="Widgets.Admindialog.open()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Groups" action="customRow1Action($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -286,8 +286,8 @@
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn62"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" padding="unset unset 1em unset" name="gridcolumn63">
-                        <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="Country" name="label42"></wm-label>
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridEmployees.selecteditem.Country" name="label43"></wm-label>
+                        <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="State" name="label42"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Variables.StateInformation.dataSet.data[$i].stateName" name="label43"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow31">
@@ -376,8 +376,8 @@
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn62_1"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" padding="unset unset 1em unset" name="gridcolumn63_1">
-                        <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="Country" name="label43_1"></wm-label>
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridAdmin.selecteditem.Country" name="label44_1"></wm-label>
+                        <wm-label padding="unset 0.5em 0.5em 0.5em" fontweight="bold" width="100%" caption="State" name="label43_1"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="bind:Variables.StateInformation.dataSet.data[$i].stateName" name="label44_1"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow32">
