@@ -60,6 +60,25 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.States"
   },
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1483352917646",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/CXAdmin"
+    }, {
+      "label" : "Global Settings",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/CXGlobalSettings"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "Cx2GlobalSettingsData" : {
     "_id" : "wm-Cx2GlobalSettingsData-wm.LiveVariable-1481633435570",
     "name" : "Cx2GlobalSettingsData",
