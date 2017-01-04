@@ -6,6 +6,21 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         //Current Date for subscriptions
         //$scope.Widgets.Google_reCAPTCHA1.tokenresponse = false;
         $scope.toDay = Date.parse(new Date().toDateString());
+        $('[name="liveform2"]').on('change', '.app-blob-upload', function() {
+            readURL(this);
+        })
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $scope.Widgets.picture1.picturesource = e.target.result;
+                    $scope.$root.$safeApply($scope);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     };
 
     //unchecked municipalities
