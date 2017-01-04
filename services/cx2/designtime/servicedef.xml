@@ -684,7 +684,6 @@
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="parcel" typeRef="java.lang.String" allowNull="true"/>
-            <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="section" typeRef="java.lang.String" allowNull="true"/>
             <element name="stateId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
@@ -890,6 +889,7 @@
             <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
+            <element name="foundationType" typeRef="java.lang.String" allowNull="true"/>
             <element name="garageSft" typeRef="java.lang.String" allowNull="true"/>
             <element name="guid" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>

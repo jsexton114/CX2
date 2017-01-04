@@ -37,6 +37,7 @@ public class SfnewResidentialStructure implements Serializable {
     private Integer userId;
     private Integer formStatusId;
     private String guid;
+    private String foundationType;
     private FormStatuses formStatuses;
     private FormTypes formTypes;
     private Users users;
@@ -149,6 +150,15 @@ public class SfnewResidentialStructure implements Serializable {
 
     public void setGuid(String guid) {
         this.guid = guid;
+    }
+
+    @Column(name = "`FoundationType`", nullable = true, length = 255)
+    public String getFoundationType() {
+        return this.foundationType;
+    }
+
+    public void setFoundationType(String foundationType) {
+        this.foundationType = foundationType;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
