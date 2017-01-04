@@ -200,7 +200,7 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view1">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Update Profile Picture" iconclass="" name="dialog1">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Update Profile Picture" iconclass="" name="dialog1" on-opened="dialog1Opened($event, $scope)">
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
                 <wm-button class="btn-primary" caption="Save" name="buttonSave" on-click="Widgets.liveformUpdate.save()" iconclass="wi wi-save"></wm-button>
@@ -260,7 +260,8 @@
                     </wm-gridrow>
                     <wm-gridrow name="gridrow18">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn29">
-                            <wm-form-field name="photo" displayname="Upload Photo" show="true" primary-key="false" generator="assigned" key="photo" type="blob" widget="upload" maxchars="255"></wm-form-field>
+                            <wm-picture name="picture2" width="200" height="200"></wm-picture>
+                            <wm-form-field name="photo" displayname="Upload Photo" show="true" primary-key="false" generator="assigned" key="photo" type="blob" widget="upload" maxchars="255" on-click="photoClick($event, $scope)" filetype="image"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>

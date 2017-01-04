@@ -5,6 +5,7 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
     $scope.onPageReady = function() {
         //Current Date for subscriptions
         $scope.toDay = Date.parse(new Date().toDateString());
+
     };
 
 
@@ -128,6 +129,25 @@ Application.$controller("dialog1Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $scope.Widgets.picture2.picturesource = e.target.result;
+                    $scope.$root.$safeApply($scope);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $scope.dialog1Opened = function($event, $isolateScope) {
+            $('[name="dialog1"]').on('change', '.app-blob-upload', function() {
+                readURL(this);
+            })
+        };
+
     }
 ]);
 
@@ -135,6 +155,14 @@ Application.$controller("liveformUpdateController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+
+        $scope.photoClick = function($event, $isolateScope) {
+            debugger;
+        };
+
+
+
     }
 ]);
 
