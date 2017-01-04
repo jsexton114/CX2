@@ -658,19 +658,6 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "sections",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "Sections",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
         "fieldName" : "inspectionZone",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -733,6 +720,19 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "postalCode",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "PostalCode",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
         "scale" : 0
       } ],
       "entityName" : "Gisrecords",
@@ -988,19 +988,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "sections",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "Sections",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "inspectionZone",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -1063,6 +1050,19 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "postalCode",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PostalCode",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -1942,19 +1942,6 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "sections",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "Sections",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
         "fieldName" : "inspectionZone",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -2017,6 +2004,19 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "postalCode",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "PostalCode",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
         "scale" : 0
       } ],
       "entityName" : "Gisrecords",

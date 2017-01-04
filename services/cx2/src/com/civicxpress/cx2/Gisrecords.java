@@ -45,7 +45,6 @@ public class Gisrecords implements Serializable {
     private Integer stateId;
     private String streetType;
     private String streetDirection;
-    private String sections;
     private String inspectionZone;
     private String latitude;
     private String longitude;
@@ -175,15 +174,6 @@ public class Gisrecords implements Serializable {
 
     public void setStreetDirection(String streetDirection) {
         this.streetDirection = streetDirection;
-    }
-
-    @Column(name = "`Sections`", nullable = true, length = 255)
-    public String getSections() {
-        return this.sections;
-    }
-
-    public void setSections(String sections) {
-        this.sections = sections;
     }
 
     @Column(name = "`InspectionZone`", nullable = true, length = 255)
