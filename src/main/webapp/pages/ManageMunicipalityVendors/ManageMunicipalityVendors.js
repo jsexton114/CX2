@@ -44,14 +44,11 @@ Application.$controller("gridApprovedVendorsController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
-            debugger;
             $scope.Variables.VendorProfile.setFilter('id', $rowData.vendorId)
             $scope.Variables.VendorProfile.update();
             $scope.Variables.VendorLicensesData.setFilter('id', $rowData.vendorId)
             $scope.Variables.VendorLicensesData.update();
             $scope.Widgets.viewCompanyDetails.open();
-
-
 
         };
 
@@ -125,6 +122,14 @@ Application.$controller("gridPendingController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.VendorProfile.setFilter('id', $rowData.vendorId)
+            $scope.Variables.VendorProfile.update();
+            $scope.Variables.VendorLicensesData.setFilter('id', $rowData.vendorId)
+            $scope.Variables.VendorLicensesData.update();
+            $scope.Widgets.viewCompanyDetails.open();
+
+        };
     }
 ]);
 
