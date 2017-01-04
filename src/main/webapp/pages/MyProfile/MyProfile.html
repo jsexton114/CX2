@@ -97,8 +97,8 @@
                         <wm-form errormessage="" captionposition="top" title="Update Password" enctype="application/x-www-form-urlencoded" method="put" dataset="UpdateNewPassword" captionalign="left" name="form1" postmessage="Password updated successfully"
                         messagelayout="Toaster" class="panel-primary" iconclass="wi wi-vpn-key">
                             <wm-layoutgrid columns="1" name="layoutgrid5_1">
-                                <wm-gridrow name="gridrow27_1">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_4">
+                                <wm-gridrow name="gridrow27_2">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_2">
                                         <wm-label padding="unset 0.5em" name="label17" caption="PASSWORD REQUIREMENTS:" fontweight="bold"></wm-label>
                                         <wm-label padding="unset 0.5em" name="label18_1" caption="All passwords must contain a minimum of 8 characters including at least 1 capital letter, 1 number, and 1 special character (e.g. @$!%*?&amp;)"></wm-label>
                                     </wm-gridcolumn>
@@ -108,7 +108,7 @@
                                         <wm-composite name="composite10">
                                             <wm-label class="col-md-3 control-label" name="label14" caption="New Password"></wm-label>
                                             <wm-container class="col-md-9" name="container10">
-                                                <wm-text name="textPwd" on-keyup="textPwdKeyup($event, $scope)" required="true" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" type="password"></wm-text>
+                                                <wm-text name="textPwd" on-keyup="textPwdKeyup($event, $scope)" required="true" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" type="password" placeholder="Enter Password"></wm-text>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -116,9 +116,9 @@
                                 <wm-gridrow name="gridrow22_2">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn25_2">
                                         <wm-composite name="composite12">
-                                            <wm-label class="col-md-3 control-label" name="label16" caption="Confirm New Password"></wm-label>
+                                            <wm-label class="col-md-3 control-label" name="label16" caption="Confirm Password"></wm-label>
                                             <wm-container class="col-md-9" name="container12">
-                                                <wm-text name="textRePwd" on-keyup="textRePwdKeyup($event, $scope)" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" required="true" type="password"></wm-text>
+                                                <wm-text name="textRePwd" on-keyup="textRePwdKeyup($event, $scope)" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" required="true" type="password" placeholder="Enter Password"></wm-text>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -135,28 +135,37 @@
                 <wm-gridrow name="gridrow7_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn16_1">
                         <wm-panel iconclass="wi wi-building" name="panelMyMunicipalities" title="My Municipalities" class="panel-primary">
-                            <wm-panel-footer name="panel_footer4"></wm-panel-footer>
                             <wm-layoutgrid name="layoutgrid5_2">
+                                <wm-gridrow name="gridrow25">
+                                    <wm-gridcolumn columnwidth="9" name="gridcolumn33_1">
+                                        <wm-composite name="composite14">
+                                            <wm-label class="col-md-3 form-control-static" caption="Search Municipalities" name="label18" fontweight="bold"></wm-label>
+                                            <wm-container class="col-md-9" name="container14">
+                                                <wm-select dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="email" displaylabel="municipalityName" displayimagesrc="logo" datafield="All Fields" name="search2" placeholder="Select Muncipality" displayfield="municipalityName"></wm-select>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn34_1" horizontalalign="center">
+                                        <wm-button class="btn-primary" caption="Add Municipality" type="button" margin="unset 0.5em" iconclass="wi wi-add" on-click="buttonAddMunicipalityClick($event, $scope)" name="button10"></wm-button>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
                                 <wm-gridrow name="gridrow21_1" padding="2em unset">
                                     <wm-gridcolumn columnwidth="3" name="gridcolumn25_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn27_2">
-                                        <wm-panel iconclass="wi wi-building" name="panel1" title="YourMuncipalities">
+                                        <wm-panel iconclass="wi wi-building" name="panel1" title="Your Muncipalities">
                                             <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.MunicpalitiesList.dataSet" navigation="None" name="livelist1" nodatamessage="No Municipalities Selected">
                                                 <wm-listtemplate layout="media" name="listtemplate1">
                                                     <wm-layoutgrid name="layoutgrid5">
                                                         <wm-gridrow name="gridrow17_1">
-                                                            <wm-gridcolumn columnwidth="8" name="gridcolumn25_1">
+                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn25_1">
                                                                 <wm-label padding="unset 0.5em" name="label11" caption="bind:Variables.MunicpalitiesList.dataSet[$i].municipalityName"></wm-label>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn29" horizontalalign="right">
+                                                            <wm-gridcolumn columnwidth="3" name="gridcolumn34_2">
+                                                                <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.MunicpalitiesList.dataSet[$i].states.stateName"></wm-label>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="3" name="gridcolumn29" horizontalalign="right">
                                                                 <wm-button class="btn-default btn-primary" caption="Remove" type="button" margin="unset 0.5em" name="buttonRemove" iconclass="wi wi-delete" on-click="buttonRemoveClick($event, $scope, item, currentItemWidgets)"></wm-button>
                                                             </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow18_1">
-                                                            <wm-gridcolumn columnwidth="8" name="gridcolumn27_1">
-                                                                <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.MunicpalitiesList.dataSet[$i].state"></wm-label>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn32"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
                                                 </wm-listtemplate>
@@ -165,20 +174,9 @@
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="3" name="gridcolumn28_1"></wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow25">
-                                    <wm-gridcolumn columnwidth="8" name="gridcolumn33_1">
-                                        <wm-composite name="composite14">
-                                            <wm-label class="col-md-3 form-control-static" caption="Search Municipalities" name="label18"></wm-label>
-                                            <wm-container class="col-md-9" name="container14">
-                                                <wm-select dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="email" displaylabel="municipalityName" displayimagesrc="logo" datafield="All Fields" name="search2" placeholder="Select Muncipality" displayfield="municipalityName"></wm-select>
-                                            </wm-container>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn34_1" horizontalalign="center">
-                                        <wm-button class="btn-primary" caption="ADD" type="button" margin="unset 0.5em" iconclass="wi wi-add" on-click="buttonAddMunicipalityClick($event, $scope)" name="button10" width="50%"></wm-button>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn33_2" horizontalalign="center">
-                                        <wm-button caption="SAVE" type="submit" class="btn-primary" on-click="buttonUpdateSubscriptionsClick($event, $scope)" name="button10_1" width="50%"></wm-button>
+                                <wm-gridrow name="gridrow26">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_5">
+                                        <wm-button caption="Save" type="submit" class="btn-primary" on-click="buttonUpdateSubscriptionsClick($event, $scope)" name="button10_1" margin="unset unset unset 80%" iconclass="wi wi-save"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -188,7 +186,7 @@
                 <wm-gridrow name="gridrow22_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn36">
                         <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications" class="panel-primary">
-                            <wm-label padding="unset 0.5em" name="label32" caption="Please select your email notification frequency:" fontweight="bold" fontsize="15"></wm-label>
+                            <wm-label padding="unset 0.5em" name="label32" caption="Please select your email notification frequency" fontweight="bold" fontsize="15"></wm-label>
                             <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF" required="true"></wm-radioset>
                             <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="unset unset unset 80%" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
                         </wm-panel>
