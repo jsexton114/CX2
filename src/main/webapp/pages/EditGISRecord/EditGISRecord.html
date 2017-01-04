@@ -86,9 +86,9 @@
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
-                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
+                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
                                 <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                             </wm-liveform>
                         </wm-panel>
                     </wm-gridcolumn>
@@ -97,15 +97,16 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn31">
                         <wm-panel iconclass="wi wi-contacts" autoclose="outsideClick" name="panel2" title="GIS Contacts" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegridGISContacts">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Giscontacts List" dataset="bind:Variables.GiscontactsData.dataSet" navigation="Classic" name="gridGISContacts">
-                                    <wm-grid-column binding="contactType" caption="Contact Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                    <wm-grid-column binding="firstName" caption="First Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                    <wm-grid-column binding="lastName" caption="Last Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                    <wm-grid-column binding="phone" caption="Phone" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                                    <wm-grid-column binding="active" caption="Active" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                                    <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                                    <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GiscontactsData.dataSet" navigation="Classic" name="gridGISContacts" filtermode="multicolumn" exportformat="EXCEL">
+                                    <wm-grid-column binding="contactType" caption="Contact Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="firstName" caption="First Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="lastName" caption="Last Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="phone" caption="Phone" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="active" caption="Active" type="boolean" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                                 <wm-liveform novalidate="false" errormessage="" title="Giscontacts Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.GiscontactsData.dataSet" captionalign="left" captionposition="top" name="liveformGISContacts">
                                     <wm-layoutgrid columns="3" name="layoutgrid3_1">

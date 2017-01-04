@@ -38,7 +38,7 @@
                                         shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-list" title="View" action="Widgets.dialogSubdivisonParcels.open()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-list" title="View Data" action="Widgets.dialogSubdivisonParcels.open()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                     <wm-liveform novalidate="false" errormessage="" title="Subdivision Details" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" captionalign="left" captionposition="top" name="liveform1">
                                         <wm-layoutgrid columns="1" name="layoutgrid1">
@@ -74,8 +74,8 @@
                                         <wm-grid-column binding="streetNumber" caption="Street Number" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="streetName" caption="Street Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="city" caption="City" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="subdivisions.subdivision" caption="Subdivisions Subdivision" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Subdivisions"></wm-grid-column>
-                                        <wm-grid-column binding="subdivisions.subShortCode" caption="Short Code" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Subdivisions"></wm-grid-column>
+                                        <wm-grid-column binding="subdivisions.subdivision" caption="Subdivision" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Subdivisions"></wm-grid-column>
+                                        <wm-grid-column binding="subdivisions.subShortCode" caption="Sub Short Code" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Subdivisions"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow();addNewRowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
                                         shortcutkey="" disabled="false"></wm-grid-action>
@@ -170,7 +170,7 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="viewSubdivisonParcels">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="SUBDIVISION" iconclass="wi wi-file-text" name="dialogSubdivisonParcels" width="60%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Subdivision Data" iconclass="wi wi-file-text" name="dialogSubdivisonParcels" width="60%">
             <wm-layoutgrid name="layoutgrid4_1">
                 <wm-gridrow name="gridrow12">
                     <wm-gridcolumn columnwidth="2" name="gridcolumn30_1"></wm-gridcolumn>
@@ -194,19 +194,19 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow13">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn28">
-                        <wm-grid title="PARCELS" dataset="bind:Variables.SubDivision_Gisrecords.dataSet" navigation="Classic" name="grid3_1" class="panel-warning">
-                            <wm-grid-column binding="parcel" caption="Parcel" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="lot" caption="Lot" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="section" caption="Section" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="streetNumber" caption="Street Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="streetName" caption="Street Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="city" caption="City" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" readonly="true"></wm-grid-column>
+                        <wm-grid title="Parcels" dataset="bind:Variables.SubDivision_Gisrecords.dataSet" navigation="Classic" name="grid3_1" class="panel-primary" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="lot" caption="Lot" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="section" caption="Section" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="streetNumber" caption="Street Number" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="streetName" caption="Street Name" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="city" caption="City" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
