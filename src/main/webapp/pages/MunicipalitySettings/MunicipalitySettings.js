@@ -16,7 +16,6 @@ Application.$controller("MunicipalitySettingsPageController", ["$scope", functio
 
 
     $scope.UpdateLogoMunicipalitiesonSuccess = function(variable, data) {
-        debugger
         $scope.Widgets.picture1.picturesource = "services/cx2/Municipalities/" + data.id + "/content/logo?" + moment().valueOf();
     };
 
@@ -27,6 +26,26 @@ Application.$controller("dialog1Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $scope.Widgets.picture2.picturesource = e.target.result;
+                    $scope.$root.$safeApply($scope);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $scope.dialog1Opened = function($event, $isolateScope) {
+            $('[name="dialog1"]').on('change', '.app-blob-upload', function() {
+                readURL(this);
+            })
+        };
+
     }
 ]);
 
