@@ -2512,7 +2512,7 @@
       "type" : "boolean"
     }, {
       "target" : "ApprovalStatus",
-      "value" : "bind:Widgets.liveformApprovedVendors.dataoutput.approvalStatus",
+      "value" : "bind:Widgets.approvalStatus2.datavalue",
       "type" : "string"
     }, {
       "target" : "Reviewer",
@@ -2537,6 +2537,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.ApprovedVendorApprovals.listRecords();Variables.ReviewVendorApprovals.listRecords();Variables.SuspendedVendorApprovals.listRecords();UpdateVendorStatusFromApprovedonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -2564,7 +2565,7 @@
       "type" : "boolean"
     }, {
       "target" : "ApprovalStatus",
-      "value" : "bind:Widgets.liveform2.formWidgets.approvalStatus.datavalue",
+      "value" : "bind:Widgets.approvalStatus.datavalue",
       "type" : "string"
     }, {
       "target" : "Reviewer",
@@ -2593,6 +2594,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.ApprovedVendorApprovals.listRecords();Variables.ReviewVendorApprovals.listRecords();Variables.SuspendedVendorApprovals.listRecords();UpdateVendorStatusFromPendingonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -2624,7 +2626,7 @@
       "type" : "boolean"
     }, {
       "target" : "ApprovalStatus",
-      "value" : "bind:Widgets.liveformSuspended.dataoutput.approvalStatus",
+      "value" : "bind:Widgets.approvalStatus3.datavalue",
       "type" : "string"
     }, {
       "target" : "Reviewer",
@@ -2649,6 +2651,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.ApprovedVendorApprovals.listRecords();Variables.ReviewVendorApprovals.listRecords();Variables.SuspendedVendorApprovals.listRecords();UpdateVendorStatusFromSuspendedonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

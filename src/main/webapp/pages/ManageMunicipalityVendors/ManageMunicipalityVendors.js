@@ -17,6 +17,21 @@ Application.$controller("ManageMunicipalityVendorsPageController", ["$scope", fu
 
 
 
+
+    $scope.UpdateVendorStatusFromPendingonSuccess = function(variable, data) {
+        $scope.Widgets.liveform2.cancel();
+    };
+
+
+    $scope.UpdateVendorStatusFromApprovedonSuccess = function(variable, data) {
+        $scope.Widgets.liveformApprovedVendors.cancel();
+    };
+
+
+    $scope.UpdateVendorStatusFromSuspendedonSuccess = function(variable, data) {
+        $scope.Widgets.liveformSuspended.cancel();
+    };
+
 }]);
 
 
@@ -107,15 +122,15 @@ Application.$controller("liveform4Controller", ["$scope",
 ]);
 
 Application.$controller("gridPendingController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveform2Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
