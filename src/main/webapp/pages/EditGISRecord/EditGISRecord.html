@@ -176,7 +176,16 @@
                 <wm-gridrow name="gridrow11">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn25">
                         <wm-panel iconclass="wi wi-map-marker" autoclose="outsideClick" name="panel4" title="GIS Map" class="panel-primary">
-                            <wm-prefab prefabname="googlemaps" name="googlemapsGis" address="city" margin="1em unset" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="Address" zoom="16"></wm-prefab>
+                            <wm-gridrow name="gridrow9">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn21">
+                                    <wm-prefab prefabname="googlemaps" name="googlemapsGisForLATLNG" margin="1em unset" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="LatLng" zoom="16" lat="latitude" lng="longitude" show="bind:Variables.SelectedGISobj.firstRecord.latitude != &quot;&quot;"></wm-prefab>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow91">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn21">
+                                    <wm-prefab prefabname="googlemaps" name="googlemapsGis" address="streetNumber streetName city states.stateName" margin="1em unset" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="Address" zoom="16" show="bind:Variables.SelectedGISobj.firstRecord.latitude == &quot;&quot;"></wm-prefab>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
