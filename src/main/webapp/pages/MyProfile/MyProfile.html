@@ -107,12 +107,6 @@
                         <wm-form errormessage="" captionposition="top" title="Update Password" enctype="application/x-www-form-urlencoded" method="put" dataset="UpdateNewPassword" captionalign="left" name="form1" postmessage="Password updated successfully"
                         messagelayout="Toaster" class="panel-primary" iconclass="wi wi-vpn-key">
                             <wm-layoutgrid columns="1" name="layoutgrid5_1">
-                                <wm-gridrow name="gridrow27_2">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_2">
-                                        <wm-label padding="unset 0.5em" name="label17" caption="PASSWORD REQUIREMENTS:" fontweight="bold"></wm-label>
-                                        <wm-label padding="unset 0.5em" name="label18_1" caption="All passwords must contain a minimum of 8 characters including at least 1 capital letter, 1 number, and 1 special character (e.g. @$!%*?&amp;)"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
                                 <wm-gridrow name="gridrow21">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
                                         <wm-composite name="composite10">
@@ -133,6 +127,12 @@
                                         </wm-composite>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
+                                <wm-gridrow name="gridrow27_2">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_2" padding="3em unset unset unset">
+                                        <wm-label padding="unset 0.5em" name="label17" caption="PASSWORD REQUIREMENTS:" fontweight="bold"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label18_1" caption="All passwords must contain a minimum of 8 characters including at least 1 capital letter, 1 number, and 1 special character (e.g. @$!%*?&amp;)"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
                                 <wm-gridrow name="gridrow27">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn36_1">
                                         <wm-button class="btn-default btn-primary" caption="Save" type="submit" margin="2% unset unset 80%" name="buttonUpdateNew" iconclass="wi wi-save"></wm-button>
@@ -140,6 +140,15 @@
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-form>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow22_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn36">
+                        <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications" class="panel-primary">
+                            <wm-label padding="unset 0.5em" name="label32" caption="Please select your email notification frequency" fontweight="bold" fontsize="15"></wm-label>
+                            <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF" required="true"></wm-radioset>
+                            <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="unset unset unset 80%" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow7_1">
@@ -150,8 +159,8 @@
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn34_1" horizontalalign="center">
                                         <wm-livegrid formlayout="dialog" name="livegrid1">
                                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GetUserSubscriptions.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL">
-                                                <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
-                                                <wm-grid-column binding="municipalities.logo" caption="Logo" type="blob" widget-type="image" primary-key="false" generator="assigned" readonly="true" sortable="false" searchable="false"
+                                                <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
+                                                <wm-grid-column binding="municipalities.logo" caption="Logo" type="blob" widget-type="image" primary-key="false" generator="assigned" readonly="false" sortable="false" searchable="false"
                                                 show="true" filterwidget="text" related-entity-name="Municipalities"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="municipalities.phone" caption="Phone" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
@@ -184,15 +193,6 @@
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
-                        </wm-panel>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow22_1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn36">
-                        <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications" class="panel-primary">
-                            <wm-label padding="unset 0.5em" name="label32" caption="Please select your email notification frequency" fontweight="bold" fontsize="15"></wm-label>
-                            <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF" required="true"></wm-radioset>
-                            <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="unset unset unset 80%" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
