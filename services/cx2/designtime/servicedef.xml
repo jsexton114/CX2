@@ -929,7 +929,7 @@
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.UserSubscriptions">
-            <element name="dateSubscribed" typeRef="java.lang.String" allowNull="true"/>
+            <element name="dateSubscribed" typeRef="java.util.Date" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
