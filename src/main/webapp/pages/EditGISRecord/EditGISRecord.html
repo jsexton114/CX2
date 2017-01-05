@@ -94,7 +94,7 @@
                                     <wm-grid-column binding="contactType" caption="Contact Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="firstName" caption="First Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="lastName" caption="Last Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="phone" caption="Phone" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="phone" caption="Phone Number" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="active" caption="Active" type="boolean" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
@@ -105,7 +105,7 @@
                                     <wm-layoutgrid columns="3" name="layoutgrid3_1">
                                         <wm-gridrow name="gridrow12">
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn26">
-                                                <wm-form-field name="contactType" displayname="Contact Type" show="true" primary-key="false" generator="assigned" key="contactType" type="string" widget="select" maxchars="255" placeholder="Enter value" dataset="Owner,Tenant,Emergency,TaxContact,Other"
+                                                <wm-form-field name="contactType" displayname="Contact Type" show="true" primary-key="false" generator="assigned" key="contactType" type="string" widget="select" maxchars="255" placeholder="Select value" dataset="Owner,Tenant,Emergency,Tax Contact,Other"
                                                 datafield="contactType" displayfield="contactType"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn27">
@@ -117,10 +117,10 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow13">
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn29_1">
-                                                <wm-form-field name="email" displayname="Email" show="true" primary-key="false" generator="assigned" key="email" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                <wm-form-field name="email" displayname="Email Address" show="true" primary-key="false" generator="assigned" key="email" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn30">
-                                                <wm-form-field name="phone" displayname="Phone" show="true" primary-key="false" generator="assigned" key="phone" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                <wm-form-field name="phone" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phone" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn31_1">
                                                 <wm-form-field name="address1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
@@ -134,15 +134,17 @@
                                                 <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn34">
-                                                <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="stateName"
+                                                orderby="stateName:asc"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow15">
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn35">
-                                                <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn36">
-                                                <wm-form-field name="notes" displayname="Notes" show="true" primary-key="false" generator="assigned" key="notes" type="string" widget="text" maxchars="500" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="readonly" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                defaultvalue="USA"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn37">
                                                 <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
@@ -150,12 +152,7 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow16">
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn38">
-                                                <wm-form-field name="gisrecords" displayname="Gisrecords" show="true" primary-key="false" generator="assigned" key="gisrecords" type="list" is-related="true" widget="select" placeholder="Select value" defaultvalue="bind:Variables.SelectedGISobj.firstRecord"
-                                                disabled="true" displayexpression="parcel"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn39">
-                                                <wm-form-field name="states" displayname="States" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="stateName"
-                                                orderby="stateName:asc"></wm-form-field>
+                                                <wm-form-field name="notes" displayname="Notes" show="true" primary-key="false" generator="assigned" key="notes" type="string" widget="textarea" maxchars="500" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
