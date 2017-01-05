@@ -16,7 +16,7 @@
                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="All Municipalities" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" navigation="Classic" name="grid1" confirmdelete="Are you sure you want to delete this Municipality?"
                             deletemessage="Municipality deleted successfully" nodatamessage="No Municipalities found." loadingdatamsg="Please Wait While Loading Municipalities..." exportformat="EXCEL" filtermode="multicolumn">
                                 <wm-grid-column binding="municipalityName" caption="Municipality" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="logo" caption="Logo" type="blob" widget-type="image" generator="assigned" searchable="false" show="true" filterwidget="text" readonly="false"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
+                                <wm-grid-column binding="logo" caption="Logo" type="blob" widget-type="image" generator="assigned" sortable="false" searchable="false" show="true" filterwidget="text" readonly="false"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
                                 </wm-grid-column>
                                 <wm-grid-column binding="address1" caption="Address1" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="address2" caption="Address2" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
