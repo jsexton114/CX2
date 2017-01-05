@@ -186,7 +186,7 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view1">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Update Profile Picture" iconclass="" name="dialog1" on-opened="dialog1Opened($event, $scope)">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Upload Photo" iconclass="" name="dialog1" on-opened="dialog1Opened($event, $scope)">
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
                 <wm-button class="btn-primary" caption="Save" name="buttonSave" on-click="Widgets.liveformUpdate.save()" iconclass="wi wi-save"></wm-button>
@@ -244,10 +244,15 @@
                             defaultvalue="bind:Widgets.radiosetCF.datavalue"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
+                    <wm-gridrow name="gridrow25_1">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn26_1">
+                            <wm-label padding="unset 0.5em" name="label16_1" caption="Please upload an image to use as your profile photo."></wm-label>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
                     <wm-gridrow name="gridrow18">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn29">
                             <wm-picture name="picture2" width="200" height="200"></wm-picture>
-                            <wm-form-field name="photo" show="true" primary-key="false" generator="assigned" key="photo" type="blob" widget="upload" maxchars="255" on-click="photoClick($event, $scope)" filetype="image" displayname="Please upload an image to use as your profile photo."></wm-form-field>
+                            <wm-form-field name="photo" show="true" primary-key="false" generator="assigned" key="photo" type="blob" widget="upload" maxchars="255" on-click="photoClick($event, $scope)" filetype="image"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>
