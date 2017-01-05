@@ -19,12 +19,12 @@
                                         <wm-layoutgrid name="layoutgrid8">
                                             <wm-gridrow name="gridrow28">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn34_2" horizontalalign="center">
-                                                    <wm-picture name="picture1" picturesource="bind:&quot;services/cx2/Users/&quot;+Variables.CurrentUserDetails.dataSet.id+&quot;/content/photo&quot;" width="300px" height="300px" margin="2em unset"></wm-picture>
+                                                    <wm-picture name="picture1" picturesource="bind:&quot;services/cx2/Users/&quot;+Variables.CurrentUserDetails.dataSet.id+&quot;/content/photo&quot;" width="300px" height="300px" margin="2em unset unset unset"></wm-picture>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow29">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn36_2" horizontalalign="center">
-                                                    <wm-button class="btn-default btn-primary" caption="Upload Photo" type="button" name="buttonUpdateProfilePic" iconclass="wi wi-file-upload" on-click="Widgets.dialog1.open()"></wm-button>
+                                                    <wm-button class="btn-default btn-primary" caption="Upload Photo" type="button" name="buttonUpdateProfilePic" iconclass="wi wi-file-upload" on-click="Widgets.dialog1.open()" margin="2em unset"></wm-button>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
@@ -94,8 +94,8 @@
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow22">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn38">
-                                        <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="2% unset unset 80%" name="buttonSaveProInfo" iconclass="wi wi-save" on-click="Variables.UpdateInfoFromMyProfile.invoke()"></wm-button>
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn38" horizontalalign="right">
+                                        <wm-button class="btn-default btn-primary" caption="Save" type="button" name="buttonSaveProInfo" iconclass="wi wi-save" on-click="Variables.UpdateInfoFromMyProfile.invoke()" margin="3% 12% 3% unset"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -134,8 +134,8 @@
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow27">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn36_1">
-                                        <wm-button class="btn-default btn-primary" caption="Save" type="submit" margin="2% unset unset 80%" name="buttonUpdateNew" iconclass="wi wi-save"></wm-button>
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn36_1" horizontalalign="right">
+                                        <wm-button class="btn-default btn-primary" caption="Save" type="submit" margin="3% 12% 3% unset" name="buttonUpdateNew" iconclass="wi wi-save"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -145,9 +145,23 @@
                 <wm-gridrow name="gridrow22_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn36">
                         <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications" class="panel-primary">
-                            <wm-label padding="unset 0.5em" name="label32" caption="Please select your email notification frequency" fontweight="bold" fontsize="15"></wm-label>
-                            <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF" required="true"></wm-radioset>
-                            <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="unset unset unset 80%" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
+                            <wm-layoutgrid name="layoutgrid8_1">
+                                <wm-gridrow name="gridrow28_1">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn29_1">
+                                        <wm-label padding="unset 0.5em" name="label32" caption="Please select your email notification frequency" fontweight="bold" fontsize="15"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow29_1">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn31">
+                                        <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF" required="true"></wm-radioset>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow30">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_4" horizontalalign="right">
+                                        <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="3% 12% 3% unset" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
