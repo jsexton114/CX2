@@ -6,19 +6,19 @@
         <wm-page-content columnwidth="10" name="page_content1">
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow4">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn7_1" padding="2em unset unset unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn7_1">
                         <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="1em unset 2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
                         <wm-label padding="unset 0.5em" caption="Manage Forms" fontweight="bold" fontsize="15" name="label1"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="1em unset 2em unset">
                         <wm-composite name="composite1">
-                            <wm-label class="col-md-3 control-label" name="label2" caption="Select Municipality"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectMunicipality" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord"></wm-select>
+                                <wm-select name="selectMunicipality" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
