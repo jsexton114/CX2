@@ -24,12 +24,12 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow19">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn31_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn31_1" padding="unset 2em">
                         <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panel1" title="Pending Review" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid2">
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ReviewVendorApprovals.dataSet" navigation="Classic" name="gridPending" filtermode="multicolumn" exportformat="EXCEL">
-                                    <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="vendor.companyWebsite" caption="Company Website" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="230px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
@@ -70,11 +70,11 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow20">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn32">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn32" padding="unset 2em">
                         <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panel2" title="Approved Vendors" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid2_1">
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" navigation="Classic" name="gridApprovedVendors" filtermode="multicolumn" exportformat="EXCEL">
-                                    <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="vendor.companyWebsite" caption="Company Website" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                                     <wm-grid-column binding="dateApproved" caption="Date Approved" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
@@ -123,11 +123,11 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow21">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn33">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn33" padding="unset 2em">
                         <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panel3" title="Suspended Vendors" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid3">
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" navigation="Classic" name="gridSuspended" filtermode="multicolumn" exportformat="EXCEL">
-                                    <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="vendor.companyWebsite" caption="Company Website" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                                     <wm-grid-column binding="dateApproved" caption="Date Suspended" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>

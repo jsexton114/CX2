@@ -10,7 +10,7 @@
                         <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow19">
+                <wm-gridrow name="gridrow19" padding="unset 2em">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn30">
                         <wm-panel iconclass="wi wi-account-circle" name="panelProfileInfo" title="My Profile Information" badgetype="primary" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid5">
@@ -30,62 +30,62 @@
                                         </wm-layoutgrid>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn34" padding="unset unset unset 5%">
-                                        <wm-composite name="composite1" width="80%" margin="2% unset unset unset">
+                                        <wm-composite name="composite1" width="100%" margin="2% unset unset unset">
                                             <wm-label class="col-md-3 control-label" name="label21" caption="First Name"></wm-label>
                                             <wm-container class="col-md-9" name="container1">
                                                 <wm-text name="textfn" datavalue="bind:Variables.CurrentUserDetails.dataSet.firstName"></wm-text>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite2">
+                                        <wm-composite width="100%" margin="2% unset unset unset" name="composite2">
                                             <wm-label class="col-md-3 control-label" name="label22" caption="Last Name"></wm-label>
                                             <wm-container class="col-md-9" name="container2">
                                                 <wm-text name="textln" datavalue="bind:Variables.CurrentUserDetails.dataSet.lastName"></wm-text>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite4">
+                                        <wm-composite width="100%" margin="2% unset unset unset" name="composite4">
                                             <wm-label class="col-md-3 control-label" name="label24" caption="Email"></wm-label>
                                             <wm-container class="col-md-9" name="container4">
                                                 <wm-text name="textem" datavalue="bind:Variables.CurrentUserDetails.dataSet.email"></wm-text>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite5">
+                                        <wm-composite width="100%" margin="2% unset unset unset" name="composite5">
                                             <wm-label class="col-md-3 control-label" name="label25" caption="Phone"></wm-label>
                                             <wm-container class="col-md-9" name="container5">
                                                 <wm-text name="textph" datavalue="bind:Variables.CurrentUserDetails.dataSet.phoneNumber"></wm-text>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite6">
+                                        <wm-composite width="100%" margin="2% unset unset unset" name="composite6">
                                             <wm-label class="col-md-3 control-label" name="label26" caption="Address1"></wm-label>
                                             <wm-container class="col-md-9" name="container6">
                                                 <wm-text name="textad1" datavalue="bind:Variables.CurrentUserDetails.dataSet.address1"></wm-text>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite7">
+                                        <wm-composite width="100%" margin="2% unset unset unset" name="composite7">
                                             <wm-label class="col-md-3 control-label" name="label27" caption="Address2"></wm-label>
                                             <wm-container class="col-md-9" name="container7">
                                                 <wm-text name="textad2" datavalue="bind:Variables.CurrentUserDetails.dataSet.address2"></wm-text>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite7">
+                                        <wm-composite width="100%" margin="2% unset unset unset" name="composite7">
                                             <wm-label class="col-md-3 control-label" name="label27" caption="City"></wm-label>
                                             <wm-container class="col-md-9" name="container7">
                                                 <wm-text name="textct" datavalue="bind:Variables.CurrentUserDetails.dataSet.city"></wm-text>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite7">
+                                        <wm-composite width="100%" margin="2% unset unset unset" name="composite7">
                                             <wm-label class="col-md-3 control-label" name="label27" caption="State"></wm-label>
                                             <wm-container class="col-md-9" name="container7">
                                                 <wm-select name="selectSt" dataset="bind:Variables.AllStates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="All Fields" orderby="stateName:asc" datavalue="bind:Variables.CurrentUserDetails.dataSet.states"
                                                 displayfield="stateName" placeholder=""></wm-select>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-composite width="80%" margin="2% unset" name="composite8">
+                                        <wm-composite width="100%" margin="2% unset" name="composite8">
                                             <wm-label class="col-md-3 control-label" name="label28" caption="Postal Code"></wm-label>
                                             <wm-container class="col-md-9" name="container8">
                                                 <wm-text name="textpc" datavalue="bind:Variables.CurrentUserDetails.dataSet.postalCode"></wm-text>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-composite width="80%" margin="2% unset unset unset" name="composite7">
+                                        <wm-composite width="100%" margin="2% unset unset unset" name="composite7">
                                             <wm-label class="col-md-3 control-label" name="labe27" caption="Country"></wm-label>
                                             <wm-container class="col-md-9" name="container7">
                                                 <wm-text name="textctry" datavalue="bind:Variables.CurrentUserDetails.dataSet.country"></wm-text>
@@ -95,7 +95,7 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow22">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn38" horizontalalign="right">
-                                        <wm-button class="btn-default btn-primary" caption="Save" type="button" name="buttonSaveProInfo" iconclass="wi wi-save" on-click="Variables.UpdateInfoFromMyProfile.invoke()" margin="3% 12% 3% unset"></wm-button>
+                                        <wm-button class="btn-default btn-primary" caption="Save" type="button" name="buttonSaveProInfo" iconclass="wi wi-save" on-click="Variables.UpdateInfoFromMyProfile.invoke()" margin="1% 3% 1% unset"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -103,7 +103,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17_1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn20_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn20_1" padding="unset 2em">
                         <wm-form errormessage="" captionposition="top" title="Update Password" enctype="application/x-www-form-urlencoded" method="put" dataset="UpdateNewPassword" captionalign="left" name="form1" postmessage="Password updated successfully"
                         messagelayout="Toaster" class="panel-primary" iconclass="wi wi-vpn-key">
                             <wm-layoutgrid columns="1" name="layoutgrid5_1">
@@ -128,21 +128,21 @@
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow27_2">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_2" padding="3em unset unset unset">
-                                        <wm-label padding="unset 0.5em" name="label17" caption="PASSWORD REQUIREMENTS:" fontweight="bold"></wm-label>
-                                        <wm-label padding="unset 0.5em" name="label18_1" caption="All passwords must contain a minimum of 8 characters including at least 1 capital letter, 1 number, and 1 special character (e.g. @$!%*?&amp;)"></wm-label>
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_2" padding="3em unset unset unset" horizontalalign="left">
+                                        <wm-label name="label17" caption="PASSWORD REQUIREMENTS:" fontweight="bold"></wm-label>
+                                        <wm-label name="label18_1" caption="All passwords must contain a minimum of 8 characters including at least 1 capital letter, 1 number, and 1 special character (e.g. @$!%*?&amp;)"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow27">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn36_1" horizontalalign="right">
-                                        <wm-button class="btn-default btn-primary" caption="Save" type="submit" margin="3% 12% 3% unset" name="buttonUpdateNew" iconclass="wi wi-save"></wm-button>
+                                        <wm-button class="btn-default btn-primary" caption="Save" type="submit" margin="1% 3% 1% unset" name="buttonUpdateNew" iconclass="wi wi-save"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-form>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow22_1">
+                <wm-gridrow name="gridrow22_1" padding="unset 2em">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn36">
                         <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid8_1">
@@ -158,14 +158,14 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow30">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn33_4" horizontalalign="right">
-                                        <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="3% 12% 3% unset" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
+                                        <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="1% 3% 1% unset" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow7_1">
+                <wm-gridrow name="gridrow7_1" padding="unset 2em">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn16_1">
                         <wm-panel iconclass="wi wi-building" name="panelMyMunicipalities" title="My Municipality Subscriptions" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid5_2">

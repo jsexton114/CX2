@@ -24,9 +24,9 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3" padding="unset 2em">
                         <wm-livegrid formlayout="dialog" name="livegrid3">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="Manual Fee Types" dataset="bind:Variables.Cx2ManualFeeTypesData.dataSet" navigation="Classic" name="grid4" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2ManualFeeTypesData.dataSet" navigation="Classic" name="grid4" filtermode="multicolumn" exportformat="EXCEL">
                                 <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="feeType" caption="Fee Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>

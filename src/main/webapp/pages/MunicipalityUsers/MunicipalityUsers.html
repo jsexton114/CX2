@@ -24,16 +24,15 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3" padding="unset 2em">
                         <wm-tabs name="Manage">
                             <wm-tabpane name="tabpane1" title="Subscribers">
                                 <wm-grid title="" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="gridUsersubscriptionsList" on-click="Widgets.dialog1.open()" filtermode="multicolumn" exportformat="EXCEL">
-                                    <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
                                     <wm-grid-column binding="users.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                     <wm-grid-column binding="users.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                    <wm-grid-column binding="users.email" caption="Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                    <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                     <wm-grid-column binding="users.phoneNumber" caption="Phone Number" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                    <wm-grid-column binding="dateSubscribed" caption="Date Subscribed" type="string" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true"></wm-grid-column>
+                                    <wm-grid-column binding="dateSubscribed" caption="Date Subscribed" type="timestamp" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="text"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="150px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="Widgets.dialog1.open()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
@@ -82,7 +81,6 @@
                             <wm-tabpane name="tabpane4_1" title="Groups">
                                 <wm-livegrid formlayout="dialog" name="Municipalitygroups">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GetMunicipalityGroups.dataSet" navigation="Classic" name="Municipalitygroupsgrid" filtermode="multicolumn" exportformat="EXCEL">
-                                        <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="groupName" caption="Group Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="groupDescription" caption="Group Description" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
