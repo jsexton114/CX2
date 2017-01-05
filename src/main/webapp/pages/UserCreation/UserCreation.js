@@ -3,6 +3,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
     $scope.newUser;
 
     $scope.onPageReady = function() {
+        $('.wi.wi-file').hide();
         //Current Date for subscriptions
         //$scope.Widgets.Google_reCAPTCHA1.tokenresponse = false;
         $scope.toDay = Date.parse(new Date().toDateString());

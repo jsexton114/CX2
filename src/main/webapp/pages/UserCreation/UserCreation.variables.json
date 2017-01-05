@@ -2108,12 +2108,12 @@
         "scale" : 0
       }, {
         "fieldName" : "dateSubscribed",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
+        "type" : "timestamp",
+        "fullyQualifiedType" : "timestamp",
         "columnName" : "DateSubscribed",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 255,
+        "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,

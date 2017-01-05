@@ -143,7 +143,6 @@ Application.$controller("dialog1Controller", ["$scope",
             }
         }
         $scope.dialog1Opened = function($event, $isolateScope) {
-            debugger
             $('[name="dialog1"]').on('change', '.app-blob-upload', function() {
                 readURL(this);
             })
@@ -173,15 +172,15 @@ Application.$controller("pagedialogNewFormController", ["$scope",
 ]);
 
 Application.$controller("grid1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveform2Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

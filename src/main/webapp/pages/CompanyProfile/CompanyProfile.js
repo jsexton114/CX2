@@ -12,7 +12,21 @@ Application.$controller("CompanyProfilePageController", ["$scope", function($sco
         //     $scope.Variables.CurrentVendorObj.update();
         // }
         //current date
-        $scope.Variables.Today.dataSet.dataValue = Date.parse(new Date().toDateString());
+        // $scope.Variables.Today.dataSet.dataValue = Date.parse(new Date().toDateString());
+        // $('[name="liveform1"]').on('change', '.app-blob-upload', function() {
+        //     debugger;
+        //     readURL(this);
+        // })
+
+        // function readURL(input) {
+        //     if (input.files && input.files[0]) {
+        //         var pdffile_url = URL.createObjectURL(input.files[0]);
+        //         debugger;
+
+
+        //     }
+
+        // }
     };
 
 
