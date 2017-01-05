@@ -9,7 +9,7 @@
                     <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
                         <wm-label padding="unset 0.5em" name="label1" caption="My Dashboard" fontsize="15" fontweight="bold"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="1em unset 2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
                         <wm-search name="searchUser" placeholder="Select User" dataset="bind:Variables.GetAllUsersForAdmin.dataSet" searchkey="email,firstName" displaylabel="email" displayimagesrc="photo" datafield="id" on-change="searchUserChange($event, $scope, newVal, oldVal)"
                         accessroles="CXAdmin"></wm-search>
                         <wm-composite name="composite1" margin="1em unset unset unset">
