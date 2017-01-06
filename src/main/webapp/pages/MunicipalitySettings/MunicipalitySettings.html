@@ -171,7 +171,7 @@
         <wm-dialog dialogtype="design-dialog" modal="true" title="Upload Logo" iconclass="wi wi-upload" name="dialog1" on-opened="dialog1Opened($event, $scope)">
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button5_1" on-click="Widgets.dialog1.close()" iconclass="wi wi-cancel"></wm-button>
-                <wm-button class="btn-raised btn-primary" caption="Upload" name="button4" on-click="Widgets.liveformUpdateLogo.save()" iconclass="wi wi-file-upload"></wm-button>
+                <wm-button class="btn-raised btn-primary" caption="Upload" name="button4" on-click="Widgets.liveformUpdateLogo.save()" iconclass="wi wi-upload"></wm-button>
             </wm-dialogactions>
             <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.UpdateLogoMunicipalities.dataSet" captionalign="left" captionposition="top" name="liveformUpdateLogo">
                 <wm-layoutgrid columns="1" name="layoutgrid5">
@@ -239,11 +239,15 @@
                             defaultvalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].globalEmailSig"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
+                    <wm-gridrow name="gridrow40_3">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn52_3">
+                            <wm-label padding="unset 0.5em" name="label15" caption="For the best results, please use an image with a transparent background."></wm-label>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
                     <wm-gridrow name="gridrow29">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn49" horizontalalign="left">
                             <wm-picture name="picture2" width="100" height="100"></wm-picture>
-                            <wm-form-field name="logo" displayname="For the best results, please use an image with a transparent background." show="true" primary-key="false" generator="assigned" key="logo" type="blob" widget="upload" maxchars="255"
-                            filetype="image"></wm-form-field>
+                            <wm-form-field name="logo" show="true" primary-key="false" generator="assigned" key="logo" type="blob" widget="upload" maxchars="255" filetype="image"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow30">
