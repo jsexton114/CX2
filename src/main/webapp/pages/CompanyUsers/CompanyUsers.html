@@ -24,7 +24,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow10">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn25" padding="unset 2em">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn25" padding="unset 2em unset unset">
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabpane1" title="Company Users">
                                 <wm-layoutgrid name="layoutgrid2_1">
@@ -33,9 +33,9 @@
                                             <wm-grid title="" dataset="bind:Variables.VendorUsers.dataSet" navigation="Classic" name="gridVendorUsers" filtermode="multicolumn" exportformat="EXCEL">
                                                 <wm-grid-column binding="users.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="users.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                                <wm-grid-column binding="users.email" caption="Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                                <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="users.phoneNumber" caption="Phone Number" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                                <wm-grid-column binding="joiningDate" caption="Joining Date" type="date" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="joiningDate" caption="Joining Date" type="date" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="250px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="customButton" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-person-add" title="Add User" action="Widgets.dialogAddUser.open()" shortcutkey=""
                                                 disabled="false"></wm-grid-action>
@@ -55,7 +55,7 @@
                                             <wm-grid title="" dataset="bind:Variables.VendorAdmins.dataSet" navigation="Classic" name="gridAdmins" filtermode="multicolumn" exportformat="EXCEL">
                                                 <wm-grid-column binding="users.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="users.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                                <wm-grid-column binding="users.email" caption="Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                                <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="users.phoneNumber" caption="Phone Number" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="250px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="customButton" display-name="Add Admin" show="true" class="btn-primary" iconclass="wi wi-person-add" title="Add Admin" action="Widgets.dialogAddAdmin.open()" shortcutkey=""
