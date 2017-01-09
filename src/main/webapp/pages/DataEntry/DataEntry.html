@@ -185,8 +185,8 @@
                             <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="roleName" caption="Role Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="description" caption="Description" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="users.id" caption="Users Id" type="integer" primary-key="true" generator="identity" datafield="id" displayfield="id" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>

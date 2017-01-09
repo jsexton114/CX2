@@ -10,7 +10,7 @@
                         <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow19" padding="unset 2em">
+                <wm-gridrow name="gridrow19">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn30">
                         <wm-panel iconclass="wi wi-account-circle" name="panelProfileInfo" title="My Profile Information" badgetype="primary" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid5">
@@ -103,7 +103,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17_1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn20_1" padding="unset 2em">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn20_1">
                         <wm-form errormessage="" captionposition="top" title="Update Password" enctype="application/x-www-form-urlencoded" method="put" dataset="UpdateNewPassword" captionalign="left" name="form1" postmessage="Password updated successfully"
                         messagelayout="Toaster" class="panel-primary" iconclass="wi wi-vpn-key">
                             <wm-layoutgrid columns="1" name="layoutgrid5_1">
@@ -142,7 +142,7 @@
                         </wm-form>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow22_1" padding="unset 2em">
+                <wm-gridrow name="gridrow22_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn36">
                         <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid8_1">
@@ -165,7 +165,7 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow7_1" padding="unset 2em">
+                <wm-gridrow name="gridrow7_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn16_1">
                         <wm-panel iconclass="wi wi-building" name="panelMyMunicipalities" title="My Municipality Subscriptions" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid5_2">
@@ -194,14 +194,14 @@
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-layoutgrid>
-                                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                                placeholder="Enter value"></wm-form-field>
+                                                <wm-form-field name="dateSubscribed" displayname="Date Subscribed" show="false" primary-key="false" generator="assigned" key="dateSubscribed" type="timestamp" widget="date" maxchars="255" placeholder="Enter value"
+                                                defaultvalue="CURRENT_DATE" outputformat="timestamp"></wm-form-field>
                                                 <wm-form-field name="users" displayname="Users" show="false" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="select" placeholder="Select value"
                                                 defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
-                                                <wm-form-field name="dateSubscribed" displayname="Date Subscribed" show="false" primary-key="false" generator="assigned" key="dateSubscribed" type="timestamp" widget="date" maxchars="255"
-                                                placeholder="Enter value" defaultvalue="CURRENT_DATE" outputformat="timestamp"></wm-form-field>
+                                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
+                                                placeholder="Enter value"></wm-form-field>
                                                 <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Subscribe" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                             </wm-liveform>
                                         </wm-livegrid>
                                     </wm-gridcolumn>
