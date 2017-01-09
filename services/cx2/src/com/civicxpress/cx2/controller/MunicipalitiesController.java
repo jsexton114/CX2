@@ -169,8 +169,9 @@ public class MunicipalitiesController {
         return municipalitiesService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/feeses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/feeses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the feeses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Fees> findAssociatedFeeses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated feeses");
         return municipalitiesService.findAssociatedFeeses(id, pageable);
@@ -240,20 +241,20 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedSubdivisionses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/userSubscriptionses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the userSubscriptionses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<UserSubscriptions> findAssociatedUserSubscriptionses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated userSubscriptionses");
-        return municipalitiesService.findAssociatedUserSubscriptionses(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/vendorApprovalses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the vendorApprovalses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<VendorApprovals> findAssociatedVendorApprovalses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorApprovalses");
         return municipalitiesService.findAssociatedVendorApprovalses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/userSubscriptionses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the userSubscriptionses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<UserSubscriptions> findAssociatedUserSubscriptionses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated userSubscriptionses");
+        return municipalitiesService.findAssociatedUserSubscriptionses(id, pageable);
     }
 
     /**

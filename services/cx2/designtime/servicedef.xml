@@ -730,6 +730,14 @@
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.MasterCases">
+            <element name="caseGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="caseTitle" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspectionGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="projectGuid" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.MasterForms">
             <element name="assignedToGroupId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="balanceDue" typeRef="java.lang.String" allowNull="true"/>
@@ -752,6 +760,22 @@
             <element name="totalPayment" typeRef="java.lang.String" allowNull="true"/>
             <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.MasterInspections">
+            <element name="caseGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspectionGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="inspectionTitle" typeRef="java.lang.String" allowNull="true"/>
+            <element name="projectGuid" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.MasterProjects">
+            <element name="caseGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspectionGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="projectGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="projectTitle" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.McnewElectricConnection">
             <element name="basementSft" typeRef="java.lang.String" allowNull="true"/>

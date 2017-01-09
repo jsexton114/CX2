@@ -59,9 +59,9 @@ public class Users implements Serializable {
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
     private List<Pudapplication> pudapplications = new ArrayList<>();
-    private List<Roles> roleses = new ArrayList<>();
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
+    private List<Roles> roleses = new ArrayList<>();
     private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
@@ -280,16 +280,6 @@ public class Users implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<Roles> getRoleses() {
-        return this.roleses;
-    }
-
-    public void setRoleses(List<Roles> roleses) {
-        this.roleses = roleses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<SfnewElectricConnection> getSfnewElectricConnections() {
         return this.sfnewElectricConnections;
     }
@@ -306,6 +296,16 @@ public class Users implements Serializable {
 
     public void setSfnewResidentialStructures(List<SfnewResidentialStructure> sfnewResidentialStructures) {
         this.sfnewResidentialStructures = sfnewResidentialStructures;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<Roles> getRoleses() {
+        return this.roleses;
+    }
+
+    public void setRoleses(List<Roles> roleses) {
+        this.roleses = roleses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

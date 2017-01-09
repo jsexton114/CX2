@@ -179,8 +179,9 @@ public class UsersController {
         return usersService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/feeses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/feeses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the feeses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Fees> findAssociatedFeeses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated feeses");
         return usersService.findAssociatedFeeses(id, pageable);
@@ -218,14 +219,6 @@ public class UsersController {
         return usersService.findAssociatedPudapplications(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the roleses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated roleses");
-        return usersService.findAssociatedRoleses(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/sfnewElectricConnections", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the sfnewElectricConnections instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -240,6 +233,14 @@ public class UsersController {
     public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sfnewResidentialStructures");
         return usersService.findAssociatedSfnewResidentialStructures(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the roleses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated roleses");
+        return usersService.findAssociatedRoleses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/municipalityGroupMemberses", method = RequestMethod.GET)
