@@ -24,7 +24,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow10">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn25" padding="unset 2em unset unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn25">
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabpane1" title="Company Users">
                                 <wm-layoutgrid name="layoutgrid2_1">
@@ -77,7 +77,7 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="viewAdd">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Add User" iconclass="wi wi-person-add" name="dialogAddUser">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add Company User" iconclass="wi wi-person-add" name="dialogAddUser">
             <wm-dialogactions name="dialogactionsAdd">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
                 <wm-button class="btn-primary" caption="Add" name="buttonAdd" on-click="Variables.AddUsersToCompany.invoke()" iconclass="wi wi-add"></wm-button>
@@ -156,7 +156,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewAddAdmin">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Add Admin" iconclass="wi wi-person-add" name="dialogAddAdmin">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add Company Admin" iconclass="wi wi-person-add" name="dialogAddAdmin">
             <wm-dialogactions name="dialogactions3">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7_2" iconclass="wi wi-cancel"></wm-button>
                 <wm-button class="btn-primary" caption="Add" name="buttonSaveAdmin" on-click="Variables.MapAsAdminForVendor.invoke()" iconclass="wi wi-add"></wm-button>

@@ -98,15 +98,14 @@
                     <wm-livegrid formlayout="dialog" name="livegrid2">
                         <wm-grid gridfirstrowselect="true" editmode="dialog" title="Municipalities List" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" navigation="Classic" name="grid2" exportformat="EXCEL" filtermode="multicolumn" showrecordcount="true">
                             <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="municipalityGuid" caption="Municipality Guid" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalityName" caption="Municipality Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalityName" caption="Municipality" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="address1" caption="Address1" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="address2" caption="Address2" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="city" caption="City" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="state" caption="State" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="states.stateName" caption="State Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="States"></wm-grid-column>
                             <wm-grid-column binding="postalCode" caption="Postal Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="phone" caption="Phone" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="email" caption="Email" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="phone" caption="Phone Number" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="email" caption="Email Address" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow();addNewRowAction($event)" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
