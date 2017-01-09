@@ -13,7 +13,8 @@
                 <wm-gridrow name="gridrow4">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn6">
                         <wm-livegrid formlayout="dialog" name="livegrid2">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="All Subscriptions" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="All CX Subscriptions" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="users.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                 <wm-grid-column binding="users.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>

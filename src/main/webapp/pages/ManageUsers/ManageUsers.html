@@ -11,16 +11,16 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn28" padding="unset 2em">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn28">
                         <wm-livegrid formlayout="dialog" name="livegrid2">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="All Users" dataset="bind:Variables.Cx2UsersData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="All CX Users" dataset="bind:Variables.Cx2UsersData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                 <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="firstName" caption="First Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="lastName" caption="Last Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="email" caption="Email" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="email" caption="Email Address" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="phoneNumber" caption="Phone Number" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="city" caption="City" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="states.stateName" caption="State" type="string" generator="assigned" show="true" related-entity-name="States" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="phoneNumber" caption="Phone Number" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="active" caption="Active" type="boolean" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
