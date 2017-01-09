@@ -14,64 +14,64 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.FormFee;
+import com.civicxpress.cx2.Fees;
 
 /**
- * Service object for domain model class {@link FormFee}.
+ * Service object for domain model class {@link Fees}.
  */
-public interface FormFeeService {
+public interface FeesService {
 
     /**
-     * Creates a new FormFee. It does cascade insert for all the children in a single transaction.
+     * Creates a new Fees. It does cascade insert for all the children in a single transaction.
      *
-     * This method overrides the input field values using Server side or database managed properties defined on FormFee if any.
+     * This method overrides the input field values using Server side or database managed properties defined on Fees if any.
      *
-     * @param formFee Details of the FormFee to be created; value cannot be null.
-     * @return The newly created FormFee.
+     * @param fees Details of the Fees to be created; value cannot be null.
+     * @return The newly created Fees.
      */
-	FormFee create(FormFee formFee);
+	Fees create(Fees fees);
 
 
 	/**
-	 * Returns FormFee by given id if exists.
+	 * Returns Fees by given id if exists.
 	 *
-	 * @param formfeeId The id of the FormFee to get; value cannot be null.
-	 * @return FormFee associated with the given formfeeId.
-     * @throws EntityNotFoundException If no FormFee is found.
+	 * @param feesId The id of the Fees to get; value cannot be null.
+	 * @return Fees associated with the given feesId.
+     * @throws EntityNotFoundException If no Fees is found.
 	 */
-	FormFee getById(Integer formfeeId) throws EntityNotFoundException;
+	Fees getById(Integer feesId) throws EntityNotFoundException;
 
     /**
-	 * Find and return the FormFee by given id if exists, returns null otherwise.
+	 * Find and return the Fees by given id if exists, returns null otherwise.
 	 *
-	 * @param formfeeId The id of the FormFee to get; value cannot be null.
-	 * @return FormFee associated with the given formfeeId.
+	 * @param feesId The id of the Fees to get; value cannot be null.
+	 * @return Fees associated with the given feesId.
 	 */
-	FormFee findById(Integer formfeeId);
+	Fees findById(Integer feesId);
 
 
 	/**
-	 * Updates the details of an existing FormFee. It replaces all fields of the existing FormFee with the given formFee.
+	 * Updates the details of an existing Fees. It replaces all fields of the existing Fees with the given fees.
 	 *
-     * This method overrides the input field values using Server side or database managed properties defined on FormFee if any.
+     * This method overrides the input field values using Server side or database managed properties defined on Fees if any.
      *
-	 * @param formFee The details of the FormFee to be updated; value cannot be null.
-	 * @return The updated FormFee.
-	 * @throws EntityNotFoundException if no FormFee is found with given input.
+	 * @param fees The details of the Fees to be updated; value cannot be null.
+	 * @return The updated Fees.
+	 * @throws EntityNotFoundException if no Fees is found with given input.
 	 */
-	FormFee update(FormFee formFee) throws EntityNotFoundException;
+	Fees update(Fees fees) throws EntityNotFoundException;
 
     /**
-	 * Deletes an existing FormFee with the given id.
+	 * Deletes an existing Fees with the given id.
 	 *
-	 * @param formfeeId The id of the FormFee to be deleted; value cannot be null.
-	 * @return The deleted FormFee.
-	 * @throws EntityNotFoundException if no FormFee found with the given id.
+	 * @param feesId The id of the Fees to be deleted; value cannot be null.
+	 * @return The deleted Fees.
+	 * @throws EntityNotFoundException if no Fees found with the given id.
 	 */
-	FormFee delete(Integer formfeeId) throws EntityNotFoundException;
+	Fees delete(Integer feesId) throws EntityNotFoundException;
 
 	/**
-	 * Find all FormFees matching the given QueryFilter(s).
+	 * Find all Fees matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.
      * This method returns Paginated results.
 	 *
@@ -79,30 +79,30 @@ public interface FormFeeService {
 	 *
      * @param queryFilters Array of queryFilters to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching FormFees.
+     * @return Paginated list of matching Fees.
      *
      * @see QueryFilter
      * @see Pageable
      * @see Page
 	 */
     @Deprecated
-	Page<FormFee> findAll(QueryFilter[] queryFilters, Pageable pageable);
+	Page<Fees> findAll(QueryFilter[] queryFilters, Pageable pageable);
 
     /**
-	 * Find all FormFees matching the given input query. This method returns Paginated results.
+	 * Find all Fees matching the given input query. This method returns Paginated results.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param query The query to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching FormFees.
+     * @return Paginated list of matching Fees.
      *
      * @see Pageable
      * @see Page
 	 */
-    Page<FormFee> findAll(String query, Pageable pageable);
+    Page<Fees> findAll(String query, Pageable pageable);
 
     /**
-	 * Exports all FormFees matching the given input query to the given exportType format.
+	 * Exports all Fees matching the given input query to the given exportType format.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param exportType The format in which to export the data; value cannot be null.
@@ -117,11 +117,11 @@ public interface FormFeeService {
     Downloadable export(ExportType exportType, String query, Pageable pageable);
 
 	/**
-	 * Retrieve the count of the FormFees in the repository with matching query.
+	 * Retrieve the count of the Fees in the repository with matching query.
      * Note: Go through the documentation for <u>query</u> syntax.
      *
      * @param query query to filter results. No filters applied if the input is null/empty.
-	 * @return The count of the FormFee.
+	 * @return The count of the Fees.
 	 */
 	long count(String query);
 

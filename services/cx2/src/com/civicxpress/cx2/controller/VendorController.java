@@ -32,6 +32,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
@@ -168,6 +169,13 @@ public class VendorController {
     public Long countVendors(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting Vendors");
         return vendorService.count(query);
+    }
+
+    @RequestMapping(value = "/{id:.+}/feeses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the feeses instance associated with the given id.")
+    public Page<Fees> findAssociatedFeeses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated feeses");
+        return vendorService.findAssociatedFeeses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/vendorApprovalses", method = RequestMethod.GET)

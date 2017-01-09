@@ -21,8 +21,8 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormCategories;
-import com.civicxpress.cx2.FormFee;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
 import com.civicxpress.cx2.ManualFeeTypes;
@@ -54,6 +54,10 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	private MasterFormsService masterFormsService;
 
     @Autowired
+	@Qualifier("cx2.FeesService")
+	private FeesService feesService;
+
+    @Autowired
 	@Qualifier("cx2.ManualFeeTypesService")
 	private ManualFeeTypesService manualFeeTypesService;
 
@@ -78,10 +82,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	private HolidaysService holidaysService;
 
     @Autowired
-	@Qualifier("cx2.FormFeeService")
-	private FormFeeService formFeeService;
-
-    @Autowired
 	@Qualifier("cx2.GisrecordsService")
 	private GisrecordsService gisrecordsService;
 
@@ -102,6 +102,14 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	public Municipalities create(Municipalities municipalities) {
         LOGGER.debug("Creating a new Municipalities with information: {}", municipalities);
         Municipalities municipalitiesCreated = this.wmGenericDao.create(municipalities);
+        if(municipalitiesCreated.getFeeses() != null) {
+            for(Fees feese : municipalitiesCreated.getFeeses()) {
+                feese.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child Fees with information: {}", feese);
+                feesService.create(feese);
+            }
+        }
+
         if(municipalitiesCreated.getFormCategorieses() != null) {
             for(FormCategories formCategoriese : municipalitiesCreated.getFormCategorieses()) {
                 formCategoriese.setMunicipalities(municipalitiesCreated);
@@ -110,27 +118,11 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
             }
         }
 
-        if(municipalitiesCreated.getFormFees() != null) {
-            for(FormFee formFee : municipalitiesCreated.getFormFees()) {
-                formFee.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child FormFee with information: {}", formFee);
-                formFeeService.create(formFee);
-            }
-        }
-
         if(municipalitiesCreated.getGisrecordses() != null) {
             for(Gisrecords gisrecordse : municipalitiesCreated.getGisrecordses()) {
                 gisrecordse.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordse);
                 gisrecordsService.create(gisrecordse);
-            }
-        }
-
-        if(municipalitiesCreated.getMasterFormses() != null) {
-            for(MasterForms masterFormse : municipalitiesCreated.getMasterFormses()) {
-                masterFormse.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
-                masterFormsService.create(masterFormse);
             }
         }
 
@@ -147,6 +139,14 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
                 manualFeeTypese.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child ManualFeeTypes with information: {}", manualFeeTypese);
                 manualFeeTypesService.create(manualFeeTypese);
+            }
+        }
+
+        if(municipalitiesCreated.getMasterFormses() != null) {
+            for(MasterForms masterFormse : municipalitiesCreated.getMasterFormses()) {
+                masterFormse.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
+                masterFormsService.create(masterFormse);
             }
         }
 
@@ -265,6 +265,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated feeses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return feesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<FormCategories> findAssociatedFormCategorieses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formCategorieses");
 
@@ -276,17 +287,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formFees");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalities.id = '" + id + "'");
-
-        return formFeeService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gisrecordses");
 
@@ -294,17 +294,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
         queryBuilder.append("municipalities.id = '" + id + "'");
 
         return gisrecordsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterFormses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalities.id = '" + id + "'");
-
-        return masterFormsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -327,6 +316,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
         queryBuilder.append("municipalities.id = '" + id + "'");
 
         return manualFeeTypesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return masterFormsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -405,6 +405,15 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service FeesService instance
+	 */
+	protected void setFeesService(FeesService service) {
+        this.feesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service ManualFeeTypesService instance
 	 */
 	protected void setManualFeeTypesService(ManualFeeTypesService service) {
@@ -454,15 +463,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	 */
 	protected void setHolidaysService(HolidaysService service) {
         this.holidaysService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormFeeService instance
-	 */
-	protected void setFormFeeService(FormFeeService service) {
-        this.formFeeService = service;
     }
 
     /**

@@ -13,14 +13,14 @@ import org.springframework.stereotype.Repository;
 
 import com.wavemaker.runtime.data.dao.WMGenericDaoImpl;
 
-import com.civicxpress.cx2.FormFee;
+import com.civicxpress.cx2.Fees;
 
 /**
- * Specifies methods used to obtain and modify FormFee related information
+ * Specifies methods used to obtain and modify Fees related information
  * which is stored in the database.
  */
-@Repository("cx2.FormFeeDao")
-public class FormFeeDao extends WMGenericDaoImpl<FormFee, Integer> {
+@Repository("cx2.FeesDao")
+public class FeesDao extends WMGenericDaoImpl<Fees, Integer> {
 
     @Autowired
     @Qualifier("cx2Template")

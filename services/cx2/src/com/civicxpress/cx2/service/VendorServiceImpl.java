@@ -23,6 +23,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
@@ -43,6 +44,10 @@ public class VendorServiceImpl implements VendorService {
     @Autowired
 	@Qualifier("cx2.VendorApprovalsService")
 	private VendorApprovalsService vendorApprovalsService;
+
+    @Autowired
+	@Qualifier("cx2.FeesService")
+	private FeesService feesService;
 
     @Autowired
 	@Qualifier("cx2.VendorLicensesService")
@@ -69,6 +74,14 @@ public class VendorServiceImpl implements VendorService {
 	public Vendor create(Vendor vendor) {
         LOGGER.debug("Creating a new Vendor with information: {}", vendor);
         Vendor vendorCreated = this.wmGenericDao.create(vendor);
+        if(vendorCreated.getFeeses() != null) {
+            for(Fees feese : vendorCreated.getFeeses()) {
+                feese.setVendor(vendorCreated);
+                LOGGER.debug("Creating a new child Fees with information: {}", feese);
+                feesService.create(feese);
+            }
+        }
+
         if(vendorCreated.getVendorApprovalses() != null) {
             for(VendorApprovals vendorApprovalse : vendorCreated.getVendorApprovalses()) {
                 vendorApprovalse.setVendor(vendorCreated);
@@ -192,6 +205,17 @@ public class VendorServiceImpl implements VendorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated feeses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("vendor.id = '" + id + "'");
+
+        return feesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorApprovalses");
 
@@ -241,6 +265,15 @@ public class VendorServiceImpl implements VendorService {
 	 */
 	protected void setVendorApprovalsService(VendorApprovalsService service) {
         this.vendorApprovalsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FeesService instance
+	 */
+	protected void setFeesService(FeesService service) {
+        this.feesService = service;
     }
 
     /**

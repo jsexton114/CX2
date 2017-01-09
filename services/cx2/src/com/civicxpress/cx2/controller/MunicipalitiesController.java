@@ -32,8 +32,8 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormCategories;
-import com.civicxpress.cx2.FormFee;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
 import com.civicxpress.cx2.ManualFeeTypes;
@@ -169,6 +169,13 @@ public class MunicipalitiesController {
         return municipalitiesService.count(query);
     }
 
+    @RequestMapping(value = "/{id:.+}/feeses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the feeses instance associated with the given id.")
+    public Page<Fees> findAssociatedFeeses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated feeses");
+        return municipalitiesService.findAssociatedFeeses(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/formCategorieses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formCategorieses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -177,28 +184,12 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedFormCategorieses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/formFees", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the formFees instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormFee> findAssociatedFormFees(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formFees");
-        return municipalitiesService.findAssociatedFormFees(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/gisrecordses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the gisrecordses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Gisrecords> findAssociatedGisrecordses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gisrecordses");
         return municipalitiesService.findAssociatedGisrecordses(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterFormses");
-        return municipalitiesService.findAssociatedMasterFormses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/holidayses", method = RequestMethod.GET)
@@ -215,6 +206,14 @@ public class MunicipalitiesController {
     public Page<ManualFeeTypes> findAssociatedManualFeeTypeses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated manualFeeTypeses");
         return municipalitiesService.findAssociatedManualFeeTypeses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+        return municipalitiesService.findAssociatedMasterFormses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/municipalityGroupses", method = RequestMethod.GET)

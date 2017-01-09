@@ -21,7 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.FormFee;
+import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 
@@ -37,12 +37,12 @@ public class GisrecordsServiceImpl implements GisrecordsService {
     private static final Logger LOGGER = LoggerFactory.getLogger(GisrecordsServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.GiscontactsService")
-	private GiscontactsService giscontactsService;
+	@Qualifier("cx2.FeesService")
+	private FeesService feesService;
 
     @Autowired
-	@Qualifier("cx2.FormFeeService")
-	private FormFeeService formFeeService;
+	@Qualifier("cx2.GiscontactsService")
+	private GiscontactsService giscontactsService;
 
     @Autowired
     @Qualifier("cx2.GisrecordsDao")
@@ -57,11 +57,11 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 	public Gisrecords create(Gisrecords gisrecords) {
         LOGGER.debug("Creating a new Gisrecords with information: {}", gisrecords);
         Gisrecords gisrecordsCreated = this.wmGenericDao.create(gisrecords);
-        if(gisrecordsCreated.getFormFees() != null) {
-            for(FormFee formFee : gisrecordsCreated.getFormFees()) {
-                formFee.setGisrecords(gisrecordsCreated);
-                LOGGER.debug("Creating a new child FormFee with information: {}", formFee);
-                formFeeService.create(formFee);
+        if(gisrecordsCreated.getFeeses() != null) {
+            for(Fees feese : gisrecordsCreated.getFeeses()) {
+                feese.setGisrecords(gisrecordsCreated);
+                LOGGER.debug("Creating a new child Fees with information: {}", feese);
+                feesService.create(feese);
             }
         }
 
@@ -148,13 +148,13 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formFees");
+    public Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated feeses");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("gisrecords.id = '" + id + "'");
 
-        return formFeeService.findAll(queryBuilder.toString(), pageable);
+        return feesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -171,19 +171,19 @@ public class GisrecordsServiceImpl implements GisrecordsService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service GiscontactsService instance
+	 * @param service FeesService instance
 	 */
-	protected void setGiscontactsService(GiscontactsService service) {
-        this.giscontactsService = service;
+	protected void setFeesService(FeesService service) {
+        this.feesService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormFeeService instance
+	 * @param service GiscontactsService instance
 	 */
-	protected void setFormFeeService(FormFeeService service) {
-        this.formFeeService = service;
+	protected void setGiscontactsService(GiscontactsService service) {
+        this.giscontactsService = service;
     }
 
 }

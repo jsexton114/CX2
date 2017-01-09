@@ -23,7 +23,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.FormFee;
+import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
 import com.civicxpress.cx2.McnewResidentialStructure;
@@ -66,6 +66,10 @@ public class UsersServiceImpl implements UsersService {
 	private SfnewElectricConnectionService sfnewElectricConnectionService;
 
     @Autowired
+	@Qualifier("cx2.FeesService")
+	private FeesService feesService;
+
+    @Autowired
 	@Qualifier("cx2.MasterFormsService")
 	private MasterFormsService masterFormsService;
 
@@ -80,10 +84,6 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.VendorUsersService")
 	private VendorUsersService vendorUsersService;
-
-    @Autowired
-	@Qualifier("cx2.FormFeeService")
-	private FormFeeService formFeeService;
 
     @Autowired
 	@Qualifier("cx2.RolesService")
@@ -114,11 +114,11 @@ public class UsersServiceImpl implements UsersService {
 	public Users create(Users users) {
         LOGGER.debug("Creating a new Users with information: {}", users);
         Users usersCreated = this.wmGenericDao.create(users);
-        if(usersCreated.getFormFees() != null) {
-            for(FormFee formFee : usersCreated.getFormFees()) {
-                formFee.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child FormFee with information: {}", formFee);
-                formFeeService.create(formFee);
+        if(usersCreated.getFeeses() != null) {
+            for(Fees feese : usersCreated.getFeeses()) {
+                feese.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child Fees with information: {}", feese);
+                feesService.create(feese);
             }
         }
 
@@ -309,13 +309,13 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormFee> findAssociatedFormFees(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formFees");
+    public Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated feeses");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("users.id = '" + id + "'");
 
-        return formFeeService.findAll(queryBuilder.toString(), pageable);
+        return feesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -489,6 +489,15 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service FeesService instance
+	 */
+	protected void setFeesService(FeesService service) {
+        this.feesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service MasterFormsService instance
 	 */
 	protected void setMasterFormsService(MasterFormsService service) {
@@ -520,15 +529,6 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setVendorUsersService(VendorUsersService service) {
         this.vendorUsersService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FormFeeService instance
-	 */
-	protected void setFormFeeService(FormFeeService service) {
-        this.formFeeService = service;
     }
 
     /**

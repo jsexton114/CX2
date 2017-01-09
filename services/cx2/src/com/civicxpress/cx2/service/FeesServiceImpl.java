@@ -21,75 +21,75 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.FormFee;
+import com.civicxpress.cx2.Fees;
 
 
 /**
- * ServiceImpl object for domain model class FormFee.
+ * ServiceImpl object for domain model class Fees.
  *
- * @see FormFee
+ * @see Fees
  */
-@Service("cx2.FormFeeService")
-public class FormFeeServiceImpl implements FormFeeService {
+@Service("cx2.FeesService")
+public class FeesServiceImpl implements FeesService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FormFeeServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FeesServiceImpl.class);
 
 
     @Autowired
-    @Qualifier("cx2.FormFeeDao")
-    private WMGenericDao<FormFee, Integer> wmGenericDao;
+    @Qualifier("cx2.FeesDao")
+    private WMGenericDao<Fees, Integer> wmGenericDao;
 
-    public void setWMGenericDao(WMGenericDao<FormFee, Integer> wmGenericDao) {
+    public void setWMGenericDao(WMGenericDao<Fees, Integer> wmGenericDao) {
         this.wmGenericDao = wmGenericDao;
     }
 
     @Transactional(value = "cx2TransactionManager")
     @Override
-	public FormFee create(FormFee formFee) {
-        LOGGER.debug("Creating a new FormFee with information: {}", formFee);
-        FormFee formFeeCreated = this.wmGenericDao.create(formFee);
-        return formFeeCreated;
+	public Fees create(Fees fees) {
+        LOGGER.debug("Creating a new Fees with information: {}", fees);
+        Fees feesCreated = this.wmGenericDao.create(fees);
+        return feesCreated;
     }
 
 	@Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public FormFee getById(Integer formfeeId) throws EntityNotFoundException {
-        LOGGER.debug("Finding FormFee by id: {}", formfeeId);
-        FormFee formFee = this.wmGenericDao.findById(formfeeId);
-        if (formFee == null){
-            LOGGER.debug("No FormFee found with id: {}", formfeeId);
-            throw new EntityNotFoundException(String.valueOf(formfeeId));
+	public Fees getById(Integer feesId) throws EntityNotFoundException {
+        LOGGER.debug("Finding Fees by id: {}", feesId);
+        Fees fees = this.wmGenericDao.findById(feesId);
+        if (fees == null){
+            LOGGER.debug("No Fees found with id: {}", feesId);
+            throw new EntityNotFoundException(String.valueOf(feesId));
         }
-        return formFee;
+        return fees;
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public FormFee findById(Integer formfeeId) {
-        LOGGER.debug("Finding FormFee by id: {}", formfeeId);
-        return this.wmGenericDao.findById(formfeeId);
+	public Fees findById(Integer feesId) {
+        LOGGER.debug("Finding Fees by id: {}", feesId);
+        return this.wmGenericDao.findById(feesId);
     }
 
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "cx2TransactionManager")
 	@Override
-	public FormFee update(FormFee formFee) throws EntityNotFoundException {
-        LOGGER.debug("Updating FormFee with information: {}", formFee);
-        this.wmGenericDao.update(formFee);
+	public Fees update(Fees fees) throws EntityNotFoundException {
+        LOGGER.debug("Updating Fees with information: {}", fees);
+        this.wmGenericDao.update(fees);
 
-        Integer formfeeId = formFee.getId();
+        Integer feesId = fees.getId();
 
-        return this.wmGenericDao.findById(formfeeId);
+        return this.wmGenericDao.findById(feesId);
     }
 
     @Transactional(value = "cx2TransactionManager")
 	@Override
-	public FormFee delete(Integer formfeeId) throws EntityNotFoundException {
-        LOGGER.debug("Deleting FormFee with id: {}", formfeeId);
-        FormFee deleted = this.wmGenericDao.findById(formfeeId);
+	public Fees delete(Integer feesId) throws EntityNotFoundException {
+        LOGGER.debug("Deleting Fees with id: {}", feesId);
+        Fees deleted = this.wmGenericDao.findById(feesId);
         if (deleted == null) {
-            LOGGER.debug("No FormFee found with id: {}", formfeeId);
-            throw new EntityNotFoundException(String.valueOf(formfeeId));
+            LOGGER.debug("No Fees found with id: {}", feesId);
+            throw new EntityNotFoundException(String.valueOf(feesId));
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
@@ -97,22 +97,22 @@ public class FormFeeServiceImpl implements FormFeeService {
 
 	@Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public Page<FormFee> findAll(QueryFilter[] queryFilters, Pageable pageable) {
-        LOGGER.debug("Finding all FormFees");
+	public Page<Fees> findAll(QueryFilter[] queryFilters, Pageable pageable) {
+        LOGGER.debug("Finding all Fees");
         return this.wmGenericDao.search(queryFilters, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormFee> findAll(String query, Pageable pageable) {
-        LOGGER.debug("Finding all FormFees");
+    public Page<Fees> findAll(String query, Pageable pageable) {
+        LOGGER.debug("Finding all Fees");
         return this.wmGenericDao.searchByQuery(query, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Downloadable export(ExportType exportType, String query, Pageable pageable) {
-        LOGGER.debug("exporting data in the service cx2 for table FormFee to {} format", exportType);
+        LOGGER.debug("exporting data in the service cx2 for table Fees to {} format", exportType);
         return this.wmGenericDao.export(exportType, query, pageable);
     }
 

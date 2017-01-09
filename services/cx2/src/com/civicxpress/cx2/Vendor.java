@@ -65,6 +65,7 @@ public class Vendor implements Serializable {
     private Date lastUpdated;
     private ContractorTypes contractorTypes;
     private States states;
+    private List<Fees> feeses = new ArrayList<>();
     private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
     private List<VendorLicenses> vendorLicenseses = new ArrayList<>();
     private List<VendorAdmins> vendorAdminses = new ArrayList<>();
@@ -307,6 +308,16 @@ public class Vendor implements Serializable {
         }
 
         this.states = states;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
+    public List<Fees> getFeeses() {
+        return this.feeses;
+    }
+
+    public void setFeeses(List<Fees> feeses) {
+        this.feeses = feeses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

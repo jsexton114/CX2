@@ -54,7 +54,7 @@ public class Users implements Serializable {
     private Integer stateId;
     private String country;
     private States states;
-    private List<FormFee> formFees = new ArrayList<>();
+    private List<Fees> feeses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
@@ -230,12 +230,12 @@ public class Users implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<FormFee> getFormFees() {
-        return this.formFees;
+    public List<Fees> getFeeses() {
+        return this.feeses;
     }
 
-    public void setFormFees(List<FormFee> formFees) {
-        this.formFees = formFees;
+    public void setFeeses(List<Fees> feeses) {
+        this.feeses = feeses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
