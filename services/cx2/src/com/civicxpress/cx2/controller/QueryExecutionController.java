@@ -560,6 +560,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/VendorsCountForMunicipalities", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeVendorsCountForMunicipalities(@RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query VendorsCountForMunicipalities");
+        Page<Object> result = queryService.executeVendorsCountForMunicipalities(pageable, MunicipalityId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/verifyPasswordResetToken", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeVerifyPasswordResetToken(@RequestParam(value = "token", required = false) java.lang.String token, Pageable pageable) throws QueryParameterMismatchException {

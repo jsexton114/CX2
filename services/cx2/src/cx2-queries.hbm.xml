@@ -262,6 +262,11 @@
       select count(*) as userSubscriptionsCountForMunicipality from UserSubscriptions where MunicipalityId=:municipalityId
     ]]>
   </sql-query>
+  <sql-query name="VendorsCountForMunicipalities">
+    <![CDATA[
+      select count(*) as vendorsCount from VendorApprovals where MunicipalityId=:MunicipalityId
+    ]]>
+  </sql-query>
   <sql-query name="verifyPasswordResetToken">
     <![CDATA[
       select * from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)

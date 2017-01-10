@@ -25,5 +25,33 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
+  },
+  "VendorsCountForMunicipalities" : {
+    "_id" : "wm-VendorsCountForMunicipalities-wm.ServiceVariable-1484037329080",
+    "name" : "VendorsCountForMunicipalities",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "MunicipalityId",
+      "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2VendorsCountForMunicipalitiesrtnType",
+    "service" : "cx2",
+    "operation" : "executeVendorsCountForMunicipalities",
+    "operationId" : "QueryExecutionController_executeVendorsCountForMunicipalities",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }
