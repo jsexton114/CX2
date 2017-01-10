@@ -185,7 +185,7 @@ Application.$controller("gridAdminController", ["$scope",
         $scope.customRow1Action2 = function($event, $rowData) {
             debugger;
             $scope.Widgets.gridAdmin.selecteditem.StateId
-            $scope.Variables.StateInformation.setInput('id', $scope.Widgets.gridAdmin.selecteditem.StateId);
+            $scope.Variables.StateInformation.setFilter('id', $scope.Widgets.gridAdmin.selecteditem.StateId);
             $scope.Variables.StateInformation.update();
             $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
             $scope.Variables.getMunicipalityGroupIdIDs.update();
