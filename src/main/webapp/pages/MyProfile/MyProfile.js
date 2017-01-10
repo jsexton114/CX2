@@ -184,3 +184,19 @@ Application.$controller("liveform2Controller", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+
+
+Application.$controller("usersDialogController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveform4Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

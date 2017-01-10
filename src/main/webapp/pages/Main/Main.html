@@ -12,7 +12,7 @@
                     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
                         <wm-search name="searchUser" placeholder="View as User (search by Email Address)" dataset="bind:Variables.GetAllUsersForAdmin.dataSet" searchkey="email,firstName" displaylabel="email" displayimagesrc="photo" datafield="id" on-change="searchUserChange($event, $scope, newVal, oldVal)"
                         accessroles="CXAdmin"></wm-search>
-                        <wm-composite name="composite1" margin="1em unset unset unset">
+                        <wm-composite name="composite1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Muncipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
                                 <wm-select name="selectStandardUserMunicipality" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.StandardUserMunicipalites.firstRecord"
