@@ -486,6 +486,34 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
+  "LoginFailed" : {
+    "_id" : "wm-LoginFailed-wm.NotificationVariable-1484028249735",
+    "name" : "LoginFailed",
+    "owner" : "App",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Invalid UserName or Password",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "loginVariable" : {
     "_id" : "wm-loginVariable-wm.LoginVariable-1478578831247",
     "name" : "loginVariable",
@@ -511,7 +539,7 @@
     },
     "type" : "string",
     "saveInPhonegap" : false,
-    "onError" : "loginVariableonError($event, $scope)",
+    "onError" : "Variables.LoginFailed.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
