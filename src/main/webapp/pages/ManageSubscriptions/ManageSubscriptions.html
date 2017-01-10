@@ -28,16 +28,15 @@
                                 <wm-layoutgrid columns="3" name="layoutgrid3">
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn6_1">
-                                            <wm-form-field name="municipalities" displayname="Municipalities" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select value"
-                                            displayexpression="municipalityName" orderby="municipalityName:asc"></wm-form-field>
+                                            <wm-form-field name="municipalities" displayname="Municipality" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select Municipality" displayexpression="municipalityName"
+                                            orderby="municipalityName:asc" required="true"></wm-form-field>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn7">
-                                            <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="autocomplete" placeholder="Search by Email" displaylabel="email"
-                                            orderby="email:asc" searchkey="email"></wm-form-field>
+                                            <wm-form-field name="users" displayname="User" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="autocomplete" placeholder="Search by Email" displaylabel="email" orderby="email:asc" searchkey="email"
+                                            required="true"></wm-form-field>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4">
-                                            <wm-form-field name="dateSubscribed" displayname="Date Subscribed" show="true" primary-key="false" generator="assigned" key="dateSubscribed" type="string" widget="date" maxchars="255" defaultvalue="CURRENT_DATE"
-                                            readonly="true" datepattern="MM-dd-yyyy"></wm-form-field>
+                                            <wm-form-field name="dateSubscribed" displayname="Date Subscribed" show="true" primary-key="false" generator="assigned" key="dateSubscribed" type="string" widget="date" maxchars="255" defaultvalue="CURRENT_DATE" readonly="true" datepattern="MM-dd-yyyy"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
