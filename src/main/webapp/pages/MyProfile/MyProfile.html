@@ -102,69 +102,6 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow17_1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn20_1">
-                        <wm-form errormessage="" captionposition="top" title="Update Password" enctype="application/x-www-form-urlencoded" method="put" dataset="UpdateNewPassword" captionalign="left" name="form1" postmessage="Password updated successfully"
-                        messagelayout="Toaster" class="panel-primary" iconclass="wi wi-vpn-key">
-                            <wm-layoutgrid columns="1" name="layoutgrid5_1">
-                                <wm-gridrow name="gridrow21">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
-                                        <wm-composite name="composite10">
-                                            <wm-label class="col-md-3 control-label" name="label14" caption="New Password"></wm-label>
-                                            <wm-container class="col-md-9" name="container10">
-                                                <wm-text name="textPwd" on-keyup="textPwdKeyup($event, $scope)" required="true" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" type="password" placeholder="Enter Password"></wm-text>
-                                            </wm-container>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow22_2">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn25_2">
-                                        <wm-composite name="composite12">
-                                            <wm-label class="col-md-3 control-label" name="label16" caption="Confirm Password"></wm-label>
-                                            <wm-container class="col-md-9" name="container12">
-                                                <wm-text name="textRePwd" on-keyup="textRePwdKeyup($event, $scope)" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" required="true" type="password" placeholder="Enter Password"></wm-text>
-                                            </wm-container>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow27_2">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_2" padding="3em unset unset unset" horizontalalign="left">
-                                        <wm-label name="label17" caption="PASSWORD REQUIREMENTS:" fontweight="bold"></wm-label>
-                                        <wm-label name="label18_1" caption="All passwords must contain a minimum of 8 characters including at least 1 capital letter, 1 number, and 1 special character (e.g. @$!%*?&amp;)"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow27">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn36_1" horizontalalign="right">
-                                        <wm-button class="btn-default btn-primary" caption="Save" type="submit" margin="1% 3% 1% unset" name="buttonUpdateNew" iconclass="wi wi-save"></wm-button>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-form>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow22_1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn36">
-                        <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications" class="panel-primary">
-                            <wm-layoutgrid name="layoutgrid8_1">
-                                <wm-gridrow name="gridrow28_1">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn29_1">
-                                        <wm-label padding="unset 0.5em" name="label32" caption="How often would you like to receive email notifications?"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow29_1">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn31">
-                                        <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF" required="true"></wm-radioset>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow30">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_4" horizontalalign="right">
-                                        <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="1% 3% 1% unset" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-panel>
-                    </wm-gridcolumn>
-                </wm-gridrow>
                 <wm-gridrow name="gridrow7_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn16_1">
                         <wm-panel iconclass="wi wi-building" name="panelMyMunicipalities" title="My Municipalities" class="panel-primary">
@@ -220,6 +157,69 @@
                                 <wm-gridrow name="gridrow33"></wm-gridrow>
                             </wm-layoutgrid>
                         </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow22_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn36">
+                        <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="My Notifications" class="panel-primary">
+                            <wm-layoutgrid name="layoutgrid8_1">
+                                <wm-gridrow name="gridrow28_1">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn29_1">
+                                        <wm-label padding="unset 0.5em" name="label32" caption="How often would you like to receive email notifications?"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow29_1">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn31">
+                                        <wm-radioset height="auto" dataset="Immediately,Daily(Recommended),Weekly,Monthly,None" selectedvalue="bind:Variables.CurrentUserDetails.dataSet.communicationFrequency" name="radiosetCF" required="true"></wm-radioset>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow30">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_4" horizontalalign="right">
+                                        <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="1% 3% 1% unset" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow17_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn20_1">
+                        <wm-form errormessage="" captionposition="top" title="Update Password" enctype="application/x-www-form-urlencoded" method="put" dataset="UpdateNewPassword" captionalign="left" name="form1" postmessage="Password updated successfully"
+                        messagelayout="Toaster" class="panel-primary" iconclass="wi wi-vpn-key">
+                            <wm-layoutgrid columns="1" name="layoutgrid5_1">
+                                <wm-gridrow name="gridrow21">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
+                                        <wm-composite name="composite10">
+                                            <wm-label class="col-md-3 control-label" name="label14" caption="New Password"></wm-label>
+                                            <wm-container class="col-md-9" name="container10">
+                                                <wm-text name="textPwd" on-keyup="textPwdKeyup($event, $scope)" required="true" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" type="password" placeholder="Enter Password"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow22_2">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn25_2">
+                                        <wm-composite name="composite12">
+                                            <wm-label class="col-md-3 control-label" name="label16" caption="Confirm Password"></wm-label>
+                                            <wm-container class="col-md-9" name="container12">
+                                                <wm-text name="textRePwd" on-keyup="textRePwdKeyup($event, $scope)" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" required="true" type="password" placeholder="Enter Password"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow27_2">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_2" padding="3em unset unset unset" horizontalalign="left">
+                                        <wm-label name="label17" caption="PASSWORD REQUIREMENTS:" fontweight="bold"></wm-label>
+                                        <wm-label name="label18_1" caption="All passwords must contain a minimum of 8 characters including at least 1 capital letter, 1 number, and 1 special character (e.g. @$!%*?&amp;)"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow27">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn36_1" horizontalalign="right">
+                                        <wm-button class="btn-default btn-primary" caption="Save" type="submit" margin="1% 3% 1% unset" name="buttonUpdateNew" iconclass="wi wi-save"></wm-button>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-form>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
