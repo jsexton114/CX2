@@ -34,7 +34,7 @@ Application.$controller("loginFormController", ["$scope", "wmToaster",
                         $scope.Variables.loginVariable.invoke();
                     }
                 } else {
-                    wmToaster.show('error', 'ERROR', 'This email address has not been registered with CivicXpress. Please click SIgn Up to create an account.', 5000);
+                    wmToaster.show('error', 'ERROR', 'This email address has not been registered with CivicXpress. Please click Sign Up to create an account.', 5000);
                 }
             })
 
