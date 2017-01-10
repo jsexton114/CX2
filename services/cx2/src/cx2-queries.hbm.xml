@@ -81,6 +81,11 @@
       select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName='MunicipalityEmployee'
     ]]>
   </sql-query>
+  <sql-query name="EmployeesOrAdminsMunicipalities">
+    <![CDATA[
+      select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName=:role
+    ]]>
+  </sql-query>
   <sql-query name="getEmailId">
     <![CDATA[
       select Email from Users where ID =:userID
