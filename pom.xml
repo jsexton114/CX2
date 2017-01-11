@@ -48,6 +48,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/fishers/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/securityService/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -127,6 +134,7 @@
                                 <source>services/ResetPasswordMailService/src</source>
                                 <source>services/UpdateRecordStatus/src</source>
                                 <source>services/cx2/src</source>
+                                <source>services/fishers/src</source>
                                 <source>services/securityService/src</source>
                             </sources>
                         </configuration>

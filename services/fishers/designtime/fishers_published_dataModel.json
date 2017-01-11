@@ -1,0 +1,153 @@
+{
+  "description" : null,
+  "draft" : false,
+  "name" : "fishers",
+  "packageName" : "com.civicxpress.fishers",
+  "tables" : [ {
+    "catalog" : "fishers",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "formGuid",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "FormGUID",
+      "nullable" : true,
+      "oldName" : "FormGUID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "formTitle",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "FormTitle",
+      "nullable" : true,
+      "oldName" : "FormTitle",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "createdBy",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "CreatedBy",
+      "nullable" : true,
+      "oldName" : "CreatedBy",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "createdDate",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "timestamp",
+      "length" : 0,
+      "name" : "CreatedDate",
+      "nullable" : true,
+      "oldName" : "CreatedDate",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "timestamp",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "NewResidentialStructure",
+    "fullyQualifiedName" : "com.civicxpress.fishers.NewResidentialStructure",
+    "name" : "NewResidentialStructure",
+    "oldName" : "NewResidentialStructure",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__NewResid__3214EC27E92DAFFE",
+      "virtual" : false
+    },
+    "relations" : [ ],
+    "schema" : "fishers",
+    "type" : "TABLE"
+  } ]
+}

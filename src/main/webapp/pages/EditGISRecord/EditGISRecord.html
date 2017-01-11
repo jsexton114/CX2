@@ -13,7 +13,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn29" padding=".2em unset 1em unset">
-                        <wm-panel iconclass="wi wi-chrome-reader-mode" autoclose="outsideClick" name="panelGISRecord" title="GIS Record" class="panel-primary" accessroles="CXAdmin,MunicipalityAdmin">
+                        <wm-panel iconclass="wi wi-chrome-reader-mode" autoclose="outsideClick" name="panelGISRecord" title="GIS Record" class="panel-primary" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee">
                             <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.Cx2GisrecordsData.dataSet" captionalign="left" captionposition="top" name="liveformGisrecords" formdata="bind:Variables.SelectedGISobj.firstRecord">
                                 <wm-layoutgrid columns="3" name="layoutgrid2">
                                     <wm-gridrow name="gridrow4">
@@ -80,8 +80,9 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                                 <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
-                                <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"
+                                type="button" update-mode="true"></wm-form-action>
+                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" accessroles="CXAdmin,MunicipalityAdmin" disabled="false" type="submit" update-mode="true"></wm-form-action>
                             </wm-liveform>
                         </wm-panel>
                     </wm-gridcolumn>

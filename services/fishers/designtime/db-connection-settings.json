@@ -1,0 +1,31 @@
+{
+  "username" : "fishers",
+  "password" : "7b6a43524a13241f6578367d11046c70477c612a43",
+  "url" : "jdbc:sqlserver://64.87.23.26:1433;databaseName=fishers",
+  "driverClass" : "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+  "dialect" : "com.wavemaker.runtime.data.dialect.WMSQLServerDialect",
+  "serviceId" : "fishers",
+  "packageName" : "com.civicxpress.fishers",
+  "dbType" : "SQLServer",
+  "host" : "64.87.23.26",
+  "dbName" : "fishers",
+  "port" : "1433",
+  "schemaName" : "fishers",
+  "tableFilter" : [ {
+    "table" : "NewResidentialStructure",
+    "schema" : "fishers"
+  } ],
+  "schemaFilter" : [ ],
+  "impersonateUser" : false,
+  "activeDirectoryDomain" : null,
+  "hbm2ddl" : "none",
+  "maxPageSize" : 100,
+  "dataSourceType" : "WM_MANAGED_DATASOURCE",
+  "jndiName" : "",
+  "reloadInfo" : {
+    "reload" : false,
+    "reason" : null,
+    "message" : null
+  },
+  "readOnly" : false
+}

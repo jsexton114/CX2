@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="fishers" type="DataService" springFile="fishers.spring.xml">
+    <dataobjects>
+        <dataobject javaType="com.civicxpress.fishers.NewResidentialStructure">
+            <element name="createdBy" typeRef="java.lang.String" allowNull="true"/>
+            <element name="createdDate" typeRef="java.util.Date" allowNull="true"/>
+            <element name="formGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formTitle" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.wavemaker.runtime.data.expression.QueryFilter">
+            <element name="attributeName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="attributeType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="attributeValue" allowNull="true"/>
+            <element name="filterCondition" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.wavemaker.runtime.data.model.CustomProcedure">
+            <element name="procedureParams" typeRef="com.wavemaker.runtime.data.model.CustomProcedureParam" isList="true" allowNull="true"/>
+            <element name="procedureStr" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.wavemaker.runtime.data.model.CustomQuery">
+            <element name="nativeSql" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="queryParams" typeRef="com.wavemaker.runtime.data.model.CustomQueryParam" isList="true" allowNull="true"/>
+            <element name="queryStr" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+    </dataobjects>
+</service>
