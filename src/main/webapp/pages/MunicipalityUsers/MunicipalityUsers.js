@@ -59,6 +59,18 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
         wmToaster.show('error', 'ERROR', 'The user has already been added to the selected Group', 5000);
     };
 
+
+    $scope.gridEmployeesClick = function($event, $rowData) {
+        $scope.Variables.StateInformation.setFilter('id', $scope.Widgets.gridEmployees.selecteditem.StateId);
+        $scope.Variables.StateInformation.update();
+    };
+
+
+    $scope.gridAdminClick = function($event, $rowData) {
+        $scope.Variables.StateInformation.setFilter('id', $scope.Widgets.gridAdmin.selecteditem.StateId);
+        $scope.Variables.StateInformation.update();
+    };
+
 }]);
 
 
@@ -105,11 +117,6 @@ Application.$controller("gridEmployeesController", ["$scope",
 
 
         $scope.customRow1Action = function($event, $rowData) {
-            debugger
-            $scope.Variables.StateInformation.setFilter('id', $scope.Widgets.gridEmployees.selecteditem.StateId);
-            $scope.Variables.StateInformation.update({}, function(data) {
-                debugger;
-            });
             $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
             $scope.Variables.getMunicipalityGroupIdIDs.update();
             $scope.Widgets.EmployeeDialog.open();
@@ -174,19 +181,13 @@ Application.$controller("gridAdminController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-        debugger
 
         $scope.customButtonAction2 = function($event) {
-            debugger
             $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityAdmin";
         };
 
 
         $scope.customRow1Action2 = function($event, $rowData) {
-            debugger;
-            $scope.Widgets.gridAdmin.selecteditem.StateId
-            $scope.Variables.StateInformation.setFilter('id', $scope.Widgets.gridAdmin.selecteditem.StateId);
-            $scope.Variables.StateInformation.update();
             $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
             $scope.Variables.getMunicipalityGroupIdIDs.update();
             $scope.Widgets.Admindialog.open();

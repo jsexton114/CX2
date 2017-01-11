@@ -41,7 +41,7 @@
                                 <wm-layoutgrid name="layoutgrid4_1">
                                     <wm-gridrow name="gridrow13">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn28">
-                                            <wm-grid title="" dataset="bind:Variables.GetEmployeeRolesForMunicipality.dataSet" navigation="Classic" name="gridEmployees" filtermode="multicolumn" showrecordcount="true">
+                                            <wm-grid title="" dataset="bind:Variables.GetEmployeeRolesForMunicipality.dataSet" navigation="Classic" name="gridEmployees" filtermode="multicolumn" showrecordcount="true" on-click="gridEmployeesClick($event, $rowData)">
                                                 <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="Email" caption="Email Address" type="string" readonly="true" show="true"></wm-grid-column>
@@ -63,7 +63,7 @@
                                     <wm-gridrow name="gridrow18_1"></wm-gridrow>
                                     <wm-gridrow name="gridrow19_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn32" horizontalalign="right">
-                                            <wm-grid title="" dataset="bind:Variables.GetAdminRolesForMunicipality.dataSet" navigation="Classic" name="gridAdmin" filtermode="multicolumn" showrecordcount="true">
+                                            <wm-grid title="" dataset="bind:Variables.GetAdminRolesForMunicipality.dataSet" navigation="Classic" name="gridAdmin" filtermode="multicolumn" showrecordcount="true" on-click="gridAdminClick($event, $rowData)">
                                                 <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="Email" caption="Email Address" type="string" readonly="true" show="true"></wm-grid-column>
