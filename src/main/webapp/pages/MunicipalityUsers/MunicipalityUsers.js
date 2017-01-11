@@ -132,11 +132,12 @@ Application.$controller("dialogAddEmployeeORAdminController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonRoleClick = function($event, $isolateScope) {
-            if ($scope.Variables.CheckingUserWithMunicipalityInRoles.dataSet.content[0].exist > 0) {
-                $scope.Variables.UpdateEmployeeORAdminRoleForMunicipality.update();
-            } else {
-                $scope.Variables.NewRole.update();
-            }
+            $scope.Variables.NewRole.update();
+            // if ($scope.Variables.CheckingUserWithMunicipalityInRoles.dataSet.content[0].exist > 0) {
+            //     $scope.Variables.UpdateEmployeeORAdminRoleForMunicipality.update();
+            // } else {
+            //     $scope.Variables.NewRole.update();
+            // }
         };
 
     }

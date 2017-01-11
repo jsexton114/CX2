@@ -180,6 +180,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/DeleteRoleForMuncipality", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeDeleteRoleForMuncipality(@RequestParam(value = "role", required = false) java.lang.String role, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, @RequestParam(value = "user", required = false) java.lang.Integer user) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query DeleteRoleForMuncipality");
+        int result = queryService.executeDeleteRoleForMuncipality(role, municipality, user);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/deleteToken", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeDeleteToken(@RequestParam(value = "token", required = false) java.lang.String token) throws QueryParameterMismatchException {

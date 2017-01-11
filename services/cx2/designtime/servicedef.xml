@@ -277,6 +277,12 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="DeleteRoleForMuncipality">
+        <parameter name="role" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -338,6 +344,12 @@
         <parameter name="MunicipalityGroupId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2deleteMunicipalityGrouprtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="DeleteRoleForMuncipality">
+        <parameter name="role" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2DeleteRoleForMuncipalityrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="deleteToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
@@ -1180,6 +1192,7 @@
         <dataobject javaType="cx2DeleteExistingSubscriptionsForUserrtnType"/>
         <dataobject javaType="cx2DeleteFromVendorAdminsrtnType"/>
         <dataobject javaType="cx2DeleteFromVendorUsersrtnType"/>
+        <dataobject javaType="cx2DeleteRoleForMuncipalityrtnType"/>
         <dataobject javaType="cx2EmployeesMunicipalitiesrtnType">
             <element name="Active" typeRef="java.lang.Boolean"/>
             <element name="Address1" typeRef="java.lang.String"/>

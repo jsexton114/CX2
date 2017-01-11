@@ -71,6 +71,11 @@
       delete from MunicipalityGroupMembers where MunicipalityGroupId =:MunicipalityGroupId AND UserId =:UserId
     ]]>
   </sql-query>
+  <sql-query name="DeleteRoleForMuncipality">
+    <![CDATA[
+      delete from Roles where RoleName=:role and MunicipalityId=:municipality and UserId=:user
+    ]]>
+  </sql-query>
   <sql-query name="deleteToken">
     <![CDATA[
       delete from UserPasswordResetTokens where Token =:token

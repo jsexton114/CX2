@@ -152,6 +152,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeDeleteRoleForMuncipality( java.lang.String role ,java.lang.Integer municipality ,java.lang.Integer user)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("role", role);
+        params.put("municipality", municipality);
+        params.put("user", user);
+        return queryExecutor.executeNamedQueryForUpdate("DeleteRoleForMuncipality", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeDeleteToken( java.lang.String token)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

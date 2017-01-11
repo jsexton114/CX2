@@ -358,6 +358,38 @@
     "outputType" : "cx2deleteMunicipalityGrouprtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "DeleteRoleForMuncipality",
+    "query" : "delete from Roles where RoleName=:role and MunicipalityId=:municipality and UserId=:user",
+    "comment" : "DeleteRoleForMuncipality",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "role",
+      "paramType" : "java.lang.String",
+      "testValue" : "MunicipalityEmployee",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "municipality",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "user",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "145",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2DeleteRoleForMuncipalityrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "deleteToken",
     "query" : "delete from UserPasswordResetTokens where Token =:token",
     "comment" : "to deleted token after changing password",

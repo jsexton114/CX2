@@ -29,6 +29,7 @@ public interface Cx2QueryExecutorService {
 	int executeDeleteFromVendorAdmins(  java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeDeleteFromVendorUsers(  java.lang.Integer vendor) throws QueryParameterMismatchException;
 	int executeDeleteMunicipalityGroup(  java.lang.Integer MunicipalityGroupId , java.lang.Integer UserId) throws QueryParameterMismatchException;
+	int executeDeleteRoleForMuncipality(  java.lang.String role , java.lang.Integer municipality , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeDeleteToken(  java.lang.String token) throws QueryParameterMismatchException;
     Page<Object> executeEmployeesMunicipalities(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeEmployeesOrAdminsMunicipalities(Pageable pageable, java.lang.Integer user, java.lang.String role) throws QueryParameterMismatchException;
