@@ -154,37 +154,26 @@
                                 <wm-gridrow name="gridrow32">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn33_5">
                                         <wm-livegrid formlayout="dialog" name="livegrid2">
-                                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="(Company Users)" dataset="bind:Variables.GetUserVendors.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL">
+                                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GetUserVendors.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL">
                                                 <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                                                 <wm-grid-column binding="vendor.companyEmail" caption="Email Address" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                                                 <wm-grid-column binding="vendor.companyWebsite" caption="Website" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                                                 <wm-grid-column binding="joiningDate" caption="Joining Date" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
-                                            <wm-liveform novalidate="false" errormessage="" title="Vendorusers Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.GetUserVendors.dataSet" captionalign="left" captionposition="top" name="liveform3">
+                                            <wm-liveform novalidate="false" errormessage="You have already added that company" title="Add Company" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.GetUserVendors.dataSet" captionalign="left"
+                                            captionposition="top" name="liveform3" insertmessage="Company added successfully" deletemessage="Company deleted successfully">
                                                 <wm-layoutgrid columns="3" name="layoutgrid10">
                                                     <wm-gridrow name="gridrow34">
-                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn34_3">
-                                                            <wm-form-field name="joiningDate" displayname="Joining Date" required="false" show="true" generator="assigned" primary-key="false" key="joiningDate" type="date" is-related="false" pc-display="true"
-                                                            mobile-display="true" widget="date"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn35">
-                                                            <wm-form-field name="users" displayname="Users" required="false" show="true" generator="assigned" primary-key="false" key="users" type="list" is-related="true" pc-display="true" mobile-display="true"
-                                                            widget="select"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn36_3">
-                                                            <wm-form-field name="vendor" displayname="Vendor" required="false" show="true" generator="assigned" primary-key="false" key="vendor" type="list" is-related="true" pc-display="true" mobile-display="true"
-                                                            widget="select"></wm-form-field>
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn35">
+                                                            <wm-form-field name="vendor" displayname="Companies" show="true" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" required="required" widget="select" placeholder="Select Company"
+                                                            orderby="companyName:asc" displayexpression="companyName"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-layoutgrid>
-                                                <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true"
-                                                widget="number"></wm-form-field>
-                                                <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
-                                                <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
+                                                placeholder="Enter value"></wm-form-field>
+                                                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                             </wm-liveform>
                                         </wm-livegrid>
                                     </wm-gridcolumn>
