@@ -31,10 +31,12 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
 
     $scope.selectStandardUserMunicipalityChange = function($event, $isolateScope, newVal, oldVal) {
+        //Checking if no municipality is selected 
         if (newVal == undefined) {
             $scope.Variables.CountOfClosedFormsForUser.update();
             $scope.Variables.CountOfOpenFormsForUser.update();
         } else {
+            // For selected municipality
             $scope.Variables.CountOfClosedFormsForMunicipality.update();
             $scope.Variables.CountOfOpenFormsForMunicipality.update();
         }
@@ -62,11 +64,19 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
 }]);
 
-Application.$controller("dialog1Controller", ["$scope",
+Application.$controller("dialogNewFormController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
 
+
+
+        $scope.buttonCreateClick = function($event, $isolateScope) {
+            var pageName = $scope.Widgets.selectForm.datavalue.PageName;
+            $scope.Variables[pageName].dataSet.FormId = $scope.Widgets.selectForm.datavalue.ID;
+            $scope.Variables[pageName].dataSet.MunicipalityId = $scope.Widgets.selectMunicipality.datavalue.ID;
+            $scope.Variables[pageName].navigate();
+        };
 
     }
 ]);

@@ -23,7 +23,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn3" horizontalalign="center" padding="2em unset">
-                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Widgets.pagedialogNewForm.open()">
+                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Widgets.dialogNewForm.open()">
                             <wm-layoutgrid height="100%" name="layoutgrid9">
                                 <wm-gridrow height="100%" name="gridrow12">
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn26">
@@ -164,6 +164,54 @@
     </wm-content>
     <wm-footer name="footer" content="footer"></wm-footer>
     <wm-view class="dialog-view" name="viewNewForm">
-        <wm-pagedialog name="pagedialogNewForm" title="New Form" content="NewForm" oktext="Close" iconclass=""></wm-pagedialog>
+        <wm-dialog dialogtype="design-dialog" modal="true" title="NewForm" iconclass="wi wi-file-text" name="dialogNewForm">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn1">
+                        <wm-composite name="composite4_1" margin="1em unset 2em unset">
+                            <wm-label class="col-md-3 control-label" caption="Select Municipality" name="label20" width="40%"></wm-label>
+                            <wm-container class="col-md-9" name="container4" width="60%">
+                                <wm-select dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.StandardUserMunicipalites.firstRecord" name="selectMunicipality" orderby="MunicipalityName:asc"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                        <wm-composite name="composite3">
+                            <wm-label class="col-md-3 control-label" name="label18" caption="Select Category" width="40%"></wm-label>
+                            <wm-container class="col-md-9" name="container2" width="60%">
+                                <wm-select name="selectCategory" dataset="bind:Variables.AllCategories.dataSet" datafield="id" displayfield="category" datavalue="bind:Variables.AllCategories.firstRecord.id" orderby="category:asc"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn5">
+                        <wm-composite name="composite4" margin="2em unset" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements != 0">
+                            <wm-label class="col-md-3 control-label" name="label19" caption="Select Form" width="40%"></wm-label>
+                            <wm-container class="col-md-9" name="container3" width="60%">
+                                <wm-select name="selectForm" dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" datavalue="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.firstRecord"
+                                orderby="FormType:asc"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow4">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                        <wm-label padding="1em 0.5em" name="label21" caption="No forms are available for this municipality in selected category" fontweight="bold" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements == 0" width="100%"
+                        horizontalalign="center"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow5">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn7" horizontalalign="center"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-warning" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
+                <wm-button class="btn-primary" caption="Create" type="button" margin="unset 0.5em" name="buttonCreate" on-click="buttonCreateClick($event, $scope)" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements != 0"
+                iconclass=""></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
     </wm-view>
 </wm-page>
