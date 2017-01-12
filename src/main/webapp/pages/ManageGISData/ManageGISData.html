@@ -189,14 +189,16 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow13">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn28">
-                        <wm-grid title="Parcels" dataset="bind:Variables.SubDivision_Gisrecords.dataSet" navigation="Classic" name="grid3_1" class="panel-primary" filtermode="multicolumn" exportformat="EXCEL">
-                            <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="lot" caption="Lot" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="section" caption="Section" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="streetNumber" caption="Street Number" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="streetName" caption="Street Name" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="city" caption="City" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                        </wm-grid>
+                        <wm-panel iconclass="" autoclose="outsideClick" name="panel1" title="Parcels" class="panel-primary">
+                            <wm-grid title="" dataset="bind:Variables.SubDivision_Gisrecords.dataSet" navigation="Classic" name="grid3_1" filtermode="multicolumn" exportformat="EXCEL">
+                                <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid-column binding="lot" caption="Lot" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid-column binding="section" caption="Section" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid-column binding="streetNumber" caption="Street Number" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid-column binding="streetName" caption="Street Name" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid-column binding="city" caption="City" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                            </wm-grid>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
