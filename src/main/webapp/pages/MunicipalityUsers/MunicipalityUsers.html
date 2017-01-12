@@ -299,20 +299,17 @@
                         <wm-label padding="unset 0.5em" caption="bind:Widgets.gridEmployees.selecteditem.PhoneNumber" name="label47"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow26_1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn49_1">
-                        <wm-label padding="unset 0.5em" name="label34_1" caption="Groups" class="h3 label-primary"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
                 <wm-gridrow name="gridrow28_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn53_1">
-                        <wm-grid title="" dataset="bind:Variables.getListofGroupName.dataSet" navigation="Classic" name="grid6" nodatamessage="No Groups found." filtermode="multicolumn">
-                            <wm-grid-column binding="GroupName" caption="Group Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                            <wm-grid-action key="customButton" display-name="Add to Group" show="true" class="btn-primary" iconclass="wi wi-add" title="Add" action="Variables.GetMunicipalityGroups.listRecords();Widgets.AddGroupstoMembers.open()"
-                            shortcutkey="" disabled="false" icon="wi wi-add"></wm-grid-action>
-                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
-                        </wm-grid>
+                        <wm-panel iconclass="wi wi-people" autoclose="outsideClick" name="panel1" title="Groups" class="panel-primary">
+                            <wm-grid title="" dataset="bind:Variables.getListofGroupName.dataSet" navigation="Classic" name="grid6" nodatamessage="No Groups found." filtermode="multicolumn">
+                                <wm-grid-column binding="GroupName" caption="Group Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                <wm-grid-action key="customButton" display-name="Add to Group" show="true" class="btn-primary" iconclass="wi wi-add" title="Add" action="Variables.GetMunicipalityGroups.listRecords();Widgets.AddGroupstoMembers.open()"
+                                shortcutkey="" disabled="false" icon="wi wi-add"></wm-grid-action>
+                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                            </wm-grid>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
@@ -389,20 +386,17 @@
                         <wm-label padding="unset 0.5em" caption="bind:Widgets.gridAdmin.selecteditem.PhoneNumber" name="label48"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow33">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn67">
-                        <wm-label padding="unset 0.5em" caption="Groups" class="h3 label-primary" name="label49"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
                 <wm-gridrow name="gridrow34">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn68">
-                        <wm-grid title="" dataset="bind:Variables.getListofGroupName.dataSet" navigation="Classic" nodatamessage="No Groups found." name="grid7" filtermode="multicolumn">
-                            <wm-grid-column binding="GroupName" caption="Group Name" type="string" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                            <wm-grid-action key="customButton" display-name="Add to Group" show="true" class="btn-primary" iconclass="wi wi-add" title="Add" action="Variables.GetMunicipalityGroups.listRecords();Widgets.AddGroupstoMembers.open()"
-                            shortcutkey="" disabled="false" icon="wi wi-add"></wm-grid-action>
-                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
-                        </wm-grid>
+                        <wm-panel iconclass="wi wi-people" autoclose="outsideClick" name="panel2" title="Groups" class="panel-primary">
+                            <wm-grid title="" dataset="bind:Variables.getListofGroupName.dataSet" navigation="Classic" nodatamessage="No Groups found." name="grid7" filtermode="multicolumn">
+                                <wm-grid-column binding="GroupName" caption="Group Name" type="string" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                <wm-grid-action key="customButton" display-name="Add to Group" show="true" class="btn-primary" iconclass="wi wi-add" title="Add" action="Variables.GetMunicipalityGroups.listRecords();Widgets.AddGroupstoMembers.open()"
+                                shortcutkey="" disabled="false" icon="wi wi-add"></wm-grid-action>
+                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                            </wm-grid>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
