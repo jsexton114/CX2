@@ -100,6 +100,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/CountOfUserForms", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeCountOfUserForms(@RequestParam(value = "closed", required = false) java.lang.Boolean closed, @RequestParam(value = "user", required = false) java.lang.Integer user, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query CountOfUserForms");
+        Page<Object> result = queryService.executeCountOfUserForms(pageable, closed, user);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/CountOfUserFormsForMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeCountOfUserFormsForMunicipality(@RequestParam(value = "user", required = false) java.lang.Integer user, @RequestParam(value = "closed", required = false) java.lang.Boolean closed, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, Pageable pageable) throws QueryParameterMismatchException {

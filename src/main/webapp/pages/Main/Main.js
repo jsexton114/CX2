@@ -29,6 +29,37 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
 
 
+
+    $scope.selectStandardUserMunicipalityChange = function($event, $isolateScope, newVal, oldVal) {
+        if (newVal == undefined) {
+            $scope.Variables.CountOfClosedFormsForUser.update();
+            $scope.Variables.CountOfOpenFormsForUser.update();
+        } else {
+            $scope.Variables.CountOfClosedFormsForMunicipality.update();
+            $scope.Variables.CountOfOpenFormsForMunicipality.update();
+        }
+    };
+
+
+    $scope.CountOfClosedFormsForUseronSuccess = function(variable, data) {
+        $scope.closedCount = data.content[0].count;
+    };
+
+
+    $scope.CountOfOpenFormsForUseronSuccess = function(variable, data) {
+        $scope.openCount = data.content[0].count;
+    };
+
+
+    $scope.CountOfClosedFormsForMunicipalityonSuccess = function(variable, data) {
+        $scope.closedCount = data.content[0].count;
+    };
+
+
+    $scope.CountOfOpenFormsForMunicipalityonSuccess = function(variable, data) {
+        $scope.openCount = data.content[0].count;
+    };
+
 }]);
 
 Application.$controller("dialog1Controller", ["$scope",

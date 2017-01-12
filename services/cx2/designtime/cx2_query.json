@@ -187,8 +187,35 @@
       "" : "java.lang.Integer"
     }
   }, {
+    "name" : "CountOfUserForms",
+    "query" : "select count(*) as count from MasterForms where Closed=:closed and UserId=:user",
+    "comment" : "To get count for open or closed for user",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "closed",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "user",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2CountOfUserFormsrtnType",
+    "returnTypeMetadata" : {
+      "count" : "java.lang.Integer"
+    }
+  }, {
     "name" : "CountOfUserFormsForMunicipality",
-    "query" : "select count(*) from MasterForms where UserId=:user and Closed=:closed and MunicipalityId=:municipality",
+    "query" : "select count(*) as count from MasterForms where UserId=:user and Closed=:closed and MunicipalityId=:municipality",
     "comment" : "To get count for open or closed for municipality",
     "description" : null,
     "nativeSql" : true,
@@ -218,7 +245,7 @@
     } ],
     "outputType" : "cx2CountOfUserFormsForMunicipalityrtnType",
     "returnTypeMetadata" : {
-      "" : "java.lang.Integer"
+      "count" : "java.lang.Integer"
     }
   }, {
     "name" : "CountOfVendors",

@@ -27,6 +27,40 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "CountOfClosedFormsForMunicipalityonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "CountOfClosedFormsForUser" : {
+    "_id" : "wm-CountOfClosedFormsForUser-wm.ServiceVariable-1484213691512",
+    "name" : "CountOfClosedFormsForUser",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "closed",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "cx2CountOfUserFormsrtnType",
+    "service" : "cx2",
+    "operation" : "executeCountOfUserForms",
+    "operationId" : "QueryExecutionController_executeCountOfUserForms",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "CountOfClosedFormsForUseronSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
@@ -63,12 +97,46 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "CountOfOpenFormsForMunicipalityonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "CountOfOpenFormsForUser" : {
+    "_id" : "wm-CountOfOpenFormsForUser-wm.ServiceVariable-1484213908356",
+    "name" : "CountOfOpenFormsForUser",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "closed",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "cx2CountOfUserFormsrtnType",
+    "service" : "cx2",
+    "operation" : "executeCountOfUserForms",
+    "operationId" : "QueryExecutionController_executeCountOfUserForms",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "CountOfOpenFormsForUseronSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "GetAllUsersForAdmin" : {
     "_id" : "wm-GetAllUsersForAdmin-wm.LiveVariable-1479201709885",
