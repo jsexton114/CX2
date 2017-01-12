@@ -13,7 +13,7 @@
                         <wm-search name="searchUser" placeholder="View as User (search by Email Address)" dataset="bind:Variables.GetAllUsersForAdmin.dataSet" searchkey="email,firstName" displaylabel="email" displayimagesrc="photo" datafield="id" on-change="searchUserChange($event, $scope, newVal, oldVal)"
                         accessroles="CXAdmin"></wm-search>
                         <wm-composite name="composite1">
-                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Filter By Municipality" fontweight="bold" width="30%"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Filter by Municipality" fontweight="bold" width="30%"></wm-label>
                             <wm-container class="col-md-9" name="container1" width="70%">
                                 <wm-select name="selectStandardUserMunicipality" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" height="38px" orderby="MunicipalityName:asc" placeholder="Select Municipality"
                                 on-change="selectStandardUserMunicipalityChange($event, $scope, newVal, oldVal)"></wm-select>
