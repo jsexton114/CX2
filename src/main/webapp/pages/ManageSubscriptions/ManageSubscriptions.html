@@ -12,8 +12,8 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow4">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                        <wm-livegrid formlayout="dialog" name="livegrid2">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="All CX Subscriptions" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                        <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panel1" title="All CX Subscriptions" class="panel-primary">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                 <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="users.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
@@ -24,6 +24,8 @@
                                 <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
+                        </wm-panel>
+                        <wm-livegrid formlayout="dialog" name="livegrid2">
                             <wm-liveform novalidate="false" errormessage="" title="Add Subscription" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" captionalign="left" captionposition="top" name="liveform2">
                                 <wm-layoutgrid columns="3" name="layoutgrid3">
                                     <wm-gridrow name="gridrow5">

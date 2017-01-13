@@ -12,9 +12,9 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow9">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn17">
-                        <wm-livegrid formlayout="dialog" name="livegrid1">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="All CX Municipalities" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" navigation="Classic" name="grid1" confirmdelete="Are you sure you want to delete this Municipality?"
-                            deletemessage="Municipality deleted successfully" nodatamessage="No Municipalities found." loadingdatamsg="Please Wait While Loading Municipalities..." exportformat="EXCEL" filtermode="multicolumn" showrecordcount="true">
+                        <wm-panel iconclass="wi wi-building" autoclose="outsideClick" name="panel1" title="All CX Municipalities" class="panel-primary">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" navigation="Classic" name="grid1" confirmdelete="Are you sure you want to delete this Municipality?" deletemessage="Municipality deleted successfully"
+                            nodatamessage="No Municipalities found." loadingdatamsg="Please Wait While Loading Municipalities..." exportformat="EXCEL" filtermode="multicolumn" showrecordcount="true">
                                 <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="municipalityName" caption="Municipality" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="logo" caption="Logo" type="blob" widget-type="image" generator="assigned" sortable="false" searchable="false" show="true" filterwidget="text" readonly="false"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
@@ -26,6 +26,8 @@
                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
+                        </wm-panel>
+                        <wm-livegrid formlayout="dialog" name="livegrid1">
                             <wm-liveform novalidate="false" errormessage="" title="Municipality Details" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" captionalign="left" captionposition="top" name="liveform1">
                                 <wm-layoutgrid columns="2" name="layoutgrid1">
                                     <wm-gridrow name="gridrow1">

@@ -12,8 +12,8 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn28">
-                        <wm-livegrid formlayout="dialog" name="livegrid2">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="All CX Users" dataset="bind:Variables.Cx2UsersData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                        <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panel1" title="All CX Users" class="panel-primary">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2UsersData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                 <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="firstName" caption="First Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="lastName" caption="Last Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
@@ -27,6 +27,8 @@
                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
+                        </wm-panel>
+                        <wm-livegrid formlayout="dialog" name="livegrid2">
                             <wm-liveform novalidate="false" errormessage="" title="User Details" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2UsersData.dataSet" captionalign="left" captionposition="top" name="liveform2">
                                 <wm-layoutgrid columns="3" name="layoutgrid3">
                                     <wm-gridrow name="gridrow10">
