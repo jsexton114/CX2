@@ -3,10 +3,15 @@
         <wm-nav name="leftTopLinks" type="navbar" class="navbar-left"></wm-nav>
         <wm-nav name="rightTopLinks" type="navbar" class="navbar-right">
             <wm-nav-item name="list_help">
-                <wm-anchor caption="My Cart" name="helpLink" iconclass="wi wi-shopping-cart" on-click="Variables.goToPage_MyCart.invoke()" badgevalue="0"></wm-anchor>
+                <wm-anchor caption="My Cart" name="helpLink" iconclass="wi wi-shopping-cart" on-click="Variables.goToPage_MyCart.invoke()" badgevalue="0" horizontalalign="left" margin="unset 5px unset unset"></wm-anchor>
             </wm-nav-item>
             <wm-nav-item name="nav_item5">
-                <wm-anchor name="anchor5" iconclass="wi wi-person" caption="My Profile" on-click="Variables.goToPage_MyProfile.invoke()"></wm-anchor>
+                <wm-gridcolumn columnwidth="3" name="gridcolumn1" horizontalalign="right">
+                    <wm-picture name="picture1" width="30pt" height="30pt" shape="circle" margin="2pt unset" picturesource="bind:&quot;services/cx2/Users/&quot;+Variables.CurrentUserDetails.dataSet.id+&quot;/content/photo&quot;" on-click="Variables.goToPage_MyProfile.invoke()"></wm-picture>
+                </wm-gridcolumn>
+                <wm-gridcolumn columnwidth="9" name="gridcolumn1" horizontalalign="center">
+                    <wm-anchor name="anchor5" iconclass="" caption="My Profile" on-click="Variables.goToPage_MyProfile.invoke()" iconposition="left"></wm-anchor>
+                </wm-gridcolumn>
             </wm-nav-item>
             <wm-nav-item name="list_logout">
                 <wm-anchor caption="Logout" name="logoutLink" iconclass="wi wi-sign-out" on-click="Variables.logoutVariable.invoke()"></wm-anchor>
