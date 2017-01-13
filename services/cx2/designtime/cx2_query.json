@@ -141,7 +141,7 @@
     }
   }, {
     "name" : "CheckingUserWithMunicipalityInRoles",
-    "query" : "select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user",
+    "query" : "select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user and RoleName='MunicipalityEmployee'",
     "comment" : "CheckingUserWithMunicipalityInRoles",
     "description" : null,
     "nativeSql" : true,

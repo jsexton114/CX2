@@ -132,12 +132,23 @@ Application.$controller("dialogAddEmployeeORAdminController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonRoleClick = function($event, $isolateScope) {
-            $scope.Variables.NewRole.update();
-            // if ($scope.Variables.CheckingUserWithMunicipalityInRoles.dataSet.content[0].exist > 0) {
-            //     $scope.Variables.UpdateEmployeeORAdminRoleForMunicipality.update();
-            // } else {
-            //     $scope.Variables.NewRole.update();
-            // }
+            // Checking if adding emp or admin
+            if ($scope.Variables.AdminOrEmp.dataSet.dataValue == "MunicipalityEmployee")
+                $scope.Variables.NewRole.update();
+            else {
+                // Checking if he is already a emp
+                if ($scope.Variables.CheckingUserWithMunicipalityInRoles.dataSet.content[0].exist > 0) {
+                    //already a emp then add as admin
+                    $scope.Variables.NewRole.update();
+                } else {
+                    // Adding both employee and admin
+                    $scope.Variables.NewRole.update();
+                    $scope.Variables.NewRole.setInput({
+                        'RoleName': 'MunicipalityEmployee'
+                    });
+                    $scope.Variables.NewRole.update();
+                }
+            }
         };
 
     }

@@ -30,11 +30,6 @@
         <parameter name="emailid" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2bannedDetailsrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="CheckingUserWithMunicipalityInRoles">
-        <parameter name="muncipality" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2CheckingUserWithMunicipalityInRolesrtnType" isList="false"/>
-    </operation>
     <operation operationType="nativequery" name="CountOfFormsForMunicipality">
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CountOfFormsForMunicipalityrtnType" isList="false"/>
@@ -282,6 +277,11 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="CheckingUserWithMunicipalityInRoles">
+        <parameter name="muncipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
