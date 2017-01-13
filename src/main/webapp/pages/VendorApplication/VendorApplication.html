@@ -27,13 +27,15 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow25">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn27">
-                                        <wm-form-field name="companyName" displayname="Company Name" show="true" primary-key="false" generator="assigned" key="companyName" type="string" widget="text" maxchars="255" required="true" validationmessage="Company Name is required"></wm-form-field>
+                                        <wm-form-field name="companyName" displayname="Company Name" show="true" primary-key="false" generator="assigned" key="companyName" type="string" required="required" widget="text" maxchars="255" validationmessage="Company Name is required"
+                                        inputtype="text" placeholder="Enter value"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn28">
-                                        <wm-form-field name="address1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" widget="text" maxchars="255" required="true" validationmessage="Address1 is required"></wm-form-field>
+                                        <wm-form-field name="address1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" required="required" widget="text" maxchars="255" validationmessage="Address1 is required"
+                                        inputtype="text" placeholder="Enter value"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn29">
-                                        <wm-form-field name="address2" displayname="Address2" show="true" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255"></wm-form-field>
+                                        <wm-form-field name="address2" displayname="Address2" show="true" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow26">
@@ -123,8 +125,8 @@
                                 </wm-gridrow>
                             </wm-layoutgrid>
                             <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
-                            <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" disabled="false" type="button" update-mode="true"></wm-form-action>
                             <wm-form-action key="save" display-name="Submit" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Submit" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                            <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" disabled="false" type="button" update-mode="true"></wm-form-action>
                         </wm-liveform>
                     </wm-gridcolumn>
                 </wm-gridrow>

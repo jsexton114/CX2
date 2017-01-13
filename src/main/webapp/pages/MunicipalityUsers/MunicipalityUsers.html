@@ -104,11 +104,12 @@
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
-                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
                                         <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord"
                                         dataset="bind:Variables.SelectedMunicipalityObj.dataSet" datafield="All Fields" displayfield="id" placeholder="Select value"></wm-form-field>
-                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
+                                        placeholder=""></wm-form-field>
                                         <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                     </wm-liveform>
                                 </wm-livegrid>
                             </wm-tabpane>
@@ -185,8 +186,8 @@
     <wm-view class="dialog-view" name="view2">
         <wm-dialog dialogtype="design-dialog" modal="true" title="bind:&quot;Add &quot;+Variables.AdminOrEmp.dataSet.dataValue" iconclass="wi wi-person-add" name="dialogAddEmployeeORAdmin">
             <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button4" iconclass="wi wi-cancel"></wm-button>
                 <wm-button class="btn-primary" caption="Add" name="buttonRole" on-click="buttonRoleClick($event, $scope)" iconclass="wi wi-add"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button4" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid6">
                 <wm-gridrow name="gridrow18"></wm-gridrow>
@@ -233,8 +234,8 @@
     <wm-view class="dialog-view" name="view4_1">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Add User to Group" iconclass="wi wi-person-add" name="ManageUsers">
             <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
                 <wm-button class="btn-primary" caption="Add" name="button8" on-click="Variables.MunicipalityGroupMembersData.createRecord()" disabled="bind:Widgets.searchUsers.datavalue.UserId == null" iconclass="wi wi-add"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-search name="searchUsers" placeholder="Search by Email Address" dataset="bind:Variables.getListOfUsers.dataSet" searchkey="Email" displaylabel="Email" datafield="All Fields" orderby="Email:desc" on-focus="Variables.getListOfUsers.invoke()"></wm-search>
         </wm-dialog>
@@ -324,8 +325,8 @@
                 </wm-composite>
             </wm-form>
             <wm-dialogactions name="dialogactions5">
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7_1" iconclass="wi wi-cancel"></wm-button>
                 <wm-button class="btn-primary" caption="Add" name="button8_1" on-click="Variables.addMunicipalityGroupMembers.createRecord();button8_1Click($event, $scope)" iconclass="wi wi-add" show="true" disabled="bind:!(Widgets.form1.formWidgets.addGroupMembersSelect.datavalue.id > 0)"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7_1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

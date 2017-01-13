@@ -24,7 +24,7 @@
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow29">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn36_2" horizontalalign="center">
-                                                    <wm-button class="btn-default btn-primary" caption="Upload Photo" type="button" name="buttonUpdateProfilePic" iconclass="wi wi-upload" on-click="Widgets.dialog1.open()" margin="2em unset"></wm-button>
+                                                    <wm-button class="btn-primary" caption="Upload Photo" type="button" name="buttonUpdateProfilePic" iconclass="wi wi-upload" on-click="Widgets.dialog1.open()" margin="2em unset"></wm-button>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
@@ -95,7 +95,7 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow22">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn38" horizontalalign="right">
-                                        <wm-button class="btn-default btn-primary" caption="Save" type="button" name="buttonSaveProInfo" iconclass="wi wi-save" on-click="Variables.UpdateInfoFromMyProfile.invoke()" margin="1% 3% 1% unset"></wm-button>
+                                        <wm-button class="btn-primary" caption="Save" type="button" name="buttonSaveProInfo" iconclass="wi wi-save" on-click="Variables.UpdateInfoFromMyProfile.invoke()" margin="1% 3% 1% unset"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -200,7 +200,7 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow30">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn33_4" horizontalalign="right">
-                                        <wm-button class="btn-default btn-primary" caption="Save" type="button" margin="1% 3% 1% unset" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
+                                        <wm-button class="btn-primary" caption="Save" type="button" margin="1% 3% 1% unset" iconclass="wi wi-save" name="buttonSaveCF" on-tap="Variables.UpdateCFInProfile.invoke()"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -240,7 +240,7 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow27">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn36_1" horizontalalign="right">
-                                        <wm-button class="btn-default btn-primary" caption="Save" type="submit" margin="1% 3% 1% unset" name="buttonUpdateNew" iconclass="wi wi-save"></wm-button>
+                                        <wm-button class="btn-primary" caption="Save" type="submit" margin="1% 3% 1% unset" name="buttonUpdateNew" iconclass="wi wi-save"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -254,8 +254,8 @@
     <wm-view class="dialog-view" name="view1">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Upload Photo" iconclass="wi wi-upload" name="dialog1" on-opened="dialog1Opened($event, $scope)">
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
                 <wm-button class="btn-primary" caption="Upload" name="buttonSave" on-click="Widgets.liveformUpdate.save()" iconclass="wi wi-upload"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.Cx2UsersData.dataSet" captionalign="left" captionposition="top" name="liveformUpdate">
                 <wm-layoutgrid columns="1" name="layoutgrid4">

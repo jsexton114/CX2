@@ -170,8 +170,8 @@
     <wm-view class="dialog-view" name="view1">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Upload Logo" iconclass="wi wi-upload" name="dialog1" on-opened="dialog1Opened($event, $scope)">
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button5_1" on-click="Widgets.dialog1.close()" iconclass="wi wi-cancel"></wm-button>
                 <wm-button class="btn-raised btn-primary" caption="Upload" name="button4" on-click="Widgets.liveformUpdateLogo.save()" iconclass="wi wi-upload"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button5_1" on-click="Widgets.dialog1.close()" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.UpdateLogoMunicipalities.dataSet" captionalign="left" captionposition="top" name="liveformUpdateLogo">
                 <wm-layoutgrid columns="1" name="layoutgrid5">
