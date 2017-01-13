@@ -51,19 +51,20 @@
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
-                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
-                                    <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
-                                    <wm-form-field name="reviewer" displayname="Reviewer" show="false" primary-key="false" generator="assigned" key="reviewer" type="string" widget="text" maxchars="255" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.email"
-                                    inputtype="text" placeholder="Enter value"></wm-form-field>
-                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select value"></wm-form-field>
-                                    <wm-form-field name="vendor" displayname="Vendor" show="false" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" widget="select" placeholder="Select value"></wm-form-field>
-                                    <wm-form-field name="dateApproved" displayname="Date Approved" show="false" primary-key="false" generator="assigned" key="dateApproved" type="date" widget="date" defaultvalue="CURRENT_DATE" placeholder="Select date"
-                                    outputformat="yyyy-MM-dd" showbuttonbar="false" datepattern="yyyy-MM-dd"></wm-form-field>
                                     <wm-form-field name="approvedBy" displayname="Approved By" show="false" primary-key="false" generator="assigned" key="approvedBy" type="string" widget="text" maxchars="255" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.email"
                                     inputtype="text" placeholder="Enter value"></wm-form-field>
-                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                    <wm-form-field name="dateApproved" displayname="Date Approved" show="false" primary-key="false" generator="assigned" key="dateApproved" type="date" widget="date" defaultvalue="CURRENT_DATE" placeholder="Select date"
+                                    outputformat="yyyy-MM-dd" showbuttonbar="false" datepattern="yyyy-MM-dd"></wm-form-field>
+                                    <wm-form-field name="vendor" displayname="Vendor" show="false" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" widget="select" placeholder="Select value"></wm-form-field>
+                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select value"></wm-form-field>
+                                    <wm-form-field name="reviewer" displayname="Reviewer" show="false" primary-key="false" generator="assigned" key="reviewer" type="string" widget="text" maxchars="255" defaultvalue="bind:Variables.CurrentUserDetails.dataSet.email"
+                                    inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
+                                    placeholder=""></wm-form-field>
                                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" action="Variables.UpdateVendorStatusFromPending.invoke()" disabled="false"
                                     type="button" update-mode="true"></wm-form-action>
+                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                 </wm-liveform>
                             </wm-livegrid>
                         </wm-panel>
@@ -113,10 +114,10 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                     <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
-                                    <wm-form-action key="reset" display-name="Cancel" show="true" class="form-reset btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" shortcutkey="" disabled="false" type="button"
-                                    update-mode="true"></wm-form-action>
                                     <wm-form-action key="cancel" display-name="Save" show="true" class="form-cancel btn-primary" iconclass="wi wi-save" title="Save" action="Variables.UpdateVendorStatusFromApproved.invoke()" disabled="false"
                                     type="button" update-mode="true"></wm-form-action>
+                                    <wm-form-action key="reset" display-name="Cancel" show="true" class="form-reset btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" shortcutkey="" disabled="false" type="button"
+                                    update-mode="true"></wm-form-action>
                                     <wm-form-action key="edit" display-name="Edit" show="true" class="form-update btn-secondary" iconclass="wi wi-pencil" title="Edit" action="edit()" shortcutkey="" disabled="false" type="button" update-mode="false"></wm-form-action>
                                 </wm-liveform>
                             </wm-livegrid>
@@ -148,14 +149,14 @@
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
-                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
+                                    <wm-form-field name="expiresDate" displayname="Expires Date" show="false" primary-key="false" generator="assigned" key="expiresDate" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd" mindate="bind:toDay | toDate: 'yyyy-MM-dd'"></wm-form-field>
                                     <wm-form-field name="dateApproved" displayname="Date Approved" show="false" primary-key="false" generator="assigned" key="dateApproved" type="date" widget="date" outputformat="yyyy-MM-dd" placeholder="Select date"
                                     defaultvalue="CURRENT_DATE"></wm-form-field>
-                                    <wm-form-field name="expiresDate" displayname="Expires Date" show="false" primary-key="false" generator="assigned" key="expiresDate" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd"
-                                    mindate="bind:toDay | toDate: 'yyyy-MM-dd'"></wm-form-field>
-                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
+                                    placeholder=""></wm-form-field>
                                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" action="Variables.UpdateVendorStatusFromSuspended.invoke()" disabled="false"
                                     type="button" update-mode="true"></wm-form-action>
+                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                 </wm-liveform>
                             </wm-livegrid>
                         </wm-panel>
@@ -168,7 +169,7 @@
     <wm-view class="dialog-view" name="view1">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Vendor Profile" iconclass="wi wi-file-text" name="viewCompanyDetails" width="75%">
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-liveform novalidate="false" errormessage="" title="" formlayout="inline" iconclass="" dataset="bind:Variables.VendorProfile.dataSet.data[0]
 " captionalign="left" captionposition="top" name="liveform4" class="panel-primary">

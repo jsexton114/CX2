@@ -28,21 +28,22 @@
                                 <wm-layoutgrid columns="3" name="layoutgrid3">
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn6_1">
-                                            <wm-form-field name="municipalities" displayname="Municipality" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select Municipality" displayexpression="municipalityName"
-                                            orderby="municipalityName:asc" required="true"></wm-form-field>
+                                            <wm-form-field name="municipalities" displayname="Municipality" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" required="required" widget="select" placeholder="Select Municipality"
+                                            displayexpression="municipalityName" orderby="municipalityName:asc"></wm-form-field>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn7">
-                                            <wm-form-field name="users" displayname="User" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="autocomplete" placeholder="Search by Email" displaylabel="email" orderby="email:asc" searchkey="email"
-                                            required="true"></wm-form-field>
+                                            <wm-form-field name="users" displayname="User" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" required="required" widget="autocomplete" placeholder="Search by Email"
+                                            displaylabel="email" orderby="email:asc" searchkey="email"></wm-form-field>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4">
-                                            <wm-form-field name="dateSubscribed" displayname="Date Subscribed" show="true" primary-key="false" generator="assigned" key="dateSubscribed" type="string" widget="date" maxchars="255" defaultvalue="CURRENT_DATE" readonly="true" datepattern="MM-dd-yyyy"></wm-form-field>
+                                            <wm-form-field name="dateSubscribed" displayname="Date Subscribed" show="true" primary-key="false" generator="assigned" key="dateSubscribed" type="timestamp" readonly="readonly" widget="date" maxchars="255" defaultvalue="CURRENT_DATE"
+                                            datepattern="MM-dd-yyyy" placeholder="Select date" outputformat="timestamp"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                                 <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
-                                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                 <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                             </wm-liveform>
                         </wm-livegrid>
                     </wm-gridcolumn>
