@@ -13,8 +13,79 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn3"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn4"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                        <wm-panel iconclass="" autoclose="outsideClick" name="panelFormStatus" title="Form Status" class="panel-primary">
+                            <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-4 lg-4" class="media-list" dataset="bind:Variables.TempStatusList.dataSet" navigation="Inline" name="livelist1" pagesize="4"
+                            selectfirstitem="true">
+                                <wm-listtemplate layout="inline" name="listtemplate1">
+                                    <wm-container class="media-body" padding="unset unset unset 1.25em" name="container2">
+                                        <wm-label name="Name" class="p media-heading" caption="bind:Variables.TempStatusList.dataSet.dataValue" fontsize="1.143" fontunit="em"></wm-label>
+                                    </wm-container>
+                                </wm-listtemplate>
+                            </wm-livelist>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn5_1">
+                        <wm-panel iconclass="" autoclose="outsideClick" name="panelFormReview" title="Form Review" class="panel-primary">
+                            <wm-layoutgrid name="layoutgrid3">
+                                <wm-gridrow name="gridrow9" padding=".5em unset">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn16"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn17">
+                                        <wm-composite name="composite1">
+                                            <wm-label class="col-md-3 control-label" name="label4" caption="Status"></wm-label>
+                                            <wm-container class="col-md-9" name="container2_1">
+                                                <wm-select name="select1"></wm-select>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn20"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow10" padding="unset unset .5em unset">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn18"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn19">
+                                        <wm-composite name="composite2">
+                                            <wm-label class="col-md-3 control-label" name="label5" caption="Notes"></wm-label>
+                                            <wm-container class="col-md-9" name="container3">
+                                                <wm-textarea name="textarea1"></wm-textarea>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn21"></wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow4">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                        <wm-panel iconclass="" autoclose="outsideClick" name="panelForm" title="Form" class="panel-primary">
+                            <wm-layoutgrid name="layoutgrid2">
+                                <wm-gridrow name="gridrow6">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center">
+                                        <wm-picture name="picture2" picturesource="bind:&quot;services/cx2/Municipalities/&quot;+pageParams.MunicipalityId+&quot;/content/logo&quot;" width="100pt" height="100pt"></wm-picture>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn14"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow7">
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn10"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn11" horizontalalign="center">
+                                        <wm-label padding="unset 0.5em" name="label7" class="h1" caption="bind:pageParams.FormName"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow8">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn12"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn13"></wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow5">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn7"></wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
