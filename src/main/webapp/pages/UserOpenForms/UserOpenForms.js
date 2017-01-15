@@ -17,7 +17,7 @@ Application.$controller("UserOpenFormsPageController", ["$scope", function ($sco
 }]);
 
 
-Application.$controller("grid1Controller", ["$scope",
+Application.$controller("gridOpenFormsController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;

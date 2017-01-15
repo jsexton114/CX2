@@ -61,7 +61,10 @@
 }, {
   "name" : "Forms",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "FormGUID",
+    "type" : "string"
+  } ]
 }, {
   "name" : "Login",
   "type" : "PAGE",
@@ -100,6 +103,10 @@
   "params" : [ ]
 }, {
   "name" : "ManageGISData",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ManageMuncipalityGroups",
   "type" : "PAGE",
   "params" : [ ]
 }, {

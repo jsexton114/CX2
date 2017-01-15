@@ -223,10 +223,18 @@
     "name" : "goToPage_Forms",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "Forms",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "Forms",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "string",
+      "target" : "FormGUID",
+      "value" : "bind:Widgets.gridOpenForms.selecteditem.formGuid"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_Main" : {
