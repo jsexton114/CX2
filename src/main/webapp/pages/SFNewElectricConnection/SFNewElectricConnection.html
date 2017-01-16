@@ -15,7 +15,7 @@
                     <wm-gridrow name="gridrow12">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn13" padding="2em unset">
                             <wm-label padding="0.5em 0.5em 0em 0.5em" name="label1" width="100%" fontsize="20" fontweight="bold" horizontalalign="center" caption="New Electrical Connection"></wm-label>
-                            <wm-panel iconclass="wi wi-account-circle" name="panel1" title="Property Owner Details" badgetype="default" class="panel-info">
+                            <wm-panel iconclass="wi wi-account-circle" name="panel1" title="Property Owner Details" badgetype="default" class="panel-primary">
                                 <wm-gridrow name="gridrow1">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn1">
                                         <wm-form-field name="propertyOwnerName" displayname="Property Owner Name" show="true" primary-key="false" generator="assigned" key="propertyOwnerName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
@@ -29,7 +29,7 @@
                     </wm-gridrow>
                     <wm-gridrow name="gridrow11_1">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn12_1">
-                            <wm-panel iconclass="wi wi-building" name="panel2" title="Building Dimensions" class="panel-info">
+                            <wm-panel iconclass="wi wi-building" name="panel2" title="Building Dimensions" class="panel-primary">
                                 <wm-gridrow name="gridrow4">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn4">
                                         <wm-form-field name="basementSft" displayname="Basement Sft" show="true" primary-key="false" generator="assigned" key="basementSft" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
@@ -48,7 +48,7 @@
                     </wm-gridrow>
                     <wm-gridrow name="gridrow11_2">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn15" padding="2em unset">
-                            <wm-panel iconclass="wi wi-account-circle" title="Property Details" badgetype="default" class="panel-info" name="panel3">
+                            <wm-panel iconclass="wi wi-account-circle" title="Property Details" badgetype="default" class="panel-primary" name="panel3">
                                 <wm-gridrow name="gridrow12_1">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn16">
                                         <wm-form-field name="sidingMaterial" displayname="Siding Material" show="true" primary-key="false" generator="assigned" key="sidingMaterial" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
@@ -65,16 +65,14 @@
                             </wm-panel>
                         </wm-gridcolumn>
                     </wm-gridrow>
-                    <wm-gridrow name="gridrow9DontDelete">
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn9"></wm-gridcolumn>
-                    </wm-gridrow>
                 </wm-layoutgrid>
-                <wm-form-field name="users" displayname="Users" show="false" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="select" dataset="bind:Variables.UserObj.dataSet" datafield="All Fields" displayfield="email"
-                defaultvalue="bind:Variables.UserObj.firstRecord" placeholder="Select value"></wm-form-field>
+                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
                 <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" dataset="bind:Variables.FormObj.dataSet" datafield="All Fields"
                 displayfield="formType" defaultvalue="bind:Variables.FormObj.firstRecord" placeholder="Select value"></wm-form-field>
+                <wm-form-field name="users" displayname="Users" show="false" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="select" dataset="bind:Variables.UserObj.dataSet" datafield="All Fields"
+                displayfield="email" defaultvalue="bind:Variables.UserObj.firstRecord" placeholder="Select value"></wm-form-field>
+                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                 <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
             </wm-liveform>
             <!--  __________________Main______________________________ -->
         </wm-page-content>

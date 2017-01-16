@@ -64,14 +64,14 @@
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>
-                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
-                <wm-form-field name="users" displayname="Users" show="false" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="select" dataset="bind:Variables.UserObj.dataSet" datafield="All Fields"
-                defaultvalue="bind:Variables.UserObj.firstRecord" displayfield="email" placeholder="Select value"></wm-form-field>
                 <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" dataset="bind:Variables.FormObj.dataSet" datafield="All Fields"
                 defaultvalue="bind:Variables.FormObj.firstRecord" placeholder="Select value"></wm-form-field>
-                <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                <wm-form-action key="cancel" display-name="Save" show="true" class="form-cancel btn-primary" iconclass="wi wi-save" title="Save" action="cancelAction($event)" shortcutkey="" disabled="false" type="button" update-mode="true"></wm-form-action>
+                <wm-form-field name="users" displayname="Users" show="false" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="select" dataset="bind:Variables.UserObj.dataSet" datafield="All Fields"
+                defaultvalue="bind:Variables.UserObj.firstRecord" displayfield="email" placeholder="Select value"></wm-form-field>
+                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
+                <wm-form-action key="cancel" display-name="Save" show="true" class="form-cancel btn-secondary" iconclass="wi wi-save" title="Save" action="cancelAction($event)" shortcutkey="" disabled="false" type="button" update-mode="true"></wm-form-action>
                 <wm-form-action key="save" display-name="Submit" show="true" class="form-save btn-primary" iconclass="wi wi-assignment" title="Submit" action="saveAction($event)" disabled="false" type="button" update-mode="true"></wm-form-action>
+                <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" disabled="false" type="button" update-mode="true"></wm-form-action>
             </wm-liveform>
         </wm-page-content>
     </wm-content>
