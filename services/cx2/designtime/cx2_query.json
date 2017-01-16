@@ -1206,7 +1206,7 @@
     "returnTypeMetadata" : { }
   }, {
     "name" : "UpdateDevFormDetailsForCXAdmin",
-    "query" : "UPDATE FormTypes set TbLocation=:TbLocation, PageName=:PageName, Report=:Report where ID=:form",
+    "query" : "UPDATE FormTypes set TbLocation=:TbLocation, PageName=:PageName, Report=:Report, FormTableName=:FormTableName where ID=:form",
     "comment" : "UpdateDevFormDetailsForCXAdmin",
     "description" : null,
     "nativeSql" : true,
@@ -1230,6 +1230,13 @@
       "paramName" : "Report",
       "paramType" : "java.lang.String",
       "testValue" : "PUDApplication",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "FormTableName",
+      "paramType" : "java.lang.String",
+      "testValue" : "PUDTableName",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false

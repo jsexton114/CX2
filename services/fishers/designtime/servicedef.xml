@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="fishers" type="DataService" springFile="fishers.spring.xml">
+    <operation operationType="nativequery" name="addNewResidentialStructure">
+        <return isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="addNewResidentialStructure">
+        <return typeRef="fishersaddNewResidentialStructurertnType" isList="false"/>
+    </operation>
     <dataobjects>
         <dataobject javaType="com.civicxpress.fishers.NewResidentialStructure">
             <element name="createdBy" typeRef="java.lang.String" allowNull="true"/>

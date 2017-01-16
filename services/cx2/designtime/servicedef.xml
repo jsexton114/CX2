@@ -197,6 +197,7 @@
         <parameter name="TbLocation" typeRef="java.lang.String" isList="false"/>
         <parameter name="PageName" typeRef="java.lang.String" isList="false"/>
         <parameter name="Report" typeRef="java.lang.String" isList="false"/>
+        <parameter name="FormTableName" typeRef="java.lang.String" isList="false"/>
         <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateDevFormDetailsForCXAdminrtnType" isList="false"/>
     </operation>
@@ -497,6 +498,7 @@
         <parameter name="TbLocation" typeRef="java.lang.String" isList="false"/>
         <parameter name="PageName" typeRef="java.lang.String" isList="false"/>
         <parameter name="Report" typeRef="java.lang.String" isList="false"/>
+        <parameter name="FormTableName" typeRef="java.lang.String" isList="false"/>
         <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateDevFormDetailsForCXAdminrtnType" isList="false"/>
     </operation>
@@ -681,6 +683,7 @@
             <element name="flatFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="formCategoryMappings" typeRef="com.civicxpress.cx2.FormCategoryMapping" isList="true" allowNull="true"/>
             <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
+            <element name="formTableName" typeRef="java.lang.String" allowNull="true"/>
             <element name="formType" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="gismap" typeRef="java.lang.Boolean" allowNull="true"/>
@@ -869,6 +872,9 @@
             <element name="allowManualPayment" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="city" typeRef="java.lang.String" allowNull="true"/>
             <element name="closeTime" typeRef="java.util.Date" allowNull="true"/>
+            <element name="dbName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="dbPassword" typeRef="java.lang.String" allowNull="true"/>
+            <element name="dbUser" typeRef="java.lang.String" allowNull="true"/>
             <element name="email" typeRef="java.lang.String" allowNull="true"/>
             <element name="feeses" typeRef="com.civicxpress.cx2.Fees" isList="true" allowNull="true"/>
             <element name="formCategorieses" typeRef="com.civicxpress.cx2.FormCategories" isList="true" allowNull="true"/>

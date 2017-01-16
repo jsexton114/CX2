@@ -63,6 +63,9 @@ public class Municipalities implements Serializable {
     private String timeZone;
     private Date openTime;
     private Date closeTime;
+    private String dbName;
+    private String dbUser;
+    private String dbPassword;
     private States states;
     private List<Fees> feeses = new ArrayList<>();
     private List<FormCategories> formCategorieses = new ArrayList<>();
@@ -303,6 +306,33 @@ public class Municipalities implements Serializable {
 
     public void setCloseTime(Date closeTime) {
         this.closeTime = closeTime;
+    }
+
+    @Column(name = "`DbName`", nullable = true, length = 255)
+    public String getDbName() {
+        return this.dbName;
+    }
+
+    public void setDbName(String dbName) {
+        this.dbName = dbName;
+    }
+
+    @Column(name = "`DbUser`", nullable = true, length = 255)
+    public String getDbUser() {
+        return this.dbUser;
+    }
+
+    public void setDbUser(String dbUser) {
+        this.dbUser = dbUser;
+    }
+
+    @Column(name = "`DbPassword`", nullable = true, length = 255)
+    public String getDbPassword() {
+        return this.dbPassword;
+    }
+
+    public void setDbPassword(String dbPassword) {
+        this.dbPassword = dbPassword;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -60,6 +60,7 @@ public class FormTypes implements Serializable {
     private Boolean gisrecord;
     private Boolean multipleGisrecords;
     private Boolean gismap;
+    private String formTableName;
     private List<FormStatuses> formStatuseses = new ArrayList<>();
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
@@ -313,6 +314,15 @@ public class FormTypes implements Serializable {
 
     public void setGismap(Boolean gismap) {
         this.gismap = gismap;
+    }
+
+    @Column(name = "`FormTableName`", nullable = true, length = 255)
+    public String getFormTableName() {
+        return this.formTableName;
+    }
+
+    public void setFormTableName(String formTableName) {
+        this.formTableName = formTableName;
     }
 
     @JsonInclude(Include.NON_EMPTY)

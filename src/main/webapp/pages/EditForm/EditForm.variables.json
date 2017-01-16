@@ -391,6 +391,45 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "dbName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "DbName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "dbUser",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "DbUser",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "dbPassword",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "DbPassword",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -862,13 +901,26 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "formTableName",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "FormTableName",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "FormTypes",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormTypes",
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 6,
+    "bindCount" : 7,
     "tableName" : "FormTypes",
     "tableType" : "TABLE",
     "properties" : [ ],
@@ -1402,6 +1454,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "formTableName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FormTableName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -1832,6 +1897,45 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "dbName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "DbName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "dbUser",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "DbUser",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "dbPassword",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "DbPassword",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -2292,6 +2396,19 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "formTableName",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "FormTableName",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -2892,6 +3009,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "formTableName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FormTableName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "municipalityGroupsByReadAccess",
@@ -3320,6 +3450,10 @@
       "target" : "form",
       "value" : "bind:pageParams.FormTypeId",
       "type" : "integer"
+    }, {
+      "target" : "FormTableName",
+      "value" : "bind:Widgets.textFormTableName.datavalue",
+      "type" : "string"
     } ],
     "type" : "cx2UpdateDevFormDetailsForCXAdminrtnType",
     "service" : "cx2",
@@ -3719,6 +3853,19 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "formTableName",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "FormTableName",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,

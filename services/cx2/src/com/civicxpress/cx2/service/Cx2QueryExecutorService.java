@@ -58,7 +58,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeSubDivisonCount(Pageable pageable, java.lang.Integer municipalityId) throws QueryParameterMismatchException;
 	int executeUpdateAsCXVendorAdmin(  java.lang.String role , java.lang.Integer municipality , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateCFInProfile(  java.lang.String cf , java.lang.Integer user) throws QueryParameterMismatchException;
-	int executeUpdateDevFormDetailsForCXAdmin(  java.lang.String TbLocation , java.lang.String PageName , java.lang.String Report , java.lang.Integer form) throws QueryParameterMismatchException;
+	int executeUpdateDevFormDetailsForCXAdmin(  java.lang.String TbLocation , java.lang.String PageName , java.lang.String Report , java.lang.String FormTableName , java.lang.Integer form) throws QueryParameterMismatchException;
 	int executeUpdateGlobalEmailSig(  java.lang.String gs , java.lang.Integer municipality) throws QueryParameterMismatchException;
 	int executeUpdateInfoFromMyProfile(  java.lang.String fn , java.lang.String ln , java.lang.String em , java.lang.String ph , java.lang.String ad1 , java.lang.String ad2 , java.lang.Integer st , java.lang.String ct , java.lang.String ctry , java.lang.String pc , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateMunicipalityInfo(  java.lang.String mn , java.lang.String em , java.lang.String ph , java.lang.String ad1 , java.lang.String ad2 , java.lang.Integer st , java.lang.String ct , java.lang.String pc , java.lang.Integer municipality) throws QueryParameterMismatchException;

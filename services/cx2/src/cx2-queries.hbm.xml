@@ -219,7 +219,7 @@
   </sql-query>
   <sql-query name="UpdateDevFormDetailsForCXAdmin">
     <![CDATA[
-      UPDATE FormTypes set TbLocation=:TbLocation, PageName=:PageName, Report=:Report where ID=:form
+      UPDATE FormTypes set TbLocation=:TbLocation, PageName=:PageName, Report=:Report, FormTableName=:FormTableName where ID=:form
     ]]>
   </sql-query>
   <sql-query name="UpdateGlobalEmailSig">

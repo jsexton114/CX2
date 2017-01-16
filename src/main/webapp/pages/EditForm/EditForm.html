@@ -339,6 +339,16 @@
                                             </wm-composite>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
+                                    <wm-gridrow name="gridrow36_2">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn61_3">
+                                            <wm-composite name="composite4">
+                                                <wm-label class="col-md-3 control-label" name="label5_1" caption="Form Table Name"></wm-label>
+                                                <wm-container class="col-md-9" name="container4">
+                                                    <wm-text name="textFormTableName" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].formTableName"></wm-text>
+                                                </wm-container>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow29">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn64" padding="1em unset" horizontalalign="right">
                                             <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdateDevDetails" iconclass="wi wi-update" on-click="Variables.UpdateDevFormDetailsForCXAdmin.invoke()" horizontalalign="right"></wm-button>
