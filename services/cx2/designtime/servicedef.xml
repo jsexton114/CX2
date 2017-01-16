@@ -11,7 +11,7 @@
     <operation operationType="nativequery" name="DeleteFromVendorUsers">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
+        <return typeRef="cx2DeleteFromVendorUsersrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
