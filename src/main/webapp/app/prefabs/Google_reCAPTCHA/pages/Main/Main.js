@@ -59,8 +59,6 @@ Application.$controller("Google_reCAPTCHAController", ["$scope", function($scope
 
 
     $scope.verifyRecaptchaonSuccess = function(variable, data) {
-        $scope
-        debugger;
 
     };
 

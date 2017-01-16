@@ -15,11 +15,11 @@
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="" autoclose="outsideClick" name="panelFormStatus" title="Form Status" class="panel-primary">
-                            <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-4 lg-4" class="media-list" dataset="bind:Variables.TempStatusList.dataSet" navigation="Inline" name="livelist1" pagesize="4"
-                            selectfirstitem="true">
+                            <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-4 lg-4" class="media-list" dataset="bind:Variables.FormStatus.dataSet" navigation="Inline" name="livelistStatus" pagesize="4"
+                            selectfirstitem="true" orderby="sortOrder:asc" loadingdatamsg="" nodatamessage="No Status found">
                                 <wm-listtemplate layout="inline" name="listtemplate1">
                                     <wm-container class="media-body" padding="unset unset unset 1.25em" name="container2">
-                                        <wm-label name="Name" class="p media-heading" caption="bind:Variables.TempStatusList.dataSet.dataValue" fontsize="1.143" fontunit="em"></wm-label>
+                                        <wm-label name="Name" class="p media-heading" caption="bind:Variables.FormStatus.dataSet.data[$i].status" fontsize="1.143" fontunit="em"></wm-label>
                                     </wm-container>
                                 </wm-listtemplate>
                             </wm-livelist>
@@ -36,7 +36,7 @@
                                         <wm-composite name="composite1">
                                             <wm-label class="col-md-3 control-label" name="label4" caption="Status"></wm-label>
                                             <wm-container class="col-md-9" name="container2_1">
-                                                <wm-select name="select1"></wm-select>
+                                                <wm-select name="selectStatus" dataset="bind:Variables.FormStatusForUpdate.dataSet" datafield="All Fields" displayfield="status" orderby="sortOrder:asc" datavalue="bind:Widgets.livelistStatus.selecteditem"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -48,7 +48,7 @@
                                         <wm-composite name="composite2">
                                             <wm-label class="col-md-3 control-label" name="label5" caption="Notes"></wm-label>
                                             <wm-container class="col-md-9" name="container3">
-                                                <wm-textarea name="textarea1"></wm-textarea>
+                                                <wm-textarea name="textareaNotes" placeholder="Please enter your comments"></wm-textarea>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -85,7 +85,17 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow5">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn7"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn7">
+                        <wm-tabs name="tabs1">
+                            <wm-tabpane name="tabpaneFees" title="FEES"></wm-tabpane>
+                            <wm-tabpane name="tabpaneInspections" title="INSPECTIONS"></wm-tabpane>
+                            <wm-tabpane name="tabpaneMessages" title="MESSAGES"></wm-tabpane>
+                            <wm-tabpane name="tabpaneLocation" title="LOCATION"></wm-tabpane>
+                            <wm-tabpane name="tabpaneAttachments" title="ATTACHMENTS"></wm-tabpane>
+                            <wm-tabpane name="tabpaneContacts" title="CONTACTS"></wm-tabpane>
+                            <wm-tabpane name="tabpaneHistory" title="HISTORY"></wm-tabpane>
+                        </wm-tabs>
+                    </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
