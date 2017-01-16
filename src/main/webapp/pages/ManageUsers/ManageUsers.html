@@ -29,7 +29,7 @@
                             </wm-grid>
                         </wm-panel>
                         <wm-livegrid formlayout="dialog" name="livegrid2">
-                            <wm-liveform novalidate="false" errormessage="" title="User Details" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2UsersData.dataSet" captionalign="left" captionposition="top" name="liveform2">
+                            <wm-liveform novalidate="false" errormessage="" title="User Details" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2UsersData.dataSet" captionalign="left" captionposition="top" name="liveform2" defaultmode="View">
                                 <wm-layoutgrid columns="3" name="layoutgrid3">
                                     <wm-gridrow name="gridrow10">
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn17">
@@ -71,7 +71,7 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn27_1">
                                             <wm-form-field name="communicationFrequency" displayname="Communication Frequency" show="true" primary-key="false" generator="assigned" key="communicationFrequency" type="string" widget="select" maxchars="255" placeholder="Select Communication Frequency"
-                                            dataset="Immediately,Daily(Recommended),Weekly,Monthly,None"></wm-form-field>
+                                            dataset="Immediately,Daily (Recommended),Weekly,Monthly,Never"></wm-form-field>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn28_1">
                                             <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
