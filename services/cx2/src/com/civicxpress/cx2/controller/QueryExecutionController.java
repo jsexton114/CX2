@@ -80,6 +80,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/CheckingUserWithInVendorUsers", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeCheckingUserWithInVendorUsers(@RequestParam(value = "user", required = false) java.lang.Integer user, @RequestParam(value = "vendor", required = false) java.lang.Integer vendor, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query CheckingUserWithInVendorUsers");
+        Page<Object> result = queryService.executeCheckingUserWithInVendorUsers(pageable, user, vendor);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/CheckingUserWithMunicipalityInRoles", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeCheckingUserWithMunicipalityInRoles(@RequestParam(value = "muncipality", required = false) java.lang.Integer muncipality, @RequestParam(value = "user", required = false) java.lang.Integer user, Pageable pageable) throws QueryParameterMismatchException {
@@ -162,9 +172,9 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/DeleteFromVendorAdmins", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public int executeDeleteFromVendorAdmins(@RequestParam(value = "user", required = false) java.lang.Integer user) throws QueryParameterMismatchException {
+    public int executeDeleteFromVendorAdmins(@RequestParam(value = "user", required = false) java.lang.Integer user, @RequestParam(value = "vendor", required = false) java.lang.Integer vendor) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query DeleteFromVendorAdmins");
-        int result = queryService.executeDeleteFromVendorAdmins(user);
+        int result = queryService.executeDeleteFromVendorAdmins(user, vendor);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }
@@ -172,9 +182,9 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/DeleteFromVendorUsers", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public int executeDeleteFromVendorUsers(@RequestParam(value = "vendor", required = false) java.lang.Integer vendor) throws QueryParameterMismatchException {
+    public int executeDeleteFromVendorUsers(@RequestParam(value = "user", required = false) java.lang.Integer user, @RequestParam(value = "vendor", required = false) java.lang.Integer vendor) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query DeleteFromVendorUsers");
-        int result = queryService.executeDeleteFromVendorUsers(vendor);
+        int result = queryService.executeDeleteFromVendorUsers(user, vendor);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

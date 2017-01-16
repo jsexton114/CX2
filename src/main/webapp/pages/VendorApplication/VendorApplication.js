@@ -9,11 +9,19 @@ Application.$controller("VendorApplicationPageController", ["$scope", "wmToaster
 
 
     $scope.VendorDataonSuccess = function(variable, data) {
+        //adding as vendoradmin to that company
         $scope.Variables.MapAsAdminForVendor.setInput({
             "UserId": $scope.Variables.CurrentUserDetails.dataSet.id,
             "VendorId": data.id
         });
         $scope.Variables.MapAsAdminForVendor.update();
+        //adding as user to that company
+        $scope.Variables.AddUsersToCompany.setInput({
+            "UserId": $scope.Variables.CurrentUserDetails.dataSet.id,
+            "VendorId": data.id
+        });
+        $scope.Variables.AddUsersToCompany.update();
+
     };
 
 

@@ -1,4 +1,32 @@
 {
+  "AddUsersToCompany" : {
+    "_id" : "wm-AddUsersToCompany-wm.ServiceVariable-1484559133270",
+    "name" : "AddUsersToCompany",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "JoiningDate",
+      "value" : "bind:Variables.Today.dataSet.dataValue | toDate: 'MM-dd-yyyy'",
+      "type" : "string"
+    } ],
+    "type" : "cx2AddUsersToVendorrtnType",
+    "service" : "cx2",
+    "operation" : "executeAddUsersToVendor",
+    "operationId" : "QueryExecutionController_executeAddUsersToVendor",
+    "operationType" : "post",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "BreadCrum" : {
     "_id" : "wm-BreadCrum-wm.Variable-1481178589839",
     "name" : "BreadCrum",

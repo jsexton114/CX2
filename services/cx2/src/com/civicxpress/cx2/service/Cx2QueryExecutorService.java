@@ -19,6 +19,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeAdminsMunicipalities(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeAdminVendorsList(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeBannedDetails(Pageable pageable, java.lang.String emailid) throws QueryParameterMismatchException;
+    Page<Object> executeCheckingUserWithInVendorUsers(Pageable pageable, java.lang.Integer user, java.lang.Integer vendor) throws QueryParameterMismatchException;
     Page<Object> executeCheckingUserWithMunicipalityInRoles(Pageable pageable, java.lang.Integer muncipality, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeCountOfFormsForMunicipality(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeCountOfUserForms(Pageable pageable, java.lang.Boolean closed, java.lang.Integer user) throws QueryParameterMismatchException;
@@ -27,8 +28,8 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeCountOfVendorUsers(Pageable pageable, java.lang.Integer vendor) throws QueryParameterMismatchException;
 	int executeDeleteCategoryMapping(  java.lang.Integer form) throws QueryParameterMismatchException;
 	int executeDeleteExistingSubscriptionsForUser(  java.lang.Integer user) throws QueryParameterMismatchException;
-	int executeDeleteFromVendorAdmins(  java.lang.Integer user) throws QueryParameterMismatchException;
-	int executeDeleteFromVendorUsers(  java.lang.Integer vendor) throws QueryParameterMismatchException;
+	int executeDeleteFromVendorAdmins(  java.lang.Integer user , java.lang.Integer vendor) throws QueryParameterMismatchException;
+	int executeDeleteFromVendorUsers(  java.lang.Integer user , java.lang.Integer vendor) throws QueryParameterMismatchException;
 	int executeDeleteMunicipalityGroup(  java.lang.Integer MunicipalityGroupId , java.lang.Integer UserId) throws QueryParameterMismatchException;
 	int executeDeleteRoleForMuncipality(  java.lang.String role , java.lang.Integer municipality , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeDeleteToken(  java.lang.String token) throws QueryParameterMismatchException;

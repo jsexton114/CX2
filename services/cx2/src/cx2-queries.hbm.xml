@@ -21,6 +21,11 @@
       select Banned from Users where Email =:emailid
     ]]>
   </sql-query>
+  <sql-query name="CheckingUserWithInVendorUsers">
+    <![CDATA[
+      select count(*) as exist from VendorUsers where UserId=:user and VendorId=:vendor
+    ]]>
+  </sql-query>
   <sql-query name="CheckingUserWithMunicipalityInRoles">
     <![CDATA[
       select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user and RoleName='MunicipalityEmployee'
@@ -63,12 +68,12 @@
   </sql-query>
   <sql-query name="DeleteFromVendorAdmins">
     <![CDATA[
-      delete from VendorAdmins where UserId=:user
+      delete from VendorAdmins where UserId=:user and VendorId=:vendor
     ]]>
   </sql-query>
   <sql-query name="DeleteFromVendorUsers">
     <![CDATA[
-      delete from VendorUsers where ID=:vendor
+      delete from VendorUsers where UserId=:user and VendorId=:vendor
     ]]>
   </sql-query>
   <sql-query name="deleteMunicipalityGroup">

@@ -364,6 +364,38 @@
     "isList" : true,
     "saveInPhonegap" : false
   },
+  "CheckingUserWithInVendorUsers" : {
+    "_id" : "wm-CheckingUserWithInVendorUsers-wm.ServiceVariable-1484554694095",
+    "name" : "CheckingUserWithInVendorUsers",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Widgets.searchForAdmin.datavalue.id",
+      "type" : "integer"
+    }, {
+      "target" : "vendor",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2CheckingUserWithInVendorUsersrtnType",
+    "service" : "cx2",
+    "operation" : "executeCheckingUserWithInVendorUsers",
+    "operationId" : "QueryExecutionController_executeCheckingUserWithInVendorUsers",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "DeleteFromVendorAdmins" : {
     "_id" : "wm-DeleteFromVendorAdmins-wm.ServiceVariable-1481034476996",
     "name" : "DeleteFromVendorAdmins",
@@ -372,6 +404,10 @@
     "dataBinding" : [ {
       "target" : "user",
       "value" : "bind:Widgets.gridAdmins.selecteditem.userId",
+      "type" : "integer"
+    }, {
+      "target" : "vendor",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
     "type" : "cx2DeleteFromVendorAdminsrtnType",
@@ -384,6 +420,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.VendorAdmins.listRecords()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -399,7 +436,11 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "vendor",
-      "value" : "bind:Widgets.gridVendorUsers.selecteditem.id",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    }, {
+      "target" : "user",
+      "value" : "bind:Widgets.gridVendorUsers.selecteditem.userId",
       "type" : "integer"
     } ],
     "type" : "cx2DeleteFromVendorUsersrtnType",
@@ -454,37 +495,33 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
-  "RemoveCXVendorAdminToUser" : {
-    "_id" : "wm-RemoveCXVendorAdminToUser-wm.ServiceVariable-1481033745731",
-    "name" : "RemoveCXVendorAdminToUser",
+  "Overide" : {
+    "_id" : "wm-Overide-wm.NotificationVariable-1484557906010",
+    "name" : "Overide",
     "owner" : "Page",
-    "category" : "wm.ServiceVariable",
+    "category" : "wm.NotificationVariable",
     "dataBinding" : [ {
-      "target" : "role",
-      "value" : "User",
+      "target" : "content",
+      "value" : "inline",
       "type" : "string"
     }, {
-      "target" : "user",
-      "value" : "bind:Widgets.gridAdmins.selecteditem.userId",
-      "type" : "integer"
+      "target" : "text",
+      "value" : "Give Role as CX-Vendor Admin Added Successfully",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
     } ],
-    "type" : "cx2UpdateAsCXVendorAdminrtnType",
-    "service" : "cx2",
-    "operation" : "executeUpdateAsCXVendorAdmin",
-    "operationId" : "QueryExecutionController_executeUpdateAsCXVendorAdmin",
-    "operationType" : "put",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
+    "operation" : "toast"
   },
   "UpdateAsCXVendorAdmin" : {
     "_id" : "wm-UpdateAsCXVendorAdmin-wm.ServiceVariable-1481033432768",
@@ -510,6 +547,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onError" : "Variables.Overide.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

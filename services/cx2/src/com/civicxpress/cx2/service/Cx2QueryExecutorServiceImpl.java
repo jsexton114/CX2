@@ -68,6 +68,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeCheckingUserWithInVendorUsers(Pageable pageable, java.lang.Integer user, java.lang.Integer vendor)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("user", user);
+        params.put("vendor", vendor);
+        return queryExecutor.executeNamedQuery("CheckingUserWithInVendorUsers", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeCheckingUserWithMunicipalityInRoles(Pageable pageable, java.lang.Integer muncipality, java.lang.Integer user)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -136,17 +145,19 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
-	public int executeDeleteFromVendorAdmins( java.lang.Integer user)
+	public int executeDeleteFromVendorAdmins( java.lang.Integer user ,java.lang.Integer vendor)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("user", user);
+        params.put("vendor", vendor);
         return queryExecutor.executeNamedQueryForUpdate("DeleteFromVendorAdmins", params);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
-	public int executeDeleteFromVendorUsers( java.lang.Integer vendor)
+	public int executeDeleteFromVendorUsers( java.lang.Integer user ,java.lang.Integer vendor)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
+        params.put("user", user);
         params.put("vendor", vendor);
         return queryExecutor.executeNamedQueryForUpdate("DeleteFromVendorUsers", params);
 	}

@@ -8,10 +8,6 @@
         <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2DeleteFormTypertnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="DeleteFromVendorUsers">
-        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2DeleteFromVendorUsersrtnType" isList="false"/>
-    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -29,6 +25,11 @@
     <operation operationType="nativequery" name="bannedDetails">
         <parameter name="emailid" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2bannedDetailsrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="CheckingUserWithInVendorUsers">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CheckingUserWithInVendorUsersrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="CheckingUserWithMunicipalityInRoles">
         <parameter name="muncipality" typeRef="java.lang.Integer" isList="false"/>
@@ -68,9 +69,11 @@
     </operation>
     <operation operationType="nativequery" name="DeleteFromVendorAdmins">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2DeleteFromVendorAdminsrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="DeleteFromVendorUsers">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2DeleteFromVendorUsersrtnType" isList="false"/>
     </operation>
@@ -283,6 +286,11 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="DeleteFromVendorUsers">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -300,6 +308,11 @@
     <operation operationType="nativequery" name="bannedDetails">
         <parameter name="emailid" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2bannedDetailsrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="CheckingUserWithInVendorUsers">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CheckingUserWithInVendorUsersrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="CheckingUserWithMunicipalityInRoles">
         <parameter name="muncipality" typeRef="java.lang.Integer" isList="false"/>
@@ -339,9 +352,11 @@
     </operation>
     <operation operationType="nativequery" name="DeleteFromVendorAdmins">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2DeleteFromVendorAdminsrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="DeleteFromVendorUsers">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2DeleteFromVendorUsersrtnType" isList="false"/>
     </operation>
@@ -1179,6 +1194,9 @@
             <element name="TimeZone" typeRef="java.lang.String"/>
             <element name="TuesdayYN" typeRef="java.lang.Boolean"/>
             <element name="WednesdayYN" typeRef="java.lang.Boolean"/>
+        </dataobject>
+        <dataobject javaType="cx2CheckingUserWithInVendorUsersrtnType">
+            <element name="exist" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2CheckingUserWithMunicipalityInRolesrtnType">
             <element name="exist" typeRef="java.lang.Integer"/>

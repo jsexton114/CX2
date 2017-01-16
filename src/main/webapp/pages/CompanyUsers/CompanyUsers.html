@@ -62,7 +62,7 @@
                                                 disabled="false"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="Widgets.dialogAdminProfile.open()"
                                                 disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Remove" action="Variables.RemoveCXVendorAdminToUser.invoke();Variables.DeleteFromVendorAdmins.invoke();Variables.VendorAdmins.listRecords();Widgets.dialogAddAdmin.close()"
+                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Remove" action="Variables.DeleteFromVendorAdmins.invoke();Variables.VendorAdmins.listRecords();Widgets.dialogAddAdmin.close()"
                                                 disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
@@ -159,7 +159,7 @@
         <wm-dialog dialogtype="design-dialog" modal="true" title="Add Company Admin" iconclass="wi wi-person-add" name="dialogAddAdmin">
             <wm-dialogactions name="dialogactions3">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7_2" iconclass="wi wi-cancel"></wm-button>
-                <wm-button class="btn-primary" caption="Add" name="buttonSaveAdmin" on-click="Variables.MapAsAdminForVendor.invoke()" iconclass="wi wi-add"></wm-button>
+                <wm-button class="btn-primary" caption="Add" name="buttonSaveAdmin" on-click="buttonSaveAdminClick($event, $scope)" iconclass="wi wi-add"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid6">
                 <wm-gridrow name="gridrow15">

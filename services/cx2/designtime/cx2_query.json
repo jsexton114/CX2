@@ -140,6 +140,33 @@
       "Banned" : "java.lang.Boolean"
     }
   }, {
+    "name" : "CheckingUserWithInVendorUsers",
+    "query" : "select count(*) as exist from VendorUsers where UserId=:user and VendorId=:vendor",
+    "comment" : "CheckingUserWithInVendorUsers",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "user",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "vendor",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2CheckingUserWithInVendorUsersrtnType",
+    "returnTypeMetadata" : {
+      "exist" : "java.lang.Integer"
+    }
+  }, {
     "name" : "CheckingUserWithMunicipalityInRoles",
     "query" : "select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user and RoleName='MunicipalityEmployee'",
     "comment" : "CheckingUserWithMunicipalityInRoles",
@@ -325,7 +352,7 @@
     "returnTypeMetadata" : { }
   }, {
     "name" : "DeleteFromVendorAdmins",
-    "query" : "delete from VendorAdmins where UserId=:user",
+    "query" : "delete from VendorAdmins where UserId=:user and VendorId=:vendor",
     "comment" : "DeleteFromVendorAdmins",
     "description" : null,
     "nativeSql" : true,
@@ -334,7 +361,14 @@
     "queryParams" : [ {
       "paramName" : "user",
       "paramType" : "java.lang.Integer",
-      "testValue" : "1",
+      "testValue" : "150",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "vendor",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "28",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
@@ -343,16 +377,23 @@
     "returnTypeMetadata" : { }
   }, {
     "name" : "DeleteFromVendorUsers",
-    "query" : "delete from VendorUsers where ID=:vendor",
+    "query" : "delete from VendorUsers where UserId=:user and VendorId=:vendor",
     "comment" : "DeleteFromVendorUsers",
     "description" : null,
     "nativeSql" : true,
     "returnsSingleResult" : false,
     "update" : true,
     "queryParams" : [ {
+      "paramName" : "user",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "150",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
       "paramName" : "vendor",
       "paramType" : "java.lang.Integer",
-      "testValue" : "3",
+      "testValue" : "28",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
