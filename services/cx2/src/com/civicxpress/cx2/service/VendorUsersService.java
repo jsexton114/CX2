@@ -49,6 +49,15 @@ public interface VendorUsersService {
 	 */
 	VendorUsers findById(Integer vendorusersId);
 
+    /**
+	 * Find and return the VendorUsers for given vendorId  anduserId  if exists.
+	 *
+	 * @param vendorId value of vendorId; value cannot be null.
+	 * @param userId value of userId; value cannot be null.
+	 * @return VendorUsers associated with the given inputs.
+     * @throws EntityNotFoundException if no matching VendorUsers found.
+	 */
+    VendorUsers getByVendorIdAndUserId(Integer vendorId, Integer userId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing VendorUsers. It replaces all fields of the existing VendorUsers with the given vendorUsers.
