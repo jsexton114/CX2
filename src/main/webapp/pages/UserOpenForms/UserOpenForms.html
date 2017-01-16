@@ -12,15 +12,15 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-grid title="Masterforms List" dataset="bind:Variables.MasterFormsData.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn">
+                        <wm-grid title="Open Forms" dataset="bind:Variables.MasterFormsData.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn">
                             <wm-grid-column binding="formTitle" caption="Form Title" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormTypes"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
-                            <wm-grid-column binding="formStatuses.status" caption="Statuses Status" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
+                            <wm-grid-column binding="formStatuses.status" caption="Status" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
                             <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="View" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>
