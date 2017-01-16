@@ -24,6 +24,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
+import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
@@ -44,6 +45,10 @@ public class VendorServiceImpl implements VendorService {
     @Autowired
 	@Qualifier("cx2.VendorApprovalsService")
 	private VendorApprovalsService vendorApprovalsService;
+
+    @Autowired
+	@Qualifier("cx2.MasterFormsService")
+	private MasterFormsService masterFormsService;
 
     @Autowired
 	@Qualifier("cx2.FeesService")
@@ -79,6 +84,14 @@ public class VendorServiceImpl implements VendorService {
                 feese.setVendor(vendorCreated);
                 LOGGER.debug("Creating a new child Fees with information: {}", feese);
                 feesService.create(feese);
+            }
+        }
+
+        if(vendorCreated.getMasterFormses() != null) {
+            for(MasterForms masterFormse : vendorCreated.getMasterFormses()) {
+                masterFormse.setVendor(vendorCreated);
+                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
+                masterFormsService.create(masterFormse);
             }
         }
 
@@ -216,6 +229,17 @@ public class VendorServiceImpl implements VendorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("vendor.id = '" + id + "'");
+
+        return masterFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorApprovalses");
 
@@ -265,6 +289,15 @@ public class VendorServiceImpl implements VendorService {
 	 */
 	protected void setVendorApprovalsService(VendorApprovalsService service) {
         this.vendorApprovalsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MasterFormsService instance
+	 */
+	protected void setMasterFormsService(MasterFormsService service) {
+        this.masterFormsService = service;
     }
 
     /**

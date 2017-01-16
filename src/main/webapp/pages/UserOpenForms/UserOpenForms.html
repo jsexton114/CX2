@@ -18,6 +18,7 @@
                             <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
                             <wm-grid-column binding="formStatuses.status" caption="Statuses Status" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
                             <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="View" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
                         </wm-grid>

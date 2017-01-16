@@ -33,6 +33,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Fees;
+import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
@@ -177,6 +178,13 @@ public class VendorController {
     public Page<Fees> findAssociatedFeeses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated feeses");
         return vendorService.findAssociatedFeeses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/masterFormses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
+    public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+        return vendorService.findAssociatedMasterFormses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/vendorApprovalses", method = RequestMethod.GET)

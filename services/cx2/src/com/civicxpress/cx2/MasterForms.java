@@ -49,6 +49,7 @@ public class MasterForms implements Serializable {
     private MunicipalityGroups municipalityGroups;
     private Municipalities municipalities;
     private Users users;
+    private Vendor vendor;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -266,6 +267,20 @@ public class MasterForms implements Serializable {
         }
 
         this.users = users;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`CXVendorId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Vendor getVendor() {
+        return this.vendor;
+    }
+
+    public void setVendor(Vendor vendor) {
+        if(vendor != null) {
+            this.cxvendorId = vendor.getId();
+        }
+
+        this.vendor = vendor;
     }
 
     @Override

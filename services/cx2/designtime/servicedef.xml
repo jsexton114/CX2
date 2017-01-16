@@ -795,6 +795,7 @@
             <element name="totalPayment" typeRef="java.lang.String" allowNull="true"/>
             <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+            <element name="vendor" typeRef="com.civicxpress.cx2.Vendor" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.MasterInspections">
             <element name="caseGuid" typeRef="java.lang.String" allowNull="true"/>
@@ -1054,6 +1055,7 @@
             <element name="insuranceCompany" typeRef="java.lang.String" allowNull="true"/>
             <element name="insuranceExpires" typeRef="java.util.Date" allowNull="true"/>
             <element name="lastUpdated" typeRef="java.util.Date" allowNull="true"/>
+            <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
             <element name="numberOfEmployees" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="stateId" typeRef="java.lang.Integer" allowNull="true"/>

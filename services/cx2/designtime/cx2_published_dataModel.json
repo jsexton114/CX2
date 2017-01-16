@@ -4379,7 +4379,7 @@
         "defaultValue" : ""
       },
       "fieldName" : "cxvendorId",
-      "foreignKey" : false,
+      "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
@@ -4387,8 +4387,8 @@
       "name" : "CXVendorId",
       "nullable" : true,
       "oldName" : "CXVendorId",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "precision" : 10,
@@ -4596,6 +4596,23 @@
       "sourceTable" : "MasterForms",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Users",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "vendor",
+      "mappings" : [ {
+        "sourceColumn" : "CXVendorId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_MasterForms_TO_Vendorplkq9",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "MasterForms",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Vendor",
       "virtual" : false
     } ],
     "schema" : "cx2",
@@ -9930,6 +9947,23 @@
       "sourceTable" : "Vendor",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Fees",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "masterFormses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "CXVendorId"
+      } ],
+      "name" : "FK_MasterForms_TO_Vendorplkq9",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Vendor",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "MasterForms",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
