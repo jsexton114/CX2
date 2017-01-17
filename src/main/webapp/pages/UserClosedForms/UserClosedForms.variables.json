@@ -417,6 +417,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "formTableName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FormTableName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -1131,6 +1144,45 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "dbName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "DbName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "dbUser",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "DbUser",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "dbPassword",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "DbPassword",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
