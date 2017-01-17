@@ -1788,6 +1788,19 @@
       "userSubscriptionsCountForMunicipality" : "java.lang.Integer"
     }
   }, {
+    "name" : "VendorCount",
+    "query" : "select count(*) as VendorCount from Vendor",
+    "comment" : "A count of Vendor entries",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ ],
+    "outputType" : "cx2VendorCountrtnType",
+    "returnTypeMetadata" : {
+      "VendorCount" : "java.lang.Integer"
+    }
+  }, {
     "name" : "VendorsCountForMunicipalities",
     "query" : "select count(*) as vendorsCount from VendorApprovals where MunicipalityId=:MunicipalityId",
     "comment" : "VendorsCountForMunicipalities",

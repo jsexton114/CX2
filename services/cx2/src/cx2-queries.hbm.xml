@@ -282,6 +282,11 @@
       select count(*) as userSubscriptionsCountForMunicipality from UserSubscriptions where MunicipalityId=:municipalityId
     ]]>
   </sql-query>
+  <sql-query name="VendorCount">
+    <![CDATA[
+      select count(*) as VendorCount from Vendor
+    ]]>
+  </sql-query>
   <sql-query name="VendorsCountForMunicipalities">
     <![CDATA[
       select count(*) as vendorsCount from VendorApprovals where MunicipalityId=:MunicipalityId

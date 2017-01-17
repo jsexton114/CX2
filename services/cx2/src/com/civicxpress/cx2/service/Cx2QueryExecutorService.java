@@ -71,6 +71,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeUserCount(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeUserSubscriptionsCount(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeUserSubscriptionsCountForMunicipality(Pageable pageable, java.lang.Integer municipalityId) throws QueryParameterMismatchException;
+    Page<Object> executeVendorCount(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeVendorsCountForMunicipalities(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeVerifyPasswordResetToken(Pageable pageable, java.lang.String token) throws QueryParameterMismatchException;
 
