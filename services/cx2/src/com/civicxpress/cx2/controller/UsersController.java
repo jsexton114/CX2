@@ -42,6 +42,7 @@ import com.civicxpress.cx2.Pudapplication;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SfnewElectricConnection;
 import com.civicxpress.cx2.SfnewResidentialStructure;
+import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
@@ -188,8 +189,9 @@ public class UsersController {
         return usersService.findAssociatedFeeses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/formHistories", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/formHistories", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formHistories instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormHistory> findAssociatedFormHistories(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formHistories");
         return usersService.findAssociatedFormHistories(id, pageable);
@@ -249,6 +251,20 @@ public class UsersController {
     public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated roleses");
         return usersService.findAssociatedRoleses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/sharedWithsForCreatedBy", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the sharedWithsForCreatedBy instance associated with the given id.")
+    public Page<SharedWith> findAssociatedSharedWithsForCreatedBy(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sharedWithsForCreatedBy");
+        return usersService.findAssociatedSharedWithsForCreatedBy(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/sharedWithsForSharedWithUser", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the sharedWithsForSharedWithUser instance associated with the given id.")
+    public Page<SharedWith> findAssociatedSharedWithsForSharedWithUser(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sharedWithsForSharedWithUser");
+        return usersService.findAssociatedSharedWithsForSharedWithUser(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/municipalityGroupMemberses", method = RequestMethod.GET)

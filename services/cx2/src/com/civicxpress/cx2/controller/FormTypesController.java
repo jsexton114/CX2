@@ -135,8 +135,9 @@ public class FormTypesController {
         return formTypesService.findAssociatedFormCategoryMappings(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/formHistories", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/formHistories", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formHistories instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormHistory> findAssociatedFormHistories(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formHistories");
         return formTypesService.findAssociatedFormHistories(id, pageable);

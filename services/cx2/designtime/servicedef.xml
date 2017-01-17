@@ -164,6 +164,16 @@
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="RecordFormHistory">
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="FormTypeId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="NewStatusId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="OldStatusId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Comments" typeRef="java.lang.String" isList="false"/>
+        <parameter name="CreatedBy" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="CreatedTime" typeRef="java.sql.Timestamp" isList="false"/>
+        <return typeRef="cx2RecordFormHistoryrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="resetPasswordForUser">
         <parameter name="newPassword" typeRef="java.lang.String" isList="false"/>
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
@@ -291,16 +301,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="RecordFormHistory">
-        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
-        <parameter name="FormTypeId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="NewStatusId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="OldStatusId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="Comments" typeRef="java.lang.String" isList="false"/>
-        <parameter name="CreatedBy" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="CreatedTime" typeRef="java.sql.Timestamp" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
@@ -1026,6 +1026,15 @@
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
             <element name="valueOfWork" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.SharedWith">
+            <element name="createdBy" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="createdOn" typeRef="java.util.Date" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="relatedGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="sharedWithUser" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="usersByCreatedBy" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+            <element name="usersBySharedWithUser" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.States">
             <element name="giscontactses" typeRef="com.civicxpress.cx2.Giscontacts" isList="true" allowNull="true"/>
             <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
@@ -1086,6 +1095,8 @@
             <element name="roleses" typeRef="com.civicxpress.cx2.Roles" isList="true" allowNull="true"/>
             <element name="sfnewElectricConnections" typeRef="com.civicxpress.cx2.SfnewElectricConnection" isList="true" allowNull="true"/>
             <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
+            <element name="sharedWithsForCreatedBy" typeRef="com.civicxpress.cx2.SharedWith" isList="true" allowNull="true"/>
+            <element name="sharedWithsForSharedWithUser" typeRef="com.civicxpress.cx2.SharedWith" isList="true" allowNull="true"/>
             <element name="stateId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
             <element name="userPasswordResetTokenses" typeRef="com.civicxpress.cx2.UserPasswordResetTokens" isList="true" allowNull="true"/>

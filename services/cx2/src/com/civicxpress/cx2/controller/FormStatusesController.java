@@ -133,15 +133,17 @@ public class FormStatusesController {
         return formStatusesService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/formHistoriesForOldStatusId", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/formHistoriesForOldStatusId", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formHistoriesForOldStatusId instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormHistory> findAssociatedFormHistoriesForOldStatusId(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formHistoriesForOldStatusId");
         return formStatusesService.findAssociatedFormHistoriesForOldStatusId(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/formHistoriesForNewStatusId", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/formHistoriesForNewStatusId", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formHistoriesForNewStatusId instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormHistory> findAssociatedFormHistoriesForNewStatusId(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formHistoriesForNewStatusId");
         return formStatusesService.findAssociatedFormHistoriesForNewStatusId(id, pageable);

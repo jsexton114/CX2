@@ -63,6 +63,8 @@ public class Users implements Serializable {
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
+    private List<SharedWith> sharedWithsForCreatedBy = new ArrayList<>();
+    private List<SharedWith> sharedWithsForSharedWithUser = new ArrayList<>();
     private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
@@ -317,6 +319,26 @@ public class Users implements Serializable {
 
     public void setRoleses(List<Roles> roleses) {
         this.roleses = roleses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
+    public List<SharedWith> getSharedWithsForCreatedBy() {
+        return this.sharedWithsForCreatedBy;
+    }
+
+    public void setSharedWithsForCreatedBy(List<SharedWith> sharedWithsForCreatedBy) {
+        this.sharedWithsForCreatedBy = sharedWithsForCreatedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersBySharedWithUser")
+    public List<SharedWith> getSharedWithsForSharedWithUser() {
+        return this.sharedWithsForSharedWithUser;
+    }
+
+    public void setSharedWithsForSharedWithUser(List<SharedWith> sharedWithsForSharedWithUser) {
+        this.sharedWithsForSharedWithUser = sharedWithsForSharedWithUser;
     }
 
     @JsonInclude(Include.NON_EMPTY)

@@ -24,6 +24,7 @@ import com.civicxpress.cx2.Pudapplication;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SfnewElectricConnection;
 import com.civicxpress.cx2.SfnewResidentialStructure;
+import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
@@ -254,6 +255,30 @@ public interface UsersService {
      * @see Page
      */
     Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated sharedWithsForCreatedBy for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SharedWith instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SharedWith> findAssociatedSharedWithsForCreatedBy(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated sharedWithsForSharedWithUser for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SharedWith instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SharedWith> findAssociatedSharedWithsForSharedWithUser(Integer id, Pageable pageable);
 
     /*
      * Returns the associated municipalityGroupMemberses for given Users id.

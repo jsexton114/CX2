@@ -15,12 +15,6 @@
     "table" : "Fees",
     "schema" : "cx2"
   }, {
-    "table" : "FormStatuses",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormTypes",
-    "schema" : "cx2"
-  }, {
     "table" : "FormCategories",
     "schema" : "cx2"
   }, {
@@ -30,22 +24,31 @@
     "table" : "FormCategoryMapping",
     "schema" : "cx2"
   }, {
-    "table" : "GISContacts",
+    "table" : "FormHistory",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormStatuses",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormTypes",
     "schema" : "cx2"
   }, {
     "table" : "GISRecords",
     "schema" : "cx2"
   }, {
+    "table" : "GISContacts",
+    "schema" : "cx2"
+  }, {
     "table" : "GlobalSettings",
+    "schema" : "cx2"
+  }, {
+    "table" : "MasterForms",
     "schema" : "cx2"
   }, {
     "table" : "Holidays",
     "schema" : "cx2"
   }, {
     "table" : "ManualFeeTypes",
-    "schema" : "cx2"
-  }, {
-    "table" : "MasterForms",
     "schema" : "cx2"
   }, {
     "table" : "MasterCases",
@@ -57,10 +60,10 @@
     "table" : "MCNewElectricConnection",
     "schema" : "cx2"
   }, {
-    "table" : "Municipalities",
+    "table" : "MCNewResidentialStructure",
     "schema" : "cx2"
   }, {
-    "table" : "MCNewResidentialStructure",
+    "table" : "Municipalities",
     "schema" : "cx2"
   }, {
     "table" : "MasterProjects",
@@ -87,16 +90,16 @@
     "table" : "States",
     "schema" : "cx2"
   }, {
-    "table" : "Users",
-    "schema" : "cx2"
-  }, {
-    "table" : "Vendor",
-    "schema" : "cx2"
-  }, {
     "table" : "Subdivisions",
     "schema" : "cx2"
   }, {
     "table" : "UserPasswordResetTokens",
+    "schema" : "cx2"
+  }, {
+    "table" : "Users",
+    "schema" : "cx2"
+  }, {
+    "table" : "Vendor",
     "schema" : "cx2"
   }, {
     "table" : "VendorApprovals",
@@ -117,7 +120,7 @@
     "table" : "VendorUsers",
     "schema" : "cx2"
   }, {
-    "table" : "FormHistory",
+    "table" : "SharedWith",
     "schema" : "cx2"
   } ],
   "schemaFilter" : [ ],

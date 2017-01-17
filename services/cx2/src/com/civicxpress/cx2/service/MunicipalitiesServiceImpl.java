@@ -174,19 +174,19 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
             }
         }
 
-        if(municipalitiesCreated.getVendorApprovalses() != null) {
-            for(VendorApprovals vendorApprovalse : municipalitiesCreated.getVendorApprovalses()) {
-                vendorApprovalse.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child VendorApprovals with information: {}", vendorApprovalse);
-                vendorApprovalsService.create(vendorApprovalse);
-            }
-        }
-
         if(municipalitiesCreated.getUserSubscriptionses() != null) {
             for(UserSubscriptions userSubscriptionse : municipalitiesCreated.getUserSubscriptionses()) {
                 userSubscriptionse.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child UserSubscriptions with information: {}", userSubscriptionse);
                 userSubscriptionsService.create(userSubscriptionse);
+            }
+        }
+
+        if(municipalitiesCreated.getVendorApprovalses() != null) {
+            for(VendorApprovals vendorApprovalse : municipalitiesCreated.getVendorApprovalses()) {
+                vendorApprovalse.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child VendorApprovals with information: {}", vendorApprovalse);
+                vendorApprovalsService.create(vendorApprovalse);
             }
         }
         return municipalitiesCreated;
@@ -364,17 +364,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated vendorApprovalses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalities.id = '" + id + "'");
-
-        return vendorApprovalsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<UserSubscriptions> findAssociatedUserSubscriptionses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userSubscriptionses");
 
@@ -382,6 +371,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
         queryBuilder.append("municipalities.id = '" + id + "'");
 
         return userSubscriptionsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorApprovalses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return vendorApprovalsService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**

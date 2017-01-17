@@ -33,6 +33,7 @@ import com.civicxpress.cx2.Pudapplication;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SfnewElectricConnection;
 import com.civicxpress.cx2.SfnewResidentialStructure;
+import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
@@ -65,6 +66,10 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.SfnewElectricConnectionService")
 	private SfnewElectricConnectionService sfnewElectricConnectionService;
+
+    @Autowired
+	@Qualifier("cx2.SharedWithService")
+	private SharedWithService sharedWithService;
 
     @Autowired
 	@Qualifier("cx2.FormHistoryService")
@@ -188,6 +193,22 @@ public class UsersServiceImpl implements UsersService {
                 rolese.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child Roles with information: {}", rolese);
                 rolesService.create(rolese);
+            }
+        }
+
+        if(usersCreated.getSharedWithsForCreatedBy() != null) {
+            for(SharedWith sharedWithsForCreatedBy : usersCreated.getSharedWithsForCreatedBy()) {
+                sharedWithsForCreatedBy.setUsersByCreatedBy(usersCreated);
+                LOGGER.debug("Creating a new child SharedWith with information: {}", sharedWithsForCreatedBy);
+                sharedWithService.create(sharedWithsForCreatedBy);
+            }
+        }
+
+        if(usersCreated.getSharedWithsForSharedWithUser() != null) {
+            for(SharedWith sharedWithsForSharedWithUser : usersCreated.getSharedWithsForSharedWithUser()) {
+                sharedWithsForSharedWithUser.setUsersBySharedWithUser(usersCreated);
+                LOGGER.debug("Creating a new child SharedWith with information: {}", sharedWithsForSharedWithUser);
+                sharedWithService.create(sharedWithsForSharedWithUser);
             }
         }
 
@@ -421,6 +442,28 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<SharedWith> findAssociatedSharedWithsForCreatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sharedWithsForCreatedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
+
+        return sharedWithService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<SharedWith> findAssociatedSharedWithsForSharedWithUser(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sharedWithsForSharedWithUser");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersBySharedWithUser.id = '" + id + "'");
+
+        return sharedWithService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated municipalityGroupMemberses");
 
@@ -508,6 +551,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setSfnewElectricConnectionService(SfnewElectricConnectionService service) {
         this.sfnewElectricConnectionService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SharedWithService instance
+	 */
+	protected void setSharedWithService(SharedWithService service) {
+        this.sharedWithService = service;
     }
 
     /**
