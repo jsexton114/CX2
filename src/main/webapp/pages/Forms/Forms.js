@@ -7,3 +7,24 @@ Application.$controller("FormsPageController", ["$scope", function($scope) {
     };
 
 }]);
+
+Application.$controller("gridFormhistoryController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("gridSharedwithController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformSharedwithController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
