@@ -1342,6 +1342,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 100,
     "designMaxResults" : 100,
+    "onSuccess" : "FormStatusonSuccess($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : true,
