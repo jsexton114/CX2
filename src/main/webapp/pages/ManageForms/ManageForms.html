@@ -88,67 +88,68 @@
     <wm-view class="dialog-view" name="view1">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Create Form" iconclass="wi wi-edit" name="dialogCreateForm" width="75%" on-opened="dialogCreateFormOpened($event, $scope)">
             <wm-dialogactions name="dialogactions1"></wm-dialogactions>
-            <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.Cx2FormTypesData.dataSet" captionalign="left" captionposition="top" name="liveformCreateForm" on-beforeservicecall="liveformCreateFormBeforeservicecall($event, $operation, $data)">
+            <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.Cx2FormTypesData.dataSet" captionalign="left" captionposition="top" name="liveformCreateForm" on-beforeservicecall="liveformCreateFormBeforeservicecall($event, $operation, $data)"
+            on-success="liveformCreateFormSuccess($event, $operation, $data)">
                 <wm-layoutgrid columns="3" name="layoutgrid5">
                     <wm-gridrow name="gridrow18">
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn32">
-                            <wm-form-field name="formType" displayname="Form Type" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                        <wm-gridcolumn columnwidth="6" name="gridcolumn32">
+                            <wm-form-field name="formType" displayname="Form Type" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter Form Name"></wm-form-field>
                         </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn33">
-                            <wm-form-field name="permissionsReaders" displayname="Permissions Readers" show="true" primary-key="false" generator="assigned" key="permissionsReaders" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                        <wm-gridcolumn columnwidth="1" name="gridcolumn33">
+                            <wm-form-field name="permissionsReaders" displayname="Permissions Readers" show="false" primary-key="false" generator="assigned" key="permissionsReaders" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="5" name="gridcolumn34">
-                            <wm-form-field name="permissionsWriters" displayname="Permissions Writers" show="true" primary-key="false" generator="assigned" key="permissionsWriters" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="permissionsWriters" displayname="Permissions Writers" show="false" primary-key="false" generator="assigned" key="permissionsWriters" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow19">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn35">
-                            <wm-form-field name="tbLocation" displayname="Tb Location" show="true" primary-key="false" generator="assigned" key="tbLocation" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="tbLocation" displayname="Tb Location" show="false" primary-key="false" generator="assigned" key="tbLocation" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn36">
-                            <wm-form-field name="flatFee" displayname="Flat Fee" show="true" primary-key="false" generator="assigned" key="flatFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="flatFee" displayname="Flat Fee" show="false" primary-key="false" generator="assigned" key="flatFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn37">
-                            <wm-form-field name="flatFeeAccountingCode" displayname="Flat Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="flatFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="flatFeeAccountingCode" displayname="Flat Fee Accounting Code" show="false" primary-key="false" generator="assigned" key="flatFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow20">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn38">
-                            <wm-form-field name="sfFee" displayname="Sf Fee" show="true" primary-key="false" generator="assigned" key="sfFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="sfFee" displayname="Sf Fee" show="false" primary-key="false" generator="assigned" key="sfFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn39">
-                            <wm-form-field name="sfFeeAccountingCode" displayname="Sf Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="sfFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="sfFeeAccountingCode" displayname="Sf Fee Accounting Code" show="false" primary-key="false" generator="assigned" key="sfFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn40">
-                            <wm-form-field name="unitFee" displayname="Unit Fee" show="true" primary-key="false" generator="assigned" key="unitFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="unitFee" displayname="Unit Fee" show="false" primary-key="false" generator="assigned" key="unitFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow21">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn41">
-                            <wm-form-field name="unitFeeAccountingCode" displayname="Unit Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="unitFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="unitFeeAccountingCode" displayname="Unit Fee Accounting Code" show="false" primary-key="false" generator="assigned" key="unitFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn42">
-                            <wm-form-field name="stateFee" displayname="State Fee" show="true" primary-key="false" generator="assigned" key="stateFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="stateFee" displayname="State Fee" show="false" primary-key="false" generator="assigned" key="stateFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn43">
-                            <wm-form-field name="stateFeeAccountingCode" displayname="State Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="stateFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text"
+                            <wm-form-field name="stateFeeAccountingCode" displayname="State Fee Accounting Code" show="false" primary-key="false" generator="assigned" key="stateFeeAccountingCode" type="string" widget="text" maxchars="255" inputtype="text"
                             placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow22">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn44">
-                            <wm-form-field name="report" displayname="Report" show="true" primary-key="false" generator="assigned" key="report" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="report" displayname="Report" show="false" primary-key="false" generator="assigned" key="report" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn45">
-                            <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                            <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn46">
-                            <wm-form-field name="pageName" displayname="Page Name" show="true" primary-key="false" generator="assigned" key="pageName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="pageName" displayname="Page Name" show="false" primary-key="false" generator="assigned" key="pageName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow23">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn47">
-                            <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="true" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                            <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="false" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>

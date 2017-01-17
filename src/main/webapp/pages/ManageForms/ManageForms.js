@@ -40,6 +40,13 @@ Application.$controller("dialogCreateFormController", ["$scope",
             $scope.Widgets.liveformCreateForm.GUID = randomString;
         };
 
+
+        $scope.liveformCreateFormSuccess = function($event, $operation, $data) {
+            $scope.Variables.goToPage_EditForm.dataSet.FormTypeId = $data.id;
+            $scope.Variables.goToPage_EditForm.dataSet.MunicipalityId = $scope.Widgets.selectMunicipality.datavalue.ID;
+            $scope.Variables.goToPage_EditForm.navigate();
+        };
+
     }
 ]);
 
@@ -85,8 +92,8 @@ Application.$controller("liveform3Controller", ["$scope",
 ]);
 
 Application.$controller("gridFormTypesController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
