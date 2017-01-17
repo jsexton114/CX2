@@ -639,6 +639,20 @@
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.FormHistory">
+            <element name="comments" typeRef="java.lang.String" allowNull="true"/>
+            <element name="createdBy" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="createdTime" typeRef="java.util.Date" allowNull="true"/>
+            <element name="formGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formStatusesByNewStatusId" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
+            <element name="formStatusesByOldStatusId" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
+            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="newStatusId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="oldStatusId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormStatuses">
             <element name="allowAttachments" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="allowAuthorEdits" typeRef="java.lang.Boolean" allowNull="true"/>
@@ -651,6 +665,8 @@
             <element name="description" typeRef="java.lang.String" allowNull="true"/>
             <element name="emailSubjectLine" typeRef="java.lang.String" allowNull="true"/>
             <element name="emailTextBody" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formHistoriesForNewStatusId" typeRef="com.civicxpress.cx2.FormHistory" isList="true" allowNull="true"/>
+            <element name="formHistoriesForOldStatusId" typeRef="com.civicxpress.cx2.FormHistory" isList="true" allowNull="true"/>
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
@@ -682,6 +698,7 @@
             <element name="flatFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="flatFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="formCategoryMappings" typeRef="com.civicxpress.cx2.FormCategoryMapping" isList="true" allowNull="true"/>
+            <element name="formHistories" typeRef="com.civicxpress.cx2.FormHistory" isList="true" allowNull="true"/>
             <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
             <element name="formTableName" typeRef="java.lang.String" allowNull="true"/>
             <element name="formType" typeRef="java.lang.String" allowNull="true"/>
@@ -1034,6 +1051,7 @@
             <element name="email" typeRef="java.lang.String" allowNull="true"/>
             <element name="feeses" typeRef="com.civicxpress.cx2.Fees" isList="true" allowNull="true"/>
             <element name="firstName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formHistories" typeRef="com.civicxpress.cx2.FormHistory" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="lastName" typeRef="java.lang.String" allowNull="true"/>
             <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>

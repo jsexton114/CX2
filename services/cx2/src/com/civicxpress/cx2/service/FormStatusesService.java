@@ -14,6 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
@@ -139,6 +140,30 @@ public interface FormStatusesService {
 	 * @return The count of the FormStatuses.
 	 */
 	long count(String query);
+
+    /*
+     * Returns the associated formHistoriesForOldStatusId for given FormStatuses id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormHistory instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormHistory> findAssociatedFormHistoriesForOldStatusId(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated formHistoriesForNewStatusId for given FormStatuses id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormHistory instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormHistory> findAssociatedFormHistoriesForNewStatusId(Integer id, Pageable pageable);
 
     /*
      * Returns the associated masterFormses for given FormStatuses id.

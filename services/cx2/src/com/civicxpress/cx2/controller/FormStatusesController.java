@@ -25,6 +25,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
@@ -130,6 +131,20 @@ public class FormStatusesController {
     public Long countFormStatuses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting FormStatuses");
         return formStatusesService.count(query);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formHistoriesForOldStatusId", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formHistoriesForOldStatusId instance associated with the given id.")
+    public Page<FormHistory> findAssociatedFormHistoriesForOldStatusId(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formHistoriesForOldStatusId");
+        return formStatusesService.findAssociatedFormHistoriesForOldStatusId(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formHistoriesForNewStatusId", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formHistoriesForNewStatusId instance associated with the given id.")
+    public Page<FormHistory> findAssociatedFormHistoriesForNewStatusId(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formHistoriesForNewStatusId");
+        return formStatusesService.findAssociatedFormHistoriesForNewStatusId(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)

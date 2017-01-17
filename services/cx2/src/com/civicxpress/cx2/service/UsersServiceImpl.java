@@ -24,6 +24,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
+import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
 import com.civicxpress.cx2.McnewResidentialStructure;
@@ -66,6 +67,10 @@ public class UsersServiceImpl implements UsersService {
 	private SfnewElectricConnectionService sfnewElectricConnectionService;
 
     @Autowired
+	@Qualifier("cx2.FormHistoryService")
+	private FormHistoryService formHistoryService;
+
+    @Autowired
 	@Qualifier("cx2.FeesService")
 	private FeesService feesService;
 
@@ -90,12 +95,12 @@ public class UsersServiceImpl implements UsersService {
 	private RolesService rolesService;
 
     @Autowired
-	@Qualifier("cx2.McnewResidentialStructureService")
-	private McnewResidentialStructureService mcnewResidentialStructureService;
-
-    @Autowired
 	@Qualifier("cx2.VendorAdminsService")
 	private VendorAdminsService vendorAdminsService;
+
+    @Autowired
+	@Qualifier("cx2.McnewResidentialStructureService")
+	private McnewResidentialStructureService mcnewResidentialStructureService;
 
     @Autowired
 	@Qualifier("cx2.UserSubscriptionsService")
@@ -119,6 +124,14 @@ public class UsersServiceImpl implements UsersService {
                 feese.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child Fees with information: {}", feese);
                 feesService.create(feese);
+            }
+        }
+
+        if(usersCreated.getFormHistories() != null) {
+            for(FormHistory formHistorie : usersCreated.getFormHistories()) {
+                formHistorie.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child FormHistory with information: {}", formHistorie);
+                formHistoryService.create(formHistorie);
             }
         }
 
@@ -320,6 +333,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formHistories");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return formHistoryService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
 
@@ -489,6 +513,15 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service FormHistoryService instance
+	 */
+	protected void setFormHistoryService(FormHistoryService service) {
+        this.formHistoryService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service FeesService instance
 	 */
 	protected void setFeesService(FeesService service) {
@@ -543,19 +576,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service McnewResidentialStructureService instance
+	 * @param service VendorAdminsService instance
 	 */
-	protected void setMcnewResidentialStructureService(McnewResidentialStructureService service) {
-        this.mcnewResidentialStructureService = service;
+	protected void setVendorAdminsService(VendorAdminsService service) {
+        this.vendorAdminsService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service VendorAdminsService instance
+	 * @param service McnewResidentialStructureService instance
 	 */
-	protected void setVendorAdminsService(VendorAdminsService service) {
-        this.vendorAdminsService = service;
+	protected void setMcnewResidentialStructureService(McnewResidentialStructureService service) {
+        this.mcnewResidentialStructureService = service;
     }
 
     /**

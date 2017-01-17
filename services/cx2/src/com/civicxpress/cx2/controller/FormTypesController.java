@@ -26,6 +26,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.FormCategoryMapping;
+import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.MasterForms;
@@ -126,20 +127,27 @@ public class FormTypesController {
         return formTypesService.count(query);
     }
 
-    @RequestMapping(value = "/{id}/formStatuseses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the formStatuseses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormStatuses> findAssociatedFormStatuseses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formStatuseses");
-        return formTypesService.findAssociatedFormStatuseses(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/formCategoryMappings", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formCategoryMappings instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormCategoryMapping> findAssociatedFormCategoryMappings(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formCategoryMappings");
         return formTypesService.findAssociatedFormCategoryMappings(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formHistories", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formHistories instance associated with the given id.")
+    public Page<FormHistory> findAssociatedFormHistories(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formHistories");
+        return formTypesService.findAssociatedFormHistories(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/formStatuseses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formStatuseses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<FormStatuses> findAssociatedFormStatuseses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatuseses");
+        return formTypesService.findAssociatedFormStatuseses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)

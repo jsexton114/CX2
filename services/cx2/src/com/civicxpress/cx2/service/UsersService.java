@@ -15,6 +15,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
+import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
 import com.civicxpress.cx2.McnewResidentialStructure;
@@ -157,6 +158,18 @@ public interface UsersService {
      * @see Page
      */
     Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated formHistories for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormHistory instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable);
 
     /*
      * Returns the associated masterFormses for given Users id.

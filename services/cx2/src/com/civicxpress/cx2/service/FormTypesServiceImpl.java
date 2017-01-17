@@ -22,6 +22,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormCategoryMapping;
+import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.MasterForms;
@@ -45,6 +46,10 @@ public class FormTypesServiceImpl implements FormTypesService {
     @Autowired
 	@Qualifier("cx2.FormStatusesService")
 	private FormStatusesService formStatusesService;
+
+    @Autowired
+	@Qualifier("cx2.FormHistoryService")
+	private FormHistoryService formHistoryService;
 
     @Autowired
 	@Qualifier("cx2.MasterFormsService")
@@ -87,19 +92,27 @@ public class FormTypesServiceImpl implements FormTypesService {
 	public FormTypes create(FormTypes formTypes) {
         LOGGER.debug("Creating a new FormTypes with information: {}", formTypes);
         FormTypes formTypesCreated = this.wmGenericDao.create(formTypes);
-        if(formTypesCreated.getFormStatuseses() != null) {
-            for(FormStatuses formStatusese : formTypesCreated.getFormStatuseses()) {
-                formStatusese.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
-                formStatusesService.create(formStatusese);
-            }
-        }
-
         if(formTypesCreated.getFormCategoryMappings() != null) {
             for(FormCategoryMapping formCategoryMapping : formTypesCreated.getFormCategoryMappings()) {
                 formCategoryMapping.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child FormCategoryMapping with information: {}", formCategoryMapping);
                 formCategoryMappingService.create(formCategoryMapping);
+            }
+        }
+
+        if(formTypesCreated.getFormHistories() != null) {
+            for(FormHistory formHistorie : formTypesCreated.getFormHistories()) {
+                formHistorie.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormHistory with information: {}", formHistorie);
+                formHistoryService.create(formHistorie);
+            }
+        }
+
+        if(formTypesCreated.getFormStatuseses() != null) {
+            for(FormStatuses formStatusese : formTypesCreated.getFormStatuseses()) {
+                formStatusese.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
+                formStatusesService.create(formStatusese);
             }
         }
 
@@ -226,17 +239,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formStatuseses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return formStatusesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormCategoryMapping> findAssociatedFormCategoryMappings(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formCategoryMappings");
 
@@ -244,6 +246,28 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return formCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formHistories");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formHistoryService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatuseses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formStatusesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -319,6 +343,15 @@ public class FormTypesServiceImpl implements FormTypesService {
 	 */
 	protected void setFormStatusesService(FormStatusesService service) {
         this.formStatusesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormHistoryService instance
+	 */
+	protected void setFormHistoryService(FormHistoryService service) {
+        this.formHistoryService = service;
     }
 
     /**

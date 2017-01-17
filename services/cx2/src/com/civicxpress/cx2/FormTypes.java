@@ -61,8 +61,9 @@ public class FormTypes implements Serializable {
     private Boolean multipleGisrecords;
     private Boolean gismap;
     private String formTableName;
-    private List<FormStatuses> formStatuseses = new ArrayList<>();
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
+    private List<FormHistory> formHistories = new ArrayList<>();
+    private List<FormStatuses> formStatuseses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
@@ -327,22 +328,32 @@ public class FormTypes implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<FormStatuses> getFormStatuseses() {
-        return this.formStatuseses;
-    }
-
-    public void setFormStatuseses(List<FormStatuses> formStatuseses) {
-        this.formStatuseses = formStatuseses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
     public List<FormCategoryMapping> getFormCategoryMappings() {
         return this.formCategoryMappings;
     }
 
     public void setFormCategoryMappings(List<FormCategoryMapping> formCategoryMappings) {
         this.formCategoryMappings = formCategoryMappings;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<FormHistory> getFormHistories() {
+        return this.formHistories;
+    }
+
+    public void setFormHistories(List<FormHistory> formHistories) {
+        this.formHistories = formHistories;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<FormStatuses> getFormStatuseses() {
+        return this.formStatuseses;
+    }
+
+    public void setFormStatuseses(List<FormStatuses> formStatuseses) {
+        this.formStatuseses = formStatuseses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

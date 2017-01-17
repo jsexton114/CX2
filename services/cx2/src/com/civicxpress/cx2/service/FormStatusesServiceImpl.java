@@ -23,6 +23,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
@@ -41,6 +42,10 @@ import com.civicxpress.cx2.SfnewResidentialStructure;
 public class FormStatusesServiceImpl implements FormStatusesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FormStatusesServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.FormHistoryService")
+	private FormHistoryService formHistoryService;
 
     @Autowired
 	@Qualifier("cx2.MasterFormsService")
@@ -79,6 +84,22 @@ public class FormStatusesServiceImpl implements FormStatusesService {
 	public FormStatuses create(FormStatuses formStatuses) {
         LOGGER.debug("Creating a new FormStatuses with information: {}", formStatuses);
         FormStatuses formStatusesCreated = this.wmGenericDao.create(formStatuses);
+        if(formStatusesCreated.getFormHistoriesForOldStatusId() != null) {
+            for(FormHistory formHistoriesForOldStatusId : formStatusesCreated.getFormHistoriesForOldStatusId()) {
+                formHistoriesForOldStatusId.setFormStatusesByOldStatusId(formStatusesCreated);
+                LOGGER.debug("Creating a new child FormHistory with information: {}", formHistoriesForOldStatusId);
+                formHistoryService.create(formHistoriesForOldStatusId);
+            }
+        }
+
+        if(formStatusesCreated.getFormHistoriesForNewStatusId() != null) {
+            for(FormHistory formHistoriesForNewStatusId : formStatusesCreated.getFormHistoriesForNewStatusId()) {
+                formHistoriesForNewStatusId.setFormStatusesByNewStatusId(formStatusesCreated);
+                LOGGER.debug("Creating a new child FormHistory with information: {}", formHistoriesForNewStatusId);
+                formHistoryService.create(formHistoriesForNewStatusId);
+            }
+        }
+
         if(formStatusesCreated.getMasterFormses() != null) {
             for(MasterForms masterFormse : formStatusesCreated.getMasterFormses()) {
                 masterFormse.setFormStatuses(formStatusesCreated);
@@ -219,6 +240,28 @@ public class FormStatusesServiceImpl implements FormStatusesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormHistory> findAssociatedFormHistoriesForOldStatusId(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formHistoriesForOldStatusId");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formStatusesByOldStatusId.id = '" + id + "'");
+
+        return formHistoryService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormHistory> findAssociatedFormHistoriesForNewStatusId(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formHistoriesForNewStatusId");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formStatusesByNewStatusId.id = '" + id + "'");
+
+        return formHistoryService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
 
@@ -281,6 +324,15 @@ public class FormStatusesServiceImpl implements FormStatusesService {
         queryBuilder.append("formStatuses.id = '" + id + "'");
 
         return sfnewResidentialStructureService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormHistoryService instance
+	 */
+	protected void setFormHistoryService(FormHistoryService service) {
+        this.formHistoryService = service;
     }
 
     /**

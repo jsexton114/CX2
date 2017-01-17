@@ -15,6 +15,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormCategoryMapping;
+import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.MasterForms;
@@ -134,18 +135,6 @@ public interface FormTypesService {
 	long count(String query);
 
     /*
-     * Returns the associated formStatuseses for given FormTypes id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated FormStatuses instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated formCategoryMappings for given FormTypes id.
      *
      * @param id value of id; value cannot be null
@@ -156,6 +145,30 @@ public interface FormTypesService {
      * @see Page
      */
     Page<FormCategoryMapping> findAssociatedFormCategoryMappings(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated formHistories for given FormTypes id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormHistory instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated formStatuseses for given FormTypes id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormStatuses instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated masterFormses for given FormTypes id.

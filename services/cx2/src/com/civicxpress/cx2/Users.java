@@ -55,6 +55,7 @@ public class Users implements Serializable {
     private String country;
     private States states;
     private List<Fees> feeses = new ArrayList<>();
+    private List<FormHistory> formHistories = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
@@ -236,6 +237,16 @@ public class Users implements Serializable {
 
     public void setFeeses(List<Fees> feeses) {
         this.feeses = feeses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<FormHistory> getFormHistories() {
+        return this.formHistories;
+    }
+
+    public void setFormHistories(List<FormHistory> formHistories) {
+        this.formHistories = formHistories;
     }
 
     @JsonInclude(Include.NON_EMPTY)

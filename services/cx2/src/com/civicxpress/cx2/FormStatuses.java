@@ -59,6 +59,8 @@ public class FormStatuses implements Serializable {
     private FormTypes formTypes;
     private MunicipalityGroups municipalityGroupsByReadAccess;
     private MunicipalityGroups municipalityGroupsByProcessOwners;
+    private List<FormHistory> formHistoriesForOldStatusId = new ArrayList<>();
+    private List<FormHistory> formHistoriesForNewStatusId = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
@@ -311,6 +313,26 @@ public class FormStatuses implements Serializable {
         }
 
         this.municipalityGroupsByProcessOwners = municipalityGroupsByProcessOwners;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatusesByOldStatusId")
+    public List<FormHistory> getFormHistoriesForOldStatusId() {
+        return this.formHistoriesForOldStatusId;
+    }
+
+    public void setFormHistoriesForOldStatusId(List<FormHistory> formHistoriesForOldStatusId) {
+        this.formHistoriesForOldStatusId = formHistoriesForOldStatusId;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatusesByNewStatusId")
+    public List<FormHistory> getFormHistoriesForNewStatusId() {
+        return this.formHistoriesForNewStatusId;
+    }
+
+    public void setFormHistoriesForNewStatusId(List<FormHistory> formHistoriesForNewStatusId) {
+        this.formHistoriesForNewStatusId = formHistoriesForNewStatusId;
     }
 
     @JsonInclude(Include.NON_EMPTY)

@@ -70,9 +70,9 @@ public class Municipalities implements Serializable {
     private List<Fees> feeses = new ArrayList<>();
     private List<FormCategories> formCategorieses = new ArrayList<>();
     private List<Gisrecords> gisrecordses = new ArrayList<>();
+    private List<MasterForms> masterFormses = new ArrayList<>();
     private List<Holidays> holidayses = new ArrayList<>();
     private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
-    private List<MasterForms> masterFormses = new ArrayList<>();
     private List<MunicipalityGroups> municipalityGroupses = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
     private List<Subdivisions> subdivisionses = new ArrayList<>();
@@ -381,6 +381,16 @@ public class Municipalities implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<MasterForms> getMasterFormses() {
+        return this.masterFormses;
+    }
+
+    public void setMasterFormses(List<MasterForms> masterFormses) {
+        this.masterFormses = masterFormses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<Holidays> getHolidayses() {
         return this.holidayses;
     }
@@ -397,16 +407,6 @@ public class Municipalities implements Serializable {
 
     public void setManualFeeTypeses(List<ManualFeeTypes> manualFeeTypeses) {
         this.manualFeeTypeses = manualFeeTypeses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<MasterForms> getMasterFormses() {
-        return this.masterFormses;
-    }
-
-    public void setMasterFormses(List<MasterForms> masterFormses) {
-        this.masterFormses = masterFormses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
