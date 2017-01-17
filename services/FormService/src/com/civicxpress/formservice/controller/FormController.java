@@ -5,7 +5,7 @@ import com.civicxpress.formservice.FormService;
 import java.lang.Long;
 import java.lang.String;
 import java.sql.SQLException;
-import java.lang.Object;
+import com.tekdog.dbutils.DBColumn;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,7 @@ public class FormController {
     @RequestMapping(value = "/formData", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public Map<String, Object> getFormData(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
+    public Map<String, DBColumn> getFormData(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
         return formService.getFormData(municipalityId, formTypeId, formGuid);
     }
 

@@ -135,7 +135,6 @@
                         </goals>
                         <configuration>
                             <sources>
-                            
                                 <source>services/CXPasswordResetService/src</source>
                                 <source>services/FileService/src</source>
                                 <source>services/FormService/src</source>
@@ -339,6 +338,13 @@
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>DBUtils</groupId>
+            <artifactId>DBUtils</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/DBUtils.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>sqljdbc4-4.0</groupId>

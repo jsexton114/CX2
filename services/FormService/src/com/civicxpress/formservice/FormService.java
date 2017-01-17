@@ -9,26 +9,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
-import com.wavemaker.runtime.service.annotations.HideFromClient;
-
-import com.civicxpress.cx2.service.Cx2QueryExecutorService;
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-import com.wavemaker.runtime.data.model.CustomQuery;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import com.tekdog.dbutils.*;
 
 //import com.civicxpress.formservice.model.*;
 
@@ -50,9 +40,6 @@ public class FormService {
     @Autowired
     private SecurityService securityService;
     
-    @Autowired
-    private Cx2QueryExecutorService cx2QueryExecutorService;
-
     /**
      * This is sample java operation that accepts an input from the caller and responds with "Hello".
      *
@@ -75,50 +62,38 @@ public class FormService {
         return result;
     }
     
-    public Map<String, Object> getFormData(Long municipalityId, Long formTypeId, String formGuid) throws SQLException {
+    public Map<String, DBColumn> getFormData(Long municipalityId, Long formTypeId, String formGuid) throws SQLException {
     	String dbName;
     	String dbUser;
     	String dbPassword;
     	String formTableName;
     	
-    	String getMuniDbDetailsQuery = "SELECT DbName, DbUser, DbPassword FROM Municipalities WHERE ID="+municipalityId.toString();
-    	String getFormTableNameQuery = "SELECT FormTableName FROM FormTypes WHERE ID="+formTypeId.toString();
+    	Connection cx2Conn = DBUtils.getConnection("64.87.23.26", "cx2", "F!yingFishCove1957", "cx2");
+    	
+    	String getMuniDbDetailsQuery = "SELECT DbName, DbUser, DbPassword FROM Municipalities WHERE ID=:municipalityId";
+    	String getFormTableNameQuery = "SELECT FormTableName FROM FormTypes WHERE ID=:formTypeId";
         
-        CustomQuery muniDbDetailsQuery = new CustomQuery();
-        muniDbDetailsQuery.setQueryStr(getMuniDbDetailsQuery);
-        muniDbDetailsQuery.setNativeSql(true);
-        @SuppressWarnings("unchecked")
-		HashMap<String, Object> muniDetails = (HashMap<String, Object>) cx2QueryExecutorService.executeWMCustomQuerySelect(muniDbDetailsQuery, null).getContent().get(0);
+        Map<String, Object> muniDbDetailsParams = new HashMap<String, Object>();
+        muniDbDetailsParams.put("municipalityId", municipalityId);
+		HashMap<String, DBColumn> muniDetails = DBUtils.simpleQuery(cx2Conn, getMuniDbDetailsQuery, muniDbDetailsParams).get(0);
         
-        dbName = (String) muniDetails.get("DbName");
-		dbUser = (String) muniDetails.get("DbUser");
-		dbPassword = (String) muniDetails.get("DbPassword");
+        dbName = muniDetails.get("DbName").getData().toString();
+		dbUser = muniDetails.get("DbUser").getData().toString();
+		dbPassword = muniDetails.get("DbPassword").getData().toString();
+
+		Map<String, Object> formTbNameParams = new HashMap<String, Object>();
+		formTbNameParams.put("formTypeId", formTypeId);
+		formTableName = DBUtils.simpleQuery(cx2Conn, getFormTableNameQuery, formTbNameParams).get(0).get("FormTableName").getData().toString();
 		
-		CustomQuery formTableNameQuery = new CustomQuery();
-		formTableNameQuery.setQueryStr(getFormTableNameQuery);
-		formTableNameQuery.setNativeSql(true);
-		formTableName = (String) ((HashMap<String, Object>) cx2QueryExecutorService.executeWMCustomQuerySelect(formTableNameQuery, null).getContent().get(0)).get("FormTableName");
+		cx2Conn.close();
 		
-		SQLServerDataSource sds = new SQLServerDataSource();
-		sds.setUser(dbUser);
-		sds.setPassword(dbPassword);
-		sds.setServerName("64.87.23.26");
-		sds.setPortNumber(1433);
-		sds.setDatabaseName(dbName);
-		Connection conn = sds.getConnection();
+		Connection formDbConn = DBUtils.getConnection("64.87.23.26", dbUser, dbPassword, dbName);
 		
-		Statement statement = conn.createStatement();
-		ResultSet formData = statement.executeQuery("SELECT * FROM "+dbName+"."+formTableName+" WHERE FormGUID='"+formGuid+"'");
-		HashMap<String, Object> formDataHashMap = new HashMap<String, Object>();
-		ResultSetMetaData formDataMD = formData.getMetaData();
-		int colCount = formDataMD.getColumnCount();
-		if (formData.next()) {
-		    for (int i = 1; i <= colCount; i++) {
-			    formDataHashMap.put(formDataMD.getColumnLabel(i), formData.getObject(i));
-		    }
-		}
+		Map<String, Object> formDbParams = new HashMap<String, Object>();
+		formDbParams.put("formGuid", formGuid);
+		HashMap<String, DBColumn> formDataHashMap = DBUtils.simpleQuery(formDbConn, ("SELECT * FROM "+dbName+"."+formTableName+" WHERE FormGUID=:formGuid"), formDbParams).get(0);
 		
-		conn.close();
+		formDbConn.close();
         
         return formDataHashMap;
     }
