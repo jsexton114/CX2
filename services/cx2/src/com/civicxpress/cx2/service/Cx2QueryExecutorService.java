@@ -52,6 +52,7 @@ public interface Cx2QueryExecutorService {
 	int executeMapAsAdminForVendor(  java.lang.Integer UserId , java.lang.Integer VendorId) throws QueryParameterMismatchException;
     Page<Object> executeMunicipalitiesGroupsCounts(Pageable pageable, java.lang.Integer municipality) throws QueryParameterMismatchException;
     Page<Object> executeMunicipalityCount(Pageable pageable) throws QueryParameterMismatchException;
+	int executeRecordFormHistory(  java.lang.String FormGUID , java.lang.Integer FormTypeId , java.lang.Integer NewStatusId , java.lang.Integer OldStatusId , java.lang.String Comments , java.lang.Integer CreatedBy , java.sql.Timestamp CreatedTime) throws QueryParameterMismatchException;
 	int executeResetPasswordForUser(  java.lang.String newPassword , java.lang.String token) throws QueryParameterMismatchException;
 	int executeResetPasswordWithTokenForUser(  java.lang.Integer userid , java.lang.String token) throws QueryParameterMismatchException;
     Page<Object> executeStandardUserMunicipalites(Pageable pageable, java.lang.Integer USER) throws QueryParameterMismatchException;

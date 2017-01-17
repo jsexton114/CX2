@@ -1044,6 +1044,66 @@
       "municipalitiesCount" : "java.lang.Integer"
     }
   }, {
+    "name" : "RecordFormHistory",
+    "query" : "insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,:CreatedTime)",
+    "comment" : "RecordFormHistory",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "FormGUID",
+      "paramType" : "java.lang.String",
+      "testValue" : "sfddd",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "FormTypeId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "NewStatusId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "OldStatusId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "Comments",
+      "paramType" : "java.lang.String",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "CreatedBy",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "3",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "CreatedTime",
+      "paramType" : "java.sql.Timestamp",
+      "testValue" : "1484592234000",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2RecordFormHistoryrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "resetPasswordForUser",
     "query" : "UPDATE Users SET Password=:newPassword where ID in (select UserId from UserPasswordResetTokens where ExpirationDate >= GETDATE() and Token = :token)",
     "comment" : "Resets password for a user, given user ID as Integer and password as String.",

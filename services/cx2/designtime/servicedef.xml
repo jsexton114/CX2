@@ -292,6 +292,16 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="RecordFormHistory">
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="FormTypeId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="NewStatusId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="OldStatusId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Comments" typeRef="java.lang.String" isList="false"/>
+        <parameter name="CreatedBy" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="CreatedTime" typeRef="java.sql.Timestamp" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -464,6 +474,16 @@
     </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="RecordFormHistory">
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="FormTypeId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="NewStatusId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="OldStatusId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Comments" typeRef="java.lang.String" isList="false"/>
+        <parameter name="CreatedBy" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="CreatedTime" typeRef="java.sql.Timestamp" isList="false"/>
+        <return typeRef="cx2RecordFormHistoryrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="resetPasswordForUser">
         <parameter name="newPassword" typeRef="java.lang.String" isList="false"/>
@@ -1379,6 +1399,7 @@
         <dataobject javaType="cx2MunicipalityCountrtnType">
             <element name="municipalitiesCount" typeRef="java.lang.Integer"/>
         </dataobject>
+        <dataobject javaType="cx2RecordFormHistoryrtnType"/>
         <dataobject javaType="cx2StandardUserMunicipalitesrtnType">
             <element name="Active" typeRef="java.lang.Boolean"/>
             <element name="Address1" typeRef="java.lang.String"/>

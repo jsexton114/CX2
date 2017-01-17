@@ -355,6 +355,20 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeRecordFormHistory( java.lang.String FormGUID ,java.lang.Integer FormTypeId ,java.lang.Integer NewStatusId ,java.lang.Integer OldStatusId ,java.lang.String Comments ,java.lang.Integer CreatedBy ,java.sql.Timestamp CreatedTime)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("FormGUID", FormGUID);
+        params.put("FormTypeId", FormTypeId);
+        params.put("NewStatusId", NewStatusId);
+        params.put("OldStatusId", OldStatusId);
+        params.put("Comments", Comments);
+        params.put("CreatedBy", CreatedBy);
+        params.put("CreatedTime", CreatedTime);
+        return queryExecutor.executeNamedQueryForUpdate("RecordFormHistory", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeResetPasswordForUser( java.lang.String newPassword ,java.lang.String token)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

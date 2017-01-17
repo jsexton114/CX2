@@ -186,6 +186,11 @@
       select count(*) as municipalitiesCount from Municipalities
     ]]>
   </sql-query>
+  <sql-query name="RecordFormHistory">
+    <![CDATA[
+      insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,:CreatedTime)
+    ]]>
+  </sql-query>
   <sql-query name="resetPasswordForUser">
     <![CDATA[
       UPDATE Users SET Password=:newPassword where ID in (select UserId from UserPasswordResetTokens where ExpirationDate >= GETDATE() and Token = :token)
