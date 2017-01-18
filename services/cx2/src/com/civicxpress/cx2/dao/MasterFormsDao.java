@@ -20,7 +20,7 @@ import com.civicxpress.cx2.MasterForms;
  * which is stored in the database.
  */
 @Repository("cx2.MasterFormsDao")
-public class MasterFormsDao extends WMGenericDaoImpl<MasterForms, Integer> {
+public class MasterFormsDao extends WMGenericDaoImpl<MasterForms, String> {
 
     @Autowired
     @Qualifier("cx2Template")

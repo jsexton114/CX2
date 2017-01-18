@@ -211,6 +211,11 @@
         <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateDevFormDetailsForCXAdminrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateFormStatusInMasterForms">
+        <parameter name="formStatus" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2UpdateFormStatusInMasterFormsrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateGlobalEmailSig">
         <parameter name="gs" typeRef="java.lang.String" isList="false"/>
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
@@ -304,11 +309,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UpdateFormStatusInMasterForms">
-        <parameter name="formStatus" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
@@ -856,12 +856,12 @@
             <element name="formTitle" typeRef="java.lang.String" allowNull="true"/>
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
-            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="issuedDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="recordType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="sharedWiths" typeRef="com.civicxpress.cx2.SharedWith" isList="true" allowNull="true"/>
             <element name="totalFees" typeRef="java.lang.String" allowNull="true"/>
             <element name="totalPayment" typeRef="java.lang.String" allowNull="true"/>
             <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
@@ -1046,6 +1046,7 @@
             <element name="createdBy" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="createdOn" typeRef="java.util.Date" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="masterForms" typeRef="com.civicxpress.cx2.MasterForms" allowNull="true"/>
             <element name="relatedGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="sharedWithUser" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="usersByCreatedBy" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>

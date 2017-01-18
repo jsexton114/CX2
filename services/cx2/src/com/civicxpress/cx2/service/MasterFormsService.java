@@ -15,6 +15,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.SharedWith;
 
 /**
  * Service object for domain model class {@link MasterForms}.
@@ -39,7 +40,7 @@ public interface MasterFormsService {
 	 * @return MasterForms associated with the given masterformsId.
      * @throws EntityNotFoundException If no MasterForms is found.
 	 */
-	MasterForms getById(Integer masterformsId) throws EntityNotFoundException;
+	MasterForms getById(String masterformsId) throws EntityNotFoundException;
 
     /**
 	 * Find and return the MasterForms by given id if exists, returns null otherwise.
@@ -47,8 +48,16 @@ public interface MasterFormsService {
 	 * @param masterformsId The id of the MasterForms to get; value cannot be null.
 	 * @return MasterForms associated with the given masterformsId.
 	 */
-	MasterForms findById(Integer masterformsId);
+	MasterForms findById(String masterformsId);
 
+    /**
+	 * Find and return the MasterForms for given formGuid  if exists.
+	 *
+	 * @param formGuid value of formGuid; value cannot be null.
+	 * @return MasterForms associated with the given inputs.
+     * @throws EntityNotFoundException if no matching MasterForms found.
+	 */
+    MasterForms getByFormGuid(String formGuid)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing MasterForms. It replaces all fields of the existing MasterForms with the given masterForms.
@@ -68,7 +77,7 @@ public interface MasterFormsService {
 	 * @return The deleted MasterForms.
 	 * @throws EntityNotFoundException if no MasterForms found with the given id.
 	 */
-	MasterForms delete(Integer masterformsId) throws EntityNotFoundException;
+	MasterForms delete(String masterformsId) throws EntityNotFoundException;
 
 	/**
 	 * Find all MasterForms matching the given QueryFilter(s).
@@ -125,6 +134,17 @@ public interface MasterFormsService {
 	 */
 	long count(String query);
 
+    /*
+     * Returns the associated sharedWiths for given MasterForms id.
+     *
+     * @param formGuid value of formGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SharedWith instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SharedWith> findAssociatedSharedWiths(String formGuid, Pageable pageable);
 
 }
 

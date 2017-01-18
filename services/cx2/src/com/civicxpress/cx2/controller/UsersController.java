@@ -253,15 +253,17 @@ public class UsersController {
         return usersService.findAssociatedRoleses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/sharedWithsForCreatedBy", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/sharedWithsForCreatedBy", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the sharedWithsForCreatedBy instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SharedWith> findAssociatedSharedWithsForCreatedBy(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sharedWithsForCreatedBy");
         return usersService.findAssociatedSharedWithsForCreatedBy(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/sharedWithsForSharedWithUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/sharedWithsForSharedWithUser", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the sharedWithsForSharedWithUser instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SharedWith> findAssociatedSharedWithsForSharedWithUser(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sharedWithsForSharedWithUser");
         return usersService.findAssociatedSharedWithsForSharedWithUser(id, pageable);

@@ -49,6 +49,16 @@ public interface SharedWithService {
 	 */
 	SharedWith findById(Integer sharedwithId);
 
+    /**
+	 * Find and return the SharedWith for given relatedGuid  andsharedWithUser  andcreatedBy  if exists.
+	 *
+	 * @param relatedGuid value of relatedGuid; value cannot be null.
+	 * @param sharedWithUser value of sharedWithUser; value cannot be null.
+	 * @param createdBy value of createdBy; value cannot be null.
+	 * @return SharedWith associated with the given inputs.
+     * @throws EntityNotFoundException if no matching SharedWith found.
+	 */
+    SharedWith getByRelatedGuidAndSharedWithUserAndCreatedBy(String relatedGuid, Integer sharedWithUser, Integer createdBy)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing SharedWith. It replaces all fields of the existing SharedWith with the given sharedWith.

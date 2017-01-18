@@ -26,6 +26,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.service.MasterFormsService;
 
 /**
@@ -56,7 +57,7 @@ public class MasterFormsController {
     @ApiOperation(value = "Returns the MasterForms instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public MasterForms getMasterForms(@PathVariable("id") Integer id) throws EntityNotFoundException {
+    public MasterForms getMasterForms(@PathVariable("id") String id) throws EntityNotFoundException {
         LOGGER.debug("Getting MasterForms with id: {}", id);
         MasterForms foundMasterForms = masterFormsService.getById(id);
         LOGGER.debug("MasterForms details with id: {}", foundMasterForms);
@@ -66,9 +67,9 @@ public class MasterFormsController {
     @ApiOperation(value = "Updates the MasterForms instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public MasterForms editMasterForms(@PathVariable("id") Integer id, @RequestBody MasterForms masterForms) throws EntityNotFoundException {
-        LOGGER.debug("Editing MasterForms with id: {}", masterForms.getId());
-        masterForms.setId(id);
+    public MasterForms editMasterForms(@PathVariable("id") String id, @RequestBody MasterForms masterForms) throws EntityNotFoundException {
+        LOGGER.debug("Editing MasterForms with id: {}", masterForms.getFormGuid());
+        masterForms.setFormGuid(id);
         masterForms = masterFormsService.update(masterForms);
         LOGGER.debug("MasterForms details with id: {}", masterForms);
         return masterForms;
@@ -77,10 +78,18 @@ public class MasterFormsController {
     @ApiOperation(value = "Deletes the MasterForms instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteMasterForms(@PathVariable("id") Integer id) throws EntityNotFoundException {
+    public boolean deleteMasterForms(@PathVariable("id") String id) throws EntityNotFoundException {
         LOGGER.debug("Deleting MasterForms with id: {}", id);
         MasterForms deletedMasterForms = masterFormsService.delete(id);
         return deletedMasterForms != null;
+    }
+
+    @RequestMapping(value = "/formGuid/{formGuid}", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching MasterForms with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public MasterForms getByFormGuid(@PathVariable("formGuid") String formGuid) {
+        LOGGER.debug("Getting MasterForms with uniques key FormGuid");
+        return masterFormsService.getByFormGuid(formGuid);
     }
 
     /**
@@ -116,6 +125,14 @@ public class MasterFormsController {
     public Long countMasterForms(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting MasterForms");
         return masterFormsService.count(query);
+    }
+
+    @RequestMapping(value = "/{id}/sharedWiths", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the sharedWiths instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<SharedWith> findAssociatedSharedWiths(@PathVariable("id") String id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sharedWiths");
+        return masterFormsService.findAssociatedSharedWiths(id, pageable);
     }
 
     /**
