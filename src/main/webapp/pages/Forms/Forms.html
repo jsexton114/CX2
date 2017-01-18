@@ -36,7 +36,7 @@
                                         <wm-composite name="composite1">
                                             <wm-label class="col-md-3 control-label" name="label4" caption="Status"></wm-label>
                                             <wm-container class="col-md-9" name="container2_1">
-                                                <wm-select name="selectStatus" dataset="bind:Variables.FormStatus.dataSet" datafield="All Fields" displayfield="status" datavalue="bind:Widgets.livelistStatus.selecteditem"></wm-select>
+                                                <wm-select name="selectStatus" dataset="bind:Variables.FormStatus.dataSet" datafield="All Fields" displayfield="status" datavalue="bind:defaultObjectForSelectStatus"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -109,8 +109,10 @@
                                 <wm-livegrid formlayout="dialog" name="livegrid1">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="Sharedwith List" dataset="bind:Variables.SharedWithData.dataSet" navigation="Classic" name="gridSharedwith">
                                         <wm-grid-column binding="usersBySharedWithUser.email" caption="User Email" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="createdOn" caption="Created On" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="createdOn" caption="Created On" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                     <wm-liveform novalidate="false" errormessage="" title="Sharedwith Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.SharedWithData.dataSet" captionalign="left" captionposition="top" name="liveformSharedwith">
                                         <wm-layoutgrid columns="1" name="layoutgrid4">
@@ -139,7 +141,7 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneHistory" title="HISTORY">
                                 <wm-grid title="Formhistory List" dataset="bind:Variables.FormHistoryData.dataSet" navigation="Classic" name="gridFormhistory">
-                                    <wm-grid-column binding="createdTime" caption="Created" type="timestamp" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true"></wm-grid-column>
+                                    <wm-grid-column binding="createdTime" caption="Created" type="timestamp" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true"></wm-grid-column>
                                     <wm-grid-column binding="formStatusesByNewStatusId.status" caption="Status" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
                                     <wm-grid-column binding="users.email" caption="Created By" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                     <wm-grid-column binding="comments" caption="Notes" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
