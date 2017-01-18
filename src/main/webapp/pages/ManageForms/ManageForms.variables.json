@@ -1413,5 +1413,36 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Municipalities"
+  },
+  "svSaveFormType" : {
+    "_id" : "wm-svSaveFormType-wm.ServiceVariable-1484775476826",
+    "name" : "svSaveFormType",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "formType",
+      "value" : "bind:Widgets.liveformCreateForm.formWidgets.formType.datavalue",
+      "type" : "string"
+    } ],
+    "service" : "FormService",
+    "operation" : "saveFormType",
+    "operationId" : "FormController_saveFormType",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "svSaveFormTypeonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Form"
   }
 }

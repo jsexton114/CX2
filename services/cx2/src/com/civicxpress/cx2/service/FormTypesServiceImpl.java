@@ -24,6 +24,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.FormCategoryMapping;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
@@ -46,6 +47,10 @@ public class FormTypesServiceImpl implements FormTypesService {
     @Autowired
 	@Qualifier("cx2.FormStatusesService")
 	private FormStatusesService formStatusesService;
+
+    @Autowired
+	@Qualifier("cx2.FormTypeFieldsService")
+	private FormTypeFieldsService formTypeFieldsService;
 
     @Autowired
 	@Qualifier("cx2.FormHistoryService")
@@ -113,6 +118,14 @@ public class FormTypesServiceImpl implements FormTypesService {
                 formStatusese.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
                 formStatusesService.create(formStatusese);
+            }
+        }
+
+        if(formTypesCreated.getFormTypeFieldses() != null) {
+            for(FormTypeFields formTypeFieldse : formTypesCreated.getFormTypeFieldses()) {
+                formTypeFieldse.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormTypeFields with information: {}", formTypeFieldse);
+                formTypeFieldsService.create(formTypeFieldse);
             }
         }
 
@@ -272,6 +285,17 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formTypeFieldses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formTypeFieldsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
 
@@ -343,6 +367,15 @@ public class FormTypesServiceImpl implements FormTypesService {
 	 */
 	protected void setFormStatusesService(FormStatusesService service) {
         this.formStatusesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormTypeFieldsService instance
+	 */
+	protected void setFormTypeFieldsService(FormTypeFieldsService service) {
+        this.formTypeFieldsService = service;
     }
 
     /**

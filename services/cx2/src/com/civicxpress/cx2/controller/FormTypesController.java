@@ -28,6 +28,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.FormCategoryMapping;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
@@ -149,6 +150,13 @@ public class FormTypesController {
     public Page<FormStatuses> findAssociatedFormStatuseses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formStatuseses");
         return formTypesService.findAssociatedFormStatuseses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formTypeFieldses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formTypeFieldses instance associated with the given id.")
+    public Page<FormTypeFields> findAssociatedFormTypeFieldses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formTypeFieldses");
+        return formTypesService.findAssociatedFormTypeFieldses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)

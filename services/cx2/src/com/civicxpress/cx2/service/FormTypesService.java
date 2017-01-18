@@ -17,6 +17,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.FormCategoryMapping;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
@@ -169,6 +170,18 @@ public interface FormTypesService {
      * @see Page
      */
     Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated formTypeFieldses for given FormTypes id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormTypeFields instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated masterFormses for given FormTypes id.

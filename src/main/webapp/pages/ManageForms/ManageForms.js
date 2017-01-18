@@ -14,8 +14,11 @@ Application.$controller("ManageFormsPageController", ["$scope", function($scope)
          */
     };
 
-
-
+    $scope.svSaveFormTypeonSuccess = function(variable, data) {
+        console.log($data);
+        //$scope.Variables.goToPage_EditForm.dataSet.FormTypeId = $data.id;
+        //$scope.Variables.goToPage_EditForm.navigate();
+    };
 
 }]);
 
@@ -24,11 +27,6 @@ Application.$controller("dialogCreateFormController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-
-
-
-
-
 
         $scope.dialogCreateFormOpened = function($event, $isolateScope) {
             var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -39,14 +37,6 @@ Application.$controller("dialogCreateFormController", ["$scope",
             }
             $scope.Widgets.liveformCreateForm.GUID = randomString;
         };
-
-
-        $scope.liveformCreateFormSuccess = function($event, $operation, $data) {
-            $scope.Variables.goToPage_EditForm.dataSet.FormTypeId = $data.id;
-            $scope.Variables.goToPage_EditForm.dataSet.MunicipalityId = $scope.Widgets.selectMunicipality.datavalue.ID;
-            $scope.Variables.goToPage_EditForm.navigate();
-        };
-
     }
 ]);
 

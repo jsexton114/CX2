@@ -332,6 +332,61 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
+                            <wm-tabpane name="tabpaneFormFields" title="Form Fields">
+                                <wm-livegrid formlayout="dialog" name="livegrid3">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Fields" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet" navigation="Classic" name="grid3">
+                                        <wm-grid-column binding="label" caption="Label" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                                        <wm-grid-column binding="displayOrder" caption="Display Order" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer"></wm-grid-column>
+                                        <wm-grid-column binding="required" caption="Required" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean"></wm-grid-column>
+                                        <wm-grid-column binding="defaultValue" caption="Default Value" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                                        <wm-grid-column binding="helpText" caption="Help Text" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                                        <wm-grid-column binding="fieldType" caption="Field Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                                        <wm-grid-column binding="possibleValues" caption="Possible Values" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                                    </wm-grid>
+                                    <wm-liveform novalidate="false" errormessage="" title="Form Field" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet" captionalign="left" captionposition="top" name="lfFormTypeFields">
+                                        <wm-layoutgrid columns="2" name="layoutgrid9_2">
+                                            <wm-gridrow name="gridrow37_2">
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn62_4">
+                                                    <wm-form-field name="label" displayname="Label" show="true" primary-key="false" generator="assigned" key="label" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn63">
+                                                    <wm-form-field name="helpText" displayname="Help Text" show="true" primary-key="false" generator="assigned" key="helpText" type="string" widget="textarea" maxchars="255" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow38">
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn64_3">
+                                                    <wm-form-field name="fieldType" displayname="Field Type" show="true" primary-key="false" generator="assigned" key="fieldType" type="string" widget="select" maxchars="100" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet"
+                                                    datafield="fieldType" displayfield="fieldType" placeholder="Select value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn65_1">
+                                                    <wm-form-field name="possibleValues" displayname="Possible Values" show="true" primary-key="false" generator="assigned" key="possibleValues" type="string" widget="text" maxchars="1000" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet"
+                                                    datafield="fieldType" displayfield="fieldType" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow39_1">
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn66">
+                                                    <wm-form-field name="defaultValue" displayname="Default Value" show="true" primary-key="false" generator="assigned" key="defaultValue" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn67">
+                                                    <wm-form-field name="displayOrder" displayname="Display Order" show="true" primary-key="false" generator="assigned" key="displayOrder" type="integer" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow40_1">
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn68">
+                                                    <wm-form-field name="required" displayname="Required" show="true" primary-key="false" generator="assigned" key="required" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-layoutgrid>
+                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
+                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="edit" display-name="Edit" show="true" class="form-update btn-secondary" iconclass="wi wi-pencil" title="Edit" action="edit()" shortcutkey="" disabled="false" type="button" update-mode="false"></wm-form-action>
+                                    </wm-liveform>
+                                </wm-livegrid>
+                            </wm-tabpane>
                             <wm-tabpane name="tabpaneCXADMIN" title="CX Admin" accessroles="CXAdmin">
                                 <wm-layoutgrid name="layoutgrid8">
                                     <wm-gridrow name="gridrow26_2">

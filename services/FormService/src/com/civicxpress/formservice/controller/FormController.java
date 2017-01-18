@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import com.tekdog.dbutils.DBColumn;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import java.lang.Integer;
+import java.lang.Boolean;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +38,15 @@ public class FormController {
     @ApiOperation(value = "")
     public String sampleJavaOperation(@RequestParam(value = "name", required = false) String name, HttpServletRequest request) {
         return formService.sampleJavaOperation(name, request);
+    }
+
+    @RequestMapping(value = "/saveFormType", method = RequestMethod.GET)
+    public void saveFormType(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formType", required = false) String formType) throws SQLException {
+        formService.saveFormType(municipalityId, formType);
+    }
+
+    @RequestMapping(value = "/saveFormTypeField", method = RequestMethod.GET)
+    public void saveFormTypeField(@RequestParam(value = "formTypeFieldId", required = false) Long formTypeFieldId, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "label", required = false) String label, @RequestParam(value = "fieldType", required = false) String fieldType, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues) throws SQLException {
+        formService.saveFormTypeField(formTypeFieldId, formTypeId, label, fieldType, displayOrder, required, defaultValue, helpText, possibleValues);
     }
 }

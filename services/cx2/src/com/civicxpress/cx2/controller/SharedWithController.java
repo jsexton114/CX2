@@ -85,7 +85,8 @@ public class SharedWithController {
 
     @RequestMapping(value = "/relatedGuid-sharedWithUser-createdBy", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching SharedWith with given unique key values.")
-    public SharedWith getByRelatedGuidAndSharedWithUserAndCreatedBy(@RequestParam(name = "relatedGuid") String relatedGuid, @RequestParam(name = "sharedWithUser") Integer sharedWithUser, @RequestParam(name = "createdBy") Integer createdBy) {
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public SharedWith getByRelatedGuidAndSharedWithUserAndCreatedBy(@RequestParam(value = "null", required = true) String relatedGuid, @RequestParam(value = "null", required = true) Integer sharedWithUser, @RequestParam(value = "null", required = true) Integer createdBy) {
         LOGGER.debug("Getting SharedWith with uniques key RelatedGuidAndSharedWithUserAndCreatedBy");
         return sharedWithService.getByRelatedGuidAndSharedWithUserAndCreatedBy(relatedGuid, sharedWithUser, createdBy);
     }

@@ -740,6 +740,19 @@
             <element name="status" typeRef="java.lang.String" allowNull="true"/>
             <element name="writeAccess" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.FormTypeFields">
+            <element name="defaultValue" typeRef="java.lang.String" allowNull="true"/>
+            <element name="displayOrder" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="fieldName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="fieldType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
+            <element name="helpText" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="label" typeRef="java.lang.String" allowNull="true"/>
+            <element name="possibleValues" typeRef="java.lang.String" allowNull="true"/>
+            <element name="required" typeRef="java.lang.Boolean" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormTypes">
             <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="attachments" typeRef="java.lang.Boolean" allowNull="true"/>
@@ -754,6 +767,7 @@
             <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
             <element name="formTableName" typeRef="java.lang.String" allowNull="true"/>
             <element name="formType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="formTypeFieldses" typeRef="com.civicxpress.cx2.FormTypeFields" isList="true" allowNull="true"/>
             <element name="formTypeGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="gismap" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="gisrecord" typeRef="java.lang.Boolean" allowNull="true"/>
@@ -1418,17 +1432,29 @@
         </dataobject>
         <dataobject javaType="cx2GetFormsForMunicpalityrtnType">
             <element name="Active" typeRef="java.lang.Boolean"/>
+            <element name="Attachments" typeRef="java.lang.String"/>
+            <element name="AutomaticFees" typeRef="java.lang.String"/>
+            <element name="CollectFees" typeRef="java.lang.String"/>
             <element name="CreatedDate" typeRef="java.sql.Date"/>
+            <element name="DigitalSignatures" typeRef="java.lang.String"/>
             <element name="FlatFee" typeRef="java.lang.String"/>
             <element name="FlatFeeAccountingCode" typeRef="java.lang.String"/>
+            <element name="FormTableName" typeRef="java.lang.String"/>
             <element name="FormType" typeRef="java.lang.String"/>
             <element name="FormTypeGuid" typeRef="java.lang.String"/>
+            <element name="GISMap" typeRef="java.lang.String"/>
+            <element name="GISRecord" typeRef="java.lang.String"/>
             <element name="ID" typeRef="java.math.BigDecimal"/>
-            <element name="MunicipalityInternalForm" typeRef="java.lang.String"/>
+            <element name="Inspections" typeRef="java.lang.String"/>
+            <element name="MultipleGISRecords" typeRef="java.lang.Boolean"/>
+            <element name="MunicipalityId" typeRef="java.math.BigDecimal"/>
+            <element name="MunicipalityInternalForm" typeRef="java.lang.Boolean"/>
             <element name="PageName" typeRef="java.lang.String"/>
+            <element name="Payments" typeRef="java.lang.String"/>
             <element name="Report" typeRef="java.lang.String"/>
             <element name="SfFee" typeRef="java.lang.String"/>
             <element name="SfFeeAccountingCode" typeRef="java.lang.String"/>
+            <element name="SharedWith" typeRef="java.lang.String"/>
             <element name="StateFee" typeRef="java.lang.String"/>
             <element name="StateFeeAccountingCode" typeRef="java.lang.String"/>
             <element name="TbLocation" typeRef="java.lang.String"/>

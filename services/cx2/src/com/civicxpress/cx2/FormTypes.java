@@ -64,6 +64,7 @@ public class FormTypes implements Serializable {
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
+    private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
@@ -354,6 +355,16 @@ public class FormTypes implements Serializable {
 
     public void setFormStatuseses(List<FormStatuses> formStatuseses) {
         this.formStatuseses = formStatuseses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<FormTypeFields> getFormTypeFieldses() {
+        return this.formTypeFieldses;
+    }
+
+    public void setFormTypeFieldses(List<FormTypeFields> formTypeFieldses) {
+        this.formTypeFieldses = formTypeFieldses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

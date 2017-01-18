@@ -113,7 +113,7 @@
   </sql-query>
   <sql-query name="GetFormsForMunicpality">
     <![CDATA[
-      select DISTINCT FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.MunicipalityId=:MunicipalityId and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID
+      select DISTINCT * from FormTypes where MunicipalityId=:MunicipalityId
     ]]>
   </sql-query>
   <sql-query name="GetFormTypesByCategoriesAndMunicipalities">
