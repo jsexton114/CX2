@@ -472,16 +472,20 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "user",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    }, {
       "target" : "closed",
       "value" : true,
       "type" : "boolean"
     }, {
-      "target" : "municipality",
+      "target" : "MunicipalityId",
       "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    }, {
+      "target" : "creatorUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "sharedWithUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
     "type" : "cx2CountOfUserFormsForMunicipalityrtnType",
@@ -513,7 +517,11 @@
       "value" : true,
       "type" : "boolean"
     }, {
-      "target" : "user",
+      "target" : "creatorUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "sharedWithUser",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
@@ -542,16 +550,20 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "user",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    }, {
       "target" : "closed",
       "value" : false,
       "type" : "boolean"
     }, {
-      "target" : "municipality",
+      "target" : "MunicipalityId",
       "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    }, {
+      "target" : "creatorUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "sharedWithUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
     "type" : "cx2CountOfUserFormsForMunicipalityrtnType",
@@ -582,7 +594,11 @@
       "value" : false,
       "type" : "boolean"
     }, {
-      "target" : "user",
+      "target" : "creatorUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "sharedWithUser",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],

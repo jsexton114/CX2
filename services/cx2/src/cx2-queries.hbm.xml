@@ -38,12 +38,12 @@
   </sql-query>
   <sql-query name="CountOfUserForms">
     <![CDATA[
-      select count(*) as count from MasterForms where Closed=:closed and UserId=:user
+      select count(*) as count from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))
     ]]>
   </sql-query>
   <sql-query name="CountOfUserFormsForMunicipality">
     <![CDATA[
-      select count(*) as count from MasterForms where UserId=:user and Closed=:closed and MunicipalityId=:municipality
+      select count(*) as count from MasterForms where MunicipalityId=:MunicipalityId and Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))
     ]]>
   </sql-query>
   <sql-query name="CountOfVendors">

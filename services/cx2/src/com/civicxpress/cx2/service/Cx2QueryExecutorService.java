@@ -22,8 +22,8 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeCheckingUserWithInVendorUsers(Pageable pageable, java.lang.Integer user, java.lang.Integer vendor) throws QueryParameterMismatchException;
     Page<Object> executeCheckingUserWithMunicipalityInRoles(Pageable pageable, java.lang.Integer muncipality, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeCountOfFormsForMunicipality(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
-    Page<Object> executeCountOfUserForms(Pageable pageable, java.lang.Boolean closed, java.lang.Integer user) throws QueryParameterMismatchException;
-    Page<Object> executeCountOfUserFormsForMunicipality(Pageable pageable, java.lang.Integer user, java.lang.Boolean closed, java.lang.Integer municipality) throws QueryParameterMismatchException;
+    Page<Object> executeCountOfUserForms(Pageable pageable, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
+    Page<Object> executeCountOfUserFormsForMunicipality(Pageable pageable, java.lang.Integer MunicipalityId, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
     Page<Object> executeCountOfVendors(Pageable pageable, java.lang.Integer vendor) throws QueryParameterMismatchException;
     Page<Object> executeCountOfVendorUsers(Pageable pageable, java.lang.Integer vendor) throws QueryParameterMismatchException;
 	int executeDeleteCategoryMapping(  java.lang.Integer form) throws QueryParameterMismatchException;

@@ -94,21 +94,23 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
-	public Page<Object> executeCountOfUserForms(Pageable pageable, java.lang.Boolean closed, java.lang.Integer user)
+	public Page<Object> executeCountOfUserForms(Pageable pageable, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("closed", closed);
-        params.put("user", user);
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
         return queryExecutor.executeNamedQuery("CountOfUserForms", params, pageable);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
-	public Page<Object> executeCountOfUserFormsForMunicipality(Pageable pageable, java.lang.Integer user, java.lang.Boolean closed, java.lang.Integer municipality)
+	public Page<Object> executeCountOfUserFormsForMunicipality(Pageable pageable, java.lang.Integer MunicipalityId, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("user", user);
+        params.put("MunicipalityId", MunicipalityId);
         params.put("closed", closed);
-        params.put("municipality", municipality);
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
         return queryExecutor.executeNamedQuery("CountOfUserFormsForMunicipality", params, pageable);
 	}
 	@Transactional(value = "cx2TransactionManager")

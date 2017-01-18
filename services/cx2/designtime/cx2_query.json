@@ -215,8 +215,8 @@
     }
   }, {
     "name" : "CountOfUserForms",
-    "query" : "select count(*) as count from MasterForms where Closed=:closed and UserId=:user",
-    "comment" : "To get count for open or closed for user",
+    "query" : "select count(*) as count from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))",
+    "comment" : "To get count for open or closed for user and SharedWith user",
     "description" : null,
     "nativeSql" : true,
     "returnsSingleResult" : false,
@@ -224,14 +224,21 @@
     "queryParams" : [ {
       "paramName" : "closed",
       "paramType" : "java.lang.Boolean",
-      "testValue" : "true",
+      "testValue" : "false",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
     }, {
-      "paramName" : "user",
+      "paramName" : "creatorUser",
       "paramType" : "java.lang.Integer",
-      "testValue" : "42",
+      "testValue" : "3",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "sharedWithUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "3",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
@@ -242,30 +249,37 @@
     }
   }, {
     "name" : "CountOfUserFormsForMunicipality",
-    "query" : "select count(*) as count from MasterForms where UserId=:user and Closed=:closed and MunicipalityId=:municipality",
-    "comment" : "To get count for open or closed for municipality",
+    "query" : "select count(*) as count from MasterForms where MunicipalityId=:MunicipalityId and Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))",
+    "comment" : "To get count for open or closed by municipality for user and sharedWith user",
     "description" : null,
     "nativeSql" : true,
     "returnsSingleResult" : false,
     "update" : false,
     "queryParams" : [ {
-      "paramName" : "user",
+      "paramName" : "MunicipalityId",
       "paramType" : "java.lang.Integer",
-      "testValue" : "42",
+      "testValue" : "2",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
     }, {
       "paramName" : "closed",
       "paramType" : "java.lang.Boolean",
-      "testValue" : "true",
+      "testValue" : "false",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
     }, {
-      "paramName" : "municipality",
+      "paramName" : "creatorUser",
       "paramType" : "java.lang.Integer",
-      "testValue" : "1",
+      "testValue" : "3",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "sharedWithUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "3",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
