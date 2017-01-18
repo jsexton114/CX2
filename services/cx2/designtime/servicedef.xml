@@ -310,6 +310,12 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="FormsForUsersAndShared">
+        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -402,6 +408,12 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2EmployeesOrAdminsMunicipalitiesrtnType" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="FormsForUsersAndShared">
+        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2FormsForUsersAndSharedrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="getEmailId">
         <parameter name="userID" typeRef="java.lang.Integer" isList="false"/>
@@ -1346,6 +1358,30 @@
             <element name="TimeZone" typeRef="java.lang.String"/>
             <element name="TuesdayYN" typeRef="java.lang.Boolean"/>
             <element name="WednesdayYN" typeRef="java.lang.Boolean"/>
+        </dataobject>
+        <dataobject javaType="cx2FormsForUsersAndSharedrtnType">
+            <element name="assignedToGroupId" typeRef="java.lang.Integer"/>
+            <element name="balanceDue" typeRef="java.lang.String"/>
+            <element name="closed" typeRef="java.lang.Boolean"/>
+            <element name="cxvendorId" typeRef="java.lang.Integer"/>
+            <element name="expiresDate" typeRef="java.util.Date"/>
+            <element name="formGuid" typeRef="java.lang.String"/>
+            <element name="formStatusId" typeRef="java.lang.Integer"/>
+            <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses"/>
+            <element name="formTitle" typeRef="java.lang.String"/>
+            <element name="formTypeId" typeRef="java.lang.Integer"/>
+            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes"/>
+            <element name="issuedDate" typeRef="java.util.Date"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities"/>
+            <element name="municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups"/>
+            <element name="municipalityId" typeRef="java.lang.Integer"/>
+            <element name="recordType" typeRef="java.lang.String"/>
+            <element name="sharedWiths" typeRef="java.util.List"/>
+            <element name="totalFees" typeRef="java.lang.String"/>
+            <element name="totalPayment" typeRef="java.lang.String"/>
+            <element name="userId" typeRef="java.lang.Integer"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users"/>
+            <element name="vendor" typeRef="com.civicxpress.cx2.Vendor"/>
         </dataobject>
         <dataobject javaType="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType">
             <element name="Active" typeRef="java.lang.Boolean"/>

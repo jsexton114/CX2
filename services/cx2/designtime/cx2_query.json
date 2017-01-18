@@ -571,6 +571,61 @@
       "WednesdayYN" : "java.lang.Boolean"
     }
   }, {
+    "name" : "FormsForUsersAndShared",
+    "query" : "from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser ))",
+    "comment" : "Brings all the Forms of creator and shared with user",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "closed",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "false",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "creatorUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "3",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "sharedWithUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "3",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2FormsForUsersAndSharedrtnType",
+    "returnTypeMetadata" : {
+      "assignedToGroupId" : "java.lang.Integer",
+      "balanceDue" : "java.lang.String",
+      "closed" : "java.lang.Boolean",
+      "cxvendorId" : "java.lang.Integer",
+      "expiresDate" : "java.util.Date",
+      "formGuid" : "java.lang.String",
+      "formStatusId" : "java.lang.Integer",
+      "formStatuses" : "com.civicxpress.cx2.FormStatuses",
+      "formTitle" : "java.lang.String",
+      "formTypeId" : "java.lang.Integer",
+      "formTypes" : "com.civicxpress.cx2.FormTypes",
+      "issuedDate" : "java.util.Date",
+      "municipalities" : "com.civicxpress.cx2.Municipalities",
+      "municipalityGroups" : "com.civicxpress.cx2.MunicipalityGroups",
+      "municipalityId" : "java.lang.Integer",
+      "recordType" : "java.lang.String",
+      "sharedWiths" : "java.util.List",
+      "totalFees" : "java.lang.String",
+      "totalPayment" : "java.lang.String",
+      "userId" : "java.lang.Integer",
+      "users" : "com.civicxpress.cx2.Users",
+      "vendor" : "com.civicxpress.cx2.Vendor"
+    }
+  }, {
     "name" : "getEmailId",
     "query" : "select Email from Users where ID =:userID",
     "comment" : "Returns the Email ID of the Respective UserID",

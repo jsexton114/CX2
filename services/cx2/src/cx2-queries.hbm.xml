@@ -101,6 +101,11 @@
       select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName=:role
     ]]>
   </sql-query>
+  <query name="FormsForUsersAndShared">
+    <![CDATA[
+      from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser ))
+    ]]>
+  </query>
   <sql-query name="getEmailId">
     <![CDATA[
       select Email from Users where ID =:userID

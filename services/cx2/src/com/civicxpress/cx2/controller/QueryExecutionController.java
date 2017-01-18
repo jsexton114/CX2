@@ -240,6 +240,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/FormsForUsersAndShared", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeFormsForUsersAndShared(@RequestParam(value = "closed", required = false) java.lang.Boolean closed, @RequestParam(value = "creatorUser", required = false) java.lang.Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) java.lang.Integer sharedWithUser, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query FormsForUsersAndShared");
+        Page<Object> result = queryService.executeFormsForUsersAndShared(pageable, closed, creatorUser, sharedWithUser);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/getEmailId", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeGetEmailId(@RequestParam(value = "userID", required = false) java.lang.Integer userID, Pageable pageable) throws QueryParameterMismatchException {

@@ -207,6 +207,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeFormsForUsersAndShared(Pageable pageable, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("closed", closed);
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
+        return queryExecutor.executeNamedQuery("FormsForUsersAndShared", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeGetEmailId(Pageable pageable, java.lang.Integer userID)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

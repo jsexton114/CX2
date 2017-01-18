@@ -87,14 +87,18 @@ Application.$controller("liveform5Controller", ["$scope",
 	}
 ]);
 
-Application.$controller("grid6Controller", ["$scope",
+
+
+
+
+Application.$controller("grid7Controller", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;
 	}
 ]);
 
-Application.$controller("liveform6Controller", ["$scope",
+Application.$controller("liveform7Controller", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;
