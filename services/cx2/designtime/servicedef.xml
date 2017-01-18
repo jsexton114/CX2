@@ -305,6 +305,11 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateFormStatusInMasterForms">
+        <parameter name="formStatus" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -524,6 +529,11 @@
         <parameter name="FormTableName" typeRef="java.lang.String" isList="false"/>
         <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateDevFormDetailsForCXAdminrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateFormStatusInMasterForms">
+        <parameter name="formStatus" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2UpdateFormStatusInMasterFormsrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdateGlobalEmailSig">
         <parameter name="gs" typeRef="java.lang.String" isList="false"/>
@@ -1440,6 +1450,7 @@
         <dataobject javaType="cx2UpdateAsCXVendorAdminrtnType"/>
         <dataobject javaType="cx2UpdateCFInProfilertnType"/>
         <dataobject javaType="cx2UpdateDevFormDetailsForCXAdminrtnType"/>
+        <dataobject javaType="cx2UpdateFormStatusInMasterFormsrtnType"/>
         <dataobject javaType="cx2UpdateGlobalEmailSigrtnType"/>
         <dataobject javaType="cx2UpdateInfoFromMyProfilertnType"/>
         <dataobject javaType="cx2UpdateMunicipalityInfortnType"/>

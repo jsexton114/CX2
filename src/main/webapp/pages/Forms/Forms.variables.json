@@ -3308,5 +3308,37 @@
     "type" : "string",
     "isList" : true,
     "saveInPhonegap" : false
+  },
+  "UpdateFormStatusInMasterForms" : {
+    "_id" : "wm-UpdateFormStatusInMasterForms-wm.ServiceVariable-1484718991147",
+    "name" : "UpdateFormStatusInMasterForms",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "formStatus",
+      "value" : "bind:Widgets.selectStatus.datavalue.id",
+      "type" : "integer"
+    }, {
+      "target" : "FormGUID",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
+    "type" : "cx2UpdateFormStatusInMasterFormsrtnType",
+    "service" : "cx2",
+    "operation" : "executeUpdateFormStatusInMasterForms",
+    "operationId" : "QueryExecutionController_executeUpdateFormStatusInMasterForms",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }

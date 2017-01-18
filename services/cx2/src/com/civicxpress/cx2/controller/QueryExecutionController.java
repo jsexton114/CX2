@@ -490,6 +490,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdateFormStatusInMasterForms", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdateFormStatusInMasterForms(@RequestParam(value = "formStatus", required = false) java.lang.Integer formStatus, @RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdateFormStatusInMasterForms");
+        int result = queryService.executeUpdateFormStatusInMasterForms(formStatus, FormGUID);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UpdateGlobalEmailSig", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeUpdateGlobalEmailSig(@RequestParam(value = "gs", required = false) java.lang.String gs, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality) throws QueryParameterMismatchException {

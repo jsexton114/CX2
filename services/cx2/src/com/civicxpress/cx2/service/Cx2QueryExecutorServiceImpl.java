@@ -434,6 +434,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeUpdateFormStatusInMasterForms( java.lang.Integer formStatus ,java.lang.String FormGUID)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("formStatus", formStatus);
+        params.put("FormGUID", FormGUID);
+        return queryExecutor.executeNamedQueryForUpdate("UpdateFormStatusInMasterForms", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeUpdateGlobalEmailSig( java.lang.String gs ,java.lang.Integer municipality)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

@@ -1311,6 +1311,31 @@
     "outputType" : "cx2UpdateDevFormDetailsForCXAdminrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "UpdateFormStatusInMasterForms",
+    "query" : "Update MasterForms set FormStatusId=:formStatus where FormGUID=:FormGUID",
+    "comment" : "UpdateFormStatusInMasterForms",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "formStatus",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "24",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "FormGUID",
+      "paramType" : "java.lang.String",
+      "testValue" : "xny7fS8UWUOP5ukVeYaTWwdNZutxlBjk",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateFormStatusInMasterFormsrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "UpdateGlobalEmailSig",
     "query" : "Update Municipalities set GlobalEmailSig=:gs where ID=:municipality",
     "comment" : "UpdateGlobalEmailSig",

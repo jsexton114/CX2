@@ -227,6 +227,11 @@
       UPDATE FormTypes set TbLocation=:TbLocation, PageName=:PageName, Report=:Report, FormTableName=:FormTableName where ID=:form
     ]]>
   </sql-query>
+  <sql-query name="UpdateFormStatusInMasterForms">
+    <![CDATA[
+      Update MasterForms set FormStatusId=:formStatus where FormGUID=:FormGUID
+    ]]>
+  </sql-query>
   <sql-query name="UpdateGlobalEmailSig">
     <![CDATA[
       Update Municipalities set GlobalEmailSig=:gs where ID=:municipality
