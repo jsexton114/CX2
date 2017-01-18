@@ -51,6 +51,13 @@
         <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CountOfUserFormsrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="CountOfUserFormsForMunicipality">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CountOfUserFormsForMunicipalityrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="CountOfVendors">
         <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CountOfVendorsrtnType" isList="false"/>
@@ -310,13 +317,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="CountOfUserFormsForMunicipality">
-        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
