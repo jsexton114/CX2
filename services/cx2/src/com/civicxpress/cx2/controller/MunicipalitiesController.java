@@ -186,8 +186,9 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedFormCategorieses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/formTypeses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/formTypeses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formTypeses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormTypes> findAssociatedFormTypeses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formTypeses");
         return municipalitiesService.findAssociatedFormTypeses(id, pageable);

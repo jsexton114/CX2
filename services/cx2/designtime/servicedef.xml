@@ -701,6 +701,12 @@
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.FormFieldTypes">
+            <element name="formTypeFieldses" typeRef="com.civicxpress.cx2.FormTypeFields" isList="true" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="label" typeRef="java.lang.String" allowNull="true"/>
+            <element name="sqlType" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormHistory">
             <element name="comments" typeRef="java.lang.String" allowNull="true"/>
             <element name="createdBy" typeRef="java.lang.Integer" allowNull="true"/>
@@ -754,7 +760,8 @@
             <element name="defaultValue" typeRef="java.lang.String" allowNull="true"/>
             <element name="displayOrder" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="fieldName" typeRef="java.lang.String" allowNull="true"/>
-            <element name="fieldType" typeRef="java.lang.String" allowNull="true"/>
+            <element name="fieldTypeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formFieldTypes" typeRef="com.civicxpress.cx2.FormFieldTypes" allowNull="true"/>
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="helpText" typeRef="java.lang.String" allowNull="true"/>

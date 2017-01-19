@@ -1318,6 +1318,65 @@
     "matchMode" : "start",
     "propertiesMap" : {
       "columns" : [ {
+        "fieldName" : "formFieldTypes",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "FieldTypeId",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : true,
+        "defaultValue" : "",
+        "relatedTableName" : "FormFieldTypes",
+        "relatedEntityName" : "FormFieldTypes",
+        "relatedColumnName" : "fieldTypeId",
+        "relatedFieldName" : "formFieldTypes.id",
+        "isList" : false,
+        "targetTable" : "FormFieldTypes",
+        "scale" : 0,
+        "columns" : [ {
+          "fieldName" : "id",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ID",
+          "isPrimaryKey" : true,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "identity",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "label",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "Label",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "sqlType",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "SqlType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        } ]
+      }, {
         "fieldName" : "formTypes",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -1773,18 +1832,6 @@
         "isRelated" : false,
         "scale" : 0
       }, {
-        "fieldName" : "fieldType",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "FieldType",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 100,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
         "fieldName" : "possibleValues",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -1806,8 +1853,14 @@
     "bindCount" : 1,
     "tableName" : "FormTypeFields",
     "tableType" : "TABLE",
-    "properties" : [ "formTypes" ],
+    "properties" : [ "formFieldTypes", "formTypes" ],
     "relatedTables" : [ {
+      "columnName" : "formFieldTypes",
+      "relationName" : "formFieldTypes",
+      "type" : "FormFieldTypes",
+      "watchOn" : "Cx2FormFieldTypesData",
+      "package" : "com.civicxpress.cx2.FormTypeFields"
+    }, {
       "columnName" : "formTypes",
       "relationName" : "formTypes",
       "type" : "FormTypes",
@@ -2408,6 +2461,80 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "lvFormFieldTypes" : {
+    "_id" : "wm-lvFormFieldTypes-wm.LiveVariable-1484836926994",
+    "name" : "lvFormFieldTypes",
+    "owner" : "Page",
+    "category" : "wm.LiveVariable",
+    "dataBinding" : [ ],
+    "operation" : "read",
+    "dataSet" : [ ],
+    "type" : "FormFieldTypes",
+    "isList" : false,
+    "saveInPhonegap" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "inFlightBehavior" : "executeLast",
+    "startUpdate" : true,
+    "autoUpdate" : true,
+    "transformationRequired" : false,
+    "liveSource" : "cx2",
+    "ignoreCase" : true,
+    "matchMode" : "start",
+    "propertiesMap" : {
+      "columns" : [ {
+        "fieldName" : "id",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "ID",
+        "isPrimaryKey" : true,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "identity",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "label",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "Label",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "sqlType",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "SqlType",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      } ],
+      "entityName" : "FormFieldTypes",
+      "fullyQualifiedName" : "com.civicxpress.cx2.FormFieldTypes",
+      "tableType" : "TABLE",
+      "primaryFields" : [ "id" ]
+    },
+    "bindCount" : 1,
+    "tableName" : "FormFieldTypes",
+    "tableType" : "TABLE",
+    "properties" : [ ],
+    "relatedTables" : [ ],
+    "filterFields" : { },
+    "package" : "com.civicxpress.cx2.FormFieldTypes"
   },
   "MunicipalityGroupsForProcess" : {
     "_id" : "wm-MunicipalityGroupsForProcess-wm.LiveVariable-1481620880792",
@@ -4657,6 +4784,56 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.FormStatuses"
+  },
+  "svSaveFormField" : {
+    "_id" : "wm-svSaveFormField-wm.ServiceVariable-1484838750507",
+    "name" : "svSaveFormField",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "formTypeId",
+      "value" : "bind:pageParams.FormTypeId",
+      "type" : "integer"
+    }, {
+      "target" : "label",
+      "value" : "bind:Widgets.textFormFieldLabel.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "FormFieldTypes",
+      "value" : "bind:Widgets.selectFormFieldType.datavalue",
+      "type" : "com.civicxpress.cx2.FormFieldTypes"
+    }, {
+      "target" : "displayOrder",
+      "value" : "bind:Widgets.textFormFieldDisplayOrder.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "required",
+      "value" : "bind:Widgets.checkboxFormFieldRequired.datavalue",
+      "type" : "boolean"
+    }, {
+      "target" : "defaultValue",
+      "value" : "bind:Widgets.textFormFieldDefaultValue.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "helpText",
+      "value" : "bind:Widgets.textareaFormFieldHelpText.datavalue",
+      "type" : "string"
+    } ],
+    "service" : "FormService",
+    "operation" : "saveFormTypeField",
+    "operationId" : "FormController_saveFormTypeField",
+    "operationType" : "post",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Form"
   },
   "UpdateDevFormDetailsForCXAdmin" : {
     "_id" : "wm-UpdateDevFormDetailsForCXAdmin-wm.ServiceVariable-1481878761977",

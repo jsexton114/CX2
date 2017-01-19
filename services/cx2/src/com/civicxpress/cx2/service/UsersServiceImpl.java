@@ -164,11 +164,27 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getMunicipalityGroupMemberses() != null) {
+            for(MunicipalityGroupMembers municipalityGroupMemberse : usersCreated.getMunicipalityGroupMemberses()) {
+                municipalityGroupMemberse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child MunicipalityGroupMembers with information: {}", municipalityGroupMemberse);
+                municipalityGroupMembersService.create(municipalityGroupMemberse);
+            }
+        }
+
         if(usersCreated.getPudapplications() != null) {
             for(Pudapplication pudapplication : usersCreated.getPudapplications()) {
                 pudapplication.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child Pudapplication with information: {}", pudapplication);
                 pudapplicationService.create(pudapplication);
+            }
+        }
+
+        if(usersCreated.getRoleses() != null) {
+            for(Roles rolese : usersCreated.getRoleses()) {
+                rolese.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child Roles with information: {}", rolese);
+                rolesService.create(rolese);
             }
         }
 
@@ -188,14 +204,6 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getRoleses() != null) {
-            for(Roles rolese : usersCreated.getRoleses()) {
-                rolese.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child Roles with information: {}", rolese);
-                rolesService.create(rolese);
-            }
-        }
-
         if(usersCreated.getSharedWithsForCreatedBy() != null) {
             for(SharedWith sharedWithsForCreatedBy : usersCreated.getSharedWithsForCreatedBy()) {
                 sharedWithsForCreatedBy.setUsersByCreatedBy(usersCreated);
@@ -209,14 +217,6 @@ public class UsersServiceImpl implements UsersService {
                 sharedWithsForSharedWithUser.setUsersBySharedWithUser(usersCreated);
                 LOGGER.debug("Creating a new child SharedWith with information: {}", sharedWithsForSharedWithUser);
                 sharedWithService.create(sharedWithsForSharedWithUser);
-            }
-        }
-
-        if(usersCreated.getMunicipalityGroupMemberses() != null) {
-            for(MunicipalityGroupMembers municipalityGroupMemberse : usersCreated.getMunicipalityGroupMemberses()) {
-                municipalityGroupMemberse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child MunicipalityGroupMembers with information: {}", municipalityGroupMemberse);
-                municipalityGroupMembersService.create(municipalityGroupMemberse);
             }
         }
 
@@ -398,6 +398,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return municipalityGroupMembersService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Pudapplication> findAssociatedPudapplications(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated pudapplications");
 
@@ -405,6 +416,17 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("users.id = '" + id + "'");
 
         return pudapplicationService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated roleses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return rolesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -431,17 +453,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated roleses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return rolesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<SharedWith> findAssociatedSharedWithsForCreatedBy(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sharedWithsForCreatedBy");
 
@@ -460,17 +471,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersBySharedWithUser.id = '" + id + "'");
 
         return sharedWithService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return municipalityGroupMembersService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

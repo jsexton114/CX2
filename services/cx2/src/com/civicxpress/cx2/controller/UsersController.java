@@ -221,12 +221,28 @@ public class UsersController {
         return usersService.findAssociatedMcnewResidentialStructures(id, pageable);
     }
 
+    @RequestMapping(value = "/{id}/municipalityGroupMemberses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the municipalityGroupMemberses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
+        return usersService.findAssociatedMunicipalityGroupMemberses(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/pudapplications", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the pudapplications instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Pudapplication> findAssociatedPudapplications(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated pudapplications");
         return usersService.findAssociatedPudapplications(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the roleses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated roleses");
+        return usersService.findAssociatedRoleses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/sfnewElectricConnections", method = RequestMethod.GET)
@@ -245,14 +261,6 @@ public class UsersController {
         return usersService.findAssociatedSfnewResidentialStructures(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the roleses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated roleses");
-        return usersService.findAssociatedRoleses(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/sharedWithsForCreatedBy", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the sharedWithsForCreatedBy instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -267,14 +275,6 @@ public class UsersController {
     public Page<SharedWith> findAssociatedSharedWithsForSharedWithUser(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sharedWithsForSharedWithUser");
         return usersService.findAssociatedSharedWithsForSharedWithUser(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/municipalityGroupMemberses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the municipalityGroupMemberses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
-        return usersService.findAssociatedMunicipalityGroupMemberses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/userPasswordResetTokenses", method = RequestMethod.GET)

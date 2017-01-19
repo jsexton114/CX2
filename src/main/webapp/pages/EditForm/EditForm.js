@@ -58,7 +58,7 @@ Application.$controller("grid3Controller", ["$scope",
 	}
 ]);
 
-Application.$controller("lfFormTypeFieldsController", ["$scope",
+Application.$controller("dlgFormTypeFieldController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;

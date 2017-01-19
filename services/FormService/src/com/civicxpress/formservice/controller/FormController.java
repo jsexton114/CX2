@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import com.tekdog.dbutils.DBColumn;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import com.civicxpress.cx2.FormFieldTypes;
 import java.lang.Integer;
 import java.lang.Boolean;
 import org.springframework.web.bind.annotation.*;
@@ -41,12 +42,14 @@ public class FormController {
     }
 
     @RequestMapping(value = "/saveFormType", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public void saveFormType(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formType", required = false) String formType) throws SQLException {
         formService.saveFormType(municipalityId, formType);
     }
 
-    @RequestMapping(value = "/saveFormTypeField", method = RequestMethod.GET)
-    public void saveFormTypeField(@RequestParam(value = "formTypeFieldId", required = false) Long formTypeFieldId, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "label", required = false) String label, @RequestParam(value = "fieldType", required = false) String fieldType, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues) throws SQLException {
+    @RequestMapping(value = "/saveFormTypeField", method = RequestMethod.POST)
+    public void saveFormTypeField(@RequestParam(value = "formTypeFieldId", required = false) Long formTypeFieldId, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "label", required = false) String label, @RequestBody FormFieldTypes fieldType, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues) throws SQLException {
         formService.saveFormTypeField(formTypeFieldId, formTypeId, label, fieldType, displayOrder, required, defaultValue, helpText, possibleValues);
     }
 }

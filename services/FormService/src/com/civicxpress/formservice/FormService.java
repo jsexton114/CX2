@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.civicxpress.cx2.FormFieldTypes;
 import com.tekdog.dbutils.*;
 
 //import com.civicxpress.formservice.model.*;
@@ -98,7 +99,7 @@ public class FormService {
         return formDataHashMap;
     }
     
-    public void saveFormTypeField(Long formTypeFieldId, Long formTypeId, String label, String fieldType, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
+    public void saveFormTypeField(Long formTypeFieldId, Long formTypeId, String label, FormFieldTypes fieldType, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
     	String fieldName = label.replaceAll("[^a-zA-Z]|[\n]|[\r\n]", "");
     	
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
@@ -118,26 +119,11 @@ public class FormService {
     			+" VALUES (:formTypeId, :fieldName, :label, :displayOrder, :defaultValue, :helpText, :fieldType, :possibleValues)",
     			queryParams);
     	
-    	String fieldSqlType;
-    	
-    	if (fieldType.equals("Text")) {
-    		fieldSqlType = "varchar(1000)";
-    	} else if (fieldType.equals("Date")) {
-    		fieldSqlType = "date";
-    	} else if (fieldType.equals("Date+Time")) {
-    		fieldSqlType = "datetime2";
-    	} else if (fieldType.equals("Number")) {
-    		fieldSqlType = "numeric(20)";
-    	} else {
-    		cx2Conn.close();
-    		return;
-    	}
-    	
     	HashMap<String, DBColumn> muniData = DBUtils.simpleQuery(cx2Conn, "SELECT MunicipalityId, FormTableName from FormTypes WHERE ID=:formTypeId", queryParams).get(0);
     	
     	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, (Long) muniData.get("MunicipalityId").getData());
     	
-    	DBUtils.simpleQuery(muniDbConn, "ALTER TABLE "+muniData.get("FormTableName").getData().toString()+" ADD COLUMN "+fieldName+" "+fieldSqlType);
+    	DBUtils.simpleQuery(muniDbConn, "ALTER TABLE "+muniData.get("FormTableName").getData().toString()+" ADD COLUMN "+fieldName+" "+fieldType.getSqlType());
 
     	cx2Conn.close();
     	muniDbConn.close();

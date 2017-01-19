@@ -33,8 +33,9 @@ public class FormTypeFields implements Serializable {
     private Boolean required;
     private String defaultValue;
     private String helpText;
-    private String fieldType;
     private String possibleValues;
+    private int fieldTypeId;
+    private FormFieldTypes formFieldTypes;
     private FormTypes formTypes;
 
     @Id
@@ -111,15 +112,6 @@ public class FormTypeFields implements Serializable {
         this.helpText = helpText;
     }
 
-    @Column(name = "`FieldType`", nullable = true, length = 100)
-    public String getFieldType() {
-        return this.fieldType;
-    }
-
-    public void setFieldType(String fieldType) {
-        this.fieldType = fieldType;
-    }
-
     @Column(name = "`PossibleValues`", nullable = true, length = 1000)
     public String getPossibleValues() {
         return this.possibleValues;
@@ -127,6 +119,29 @@ public class FormTypeFields implements Serializable {
 
     public void setPossibleValues(String possibleValues) {
         this.possibleValues = possibleValues;
+    }
+
+    @Column(name = "`FieldTypeId`", nullable = false, scale = 0, precision = 10)
+    public int getFieldTypeId() {
+        return this.fieldTypeId;
+    }
+
+    public void setFieldTypeId(int fieldTypeId) {
+        this.fieldTypeId = fieldTypeId;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`FieldTypeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public FormFieldTypes getFormFieldTypes() {
+        return this.formFieldTypes;
+    }
+
+    public void setFormFieldTypes(FormFieldTypes formFieldTypes) {
+        if(formFieldTypes != null) {
+            this.fieldTypeId = formFieldTypes.getId();
+        }
+
+        this.formFieldTypes = formFieldTypes;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
