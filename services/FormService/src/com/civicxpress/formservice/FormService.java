@@ -13,10 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import com.civicxpress.cx2.FormFieldTypes;
 import com.tekdog.dbutils.*;
@@ -71,11 +73,11 @@ public class FormService {
     	String getMuniDbDetailsQuery = "SELECT DbName, DbUser, DbPassword FROM Municipalities WHERE ID=:municipalityId";Map<String, Object> muniDbDetailsParams = new HashMap<String, Object>();
         muniDbDetailsParams.put("municipalityId", municipalityId);
     	
-    	HashMap<String, DBColumn> muniDetails = DBUtils.simpleQuery(conn, getMuniDbDetailsQuery, muniDbDetailsParams).get(0);
-    	return DBUtils.getConnection(sqlUrl, muniDetails.get("DbUser").getData().toString(), muniDetails.get("DbPassword").getData().toString(), muniDetails.get("DbName").getData().toString());
+    	HashMap<String, Object> muniDetails = DBUtils.selectQuery(conn, getMuniDbDetailsQuery, muniDbDetailsParams).get(0);
+    	return DBUtils.getConnection(sqlUrl, muniDetails.get("DbUser").toString(), muniDetails.get("DbPassword").toString(), muniDetails.get("DbName").toString());
     }
     
-    public Map<String, DBColumn> getFormData(Long municipalityId, Long formTypeId, String formGuid) throws SQLException {
+    public Map<String, Object> getFormData(Long municipalityId, Long formTypeId, String formGuid) throws SQLException {
     	String formTableName;
     	
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
@@ -84,7 +86,7 @@ public class FormService {
 
 		Map<String, Object> formTbNameParams = new HashMap<String, Object>();
 		formTbNameParams.put("formTypeId", formTypeId);
-		formTableName = DBUtils.simpleQuery(cx2Conn, getFormTableNameQuery, formTbNameParams).get(0).get("FormTableName").getData().toString();
+		formTableName = DBUtils.selectQuery(cx2Conn, getFormTableNameQuery, formTbNameParams).get(0).get("FormTableName").toString();
 		
 		Connection formDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
 		
@@ -92,7 +94,7 @@ public class FormService {
 		
 		Map<String, Object> formDbParams = new HashMap<String, Object>();
 		formDbParams.put("formGuid", formGuid);
-		HashMap<String, DBColumn> formDataHashMap = DBUtils.simpleQuery(formDbConn, ("SELECT * FROM "+formTableName+" WHERE FormGUID=:formGuid"), formDbParams).get(0);
+		HashMap<String, Object> formDataHashMap = DBUtils.selectQuery(formDbConn, ("SELECT * FROM "+formTableName+" WHERE FormGUID=:formGuid"), formDbParams).get(0);
 		
 		formDbConn.close();
         
@@ -100,7 +102,7 @@ public class FormService {
     }
     
     public void saveFormTypeField(Long formTypeFieldId, Long formTypeId, String label, FormFieldTypes fieldType, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
-    	String fieldName = label.replaceAll("[^a-zA-Z]|[\n]|[\r\n]", "");
+    	String fieldName = DBUtils.getSqlSafeString(label);
     	
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
     	
@@ -108,29 +110,29 @@ public class FormService {
     	queryParams.put("formTypeId",  formTypeId);
     	queryParams.put("label", label);
     	queryParams.put("fieldName", fieldName);
-    	queryParams.put("fieldType", fieldType);
+    	queryParams.put("fieldTypeId", fieldType.getId());
     	queryParams.put("displayOrder", displayOrder);
     	queryParams.put("required", required);
     	queryParams.put("defaultValue", defaultValue);
     	queryParams.put("helpText", helpText);
     	queryParams.put("possibleValues", possibleValues);
     	DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypeFields "
-    			+ "(FormTypeId, FieldName, Label, DisplayOrder, Required, DefaultValue, HelpText, FieldType, PossibleValues)"
-    			+" VALUES (:formTypeId, :fieldName, :label, :displayOrder, :defaultValue, :helpText, :fieldType, :possibleValues)",
+    			+ "(FormTypeId, FieldName, Label, DisplayOrder, Required, DefaultValue, HelpText, FieldTypeId, PossibleValues)"
+    			+" VALUES (:formTypeId, :fieldName, :label, :displayOrder, :required, :defaultValue, :helpText, :fieldTypeId, :possibleValues)",
     			queryParams);
     	
-    	HashMap<String, DBColumn> muniData = DBUtils.simpleQuery(cx2Conn, "SELECT MunicipalityId, FormTableName from FormTypes WHERE ID=:formTypeId", queryParams).get(0);
+    	HashMap<String, Object> muniData = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId, FormTableName from FormTypes WHERE ID=:formTypeId", queryParams).get(0);
     	
-    	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, (Long) muniData.get("MunicipalityId").getData());
+    	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, ((BigDecimal) muniData.get("MunicipalityId")).longValue());
     	
-    	DBUtils.simpleQuery(muniDbConn, "ALTER TABLE "+muniData.get("FormTableName").getData().toString()+" ADD COLUMN "+fieldName+" "+fieldType.getSqlType());
+    	DBUtils.simpleQuery(muniDbConn, "ALTER TABLE "+muniData.get("FormTableName").toString()+" ADD "+fieldName+" "+fieldType.getSqlType());
 
     	cx2Conn.close();
     	muniDbConn.close();
     }
     
-    public void saveFormType(Long municipalityId, String formType) throws SQLException {
-    	String formTableName = formType.replaceAll("[^a-zA-Z]|[\n]|[\r\n]", "");
+    public Long saveFormType(Long municipalityId, String formType) throws SQLException {
+    	String formTableName = DBUtils.getSqlSafeString(formType);
     	
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
 		
@@ -141,7 +143,7 @@ public class FormService {
         formCreateParams.put("municipalityId", municipalityId);
         formCreateParams.put("formTableName", formTableName);
         
-        Long newFormId = (Long) DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypes (FormType, MunicipalityId, FormTypeGuid, FormTableName) VALUES (:formType, :municipalityId, NEWSEQUENTIALID(), :formTableName); SELECT @@IDENTITY as formId").get(0).get("formId").getData();
+        Long newFormTypeId = (Long) DBUtils.selectQuery(cx2Conn, "INSERT INTO FormTypes (FormType, MunicipalityId, FormTypeGuid, FormTableName) VALUES (:formType, :municipalityId, NEWSEQUENTIALID(), :formTableName); SELECT @@IDENTITY as formId", formCreateParams).get(0).get("formId");
         
         DBUtils.simpleQuery(muniDbConn, "CREATE TABLE "+formTableName+" ("
 			+"ID numeric(10) identity(1,1), "
@@ -157,6 +159,46 @@ public class FormService {
         
         cx2Conn.close();
         muniDbConn.close();
+        
+        return newFormTypeId;
+    }
+    
+    public void saveFormData(Long formTypeId, String formGuid, HashMap<String, Object> fieldData) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	
+    	Map<String, Object> queryParams = new HashMap<String, Object>();
+    	queryParams.put("formTypeId", formTypeId);
+    	queryParams.put("formGuid", formGuid);
+    	
+    	Map<String, Object> formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId, FormTableName FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0);
+    	
+    	Long municipalityId = ((BigDecimal) formTypeData.get("MunicipalityId")).longValue();
+    	
+    	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
+    	
+    	StringBuilder formSaveQuery = new StringBuilder("UPDATE "+formTypeData.get("FormTableName")+" SET ");
+    	
+    	Set<Map.Entry<String, Object>> fieldEntrySet = fieldData.entrySet();
+    	Integer fieldCount = fieldEntrySet.size();
+    	Integer entryIndex = 0;
+    	for (Map.Entry<String, Object> fieldEntry : fieldEntrySet) {
+    		String sqlSafeFieldName = DBUtils.getSqlSafeString(fieldEntry.getKey());
+    		formSaveQuery.append(sqlSafeFieldName+"=:"+sqlSafeFieldName);
+    		queryParams.put(sqlSafeFieldName, fieldEntry.getValue());
+    		
+    		if (entryIndex+1 != fieldCount) {
+    			formSaveQuery.append(",");
+    		}
+    		
+    		entryIndex++;
+    	}
+    	
+    	formSaveQuery.append(" WHERE FormGUID=:formGuid");
+    	
+    	DBUtils.simpleQuery(muniDbConn, formSaveQuery.toString(), queryParams);
+    	
+    	muniDbConn.close();
+    	cx2Conn.close();
     }
 
 }

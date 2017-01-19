@@ -391,7 +391,7 @@
             <wm-layoutgrid name="layoutgrid10" columns="1">
                 <wm-gridrow name="gridrow41">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn71">
-                        <wm-composite name="composite3_1">
+                        <wm-composite name="composite3_1" required="true">
                             <wm-label class="col-md-3 control-label" name="label8"></wm-label>
                             <wm-container class="col-md-9" name="container3_1">
                                 <wm-text name="textFormFieldLabel"></wm-text>
@@ -401,7 +401,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow43">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn73">
-                        <wm-composite name="composite7">
+                        <wm-composite name="composite7" required="true">
                             <wm-label class="col-md-3 control-label" name="label11" caption="Type"></wm-label>
                             <wm-container class="col-md-9" name="container6">
                                 <wm-select name="selectFormFieldType" dataset="bind:Variables.lvFormFieldTypes.dataSet" datafield="All Fields" displayfield="label"></wm-select>
@@ -444,14 +444,14 @@
                         <wm-composite name="composite9">
                             <wm-label class="col-md-3 control-label" name="label13" caption="Display Order"></wm-label>
                             <wm-container class="col-md-9" name="container8">
-                                <wm-text name="textFormFieldDisplayOrder" type="number" placeholder="Enter number"></wm-text>
+                                <wm-text name="textFormFieldDisplayOrder" type="number" placeholder="Enter number" datavalue="bind:Variables.Cx2FormTypeFieldsData.dataSet.data.length+1"></wm-text>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Save" type="button" margin="unset 0.5em" name="buttonSaveFormField" iconclass="wi wi-save" on-click="Variables.svSaveFormField.invoke();Widgets.dlgFormTypeField.close()"></wm-button>
+                <wm-button class="btn-primary" caption="Save" type="button" margin="unset 0.5em" name="buttonSaveFormField" iconclass="wi wi-save" on-click="Variables.svSaveFormField.invoke();Widgets.dlgFormTypeField.close()" disabled="bind:!Widgets.textFormFieldLabel.datavalue || !Widgets.selectFormFieldType.datavalue.id"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button2" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>

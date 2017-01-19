@@ -8,9 +8,7 @@
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn1"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn2"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn5" horizontalalign="right">
-                        <wm-label padding="unset 0.5em" name="label1" caption="bind:&quot;FormGUID - &quot;+pageParams.FormGUID"></wm-label>
-                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn5" horizontalalign="right"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
@@ -83,14 +81,28 @@
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow ng-repeat="(colName, colValue) in Variables.svGetFormData.dataSet" ng-if="colName != 'ID' &amp;&amp; colName != 'FormGUID'" name="fieldGridrow{{$index}}">
+                                <wm-gridrow ng-repeat="formField in Variables.lvFormTypeFields.dataSet.data" ng-if="colName != 'ID' &amp;&amp; colName != 'FormGUID'" name="fieldGridrow{{$index}}">
                                     <wm-gridcolumn columnwidth="12" name="fieldGridcolumn{{$index}}">
                                         <wm-composite name="fieldComposite{{$index}}">
-                                            <wm-label class="col-md-3 control-label" name="fieldLabel{{$index}}" caption="{{colName}}"></wm-label>
+                                            <wm-label class="col-md-3 control-label" name="fieldLabel{{$index}}" caption="{{formField.label}}"></wm-label>
                                             <wm-container class="col-md-9" name="container3">
-                                                <wm-text name="{{colName}}" placeholder="Please enter {{colName}}" datavalue="bind:'{{colValue}}'"></wm-text>
+                                                <wm-text ng-if="formField.formFieldTypes.label == 'Text'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" datavalue="bind:Variables.svGetFormData.dataSet[formField.fieldName]"
+                                                defaultvalue="bind:'{{formField.defaultValue}}'"></wm-text>
+                                                <wm-text ng-if="formField.formFieldTypes.label == 'Number'" name="fieldValue{{fieldLabel.fieldName}}" placeholder="Please enter {{formField.label}}" datavalue="bind:Variables.svGetFormData.dataSet[formField.fieldName]"
+                                                defaultvalue="bind:'{{formField.defaultValue}}'" type="number"></wm-text>
+                                                <wm-textarea ng-if="formField.formFieldTypes.label == 'Long Text'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" datavalue="bind:Variables.svGetFormData.dataSet[formField.fieldName]"
+                                                defaultvalue="bind:'{{formField.defaultValue}}'"></wm-textarea>
+                                                <wm-date ng-if="formField.formFieldTypes.label == 'Date'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" datavalue="bind:Variables.svGetFormData.dataSet[formField.fieldName]"
+                                                defaultvalue="bind:'{{formField.defaultValue}}'"></wm-date>
+                                                <wm-datetime ng-if="formField.formFieldTypes.label == 'Date+Time'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" datavalue="bind:Variables.svGetFormData.dataSet[formField.fieldName]"
+                                                defaultvalue="bind:'{{formField.defaultValue}}'"></wm-datetime>
                                             </wm-container>
                                         </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="formSaveControlRow">
+                                    <wm-gridcolumn columnwidth="12" name="formSaveControlColumn">
+                                        <wm-button class="btn-default" caption="Button" type="button" margin="unset 0.5em" name="button2"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>

@@ -22,6 +22,12 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
 
 
+
+    $scope.lvFormTypeFieldsonSuccess = function(variable, data) {
+        console.log(data);
+        console.log(variable);
+    };
+
 }]);
 
 

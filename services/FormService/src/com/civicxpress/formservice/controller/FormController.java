@@ -5,9 +5,10 @@ import com.civicxpress.formservice.FormService;
 import java.lang.Long;
 import java.lang.String;
 import java.sql.SQLException;
-import com.tekdog.dbutils.DBColumn;
+import java.lang.Object;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import com.civicxpress.cx2.FormFieldTypes;
 import java.lang.Integer;
 import java.lang.Boolean;
@@ -30,7 +31,7 @@ public class FormController {
     @RequestMapping(value = "/formData", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public Map<String, DBColumn> getFormData(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
+    public Map<String, Object> getFormData(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
         return formService.getFormData(municipalityId, formTypeId, formGuid);
     }
 
@@ -41,14 +42,21 @@ public class FormController {
         return formService.sampleJavaOperation(name, request);
     }
 
+    @RequestMapping(value = "/saveFormData", method = RequestMethod.POST)
+    public void saveFormData(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid, @RequestBody HashMap<String, Object> fieldData) throws SQLException {
+        formService.saveFormData(formTypeId, formGuid, fieldData);
+    }
+
     @RequestMapping(value = "/saveFormType", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void saveFormType(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formType", required = false) String formType) throws SQLException {
-        formService.saveFormType(municipalityId, formType);
+    public Long saveFormType(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formType", required = false) String formType) throws SQLException {
+        return formService.saveFormType(municipalityId, formType);
     }
 
     @RequestMapping(value = "/saveFormTypeField", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public void saveFormTypeField(@RequestParam(value = "formTypeFieldId", required = false) Long formTypeFieldId, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "label", required = false) String label, @RequestBody FormFieldTypes fieldType, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues) throws SQLException {
         formService.saveFormTypeField(formTypeFieldId, formTypeId, label, fieldType, displayOrder, required, defaultValue, helpText, possibleValues);
     }
