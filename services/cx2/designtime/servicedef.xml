@@ -353,6 +353,10 @@
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CountOfFormsForMunicipalityrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="CountOfMuncipalityApplicationsByVendor">
+        <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CountOfMuncipalityApplicationsByVendorrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="CountOfUserForms">
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
@@ -1312,6 +1316,9 @@
         </dataobject>
         <dataobject javaType="cx2CountOfFormsForMunicipalityrtnType">
             <element name="" typeRef="java.lang.Integer"/>
+        </dataobject>
+        <dataobject javaType="cx2CountOfMuncipalityApplicationsByVendorrtnType">
+            <element name="count" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2CountOfUserFormsForMunicipalityrtnType">
             <element name="count" typeRef="java.lang.Integer"/>
