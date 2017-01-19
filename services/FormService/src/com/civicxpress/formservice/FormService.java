@@ -182,6 +182,11 @@ public class FormService {
     	Integer fieldCount = fieldEntrySet.size();
     	Integer entryIndex = 0;
     	for (Map.Entry<String, Object> fieldEntry : fieldEntrySet) {
+    		if (fieldEntry.getKey().equalsIgnoreCase("ID")) {
+    			entryIndex++;
+    			continue;
+    		}
+    		
     		String sqlSafeFieldName = DBUtils.getSqlSafeString(fieldEntry.getKey());
     		formSaveQuery.append(sqlSafeFieldName+"=:"+sqlSafeFieldName);
     		queryParams.put(sqlSafeFieldName, fieldEntry.getValue());
