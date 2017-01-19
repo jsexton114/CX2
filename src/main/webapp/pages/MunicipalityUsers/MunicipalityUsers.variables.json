@@ -1910,6 +1910,34 @@
     "inputFields" : { },
     "package" : "com.civicxpress.cx2.MunicipalityGroupMembers"
   },
+  "EmployeeOrAdminAddedSuccessfully" : {
+    "_id" : "wm-EmployeeOrAdminAddedSuccessfully-wm.NotificationVariable-1484829316952",
+    "name" : "EmployeeOrAdminAddedSuccessfully",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "bind:Variables.AdminOrEmp.dataSet.dataValue+\" Added Successfully\"",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "GetAdminRolesForMunicipality" : {
     "_id" : "wm-GetEmployeeRolesForMunicipality-wm.ServiceVariable-1479737183806",
     "name" : "GetAdminRolesForMunicipality",
@@ -4211,7 +4239,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.GetEmployeeRolesForMunicipality.invoke();Variables.GetAdminRolesForMunicipality.invoke();Widgets.dialogAddEmployeeORAdmin.close()",
+    "onSuccess" : "Variables.GetEmployeeRolesForMunicipality.invoke();Variables.GetAdminRolesForMunicipality.invoke();Widgets.dialogAddEmployeeORAdmin.close();Variables.EmployeeOrAdminAddedSuccessfully.invoke()",
     "onError" : "Variables.RoleAlreadyExist.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
