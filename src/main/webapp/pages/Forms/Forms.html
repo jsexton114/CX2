@@ -140,11 +140,16 @@
                                 </wm-livegrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneHistory" title="HISTORY">
-                                <wm-grid title="Formhistory List" dataset="bind:Variables.FormHistoryData.dataSet" navigation="Classic" name="gridFormhistory">
-                                    <wm-grid-column binding="createdTime" caption="Created" type="timestamp" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true"></wm-grid-column>
-                                    <wm-grid-column binding="formStatusesByNewStatusId.status" caption="Status" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
-                                    <wm-grid-column binding="users.email" caption="Created By" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                    <wm-grid-column binding="comments" caption="Notes" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid title="Formhistory List" dataset="bind:Variables.FormHistoryData.dataSet" navigation="Classic" name="grid3">
+                                    <wm-grid-column binding="formStatusesByOldStatusId.status" caption="OLD STATUS" type="string" width="10%" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
+                                    <wm-grid-column-group name="group" caption="CREATED BY">
+                                        <wm-grid-column binding="users.firstName" caption="First Name" type="string" width="10%" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="users.lastName" caption="Last Name" type="string" width="10%" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                    </wm-grid-column-group>
+                                    <wm-grid-column binding="users.email" caption="Users Email" type="string" width="20%" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                    <wm-grid-column binding="formStatusesByNewStatusId.status" caption="NEW STATUS" type="string" width="10%" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
+                                    <wm-grid-column binding="comments" caption="Comments" type="string" width="20%" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                    <wm-grid-column binding="createdTime" caption="Created Time" type="timestamp" width="20%" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true"></wm-grid-column>
                                 </wm-grid>
                             </wm-tabpane>
                         </wm-tabs>
