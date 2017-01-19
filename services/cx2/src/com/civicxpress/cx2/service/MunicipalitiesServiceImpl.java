@@ -23,6 +23,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormCategories;
+import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
 import com.civicxpress.cx2.ManualFeeTypes;
@@ -44,6 +45,10 @@ import com.civicxpress.cx2.VendorApprovals;
 public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MunicipalitiesServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.FormTypesService")
+	private FormTypesService formTypesService;
 
     @Autowired
 	@Qualifier("cx2.VendorApprovalsService")
@@ -115,6 +120,14 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
                 formCategoriese.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child FormCategories with information: {}", formCategoriese);
                 formCategoriesService.create(formCategoriese);
+            }
+        }
+
+        if(municipalitiesCreated.getFormTypeses() != null) {
+            for(FormTypes formTypese : municipalitiesCreated.getFormTypeses()) {
+                formTypese.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child FormTypes with information: {}", formTypese);
+                formTypesService.create(formTypese);
             }
         }
 
@@ -287,6 +300,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormTypes> findAssociatedFormTypeses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formTypeses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return formTypesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gisrecordses");
 
@@ -382,6 +406,15 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
         queryBuilder.append("municipalities.id = '" + id + "'");
 
         return vendorApprovalsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormTypesService instance
+	 */
+	protected void setFormTypesService(FormTypesService service) {
+        this.formTypesService = service;
     }
 
     /**

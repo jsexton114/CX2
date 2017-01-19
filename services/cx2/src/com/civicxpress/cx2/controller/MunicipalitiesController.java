@@ -34,6 +34,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormCategories;
+import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
 import com.civicxpress.cx2.ManualFeeTypes;
@@ -183,6 +184,13 @@ public class MunicipalitiesController {
     public Page<FormCategories> findAssociatedFormCategorieses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formCategorieses");
         return municipalitiesService.findAssociatedFormCategorieses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formTypeses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formTypeses instance associated with the given id.")
+    public Page<FormTypes> findAssociatedFormTypeses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formTypeses");
+        return municipalitiesService.findAssociatedFormTypeses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/gisrecordses", method = RequestMethod.GET)

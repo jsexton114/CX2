@@ -12,13 +12,13 @@
   "port" : "1433",
   "schemaName" : "cx2",
   "tableFilter" : [ {
-    "table" : "ContractorTypes",
-    "schema" : "cx2"
-  }, {
     "table" : "Fees",
     "schema" : "cx2"
   }, {
     "table" : "FormCategories",
+    "schema" : "cx2"
+  }, {
+    "table" : "ContractorTypes",
     "schema" : "cx2"
   }, {
     "table" : "FormCategoryMapping",
@@ -30,10 +30,10 @@
     "table" : "FormStatuses",
     "schema" : "cx2"
   }, {
-    "table" : "FormTypeFields",
+    "table" : "FormTypes",
     "schema" : "cx2"
   }, {
-    "table" : "FormTypes",
+    "table" : "FormTypeFields",
     "schema" : "cx2"
   }, {
     "table" : "GISContacts",
@@ -51,16 +51,13 @@
     "table" : "ManualFeeTypes",
     "schema" : "cx2"
   }, {
-    "table" : "MasterCases",
-    "schema" : "cx2"
-  }, {
     "table" : "MasterForms",
     "schema" : "cx2"
   }, {
-    "table" : "MasterInspections",
+    "table" : "MasterCases",
     "schema" : "cx2"
   }, {
-    "table" : "MasterProjects",
+    "table" : "MasterInspections",
     "schema" : "cx2"
   }, {
     "table" : "MCNewElectricConnection",
@@ -72,7 +69,7 @@
     "table" : "Municipalities",
     "schema" : "cx2"
   }, {
-    "table" : "MunicipalityGroupMembers",
+    "table" : "MasterProjects",
     "schema" : "cx2"
   }, {
     "table" : "MunicipalityGroups",
@@ -81,16 +78,19 @@
     "table" : "PUDApplication",
     "schema" : "cx2"
   }, {
-    "table" : "Roles",
-    "schema" : "cx2"
-  }, {
     "table" : "SFNewElectricConnection",
     "schema" : "cx2"
   }, {
     "table" : "SFNewResidentialStructure",
     "schema" : "cx2"
   }, {
+    "table" : "Roles",
+    "schema" : "cx2"
+  }, {
     "table" : "SharedWith",
+    "schema" : "cx2"
+  }, {
+    "table" : "MunicipalityGroupMembers",
     "schema" : "cx2"
   }, {
     "table" : "States",
@@ -99,28 +99,28 @@
     "table" : "Subdivisions",
     "schema" : "cx2"
   }, {
-    "table" : "UserPasswordResetTokens",
-    "schema" : "cx2"
-  }, {
-    "table" : "UserSubscriptions",
-    "schema" : "cx2"
-  }, {
     "table" : "Users",
     "schema" : "cx2"
   }, {
     "table" : "Vendor",
     "schema" : "cx2"
   }, {
-    "table" : "VendorAdmins",
+    "table" : "UserPasswordResetTokens",
+    "schema" : "cx2"
+  }, {
+    "table" : "UserSubscriptions",
     "schema" : "cx2"
   }, {
     "table" : "VendorApprovals",
     "schema" : "cx2"
   }, {
-    "table" : "VendorLicenseTypes",
+    "table" : "VendorLicenses",
     "schema" : "cx2"
   }, {
-    "table" : "VendorLicenses",
+    "table" : "VendorAdmins",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorLicenseTypes",
     "schema" : "cx2"
   }, {
     "table" : "VendorUsers",

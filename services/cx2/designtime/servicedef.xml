@@ -211,14 +211,6 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateCFInProfilertnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="UpdateDevFormDetailsForCXAdmin">
-        <parameter name="TbLocation" typeRef="java.lang.String" isList="false"/>
-        <parameter name="PageName" typeRef="java.lang.String" isList="false"/>
-        <parameter name="Report" typeRef="java.lang.String" isList="false"/>
-        <parameter name="FormTableName" typeRef="java.lang.String" isList="false"/>
-        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2UpdateDevFormDetailsForCXAdminrtnType" isList="false"/>
-    </operation>
     <operation operationType="nativequery" name="UpdateFormStatusInMasterForms">
         <parameter name="formStatus" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
@@ -317,6 +309,12 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateDevFormDetailsForCXAdmin">
+        <parameter name="Report" typeRef="java.lang.String" isList="false"/>
+        <parameter name="FormTableName" typeRef="java.lang.String" isList="false"/>
+        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
@@ -539,8 +537,6 @@
         <return typeRef="cx2UpdateCFInProfilertnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdateDevFormDetailsForCXAdmin">
-        <parameter name="TbLocation" typeRef="java.lang.String" isList="false"/>
-        <parameter name="PageName" typeRef="java.lang.String" isList="false"/>
         <parameter name="Report" typeRef="java.lang.String" isList="false"/>
         <parameter name="FormTableName" typeRef="java.lang.String" isList="false"/>
         <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
@@ -777,8 +773,9 @@
             <element name="mcnewElectricConnections" typeRef="com.civicxpress.cx2.McnewElectricConnection" isList="true" allowNull="true"/>
             <element name="mcnewResidentialStructures" typeRef="com.civicxpress.cx2.McnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="multipleGisrecords" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="municipalityInternalForm" typeRef="java.lang.Boolean" allowNull="true"/>
-            <element name="pageName" typeRef="java.lang.String" allowNull="true"/>
             <element name="payments" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="pudapplications" typeRef="com.civicxpress.cx2.Pudapplication" isList="true" allowNull="true"/>
             <element name="report" typeRef="java.lang.String" allowNull="true"/>
@@ -789,7 +786,6 @@
             <element name="sharedWith" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="stateFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="stateFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
-            <element name="tbLocation" typeRef="java.lang.String" allowNull="true"/>
             <element name="unitFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="unitFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
@@ -961,6 +957,7 @@
             <element name="email" typeRef="java.lang.String" allowNull="true"/>
             <element name="feeses" typeRef="com.civicxpress.cx2.Fees" isList="true" allowNull="true"/>
             <element name="formCategorieses" typeRef="com.civicxpress.cx2.FormCategories" isList="true" allowNull="true"/>
+            <element name="formTypeses" typeRef="com.civicxpress.cx2.FormTypes" isList="true" allowNull="true"/>
             <element name="fridayYn" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
             <element name="globalEmailSig" typeRef="java.lang.String" allowNull="true"/>

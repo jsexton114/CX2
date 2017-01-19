@@ -18,6 +18,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,7 +38,6 @@ public class FormTypes implements Serializable {
     private Integer id;
     private String formTypeGuid;
     private String formType;
-    private String tbLocation;
     private String flatFee;
     private String flatFeeAccountingCode;
     private String sfFee;
@@ -47,7 +48,6 @@ public class FormTypes implements Serializable {
     private String stateFeeAccountingCode;
     private String report;
     private Boolean active;
-    private String pageName;
     private Boolean municipalityInternalForm;
     private Date createdDate;
     private Boolean collectFees;
@@ -61,6 +61,8 @@ public class FormTypes implements Serializable {
     private Boolean multipleGisrecords;
     private Boolean gismap;
     private String formTableName;
+    private int municipalityId;
+    private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
@@ -99,15 +101,6 @@ public class FormTypes implements Serializable {
 
     public void setFormType(String formType) {
         this.formType = formType;
-    }
-
-    @Column(name = "`TbLocation`", nullable = true, length = 255)
-    public String getTbLocation() {
-        return this.tbLocation;
-    }
-
-    public void setTbLocation(String tbLocation) {
-        this.tbLocation = tbLocation;
     }
 
     @Column(name = "`FlatFee`", nullable = true, length = 255)
@@ -198,15 +191,6 @@ public class FormTypes implements Serializable {
 
     public void setActive(Boolean active) {
         this.active = active;
-    }
-
-    @Column(name = "`PageName`", nullable = true, length = 255)
-    public String getPageName() {
-        return this.pageName;
-    }
-
-    public void setPageName(String pageName) {
-        this.pageName = pageName;
     }
 
     @Column(name = "`MunicipalityInternalForm`", nullable = true)
@@ -325,6 +309,29 @@ public class FormTypes implements Serializable {
 
     public void setFormTableName(String formTableName) {
         this.formTableName = formTableName;
+    }
+
+    @Column(name = "`MunicipalityId`", nullable = false, scale = 0, precision = 10)
+    public int getMunicipalityId() {
+        return this.municipalityId;
+    }
+
+    public void setMunicipalityId(int municipalityId) {
+        this.municipalityId = municipalityId;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`MunicipalityId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Municipalities getMunicipalities() {
+        return this.municipalities;
+    }
+
+    public void setMunicipalities(Municipalities municipalities) {
+        if(municipalities != null) {
+            this.municipalityId = municipalities.getId();
+        }
+
+        this.municipalities = municipalities;
     }
 
     @JsonInclude(Include.NON_EMPTY)
