@@ -211,6 +211,12 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateCFInProfilertnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateDevFormDetailsForCXAdmin">
+        <parameter name="Report" typeRef="java.lang.String" isList="false"/>
+        <parameter name="FormTableName" typeRef="java.lang.String" isList="false"/>
+        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateDevFormDetailsForCXAdminrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateFormStatusInMasterForms">
         <parameter name="formStatus" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
@@ -310,10 +316,9 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="UpdateDevFormDetailsForCXAdmin">
-        <parameter name="Report" typeRef="java.lang.String" isList="false"/>
-        <parameter name="FormTableName" typeRef="java.lang.String" isList="false"/>
-        <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
+    <operation operationType="nativequery" name="UpdateProcessOwnersForGUID">
+        <parameter name="AssignedToGroupId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="GUID" typeRef="java.lang.String" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
@@ -588,6 +593,11 @@
         <parameter name="cf" typeRef="java.lang.String" isList="false"/>
         <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdatePasswordAndCFrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateProcessOwnersForGUID">
+        <parameter name="AssignedToGroupId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="GUID" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2UpdateProcessOwnersForGUIDrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdateRoleForMunicipality">
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
@@ -1520,6 +1530,7 @@
         <dataobject javaType="cx2UpdateMunicipalityInfortnType"/>
         <dataobject javaType="cx2UpdateNewPasswordrtnType"/>
         <dataobject javaType="cx2UpdatePasswordAndCFrtnType"/>
+        <dataobject javaType="cx2UpdateProcessOwnersForGUIDrtnType"/>
         <dataobject javaType="cx2UpdateRoleForMunicipalityrtnType"/>
         <dataobject javaType="cx2UpdateVendorStatusrtnType"/>
         <dataobject javaType="cx2UpdateWorkMunicipalityrtnType"/>

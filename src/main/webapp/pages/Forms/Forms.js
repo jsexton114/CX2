@@ -7,8 +7,9 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
     };
 
-
+    $scope.allFormStatus;
     $scope.FormStatusonSuccess = function(variable, data) {
+        $scope.allFormStatus = data;
         // For showing current Status of form
         var currentStatus = _.findIndex(data, {
             'id': _.parseInt($scope.pageParams.FormStatusId)
@@ -18,6 +19,8 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
             var a = $('.livelist-status li.app-list-item:nth-child(' + (currentStatus + 1) + ')').addClass('active');
         });
     };
+
+
 
 }]);
 
@@ -38,8 +41,8 @@ Application.$controller("liveformSharedwithController", ["$scope",
 ]);
 
 Application.$controller("grid3Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

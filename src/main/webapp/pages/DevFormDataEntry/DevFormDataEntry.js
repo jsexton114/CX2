@@ -87,10 +87,6 @@ Application.$controller("liveform5Controller", ["$scope",
 	}
 ]);
 
-
-
-
-
 Application.$controller("grid7Controller", ["$scope",
 	function($scope) {
 		"use strict";

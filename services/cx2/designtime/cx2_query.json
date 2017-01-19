@@ -1647,6 +1647,31 @@
     "outputType" : "cx2UpdatePasswordAndCFrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "UpdateProcessOwnersForGUID",
+    "query" : "update MasterForms set AssignedToGroupId=:AssignedToGroupId where FormGUID=:GUID",
+    "comment" : "UpdateProcessOwnersForGUID",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "AssignedToGroupId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "18",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "GUID",
+      "paramType" : "java.lang.String",
+      "testValue" : "xny7fS8UWUOP5ukVeYaTWwdNZutxlBjk",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateProcessOwnersForGUIDrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "UpdateRoleForMunicipality",
     "query" : "update Roles set RoleName=:role where MunicipalityId=:municipality and UserId=:user",
     "comment" : "UpdateRoleForMunicipality",

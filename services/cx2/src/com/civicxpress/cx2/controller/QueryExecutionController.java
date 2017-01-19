@@ -560,6 +560,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdateProcessOwnersForGUID", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdateProcessOwnersForGUID(@RequestParam(value = "AssignedToGroupId", required = false) java.lang.Integer AssignedToGroupId, @RequestParam(value = "GUID", required = false) java.lang.String GUID) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdateProcessOwnersForGUID");
+        int result = queryService.executeUpdateProcessOwnersForGUID(AssignedToGroupId, GUID);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UpdateRoleForMunicipality", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeUpdateRoleForMunicipality(@RequestParam(value = "role", required = false) java.lang.String role, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, @RequestParam(value = "user", required = false) java.lang.Integer user) throws QueryParameterMismatchException {

@@ -262,6 +262,11 @@
       UPDATE Users SET Password=:password, CommunicationFrequency=:cf where ID=:newUser
     ]]>
   </sql-query>
+  <sql-query name="UpdateProcessOwnersForGUID">
+    <![CDATA[
+      update MasterForms set AssignedToGroupId=:AssignedToGroupId where FormGUID=:GUID
+    ]]>
+  </sql-query>
   <sql-query name="UpdateRoleForMunicipality">
     <![CDATA[
       update Roles set RoleName=:role where MunicipalityId=:municipality and UserId=:user
