@@ -30,7 +30,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
 
     $scope.GetProcessGroupMemebersByFormGUIDonSuccess = function(variable, data) {
-
         var temp = $scope.Variables.loggedInUser.dataSet.roles;
         var isCXAdminMunicipalityAdmin = 0;
         //Checking if user is muniadmin or cxadmin
@@ -48,6 +47,15 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         if (!((isCXAdminMunicipalityAdmin == 1) || (found > -1))) {
             $scope.Widgets.panelFormReview.show = false;
         }
+    };
+
+
+    $scope.UpdateFormStatusInMasterFormsonSuccess = function(variable, data) {
+        $scope.Variables.CloseOrOpenFormByGUID.setInput({
+            'closed': $scope.Widgets.selectStatus.datavalue.considerClosed,
+            'FormGUID': $scope.pageParams.FormGUID
+        });;
+        $scope.Variables.CloseOrOpenFormByGUID.update();
     };
 
 }]);
