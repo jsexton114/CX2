@@ -11,19 +11,31 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-label padding="unset 0.5em unset 1em" name="label1" caption="Process Forms" class="h2" horizontalalign="center"></wm-label>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="2em unset">
+                        <wm-label padding="unset 0.5em" name="label2" caption="Process Forms" fontweight="bold" fontsize="15"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="2em unset">
+                        <wm-composite name="composite1">
+                            <wm-label class="col-md-3 form-control-static" name="label3" fontweight="bold" caption="Select Municipality"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" orderby="MunicipalityName:asc" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord"></wm-select>
+                            </wm-container>
+                        </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
-                        <wm-grid title="Masterforms List" dataset="bind:Variables.MasterForms.dataSet" navigation="Classic" name="grid1">
-                            <wm-grid-column binding="balanceDue" caption="Balance Due" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="formTypes.formType" widget-type="label" caption="Form Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormTypes" readonly="true">
+                        <wm-grid title="Masterforms List" dataset="bind:Variables.MasterForms.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" primary-key="false" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" widget-type="label" generator="assigned" readonly="true" show="true" related-entity-name="FormTypes">
                                 <wm-label caption="{{row.getProperty('formTypes.formType')}}" class="" ng-class=""></wm-label>
                             </wm-grid-column>
-                            <wm-grid-column binding="formStatuses.status" caption="Statuses Status" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormStatuses" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
+                            <wm-grid-column binding="formStatuses.status" caption="Statuses Status" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
+                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-row-action key="customRow" display-name="" title="View Form" value="" iconclass="wi wi-pageview" class="btn-transparent" show="true" action="Variables.goToPage_Forms.invoke()"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>

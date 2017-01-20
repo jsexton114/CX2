@@ -330,6 +330,10 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="FormsCountForMunicipalities">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -433,6 +437,10 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2EmployeesOrAdminsMunicipalitiesrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="FormsCountForMunicipalities">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2FormsCountForMunicipalitiesrtnType" isList="false"/>
     </operation>
     <operation operationType="hqlquery" name="FormsForUsersAndShared">
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
@@ -1416,6 +1424,9 @@
             <element name="TimeZone" typeRef="java.lang.String"/>
             <element name="TuesdayYN" typeRef="java.lang.Boolean"/>
             <element name="WednesdayYN" typeRef="java.lang.Boolean"/>
+        </dataobject>
+        <dataobject javaType="cx2FormsCountForMunicipalitiesrtnType">
+            <element name="formsCount" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2FormsForUsersAndSharedrtnType">
             <element name="assignedToGroupId" typeRef="java.lang.Integer"/>

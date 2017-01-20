@@ -630,6 +630,26 @@
       "WednesdayYN" : "java.lang.Boolean"
     }
   }, {
+    "name" : "FormsCountForMunicipalities",
+    "query" : "select count(*) as formsCount from MasterForms where MunicipalityId=:MunicipalityId",
+    "comment" : "FormsCountForMunicipalities",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "MunicipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2FormsCountForMunicipalitiesrtnType",
+    "returnTypeMetadata" : {
+      "formsCount" : "java.lang.Integer"
+    }
+  }, {
     "name" : "FormsForUsersAndShared",
     "query" : "from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser ))",
     "comment" : "Brings all the Forms of creator and shared with user",

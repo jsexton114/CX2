@@ -111,6 +111,11 @@
       select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName=:role
     ]]>
   </sql-query>
+  <sql-query name="FormsCountForMunicipalities">
+    <![CDATA[
+      select count(*) as formsCount from MasterForms where MunicipalityId=:MunicipalityId
+    ]]>
+  </sql-query>
   <query name="FormsForUsersAndShared">
     <![CDATA[
       from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser ))

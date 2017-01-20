@@ -96,12 +96,7 @@ Application.$controller("grid5Controller", ["$scope",
     }
 ]);
 
-Application.$controller("grid4Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
 
 
 

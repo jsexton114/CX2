@@ -1,1 +1,49 @@
-{ }
+{
+  "AdminVendorsList" : {
+    "_id" : "wm-AdminVendorsList-wm.ServiceVariable-1484923635102",
+    "name" : "AdminVendorsList",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "cx2AdminVendorsListrtnType",
+    "service" : "cx2",
+    "operation" : "executeAdminVendorsList",
+    "operationId" : "QueryExecutionController_executeAdminVendorsList",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "Breadcrumb" : {
+    "_id" : "wm-Breadcrumb-wm.Variable-1484922963189",
+    "name" : "Breadcrumb",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/MyCompany"
+    }, {
+      "label" : "Company Forms",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/CompanyForms"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  }
+}
