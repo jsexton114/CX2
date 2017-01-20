@@ -2261,7 +2261,6 @@
     "saveInPhonegap" : false,
     "maxResults" : 9001,
     "designMaxResults" : 9001,
-    "onSuccess" : "Javascript",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : true,
@@ -3261,6 +3260,30 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Municipalities"
   },
+  "nfFormSaved" : {
+    "_id" : "wm-nfFormSaved-wm.NotificationVariable-1484944615108",
+    "name" : "nfFormSaved",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Form saved successfully",
+      "type" : "string"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "RecordFormHistory" : {
     "_id" : "wm-RecordFormHistory-wm.ServiceVariable-1484635789565",
     "name" : "RecordFormHistory",
@@ -4098,7 +4121,6 @@
       "value" : "bind:pageParams.FormTypeId",
       "type" : "integer"
     } ],
-    "type" : "java.sql.ResultSet",
     "service" : "FormService",
     "operation" : "getFormData",
     "operationId" : "FormController_getFormData",
@@ -4108,6 +4130,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "svGetFormDataonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
@@ -4142,6 +4165,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.nfFormSaved.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

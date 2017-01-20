@@ -104,6 +104,10 @@
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2EmployeesOrAdminsMunicipalitiesrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="FormsCountForMunicipalities">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2FormsCountForMunicipalitiesrtnType" isList="false"/>
+    </operation>
     <operation operationType="hqlquery" name="FormsForUsersAndShared">
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
@@ -329,10 +333,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="FormsCountForMunicipalities">
-        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>

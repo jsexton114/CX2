@@ -16,9 +16,11 @@ import com.wavemaker.runtime.service.annotations.ExposeToClient;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.civicxpress.cx2.FormFieldTypes;
 import com.tekdog.dbutils.*;
@@ -43,6 +45,10 @@ public class FormService {
     private static final String sqlUrl = "64.87.23.26";
     private static final String defaultSqlUser = "cx2";
     private static final String defaultSqlPassword = "F!yingFishCove1957";
+    
+
+	private static SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+	private static SimpleDateFormat datetimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     private SecurityService securityService;
@@ -56,6 +62,23 @@ public class FormService {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
+    
+//    public static void main(String args[]) { // Function for testing/debugging purposes
+//    	Long formTypeId = 1L;
+//    	String formGuid = "xny7fS8UWUOP5ukVeYaTWwdNZutxlBjk";
+//    	HashMap<String, Object> fieldData = new HashMap<String, Object>();
+//    	fieldData.put("BuildDate", 1485406800000L);
+//    	fieldData.put("Birthday", null);
+//    	fieldData.put("Comments", null);
+//    	fieldData.put("MeetingTime", 1484551504330L);
+//    	
+//    	try {
+//    		saveFormData(formTypeId, formGuid, fieldData);
+//    	} catch (SQLException e) {
+//    		e.printStackTrace();
+//    	}
+//    }
+    
     public String sampleJavaOperation(String name, HttpServletRequest request) {
         logger.debug("Starting sample operation with request url " + request.getRequestURL().toString());
         
@@ -172,31 +195,54 @@ public class FormService {
     	
     	Map<String, Object> formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId, FormTableName FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0);
     	
+    	List<HashMap<String, Object>> formFieldsMetaData = DBUtils.selectQuery(cx2Conn, "SELECT FTF.FieldName as FieldName, FFT.SqlType as SqlType FROM FormTypeFields FTF, FormFieldTypes FFT WHERE FFT.ID=FTF.FieldTypeId AND FTF.FormTypeId=:formTypeId", queryParams);
+    	
     	Long municipalityId = ((BigDecimal) formTypeData.get("MunicipalityId")).longValue();
     	
     	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
     	
     	StringBuilder formSaveQuery = new StringBuilder("UPDATE "+formTypeData.get("FormTableName")+" SET ");
     	
-    	Set<Map.Entry<String, Object>> fieldEntrySet = fieldData.entrySet();
-    	Integer fieldCount = fieldEntrySet.size();
-    	Integer entryIndex = 0;
-    	for (Map.Entry<String, Object> fieldEntry : fieldEntrySet) {
-    		if (fieldEntry.getKey().equalsIgnoreCase("ID")) {
-    			entryIndex++;
+    	for (HashMap<String, Object> formFieldsMetaRow : formFieldsMetaData) {
+    		String sqlSafeFieldName = DBUtils.getSqlSafeString(formFieldsMetaRow.get("FieldName").toString());
+    		Object fieldValue;
+    		
+    		if (!fieldData.containsKey(sqlSafeFieldName)) {
     			continue;
     		}
     		
-    		String sqlSafeFieldName = DBUtils.getSqlSafeString(fieldEntry.getKey());
-    		formSaveQuery.append(sqlSafeFieldName+"=:"+sqlSafeFieldName);
-    		queryParams.put(sqlSafeFieldName, fieldEntry.getValue());
+    		String sqlType = formFieldsMetaRow.get("SqlType").toString();
     		
-    		if (entryIndex+1 != fieldCount) {
-    			formSaveQuery.append(",");
+    		if (sqlType.equals("datetime2") || sqlType.equals("date")) {
+    			Date dateFieldDate = new Date();
+    			
+    			if (fieldData.get(sqlSafeFieldName) == null) {
+    				dateFieldDate = null;
+    			} else {
+    				dateFieldDate.setTime(Long.parseLong(fieldData.get(sqlSafeFieldName).toString()));
+    			}
+    			
+    			if (dateFieldDate != null) {
+	    			if (sqlType.equals("date")) {
+	    				fieldValue = dateFormatter.format(dateFieldDate);
+	    			} else {
+	    				fieldValue = datetimeFormatter.format(dateFieldDate);
+	    			}
+    			} else {
+    				fieldValue = null;
+    			}
+    		} else {
+    			fieldValue = fieldData.get(sqlSafeFieldName);
     		}
     		
-    		entryIndex++;
+    		formSaveQuery.append(sqlSafeFieldName+"=:"+sqlSafeFieldName);
+    		
+    		queryParams.put(sqlSafeFieldName, fieldValue);
+    		
+    		formSaveQuery.append(",");
     	}
+    	
+    	formSaveQuery.deleteCharAt(formSaveQuery.length()-1);
     	
     	formSaveQuery.append(" WHERE FormGUID=:formGuid");
     	

@@ -21,14 +21,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     };
 
 
-
-
-    $scope.lvFormTypeFieldsonSuccess = function(variable, data) {
-        console.log(data);
-        console.log(variable);
-    };
-
-
     $scope.GetProcessGroupMemebersByFormGUIDonSuccess = function(variable, data) {
         var temp = $scope.Variables.loggedInUser.dataSet.roles;
         var isCXAdminMunicipalityAdmin = 0;
@@ -54,7 +46,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         $scope.Variables.CloseOrOpenFormByGUID.setInput({
             'closed': $scope.Widgets.selectStatus.datavalue.considerClosed,
             'FormGUID': $scope.pageParams.FormGUID
-        });;
+        });
         $scope.Variables.CloseOrOpenFormByGUID.update();
     };
 
