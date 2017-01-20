@@ -141,6 +141,11 @@
       select MunicipalityGroupId from MunicipalityGroupMembers where UserId =:userID
     ]]>
   </sql-query>
+  <sql-query name="GetProcessGroupMemebersByFormGUID">
+    <![CDATA[
+      select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF where  MF.FormGUID=:FormGUID and MG.ID=MF.AssignedToGroupId and MG.ID=MGM.MunicipalityGroupId
+    ]]>
+  </sql-query>
   <sql-query name="GetRolesForMunicipality">
     <![CDATA[
       select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID

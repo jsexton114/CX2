@@ -12,7 +12,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-panel iconclass="" autoclose="outsideClick" name="panelFormStatus" title="Form Status" class="panel-primary">
+                        <wm-panel iconclass="" autoclose="outsideClick" name="panelFormStatus" title="Form Status" class="panel-primary" accessroles="Everyone">
                             <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-6 lg-6" class="media-list livelist-status" dataset="bind:Variables.FormStatus.dataSet" navigation="None" name="livelistStatus"
                             pagesize="4" selectfirstitem="false" orderby="sortOrder:asc" loadingdatamsg="" nodatamessage="No Status found" disableitem="true" enablereorder="false" show="true">
                                 <wm-listtemplate layout="inline" name="listtemplate1">
@@ -26,7 +26,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5_1">
-                        <wm-panel iconclass="" autoclose="outsideClick" name="panelFormReview" title="Form Review" class="panel-primary">
+                        <wm-panel iconclass="" autoclose="outsideClick" name="panelFormReview" title="Form Review" class="panel-primary" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee">
                             <wm-layoutgrid name="layoutgrid3">
                                 <wm-gridrow name="gridrow9" padding=".5em unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn16"></wm-gridcolumn>
