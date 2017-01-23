@@ -155,7 +155,8 @@
                                     <wm-composite name="composite3" margin="1em unset">
                                         <wm-label class="col-md-3 form-control-static" name="label5" caption="Create Password" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="container3">
-                                            <wm-text name="textPwd" placeholder="Enter Password" type="password" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" required="true" on-keyup="textPwdKeyup($event, $scope)"></wm-text>
+                                            <wm-text name="textPwd" placeholder="Enter Password" type="password" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" required="true" on-keyup="textPwdKeyup($event, $scope)"
+                                            updateon="blur"></wm-text>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -165,7 +166,8 @@
                                     <wm-composite name="composite4" margin="1em unset">
                                         <wm-label class="col-md-3 form-control-static" name="label6" caption="Confirm Password" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="container4">
-                                            <wm-text name="textRePwd" placeholder="Enter Password" on-keyup="textRePwdKeyup($event, $scope)" type="password" required="true" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}"></wm-text>
+                                            <wm-text name="textRePwd" placeholder="Enter Password" on-keyup="textRePwdKeyup($event, $scope)" type="password" required="true" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}"
+                                            updateon="blur"></wm-text>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>

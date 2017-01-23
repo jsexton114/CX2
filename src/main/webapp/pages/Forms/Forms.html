@@ -120,49 +120,50 @@
                             <wm-tabpane name="tabpaneAttachments" title="ATTACHMENTS"></wm-tabpane>
                             <wm-tabpane name="tabpaneContacts" title="CONTACTS">
                                 <wm-livegrid formlayout="dialog" name="livegrid1">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Sharedwith List" dataset="bind:Variables.SharedWithData.dataSet" navigation="Classic" name="gridSharedwith">
-                                        <wm-grid-column binding="usersBySharedWithUser.email" caption="User Email" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="createdOn" caption="Created On" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.SharedWithData.dataSet" navigation="Classic" name="gridSharedwith" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                        <wm-grid-column binding="usersBySharedWithUser.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="usersBySharedWithUser.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="usersBySharedWithUser.email" caption="Email Address" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="createdOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="text" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-action key="addNewRow" display-name="Add" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Sharedwith Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.SharedWithData.dataSet" captionalign="left" captionposition="top" name="liveformSharedwith">
+                                    <wm-liveform novalidate="false" errormessage="" title="Add a Form Contact" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.SharedWithData.dataSet" captionalign="left" captionposition="top" name="liveformSharedwith">
                                         <wm-layoutgrid columns="1" name="layoutgrid4">
                                             <wm-gridrow name="gridrow12">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn24">
-                                                    <wm-form-field name="usersByCreatedBy" displayname="Users By Created By" show="false" primary-key="false" generator="assigned" key="usersByCreatedBy" type="list" is-related="true" widget="select" placeholder="Select value"
-                                                    defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow13">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn25">
-                                                    <wm-form-field name="usersBySharedWithUser" displayname="Users By Shared With User" show="true" primary-key="false" generator="assigned" key="usersBySharedWithUser" type="list" is-related="true" widget="autocomplete"
-                                                    placeholder="Search" displaylabel="email" searchkey="email" orderby="email:desc"></wm-form-field>
+                                                    <wm-form-field name="usersBySharedWithUser" displayname="Who would you like to share this form with?" show="true" primary-key="false" generator="assigned" key="usersBySharedWithUser" type="list" is-related="true"
+                                                    widget="autocomplete" placeholder="Search by Email Address" displaylabel="email" searchkey="email" orderby="email:desc" required="true"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
-                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
-                                        <wm-form-field name="createdOn" displayname="Created On" show="false" primary-key="false" generator="assigned" key="createdOn" type="timestamp" widget="timestamp" placeholder="Select date time" outputformat="timestamp"
-                                        defaultvalue="bind:today"></wm-form-field>
                                         <wm-form-field name="relatedGuid" displayname="Related Guid" show="false" primary-key="false" generator="assigned" key="relatedGuid" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
                                         defaultvalue="bind:pageParams.FormGUID"></wm-form-field>
+                                        <wm-form-field name="createdOn" displayname="Created On" show="false" primary-key="false" generator="assigned" key="createdOn" type="timestamp" widget="timestamp" placeholder="Select date time" outputformat="timestamp"
+                                        defaultvalue="bind:today"></wm-form-field>
+                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
+                                        placeholder=""></wm-form-field>
+                                        <wm-form-field name="usersByCreatedBy" displayname="Users By Created By" show="false" primary-key="false" generator="assigned" key="usersByCreatedBy" type="list" is-related="true" widget="select"
+                                        placeholder="Select value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
+                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                     </wm-liveform>
                                 </wm-livegrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneHistory" title="HISTORY">
-                                <wm-grid title="Formhistory List" dataset="bind:Variables.FormHistoryData.dataSet" navigation="Classic" name="grid3">
-                                    <wm-grid-column binding="formStatusesByOldStatusId.status" caption="OLD STATUS" type="string" width="10%" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
-                                    <wm-grid-column-group name="group" caption="CREATED BY">
+                                <wm-grid title="" dataset="bind:Variables.FormHistoryData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" showrecordcount="false" exportformat="EXCEL">
+                                    <wm-grid-column-group name="group1" caption="Status Update">
+                                        <wm-grid-column binding="createdTime" caption="Date Modified" type="timestamp" width="20%" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="text"></wm-grid-column>
+                                        <wm-grid-column binding="formStatusesByOldStatusId.status" caption="Previous Status" type="string" width="10%" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
+                                        <wm-grid-column binding="formStatusesByNewStatusId.status" caption="New Status" type="string" width="10%" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
+                                        <wm-grid-column binding="comments" caption="Comments" type="string" width="20%" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                    </wm-grid-column-group>
+                                    <wm-grid-column-group name="group" caption="Updated By">
                                         <wm-grid-column binding="users.firstName" caption="First Name" type="string" width="10%" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                         <wm-grid-column binding="users.lastName" caption="Last Name" type="string" width="10%" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="users.email" caption="Email Address" type="string" width="20%" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                     </wm-grid-column-group>
-                                    <wm-grid-column binding="users.email" caption="Users Email" type="string" width="20%" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                    <wm-grid-column binding="formStatusesByNewStatusId.status" caption="NEW STATUS" type="string" width="10%" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
-                                    <wm-grid-column binding="comments" caption="Comments" type="string" width="20%" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                    <wm-grid-column binding="createdTime" caption="Created Time" type="timestamp" width="20%" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true"></wm-grid-column>
                                 </wm-grid>
                             </wm-tabpane>
                         </wm-tabs>

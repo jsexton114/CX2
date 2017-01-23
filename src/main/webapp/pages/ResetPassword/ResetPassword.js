@@ -32,7 +32,7 @@ Application.$controller("ResetPasswordPageController", ["$scope", "wmToaster", f
             $isolateScope.dataoutput.token = $scope.pageParams.token;
             return true;
         } else {
-            wmToaster.show('info', 'INFO', 'The passwords must match in both fields before you can proceed', 5000);
+            wmToaster.show('error', 'ERROR', 'The passwords do not match. Please try again', 5000);
             $isolateScope.reset();
             return false;
         }
@@ -44,7 +44,7 @@ Application.$controller("ResetPasswordPageController", ["$scope", "wmToaster", f
 
     $scope.resetPasswordonSuccess = function(variable, data) {
         if (data == 0) {
-            wmToaster.show('info', 'INFO', 'Unable to update Password Please try Again or Contact us ', 5000);
+            wmToaster.show('error', 'ERROR', 'We are unable to update your password. Please contact Support or try again', 5000);
             return false;
         } else {
             $scope.Variables.deleteToken.setInput('token', $scope.token);
