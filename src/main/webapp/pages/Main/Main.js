@@ -64,8 +64,9 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
 
     $scope.svCreateFormonSuccess = function(variable, data) {
-        console.log(data);
-        console.log($scope.Variables.navGoToForm);
+        var navToForm = $scope.Variables.navGoToForm;
+        navToForm.dataSet.FormGUID = data;
+        navToForm.navigate();
     };
 
 }]);

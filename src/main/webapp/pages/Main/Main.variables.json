@@ -949,7 +949,11 @@
       "type" : "string"
     } ],
     "operation" : "gotoPage",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "FormTypeId",
+      "value" : "bind:Widgets.selectForm.datavalue.ID"
+    } ],
     "pageTransitions" : "none"
   },
   "StandardUserMunicipalites" : {

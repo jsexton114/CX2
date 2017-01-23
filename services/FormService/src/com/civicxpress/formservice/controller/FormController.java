@@ -28,15 +28,15 @@ public class FormController {
     private FormService formService;
 
     @RequestMapping(value = "/form", produces = "application/json", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public String createForm(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formTypeId", required = false) Long formTypeId) throws SQLException {
         return formService.createForm(municipalityId, formTypeId);
     }
 
     @RequestMapping(value = "/formData", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public Map<String, Object> getFormData(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
-        return formService.getFormData(municipalityId, formTypeId, formGuid);
+    public Map<String, Object> getFormData(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
+        return formService.getFormData(formTypeId, formGuid);
     }
 
     @RequestMapping(value = "/saveFormData", method = RequestMethod.POST)

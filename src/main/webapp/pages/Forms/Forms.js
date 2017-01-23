@@ -9,16 +9,33 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.sharedWith
     $scope.allFormStatus;
     $scope.FormStatusonSuccess = function(variable, data) {
-        $scope.allFormStatus = data;
-        // For showing current Status of form
-        var currentStatus = _.findIndex(data, {
-            'id': _.parseInt($scope.pageParams.FormStatusId)
-        });
-        $scope.defaultObjectForSelectStatus = data[currentStatus];
-        $timeout(function() {
-            var a = $('.livelist-status li.app-list-item:nth-child(' + (currentStatus + 1) + ')').addClass('active');
-        });
+        setFormStatusListValue(data, null);
     };
+
+    var statusListData = null;
+    var currentStatusId = null;
+
+    function setFormStatusListValue(listData, statusId) {
+        if (!!listData) {
+            statusListData = listData;
+        }
+
+        if (!!statusId) {
+            currentStatusId = statusId;
+        }
+
+        if (!!statusListData && !!currentStatusId) {
+            $scope.allFormStatus = statusListData;
+            // For showing current Status of form
+            var currentStatus = _.findIndex(statusListData, {
+                'id': _.parseInt(currentStatusId)
+            });
+            $scope.defaultObjectForSelectStatus = statusListData[currentStatus];
+            $timeout(function() {
+                var a = $('.livelist-status li.app-list-item:nth-child(' + (currentStatus + 1) + ')').addClass('active');
+            });
+        }
+    }
 
 
     $scope.GetProcessGroupMemebersByFormGUIDonSuccess = function(variable, data) {
@@ -78,7 +95,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
 
     $scope.CurrentFormonSuccess = function(variable, data) {
-        debugger
+        setFormStatusListValue(null, data[0].formStatusId);
     };
 
 }]);

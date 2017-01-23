@@ -79,7 +79,7 @@ public class FormService {
 ////    	}
 //    	
 //    	try {
-//			saveFormType(2L, "Test Form Type");
+//			createForm(2L, 42L);
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
@@ -93,16 +93,17 @@ public class FormService {
     	return DBUtils.getConnection(sqlUrl, muniDetails.get("DbUser").toString(), muniDetails.get("DbPassword").toString(), muniDetails.get("DbName").toString());
     }
     
-    public Map<String, Object> getFormData(Long municipalityId, Long formTypeId, String formGuid) throws SQLException {
-    	String formTableName;
-    	
+    public Map<String, Object> getFormData(Long formTypeId, String formGuid) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
 
-    	String getFormTableNameQuery = "SELECT FormTableName FROM FormTypes WHERE ID=:formTypeId";
+    	String getFormInfoQuery = "SELECT FormTableName, MunicipalityId FROM FormTypes WHERE ID=:formTypeId";
 
 		Map<String, Object> formTbNameParams = new HashMap<String, Object>();
 		formTbNameParams.put("formTypeId", formTypeId);
-		formTableName = DBUtils.selectQuery(cx2Conn, getFormTableNameQuery, formTbNameParams).get(0).get("FormTableName").toString();
+		HashMap<String, Object> formInfo = DBUtils.selectQuery(cx2Conn, getFormInfoQuery, formTbNameParams).get(0);
+		String formTableName = formInfo.get("FormTableName").toString();
+		
+		Long municipalityId = Long.parseLong(formInfo.get("MunicipalityId").toString());
 		
 		Connection formDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
 		
@@ -272,11 +273,11 @@ public class FormService {
     	String newFormGuid = DBUtils.selectQuery(muniDbConn, "SELECT FormGUID FROM "+formTableName+" WHERE ID=:newFormId", queryParams).get(0).get("FormGUID").toString();
     	queryParams.put("newFormGUID", newFormGuid);
     	
-    	Long newFormStatusId = Long.parseLong(DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormTypes WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC").get(0).get("ID").toString());
+    	Long newFormStatusId = Long.parseLong(DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(0).get("ID").toString());
     	queryParams.put("newFormStatusId", newFormStatusId);
     	
-    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, FormStatusId, Closed) "
-    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :newFormStatusId, 0)", queryParams);
+    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, FormStatusId, Closed, FormTitle) "
+    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :newFormStatusId, 0, 'open')", queryParams);
 
     	muniDbConn.close();
     	cx2Conn.close();
