@@ -7,7 +7,6 @@ import java.lang.String;
 import java.sql.SQLException;
 import java.lang.Object;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import com.civicxpress.cx2.FormFieldTypes;
 import java.lang.Integer;
@@ -33,13 +32,6 @@ public class FormController {
     @ApiOperation(value = "")
     public Map<String, Object> getFormData(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
         return formService.getFormData(municipalityId, formTypeId, formGuid);
-    }
-
-    @RequestMapping(value = "/sampleJavaOperation", produces = "application/json", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public String sampleJavaOperation(@RequestParam(value = "name", required = false) String name, HttpServletRequest request) {
-        return formService.sampleJavaOperation(name, request);
     }
 
     @RequestMapping(value = "/saveFormData", method = RequestMethod.POST)

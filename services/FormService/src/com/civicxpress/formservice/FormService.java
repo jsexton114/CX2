@@ -64,33 +64,26 @@ public class FormService {
      */
     
 //    public static void main(String args[]) { // Function for testing/debugging purposes
-//    	Long formTypeId = 1L;
-//    	String formGuid = "xny7fS8UWUOP5ukVeYaTWwdNZutxlBjk";
-//    	HashMap<String, Object> fieldData = new HashMap<String, Object>();
-//    	fieldData.put("BuildDate", 1485406800000L);
-//    	fieldData.put("Birthday", null);
-//    	fieldData.put("Comments", null);
-//    	fieldData.put("MeetingTime", 1484551504330L);
+////    	Long formTypeId = 1L;
+////    	String formGuid = "xny7fS8UWUOP5ukVeYaTWwdNZutxlBjk";
+////    	HashMap<String, Object> fieldData = new HashMap<String, Object>();
+////    	fieldData.put("BuildDate", 1485406800000L);
+////    	fieldData.put("Birthday", null);
+////    	fieldData.put("Comments", null);
+////    	fieldData.put("MeetingTime", 1484551504330L);
+////    	
+////    	try {
+////    		saveFormData(formTypeId, formGuid, fieldData);
+////    	} catch (SQLException e) {
+////    		e.printStackTrace();
+////    	}
 //    	
 //    	try {
-//    		saveFormData(formTypeId, formGuid, fieldData);
-//    	} catch (SQLException e) {
-//    		e.printStackTrace();
-//    	}
+//			saveFormType(2L, "Test Form Type");
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 //    }
-    
-    public String sampleJavaOperation(String name, HttpServletRequest request) {
-        logger.debug("Starting sample operation with request url " + request.getRequestURL().toString());
-        
-        String result = null;
-        if (securityService.isAuthenticated()) {
-            result = "Hello " + name + ", You are logged in as "+  securityService.getLoggedInUser().getUserName();
-        } else {
-            result = "Hello " + name + ", You are not authenticated yet!";
-        }
-        logger.debug("Returning {}", result);
-        return result;
-    }
     
     private static Connection getMunicipalityDbConnection(Connection conn, Long municipalityId) throws SQLException {
     	String getMuniDbDetailsQuery = "SELECT DbName, DbUser, DbPassword FROM Municipalities WHERE ID=:municipalityId";Map<String, Object> muniDbDetailsParams = new HashMap<String, Object>();
@@ -166,19 +159,23 @@ public class FormService {
         formCreateParams.put("municipalityId", municipalityId);
         formCreateParams.put("formTableName", formTableName);
         
-        Long newFormTypeId = (Long) DBUtils.selectQuery(cx2Conn, "INSERT INTO FormTypes (FormType, MunicipalityId, FormTypeGuid, FormTableName) VALUES (:formType, :municipalityId, NEWSEQUENTIALID(), :formTableName); SELECT @@IDENTITY as formId", formCreateParams).get(0).get("formId");
+        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypes (FormType, MunicipalityId, FormTableName) VALUES (:formType, :municipalityId, :formTableName)", formCreateParams);
         
-        DBUtils.simpleQuery(muniDbConn, "CREATE TABLE "+formTableName+" ("
-			+"ID numeric(10) identity(1,1), "
-			+"FormTitle varchar(255), "
-			+"CreatedBy varchar(255), "
-			+"CreatedDate datetime2(100), "
-			+"ModifiedDate datetime2(100), "
-			+"ModifiedBy varchar(255), "
-			+"TotalSqft int, "
-			+"TotalUnits int,"
-			+"Basement bit"
-        	+")go");
+        Long newFormTypeId = Long.parseLong(DBUtils.selectQuery(cx2Conn, "SELECT @@IDENTITY as formId").get(0).get("formId").toString());
+        
+        DBUtils.simpleUpdateQuery(muniDbConn, "CREATE TABLE "+formTableName+" ("
+    			+"ID numeric(10) identity(1,1), "
+            	+"FormGUID uniqueidentifier NOT NULL DEFAULT NEWSEQUENTIALID(), "
+    			+"FormTitle varchar(255), "
+    			+"CreatedBy varchar(255), "
+    			+"CreatedDate datetime2 NOT NULL DEFAULT sysdatetime(), "
+    			+"ModifiedDate datetime2, "
+    			+"ModifiedBy varchar(255), "
+    			+"TotalSqft numeric(38), "
+    			+"TotalUnits numeric(38), "
+    			+"Basement bit, "
+    			+"VendorId numeric(10)"
+            	+")");
         
         cx2Conn.close();
         muniDbConn.close();
