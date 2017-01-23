@@ -1,4 +1,36 @@
 {
+  "CountOfProcessFormsByMuncipality" : {
+    "_id" : "wm-CountOfProcessFormsByMuncipality-wm.ServiceVariable-1485166625482",
+    "name" : "CountOfProcessFormsByMuncipality",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "MunicipalityId",
+      "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2CountOfProcessFormsByMuncipalityrtnType",
+    "service" : "cx2",
+    "operation" : "executeCountOfProcessFormsByMuncipality",
+    "operationId" : "QueryExecutionController_executeCountOfProcessFormsByMuncipality",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "EmployeesMunicipalities" : {
     "_id" : "wm-EmployeesMunicipalities-wm.ServiceVariable-1478840896695",
     "name" : "EmployeesMunicipalities",

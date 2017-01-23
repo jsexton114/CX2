@@ -46,6 +46,11 @@
       select count(*) as count from VendorApprovals where VendorId=:VendorId
     ]]>
   </sql-query>
+  <sql-query name="CountOfProcessFormsByMuncipality">
+    <![CDATA[
+      select count(*) as count from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.UserId=:UserId and GM.MunicipalityGroupId=MG.ID and MG.ID=MF.AssignedToGroupId and MF.MunicipalityId=:MunicipalityId
+    ]]>
+  </sql-query>
   <sql-query name="CountOfUserForms">
     <![CDATA[
       select count(*) as count from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))
@@ -211,6 +216,11 @@
       select count(*) as municipalitiesCount from Municipalities
     ]]>
   </sql-query>
+  <query name="ProcessFormsForUserByMunicipality">
+    <![CDATA[
+      from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.userId=:UserId and GM.municipalityGroupId=MG.id and MG.id=MF.assignedToGroupId and MF.municipalityId=:MunicipalityId
+    ]]>
+  </query>
   <sql-query name="RecordFormHistory">
     <![CDATA[
       insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,:CreatedTime)

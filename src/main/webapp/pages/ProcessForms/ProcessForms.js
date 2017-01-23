@@ -15,3 +15,10 @@ Application.$controller("ProcessFormsPageController", ["$scope", function ($scop
     };
 
 }]);
+
+Application.$controller("gridOpenFormsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

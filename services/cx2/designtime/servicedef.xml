@@ -8,6 +8,11 @@
         <parameter name="form" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2DeleteFormTypertnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="naaa">
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2naaartnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="DeleteFromVendorUsers">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
@@ -49,6 +54,11 @@
     <operation operationType="nativequery" name="CountOfFormsForMunicipality">
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CountOfFormsForMunicipalityrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="CountOfProcessFormsByMuncipality">
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CountOfProcessFormsByMuncipalityrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="CountOfUserForms">
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
@@ -334,6 +344,11 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="ProcessFormsForUserByMunicipality">
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -374,6 +389,11 @@
     <operation operationType="nativequery" name="CountOfMuncipalityApplicationsByVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CountOfMuncipalityApplicationsByVendorrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="CountOfProcessFormsByMuncipality">
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CountOfProcessFormsByMuncipalityrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="CountOfUserForms">
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
@@ -531,6 +551,11 @@
     </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="ProcessFormsForUserByMunicipality">
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2ProcessFormsForUserByMunicipalityrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="RecordFormHistory">
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
@@ -1354,6 +1379,9 @@
         <dataobject javaType="cx2CountOfMuncipalityApplicationsByVendorrtnType">
             <element name="count" typeRef="java.lang.Integer"/>
         </dataobject>
+        <dataobject javaType="cx2CountOfProcessFormsByMuncipalityrtnType">
+            <element name="count" typeRef="java.lang.Integer"/>
+        </dataobject>
         <dataobject javaType="cx2CountOfUserFormsForMunicipalityrtnType">
             <element name="count" typeRef="java.lang.Integer"/>
         </dataobject>
@@ -1549,6 +1577,45 @@
         </dataobject>
         <dataobject javaType="cx2MunicipalityCountrtnType">
             <element name="municipalitiesCount" typeRef="java.lang.Integer"/>
+        </dataobject>
+        <dataobject javaType="cx2ProcessFormsForUserByMunicipalityrtnType">
+            <element name="MunicipalityGroupMembers.municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups"/>
+            <element name="MunicipalityGroupMembers.userId" typeRef="java.lang.Integer"/>
+            <element name="MunicipalityGroupMembers.users" typeRef="com.civicxpress.cx2.Users"/>
+            <element name="MunicipalityGroups.id" typeRef="java.lang.Integer"/>
+            <element name="MunicipalityGroups.municipalities" typeRef="com.civicxpress.cx2.Municipalities"/>
+            <element name="MunicipalityGroups.municipalityId" typeRef="java.lang.Integer"/>
+            <element name="assignedToGroupId" typeRef="java.lang.Integer"/>
+            <element name="balanceDue" typeRef="java.lang.String"/>
+            <element name="closed" typeRef="java.lang.Boolean"/>
+            <element name="cxvendorId" typeRef="java.lang.Integer"/>
+            <element name="expiresDate" typeRef="java.util.Date"/>
+            <element name="formGuid" typeRef="java.lang.String"/>
+            <element name="formStatusId" typeRef="java.lang.Integer"/>
+            <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses"/>
+            <element name="formStatusesesForProcessOwners" typeRef="java.util.List"/>
+            <element name="formStatusesesForReadAccess" typeRef="java.util.List"/>
+            <element name="formStatusesesForWriteAccess" typeRef="java.util.List"/>
+            <element name="formTitle" typeRef="java.lang.String"/>
+            <element name="formTypeId" typeRef="java.lang.Integer"/>
+            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes"/>
+            <element name="groupDescription" typeRef="java.lang.String"/>
+            <element name="groupName" typeRef="java.lang.String"/>
+            <element name="id" typeRef="java.lang.Integer"/>
+            <element name="issuedDate" typeRef="java.util.Date"/>
+            <element name="masterFormses" typeRef="java.util.List"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities"/>
+            <element name="municipalityGroupId" typeRef="java.lang.Integer"/>
+            <element name="municipalityGroupMemberses" typeRef="java.util.List"/>
+            <element name="municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups"/>
+            <element name="municipalityId" typeRef="java.lang.Integer"/>
+            <element name="recordType" typeRef="java.lang.String"/>
+            <element name="sharedWiths" typeRef="java.util.List"/>
+            <element name="totalFees" typeRef="java.lang.String"/>
+            <element name="totalPayment" typeRef="java.lang.String"/>
+            <element name="userId" typeRef="java.lang.Integer"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users"/>
+            <element name="vendor" typeRef="com.civicxpress.cx2.Vendor"/>
         </dataobject>
         <dataobject javaType="cx2RecordFormHistoryrtnType"/>
         <dataobject javaType="cx2StandardUserMunicipalitesrtnType">

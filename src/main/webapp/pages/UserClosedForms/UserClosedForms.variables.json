@@ -130,19 +130,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "formTypeGuid",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FormTypeGuid",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "formType",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -454,6 +441,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "formTypeGuid",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FormTypeGuid",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 32,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -648,7 +648,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "recalculateAutoFees",
@@ -738,7 +738,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "allowAttachments",

@@ -259,6 +259,33 @@
       "count" : "java.lang.Integer"
     }
   }, {
+    "name" : "CountOfProcessFormsByMuncipality",
+    "query" : "select count(*) as count from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.UserId=:UserId and GM.MunicipalityGroupId=MG.ID and MG.ID=MF.AssignedToGroupId and MF.MunicipalityId=:MunicipalityId",
+    "comment" : "CountOfProcessFormsByMuncipality",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "UserId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "111",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "MunicipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2CountOfProcessFormsByMuncipalityrtnType",
+    "returnTypeMetadata" : {
+      "count" : "java.lang.Integer"
+    }
+  }, {
     "name" : "CountOfUserForms",
     "query" : "select count(*) as count from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))",
     "comment" : "To get count for open or closed for user and SharedWith user",
@@ -1211,6 +1238,69 @@
     "outputType" : "cx2MunicipalityCountrtnType",
     "returnTypeMetadata" : {
       "municipalitiesCount" : "java.lang.Integer"
+    }
+  }, {
+    "name" : "ProcessFormsForUserByMunicipality",
+    "query" : "from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.userId=:UserId and GM.municipalityGroupId=MG.id and MG.id=MF.assignedToGroupId and MF.municipalityId=:MunicipalityId",
+    "comment" : "Get forms from Master Forms where employee is in group of that in current form Status",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "UserId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "111",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "MunicipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2ProcessFormsForUserByMunicipalityrtnType",
+    "returnTypeMetadata" : {
+      "MunicipalityGroupMembers.municipalityGroups" : "com.civicxpress.cx2.MunicipalityGroups",
+      "MunicipalityGroupMembers.userId" : "java.lang.Integer",
+      "MunicipalityGroupMembers.users" : "com.civicxpress.cx2.Users",
+      "MunicipalityGroups.id" : "java.lang.Integer",
+      "MunicipalityGroups.municipalities" : "com.civicxpress.cx2.Municipalities",
+      "MunicipalityGroups.municipalityId" : "java.lang.Integer",
+      "assignedToGroupId" : "java.lang.Integer",
+      "balanceDue" : "java.lang.String",
+      "closed" : "java.lang.Boolean",
+      "cxvendorId" : "java.lang.Integer",
+      "expiresDate" : "java.util.Date",
+      "formGuid" : "java.lang.String",
+      "formStatusId" : "java.lang.Integer",
+      "formStatuses" : "com.civicxpress.cx2.FormStatuses",
+      "formStatusesesForProcessOwners" : "java.util.List",
+      "formStatusesesForReadAccess" : "java.util.List",
+      "formStatusesesForWriteAccess" : "java.util.List",
+      "formTitle" : "java.lang.String",
+      "formTypeId" : "java.lang.Integer",
+      "formTypes" : "com.civicxpress.cx2.FormTypes",
+      "groupDescription" : "java.lang.String",
+      "groupName" : "java.lang.String",
+      "id" : "java.lang.Integer",
+      "issuedDate" : "java.util.Date",
+      "masterFormses" : "java.util.List",
+      "municipalities" : "com.civicxpress.cx2.Municipalities",
+      "municipalityGroupId" : "java.lang.Integer",
+      "municipalityGroupMemberses" : "java.util.List",
+      "municipalityGroups" : "com.civicxpress.cx2.MunicipalityGroups",
+      "municipalityId" : "java.lang.Integer",
+      "recordType" : "java.lang.String",
+      "sharedWiths" : "java.util.List",
+      "totalFees" : "java.lang.String",
+      "totalPayment" : "java.lang.String",
+      "userId" : "java.lang.Integer",
+      "users" : "com.civicxpress.cx2.Users",
+      "vendor" : "com.civicxpress.cx2.Vendor"
     }
   }, {
     "name" : "RecordFormHistory",

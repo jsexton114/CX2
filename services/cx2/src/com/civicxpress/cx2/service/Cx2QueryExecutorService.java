@@ -24,6 +24,7 @@ public interface Cx2QueryExecutorService {
 	int executeCloseOrOpenFormByGUID(  java.lang.Boolean closed , java.lang.String FormGUID) throws QueryParameterMismatchException;
     Page<Object> executeCountOfFormsForMunicipality(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeCountOfMuncipalityApplicationsByVendor(Pageable pageable, java.lang.Integer VendorId) throws QueryParameterMismatchException;
+    Page<Object> executeCountOfProcessFormsByMuncipality(Pageable pageable, java.lang.Integer UserId, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeCountOfUserForms(Pageable pageable, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
     Page<Object> executeCountOfUserFormsForMunicipality(Pageable pageable, java.lang.Integer MunicipalityId, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
     Page<Object> executeCountOfVendors(Pageable pageable, java.lang.Integer vendor) throws QueryParameterMismatchException;
@@ -57,6 +58,7 @@ public interface Cx2QueryExecutorService {
 	int executeMapAsAdminForVendor(  java.lang.Integer UserId , java.lang.Integer VendorId) throws QueryParameterMismatchException;
     Page<Object> executeMunicipalitiesGroupsCounts(Pageable pageable, java.lang.Integer municipality) throws QueryParameterMismatchException;
     Page<Object> executeMunicipalityCount(Pageable pageable) throws QueryParameterMismatchException;
+    Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, java.lang.Integer UserId, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
 	int executeRecordFormHistory(  java.lang.String FormGUID , java.lang.Integer FormTypeId , java.lang.Integer NewStatusId , java.lang.Integer OldStatusId , java.lang.String Comments , java.lang.Integer CreatedBy , java.sql.Timestamp CreatedTime) throws QueryParameterMismatchException;
 	int executeResetPasswordForUser(  java.lang.String newPassword , java.lang.String token) throws QueryParameterMismatchException;
 	int executeResetPasswordWithTokenForUser(  java.lang.Integer userid , java.lang.String token) throws QueryParameterMismatchException;
