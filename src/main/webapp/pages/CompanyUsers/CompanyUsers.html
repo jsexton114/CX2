@@ -79,13 +79,13 @@
     <wm-view class="dialog-view" name="viewAdd">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Add Company User" iconclass="wi wi-person-add" name="dialogAddUser">
             <wm-dialogactions name="dialogactionsAdd">
-                <wm-button class="btn-primary" caption="Add" name="buttonAdd" on-click="Variables.AddUsersToCompany.invoke()" iconclass="wi wi-add"></wm-button>
+                <wm-button class="btn-primary" caption="Add" name="buttonAdd" on-click="Variables.AddUsersToCompany.invoke()" iconclass="wi wi-add" disabled="bind:Widgets.searchUser.datavalue == null"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid3">
                 <wm-gridrow name="gridrow6">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn10" padding="1em unset">
-                        <wm-search name="searchUser" dataset="bind:Variables.AllUsers.dataSet" searchkey="email" displaylabel="email" displayimagesrc="photo" datafield="All Fields" placeholder="Search by Email Address"></wm-search>
+                        <wm-search name="searchUser" dataset="bind:Variables.AllUsers.dataSet" searchkey="email" displaylabel="email" displayimagesrc="photo" datafield="All Fields" placeholder="Search by Email Address" required="true"></wm-search>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
@@ -158,13 +158,13 @@
     <wm-view class="dialog-view" name="viewAddAdmin">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Add Company Admin" iconclass="wi wi-person-add" name="dialogAddAdmin">
             <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-primary" caption="Add" name="buttonSaveAdmin" on-click="buttonSaveAdminClick($event, $scope)" iconclass="wi wi-add"></wm-button>
+                <wm-button class="btn-primary" caption="Add" name="buttonSaveAdmin" on-click="buttonSaveAdminClick($event, $scope)" iconclass="wi wi-add" disabled="bind:Widgets.searchForAdmin.datavalue == null"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7_2" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid6">
                 <wm-gridrow name="gridrow15">
                     <wm-gridcolumn columnwidth="12" padding="1em unset" name="gridcolumn32">
-                        <wm-search dataset="bind:Variables.AllUsers.dataSet" searchkey="email" displaylabel="email" displayimagesrc="photo" datafield="All Fields" name="searchForAdmin" placeholder="Search by Email Address"></wm-search>
+                        <wm-search dataset="bind:Variables.AllUsers.dataSet" searchkey="email" displaylabel="email" displayimagesrc="photo" datafield="All Fields" name="searchForAdmin" placeholder="Search by Email Address" required="true"></wm-search>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
