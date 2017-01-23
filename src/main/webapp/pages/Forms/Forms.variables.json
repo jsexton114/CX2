@@ -3222,7 +3222,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "formTypeId",
-      "value" : "bind:pageParams.FormTypeId",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTypeId",
       "type" : "number"
     } ],
     "operation" : "read",
@@ -4129,7 +4129,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "id",
-      "value" : "bind:pageParams.FormTypeId",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTypeId",
       "type" : "number"
     } ],
     "operation" : "read",
@@ -4896,7 +4896,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "formTypeId",
-      "value" : "bind:pageParams.FormTypeId",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTypeId",
       "type" : "number"
     } ],
     "operation" : "read",
@@ -5940,7 +5940,7 @@
       "type" : "string"
     }, {
       "target" : "FormTypeId",
-      "value" : "bind:pageParams.FormTypeId",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTypeId",
       "type" : "integer"
     }, {
       "target" : "NewStatusId",
@@ -6800,15 +6800,11 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "formGuid",
-      "value" : "bind:pageParams.FormGUID",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formGuid",
       "type" : "string"
     }, {
-      "target" : "municipalityId",
-      "value" : "bind:Variables.lvFormType.dataSet.data[$i].municipalityId",
-      "type" : "integer"
-    }, {
       "target" : "formTypeId",
-      "value" : "bind:pageParams.FormTypeId",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTypeId",
       "type" : "integer"
     } ],
     "service" : "FormService",
@@ -6835,11 +6831,11 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "formTypeId",
-      "value" : "bind:pageParams.FormTypeId",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTypeId",
       "type" : "integer"
     }, {
       "target" : "formGuid",
-      "value" : "bind:pageParams.FormGUID",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formGuid",
       "type" : "string"
     }, {
       "target" : "HashMap",
