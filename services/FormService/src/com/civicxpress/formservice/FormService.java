@@ -160,7 +160,7 @@ public class FormService {
         formCreateParams.put("municipalityId", municipalityId);
         formCreateParams.put("formTableName", formTableName);
         
-        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypes (FormType, MunicipalityId, FormTableName) VALUES (:formType, :municipalityId, :formTableName)", formCreateParams);
+        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypes (FormType, MunicipalityId, FormTableName, MunicipalityInternalForm, Active) VALUES (:formType, :municipalityId, :formTableName, 0, 0)", formCreateParams);
         
         Long newFormTypeId = Long.parseLong(DBUtils.selectQuery(cx2Conn, "SELECT @@IDENTITY as formId").get(0).get("formId").toString());
         formCreateParams.put("newFormTypeId", newFormTypeId);

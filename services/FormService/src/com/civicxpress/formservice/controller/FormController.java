@@ -35,6 +35,8 @@ public class FormController {
     }
 
     @RequestMapping(value = "/formData", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public Map<String, Object> getFormData(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
         return formService.getFormData(formTypeId, formGuid);
     }
