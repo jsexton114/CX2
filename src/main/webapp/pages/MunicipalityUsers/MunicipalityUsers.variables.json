@@ -1560,7 +1560,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.GroupMembersData.listRecords()",
+    "onSuccess" : "Variables.GroupMembersData.listRecords();Variables.UserRemovedFromGroup.invoke()",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
@@ -6046,6 +6046,34 @@
       "target" : "toasterPosition",
       "value" : "bottom right",
       "type" : "list"
+    } ],
+    "operation" : "toast"
+  },
+  "UserRemovedFromGroup" : {
+    "_id" : "wm-UserRemovedFromGroup-wm.NotificationVariable-1485151949845",
+    "name" : "UserRemovedFromGroup",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "The user has been removed from the Group",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
     } ],
     "operation" : "toast"
   }
