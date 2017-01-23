@@ -62,21 +62,18 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
         $scope.openCount = data.content[0].count;
     };
 
+
+    $scope.svCreateFormonSuccess = function(variable, data) {
+        console.log(data);
+        console.log($scope.Variables.navGoToForm);
+    };
+
 }]);
 
 Application.$controller("dialogNewFormController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-
-
-
-        $scope.buttonCreateClick = function($event, $isolateScope) {
-            var pageName = $scope.Widgets.selectForm.datavalue.PageName;
-            $scope.Variables[pageName].dataSet.FormId = $scope.Widgets.selectForm.datavalue.ID;
-            $scope.Variables[pageName].dataSet.MunicipalityId = $scope.Widgets.selectMunicipality.datavalue.ID;
-            $scope.Variables[pageName].navigate();
-        };
 
     }
 ]);

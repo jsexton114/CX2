@@ -162,6 +162,10 @@ public class FormService {
         DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypes (FormType, MunicipalityId, FormTableName) VALUES (:formType, :municipalityId, :formTableName)", formCreateParams);
         
         Long newFormTypeId = Long.parseLong(DBUtils.selectQuery(cx2Conn, "SELECT @@IDENTITY as formId").get(0).get("formId").toString());
+        formCreateParams.put("newFormTypeId", newFormTypeId);
+        
+        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormStatuses (FormTypeId, ConsiderClosed, SortOrder, Status, Description, SendEmail) "
+        		+ "VALUES (:newFormTypeId, 0, 1, 'Draft', 'Draft', 0)", formCreateParams);
         
         DBUtils.simpleUpdateQuery(muniDbConn, "CREATE TABLE "+formTableName+" ("
     			+"ID numeric(10) identity(1,1), "
@@ -247,6 +251,37 @@ public class FormService {
     	
     	muniDbConn.close();
     	cx2Conn.close();
+    }
+    
+    public String createForm(Long municipalityId, Long formTypeId) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
+    	
+    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
+    	queryParams.put("formTypeId", formTypeId);
+    	queryParams.put("currentUser", securityService.getUserName());
+    	queryParams.put("currentUserId", securityService.getUserId());
+    	queryParams.put("municipalityId", municipalityId);
+    	
+    	String formTableName = DBUtils.selectQuery(cx2Conn, "SELECT FormTableName FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).get("FormTableName").toString();
+    	
+    	DBUtils.simpleQuery(muniDbConn, "INSERT INTO "+formTableName+" (CreatedBy) VALUES (:currentUser)", queryParams);
+    	
+    	Long newFormId = Long.parseLong(DBUtils.selectQuery(muniDbConn, "SELECT @@IDENTITY as newFormDataId").get(0).get("newFormDataId").toString());
+    	queryParams.put("newFormId", newFormId);
+    	String newFormGuid = DBUtils.selectQuery(muniDbConn, "SELECT FormGUID FROM "+formTableName+" WHERE ID=:newFormId", queryParams).get(0).get("FormGUID").toString();
+    	queryParams.put("newFormGUID", newFormGuid);
+    	
+    	Long newFormStatusId = Long.parseLong(DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormTypes WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC").get(0).get("ID").toString());
+    	queryParams.put("newFormStatusId", newFormStatusId);
+    	
+    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, FormStatusId, Closed) "
+    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :newFormStatusId, 0)", queryParams);
+
+    	muniDbConn.close();
+    	cx2Conn.close();
+    	
+    	return newFormGuid;
     }
 
 }

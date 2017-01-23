@@ -938,6 +938,20 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "navGoToForm" : {
+    "_id" : "wm-navGoToForm-wm.NavigationVariable-1485195418495",
+    "name" : "navGoToForm",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "Forms",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
   "StandardUserMunicipalites" : {
     "_id" : "wm-StandardUserMunicipalites-wm.ServiceVariable-1478775230336",
     "name" : "StandardUserMunicipalites",
@@ -965,5 +979,37 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
+  },
+  "svCreateForm" : {
+    "_id" : "wm-svCreateForm-wm.ServiceVariable-1485195280047",
+    "name" : "svCreateForm",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "formTypeId",
+      "value" : "bind:Widgets.selectForm.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "string",
+    "service" : "FormService",
+    "operation" : "createForm",
+    "operationId" : "FormController_createForm",
+    "operationType" : "post",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "svCreateFormonSuccess($event, $scope);Widgets.dialogNewForm.close()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Form"
   }
 }

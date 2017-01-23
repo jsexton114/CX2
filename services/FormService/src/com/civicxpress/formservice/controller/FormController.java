@@ -3,8 +3,8 @@ package com.civicxpress.formservice.controller;
 
 import com.civicxpress.formservice.FormService;
 import java.lang.Long;
-import java.lang.String;
 import java.sql.SQLException;
+import java.lang.String;
 import java.lang.Object;
 import java.util.Map;
 import java.util.HashMap;
@@ -26,6 +26,11 @@ public class FormController {
 
     @Autowired
     private FormService formService;
+
+    @RequestMapping(value = "/form", produces = "application/json", method = RequestMethod.POST)
+    public String createForm(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formTypeId", required = false) Long formTypeId) throws SQLException {
+        return formService.createForm(municipalityId, formTypeId);
+    }
 
     @RequestMapping(value = "/formData", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
