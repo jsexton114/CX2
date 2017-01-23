@@ -36,7 +36,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class FormTypes implements Serializable {
 
     private Integer id;
-    private String formTypeGuid;
     private String formType;
     private String flatFee;
     private String flatFeeAccountingCode;
@@ -62,6 +61,7 @@ public class FormTypes implements Serializable {
     private Boolean gismap;
     private String formTableName;
     private int municipalityId;
+    private String formTypeGuid;
     private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
@@ -83,15 +83,6 @@ public class FormTypes implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    @Column(name = "`FormTypeGuid`", nullable = true, length = 255)
-    public String getFormTypeGuid() {
-        return this.formTypeGuid;
-    }
-
-    public void setFormTypeGuid(String formTypeGuid) {
-        this.formTypeGuid = formTypeGuid;
     }
 
     @Column(name = "`FormType`", nullable = true, length = 255)
@@ -318,6 +309,15 @@ public class FormTypes implements Serializable {
 
     public void setMunicipalityId(int municipalityId) {
         this.municipalityId = municipalityId;
+    }
+
+    @Column(name = "`FormTypeGuid`", nullable = true, length = 32)
+    public String getFormTypeGuid() {
+        return this.formTypeGuid;
+    }
+
+    public void setFormTypeGuid(String formTypeGuid) {
+        this.formTypeGuid = formTypeGuid;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
