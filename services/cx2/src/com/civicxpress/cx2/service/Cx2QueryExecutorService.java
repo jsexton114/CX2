@@ -42,7 +42,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeFormsForUsersAndShared(Pageable pageable, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
     Page<Object> executeGetEmailId(Pageable pageable, java.lang.Integer userID) throws QueryParameterMismatchException;
     Page<Object> executeGetFormsForMunicpality(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
-    Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, java.lang.Integer formCategory, java.lang.Boolean MunicipalityInternalForm) throws QueryParameterMismatchException;
+    Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, java.lang.Integer formCategory, java.lang.Boolean isActive, java.lang.Boolean MunicipalityInternalForm) throws QueryParameterMismatchException;
     Page<Object> executeGetListofGroupName(Pageable pageable,java.util.List<java.lang.Integer> MunicipalityGroupID, java.lang.Integer MunicipalityID) throws QueryParameterMismatchException;
     Page<Object> executeGetListofUsers(Pageable pageable, java.lang.Integer municipalityID, java.lang.String Email) throws QueryParameterMismatchException;
     Page<Object> executeGetMunicipalityGroupIdIDs(Pageable pageable, java.lang.Integer userID) throws QueryParameterMismatchException;

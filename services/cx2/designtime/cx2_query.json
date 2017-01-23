@@ -801,7 +801,7 @@
     }
   }, {
     "name" : "GetFormTypesByCategoriesAndMunicipalities",
-    "query" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.MunicipalityInternalForm=:MunicipalityInternalForm",
+    "query" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=:MunicipalityInternalForm",
     "comment" : "GetFormTypesByCategoriesAndMunicipalities",
     "description" : null,
     "nativeSql" : true,
@@ -811,6 +811,13 @@
       "paramName" : "formCategory",
       "paramType" : "java.lang.Integer",
       "testValue" : "3",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "isActive",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
@@ -827,11 +834,14 @@
       "Active" : "java.lang.Boolean",
       "Attachments" : "java.lang.String",
       "AutomaticFees" : "java.lang.Boolean",
+      "BasementFee" : "java.lang.String",
+      "BasementFeeAccountingCode" : "java.lang.String",
       "CollectFees" : "java.lang.Boolean",
       "CreatedDate" : "java.sql.Date",
       "DigitalSignatures" : "java.lang.Boolean",
       "FlatFee" : "java.lang.String",
       "FlatFeeAccountingCode" : "java.lang.String",
+      "FormTableName" : "java.lang.String",
       "FormType" : "java.lang.String",
       "FormTypeGuid" : "java.lang.String",
       "GISMap" : "java.lang.String",
@@ -839,8 +849,8 @@
       "ID" : "java.math.BigDecimal",
       "Inspections" : "java.lang.String",
       "MultipleGISRecords" : "java.lang.Boolean",
+      "MunicipalityId" : "java.math.BigDecimal",
       "MunicipalityInternalForm" : "java.lang.Boolean",
-      "PageName" : "java.lang.String",
       "Payments" : "java.lang.String",
       "Report" : "java.lang.String",
       "SfFee" : "java.lang.String",
@@ -848,7 +858,6 @@
       "SharedWith" : "java.lang.String",
       "StateFee" : "java.lang.String",
       "StateFeeAccountingCode" : "java.lang.String",
-      "TbLocation" : "java.lang.String",
       "UnitFee" : "java.lang.String",
       "UnitFeeAccountingCode" : "java.lang.String"
     }

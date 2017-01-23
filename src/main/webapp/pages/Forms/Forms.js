@@ -13,20 +13,15 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.sharedWith;
     $scope.allFormStatus;
     $scope.FormStatusonSuccess = function(variable, data) {
-        setFormStatusListValue(data, null);
+        setFormStatusProgressValue(data);
     };
 
-    var statusListData = null;
-    var currentStatusId = null;
+    $scope.defaultObjectForSelectStatus = {};
+    $scope.currentProgress = 0;
 
-    function setFormStatusListValue(listData, statusId) {
-        if (!!listData) {
-            statusListData = listData;
-        }
-
-        if (!!statusId) {
-            currentStatusId = statusId;
-        }
+    function setFormStatusProgressValue(listData) {
+        var statusListData = listData;
+        var currentStatusId = $scope.Variables.CurrentForm.dataSet.data[0].formStatusId;
 
         if (!!statusListData && !!currentStatusId) {
             $scope.allFormStatus = statusListData;
@@ -35,6 +30,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
                 'id': _.parseInt(currentStatusId)
             });
             $scope.defaultObjectForSelectStatus = statusListData[currentStatus];
+            $scope.currentProgress = parseInt(!!$scope.defaultObjectForSelectStatus.considerClosed ? 100 : ((currentStatus) / statusListData.length * 100));
             $timeout(function() {
                 var a = $('.livelist-status li.app-list-item:nth-child(' + (currentStatus + 1) + ')').addClass('active');
             });
@@ -91,17 +87,9 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
     };
 
-
-
     $scope.SharedWithDataonSuccess = function(variable, data) {
         $scope.sharedWith = data;
     };
-
-
-    $scope.CurrentFormonSuccess = function(variable, data) {
-        setFormStatusListValue(null, data[0].formStatusId);
-    };
-
 
     $scope.lvFormTypeonSuccess = function(variable, data) {
         currentBreadCrumb.label = data[0].formType;
