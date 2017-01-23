@@ -24,20 +24,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
-                        <wm-grid title="Masterforms List" dataset="bind:Variables.MasterForms.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" primary-key="false" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" widget-type="label" generator="assigned" readonly="true" show="true" related-entity-name="FormTypes">
-                                <wm-label caption="{{row.getProperty('formTypes.formType')}}" class="" ng-class=""></wm-label>
-                            </wm-grid-column>
-                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
-                            <wm-grid-column binding="formStatuses.status" caption="Statuses Status" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
-                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                            <wm-grid-row-action key="customRow" display-name="" title="View Form" value="" iconclass="wi wi-pageview" class="btn-transparent" show="true" action="Variables.goToPage_Forms.invoke()"></wm-grid-row-action>
-                        </wm-grid>
-                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3_1"></wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
