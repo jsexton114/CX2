@@ -6,7 +6,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         $scope.today = moment().valueOf();
 
     };
-
+    $scope.sharedWith
     $scope.allFormStatus;
     $scope.FormStatusonSuccess = function(variable, data) {
         $scope.allFormStatus = data;
@@ -43,11 +43,42 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
 
     $scope.UpdateFormStatusInMasterFormsonSuccess = function(variable, data) {
+
+        // Setting  Closed or Open according to Status
         $scope.Variables.CloseOrOpenFormByGUID.setInput({
             'closed': $scope.Widgets.selectStatus.datavalue.considerClosed,
             'FormGUID': $scope.pageParams.FormGUID
         });
         $scope.Variables.CloseOrOpenFormByGUID.update();
+
+        //Sending mail to  CreatedBy
+
+        $scope.Variables.SendStatusUpdate.setInput({
+            'username': $scope.Variables.CurrentForm.dataSet.data[0].users.firstName,
+            'recipient': $scope.Variables.CurrentForm.dataSet.data[0].users.email
+        });
+        $scope.Variables.SendStatusUpdate.update();
+        //Sending mail to SharedWith
+        var contacts = $scope.sharedWith;
+        for (let i = 0; i < contacts.length; i++) {
+            $scope.Variables.SendStatusUpdate.setInput({
+                'username': contacts[i].usersBySharedWithUser.firstName,
+                'recipient': contacts[i].usersBySharedWithUser.email
+            });
+            $scope.Variables.SendStatusUpdate.update();
+        }
+
+    };
+
+
+
+    $scope.SharedWithDataonSuccess = function(variable, data) {
+        $scope.sharedWith = data;
+    };
+
+
+    $scope.CurrentFormonSuccess = function(variable, data) {
+        debugger
     };
 
 }]);
