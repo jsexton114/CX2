@@ -14,12 +14,6 @@ Application.$controller("ManageFormsPageController", ["$scope", function($scope)
          */
     };
 
-    $scope.svSaveFormTypeonSuccess = function(variable, data) {
-        console.log($data);
-        //$scope.Variables.goToPage_EditForm.dataSet.FormTypeId = $data.id;
-        //$scope.Variables.goToPage_EditForm.navigate();
-    };
-
 }]);
 
 
