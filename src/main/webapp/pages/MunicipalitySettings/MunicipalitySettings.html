@@ -11,10 +11,9 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow7">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn17_1" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn17_1" padding="2em unset">
                         <wm-label padding="unset 0.5em" name="label5" caption="General Settings" fontweight="bold" fontsize="15"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn18_1"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn19_1" padding="2em unset">
                         <wm-composite name="composite1">
                             <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold"></wm-label>
@@ -26,7 +25,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow40_2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn50_2">
-                        <wm-panel iconclass="wi wi-info-outline" name="panel2" title="Municipality Info" class="panel-primary">
+                        <wm-panel iconclass="wi wi-info-outline" name="panel2" title="Municipality Details" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid3">
                                 <wm-gridrow name="gridrow6_1">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn8" padding="1em unset">
@@ -135,7 +134,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow42">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn52_2">
-                        <wm-panel iconclass="wi wi-insert-emoticon" name="panel4" title="Municipality Logo" class="panel-primary">
+                        <wm-panel iconclass="wi wi-photo" name="panel4" title="Municipality Logo" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid6">
                                 <wm-gridrow name="gridrow43">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn53_1"></wm-gridcolumn>
@@ -147,7 +146,7 @@
                                 <wm-gridrow name="gridrow38_1">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn48_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn49_1" horizontalalign="center">
-                                        <wm-picture name="picture1" picturesource="bind:&quot;services/cx2/Municipalities/&quot;+Variables.SelectedMunicipalityObj.firstRecord.id+&quot;/content/logo&quot;" width="300px" height="250px" pictureaspect="None"></wm-picture>
+                                        <wm-picture name="picture1" picturesource="bind:&quot;services/cx2/Municipalities/&quot;+Variables.SelectedMunicipalityObj.firstRecord.id+&quot;/content/logo&quot;" pictureaspect="None" class="municipality-logo"></wm-picture>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn50_1"></wm-gridcolumn>
                                 </wm-gridrow>
