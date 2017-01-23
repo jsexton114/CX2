@@ -1,12 +1,16 @@
 Application.$controller("FormsPageController", ["$scope", "$timeout", function($scope, $timeout) {
     "use strict";
 
+    var currentBreadCrumb = null;
+
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
         $scope.today = moment().valueOf();
-
+        var breadCrumbs = $scope.Variables.BreadCrumb.dataSet;
+        currentBreadCrumb = breadCrumbs[breadCrumbs.length - 1];
+        currentBreadCrumb.link += $scope.pageParams.FormGUID;
     };
-    $scope.sharedWith
+    $scope.sharedWith;
     $scope.allFormStatus;
     $scope.FormStatusonSuccess = function(variable, data) {
         setFormStatusListValue(data, null);
@@ -96,6 +100,11 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
     $scope.CurrentFormonSuccess = function(variable, data) {
         setFormStatusListValue(null, data[0].formStatusId);
+    };
+
+
+    $scope.lvFormTypeonSuccess = function(variable, data) {
+        currentBreadCrumb.label = data[0].formType;
     };
 
 }]);
