@@ -19,7 +19,7 @@
                 <wm-gridrow name="gridrow26_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn58_1">
                         <wm-tabs name="tabs1">
-                            <wm-tabpane name="tabpaneFORMINFO" title="Form Info">
+                            <wm-tabpane name="tabpaneFORMINFO" title="Settings">
                                 <wm-liveform novalidate="false" errormessage="" title="bind:Variables.ReadFormType.dataSet.data[$i].formType" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.UpdateFormTypes.dataSet" captionalign="left" captionposition="top"
                                 name="liveformUpdateFormType" backgroundcolor="#dbdbdb" formdata="bind:Variables.CurrentFormObj.firstRecord">
                                     <wm-layoutgrid columns="2" name="layoutgrid2">
@@ -28,7 +28,7 @@
                                                 <wm-panel iconclass="wi wi-info-outline" name="panelFormInfo" title="Form Details" class="panel-primary">
                                                     <wm-gridrow name="gridrow3">
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn4">
-                                                            <wm-form-field name="formType" displayname="Form Name" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                            <wm-form-field name="formType" displayname="Form Design Name" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
                                                             defaultvalue="bind:Variables.ReadFormType.firstRecord.formType"></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn17" horizontalalign="left">
@@ -154,14 +154,14 @@
                                     <wm-form-action key="save" display-name="Update" show="true" class="form-save btn-primary" iconclass="wi wi-update" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                 </wm-liveform>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpaneSTATUS" title="Status">
+                            <wm-tabpane name="tabpaneSTATUS" title="Statuses">
                                 <wm-livegrid formlayout="dialog" name="livegrid1">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.StatusesData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL">
-                                        <wm-grid-column binding="sortOrder" caption="Sort Order" type="long" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="status" caption="Status" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="description" caption="Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-column binding="sortOrder" caption="Sort Order" type="long" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="status" caption="Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="description" caption="Description" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="New Status" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Status" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
@@ -295,44 +295,7 @@
                                     </wm-liveform>
                                 </wm-livegrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpaneCATEGORIES" title="Categories">
-                                <wm-layoutgrid name="layoutgrid6">
-                                    <wm-gridrow name="gridrow26">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn53">
-                                            <wm-livegrid formlayout="dialog" name="livegrid2">
-                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.FormCategories.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL">
-                                                    <wm-grid-column binding="formCategories.category" caption="Category" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormCategories"></wm-grid-column>
-                                                    <wm-grid-column binding="formCategories.description" caption="Description" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormCategories"></wm-grid-column>
-                                                    <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormTypes"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                                </wm-grid>
-                                                <wm-liveform novalidate="false" errormessage="" title="Formcategorymapping Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.FormCategories.dataSet" captionalign="left" captionposition="top"
-                                                name="liveform3">
-                                                    <wm-layoutgrid columns="1" name="layoutgrid9">
-                                                        <wm-gridrow name="gridrow37">
-                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn62">
-                                                                <wm-form-field name="formCategories" displayname="Form Categories" show="true" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true" widget="select" dataset="bind:Variables.Categories.dataSet"
-                                                                datafield="All Fields" displayfield="category" defaultvalue="bind:Variables.Categories.firstRecord" placeholder="Select value"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                    </wm-layoutgrid>
-                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                                    placeholder="Enter value"></wm-form-field>
-                                                    <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"
-                                                    placeholder="Select value"></wm-form-field>
-                                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
-                                                    update-mode="true"></wm-form-action>
-                                                </wm-liveform>
-                                            </wm-livegrid>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-tabpane>
-                            <wm-tabpane name="tabpaneFormFields" title="Form Fields">
+                            <wm-tabpane name="tabpaneFormFields" title="Fields">
                                 <wm-livegrid formlayout="dialog" name="livegrid3">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" exportformat="EXCEL">
                                         <wm-grid-column binding="displayOrder" caption="Display Order" type="integer" generator="assigned" show="true" readonly="false"></wm-grid-column>
@@ -343,18 +306,53 @@
                                         <wm-grid-column binding="helpText" caption="Help Text" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="possibleValues" caption="Possible Values" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dlgFormTypeField.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-action key="addNewRow" display-name="New Field" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Field" action="Widgets.dlgFormTypeField.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                 </wm-livegrid>
+                            </wm-tabpane>
+                            <wm-tabpane name="tabpaneCATEGORIES" title="Categories">
+                                <wm-layoutgrid name="layoutgrid6">
+                                    <wm-gridrow name="gridrow26">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn53">
+                                            <wm-livegrid formlayout="dialog" name="livegrid2">
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.FormCategories.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL">
+                                                    <wm-grid-column binding="formCategories.category" caption="Category" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormCategories"></wm-grid-column>
+                                                    <wm-grid-column binding="formCategories.description" caption="Description" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormCategories"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-action key="addNewRow" display-name="Add Category" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Category" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                                <wm-liveform novalidate="false" errormessage="" title="Add Form Category" formlayout="dialog" iconclass="wi wi-payment" dataset="bind:Variables.FormCategories.dataSet" captionalign="left" captionposition="top"
+                                                name="liveform3">
+                                                    <wm-layoutgrid columns="1" name="layoutgrid9">
+                                                        <wm-gridrow name="gridrow37">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn62">
+                                                                <wm-form-field name="formCategories" displayname="Select Category" show="true" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true" widget="select" dataset="bind:Variables.Categories.dataSet"
+                                                                datafield="All Fields" displayfield="category" placeholder="Select value" required="true"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                    </wm-layoutgrid>
+                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
+                                                    placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"
+                                                    placeholder="Select value"></wm-form-field>
+                                                    <wm-form-action key="save" display-name="Add" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
+                                                    update-mode="true"></wm-form-action>
+                                                </wm-liveform>
+                                            </wm-livegrid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneCXADMIN" title="CX Admin" accessroles="CXAdmin">
                                 <wm-layoutgrid name="layoutgrid8">
                                     <wm-gridrow name="gridrow28_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn62_1" padding="1em unset">
                                             <wm-composite name="composite3">
-                                                <wm-label class="col-md-3 control-label" name="label5" caption="Report"></wm-label>
+                                                <wm-label class="col-md-3 form-control-static" name="label5" caption="Report" fontweight="bold"></wm-label>
                                                 <wm-container class="col-md-9" name="container3">
                                                     <wm-text name="textReport" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].report"></wm-text>
                                                 </wm-container>
@@ -364,7 +362,7 @@
                                     <wm-gridrow name="gridrow36_2">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn61_3">
                                             <wm-composite name="composite4">
-                                                <wm-label class="col-md-3 control-label" name="label5_1" caption="Form Table Name"></wm-label>
+                                                <wm-label class="col-md-3 form-control-static" name="label5_1" caption="Form Table Name" fontweight="bold"></wm-label>
                                                 <wm-container class="col-md-9" name="container4">
                                                     <wm-text name="textFormTableName" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].formTableName"></wm-text>
                                                 </wm-container>
