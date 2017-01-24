@@ -307,6 +307,11 @@
       update Roles set RoleName=:role where MunicipalityId=:municipality and UserId=:user
     ]]>
   </sql-query>
+  <sql-query name="UpdateVendorForMasterForms">
+    <![CDATA[
+      update MasterForms set CXVendorId=:CXVendorId where FormGUID=:FormGUID
+    ]]>
+  </sql-query>
   <sql-query name="UpdateVendorStatus">
     <![CDATA[
       Update VendorApprovals set DateApproved=:DateApproved,ApprovedBy=:ApprovedBy,ExpiresDate=:ExpiresDate,Active=:Active,ApprovalStatus=:ApprovalStatus,Reviewer=:Reviewer where MunicipalityId=:municipality and VendorId=:vendor

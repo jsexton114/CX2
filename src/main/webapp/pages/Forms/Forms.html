@@ -117,6 +117,44 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow35">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn82" padding=".5em unset">
+                        <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panelTagVendor" title="Tag Vendor" class="panel-primary">
+                            <wm-layoutgrid name="layoutgrid12">
+                                <wm-gridrow name="gridrow38">
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn87"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="10" name="gridcolumn88">
+                                        <wm-search placeholder="Search Vendor" dataset="bind:Variables.Vendors.dataSet" searchkey="vendor.companyName" displaylabel="vendor.companyName" datafield="All Fields" name="searchVendor"></wm-search>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn89"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow39">
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn90"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn91">
+                                        <wm-label padding="unset 0.5em" class="h4" show="bind:Widgets.searchVendor.datavalue!=undefined" caption="Details" name="label23"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn92"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow padding=".5em unset" name="gridrow40">
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn93"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn94">
+                                        <wm-label padding="unset 0.5em" caption="bind:Widgets.searchVendor.datavalue.vendor.companyName+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.address1+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.address2+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.city+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.states.stateName+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.postalCode+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.companyPhone+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.companyEmail"
+                                        show="bind:Widgets.searchVendor.datavalue!=undefined" name="label24"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn95"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow41">
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn96"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn97">
+                                        <wm-button class="btn-default btn-primary" caption="Add" type="button" margin="unset 0.5em" iconclass="wi wi-library-add" show="bind:Widgets.searchVendor.datavalue!=undefined" on-click="Variables.UpdateVendorForMasterForms.invoke()"
+                                        name="buttonTagVendor"></wm-button>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn98"></wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                         <wm-tabs name="tabs1">

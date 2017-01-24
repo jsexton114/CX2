@@ -357,6 +357,11 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateVendorForMasterForms">
+        <parameter name="CXVendorId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
@@ -676,6 +681,11 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateRoleForMunicipalityrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateVendorForMasterForms">
+        <parameter name="CXVendorId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2UpdateVendorForMasterFormsrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateVendorStatus">
         <parameter name="DateApproved" typeRef="java.sql.Date" isList="false"/>
         <parameter name="ApprovedBy" typeRef="java.lang.String" isList="false"/>
@@ -878,6 +888,7 @@
             <element name="stateFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="unitFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="unitFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="vendorSection" typeRef="java.lang.Boolean" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Gis2forms">
             <element name="addedBy" typeRef="java.lang.Integer" allowNull="true"/>
@@ -1683,6 +1694,7 @@
         <dataobject javaType="cx2UpdatePasswordAndCFrtnType"/>
         <dataobject javaType="cx2UpdateProcessOwnersForGUIDrtnType"/>
         <dataobject javaType="cx2UpdateRoleForMunicipalityrtnType"/>
+        <dataobject javaType="cx2UpdateVendorForMasterFormsrtnType"/>
         <dataobject javaType="cx2UpdateVendorStatusrtnType"/>
         <dataobject javaType="cx2UpdateWorkMunicipalityrtnType"/>
         <dataobject javaType="cx2UserCountrtnType">

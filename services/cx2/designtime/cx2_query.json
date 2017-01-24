@@ -1930,6 +1930,31 @@
     "outputType" : "cx2UpdateRoleForMunicipalityrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "UpdateVendorForMasterForms",
+    "query" : "update MasterForms set CXVendorId=:CXVendorId where FormGUID=:FormGUID",
+    "comment" : "UpdateVendorForMasterForms",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "CXVendorId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "FormGUID",
+      "paramType" : "java.lang.String",
+      "testValue" : "any7fS8UWUOP5ukVeYaTWwdNZutxlBjk",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateVendorForMasterFormsrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "UpdateVendorStatus",
     "query" : "Update VendorApprovals set DateApproved=:DateApproved,ApprovedBy=:ApprovedBy,ExpiresDate=:ExpiresDate,Active=:Active,ApprovalStatus=:ApprovalStatus,Reviewer=:Reviewer where MunicipalityId=:municipality and VendorId=:vendor",
     "comment" : "UpdateVendorStatus",

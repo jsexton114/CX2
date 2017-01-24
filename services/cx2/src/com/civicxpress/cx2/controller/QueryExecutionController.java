@@ -650,6 +650,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdateVendorForMasterForms", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdateVendorForMasterForms(@RequestParam(value = "CXVendorId", required = false) java.lang.Integer CXVendorId, @RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdateVendorForMasterForms");
+        int result = queryService.executeUpdateVendorForMasterForms(CXVendorId, FormGUID);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UpdateVendorStatus", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeUpdateVendorStatus(@RequestParam(value = "DateApproved", required = false) java.sql.Date DateApproved, @RequestParam(value = "ApprovedBy", required = false) java.lang.String ApprovedBy, @RequestParam(value = "ExpiresDate", required = false) java.sql.Date ExpiresDate, @RequestParam(value = "Active", required = false) java.lang.Boolean Active, @RequestParam(value = "ApprovalStatus", required = false) java.lang.String ApprovalStatus, @RequestParam(value = "Reviewer", required = false) java.lang.String Reviewer, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, @RequestParam(value = "vendor", required = false) java.lang.Integer vendor) throws QueryParameterMismatchException {

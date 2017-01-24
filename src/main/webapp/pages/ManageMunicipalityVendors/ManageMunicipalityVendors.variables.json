@@ -2613,7 +2613,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "DateApproved",
-      "value" : "bind:Widgets.liveformApprovedVendors.dataoutput.dateApproved | toDate: 'yyyy-MM-dd'",
+      "value" : "bind:toDay | toDate: 'yyyy-MM-dd'",
       "type" : "string"
     }, {
       "target" : "ApprovedBy",
@@ -2698,7 +2698,7 @@
       "type" : "integer"
     }, {
       "target" : "DateApproved",
-      "value" : "bind:Widgets.liveform2.dataoutput.dateApproved",
+      "value" : "bind:Widgets.liveform2.formWidgets.datePApproved.defaultvalue",
       "type" : "string"
     } ],
     "type" : "cx2UpdateVendorStatusrtnType",
@@ -2727,7 +2727,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "DateApproved",
-      "value" : "bind:Widgets.liveformSuspended.dataoutput.dateApproved",
+      "value" : "bind:Widgets.liveformSuspended.formWidgets.dateSApproved.defaultvalue",
       "type" : "string"
     }, {
       "target" : "ApprovedBy",

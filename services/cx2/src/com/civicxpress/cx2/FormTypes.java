@@ -64,6 +64,7 @@ public class FormTypes implements Serializable {
     private String formTypeGuid;
     private String basementFee;
     private String basementFeeAccountingCode;
+    private Boolean vendorSection;
     private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
@@ -338,6 +339,15 @@ public class FormTypes implements Serializable {
 
     public void setBasementFeeAccountingCode(String basementFeeAccountingCode) {
         this.basementFeeAccountingCode = basementFeeAccountingCode;
+    }
+
+    @Column(name = "`VendorSection`", nullable = true)
+    public Boolean getVendorSection() {
+        return this.vendorSection;
+    }
+
+    public void setVendorSection(Boolean vendorSection) {
+        this.vendorSection = vendorSection;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -3,7 +3,7 @@ Application.$controller("ManageMunicipalityVendorsPageController", ["$scope", fu
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-
+        $scope.today = moment().valueOf();
     };
 
 
@@ -52,7 +52,7 @@ Application.$controller("liveformApprovedVendorsController", ["$scope",
         "use strict";
 
         $scope.ctrlScope = $scope;
-        $scope.toDay = Date.parse(new Date().toDateString());
+        $scope.toDay = moment().valueOf();
     }
 ]);
 
@@ -126,6 +126,6 @@ Application.$controller("liveform2Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-        $scope.toDay = Date.parse(new Date().toDateString());
+        $scope.toDay = moment().valueOf();
     }
 ]);
