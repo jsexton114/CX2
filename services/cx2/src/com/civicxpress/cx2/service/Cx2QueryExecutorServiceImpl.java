@@ -34,6 +34,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeAddGIStoForms( java.lang.Integer GISRecordId ,java.lang.String RelatedFormGUID ,java.lang.Integer AddedBy ,java.sql.Timestamp AddedTime)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("GISRecordId", GISRecordId);
+        params.put("RelatedFormGUID", RelatedFormGUID);
+        params.put("AddedBy", AddedBy);
+        params.put("AddedTime", AddedTime);
+        return queryExecutor.executeNamedQueryForUpdate("AddGIStoForms", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeAddUsersToVendor( java.lang.Integer VendorId ,java.lang.Integer UserId ,java.sql.Date JoiningDate)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

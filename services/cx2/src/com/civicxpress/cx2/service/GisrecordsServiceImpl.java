@@ -22,6 +22,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
+import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 
@@ -35,6 +36,10 @@ import com.civicxpress.cx2.Gisrecords;
 public class GisrecordsServiceImpl implements GisrecordsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GisrecordsServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.Gis2formsService")
+	private Gis2formsService gis2formsService;
 
     @Autowired
 	@Qualifier("cx2.FeesService")
@@ -70,6 +75,14 @@ public class GisrecordsServiceImpl implements GisrecordsService {
                 giscontactse.setGisrecords(gisrecordsCreated);
                 LOGGER.debug("Creating a new child Giscontacts with information: {}", giscontactse);
                 giscontactsService.create(giscontactse);
+            }
+        }
+
+        if(gisrecordsCreated.getGis2formses() != null) {
+            for(Gis2forms gis2formse : gisrecordsCreated.getGis2formses()) {
+                gis2formse.setGisrecords(gisrecordsCreated);
+                LOGGER.debug("Creating a new child Gis2forms with information: {}", gis2formse);
+                gis2formsService.create(gis2formse);
             }
         }
         return gisrecordsCreated;
@@ -166,6 +179,26 @@ public class GisrecordsServiceImpl implements GisrecordsService {
         queryBuilder.append("gisrecords.id = '" + id + "'");
 
         return giscontactsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Gis2forms> findAssociatedGis2formses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated gis2formses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("gisrecords.id = '" + id + "'");
+
+        return gis2formsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service Gis2formsService instance
+	 */
+	protected void setGis2formsService(Gis2formsService service) {
+        this.gis2formsService = service;
     }
 
     /**

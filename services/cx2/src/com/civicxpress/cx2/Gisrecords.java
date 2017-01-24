@@ -56,6 +56,7 @@ public class Gisrecords implements Serializable {
     private Subdivisions subdivisions;
     private List<Fees> feeses = new ArrayList<>();
     private List<Giscontacts> giscontactses = new ArrayList<>();
+    private List<Gis2forms> gis2formses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -290,6 +291,16 @@ public class Gisrecords implements Serializable {
 
     public void setGiscontactses(List<Giscontacts> giscontactses) {
         this.giscontactses = giscontactses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "gisrecords")
+    public List<Gis2forms> getGis2formses() {
+        return this.gis2formses;
+    }
+
+    public void setGis2formses(List<Gis2forms> gis2formses) {
+        this.gis2formses = gis2formses;
     }
 
     @Override

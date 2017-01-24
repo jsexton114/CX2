@@ -25,6 +25,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
+import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
 import com.civicxpress.cx2.McnewResidentialStructure;
@@ -50,6 +51,10 @@ import com.civicxpress.cx2.VendorUsers;
 public class UsersServiceImpl implements UsersService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.Gis2formsService")
+	private Gis2formsService gis2formsService;
 
     @Autowired
 	@Qualifier("cx2.MunicipalityGroupMembersService")
@@ -140,6 +145,14 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getGis2formses() != null) {
+            for(Gis2forms gis2formse : usersCreated.getGis2formses()) {
+                gis2formse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child Gis2forms with information: {}", gis2formse);
+                gis2formsService.create(gis2formse);
+            }
+        }
+
         if(usersCreated.getMasterFormses() != null) {
             for(MasterForms masterFormse : usersCreated.getMasterFormses()) {
                 masterFormse.setUsers(usersCreated);
@@ -180,14 +193,6 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getRoleses() != null) {
-            for(Roles rolese : usersCreated.getRoleses()) {
-                rolese.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child Roles with information: {}", rolese);
-                rolesService.create(rolese);
-            }
-        }
-
         if(usersCreated.getSfnewElectricConnections() != null) {
             for(SfnewElectricConnection sfnewElectricConnection : usersCreated.getSfnewElectricConnections()) {
                 sfnewElectricConnection.setUsers(usersCreated);
@@ -201,6 +206,14 @@ public class UsersServiceImpl implements UsersService {
                 sfnewResidentialStructure.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child SfnewResidentialStructure with information: {}", sfnewResidentialStructure);
                 sfnewResidentialStructureService.create(sfnewResidentialStructure);
+            }
+        }
+
+        if(usersCreated.getRoleses() != null) {
+            for(Roles rolese : usersCreated.getRoleses()) {
+                rolese.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child Roles with information: {}", rolese);
+                rolesService.create(rolese);
             }
         }
 
@@ -365,6 +378,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Gis2forms> findAssociatedGis2formses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated gis2formses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return gis2formsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
 
@@ -420,17 +444,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated roleses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return rolesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sfnewElectricConnections");
 
@@ -449,6 +462,17 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("users.id = '" + id + "'");
 
         return sfnewResidentialStructureService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated roleses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return rolesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -515,6 +539,15 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("users.id = '" + id + "'");
 
         return vendorUsersService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service Gis2formsService instance
+	 */
+	protected void setGis2formsService(Gis2formsService service) {
+        this.gis2formsService = service;
     }
 
     /**

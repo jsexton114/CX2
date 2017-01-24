@@ -40,6 +40,16 @@ public class QueryExecutionController {
     private Cx2QueryExecutorService queryService;
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/AddGIStoForms", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeAddGIStoForms(@RequestParam(value = "GISRecordId", required = false) java.lang.Integer GISRecordId, @RequestParam(value = "RelatedFormGUID", required = false) java.lang.String RelatedFormGUID, @RequestParam(value = "AddedBy", required = false) java.lang.Integer AddedBy, @RequestParam(value = "AddedTime", required = false) java.sql.Timestamp AddedTime) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query AddGIStoForms");
+        int result = queryService.executeAddGIStoForms(GISRecordId, RelatedFormGUID, AddedBy, AddedTime);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/AddUsersToVendor", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeAddUsersToVendor(@RequestParam(value = "VendorId", required = false) java.lang.Integer VendorId, @RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "JoiningDate", required = false) java.sql.Date JoiningDate) throws QueryParameterMismatchException {

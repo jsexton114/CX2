@@ -188,6 +188,14 @@ public class VendorController {
         return vendorService.findAssociatedMasterFormses(id, pageable);
     }
 
+    @RequestMapping(value = "/{id}/vendorAdminses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the vendorAdminses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<VendorAdmins> findAssociatedVendorAdminses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorAdminses");
+        return vendorService.findAssociatedVendorAdminses(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/vendorApprovalses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the vendorApprovalses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -202,14 +210,6 @@ public class VendorController {
     public Page<VendorLicenses> findAssociatedVendorLicenseses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorLicenseses");
         return vendorService.findAssociatedVendorLicenseses(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/vendorAdminses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the vendorAdminses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<VendorAdmins> findAssociatedVendorAdminses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated vendorAdminses");
-        return vendorService.findAssociatedVendorAdminses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/vendorUserses", method = RequestMethod.GET)

@@ -16,6 +16,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
+import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
 import com.civicxpress.cx2.McnewResidentialStructure;
@@ -173,6 +174,18 @@ public interface UsersService {
     Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated gis2formses for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Gis2forms instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Gis2forms> findAssociatedGis2formses(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated masterFormses for given Users id.
      *
      * @param id value of id; value cannot be null
@@ -233,18 +246,6 @@ public interface UsersService {
     Page<Pudapplication> findAssociatedPudapplications(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated roleses for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated Roles instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated sfnewElectricConnections for given Users id.
      *
      * @param id value of id; value cannot be null
@@ -267,6 +268,18 @@ public interface UsersService {
      * @see Page
      */
     Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated roleses for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Roles instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated sharedWithsForCreatedBy for given Users id.

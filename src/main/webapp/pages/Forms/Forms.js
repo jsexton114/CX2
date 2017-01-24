@@ -119,3 +119,47 @@ Application.$controller("grid3Controller", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("gridLocationController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("liveformLocationController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogAddGISRecordController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+        $scope.buttonAddByAddressClick = function($event, $isolateScope) {
+            $scope.Variables.AddGIStoForms.setInput({
+                'GISRecordId': $scope.Widgets.searchAddress.datavalue.id
+            });
+            $scope.Variables.AddGIStoForms.update();
+        };
+
+
+        $scope.buttonAddBySubdivisionClick = function($event, $isolateScope) {
+            $scope.Variables.AddGIStoForms.setInput({
+                'GISRecordId': $scope.Widgets.searchSubdivision.datavalue.id
+            });
+            $scope.Variables.AddGIStoForms.update();
+        };
+
+
+        $scope.buttonAddByParcelClick = function($event, $isolateScope) {
+            $scope.Variables.AddGIStoForms.setInput({
+                'GISRecordId': $scope.Widgets.searchParcel.datavalue.id
+            });
+            $scope.Variables.AddGIStoForms.update();
+        };
+
+    }
+]);

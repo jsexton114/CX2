@@ -2,6 +2,45 @@
   "name" : "cx2",
   "description" : "Queries for cx2",
   "queries" : [ {
+    "name" : "AddGIStoForms",
+    "query" : "insert into GIS2Forms(GISRecordId,RelatedFormGUID,AddedBy,AddedTime) values(:GISRecordId,:RelatedFormGUID,:AddedBy,:AddedTime)",
+    "comment" : "AddGIStoForms",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "GISRecordId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "RelatedFormGUID",
+      "paramType" : "java.lang.String",
+      "testValue" : "any7fS8UWUOP5ukVeYaTWwdNZutxlBjk",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "AddedBy",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "3",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "AddedTime",
+      "paramType" : "java.sql.Timestamp",
+      "testValue" : "1485244873000",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2AddGIStoFormsrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "AddUsersToVendor",
     "query" : "insert into  VendorUsers(VendorId,UserId,JoiningDate) values(:VendorId,:UserId,:JoiningDate)",
     "comment" : "AddUsersToVendor",

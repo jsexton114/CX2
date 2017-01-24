@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+  <sql-query name="AddGIStoForms">
+    <![CDATA[
+      insert into GIS2Forms(GISRecordId,RelatedFormGUID,AddedBy,AddedTime) values(:GISRecordId,:RelatedFormGUID,:AddedBy,:AddedTime)
+    ]]>
+  </sql-query>
   <sql-query name="AddUsersToVendor">
     <![CDATA[
       insert into  VendorUsers(VendorId,UserId,JoiningDate) values(:VendorId,:UserId,:JoiningDate)

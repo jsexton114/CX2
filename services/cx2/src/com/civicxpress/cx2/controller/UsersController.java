@@ -34,6 +34,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
+import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.McnewElectricConnection;
 import com.civicxpress.cx2.McnewResidentialStructure;
@@ -197,6 +198,13 @@ public class UsersController {
         return usersService.findAssociatedFormHistories(id, pageable);
     }
 
+    @RequestMapping(value = "/{id:.+}/gis2formses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the gis2formses instance associated with the given id.")
+    public Page<Gis2forms> findAssociatedGis2formses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated gis2formses");
+        return usersService.findAssociatedGis2formses(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -237,14 +245,6 @@ public class UsersController {
         return usersService.findAssociatedPudapplications(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the roleses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated roleses");
-        return usersService.findAssociatedRoleses(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/sfnewElectricConnections", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the sfnewElectricConnections instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -259,6 +259,14 @@ public class UsersController {
     public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sfnewResidentialStructures");
         return usersService.findAssociatedSfnewResidentialStructures(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the roleses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Roles> findAssociatedRoleses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated roleses");
+        return usersService.findAssociatedRoleses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/sharedWithsForCreatedBy", method = RequestMethod.GET)

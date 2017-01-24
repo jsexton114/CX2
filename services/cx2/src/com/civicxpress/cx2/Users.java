@@ -56,14 +56,15 @@ public class Users implements Serializable {
     private States states;
     private List<Fees> feeses = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
+    private List<Gis2forms> gis2formses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<McnewElectricConnection> mcnewElectricConnections = new ArrayList<>();
     private List<McnewResidentialStructure> mcnewResidentialStructures = new ArrayList<>();
     private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<Pudapplication> pudapplications = new ArrayList<>();
-    private List<Roles> roleses = new ArrayList<>();
     private List<SfnewElectricConnection> sfnewElectricConnections = new ArrayList<>();
     private List<SfnewResidentialStructure> sfnewResidentialStructures = new ArrayList<>();
+    private List<Roles> roleses = new ArrayList<>();
     private List<SharedWith> sharedWithsForCreatedBy = new ArrayList<>();
     private List<SharedWith> sharedWithsForSharedWithUser = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
@@ -253,6 +254,16 @@ public class Users implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<Gis2forms> getGis2formses() {
+        return this.gis2formses;
+    }
+
+    public void setGis2formses(List<Gis2forms> gis2formses) {
+        this.gis2formses = gis2formses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<MasterForms> getMasterFormses() {
         return this.masterFormses;
     }
@@ -303,16 +314,6 @@ public class Users implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<Roles> getRoleses() {
-        return this.roleses;
-    }
-
-    public void setRoleses(List<Roles> roleses) {
-        this.roleses = roleses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<SfnewElectricConnection> getSfnewElectricConnections() {
         return this.sfnewElectricConnections;
     }
@@ -329,6 +330,16 @@ public class Users implements Serializable {
 
     public void setSfnewResidentialStructures(List<SfnewResidentialStructure> sfnewResidentialStructures) {
         this.sfnewResidentialStructures = sfnewResidentialStructures;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<Roles> getRoleses() {
+        return this.roleses;
+    }
+
+    public void setRoleses(List<Roles> roleses) {
+        this.roleses = roleses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

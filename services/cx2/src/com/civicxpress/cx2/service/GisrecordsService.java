@@ -15,6 +15,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
+import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 
@@ -150,6 +151,18 @@ public interface GisrecordsService {
      * @see Page
      */
     Page<Giscontacts> findAssociatedGiscontactses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated gis2formses for given Gisrecords id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Gis2forms instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Gis2forms> findAssociatedGis2formses(Integer id, Pageable pageable);
 
 }
 
