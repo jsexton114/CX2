@@ -2036,7 +2036,7 @@
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : "AutoIncremented"
+        "defaultValue" : "AutoIncrement"
       },
       "fieldName" : "prefixNumber",
       "foreignKey" : false,
@@ -2070,7 +2070,7 @@
       "javaType" : "big_integer",
       "length" : 0,
       "name" : "PrefixNumberStart",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "PrefixNumberStart",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -2095,7 +2095,7 @@
       "javaType" : "integer",
       "length" : 0,
       "name" : "PrefixNumberStep",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "PrefixNumberStep",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,

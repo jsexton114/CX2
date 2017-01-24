@@ -1348,7 +1348,7 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "AutoIncremented",
+        "defaultValue" : "AutoIncrement",
         "scale" : 0
       }, {
         "fieldName" : "prefixNumberStart",
@@ -1356,7 +1356,7 @@
         "fullyQualifiedType" : "big_integer",
         "columnName" : "PrefixNumberStart",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 38,
         "generator" : "assigned",
@@ -1369,12 +1369,25 @@
         "fullyQualifiedType" : "integer",
         "columnName" : "PrefixNumberStep",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 10,
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "1",
+        "scale" : 0
+      }, {
+        "fieldName" : "prefixDashes",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "PrefixDashes",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "FormTypes",
@@ -1927,7 +1940,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "AutoIncremented",
+          "defaultValue" : "AutoIncrement",
           "scale" : 0
         }, {
           "fieldName" : "prefixNumberStart",
@@ -1935,7 +1948,7 @@
           "fullyQualifiedType" : "big_integer",
           "columnName" : "PrefixNumberStart",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 38,
           "generator" : "assigned",
@@ -1948,12 +1961,25 @@
           "fullyQualifiedType" : "integer",
           "columnName" : "PrefixNumberStep",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDashes",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "PrefixDashes",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -2682,7 +2708,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "AutoIncremented",
+          "defaultValue" : "AutoIncrement",
           "scale" : 0
         }, {
           "fieldName" : "prefixNumberStart",
@@ -2690,7 +2716,7 @@
           "fullyQualifiedType" : "big_integer",
           "columnName" : "PrefixNumberStart",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 38,
           "generator" : "assigned",
@@ -2703,12 +2729,25 @@
           "fullyQualifiedType" : "integer",
           "columnName" : "PrefixNumberStep",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDashes",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "PrefixDashes",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -4165,7 +4204,7 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "AutoIncremented",
+        "defaultValue" : "AutoIncrement",
         "scale" : 0
       }, {
         "fieldName" : "prefixNumberStart",
@@ -4173,7 +4212,7 @@
         "fullyQualifiedType" : "big_integer",
         "columnName" : "PrefixNumberStart",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 38,
         "generator" : "assigned",
@@ -4186,12 +4225,25 @@
         "fullyQualifiedType" : "integer",
         "columnName" : "PrefixNumberStep",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 10,
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "1",
+        "scale" : 0
+      }, {
+        "fieldName" : "prefixDashes",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "PrefixDashes",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "FormTypes",
@@ -4199,7 +4251,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 23,
+    "bindCount" : 24,
     "tableName" : "FormTypes",
     "tableType" : "TABLE",
     "properties" : [ "municipalities" ],
@@ -4871,7 +4923,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "AutoIncremented",
+          "defaultValue" : "AutoIncrement",
           "scale" : 0
         }, {
           "fieldName" : "prefixNumberStart",
@@ -4879,7 +4931,7 @@
           "fullyQualifiedType" : "big_integer",
           "columnName" : "PrefixNumberStart",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 38,
           "generator" : "assigned",
@@ -4892,12 +4944,25 @@
           "fullyQualifiedType" : "integer",
           "columnName" : "PrefixNumberStep",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDashes",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "PrefixDashes",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -5305,6 +5370,46 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.FormStatuses"
+  },
+  "stvPrefixDateOptions" : {
+    "_id" : "wm-stvPrefixDateOptions-wm.Variable-1485294146541",
+    "name" : "stvPrefixDateOptions",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Month Year",
+      "value" : "MonthYear"
+    }, {
+      "label" : "Year Month",
+      "value" : "YearMonth"
+    }, {
+      "label" : "None",
+      "value" : "None"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "stvPrefixNumberOptions" : {
+    "_id" : "wm-stvPrefixNumberOptions-wm.Variable-1485294280907",
+    "name" : "stvPrefixNumberOptions",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Auto Incremental",
+      "value" : "AutoIncrement"
+    }, {
+      "label" : "Reset Every Month",
+      "value" : "ResetMonth"
+    }, {
+      "label" : "Reset Every Year",
+      "value" : "ResetYear"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
   },
   "svSaveFormField" : {
     "_id" : "wm-svSaveFormField-wm.ServiceVariable-1484838750507",
@@ -6233,7 +6338,7 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "AutoIncremented",
+        "defaultValue" : "AutoIncrement",
         "scale" : 0
       }, {
         "fieldName" : "prefixNumberStart",
@@ -6241,7 +6346,7 @@
         "fullyQualifiedType" : "big_integer",
         "columnName" : "PrefixNumberStart",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 38,
         "generator" : "assigned",
@@ -6254,12 +6359,25 @@
         "fullyQualifiedType" : "integer",
         "columnName" : "PrefixNumberStep",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 10,
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "1",
+        "scale" : 0
+      }, {
+        "fieldName" : "prefixDashes",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "PrefixDashes",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "FormTypes",

@@ -39,19 +39,6 @@
                                                             placeholder="" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].municipalityInternalForm"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
-                                                    <wm-gridrow name="gridrow9001">
-                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn9001">
-                                                            <wm-form-field name="formTitlePrefix" displayname="Form Title Prefix" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text"
-                                                            placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].titlePrefix"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn9002" horizontalalign="left">
-                                                            <wm-form-field displayname="Date Prefix" widget="select" show="true" type="custom" name="form_field59" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixDate" dataset="MonthYear,YearMonth,None"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn9003">
-                                                            <wm-form-field displayname="Number Prefix" widget="select" show="true" type="custom" name="form_field60" dataset="AutoIncremented,ResetEveryMonth,ResetEveryYear" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixNumber"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn70"></wm-gridcolumn>
-                                                    </wm-gridrow>
                                                 </wm-panel>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
@@ -157,6 +144,50 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn name="gridcolumn1" columnwidth="6">
                                                                 <wm-form-field name="vendorSelection" displayname="Vendor Selection" show="true" primary-key="false" generator="assigned" key="vendorSelection" type="boolean" widget="checkbox" defaultvalue="FALSE"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                    </wm-layoutgrid>
+                                                </wm-panel>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow43_1">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn71_1">
+                                                <wm-panel iconclass="wi wi-edit" autoclose="outsideClick" name="panel10_1" margin="1em unset" title="Form Naming" class="panel-primary">
+                                                    <wm-layoutgrid name="layoutgrid10_1">
+                                                        <wm-gridrow name="gridrow43_2">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn68">
+                                                                <wm-form-field displayname="Title Prefix" widget="text" show="true" type="custom" name="titlePrefix" maxchars="255" placeholder="Enter title prefix" required="true"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow44_1">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn70">
+                                                                <wm-form-field displayname="Date Option" widget="radioset" show="true" type="custom" name="prefixDate" dataset="bind:Variables.stvPrefixDateOptions.dataSet" datafield="value" displayfield="label"
+                                                                usekeys="false" layout="inline" required="true"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow45_1">
+                                                            <wm-gridcolumn columnwidth="5" name="gridcolumn72_1">
+                                                                <wm-form-field displayname="Number" widget="radioset" show="true" type="custom" name="prefixNumber" dataset="bind:Variables.stvPrefixNumberOptions.dataSet" datafield="value" displayfield="label"
+                                                                required="true" layout="stacked"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="7" name="gridcolumn72_2">
+                                                                <wm-layoutgrid name="layoutgrid11">
+                                                                    <wm-gridrow name="gridrow47">
+                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn74_1">
+                                                                            <wm-form-field displayname="Number Start" widget="text" show="true" type="custom" name="prefixNumberStart" inputtype="number" required="true" placeholder="Enter number" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixNumberStart"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                    <wm-gridrow name="gridrow48">
+                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn76_1">
+                                                                            <wm-form-field displayname="Increment By" widget="text" show="true" type="custom" name="prefixNumberStep" inputtype="number" placeholder="Enter number" required="true" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixNumberStep"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                </wm-layoutgrid>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow46_1">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn73_1">
+                                                                <wm-form-field displayname="Separate by Dashes" widget="checkbox" show="true" type="custom" name="prefixDashes"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>

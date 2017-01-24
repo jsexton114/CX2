@@ -70,7 +70,7 @@ public class FormTypes implements Serializable {
     private String prefixDate;
     private String prefixNumber;
     private BigInteger prefixNumberStart;
-    private Integer prefixNumberStep;
+    private int prefixNumberStep;
     private Boolean prefixDashes;
     private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
@@ -384,7 +384,7 @@ public class FormTypes implements Serializable {
         this.prefixNumber = prefixNumber;
     }
 
-    @Column(name = "`PrefixNumberStart`", nullable = true, scale = 0, precision = 38)
+    @Column(name = "`PrefixNumberStart`", nullable = false, scale = 0, precision = 38)
     public BigInteger getPrefixNumberStart() {
         return this.prefixNumberStart;
     }
@@ -393,12 +393,12 @@ public class FormTypes implements Serializable {
         this.prefixNumberStart = prefixNumberStart;
     }
 
-    @Column(name = "`PrefixNumberStep`", nullable = true, scale = 0, precision = 10)
-    public Integer getPrefixNumberStep() {
+    @Column(name = "`PrefixNumberStep`", nullable = false, scale = 0, precision = 10)
+    public int getPrefixNumberStep() {
         return this.prefixNumberStep;
     }
 
-    public void setPrefixNumberStep(Integer prefixNumberStep) {
+    public void setPrefixNumberStep(int prefixNumberStep) {
         this.prefixNumberStep = prefixNumberStep;
     }
 

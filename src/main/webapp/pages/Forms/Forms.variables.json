@@ -559,7 +559,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "AutoIncremented",
+          "defaultValue" : "AutoIncrement",
           "scale" : 0
         }, {
           "fieldName" : "prefixNumberStart",
@@ -567,7 +567,7 @@
           "fullyQualifiedType" : "big_integer",
           "columnName" : "PrefixNumberStart",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 38,
           "generator" : "assigned",
@@ -580,12 +580,25 @@
           "fullyQualifiedType" : "integer",
           "columnName" : "PrefixNumberStep",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDashes",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "PrefixDashes",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -3135,7 +3148,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "AutoIncremented",
+          "defaultValue" : "AutoIncrement",
           "scale" : 0
         }, {
           "fieldName" : "prefixNumberStart",
@@ -3143,7 +3156,7 @@
           "fullyQualifiedType" : "big_integer",
           "columnName" : "PrefixNumberStart",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 38,
           "generator" : "assigned",
@@ -3156,12 +3169,25 @@
           "fullyQualifiedType" : "integer",
           "columnName" : "PrefixNumberStep",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDashes",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "PrefixDashes",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -4030,7 +4056,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "AutoIncremented",
+          "defaultValue" : "AutoIncrement",
           "scale" : 0
         }, {
           "fieldName" : "prefixNumberStart",
@@ -4038,7 +4064,7 @@
           "fullyQualifiedType" : "big_integer",
           "columnName" : "PrefixNumberStart",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 38,
           "generator" : "assigned",
@@ -4051,12 +4077,25 @@
           "fullyQualifiedType" : "integer",
           "columnName" : "PrefixNumberStep",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDashes",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "PrefixDashes",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -6907,7 +6946,7 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "AutoIncremented",
+        "defaultValue" : "AutoIncrement",
         "scale" : 0
       }, {
         "fieldName" : "prefixNumberStart",
@@ -6915,7 +6954,7 @@
         "fullyQualifiedType" : "big_integer",
         "columnName" : "PrefixNumberStart",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 38,
         "generator" : "assigned",
@@ -6928,12 +6967,25 @@
         "fullyQualifiedType" : "integer",
         "columnName" : "PrefixNumberStep",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 10,
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "1",
+        "scale" : 0
+      }, {
+        "fieldName" : "prefixDashes",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "PrefixDashes",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "FormTypes",
