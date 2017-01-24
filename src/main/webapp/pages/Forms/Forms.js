@@ -93,6 +93,13 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
     $scope.lvFormTypeonSuccess = function(variable, data) {
         currentBreadCrumb.label = data[0].formType;
+        // For Hiding Locations
+        if ((data[0].gisrecord == false) && (data[0].multipleGisrecords == false)) {
+            $scope.showMaps = false;
+        } else {
+            $scope.showMaps = true;
+        }
+
     };
 
 }]);
@@ -161,5 +168,12 @@ Application.$controller("dialogAddGISRecordController", ["$scope",
             $scope.Variables.AddGIStoForms.update();
         };
 
+    }
+]);
+
+Application.$controller("dialogParcelController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

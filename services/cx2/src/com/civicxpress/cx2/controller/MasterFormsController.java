@@ -128,8 +128,9 @@ public class MasterFormsController {
         return masterFormsService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/gis2formses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/gis2formses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the gis2formses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Gis2forms> findAssociatedGis2formses(@PathVariable("id") String id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gis2formses");
         return masterFormsService.findAssociatedGis2formses(id, pageable);

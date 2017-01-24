@@ -123,7 +123,7 @@
                             <wm-tabpane name="tabpaneFees" title="FEES"></wm-tabpane>
                             <wm-tabpane name="tabpaneInspections" title="INSPECTIONS"></wm-tabpane>
                             <wm-tabpane name="tabpaneMessages" title="MESSAGES"></wm-tabpane>
-                            <wm-tabpane name="tabpaneLocation" title="LOCATION">
+                            <wm-tabpane name="tabpaneLocation" title="LOCATION" show="bind:showMaps">
                                 <wm-livegrid formlayout="dialog" name="livegridLocation">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Gis2formsData.dataSet" navigation="Classic" name="gridLocation">
                                         <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
@@ -134,7 +134,7 @@
                                         <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddGISRecord.open()" shortcutkey="" disabled="false"></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="View" show="true" class="btn-transparent" iconclass="" title="View" action="editRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="updaterow" display-name="View" show="true" class="btn-transparent" iconclass="" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                     <wm-liveform novalidate="false" errormessage="" title="Gis2forms Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Gis2formsData.dataSet" captionalign="left" captionposition="top" name="liveformLocation">
@@ -330,6 +330,55 @@
                     </wm-layoutgrid>
                 </wm-tabpane>
             </wm-tabs>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewParcel">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="LOCATION" iconclass="wi wi-file-text" name="dialogParcel">
+            <wm-layoutgrid name="layoutgrid10_1">
+                <wm-gridrow name="gridrow30_1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn72_1">
+                        <wm-label padding="unset 0.5em" caption="Parcel" name="label12_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn73_1">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.parcel" name="label13_1"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow31_1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn74_1">
+                        <wm-label padding="unset 0.5em" caption="Street Number" name="label14_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn75_1">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.streetNumber" name="label15_1"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow32">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn76">
+                        <wm-label padding="unset 0.5em" caption="Street Name" name="label16"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn77">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.streetName" name="label21"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow33">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn78">
+                        <wm-label padding="unset 0.5em" caption="Unit Number" name="label17"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn79">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.lot" name="label20"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow34">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn80">
+                        <wm-label padding="unset 0.5em" caption="Subdivision" name="label18"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn81">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.subdivisions.subdivision" name="label19"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions2">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button7"></wm-button>
+            </wm-dialogactions>
         </wm-dialog>
     </wm-view>
 </wm-page>
