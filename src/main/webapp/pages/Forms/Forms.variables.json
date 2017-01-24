@@ -510,10 +510,10 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "vendorSection",
+          "fieldName" : "vendorSelection",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
-          "columnName" : "VendorSection",
+          "columnName" : "VendorSelection",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
@@ -1954,6 +1954,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "formGuid" ]
     },
+    "bindCount" : 1,
     "spinnerContext" : "page",
     "tableName" : "MasterForms",
     "tableType" : "TABLE",
@@ -3020,10 +3021,10 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "vendorSection",
+          "fieldName" : "vendorSelection",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
-          "columnName" : "VendorSection",
+          "columnName" : "VendorSelection",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
@@ -3850,10 +3851,10 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "vendorSection",
+          "fieldName" : "vendorSelection",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
-          "columnName" : "VendorSection",
+          "columnName" : "VendorSelection",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
@@ -6662,10 +6663,10 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "vendorSection",
+        "fieldName" : "vendorSelection",
         "type" : "boolean",
         "fullyQualifiedType" : "boolean",
-        "columnName" : "VendorSection",
+        "columnName" : "VendorSelection",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
@@ -7175,10 +7176,10 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "vendorSection",
+          "fieldName" : "vendorSelection",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
-          "columnName" : "VendorSection",
+          "columnName" : "VendorSelection",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
@@ -8834,6 +8835,10 @@
       "target" : "municipalityId",
       "value" : "bind:Variables.CurrentForm.dataSet.data[$i].municipalityId",
       "type" : "number"
+    }, {
+      "target" : "approvalStatus",
+      "value" : "Approved",
+      "type" : "string"
     } ],
     "operation" : "read",
     "dataSet" : [ ],
