@@ -885,6 +885,10 @@
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="municipalityInternalForm" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="payments" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="prefixDate" typeRef="java.lang.String" allowNull="true"/>
+            <element name="prefixNumber" typeRef="java.lang.String" allowNull="true"/>
+            <element name="prefixNumberStart" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="prefixNumberStep" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="pudapplications" typeRef="com.civicxpress.cx2.Pudapplication" isList="true" allowNull="true"/>
             <element name="report" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfFee" typeRef="java.lang.String" allowNull="true"/>
@@ -894,6 +898,7 @@
             <element name="sharedWith" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="stateFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="stateFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="titlePrefix" typeRef="java.lang.String" allowNull="true"/>
             <element name="unitFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="unitFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="vendorSelection" typeRef="java.lang.Boolean" allowNull="true"/>

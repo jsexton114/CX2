@@ -101,7 +101,7 @@ public class FormService {
 		DBRow formInfo = DBUtils.selectQuery(cx2Conn, getFormInfoQuery, formTbNameParams).get(0);
 		String formTableName = formInfo.getString("FormTableName");
 		
-		Long municipalityId = Long.parseLong(formInfo.getString("MunicipalityId"));
+		Long municipalityId = formInfo.getLong("MunicipalityId");
 		
 		Connection formDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
 		
@@ -167,12 +167,19 @@ public class FormService {
         
         try {
         	String formTableName = DBUtils.getSqlSafeString(formType);
+        	StringBuilder formTitlePrefix = new StringBuilder();
+        	String[] formTypeParts = formType.trim().replaceAll("[^a-zA-Z0-9 ]|[\n]|[\r\n]", "").split(" ");
+        	for (int i = 0; i < formTypeParts.length; i++) {
+        		formTitlePrefix.append(formTypeParts[i].substring(0, 1).toUpperCase());
+        	}
+        	
 	        HashMap<String, Object> formCreateParams = new HashMap<String, Object>();
 	        formCreateParams.put("formType", formType);
 	        formCreateParams.put("municipalityId", municipalityId);
 	        formCreateParams.put("formTableName", formTableName);
+	        formCreateParams.put("titlePrefix", formTitlePrefix.toString());
 	        
-	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypes (FormType, MunicipalityId, FormTableName, MunicipalityInternalForm, Active) VALUES (:formType, :municipalityId, :formTableName, 0, 0)", formCreateParams);
+	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypes (FormType, MunicipalityId, FormTableName, MunicipalityInternalForm, Active, TitlePrefix) VALUES (:formType, :municipalityId, :formTableName, 0, 0, :titlePrefix)", formCreateParams);
 	        
 	        newFormTypeId = DBUtils.selectQuery(cx2Conn, "SELECT @@IDENTITY as formId").get(0).getLong("formId");
 	        formCreateParams.put("newFormTypeId", newFormTypeId);

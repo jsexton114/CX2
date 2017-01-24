@@ -39,6 +39,19 @@
                                                             placeholder="" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].municipalityInternalForm"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
+                                                    <wm-gridrow name="gridrow9001">
+                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn9001">
+                                                            <wm-form-field name="formTitlePrefix" displayname="Form Title Prefix" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text"
+                                                            placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].titlePrefix"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn9002" horizontalalign="left">
+                                                            <wm-form-field displayname="Date Prefix" widget="select" show="true" type="custom" name="form_field59" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixDate" dataset="MonthYear,YearMonth,None"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn9003">
+                                                            <wm-form-field displayname="Number Prefix" widget="select" show="true" type="custom" name="form_field60" dataset="AutoIncremented,ResetEveryMonth,ResetEveryYear" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixNumber"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn70"></wm-gridcolumn>
+                                                    </wm-gridrow>
                                                 </wm-panel>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
