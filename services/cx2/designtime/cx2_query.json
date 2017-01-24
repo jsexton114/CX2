@@ -839,6 +839,37 @@
       "UnitFeeAccountingCode" : "java.lang.String"
     }
   }, {
+    "name" : "getFormTypeFieldsByTypeId",
+    "query" : "FROM FormTypeFields WHERE FormTypeId=:formTypeId order by DisplayOrder asc",
+    "comment" : "See name",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "formTypeId",
+      "paramType" : "java.lang.Long",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2getFormTypeFieldsByTypeIdrtnType",
+    "returnTypeMetadata" : {
+      "defaultValue" : "java.lang.String",
+      "displayOrder" : "java.lang.Integer",
+      "fieldName" : "java.lang.String",
+      "fieldTypeId" : "int",
+      "formFieldTypes" : "com.civicxpress.cx2.FormFieldTypes",
+      "formTypeId" : "java.lang.Integer",
+      "formTypes" : "com.civicxpress.cx2.FormTypes",
+      "helpText" : "java.lang.String",
+      "id" : "java.lang.Integer",
+      "label" : "java.lang.String",
+      "possibleValues" : "java.lang.String",
+      "required" : "java.lang.Boolean"
+    }
+  }, {
     "name" : "GetFormTypesByCategoriesAndMunicipalities",
     "query" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=:MunicipalityInternalForm",
     "comment" : "GetFormTypesByCategoriesAndMunicipalities",

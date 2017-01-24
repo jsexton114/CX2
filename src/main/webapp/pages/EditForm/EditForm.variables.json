@@ -4994,10 +4994,6 @@
       "value" : "bind:Widgets.textFormFieldLabel.datavalue",
       "type" : "string"
     }, {
-      "target" : "FormFieldTypes",
-      "value" : "bind:Widgets.selectFormFieldType.datavalue",
-      "type" : "com.civicxpress.cx2.FormFieldTypes"
-    }, {
       "target" : "displayOrder",
       "value" : "bind:Widgets.textFormFieldDisplayOrder.datavalue",
       "type" : "integer"
@@ -5013,11 +5009,15 @@
       "target" : "helpText",
       "value" : "bind:Widgets.textareaFormFieldHelpText.datavalue",
       "type" : "string"
+    }, {
+      "target" : "fieldTypeId",
+      "value" : "bind:Widgets.selectFormFieldType.datavalue.id",
+      "type" : "integer"
     } ],
     "service" : "FormService",
     "operation" : "saveFormTypeField",
     "operationId" : "FormController_saveFormTypeField",
-    "operationType" : "post",
+    "operationType" : "get",
     "serviceType" : "JavaService",
     "dataSet" : [ ],
     "isList" : false,

@@ -8,7 +8,6 @@ import java.lang.String;
 import java.lang.Object;
 import java.util.Map;
 import java.util.HashMap;
-import com.civicxpress.cx2.FormFieldTypes;
 import java.lang.Integer;
 import java.lang.Boolean;
 import org.springframework.web.bind.annotation.*;
@@ -53,10 +52,10 @@ public class FormController {
         return formService.saveFormType(municipalityId, formType);
     }
 
-    @RequestMapping(value = "/saveFormTypeField", method = RequestMethod.POST)
+    @RequestMapping(value = "/saveFormTypeField", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void saveFormTypeField(@RequestParam(value = "formTypeFieldId", required = false) Long formTypeFieldId, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "label", required = false) String label, @RequestBody FormFieldTypes fieldType, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues) throws SQLException {
-        formService.saveFormTypeField(formTypeFieldId, formTypeId, label, fieldType, displayOrder, required, defaultValue, helpText, possibleValues);
+    public void saveFormTypeField(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "label", required = false) String label, @RequestParam(value = "fieldTypeId", required = false) Long fieldTypeId, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues) throws SQLException {
+        formService.saveFormTypeField(formTypeId, label, fieldTypeId, displayOrder, required, defaultValue, helpText, possibleValues);
     }
 }

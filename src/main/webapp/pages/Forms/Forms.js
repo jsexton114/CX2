@@ -101,7 +101,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         }
 
     };
-
 }]);
 
 
