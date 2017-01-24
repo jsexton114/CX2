@@ -146,6 +146,9 @@ public class FormService {
 	    	String fieldSqlType = DBUtils.selectQuery(cx2Conn, "SELECT SqlType FROM FormFieldTypes WHERE ID=:fieldTypeId", queryParams).get(0).getString("SqlType");
 	    	
 	    	DBUtils.simpleQuery(muniDbConn, "ALTER TABLE "+muniData.getString("FormTableName")+" ADD "+fieldName+" "+fieldSqlType);
+	    	
+	    	cx2Conn.commit();
+	    	muniDbConn.commit();
     	} catch (SQLException e) {
     		cx2Conn.rollback();
     		muniDbConn.rollback();
@@ -190,6 +193,9 @@ public class FormService {
 	    			+"Basement bit, "
 	    			+"VendorId numeric(10)"
 	            	+")");
+	        
+	        cx2Conn.commit();
+	        muniDbConn.commit();
         } catch (SQLException e) {
         	cx2Conn.rollback();
         	muniDbConn.rollback();
