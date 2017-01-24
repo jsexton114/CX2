@@ -90,9 +90,10 @@
                                 <wm-gridrow ng-repeat="formField in Variables.svFormTypeFields.dataSet.content" name="fieldGridrow{{$index}}">
                                     <wm-gridcolumn columnwidth="12" name="fieldGridcolumn{{$index}}">
                                         <wm-composite name="fieldComposite{{$index}}" required="{{formField.required}}">
-                                            <wm-label class="col-md-3 control-label" name="fieldLabel{{$index}}" caption="{{formField.label}}">
+                                            <label class="col-md-3 control-label app-label" name="fieldLabel{{$index}}">
+                                                {{formField.label}}
                                                 <i ng-if="!!formField.helpText && formField.helpText != ''" class="wi wi-help" title="{{formField.helpText}}"></i>
-                                            </wm-label>
+                                            </label>
                                             <wm-container class="col-md-9" name="container3">
                                                 <input ng-if="formField.formFieldTypes.label == 'Text'" class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}"
                                                 name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="text">
