@@ -76,8 +76,7 @@
                                 <wm-gridrow name="gridrow6">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center">
-                                        <wm-picture name="picture2" picturesource="bind:!!Variables.CurrentForm.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.CurrentForm.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;"
-                                        class="muni-logo"></wm-picture>
+                                        <wm-picture name="picture2" picturesource="bind:!!Variables.CurrentForm.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.CurrentForm.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;" class="muni-logo"></wm-picture>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn14"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -92,17 +91,17 @@
                                     <wm-gridcolumn columnwidth="12" name="fieldGridcolumn{{$index}}">
                                         <wm-composite name="fieldComposite{{$index}}" required="{{formField.required}}">
                                             <wm-label class="col-md-3 control-label" name="fieldLabel{{$index}}" caption="{{formField.label}}"></wm-label>
+                                            <i ng-if="!!formField.helpText && formField.helpText != ''" class="wi wi-help" title="{{formField.helpText}}"></i>
                                             <wm-container class="col-md-9" name="container3">
-                                                <input ng-if="formField.formFieldTypes.label == 'Text'" class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]"
-                                                pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="text">
+                                                <input ng-if="formField.formFieldTypes.label == 'Text'" class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}"
+                                                name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="text">
                                                 <input class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}"
                                                 ng-if="formField.formFieldTypes.label == 'Number'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="number">
-                                                <textarea class="form-control app-textarea" apply-styles="" role="input" focus-target="" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]" title="" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0}"
-                                                ng-if="formField.formFieldTypes.label == 'Long Text'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}"></textarea>
-                                                <datetime-picker ng-if="formField.formFieldTypes.label == 'Date'" placeholder="Please enter {{formField.label}}" date="Variables.svGetFormData.dataSet[formField.fieldName]" name="{{formField.fieldName}}"
-                                                time="false"></datetime-picker>
-                                                <datetime-picker ng-if="formField.formFieldTypes.label == 'Date+Time'" placeholder="Please enter {{formField.label}}" date="Variables.svGetFormData.dataSet[formField.fieldName]" name="{{formField.fieldName}}"
-                                                time="true"></datetime-picker>
+                                                <textarea class="form-control app-textarea" apply-styles="" role="input" focus-target="" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]" title="" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0}" ng-if="formField.formFieldTypes.label == 'Long Text'"
+                                                name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}"></textarea>
+                                                <datetime-picker ng-if="formField.formFieldTypes.label == 'Date'" placeholder="Please enter {{formField.label}}" date="Variables.svGetFormData.dataSet[formField.fieldName]" name="{{formField.fieldName}}" time="false"></datetime-picker>
+                                                <datetime-picker ng-if="formField.formFieldTypes.label == 'Date+Time'" placeholder="Please enter {{formField.label}}" date="Variables.svGetFormData.dataSet[formField.fieldName]" name="{{formField.fieldName}}" time="true"></datetime-picker>
+                                                <input ng-if="formField.formFieldTypes.label == 'Boolean'" type="checkbox" class="form-control" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]">
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -146,8 +145,7 @@
                                 <wm-gridrow name="gridrow41">
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn96"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn97">
-                                        <wm-button class="btn-default btn-primary" caption="Add" type="button" margin="unset 0.5em" iconclass="wi wi-library-add" show="bind:Widgets.searchVendor.datavalue!=undefined" on-click="Variables.UpdateVendorForMasterForms.invoke()"
-                                        name="buttonTagVendor"></wm-button>
+                                        <wm-button class="btn-default btn-primary" caption="Add" type="button" margin="unset 0.5em" iconclass="wi wi-library-add" show="bind:Widgets.searchVendor.datavalue!=undefined" on-click="Variables.UpdateVendorForMasterForms.invoke()" name="buttonTagVendor"></wm-button>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn98"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -179,16 +177,13 @@
                                         <wm-layoutgrid columns="3" name="layoutgrid6">
                                             <wm-gridrow name="gridrow16">
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn30_1">
-                                                    <wm-form-field name="addedTime" displayname="Added Time" required="false" show="true" generator="assigned" primary-key="false" key="addedTime" type="timestamp" is-related="false" pc-display="true" mobile-display="true"
-                                                    widget="timestamp"></wm-form-field>
+                                                    <wm-form-field name="addedTime" displayname="Added Time" required="false" show="true" generator="assigned" primary-key="false" key="addedTime" type="timestamp" is-related="false" pc-display="true" mobile-display="true" widget="timestamp"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn31">
-                                                    <wm-form-field name="gisrecords" displayname="Gisrecords" required="false" show="true" generator="assigned" primary-key="false" key="gisrecords" type="list" is-related="true" pc-display="true" mobile-display="true"
-                                                    widget="select"></wm-form-field>
+                                                    <wm-form-field name="gisrecords" displayname="Gisrecords" required="false" show="true" generator="assigned" primary-key="false" key="gisrecords" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn32">
-                                                    <wm-form-field name="masterForms" displayname="Master Forms" required="false" show="true" generator="assigned" primary-key="false" key="masterForms" type="list" is-related="true" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="select"></wm-form-field>
+                                                    <wm-form-field name="masterForms" displayname="Master Forms" required="false" show="true" generator="assigned" primary-key="false" key="masterForms" type="list" is-related="true" maxchars="255" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow17">
@@ -222,19 +217,15 @@
                                         <wm-layoutgrid columns="1" name="layoutgrid4">
                                             <wm-gridrow name="gridrow12">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn24">
-                                                    <wm-form-field name="usersBySharedWithUser" displayname="Who would you like to share this form with?" show="true" primary-key="false" generator="assigned" key="usersBySharedWithUser" type="list" is-related="true"
-                                                    required="required" widget="autocomplete" placeholder="Search by Email Address" displaylabel="email" searchkey="email" orderby="email:desc"></wm-form-field>
+                                                    <wm-form-field name="usersBySharedWithUser" displayname="Who would you like to share this form with?" show="true" primary-key="false" generator="assigned" key="usersBySharedWithUser" type="list" is-related="true" required="required" widget="autocomplete"
+                                                    placeholder="Search by Email Address" displaylabel="email" searchkey="email" orderby="email:desc"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
-                                        <wm-form-field name="usersByCreatedBy" displayname="Users By Created By" show="false" primary-key="false" generator="assigned" key="usersByCreatedBy" type="list" is-related="true" widget="select" placeholder="Select value"
-                                        defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
-                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                        placeholder=""></wm-form-field>
-                                        <wm-form-field name="createdOn" displayname="Created On" show="false" primary-key="false" generator="assigned" key="createdOn" type="timestamp" widget="timestamp" placeholder="Select date time" outputformat="timestamp"
-                                        defaultvalue="bind:today"></wm-form-field>
-                                        <wm-form-field name="relatedGuid" displayname="Related Guid" show="false" primary-key="false" generator="assigned" key="relatedGuid" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                        defaultvalue="bind:pageParams.FormGUID"></wm-form-field>
+                                        <wm-form-field name="usersByCreatedBy" displayname="Users By Created By" show="false" primary-key="false" generator="assigned" key="usersByCreatedBy" type="list" is-related="true" widget="select" placeholder="Select value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
+                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
+                                        <wm-form-field name="createdOn" displayname="Created On" show="false" primary-key="false" generator="assigned" key="createdOn" type="timestamp" widget="timestamp" placeholder="Select date time" outputformat="timestamp" defaultvalue="bind:today"></wm-form-field>
+                                        <wm-form-field name="relatedGuid" displayname="Related Guid" show="false" primary-key="false" generator="assigned" key="relatedGuid" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:pageParams.FormGUID"></wm-form-field>
                                         <wm-form-action key="save" display-name="Add" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                     </wm-liveform>
