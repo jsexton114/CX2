@@ -71,6 +71,7 @@ public class FormTypes implements Serializable {
     private String prefixNumber;
     private BigInteger prefixNumberStart;
     private Integer prefixNumberStep;
+    private Boolean prefixDashes;
     private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
@@ -399,6 +400,15 @@ public class FormTypes implements Serializable {
 
     public void setPrefixNumberStep(Integer prefixNumberStep) {
         this.prefixNumberStep = prefixNumberStep;
+    }
+
+    @Column(name = "`PrefixDashes`", nullable = true)
+    public Boolean getPrefixDashes() {
+        return this.prefixDashes;
+    }
+
+    public void setPrefixDashes(Boolean prefixDashes) {
+        this.prefixDashes = prefixDashes;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
