@@ -82,7 +82,7 @@ public class FormService {
 ////    	}
 //    	
 //    	try {
-//    		createForm(2L, 42L);
+//    		submitForm(2L, 42L);
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
@@ -212,8 +212,8 @@ public class FormService {
 	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypeFields "
 	    			+ "(FormTypeId, FieldName, Label, DisplayOrder, Required, DefaultValue, FieldTypeId)"
 	    			+" VALUES (:newFormTypeId, 'TotalSqft', 'Total Square Feet', 100, 1, 0, 5),"
-	    			+" VALUES (:newFormTypeId, 'TotalUnits', 'Total Units', 101, 1, 1, 5),"
-	    			+" VALUES (:newFormTypeId, 'Basement', 'Has Basement', 102, 1, 0, 6),",
+	    			+" (:newFormTypeId, 'TotalUnits', 'Total Units', 101, 1, 1, 5),"
+	    			+" (:newFormTypeId, 'Basement', 'Has Basement', 102, 1, 0, 6)",
 	    			formCreateParams);
 	        
 	        cx2Conn.commit();
@@ -539,6 +539,15 @@ public class FormService {
 	    	queryParams.put("newFormStatusId", newFormStatusId);
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterForms SET FormStatusId=:newFormStatusId, TotalFees=:totalFees, TotalPayment='0', BalanceDue=:totalFees, FormTitle=:formTitle", queryParams);
+	    	
+	    	queryParams.put("oldFormStatusId", masterFormData.getLong("FormStatusId"));
+	    	queryParams.put("createUserId", Integer.parseInt(securityService.getUserId()));
+	    	queryParams.put("createdTime", datetimeFormatter.format(today.getTime()));
+	    	
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormHistory "
+	    			+"(FormGUID, FormTypeId, NewStatusId, OldStatusId, CreatedBy, CreatedTime) "
+	    			+"VALUES (:formGuid, :newFormStatusId, :oldFormStatusId, :createUserId, :createdTime)",
+	    			queryParams);
 	    	
 	    	cx2Conn.commit();
     	} catch (SQLException e) {

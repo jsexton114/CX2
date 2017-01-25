@@ -3614,6 +3614,7 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
+    "orderBy" : "sortOrder asc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "municipalityGroupsByWriteAccess",
@@ -9866,6 +9867,10 @@
       "target" : "formGuid",
       "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formGuid",
       "type" : "string"
+    }, {
+      "target" : "HashMap",
+      "value" : "bind:Variables.svGetFormData.dataSet",
+      "type" : "java.util.HashMap"
     } ],
     "service" : "FormService",
     "operation" : "submitForm",
@@ -9876,6 +9881,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Widgets.dlgFormSubmitted.open()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

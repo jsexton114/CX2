@@ -154,7 +154,7 @@
                                 <wm-gridrow name="gridrow41">
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn96"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn97">
-                                        <wm-button class="btn-default btn-primary" caption="Add Vendor" type="button" margin="unset 0.5em" iconclass="wi wi-add" show="bind:Widgets.searchVendor.datavalue!=undefined" on-click="Variables.UpdateVendorForMasterForms.invoke()"
+                                        <wm-button class="btn-primary" caption="Add Vendor" type="button" margin="unset 0.5em" iconclass="wi wi-add" show="bind:Widgets.searchVendor.datavalue!=undefined" on-click="Variables.UpdateVendorForMasterForms.invoke()"
                                         name="buttonTagVendor"></wm-button>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn98"></wm-gridcolumn>
@@ -271,7 +271,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow42">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn101" horizontalalign="right">
-                        <wm-button class="btn-primary" caption="Submit" type="submit" margin="unset 0.5em" name="button9" on-click="Variables.svSubmitForm.invoke()"></wm-button>
+                        <wm-button class="btn-primary" caption="Submit" type="submit" margin="unset 0.5em" name="buttonSubmitForm" on-click="Variables.svSubmitForm.invoke()" iconclass="wi wi-send" show="bind:currentProgress === 0"></wm-button>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
