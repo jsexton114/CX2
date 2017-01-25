@@ -523,7 +523,7 @@ public class FormService {
     				formFeesValues.add("(:formGuid, :stateFeeAmount, 'Unit Fee', :stateFeeAccountingCode, 'Unpaid')");
 	    		}
 	    		
-	    		if (basementFee != null && !basementFee.equals(0) && (Boolean) fieldData.get("Basement")) {
+	    		if (basementFee != null && !basementFee.equals(0) && fieldData.get("Basement") != null ? fieldData.get("Basement").toString().equals("true") : false) {
 	    			totalFees += basementFee;
 	    			queryParams.put("basementFeeAmount", basementFee);
 	    			queryParams.put("basementFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
