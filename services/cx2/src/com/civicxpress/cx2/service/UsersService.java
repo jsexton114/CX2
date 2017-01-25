@@ -18,13 +18,8 @@ import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
-import com.civicxpress.cx2.McnewElectricConnection;
-import com.civicxpress.cx2.McnewResidentialStructure;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
-import com.civicxpress.cx2.Pudapplication;
 import com.civicxpress.cx2.Roles;
-import com.civicxpress.cx2.SfnewElectricConnection;
-import com.civicxpress.cx2.SfnewResidentialStructure;
 import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
@@ -198,30 +193,6 @@ public interface UsersService {
     Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated mcnewElectricConnections for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated McnewElectricConnection instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated mcnewResidentialStructures for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated McnewResidentialStructure instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<McnewResidentialStructure> findAssociatedMcnewResidentialStructures(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated municipalityGroupMemberses for given Users id.
      *
      * @param id value of id; value cannot be null
@@ -232,42 +203,6 @@ public interface UsersService {
      * @see Page
      */
     Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated pudapplications for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated Pudapplication instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<Pudapplication> findAssociatedPudapplications(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated sfnewElectricConnections for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SfnewElectricConnection instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated sfnewResidentialStructures for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SfnewResidentialStructure instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(Integer id, Pageable pageable);
 
     /*
      * Returns the associated roleses for given Users id.

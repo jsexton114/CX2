@@ -67,26 +67,6 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
-  "name" : "MCNewElectricConnection",
-  "type" : "PAGE",
-  "params" : [ {
-    "name" : "FormId",
-    "type" : "string"
-  }, {
-    "name" : "MunicipalityId",
-    "type" : "string"
-  } ]
-}, {
-  "name" : "MCNewResidentialStructure",
-  "type" : "PAGE",
-  "params" : [ {
-    "name" : "FormId",
-    "type" : "string"
-  }, {
-    "name" : "MunicipalityId",
-    "type" : "string"
-  } ]
-}, {
   "name" : "Main",
   "type" : "PAGE",
   "params" : [ ]
@@ -100,6 +80,10 @@
   "params" : [ ]
 }, {
   "name" : "ManageGISData",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ManageMuncipalityGroups",
   "type" : "PAGE",
   "params" : [ ]
 }, {
@@ -159,15 +143,9 @@
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
-  "name" : "PUDApplication",
+  "name" : "NewFrom",
   "type" : "PAGE",
-  "params" : [ {
-    "name" : "FormId",
-    "type" : "integer"
-  }, {
-    "name" : "MunicipalityId",
-    "type" : "integer"
-  } ]
+  "params" : [ ]
 }, {
   "name" : "ProcessForms",
   "type" : "PAGE",
@@ -176,26 +154,6 @@
   "name" : "ResetPassword",
   "type" : "PAGE",
   "params" : [ ]
-}, {
-  "name" : "SFNewElectricConnection",
-  "type" : "PAGE",
-  "params" : [ {
-    "name" : "FormId",
-    "type" : "integer"
-  }, {
-    "name" : "MunicipalityId",
-    "type" : "integer"
-  } ]
-}, {
-  "name" : "SFNewResidentialStructure",
-  "type" : "PAGE",
-  "params" : [ {
-    "name" : "FormId",
-    "type" : "integer"
-  }, {
-    "name" : "MunicipalityId",
-    "type" : "integer"
-  } ]
 }, {
   "name" : "Support",
   "type" : "PAGE",

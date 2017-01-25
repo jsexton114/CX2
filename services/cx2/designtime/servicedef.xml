@@ -832,19 +832,14 @@
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
-            <element name="mcnewElectricConnections" typeRef="com.civicxpress.cx2.McnewElectricConnection" isList="true" allowNull="true"/>
-            <element name="mcnewResidentialStructures" typeRef="com.civicxpress.cx2.McnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="municipalityGroupsByProcessOwners" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="municipalityGroupsByReadAccess" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="municipalityGroupsByWriteAccess" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="processOwners" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="pudapplications" typeRef="com.civicxpress.cx2.Pudapplication" isList="true" allowNull="true"/>
             <element name="readAccess" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="recalculateAutoFees" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="report" typeRef="java.lang.String" allowNull="true"/>
             <element name="sendEmail" typeRef="java.lang.Boolean" allowNull="true"/>
-            <element name="sfnewElectricConnections" typeRef="com.civicxpress.cx2.SfnewElectricConnection" isList="true" allowNull="true"/>
-            <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="sortOrder" typeRef="java.lang.Long" allowNull="true"/>
             <element name="status" typeRef="java.lang.String" allowNull="true"/>
             <element name="writeAccess" typeRef="java.lang.Integer" allowNull="true"/>
@@ -886,8 +881,6 @@
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="inspections" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
-            <element name="mcnewElectricConnections" typeRef="com.civicxpress.cx2.McnewElectricConnection" isList="true" allowNull="true"/>
-            <element name="mcnewResidentialStructures" typeRef="com.civicxpress.cx2.McnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="multipleGisrecords" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
@@ -898,12 +891,9 @@
             <element name="prefixNumber" typeRef="java.lang.String" allowNull="true"/>
             <element name="prefixNumberStart" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="prefixNumberStep" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="pudapplications" typeRef="com.civicxpress.cx2.Pudapplication" isList="true" allowNull="true"/>
             <element name="report" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
-            <element name="sfnewElectricConnections" typeRef="com.civicxpress.cx2.SfnewElectricConnection" isList="true" allowNull="true"/>
-            <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="sharedWith" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="stateFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="stateFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
@@ -1045,40 +1035,6 @@
             <element name="projectGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="projectTitle" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
-        <dataobject javaType="com.civicxpress.cx2.McnewElectricConnection">
-            <element name="basementSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
-            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
-            <element name="garageSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="guid" typeRef="java.lang.String" allowNull="true"/>
-            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="propertyOwnerName" typeRef="java.lang.String" allowNull="true"/>
-            <element name="propertyOwnerPhNo" typeRef="java.lang.String" allowNull="true"/>
-            <element name="sidingMaterial" typeRef="java.lang.String" allowNull="true"/>
-            <element name="totalSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
-            <element name="valueOfWork" typeRef="java.lang.String" allowNull="true"/>
-        </dataobject>
-        <dataobject javaType="com.civicxpress.cx2.McnewResidentialStructure">
-            <element name="basementSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
-            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
-            <element name="garageSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="guid" typeRef="java.lang.String" allowNull="true"/>
-            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="propertyOwnerName" typeRef="java.lang.String" allowNull="true"/>
-            <element name="propertyOwnerPhNo" typeRef="java.lang.String" allowNull="true"/>
-            <element name="sidingMaterial" typeRef="java.lang.String" allowNull="true"/>
-            <element name="totalSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
-            <element name="valueOfWork" typeRef="java.lang.String" allowNull="true"/>
-        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Municipalities">
             <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="address1" typeRef="java.lang.String" allowNull="true"/>
@@ -1141,24 +1097,6 @@
             <element name="municipalityGroupMemberses" typeRef="com.civicxpress.cx2.MunicipalityGroupMembers" isList="true" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
-        <dataobject javaType="com.civicxpress.cx2.Pudapplication">
-            <element name="basementSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="connectionType" typeRef="java.lang.String" allowNull="true"/>
-            <element name="electricLinesCount" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
-            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
-            <element name="garageSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="guid" typeRef="java.lang.String" allowNull="true"/>
-            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="propertyOwnerName" typeRef="java.lang.String" allowNull="true"/>
-            <element name="propertyOwnerPhNo" typeRef="java.lang.String" allowNull="true"/>
-            <element name="sidingMaterial" typeRef="java.lang.String" allowNull="true"/>
-            <element name="totalSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
-        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Roles">
             <element name="description" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
@@ -1167,42 +1105,6 @@
             <element name="roleName" typeRef="java.lang.String" allowNull="true"/>
             <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
-        </dataobject>
-        <dataobject javaType="com.civicxpress.cx2.SfnewElectricConnection">
-            <element name="basementSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="connectionType" typeRef="java.lang.String" allowNull="true"/>
-            <element name="electricLinesCount" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
-            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
-            <element name="garageSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="guid" typeRef="java.lang.String" allowNull="true"/>
-            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="propertyOwnerName" typeRef="java.lang.String" allowNull="true"/>
-            <element name="propertyOwnerPhNo" typeRef="java.lang.String" allowNull="true"/>
-            <element name="sidingMaterial" typeRef="java.lang.String" allowNull="true"/>
-            <element name="totalSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
-        </dataobject>
-        <dataobject javaType="com.civicxpress.cx2.SfnewResidentialStructure">
-            <element name="basementSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formStatusId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses" allowNull="true"/>
-            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
-            <element name="foundationType" typeRef="java.lang.String" allowNull="true"/>
-            <element name="garageSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="guid" typeRef="java.lang.String" allowNull="true"/>
-            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="propertyOwnerName" typeRef="java.lang.String" allowNull="true"/>
-            <element name="propertyOwnerPhNo" typeRef="java.lang.String" allowNull="true"/>
-            <element name="sidingMaterial" typeRef="java.lang.String" allowNull="true"/>
-            <element name="totalSft" typeRef="java.lang.String" allowNull="true"/>
-            <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
-            <element name="valueOfWork" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.SharedWith">
             <element name="createdBy" typeRef="java.lang.Integer" allowNull="true"/>
@@ -1264,17 +1166,12 @@
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="lastName" typeRef="java.lang.String" allowNull="true"/>
             <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
-            <element name="mcnewElectricConnections" typeRef="com.civicxpress.cx2.McnewElectricConnection" isList="true" allowNull="true"/>
-            <element name="mcnewResidentialStructures" typeRef="com.civicxpress.cx2.McnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="municipalityGroupMemberses" typeRef="com.civicxpress.cx2.MunicipalityGroupMembers" isList="true" allowNull="true"/>
             <element name="password" typeRef="java.lang.String" allowNull="true"/>
             <element name="phoneNumber" typeRef="java.lang.String" allowNull="true"/>
             <element name="photo" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
             <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
-            <element name="pudapplications" typeRef="com.civicxpress.cx2.Pudapplication" isList="true" allowNull="true"/>
             <element name="roleses" typeRef="com.civicxpress.cx2.Roles" isList="true" allowNull="true"/>
-            <element name="sfnewElectricConnections" typeRef="com.civicxpress.cx2.SfnewElectricConnection" isList="true" allowNull="true"/>
-            <element name="sfnewResidentialStructures" typeRef="com.civicxpress.cx2.SfnewResidentialStructure" isList="true" allowNull="true"/>
             <element name="sharedWithsForCreatedBy" typeRef="com.civicxpress.cx2.SharedWith" isList="true" allowNull="true"/>
             <element name="sharedWithsForSharedWithUser" typeRef="com.civicxpress.cx2.SharedWith" isList="true" allowNull="true"/>
             <element name="stateId" typeRef="java.lang.Integer" allowNull="true"/>

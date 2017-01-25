@@ -36,13 +36,8 @@ import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
-import com.civicxpress.cx2.McnewElectricConnection;
-import com.civicxpress.cx2.McnewResidentialStructure;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
-import com.civicxpress.cx2.Pudapplication;
 import com.civicxpress.cx2.Roles;
-import com.civicxpress.cx2.SfnewElectricConnection;
-import com.civicxpress.cx2.SfnewResidentialStructure;
 import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
@@ -214,52 +209,12 @@ public class UsersController {
         return usersService.findAssociatedMasterFormses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/mcnewElectricConnections", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the mcnewElectricConnections instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<McnewElectricConnection> findAssociatedMcnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated mcnewElectricConnections");
-        return usersService.findAssociatedMcnewElectricConnections(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/mcnewResidentialStructures", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the mcnewResidentialStructures instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<McnewResidentialStructure> findAssociatedMcnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated mcnewResidentialStructures");
-        return usersService.findAssociatedMcnewResidentialStructures(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/municipalityGroupMemberses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the municipalityGroupMemberses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated municipalityGroupMemberses");
         return usersService.findAssociatedMunicipalityGroupMemberses(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/pudapplications", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the pudapplications instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Pudapplication> findAssociatedPudapplications(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pudapplications");
-        return usersService.findAssociatedPudapplications(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/sfnewElectricConnections", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the sfnewElectricConnections instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SfnewElectricConnection> findAssociatedSfnewElectricConnections(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated sfnewElectricConnections");
-        return usersService.findAssociatedSfnewElectricConnections(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/sfnewResidentialStructures", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the sfnewResidentialStructures instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SfnewResidentialStructure> findAssociatedSfnewResidentialStructures(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated sfnewResidentialStructures");
-        return usersService.findAssociatedSfnewResidentialStructures(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
