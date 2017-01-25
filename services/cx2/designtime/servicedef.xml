@@ -866,6 +866,7 @@
             <element name="basementFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="collectFees" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="createdDate" typeRef="java.util.Date" allowNull="true"/>
+            <element name="currentPrefixNumber" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="digitalSignatures" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="flatFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="flatFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
@@ -889,6 +890,7 @@
             <element name="prefixDashes" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="prefixDate" typeRef="java.lang.String" allowNull="true"/>
             <element name="prefixNumber" typeRef="java.lang.String" allowNull="true"/>
+            <element name="prefixNumberResetOn" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="prefixNumberStart" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="prefixNumberStep" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="report" typeRef="java.lang.String" allowNull="true"/>
