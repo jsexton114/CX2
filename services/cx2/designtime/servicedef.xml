@@ -167,6 +167,10 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2getUserIdFromPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="GetWriteAccessGroupMembersByFormGUID">
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2GetWriteAccessGroupMembersByFormGUIDrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="InsertCategoryMapping">
         <parameter name="FormTypeId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="FormCategoryId" typeRef="java.lang.Integer" isList="false"/>
@@ -365,10 +369,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="GetWriteAccessGroupMembersByFormGUID">
-        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>

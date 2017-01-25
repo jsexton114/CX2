@@ -67,19 +67,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "formTypeGuid",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FormTypeGuid",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "formType",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -350,7 +337,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "multipleGisrecords",
@@ -363,7 +350,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "gismap",
@@ -390,6 +377,136 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "formTypeGuid",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FormTypeGuid",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 32,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "basementFee",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "BasementFee",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "basementFeeAccountingCode",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "BasementFeeAccountingCode",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "vendorSelection",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "VendorSelection",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "titlePrefix",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "TitlePrefix",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDate",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PrefixDate",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "MonthYear",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumber",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PrefixNumber",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "AutoIncrement",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberStart",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "PrefixNumberStart",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 38,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberStep",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "PrefixNumberStep",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDashes",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "PrefixDashes",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -585,7 +702,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "recalculateAutoFees",
@@ -675,7 +792,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "allowAttachments",
@@ -2081,7 +2198,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "recalculateAutoFees",
@@ -2171,7 +2288,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "allowAttachments",
@@ -2230,19 +2347,6 @@
           "length" : 0,
           "precision" : 10,
           "generator" : "identity",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "formTypeGuid",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FormTypeGuid",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 0,
-          "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
@@ -2517,7 +2621,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "multipleGisrecords",
@@ -2530,7 +2634,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "gismap",
@@ -2557,6 +2661,136 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "formTypeGuid",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FormTypeGuid",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 32,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "basementFee",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "BasementFee",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "basementFeeAccountingCode",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "BasementFeeAccountingCode",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "vendorSelection",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "VendorSelection",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "titlePrefix",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "TitlePrefix",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDate",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PrefixDate",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "MonthYear",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumber",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PrefixNumber",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "AutoIncrement",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberStart",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "PrefixNumberStart",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 38,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberStep",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "PrefixNumberStep",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDashes",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "PrefixDashes",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -3150,7 +3384,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "recalculateAutoFees",
@@ -3240,7 +3474,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "allowAttachments",
@@ -3299,19 +3533,6 @@
           "length" : 0,
           "precision" : 10,
           "generator" : "identity",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "formTypeGuid",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FormTypeGuid",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 0,
-          "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
@@ -3586,7 +3807,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "multipleGisrecords",
@@ -3599,7 +3820,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "gismap",
@@ -3626,6 +3847,136 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "formTypeGuid",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FormTypeGuid",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 32,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "basementFee",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "BasementFee",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "basementFeeAccountingCode",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "BasementFeeAccountingCode",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "vendorSelection",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "VendorSelection",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "titlePrefix",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "TitlePrefix",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDate",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PrefixDate",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "MonthYear",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumber",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PrefixNumber",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "AutoIncrement",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberStart",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "PrefixNumberStart",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 38,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberStep",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "PrefixNumberStep",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDashes",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "PrefixDashes",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -4219,7 +4570,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "recalculateAutoFees",
@@ -4309,7 +4660,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "allowAttachments",
@@ -4368,19 +4719,6 @@
           "length" : 0,
           "precision" : 10,
           "generator" : "identity",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "formTypeGuid",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FormTypeGuid",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 0,
-          "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
@@ -4655,7 +4993,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "multipleGisrecords",
@@ -4668,7 +5006,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "gismap",
@@ -4695,6 +5033,136 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "formTypeGuid",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FormTypeGuid",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 32,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "basementFee",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "BasementFee",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "basementFeeAccountingCode",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "BasementFeeAccountingCode",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "vendorSelection",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "VendorSelection",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "titlePrefix",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "TitlePrefix",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDate",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PrefixDate",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "MonthYear",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumber",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PrefixNumber",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "AutoIncrement",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberStart",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "PrefixNumberStart",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 38,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberStep",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "PrefixNumberStep",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDashes",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "PrefixDashes",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -5301,7 +5769,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "recalculateAutoFees",
@@ -5391,7 +5859,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "allowAttachments",
@@ -5450,19 +5918,6 @@
           "length" : 0,
           "precision" : 10,
           "generator" : "identity",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "formTypeGuid",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FormTypeGuid",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 0,
-          "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
@@ -5737,7 +6192,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "multipleGisrecords",
@@ -5750,7 +6205,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "gismap",
@@ -5777,6 +6232,136 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "formTypeGuid",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FormTypeGuid",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 32,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "basementFee",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "BasementFee",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "basementFeeAccountingCode",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "BasementFeeAccountingCode",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "vendorSelection",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "VendorSelection",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "titlePrefix",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "TitlePrefix",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDate",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PrefixDate",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "MonthYear",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumber",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PrefixNumber",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "AutoIncrement",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberStart",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "PrefixNumberStart",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 38,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberStep",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "PrefixNumberStep",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDashes",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "PrefixDashes",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -6383,7 +6968,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "recalculateAutoFees",
@@ -6473,7 +7058,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "allowAttachments",
@@ -6532,19 +7117,6 @@
           "length" : 0,
           "precision" : 10,
           "generator" : "identity",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "formTypeGuid",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FormTypeGuid",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 0,
-          "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
@@ -6819,7 +7391,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "multipleGisrecords",
@@ -6832,7 +7404,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "FALSE",
           "scale" : 0
         }, {
           "fieldName" : "gismap",
@@ -6859,6 +7431,136 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "formTypeGuid",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FormTypeGuid",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 32,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "basementFee",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "BasementFee",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "basementFeeAccountingCode",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "BasementFeeAccountingCode",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "vendorSelection",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "VendorSelection",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "titlePrefix",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "TitlePrefix",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDate",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PrefixDate",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "MonthYear",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumber",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PrefixNumber",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "AutoIncrement",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberStart",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "PrefixNumberStart",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 38,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberStep",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "PrefixNumberStep",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "1",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixDashes",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "PrefixDashes",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
