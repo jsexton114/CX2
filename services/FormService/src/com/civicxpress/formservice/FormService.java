@@ -187,6 +187,9 @@ public class FormService {
 	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormStatuses (FormTypeId, ConsiderClosed, SortOrder, Status, Description, SendEmail) "
 	        		+ "VALUES (:newFormTypeId, 0, 1, 'Draft', 'Draft', 0)", formCreateParams);
 	        
+	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormStatuses (FormTypeId, ConsiderClosed, SortOrder, Status, Description, SendEmail) "
+	        		+ "VALUES (:newFormTypeId, 0, 2, 'Submitted', 'Submitted', 1)", formCreateParams);
+	        
 	        DBUtils.simpleUpdateQuery(muniDbConn, "CREATE TABLE "+formTableName+" ("
 	    			+"ID numeric(10) identity(1,1), "
 	            	+"FormGUID uniqueidentifier NOT NULL DEFAULT NEWSEQUENTIALID(), "
