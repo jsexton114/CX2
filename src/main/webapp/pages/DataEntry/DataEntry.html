@@ -593,14 +593,14 @@
                             <wm-layoutgrid columns="1" name="layoutgrid18">
                                 <wm-gridrow name="gridrow69_1">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn149">
-                                        <wm-form-field name="formCategories" displayname="Form Categories" show="true" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true" widget="select" placeholder="Select value" orderby="category:asc"
-                                        displayexpression="category"></wm-form-field>
+                                        <wm-form-field name="formCategories" displayname="Form Categories" show="true" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true" widget="select" placeholder="Select value" orderby="municipalities.municipalityName:asc"
+                                        displayexpression="municipalities.municipalityName + ' ' + category"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow70">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn150">
-                                        <wm-form-field name="formTypes" displayname="Form Types" show="true" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" placeholder="Select value" orderby="formType:asc"
-                                        displayexpression="formType"></wm-form-field>
+                                        <wm-form-field name="formTypes" displayname="Form Types" show="true" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" placeholder="Select value" orderby="municipalities.municipalityName:asc"
+                                        displayexpression="municipalities.municipalityName + ' ' + formType"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
