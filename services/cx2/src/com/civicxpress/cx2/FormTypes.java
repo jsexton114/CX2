@@ -72,7 +72,7 @@ public class FormTypes implements Serializable {
     private BigInteger prefixNumberStart;
     private int prefixNumberStep;
     private Boolean prefixDashes;
-    private Integer currentPrefixNumber;
+    private BigInteger currentPrefixNumber;
     private Integer prefixNumberResetOn;
     private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
@@ -408,12 +408,12 @@ public class FormTypes implements Serializable {
         this.prefixDashes = prefixDashes;
     }
 
-    @Column(name = "`CurrentPrefixNumber`", nullable = true, scale = 0, precision = 10)
-    public Integer getCurrentPrefixNumber() {
+    @Column(name = "`CurrentPrefixNumber`", nullable = true, scale = 0, precision = 38)
+    public BigInteger getCurrentPrefixNumber() {
         return this.currentPrefixNumber;
     }
 
-    public void setCurrentPrefixNumber(Integer currentPrefixNumber) {
+    public void setCurrentPrefixNumber(BigInteger currentPrefixNumber) {
         this.currentPrefixNumber = currentPrefixNumber;
     }
 
