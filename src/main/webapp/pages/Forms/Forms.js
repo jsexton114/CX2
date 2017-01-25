@@ -24,8 +24,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.defaultObjectForSelectStatus = {};
     $scope.currentProgress = 0;
 
-    function setFormStatusProgressValue(listData) {
-        var statusListData = listData;
+    function setFormStatusProgressValue(statusListData) {
         var currentStatusId = $scope.Variables.CurrentForm.dataSet.data[0].formStatusId;
 
         if (!!statusListData && !!currentStatusId) {
@@ -201,4 +200,11 @@ Application.$controller("dialogParcelController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
     }
+]);
+
+Application.$controller("dlgFormSubmittedController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

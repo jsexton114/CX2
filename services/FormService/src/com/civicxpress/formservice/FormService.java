@@ -16,7 +16,10 @@ import com.wavemaker.runtime.service.annotations.ExposeToClient;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +50,8 @@ public class FormService {
 
 	private static SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 	private static SimpleDateFormat datetimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private static SimpleDateFormat monthYearFormatter = new SimpleDateFormat("MMyyyy");
+	private static SimpleDateFormat yearMonthFormatter = new SimpleDateFormat("yyyyMM");
 
     @Autowired
     private SecurityService securityService;
@@ -188,7 +193,7 @@ public class FormService {
 	        		+ "VALUES (:newFormTypeId, 0, 1, 'Draft', 'Draft', 0)", formCreateParams);
 	        
 	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormStatuses (FormTypeId, ConsiderClosed, SortOrder, Status, Description, SendEmail) "
-	        		+ "VALUES (:newFormTypeId, 0, 2, 'Submitted', 'Submitted', 1)", formCreateParams);
+	        		+ "VALUES (:newFormTypeId, 0, 2, 'Application Review', 'Application Review', 1)", formCreateParams);
 	        
 	        DBUtils.simpleUpdateQuery(muniDbConn, "CREATE TABLE "+formTableName+" ("
 	    			+"ID numeric(10) identity(1,1), "
@@ -204,6 +209,13 @@ public class FormService {
 	    			+"VendorId numeric(10)"
 	            	+")");
 	        
+	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypeFields "
+	    			+ "(FormTypeId, FieldName, Label, DisplayOrder, Required, DefaultValue, FieldTypeId)"
+	    			+" VALUES (:newFormTypeId, 'TotalSqft', 'Total Square Feet', 100, 1, 0, 5),"
+	    			+" VALUES (:newFormTypeId, 'TotalUnits', 'Total Units', 101, 1, 1, 5),"
+	    			+" VALUES (:newFormTypeId, 'Basement', 'Has Basement', 102, 1, 0, 6),",
+	    			formCreateParams);
+	        
 	        cx2Conn.commit();
 	        muniDbConn.commit();
         } catch (SQLException e) {
@@ -217,84 +229,6 @@ public class FormService {
         }
         
         return newFormTypeId;
-    }
-    
-    public void saveFormData(Long formTypeId, String formGuid, HashMap<String, Object> fieldData) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
-    	cx2Conn.setAutoCommit(false);
-    	
-    	Map<String, Object> queryParams = new HashMap<String, Object>();
-    	queryParams.put("formTypeId", formTypeId);
-    	queryParams.put("formGuid", formGuid);
-    	
-    	DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId, FormTableName FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0);
-    	
-    	List<DBRow> formFieldsMetaData = DBUtils.selectQuery(cx2Conn, "SELECT FTF.FieldName as FieldName, FFT.SqlType as SqlType FROM FormTypeFields FTF, FormFieldTypes FFT WHERE FFT.ID=FTF.FieldTypeId AND FTF.FormTypeId=:formTypeId", queryParams);
-    	
-    	Long municipalityId = formTypeData.getLong("MunicipalityId");
-    	
-    	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
-    	muniDbConn.setAutoCommit(false);
-    	
-    	try {
-	    	StringBuilder formSaveQuery = new StringBuilder("UPDATE "+formTypeData.getString("FormTableName")+" SET ");
-	    	
-	    	for (DBRow formFieldsMetaRow : formFieldsMetaData) {
-	    		String sqlSafeFieldName = DBUtils.getSqlSafeString(formFieldsMetaRow.getString("FieldName"));
-	    		Object fieldValue;
-	    		
-	    		if (!fieldData.containsKey(sqlSafeFieldName)) {
-	    			continue;
-	    		}
-	    		
-	    		String sqlType = formFieldsMetaRow.getString("SqlType");
-	    		
-	    		if (sqlType.equals("datetime2") || sqlType.equals("date")) {
-	    			Date dateFieldDate = new Date();
-	    			
-	    			if (fieldData.get(sqlSafeFieldName) == null) {
-	    				dateFieldDate = null;
-	    			} else {
-	    				dateFieldDate.setTime(Long.parseLong(fieldData.get(sqlSafeFieldName).toString()));
-	    			}
-	    			
-	    			if (dateFieldDate != null) {
-		    			if (sqlType.equals("date")) {
-		    				fieldValue = dateFormatter.format(dateFieldDate);
-		    			} else {
-		    				fieldValue = datetimeFormatter.format(dateFieldDate);
-		    			}
-	    			} else {
-	    				fieldValue = null;
-	    			}
-	    		} else {
-	    			fieldValue = fieldData.get(sqlSafeFieldName);
-	    		}
-	    		
-	    		formSaveQuery.append(sqlSafeFieldName+"=:"+sqlSafeFieldName);
-	    		
-	    		queryParams.put(sqlSafeFieldName, fieldValue);
-	    		
-	    		formSaveQuery.append(",");
-	    	}
-	    	
-	    	formSaveQuery.deleteCharAt(formSaveQuery.length()-1);
-	    	
-	    	formSaveQuery.append(" WHERE FormGUID=:formGuid");
-	    	
-	    	DBUtils.simpleQuery(muniDbConn, formSaveQuery.toString(), queryParams);
-	    	
-	    	cx2Conn.commit();
-	    	muniDbConn.commit();
-    	} catch (SQLException e) {
-    		cx2Conn.rollback();
-    		muniDbConn.rollback();
-    		logger.error(e.getLocalizedMessage());
-    		throw e;
-    	} finally {
-    	   	muniDbConn.close();
-    	   	cx2Conn.close();
-    	}
     }
     
     public String createForm(Long municipalityId, Long formTypeId) throws SQLException {
@@ -370,6 +304,250 @@ public class FormService {
     	}
     	
     	return newFormGuid;
+    }
+    
+    public void saveFormData(Long formTypeId, String formGuid, HashMap<String, Object> fieldData) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	cx2Conn.setAutoCommit(false);
+    	
+    	try {
+    		saveFormData(cx2Conn, formTypeId, formGuid, fieldData);
+    		cx2Conn.commit();
+    	} catch (SQLException e) {
+    		cx2Conn.rollback();
+    		logger.error(e.getLocalizedMessage());
+    		throw e;
+    	} finally {
+    		cx2Conn.close();
+    	}
+    }
+    
+    private void saveFormData(Connection cx2Conn, Long formTypeId, String formGuid, HashMap<String, Object> fieldData) throws SQLException {
+    	Map<String, Object> queryParams = new HashMap<String, Object>();
+    	queryParams.put("formTypeId", formTypeId);
+    	queryParams.put("formGuid", formGuid);
+    	
+    	DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId, FormTableName FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0);
+    	
+    	List<DBRow> formFieldsMetaData = DBUtils.selectQuery(cx2Conn, "SELECT FTF.FieldName as FieldName, FFT.SqlType as SqlType FROM FormTypeFields FTF, FormFieldTypes FFT WHERE FFT.ID=FTF.FieldTypeId AND FTF.FormTypeId=:formTypeId", queryParams);
+    	
+    	Long municipalityId = formTypeData.getLong("MunicipalityId");
+    	
+    	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
+    	muniDbConn.setAutoCommit(false);
+    	
+    	try {
+	    	StringBuilder formSaveQuery = new StringBuilder("UPDATE "+formTypeData.getString("FormTableName")+" SET ");
+	    	
+	    	for (DBRow formFieldsMetaRow : formFieldsMetaData) {
+	    		String sqlSafeFieldName = DBUtils.getSqlSafeString(formFieldsMetaRow.getString("FieldName"));
+	    		Object fieldValue;
+	    		
+	    		if (!fieldData.containsKey(sqlSafeFieldName)) {
+	    			continue;
+	    		}
+	    		
+	    		String sqlType = formFieldsMetaRow.getString("SqlType");
+	    		
+	    		if (sqlType.equals("datetime2") || sqlType.equals("date")) {
+	    			Date dateFieldDate = new Date();
+	    			
+	    			if (fieldData.get(sqlSafeFieldName) == null) {
+	    				dateFieldDate = null;
+	    			} else {
+	    				dateFieldDate.setTime(Long.parseLong(fieldData.get(sqlSafeFieldName).toString()));
+	    			}
+	    			
+	    			if (dateFieldDate != null) {
+		    			if (sqlType.equals("date")) {
+		    				fieldValue = dateFormatter.format(dateFieldDate);
+		    			} else {
+		    				fieldValue = datetimeFormatter.format(dateFieldDate);
+		    			}
+	    			} else {
+	    				fieldValue = null;
+	    			}
+	    		} else {
+	    			fieldValue = fieldData.get(sqlSafeFieldName);
+	    		}
+	    		
+	    		formSaveQuery.append(sqlSafeFieldName+"=:"+sqlSafeFieldName);
+	    		
+	    		queryParams.put(sqlSafeFieldName, fieldValue);
+	    		
+	    		formSaveQuery.append(",");
+	    	}
+	    	
+	    	formSaveQuery.deleteCharAt(formSaveQuery.length()-1);
+	    	
+	    	formSaveQuery.append(" WHERE FormGUID=:formGuid");
+	    	
+	    	DBUtils.simpleQuery(muniDbConn, formSaveQuery.toString(), queryParams);
+	    	
+	    	muniDbConn.commit();
+    	} catch (SQLException e) {
+    		muniDbConn.rollback();
+    		logger.error(e.getLocalizedMessage());
+    		throw e;
+    	} finally {
+    	   	muniDbConn.close();
+    	}
+    }
+    
+    public void submitForm(String formGuid, HashMap<String, Object> fieldData) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	cx2Conn.setAutoCommit(false);
+    	
+    	try {
+	    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
+	    	queryParams.put("formGuid", formGuid);
+	    	
+	    	DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", queryParams).get(0);
+	    	
+	    	queryParams.put("formTypeId", masterFormData.getLong("FormTypeId"));
+	    	
+	    	DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0);
+	    	
+	    	/*
+	    	 * Begin form title creation
+	    	 */
+	    	// Form title prefix
+	    	StringBuilder formTitle = new StringBuilder(formTypeData.getString("TitlePrefix"));
+	    	
+	    	// Form title date
+	    	String dateOption = formTypeData.getString("PrefixDate");
+	    	Boolean addDashes = formTypeData.getBoolean("PrefixDashes");
+	    	
+    		Calendar today = new GregorianCalendar();
+	    	
+	    	if (!dateOption.equalsIgnoreCase("None")) {
+	    		if (addDashes) {
+	    			formTitle.append('-');
+	    		}
+	    		
+	    		if (dateOption.equals("YearMonth")) {
+	    			formTitle.append(yearMonthFormatter.format(today.getTime()));
+	    		} else {
+	    			formTitle.append(monthYearFormatter.format(today.getTime()));
+	    		}
+	    	}
+
+	    	if (addDashes) {
+	    		formTitle.append('-');
+	    	}
+	    	
+	    	// Form title number
+	    	String numberOption = !dateOption.equalsIgnoreCase("None") ? formTypeData.getString("PrefixNumber") : "AutoIncrement";
+	    	Long currentPrefixNumber = formTypeData.getLong("CurrentPrefixNumber");
+	    	Integer prefixNumberStep = formTypeData.getInteger("PrefixNumberStep");
+    		Integer numberResetOn = formTypeData.getInteger("PrefixNumberResetOn");
+	    	Integer newResetTime = numberOption.equalsIgnoreCase("ResetMonth") ? today.get(Calendar.MONTH)+1 : today.get(Calendar.YEAR);
+	    	Long newPrefixNumber;
+	    	
+	    	if (!numberOption.equalsIgnoreCase("AutoIncrement") && !newResetTime.equals(numberResetOn)) {
+	    		newPrefixNumber = prefixNumberStep.longValue();
+	    	} else {
+	    		newPrefixNumber = (currentPrefixNumber + prefixNumberStep.longValue());
+	    	}
+	    	
+	    	formTitle.append(newPrefixNumber.toString());
+	    	
+	    	queryParams.put("newPrefixNumber", newPrefixNumber);
+	    	queryParams.put("newResetTime", newResetTime);
+	    	
+	    	fieldData.put("FormTitle", formTitle.toString());
+	    	queryParams.put("formTitle", formTitle.toString());
+	    	/*
+	    	 * End form title creation
+	    	 */
+	    	
+	    	// Save the form data
+	    	saveFormData(cx2Conn, masterFormData.getLong("FormTypeId"), formGuid, fieldData);
+	    	
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE FormTypes SET CurrentPrefixNumber=:newPrefixNumber, PrefixNumberResetOn=:newResetTime", queryParams);
+	    	
+	    	// Calculate and add fees
+	    	Long totalFees = 0L;
+	    	if (formTypeData.getBoolean("AutomaticFees")) {
+		    	StringBuilder formFeesQuery = new StringBuilder("INSERT INTO Fees (FormGuid, Amount, FeeType, AutoFeeYN, AccountingCode, PaidStatus) VALUES ");
+		    	List<String> formFeesValues = new ArrayList<String>();
+		    	
+	    		Integer flatFee = formTypeData.getInteger("FlatFee");
+	    		Integer sfFee = formTypeData.getInteger("SfFee");
+	    		Integer unitFee = formTypeData.getInteger("UnitFee");
+	    		Integer stateFee = formTypeData.getInteger("StateFee");
+	    		Integer basementFee = formTypeData.getInteger("BasementFee");
+	    		
+	    		if (flatFee != null && !flatFee.equals(0)) {
+	    			totalFees += flatFee;
+	    			queryParams.put("flatFeeAmount", flatFee);
+	    			queryParams.put("flatFeeAccountingCode", formTypeData.getString("FlatFeeAccountingCode"));
+	    			formFeesValues.add("(:formGuid, :flatFeeAmount, 'Flat Fee', 1, :flatFeeAccountingCode, 'Unpaid')");
+	    		}
+	    		
+	    		if (sfFee != null && !sfFee.equals(0)) {
+	    			Long totalSqft = Math.abs(Long.parseLong(fieldData.get("TotalSqft").toString()));
+	    			
+	    			if (!totalSqft.equals(0)) {
+	    				totalFees += (sfFee*totalSqft);
+	    				queryParams.put("sfFeeAmount", (sfFee*totalSqft));
+	    				queryParams.put("sfFeeAccountingCode", formTypeData.getString("SfFeeAccountingCode"));
+	    				formFeesValues.add("(:formGuid, :sfFeeAmount, 'Square Footage Fee', :sfFeeAccountingCode, 'Unpaid')");
+	    			}
+	    		}
+	    		
+	    		if (unitFee != null && !unitFee.equals(0)) {
+	    			Long totalUnits = Math.abs(Long.parseLong(fieldData.get("TotalUnits").toString()));
+	    			
+	    			if (!totalUnits.equals(0)) {
+	    				totalFees += (unitFee*totalUnits);
+	    				queryParams.put("unitFeeAmount", (unitFee*totalUnits));
+	    				queryParams.put("unitFeeAccountingCode", formTypeData.getString("UnitFeeAccountingCode"));
+	    				formFeesValues.add("(:formGuid, :unitFeeAmount, 'Unit Fee', :unitFeeAccountingCode, 'Unpaid')");
+	    			}
+	    		}
+	    		
+	    		if (stateFee != null && !stateFee.equals(0)) {
+	    			totalFees += stateFee;
+	    			queryParams.put("stateFeeAmount", stateFee);
+	    			queryParams.put("stateFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
+    				formFeesValues.add("(:formGuid, :stateFeeAmount, 'Unit Fee', :stateFeeAccountingCode, 'Unpaid')");
+	    		}
+	    		
+	    		if (basementFee != null && !basementFee.equals(0) && (Boolean) fieldData.get("Basement")) {
+	    			totalFees += basementFee;
+	    			queryParams.put("basementFeeAmount", basementFee);
+	    			queryParams.put("basementFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
+    				formFeesValues.add("(:formGuid, :basementFeeAmount, 'Basement Fee', :basementFeeAccountingCode, 'Unpaid')");
+	    		}
+	    		
+	    		if (formFeesValues.size() > 0) {
+	    			for (int i = 0; i < formFeesValues.size(); i++) {
+	    				String formFeeValue = formFeesValues.get(i);
+	    				if (i != 0) {
+	    					formFeesQuery.append(',');
+	    				}
+	    				
+	    				formFeesQuery.append(formFeeValue);
+	    			}
+	    			
+	    			DBUtils.simpleUpdateQuery(cx2Conn, formFeesQuery.toString(), queryParams);
+	    		}
+	    	}
+	    	
+	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(1).getLong("ID");
+	    	queryParams.put("newFormStatusId", newFormStatusId);
+	    	
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterForms SET FormStatusId=:newFormStatusId, TotalFees=:totalFees, TotalPayment='0', BalanceDue=:totalFees, FormTitle=:formTitle", queryParams);
+	    	
+	    	cx2Conn.commit();
+    	} catch (SQLException e) {
+    		cx2Conn.rollback();
+    		logger.error(e.getLocalizedMessage());
+    		throw e;
+    	} finally {
+    		cx2Conn.close();
+    	}
     }
 
 }

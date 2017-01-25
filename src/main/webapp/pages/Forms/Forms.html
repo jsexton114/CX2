@@ -269,6 +269,11 @@
                         </wm-tabs>
                     </wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow42">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn101" horizontalalign="right">
+                        <wm-button class="btn-primary" caption="Submit" type="submit" margin="unset 0.5em" name="button9" on-click="Variables.svSubmitForm.invoke()"></wm-button>
+                    </wm-gridcolumn>
+                </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
     </wm-content>
@@ -445,6 +450,20 @@
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions2">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view4">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Form Submitted" iconclass="wi wi-check-circle" name="dlgFormSubmitted" on-close="Variables.goToPage_UserOpenForms.invoke()">
+            <wm-layoutgrid name="layoutgrid12_1">
+                <wm-gridrow name="gridrow45">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn106" horizontalalign="center">
+                        <wm-label padding="unset 0.5em" name="label28" caption="Your form has been submitted successfully."></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions3">
+                <wm-button class="btn-primary" caption="OK" on-click="closeDialog()" name="button10" iconclass="wi wi-check"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

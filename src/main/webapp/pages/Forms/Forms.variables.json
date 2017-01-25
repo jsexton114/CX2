@@ -628,6 +628,32 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "currentPrefixNumber",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "CurrentPrefixNumber",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 38,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberResetOn",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "PrefixNumberResetOn",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -3217,6 +3243,32 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "currentPrefixNumber",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "CurrentPrefixNumber",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 38,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberResetOn",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "PrefixNumberResetOn",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -4124,6 +4176,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "currentPrefixNumber",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "CurrentPrefixNumber",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 38,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberResetOn",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "PrefixNumberResetOn",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -7829,6 +7907,32 @@
         "isRelated" : false,
         "defaultValue" : "false",
         "scale" : 0
+      }, {
+        "fieldName" : "currentPrefixNumber",
+        "type" : "big_integer",
+        "fullyQualifiedType" : "big_integer",
+        "columnName" : "CurrentPrefixNumber",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 38,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "prefixNumberResetOn",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "PrefixNumberResetOn",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "FormTypes",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormTypes",
@@ -9753,6 +9857,32 @@
     "saveInPhonegap" : false,
     "controller" : "Form"
   },
+  "svSubmitForm" : {
+    "_id" : "wm-svSubmitForm-wm.ServiceVariable-1485374705044",
+    "name" : "svSubmitForm",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "formGuid",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formGuid",
+      "type" : "string"
+    } ],
+    "service" : "FormService",
+    "operation" : "submitForm",
+    "operationId" : "FormController_submitForm",
+    "operationType" : "post",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Form"
+  },
   "TempStatusList" : {
     "_id" : "wm-TempStatusList-wm.Variable-1484503375441",
     "name" : "TempStatusList",
@@ -9802,7 +9932,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.UpdateProcessOwnersForGUID.invoke();Variables.RecordFormHistory.invoke();UpdateFormStatusInMasterFormsonSuccess($event, $scope);UpdateFormStatusInMasterFormsonSuccess1($event, $scope)",
+    "onSuccess" : "Variables.UpdateProcessOwnersForGUID.invoke();Variables.RecordFormHistory.invoke();UpdateFormStatusInMasterFormsonSuccess($event, $scope);UpdateFormStatusInMasterFormsonSuccess1($event, $scope);Variables.CurrentForm.listRecords()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
