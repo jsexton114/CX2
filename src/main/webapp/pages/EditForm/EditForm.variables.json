@@ -2895,7 +2895,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "municipalityId",
-      "value" : "bind:pageParams.MunicipalityId",
+      "value" : "bind:Variables.CurrentFormObj.dataSet.data[$i].municipalityId",
       "type" : "number"
     } ],
     "operation" : "read",

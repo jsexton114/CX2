@@ -12,6 +12,11 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     };
     $scope.sharedWith;
     $scope.allFormStatus;
+
+
+
+
+
     $scope.FormStatusonSuccess = function(variable, data) {
         setFormStatusProgressValue(data);
     };
@@ -101,6 +106,27 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         }
 
     };
+
+    $scope.GetWriteAccessGroupMembersByFormGUIDonSuccess = function(variable, data) {
+        var temp = $scope.Variables.loggedInUser.dataSet.roles;
+        var isCXAdminMunicipalityAdmin = 0;
+        //Checking if user is muniadmin or cxadmin
+        for (let i = 0; i < temp.length; i++) {
+            if ((temp[i] == "MunicipalityAdmin") || (temp[i] == "CXAdmin")) {
+                isCXAdminMunicipalityAdmin = 1;
+            }
+        }
+        //Checking user is in writeAccess group of that status, if not return -1
+        var found = _.findIndex(data.content, {
+            'UserId': _.parseInt($scope.Variables.loggedInUser.dataSet.id)
+        });
+
+        // If not muniadmin or cxadmin OR not in group then hide tab
+        if (!((isCXAdminMunicipalityAdmin == 1) || (found > -1))) {
+            $scope.Widgets.tabpaneLocation.show = false;
+        }
+    };
+
 }]);
 
 

@@ -410,6 +410,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/GetWriteAccessGroupMembersByFormGUID", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeGetWriteAccessGroupMembersByFormGUID(@RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query GetWriteAccessGroupMembersByFormGUID");
+        Page<Object> result = queryService.executeGetWriteAccessGroupMembersByFormGUID(pageable, FormGUID);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/InsertCategoryMapping", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeInsertCategoryMapping(@RequestParam(value = "FormTypeId", required = false) java.lang.Integer FormTypeId, @RequestParam(value = "FormCategoryId", required = false) java.lang.Integer FormCategoryId) throws QueryParameterMismatchException {

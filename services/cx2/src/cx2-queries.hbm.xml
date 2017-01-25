@@ -186,6 +186,11 @@
       select UserId from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)
     ]]>
   </sql-query>
+  <sql-query name="GetWriteAccessGroupMembersByFormGUID">
+    <![CDATA[
+      select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF,FormStatuses FS where  MF.FormGUID=:FormGUID and MF.FormStatusId=FS.ID and FS.WriteAccess=MG.ID and MG.ID=MGM.MunicipalityGroupId
+    ]]>
+  </sql-query>
   <sql-query name="InsertCategoryMapping">
     <![CDATA[
       insert into FormCategoryMapping(FormTypeId,FormCategoryId) values(:FormTypeId,:FormCategoryId)

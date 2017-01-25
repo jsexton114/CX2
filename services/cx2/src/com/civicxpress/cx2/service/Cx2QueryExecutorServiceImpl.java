@@ -357,6 +357,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeGetWriteAccessGroupMembersByFormGUID(Pageable pageable, java.lang.String FormGUID)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("FormGUID", FormGUID);
+        return queryExecutor.executeNamedQuery("GetWriteAccessGroupMembersByFormGUID", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeInsertCategoryMapping( java.lang.Integer FormTypeId ,java.lang.Integer FormCategoryId)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

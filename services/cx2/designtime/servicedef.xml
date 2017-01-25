@@ -366,6 +366,10 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="GetWriteAccessGroupMembersByFormGUID">
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
@@ -540,6 +544,10 @@
     <operation operationType="nativequery" name="getUserIdFromPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2getUserIdFromPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="GetWriteAccessGroupMembersByFormGUID">
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2GetWriteAccessGroupMembersByFormGUIDrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="InsertCategoryMapping">
         <parameter name="FormTypeId" typeRef="java.lang.Integer" isList="false"/>
@@ -1622,6 +1630,12 @@
             <element name="Photo" typeRef="[B"/>
             <element name="PostalCode" typeRef="java.lang.String"/>
             <element name="StateId" typeRef="java.math.BigDecimal"/>
+        </dataobject>
+        <dataobject javaType="cx2GetWriteAccessGroupMembersByFormGUIDrtnType">
+            <element name="GroupName" typeRef="java.lang.String"/>
+            <element name="ID" typeRef="java.math.BigDecimal"/>
+            <element name="MunicipalityGroupId" typeRef="java.math.BigDecimal"/>
+            <element name="UserId" typeRef="java.math.BigDecimal"/>
         </dataobject>
         <dataobject javaType="cx2InsertCategoryMappingrtnType"/>
         <dataobject javaType="cx2InsertGroupsrtnType"/>

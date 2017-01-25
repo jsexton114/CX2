@@ -1113,6 +1113,29 @@
       "UserId" : "java.math.BigDecimal"
     }
   }, {
+    "name" : "GetWriteAccessGroupMembersByFormGUID",
+    "query" : "select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF,FormStatuses FS where  MF.FormGUID=:FormGUID and MF.FormStatusId=FS.ID and FS.WriteAccess=MG.ID and MG.ID=MGM.MunicipalityGroupId",
+    "comment" : "GetWriteAccessGroupMembersByFormGUID using formstatuses",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "FormGUID",
+      "paramType" : "java.lang.String",
+      "testValue" : "any7fS8UWUOP5ukVeYaTWwdNZutxlBjk",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2GetWriteAccessGroupMembersByFormGUIDrtnType",
+    "returnTypeMetadata" : {
+      "GroupName" : "java.lang.String",
+      "ID" : "java.math.BigDecimal",
+      "MunicipalityGroupId" : "java.math.BigDecimal",
+      "UserId" : "java.math.BigDecimal"
+    }
+  }, {
     "name" : "InsertCategoryMapping",
     "query" : "insert into FormCategoryMapping(FormTypeId,FormCategoryId) values(:FormTypeId,:FormCategoryId)",
     "comment" : "InsertCategoryMapping",

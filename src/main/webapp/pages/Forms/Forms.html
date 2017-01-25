@@ -283,7 +283,8 @@
                         <wm-gridrow name="gridrow20">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn40"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn41">
-                                <wm-search name="searchAddress" placeholder="Search Address" dataset="bind:Variables.GISRecords.dataSet" searchkey="city,streetName,streetNumber" displaylabel="streetNumber" datafield="All Fields"></wm-search>
+                                <wm-search name="searchAddress" placeholder="Search Address" dataset="bind:Variables.GISRecords.dataSet" searchkey="streetName" displaylabel="bind:$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
+                                datafield="All Fields"></wm-search>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn44"></wm-gridcolumn>
                         </wm-gridrow>
@@ -313,10 +314,19 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane9" title="BY SUBDIVISION">
                     <wm-layoutgrid name="layoutgrid9">
+                        <wm-gridrow name="gridrow40_1" padding="unset unset .5em unset">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn95_1"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn96_1">
+                                <wm-search placeholder="Search Subdivision" dataset="bind:Variables.Subdivisions.dataSet" searchkey="subShortCode,subdivision" displaylabel="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]" datafield="All Fields"
+                                name="searchFliterSubdivisions"></wm-search>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn97_1"></wm-gridcolumn>
+                        </wm-gridrow>
                         <wm-gridrow name="gridrow24">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn52"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn53">
-                                <wm-search placeholder="Search Address" dataset="bind:Variables.GISRecords.dataSet" searchkey="subdivisions.subShortCode,subdivisions.subdivision" displaylabel="streetNumber" datafield="All Fields" name="searchSubdivision"></wm-search>
+                                <wm-search placeholder="Search Lot" dataset="bind:Variables.GISLotRecords.dataSet" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
+                                datafield="All Fields" name="searchSubdivision" show="bind:Widgets.searchFliterSubdivisions.datavalue!=undefined"></wm-search>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn54"></wm-gridcolumn>
                         </wm-gridrow>
@@ -349,9 +359,17 @@
                         <wm-gridrow name="gridrow28">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn64"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn65">
-                                <wm-search placeholder="Search Address" dataset="bind:Variables.GISRecords.dataSet" searchkey="parcel" displaylabel="streetNumber" datafield="All Fields" name="searchParcel"></wm-search>
+                                <wm-search placeholder="Search Parcel" dataset="bind:Variables.GISRecords.dataSet" searchkey="parcel" displaylabel="bind:$[data[$i].parcel]+&quot;-->&quot;+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
+                                datafield="All Fields" name="searchParcel"></wm-search>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn66"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow41_1">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn98_1"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn99">
+                                <wm-label padding="unset 0.5em" name="label23_1" caption="Example: 13-11-21-00-08-010.000"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn100"></wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow29">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn67"></wm-gridcolumn>

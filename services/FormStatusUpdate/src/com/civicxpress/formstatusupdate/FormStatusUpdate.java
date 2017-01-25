@@ -57,7 +57,7 @@ public class FormStatusUpdate {
      */
  public String sendStatusUpdateMail(String username ,String recipient,String emailSubject,String emailBody,String municipality,String formType,String municipalitySignature) throws MessagingException {
         
-        emailBody = "Hi" + " "+username+","+"<br /><br />";
+        String emailContent = "Hi" + " "+username+","+"<br /><br />";
         
         Properties props = System.getProperties();
         props.put("mail.smtp.starttls.enable", "true");
@@ -74,12 +74,12 @@ public class FormStatusUpdate {
         message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
         
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+        emailContent =emailContent+"Status of your form: "+formType + "<br/>"+" Submitted for the Municipality-";
+        emailContent =emailContent+municipality + "<br/>";
         
-        emailBody =municipality + "<br/>";
-        emailBody =formType + "<br/>";
-        emailBody =emailBody+ "Thank you!<br/>"+ municipalitySignature +"<br/>";
+        emailContent =emailContent+emailBody+ "<br/>"+ municipalitySignature +"<br/>";
         message.setSubject(emailSubject);
-        message.setContent(emailBody, "text/html");
+        message.setContent(emailContent, "text/html");
         // Send smtp message
         Transport tr = session.getTransport("smtp");
         tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
