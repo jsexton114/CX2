@@ -214,6 +214,7 @@
                                         <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
                                     </wm-liveform>
                                 </wm-livegrid>
+                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.Gis2formsData.dataSet.data[$i].gisrecords" zoom="5" markertype="Address" address="streetNumber streetName city states.stateName"></wm-prefab>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneAttachments" title="ATTACHMENTS"></wm-tabpane>
                             <wm-tabpane name="tabpaneContacts" title="CONTACTS">
