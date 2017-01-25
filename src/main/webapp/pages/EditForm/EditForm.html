@@ -28,15 +28,14 @@
                                                 <wm-panel iconclass="wi wi-info-outline" name="panelFormInfo" title="Form Details" class="panel-primary">
                                                     <wm-gridrow name="gridrow3">
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn4">
-                                                            <wm-form-field name="formType" displayname="Form Design Name" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                                            defaultvalue="bind:Variables.ReadFormType.firstRecord.formType"></wm-form-field>
+                                                            <wm-form-field name="formType" displayname="Form Design Name" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn17" horizontalalign="left">
-                                                            <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder="" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].active"></wm-form-field>
+                                                            <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn3">
                                                             <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="true" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" widget="checkbox"
-                                                            placeholder="" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].municipalityInternalForm"></wm-form-field>
+                                                            placeholder=""></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-panel>
@@ -162,13 +161,13 @@
                                                         <wm-gridrow name="gridrow44_1">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn70">
                                                                 <wm-form-field displayname="Date Option" widget="radioset" show="true" type="custom" name="prefixDate" dataset="bind:Variables.stvPrefixDateOptions.dataSet" datafield="value" displayfield="label"
-                                                                usekeys="false" layout="inline" required="true"></wm-form-field>
+                                                                usekeys="false" layout="inline" required="true" on-change="prefixDateChange($event, $scope, newVal, oldVal)"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow45_1">
                                                             <wm-gridcolumn columnwidth="5" name="gridcolumn72_1">
                                                                 <wm-form-field displayname="Number" widget="radioset" show="true" type="custom" name="prefixNumber" dataset="bind:Variables.stvPrefixNumberOptions.dataSet" datafield="value" displayfield="label"
-                                                                required="true" layout="stacked"></wm-form-field>
+                                                                required="true" layout="stacked" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.prefixDate.datavalue == 'None'"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="7" name="gridcolumn72_2">
                                                                 <wm-layoutgrid name="layoutgrid11">
@@ -186,8 +185,22 @@
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow46_1">
-                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn73_1">
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn73_1">
                                                                 <wm-form-field displayname="Separate by Dashes" widget="checkbox" show="true" type="custom" name="prefixDashes"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="8" name="gridcolumn75_1">
+                                                                <wm-layoutgrid name="layoutgrid12">
+                                                                    <wm-gridrow name="gridrow49">
+                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn76_2">
+                                                                            <wm-label padding="unset 0.5em" name="label10_1" caption="Preview"></wm-label>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                    <wm-gridrow name="gridrow50">
+                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn78">
+                                                                            <wm-label padding="unset 0.5em" name="label11_1" caption="bind:generateFormTitlePreview()"></wm-label>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                </wm-layoutgrid>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>

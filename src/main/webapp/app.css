@@ -25,3 +25,13 @@
 .x-ng-cloak {
     display: none !important;
 }
+label.app-radioset-label.disabled > input + .caption:before {
+    -moz-box-shadow: inset 0 0 0 3px #aaa;
+    -webkit-box-shadow: inset 0 0 0 3px #aaa;
+    box-shadow: inset 0 0 0 3px #aaa;
+    background-color: #aaa;
+}
+label.app-radioset-label.disabled > input:checked + .caption:before {
+    border: 2px #555 solid;
+    background-color: #555;
+}
