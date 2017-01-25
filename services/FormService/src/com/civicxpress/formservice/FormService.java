@@ -82,7 +82,14 @@ public class FormService {
 ////    	}
 //    	
 //    	try {
-//    		submitForm(2L, 42L);
+//    		HashMap<String, Object> testValues = new HashMap<String, Object>();
+//    		testValues.put("PhoneNumber", "245736");
+//    		testValues.put("EmailAddress", "test@test.org");
+//    		testValues.put("TestAddress", "Test Address");
+//    		testValues.put("TotalSqft", "200");
+//    		testValues.put("TotalUnits", null);
+//    		testValues.put("Basement", null);
+//    		submitForm("1F2C994B-49E3-E611-80C9-0CC47A46DD63", testValues);
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
@@ -190,10 +197,8 @@ public class FormService {
 	        formCreateParams.put("newFormTypeId", newFormTypeId);
 	        
 	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormStatuses (FormTypeId, ConsiderClosed, SortOrder, Status, Description, SendEmail) "
-	        		+ "VALUES (:newFormTypeId, 0, 1, 'Draft', 'Draft', 0)", formCreateParams);
-	        
-	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormStatuses (FormTypeId, ConsiderClosed, SortOrder, Status, Description, SendEmail) "
-	        		+ "VALUES (:newFormTypeId, 0, 2, 'Application Review', 'Application Review', 1)", formCreateParams);
+	        		+ "VALUES (:newFormTypeId, 0, 1, 'Draft', 'Draft', 0),"
+	        		+ " (:newFormTypeId, 0, 2, 'Application Review', 'Application Review', 1)", formCreateParams);
 	        
 	        DBUtils.simpleUpdateQuery(muniDbConn, "CREATE TABLE "+formTableName+" ("
 	    			+"ID numeric(10) identity(1,1), "
@@ -288,8 +293,8 @@ public class FormService {
 	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(0).getLong("ID");
 	    	queryParams.put("newFormStatusId", newFormStatusId);
 	    	
-	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, FormStatusId, Closed, FormTitle) "
-	    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :newFormStatusId, 0, 'open')", queryParams);
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, FormStatusId, Closed) "
+	    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :newFormStatusId, 0)", queryParams);
 	    	
 	    	cx2Conn.commit();
 	    	muniDbConn.commit();
@@ -438,8 +443,8 @@ public class FormService {
 	    	
 	    	// Form title number
 	    	String numberOption = !dateOption.equalsIgnoreCase("None") ? formTypeData.getString("PrefixNumber") : "AutoIncrement";
-	    	Long currentPrefixNumber = formTypeData.getLong("CurrentPrefixNumber");
 	    	Integer prefixNumberStep = formTypeData.getInteger("PrefixNumberStep");
+	    	Long currentPrefixNumber = formTypeData.getLong("CurrentPrefixNumber") != null ? formTypeData.getLong("CurrentPrefixNumber") : prefixNumberStep;
     		Integer numberResetOn = formTypeData.getInteger("PrefixNumberResetOn");
 	    	Integer newResetTime = numberOption.equalsIgnoreCase("ResetMonth") ? today.get(Calendar.MONTH)+1 : today.get(Calendar.YEAR);
 	    	Long newPrefixNumber;
@@ -486,24 +491,28 @@ public class FormService {
 	    		}
 	    		
 	    		if (sfFee != null && !sfFee.equals(0)) {
-	    			Long totalSqft = Math.abs(Long.parseLong(fieldData.get("TotalSqft").toString()));
-	    			
-	    			if (!totalSqft.equals(0)) {
-	    				totalFees += (sfFee*totalSqft);
-	    				queryParams.put("sfFeeAmount", (sfFee*totalSqft));
-	    				queryParams.put("sfFeeAccountingCode", formTypeData.getString("SfFeeAccountingCode"));
-	    				formFeesValues.add("(:formGuid, :sfFeeAmount, 'Square Footage Fee', :sfFeeAccountingCode, 'Unpaid')");
+	    			if (fieldData.get("TotalSqft") != null) {
+		    			Long totalSqft = Math.abs(Long.parseLong(fieldData.get("TotalSqft").toString()));
+		    			
+		    			if (!totalSqft.equals(0)) {
+		    				totalFees += (sfFee*totalSqft);
+		    				queryParams.put("sfFeeAmount", (sfFee*totalSqft));
+		    				queryParams.put("sfFeeAccountingCode", formTypeData.getString("SfFeeAccountingCode"));
+		    				formFeesValues.add("(:formGuid, :sfFeeAmount, 'Square Footage Fee', :sfFeeAccountingCode, 'Unpaid')");
+		    			}
 	    			}
 	    		}
 	    		
 	    		if (unitFee != null && !unitFee.equals(0)) {
-	    			Long totalUnits = Math.abs(Long.parseLong(fieldData.get("TotalUnits").toString()));
-	    			
-	    			if (!totalUnits.equals(0)) {
-	    				totalFees += (unitFee*totalUnits);
-	    				queryParams.put("unitFeeAmount", (unitFee*totalUnits));
-	    				queryParams.put("unitFeeAccountingCode", formTypeData.getString("UnitFeeAccountingCode"));
-	    				formFeesValues.add("(:formGuid, :unitFeeAmount, 'Unit Fee', :unitFeeAccountingCode, 'Unpaid')");
+	    			if (fieldData.get("TotalUnits") != null) {
+		    			Long totalUnits = Math.abs(Long.parseLong(fieldData.get("TotalUnits").toString()));
+		    			
+		    			if (!totalUnits.equals(0)) {
+		    				totalFees += (unitFee*totalUnits);
+		    				queryParams.put("unitFeeAmount", (unitFee*totalUnits));
+		    				queryParams.put("unitFeeAccountingCode", formTypeData.getString("UnitFeeAccountingCode"));
+		    				formFeesValues.add("(:formGuid, :unitFeeAmount, 'Unit Fee', :unitFeeAccountingCode, 'Unpaid')");
+		    			}
 	    			}
 	    		}
 	    		
@@ -541,16 +550,16 @@ public class FormService {
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterForms SET FormStatusId=:newFormStatusId, TotalFees=:totalFees, TotalPayment='0', BalanceDue=:totalFees, FormTitle=:formTitle", queryParams);
 	    	
 	    	queryParams.put("oldFormStatusId", masterFormData.getLong("FormStatusId"));
-	    	queryParams.put("createUserId", Integer.parseInt(securityService.getUserId()));
+	    	queryParams.put("createUserId", Integer.parseInt(securityService.getLoggedInUser().getUserId()));
 	    	queryParams.put("createdTime", datetimeFormatter.format(today.getTime()));
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormHistory "
 	    			+"(FormGUID, FormTypeId, NewStatusId, OldStatusId, CreatedBy, CreatedTime) "
-	    			+"VALUES (:formGuid, :newFormStatusId, :oldFormStatusId, :createUserId, :createdTime)",
+	    			+"VALUES (:formGuid, :formTypeId, :newFormStatusId, :oldFormStatusId, :createUserId, :createdTime)",
 	    			queryParams);
 	    	
 	    	cx2Conn.commit();
-    	} catch (SQLException e) {
+    	} catch (Exception e) {
     		cx2Conn.rollback();
     		logger.error(e.getLocalizedMessage());
     		throw e;
