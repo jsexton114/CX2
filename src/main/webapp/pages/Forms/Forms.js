@@ -71,7 +71,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.UpdateFormStatusInMasterFormsonSuccess = function(variable, data) {
         // Setting  Closed or Open according to Status
         $scope.Variables.CloseOrOpenFormByGUID.setInput({
-            'closed': $scope.Widgets.selectStatus.datavalue.considerClosed,
+            'closed': $scope.Widgets.selectStatus.datavalue.considerClosed || false,
             'FormGUID': $scope.pageParams.FormGUID
         });
         $scope.Variables.CloseOrOpenFormByGUID.update();
