@@ -81,3 +81,17 @@ Application.$controller("gridFormTypesController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("confirmDeleteFormDesignController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("dialogDeleteFormDesignController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
