@@ -549,7 +549,7 @@ public class FormService {
 	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(1).getLong("ID");
 	    	queryParams.put("newFormStatusId", newFormStatusId);
 	    	
-	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterForms SET FormStatusId=:newFormStatusId, TotalFees=:totalFees, TotalPayment='0', BalanceDue=:totalFees, FormTitle=:formTitle", queryParams);
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterForms SET FormStatusId=:newFormStatusId, TotalFees=:totalFees, TotalPayment='0', BalanceDue=:totalFees, FormTitle=:formTitle WHERE FormGUID=:formGuid", queryParams);
 	    	
 	    	queryParams.put("oldFormStatusId", masterFormData.getLong("FormStatusId"));
 	    	queryParams.put("createUserId", securityService.getUserId());
