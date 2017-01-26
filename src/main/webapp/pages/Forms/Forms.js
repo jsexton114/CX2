@@ -18,14 +18,19 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
 
     $scope.FormStatusonSuccess = function(variable, data) {
-        setFormStatusProgressValue(data);
+        setFormStatusProgressValue();
     };
 
     $scope.defaultObjectForSelectStatus = {};
     $scope.currentProgress = 0;
 
-    function setFormStatusProgressValue(statusListData) {
-        var currentStatusId = $scope.Variables.CurrentForm.dataSet.data[0].formStatusId;
+    function setFormStatusProgressValue(newStatusId) {
+        var statusListData = $scope.Variables.FormStatus.dataSet.data;
+        var currentStatusId = newStatusId || $scope.Variables.CurrentForm.dataSet.data[0].formStatusId;
+
+        if (!!newStatusId) {
+            $scope.defaultObjectForSelectStatus = statusListData[newStatusId];
+        }
 
         if (!!statusListData && !!currentStatusId) {
             $scope.allFormStatus = statusListData;
@@ -64,13 +69,14 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
 
     $scope.UpdateFormStatusInMasterFormsonSuccess = function(variable, data) {
-
         // Setting  Closed or Open according to Status
         $scope.Variables.CloseOrOpenFormByGUID.setInput({
             'closed': $scope.Widgets.selectStatus.datavalue.considerClosed,
             'FormGUID': $scope.pageParams.FormGUID
         });
         $scope.Variables.CloseOrOpenFormByGUID.update();
+
+        setFormStatusProgressValue($scope.Widgets.selectStatus._proxyModel.id);
 
         //Sending mail to  CreatedBy
 
@@ -203,8 +209,8 @@ Application.$controller("dialogParcelController", ["$scope",
 ]);
 
 Application.$controller("dlgFormSubmittedController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
