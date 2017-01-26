@@ -972,7 +972,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.Cx2FormTypesData.listRecords()",
+    "onSuccess" : "Variables.ExecuteGetFormsForMunicpality.invoke();Variables.ncFormTypeDeleted.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -1479,6 +1479,30 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.FormCategories"
+  },
+  "ncFormTypeDeleted" : {
+    "_id" : "wm-ncFormTypeDeleted-wm.NotificationVariable-1485466751477",
+    "name" : "ncFormTypeDeleted",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "SUCCESS<br />The record has been removed",
+      "type" : "string"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
   },
   "SelectedMunicipalityObj" : {
     "_id" : "wm-SelectedMunicipalityObj-wm.LiveVariable-1480067517718",
