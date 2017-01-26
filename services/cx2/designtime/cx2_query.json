@@ -1381,7 +1381,7 @@
     }
   }, {
     "name" : "RecordFormHistory",
-    "query" : "insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,:CreatedTime)",
+    "query" : "insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,SYSDATETIME())",
     "comment" : "RecordFormHistory",
     "description" : null,
     "nativeSql" : true,
@@ -1390,35 +1390,35 @@
     "queryParams" : [ {
       "paramName" : "FormGUID",
       "paramType" : "java.lang.String",
-      "testValue" : "sfddd",
+      "testValue" : "4318BA9D-D5E3-E611-80C9-0CC47A46DD63",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
     }, {
       "paramName" : "FormTypeId",
       "paramType" : "java.lang.Integer",
-      "testValue" : "1",
+      "testValue" : "58",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
     }, {
       "paramName" : "NewStatusId",
       "paramType" : "java.lang.Integer",
-      "testValue" : "1",
+      "testValue" : "51",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
     }, {
       "paramName" : "OldStatusId",
       "paramType" : "java.lang.Integer",
-      "testValue" : "1",
+      "testValue" : "50",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
     }, {
       "paramName" : "Comments",
       "paramType" : "java.lang.String",
-      "testValue" : "1",
+      "testValue" : "Here are some comments",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
@@ -1426,13 +1426,6 @@
       "paramName" : "CreatedBy",
       "paramType" : "java.lang.Integer",
       "testValue" : "3",
-      "systemParamName" : null,
-      "systemParam" : false,
-      "list" : false
-    }, {
-      "paramName" : "CreatedTime",
-      "paramType" : "java.sql.Timestamp",
-      "testValue" : "1484592234000",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false

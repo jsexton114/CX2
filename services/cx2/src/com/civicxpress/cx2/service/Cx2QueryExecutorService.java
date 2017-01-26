@@ -61,7 +61,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeMunicipalitiesGroupsCounts(Pageable pageable, java.lang.Integer municipality) throws QueryParameterMismatchException;
     Page<Object> executeMunicipalityCount(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, java.lang.Integer UserId, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
-	int executeRecordFormHistory(  java.lang.String FormGUID , java.lang.Integer FormTypeId , java.lang.Integer NewStatusId , java.lang.Integer OldStatusId , java.lang.String Comments , java.lang.Integer CreatedBy , java.sql.Timestamp CreatedTime) throws QueryParameterMismatchException;
+	int executeRecordFormHistory(  java.lang.String FormGUID , java.lang.Integer FormTypeId , java.lang.Integer NewStatusId , java.lang.Integer OldStatusId , java.lang.String Comments , java.lang.Integer CreatedBy) throws QueryParameterMismatchException;
 	int executeResetPasswordForUser(  java.lang.String newPassword , java.lang.String token) throws QueryParameterMismatchException;
 	int executeResetPasswordWithTokenForUser(  java.lang.Integer userid , java.lang.String token) throws QueryParameterMismatchException;
     Page<Object> executeStandardUserMunicipalites(Pageable pageable, java.lang.Integer USER) throws QueryParameterMismatchException;

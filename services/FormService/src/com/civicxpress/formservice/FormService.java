@@ -175,7 +175,9 @@ public class FormService {
     
     public Long saveFormType(Long municipalityId, String formType) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	cx2Conn.setAutoCommit(false);
         Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
+        muniDbConn.setAutoCommit(false);
     	Long newFormTypeId = null;
         
         try {

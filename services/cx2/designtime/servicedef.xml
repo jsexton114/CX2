@@ -216,16 +216,6 @@
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2ProcessFormsForUserByMunicipalityrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="RecordFormHistory">
-        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
-        <parameter name="FormTypeId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="NewStatusId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="OldStatusId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="Comments" typeRef="java.lang.String" isList="false"/>
-        <parameter name="CreatedBy" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="CreatedTime" typeRef="java.sql.Timestamp" isList="false"/>
-        <return typeRef="cx2RecordFormHistoryrtnType" isList="false"/>
-    </operation>
     <operation operationType="nativequery" name="resetPasswordForUser">
         <parameter name="newPassword" typeRef="java.lang.String" isList="false"/>
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
@@ -370,6 +360,15 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="RecordFormHistory">
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="FormTypeId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="NewStatusId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="OldStatusId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Comments" typeRef="java.lang.String" isList="false"/>
+        <parameter name="CreatedBy" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
@@ -597,7 +596,6 @@
         <parameter name="OldStatusId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="Comments" typeRef="java.lang.String" isList="false"/>
         <parameter name="CreatedBy" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="CreatedTime" typeRef="java.sql.Timestamp" isList="false"/>
         <return typeRef="cx2RecordFormHistoryrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="resetPasswordForUser">

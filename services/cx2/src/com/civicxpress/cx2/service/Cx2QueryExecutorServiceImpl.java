@@ -437,7 +437,7 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
-	public int executeRecordFormHistory( java.lang.String FormGUID ,java.lang.Integer FormTypeId ,java.lang.Integer NewStatusId ,java.lang.Integer OldStatusId ,java.lang.String Comments ,java.lang.Integer CreatedBy ,java.sql.Timestamp CreatedTime)
+	public int executeRecordFormHistory( java.lang.String FormGUID ,java.lang.Integer FormTypeId ,java.lang.Integer NewStatusId ,java.lang.Integer OldStatusId ,java.lang.String Comments ,java.lang.Integer CreatedBy)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("FormGUID", FormGUID);
@@ -446,7 +446,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("OldStatusId", OldStatusId);
         params.put("Comments", Comments);
         params.put("CreatedBy", CreatedBy);
-        params.put("CreatedTime", CreatedTime);
         return queryExecutor.executeNamedQueryForUpdate("RecordFormHistory", params);
 	}
 	@Transactional(value = "cx2TransactionManager")

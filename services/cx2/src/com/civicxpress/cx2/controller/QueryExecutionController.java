@@ -502,9 +502,9 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/RecordFormHistory", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public int executeRecordFormHistory(@RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID, @RequestParam(value = "FormTypeId", required = false) java.lang.Integer FormTypeId, @RequestParam(value = "NewStatusId", required = false) java.lang.Integer NewStatusId, @RequestParam(value = "OldStatusId", required = false) java.lang.Integer OldStatusId, @RequestParam(value = "Comments", required = false) java.lang.String Comments, @RequestParam(value = "CreatedBy", required = false) java.lang.Integer CreatedBy, @RequestParam(value = "CreatedTime", required = false) java.sql.Timestamp CreatedTime) throws QueryParameterMismatchException {
+    public int executeRecordFormHistory(@RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID, @RequestParam(value = "FormTypeId", required = false) java.lang.Integer FormTypeId, @RequestParam(value = "NewStatusId", required = false) java.lang.Integer NewStatusId, @RequestParam(value = "OldStatusId", required = false) java.lang.Integer OldStatusId, @RequestParam(value = "Comments", required = false) java.lang.String Comments, @RequestParam(value = "CreatedBy", required = false) java.lang.Integer CreatedBy) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query RecordFormHistory");
-        int result = queryService.executeRecordFormHistory(FormGUID, FormTypeId, NewStatusId, OldStatusId, Comments, CreatedBy, CreatedTime);
+        int result = queryService.executeRecordFormHistory(FormGUID, FormTypeId, NewStatusId, OldStatusId, Comments, CreatedBy);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

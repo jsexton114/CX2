@@ -233,7 +233,7 @@
   </query>
   <sql-query name="RecordFormHistory">
     <![CDATA[
-      insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,:CreatedTime)
+      insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,SYSDATETIME())
     ]]>
   </sql-query>
   <sql-query name="resetPasswordForUser">
