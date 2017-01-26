@@ -59,8 +59,8 @@ public class FormController {
         formService.saveFormTypeField(formTypeId, label, fieldTypeId, displayOrder, required, defaultValue, helpText, possibleValues);
     }
 
-    @RequestMapping(value = "/submitForm", method = RequestMethod.POST)
-    public void submitForm(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestBody HashMap<String, Object> fieldData) throws SQLException {
-        formService.submitForm(formGuid, fieldData);
+    @RequestMapping(value = "/submitForm", produces = "application/json", method = RequestMethod.POST)
+    public String submitForm(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestBody HashMap<String, Object> fieldData) throws SQLException {
+        return formService.submitForm(formGuid, fieldData);
     }
 }

@@ -86,6 +86,7 @@ public class FormService {
 //    		testValues.put("PhoneNumber", "245736");
 //    		testValues.put("EmailAddress", "test@test.org");
 //    		testValues.put("TestAddress", "Test Address");
+//    		testValues.put("CreatedDate", 1485353756034L);
 //    		testValues.put("TotalSqft", "200");
 //    		testValues.put("TotalUnits", null);
 //    		testValues.put("Basement", null);
@@ -399,9 +400,10 @@ public class FormService {
     	}
     }
     
-    public void submitForm(String formGuid, HashMap<String, Object> fieldData) throws SQLException {
+    public String submitForm(String formGuid, HashMap<String, Object> fieldData) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
     	cx2Conn.setAutoCommit(false);
+    	String returnMessage = "";
     	
     	try {
 	    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
@@ -523,7 +525,7 @@ public class FormService {
     				formFeesValues.add("(:formGuid, :stateFeeAmount, 'Unit Fee', :stateFeeAccountingCode, 'Unpaid')");
 	    		}
 	    		
-	    		if (basementFee != null && !basementFee.equals(0) && fieldData.get("Basement") != null ? fieldData.get("Basement").toString().equals("true") : false) {
+	    		if (basementFee != null && !basementFee.equals(0) && (Boolean) fieldData.get("Basement")) {
 	    			totalFees += basementFee;
 	    			queryParams.put("basementFeeAmount", basementFee);
 	    			queryParams.put("basementFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
@@ -550,7 +552,7 @@ public class FormService {
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterForms SET FormStatusId=:newFormStatusId, TotalFees=:totalFees, TotalPayment='0', BalanceDue=:totalFees, FormTitle=:formTitle", queryParams);
 	    	
 	    	queryParams.put("oldFormStatusId", masterFormData.getLong("FormStatusId"));
-	    	queryParams.put("createUserId", Integer.parseInt(securityService.getLoggedInUser().getUserId()));
+	    	queryParams.put("createUserId", securityService.getUserId());
 	    	queryParams.put("createdTime", datetimeFormatter.format(today.getTime()));
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormHistory "
@@ -566,6 +568,8 @@ public class FormService {
     	} finally {
     		cx2Conn.close();
     	}
+    	
+    	return returnMessage;
     }
 
 }
