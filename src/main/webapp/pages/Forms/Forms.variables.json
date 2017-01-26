@@ -8434,7 +8434,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.FormHistoryData.listRecords()",
+    "onSuccess" : "Variables.FormHistoryData.listRecords();RecordFormHistoryonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

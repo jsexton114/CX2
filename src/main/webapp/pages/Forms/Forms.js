@@ -70,7 +70,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
     $scope.UpdateFormStatusInMasterFormsonSuccess = function(variable, data) {
         setFormStatusProgressValue($scope.Widgets.selectStatus._proxyModel.id);
-        $scope.Widgets.textareaNotes.reset();
 
         //Sending mail to  CreatedBy
         $scope.Variables.SendStatusUpdate.setInput({
@@ -123,6 +122,11 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         if (!((isCXAdminMunicipalityAdmin == 1) || (found > -1))) {
             $scope.Widgets.tabpaneLocation.show = false;
         }
+    };
+
+
+    $scope.RecordFormHistoryonSuccess = function(variable, data) {
+        $scope.Widgets.textareaNotes.reset();
     };
 
 }]);
