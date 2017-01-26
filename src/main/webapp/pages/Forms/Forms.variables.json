@@ -87,34 +87,6 @@
     "isList" : true,
     "saveInPhonegap" : false
   },
-  "CloseOrOpenFormByGUID" : {
-    "_id" : "wm-CloseOrOpenFormByGUID-wm.ServiceVariable-1484914505710",
-    "name" : "CloseOrOpenFormByGUID",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "FormGUID",
-      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formGuid",
-      "type" : "string"
-    } ],
-    "type" : "cx2CloseOrOpenFormByGUIDrtnType",
-    "service" : "cx2",
-    "operation" : "executeCloseOrOpenFormByGUID",
-    "operationId" : "QueryExecutionController_executeCloseOrOpenFormByGUID",
-    "operationType" : "put",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
   "CurrentForm" : {
     "_id" : "wm-CurrentForm-wm.LiveVariable-1485170742325",
     "name" : "CurrentForm",
@@ -8449,7 +8421,7 @@
       "type" : "string"
     }, {
       "target" : "OldStatusId",
-      "value" : "bind:pageParams.FormStatusId",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formStatuses.id",
       "type" : "integer"
     } ],
     "type" : "cx2RecordFormHistoryrtnType",
@@ -8462,6 +8434,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.FormHistoryData.listRecords()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -9925,8 +9898,12 @@
       "type" : "integer"
     }, {
       "target" : "FormGUID",
-      "value" : "bind:pageParams.FormGUID",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formGuid",
       "type" : "string"
+    }, {
+      "target" : "closed",
+      "value" : "bind:Widgets.selectStatus.datavalue.considerClosed || false",
+      "type" : "boolean"
     } ],
     "type" : "cx2UpdateFormStatusInMasterFormsrtnType",
     "service" : "cx2",
@@ -9938,7 +9915,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.UpdateProcessOwnersForGUID.invoke();Variables.RecordFormHistory.invoke();UpdateFormStatusInMasterFormsonSuccess($event, $scope);UpdateFormStatusInMasterFormsonSuccess1($event, $scope);Variables.CurrentForm.listRecords()",
+    "onSuccess" : "Variables.UpdateProcessOwnersForGUID.invoke();Variables.RecordFormHistory.invoke();UpdateFormStatusInMasterFormsonSuccess($event, $scope);Variables.CurrentForm.listRecords()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

@@ -36,11 +36,6 @@
       select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user and RoleName='MunicipalityEmployee'
     ]]>
   </sql-query>
-  <sql-query name="CloseOrOpenFormByGUID">
-    <![CDATA[
-      update MasterForms set Closed=:closed where FormGUID=:FormGUID
-    ]]>
-  </sql-query>
   <sql-query name="CountOfFormsForMunicipality">
     <![CDATA[
       select count(distinct FT.ID) from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.MunicipalityId=:MunicipalityId and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID
@@ -279,7 +274,7 @@
   </sql-query>
   <sql-query name="UpdateFormStatusInMasterForms">
     <![CDATA[
-      Update MasterForms set FormStatusId=:formStatus where FormGUID=:FormGUID
+      Update MasterForms set FormStatusId=:formStatus, Closed=:closed where FormGUID=:FormGUID
     ]]>
   </sql-query>
   <sql-query name="UpdateGlobalEmailSig">

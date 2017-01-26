@@ -22,7 +22,6 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeBannedDetails(Pageable pageable, java.lang.String emailid) throws QueryParameterMismatchException;
     Page<Object> executeCheckingUserWithInVendorUsers(Pageable pageable, java.lang.Integer user, java.lang.Integer vendor) throws QueryParameterMismatchException;
     Page<Object> executeCheckingUserWithMunicipalityInRoles(Pageable pageable, java.lang.Integer muncipality, java.lang.Integer user) throws QueryParameterMismatchException;
-	int executeCloseOrOpenFormByGUID(  java.lang.Boolean closed , java.lang.String FormGUID) throws QueryParameterMismatchException;
     Page<Object> executeCountOfFormsForMunicipality(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeCountOfMuncipalityApplicationsByVendor(Pageable pageable, java.lang.Integer VendorId) throws QueryParameterMismatchException;
     Page<Object> executeCountOfProcessFormsByMuncipality(Pageable pageable, java.lang.Integer UserId, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
@@ -70,7 +69,7 @@ public interface Cx2QueryExecutorService {
 	int executeUpdateAsCXVendorAdmin(  java.lang.String role , java.lang.Integer municipality , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateCFInProfile(  java.lang.String cf , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateDevFormDetailsForCXAdmin(  java.lang.String Report , java.lang.String FormTableName , java.lang.Integer form) throws QueryParameterMismatchException;
-	int executeUpdateFormStatusInMasterForms(  java.lang.Integer formStatus , java.lang.String FormGUID) throws QueryParameterMismatchException;
+	int executeUpdateFormStatusInMasterForms(  java.lang.Integer formStatus , java.lang.Boolean closed , java.lang.String FormGUID) throws QueryParameterMismatchException;
 	int executeUpdateGlobalEmailSig(  java.lang.String gs , java.lang.Integer municipality) throws QueryParameterMismatchException;
 	int executeUpdateInfoFromMyProfile(  java.lang.String fn , java.lang.String ln , java.lang.String em , java.lang.String ph , java.lang.String ad1 , java.lang.String ad2 , java.lang.Integer st , java.lang.String ct , java.lang.String ctry , java.lang.String pc , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateMunicipalityInfo(  java.lang.String mn , java.lang.String em , java.lang.String ph , java.lang.String ad1 , java.lang.String ad2 , java.lang.Integer st , java.lang.String ct , java.lang.String pc , java.lang.Integer municipality) throws QueryParameterMismatchException;

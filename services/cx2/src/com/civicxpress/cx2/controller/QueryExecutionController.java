@@ -110,16 +110,6 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
-    @RequestMapping(value = "/queries/CloseOrOpenFormByGUID", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public int executeCloseOrOpenFormByGUID(@RequestParam(value = "closed", required = false) java.lang.Boolean closed, @RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID) throws QueryParameterMismatchException {
-        LOGGER.debug("Executing named query CloseOrOpenFormByGUID");
-        int result = queryService.executeCloseOrOpenFormByGUID(closed, FormGUID);
-        LOGGER.debug("got the result of named query {}", result);
-        return result;
-    }
-
-    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/CountOfFormsForMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeCountOfFormsForMunicipality(@RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, Pageable pageable) throws QueryParameterMismatchException {
@@ -592,9 +582,9 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UpdateFormStatusInMasterForms", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public int executeUpdateFormStatusInMasterForms(@RequestParam(value = "formStatus", required = false) java.lang.Integer formStatus, @RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID) throws QueryParameterMismatchException {
+    public int executeUpdateFormStatusInMasterForms(@RequestParam(value = "formStatus", required = false) java.lang.Integer formStatus, @RequestParam(value = "closed", required = false) java.lang.Boolean closed, @RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query UpdateFormStatusInMasterForms");
-        int result = queryService.executeUpdateFormStatusInMasterForms(formStatus, FormGUID);
+        int result = queryService.executeUpdateFormStatusInMasterForms(formStatus, closed, FormGUID);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

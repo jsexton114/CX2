@@ -13,6 +13,11 @@
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2naaartnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="CloseOrOpenFormByGUID">
+        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2CloseOrOpenFormByGUIDrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="DeleteFromVendorUsers">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
@@ -52,11 +57,6 @@
         <parameter name="muncipality" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CheckingUserWithMunicipalityInRolesrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="CloseOrOpenFormByGUID">
-        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
-        <return typeRef="cx2CloseOrOpenFormByGUIDrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="CountOfFormsForMunicipality">
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
@@ -263,6 +263,7 @@
     </operation>
     <operation operationType="nativequery" name="UpdateFormStatusInMasterForms">
         <parameter name="formStatus" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2UpdateFormStatusInMasterFormsrtnType" isList="false"/>
     </operation>
@@ -404,11 +405,6 @@
         <parameter name="muncipality" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CheckingUserWithMunicipalityInRolesrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="CloseOrOpenFormByGUID">
-        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
-        <return typeRef="cx2CloseOrOpenFormByGUIDrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="CountOfFormsForMunicipality">
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
@@ -641,6 +637,7 @@
     </operation>
     <operation operationType="nativequery" name="UpdateFormStatusInMasterForms">
         <parameter name="formStatus" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2UpdateFormStatusInMasterFormsrtnType" isList="false"/>
     </operation>
@@ -1336,7 +1333,6 @@
         <dataobject javaType="cx2CheckingUserWithMunicipalityInRolesrtnType">
             <element name="exist" typeRef="java.lang.Integer"/>
         </dataobject>
-        <dataobject javaType="cx2CloseOrOpenFormByGUIDrtnType"/>
         <dataobject javaType="cx2CountOfFormsForMunicipalityrtnType">
             <element name="" typeRef="java.lang.Integer"/>
         </dataobject>

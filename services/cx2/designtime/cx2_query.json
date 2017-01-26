@@ -233,31 +233,6 @@
       "exist" : "java.lang.Integer"
     }
   }, {
-    "name" : "CloseOrOpenFormByGUID",
-    "query" : "update MasterForms set Closed=:closed where FormGUID=:FormGUID",
-    "comment" : "CloseOrOpenFormByGUID",
-    "description" : null,
-    "nativeSql" : true,
-    "returnsSingleResult" : false,
-    "update" : true,
-    "queryParams" : [ {
-      "paramName" : "closed",
-      "paramType" : "java.lang.Boolean",
-      "testValue" : "true",
-      "systemParamName" : null,
-      "systemParam" : false,
-      "list" : false
-    }, {
-      "paramName" : "FormGUID",
-      "paramType" : "java.lang.String",
-      "testValue" : "yny7fS8UWUOP5ukVeYaTWwdNZutxlBjk",
-      "systemParamName" : null,
-      "systemParam" : false,
-      "list" : false
-    } ],
-    "outputType" : "cx2CloseOrOpenFormByGUIDrtnType",
-    "returnTypeMetadata" : { }
-  }, {
     "name" : "CountOfFormsForMunicipality",
     "query" : "select count(distinct FT.ID) from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.MunicipalityId=:MunicipalityId and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID",
     "comment" : "CountOfFormsForMunicipality",
@@ -1659,7 +1634,7 @@
     "returnTypeMetadata" : { }
   }, {
     "name" : "UpdateFormStatusInMasterForms",
-    "query" : "Update MasterForms set FormStatusId=:formStatus where FormGUID=:FormGUID",
+    "query" : "Update MasterForms set FormStatusId=:formStatus, Closed=:closed where FormGUID=:FormGUID",
     "comment" : "UpdateFormStatusInMasterForms",
     "description" : null,
     "nativeSql" : true,
@@ -1669,6 +1644,13 @@
       "paramName" : "formStatus",
       "paramType" : "java.lang.Integer",
       "testValue" : "24",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "closed",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "false",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
