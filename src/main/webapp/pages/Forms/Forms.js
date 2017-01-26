@@ -2,6 +2,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     "use strict";
 
     var currentBreadCrumb = null;
+    var openClosedFormBreadCrumb = {};
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
@@ -9,6 +10,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         var breadCrumbs = $scope.Variables.BreadCrumb.dataSet;
         currentBreadCrumb = breadCrumbs[breadCrumbs.length - 1];
         currentBreadCrumb.link += $scope.pageParams.FormGUID;
+        openClosedFormBreadCrumb = $scope.Variables.BreadCrumb.dataSet[1];
     };
     $scope.sharedWith;
     $scope.allFormStatus;
@@ -28,21 +30,26 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         var statusListData = $scope.Variables.FormStatus.dataSet.data;
         var currentStatusId = newStatusId || $scope.Variables.CurrentForm.dataSet.data[0].formStatusId;
 
-        if (!!newStatusId) {
-            $scope.defaultObjectForSelectStatus = statusListData[newStatusId];
-        }
-
         if (!!statusListData && !!currentStatusId) {
             $scope.allFormStatus = statusListData;
             // For showing current Status of form
             var currentStatus = _.findIndex(statusListData, {
                 'id': _.parseInt(currentStatusId)
             });
+
             $scope.defaultObjectForSelectStatus = statusListData[currentStatus];
             $scope.currentProgress = parseInt(!!$scope.defaultObjectForSelectStatus.considerClosed ? 100 : ((currentStatus) / statusListData.length * 100));
             $timeout(function() {
                 var a = $('.livelist-status li.app-list-item:nth-child(' + (currentStatus + 1) + ')').addClass('active');
             });
+
+            if ($scope.defaultObjectForSelectStatus.considerClosed === true) {
+                openClosedFormBreadCrumb.label = 'Closed Forms';
+                openClosedFormBreadCrumb.link = '#/UserClosedForms';
+            } else {
+                openClosedFormBreadCrumb.label = 'Open Forms';
+                openClosedFormBreadCrumb.link = '#/UserOpenForms';
+            }
         }
     }
 
