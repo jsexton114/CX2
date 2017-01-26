@@ -70,9 +70,9 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
     $scope.UpdateFormStatusInMasterFormsonSuccess = function(variable, data) {
         setFormStatusProgressValue($scope.Widgets.selectStatus._proxyModel.id);
+        $scope.Widgets.textareaNotes.reset();
 
         //Sending mail to  CreatedBy
-
         $scope.Variables.SendStatusUpdate.setInput({
             'username': $scope.Variables.CurrentForm.dataSet.data[0].users.firstName,
             'recipient': $scope.Variables.CurrentForm.dataSet.data[0].users.email
