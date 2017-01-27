@@ -135,14 +135,21 @@
                                                 <wm-form-field name="dbUser" displayname="Db User" show="true" primary-key="false" generator="assigned" key="dbUser" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn name="gridcolumn3" columnwidth="6">
-                                                <wm-form-field name="dbPassword" displayname="Db Password" show="true" primary-key="false" generator="assigned" key="dbPassword" type="string" widget="password" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                <wm-form-field name="dbPassword" displayname="Db Password" show="true" primary-key="false" generator="assigned" key="dbPassword" type="string" widget="password" maxchars="255" inputtype="password" placeholder="Enter value"></wm-form-field>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow1">
+                                            <wm-gridcolumn name="gridcolumn1" columnwidth="6">
+                                                <wm-form-field name="userLimit" displayname="User Limit" show="true" primary-key="false" generator="assigned" key="userLimit" type="integer" required="required" step="0" widget="number" defaultvalue="10"></wm-form-field>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn name="gridcolumn2" columnwidth="6">
+                                                <wm-form-field name="formLimit" displayname="Form Limit" show="true" primary-key="false" generator="assigned" key="formLimit" type="integer" required="required" step="0" widget="number" defaultvalue="5"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
+                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
                                     <wm-form-field name="municipalityGuid" displayname="Municipality Guid" show="false" primary-key="false" generator="assigned" key="municipalityGuid" type="string" widget="text" maxchars="255" defaultvalue="bind:GUID"
                                     disabled="true" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                    placeholder=""></wm-form-field>
                                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                 </wm-liveform>
