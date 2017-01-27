@@ -145,7 +145,7 @@
                                     <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddVendor.open()" shortcutkey="" disabled="false"></wm-grid-action>
-                                    <wm-grid-row-action key="customRow" display-name="" title="" value="" iconclass="wi wi-trash" class="btn-transparent" show="true" action="deleteRow()"></wm-grid-row-action>
+                                    <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="Variables.DeleteVendorFromForm.invoke()"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-livegrid>
                         </wm-panel>

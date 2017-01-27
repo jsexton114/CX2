@@ -10729,7 +10729,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
@@ -10754,7 +10754,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -10786,7 +10786,13 @@
       "sqlType" : "timestamp",
       "unique" : false
     } ],
-    "constraints" : [ ],
+    "constraints" : [ {
+      "columns" : [ "RelatedFormGUID", "VendorId" ],
+      "composite" : true,
+      "name" : "UK_Vendors2Form_RelatedFoQTKT",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
     "entityName" : "Vendors2form",
     "fullyQualifiedName" : "com.civicxpress.cx2.Vendors2form",
     "name" : "Vendors2Form",

@@ -49,6 +49,15 @@ public interface Vendors2formService {
 	 */
 	Vendors2form findById(Integer vendors2formId);
 
+    /**
+	 * Find and return the Vendors2form for given relatedFormGuid  andvendorId  if exists.
+	 *
+	 * @param relatedFormGuid value of relatedFormGuid; value cannot be null.
+	 * @param vendorId value of vendorId; value cannot be null.
+	 * @return Vendors2form associated with the given inputs.
+     * @throws EntityNotFoundException if no matching Vendors2form found.
+	 */
+    Vendors2form getByRelatedFormGuidAndVendorId(String relatedFormGuid, Integer vendorId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing Vendors2form. It replaces all fields of the existing Vendors2form with the given vendors2form.
