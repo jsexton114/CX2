@@ -427,6 +427,32 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "userLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "10",
+          "scale" : 0
+        }, {
+          "fieldName" : "formLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FormLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "5",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "states",
@@ -1210,6 +1236,32 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "userLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "10",
+          "scale" : 0
+        }, {
+          "fieldName" : "formLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FormLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "5",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -1736,6 +1788,32 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "userLimit",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "UserLimit",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "10",
+        "scale" : 0
+      }, {
+        "fieldName" : "formLimit",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "FormLimit",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "5",
+        "scale" : 0
       } ],
       "entityName" : "Municipalities",
       "fullyQualifiedName" : "com.civicxpress.cx2.Municipalities",
@@ -2164,6 +2242,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "userLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "10",
+          "scale" : 0
+        }, {
+          "fieldName" : "formLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FormLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "5",
           "scale" : 0
         } ]
       }, {
