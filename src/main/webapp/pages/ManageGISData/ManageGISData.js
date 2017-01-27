@@ -12,6 +12,7 @@ Application.$controller("ManageGISDataPageController", ["$scope", function($scop
          * e.g. to get value of text widget named 'username' use following script
          * '$scope.Widgets.username.datavalue'
          */
+
     };
 
 }]);
@@ -62,15 +63,15 @@ Application.$controller("liveform3Controller", ["$scope",
 ]);
 
 Application.$controller("dialogSubdivisonParcelsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("grid3_1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

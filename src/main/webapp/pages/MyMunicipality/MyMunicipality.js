@@ -1,8 +1,8 @@
-Application.$controller("MyMunicipalityPageController", ["$scope", function ($scope) {
+Application.$controller("MyMunicipalityPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
+    $scope.onPageReady = function() {
         /*
          * variables can be accessed through '$scope.Variables' property here
          * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
@@ -12,6 +12,14 @@ Application.$controller("MyMunicipalityPageController", ["$scope", function ($sc
          * e.g. to get value of text widget named 'username' use following script
          * '$scope.Widgets.username.datavalue'
          */
+    };
+
+
+    $scope.tile7Click = function($event, $isolateScope) {
+        $scope.Variables.goToPage_ManageGISData.setData({
+            'from': '8mE9'
+        });
+        $scope.Variables.goToPage_ManageGISData.navigate();
     };
 
 }]);

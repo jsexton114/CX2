@@ -1295,7 +1295,7 @@
       "type" : "integer"
     }, {
       "target" : "role",
-      "value" : "bind:Variables.loggedInUser.dataSet.roles",
+      "value" : "bind:(pageParams.from=='4mA8')?'MunicipalityAdmin':'MunicipalityEmployee'",
       "type" : "string"
     } ],
     "type" : "cx2EmployeesOrAdminsMunicipalitiesrtnType",
