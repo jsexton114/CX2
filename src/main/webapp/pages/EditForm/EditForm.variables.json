@@ -3552,6 +3552,30 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.MunicipalityGroups"
   },
+  "ncRecordCreated" : {
+    "_id" : "wm-ncRecordCreated-wm.NotificationVariable-1485543432129",
+    "name" : "ncRecordCreated",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "SUCCESS<br />Record added successfully",
+      "type" : "string"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "PleaseSelectCategory" : {
     "_id" : "wm-PleaseSelectCategory-wm.NotificationVariable-1480328433795",
     "name" : "PleaseSelectCategory",
@@ -5753,7 +5777,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.Cx2FormTypeFieldsData.listRecords();svSaveFormFieldonSuccess($event, $scope)",
+    "onSuccess" : "Variables.Cx2FormTypeFieldsData.listRecords();svSaveFormFieldonSuccess($event, $scope);Variables.ncRecordCreated.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
