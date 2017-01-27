@@ -78,22 +78,24 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.UpdateFormStatusInMasterFormsonSuccess = function(variable, data) {
         setFormStatusProgressValue($scope.Widgets.selectStatus._proxyModel.id);
 
-        //Sending mail to  CreatedBy
-        $scope.Variables.SendStatusUpdate.setInput({
-            'username': $scope.Variables.CurrentForm.dataSet.data[0].users.firstName,
-            'recipient': $scope.Variables.CurrentForm.dataSet.data[0].users.email
-        });
-        $scope.Variables.SendStatusUpdate.update();
-        //Sending mail to SharedWith
-        var contacts = $scope.sharedWith;
-        for (let i = 0; i < contacts.length; i++) {
+        //Checking to send mail
+        if ($scope.Widgets.selectStatus.datavalue.sendEmail) {
+            //Sending mail to  CreatedBy
             $scope.Variables.SendStatusUpdate.setInput({
-                'username': contacts[i].usersBySharedWithUser.firstName,
-                'recipient': contacts[i].usersBySharedWithUser.email
+                'username': $scope.Variables.CurrentForm.dataSet.data[0].users.firstName,
+                'recipient': $scope.Variables.CurrentForm.dataSet.data[0].users.email
             });
             $scope.Variables.SendStatusUpdate.update();
+            //Sending mail to SharedWith
+            var contacts = $scope.sharedWith;
+            for (let i = 0; i < contacts.length; i++) {
+                $scope.Variables.SendStatusUpdate.setInput({
+                    'username': contacts[i].usersBySharedWithUser.firstName,
+                    'recipient': contacts[i].usersBySharedWithUser.email
+                });
+                $scope.Variables.SendStatusUpdate.update();
+            }
         }
-
     };
 
     $scope.SharedWithDataonSuccess = function(variable, data) {
@@ -228,17 +230,17 @@ Application.$controller("dlgFormSubmittedController", ["$scope",
 ]);
 
 Application.$controller("gridFormVendorsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 
 
 Application.$controller("dialogAddVendorController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
