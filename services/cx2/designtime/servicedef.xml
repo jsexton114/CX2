@@ -370,12 +370,24 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="AddingVendorsToForm">
+        <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="SharedOn" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
         <parameter name="AddedBy" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="AddedTime" typeRef="java.sql.Timestamp" isList="false"/>
         <return typeRef="cx2AddGIStoFormsrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="AddingVendorsToForm">
+        <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="SharedOn" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2AddingVendorsToFormrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
@@ -1015,6 +1027,7 @@
             <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
             <element name="vendor" typeRef="com.civicxpress.cx2.Vendor" allowNull="true"/>
+            <element name="vendors2forms" typeRef="com.civicxpress.cx2.Vendors2form" isList="true" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.MasterInspections">
             <element name="caseGuid" typeRef="java.lang.String" allowNull="true"/>
@@ -1210,6 +1223,7 @@
             <element name="vendorApprovalses" typeRef="com.civicxpress.cx2.VendorApprovals" isList="true" allowNull="true"/>
             <element name="vendorLicenseses" typeRef="com.civicxpress.cx2.VendorLicenses" isList="true" allowNull="true"/>
             <element name="vendorUserses" typeRef="com.civicxpress.cx2.VendorUsers" isList="true" allowNull="true"/>
+            <element name="vendors2forms" typeRef="com.civicxpress.cx2.Vendors2form" isList="true" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.VendorAdmins">
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
@@ -1256,6 +1270,14 @@
             <element name="vendor" typeRef="com.civicxpress.cx2.Vendor" allowNull="true"/>
             <element name="vendorId" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.Vendors2form">
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="masterForms" typeRef="com.civicxpress.cx2.MasterForms" allowNull="true"/>
+            <element name="relatedFormGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="sharedOn" typeRef="java.util.Date" allowNull="true"/>
+            <element name="vendor" typeRef="com.civicxpress.cx2.Vendor" allowNull="true"/>
+            <element name="vendorId" typeRef="java.lang.Integer" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.wavemaker.runtime.data.expression.QueryFilter">
             <element name="attributeName" typeRef="java.lang.String" allowNull="true"/>
             <element name="attributeType" typeRef="java.lang.String" allowNull="true"/>
@@ -1273,6 +1295,7 @@
         </dataobject>
         <dataobject javaType="cx2AddGIStoFormsrtnType"/>
         <dataobject javaType="cx2AddUsersToVendorrtnType"/>
+        <dataobject javaType="cx2AddingVendorsToFormrtnType"/>
         <dataobject javaType="cx2AdminVendorsListrtnType">
             <element name="Address1" typeRef="java.lang.String"/>
             <element name="Address2" typeRef="java.lang.String"/>

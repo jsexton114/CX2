@@ -138,38 +138,16 @@
                 <wm-gridrow name="gridrow35">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn82" padding=".5em unset">
                         <wm-panel iconclass="wi wi-work" autoclose="outsideClick" name="panelTagVendor" title="Vendor Select" class="panel-primary" show="bind:Variables.CurrentForm.dataSet.data[$i].formTypes.vendorSelection">
-                            <wm-layoutgrid name="layoutgrid12">
-                                <wm-gridrow name="gridrow38">
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn87"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="10" name="gridcolumn88">
-                                        <wm-search placeholder="Search by Company Name" dataset="bind:Variables.Vendors.dataSet" searchkey="vendor.companyName" displaylabel="vendor.companyName" datafield="All Fields" name="searchVendor"></wm-search>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn89"></wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow39">
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn90"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn91">
-                                        <wm-label padding="unset 0.5em" class="h4" show="bind:Widgets.searchVendor.datavalue!=undefined" caption="Details" name="label23"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn92"></wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow padding=".5em unset" name="gridrow40">
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn93"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn94">
-                                        <wm-label padding="unset 0.5em" caption="bind:Widgets.searchVendor.datavalue.vendor.companyName+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.address1+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.address2+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.city+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.states.stateName+&quot; &quot;+Widgets.searchVendor.datavalue.vendor.postalCode+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.companyPhone+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.companyEmail"
-                                        show="bind:Widgets.searchVendor.datavalue!=undefined" name="label24"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn95"></wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow41">
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn96"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn97">
-                                        <wm-button class="btn-primary" caption="Add Vendor" type="button" margin="unset 0.5em" iconclass="wi wi-add" show="bind:Widgets.searchVendor.datavalue!=undefined" on-click="Variables.UpdateVendorForMasterForms.invoke()"
-                                        name="buttonTagVendor"></wm-button>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn98"></wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
+                            <wm-livegrid formlayout="inline" name="livegridFormVendors">
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Form Vendors" dataset="bind:Variables.Cx2Vendors2formData.dataSet" navigation="Classic" name="gridFormVendors">
+                                    <wm-grid-column binding="sharedOn" caption="Shared On" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                                    <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddVendor.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                    <wm-grid-row-action key="customRow" display-name="" title="" value="" iconclass="wi wi-trash" class="btn-transparent" show="true" action="deleteRow()"></wm-grid-row-action>
+                                </wm-grid>
+                            </wm-livegrid>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
@@ -458,6 +436,11 @@
                         <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.subdivisions.subdivision" name="label19"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow45_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn104_1">
+                        <wm-prefab prefabname="googlemaps" name="googlemaps2" address="streetNumber streetName city states.stateName" locations="bind:Widgets.gridLocation.selecteditem.gisrecords" markertype="Address" zoom="16"></wm-prefab>
+                    </wm-gridcolumn>
+                </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions2">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
@@ -475,6 +458,45 @@
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions3">
                 <wm-button class="btn-primary" caption="OK" on-click="closeDialog();Variables.goToPage_UserOpenForms.invoke()" name="button10" iconclass="wi wi-check"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewAddVendor">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Tag Vendor" iconclass="wi wi-file-text" name="dialogAddVendor">
+            <wm-layoutgrid name="layoutgrid12">
+                <wm-gridrow name="gridrow38">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn87"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="10" name="gridcolumn88">
+                        <wm-search placeholder="Search by Company Name" dataset="bind:Variables.Vendors.dataSet" searchkey="vendor.companyName" displaylabel="vendor.companyName" datafield="All Fields" name="searchVendor"></wm-search>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn89"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow39">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn90"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn91">
+                        <wm-label padding="unset 0.5em" class="h4" show="bind:Widgets.searchVendor.datavalue!=undefined" caption="Details" name="label23"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn92"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow padding=".5em unset" name="gridrow40">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn93"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn94">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.searchVendor.datavalue.vendor.companyName+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.address1+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.address2+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.city+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.states.stateName+&quot; &quot;+Widgets.searchVendor.datavalue.vendor.postalCode+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.companyPhone+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.companyEmail"
+                        show="bind:Widgets.searchVendor.datavalue!=undefined" name="label24"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn95"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow41">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn96"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn97">
+                        <wm-button class="btn-primary" caption="Add Vendor" type="button" margin="unset 0.5em" iconclass="wi wi-add" show="bind:Widgets.searchVendor.datavalue!=undefined" on-click="Variables.UpdateVendorForMasterForms.invoke();Variables.AddingVendorsToForm.invoke()"
+                        name="buttonTagVendor"></wm-button>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn98"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions4">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button11"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

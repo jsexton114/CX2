@@ -41,6 +41,38 @@
     "outputType" : "cx2AddGIStoFormsrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "AddingVendorsToForm",
+    "query" : "insert into Vendors2Form(RelatedFormGUID,SharedOn,VendorId) values(:RelatedFormGUID,:SharedOn,:VendorId)",
+    "comment" : "AddingVendorsToForm",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "RelatedFormGUID",
+      "paramType" : "java.lang.String",
+      "testValue" : "318D86B7-D5E3-E611-80C9-0CC47A46DD63",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "SharedOn",
+      "paramType" : "java.sql.Timestamp",
+      "testValue" : "1485512994000",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "VendorId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2AddingVendorsToFormrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "AddUsersToVendor",
     "query" : "insert into  VendorUsers(VendorId,UserId,JoiningDate) values(:VendorId,:UserId,:JoiningDate)",
     "comment" : "AddUsersToVendor",

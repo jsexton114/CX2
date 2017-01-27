@@ -50,6 +50,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/AddingVendorsToForm", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeAddingVendorsToForm(@RequestParam(value = "RelatedFormGUID", required = false) java.lang.String RelatedFormGUID, @RequestParam(value = "SharedOn", required = false) java.sql.Timestamp SharedOn, @RequestParam(value = "VendorId", required = false) java.lang.Integer VendorId) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query AddingVendorsToForm");
+        int result = queryService.executeAddingVendorsToForm(RelatedFormGUID, SharedOn, VendorId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/AddUsersToVendor", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeAddUsersToVendor(@RequestParam(value = "VendorId", required = false) java.lang.Integer VendorId, @RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "JoiningDate", required = false) java.sql.Date JoiningDate) throws QueryParameterMismatchException {

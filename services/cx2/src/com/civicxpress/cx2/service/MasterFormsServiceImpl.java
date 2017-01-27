@@ -26,6 +26,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.SharedWith;
+import com.civicxpress.cx2.Vendors2form;
 
 
 /**
@@ -41,6 +42,10 @@ public class MasterFormsServiceImpl implements MasterFormsService {
     @Autowired
 	@Qualifier("cx2.Gis2formsService")
 	private Gis2formsService gis2formsService;
+
+    @Autowired
+	@Qualifier("cx2.Vendors2formService")
+	private Vendors2formService vendors2formService;
 
     @Autowired
 	@Qualifier("cx2.SharedWithService")
@@ -72,6 +77,14 @@ public class MasterFormsServiceImpl implements MasterFormsService {
                 sharedWith.setMasterForms(masterFormsCreated);
                 LOGGER.debug("Creating a new child SharedWith with information: {}", sharedWith);
                 sharedWithService.create(sharedWith);
+            }
+        }
+
+        if(masterFormsCreated.getVendors2forms() != null) {
+            for(Vendors2form vendors2form : masterFormsCreated.getVendors2forms()) {
+                vendors2form.setMasterForms(masterFormsCreated);
+                LOGGER.debug("Creating a new child Vendors2form with information: {}", vendors2form);
+                vendors2formService.create(vendors2form);
             }
         }
         return masterFormsCreated;
@@ -186,6 +199,17 @@ public class MasterFormsServiceImpl implements MasterFormsService {
         return sharedWithService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Vendors2form> findAssociatedVendors2forms(String formGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendors2forms");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("masterForms.formGuid = '" + formGuid + "'");
+
+        return vendors2formService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -193,6 +217,15 @@ public class MasterFormsServiceImpl implements MasterFormsService {
 	 */
 	protected void setGis2formsService(Gis2formsService service) {
         this.gis2formsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service Vendors2formService instance
+	 */
+	protected void setVendors2formService(Vendors2formService service) {
+        this.vendors2formService = service;
     }
 
     /**

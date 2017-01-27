@@ -5798,6 +5798,23 @@
       "targetColumnsUniqueKey" : false,
       "targetTable" : "SharedWith",
       "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : true,
+      "composite" : false,
+      "fieldName" : "vendors2forms",
+      "mappings" : [ {
+        "sourceColumn" : "FormGUID",
+        "targetColumn" : "RelatedFormGUID"
+      } ],
+      "name" : "FK_Vendors2Form_TO_MasteSGtOe",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : false,
+      "sourceTable" : "MasterForms",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Vendors2Form",
+      "virtual" : false
     } ],
     "schema" : "cx2",
     "type" : "TABLE"
@@ -9634,6 +9651,23 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fieldName" : "vendors2forms",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "VendorId"
+      } ],
+      "name" : "FK_Vendors2Form_TO_Vendo938LQ",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Vendor",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Vendors2Form",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
       "fieldName" : "vendorUserses",
       "mappings" : [ {
         "sourceColumn" : "ID",
@@ -10645,6 +10679,161 @@
       "sourceTable" : "VendorLicenses",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "VendorLicenseTypes",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "relatedFormGuid",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "RelatedFormGUID",
+      "nullable" : true,
+      "oldName" : "RelatedFormGUID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "vendorId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "VendorId",
+      "nullable" : true,
+      "oldName" : "VendorId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "sharedOn",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "timestamp",
+      "length" : 0,
+      "name" : "SharedOn",
+      "nullable" : true,
+      "oldName" : "SharedOn",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "timestamp",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "Vendors2form",
+    "fullyQualifiedName" : "com.civicxpress.cx2.Vendors2form",
+    "name" : "Vendors2Form",
+    "oldName" : "Vendors2Form",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__Vendors2__3214EC2758C4ED0B",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "masterForms",
+      "mappings" : [ {
+        "sourceColumn" : "RelatedFormGUID",
+        "targetColumn" : "FormGUID"
+      } ],
+      "name" : "FK_Vendors2Form_TO_MasteSGtOe",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Vendors2Form",
+      "targetColumnsUniqueKey" : true,
+      "targetTable" : "MasterForms",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "vendor",
+      "mappings" : [ {
+        "sourceColumn" : "VendorId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_Vendors2Form_TO_Vendo938LQ",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Vendors2Form",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Vendor",
       "virtual" : false
     } ],
     "schema" : "cx2",

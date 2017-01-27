@@ -58,6 +58,7 @@ public class MasterForms implements Serializable {
     private Vendor vendor;
     private List<Gis2forms> gis2formses = new ArrayList<>();
     private List<SharedWith> sharedWiths = new ArrayList<>();
+    private List<Vendors2form> vendors2forms = new ArrayList<>();
 
     @Id
     @Column(name = "`FormGUID`", nullable = false, length = 255)
@@ -299,6 +300,16 @@ public class MasterForms implements Serializable {
 
     public void setSharedWiths(List<SharedWith> sharedWiths) {
         this.sharedWiths = sharedWiths;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "masterForms")
+    public List<Vendors2form> getVendors2forms() {
+        return this.vendors2forms;
+    }
+
+    public void setVendors2forms(List<Vendors2form> vendors2forms) {
+        this.vendors2forms = vendors2forms;
     }
 
     @Override

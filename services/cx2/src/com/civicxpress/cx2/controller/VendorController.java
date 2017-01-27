@@ -39,6 +39,7 @@ import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.VendorLicenses;
 import com.civicxpress.cx2.VendorUsers;
+import com.civicxpress.cx2.Vendors2form;
 import com.civicxpress.cx2.service.VendorService;
 
 /**
@@ -210,6 +211,14 @@ public class VendorController {
     public Page<VendorLicenses> findAssociatedVendorLicenseses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorLicenseses");
         return vendorService.findAssociatedVendorLicenseses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/vendors2forms", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the vendors2forms instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Vendors2form> findAssociatedVendors2forms(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendors2forms");
+        return vendorService.findAssociatedVendors2forms(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/vendorUserses", method = RequestMethod.GET)

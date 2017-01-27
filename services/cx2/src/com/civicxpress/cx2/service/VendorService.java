@@ -21,6 +21,7 @@ import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.VendorLicenses;
 import com.civicxpress.cx2.VendorUsers;
+import com.civicxpress.cx2.Vendors2form;
 
 /**
  * Service object for domain model class {@link Vendor}.
@@ -198,6 +199,18 @@ public interface VendorService {
      * @see Page
      */
     Page<VendorLicenses> findAssociatedVendorLicenseses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated vendors2forms for given Vendor id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Vendors2form instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Vendors2form> findAssociatedVendors2forms(Integer id, Pageable pageable);
 
     /*
      * Returns the associated vendorUserses for given Vendor id.

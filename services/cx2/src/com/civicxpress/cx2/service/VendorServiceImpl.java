@@ -30,6 +30,7 @@ import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.VendorLicenses;
 import com.civicxpress.cx2.VendorUsers;
+import com.civicxpress.cx2.Vendors2form;
 
 
 /**
@@ -61,6 +62,10 @@ public class VendorServiceImpl implements VendorService {
     @Autowired
 	@Qualifier("cx2.VendorUsersService")
 	private VendorUsersService vendorUsersService;
+
+    @Autowired
+	@Qualifier("cx2.Vendors2formService")
+	private Vendors2formService vendors2formService;
 
     @Autowired
 	@Qualifier("cx2.VendorAdminsService")
@@ -116,6 +121,14 @@ public class VendorServiceImpl implements VendorService {
                 vendorLicensese.setVendor(vendorCreated);
                 LOGGER.debug("Creating a new child VendorLicenses with information: {}", vendorLicensese);
                 vendorLicensesService.create(vendorLicensese);
+            }
+        }
+
+        if(vendorCreated.getVendors2forms() != null) {
+            for(Vendors2form vendors2form : vendorCreated.getVendors2forms()) {
+                vendors2form.setVendor(vendorCreated);
+                LOGGER.debug("Creating a new child Vendors2form with information: {}", vendors2form);
+                vendors2formService.create(vendors2form);
             }
         }
 
@@ -273,6 +286,17 @@ public class VendorServiceImpl implements VendorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Vendors2form> findAssociatedVendors2forms(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendors2forms");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("vendor.id = '" + id + "'");
+
+        return vendors2formService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorUserses");
 
@@ -325,6 +349,15 @@ public class VendorServiceImpl implements VendorService {
 	 */
 	protected void setVendorUsersService(VendorUsersService service) {
         this.vendorUsersService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service Vendors2formService instance
+	 */
+	protected void setVendors2formService(Vendors2formService service) {
+        this.vendors2formService = service;
     }
 
     /**

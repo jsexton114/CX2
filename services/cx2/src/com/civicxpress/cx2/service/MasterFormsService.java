@@ -17,6 +17,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.SharedWith;
+import com.civicxpress.cx2.Vendors2form;
 
 /**
  * Service object for domain model class {@link MasterForms}.
@@ -158,6 +159,18 @@ public interface MasterFormsService {
      * @see Page
      */
     Page<SharedWith> findAssociatedSharedWiths(String formGuid, Pageable pageable);
+
+    /*
+     * Returns the associated vendors2forms for given MasterForms id.
+     *
+     * @param formGuid value of formGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Vendors2form instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Vendors2form> findAssociatedVendors2forms(String formGuid, Pageable pageable);
 
 }
 

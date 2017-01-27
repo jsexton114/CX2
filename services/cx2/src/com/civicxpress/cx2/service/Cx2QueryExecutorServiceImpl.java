@@ -45,6 +45,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeAddingVendorsToForm( java.lang.String RelatedFormGUID ,java.sql.Timestamp SharedOn ,java.lang.Integer VendorId)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("RelatedFormGUID", RelatedFormGUID);
+        params.put("SharedOn", SharedOn);
+        params.put("VendorId", VendorId);
+        return queryExecutor.executeNamedQueryForUpdate("AddingVendorsToForm", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeAddUsersToVendor( java.lang.Integer VendorId ,java.lang.Integer UserId ,java.sql.Date JoiningDate)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
