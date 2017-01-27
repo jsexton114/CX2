@@ -74,6 +74,7 @@ public class FormTypes implements Serializable {
     private Boolean prefixDashes;
     private BigInteger currentPrefixNumber;
     private Integer prefixNumberResetOn;
+    private boolean multipleVendors;
     private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
@@ -424,6 +425,15 @@ public class FormTypes implements Serializable {
 
     public void setPrefixNumberResetOn(Integer prefixNumberResetOn) {
         this.prefixNumberResetOn = prefixNumberResetOn;
+    }
+
+    @Column(name = "`MultipleVendors`", nullable = false)
+    public boolean isMultipleVendors() {
+        return this.multipleVendors;
+    }
+
+    public void setMultipleVendors(boolean multipleVendors) {
+        this.multipleVendors = multipleVendors;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

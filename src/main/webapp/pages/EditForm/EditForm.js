@@ -33,6 +33,17 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
                 $data.gisrecord = false;
                 $data.multipleGisrecords = false;
             }
+
+            if ($scope.Widgets.selectVendorOption._proxyModel === 'Multiple') {
+                $data.vendorSelection = true;
+                $data.multipleVendors = true;
+            } else if ($scope.Widgets.selectVendorOption._proxyModel === 'Single') {
+                $data.vendorSelection = true;
+                $data.multipleVendors = false;
+            } else {
+                $data.vendorSelection = false;
+                $data.multipleVendors = false;
+            }
         }
     };
 

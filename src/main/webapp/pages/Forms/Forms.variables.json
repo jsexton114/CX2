@@ -664,6 +664,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "multipleVendors",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "MultipleVendors",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -3962,6 +3975,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "multipleVendors",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "MultipleVendors",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -4896,6 +4922,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "multipleVendors",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "MultipleVendors",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
           "scale" : 0
         } ]
       }, {
@@ -8705,6 +8744,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "multipleVendors",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "MultipleVendors",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "FALSE",
         "scale" : 0
       } ],
       "entityName" : "FormTypes",
