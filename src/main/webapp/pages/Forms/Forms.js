@@ -19,6 +19,10 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         setFormStatusProgressValue();
     };
 
+    $scope.canAddVendor = function() {
+        return (!$scope.Variables.lvFormType.dataSet.data[0].multipleVendors && $scope.Variables.Cx2Vendors2formData.dataSet.data.length >= 1) ? true : false;
+    };
+
     $scope.defaultObjectForSelectStatus = {};
     $scope.currentProgress = 0;
 
@@ -101,7 +105,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.lvFormTypeonSuccess = function(variable, data) {
         currentBreadCrumb.label = data[0].formType;
         // For Hiding Locations
-        $scope.showMaps = (data[0].gisrecord === true && data[0].gismap === true);
+        $scope.showMaps = (data[0].gisrecord === true);
 
     };
 
@@ -132,7 +136,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
 
     $scope.Gis2formsDataonSuccess = function(variable, data) {
-        $scope.Widgets.googlemapsLoactions.show = (data.length > 0);
+        $scope.Widgets.googlemapsLoactions.show = (data.length > 0 && $scope.Variables.lvFormType.dataSet.data[0].gismap === true);
     };
 
 }]);
