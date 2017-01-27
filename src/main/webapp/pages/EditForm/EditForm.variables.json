@@ -430,6 +430,32 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "userLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "10",
+          "scale" : 0
+        }, {
+          "fieldName" : "formLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FormLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "5",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -932,6 +958,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "userLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "10",
+          "scale" : 0
+        }, {
+          "fieldName" : "formLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FormLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "5",
           "scale" : 0
         } ]
       }, {
@@ -3375,6 +3427,32 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "userLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "10",
+          "scale" : 0
+        }, {
+          "fieldName" : "formLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FormLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "5",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -3866,6 +3944,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "userLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "10",
+          "scale" : 0
+        }, {
+          "fieldName" : "formLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FormLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "5",
           "scale" : 0
         } ]
       }, {
@@ -5584,7 +5688,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.Cx2FormTypeFieldsData.listRecords()",
+    "onSuccess" : "Variables.Cx2FormTypeFieldsData.listRecords();svSaveFormFieldonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -6052,6 +6156,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "userLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "10",
+          "scale" : 0
+        }, {
+          "fieldName" : "formLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FormLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "5",
           "scale" : 0
         } ]
       }, {

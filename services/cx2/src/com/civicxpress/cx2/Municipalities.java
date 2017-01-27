@@ -66,6 +66,8 @@ public class Municipalities implements Serializable {
     private String dbName;
     private String dbUser;
     private String dbPassword;
+    private int userLimit;
+    private int formLimit;
     private States states;
     private List<Fees> feeses = new ArrayList<>();
     private List<FormCategories> formCategorieses = new ArrayList<>();
@@ -334,6 +336,24 @@ public class Municipalities implements Serializable {
 
     public void setDbPassword(String dbPassword) {
         this.dbPassword = dbPassword;
+    }
+
+    @Column(name = "`UserLimit`", nullable = false, scale = 0, precision = 10)
+    public int getUserLimit() {
+        return this.userLimit;
+    }
+
+    public void setUserLimit(int userLimit) {
+        this.userLimit = userLimit;
+    }
+
+    @Column(name = "`FormLimit`", nullable = false, scale = 0, precision = 10)
+    public int getFormLimit() {
+        return this.formLimit;
+    }
+
+    public void setFormLimit(int formLimit) {
+        this.formLimit = formLimit;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -1058,6 +1058,7 @@
             <element name="email" typeRef="java.lang.String" allowNull="true"/>
             <element name="feeses" typeRef="com.civicxpress.cx2.Fees" isList="true" allowNull="true"/>
             <element name="formCategorieses" typeRef="com.civicxpress.cx2.FormCategories" isList="true" allowNull="true"/>
+            <element name="formLimit" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypeses" typeRef="com.civicxpress.cx2.FormTypes" isList="true" allowNull="true"/>
             <element name="fridayYn" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
@@ -1084,6 +1085,7 @@
             <element name="thursdayYn" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="timeZone" typeRef="java.lang.String" allowNull="true"/>
             <element name="tuesdayYn" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="userLimit" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="userSubscriptionses" typeRef="com.civicxpress.cx2.UserSubscriptions" isList="true" allowNull="true"/>
             <element name="vendorApprovalses" typeRef="com.civicxpress.cx2.VendorApprovals" isList="true" allowNull="true"/>
             <element name="wednesdayYn" typeRef="java.lang.Boolean" allowNull="true"/>

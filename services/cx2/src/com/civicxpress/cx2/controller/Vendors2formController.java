@@ -85,7 +85,8 @@ public class Vendors2formController {
 
     @RequestMapping(value = "/relatedFormGuid-vendorId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching Vendors2form with given unique key values.")
-    public Vendors2form getByRelatedFormGuidAndVendorId(@RequestParam(name = "relatedFormGuid") String relatedFormGuid, @RequestParam(name = "vendorId") Integer vendorId) {
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Vendors2form getByRelatedFormGuidAndVendorId(@RequestParam(value = "null", required = true) String relatedFormGuid, @RequestParam(value = "null", required = true) Integer vendorId) {
         LOGGER.debug("Getting Vendors2form with uniques key RelatedFormGuidAndVendorId");
         return vendors2formService.getByRelatedFormGuidAndVendorId(relatedFormGuid, vendorId);
     }
