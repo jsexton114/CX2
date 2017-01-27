@@ -15,10 +15,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.sharedWith;
     $scope.allFormStatus;
 
-
-
-
-
     $scope.FormStatusonSuccess = function(variable, data) {
         setFormStatusProgressValue();
     };
@@ -136,7 +132,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
 
     $scope.Gis2formsDataonSuccess = function(variable, data) {
-        $scope.Widgets.googlemapsLoactions.show = (data.length === 0);
+        $scope.Widgets.googlemapsLoactions.show = (data.length > 0);
     };
 
 }]);
@@ -239,15 +235,15 @@ Application.$controller("dialogAddVendorController", ["$scope",
 ]);
 
 Application.$controller("grid5Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveform3Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
