@@ -135,22 +135,6 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow35">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn82" padding=".5em unset">
-                        <wm-panel iconclass="wi wi-work" autoclose="outsideClick" name="panelTagVendor" title="Vendor Select" class="panel-primary" show="bind:Variables.CurrentForm.dataSet.data[$i].formTypes.vendorSelection">
-                            <wm-livegrid formlayout="inline" name="livegridFormVendors">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Form Vendors" dataset="bind:Variables.Cx2Vendors2formData.dataSet" navigation="Classic" name="gridFormVendors">
-                                    <wm-grid-column binding="sharedOn" caption="Shared On" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
-                                    <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddVendor.open()" shortcutkey="" disabled="false"></wm-grid-action>
-                                    <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="Variables.DeleteVendorFromForm.invoke()"></wm-grid-row-action>
-                                </wm-grid>
-                            </wm-livegrid>
-                        </wm-panel>
-                    </wm-gridcolumn>
-                </wm-gridrow>
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                         <wm-tabs name="tabs1">
@@ -203,6 +187,20 @@
                                     </wm-liveform>
                                 </wm-livegrid>
                                 <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.Gis2formsData.dataSet.data[$i].gisrecords" zoom="5" markertype="Address" address="streetNumber streetName city states.stateName" show="true"></wm-prefab>
+                            </wm-tabpane>
+                            <wm-tabpane name="tabpaneVendor" title="VENDOR">
+                                <wm-livegrid formlayout="inline" name="livegridFormVendors">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2Vendors2formData.dataSet" navigation="Classic" name="gridFormVendors" filtermode="multicolumn" exportformat="EXCEL">
+                                        <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                                        <wm-grid-column binding="vendor.companyPhone" caption="Phone Number" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                                        <wm-grid-column binding="vendor.companyEmail" caption="Email Address" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                                        <wm-grid-column binding="vendor.companyWebsite" caption="Website" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                                        <wm-grid-column binding="sharedOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="Add Vendor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Vendor" action="Widgets.dialogAddVendor.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.DeleteVendorFromForm.invoke()" disabled="false"></wm-grid-row-action>
+                                    </wm-grid>
+                                </wm-livegrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneAttachments" title="ATTACHMENTS"></wm-tabpane>
                             <wm-tabpane name="tabpaneContacts" title="CONTACTS">
@@ -462,7 +460,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewAddVendor">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Tag Vendor" iconclass="wi wi-file-text" name="dialogAddVendor">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add Vendor" iconclass="wi wi-file-text" name="dialogAddVendor">
             <wm-layoutgrid name="layoutgrid12">
                 <wm-gridrow name="gridrow38">
                     <wm-gridcolumn columnwidth="1" name="gridcolumn87"></wm-gridcolumn>
@@ -474,14 +472,14 @@
                 <wm-gridrow name="gridrow39">
                     <wm-gridcolumn columnwidth="1" name="gridcolumn90"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn91">
-                        <wm-label padding="unset 0.5em" class="h4" show="bind:Widgets.searchVendor.datavalue!=undefined" caption="Details" name="label23"></wm-label>
+                        <wm-label padding="unset 0.5em" class="h4" show="bind:Widgets.searchVendor.datavalue!=undefined" caption="Company Details" name="label23"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn92"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow padding=".5em unset" name="gridrow40">
                     <wm-gridcolumn columnwidth="1" name="gridcolumn93"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn94">
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.searchVendor.datavalue.vendor.companyName+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.address1+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.address2+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.city+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.states.stateName+&quot; &quot;+Widgets.searchVendor.datavalue.vendor.postalCode+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.companyPhone+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.companyEmail"
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.searchVendor.datavalue.vendor.companyName+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.address1+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.address2+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.city+&quot; &quot;+Widgets.searchVendor.datavalue.vendor.states.stateName+&quot; &quot;+Widgets.searchVendor.datavalue.vendor.postalCode+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.companyPhone+&quot;, &quot;+Widgets.searchVendor.datavalue.vendor.companyEmail"
                         show="bind:Widgets.searchVendor.datavalue!=undefined" name="label24"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn95"></wm-gridcolumn>
@@ -496,7 +494,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions4">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button11"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button11" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
