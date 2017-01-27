@@ -143,7 +143,7 @@
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="Fees List" dataset="bind:Variables.Cx2FeesData.dataSet" navigation="Classic" name="grid5">
                                         <wm-grid-column binding="feeType" caption="Fee Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="amount" caption="Amount" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="autoFeeYn" caption="Auto Fee?" type="boolean" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="autoFeeYn" caption="Auto Fee?" type="boolean" generator="assigned" show="true" readonly="false">{{row['autoFeeYn'] === true ? 'Yes' : 'No'}}</wm-grid-column>
                                         <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="paidStatus" caption="Paid Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="paidDate" caption="Paid Date" type="date" generator="assigned" show="true" readonly="false"></wm-grid-column>
