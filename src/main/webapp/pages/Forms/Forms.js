@@ -101,7 +101,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.lvFormTypeonSuccess = function(variable, data) {
         currentBreadCrumb.label = data[0].formType;
         // For Hiding Locations
-        $scope.showMaps = (data[0].gisrecord === true);
+        $scope.showMaps = (data[0].gisrecord === true && data[0].gismap === true);
 
     };
 
