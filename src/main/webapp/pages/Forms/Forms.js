@@ -105,7 +105,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.lvFormTypeonSuccess = function(variable, data) {
         currentBreadCrumb.label = data[0].formType;
         // For Hiding Locations
-        $scope.showMaps = ((data[0].gisrecord === false) && (data[0].multipleGisrecords === false));
+        $scope.showMaps = (data[0].gisrecord === true);
 
     };
 
@@ -136,10 +136,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
 
     $scope.Gis2formsDataonSuccess = function(variable, data) {
-        if (data.length == 0)
-            $scope.Widgets.googlemapsLoactions.show = false;
-        else
-            $scope.Widgets.googlemapsLoactions.show = true;
+        $scope.Widgets.googlemapsLoactions.show = (data.length === 0);
     };
 
 }]);

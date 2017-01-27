@@ -9244,6 +9244,30 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Municipalities"
   },
+  "ncStatusUpdated" : {
+    "_id" : "wm-ncStatusUpdated-wm.NotificationVariable-1485541271377",
+    "name" : "ncStatusUpdated",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "SUCCESS<br /> The Form Status has been updated",
+      "type" : "string"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "nfFormSaved" : {
     "_id" : "wm-nfFormSaved-wm.NotificationVariable-1484944615108",
     "name" : "nfFormSaved",
@@ -9294,10 +9318,6 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     }, {
-      "target" : "CreatedTime",
-      "value" : "bind:today",
-      "type" : "string"
-    }, {
       "target" : "OldStatusId",
       "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formStatuses.id",
       "type" : "integer"
@@ -9312,7 +9332,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.FormHistoryData.listRecords();RecordFormHistoryonSuccess($event, $scope)",
+    "onSuccess" : "Variables.FormHistoryData.listRecords();RecordFormHistoryonSuccess($event, $scope);Variables.ncStatusUpdated.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

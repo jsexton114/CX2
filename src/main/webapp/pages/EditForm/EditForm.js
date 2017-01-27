@@ -96,7 +96,6 @@ Application.$controller("liveformUpdateFormTypeController", ["$scope",
             return formTitlePreview;
         };
 
-
         $scope.gisOptionSelectChange = function($event, $isolateScope, newVal, oldVal) {
             $scope.Widgets.liveformUpdateFormType.formWidgets.gismap.setProperty('disabled', (newVal === 'None'));
         };
