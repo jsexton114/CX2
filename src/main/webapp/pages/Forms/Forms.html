@@ -188,7 +188,7 @@
                                 </wm-livegrid>
                                 <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.Gis2formsData.dataSet.data[$i].gisrecords" zoom="5" markertype="Address" address="streetNumber streetName city states.stateName" show="true"></wm-prefab>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpaneVendor" title="VENDOR">
+                            <wm-tabpane name="tabpaneVendor" title="VENDOR" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection">
                                 <wm-livegrid formlayout="inline" name="livegridFormVendors">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2Vendors2formData.dataSet" navigation="Classic" name="gridFormVendors" filtermode="multicolumn" exportformat="EXCEL">
                                         <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
