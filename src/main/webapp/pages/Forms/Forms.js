@@ -136,6 +136,14 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         $scope.Widgets.textareaNotes.reset();
     };
 
+
+    $scope.Gis2formsDataonSuccess = function(variable, data) {
+        if (data.length == 0)
+            $scope.Widgets.googlemapsLoactions.show = false;
+        else
+            $scope.Widgets.googlemapsLoactions.show = true;
+    };
+
 }]);
 
 

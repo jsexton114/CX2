@@ -224,7 +224,7 @@
                                         <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
                                     </wm-liveform>
                                 </wm-livegrid>
-                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.Gis2formsData.dataSet.data[$i].gisrecords" zoom="5" markertype="Address" address="streetNumber streetName city states.stateName"></wm-prefab>
+                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.Gis2formsData.dataSet.data[$i].gisrecords" zoom="5" markertype="Address" address="streetNumber streetName city states.stateName" show="true"></wm-prefab>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneAttachments" title="ATTACHMENTS"></wm-tabpane>
                             <wm-tabpane name="tabpaneContacts" title="CONTACTS">
@@ -299,7 +299,7 @@
                         <wm-gridrow name="gridrow20">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn40"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn41">
-                                <wm-search name="searchAddress" placeholder="Search Address" dataset="bind:Variables.GISRecords.dataSet" searchkey="streetName" displaylabel="bind:$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
+                                <wm-search name="searchAddress" placeholder="Search Address" dataset="bind:Variables.GISRecords.dataSet" searchkey="streetNumber" displaylabel="bind:$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
                                 datafield="All Fields"></wm-search>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn44"></wm-gridcolumn>
@@ -333,16 +333,17 @@
                         <wm-gridrow name="gridrow40_1" padding="unset unset .5em unset">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn95_1"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn96_1">
-                                <wm-search placeholder="Search Subdivision" dataset="bind:Variables.Subdivisions.dataSet" searchkey="subShortCode,subdivision" displaylabel="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]" datafield="All Fields"
-                                name="searchFliterSubdivisions"></wm-search>
+                                <wm-select placeholder="Search Subdivision" dataset="bind:Variables.Subdivisions.dataSet" searchkey="subShortCode,subdivision" displaylabel="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]" datafield="All Fields"
+                                name="searchFliterSubdivisions" displayexpression="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]"></wm-select>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn97_1"></wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow24">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn52"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn53">
-                                <wm-search placeholder="Search Lot" dataset="bind:Variables.GISLotRecords.dataSet" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
-                                datafield="All Fields" name="searchSubdivision" show="bind:Widgets.searchFliterSubdivisions.datavalue!=undefined"></wm-search>
+                                <wm-select placeholder="Search Lot" dataset="bind:Variables.GISLotRecords.dataSet" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
+                                datafield="All Fields" name="searchSubdivision" show="bind:Widgets.searchFliterSubdivisions.datavalue!=undefined" displayexpression="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
+                                displayfield="lot"></wm-select>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn54"></wm-gridcolumn>
                         </wm-gridrow>
