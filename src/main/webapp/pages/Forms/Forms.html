@@ -138,7 +138,77 @@
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                         <wm-tabs name="tabs1">
-                            <wm-tabpane name="tabpaneFees" title="FEES"></wm-tabpane>
+                            <wm-tabpane name="tabpaneFees" title="FEES">
+                                <wm-livegrid formlayout="dialog" name="livegrid4">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Fees List" dataset="bind:Variables.Cx2FeesData.dataSet" navigation="Classic" name="grid5">
+                                        <wm-grid-column binding="feeType" caption="Fee Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="amount" caption="Amount" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="autoFeeYn" caption="Auto Fee?" type="boolean" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="paidStatus" caption="Paid Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="paidDate" caption="Paid Date" type="date" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="comments" caption="Comments" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
+                                        shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                    </wm-grid>
+                                    <wm-liveform novalidate="false" errormessage="" title="Fees Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2FeesData.dataSet" captionalign="left" captionposition="top" name="liveform3">
+                                        <wm-layoutgrid columns="1" name="layoutgrid13">
+                                            <wm-gridrow name="gridrow45_2">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn104_2">
+                                                    <wm-form-field name="formType" displayname="Form Type" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow46">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn105">
+                                                    <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow47">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn106_1">
+                                                    <wm-form-field name="feeType" displayname="Fee Type" show="true" primary-key="false" generator="assigned" key="feeType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow48">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn107">
+                                                    <wm-form-field name="autoFeeYn" displayname="Auto Fee Yn" show="true" primary-key="false" generator="assigned" key="autoFeeYn" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow49">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn108">
+                                                    <wm-form-field name="accountingCode" displayname="Accounting Code" show="true" primary-key="false" generator="assigned" key="accountingCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow50">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn109">
+                                                    <wm-form-field name="paidStatus" displayname="Paid Status" show="true" primary-key="false" generator="assigned" key="paidStatus" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow51">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn110">
+                                                    <wm-form-field name="paidDate" displayname="Paid Date" show="true" primary-key="false" generator="assigned" key="paidDate" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow52">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn111">
+                                                    <wm-form-field name="transactionId" displayname="Transaction Id" show="true" primary-key="false" generator="assigned" key="transactionId" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow53">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn112">
+                                                    <wm-form-field name="comments" displayname="Comments" show="true" primary-key="false" generator="assigned" key="comments" type="string" widget="text" maxchars="500" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-layoutgrid>
+                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
+                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"
+                                        type="submit" update-mode="true"></wm-form-action>
+                                    </wm-liveform>
+                                </wm-livegrid>
+                            </wm-tabpane>
                             <wm-tabpane name="tabpaneInspections" title="INSPECTIONS"></wm-tabpane>
                             <wm-tabpane name="tabpaneMessages" title="MESSAGES"></wm-tabpane>
                             <wm-tabpane name="tabpaneLocation" title="LOCATION" show="bind:showMaps">

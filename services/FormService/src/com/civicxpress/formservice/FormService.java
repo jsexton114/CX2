@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -88,9 +89,9 @@ public class FormService {
 //    		testValues.put("TestAddress", "Test Address");
 //    		testValues.put("CreatedDate", 1485353756034L);
 //    		testValues.put("TotalSqft", "200");
-//    		testValues.put("TotalUnits", null);
-//    		testValues.put("Basement", null);
-//    		submitForm("1F2C994B-49E3-E611-80C9-0CC47A46DD63", testValues);
+//    		testValues.put("TotalUnits", 10);
+//    		testValues.put("Basement", true);
+//    		submitForm("E90DF2F6-D1E4-E611-80C9-0CC47A46DD63", testValues);
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
@@ -476,19 +477,19 @@ public class FormService {
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE FormTypes SET CurrentPrefixNumber=:newPrefixNumber, PrefixNumberResetOn=:newResetTime", queryParams);
 	    	
 	    	// Calculate and add fees
-	    	Long totalFees = 0L;
+	    	BigDecimal totalFees = new BigDecimal(0.00);
 	    	if (formTypeData.getBoolean("AutomaticFees")) {
 		    	StringBuilder formFeesQuery = new StringBuilder("INSERT INTO Fees (FormGuid, Amount, FeeType, AutoFeeYN, AccountingCode, PaidStatus) VALUES ");
 		    	List<String> formFeesValues = new ArrayList<String>();
 		    	
-	    		Integer flatFee = formTypeData.getInteger("FlatFee");
-	    		Integer sfFee = formTypeData.getInteger("SfFee");
-	    		Integer unitFee = formTypeData.getInteger("UnitFee");
-	    		Integer stateFee = formTypeData.getInteger("StateFee");
-	    		Integer basementFee = formTypeData.getInteger("BasementFee");
+	    		BigDecimal flatFee = formTypeData.getBigDecimal("FlatFee");
+	    		BigDecimal sfFee = formTypeData.getBigDecimal("SfFee");
+	    		BigDecimal unitFee = formTypeData.getBigDecimal("UnitFee");
+	    		BigDecimal stateFee = formTypeData.getBigDecimal("StateFee");
+	    		BigDecimal basementFee = formTypeData.getBigDecimal("BasementFee");
 	    		
 	    		if (flatFee != null && !flatFee.equals(0)) {
-	    			totalFees += flatFee;
+	    			totalFees = totalFees.add(flatFee);
 	    			queryParams.put("flatFeeAmount", flatFee);
 	    			queryParams.put("flatFeeAccountingCode", formTypeData.getString("FlatFeeAccountingCode"));
 	    			formFeesValues.add("(:formGuid, :flatFeeAmount, 'Flat Fee', 1, :flatFeeAccountingCode, 'Unpaid')");
@@ -496,42 +497,42 @@ public class FormService {
 	    		
 	    		if (sfFee != null && !sfFee.equals(0)) {
 	    			if (fieldData.get("TotalSqft") != null) {
-		    			Long totalSqft = Math.abs(Long.parseLong(fieldData.get("TotalSqft").toString()));
+		    			BigDecimal totalSqft = new BigDecimal(Math.abs(Long.parseLong(fieldData.get("TotalSqft").toString())));
 		    			
 		    			if (!totalSqft.equals(0)) {
-		    				totalFees += (sfFee*totalSqft);
-		    				queryParams.put("sfFeeAmount", (sfFee*totalSqft));
+		    				totalFees = totalFees.add(sfFee.multiply(totalSqft));
+		    				queryParams.put("sfFeeAmount", (sfFee.multiply(totalSqft)));
 		    				queryParams.put("sfFeeAccountingCode", formTypeData.getString("SfFeeAccountingCode"));
-		    				formFeesValues.add("(:formGuid, :sfFeeAmount, 'Square Footage Fee', :sfFeeAccountingCode, 'Unpaid')");
+		    				formFeesValues.add("(:formGuid, :sfFeeAmount, 'Square Footage Fee', 1, :sfFeeAccountingCode, 'Unpaid')");
 		    			}
 	    			}
 	    		}
 	    		
 	    		if (unitFee != null && !unitFee.equals(0)) {
 	    			if (fieldData.get("TotalUnits") != null) {
-		    			Long totalUnits = Math.abs(Long.parseLong(fieldData.get("TotalUnits").toString()));
+	    				BigDecimal totalUnits = new BigDecimal(Math.abs(Long.parseLong(fieldData.get("TotalUnits").toString())));
 		    			
 		    			if (!totalUnits.equals(0)) {
-		    				totalFees += (unitFee*totalUnits);
-		    				queryParams.put("unitFeeAmount", (unitFee*totalUnits));
+		    				totalFees = totalFees.add(unitFee.multiply(totalUnits));
+		    				queryParams.put("unitFeeAmount", (unitFee.multiply(totalUnits)));
 		    				queryParams.put("unitFeeAccountingCode", formTypeData.getString("UnitFeeAccountingCode"));
-		    				formFeesValues.add("(:formGuid, :unitFeeAmount, 'Unit Fee', :unitFeeAccountingCode, 'Unpaid')");
+		    				formFeesValues.add("(:formGuid, :unitFeeAmount, 'Unit Fee', 1, :unitFeeAccountingCode, 'Unpaid')");
 		    			}
 	    			}
 	    		}
 	    		
 	    		if (stateFee != null && !stateFee.equals(0)) {
-	    			totalFees += stateFee;
+	    			totalFees = totalFees.add(stateFee);
 	    			queryParams.put("stateFeeAmount", stateFee);
 	    			queryParams.put("stateFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
-    				formFeesValues.add("(:formGuid, :stateFeeAmount, 'Unit Fee', :stateFeeAccountingCode, 'Unpaid')");
+    				formFeesValues.add("(:formGuid, :stateFeeAmount, 'State Fee', 1, :stateFeeAccountingCode, 'Unpaid')");
 	    		}
 	    		
 	    		if (basementFee != null && !basementFee.equals(0) && (Boolean) fieldData.get("Basement")) {
-	    			totalFees += basementFee;
+	    			totalFees = totalFees.add(basementFee);
 	    			queryParams.put("basementFeeAmount", basementFee);
 	    			queryParams.put("basementFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
-    				formFeesValues.add("(:formGuid, :basementFeeAmount, 'Basement Fee', :basementFeeAccountingCode, 'Unpaid')");
+    				formFeesValues.add("(:formGuid, :basementFeeAmount, 'Basement Fee', 1, :basementFeeAccountingCode, 'Unpaid')");
 	    		}
 	    		
 	    		if (formFeesValues.size() > 0) {
