@@ -83,6 +83,13 @@ public class VendorAdminsController {
         return deletedVendorAdmins != null;
     }
 
+    @RequestMapping(value = "/userId-vendorId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching VendorAdmins with given unique key values.")
+    public VendorAdmins getByUserIdAndVendorId(@RequestParam(name = "userId") Integer userId, @RequestParam(name = "vendorId") Integer vendorId) {
+        LOGGER.debug("Getting VendorAdmins with uniques key UserIdAndVendorId");
+        return vendorAdminsService.getByUserIdAndVendorId(userId, vendorId);
+    }
+
     /**
      * @deprecated Use {@link #findVendorAdmins(String, Pageable)} instead.
      */

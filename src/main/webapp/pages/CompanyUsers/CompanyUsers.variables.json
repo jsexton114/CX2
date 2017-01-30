@@ -463,6 +463,34 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "DuplicateVendor" : {
+    "_id" : "wm-DuplicateVendor-wm.NotificationVariable-1485759295148",
+    "name" : "DuplicateVendor",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "This user has already been added as a Company Admin",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "MapAsAdminForVendor" : {
     "_id" : "wm-MapAsAdminForVendor-wm.ServiceVariable-1481021717344",
     "name" : "MapAsAdminForVendor",
@@ -488,6 +516,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "onSuccess" : "Variables.UserSuccess.invoke();Variables.VendorAdmins.listRecords();Widgets.dialogAddAdmin.close();Variables.UpdateAsCXVendorAdmin.invoke()",
+    "onError" : "Variables.DuplicateVendor.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
