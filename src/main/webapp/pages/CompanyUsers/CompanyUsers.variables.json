@@ -28,6 +28,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "onSuccess" : "Variables.UserSuccess.invoke();Widgets.dialogAddUser.close();Variables.VendorUsers.listRecords()",
+    "onError" : "Variables.UserAlreadyExist.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -555,6 +556,34 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "UserAlreadyExist" : {
+    "_id" : "wm-UserAlreadyExist-wm.NotificationVariable-1485757276889",
+    "name" : "UserAlreadyExist",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "This user has already been added as a Company User",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
   },
   "UserSuccess" : {
     "_id" : "wm-UserSuccess-wm.NotificationVariable-1481014015466",
