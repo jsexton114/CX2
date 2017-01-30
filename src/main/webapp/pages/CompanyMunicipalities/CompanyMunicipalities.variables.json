@@ -871,6 +871,32 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "userLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "10",
+          "scale" : 0
+        }, {
+          "fieldName" : "formLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FormLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "5",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "vendor",
@@ -1208,19 +1234,6 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "dateApproved",
-        "type" : "date",
-        "fullyQualifiedType" : "date",
-        "columnName" : "DateApproved",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
         "fieldName" : "approvedBy",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -1228,19 +1241,6 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
-        "fieldName" : "expiresDate",
-        "type" : "date",
-        "fullyQualifiedType" : "date",
-        "columnName" : "ExpiresDate",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -1279,6 +1279,32 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "dateApproved",
+        "type" : "timestamp",
+        "fullyQualifiedType" : "timestamp",
+        "columnName" : "DateApproved",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "expiresDate",
+        "type" : "timestamp",
+        "fullyQualifiedType" : "timestamp",
+        "columnName" : "ExpiresDate",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,

@@ -3,16 +3,10 @@ Application.$controller("ManageMunicipalityVendorsPageController", ["$scope", fu
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
+
         $scope.today = moment().valueOf();
     };
 
-
-
-
-
-    $scope.UpdateVendorStatusFromPendingonSuccess = function(variable, data) {
-        $scope.Widgets.liveform2.cancel();
-    };
 
 
     $scope.UpdateVendorStatusFromApprovedonSuccess = function(variable, data) {
@@ -122,10 +116,11 @@ Application.$controller("gridPendingController", ["$scope",
     }
 ]);
 
-Application.$controller("liveform2Controller", ["$scope",
+
+
+Application.$controller("dialogPendingApprovalsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-        $scope.toDay = moment().valueOf();
     }
 ]);
