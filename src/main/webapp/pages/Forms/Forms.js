@@ -238,7 +238,7 @@ Application.$controller("dialogAddVendorController", ["$scope",
     }
 ]);
 
-Application.$controller("grid5Controller", ["$scope",
+Application.$controller("gridFeesController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;

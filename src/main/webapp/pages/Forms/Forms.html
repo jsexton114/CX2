@@ -140,19 +140,19 @@
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabpaneFees" title="FEES">
                                 <wm-livegrid formlayout="dialog" name="livegrid4">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Fees List" dataset="bind:Variables.Cx2FeesData.dataSet" navigation="Classic" name="grid5">
-                                        <wm-grid-column binding="feeType" caption="Fee Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Fees List" dataset="bind:Variables.Cx2FeesData.dataSet" navigation="Classic" name="gridFees">
+                                        <wm-grid-column binding="feeType" caption="Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="amount" caption="Amount" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="autoFeeYn" caption="Auto Fee?" type="boolean" generator="assigned" show="true" readonly="false">{{row['autoFeeYn'] === true ? 'Yes' : 'No'}}</wm-grid-column>
-                                        <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="paidStatus" caption="Paid Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="paidDate" caption="Paid Date" type="date" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="comments" caption="Comments" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="paidStatus" caption="Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
                                         shortcutkey="" disabled="false"></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="customRow" display-name="Add to Cart" show="bind:row.getProperty('paidStatus') === 'Unpaid'" class="btn-transparent" iconclass="wi wi-add-shopping-cart" title="Add to Cart"
+                                        accessroles="User" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" accessroles="MunicipalityAdmin,MunicipalityEmployee,CXAdmin"
+                                        disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="MunicipalityAdmin,MunicipalityEmployee,CXAdmin"
+                                        disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                     <wm-liveform novalidate="false" errormessage="" title="Fees Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2FeesData.dataSet" captionalign="left" captionposition="top" name="liveform3">
                                         <wm-layoutgrid columns="1" name="layoutgrid13">

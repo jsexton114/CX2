@@ -14,8 +14,10 @@ import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,6 +25,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import com.tekdog.dbutils.*;
@@ -481,6 +484,7 @@ public class FormService {
 	    	if (formTypeData.getBoolean("AutomaticFees")) {
 		    	StringBuilder formFeesQuery = new StringBuilder("INSERT INTO Fees (FormGuid, Amount, FeeType, AutoFeeYN, AccountingCode, PaidStatus) VALUES ");
 		    	List<String> formFeesValues = new ArrayList<String>();
+    			NumberFormat currFormat = NumberFormat.getCurrencyInstance(Locale.US);
 		    	
 	    		BigDecimal flatFee = formTypeData.getBigDecimal("FlatFee");
 	    		BigDecimal sfFee = formTypeData.getBigDecimal("SfFee");
@@ -490,7 +494,7 @@ public class FormService {
 	    		
 	    		if (flatFee != null && !flatFee.equals(0)) {
 	    			totalFees = totalFees.add(flatFee);
-	    			queryParams.put("flatFeeAmount", flatFee);
+	    			queryParams.put("flatFeeAmount", currFormat.format(flatFee.doubleValue()));
 	    			queryParams.put("flatFeeAccountingCode", formTypeData.getString("FlatFeeAccountingCode"));
 	    			formFeesValues.add("(:formGuid, :flatFeeAmount, 'Flat Fee', 1, :flatFeeAccountingCode, 'Unpaid')");
 	    		}
@@ -501,7 +505,7 @@ public class FormService {
 		    			
 		    			if (!totalSqft.equals(0)) {
 		    				totalFees = totalFees.add(sfFee.multiply(totalSqft));
-		    				queryParams.put("sfFeeAmount", (sfFee.multiply(totalSqft)));
+		    				queryParams.put("sfFeeAmount", currFormat.format(sfFee.multiply(totalSqft)));
 		    				queryParams.put("sfFeeAccountingCode", formTypeData.getString("SfFeeAccountingCode"));
 		    				formFeesValues.add("(:formGuid, :sfFeeAmount, 'Square Footage Fee', 1, :sfFeeAccountingCode, 'Unpaid')");
 		    			}
@@ -514,7 +518,7 @@ public class FormService {
 		    			
 		    			if (!totalUnits.equals(0)) {
 		    				totalFees = totalFees.add(unitFee.multiply(totalUnits));
-		    				queryParams.put("unitFeeAmount", (unitFee.multiply(totalUnits)));
+		    				queryParams.put("unitFeeAmount", currFormat.format(unitFee.multiply(totalUnits)));
 		    				queryParams.put("unitFeeAccountingCode", formTypeData.getString("UnitFeeAccountingCode"));
 		    				formFeesValues.add("(:formGuid, :unitFeeAmount, 'Unit Fee', 1, :unitFeeAccountingCode, 'Unpaid')");
 		    			}
@@ -523,15 +527,16 @@ public class FormService {
 	    		
 	    		if (stateFee != null && !stateFee.equals(0)) {
 	    			totalFees = totalFees.add(stateFee);
-	    			queryParams.put("stateFeeAmount", stateFee);
+	    			queryParams.put("stateFeeAmount", currFormat.format(stateFee.doubleValue()));
 	    			queryParams.put("stateFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
     				formFeesValues.add("(:formGuid, :stateFeeAmount, 'State Fee', 1, :stateFeeAccountingCode, 'Unpaid')");
 	    		}
 	    		
 	    		if (basementFee != null && !basementFee.equals(0) && (Boolean) fieldData.get("Basement")) {
 	    			totalFees = totalFees.add(basementFee);
-	    			queryParams.put("basementFeeAmount", basementFee);
+	    			queryParams.put("basementFeeAmount", currFormat.format(basementFee.doubleValue()));
 	    			queryParams.put("basementFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
+	    			// throw new SQLException("Basement Value: "+currFormat.format(basementFee.doubleValue()));
     				formFeesValues.add("(:formGuid, :basementFeeAmount, 'Basement Fee', 1, :basementFeeAccountingCode, 'Unpaid')");
 	    		}
 	    		
@@ -566,6 +571,7 @@ public class FormService {
 	    	cx2Conn.commit();
     	} catch (Exception e) {
     		cx2Conn.rollback();
+    		e.printStackTrace();
     		logger.error(e.getLocalizedMessage());
     		throw e;
     	} finally {
