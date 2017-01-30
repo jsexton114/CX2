@@ -9,15 +9,6 @@ Application.$controller("ManageMunicipalityVendorsPageController", ["$scope", fu
 
 
 
-    $scope.UpdateVendorStatusFromApprovedonSuccess = function(variable, data) {
-        $scope.Widgets.liveformApprovedVendors.cancel();
-    };
-
-
-    $scope.UpdateVendorStatusFromSuspendedonSuccess = function(variable, data) {
-        $scope.Widgets.liveformSuspended.cancel();
-    };
-
 }]);
 
 
@@ -32,7 +23,7 @@ Application.$controller("gridApprovedVendorsController", ["$scope",
         $scope.customRowAction = function($event, $rowData) {
             $scope.Variables.VendorProfile.setFilter('id', $rowData.vendorId)
             $scope.Variables.VendorProfile.update();
-            $scope.Variables.VendorLicensesData.setFilter('id', $rowData.vendorId)
+            $scope.Variables.VendorLicensesData.setFilter('vendorId', $rowData.vendorId)
             $scope.Variables.VendorLicensesData.update();
             $scope.Widgets.viewCompanyDetails.open();
 
@@ -51,7 +42,7 @@ Application.$controller("gridSuspendedController", ["$scope",
         $scope.customRowAction = function($event, $rowData) {
             $scope.Variables.VendorProfile.setFilter('id', $rowData.vendorId)
             $scope.Variables.VendorProfile.update();
-            $scope.Variables.VendorLicensesData.setFilter('id', $rowData.vendorId)
+            $scope.Variables.VendorLicensesData.setFilter('vendorId', $rowData.vendorId)
             $scope.Variables.VendorLicensesData.update();
             $scope.Widgets.viewCompanyDetails.open();
 
@@ -96,7 +87,7 @@ Application.$controller("gridPendingController", ["$scope",
         $scope.customRowAction = function($event, $rowData) {
             $scope.Variables.VendorProfile.setFilter('id', $rowData.vendorId)
             $scope.Variables.VendorProfile.update();
-            $scope.Variables.VendorLicensesData.setFilter('id', $rowData.vendorId)
+            $scope.Variables.VendorLicensesData.setFilter('vendorId', $rowData.vendorId)
             $scope.Variables.VendorLicensesData.update();
             $scope.Widgets.viewCompanyDetails.open();
 
@@ -114,15 +105,15 @@ Application.$controller("dialogPendingApprovalsController", ["$scope",
 ]);
 
 Application.$controller("dialogReviewApprovedController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("dialogReviewSuspendedController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
