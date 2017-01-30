@@ -2691,7 +2691,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "DateApproved",
-      "value" : "bind:toDay",
+      "value" : "bind:today",
       "type" : "string"
     }, {
       "target" : "ApprovedBy",
@@ -2699,15 +2699,15 @@
       "type" : "string"
     }, {
       "target" : "ExpiresDate",
-      "value" : "bind:Widgets.liveformApprovedVendors.dataoutput.expiresDate",
+      "value" : "bind:Widgets.datetimeFormApproved.timestamp",
       "type" : "string"
     }, {
       "target" : "Active",
-      "value" : "bind:Widgets.liveformApprovedVendors.dataoutput.active",
+      "value" : "bind:Widgets.checkboxIsActive.datavalue",
       "type" : "boolean"
     }, {
       "target" : "ApprovalStatus",
-      "value" : "bind:Widgets.approvalStatus2.datavalue",
+      "value" : "bind:Widgets.selectFromApproved.datavalue",
       "type" : "string"
     }, {
       "target" : "Reviewer",
@@ -2732,7 +2732,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.ApprovedVendorApprovals.listRecords();Variables.ReviewVendorApprovals.listRecords();Variables.SuspendedVendorApprovals.listRecords();UpdateVendorStatusFromApprovedonSuccess($event, $scope)",
+    "onSuccess" : "Variables.ApprovedVendorApprovals.listRecords();Variables.ReviewVendorApprovals.listRecords();Variables.SuspendedVendorApprovals.listRecords();Widgets.dialogReviewApproved.close()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -2805,7 +2805,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "DateApproved",
-      "value" : "bind:Widgets.liveformSuspended.formWidgets.dateSApproved.defaultvalue",
+      "value" : "bind:today | toDate: 'timestamp'",
       "type" : "string"
     }, {
       "target" : "ApprovedBy",
@@ -2813,15 +2813,15 @@
       "type" : "string"
     }, {
       "target" : "ExpiresDate",
-      "value" : "bind:Widgets.liveformSuspended.dataoutput.expiresDate",
+      "value" : "bind:Widgets.datetimeFromSuspended.timestamp",
       "type" : "string"
     }, {
       "target" : "Active",
-      "value" : "bind:Widgets.gridApprovedVendors.selecteditem.active",
+      "value" : true,
       "type" : "boolean"
     }, {
       "target" : "ApprovalStatus",
-      "value" : "bind:Widgets.approvalStatus3.datavalue",
+      "value" : "bind:Widgets.selectFromSuspended.displayValue",
       "type" : "string"
     }, {
       "target" : "Reviewer",
@@ -2846,7 +2846,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.ApprovedVendorApprovals.listRecords();Variables.ReviewVendorApprovals.listRecords();Variables.SuspendedVendorApprovals.listRecords();UpdateVendorStatusFromSuspendedonSuccess($event, $scope)",
+    "onSuccess" : "Variables.ApprovedVendorApprovals.listRecords();Variables.ReviewVendorApprovals.listRecords();Variables.SuspendedVendorApprovals.listRecords();Widgets.dialogReviewSuspended.close()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

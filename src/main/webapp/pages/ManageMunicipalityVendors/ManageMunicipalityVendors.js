@@ -41,14 +41,7 @@ Application.$controller("gridApprovedVendorsController", ["$scope",
     }
 ]);
 
-Application.$controller("liveformApprovedVendorsController", ["$scope",
-    function($scope) {
-        "use strict";
 
-        $scope.ctrlScope = $scope;
-        $scope.toDay = moment().valueOf();
-    }
-]);
 
 Application.$controller("gridSuspendedController", ["$scope",
     function($scope) {
@@ -69,12 +62,7 @@ Application.$controller("gridSuspendedController", ["$scope",
     }
 ]);
 
-Application.$controller("liveformSuspendedController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
 
 Application.$controller("viewCompanyDetailsController", ["$scope",
     function($scope) {
@@ -123,4 +111,18 @@ Application.$controller("dialogPendingApprovalsController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
     }
+]);
+
+Application.$controller("dialogReviewApprovedController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("dialogReviewSuspendedController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);
