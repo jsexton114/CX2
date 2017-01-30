@@ -83,6 +83,14 @@ public class VendorApprovalsController {
         return deletedVendorApprovals != null;
     }
 
+    @RequestMapping(value = "/municipalityId-vendorId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching VendorApprovals with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public VendorApprovals getByMunicipalityIdAndVendorId(@RequestParam(value = "null", required = true) Integer municipalityId, @RequestParam(value = "null", required = true) Integer vendorId) {
+        LOGGER.debug("Getting VendorApprovals with uniques key MunicipalityIdAndVendorId");
+        return vendorApprovalsService.getByMunicipalityIdAndVendorId(municipalityId, vendorId);
+    }
+
     /**
      * @deprecated Use {@link #findVendorApprovals(String, Pageable)} instead.
      */

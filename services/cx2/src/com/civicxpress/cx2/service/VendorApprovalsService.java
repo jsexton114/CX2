@@ -49,6 +49,15 @@ public interface VendorApprovalsService {
 	 */
 	VendorApprovals findById(Integer vendorapprovalsId);
 
+    /**
+	 * Find and return the VendorApprovals for given municipalityId  andvendorId  if exists.
+	 *
+	 * @param municipalityId value of municipalityId; value cannot be null.
+	 * @param vendorId value of vendorId; value cannot be null.
+	 * @return VendorApprovals associated with the given inputs.
+     * @throws EntityNotFoundException if no matching VendorApprovals found.
+	 */
+    VendorApprovals getByMunicipalityIdAndVendorId(Integer municipalityId, Integer vendorId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing VendorApprovals. It replaces all fields of the existing VendorApprovals with the given vendorApprovals.

@@ -10275,7 +10275,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -10300,36 +10300,11 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
       "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "dateApproved",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "date",
-      "length" : 0,
-      "name" : "DateApproved",
-      "nullable" : true,
-      "oldName" : "DateApproved",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "date",
       "unique" : false
     }, {
       "columnValue" : {
@@ -10355,31 +10330,6 @@
       "primaryKey" : false,
       "scale" : 0,
       "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "expiresDate",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "date",
-      "length" : 0,
-      "name" : "ExpiresDate",
-      "nullable" : true,
-      "oldName" : "ExpiresDate",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "date",
       "unique" : false
     }, {
       "columnValue" : {
@@ -10456,8 +10406,64 @@
       "scale" : 0,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "dateApproved",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "timestamp",
+      "length" : 0,
+      "name" : "DateApproved",
+      "nullable" : true,
+      "oldName" : "DateApproved",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "timestamp",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "expiresDate",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "timestamp",
+      "length" : 0,
+      "name" : "ExpiresDate",
+      "nullable" : true,
+      "oldName" : "ExpiresDate",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "timestamp",
+      "unique" : false
     } ],
-    "constraints" : [ ],
+    "constraints" : [ {
+      "columns" : [ "MunicipalityId", "VendorId" ],
+      "composite" : true,
+      "name" : "UK_VendorApprovals_MunicyyHoG",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
     "entityName" : "VendorApprovals",
     "fullyQualifiedName" : "com.civicxpress.cx2.VendorApprovals",
     "name" : "VendorApprovals",
