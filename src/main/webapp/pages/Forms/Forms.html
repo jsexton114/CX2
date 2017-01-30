@@ -285,7 +285,8 @@
                                         <wm-grid-action key="customButton" display-name="Invite Contact" title="Invite Contact" value="" iconclass="wi wi-contact-mail" class="btn-secondary" show="true" shortcutkey=""></wm-grid-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Add a Form Contact" formlayout="dialog" iconclass="wi wi-person-add" dataset="bind:Variables.SharedWithData.dataSet" captionalign="left" captionposition="top" name="liveformSharedwith">
+                                    <wm-liveform novalidate="false" errormessage="That user has already been added as a Form Contact." title="Add a Form Contact" formlayout="dialog" iconclass="wi wi-person-add" dataset="bind:Variables.SharedWithData.dataSet"
+                                    captionalign="left" captionposition="top" name="liveformSharedwith">
                                         <wm-layoutgrid columns="1" name="layoutgrid4">
                                             <wm-gridrow name="gridrow12">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn24">
@@ -294,14 +295,14 @@
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
-                                        <wm-form-field name="usersByCreatedBy" displayname="Users By Created By" show="false" primary-key="false" generator="assigned" key="usersByCreatedBy" type="list" is-related="true" widget="select" placeholder="Select value"
-                                        defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
-                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                        placeholder=""></wm-form-field>
-                                        <wm-form-field name="createdOn" displayname="Created On" show="false" primary-key="false" generator="assigned" key="createdOn" type="timestamp" widget="timestamp" placeholder="Select date time" outputformat="timestamp"
-                                        defaultvalue="bind:today"></wm-form-field>
                                         <wm-form-field name="relatedGuid" displayname="Related Guid" show="false" primary-key="false" generator="assigned" key="relatedGuid" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
                                         defaultvalue="bind:pageParams.FormGUID"></wm-form-field>
+                                        <wm-form-field name="createdOn" displayname="Created On" show="false" primary-key="false" generator="assigned" key="createdOn" type="timestamp" widget="timestamp" placeholder="Select date time" outputformat="timestamp"
+                                        defaultvalue="bind:today"></wm-form-field>
+                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
+                                        placeholder=""></wm-form-field>
+                                        <wm-form-field name="usersByCreatedBy" displayname="Users By Created By" show="false" primary-key="false" generator="assigned" key="usersByCreatedBy" type="list" is-related="true" widget="select"
+                                        placeholder="Select value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
                                         <wm-form-action key="save" display-name="Add" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                     </wm-liveform>
