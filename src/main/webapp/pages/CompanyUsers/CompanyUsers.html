@@ -35,7 +35,7 @@
                                                 <wm-grid-column binding="users.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="users.phoneNumber" caption="Phone Number" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                                <wm-grid-column binding="joiningDate" caption="Joining Date" type="date" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="joiningDate" caption="Date Added" type="date" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="250px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="customButton" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-person-add" title="Add User" action="Widgets.dialogAddUser.open()" shortcutkey=""
                                                 disabled="false"></wm-grid-action>
