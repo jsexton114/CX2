@@ -1,4 +1,32 @@
 {
+  "Capcha" : {
+    "_id" : "wm-Capcha-wm.NotificationVariable-1485861828462",
+    "name" : "Capcha",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Please Check reCAPTCHA",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "CreateUser" : {
     "_id" : "wm-CreateUser-wm.LiveVariable-1478597881652",
     "name" : "CreateUser",
@@ -757,6 +785,32 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "userLimit",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "UserLimit",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "10",
+        "scale" : 0
+      }, {
+        "fieldName" : "formLimit",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "FormLimit",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "5",
+        "scale" : 0
       } ],
       "entityName" : "Municipalities",
       "fullyQualifiedName" : "com.civicxpress.cx2.Municipalities",
@@ -1222,6 +1276,32 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "userLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "10",
+          "scale" : 0
+        }, {
+          "fieldName" : "formLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FormLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "5",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -1552,23 +1632,51 @@
     "dataBinding" : [ {
       "target" : "content",
       "value" : "inline",
-      "type" : "list"
+      "type" : "string"
     }, {
       "target" : "text",
-      "value" : "Please check that your passwords match and the reCAPTCHA is valid, then try again",
+      "value" : "Please check that your passwords match, then try again",
       "type" : "string"
     }, {
       "target" : "duration",
       "value" : "2000",
-      "type" : "list"
+      "type" : "number"
     }, {
       "target" : "class",
       "value" : "Error",
-      "type" : "list"
+      "type" : "string"
     }, {
       "target" : "toasterPosition",
       "value" : "bottom right",
-      "type" : "list"
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "PasswordsAndCaptcha" : {
+    "_id" : "wm-PasswordsAndCaptcha-wm.NotificationVariable-1485862097627",
+    "name" : "PasswordsAndCaptcha",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Passwords miss match And please check reCAPTCHA",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
     } ],
     "operation" : "toast"
   },
@@ -1980,6 +2088,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "userLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "10",
+          "scale" : 0
+        }, {
+          "fieldName" : "formLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FormLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "5",
           "scale" : 0
         } ]
       }, {

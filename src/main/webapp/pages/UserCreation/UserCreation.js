@@ -3,11 +3,9 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
     $scope.newUser;
 
     $scope.onPageReady = function() {
-        // To hide the Icon
-        //$('.wi.wi-file').hide();
         //Current Date for subscriptions
-        //$scope.Widgets.Google_reCAPTCHA1.tokenresponse = false;
-        $scope.toDay = Date.parse(new Date().toDateString());
+        $scope.toDay = moment().valueOf();
+        console.log($scope.toDay);
         $('[name="liveform2"]').on('change', '.app-blob-upload', function() {
             readURL(this);
         })
@@ -73,11 +71,8 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
     // For verifying password match
     function passwordCheck() {
         if ($scope.Widgets.textPwd.datavalue === $scope.Widgets.textRePwd.datavalue && $scope.Widgets.textPwd.datavalue != undefined && $scope.Widgets.textRePwd.datavalue != undefined) {
-
             return true;
         } else {
-
-            grecaptcha.reset();
             return false;
         }
 
@@ -87,8 +82,15 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         if (passwordCheck() && (grecaptcha.getResponse() != '')) {
             $scope.Widgets.liveform2.save();
             $scope.Variables.NewUserToLogin.navigate();
-        } else {
+        } else if ((grecaptcha.getResponse() != '') && (passwordCheck() == false)) {
             $scope.Variables.PasswordMissMatch.notify();
+            grecaptcha.reset();
+        } else if ((grecaptcha.getResponse() == '') && (passwordCheck() == true)) {
+            $scope.Variables.Capcha.notify();
+            grecaptcha.reset();
+        } else {
+            $scope.Variables.PasswordsAndCaptcha.notify();
+            grecaptcha.reset();
         }
     };
 
