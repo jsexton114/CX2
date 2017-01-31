@@ -48,7 +48,7 @@ Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
                 return;
             } else {
                 $scope.Widgets.liveform2_12.save();
-                wmToaster.show('success', 'SUCCESS', 'Your application has been submitted to the municipality. Check back later for updated application status.', 5000);
+                // wmToaster.show('success', 'SUCCESS', 'Your application has been submitted to the municipality. Check back later for updated application status.', 5000);
             }
 
         };
