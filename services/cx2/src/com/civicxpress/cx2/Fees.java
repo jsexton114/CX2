@@ -32,7 +32,6 @@ public class Fees implements Serializable {
     private Integer municipalityId;
     private Integer gisid;
     private String formType;
-    private String amount;
     private String feeType;
     private Boolean autoFeeYn;
     private String accountingCode;
@@ -47,6 +46,7 @@ public class Fees implements Serializable {
     private String projectGuid;
     private Integer cxvendorId;
     private String itemTitle;
+    private String amount;
     private Vendor vendor;
     private Gisrecords gisrecords;
     private Municipalities municipalities;
@@ -88,15 +88,6 @@ public class Fees implements Serializable {
 
     public void setFormType(String formType) {
         this.formType = formType;
-    }
-
-    @Column(name = "`Amount`", nullable = true, length = 255)
-    public String getAmount() {
-        return this.amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
     }
 
     @Column(name = "`FeeType`", nullable = true, length = 255)
@@ -224,6 +215,15 @@ public class Fees implements Serializable {
 
     public void setItemTitle(String itemTitle) {
         this.itemTitle = itemTitle;
+    }
+
+    @Column(name = "`Amount`", nullable = false, length = 255)
+    public String getAmount() {
+        return this.amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
