@@ -23,7 +23,7 @@ public class FormStatusUpdateController {
     @RequestMapping(value = "/sendStatusUpdateMail", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String sendStatusUpdateMail(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "emailSubject", required = false) String emailSubject, @RequestParam(value = "emailBody", required = false) String emailBody, @RequestParam(value = "municipality", required = false) String municipality, @RequestParam(value = "formType", required = false) String formType, @RequestParam(value = "municipalitySignature", required = false) String municipalitySignature) throws MessagingException {
-        return formStatusUpdate.sendStatusUpdateMail(username, recipient, emailSubject, emailBody, municipality, formType, municipalitySignature);
+    public String sendStatusUpdateMail(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "emailSubject", required = false) String emailSubject, @RequestParam(value = "emailBody", required = false) String emailBody, @RequestParam(value = "municipality", required = false) String municipality, @RequestParam(value = "formType", required = false) String formType, @RequestParam(value = "municipalitySignature", required = false) String municipalitySignature, @RequestParam(value = "formTitle", required = false) String formTitle, @RequestParam(value = "formGUID", required = false) String formGUID) throws MessagingException {
+        return formStatusUpdate.sendStatusUpdateMail(username, recipient, emailSubject, emailBody, municipality, formType, municipalitySignature, formTitle, formGUID);
     }
 }

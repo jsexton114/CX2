@@ -3465,19 +3465,6 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "amount",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "Amount",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
         "fieldName" : "feeType",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -3627,6 +3614,19 @@
         "columnName" : "ItemTitle",
         "isPrimaryKey" : false,
         "notNull" : false,
+        "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "amount",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "Amount",
+        "isPrimaryKey" : false,
+        "notNull" : true,
         "length" : 255,
         "precision" : 0,
         "generator" : "assigned",
@@ -8271,7 +8271,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "a",
           "scale" : 0
         } ]
       }, {
@@ -9078,7 +9078,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "a",
           "scale" : 0
         } ]
       }, {
@@ -10858,6 +10858,14 @@
       "target" : "municipalitySignature",
       "value" : "bind:Widgets.selectStatus.datavalue.municipalityGroupsByProcessOwners.municipalities.globalEmailSig",
       "type" : "string"
+    }, {
+      "target" : "formGUID",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    }, {
+      "target" : "formTitle",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTitle",
+      "type" : "string"
     } ],
     "type" : "string",
     "service" : "FormStatusUpdate",
@@ -12132,7 +12140,7 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "a",
         "scale" : 0
       } ],
       "entityName" : "Subdivisions",

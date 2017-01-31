@@ -41,7 +41,7 @@ public class FormStatusUpdate {
     private static final Logger logger = LoggerFactory.getLogger(FormStatusUpdate.class);
     private static final String RESET_NOTIFICATION_MAIL_ID ="civicxpress@gmail.com ";
     private static final String RESET_NOTIFICATION_MAIL_PASSWORD ="civicxpress2016!";
-    private static final String RESET_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/ResetPassword?token=";
+    private static final String FORM_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/Forms?FormGUID=";
     
     @Autowired
     private SecurityService securityService;
@@ -55,9 +55,9 @@ public class FormStatusUpdate {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
- public String sendStatusUpdateMail(String username ,String recipient,String emailSubject,String emailBody,String municipality,String formType,String municipalitySignature) throws MessagingException {
+ public String sendStatusUpdateMail(String username ,String recipient,String emailSubject,String emailBody,String municipality,String formType,String municipalitySignature,String formTitle,String formGUID) throws MessagingException {
         
-        String emailContent = "Hi" + " "+username+","+"<br /><br />";
+      
         
         Properties props = System.getProperties();
         props.put("mail.smtp.starttls.enable", "true");
@@ -74,10 +74,26 @@ public class FormStatusUpdate {
         message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
         
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-        emailContent =emailContent+"Status of your form: "+formType + "<br/>"+" Submitted for the Municipality-";
-        emailContent =emailContent+municipality + "<br/>";
         
-        emailContent =emailContent+emailBody+ "<br/>"+ municipalitySignature +"<br/>";
+        String formURL=  FORM_URL+formGUID;
+        logger.info(formGUID);
+        
+        String emailContent = "Hi" + " "+username+","+"<br /><br />";
+        
+        emailContent =emailContent + emailBody ;
+        emailContent =emailContent+"<br /><br />";
+        
+        emailContent =emailContent + municipality ;
+        emailContent =emailContent+"<br />";
+        emailContent =emailContent + formType ;
+        emailContent =emailContent+"<br />";
+        emailContent =emailContent + formTitle ;
+        emailContent =emailContent+"<br />";
+        emailContent = emailContent+"<a href ='"+formURL+ "'> Click Here to View Form </a>";
+        
+        emailContent =emailContent+ "<br/><br/>"+ municipalitySignature +"<br/><br/>";
+        
+        emailContent =emailContent+"If you have any questions, please contact our Support Desk at 419-586-7759.";
         message.setSubject(emailSubject);
         message.setContent(emailContent, "text/html");
         // Send smtp message
