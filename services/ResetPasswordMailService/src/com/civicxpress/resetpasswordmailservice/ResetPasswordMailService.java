@@ -114,8 +114,9 @@ public class ResetPasswordMailService {
         
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
         
-        emailBody += "Thank you for creating a CivicXpress account.  You can now subscribe to participating CivicXpress municipalities and start submitting digital forms today!  We strongly recommend you checkout our FREE CivicXpress training available under the support link once you’ve login to CivicXpress.  If you have any questions about your CX account, please feel free to contact support from our support page located within CivicXpress.  If you have any questions about your submitted forms please contact the municipality you submitted your form to as they will be your primary contact for anything related to submitted forms and their associated processes.  Once again, thank you for joining the CivicXpress community!<br /><br />";
-        emailBody += "Thank you!<br/>CivicXpress Support Team<br/>";
+        emailBody += "Thank you for creating a CivicXpress account.  You can now subscribe to participating CivicXpress municipalities and start submitting digital forms today!  We strongly recommend that you check out our FREE CivicXpress training available on the Support page once you've logged in to CivicXpress.  If you have any questions about your account, please feel free to contact us on the Support page located within CivicXpress.  If you have any questions about your submitted forms, please contact the municipality that you submitted your form to as they will be your primary contact for anything related to forms and their associated processes.<br /><br />";
+        emailBody += "Once again, thank you for joining the CivicXpress community!<br /><br />";
+        emailBody += "The CivicXpress Support Team<br/>";
         message.setSubject(EMAIL_SUBJECT_WELCOME);
         message.setContent(emailBody, "text/html");
         // Send smtp message
