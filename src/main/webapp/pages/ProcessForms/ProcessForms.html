@@ -26,11 +26,11 @@
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
                         <wm-grid title="" dataset="bind:Variables.ProcessFormsForUserByMunicipality.dataSet.content[0][0]" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL">
-                            <wm-grid-column binding="municipalityGroups.municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="vendor.companyName" caption="Company" type="string" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalityGroups.municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="vendor.companyName" caption="Company" type="string" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
