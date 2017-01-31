@@ -15,11 +15,13 @@
                         <wm-panel iconclass="wi wi-book-open" autoclose="outsideClick" name="panel1" title="Open Forms" class="panel-primary">
                             <wm-grid title="" dataset="bind:Variables.FormsForUsersAndShared.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL">
                                 <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="true"></wm-grid-column>
-                                <wm-grid-column binding="vendor.companyName" caption="Company" type="string" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid-column binding="Companies" caption="Companies" type="string" widget-type="button" readonly="true" searchable="false" show="true">
+                                    <wm-button caption="View Companies" show="true" class="btn-sm btn-primary" iconclass="" on-click="Widgets.dialogCompaniesList.open()" data-ng-class=""></wm-button>
+                                </wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
@@ -30,4 +32,19 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="viewCompaniesList">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Companies List" iconclass="wi wi-file-text" name="dialogCompaniesList" width="70%">
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
+            </wm-dialogactions>
+            <wm-grid title="" dataset="bind:Variables.Vendors2formData.dataSet" navigation="Classic" name="gridCompaniesList">
+                <wm-grid-column binding="sharedOn" caption="Shared On" type="timestamp" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true"></wm-grid-column>
+                <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                <wm-grid-column binding="vendor.companyPhone" caption="Company Phone" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                <wm-grid-column binding="vendor.companyEmail" caption="Company Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                <wm-grid-column binding="vendor.companyWebsite" caption="Company Website" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                <wm-grid-column binding="vendor.typeOfBusiness" caption="Of Business" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+            </wm-grid>
+        </wm-dialog>
+    </wm-view>
 </wm-page>
