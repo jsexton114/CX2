@@ -93,7 +93,6 @@ public class FormStatusUpdate {
         
         emailContent =emailContent+ "<br/><br/>"+ municipalitySignature +"<br/><br/>";
         
-        emailContent =emailContent+"If you have any questions, please contact our Support Desk at 419-586-7759.";
         message.setSubject(emailSubject);
         message.setContent(emailContent, "text/html");
         // Send smtp message
