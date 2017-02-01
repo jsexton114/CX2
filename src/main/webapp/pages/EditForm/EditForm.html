@@ -20,8 +20,8 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn58_1">
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabpaneFORMINFO" title="Settings">
-                                <wm-liveform novalidate="false" errormessage="" title="bind:Variables.ReadFormType.dataSet.data[$i].formType" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.UpdateFormTypes.dataSet" captionalign="left" captionposition="top"
-                                name="liveformUpdateFormType" backgroundcolor="#dbdbdb" formdata="bind:Variables.CurrentFormObj.firstRecord" on-beforeservicecall="liveformUpdateFormTypeBeforeservicecall($event, $operation, $data)">
+                                <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.UpdateFormTypes.dataSet" captionalign="left" captionposition="top" name="liveformUpdateFormType" backgroundcolor="#dbdbdb"
+                                formdata="bind:Variables.CurrentFormObj.firstRecord" on-beforeservicecall="liveformUpdateFormTypeBeforeservicecall($event, $operation, $data)">
                                     <wm-layoutgrid columns="2" name="layoutgrid2">
                                         <wm-gridrow name="gridrow15">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn25" padding="1em unset">
@@ -38,6 +38,116 @@
                                                             placeholder=""></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
+                                                </wm-panel>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow43_1">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn71_1">
+                                                <wm-panel iconclass="wi wi-edit" autoclose="outsideClick" name="panel10_1" margin="1em unset" title="Form Naming" class="panel-primary">
+                                                    <wm-layoutgrid name="layoutgrid10_1">
+                                                        <wm-gridrow name="gridrow43_2">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn68">
+                                                                <wm-form-field displayname="Prefix" widget="text" show="true" type="custom" name="titlePrefix" maxchars="255" placeholder="Enter prefix" required="true"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow44_1">
+                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn70">
+                                                                <wm-form-field displayname="Date Option" widget="radioset" show="true" type="custom" name="prefixDate" dataset="bind:Variables.stvPrefixDateOptions.dataSet" datafield="value" displayfield="label"
+                                                                usekeys="false" layout="inline" required="true" on-change="prefixDateChange($event, $scope, newVal, oldVal)"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn79">
+                                                                <wm-form-field displayname="Separate by Dashes" widget="checkbox" show="true" type="custom" name="prefixDashes"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow45_1">
+                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn72_1">
+                                                                <wm-form-field displayname="Number" widget="radioset" show="true" type="custom" name="prefixNumber" dataset="bind:Variables.stvPrefixNumberOptions.dataSet" datafield="value" displayfield="label"
+                                                                required="true" layout="stacked" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.prefixDate.datavalue == 'None'"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn72_2">
+                                                                <wm-layoutgrid name="layoutgrid11">
+                                                                    <wm-gridrow name="gridrow47">
+                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn74_1">
+                                                                            <wm-form-field displayname="Number Start" widget="text" show="true" type="custom" name="prefixNumberStart" inputtype="number" required="true" placeholder="Enter number" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixNumberStart"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                    <wm-gridrow name="gridrow48">
+                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn76_1">
+                                                                            <wm-form-field displayname="Increment By" widget="text" show="true" type="custom" name="prefixNumberStep" inputtype="number" placeholder="Enter number" required="true" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixNumberStep"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                </wm-layoutgrid>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow46_1">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn75_1">
+                                                                <wm-layoutgrid name="layoutgrid12">
+                                                                    <wm-gridrow name="gridrow49">
+                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn76_2">
+                                                                            <wm-label padding="unset 0.5em" name="label10_1" caption="Preview"></wm-label>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                    <wm-gridrow name="gridrow50">
+                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn78">
+                                                                            <wm-label padding="unset 0.5em" name="label11_1" caption="bind:generateFormTitlePreview()"></wm-label>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                </wm-layoutgrid>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                    </wm-layoutgrid>
+                                                </wm-panel>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow36_1">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn53_1">
+                                                <wm-panel iconclass="wi wi-control-point" autoclose="outsideClick" name="panel9_1" margin="1em unset" title="Form Options" class="panel-primary">
+                                                    <wm-layoutgrid name="layoutgrid9_1">
+                                                        <wm-gridrow name="gridrow37_1">
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn54">
+                                                                <wm-form-field name="sharedWith" displayname="Contacts" show="true" primary-key="false" generator="assigned" key="sharedWith" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn55">
+                                                                <wm-form-field name="attachments" displayname="Attachments" show="true" primary-key="false" generator="assigned" key="attachments" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn58">
+                                                                <wm-form-field name="digitalSignatures" displayname="Digital Signatures" show="true" primary-key="false" generator="assigned" key="digitalSignatures" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow38_1">
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn56">
+                                                                <wm-label caption="Vendor Selection" name="label13_1"></wm-label>
+                                                                <wm-select show="true" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].vendorSelection &amp;&amp; Variables.CurrentFormObj.dataSet.data[$i].multipleVendors ? 'Multiple' : (Variables.CurrentFormObj.dataSet.data[$i].vendorSelection ? 'Single' : 'None')"
+                                                                dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)" name="selectVendorOption"></wm-select>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn57">
+                                                                <wm-form-field name="inspections" displayname="Inspections" show="true" primary-key="false" generator="assigned" key="inspections" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn59"></wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow39">
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn60_1">
+                                                                <wm-label caption="GIS Record" name="label2"></wm-label>
+                                                                <wm-select displayname="GIS Record" widget="select" show="true" type="custom" name="gisOptionSelect" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].gisrecord &amp;&amp; Variables.CurrentFormObj.dataSet.data[$i].multipleGisrecords ? 'Multiple' : (Variables.CurrentFormObj.dataSet.data[$i].gisrecord ? 'Single' : 'None')"
+                                                                dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)"></wm-select>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn61_1">
+                                                                <wm-form-field name="gismap" displayname="GIS Map" show="true" primary-key="false" generator="assigned" key="gismap" type="boolean" widget="checkbox" placeholder="" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn62_3"></wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow39_1">
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn63_2">
+                                                                <wm-form-field name="collectFees" displayname="Collect Fees" show="true" primary-key="false" generator="assigned" key="collectFees" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn77">
+                                                                <wm-form-field name="automaticFees" displayname="Automatic Fees" show="true" primary-key="false" generator="assigned" key="automaticFees" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn78_1">
+                                                                <wm-form-field name="payments" displayname="Payments" show="true" primary-key="false" generator="assigned" key="payments" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                    </wm-layoutgrid>
                                                 </wm-panel>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
@@ -93,114 +203,6 @@
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn67">
                                                                 <wm-form-field name="basementFeeAccountingCode" displayname="Basement Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="basementFeeAccountingCode" type="string" widget="text"
                                                                 maxchars="255" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].basementFeeAccountingCode" placeholder="Enter value" inputtype="text"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                    </wm-layoutgrid>
-                                                </wm-panel>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow36_1">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn53_1">
-                                                <wm-panel iconclass="wi wi-control-point" autoclose="outsideClick" name="panel9_1" margin="1em unset" title="Form Options" class="panel-primary">
-                                                    <wm-layoutgrid name="layoutgrid9_1">
-                                                        <wm-gridrow name="gridrow37_1">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn54">
-                                                                <wm-form-field name="collectFees" displayname="Collect Fees" show="true" primary-key="false" generator="assigned" key="collectFees" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn55">
-                                                                <wm-form-field name="automaticFees" displayname="Automatic Fees" show="true" primary-key="false" generator="assigned" key="automaticFees" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn58">
-                                                                <wm-form-field name="digitalSignatures" displayname="Digital Signatures" show="true" primary-key="false" generator="assigned" key="digitalSignatures" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow38_1">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn56">
-                                                                <wm-form-field name="inspections" displayname="Inspections" show="true" primary-key="false" generator="assigned" key="inspections" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn57">
-                                                                <wm-form-field name="payments" displayname="Payments" show="true" primary-key="false" generator="assigned" key="payments" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn59">
-                                                                <wm-form-field name="attachments" displayname="Attachments" show="true" primary-key="false" generator="assigned" key="attachments" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow39">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn60_1">
-                                                                <wm-form-field name="sharedWith" displayname="Shared With" show="true" primary-key="false" generator="assigned" key="sharedWith" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn61_1">
-                                                                <wm-label caption="GIS Record" name="label2"></wm-label>
-                                                                <wm-select displayname="GIS Record" widget="select" show="true" type="custom" name="gisOptionSelect" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].gisrecord &amp;&amp; Variables.CurrentFormObj.dataSet.data[$i].multipleGisrecords ? 'Multiple' : (Variables.CurrentFormObj.dataSet.data[$i].gisrecord ? 'Single' : 'None')"
-                                                                dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)"></wm-select>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn62_3">
-                                                                <wm-form-field name="gismap" displayname="GIS Map" show="true" primary-key="false" generator="assigned" key="gismap" type="boolean" widget="checkbox" placeholder="" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow39_1">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn63_2">
-                                                                <wm-label caption="Vendor Selection" name="label13_1"></wm-label>
-                                                                <wm-select show="true" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].vendorSelection &amp;&amp; Variables.CurrentFormObj.dataSet.data[$i].multipleVendors ? 'Multiple' : (Variables.CurrentFormObj.dataSet.data[$i].vendorSelection ? 'Single' : 'None')"
-                                                                dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)" name="selectVendorOption"></wm-select>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                    </wm-layoutgrid>
-                                                </wm-panel>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow43_1">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn71_1">
-                                                <wm-panel iconclass="wi wi-edit" autoclose="outsideClick" name="panel10_1" margin="1em unset" title="Form Naming" class="panel-primary">
-                                                    <wm-layoutgrid name="layoutgrid10_1">
-                                                        <wm-gridrow name="gridrow43_2">
-                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn68">
-                                                                <wm-form-field displayname="Prefix" widget="text" show="true" type="custom" name="titlePrefix" maxchars="255" placeholder="Enter prefix" required="true"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow44_1">
-                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn70">
-                                                                <wm-form-field displayname="Date Option" widget="radioset" show="true" type="custom" name="prefixDate" dataset="bind:Variables.stvPrefixDateOptions.dataSet" datafield="value" displayfield="label"
-                                                                usekeys="false" layout="inline" required="true" on-change="prefixDateChange($event, $scope, newVal, oldVal)"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow45_1">
-                                                            <wm-gridcolumn columnwidth="5" name="gridcolumn72_1">
-                                                                <wm-form-field displayname="Number" widget="radioset" show="true" type="custom" name="prefixNumber" dataset="bind:Variables.stvPrefixNumberOptions.dataSet" datafield="value" displayfield="label"
-                                                                required="true" layout="stacked" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.prefixDate.datavalue == 'None'"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="7" name="gridcolumn72_2">
-                                                                <wm-layoutgrid name="layoutgrid11">
-                                                                    <wm-gridrow name="gridrow47">
-                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn74_1">
-                                                                            <wm-form-field displayname="Number Start" widget="text" show="true" type="custom" name="prefixNumberStart" inputtype="number" required="true" placeholder="Enter number" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixNumberStart"></wm-form-field>
-                                                                        </wm-gridcolumn>
-                                                                    </wm-gridrow>
-                                                                    <wm-gridrow name="gridrow48">
-                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn76_1">
-                                                                            <wm-form-field displayname="Increment By" widget="text" show="true" type="custom" name="prefixNumberStep" inputtype="number" placeholder="Enter number" required="true" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixNumberStep"></wm-form-field>
-                                                                        </wm-gridcolumn>
-                                                                    </wm-gridrow>
-                                                                </wm-layoutgrid>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow46_1">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn73_1">
-                                                                <wm-form-field displayname="Separate by Dashes" widget="checkbox" show="true" type="custom" name="prefixDashes"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="8" name="gridcolumn75_1">
-                                                                <wm-layoutgrid name="layoutgrid12">
-                                                                    <wm-gridrow name="gridrow49">
-                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn76_2">
-                                                                            <wm-label padding="unset 0.5em" name="label10_1" caption="Preview"></wm-label>
-                                                                        </wm-gridcolumn>
-                                                                    </wm-gridrow>
-                                                                    <wm-gridrow name="gridrow50">
-                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn78">
-                                                                            <wm-label padding="unset 0.5em" name="label11_1" caption="bind:generateFormTitlePreview()"></wm-label>
-                                                                        </wm-gridcolumn>
-                                                                    </wm-gridrow>
-                                                                </wm-layoutgrid>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
@@ -307,7 +309,7 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow120_1">
                                                             <wm-gridcolumn columnwidth="5" name="gridcolumn36_1">
-                                                                <wm-form-field name="allowSharedWithEdits" displayname="Allow Shared With Edits" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean" widget="checkbox"
+                                                                <wm-form-field name="allowSharedWithEdits" displayname="Allow Contacts to Edit" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean" widget="checkbox"
                                                                 placeholder=""></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="5" name="gridcolumn42_1">
@@ -350,8 +352,7 @@
                                                     <wm-panel iconclass="wi wi-assignment-ind" margin="unset unset 1em unset" name="panel10" title="Inspections" class="panel-primary">
                                                         <wm-gridrow name="gridrow23_1">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn45_1">
-                                                                <wm-form-field name="allowInspections" displayname="Allow to Schedule Inspections" show="true" primary-key="false" generator="assigned" key="allowInspections" type="boolean" widget="checkbox"
-                                                                placeholder=""></wm-form-field>
+                                                                <wm-form-field name="allowInspections" displayname="Allow Inspection Scheduling" show="true" primary-key="false" generator="assigned" key="allowInspections" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-panel>
