@@ -12,6 +12,10 @@
       "target" : "MunicipalityId",
       "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID | stringToNumber",
       "type" : "integer"
+    }, {
+      "target" : "closed",
+      "value" : false,
+      "type" : "boolean"
     } ],
     "type" : "cx2CountOfProcessFormsByMuncipalityrtnType",
     "service" : "cx2",

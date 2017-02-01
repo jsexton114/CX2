@@ -237,7 +237,7 @@
                         <wm-composite name="composite3">
                             <wm-label class="col-md-3 form-control-static" name="label8" caption="Expiration Date" horizontalalign="left" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container3">
-                                <wm-datetime name="datetimeExpirationFormPending" mindate="bind:today" datepattern="MM-dd-yyyy"></wm-datetime>
+                                <wm-datetime name="datetimeExpirationFormPending" mindate="bind:today" datepattern="MM-dd-yyyy hh:mm a"></wm-datetime>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -271,7 +271,7 @@
                         <wm-composite name="composite5">
                             <wm-label class="col-md-3 form-control-static" caption="Expiration Date" horizontalalign="left" name="label10" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container5">
-                                <wm-datetime mindate="bind:today" datepattern="MM-dd-yyyy" name="datetimeFormApproved" datavalue="bind:Widgets.gridApprovedVendors.selecteditem.expiresDate"></wm-datetime>
+                                <wm-datetime mindate="bind:today" datepattern="MM-dd-yyyy hh:mm a" name="datetimeFormApproved" datavalue="bind:Widgets.gridApprovedVendors.selecteditem.expiresDate"></wm-datetime>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -312,7 +312,7 @@
                         <wm-composite name="composite8">
                             <wm-label class="col-md-3 form-control-static" caption="Expiration Date" horizontalalign="left" name="label12" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container7">
-                                <wm-datetime mindate="bind:today" datepattern="MM-dd-yyyy" datavalue="bind:Widgets.gridApprovedVendors.selecteditem.expiresDate" name="datetimeFromSuspended"></wm-datetime>
+                                <wm-datetime mindate="bind:today" datepattern="MM-dd-yyyy hh:mm a" datavalue="bind:Widgets.gridApprovedVendors.selecteditem.expiresDate" name="datetimeFromSuspended"></wm-datetime>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>

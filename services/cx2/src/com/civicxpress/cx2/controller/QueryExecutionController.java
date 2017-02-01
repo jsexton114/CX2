@@ -142,9 +142,9 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/CountOfProcessFormsByMuncipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Object> executeCountOfProcessFormsByMuncipality(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, Pageable pageable) throws QueryParameterMismatchException {
+    public Page<Object> executeCountOfProcessFormsByMuncipality(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, @RequestParam(value = "closed", required = false) java.lang.Boolean closed, Pageable pageable) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query CountOfProcessFormsByMuncipality");
-        Page<Object> result = queryService.executeCountOfProcessFormsByMuncipality(pageable, UserId, MunicipalityId);
+        Page<Object> result = queryService.executeCountOfProcessFormsByMuncipality(pageable, UserId, MunicipalityId, closed);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }
@@ -502,9 +502,9 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/ProcessFormsForUserByMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Object> executeProcessFormsForUserByMunicipality(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, Pageable pageable) throws QueryParameterMismatchException {
+    public Page<Object> executeProcessFormsForUserByMunicipality(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, @RequestParam(value = "Closed", required = false) java.lang.Boolean Closed, Pageable pageable) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query ProcessFormsForUserByMunicipality");
-        Page<Object> result = queryService.executeProcessFormsForUserByMunicipality(pageable, UserId, MunicipalityId);
+        Page<Object> result = queryService.executeProcessFormsForUserByMunicipality(pageable, UserId, MunicipalityId, Closed);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }
