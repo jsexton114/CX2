@@ -51,6 +51,7 @@ public class Gisrecords implements Serializable {
     private String country;
     private String unitNumber;
     private String postalCode;
+    private String fullAddress;
     private Municipalities municipalities;
     private States states;
     private Subdivisions subdivisions;
@@ -229,6 +230,15 @@ public class Gisrecords implements Serializable {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    @Column(name = "`FullAddress`", nullable = true, length = 255)
+    public String getFullAddress() {
+        return this.fullAddress;
+    }
+
+    public void setFullAddress(String fullAddress) {
+        this.fullAddress = fullAddress;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

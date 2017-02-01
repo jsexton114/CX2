@@ -79,13 +79,12 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
     }
 
     $scope.wizard1Done = function($isolateScope, steps) {
-
+        debugger
         let format = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/
         let password = $scope.Widgets.textPwd.datavalue;
         if (!(format.test(password))) {
             $scope.Variables.PasswordRequirements.notify();
             grecaptcha.reset();
-
         } else {
             // check for password match and captcha
             if (passwordCheck() && (grecaptcha.getResponse() != '')) {
