@@ -1652,6 +1652,34 @@
     } ],
     "operation" : "toast"
   },
+  "PasswordRequirements" : {
+    "_id" : "wm-PasswordRequirements-wm.NotificationVariable-1485930797377",
+    "name" : "PasswordRequirements",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Password Requirements Not Matched",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "top right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "PasswordsAndCaptcha" : {
     "_id" : "wm-PasswordsAndCaptcha-wm.NotificationVariable-1485862097627",
     "name" : "PasswordsAndCaptcha",

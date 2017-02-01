@@ -77,20 +77,30 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         }
 
     }
+
     $scope.wizard1Done = function($isolateScope, steps) {
-        // check for password match and captcha
-        if (passwordCheck() && (grecaptcha.getResponse() != '')) {
-            $scope.Widgets.liveform2.save();
-            $scope.Variables.NewUserToLogin.navigate();
-        } else if ((grecaptcha.getResponse() != '') && (passwordCheck() == false)) {
-            $scope.Variables.PasswordMissMatch.notify();
+
+        let format = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/
+        let password = $scope.Widgets.textPwd.datavalue;
+        if (!(format.test(password))) {
+            $scope.Variables.PasswordRequirements.notify();
             grecaptcha.reset();
-        } else if ((grecaptcha.getResponse() == '') && (passwordCheck() == true)) {
-            $scope.Variables.Capcha.notify();
-            grecaptcha.reset();
+
         } else {
-            $scope.Variables.PasswordsAndCaptcha.notify();
-            grecaptcha.reset();
+            // check for password match and captcha
+            if (passwordCheck() && (grecaptcha.getResponse() != '')) {
+                $scope.Widgets.liveform2.save();
+                $scope.Variables.NewUserToLogin.navigate();
+            } else if ((grecaptcha.getResponse() != '') && (passwordCheck() == false)) {
+                $scope.Variables.PasswordMissMatch.notify();
+                grecaptcha.reset();
+            } else if ((grecaptcha.getResponse() == '') && (passwordCheck() == true)) {
+                $scope.Variables.Capcha.notify();
+                grecaptcha.reset();
+            } else {
+                $scope.Variables.PasswordsAndCaptcha.notify();
+                grecaptcha.reset();
+            }
         }
     };
 
@@ -138,6 +148,8 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         // Setting for adding to subscriptions
         selectedMunicipalites = $scope.Variables.MunicpalitiesList.dataSet;
     };
+
+
 
 }]);
 
