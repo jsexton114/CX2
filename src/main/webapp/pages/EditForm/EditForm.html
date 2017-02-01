@@ -51,12 +51,9 @@
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow44_1">
-                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn70">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn70">
                                                                 <wm-form-field displayname="Date Option" widget="radioset" show="true" type="custom" name="prefixDate" dataset="bind:Variables.stvPrefixDateOptions.dataSet" datafield="value" displayfield="label"
                                                                 usekeys="false" layout="inline" required="true" on-change="prefixDateChange($event, $scope, newVal, oldVal)"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn79">
-                                                                <wm-form-field displayname="Separate by Dashes" widget="checkbox" show="true" type="custom" name="prefixDashes"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow45_1">
@@ -77,6 +74,11 @@
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-layoutgrid>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow51">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn76_3">
+                                                                <wm-form-field displayname="Separate by Dashes" widget="checkbox" show="true" type="custom" name="prefixDashes"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow46_1">
@@ -226,7 +228,7 @@
                                     <wm-gridrow name="gridrow26">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn53">
                                             <wm-livegrid formlayout="dialog" name="livegrid2">
-                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.FormCategories.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL">
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.FormCategories.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                     <wm-grid-column binding="formCategories.category" caption="Category" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormCategories"></wm-grid-column>
                                                     <wm-grid-column binding="formCategories.description" caption="Description" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormCategories"></wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
@@ -239,7 +241,7 @@
                                                         <wm-gridrow name="gridrow37">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn62">
                                                                 <wm-form-field name="formCategories" displayname="Select Category" show="true" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true" widget="select" dataset="bind:Variables.Categories.dataSet"
-                                                                datafield="All Fields" displayfield="category" placeholder="Select value" required="true"></wm-form-field>
+                                                                datafield="All Fields" displayfield="category" orderby="category:asc" placeholder="Select value" required="true"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
@@ -258,7 +260,7 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneFormFields" title="Fields">
                                 <wm-livegrid formlayout="dialog" name="livegrid3">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" exportformat="EXCEL">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                         <wm-grid-column binding="displayOrder" caption="Display Order" type="integer" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="label" caption="Label" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="formFieldTypes.label" caption="Type" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="FormFieldTypes"></wm-grid-column>
@@ -275,7 +277,7 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneSTATUS" title="Statuses">
                                 <wm-livegrid formlayout="dialog" name="livegrid1">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.StatusesData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.StatusesData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                         <wm-grid-column binding="sortOrder" caption="Sort Order" type="long" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="status" caption="Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="description" caption="Description" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
