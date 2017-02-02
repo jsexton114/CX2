@@ -181,6 +181,11 @@
       select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID
     ]]>
   </sql-query>
+  <sql-query name="getRolesForUser">
+    <![CDATA[
+      SELECT RoleName, MunicipalityId FROM Roles WHERE UserId=:userId
+    ]]>
+  </sql-query>
   <sql-query name="getUserID">
     <![CDATA[
       select ID from Users where Email =:Email

@@ -968,6 +968,24 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "nacNewForm" : {
+    "_id" : "wm-nacNewForm-wm.NavigationVariable-1485805867124",
+    "name" : "nacNewForm",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "NewForm",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "formTypeId",
+      "value" : "bind:Widgets.selectForm.datavalue.ID"
+    } ],
+    "pageTransitions" : "none"
+  },
   "navGoToForm" : {
     "_id" : "wm-navGoToForm-wm.NavigationVariable-1485195418495",
     "name" : "navGoToForm",

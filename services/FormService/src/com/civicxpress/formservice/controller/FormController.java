@@ -3,8 +3,8 @@ package com.civicxpress.formservice.controller;
 
 import com.civicxpress.formservice.FormService;
 import java.lang.Long;
-import java.sql.SQLException;
 import java.lang.String;
+import java.sql.SQLException;
 import java.lang.Object;
 import java.util.Map;
 import java.util.HashMap;
@@ -25,13 +25,6 @@ public class FormController {
 
     @Autowired
     private FormService formService;
-
-    @RequestMapping(value = "/form", produces = "application/json", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public String createForm(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formTypeId", required = false) Long formTypeId) throws SQLException {
-        return formService.createForm(municipalityId, formTypeId);
-    }
 
     @RequestMapping(value = "/formData", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -60,7 +53,7 @@ public class FormController {
     }
 
     @RequestMapping(value = "/submitForm", produces = "application/json", method = RequestMethod.POST)
-    public String submitForm(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestBody HashMap<String, Object> fieldData) throws SQLException {
-        return formService.submitForm(formGuid, fieldData);
+    public String submitForm(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "locationIds", required = false) String locationIds, @RequestParam(value = "vendorIds", required = false) String vendorIds, @RequestParam(value = "usersWithWhomToShare", required = false) String usersWithWhomToShare, @RequestBody HashMap<String, Object> fieldData) throws SQLException {
+        return formService.submitForm(formTypeId, locationIds, vendorIds, usersWithWhomToShare, fieldData);
     }
 }

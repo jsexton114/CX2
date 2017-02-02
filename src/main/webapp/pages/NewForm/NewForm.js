@@ -1,8 +1,8 @@
-Application.$controller("NewFormPageController", ["$scope", function ($scope) {
+Application.$controller("NewFormPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
+    $scope.onPageReady = function() {
         /*
          * variables can be accessed through '$scope.Variables' property here
          * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
@@ -14,4 +14,320 @@ Application.$controller("NewFormPageController", ["$scope", function ($scope) {
          */
     };
 
+    $scope.loaded = false;
+
+    var itemsLoaded = 0;
+    var totalItemsToLoad = 2;
+
+    var userRoles = null;
+    var municipalityId = null;
+
+    // Variables to control which steps should be available
+    $scope.submitOnBehalf = false;
+    $scope.gisRecords = false;
+    $scope.vendorInfo = false;
+    $scope.ownerInfo = false;
+    $scope.documents = false;
+    $scope.sharing = false;
+
+    $scope.formData = {};
+    $scope.locationIds = '';
+    $scope.vendorIds = '';
+    $scope.sharedUserString = '';
+
+    function iterateLoading() {
+        itemsLoaded += 1;
+
+        if (itemsLoaded == totalItemsToLoad) {
+            $scope.loaded = true;
+        }
+    }
+
+    $scope.svGetUserRolesonSuccess = function(variable, data) {
+        userRoles = data.content;
+        shouldSubmitOnBehalf();
+    };
+
+
+    $scope.lvFormTypeonSuccess = function(variable, data) {
+        var formType = data[0];
+        municipalityId = formType.municipalityId;
+        $scope.Variables.stvBreadCrumbs.dataSet[1].label += (': ' + data[0].formType);
+        $scope.gisRecords = formType.gisrecord;
+        $scope.vendorInfo = formType.vendorSelection;
+        $scope.ownerInfo = formType.ownerRequired;
+        $scope.documents = formType.attachments;
+        $scope.sharing = formType.sharedWith;
+        shouldSubmitOnBehalf();
+    };
+
+    function shouldSubmitOnBehalf() {
+        if (!userRoles || municipalityId === false) {
+            return;
+        }
+
+        userRoles.some(function(role, index) {
+            if ((role.RoleName === 'CXAdmin') || ((role.RoleName === 'MunicipalityAdmin' || role.RoleName === 'MunicipalityEmployee') && role.MunicipalityId == municipalityId)) {
+                $scope.submitOnBehalf = true;
+                return true;
+            }
+        });
+
+        iterateLoading();
+    }
+
+
+    $scope.lvGetFormFieldsonSuccess = function(variable, data) {
+        data.forEach(function(formField, index) {
+            if (formField.formFieldTypes.label === 'Number') {
+                $scope.formData[formField.fieldName] = parseFloat(formField.defaultValue);
+            } else if (formField.formFieldTypes.label === 'Number') {
+                $scope.formData[formField.fieldName] = formField.defaultValue === '1';
+            } else {
+                $scope.formData[formField.fieldName] = formField.defaultValue;
+            }
+        });
+
+        iterateLoading();
+    };
+
+
+    $scope.chkVendorIsOwnerChange = function($event, $isolateScope, newVal, oldVal) {
+        if (newVal === true) {
+            var vendorInfo = $scope.Variables.stvVendors.dataSet[0];
+            $scope.Widgets.textOwnerName.datavalue = vendorInfo.Company;
+            $scope.Widgets.textOwnerAddress1.datavalue = vendorInfo.Address1;
+            $scope.Widgets.textOwnerAddress2.datavalue = vendorInfo.Address2;
+            $scope.Widgets.textOwnerCity.datavalue = vendorInfo.City;
+            $scope.Widgets.selectOwnerState.datavalue = vendorInfo.State;
+            $scope.Widgets.textOwnerPostalCode.datavalue = vendorInfo.PostalCode;
+            $scope.Widgets.textOwnerPhone.datavalue = vendorInfo.PhoneNumber;
+            $scope.Widgets.textOwnerEmail.datavalue = vendorInfo.EmailAddress;
+        } else {
+            $scope.Widgets.textOwnerName.reset();
+            $scope.Widgets.textOwnerAddress1.reset();
+            $scope.Widgets.textOwnerAddress2.reset();
+            $scope.Widgets.textOwnerCity.reset();
+            $scope.Widgets.selectOwnerState.reset();
+            $scope.Widgets.textOwnerPostalCode.reset();
+            $scope.Widgets.textOwnerPhone.reset();
+            $scope.Widgets.textOwnerEmail.reset();
+        }
+    };
+
+
+    $scope.searchOnBehalfOfUserChange = function($event, $isolateScope, newVal, oldVal) {
+        console.log(newVal);
+    };
+
+    function generateIdString(collection) {
+        var idString = '';
+        for (let i = 0; i < collection.length; i++) {
+            if (i > 0) {
+                idString += ',';
+            }
+            idString += collection[i].ID;
+        }
+
+        return idString;
+    }
+
+    $scope.newFormWizardDone = function($isolateScope, steps) {
+        $scope.Variables.stvLocationIdString.dataSet.dataValue = generateIdString($scope.Variables.stvGisData.dataSet);
+        $scope.Variables.stvVendorIdString.dataSet.dataValue = generateIdString($scope.Variables.stvVendors.dataSet);
+        $scope.Variables.stvSharedUserIdString.dataSet.dataValue = generateIdString($scope.Variables.stvContacts.dataSet);
+        $scope.Variables.svSubmitForm.setInput('locationIds', generateIdString($scope.Variables.stvGisData.dataSet));
+        $scope.Variables.svSubmitForm.setInput('vendorIds', generateIdString($scope.Variables.stvVendors.dataSet));
+        $scope.Variables.svSubmitForm.setInput('usersWithWhomToShare', generateIdString($scope.Variables.stvContacts.dataSet));
+        $scope.Variables.svSubmitForm.update();
+    };
+
+
+    $scope.svSubmitFormonSuccess = function(variable, data) {
+        $scope.Variables.goToPage_UserOpenForms.navigate();
+    };
+
 }]);
+
+
+Application.$controller("lfSubmitOnBehalfController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridLocationController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.deleterowAction = function($event, $rowData) {
+            var rowIndex = _.findIndex($scope.Variables.stvGisData.dataSet, {
+                'ID': $rowData.ID
+            });
+
+            $scope.Variables.stvGisData.dataSet.splice(rowIndex, 1);
+        };
+
+    }
+]);
+
+
+
+Application.$controller("gridNewFormDocumentsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogAddGISRecordController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.canAddParcel = function() {
+            var activeTabIndex = $scope.Widgets.tabsAddGISRecord.activeTabIndex;
+            if (activeTabIndex === 0) {
+                return ($scope.Widgets.searchAddress.datavalue === undefined);
+            } else if (activeTabIndex === 1) {
+                return ($scope.Widgets.searchSubdivision.datavalue === undefined);
+            } else {
+                return ($scope.Widgets.searchParcel.datavalue === undefined);
+            }
+        };
+
+        function addGisRecord(gisRecord) {
+            if (!gisRecord) {
+                return;
+            }
+
+            var rowIndex = _.findIndex($scope.Variables.stvGisData.dataSet, {
+                'ID': gisRecord.id
+            });
+
+            if (rowIndex === -1) {
+                $scope.Variables.stvGisData.dataSet.push({
+                    "ID": gisRecord.id,
+                    "SubdivisionName": gisRecord.subdivisions.subdivision,
+                    "Parcel": gisRecord.parcel,
+                    "Lot": gisRecord.lot,
+                    "Section": gisRecord.section,
+                    "StreetNumber": gisRecord.streetNumber,
+                    "StreetName": gisRecord.streetName,
+                    "City": gisRecord.city,
+                    "State": gisRecord.states.stateName,
+                    "InspectionZone": gisRecord.inspectionZone
+                });
+            }
+        }
+
+        $scope.buttonAddLocationClick = function($event, $isolateScope) {
+            var activeTabIndex = $scope.Widgets.tabsAddGISRecord.activeTabIndex;
+            if (activeTabIndex === 0) {
+                addGisRecord($scope.Widgets.searchAddress.datavalue);
+            } else if (activeTabIndex === 1) {
+                addGisRecord($scope.Widgets.searchSubdivision.datavalue);
+            } else {
+                addGisRecord($scope.Widgets.searchParcel.datavalue);
+            }
+
+            $scope.Widgets.dialogAddGISRecord.close();
+        };
+
+    }
+]);
+
+Application.$controller("dialogUploadDocumentController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridSharingController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            var rowIndex = _.findIndex($scope.Variables.stvContacts.dataSet, {
+                'ID': $rowData.ID
+            });
+
+            $scope.Variables.stvContacts.dataSet.splice(rowIndex, 1);
+        };
+
+    }
+]);
+
+Application.$controller("dialogAddContactController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.button7Click = function($event, $isolateScope) {
+            var newContact = $scope.Widgets.searchContact._proxyModel;
+            var rowIndex = _.findIndex($scope.Variables.stvContacts.dataSet, {
+                'ID': newContact.id
+            });
+
+            if (rowIndex === -1) {
+                $scope.Variables.stvContacts.dataSet.push({
+                    ID: newContact.id,
+                    FirstName: newContact.firstName,
+                    LastName: newContact.lastName,
+                    Email: newContact.email
+                });
+            }
+        };
+
+    }
+]);
+
+Application.$controller("gridVendorsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            var rowIndex = _.findIndex($scope.Variables.stvVendors.dataSet, {
+                'ID': $rowData.ID
+            });
+
+            $scope.Variables.stvVendors.dataSet.splice(rowIndex, 1);
+        };
+
+    }
+]);
+
+Application.$controller("dialogAddVendorController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.buttonAddVendorClick = function($event, $isolateScope) {
+            var newVendor = $scope.Widgets.searchVendors._proxyModel;
+            var rowIndex = _.findIndex($scope.Variables.stvVendors.dataSet, {
+                'ID': newVendor.vendor.id
+            });
+
+            if (rowIndex === -1) {
+                $scope.Variables.stvVendors.dataSet.push({
+                    ID: newVendor.vendor.id,
+                    Company: newVendor.vendor.companyName,
+                    PhoneNumber: newVendor.vendor.companyPhone,
+                    EmailAddress: newVendor.vendor.companyEmail,
+                    Website: newVendor.vendor.companyWebsite,
+                    Address1: newVendor.vendor.address1,
+                    Address2: newVendor.vendor.address2,
+                    City: newVendor.vendor.city,
+                    State: newVendor.vendor.states.stateName,
+                    PostalCode: newVendor.vendor.postalCode
+                });
+            }
+        };
+
+    }
+]);

@@ -735,7 +735,7 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "TRUE",
         "scale" : 0
       }, {
         "fieldName" : "attachments",
@@ -970,6 +970,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "FALSE",
+        "scale" : 0
+      }, {
+        "fieldName" : "requireOwner",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "RequireOwner",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "FormTypes",

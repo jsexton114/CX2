@@ -352,6 +352,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeGetRolesForUser(Pageable pageable, java.lang.Integer userId)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("userId", userId);
+        return queryExecutor.executeNamedQuery("getRolesForUser", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeGetUserID(Pageable pageable, java.lang.String Email)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

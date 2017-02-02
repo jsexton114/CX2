@@ -1137,6 +1137,27 @@
       "StateId" : "java.math.BigDecimal"
     }
   }, {
+    "name" : "getRolesForUser",
+    "query" : "SELECT RoleName, MunicipalityId FROM Roles WHERE UserId=:userId",
+    "comment" : "Get a simple list of a user's roles",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "userId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2getRolesForUserrtnType",
+    "returnTypeMetadata" : {
+      "MunicipalityId" : "java.math.BigDecimal",
+      "RoleName" : "java.lang.String"
+    }
+  }, {
     "name" : "getUserID",
     "query" : "select ID from Users where Email =:Email",
     "comment" : "get user id based on mail id",

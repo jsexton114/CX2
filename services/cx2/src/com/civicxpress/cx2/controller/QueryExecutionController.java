@@ -400,6 +400,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/getRolesForUser", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeGetRolesForUser(@RequestParam(value = "userId", required = false) java.lang.Integer userId, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query getRolesForUser");
+        Page<Object> result = queryService.executeGetRolesForUser(pageable, userId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/getUserID", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeGetUserID(@RequestParam(value = "Email", required = false) java.lang.String Email, Pageable pageable) throws QueryParameterMismatchException {

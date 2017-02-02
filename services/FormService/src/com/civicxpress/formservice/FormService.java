@@ -205,7 +205,7 @@ public class FormService {
 	        
 	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormStatuses (FormTypeId, ConsiderClosed, SortOrder, Status, Description, SendEmail) "
 	        		+ "VALUES (:newFormTypeId, 0, 1, 'Draft', 'Draft', 0),"
-	        		+ " (:newFormTypeId, 0, 2, 'Application Review', 'Application Review', 1)", formCreateParams);
+	        		+ " (:newFormTypeId, 0, 2, 'Submitted', 'Submitted', 1)", formCreateParams);
 	        
 	        DBUtils.simpleUpdateQuery(muniDbConn, "CREATE TABLE "+formTableName+" ("
 	    			+"ID numeric(10) identity(1,1), "
@@ -243,17 +243,15 @@ public class FormService {
         return newFormTypeId;
     }
     
-    public String createForm(Long municipalityId, Long formTypeId) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    private String createForm(Connection cx2Conn, Long formTypeId) throws SQLException {
+    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
+    	queryParams.put("formTypeId", formTypeId);
+    	Long municipalityId = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getLong("MunicipalityId");
     	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
     	String newFormGuid = null;
     	
     	try {
-	    	cx2Conn.setAutoCommit(false);
 	    	muniDbConn.setAutoCommit(false);
-	    	
-	    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
-	    	queryParams.put("formTypeId", formTypeId);
 	    	queryParams.put("currentUser", securityService.getUserName());
 	    	queryParams.put("currentUserId", securityService.getUserId());
 	    	queryParams.put("municipalityId", municipalityId);
@@ -312,7 +310,6 @@ public class FormService {
     		throw e;
     	} finally {
     		muniDbConn.close();
-    		cx2Conn.close();
     	}
     	
     	return newFormGuid;
@@ -406,14 +403,16 @@ public class FormService {
     	}
     }
     
-    public String submitForm(String formGuid, HashMap<String, Object> fieldData) throws SQLException {
+    public String submitForm(Long formTypeId, String locationIds, String vendorIds, String usersWithWhomToShare, HashMap<String, Object> fieldData) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
     	cx2Conn.setAutoCommit(false);
-    	String returnMessage = "";
+    	String formGuid = "";
     	
     	try {
 	    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
+	    	formGuid = createForm(cx2Conn, formTypeId);
 	    	queryParams.put("formGuid", formGuid);
+	    	queryParams.put("createUserId", securityService.getUserId());
 	    	
 	    	DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", queryParams).get(0);
 	    	
@@ -478,6 +477,69 @@ public class FormService {
 	    	saveFormData(cx2Conn, masterFormData.getLong("FormTypeId"), formGuid, fieldData);
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE FormTypes SET CurrentPrefixNumber=:newPrefixNumber, PrefixNumberResetOn=:newResetTime", queryParams);
+
+	    	// Add Location(s)
+	    	if (formTypeData.getBoolean("GISRecord")) {
+		    	StringBuilder locationsQuery = new StringBuilder("INSERT INTO GIS2Forms (RelatedFormGUID, GISRecordId, AddedBy, AddedTime) VALUES ");
+		    	int locationIndex = 0;
+		    	
+	    		for (String locationId : locationIds.split(",")) {
+	    			if (locationIndex > 0) {
+	    				locationsQuery.append(',');
+	    			}
+	    			
+	    			String paramName = DBUtils.getSqlSafeString("location"+locationIndex+"GISRecordId");
+	    			locationIndex++;
+	    			
+	    			queryParams.put(paramName, Long.parseLong(locationId));
+	    			
+	    			locationsQuery.append("(:formGuid, :"+paramName+", :createUserId, SYSDATETIME())");
+	    		}
+	    		
+	    		DBUtils.simpleUpdateQuery(cx2Conn, locationsQuery.toString(), queryParams);
+	    	}
+	    	
+	    	// Add Vendor(s)
+	    	if (formTypeData.getBoolean("VendorSelection")) {
+		    	StringBuilder vendorsQuery = new StringBuilder("INSERT INTO Vendors2Form (RelatedFormGUID, VendorId, SharedOn) VALUES ");
+		    	int vendorIndex = 0;
+		    	
+	    		for (String vendorId : vendorIds.split(",")) {
+	    			if (vendorIndex > 0) {
+	    				vendorsQuery.append(',');
+	    			}
+	    			
+	    			String paramName = DBUtils.getSqlSafeString("vendor"+vendorIndex+"VendorId");
+	    			vendorIndex++;
+	    			
+	    			queryParams.put(paramName, Long.parseLong(vendorId));
+	    			
+	    			vendorsQuery.append("(:formGuid, :"+paramName+", SYSDATETIME())");
+	    		}
+	    		
+	    		DBUtils.simpleUpdateQuery(cx2Conn, vendorsQuery.toString(), queryParams);
+	    	}
+	    	
+	    	// Add sharing
+	    	if (formTypeData.getBoolean("SharedWith") && !usersWithWhomToShare.trim().isEmpty()) {
+	    		StringBuilder sharingQuery = new StringBuilder("INSERT INTO SharedWith (RelatedGUID, SharedWithUser, CreatedOn, CreatedBy) VALUES ");
+		    	int shareIndex = 0;
+		    	
+	    		for (String sharedUserId : usersWithWhomToShare.split(",")) {
+	    			if (shareIndex > 0) {
+	    				sharingQuery.append(',');
+	    			}
+	    			
+	    			String paramName = DBUtils.getSqlSafeString("shareUser"+shareIndex+"VendorId");
+	    			shareIndex++;
+	    			
+	    			queryParams.put(paramName, Long.parseLong(sharedUserId));
+	    			
+	    			sharingQuery.append("(:formGuid, :"+paramName+", SYSDATETIME(), :createUserId)");
+	    		}
+	    		
+	    		DBUtils.simpleUpdateQuery(cx2Conn, sharingQuery.toString(), queryParams);
+	    	}
 	    	
 	    	// Calculate and add fees
 	    	BigDecimal totalFees = new BigDecimal(0.00);
@@ -554,13 +616,13 @@ public class FormService {
 	    		}
 	    	}
 	    	
+	    	// Finish up by updating MasterForms and adding a history entry
 	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(1).getLong("ID");
 	    	queryParams.put("newFormStatusId", newFormStatusId);
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterForms SET FormStatusId=:newFormStatusId, TotalFees=:totalFees, TotalPayment='0', BalanceDue=:totalFees, FormTitle=:formTitle WHERE FormGUID=:formGuid", queryParams);
 	    	
 	    	queryParams.put("oldFormStatusId", masterFormData.getLong("FormStatusId"));
-	    	queryParams.put("createUserId", securityService.getUserId());
 	    	queryParams.put("createdTime", datetimeFormatter.format(today.getTime()));
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormHistory "
@@ -578,7 +640,7 @@ public class FormService {
     		cx2Conn.close();
     	}
     	
-    	return returnMessage;
+    	return formGuid;
     }
 
 }

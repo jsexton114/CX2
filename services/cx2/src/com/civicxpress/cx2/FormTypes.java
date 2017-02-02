@@ -77,10 +77,10 @@ public class FormTypes implements Serializable {
     private boolean multipleVendors;
     private boolean requireOwner;
     private Municipalities municipalities;
-    private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
     private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
+    private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
 
     @Id
@@ -462,16 +462,6 @@ public class FormTypes implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<FormCategoryMapping> getFormCategoryMappings() {
-        return this.formCategoryMappings;
-    }
-
-    public void setFormCategoryMappings(List<FormCategoryMapping> formCategoryMappings) {
-        this.formCategoryMappings = formCategoryMappings;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
     public List<FormHistory> getFormHistories() {
         return this.formHistories;
     }
@@ -498,6 +488,16 @@ public class FormTypes implements Serializable {
 
     public void setFormTypeFieldses(List<FormTypeFields> formTypeFieldses) {
         this.formTypeFieldses = formTypeFieldses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<FormCategoryMapping> getFormCategoryMappings() {
+        return this.formCategoryMappings;
+    }
+
+    public void setFormCategoryMappings(List<FormCategoryMapping> formCategoryMappings) {
+        this.formCategoryMappings = formCategoryMappings;
     }
 
     @JsonInclude(Include.NON_EMPTY)

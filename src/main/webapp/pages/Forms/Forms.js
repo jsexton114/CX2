@@ -245,14 +245,21 @@ Application.$controller("gridFeesController", ["$scope",
     }
 ]);
 
-Application.$controller("liveform3Controller", ["$scope",
+Application.$controller("lfFeesController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
     }
 ]);
 
-Application.$controller("grid5Controller", ["$scope",
+Application.$controller("gridFeesController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformFeesController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;
