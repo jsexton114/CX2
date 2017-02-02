@@ -73,7 +73,7 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn6">
                         <wm-panel iconclass="wi wi-list" autoclose="outsideClick" name="panelForm" title="Form Content" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid2">
-                                <wm-gridrow name="gridrow6">
+                                <wm-gridrow name="gridrow6" padding="2em unset unset unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center">
                                         <wm-picture name="picture2" picturesource="bind:!!Variables.CurrentForm.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.CurrentForm.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;"
@@ -88,15 +88,12 @@
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow44">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn104">
-                                        <wm-composite name="composite4" show="bind:!!Variables.CurrentForm.dataSet.data[$i].formTitle &amp;&amp; Variables.CurrentForm.dataSet.data[$i].formTitle != '' &amp;&amp; Variables.CurrentForm.dataSet.data[$i].formTitle != 'open'">
-                                            <wm-label class="col-md-3 control-label" name="label25" caption="Form Title"></wm-label>
-                                            <wm-container class="col-md-9" name="container4">
-                                                <wm-text name="textFormTitle" readonly="true" disabled="true" show="true" placeholder="" datavalue="bind:Variables.CurrentForm.dataSet.data[$i].formTitle"></wm-text>
-                                            </wm-container>
-                                        </wm-composite>
+                                <wm-gridrow name="gridrow84_1" padding="unset unset 3em unset">
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn155_2"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn156_1" horizontalalign="center">
+                                        <wm-label padding="unset 0.5em" name="label65_1" caption="bind:Variables.CurrentForm.dataSet.data[$i].formTitle" fontsize="18"></wm-label>
                                     </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn157"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow ng-repeat="formField in Variables.svFormTypeFields.dataSet.content" name="fieldGridrow{{$index}}">
                                     <wm-gridcolumn columnwidth="12" name="fieldGridcolumn{{$index}}">
