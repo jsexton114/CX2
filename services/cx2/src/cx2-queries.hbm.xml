@@ -41,6 +41,11 @@
       select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user and RoleName='MunicipalityEmployee'
     ]]>
   </sql-query>
+  <query name="CompanyFormsByVendorId">
+    <![CDATA[
+      from MasterForms where Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )
+    ]]>
+  </query>
   <sql-query name="CountOfFormsForMunicipality">
     <![CDATA[
       select count(distinct FT.ID) from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.MunicipalityId=:MunicipalityId and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID

@@ -265,6 +265,56 @@
       "exist" : "java.lang.Integer"
     }
   }, {
+    "name" : "CompanyFormsByVendorId",
+    "query" : "from MasterForms where Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )",
+    "comment" : "CompanyFormsByVendorId",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "closed",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "false",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "vendorId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "26",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2CompanyFormsByVendorIdrtnType",
+    "returnTypeMetadata" : {
+      "assignedToGroupId" : "java.lang.Integer",
+      "balanceDue" : "java.lang.String",
+      "closed" : "java.lang.Boolean",
+      "cxvendorId" : "java.lang.Integer",
+      "expiresDate" : "java.util.Date",
+      "formGuid" : "java.lang.String",
+      "formStatusId" : "java.lang.Integer",
+      "formStatuses" : "com.civicxpress.cx2.FormStatuses",
+      "formTitle" : "java.lang.String",
+      "formTypeId" : "java.lang.Integer",
+      "formTypes" : "com.civicxpress.cx2.FormTypes",
+      "gis2formses" : "java.util.List",
+      "issuedDate" : "java.util.Date",
+      "municipalities" : "com.civicxpress.cx2.Municipalities",
+      "municipalityGroups" : "com.civicxpress.cx2.MunicipalityGroups",
+      "municipalityId" : "java.lang.Integer",
+      "recordType" : "java.lang.String",
+      "sharedWiths" : "java.util.List",
+      "totalFees" : "java.lang.String",
+      "totalPayment" : "java.lang.String",
+      "userId" : "java.lang.Integer",
+      "users" : "com.civicxpress.cx2.Users",
+      "vendor" : "com.civicxpress.cx2.Vendor",
+      "vendors2forms" : "java.util.List"
+    }
+  }, {
     "name" : "CountOfFormsForMunicipality",
     "query" : "select count(distinct FT.ID) from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.MunicipalityId=:MunicipalityId and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID",
     "comment" : "CountOfFormsForMunicipality",

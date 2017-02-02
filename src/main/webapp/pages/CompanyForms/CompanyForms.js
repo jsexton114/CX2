@@ -15,3 +15,20 @@ Application.$controller("CompanyFormsPageController", ["$scope", function ($scop
     };
 
 }]);
+
+
+
+
+Application.$controller("gridClosedFormsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("gridOpenFormsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

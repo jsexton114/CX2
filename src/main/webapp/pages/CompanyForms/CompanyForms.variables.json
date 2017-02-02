@@ -45,5 +45,87 @@
     "type" : "string",
     "isList" : true,
     "saveInPhonegap" : false
+  },
+  "ClosedCompanyFormsByVendorId" : {
+    "_id" : "wm-ClosedCompanyFormsByVendorId-wm.ServiceVariable-1486018030937",
+    "name" : "ClosedCompanyFormsByVendorId",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "closed",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "vendorId",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2CompanyFormsByVendorIdrtnType",
+    "service" : "cx2",
+    "operation" : "executeCompanyFormsByVendorId",
+    "operationId" : "QueryExecutionController_executeCompanyFormsByVendorId",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "goToPage_FormsFormClosedCompanyForms" : {
+    "_id" : "wm-goToPage_FormsFormClosedCompanyForms-wm.NavigationVariable-1486018127384",
+    "name" : "goToPage_FormsFormClosedCompanyForms",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "Forms",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ {
+      "type" : "string",
+      "target" : "FormGUID",
+      "value" : "bind:Widgets.gridClosedForms.selecteditem.formGuid"
+    } ],
+    "pageTransitions" : "none"
+  },
+  "OpenCompanyFormsByVendorId" : {
+    "_id" : "wm-OpenCompanyFormsByVendorId-wm.ServiceVariable-1486016750701",
+    "name" : "OpenCompanyFormsByVendorId",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "closed",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "vendorId",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2CompanyFormsByVendorIdrtnType",
+    "service" : "cx2",
+    "operation" : "executeCompanyFormsByVendorId",
+    "operationId" : "QueryExecutionController_executeCompanyFormsByVendorId",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }
