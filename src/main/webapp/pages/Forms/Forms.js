@@ -69,7 +69,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         });
 
         // If not muniadmin or cxadmin OR not in group then hide panel
-        if (!((isCXAdminMunicipalityAdmin == 1) || (found > -1))) {
+        if (!!$scope.Widgets.panelFormReview && !((isCXAdminMunicipalityAdmin == 1) || (found > -1))) {
             $scope.Widgets.panelFormReview.show = false;
         }
     };
@@ -104,9 +104,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
     $scope.lvFormTypeonSuccess = function(variable, data) {
         currentBreadCrumb.label = data[0].formType;
-        // For Hiding Locations
-        $scope.showMaps = (data[0].gisrecord === true);
-
     };
 
     $scope.GetWriteAccessGroupMembersByFormGUIDonSuccess = function(variable, data) {
@@ -132,11 +129,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
     $scope.RecordFormHistoryonSuccess = function(variable, data) {
         $scope.Widgets.textareaNotes.reset();
-    };
-
-
-    $scope.Gis2formsDataonSuccess = function(variable, data) {
-        $scope.Widgets.googlemapsLoactions.show = (data.length > 0 && $scope.Variables.lvFormType.dataSet.data[0].gismap === true);
     };
 
 }]);

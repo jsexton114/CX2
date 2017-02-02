@@ -12,19 +12,25 @@
   "port" : "1433",
   "schemaName" : "cx2",
   "tableFilter" : [ {
-    "table" : "Fees",
+    "table" : "ContractorTypes",
     "schema" : "cx2"
   }, {
     "table" : "Document",
     "schema" : "cx2"
   }, {
+    "table" : "Fees",
+    "schema" : "cx2"
+  }, {
     "table" : "FormCategories",
     "schema" : "cx2"
   }, {
-    "table" : "FormHistory",
+    "table" : "FormCategoryMapping",
     "schema" : "cx2"
   }, {
-    "table" : "FormTypes",
+    "table" : "FormFieldTypes",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormHistory",
     "schema" : "cx2"
   }, {
     "table" : "FormStatuses",
@@ -33,19 +39,16 @@
     "table" : "FormTypeFields",
     "schema" : "cx2"
   }, {
-    "table" : "ContractorTypes",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormCategoryMapping",
+    "table" : "FormTypes",
     "schema" : "cx2"
   }, {
     "table" : "GIS2Forms",
     "schema" : "cx2"
   }, {
-    "table" : "GISRecords",
+    "table" : "GISContacts",
     "schema" : "cx2"
   }, {
-    "table" : "GISContacts",
+    "table" : "GISRecords",
     "schema" : "cx2"
   }, {
     "table" : "GlobalSettings",
@@ -57,13 +60,10 @@
     "table" : "ManualFeeTypes",
     "schema" : "cx2"
   }, {
-    "table" : "MasterForms",
-    "schema" : "cx2"
-  }, {
-    "table" : "Municipalities",
-    "schema" : "cx2"
-  }, {
     "table" : "MasterCases",
+    "schema" : "cx2"
+  }, {
+    "table" : "MasterForms",
     "schema" : "cx2"
   }, {
     "table" : "MasterInspections",
@@ -72,7 +72,7 @@
     "table" : "MasterProjects",
     "schema" : "cx2"
   }, {
-    "table" : "FormFieldTypes",
+    "table" : "Municipalities",
     "schema" : "cx2"
   }, {
     "table" : "MunicipalityGroupMembers",
@@ -87,13 +87,10 @@
     "table" : "SharedWith",
     "schema" : "cx2"
   }, {
+    "table" : "States",
+    "schema" : "cx2"
+  }, {
     "table" : "Subdivisions",
-    "schema" : "cx2"
-  }, {
-    "table" : "Users",
-    "schema" : "cx2"
-  }, {
-    "table" : "Vendor",
     "schema" : "cx2"
   }, {
     "table" : "UserPasswordResetTokens",
@@ -102,25 +99,28 @@
     "table" : "UserSubscriptions",
     "schema" : "cx2"
   }, {
-    "table" : "VendorApprovals",
+    "table" : "Users",
     "schema" : "cx2"
   }, {
-    "table" : "VendorLicenses",
-    "schema" : "cx2"
-  }, {
-    "table" : "States",
+    "table" : "Vendor",
     "schema" : "cx2"
   }, {
     "table" : "VendorAdmins",
     "schema" : "cx2"
   }, {
-    "table" : "Vendors2Form",
+    "table" : "VendorApprovals",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorLicenseTypes",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorLicenses",
     "schema" : "cx2"
   }, {
     "table" : "VendorUsers",
     "schema" : "cx2"
   }, {
-    "table" : "VendorLicenseTypes",
+    "table" : "Vendors2Form",
     "schema" : "cx2"
   } ],
   "schemaFilter" : [ "cx2" ],

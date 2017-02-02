@@ -311,7 +311,7 @@
                                                 </wm-liveform>
                                             </wm-livegrid>
                                             <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.Gis2formsData.dataSet.data[$i].gisrecords" zoom="14" markertype="Address" address="streetNumber streetName city states.stateName"
-                                            show="true"></wm-prefab>
+                                            show="bind:Variables.Gis2formsData.dataSet.data.length > 0 &amp;&amp; Variables.lvFormType.dataSet.data[$i].gisrecord"></wm-prefab>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
@@ -456,11 +456,6 @@
                                 </wm-layoutgrid>
                             </wm-tabpane>
                         </wm-tabs>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow42">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn101" horizontalalign="right">
-                        <wm-button class="btn-primary" caption="Submit" type="submit" margin="unset 0.5em" name="buttonSubmitForm" on-click="Variables.svSubmitForm.invoke()" iconclass="wi wi-send" show="bind:currentProgress === 0"></wm-button>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
