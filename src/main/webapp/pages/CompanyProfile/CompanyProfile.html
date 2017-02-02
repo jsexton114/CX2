@@ -164,7 +164,7 @@
                                         <wm-gridrow name="gridrow14">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn30">
                                                 <wm-form-field name="issuedDate" displayname="Date Issued" show="true" primary-key="false" generator="assigned" key="issuedDate" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd"
-                                                datepattern="MM-dd-yyyy"></wm-form-field>
+                                                datepattern="MM-dd-yyyy" maxdate="bind:Widgets.expirationDate.datavalue" defaultvalue="CURRENT_DATE" on-change="issuedDateChange($event, $scope, newVal, oldVal)"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn31">
                                                 <wm-form-field name="issuingAuthority" displayname="Issuing Authority" show="true" primary-key="false" generator="assigned" key="issuingAuthority" type="string" widget="text" maxchars="255" inputtype="text"
@@ -174,7 +174,7 @@
                                         <wm-gridrow name="gridrow15">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn32">
                                                 <wm-form-field name="expirationDate" displayname="Expiration Date" show="true" primary-key="false" generator="assigned" key="expirationDate" type="date" required="required" widget="date" placeholder="Select date"
-                                                outputformat="yyyy-MM-dd" datepattern="MM-dd-yyyy" mindate="bind:Widgets.issuedDate.datavalue"></wm-form-field>
+                                                outputformat="yyyy-MM-dd" datepattern="MM-dd-yyyy" defaultvalue="CURRENT_DATE" mindate="bind:today"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn33">
                                                 <wm-form-field name="scope" displayname="Scope" show="true" primary-key="false" generator="assigned" key="scope" type="string" widget="select" maxchars="255" placeholder="" dataset="City,County,State,Federal"
