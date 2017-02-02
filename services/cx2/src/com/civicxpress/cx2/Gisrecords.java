@@ -232,7 +232,7 @@ public class Gisrecords implements Serializable {
         this.postalCode = postalCode;
     }
 
-    @Column(name = "`FullAddress`", nullable = true, length = 255)
+    @Column(name = "`FullAddress`", nullable = false, length = 1050)
     public String getFullAddress() {
         return this.fullAddress;
     }

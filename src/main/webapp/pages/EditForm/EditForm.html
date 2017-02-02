@@ -138,10 +138,12 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39_1">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn63_2">
-                                                                <wm-form-field name="collectFees" displayname="Collect Fees" show="true" primary-key="false" generator="assigned" key="collectFees" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                                <wm-form-field name="collectFees" displayname="Collect Fees" show="true" primary-key="false" generator="assigned" key="collectFees" type="boolean" widget="checkbox" placeholder="" checkedvalue="true"
+                                                                uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn77">
-                                                                <wm-form-field name="automaticFees" displayname="Automatic Fees" show="true" primary-key="false" generator="assigned" key="automaticFees" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                                <wm-form-field name="automaticFees" displayname="Automatic Fees" show="bind:Widgets.liveformUpdateFormType.formWidgets.collectFees.datavalue" primary-key="false" generator="assigned" key="automaticFees"
+                                                                type="boolean" widget="checkbox" placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
@@ -150,7 +152,7 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow16">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn28">
-                                                <wm-panel iconclass="wi wi-attach-money" name="panelFeeDetails" title="Automatic Fee Details" class="panel-primary" margin="1em unset">
+                                                <wm-panel iconclass="wi wi-attach-money" name="panelFeeDetails" title="Automatic Fee Details" class="panel-primary" margin="1em unset" show="bind:Widgets.liveformUpdateFormType.formWidgets.automaticFees.datavalue">
                                                     <wm-layoutgrid name="layoutgrid3">
                                                         <wm-gridrow name="gridrow17">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn30">

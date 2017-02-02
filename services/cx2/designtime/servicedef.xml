@@ -321,6 +321,11 @@
         <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdatePasswordAndCFrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdatePrimaryVendorInMasterForms">
+        <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2UpdatePrimaryVendorInMasterFormsrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateProcessOwnersForGUID">
         <parameter name="AssignedToGroupId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="GUID" typeRef="java.lang.String" isList="false"/>
@@ -386,11 +391,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="UpdatePrimaryVendorInMasterForms">
-        <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
@@ -934,6 +934,7 @@
             <element name="prefixNumberStart" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="prefixNumberStep" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="report" typeRef="java.lang.String" allowNull="true"/>
+            <element name="requireOwner" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="sfFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="sfFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="sharedWith" typeRef="java.lang.Boolean" allowNull="true"/>

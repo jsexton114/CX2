@@ -1586,7 +1586,7 @@
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : ""
+        "defaultValue" : "FALSE"
       },
       "fieldName" : "collectFees",
       "foreignKey" : false,
@@ -1611,7 +1611,7 @@
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : ""
+        "defaultValue" : "FALSE"
       },
       "fieldName" : "automaticFees",
       "foreignKey" : false,
@@ -2197,6 +2197,31 @@
       "name" : "MultipleVendors",
       "nullable" : false,
       "oldName" : "MultipleVendors",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "boolean",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
+      "fieldName" : "requireOwner",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "boolean",
+      "length" : 0,
+      "name" : "RequireOwner",
+      "nullable" : false,
+      "oldName" : "RequireOwner",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
@@ -4222,9 +4247,9 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 255,
+      "length" : 1050,
       "name" : "FullAddress",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "FullAddress",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
