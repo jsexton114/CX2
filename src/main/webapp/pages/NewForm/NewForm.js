@@ -1,4 +1,4 @@
-Application.$controller("NewFormPageController", ["$scope", function($scope) {
+Application.$controller("NewFormPageController", ["$scope", "$location", function($scope, $location) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -116,9 +116,7 @@ Application.$controller("NewFormPageController", ["$scope", function($scope) {
     };
 
 
-    $scope.searchOnBehalfOfUserChange = function($event, $isolateScope, newVal, oldVal) {
-        console.log(newVal);
-    };
+    $scope.searchOnBehalfOfUserChange = function($event, $isolateScope, newVal, oldVal) {};
 
     function generateIdString(collection) {
         var idString = '';
@@ -132,7 +130,7 @@ Application.$controller("NewFormPageController", ["$scope", function($scope) {
         return idString;
     }
 
-    $scope.newFormWizardDone = function($isolateScope, steps) {
+    function submitForm() {
         $scope.Variables.stvLocationIdString.dataSet.dataValue = generateIdString($scope.Variables.stvGisData.dataSet);
         $scope.Variables.stvVendorIdString.dataSet.dataValue = generateIdString($scope.Variables.stvVendors.dataSet);
         $scope.Variables.stvSharedUserIdString.dataSet.dataValue = generateIdString($scope.Variables.stvContacts.dataSet);
@@ -140,11 +138,50 @@ Application.$controller("NewFormPageController", ["$scope", function($scope) {
         $scope.Variables.svSubmitForm.setInput('vendorIds', generateIdString($scope.Variables.stvVendors.dataSet));
         $scope.Variables.svSubmitForm.setInput('usersWithWhomToShare', generateIdString($scope.Variables.stvContacts.dataSet));
         $scope.Variables.svSubmitForm.update();
+    }
+
+    $scope.newFormWizardDone = function($isolateScope, steps) {
+        if ($scope.submitOnBehalf && ($scope.Widgets.checkboxNewUser.datavalue === true || (!!$scope.Widgets.searchOnBehalfOfUser._proxyModel && !!$scope.Widgets.searchOnBehalfOfUser._proxyModel.id))) {
+            if ($scope.Widgets.checkboxNewUser.datavalue === true) {
+                $scope.Widgets.lfSubmitOnBehalf.save();
+                return; // submitForm will be run after the live form saves the new user
+            } else if (!!$scope.Widgets.searchOnBehalfOfUser._proxyModel && !!$scope.Widgets.searchOnBehalfOfUser._proxyModel.id) {
+                $scope.Variables.svSubmitForm.setInput('behalfOfUserId', $scope.Widgets.searchOnBehalfOfUser._proxyModel.id);
+            }
+        } else {
+            $scope.Variables.svSubmitForm.setInput('behalfOfUserId', null);
+        }
+
+        submitForm();
     };
 
 
     $scope.svSubmitFormonSuccess = function(variable, data) {
         $scope.Variables.goToPage_UserOpenForms.navigate();
+    };
+
+    $scope.checkboxNewUserChange = function($event, $isolateScope, newVal, oldVal) {
+        $scope.Widgets.searchOnBehalfOfUser.reset();
+        $scope.Widgets.lfSubmitOnBehalf.clearData();
+        $scope.Widgets.lfSubmitOnBehalf.formfields.country.value = 'USA';
+    };
+
+
+    $scope.wizardstep2Skip = function($isolateScope, currentStep, stepIndex) {
+        $scope.Widgets.checkboxNewUser.reset();
+        $scope.Widgets.searchOnBehalfOfUser.reset();
+        $scope.Widgets.lfSubmitOnBehalf.clearData();
+    };
+
+
+    $scope.lfSubmitOnBehalfSuccess = function($event, $operation, $data) {
+        $scope.Variables.svSubmitForm.setInput('behalfOfUserId', $data.id);
+        submitForm();
+    };
+
+
+    $scope.newFormWizardCancel = function($isolateScope, steps) {
+        $location.path("/");
     };
 
 }]);

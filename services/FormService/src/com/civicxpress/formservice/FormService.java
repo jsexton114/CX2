@@ -243,7 +243,7 @@ public class FormService {
         return newFormTypeId;
     }
     
-    private String createForm(Connection cx2Conn, Long formTypeId) throws SQLException {
+    private String createForm(Connection cx2Conn, Long formTypeId, Long createUserId) throws SQLException {
     	HashMap<String, Object> queryParams = new HashMap<String, Object>();
     	queryParams.put("formTypeId", formTypeId);
     	Long municipalityId = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getLong("MunicipalityId");
@@ -252,8 +252,8 @@ public class FormService {
     	
     	try {
 	    	muniDbConn.setAutoCommit(false);
-	    	queryParams.put("currentUser", securityService.getUserName());
-	    	queryParams.put("currentUserId", securityService.getUserId());
+	    	queryParams.put("currentUserId", createUserId);
+	    	queryParams.put("currentUser", DBUtils.selectQuery(cx2Conn, "SELECT Email FROM Users WHERE id=:currentUserId", queryParams).get(0).getString("Email"));
 	    	queryParams.put("municipalityId", municipalityId);
 	    	
 	    	String formTableName = DBUtils.selectQuery(cx2Conn, "SELECT FormTableName FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getString("FormTableName");
@@ -403,16 +403,23 @@ public class FormService {
     	}
     }
     
-    public String submitForm(Long formTypeId, String locationIds, String vendorIds, String usersWithWhomToShare, HashMap<String, Object> fieldData) throws SQLException {
+    public String submitForm(Long formTypeId, Long behalfOfUserId, String locationIds, String vendorIds, String usersWithWhomToShare, HashMap<String, Object> fieldData) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
     	
     	try {
 	    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
-	    	formGuid = createForm(cx2Conn, formTypeId);
+	    	
+	    	if (behalfOfUserId != null) {
+	    		queryParams.put("createUserId", behalfOfUserId);
+		    	formGuid = createForm(cx2Conn, formTypeId, behalfOfUserId);
+	    	} else {
+	    		queryParams.put("createUserId", securityService.getUserId());
+		    	formGuid = createForm(cx2Conn, formTypeId, Long.parseLong(securityService.getUserId()));
+	    	}
+	    	
 	    	queryParams.put("formGuid", formGuid);
-	    	queryParams.put("createUserId", securityService.getUserId());
 	    	
 	    	DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", queryParams).get(0);
 	    	
@@ -521,7 +528,7 @@ public class FormService {
 	    	}
 	    	
 	    	// Add sharing
-	    	if (formTypeData.getBoolean("SharedWith") && !usersWithWhomToShare.trim().isEmpty()) {
+	    	if (formTypeData.getBoolean("SharedWith") && usersWithWhomToShare != null && !usersWithWhomToShare.trim().isEmpty()) {
 	    		StringBuilder sharingQuery = new StringBuilder("INSERT INTO SharedWith (RelatedGUID, SharedWithUser, CreatedOn, CreatedBy) VALUES ");
 		    	int shareIndex = 0;
 		    	
