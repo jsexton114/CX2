@@ -125,7 +125,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
         // If not muniadmin or cxadmin OR not in group then hide tab
         if (!((isCXAdminMunicipalityAdmin == 1) || (found > -1))) {
-            $scope.Widgets.tabpaneLocation.show = false;
+            // $scope.Widgets.tabpaneLocation.show = false;
         }
     };
 
@@ -253,15 +253,15 @@ Application.$controller("lfFeesController", ["$scope",
 ]);
 
 Application.$controller("gridFeesController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveformFeesController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
