@@ -64,6 +64,11 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CheckingUserWithMunicipalityInRolesrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="CompanyFormsByVendorId">
+        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CompanyFormsByVendorIdrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="CountOfFormsForMunicipality">
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CountOfFormsForMunicipalityrtnType" isList="false"/>
@@ -374,13 +379,17 @@
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2VendorsCountForMunicipalitiesrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="VendorsLinkedWithForm">
+        <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2VendorsLinkedWithFormrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="hqlquery" name="CompanyFormsByVendorId">
-        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
+    <operation operationType="nativequery" name="UpdatePrimaryVendorInMasterForms">
+        <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
@@ -707,6 +716,11 @@
         <parameter name="newUser" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdatePasswordAndCFrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdatePrimaryVendorInMasterForms">
+        <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2UpdatePrimaryVendorInMasterFormsrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateProcessOwnersForGUID">
         <parameter name="AssignedToGroupId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="GUID" typeRef="java.lang.String" isList="false"/>
@@ -764,6 +778,10 @@
     <operation operationType="nativequery" name="VendorsCountForMunicipalities">
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2VendorsCountForMunicipalitiesrtnType" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="VendorsLinkedWithForm">
+        <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2VendorsLinkedWithFormrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
@@ -1682,6 +1700,7 @@
         <dataobject javaType="cx2UpdateMunicipalityInfortnType"/>
         <dataobject javaType="cx2UpdateNewPasswordrtnType"/>
         <dataobject javaType="cx2UpdatePasswordAndCFrtnType"/>
+        <dataobject javaType="cx2UpdatePrimaryVendorInMasterFormsrtnType"/>
         <dataobject javaType="cx2UpdateProcessOwnersForGUIDrtnType"/>
         <dataobject javaType="cx2UpdateRoleForMunicipalityrtnType"/>
         <dataobject javaType="cx2UpdateVendorForMasterFormsrtnType"/>
@@ -1695,6 +1714,40 @@
         </dataobject>
         <dataobject javaType="cx2VendorsCountForMunicipalitiesrtnType">
             <element name="vendorsCount" typeRef="java.lang.Integer"/>
+        </dataobject>
+        <dataobject javaType="cx2VendorsLinkedWithFormrtnType">
+            <element name="address1" typeRef="java.lang.String"/>
+            <element name="address2" typeRef="java.lang.String"/>
+            <element name="altPhone" typeRef="java.lang.String"/>
+            <element name="businessClassification" typeRef="java.lang.String"/>
+            <element name="city" typeRef="java.lang.String"/>
+            <element name="coi" typeRef="[B"/>
+            <element name="companyEmail" typeRef="java.lang.String"/>
+            <element name="companyName" typeRef="java.lang.String"/>
+            <element name="companyPhone" typeRef="java.lang.String"/>
+            <element name="companyWebsite" typeRef="java.lang.String"/>
+            <element name="contractorTypeId" typeRef="java.lang.Integer"/>
+            <element name="contractorTypes" typeRef="com.civicxpress.cx2.ContractorTypes"/>
+            <element name="country" typeRef="java.lang.String"/>
+            <element name="faxNumber" typeRef="java.lang.String"/>
+            <element name="feeses" typeRef="java.util.List"/>
+            <element name="feinNumber" typeRef="java.lang.String"/>
+            <element name="id" typeRef="java.lang.Integer"/>
+            <element name="insuranceCompany" typeRef="java.lang.String"/>
+            <element name="insuranceExpires" typeRef="java.util.Date"/>
+            <element name="lastUpdated" typeRef="java.util.Date"/>
+            <element name="masterFormses" typeRef="java.util.List"/>
+            <element name="numberOfEmployees" typeRef="java.lang.Integer"/>
+            <element name="postalCode" typeRef="java.lang.String"/>
+            <element name="stateId" typeRef="java.lang.Integer"/>
+            <element name="stateRegNumber" typeRef="java.lang.String"/>
+            <element name="states" typeRef="com.civicxpress.cx2.States"/>
+            <element name="typeOfBusiness" typeRef="java.lang.String"/>
+            <element name="vendorAdminses" typeRef="java.util.List"/>
+            <element name="vendorApprovalses" typeRef="java.util.List"/>
+            <element name="vendorLicenseses" typeRef="java.util.List"/>
+            <element name="vendorUserses" typeRef="java.util.List"/>
+            <element name="vendors2forms" typeRef="java.util.List"/>
         </dataobject>
         <dataobject javaType="cx2bannedDetailsrtnType">
             <element name="Banned" typeRef="java.lang.Boolean"/>

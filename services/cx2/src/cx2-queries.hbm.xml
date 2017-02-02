@@ -312,6 +312,11 @@
       UPDATE Users SET Password=:password, CommunicationFrequency=:cf where ID=:newUser
     ]]>
   </sql-query>
+  <sql-query name="UpdatePrimaryVendorInMasterForms">
+    <![CDATA[
+      Update MasterForms set CXVendorId=:VendorId where FormGUID=:FormGUID
+    ]]>
+  </sql-query>
   <sql-query name="UpdateProcessOwnersForGUID">
     <![CDATA[
       update MasterForms set AssignedToGroupId=:AssignedToGroupId where FormGUID=:GUID
@@ -362,6 +367,11 @@
       select count(*) as vendorsCount from VendorApprovals where MunicipalityId=:MunicipalityId
     ]]>
   </sql-query>
+  <query name="VendorsLinkedWithForm">
+    <![CDATA[
+      from Vendor where id IN (select vendorId from Vendors2form where relatedFormGuid=:RelatedFormGUID)
+    ]]>
+  </query>
   <sql-query name="verifyPasswordResetToken">
     <![CDATA[
       select * from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)

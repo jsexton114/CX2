@@ -320,6 +320,30 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneVendor" title="VENDOR" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection">
                                 <wm-layoutgrid name="layoutgrid18">
+                                    <wm-gridrow name="gridrow82">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn152_1">
+                                            <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panel3" title="Primary Vendor" class="panel-primary">
+                                                <wm-layoutgrid name="layoutgrid22">
+                                                    <wm-gridrow name="gridrow83" padding="1em unset">
+                                                        <wm-gridcolumn columnwidth="10" name="gridcolumn153_1">
+                                                            <wm-composite name="composite5">
+                                                                <wm-label class="col-md-3 control-label" name="label65" caption="Select Primary Vendor"></wm-label>
+                                                                <wm-container class="col-md-9" name="container5">
+                                                                    <wm-select name="selectPrimaryVendor" dataset="bind:Variables.VendorsLinkedWithForm.dataSet" datafield="All Fields" displayfield="companyName" datavalue="bind:Variables.CurrentForm.dataSet.data[$i].vendor"></wm-select>
+                                                                </wm-container>
+                                                            </wm-composite>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn154_1" horizontalalign="left">
+                                                            <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em unset 1em" name="buttonUpdatePrimaryVendor" on-click="Variables.UpdatePrimaryVendorInMasterForms.invoke()"></wm-button>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow84">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn155_1" horizontalalign="center"></wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-panel>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow62">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn129">
                                             <wm-label padding="unset 0.5em" name="label35" caption="If this form is associated to a vendor, please add the vendor to the form by clicking the “Add Vendor” button below."></wm-label>
@@ -328,7 +352,7 @@
                                     <wm-gridrow name="gridrow63">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn131">
                                             <wm-livegrid formlayout="inline" name="livegridFormVendors">
-                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2Vendors2formData.dataSet" navigation="Classic" name="gridFormVendors" filtermode="multicolumn" exportformat="EXCEL">
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="All Vendors List" dataset="bind:Variables.Cx2Vendors2formData.dataSet" navigation="Classic" name="gridFormVendors" filtermode="multicolumn" exportformat="EXCEL">
                                                     <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                                                     <wm-grid-column binding="vendor.companyPhone" caption="Phone Number" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                                                     <wm-grid-column binding="vendor.companyEmail" caption="Email Address" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>

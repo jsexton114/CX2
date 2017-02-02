@@ -660,6 +660,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdatePrimaryVendorInMasterForms", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdatePrimaryVendorInMasterForms(@RequestParam(value = "VendorId", required = false) java.lang.Integer VendorId, @RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdatePrimaryVendorInMasterForms");
+        int result = queryService.executeUpdatePrimaryVendorInMasterForms(VendorId, FormGUID);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UpdateProcessOwnersForGUID", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeUpdateProcessOwnersForGUID(@RequestParam(value = "AssignedToGroupId", required = false) java.lang.Integer AssignedToGroupId, @RequestParam(value = "GUID", required = false) java.lang.String GUID) throws QueryParameterMismatchException {
@@ -755,6 +765,16 @@ public class QueryExecutionController {
     public Page<Object> executeVendorsCountForMunicipalities(@RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, Pageable pageable) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query VendorsCountForMunicipalities");
         Page<Object> result = queryService.executeVendorsCountForMunicipalities(pageable, MunicipalityId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/VendorsLinkedWithForm", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeVendorsLinkedWithForm(@RequestParam(value = "RelatedFormGUID", required = false) java.lang.String RelatedFormGUID, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query VendorsLinkedWithForm");
+        Page<Object> result = queryService.executeVendorsLinkedWithForm(pageable, RelatedFormGUID);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

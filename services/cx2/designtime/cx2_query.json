@@ -2000,6 +2000,31 @@
     "outputType" : "cx2UpdatePasswordAndCFrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "UpdatePrimaryVendorInMasterForms",
+    "query" : "Update MasterForms set CXVendorId=:VendorId where FormGUID=:FormGUID",
+    "comment" : "UpdatePrimaryVendorInMasterForms",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "VendorId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "FormGUID",
+      "paramType" : "java.lang.String",
+      "testValue" : "318D86B7-D5E3-E611-80C9-0CC47A46DD63",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdatePrimaryVendorInMasterFormsrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "UpdateProcessOwnersForGUID",
     "query" : "update MasterForms set AssignedToGroupId=:AssignedToGroupId where FormGUID=:GUID",
     "comment" : "UpdateProcessOwnersForGUID",
@@ -2314,6 +2339,57 @@
     "outputType" : "cx2VendorsCountForMunicipalitiesrtnType",
     "returnTypeMetadata" : {
       "vendorsCount" : "java.lang.Integer"
+    }
+  }, {
+    "name" : "VendorsLinkedWithForm",
+    "query" : "from Vendor where id IN (select vendorId from Vendors2form where relatedFormGuid=:RelatedFormGUID)",
+    "comment" : "VendorsLinkedWithForm",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "RelatedFormGUID",
+      "paramType" : "java.lang.String",
+      "testValue" : "318D86B7-D5E3-E611-80C9-0CC47A46DD63",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2VendorsLinkedWithFormrtnType",
+    "returnTypeMetadata" : {
+      "address1" : "java.lang.String",
+      "address2" : "java.lang.String",
+      "altPhone" : "java.lang.String",
+      "businessClassification" : "java.lang.String",
+      "city" : "java.lang.String",
+      "coi" : "[B",
+      "companyEmail" : "java.lang.String",
+      "companyName" : "java.lang.String",
+      "companyPhone" : "java.lang.String",
+      "companyWebsite" : "java.lang.String",
+      "contractorTypeId" : "java.lang.Integer",
+      "contractorTypes" : "com.civicxpress.cx2.ContractorTypes",
+      "country" : "java.lang.String",
+      "faxNumber" : "java.lang.String",
+      "feeses" : "java.util.List",
+      "feinNumber" : "java.lang.String",
+      "id" : "java.lang.Integer",
+      "insuranceCompany" : "java.lang.String",
+      "insuranceExpires" : "java.util.Date",
+      "lastUpdated" : "java.util.Date",
+      "masterFormses" : "java.util.List",
+      "numberOfEmployees" : "java.lang.Integer",
+      "postalCode" : "java.lang.String",
+      "stateId" : "java.lang.Integer",
+      "stateRegNumber" : "java.lang.String",
+      "states" : "com.civicxpress.cx2.States",
+      "typeOfBusiness" : "java.lang.String",
+      "vendorAdminses" : "java.util.List",
+      "vendorApprovalses" : "java.util.List",
+      "vendorLicenseses" : "java.util.List",
+      "vendorUserses" : "java.util.List",
+      "vendors2forms" : "java.util.List"
     }
   }, {
     "name" : "verifyPasswordResetToken",

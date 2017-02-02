@@ -2135,7 +2135,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "formGuid" ]
     },
-    "bindCount" : 2,
+    "bindCount" : 5,
     "spinnerContext" : "page",
     "tableName" : "MasterForms",
     "tableType" : "TABLE",
@@ -12396,6 +12396,38 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "UpdatePrimaryVendorInMasterForms" : {
+    "_id" : "wm-UpdatePrimaryVendorInMasterForms-wm.ServiceVariable-1486030401815",
+    "name" : "UpdatePrimaryVendorInMasterForms",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "VendorId",
+      "value" : "bind:Widgets.selectPrimaryVendor.datavalue.id",
+      "type" : "integer"
+    }, {
+      "target" : "FormGUID",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
+    "type" : "cx2UpdatePrimaryVendorInMasterFormsrtnType",
+    "service" : "cx2",
+    "operation" : "executeUpdatePrimaryVendorInMasterForms",
+    "operationId" : "QueryExecutionController_executeUpdatePrimaryVendorInMasterForms",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "UpdateProcessOwnersForGUID" : {
     "_id" : "wm-UpdateProcessOwnersForGUID-wm.ServiceVariable-1484817203384",
     "name" : "UpdateProcessOwnersForGUID",
@@ -13338,5 +13370,33 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.VendorApprovals"
+  },
+  "VendorsLinkedWithForm" : {
+    "_id" : "wm-VendorsLinkedWithForm-wm.ServiceVariable-1486029823447",
+    "name" : "VendorsLinkedWithForm",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "RelatedFormGUID",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
+    "type" : "cx2VendorsLinkedWithFormrtnType",
+    "service" : "cx2",
+    "operation" : "executeVendorsLinkedWithForm",
+    "operationId" : "QueryExecutionController_executeVendorsLinkedWithForm",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "gridFormVendors"
   }
 }

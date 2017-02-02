@@ -77,6 +77,7 @@ public interface Cx2QueryExecutorService {
 	int executeUpdateMunicipalityInfo(  java.lang.String mn , java.lang.String em , java.lang.String ph , java.lang.String ad1 , java.lang.String ad2 , java.lang.Integer st , java.lang.String ct , java.lang.String pc , java.lang.Integer municipality) throws QueryParameterMismatchException;
 	int executeUpdateNewPassword(  java.lang.String password , java.lang.Integer newUser) throws QueryParameterMismatchException;
 	int executeUpdatePasswordAndCF(  java.lang.String password , java.lang.String cf , java.lang.Integer newUser) throws QueryParameterMismatchException;
+	int executeUpdatePrimaryVendorInMasterForms(  java.lang.Integer VendorId , java.lang.String FormGUID) throws QueryParameterMismatchException;
 	int executeUpdateProcessOwnersForGUID(  java.lang.Integer AssignedToGroupId , java.lang.String GUID) throws QueryParameterMismatchException;
 	int executeUpdateRoleForMunicipality(  java.lang.String role , java.lang.Integer municipality , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateVendorForMasterForms(  java.lang.Integer CXVendorId , java.lang.String FormGUID) throws QueryParameterMismatchException;
@@ -87,6 +88,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeUserSubscriptionsCountForMunicipality(Pageable pageable, java.lang.Integer municipalityId) throws QueryParameterMismatchException;
     Page<Object> executeVendorCount(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeVendorsCountForMunicipalities(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
+    Page<Object> executeVendorsLinkedWithForm(Pageable pageable, java.lang.String RelatedFormGUID) throws QueryParameterMismatchException;
     Page<Object> executeVerifyPasswordResetToken(Pageable pageable, java.lang.String token) throws QueryParameterMismatchException;
 
 	

@@ -606,6 +606,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeUpdatePrimaryVendorInMasterForms( java.lang.Integer VendorId ,java.lang.String FormGUID)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("VendorId", VendorId);
+        params.put("FormGUID", FormGUID);
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePrimaryVendorInMasterForms", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeUpdateProcessOwnersForGUID( java.lang.Integer AssignedToGroupId ,java.lang.String GUID)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -701,6 +710,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("MunicipalityId", MunicipalityId);
         return queryExecutor.executeNamedQuery("VendorsCountForMunicipalities", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public Page<Object> executeVendorsLinkedWithForm(Pageable pageable, java.lang.String RelatedFormGUID)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("RelatedFormGUID", RelatedFormGUID);
+        return queryExecutor.executeNamedQuery("VendorsLinkedWithForm", params, pageable);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
