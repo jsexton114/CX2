@@ -18,10 +18,8 @@
                                 <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="true"></wm-grid-column>
-                                <wm-grid-column binding="Companies" caption="Companies" type="string" widget-type="button" readonly="true" searchable="false" show="true">
-                                    <wm-button caption="View Companies" show="true" class="btn-sm btn-primary" iconclass="" on-click="Widgets.dialogCompaniesList.open()" data-ng-class=""></wm-button>
-                                </wm-grid-column>
                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid-column binding="vendor.companyName" caption="Primary Vendor" type="string" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
