@@ -49,6 +49,15 @@ public interface Gis2formsService {
 	 */
 	Gis2forms findById(Integer gis2formsId);
 
+    /**
+	 * Find and return the Gis2forms for given gisrecordId  andrelatedFormGuid  if exists.
+	 *
+	 * @param gisrecordId value of gisrecordId; value cannot be null.
+	 * @param relatedFormGuid value of relatedFormGuid; value cannot be null.
+	 * @return Gis2forms associated with the given inputs.
+     * @throws EntityNotFoundException if no matching Gis2forms found.
+	 */
+    Gis2forms getByGisrecordIdAndRelatedFormGuid(Integer gisrecordId, String relatedFormGuid)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing Gis2forms. It replaces all fields of the existing Gis2forms with the given gis2forms.

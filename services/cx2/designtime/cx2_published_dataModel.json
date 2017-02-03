@@ -3520,7 +3520,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -3545,7 +3545,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
@@ -3602,7 +3602,13 @@
       "sqlType" : "timestamp",
       "unique" : false
     } ],
-    "constraints" : [ ],
+    "constraints" : [ {
+      "columns" : [ "GISRecordId", "RelatedFormGUID" ],
+      "composite" : true,
+      "name" : "UK_GIS2Forms_GISRecordId23nuv",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
     "entityName" : "Gis2forms",
     "fullyQualifiedName" : "com.civicxpress.cx2.Gis2forms",
     "name" : "GIS2Forms",
