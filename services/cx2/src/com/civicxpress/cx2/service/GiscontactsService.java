@@ -15,6 +15,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Giscontacts;
+import com.civicxpress.cx2.MasterForms;
 
 /**
  * Service object for domain model class {@link Giscontacts}.
@@ -125,6 +126,17 @@ public interface GiscontactsService {
 	 */
 	long count(String query);
 
+    /*
+     * Returns the associated masterFormses for given Giscontacts id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterForms instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
 
 }
 

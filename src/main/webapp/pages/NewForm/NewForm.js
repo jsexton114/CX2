@@ -55,7 +55,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         $scope.Variables.stvBreadCrumbs.dataSet[1].label += (': ' + data[0].formType);
         $scope.gisRecords = formType.gisrecord;
         $scope.vendorInfo = formType.vendorSelection;
-        $scope.ownerInfo = formType.ownerRequired;
+        $scope.ownerInfo = formType.requireOwner && formType.gisrecord;
         $scope.documents = formType.attachments;
         $scope.sharing = formType.sharedWith;
         shouldSubmitOnBehalf();
@@ -90,31 +90,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
 
         iterateLoading();
     };
-
-
-    $scope.chkVendorIsOwnerChange = function($event, $isolateScope, newVal, oldVal) {
-        if (newVal === true) {
-            var vendorInfo = $scope.Variables.stvVendors.dataSet[0];
-            $scope.Widgets.textOwnerName.datavalue = vendorInfo.Company;
-            $scope.Widgets.textOwnerAddress1.datavalue = vendorInfo.Address1;
-            $scope.Widgets.textOwnerAddress2.datavalue = vendorInfo.Address2;
-            $scope.Widgets.textOwnerCity.datavalue = vendorInfo.City;
-            $scope.Widgets.selectOwnerState.datavalue = vendorInfo.State;
-            $scope.Widgets.textOwnerPostalCode.datavalue = vendorInfo.PostalCode;
-            $scope.Widgets.textOwnerPhone.datavalue = vendorInfo.PhoneNumber;
-            $scope.Widgets.textOwnerEmail.datavalue = vendorInfo.EmailAddress;
-        } else {
-            $scope.Widgets.textOwnerName.reset();
-            $scope.Widgets.textOwnerAddress1.reset();
-            $scope.Widgets.textOwnerAddress2.reset();
-            $scope.Widgets.textOwnerCity.reset();
-            $scope.Widgets.selectOwnerState.reset();
-            $scope.Widgets.textOwnerPostalCode.reset();
-            $scope.Widgets.textOwnerPhone.reset();
-            $scope.Widgets.textOwnerEmail.reset();
-        }
-    };
-
 
     $scope.searchOnBehalfOfUserChange = function($event, $isolateScope, newVal, oldVal) {};
 
@@ -180,6 +155,24 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
 
     $scope.newFormWizardCancel = function($isolateScope, steps) {
         $location.path("/");
+    };
+
+
+    $scope.checkboxVendorIsOwnerChange = function($event, $isolateScope, newVal, oldVal) {
+        if (newVal === true) {
+            var vendorInfo = $scope.Variables.stvVendors.dataSet[0];
+            $scope.Widgets.lfOwner.firstName.datavalue = vendorInfo.Company;
+            $scope.Widgets.lfOwner.address1.datavalue = vendorInfo.Address1;
+            $scope.Widgets.lfOwner.address2.datavalue = vendorInfo.Address2;
+            $scope.Widgets.lfOwner.city.datavalue = vendorInfo.City;
+            $scope.Widgets.lfOwner.states.datavalue = vendorInfo.State;
+            $scope.Widgets.lfOwner.postalCode.datavalue = vendorInfo.PostalCode;
+            $scope.Widgets.lfOwner.phone.datavalue = vendorInfo.PhoneNumber;
+            $scope.Widgets.lfOwner.email.datavalue = vendorInfo.EmailAddress;
+            $scope.Widgets.lfOwner.country.datavalue = vendorInfo.Country;
+        } else {
+            $scope.Widgets.lfOwner.clearData();
+        }
     };
 
 }]);
@@ -359,10 +352,25 @@ Application.$controller("dialogAddVendorController", ["$scope",
                     Address2: newVendor.vendor.address2,
                     City: newVendor.vendor.city,
                     State: newVendor.vendor.states.stateName,
-                    PostalCode: newVendor.vendor.postalCode
+                    PostalCode: newVendor.vendor.postalCode,
+                    Country: newVendor.vendor.country
                 });
             }
         };
 
+    }
+]);
+
+Application.$controller("lfOwnerController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridOwnersController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

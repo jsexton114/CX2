@@ -50,8 +50,10 @@ public class MasterForms implements Serializable {
     private Date issuedDate;
     private Date expiresDate;
     private String formTitle;
+    private Integer ownerId;
     private FormTypes formTypes;
     private FormStatuses formStatuses;
+    private Giscontacts giscontacts;
     private MunicipalityGroups municipalityGroups;
     private Municipalities municipalities;
     private Users users;
@@ -198,6 +200,15 @@ public class MasterForms implements Serializable {
         this.formTitle = formTitle;
     }
 
+    @Column(name = "`OwnerId`", nullable = true, scale = 0, precision = 10)
+    public Integer getOwnerId() {
+        return this.ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`FormTypeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public FormTypes getFormTypes() {
@@ -224,6 +235,20 @@ public class MasterForms implements Serializable {
         }
 
         this.formStatuses = formStatuses;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`OwnerId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Giscontacts getGiscontacts() {
+        return this.giscontacts;
+    }
+
+    public void setGiscontacts(Giscontacts giscontacts) {
+        if(giscontacts != null) {
+            this.ownerId = giscontacts.getId();
+        }
+
+        this.giscontacts = giscontacts;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

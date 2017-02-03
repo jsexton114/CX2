@@ -26,6 +26,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Giscontacts;
+import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.service.GiscontactsService;
 
 /**
@@ -116,6 +117,13 @@ public class GiscontactsController {
     public Long countGiscontacts(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting Giscontacts");
         return giscontactsService.count(query);
+    }
+
+    @RequestMapping(value = "/{id:.+}/masterFormses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
+    public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+        return giscontactsService.findAssociatedMasterFormses(id, pageable);
     }
 
     /**

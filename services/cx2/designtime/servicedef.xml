@@ -993,6 +993,7 @@
             <element name="gisrecords" typeRef="com.civicxpress.cx2.Gisrecords" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="lastName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
             <element name="notes" typeRef="java.lang.String" allowNull="true"/>
             <element name="phone" typeRef="java.lang.String" allowNull="true"/>
             <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
@@ -1076,10 +1077,12 @@
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
             <element name="gis2formses" typeRef="com.civicxpress.cx2.Gis2forms" isList="true" allowNull="true"/>
+            <element name="giscontacts" typeRef="com.civicxpress.cx2.Giscontacts" allowNull="true"/>
             <element name="issuedDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="ownerId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="recordType" typeRef="java.lang.String" allowNull="true"/>
             <element name="sharedWiths" typeRef="com.civicxpress.cx2.SharedWith" isList="true" allowNull="true"/>
             <element name="totalFees" typeRef="java.lang.String" allowNull="true"/>

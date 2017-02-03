@@ -85,7 +85,8 @@ public class Gis2formsController {
 
     @RequestMapping(value = "/gisrecordId-relatedFormGuid", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching Gis2forms with given unique key values.")
-    public Gis2forms getByGisrecordIdAndRelatedFormGuid(@RequestParam(name = "gisrecordId") Integer gisrecordId, @RequestParam(name = "relatedFormGuid") String relatedFormGuid) {
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Gis2forms getByGisrecordIdAndRelatedFormGuid(@RequestParam(value = "null", required = true) Integer gisrecordId, @RequestParam(value = "null", required = true) String relatedFormGuid) {
         LOGGER.debug("Getting Gis2forms with uniques key GisrecordIdAndRelatedFormGuid");
         return gis2formsService.getByGisrecordIdAndRelatedFormGuid(gisrecordId, relatedFormGuid);
     }

@@ -244,7 +244,7 @@ public class FormService {
         return newFormTypeId;
     }
     
-    private String createForm(Connection cx2Conn, Long formTypeId, Long createUserId) throws SQLException {
+    private String createForm(Connection cx2Conn, Long formTypeId, Long createUserId, Long ownerId) throws SQLException {
     	HashMap<String, Object> queryParams = new HashMap<String, Object>();
     	queryParams.put("formTypeId", formTypeId);
     	Long municipalityId = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getLong("MunicipalityId");
@@ -254,6 +254,7 @@ public class FormService {
     	try {
 	    	muniDbConn.setAutoCommit(false);
 	    	queryParams.put("currentUserId", createUserId);
+	    	queryParams.put("ownerId", ownerId);
 	    	queryParams.put("currentUser", DBUtils.selectQuery(cx2Conn, "SELECT Email FROM Users WHERE id=:currentUserId", queryParams).get(0).getString("Email"));
 	    	queryParams.put("municipalityId", municipalityId);
 	    	
@@ -299,8 +300,8 @@ public class FormService {
 	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(0).getLong("ID");
 	    	queryParams.put("newFormStatusId", newFormStatusId);
 	    	
-	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, FormStatusId, Closed) "
-	    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :newFormStatusId, 0)", queryParams);
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, OwnerId, FormStatusId, Closed) "
+	    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :ownerId, :newFormStatusId, 0)", queryParams);
 	    	
 	    	cx2Conn.commit();
 	    	muniDbConn.commit();
@@ -404,7 +405,7 @@ public class FormService {
     	}
     }
     
-    public String submitForm(Long formTypeId, Long behalfOfUserId, String locationIds, String vendorIds, String usersWithWhomToShare, HashMap<String, Object> fieldData) throws SQLException {
+    public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, String usersWithWhomToShare, HashMap<String, Object> fieldData) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
@@ -414,10 +415,10 @@ public class FormService {
 	    	
 	    	if (behalfOfUserId != null) {
 	    		queryParams.put("createUserId", behalfOfUserId);
-		    	formGuid = createForm(cx2Conn, formTypeId, behalfOfUserId);
+		    	formGuid = createForm(cx2Conn, formTypeId, behalfOfUserId, ownerId);
 	    	} else {
 	    		queryParams.put("createUserId", securityService.getUserId());
-		    	formGuid = createForm(cx2Conn, formTypeId, Long.parseLong(securityService.getUserId()));
+		    	formGuid = createForm(cx2Conn, formTypeId, Long.parseLong(securityService.getUserId()), ownerId);
 	    	}
 	    	
 	    	queryParams.put("formGuid", formGuid);
