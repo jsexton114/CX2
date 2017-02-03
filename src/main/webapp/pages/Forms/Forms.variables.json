@@ -92,7 +92,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Widgets.dialogAddVendor.close();Variables.Cx2Vendors2formData.listRecords()",
+    "onSuccess" : "Widgets.dialogAddVendor.close();Variables.Cx2Vendors2formData.listRecords();Variables.VendorsAddedToForm.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -13881,6 +13881,34 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.VendorApprovals"
+  },
+  "VendorsAddedToForm" : {
+    "_id" : "wm-VendorsAddedToForm-wm.NotificationVariable-1486124027624",
+    "name" : "VendorsAddedToForm",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "The Vendor has been added to the form",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
   },
   "VendorsLinkedWithForm" : {
     "_id" : "wm-VendorsLinkedWithForm-wm.ServiceVariable-1486029823447",
