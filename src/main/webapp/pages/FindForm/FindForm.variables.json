@@ -1,0 +1,53 @@
+{
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1486129225591",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/MyMunicipality"
+    }, {
+      "label" : "FindForm",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/FindForm"
+    } ],
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "EmployeesOrAdminsMunicipalities" : {
+    "_id" : "wm-EmployeesOrAdminsMunicipalities-wm.ServiceVariable-1486129488219",
+    "name" : "EmployeesOrAdminsMunicipalities",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "role",
+      "value" : "MunicipalityEmployee",
+      "type" : "string"
+    } ],
+    "type" : "cx2EmployeesOrAdminsMunicipalitiesrtnType",
+    "service" : "cx2",
+    "operation" : "executeEmployeesOrAdminsMunicipalities",
+    "operationId" : "QueryExecutionController_executeEmployeesOrAdminsMunicipalities",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  }
+}
