@@ -93,6 +93,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "onSuccess" : "Widgets.dialogAddVendor.close();Variables.Cx2Vendors2formData.listRecords();Variables.VendorsAddedToForm.invoke()",
+    "onError" : "Variables.DuplicateVendorToForm.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -1251,7 +1252,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -3011,7 +3012,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -4352,6 +4353,34 @@
     "controller" : "Vendors2form",
     "spinnerContext" : "page",
     "spinnerMessage" : "Removing Vendor..."
+  },
+  "DuplicateVendorToForm" : {
+    "_id" : "wm-DuplicateVendorToForm-wm.NotificationVariable-1486125499130",
+    "name" : "DuplicateVendorToForm",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "That Vendor has already been added to this form.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
   },
   "FormHistoryData" : {
     "_id" : "wm-FormHistoryData-wm.LiveVariable-1484640362157",
@@ -7977,7 +8006,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -8796,7 +8825,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -9616,7 +9645,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -10578,7 +10607,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -11085,7 +11114,7 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "TRUE",
         "scale" : 0
       }, {
         "fieldName" : "globalEmailSig",
@@ -12457,7 +12486,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -13220,7 +13249,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
