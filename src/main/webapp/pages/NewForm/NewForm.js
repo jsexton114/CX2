@@ -246,7 +246,8 @@ Application.$controller("dialogAddGISRecordController", ["$scope",
                     "StreetName": gisRecord.streetName,
                     "City": gisRecord.city,
                     "State": gisRecord.states.stateName,
-                    "InspectionZone": gisRecord.inspectionZone
+                    "InspectionZone": gisRecord.inspectionZone,
+                    "FullAddress": gisRecord.fullAddress
                 });
             }
         }
