@@ -148,8 +148,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
             } else if (!!$scope.Widgets.searchOnBehalfOfUser._proxyModel && !!$scope.Widgets.searchOnBehalfOfUser._proxyModel.id) {
                 $scope.Variables.svSubmitForm.setInput('behalfOfUserId', $scope.Widgets.searchOnBehalfOfUser._proxyModel.id);
             }
-        } else {
-            $scope.Variables.svSubmitForm.setInput('behalfOfUserId', null);
         }
 
         submitForm();
