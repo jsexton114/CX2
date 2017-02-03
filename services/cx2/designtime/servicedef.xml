@@ -396,6 +396,11 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="CountOfCompnayFormsByVendorId">
+        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
@@ -441,6 +446,11 @@
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CompanyFormsByVendorIdrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="CountOfCompnayFormsByVendorId">
+        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CountOfCompnayFormsByVendorIdrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="CountOfFormsForMunicipality">
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
@@ -1431,6 +1441,9 @@
             <element name="users" typeRef="com.civicxpress.cx2.Users"/>
             <element name="vendor" typeRef="com.civicxpress.cx2.Vendor"/>
             <element name="vendors2forms" typeRef="java.util.List"/>
+        </dataobject>
+        <dataobject javaType="cx2CountOfCompnayFormsByVendorIdrtnType">
+            <element name="count" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2CountOfFormsForMunicipalityrtnType">
             <element name="" typeRef="java.lang.Integer"/>

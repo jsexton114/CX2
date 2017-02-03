@@ -46,6 +46,11 @@
       from MasterForms where Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )
     ]]>
   </query>
+  <sql-query name="CountOfCompnayFormsByVendorId">
+    <![CDATA[
+      select count(*) as count from MasterForms where Closed=:closed and  FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId )
+    ]]>
+  </sql-query>
   <sql-query name="CountOfFormsForMunicipality">
     <![CDATA[
       select count(distinct FT.ID) from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.MunicipalityId=:MunicipalityId and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID

@@ -27,6 +27,38 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "CountOfCompnayFormsByVendorId" : {
+    "_id" : "wm-CountOfCompnayFormsByVendorId-wm.ServiceVariable-1486125050286",
+    "name" : "CountOfCompnayFormsByVendorId",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "closed",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "vendorId",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2CountOfCompnayFormsByVendorIdrtnType",
+    "service" : "cx2",
+    "operation" : "executeCountOfCompnayFormsByVendorId",
+    "operationId" : "QueryExecutionController_executeCountOfCompnayFormsByVendorId",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "CountOfMuncipalityApplicationsByVendor" : {
     "_id" : "wm-CountOfMuncipalityApplicationsByVendor-wm.ServiceVariable-1484830279639",
     "name" : "CountOfMuncipalityApplicationsByVendor",
