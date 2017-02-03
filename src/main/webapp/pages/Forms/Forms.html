@@ -14,6 +14,28 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="wi wi-info" autoclose="outsideClick" name="panelFormInfo" class="panel-primary" title="Form Info">
                             <wm-layoutgrid name="layoutgrid5">
+                                <wm-gridrow name="gridrow6" padding="2em unset unset unset">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center">
+                                        <wm-picture name="picture2" picturesource="bind:!!Variables.CurrentForm.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.CurrentForm.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;"
+                                        class="muni-logo"></wm-picture>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn14"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow7">
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn10"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn11" horizontalalign="center">
+                                        <wm-label padding="unset 0.5em" name="label7" class="h1" caption="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow84_1">
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn155_2"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn156_1" horizontalalign="center">
+                                        <wm-label padding="unset 0.5em" name="label65_1" caption="bind:Variables.CurrentForm.dataSet.data[$i].formTitle" fontsize="18"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn157"></wm-gridcolumn>
+                                </wm-gridrow>
                                 <wm-gridrow name="gridrow83_1">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn156_2" horizontalalign="center">
                                         <wm-label padding="unset 0.5em" name="label66" caption="bind:'Creator: ' + Variables.CurrentForm.dataSet.data[$i].users.firstName + ' ' + Variables.CurrentForm.dataSet.data[$i].users.lastName" class="h3"></wm-label>
@@ -83,28 +105,6 @@
                             <wm-tabs name="tabs1">
                                 <wm-tabpane name="tabpaneFormData" title="DATA">
                                     <wm-layoutgrid name="layoutgrid2">
-                                        <wm-gridrow name="gridrow6" padding="2em unset unset unset">
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center">
-                                                <wm-picture name="picture2" picturesource="bind:!!Variables.CurrentForm.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.CurrentForm.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;"
-                                                class="muni-logo"></wm-picture>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn14"></wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow7">
-                                            <wm-gridcolumn columnwidth="2" name="gridcolumn10"></wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="8" name="gridcolumn11" horizontalalign="center">
-                                                <wm-label padding="unset 0.5em" name="label7" class="h1" caption="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-label>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow84_1" padding="unset unset 3em unset">
-                                            <wm-gridcolumn columnwidth="2" name="gridcolumn155_2"></wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="8" name="gridcolumn156_1" horizontalalign="center">
-                                                <wm-label padding="unset 0.5em" name="label65_1" caption="bind:Variables.CurrentForm.dataSet.data[$i].formTitle" fontsize="18"></wm-label>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="2" name="gridcolumn157"></wm-gridcolumn>
-                                        </wm-gridrow>
                                         <wm-gridrow ng-repeat="formField in Variables.svFormTypeFields.dataSet.content" name="fieldGridrow{{$index}}">
                                             <wm-gridcolumn columnwidth="12" name="fieldGridcolumn{{$index}}">
                                                 <wm-composite name="fieldComposite{{$index}}" required="{{formField.required}}">
@@ -494,8 +494,7 @@
                         <wm-gridrow name="gridrow21" padding="unset unset 1em unset">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn42"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn43" horizontalalign="center">
-                                <wm-label padding="unset 0.5em" name="label10" caption="bind:Widgets.searchAddress.datavalue.streetNumber+' '+Widgets.searchAddress.datavalue.streetDirection+' '+Widgets.searchAddress.datavalue.streetName+' '+Widgets.searchAddress.datavalue.streetType+', '+Widgets.searchAddress.datavalue.unitNumber+', '+Widgets.searchAddress.datavalue.city+', '+Widgets.searchAddress.datavalue.states.stateName+' '+Widgets.searchAddress.datavalue.postalCode"
-                                show="bind:Widgets.searchAddress.datavalue!=undefined"></wm-label>
+                                <wm-label padding="unset 0.5em" name="label10" caption="bind:Widgets.searchAddress.datavalue.fullAddress" show="bind:Widgets.searchAddress.datavalue!=undefined"></wm-label>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn45"></wm-gridcolumn>
                         </wm-gridrow>
@@ -537,8 +536,7 @@
                         <wm-gridrow padding="unset unset 1em unset" name="gridrow26">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn58"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn59">
-                                <wm-label padding="unset 0.5em" caption="bind:Widgets.searchSubdivision.datavalue.streetNumber+' '+Widgets.searchSubdivision.datavalue.streetDirection+' '+Widgets.searchSubdivision.datavalue.streetName+' '+Widgets.searchSubdivision.datavalue.streetType+', '+Widgets.searchSubdivision.datavalue.unitNumber+', '+Widgets.searchSubdivision.datavalue.city+', '+Widgets.searchSubdivision.datavalue.states.stateName+' '+Widgets.searchSubdivision.datavalue.postalCode"
-                                show="bind:Widgets.searchSubdivision.datavalue!=undefined" name="label13"></wm-label>
+                                <wm-label padding="unset 0.5em" caption="bind:Widgets.searchSubdivision.datavalue.fullAddress" show="bind:Widgets.searchSubdivision.datavalue!=undefined" name="label13"></wm-label>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn60"></wm-gridcolumn>
                         </wm-gridrow>
@@ -578,8 +576,7 @@
                         <wm-gridrow padding="unset unset 1em unset" name="gridrow30">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn70"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn71">
-                                <wm-label padding="unset 0.5em" caption="bind:Widgets.searchParcel.datavalue.streetNumber+' '+Widgets.searchParcel.datavalue.streetDirection+' '+Widgets.searchParcel.datavalue.streetName+' '+Widgets.searchParcel.datavalue.streetType+', '+Widgets.searchParcel.datavalue.unitNumber+', '+Widgets.searchParcel.datavalue.city+', '+Widgets.searchParcel.datavalue.states.stateName+' '+Widgets.searchParcel.datavalue.postalCode"
-                                show="bind:Widgets.searchParcel.datavalue!=undefined" name="label15"></wm-label>
+                                <wm-label padding="unset 0.5em" caption="bind:Widgets.searchParcel.datavalue.fullAddress" show="bind:Widgets.searchParcel.datavalue!=undefined" name="label15"></wm-label>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn72"></wm-gridcolumn>
                         </wm-gridrow>

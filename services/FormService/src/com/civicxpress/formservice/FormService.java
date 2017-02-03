@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -528,19 +529,26 @@ public class FormService {
 	    	}
 	    	
 	    	// Add sharing
-	    	if (formTypeData.getBoolean("SharedWith") && usersWithWhomToShare != null && !usersWithWhomToShare.trim().isEmpty()) {
+	    	if (behalfOfUserId != null || (formTypeData.getBoolean("SharedWith") && usersWithWhomToShare != null && !usersWithWhomToShare.trim().isEmpty())) {
 	    		StringBuilder sharingQuery = new StringBuilder("INSERT INTO SharedWith (RelatedGUID, SharedWithUser, CreatedOn, CreatedBy) VALUES ");
 		    	int shareIndex = 0;
+		    	List<String> shareUserIdList = usersWithWhomToShare != null && !usersWithWhomToShare.trim().isEmpty() ? new ArrayList<String>(Arrays.asList(usersWithWhomToShare.split(","))) : new ArrayList<String>();
 		    	
-	    		for (String sharedUserId : usersWithWhomToShare.split(",")) {
+		    	if (behalfOfUserId != null && !shareUserIdList.contains(securityService.getUserId())) { // Add the current user to shared if they are submitting on behalf of someone else
+		    		shareUserIdList.add(securityService.getUserId());
+		    	}
+		    	
+	    		for (String sharedUserId : shareUserIdList) {
 	    			if (shareIndex > 0) {
 	    				sharingQuery.append(',');
 	    			}
 	    			
-	    			String paramName = DBUtils.getSqlSafeString("shareUser"+shareIndex+"VendorId");
+	    			Long sharedUserIdLong = Long.parseLong(sharedUserId);
+	    			
+	    			String paramName = DBUtils.getSqlSafeString("shareUser"+shareIndex+"Id");
 	    			shareIndex++;
 	    			
-	    			queryParams.put(paramName, Long.parseLong(sharedUserId));
+	    			queryParams.put(paramName, sharedUserIdLong);
 	    			
 	    			sharingQuery.append("(:formGuid, :"+paramName+", SYSDATETIME(), :createUserId)");
 	    		}
