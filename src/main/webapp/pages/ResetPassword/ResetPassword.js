@@ -44,7 +44,7 @@ Application.$controller("ResetPasswordPageController", ["$scope", "wmToaster", f
 
     $scope.resetPasswordonSuccess = function(variable, data) {
         if (data == 0) {
-            wmToaster.show('error', 'ERROR', 'We are unable to update your password. Please contact Support or try again', 5000);
+            wmToaster.show('error', 'ERROR', 'Your password reset link has expired. Please generate a new link or contact Support at 614-737-3743 for further assistance', 6000);
             return false;
         } else {
             $scope.Variables.deleteToken.setInput('token', $scope.token);

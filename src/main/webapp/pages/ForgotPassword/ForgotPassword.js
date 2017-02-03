@@ -21,13 +21,13 @@ Application.$controller("ForgotPasswordPageController", ["$scope", "wmToaster", 
     $scope.getUserIDonSuccess = function(variable, data) {
         if (data.content.length === 0) {
             // if user not found in database
-            wmToaster.show('info', 'INFO', 'An email with password reset instructions has been sent to your email address, if it exists on our system', 5000);
+            wmToaster.show('error', 'ERROR', 'That email address does not exist in our system.', 6000);
             $scope.Widgets.signup.show = true;
         } else {
             $scope.Variables.sendResetPasswordbyUserID.setInput('userID', data.content[0].ID);
             $scope.Variables.sendResetPasswordbyUserID.update({}, function(data) {
                 // success Toaster
-                wmToaster.show('info', 'INFO', 'An email with password reset instructions has been sent to your email address, if it exists on our system', 5000);
+                wmToaster.show('success', 'SUCCESS', 'Please check your email for password reset instructions.', 6000);
             });
 
         }
