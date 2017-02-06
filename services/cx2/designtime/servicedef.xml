@@ -257,6 +257,12 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2resetPasswordWithTokenForUserrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="SetPrimaryVendorStatusForFormandVendor">
+        <parameter name="pv" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="form" typeRef="java.lang.String" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2SetPrimaryVendorStatusForFormandVendorrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="StandardUserMunicipalites">
         <parameter name="USER" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2StandardUserMunicipalitesrtnType" isList="false"/>
@@ -405,12 +411,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="SetPrimaryVendorStatusForFormandVendor">
-        <parameter name="pv" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="form" typeRef="java.lang.String" isList="false"/>
-        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
@@ -1101,6 +1101,7 @@
             <element name="gis2formses" typeRef="com.civicxpress.cx2.Gis2forms" isList="true" allowNull="true"/>
             <element name="giscontacts" typeRef="com.civicxpress.cx2.Giscontacts" allowNull="true"/>
             <element name="issuedDate" typeRef="java.util.Date" allowNull="true"/>
+            <element name="modifiedAt" typeRef="java.util.Date" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>

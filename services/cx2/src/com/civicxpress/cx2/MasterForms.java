@@ -51,6 +51,7 @@ public class MasterForms implements Serializable {
     private Date expiresDate;
     private String formTitle;
     private Integer ownerId;
+    private Date modifiedAt;
     private FormTypes formTypes;
     private FormStatuses formStatuses;
     private Giscontacts giscontacts;
@@ -207,6 +208,16 @@ public class MasterForms implements Serializable {
 
     public void setOwnerId(Integer ownerId) {
         this.ownerId = ownerId;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "`ModifiedAt`", nullable = true)
+    public Date getModifiedAt() {
+        return this.modifiedAt;
+    }
+
+    public void setModifiedAt(Date modifiedAt) {
+        this.modifiedAt = modifiedAt;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
