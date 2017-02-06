@@ -624,7 +624,7 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "TRUE",
         "scale" : 0
       }, {
         "fieldName" : "globalEmailSig",
@@ -1080,7 +1080,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -2359,6 +2359,34 @@
     } ],
     "operation" : "toast"
   },
+  "ResetPaswordSuccess" : {
+    "_id" : "wm-ResetPaswordSuccess-wm.NotificationVariable-1486358204737",
+    "name" : "ResetPaswordSuccess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Your new password has been set. Please proceed to Login",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "UpdateCFInProfile" : {
     "_id" : "wm-UpdateCFInProfile-wm.ServiceVariable-1479275077177",
     "name" : "UpdateCFInProfile",
@@ -2484,6 +2512,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.logoutVariable.invoke();Variables.ResetPaswordSuccess.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
