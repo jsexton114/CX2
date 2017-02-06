@@ -28,14 +28,15 @@
                                                 <wm-panel iconclass="wi wi-info-outline" name="panelFormInfo" title="Form Details" class="panel-primary">
                                                     <wm-gridrow name="gridrow3">
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn4">
-                                                            <wm-form-field name="formType" displayname="Form Design Name" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                            <wm-form-field name="formType" displayname="Form Design Name" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                            required="true"></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn17" horizontalalign="left">
-                                                            <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                            <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder="" hint="This allows users to select this form design in the New Form wizard"></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn3">
                                                             <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="true" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" widget="checkbox"
-                                                            placeholder=""></wm-form-field>
+                                                            placeholder="" hint="This makes the form hidden from standard users and only visible to employees of your Municipality"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-panel>
@@ -47,7 +48,7 @@
                                                     <wm-layoutgrid name="layoutgrid10_1">
                                                         <wm-gridrow name="gridrow43_2">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn68">
-                                                                <wm-form-field displayname="Prefix" widget="text" show="true" type="custom" name="titlePrefix" maxchars="255" placeholder="Enter prefix" required="true"></wm-form-field>
+                                                                <wm-form-field displayname="Prefix" widget="text" show="true" type="custom" name="titlePrefix" maxchars="12" placeholder="Enter prefix" required="true" width="160px"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow44_1">
@@ -65,12 +66,14 @@
                                                                 <wm-layoutgrid name="layoutgrid11">
                                                                     <wm-gridrow name="gridrow47">
                                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn74_1">
-                                                                            <wm-form-field displayname="Number Start" widget="text" show="true" type="custom" name="prefixNumberStart" inputtype="number" required="true" placeholder="Enter number" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixNumberStart"></wm-form-field>
+                                                                            <wm-form-field displayname="Number Start" widget="text" show="true" type="custom" name="prefixNumberStart" inputtype="number" required="true" placeholder="Enter number" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixNumberStart"
+                                                                            width="160px"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                     <wm-gridrow name="gridrow48">
                                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn76_1">
-                                                                            <wm-form-field displayname="Increment By" widget="text" show="true" type="custom" name="prefixNumberStep" inputtype="number" placeholder="Enter number" required="true" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixNumberStep"></wm-form-field>
+                                                                            <wm-form-field displayname="Increment By" widget="text" show="true" type="custom" name="prefixNumberStep" inputtype="number" placeholder="Enter number" required="true" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].prefixNumberStep"
+                                                                            width="160px"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-layoutgrid>
@@ -119,7 +122,7 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow38_1">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn56">
-                                                                <wm-label caption="Vendor Selection" name="label13_1" hint="This enables adding a company registered in CivicXpress to the form. You can allow for one or many vendors."></wm-label>
+                                                                <wm-label caption="Vendor Selection" name="label13_1"></wm-label>
                                                                 <wm-select show="true" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].vendorSelection &amp;&amp; Variables.CurrentFormObj.dataSet.data[$i].multipleVendors ? 'Multiple' : (Variables.CurrentFormObj.dataSet.data[$i].vendorSelection ? 'Single' : 'None')"
                                                                 dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)" name="selectVendorOption" hint="This enables adding a company registered in CivicXpress to the form. You can allow for one or many companies"></wm-select>
                                                             </wm-gridcolumn>
@@ -129,7 +132,7 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn60_1">
-                                                                <wm-label caption="GIS Record" name="label2" hint="This enables adding a GIS record to the form. You can allow for one or many GIS records"></wm-label>
+                                                                <wm-label caption="GIS Record" name="label2"></wm-label>
                                                                 <wm-select displayname="GIS Record" widget="select" show="true" type="custom" name="gisOptionSelect" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].gisrecord &amp;&amp; Variables.CurrentFormObj.dataSet.data[$i].multipleGisrecords ? 'Multiple' : (Variables.CurrentFormObj.dataSet.data[$i].gisrecord ? 'Single' : 'None')"
                                                                 dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)" hint="This enables adding a GIS record to the form. You can allow for one or many GIS records"></wm-select>
                                                             </wm-gridcolumn>
