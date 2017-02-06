@@ -1662,7 +1662,7 @@
     "returnTypeMetadata" : { }
   }, {
     "name" : "StandardUserMunicipalites",
-    "query" : "select M.* from Municipalities M,UserSubscriptions US,Users U where U.ID=:USER and U.ID=US.UserId and US.MunicipalityId=M.ID",
+    "query" : "select M.* from Municipalities M,UserSubscriptions US,Users U where U.ID=:USER and U.ID=US.UserId and US.MunicipalityId=M.ID ORDER BY M.MunicipalityName ASC",
     "comment" : "StandardUserMunicipalites",
     "description" : null,
     "nativeSql" : true,
@@ -1683,16 +1683,31 @@
       "Address2" : "java.lang.String",
       "AllowManualPayment" : "java.lang.Boolean",
       "City" : "java.lang.String",
+      "CloseTime" : "java.sql.Time",
+      "DbName" : "java.lang.String",
+      "DbPassword" : "java.lang.String",
+      "DbUser" : "java.lang.String",
       "Email" : "java.lang.String",
+      "FormLimit" : "java.math.BigDecimal",
+      "FridayYN" : "java.lang.Boolean",
       "GlobalEmailSig" : "java.lang.String",
       "ID" : "java.math.BigDecimal",
       "Logo" : "[B",
       "ManualPaymentPercent" : "java.math.BigDecimal",
+      "MondayYN" : "java.lang.Boolean",
       "MunicipalityGuid" : "java.lang.String",
       "MunicipalityName" : "java.lang.String",
+      "OpenTime" : "java.sql.Time",
       "Phone" : "java.lang.String",
       "PostalCode" : "java.lang.String",
-      "State" : "java.lang.String"
+      "SaturdayYN" : "java.lang.Boolean",
+      "StateId" : "java.math.BigDecimal",
+      "SundayYN" : "java.lang.Boolean",
+      "ThursdayYN" : "java.lang.Boolean",
+      "TimeZone" : "java.lang.String",
+      "TuesdayYN" : "java.lang.Boolean",
+      "UserLimit" : "java.math.BigDecimal",
+      "WednesdayYN" : "java.lang.Boolean"
     }
   }, {
     "name" : "SubDivisonCount",

@@ -274,7 +274,7 @@
   </sql-query>
   <sql-query name="StandardUserMunicipalites">
     <![CDATA[
-      select M.* from Municipalities M,UserSubscriptions US,Users U where U.ID=:USER and U.ID=US.UserId and US.MunicipalityId=M.ID
+      select M.* from Municipalities M,UserSubscriptions US,Users U where U.ID=:USER and U.ID=US.UserId and US.MunicipalityId=M.ID ORDER BY M.MunicipalityName ASC
     ]]>
   </sql-query>
   <sql-query name="SubDivisonCount">

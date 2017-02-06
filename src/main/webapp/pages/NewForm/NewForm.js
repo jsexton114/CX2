@@ -106,9 +106,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
     }
 
     function submitForm() {
-        $scope.Variables.stvLocationIdString.dataSet.dataValue = generateIdString($scope.Variables.stvGisData.dataSet);
-        $scope.Variables.stvVendorIdString.dataSet.dataValue = generateIdString($scope.Variables.stvVendors.dataSet);
-        $scope.Variables.stvSharedUserIdString.dataSet.dataValue = generateIdString($scope.Variables.stvContacts.dataSet);
         $scope.Variables.svSubmitForm.setInput('locationIds', generateIdString($scope.Variables.stvGisData.dataSet));
         $scope.Variables.svSubmitForm.setInput('vendorIds', generateIdString($scope.Variables.stvVendors.dataSet));
         $scope.Variables.svSubmitForm.setInput('usersWithWhomToShare', generateIdString($scope.Variables.stvContacts.dataSet));
