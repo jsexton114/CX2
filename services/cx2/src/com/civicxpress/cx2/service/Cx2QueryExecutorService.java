@@ -68,6 +68,7 @@ public interface Cx2QueryExecutorService {
 	int executeRecordFormHistory(  java.lang.String FormGUID , java.lang.Integer FormTypeId , java.lang.Integer NewStatusId , java.lang.Integer OldStatusId , java.lang.String Comments , java.lang.Integer CreatedBy) throws QueryParameterMismatchException;
 	int executeResetPasswordForUser(  java.lang.String newPassword , java.lang.String token) throws QueryParameterMismatchException;
 	int executeResetPasswordWithTokenForUser(  java.lang.Integer userid , java.lang.String token) throws QueryParameterMismatchException;
+	int executeSetPrimaryVendorStatusForFormandVendor(  java.lang.Boolean pv , java.lang.String form , java.lang.Integer vendor) throws QueryParameterMismatchException;
     Page<Object> executeStandardUserMunicipalites(Pageable pageable, java.lang.Integer USER) throws QueryParameterMismatchException;
     Page<Object> executeSubDivisonCount(Pageable pageable, java.lang.Integer municipalityId) throws QueryParameterMismatchException;
 	int executeUpdateAsCXVendorAdmin(  java.lang.String role , java.lang.Integer municipality , java.lang.Integer user) throws QueryParameterMismatchException;
@@ -80,6 +81,7 @@ public interface Cx2QueryExecutorService {
 	int executeUpdateNewPassword(  java.lang.String password , java.lang.Integer newUser) throws QueryParameterMismatchException;
 	int executeUpdatePasswordAndCF(  java.lang.String password , java.lang.String cf , java.lang.Integer newUser) throws QueryParameterMismatchException;
 	int executeUpdatePrimaryVendorInMasterForms(  java.lang.Integer VendorId , java.lang.String FormGUID) throws QueryParameterMismatchException;
+	int executeUpdatePrimaryVendorStatusInVEndor2Forms(  java.lang.Boolean pv , java.lang.String form) throws QueryParameterMismatchException;
 	int executeUpdateProcessOwnersForGUID(  java.lang.Integer AssignedToGroupId , java.lang.String GUID) throws QueryParameterMismatchException;
 	int executeUpdateRoleForMunicipality(  java.lang.String role , java.lang.Integer municipality , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateVendorForMasterForms(  java.lang.Integer CXVendorId , java.lang.String FormGUID) throws QueryParameterMismatchException;

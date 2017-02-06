@@ -506,6 +506,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeSetPrimaryVendorStatusForFormandVendor( java.lang.Boolean pv ,java.lang.String form ,java.lang.Integer vendor)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("pv", pv);
+        params.put("form", form);
+        params.put("vendor", vendor);
+        return queryExecutor.executeNamedQueryForUpdate("SetPrimaryVendorStatusForFormandVendor", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeStandardUserMunicipalites(Pageable pageable, java.lang.Integer USER)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -629,6 +639,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("VendorId", VendorId);
         params.put("FormGUID", FormGUID);
         return queryExecutor.executeNamedQueryForUpdate("UpdatePrimaryVendorInMasterForms", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public int executeUpdatePrimaryVendorStatusInVEndor2Forms( java.lang.Boolean pv ,java.lang.String form)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("pv", pv);
+        params.put("form", form);
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePrimaryVendorStatusInVEndor2Forms", params);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override

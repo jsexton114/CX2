@@ -34,6 +34,7 @@ public class Vendors2form implements Serializable {
     private String relatedFormGuid;
     private Integer vendorId;
     private Date sharedOn;
+    private Boolean primaryVendor;
     private MasterForms masterForms;
     private Vendor vendor;
 
@@ -74,6 +75,15 @@ public class Vendors2form implements Serializable {
 
     public void setSharedOn(Date sharedOn) {
         this.sharedOn = sharedOn;
+    }
+
+    @Column(name = "`PrimaryVendor`", nullable = true)
+    public Boolean getPrimaryVendor() {
+        return this.primaryVendor;
+    }
+
+    public void setPrimaryVendor(Boolean primaryVendor) {
+        this.primaryVendor = primaryVendor;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -335,6 +335,11 @@
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2UpdatePrimaryVendorInMasterFormsrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdatePrimaryVendorStatusInVEndor2Forms">
+        <parameter name="pv" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="form" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2UpdatePrimaryVendorStatusInVEndor2FormsrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateProcessOwnersForGUID">
         <parameter name="AssignedToGroupId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="GUID" typeRef="java.lang.String" isList="false"/>
@@ -400,6 +405,12 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="SetPrimaryVendorStatusForFormandVendor">
+        <parameter name="pv" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="form" typeRef="java.lang.String" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
@@ -661,6 +672,12 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2resetPasswordWithTokenForUserrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="SetPrimaryVendorStatusForFormandVendor">
+        <parameter name="pv" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="form" typeRef="java.lang.String" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2SetPrimaryVendorStatusForFormandVendorrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="StandardUserMunicipalites">
         <parameter name="USER" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2StandardUserMunicipalitesrtnType" isList="false"/>
@@ -738,6 +755,11 @@
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2UpdatePrimaryVendorInMasterFormsrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdatePrimaryVendorStatusInVEndor2Forms">
+        <parameter name="pv" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="form" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2UpdatePrimaryVendorStatusInVEndor2FormsrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdateProcessOwnersForGUID">
         <parameter name="AssignedToGroupId" typeRef="java.lang.Integer" isList="false"/>
@@ -1338,6 +1360,7 @@
         <dataobject javaType="com.civicxpress.cx2.Vendors2form">
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="masterForms" typeRef="com.civicxpress.cx2.MasterForms" allowNull="true"/>
+            <element name="primaryVendor" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="relatedFormGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="sharedOn" typeRef="java.util.Date" allowNull="true"/>
             <element name="vendor" typeRef="com.civicxpress.cx2.Vendor" allowNull="true"/>
@@ -1703,6 +1726,7 @@
             <element name="vendors2forms" typeRef="java.util.List"/>
         </dataobject>
         <dataobject javaType="cx2RecordFormHistoryrtnType"/>
+        <dataobject javaType="cx2SetPrimaryVendorStatusForFormandVendorrtnType"/>
         <dataobject javaType="cx2StandardUserMunicipalitesrtnType">
             <element name="Active" typeRef="java.lang.Boolean"/>
             <element name="Address1" typeRef="java.lang.String"/>
@@ -1733,6 +1757,7 @@
         <dataobject javaType="cx2UpdateNewPasswordrtnType"/>
         <dataobject javaType="cx2UpdatePasswordAndCFrtnType"/>
         <dataobject javaType="cx2UpdatePrimaryVendorInMasterFormsrtnType"/>
+        <dataobject javaType="cx2UpdatePrimaryVendorStatusInVEndor2FormsrtnType"/>
         <dataobject javaType="cx2UpdateProcessOwnersForGUIDrtnType"/>
         <dataobject javaType="cx2UpdateRoleForMunicipalityrtnType"/>
         <dataobject javaType="cx2UpdateVendorForMasterFormsrtnType"/>

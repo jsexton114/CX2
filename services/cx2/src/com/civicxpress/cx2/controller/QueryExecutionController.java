@@ -570,6 +570,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/SetPrimaryVendorStatusForFormandVendor", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeSetPrimaryVendorStatusForFormandVendor(@RequestParam(value = "pv", required = false) java.lang.Boolean pv, @RequestParam(value = "form", required = false) java.lang.String form, @RequestParam(value = "vendor", required = false) java.lang.Integer vendor) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query SetPrimaryVendorStatusForFormandVendor");
+        int result = queryService.executeSetPrimaryVendorStatusForFormandVendor(pv, form, vendor);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/StandardUserMunicipalites", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeStandardUserMunicipalites(@RequestParam(value = "USER", required = false) java.lang.Integer USER, Pageable pageable) throws QueryParameterMismatchException {
@@ -685,6 +695,16 @@ public class QueryExecutionController {
     public int executeUpdatePrimaryVendorInMasterForms(@RequestParam(value = "VendorId", required = false) java.lang.Integer VendorId, @RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query UpdatePrimaryVendorInMasterForms");
         int result = queryService.executeUpdatePrimaryVendorInMasterForms(VendorId, FormGUID);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdatePrimaryVendorStatusInVEndor2Forms", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdatePrimaryVendorStatusInVEndor2Forms(@RequestParam(value = "pv", required = false) java.lang.Boolean pv, @RequestParam(value = "form", required = false) java.lang.String form) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdatePrimaryVendorStatusInVEndor2Forms");
+        int result = queryService.executeUpdatePrimaryVendorStatusInVEndor2Forms(pv, form);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

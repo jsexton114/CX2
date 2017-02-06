@@ -131,6 +131,20 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         $scope.Widgets.textareaNotes.reset();
     };
 
+
+    $scope.RemoveOtherPrimaryVendorsonSuccess = function(variable, data) {
+        $scope.Variables.SetPrimaryVendorStatusForFormandVendor.setInput({
+            'vendor': $scope.Widgets.searchVendor.datavalue.vendorId
+        });
+        $scope.Variables.SetPrimaryVendorStatusForFormandVendor.update();
+
+    };
+
+
+    $scope.gridRemovePrimaryVendorsonSuccess = function(variable, data) {
+        $scope.Variables.gridSetPrimaryVendorStatusForFormandVendor.update();
+    };
+
 }]);
 
 
@@ -218,6 +232,23 @@ Application.$controller("gridFormVendorsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+        $scope.primaryVendorChange = function(newVal) {
+            debugger
+            $scope.Variables.gridRemovePrimaryVendors.setInput({
+                'vendor': $scope.selecteditem.relatedFormGuid
+            });
+            $scope.Variables.gridRemovePrimaryVendors.update();
+            $scope.Variables.UpdatePrimaryVendorInMasterForms.setInput({
+                'VendorId': $scope.selecteditem.vendorId
+            });
+            $scope.Variables.UpdatePrimaryVendorInMasterForms.update();
+            $scope.Variables.gridSetPrimaryVendorStatusForFormandVendor.setInput({
+                'pv': newVal,
+                'vendor': $scope.selecteditem.vendorId
+            });
+
+
+        };
     }
 ]);
 
@@ -227,6 +258,18 @@ Application.$controller("dialogAddVendorController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.buttonTagVendorClick = function($event, $isolateScope) {
+            if ($scope.Widgets.checkboxPrimaryVendor.datavalue == true) {
+                $scope.Variables.AddingVendorsToForm.update();
+                $scope.Variables.UpdateVendorForMasterForms.update();
+                $scope.Variables.RemoveOtherPrimaryVendors.update();
+
+            } else {
+                $scope.Variables.AddingVendorsToForm.update();
+            }
+        };
+
     }
 ]);
 

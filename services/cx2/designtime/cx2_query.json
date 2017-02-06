@@ -1629,6 +1629,38 @@
     "outputType" : "cx2resetPasswordWithTokenForUserrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "SetPrimaryVendorStatusForFormandVendor",
+    "query" : "update Vendors2Form set PrimaryVendor=:pv where RelatedFormGUID=:form and VendorID=:vendor",
+    "comment" : "SetPrimaryVendorStatusForFormandVendor",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "pv",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "form",
+      "paramType" : "java.lang.String",
+      "testValue" : "318D86B7-D5E3-E611-80C9-0CC47A46DD63",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "vendor",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2SetPrimaryVendorStatusForFormandVendorrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "StandardUserMunicipalites",
     "query" : "select M.* from Municipalities M,UserSubscriptions US,Users U where U.ID=:USER and U.ID=US.UserId and US.MunicipalityId=M.ID",
     "comment" : "StandardUserMunicipalites",
@@ -2071,6 +2103,31 @@
       "list" : false
     } ],
     "outputType" : "cx2UpdatePrimaryVendorInMasterFormsrtnType",
+    "returnTypeMetadata" : { }
+  }, {
+    "name" : "UpdatePrimaryVendorStatusInVEndor2Forms",
+    "query" : "update Vendors2Form set PrimaryVendor=:pv where RelatedFormGUID=:form",
+    "comment" : "UpdatePrimaryVendorStatusInVEndor2Forms",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "pv",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "form",
+      "paramType" : "java.lang.String",
+      "testValue" : "318D86B7-D5E3-E611-80C9-0CC47A46DD63",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdatePrimaryVendorStatusInVEndor2FormsrtnType",
     "returnTypeMetadata" : { }
   }, {
     "name" : "UpdateProcessOwnersForGUID",

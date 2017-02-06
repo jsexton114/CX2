@@ -4538,6 +4538,19 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "primaryVendor",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "PrimaryVendor",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "FALSE",
+        "scale" : 0
       } ],
       "entityName" : "Vendors2form",
       "fullyQualifiedName" : "com.civicxpress.cx2.Vendors2form",
@@ -9716,6 +9729,68 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Gisrecords"
   },
+  "gridRemovePrimaryVendors" : {
+    "_id" : "wm-gridRemovePrimaryVendors-wm.ServiceVariable-1486373335169",
+    "name" : "gridRemovePrimaryVendors",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "pv",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "form",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
+    "type" : "cx2UpdatePrimaryVendorStatusInVEndor2FormsrtnType",
+    "service" : "cx2",
+    "operation" : "executeUpdatePrimaryVendorStatusInVEndor2Forms",
+    "operationId" : "QueryExecutionController_executeUpdatePrimaryVendorStatusInVEndor2Forms",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "gridRemovePrimaryVendorsonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "gridSetPrimaryVendorStatusForFormandVendor" : {
+    "_id" : "wm-gridSetPrimaryVendorStatusForFormandVendor-wm.ServiceVariable-1486373830711",
+    "name" : "gridSetPrimaryVendorStatusForFormandVendor",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "form",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
+    "type" : "cx2SetPrimaryVendorStatusForFormandVendorrtnType",
+    "service" : "cx2",
+    "operation" : "executeSetPrimaryVendorStatusForFormandVendor",
+    "operationId" : "QueryExecutionController_executeSetPrimaryVendorStatusForFormandVendor",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.Cx2Vendors2formData.listRecords()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "lvFormType" : {
     "_id" : "wm-lvFormType-wm.LiveVariable-1485199082305",
     "name" : "lvFormType",
@@ -11736,6 +11811,39 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "RemoveOtherPrimaryVendors" : {
+    "_id" : "wm-RemoveOtherPrimaryVendors-wm.ServiceVariable-1486370856019",
+    "name" : "RemoveOtherPrimaryVendors",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "pv",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "form",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
+    "type" : "cx2UpdatePrimaryVendorStatusInVEndor2FormsrtnType",
+    "service" : "cx2",
+    "operation" : "executeUpdatePrimaryVendorStatusInVEndor2Forms",
+    "operationId" : "QueryExecutionController_executeUpdatePrimaryVendorStatusInVEndor2Forms",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "RemoveOtherPrimaryVendorsonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "SendStatusUpdate" : {
     "_id" : "wm-SendStatusUpdate-wm.ServiceVariable-1485169966886",
     "name" : "SendStatusUpdate",
@@ -11786,6 +11894,39 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "FormStatusUpdate",
+    "spinnerContext" : "page"
+  },
+  "SetPrimaryVendorStatusForFormandVendor" : {
+    "_id" : "wm-SetPrimaryVendorStatusForFormandVendor-wm.ServiceVariable-1486370856019",
+    "name" : "SetPrimaryVendorStatusForFormandVendor",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "pv",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "form",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
+    "type" : "cx2SetPrimaryVendorStatusForFormandVendorrtnType",
+    "service" : "cx2",
+    "operation" : "executeSetPrimaryVendorStatusForFormandVendor",
+    "operationId" : "QueryExecutionController_executeSetPrimaryVendorStatusForFormandVendor",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.Cx2Vendors2formData.listRecords()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
   "SharedWithData" : {
@@ -14237,33 +14378,5 @@
       "type" : "string"
     } ],
     "operation" : "toast"
-  },
-  "VendorsLinkedWithForm" : {
-    "_id" : "wm-VendorsLinkedWithForm-wm.ServiceVariable-1486029823447",
-    "name" : "VendorsLinkedWithForm",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "RelatedFormGUID",
-      "value" : "bind:pageParams.FormGUID",
-      "type" : "string"
-    } ],
-    "type" : "cx2VendorsLinkedWithFormrtnType",
-    "service" : "cx2",
-    "operation" : "executeVendorsLinkedWithForm",
-    "operationId" : "QueryExecutionController_executeVendorsLinkedWithForm",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "gridFormVendors"
   }
 }
