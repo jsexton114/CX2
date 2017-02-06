@@ -107,46 +107,49 @@
                                                     <wm-layoutgrid name="layoutgrid9_1">
                                                         <wm-gridrow name="gridrow37_1">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn54">
-                                                                <wm-form-field name="sharedWith" displayname="Contacts" show="true" primary-key="false" generator="assigned" key="sharedWith" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                                <wm-form-field name="sharedWith" displayname="Sharing" show="true" primary-key="false" generator="assigned" key="sharedWith" type="boolean" widget="checkbox" placeholder="" hint="This enables sharing the form with other CivicXpress users (and the ability to invite unregistered users to join and view the form)"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn55">
-                                                                <wm-form-field name="attachments" displayname="Attachments" show="true" primary-key="false" generator="assigned" key="attachments" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                                <wm-form-field name="attachments" displayname="Attachments" show="true" primary-key="false" generator="assigned" key="attachments" type="boolean" widget="checkbox" placeholder="" hint="This enables attaching documents to a form"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn58">
-                                                                <wm-form-field name="digitalSignatures" displayname="Digital Signatures" show="true" primary-key="false" generator="assigned" key="digitalSignatures" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                                <wm-form-field name="digitalSignatures" displayname="Digital Signatures" show="true" primary-key="false" generator="assigned" key="digitalSignatures" type="boolean" widget="checkbox" placeholder=""
+                                                                hint="This enables the digital signatures form plugin"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow38_1">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn56">
-                                                                <wm-label caption="Vendor Selection" name="label13_1"></wm-label>
+                                                                <wm-label caption="Vendor Selection" name="label13_1" hint="This enables adding a company registered in CivicXpress to the form. You can allow for one or many vendors."></wm-label>
                                                                 <wm-select show="true" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].vendorSelection &amp;&amp; Variables.CurrentFormObj.dataSet.data[$i].multipleVendors ? 'Multiple' : (Variables.CurrentFormObj.dataSet.data[$i].vendorSelection ? 'Single' : 'None')"
-                                                                dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)" name="selectVendorOption"></wm-select>
+                                                                dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)" name="selectVendorOption" hint="This enables adding a company registered in CivicXpress to the form. You can allow for one or many companies"></wm-select>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn57">
-                                                                <wm-form-field name="inspections" displayname="Inspections" show="true" primary-key="false" generator="assigned" key="inspections" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                                <wm-form-field name="inspections" displayname="Inspections" show="true" primary-key="false" generator="assigned" key="inspections" type="boolean" widget="checkbox" placeholder="" hint="This enables inspections as part of the form process"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn60_1">
-                                                                <wm-label caption="GIS Record" name="label2"></wm-label>
+                                                                <wm-label caption="GIS Record" name="label2" hint="This enables adding a GIS record to the form. You can allow for one or many GIS records"></wm-label>
                                                                 <wm-select displayname="GIS Record" widget="select" show="true" type="custom" name="gisOptionSelect" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].gisrecord &amp;&amp; Variables.CurrentFormObj.dataSet.data[$i].multipleGisrecords ? 'Multiple' : (Variables.CurrentFormObj.dataSet.data[$i].gisrecord ? 'Single' : 'None')"
-                                                                dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)"></wm-select>
+                                                                dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)" hint="This enables adding a GIS record to the form. You can allow for one or many GIS records"></wm-select>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn61_1">
-                                                                <wm-form-field name="gismap" displayname="GIS Map" show="true" primary-key="false" generator="assigned" key="gismap" type="boolean" widget="checkbox" placeholder="" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'"></wm-form-field>
+                                                                <wm-form-field name="gismap" displayname="GIS Map" show="true" primary-key="false" generator="assigned" key="gismap" type="boolean" widget="checkbox" placeholder="" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'"
+                                                                hint="This enables a map that displays the GIS Records added to the form"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn76_4">
-                                                                <wm-form-field displayname="Require Owner" widget="checkbox" show="true" type="custom" name="requireOwner" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'"></wm-form-field>
+                                                                <wm-form-field displayname="Require Owner" widget="checkbox" show="true" type="custom" name="requireOwner" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'"
+                                                                hint="This forces the user to provide Owner information for the GIS record if none is already present"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39_1">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn63_2">
                                                                 <wm-form-field name="collectFees" displayname="Collect Fees" show="true" primary-key="false" generator="assigned" key="collectFees" type="boolean" widget="checkbox" placeholder="" checkedvalue="true"
-                                                                uncheckedvalue="false"></wm-form-field>
+                                                                uncheckedvalue="false" hint="This enables Automatic and/or Manual fees to be generated and collected with the form"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn77">
                                                                 <wm-form-field name="automaticFees" displayname="Automatic Fees" show="bind:Widgets.liveformUpdateFormType.formWidgets.collectFees.datavalue" primary-key="false" generator="assigned" key="automaticFees"
-                                                                type="boolean" widget="checkbox" placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                                type="boolean" widget="checkbox" placeholder="" checkedvalue="true" uncheckedvalue="false" hint="This enables the generation of the &quot;Automatic Fees&quot; set in the &quot;Automatic Fee Details&quot; section below"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
