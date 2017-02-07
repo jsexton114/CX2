@@ -74,10 +74,6 @@
         <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CountOfCompnayFormsByVendorIdrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="CountOfFormsForMunicipality">
-        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
-        <return typeRef="cx2CountOfFormsForMunicipalityrtnType" isList="false"/>
-    </operation>
     <operation operationType="nativequery" name="CountOfProcessFormsByMuncipality">
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
@@ -369,6 +365,17 @@
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2UpdateVendorForMasterFormsrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateVendorStatus">
+        <parameter name="DateApproved" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="ApprovedBy" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ExpiresDate" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="ApprovalStatus" typeRef="java.lang.String" isList="false"/>
+        <parameter name="Reviewer" typeRef="java.lang.String" isList="false"/>
+        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateVendorStatusrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateWorkMunicipality">
         <parameter name="monday" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="tuesday" typeRef="java.lang.Boolean" isList="false"/>
@@ -408,15 +415,8 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="UpdateVendorStatus">
-        <parameter name="DateApproved" typeRef="java.sql.Timestamp" isList="false"/>
-        <parameter name="ApprovedBy" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ExpiresDate" typeRef="java.sql.Timestamp" isList="false"/>
-        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="ApprovalStatus" typeRef="java.lang.String" isList="false"/>
-        <parameter name="Reviewer" typeRef="java.lang.String" isList="false"/>
-        <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+    <operation operationType="nativequery" name="CountOfFormsForMunicipality">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
@@ -1499,7 +1499,7 @@
             <element name="count" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2CountOfFormsForMunicipalityrtnType">
-            <element name="" typeRef="java.lang.Integer"/>
+            <element name="count" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2CountOfMuncipalityApplicationsByVendorrtnType">
             <element name="count" typeRef="java.lang.Integer"/>

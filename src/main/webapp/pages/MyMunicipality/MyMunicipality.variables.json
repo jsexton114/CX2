@@ -27,6 +27,7 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "CountOfProcessFormsByMuncipalityonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",

@@ -343,7 +343,7 @@
     }
   }, {
     "name" : "CountOfFormsForMunicipality",
-    "query" : "select count(distinct FT.ID) from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.MunicipalityId=:MunicipalityId and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID",
+    "query" : "select count(distinct FT.ID) as count from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.MunicipalityId=:MunicipalityId and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID",
     "comment" : "CountOfFormsForMunicipality",
     "description" : null,
     "nativeSql" : true,
@@ -359,7 +359,7 @@
     } ],
     "outputType" : "cx2CountOfFormsForMunicipalityrtnType",
     "returnTypeMetadata" : {
-      "" : "java.lang.Integer"
+      "count" : "java.lang.Integer"
     }
   }, {
     "name" : "CountOfMuncipalityApplicationsByVendor",

@@ -19,4 +19,9 @@ Application.$controller("MyCompanyPageController", ["$scope", function($scope) {
         $scope.Variables.MyCompaniesCount.dataSet.dataValue = data.content[0].CountOfVendors;
     };
 
+
+    $scope.CountOfCompnayFormsByVendorIdonSuccess = function(variable, data) {
+        $scope.Variables.CompanyOpenFormsCount.dataSet.dataValue = data.content[0].count;
+    };
+
 }]);

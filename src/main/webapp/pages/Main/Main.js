@@ -50,6 +50,7 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
     $scope.CountOfOpenFormsForUseronSuccess = function(variable, data) {
         $scope.openCount = data.content[0].count;
+        $scope.Variables.UserOpenFormsCount.dataSet.dataValue = data.content[0].count;
     };
 
 

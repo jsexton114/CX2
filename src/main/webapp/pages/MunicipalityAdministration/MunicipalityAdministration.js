@@ -22,4 +22,9 @@ Application.$controller("MunicipalityAdministrationPageController", ["$scope", f
         $scope.Variables.goToPage_ManageGISData.navigate();
     };
 
+
+    $scope.CountOfFormsForMunicipalityonSuccess = function(variable, data) {
+        $scope.Variables.FormDesignsForMuniAdmin.dataSet.dataValue = data.content[0].count;
+    };
+
 }]);

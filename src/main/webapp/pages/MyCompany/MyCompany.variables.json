@@ -51,6 +51,7 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "CountOfCompnayFormsByVendorIdonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
