@@ -2359,34 +2359,6 @@
     } ],
     "operation" : "toast"
   },
-  "ResetPaswordSuccess" : {
-    "_id" : "wm-ResetPaswordSuccess-wm.NotificationVariable-1486358204737",
-    "name" : "ResetPaswordSuccess",
-    "owner" : "Page",
-    "category" : "wm.NotificationVariable",
-    "dataBinding" : [ {
-      "target" : "content",
-      "value" : "inline",
-      "type" : "string"
-    }, {
-      "target" : "text",
-      "value" : "Your new password has been set. Please proceed to Login",
-      "type" : "string"
-    }, {
-      "target" : "duration",
-      "value" : "5000",
-      "type" : "number"
-    }, {
-      "target" : "class",
-      "value" : "Success",
-      "type" : "string"
-    }, {
-      "target" : "toasterPosition",
-      "value" : "bottom right",
-      "type" : "string"
-    } ],
-    "operation" : "toast"
-  },
   "UpdateCFInProfile" : {
     "_id" : "wm-UpdateCFInProfile-wm.ServiceVariable-1479275077177",
     "name" : "UpdateCFInProfile",

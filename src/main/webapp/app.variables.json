@@ -623,6 +623,7 @@
     "category" : "wm.LogoutVariable",
     "type" : "string",
     "saveInPhonegap" : false,
+    "onSuccess" : "Variables.ResetPaswordSuccess.invoke()",
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "redirectTo" : "Login",
@@ -712,6 +713,34 @@
     "pageName" : "PUDApplication",
     "dataSet" : [ ],
     "pageTransitions" : "none"
+  },
+  "ResetPaswordSuccess" : {
+    "_id" : "wm-ResetPaswordSuccess-wm.NotificationVariable-1486358204737",
+    "name" : "ResetPaswordSuccess",
+    "owner" : "App",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Your new password has been set. Please proceed to Login",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
   },
   "SFNewElectricConnection" : {
     "_id" : "wm-goToPage_SFNewElectricConnection-wm.NavigationVariable-1479304018405",
