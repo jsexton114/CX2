@@ -402,6 +402,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeInsertFormMessage( java.lang.Integer UserId ,java.lang.String RelatedFormGUID ,java.lang.String Message ,java.sql.Timestamp PostedAt)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("UserId", UserId);
+        params.put("RelatedFormGUID", RelatedFormGUID);
+        params.put("Message", Message);
+        params.put("PostedAt", PostedAt);
+        return queryExecutor.executeNamedQueryForUpdate("InsertFormMessage", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeInsertGroups( java.lang.String GroupName ,java.lang.String GroupDescription ,java.lang.Integer MunicipalityId)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

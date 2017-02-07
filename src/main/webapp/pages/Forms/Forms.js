@@ -11,6 +11,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         currentBreadCrumb = breadCrumbs[breadCrumbs.length - 1];
         currentBreadCrumb.link += $scope.pageParams.FormGUID;
         openClosedFormBreadCrumb = $scope.Variables.BreadCrumb.dataSet[1];
+        $scope.disableMessageBox = true;
     };
     $scope.sharedWith;
     $scope.allFormStatus;
@@ -143,6 +144,24 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
     $scope.gridRemovePrimaryVendorsonSuccess = function(variable, data) {
         $scope.Variables.gridSetPrimaryVendorStatusForFormandVendor.update();
+    };
+
+
+    $scope.PostFormMessageonSuccess = function(variable, data) {
+        $scope.Widgets.textAddMessage.datavalue = undefined;
+    };
+
+
+
+
+    $scope.textAddMessageKeyup = function($event, $isolateScope) {
+        debugger
+        let message = $scope.Widgets.textAddMessage._model_;
+        if ((message == undefined) || (message == "") || (message == null)) {
+            $scope.disableMessageBox = true;
+        } else {
+            $scope.disableMessageBox = false;
+        }
     };
 
 }]);

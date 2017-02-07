@@ -14,6 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.SharedWith;
@@ -135,6 +136,18 @@ public interface MasterFormsService {
 	 * @return The count of the MasterForms.
 	 */
 	long count(String query);
+
+    /*
+     * Returns the associated formMessageses for given MasterForms id.
+     *
+     * @param formGuid value of formGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormMessages instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormMessages> findAssociatedFormMessageses(String formGuid, Pageable pageable);
 
     /*
      * Returns the associated gis2formses for given MasterForms id.

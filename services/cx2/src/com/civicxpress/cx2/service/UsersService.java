@@ -16,6 +16,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
@@ -167,6 +168,18 @@ public interface UsersService {
      * @see Page
      */
     Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated formMessageses for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormMessages instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormMessages> findAssociatedFormMessageses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated gis2formses for given Users id.

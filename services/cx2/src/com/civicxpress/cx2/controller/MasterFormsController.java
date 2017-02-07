@@ -25,6 +25,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.SharedWith;
@@ -127,6 +128,13 @@ public class MasterFormsController {
     public Long countMasterForms(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting MasterForms");
         return masterFormsService.count(query);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formMessageses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formMessageses instance associated with the given id.")
+    public Page<FormMessages> findAssociatedFormMessageses(@PathVariable("id") String id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formMessageses");
+        return masterFormsService.findAssociatedFormMessageses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/gis2formses", method = RequestMethod.GET)

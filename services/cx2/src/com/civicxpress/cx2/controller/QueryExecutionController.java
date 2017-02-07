@@ -460,6 +460,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/InsertFormMessage", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeInsertFormMessage(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "RelatedFormGUID", required = false) java.lang.String RelatedFormGUID, @RequestParam(value = "Message", required = false) java.lang.String Message, @RequestParam(value = "PostedAt", required = false) java.sql.Timestamp PostedAt) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query InsertFormMessage");
+        int result = queryService.executeInsertFormMessage(UserId, RelatedFormGUID, Message, PostedAt);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/InsertGroups", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeInsertGroups(@RequestParam(value = "GroupName", required = false) java.lang.String GroupName, @RequestParam(value = "GroupDescription", required = false) java.lang.String GroupDescription, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId) throws QueryParameterMismatchException {

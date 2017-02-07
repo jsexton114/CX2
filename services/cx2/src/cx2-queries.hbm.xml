@@ -211,6 +211,11 @@
       insert into FormCategoryMapping(FormTypeId,FormCategoryId) values(:FormTypeId,:FormCategoryId)
     ]]>
   </sql-query>
+  <sql-query name="InsertFormMessage">
+    <![CDATA[
+      insert into FormMessages(UserId,RelatedFormGUID,Message,PostedAt) values(:UserId,:RelatedFormGUID,:Message,:PostedAt)
+    ]]>
+  </sql-query>
   <sql-query name="InsertGroups">
     <![CDATA[
       insert into MunicipalityGroups (GroupName,GroupDescription,MunicipalityId) values (:GroupName,:GroupDescription,:MunicipalityId)

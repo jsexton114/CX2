@@ -34,6 +34,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
@@ -191,6 +192,13 @@ public class UsersController {
     public Page<FormHistory> findAssociatedFormHistories(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formHistories");
         return usersService.findAssociatedFormHistories(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formMessageses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formMessageses instance associated with the given id.")
+    public Page<FormMessages> findAssociatedFormMessageses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formMessageses");
+        return usersService.findAssociatedFormMessageses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/gis2formses", method = RequestMethod.GET)

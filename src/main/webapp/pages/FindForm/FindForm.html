@@ -108,12 +108,14 @@
                 <wm-gridrow name="gridrow20">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn32">
                         <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" name="panelSearchResults" margin="1em unset" title="Search Results" class="panel-primary">
-                            <wm-grid title="Masterforms List" dataset="bind:Variables.FilteredMasterForms.dataSet" navigation="Classic" name="gridFliteredForms">
+                            <wm-grid title="Masterforms List" dataset="bind:Variables.FilteredMasterForms.dataSet" navigation="Classic" name="gridFliteredForms" filtermode="multicolumn" nodatamessage="No Forms Found" loadingdatamsg="Please while fetching Forms"
+                            exportformat="EXCEL">
                                 <wm-grid-column binding="formTitle" caption="Form Title" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
                                 <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormTypes"></wm-grid-column>
                                 <wm-grid-column binding="formStatuses.status" caption="Statuses Status" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
                                 <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
-                                <wm-grid-column binding="submittedOn" caption="Submitted On" type="timestamp" primary-key="false" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid-column binding="submittedOn" caption="Submitted On" type="timestamp" primary-key="false" generator="assigned" readonly="true" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" show="true"
+                                filterwidget="text"></wm-grid-column>
                                 <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_FormsFormSearch.invoke()" disabled="false"></wm-grid-row-action>

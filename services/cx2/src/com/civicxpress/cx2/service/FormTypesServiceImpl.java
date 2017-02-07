@@ -88,19 +88,19 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getFormTypeFieldses() != null) {
-            for(FormTypeFields formTypeFieldse : formTypesCreated.getFormTypeFieldses()) {
-                formTypeFieldse.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormTypeFields with information: {}", formTypeFieldse);
-                formTypeFieldsService.create(formTypeFieldse);
-            }
-        }
-
         if(formTypesCreated.getFormCategoryMappings() != null) {
             for(FormCategoryMapping formCategoryMapping : formTypesCreated.getFormCategoryMappings()) {
                 formCategoryMapping.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child FormCategoryMapping with information: {}", formCategoryMapping);
                 formCategoryMappingService.create(formCategoryMapping);
+            }
+        }
+
+        if(formTypesCreated.getFormTypeFieldses() != null) {
+            for(FormTypeFields formTypeFieldse : formTypesCreated.getFormTypeFieldses()) {
+                formTypeFieldse.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormTypeFields with information: {}", formTypeFieldse);
+                formTypeFieldsService.create(formTypeFieldse);
             }
         }
 
@@ -209,17 +209,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formTypeFieldses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return formTypeFieldsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormCategoryMapping> findAssociatedFormCategoryMappings(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formCategoryMappings");
 
@@ -227,6 +216,17 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return formCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formTypeFieldses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formTypeFieldsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

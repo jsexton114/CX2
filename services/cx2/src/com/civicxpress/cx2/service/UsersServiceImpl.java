@@ -25,6 +25,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
@@ -72,6 +73,10 @@ public class UsersServiceImpl implements UsersService {
 	private UserPasswordResetTokensService userPasswordResetTokensService;
 
     @Autowired
+	@Qualifier("cx2.FormMessagesService")
+	private FormMessagesService formMessagesService;
+
+    @Autowired
 	@Qualifier("cx2.VendorUsersService")
 	private VendorUsersService vendorUsersService;
 
@@ -117,6 +122,14 @@ public class UsersServiceImpl implements UsersService {
                 formHistorie.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child FormHistory with information: {}", formHistorie);
                 formHistoryService.create(formHistorie);
+            }
+        }
+
+        if(usersCreated.getFormMessageses() != null) {
+            for(FormMessages formMessagese : usersCreated.getFormMessageses()) {
+                formMessagese.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child FormMessages with information: {}", formMessagese);
+                formMessagesService.create(formMessagese);
             }
         }
 
@@ -313,6 +326,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormMessages> findAssociatedFormMessageses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formMessageses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return formMessagesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Gis2forms> findAssociatedGis2formses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gis2formses");
 
@@ -473,6 +497,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
         this.userPasswordResetTokensService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormMessagesService instance
+	 */
+	protected void setFormMessagesService(FormMessagesService service) {
+        this.formMessagesService = service;
     }
 
     /**
