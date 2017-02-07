@@ -83,7 +83,7 @@ Application.directive('ngFileModel', function() {
                 scope.ngFileModel = {
                     Filename: fileToAdd.name,
                     Mimetype: fileToAdd.type,
-                    Contents: angular.copy(fileToAdd)
+                    Contents: fileToAdd
                 };
             });
         }

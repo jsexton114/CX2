@@ -59,7 +59,7 @@ public class FormController {
     }
 
     @RequestMapping(value = "/uploadDocuments", method = RequestMethod.POST, consumes = "multipart/form-data")
-    public void uploadDocuments(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestPart(value = "files") MultipartFile[] files) throws SQLException {
-        formService.uploadDocuments(formGuid, files);
+    public void uploadDocuments(@RequestPart(value = "files") MultipartFile[] files, @RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
+        formService.uploadDocuments(files, formGuid);
     }
 }

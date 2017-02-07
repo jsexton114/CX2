@@ -410,7 +410,7 @@ public class FormService {
     	}
     }
     
-    public void uploadDocuments(String formGuid, MultipartFile[] files) throws SQLException {
+    public void uploadDocuments(MultipartFile[] files, String formGuid) throws SQLException {
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
     	cx2Conn.setAutoCommit(false);
     	
@@ -431,12 +431,17 @@ public class FormService {
 	        	queryParams.put("doc"+i+"mimetype", file.getContentType());
 	        	queryParams.put("doc"+i+"contents", file.getBytes());
 	        	
-	        	documentAddQuery.append("(:formGuid, :doc"+i+"filename, :doc"+i+"mimetype, :doc"+i+"contents");
+	        	logger.error(file.getOriginalFilename());
+	        	logger.error(file.getContentType());
+	        	
+	        	documentAddQuery.append("(:formGuid, :doc"+i+"filename, :doc"+i+"mimetype, :doc"+i+"contents)");
 	        }
 	        
 	        if (files.length > 0) {
 	        	DBUtils.simpleUpdateQuery(cx2Conn, documentAddQuery.toString(), queryParams);
 	        }
+	        
+	        cx2Conn.commit();
         } catch (IOException e) {
         	cx2Conn.rollback();
 			e.printStackTrace();

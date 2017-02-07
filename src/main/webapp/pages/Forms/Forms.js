@@ -319,3 +319,29 @@ Application.$controller("liveformFeesController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("gridDocumentsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogUploadDocumentController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+        $scope.docToUpload = null;
+
+        $scope.dialogUploadDocumentClose = function($event, $isolateScope) {
+            $scope.docToUpload = null;
+        };
+
+        $scope.buttonUploadFileClick = function($event, $isolateScope) {
+            $scope.Variables.svUploadDocument.setInput('files', [$scope.docToUpload.Contents]);
+            $scope.Variables.svUploadDocument.update();
+            $scope.Widgets.dialogUploadDocument.close();
+        };
+
+    }
+]);

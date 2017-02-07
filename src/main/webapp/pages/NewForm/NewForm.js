@@ -144,6 +144,8 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
                 documents.push(document.Contents);
             });
 
+            console.log(documents);
+
             $scope.Variables.svUploadDocuments.setInput('files', documents);
 
             $scope.Variables.svUploadDocuments.update();
