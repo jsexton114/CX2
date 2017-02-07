@@ -6204,7 +6204,11 @@
     "name" : "FormMessagesData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "relatedFormGuid",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "FormMessages",
@@ -6779,6 +6783,7 @@
       "watchOn" : "Cx2UsersData",
       "package" : "com.civicxpress.cx2.FormMessages"
     } ],
+    "filterFields" : { },
     "package" : "com.civicxpress.cx2.FormMessages"
   },
   "FormStatus" : {
