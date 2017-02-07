@@ -43,7 +43,7 @@
   </sql-query>
   <query name="CompanyFormsByVendorId">
     <![CDATA[
-      from MasterForms where Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )
+      from MasterForms where Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
     ]]>
   </query>
   <sql-query name="CountOfCompnayFormsByVendorId">
@@ -253,7 +253,7 @@
   </sql-query>
   <query name="ProcessFormsForUserByMunicipality">
     <![CDATA[
-      from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.userId=:UserId and GM.municipalityGroupId=MG.id and MG.id=MF.assignedToGroupId and MF.municipalityId=:MunicipalityId and MF.closed=:Closed
+      from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.userId=:UserId and GM.municipalityGroupId=MG.id and MG.id=MF.assignedToGroupId and MF.municipalityId=:MunicipalityId and MF.closed=:Closed ORDER BY DateModified DESC
     ]]>
   </query>
   <sql-query name="RecordFormHistory">

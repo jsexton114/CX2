@@ -266,7 +266,7 @@
     }
   }, {
     "name" : "CompanyFormsByVendorId",
-    "query" : "from MasterForms where Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )",
+    "query" : "from MasterForms where Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC",
     "comment" : "CompanyFormsByVendorId",
     "description" : null,
     "nativeSql" : false,
@@ -1506,7 +1506,7 @@
     }
   }, {
     "name" : "ProcessFormsForUserByMunicipality",
-    "query" : "from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.userId=:UserId and GM.municipalityGroupId=MG.id and MG.id=MF.assignedToGroupId and MF.municipalityId=:MunicipalityId and MF.closed=:Closed",
+    "query" : "from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.userId=:UserId and GM.municipalityGroupId=MG.id and MG.id=MF.assignedToGroupId and MF.municipalityId=:MunicipalityId and MF.closed=:Closed ORDER BY DateModified DESC",
     "comment" : "Get forms from Master Forms where employee is in group of that in current form Status",
     "description" : null,
     "nativeSql" : false,
