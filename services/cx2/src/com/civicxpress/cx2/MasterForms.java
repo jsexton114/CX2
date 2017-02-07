@@ -52,6 +52,7 @@ public class MasterForms implements Serializable {
     private String formTitle;
     private Integer ownerId;
     private Date modifiedAt;
+    private Date submittedOn;
     private FormTypes formTypes;
     private FormStatuses formStatuses;
     private Giscontacts giscontacts;
@@ -218,6 +219,16 @@ public class MasterForms implements Serializable {
 
     public void setModifiedAt(Date modifiedAt) {
         this.modifiedAt = modifiedAt;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "`SubmittedOn`", nullable = true)
+    public Date getSubmittedOn() {
+        return this.submittedOn;
+    }
+
+    public void setSubmittedOn(Date submittedOn) {
+        this.submittedOn = submittedOn;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

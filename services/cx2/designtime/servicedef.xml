@@ -1108,6 +1108,7 @@
             <element name="ownerId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="recordType" typeRef="java.lang.String" allowNull="true"/>
             <element name="sharedWiths" typeRef="com.civicxpress.cx2.SharedWith" isList="true" allowNull="true"/>
+            <element name="submittedOn" typeRef="java.util.Date" allowNull="true"/>
             <element name="totalFees" typeRef="java.lang.String" allowNull="true"/>
             <element name="totalPayment" typeRef="java.lang.String" allowNull="true"/>
             <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>

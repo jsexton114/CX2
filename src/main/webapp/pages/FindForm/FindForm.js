@@ -15,3 +15,11 @@ Application.$controller("FindFormPageController", ["$scope", function ($scope) {
     };
 
 }]);
+
+
+Application.$controller("gridFliteredFormsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

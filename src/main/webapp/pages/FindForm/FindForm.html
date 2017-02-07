@@ -37,23 +37,23 @@
                                     <wm-gridrow name="gridrow7" padding=".5em unset">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn9"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn29">
-                                            <wm-label class="col-md-3 control-label" name="label5" caption="User" padding="unset unset unset .5em"></wm-label>
+                                            <wm-label class="col-md-3 control-label" name="label5" caption="User" width="100%"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" name="gridcolumn10">
-                                            <wm-search name="searchUser" placeholder="Start typing Email...."></wm-search>
+                                            <wm-search name="searchUser" placeholder="Start typing Email...." dataset="bind:Variables.AllUsers.dataSet" searchkey="users.email" displaylabel="users.email" displayimagesrc="users.photo" datafield="All Fields"></wm-search>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn21"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow8" padding=".5em unset">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn11"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn12">
-                                            <wm-label padding="unset 0.5em" name="label6" caption="And Submitted between" class="control-label"></wm-label>
+                                            <wm-label padding="unset 0.5em unset unset" name="label6" caption="And Submitted between" class="control-label" width="100%"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn26_1">
                                             <wm-datetime name="datetimeStart"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn27_1" horizontalalign="center">
-                                            <wm-label padding="unset 0.5em" name="label9" caption="and" class="control-label"></wm-label>
+                                            <wm-label padding=".5em 0.5em unset 0.5em" name="label9" caption="and" class="control-label"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn28">
                                             <wm-datetime name="datetimeEnd"></wm-datetime>
@@ -63,7 +63,7 @@
                                     <wm-gridrow name="gridrow9" padding=".5em unset">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn13"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn30">
-                                            <wm-label class="col-md-3 control-label" name="label10" caption="And form Category"></wm-label>
+                                            <wm-label class="col-md-3 control-label" name="label10" caption="And form Category" width="100%"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" name="gridcolumn14">
                                             <wm-select name="selectCategories" dataset="bind:Variables.MunicipalityCategories.dataSet" datafield="All Fields" displayfield="category" datavalue="bind:Variables.MunicipalityCategories.firstRecord"></wm-select>
@@ -73,7 +73,7 @@
                                     <wm-gridrow name="gridrow10" padding=".5em unset">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn31">
-                                            <wm-label class="col-md-3 control-label" caption="And Form Type" name="label9_1"></wm-label>
+                                            <wm-label class="col-md-3 control-label" caption="And Form Type" name="label9_1" width="100%"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" name="gridcolumn16">
                                             <wm-select name="selectFormType" dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" datavalue="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.firstRecord"></wm-select>
@@ -82,13 +82,20 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow11" padding=".5em unset">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn17"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="8" name="gridcolumn18"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn25"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn18">
+                                            <wm-label class="col-md-3 control-label" name="label9_2" caption="And"></wm-label>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="7" name="gridcolumn32_1">
+                                            <wm-radioset height="auto" name="radiosetStatus" dataset="Open,Closed" datafield="All Fields" selectedvalue="Open" usekeys="false" width="30%"></wm-radioset>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn25"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow12" padding=".5em unset">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn19"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="8" name="gridcolumn20"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn26"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="9" name="gridcolumn20" horizontalalign="right">
+                                            <wm-button class="btn-default btn-primary" caption="SEARCH" type="button" margin="unset 0.5em" name="buttonSearch" on-click="Variables.FilteredMasterForms.listRecords()"></wm-button>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn26"></wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
@@ -100,7 +107,18 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow20">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn32">
-                        <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" name="panelSearchResults" margin="1em unset" title="Search Results" class="panel-primary"></wm-panel>
+                        <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" name="panelSearchResults" margin="1em unset" title="Search Results" class="panel-primary">
+                            <wm-grid title="Masterforms List" dataset="bind:Variables.FilteredMasterForms.dataSet" navigation="Classic" name="gridFliteredForms">
+                                <wm-grid-column binding="formTitle" caption="Form Title" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormTypes"></wm-grid-column>
+                                <wm-grid-column binding="formStatuses.status" caption="Statuses Status" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
+                                <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                                <wm-grid-column binding="submittedOn" caption="Submitted On" type="timestamp" primary-key="false" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_FormsFormSearch.invoke()" disabled="false"></wm-grid-row-action>
+                            </wm-grid>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow21">
