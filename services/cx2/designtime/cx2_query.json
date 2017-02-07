@@ -1583,7 +1583,7 @@
     }
   }, {
     "name" : "RecordFormHistory",
-    "query" : "insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,SYSDATETIME())",
+    "query" : "insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,SYSUTCDATETIME())",
     "comment" : "RecordFormHistory",
     "description" : null,
     "nativeSql" : true,
