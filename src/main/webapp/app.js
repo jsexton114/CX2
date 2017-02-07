@@ -71,6 +71,25 @@ Application.directive('datetimePicker', ['uibDateParser', function(uibDateParser
     };
 }]);
 
+Application.directive('ngFileModel', function() {
+    return {
+        restrict: 'A',
+        scope: {
+            ngFileModel: '='
+        },
+        link: function(scope, elem, attrs) {
+            elem.bind('change', function() {
+                var fileToAdd = elem[0].files[0];
+                scope.ngFileModel = {
+                    Filename: fileToAdd.name,
+                    Mimetype: fileToAdd.type,
+                    Contents: fileToAdd
+                };
+            });
+        }
+    };
+});
+
 Application.run(["$templateCache", function($templateCache) {
     $templateCache.put("uib/template/datepicker/datetimepickerPopup.html",
         "<ul role=\"presentation\" class=\"uib-datepicker-popup dropdown-menu uib-position-measure\" dropdown-nested ng-if=\"isOpen\" ng-keydown=\"keydown($event)\" ng-click=\"$event.stopPropagation()\">\n" +

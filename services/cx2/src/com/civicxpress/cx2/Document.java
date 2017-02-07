@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 public class Document implements Serializable {
 
     private BigInteger id;
-    private String formGuid;
+    private String itemGuid;
     private String filename;
     private String mimetype;
     @JsonProperty(access = Access.READ_ONLY)
@@ -44,13 +44,13 @@ public class Document implements Serializable {
     }
 
     @Id
-    @Column(name = "`FormGUID`", nullable = true, length = 255)
-    public String getFormGuid() {
-        return this.formGuid;
+    @Column(name = "`ItemGUID`", nullable = true, length = 255)
+    public String getItemGuid() {
+        return this.itemGuid;
     }
 
-    public void setFormGuid(String formGuid) {
-        this.formGuid = formGuid;
+    public void setItemGuid(String itemGuid) {
+        this.itemGuid = itemGuid;
     }
 
     @Id
@@ -91,7 +91,7 @@ public class Document implements Serializable {
         if (!(o instanceof Document)) return false;
         final Document document = (Document) o;
         return Objects.equals(getId(), document.getId()) &&
-                Objects.equals(getFormGuid(), document.getFormGuid()) &&
+                Objects.equals(getItemGuid(), document.getItemGuid()) &&
                 Objects.equals(getFilename(), document.getFilename()) &&
                 Objects.equals(getMimetype(), document.getMimetype()) &&
                 Objects.equals(getContents(), document.getContents());
@@ -100,7 +100,7 @@ public class Document implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId(),
-                getFormGuid(),
+                getItemGuid(),
                 getFilename(),
                 getMimetype(),
                 getContents());

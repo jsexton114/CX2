@@ -136,7 +136,20 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
 
 
     $scope.svSubmitFormonSuccess = function(variable, data) {
-        $scope.Variables.goToPage_UserOpenForms.navigate();
+        if ($scope.documents) {
+            $scope.Variables.svUploadDocuments.setInput('formGuid', data);
+            var documents = [];
+
+            $scope.Variables.stvDocuments.dataSet.forEach(function(document, index) {
+                documents.push(document.Contents);
+            });
+
+            $scope.Variables.svUploadDocuments.setInput('files', documents);
+
+            $scope.Variables.svUploadDocuments.update();
+        } else {
+            $scope.Variables.goToPage_UserOpenForms.navigate();
+        }
     };
 
     $scope.checkboxNewUserChange = function($event, $isolateScope, newVal, oldVal) {
@@ -184,6 +197,18 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
 
     $scope.lfOwnerSuccess = function($event, $operation, $data) {
         submitForm($data.id);
+    };
+
+
+    $scope.svUploadDocumentsonSuccess = function(variable, data) {
+        $scope.Variables.goToPage_UserOpenForms.navigate();
+    };
+
+
+    $scope.wizardstep9Load = function($isolateScope, stepIndex) {
+        if ($scope.Widgets.checkboxOtherOwner.datavalue) {
+            $scope.Widgets.lfOwner.setReadonly(false);
+        }
     };
 
 }]);
@@ -283,6 +308,18 @@ Application.$controller("dialogUploadDocumentController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+        $scope.document = null;
+
+        $scope.dialogUploadDocumentOpened = function($event, $isolateScope) {
+            $scope.document = null;
+        };
+
+
+        $scope.buttonAddDocumentClick = function($event, $isolateScope) {
+            $scope.Variables.stvDocuments.dataSet.push(angular.copy($scope.document));
+            $scope.document = null;
+        };
+
     }
 ]);
 

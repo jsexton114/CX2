@@ -73,10 +73,10 @@ public class DocumentController {
     @ApiOperation(value = "Returns the Document instance associated with the given composite-id.")
     @RequestMapping(value = "/composite-id", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Document getDocument(@RequestParam("id") BigInteger id, @RequestParam("formGuid") String formGuid, @RequestParam("filename") String filename, @RequestParam("mimetype") String mimetype, @RequestParam("contents") byte[] contents) throws EntityNotFoundException {
+    public Document getDocument(@RequestParam("id") BigInteger id, @RequestParam("itemGuid") String itemGuid, @RequestParam("filename") String filename, @RequestParam("mimetype") String mimetype, @RequestParam("contents") byte[] contents) throws EntityNotFoundException {
         DocumentId documentId = new DocumentId();
         documentId.setId(id);
-        documentId.setFormGuid(formGuid);
+        documentId.setItemGuid(itemGuid);
         documentId.setFilename(filename);
         documentId.setMimetype(mimetype);
         documentId.setContents(contents);
@@ -89,14 +89,14 @@ public class DocumentController {
     @ApiOperation(value = "Retrieves content for the given BLOB field in Document instance associated with the given composite-id.")
     @RequestMapping(value = "/composite-id/content/{fieldName}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public void getDocumentBLOBContent(@RequestParam("id") BigInteger id, @RequestParam("formGuid") String formGuid, @RequestParam("filename") String filename, @RequestParam("mimetype") String mimetype, @RequestParam("contents") byte[] contents, @PathVariable("fieldName") String fieldName, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws EntityNotFoundException {
+    public void getDocumentBLOBContent(@RequestParam("id") BigInteger id, @RequestParam("itemGuid") String itemGuid, @RequestParam("filename") String filename, @RequestParam("mimetype") String mimetype, @RequestParam("contents") byte[] contents, @PathVariable("fieldName") String fieldName, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws EntityNotFoundException {
         LOGGER.debug("Retrieves content for the given BLOB field {} in Document instance", fieldName);
         if (!WMRuntimeUtils.isLob(Document.class, fieldName)) {
             throw new TypeMismatchException("Given field " + fieldName + " is not a valid BLOB type");
         }
         DocumentId documentId = new DocumentId();
         documentId.setId(id);
-        documentId.setFormGuid(formGuid);
+        documentId.setItemGuid(itemGuid);
         documentId.setFilename(filename);
         documentId.setMimetype(mimetype);
         documentId.setContents(contents);
@@ -107,9 +107,9 @@ public class DocumentController {
     @ApiOperation(value = "Updates the Document instance associated with the given composite-id.")
     @RequestMapping(value = "/composite-id", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Document editDocument(@RequestParam("id") BigInteger id, @RequestParam("formGuid") String formGuid, @RequestParam("filename") String filename, @RequestParam("mimetype") String mimetype, @RequestParam("contents") byte[] contents, @RequestBody Document document) throws EntityNotFoundException {
+    public Document editDocument(@RequestParam("id") BigInteger id, @RequestParam("itemGuid") String itemGuid, @RequestParam("filename") String filename, @RequestParam("mimetype") String mimetype, @RequestParam("contents") byte[] contents, @RequestBody Document document) throws EntityNotFoundException {
         document.setId(id);
-        document.setFormGuid(formGuid);
+        document.setItemGuid(itemGuid);
         document.setFilename(filename);
         document.setMimetype(mimetype);
         document.setContents(contents);
@@ -120,17 +120,17 @@ public class DocumentController {
     @ApiOperation(value = "Updates the Document instance associated with the given composite-id.This API should be used when Document instance fields that require multipart data.")
     @RequestMapping(value = "/composite-id", method = RequestMethod.POST, consumes = "multipart/form-data")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Document editDocument(@RequestParam("id") BigInteger id, @RequestParam("formGuid") String formGuid, @RequestParam("filename") String filename, @RequestParam("mimetype") String mimetype, @RequestParam("contents") byte[] contents, MultipartHttpServletRequest multipartHttpServletRequest) throws EntityNotFoundException {
-        return this.editDocumentAndMultiparts(id, formGuid, filename, mimetype, contents, multipartHttpServletRequest);
+    public Document editDocument(@RequestParam("id") BigInteger id, @RequestParam("itemGuid") String itemGuid, @RequestParam("filename") String filename, @RequestParam("mimetype") String mimetype, @RequestParam("contents") byte[] contents, MultipartHttpServletRequest multipartHttpServletRequest) throws EntityNotFoundException {
+        return this.editDocumentAndMultiparts(id, itemGuid, filename, mimetype, contents, multipartHttpServletRequest);
     }
 
     @ApiOperation(value = "Updates the Document instance associated with the given composite-id.")
     @RequestMapping(value = "/composite-id", method = RequestMethod.PUT, consumes = "multipart/form-data")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Document editDocumentAndMultiparts(@RequestParam("id") BigInteger id, @RequestParam("formGuid") String formGuid, @RequestParam("filename") String filename, @RequestParam("mimetype") String mimetype, @RequestParam("contents") byte[] contents, MultipartHttpServletRequest multipartHttpServletRequest) throws EntityNotFoundException {
+    public Document editDocumentAndMultiparts(@RequestParam("id") BigInteger id, @RequestParam("itemGuid") String itemGuid, @RequestParam("filename") String filename, @RequestParam("mimetype") String mimetype, @RequestParam("contents") byte[] contents, MultipartHttpServletRequest multipartHttpServletRequest) throws EntityNotFoundException {
         DocumentId documentId = new DocumentId();
         documentId.setId(id);
-        documentId.setFormGuid(formGuid);
+        documentId.setItemGuid(itemGuid);
         documentId.setFilename(filename);
         documentId.setMimetype(mimetype);
         documentId.setContents(contents);
@@ -138,7 +138,7 @@ public class DocumentController {
         Document oldDocument = documentService.getById(documentId);
         WMMultipartUtils.updateLobsContent(oldDocument, newDocument);
         newDocument.setId(id);
-        newDocument.setFormGuid(formGuid);
+        newDocument.setItemGuid(itemGuid);
         newDocument.setFilename(filename);
         newDocument.setMimetype(mimetype);
         newDocument.setContents(contents);
@@ -149,10 +149,10 @@ public class DocumentController {
     @ApiOperation(value = "Deletes the Document instance associated with the given composite-id.")
     @RequestMapping(value = "/composite-id", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteDocument(@RequestParam("id") BigInteger id, @RequestParam("formGuid") String formGuid, @RequestParam("filename") String filename, @RequestParam("mimetype") String mimetype, @RequestParam("contents") byte[] contents) throws EntityNotFoundException {
+    public boolean deleteDocument(@RequestParam("id") BigInteger id, @RequestParam("itemGuid") String itemGuid, @RequestParam("filename") String filename, @RequestParam("mimetype") String mimetype, @RequestParam("contents") byte[] contents) throws EntityNotFoundException {
         DocumentId documentId = new DocumentId();
         documentId.setId(id);
-        documentId.setFormGuid(formGuid);
+        documentId.setItemGuid(itemGuid);
         documentId.setFilename(filename);
         documentId.setMimetype(mimetype);
         documentId.setContents(contents);

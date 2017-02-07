@@ -80,7 +80,7 @@ public class DocumentServiceImpl implements DocumentService {
 
         DocumentId documentId = new DocumentId();
         documentId.setId(document.getId());
-        documentId.setFormGuid(document.getFormGuid());
+        documentId.setItemGuid(document.getItemGuid());
         documentId.setFilename(document.getFilename());
         documentId.setMimetype(document.getMimetype());
         documentId.setContents(document.getContents());

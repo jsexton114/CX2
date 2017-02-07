@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.lang.Integer;
 import java.lang.Boolean;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,10 @@ public class FormController {
     @RequestMapping(value = "/submitForm", produces = "application/json", method = RequestMethod.POST)
     public String submitForm(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "behalfOfUserId", required = false) Long behalfOfUserId, @RequestParam(value = "ownerId", required = false) Long ownerId, @RequestParam(value = "locationIds", required = false) String locationIds, @RequestParam(value = "vendorIds", required = false) String vendorIds, @RequestParam(value = "usersWithWhomToShare", required = false) String usersWithWhomToShare, @RequestBody HashMap<String, Object> fieldData) throws SQLException {
         return formService.submitForm(formTypeId, behalfOfUserId, ownerId, locationIds, vendorIds, usersWithWhomToShare, fieldData);
+    }
+
+    @RequestMapping(value = "/uploadDocuments", method = RequestMethod.POST, consumes = "multipart/form-data")
+    public void uploadDocuments(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestPart(value = "files") MultipartFile[] files) throws SQLException {
+        formService.uploadDocuments(formGuid, files);
     }
 }

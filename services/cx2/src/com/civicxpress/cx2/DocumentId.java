@@ -12,7 +12,7 @@ import java.util.Objects;
 public class DocumentId implements Serializable {
 
     private BigInteger id;
-    private String formGuid;
+    private String itemGuid;
     private String filename;
     private String mimetype;
     private byte[] contents;
@@ -25,12 +25,12 @@ public class DocumentId implements Serializable {
         this.id = id;
     }
 
-    public String getFormGuid() {
-        return this.formGuid;
+    public String getItemGuid() {
+        return this.itemGuid;
     }
 
-    public void setFormGuid(String formGuid) {
-        this.formGuid = formGuid;
+    public void setItemGuid(String itemGuid) {
+        this.itemGuid = itemGuid;
     }
 
     public String getFilename() {
@@ -63,7 +63,7 @@ public class DocumentId implements Serializable {
         if (!(o instanceof Document)) return false;
         final Document document = (Document) o;
         return Objects.equals(getId(), document.getId()) &&
-                Objects.equals(getFormGuid(), document.getFormGuid()) &&
+                Objects.equals(getItemGuid(), document.getItemGuid()) &&
                 Objects.equals(getFilename(), document.getFilename()) &&
                 Objects.equals(getMimetype(), document.getMimetype()) &&
                 Objects.equals(getContents(), document.getContents());
@@ -72,7 +72,7 @@ public class DocumentId implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId(),
-                getFormGuid(),
+                getItemGuid(),
                 getFilename(),
                 getMimetype(),
                 getContents());

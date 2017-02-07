@@ -850,8 +850,8 @@
         <dataobject javaType="com.civicxpress.cx2.Document">
             <element name="contents" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
             <element name="filename" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="itemGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="mimetype" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Fees">

@@ -9,10 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
+import com.wavemaker.runtime.util.WMRuntimeUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Connection;
@@ -29,6 +33,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import com.civicxpress.fileservice.FileService.FileUploadResponse;
 import com.tekdog.dbutils.*;
 
 //import com.civicxpress.formservice.model.*;
@@ -403,6 +408,41 @@ public class FormService {
     	} finally {
     	   	muniDbConn.close();
     	}
+    }
+    
+    public void uploadDocuments(String formGuid, MultipartFile[] files) throws SQLException {
+        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	cx2Conn.setAutoCommit(false);
+    	
+    	StringBuilder documentAddQuery = new StringBuilder("INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents) VALUES ");
+    	
+    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
+    	queryParams.put("formGuid", formGuid);
+    	
+    	try {
+	        for (int i = 0; i < files.length; i++) {
+	        	MultipartFile file = files[i];
+	        	
+	        	if (i > 0) {
+	        		documentAddQuery.append(',');
+	        	}
+				
+	        	queryParams.put("doc"+i+"filename", file.getOriginalFilename());
+	        	queryParams.put("doc"+i+"mimetype", file.getContentType());
+	        	queryParams.put("doc"+i+"contents", file.getBytes());
+	        	
+	        	documentAddQuery.append("(:formGuid, :doc"+i+"filename, :doc"+i+"mimetype, :doc"+i+"contents");
+	        }
+	        
+	        if (files.length > 0) {
+	        	DBUtils.simpleUpdateQuery(cx2Conn, documentAddQuery.toString(), queryParams);
+	        }
+        } catch (IOException e) {
+        	cx2Conn.rollback();
+			e.printStackTrace();
+		} finally {
+			cx2Conn.close();
+		}
     }
     
     public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, String usersWithWhomToShare, HashMap<String, Object> fieldData) throws SQLException {
