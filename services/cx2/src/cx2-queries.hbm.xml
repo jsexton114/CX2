@@ -138,7 +138,7 @@
   </sql-query>
   <query name="FormsForUsersAndShared">
     <![CDATA[
-      from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser ))
+      from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser )) ORDER BY DateModified DESC
     ]]>
   </query>
   <sql-query name="getEmailId">

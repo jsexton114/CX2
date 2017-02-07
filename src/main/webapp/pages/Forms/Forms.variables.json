@@ -2363,17 +2363,17 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "modifiedAt",
+        "fieldName" : "dateModified",
         "type" : "timestamp",
         "fullyQualifiedType" : "timestamp",
-        "columnName" : "ModifiedAt",
+        "columnName" : "DateModified",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "SYSUTCDATETIME()",
         "scale" : 0
       }, {
         "fieldName" : "submittedOn",
@@ -4216,17 +4216,17 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "modifiedAt",
+          "fieldName" : "dateModified",
           "type" : "timestamp",
           "fullyQualifiedType" : "timestamp",
-          "columnName" : "ModifiedAt",
+          "columnName" : "DateModified",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "SYSUTCDATETIME()",
           "scale" : 0
         }, {
           "fieldName" : "submittedOn",
@@ -6466,17 +6466,17 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "modifiedAt",
+          "fieldName" : "dateModified",
           "type" : "timestamp",
           "fullyQualifiedType" : "timestamp",
-          "columnName" : "ModifiedAt",
+          "columnName" : "DateModified",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "SYSUTCDATETIME()",
           "scale" : 0
         }, {
           "fieldName" : "submittedOn",
@@ -8442,17 +8442,17 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "modifiedAt",
+          "fieldName" : "dateModified",
           "type" : "timestamp",
           "fullyQualifiedType" : "timestamp",
-          "columnName" : "ModifiedAt",
+          "columnName" : "DateModified",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "SYSUTCDATETIME()",
           "scale" : 0
         }, {
           "fieldName" : "submittedOn",
@@ -12918,17 +12918,17 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "modifiedAt",
+          "fieldName" : "dateModified",
           "type" : "timestamp",
           "fullyQualifiedType" : "timestamp",
-          "columnName" : "ModifiedAt",
+          "columnName" : "DateModified",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "SYSUTCDATETIME()",
           "scale" : 0
         }, {
           "fieldName" : "submittedOn",
