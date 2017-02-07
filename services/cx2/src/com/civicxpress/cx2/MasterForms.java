@@ -51,7 +51,7 @@ public class MasterForms implements Serializable {
     private Date expiresDate;
     private String formTitle;
     private Integer ownerId;
-    private Date modifiedAt;
+    private Date dateModified;
     private Date submittedOn;
     private FormTypes formTypes;
     private FormStatuses formStatuses;
@@ -213,13 +213,13 @@ public class MasterForms implements Serializable {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "`ModifiedAt`", nullable = true)
-    public Date getModifiedAt() {
-        return this.modifiedAt;
+    @Column(name = "`DateModified`", nullable = true)
+    public Date getDateModified() {
+        return this.dateModified;
     }
 
-    public void setModifiedAt(Date modifiedAt) {
-        this.modifiedAt = modifiedAt;
+    public void setDateModified(Date dateModified) {
+        this.dateModified = dateModified;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

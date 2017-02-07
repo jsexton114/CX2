@@ -194,8 +194,9 @@ public class UsersController {
         return usersService.findAssociatedFormHistories(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/formMessageses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/formMessageses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formMessageses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormMessages> findAssociatedFormMessageses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formMessageses");
         return usersService.findAssociatedFormMessageses(id, pageable);

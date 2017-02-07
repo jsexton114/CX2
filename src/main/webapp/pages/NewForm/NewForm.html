@@ -248,11 +248,12 @@
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
-                                <wm-liveform novalidate="false" errormessage="" title="Owner Info" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.Cx2GiscontactsData.dataSet" captionalign="left" captionposition="top" name="lfOwner" show="bind:Widgets.checkboxOtherOwner.datavalue || Widgets.checkboxVendorIsOwner.datavalue">
+                                <wm-liveform novalidate="false" errormessage="" title="Owner Info" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.Cx2GiscontactsData.dataSet" captionalign="left" captionposition="top" name="lfOwner" show="bind:Widgets.checkboxOtherOwner.datavalue || Widgets.checkboxVendorIsOwner.datavalue"
+                                on-success="lfOwnerSuccess($event, $operation, $data)">
                                     <wm-layoutgrid columns="2" name="layoutgrid15">
                                         <wm-gridrow name="gridrow44">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn88">
-                                                <wm-form-field name="firstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" disabled="bind:!Widgets.checkboxOtherOwner.datavalue" required="bind:Widgets.checkboxOtherOwner.datavalue" widget="text"
+                                                <wm-form-field name="firstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" disabled=" bind:!Widgets.checkboxOtherOwner.datavalue" required="bind:Widgets.checkboxOtherOwner.datavalue" widget="text"
                                                 maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn89">

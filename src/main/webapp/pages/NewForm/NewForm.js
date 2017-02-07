@@ -81,8 +81,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         data.forEach(function(formField, index) {
             if (formField.formFieldTypes.label === 'Number') {
                 $scope.formData[formField.fieldName] = parseFloat(formField.defaultValue);
-            } else if (formField.formFieldTypes.label === 'Number') {
-                $scope.formData[formField.fieldName] = formField.defaultValue === '1';
             } else {
                 $scope.formData[formField.fieldName] = formField.defaultValue;
             }
@@ -105,7 +103,18 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         return idString;
     }
 
-    function submitForm() {
+    function submitForm(ownerId) {
+        if ($scope.ownerInfo === true) {
+            if (!!ownerId) {
+                $scope.Variables.svSubmitForm.setInput('ownerId', ownerId);
+            } else if ($scope.Widgets.checkboxOtherOwner.datavalue || $scope.Widgets.checkboxVendorIsOwner.datavalue) {
+                $scope.Widgets.lfOwner.save();
+                return; // TBC
+            } else if (!!$scope.Widgets.gridOwners.selectedItem && !!$scope.Widgets.gridOwners.selectedItem.id) {
+                $scope.Variables.svSubmitForm.setInput('ownerId', $scope.Widgets.gridOwners.selectedItem.id);
+            }
+        }
+
         $scope.Variables.svSubmitForm.setInput('locationIds', generateIdString($scope.Variables.stvGisData.dataSet));
         $scope.Variables.svSubmitForm.setInput('vendorIds', generateIdString($scope.Variables.stvVendors.dataSet));
         $scope.Variables.svSubmitForm.setInput('usersWithWhomToShare', generateIdString($scope.Variables.stvContacts.dataSet));
@@ -170,6 +179,11 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         } else {
             $scope.Widgets.lfOwner.clearData();
         }
+    };
+
+
+    $scope.lfOwnerSuccess = function($event, $operation, $data) {
+        submitForm($data.id);
     };
 
 }]);
