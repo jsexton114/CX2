@@ -136,15 +136,13 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
 
 
     $scope.svSubmitFormonSuccess = function(variable, data) {
-        if ($scope.documents) {
+        if ($scope.documents && $scope.Variables.stvDocuments.dataSet.length > 0) {
             $scope.Variables.svUploadDocuments.setInput('formGuid', data);
             var documents = [];
 
             $scope.Variables.stvDocuments.dataSet.forEach(function(document, index) {
                 documents.push(document.Contents);
             });
-
-            console.log(documents);
 
             $scope.Variables.svUploadDocuments.setInput('files', documents);
 

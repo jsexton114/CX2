@@ -6,7 +6,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "gisrecordId",
-      "value" : "bind:Variables.stvGisData.dataSet[$i].ID | stringToNumber",
+      "value" : "bind:Variables.stvGisData.dataSet[0].ID",
       "type" : "number"
     }, {
       "target" : "contactType",
