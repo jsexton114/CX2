@@ -64,6 +64,11 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CheckingUserWithMunicipalityInRolesrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="CompanyFormsByVendorId">
+        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CompanyFormsByVendorIdrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="CountOfCompnayFormsByVendorId">
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
@@ -233,12 +238,6 @@
     </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
-    </operation>
-    <operation operationType="hqlquery" name="ProcessFormsForUserByMunicipality">
-        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="Closed" typeRef="java.lang.Boolean" isList="false"/>
-        <return typeRef="cx2ProcessFormsForUserByMunicipalityrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="RecordFormHistory">
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
@@ -414,9 +413,10 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="hqlquery" name="CompanyFormsByVendorId">
-        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
+    <operation operationType="hqlquery" name="ProcessFormsForUserByMunicipality">
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Closed" typeRef="java.lang.Boolean" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
@@ -1735,8 +1735,10 @@
             <element name="balanceDue" typeRef="java.lang.String"/>
             <element name="closed" typeRef="java.lang.Boolean"/>
             <element name="cxvendorId" typeRef="java.lang.Integer"/>
+            <element name="dateModified" typeRef="java.util.Date"/>
             <element name="expiresDate" typeRef="java.util.Date"/>
             <element name="formGuid" typeRef="java.lang.String"/>
+            <element name="formMessageses" typeRef="java.util.List"/>
             <element name="formStatusId" typeRef="java.lang.Integer"/>
             <element name="formStatuses" typeRef="com.civicxpress.cx2.FormStatuses"/>
             <element name="formStatusesesForProcessOwners" typeRef="java.util.List"/>
@@ -1746,6 +1748,7 @@
             <element name="formTypeId" typeRef="java.lang.Integer"/>
             <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes"/>
             <element name="gis2formses" typeRef="java.util.List"/>
+            <element name="giscontacts" typeRef="com.civicxpress.cx2.Giscontacts"/>
             <element name="groupDescription" typeRef="java.lang.String"/>
             <element name="groupName" typeRef="java.lang.String"/>
             <element name="id" typeRef="java.lang.Integer"/>
@@ -1756,8 +1759,10 @@
             <element name="municipalityGroupMemberses" typeRef="java.util.List"/>
             <element name="municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups"/>
             <element name="municipalityId" typeRef="java.lang.Integer"/>
+            <element name="ownerId" typeRef="java.lang.Integer"/>
             <element name="recordType" typeRef="java.lang.String"/>
             <element name="sharedWiths" typeRef="java.util.List"/>
+            <element name="submittedOn" typeRef="java.util.Date"/>
             <element name="totalFees" typeRef="java.lang.String"/>
             <element name="totalPayment" typeRef="java.lang.String"/>
             <element name="userId" typeRef="java.lang.Integer"/>
