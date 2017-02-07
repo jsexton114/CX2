@@ -240,11 +240,13 @@
                                 <wm-datetime name="datetimeExpirationFormPending" mindate="bind:today" datepattern="MM-dd-yyyy hh:mm a"></wm-datetime>
                             </wm-container>
                         </wm-composite>
+                        <wm-label padding="unset 0.5em" name="label10_1" caption="bind:Widgets.datetimeExpirationFormPending.timestamp"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow25">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn44" horizontalalign="center" padding=".5em unset">
                         <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdateFromPending" on-click="Variables.UpdateVendorStatusFromPending.invoke()" iconclass="wi wi-update"></wm-button>
+                        <wm-label padding="unset 0.5em" name="label9_1" caption="bind:today"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>

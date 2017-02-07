@@ -690,7 +690,7 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
-	public int executeUpdateVendorStatus( java.sql.Date DateApproved ,java.lang.String ApprovedBy ,java.sql.Date ExpiresDate ,java.lang.Boolean Active ,java.lang.String ApprovalStatus ,java.lang.String Reviewer ,java.lang.Integer municipality ,java.lang.Integer vendor)
+	public int executeUpdateVendorStatus( java.sql.Timestamp DateApproved ,java.lang.String ApprovedBy ,java.sql.Timestamp ExpiresDate ,java.lang.Boolean Active ,java.lang.String ApprovalStatus ,java.lang.String Reviewer ,java.lang.Integer municipality ,java.lang.Integer vendor)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("DateApproved", DateApproved);

@@ -216,7 +216,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -1142,7 +1142,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -2022,7 +2022,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -2776,7 +2776,7 @@
       "type" : "integer"
     }, {
       "target" : "DateApproved",
-      "value" : "bind:today | toDate: 'timestamp'",
+      "value" : "bind:today",
       "type" : "string"
     } ],
     "type" : "cx2UpdateVendorStatusrtnType",
@@ -2805,7 +2805,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "DateApproved",
-      "value" : "bind:today | toDate: 'timestamp'",
+      "value" : "bind:today",
       "type" : "string"
     }, {
       "target" : "ApprovedBy",

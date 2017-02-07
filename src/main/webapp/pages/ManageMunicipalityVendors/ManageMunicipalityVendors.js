@@ -100,7 +100,9 @@ Application.$controller("gridPendingController", ["$scope",
 Application.$controller("dialogPendingApprovalsController", ["$scope",
     function($scope) {
         "use strict";
+        debugger
         $scope.ctrlScope = $scope;
+        $scope.today = moment().valueOf();
     }
 ]);
 
@@ -108,6 +110,7 @@ Application.$controller("dialogReviewApprovedController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+        $scope.today = moment().valueOf();
     }
 ]);
 
@@ -115,5 +118,6 @@ Application.$controller("dialogReviewSuspendedController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+        $scope.today = moment().valueOf();
     }
 ]);
