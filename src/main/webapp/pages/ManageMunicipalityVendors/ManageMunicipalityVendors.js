@@ -7,8 +7,6 @@ Application.$controller("ManageMunicipalityVendorsPageController", ["$scope", fu
         $scope.today = moment().valueOf();
     };
 
-
-
 }]);
 
 
@@ -100,7 +98,6 @@ Application.$controller("gridPendingController", ["$scope",
 Application.$controller("dialogPendingApprovalsController", ["$scope",
     function($scope) {
         "use strict";
-        debugger
         $scope.ctrlScope = $scope;
         $scope.today = moment().valueOf();
     }
