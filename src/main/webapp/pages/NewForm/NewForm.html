@@ -13,7 +13,7 @@
                 <wm-gridrow name="gridrow7">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn12">
                         <wm-spinner show="false" name="spinnerFormSubmit" caption="" servicevariabletotrack="svSubmitForm"></wm-spinner>
-                        <wm-spinner show="!loaded" name="spinnerPageLoad" caption="" deferload="false"></wm-spinner>
+                        <wm-spinner show="bind:!loaded" name="spinnerPageLoad" caption="" deferload="false"></wm-spinner>
                         <wm-wizard stepstyle="auto" name="newFormWizard" donebtnlabel="Submit" on-done="newFormWizardDone($scope, steps)" on-cancel="newFormWizardCancel($scope, steps)">
                             <wm-wizardstep name="wizardstep8" title="Instructions">
                                 <wm-layoutgrid name="layoutgrid56">
