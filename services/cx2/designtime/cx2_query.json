@@ -1182,6 +1182,33 @@
       "UserId" : "java.math.BigDecimal"
     }
   }, {
+    "name" : "GetRecentMessageId",
+    "query" : "select ID as recentMessageId from FormMessages where RelatedFormGUID=:form and PostedAt=:PostedAt",
+    "comment" : "GetRecentMessageId",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "form",
+      "paramType" : "java.lang.String",
+      "testValue" : "0C12585C-CEE7-E611-80C9-0CC47A46DD63",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "PostedAt",
+      "paramType" : "java.sql.Timestamp",
+      "testValue" : "1486492200000",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2GetRecentMessageIdrtnType",
+    "returnTypeMetadata" : {
+      "recentMessageId" : "java.math.BigDecimal"
+    }
+  }, {
     "name" : "GetRolesForMunicipality",
     "query" : "select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID",
     "comment" : "GetRolesForMunicipality",
@@ -1473,6 +1500,31 @@
       "list" : false
     } ],
     "outputType" : "cx2InsertSubscriptionrtnType",
+    "returnTypeMetadata" : { }
+  }, {
+    "name" : "InsertTagForMessage",
+    "query" : "Insert into FormMessageTagging(FormMessageId,TaggedPersonId) values(:FormMessageId,:TaggedPersonId)",
+    "comment" : "InsertTagForMessage",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "FormMessageId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "TaggedPersonId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2InsertTagForMessagertnType",
     "returnTypeMetadata" : { }
   }, {
     "name" : "ManualFeeTypeCountForMunicipality",

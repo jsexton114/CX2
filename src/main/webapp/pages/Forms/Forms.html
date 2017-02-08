@@ -434,6 +434,7 @@
                                                             fontsize="1.143" fontunit="em"></wm-label>
                                                             <wm-label name="Time" class="pull-right text-muted" caption="bind:Variables.FormMessagesData.dataSet.data[$i].postedAt | toDate: 'MM/dd hh:mm'"></wm-label>
                                                             <wm-label caption="bind:Variables.FormMessagesData.dataSet.message" name="Description" class="p text-muted"></wm-label>
+                                                            <wm-anchor margin="unset 0.5em" name="anchorViewTaggedPeople" caption="ViewTaggedPeople" class="pull-right"></wm-anchor>
                                                         </wm-container>
                                                     </wm-listtemplate>
                                                 </wm-livelist>
@@ -444,11 +445,12 @@
                                                 <wm-picture class="media-object" width="32pt" height="32pt" name="picture3" picturesource="bind:!!Variables.CurrentUserDetails.dataSet.id ? 'services/cx2/Users/'+Variables.CurrentUserDetails.dataSet.id+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"
                                                 shape="circle"></wm-picture>
                                             </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="9" name="gridcolumn158_1">
+                                            <wm-gridcolumn columnwidth="8" name="gridcolumn158_1">
                                                 <wm-text name="textAddMessage" placeholder="Type a message....." on-change="textAddMessageChange($event, $scope, newVal, oldVal)" on-blur="textAddMessageBlur($event, $scope)" on-keyup="textAddMessageKeyup($event, $scope)"></wm-text>
                                             </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="2" name="gridcolumn159_1">
-                                                <wm-button class="btn-default btn-primary" caption="Post" type="button" margin="unset 0.5em" name="buttonAddMessage" iconclass="wi wi-send" on-click="Variables.PostFormMessage.invoke()" disabled="false"></wm-button>
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn159_1">
+                                                <wm-button class="btn-default btn-primary" caption="Post" type="button" margin="unset 0.5em" name="buttonAddMessage" iconclass="wi wi-send" on-click="buttonAddMessageClick($event, $scope)" disabled="false"></wm-button>
+                                                <wm-button class="btn-default btn-link" caption="Tag People" type="button" margin="unset 0.5em" name="button17" iconclass="wi wi-tag" on-click="Widgets.dialogTagPeople.open()"></wm-button>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow82">
@@ -831,6 +833,63 @@
             <wm-dialogactions name="dialogactions5">
                 <wm-button class="btn-primary" caption="OK" on-click="buttonUploadFileClick($event, $scope)" name="buttonUploadFile" iconclass="wi wi-check" disabled="bind:!docToUpload"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button13" on-click="Widgets.dialogUploadDocument.close()" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewTagPeople">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Tag People" iconclass="wi wi-user" name="dialogTagPeople" width="70%">
+            <wm-layoutgrid name="layoutgrid4">
+                <wm-gridrow name="gridrow20" padding="unset unset 2em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn31_3">
+                        <wm-label padding="unset 0.5em unset unset" name="Instructions" caption="You may tag as many people as you like by searching and clicking “Tag Person”." horizontalalign="center" textalign="left"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow13">
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn28_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn18_1">
+                        <wm-composite name="composite5">
+                            <wm-label class="col-md-3 form-control-static" name="label8" caption="Search People" width="20%" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container5" width="80%">
+                                <wm-search name="textSearchPeople" placeholder="Search by People Email" dataset="bind:Variables.GetPeople.dataSet" searchkey="email" displaylabel="bind:$[data[$i].email]" displayimagesrc="photo" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)"
+                                required="true" width="100%"></wm-search>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn24" horizontalalign="left">
+                        <wm-button class="btn-default btn-primary" caption="Tag people" type="button" margin="unset 0.5em" name="ButtonTagPeople" iconclass="wi wi-tag-faces" on-click="ButtonTagPeopleClick($event, $scope)" horizontalalign="left"></wm-button>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow14" padding="2px unset unset unset">
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn31"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn20_1" padding="2em unset">
+                        <wm-panel iconclass="wi wi-person-add" name="panel1" title="Tagged People">
+                            <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.PeopleList.dataSet" navigation="Scroll" name="livelistTaggedPeople" nodatamessage="No Person is selected. Please search for a Person">
+                                <wm-listtemplate layout="media" name="listtemplate1">
+                                    <wm-layoutgrid name="layoutgrid5">
+                                        <wm-gridrow name="gridrow17_1">
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn174">
+                                                <wm-picture name="picture4" picturesource="bind:!!Variables.PeopleList.dataSet[$i].id ? 'services/cx2/Users/'+Variables.PeopleList.dataSet[$i].id+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"
+                                                width="50pt" height="50pt"></wm-picture>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="7" name="gridcolumn25_1">
+                                                <wm-label padding="unset 0.5em .5em 0.5em" name="label11" caption="bind:Variables.PeopleList.dataSet[$i].firstName+&quot; &quot;+Variables.PeopleList.dataSet[$i].lastName" width="100%" fontweight="bold"></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.PeopleList.dataSet[$i].email" width="100%"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn29">
+                                                <wm-button class="btn-default btn-primary" caption="Remove" type="button" margin="unset 0.5em" name="buttonRemove" iconclass="wi wi-delete" on-click="buttonRemoveClick($event, $scope, item, currentItemWidgets)"></wm-button>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-listtemplate>
+                            </wm-livelist>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn30"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow15_1"></wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions6">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button14"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

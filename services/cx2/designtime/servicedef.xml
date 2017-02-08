@@ -227,6 +227,11 @@
         <parameter name="DateSubscribed" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2InsertSubscriptionrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="InsertTagForMessage">
+        <parameter name="FormMessageId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="TaggedPersonId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2InsertTagForMessagertnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="ManualFeeTypeCountForMunicipality">
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2ManualFeeTypeCountForMunicipalityrtnType" isList="false"/>
@@ -423,6 +428,11 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="GetRecentMessageId">
+        <parameter name="form" typeRef="java.lang.String" isList="false"/>
+        <parameter name="PostedAt" typeRef="java.sql.Timestamp" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
@@ -601,6 +611,11 @@
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2GetProcessGroupMemebersByFormGUIDrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="GetRecentMessageId">
+        <parameter name="form" typeRef="java.lang.String" isList="false"/>
+        <parameter name="PostedAt" typeRef="java.sql.Timestamp" isList="false"/>
+        <return typeRef="cx2GetRecentMessageIdrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="GetRolesForMunicipality">
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
@@ -652,6 +667,11 @@
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="DateSubscribed" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2InsertSubscriptionrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="InsertTagForMessage">
+        <parameter name="FormMessageId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="TaggedPersonId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2InsertTagForMessagertnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="ManualFeeTypeCountForMunicipality">
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
@@ -1733,6 +1753,9 @@
             <element name="MunicipalityGroupId" typeRef="java.math.BigDecimal"/>
             <element name="UserId" typeRef="java.math.BigDecimal"/>
         </dataobject>
+        <dataobject javaType="cx2GetRecentMessageIdrtnType">
+            <element name="recentMessageId" typeRef="java.math.BigDecimal"/>
+        </dataobject>
         <dataobject javaType="cx2GetRolesForMunicipalityrtnType">
             <element name="Active" typeRef="java.lang.String"/>
             <element name="Address1" typeRef="java.lang.String"/>
@@ -1762,6 +1785,7 @@
         <dataobject javaType="cx2InsertGroupsrtnType"/>
         <dataobject javaType="cx2InsertNewRolertnType"/>
         <dataobject javaType="cx2InsertSubscriptionrtnType"/>
+        <dataobject javaType="cx2InsertTagForMessagertnType"/>
         <dataobject javaType="cx2ManualFeeTypeCountForMunicipalityrtnType">
             <element name="" typeRef="java.lang.Integer"/>
         </dataobject>

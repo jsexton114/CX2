@@ -149,19 +149,59 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
     $scope.PostFormMessageonSuccess = function(variable, data) {
         $scope.Widgets.textAddMessage.datavalue = undefined;
+        let people = $scope.Variables.PeopleList.dataSet;
+        if (people.length == 0) {
+            // DO nothing
+        } else {
+            console.log(variable.dataBinding.PostedAt)
+            $scope.Variables.GetMessageIdForCurrentPost.setInput({
+                'PostedAt': variable.dataBinding.PostedAt,
+                'form': $scope.pageParams.FormGUID
+            });
+            $scope.Variables.GetMessageIdForCurrentPost.update();
+
+        }
+
     };
 
 
 
 
     $scope.textAddMessageKeyup = function($event, $isolateScope) {
+
+        // let message = $scope.Widgets.textAddMessage._model_;
+        // if ((message == undefined) || (message == "") || (message == null)) {
+        //     $scope.disableMessageBox = true;
+        // } else {
+        //     $scope.disableMessageBox = false;
+        // }
+    };
+
+
+    $scope.buttonAddMessageClick = function($event, $isolateScope) {
+        // Posting Message
+        $scope.Variables.PostFormMessage.setInput({
+            'PostedAt': moment().valueOf(),
+        });
+        $scope.Variables.PostFormMessage.update();
+    };
+
+
+    $scope.GetMessageIdForCurrentPostonSuccess = function(variable, data) {
         debugger
-        let message = $scope.Widgets.textAddMessage._model_;
-        if ((message == undefined) || (message == "") || (message == null)) {
-            $scope.disableMessageBox = true;
-        } else {
-            $scope.disableMessageBox = false;
+        var people = $scope.Variables.PeopleList.dataSet;
+        var m = data.content[0].recentMessageId;
+        var temp = [];
+        // Insert people as Tagged People For RecentMessage
+        for (var i = 0; i < people.length; i++) {
+            temp.push(people[i].id);
+            $scope.Variables.InsertTaggedPeople.setInput({
+                'TaggedPersonId': people[i].id,
+                'FormMessageId': m
+            });
+            $scope.Variables.InsertTaggedPeople.insertRecord();
         }
+
     };
 
 }]);
@@ -341,6 +381,52 @@ Application.$controller("dialogUploadDocumentController", ["$scope",
             $scope.Variables.svUploadDocument.setInput('files', [$scope.docToUpload.Contents]);
             $scope.Variables.svUploadDocument.update();
             $scope.Widgets.dialogUploadDocument.close();
+        };
+
+    }
+]);
+
+Application.$controller("dialogTagPeopleController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+        var selectedPeople = [];
+        $scope.ButtonTagPeopleClick = function($event, $isolateScope) {
+            if ($scope.Widgets.textSearchPeople.datavalue != undefined) {
+                var temp = $scope.Widgets.textSearchPeople.datavalue;
+                var data = $scope.Variables.PeopleList.dataSet;
+                // checking for any municipalities in PeopleList variable, if not add from search 
+                if (data.length == 0) {
+                    data.push(temp);
+                } else {
+                    // checking if adding value already exist in PeopleList variable 
+                    var exist = 0;
+                    for (let i = 0; i < data.length; i++) {
+                        if (temp.id == data[i].id)
+                            exist = 1;
+                    }
+                    // If already added then notify user else push to PeopleList variable
+                    if (exist == 1)
+                        $scope.Variables.PersonAlreadyTagged.notify();
+                    else
+                        data.push(temp);
+
+                }
+                // Setting for adding to Tagging
+                selectedPeople = $scope.Variables.PeopleList.dataSet;
+            } else {
+                $scope.Variables.NoPersonAdded.notify();
+            }
+        };
+
+
+        $scope.buttonRemoveClick = function($event, $isolateScope, item, currentItemWidgets) {
+            // Removing the deleted People
+            _.remove($scope.Variables.PeopleList.dataSet, {
+                id: item.id
+            });
+            // Setting for adding to subscriptions
+            selectedMunicipalites = $scope.Variables.PeopleList.dataSet;
         };
 
     }

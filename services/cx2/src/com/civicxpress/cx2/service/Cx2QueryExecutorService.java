@@ -52,6 +52,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeGetListofUsers(Pageable pageable, java.lang.Integer municipalityID, java.lang.String Email) throws QueryParameterMismatchException;
     Page<Object> executeGetMunicipalityGroupIdIDs(Pageable pageable, java.lang.Integer userID) throws QueryParameterMismatchException;
     Page<Object> executeGetProcessGroupMemebersByFormGUID(Pageable pageable, java.lang.String FormGUID) throws QueryParameterMismatchException;
+    Page<Object> executeGetRecentMessageId(Pageable pageable, java.lang.String form, java.sql.Timestamp PostedAt) throws QueryParameterMismatchException;
     Page<Object> executeGetRolesForMunicipality(Pageable pageable, java.lang.String role, java.lang.Integer municipality) throws QueryParameterMismatchException;
     Page<Object> executeGetRolesForUser(Pageable pageable, java.lang.Integer userId) throws QueryParameterMismatchException;
     Page<Object> executeGetUserID(Pageable pageable, java.lang.String Email) throws QueryParameterMismatchException;
@@ -62,6 +63,7 @@ public interface Cx2QueryExecutorService {
 	int executeInsertGroups(  java.lang.String GroupName , java.lang.String GroupDescription , java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
 	int executeInsertNewRole(  java.lang.String RoleName , java.lang.Integer MunicipalityId , java.lang.String Description , java.lang.Integer UserId) throws QueryParameterMismatchException;
 	int executeInsertSubscription(  java.lang.Integer UserId , java.lang.Integer MunicipalityId , java.lang.String DateSubscribed) throws QueryParameterMismatchException;
+	int executeInsertTagForMessage(  java.lang.Integer FormMessageId , java.lang.Integer TaggedPersonId) throws QueryParameterMismatchException;
     Page<Object> executeManualFeeTypeCountForMunicipality(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
 	int executeMapAsAdminForVendor(  java.lang.Integer UserId , java.lang.Integer VendorId) throws QueryParameterMismatchException;
     Page<Object> executeMunicipalitiesGroupsCounts(Pageable pageable, java.lang.Integer municipality) throws QueryParameterMismatchException;

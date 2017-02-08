@@ -410,6 +410,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/GetRecentMessageId", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeGetRecentMessageId(@RequestParam(value = "form", required = false) java.lang.String form, @RequestParam(value = "PostedAt", required = false) java.sql.Timestamp PostedAt, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query GetRecentMessageId");
+        Page<Object> result = queryService.executeGetRecentMessageId(pageable, form, PostedAt);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/GetRolesForMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeGetRolesForMunicipality(@RequestParam(value = "role", required = false) java.lang.String role, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, Pageable pageable) throws QueryParameterMismatchException {
@@ -505,6 +515,16 @@ public class QueryExecutionController {
     public int executeInsertSubscription(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, @RequestParam(value = "DateSubscribed", required = false) java.lang.String DateSubscribed) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query InsertSubscription");
         int result = queryService.executeInsertSubscription(UserId, MunicipalityId, DateSubscribed);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/InsertTagForMessage", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeInsertTagForMessage(@RequestParam(value = "FormMessageId", required = false) java.lang.Integer FormMessageId, @RequestParam(value = "TaggedPersonId", required = false) java.lang.Integer TaggedPersonId) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query InsertTagForMessage");
+        int result = queryService.executeInsertTagForMessage(FormMessageId, TaggedPersonId);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

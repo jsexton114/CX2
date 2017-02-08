@@ -360,6 +360,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeGetRecentMessageId(Pageable pageable, java.lang.String form, java.sql.Timestamp PostedAt)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("form", form);
+        params.put("PostedAt", PostedAt);
+        return queryExecutor.executeNamedQuery("GetRecentMessageId", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeGetRolesForMunicipality(Pageable pageable, java.lang.String role, java.lang.Integer municipality)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -449,6 +458,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("MunicipalityId", MunicipalityId);
         params.put("DateSubscribed", DateSubscribed);
         return queryExecutor.executeNamedQueryForUpdate("InsertSubscription", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public int executeInsertTagForMessage( java.lang.Integer FormMessageId ,java.lang.Integer TaggedPersonId)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("FormMessageId", FormMessageId);
+        params.put("TaggedPersonId", TaggedPersonId);
+        return queryExecutor.executeNamedQueryForUpdate("InsertTagForMessage", params);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
