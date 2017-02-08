@@ -520,16 +520,17 @@ public class FormService {
 	    	
 	    	// Form title number
 	    	String numberOption = !dateOption.equalsIgnoreCase("None") ? formTypeData.getString("PrefixNumber") : "AutoIncrement";
+	    	Long prefixNumberStart = formTypeData.getLong("PrefixNumberStart");
 	    	Integer prefixNumberStep = formTypeData.getInteger("PrefixNumberStep");
-	    	Long currentPrefixNumber = formTypeData.getLong("CurrentPrefixNumber") != null ? formTypeData.getLong("CurrentPrefixNumber") : prefixNumberStep;
+	    	Long currentPrefixNumber = formTypeData.getLong("CurrentPrefixNumber");
     		Integer numberResetOn = formTypeData.getInteger("PrefixNumberResetOn");
 	    	Integer newResetTime = numberOption.equalsIgnoreCase("ResetMonth") ? today.get(Calendar.MONTH)+1 : today.get(Calendar.YEAR);
 	    	Long newPrefixNumber;
 	    	
 	    	if (!numberOption.equalsIgnoreCase("AutoIncrement") && !newResetTime.equals(numberResetOn)) {
-	    		newPrefixNumber = prefixNumberStep.longValue();
+	    		newPrefixNumber = prefixNumberStart;
 	    	} else {
-	    		newPrefixNumber = (currentPrefixNumber + prefixNumberStep.longValue());
+	    		newPrefixNumber = currentPrefixNumber == null ? prefixNumberStart : (currentPrefixNumber + prefixNumberStep.longValue());
 	    	}
 	    	
 	    	formTitle.append(newPrefixNumber.toString());
