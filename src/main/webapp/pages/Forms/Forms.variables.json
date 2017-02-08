@@ -15201,6 +15201,33 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Subdivisions"
   },
+  "svDownloadDocument" : {
+    "_id" : "wm-svDownloadDocument-wm.ServiceVariable-1486566888008",
+    "name" : "svDownloadDocument",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "documentId",
+      "value" : "bind:Widgets.gridDocuments.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.runtime.file.model.DownloadResponse",
+    "service" : "FormService",
+    "operation" : "downloadDocument",
+    "operationId" : "FormController_downloadDocument",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Form"
+  },
   "svFormTypeFields" : {
     "_id" : "wm-svFormTypeFields-wm.ServiceVariable-1485276927474",
     "name" : "svFormTypeFields",

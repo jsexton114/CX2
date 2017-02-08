@@ -3,8 +3,9 @@ package com.civicxpress.formservice.controller;
 
 import com.civicxpress.formservice.FormService;
 import java.lang.Long;
-import java.lang.String;
 import java.sql.SQLException;
+import com.wavemaker.runtime.file.model.DownloadResponse;
+import java.lang.String;
 import java.lang.Object;
 import java.util.Map;
 import java.util.HashMap;
@@ -26,6 +27,13 @@ public class FormController {
 
     @Autowired
     private FormService formService;
+
+    @RequestMapping(value = "/downloadDocument", produces = "application/octet-stream", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public DownloadResponse downloadDocument(@RequestParam(value = "documentId", required = false) Long documentId) throws SQLException {
+        return formService.downloadDocument(documentId);
+    }
 
     @RequestMapping(value = "/formData", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

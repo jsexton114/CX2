@@ -11,10 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.wavemaker.runtime.file.model.DownloadResponse;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 import com.wavemaker.runtime.util.WMRuntimeUtils;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -432,7 +434,6 @@ public class FormService {
 	        	queryParams.put("doc"+i+"contents", file.getBytes());
 	        	
 	        	logger.error(file.getOriginalFilename());
-	        	logger.error(file.getContentType());
 	        	
 	        	documentAddQuery.append("(:formGuid, :doc"+i+"filename, :doc"+i+"mimetype, :doc"+i+"contents)");
 	        }
@@ -448,6 +449,21 @@ public class FormService {
 		} finally {
 			cx2Conn.close();
 		}
+    }
+    
+    public DownloadResponse downloadDocument(Long documentId) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
+    	queryParams.put("documentId", documentId);
+    	
+    	DBRow documentData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM Document WHERE ID=:documentId", queryParams).get(0);
+    	
+    	DownloadResponse dr = new DownloadResponse();
+    	dr.setFileName(documentData.getString("Filename"));
+    	dr.setContentType(documentData.getString("Mimetype"));
+    	dr.setContents(new ByteArrayInputStream(documentData.getBytes("Contents")));
+    	
+    	return dr;
     }
     
     public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, String usersWithWhomToShare, HashMap<String, Object> fieldData) throws SQLException {
