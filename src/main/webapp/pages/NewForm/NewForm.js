@@ -110,8 +110,8 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
             } else if ($scope.Widgets.checkboxOtherOwner.datavalue || $scope.Widgets.checkboxVendorIsOwner.datavalue) {
                 $scope.Widgets.lfOwner.save();
                 return; // TBC
-            } else if (!!$scope.Widgets.gridOwners.selectedItem && !!$scope.Widgets.gridOwners.selectedItem.id) {
-                $scope.Variables.svSubmitForm.setInput('ownerId', $scope.Widgets.gridOwners.selectedItem.id);
+            } else if ($scope.Widgets.gridOwners.selectedItems.length > 0) {
+                $scope.Variables.svSubmitForm.setInput('ownerId', $scope.Widgets.gridOwners.selectedItems[0].id);
             }
         }
 
