@@ -42,16 +42,22 @@
     "table" : "FormTypes",
     "schema" : "cx2"
   }, {
-    "table" : "GISRecords",
+    "table" : "FormFieldTypes",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormMessageTagging",
+    "schema" : "cx2"
+  }, {
+    "table" : "GIS2Forms",
     "schema" : "cx2"
   }, {
     "table" : "GISContacts",
     "schema" : "cx2"
   }, {
-    "table" : "GlobalSettings",
+    "table" : "GISRecords",
     "schema" : "cx2"
   }, {
-    "table" : "GIS2Forms",
+    "table" : "GlobalSettings",
     "schema" : "cx2"
   }, {
     "table" : "Holidays",
@@ -60,25 +66,19 @@
     "table" : "ManualFeeTypes",
     "schema" : "cx2"
   }, {
-    "table" : "MasterCases",
-    "schema" : "cx2"
-  }, {
     "table" : "MasterForms",
     "schema" : "cx2"
   }, {
     "table" : "Municipalities",
     "schema" : "cx2"
   }, {
+    "table" : "MasterCases",
+    "schema" : "cx2"
+  }, {
     "table" : "MasterInspections",
     "schema" : "cx2"
   }, {
     "table" : "MasterProjects",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormFieldTypes",
-    "schema" : "cx2"
-  }, {
-    "table" : "MunicipalityGroupMembers",
     "schema" : "cx2"
   }, {
     "table" : "MunicipalityGroups",
@@ -90,10 +90,13 @@
     "table" : "SharedWith",
     "schema" : "cx2"
   }, {
-    "table" : "Subdivisions",
+    "table" : "MunicipalityGroupMembers",
     "schema" : "cx2"
   }, {
-    "table" : "UserPasswordResetTokens",
+    "table" : "States",
+    "schema" : "cx2"
+  }, {
+    "table" : "Subdivisions",
     "schema" : "cx2"
   }, {
     "table" : "Users",
@@ -102,13 +105,10 @@
     "table" : "Vendor",
     "schema" : "cx2"
   }, {
+    "table" : "UserPasswordResetTokens",
+    "schema" : "cx2"
+  }, {
     "table" : "UserSubscriptions",
-    "schema" : "cx2"
-  }, {
-    "table" : "States",
-    "schema" : "cx2"
-  }, {
-    "table" : "VendorAdmins",
     "schema" : "cx2"
   }, {
     "table" : "VendorApprovals",
@@ -117,16 +117,16 @@
     "table" : "VendorLicenses",
     "schema" : "cx2"
   }, {
-    "table" : "Vendors2Form",
-    "schema" : "cx2"
-  }, {
-    "table" : "VendorUsers",
+    "table" : "VendorAdmins",
     "schema" : "cx2"
   }, {
     "table" : "VendorLicenseTypes",
     "schema" : "cx2"
   }, {
-    "table" : "FormMessageTagging",
+    "table" : "Vendors2Form",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorUsers",
     "schema" : "cx2"
   } ],
   "schemaFilter" : [ "cx2" ],

@@ -164,6 +164,12 @@
         <parameter name="formTypeId" typeRef="java.lang.Long" isList="false"/>
         <return typeRef="cx2getFormTypeFieldsByTypeIdrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
+        <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="isActive" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="userId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="getListofUsers">
         <parameter name="municipalityID" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="Email" typeRef="java.lang.String" isList="false"/>
@@ -426,12 +432,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
-        <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="isActive" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="userId" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
@@ -1026,6 +1026,7 @@
             <element name="gisrecord" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="inspections" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="instructions" typeRef="java.lang.String" allowNull="true"/>
             <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
             <element name="multipleGisrecords" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="multipleVendors" typeRef="java.lang.Boolean" allowNull="true"/>

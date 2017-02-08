@@ -76,6 +76,7 @@ public class FormTypes implements Serializable {
     private Integer prefixNumberResetOn;
     private boolean multipleVendors;
     private boolean requireOwner;
+    private String instructions;
     private Municipalities municipalities;
     private List<FormHistory> formHistories = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
@@ -444,6 +445,15 @@ public class FormTypes implements Serializable {
 
     public void setRequireOwner(boolean requireOwner) {
         this.requireOwner = requireOwner;
+    }
+
+    @Column(name = "`Instructions`", nullable = true, length = 8000)
+    public String getInstructions() {
+        return this.instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

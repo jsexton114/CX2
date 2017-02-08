@@ -203,8 +203,9 @@ public class UsersController {
         return usersService.findAssociatedFormMessageses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/formMessageTaggings", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/formMessageTaggings", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formMessageTaggings instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FormMessageTagging> findAssociatedFormMessageTaggings(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formMessageTaggings");
         return usersService.findAssociatedFormMessageTaggings(id, pageable);
