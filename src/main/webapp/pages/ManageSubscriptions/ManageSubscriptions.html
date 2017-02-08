@@ -25,21 +25,24 @@
                                     <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
-                                <wm-liveform novalidate="false" errormessage="" title="Add Subscription" formlayout="dialog" iconclass="wi wi-account-box" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" captionalign="left" captionposition="top"
-                                name="liveform2">
-                                    <wm-layoutgrid columns="3" name="layoutgrid3">
+                                <wm-liveform novalidate="false" errormessage="" title="Add Subscription" formlayout="dialog" iconclass="wi wi-account-box" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" captionalign="left" captionposition="top" name="liveform2">
+                                    <wm-layoutgrid columns="1" name="layoutgrid3">
                                         <wm-gridrow name="gridrow5">
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn6_1">
-                                                <wm-form-field name="municipalities" displayname="Municipality" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" required="required" widget="select" placeholder="Select Municipality"
-                                                displayexpression="municipalityName" orderby="municipalityName:asc"></wm-form-field>
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn6_1">
+                                                <wm-form-field name="municipalities" displayname="Municipality" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" required="required" widget="select" placeholder="Select Municipality" displayexpression="municipalityName"
+                                                orderby="municipalityName:asc"></wm-form-field>
                                             </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn7">
-                                                <wm-form-field name="users" displayname="User" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" required="required" widget="autocomplete" placeholder="Search by Email"
-                                                displaylabel="email" orderby="email:asc" searchkey="email"></wm-form-field>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow5_2">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn7">
+                                                <wm-form-field name="users" displayname="User" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" required="required" widget="autocomplete" placeholder="Search by Name or Email" displaylabel="fullName+' ('+email+')'"
+                                                orderby="fullName:asc" searchkey="fullName,email"></wm-form-field>
                                             </wm-gridcolumn>
-                                            <wm-gridcolumn name="gridcolumn1" columnwidth="4">
-                                                <wm-form-field name="dateSubscribed" displayname="Date Subscribed" show="true" primary-key="false" generator="assigned" key="dateSubscribed" type="timestamp" readonly="readonly" widget="date" maxchars="255"
-                                                defaultvalue="CURRENT_DATE" datepattern="MM-dd-yyyy" placeholder="Select date" outputformat="timestamp"></wm-form-field>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow5_1">
+                                            <wm-gridcolumn name="gridcolumn1" columnwidth="12">
+                                                <wm-form-field name="dateSubscribed" displayname="Date Subscribed" show="true" primary-key="false" generator="assigned" key="dateSubscribed" type="timestamp" readonly="readonly" widget="date" maxchars="255" defaultvalue="CURRENT_DATE" datepattern="MM-dd-yyyy"
+                                                placeholder="Select date" outputformat="timestamp"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>

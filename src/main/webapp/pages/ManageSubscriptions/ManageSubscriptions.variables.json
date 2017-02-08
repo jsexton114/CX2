@@ -227,7 +227,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -422,6 +422,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "userLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "10",
+          "scale" : 0
+        }, {
+          "fieldName" : "formLimit",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FormLimit",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "5",
           "scale" : 0
         } ]
       }, {
@@ -646,6 +672,19 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 510,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
