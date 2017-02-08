@@ -148,6 +148,10 @@
         <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2FormsForUsersAndSharedrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="FormsTaggedWithGISRecords">
+        <parameter name="gisrecordId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2FormsTaggedWithGISRecordsrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="getEmailId">
         <parameter name="userID" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2getEmailIdrtnType" isList="false"/>
@@ -418,10 +422,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="hqlquery" name="FormsTaggedWithGISRecords">
-        <parameter name="gisrecordId" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
@@ -922,7 +922,15 @@
             <element name="oldStatusId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.FormMessageTagging">
+            <element name="formMessageId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formMessages" typeRef="com.civicxpress.cx2.FormMessages" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="taggedPersonId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.FormMessages">
+            <element name="formMessageTaggings" typeRef="com.civicxpress.cx2.FormMessageTagging" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="masterForms" typeRef="com.civicxpress.cx2.MasterForms" allowNull="true"/>
             <element name="message" typeRef="java.lang.String" allowNull="true"/>
@@ -1293,6 +1301,7 @@
             <element name="feeses" typeRef="com.civicxpress.cx2.Fees" isList="true" allowNull="true"/>
             <element name="firstName" typeRef="java.lang.String" allowNull="true"/>
             <element name="formHistories" typeRef="com.civicxpress.cx2.FormHistory" isList="true" allowNull="true"/>
+            <element name="formMessageTaggings" typeRef="com.civicxpress.cx2.FormMessageTagging" isList="true" allowNull="true"/>
             <element name="formMessageses" typeRef="com.civicxpress.cx2.FormMessages" isList="true" allowNull="true"/>
             <element name="gis2formses" typeRef="com.civicxpress.cx2.Gis2forms" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>

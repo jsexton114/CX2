@@ -25,6 +25,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.FormMessageTagging;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.service.FormMessagesService;
 
@@ -116,6 +117,13 @@ public class FormMessagesController {
     public Long countFormMessages(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting FormMessages");
         return formMessagesService.count(query);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formMessageTaggings", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formMessageTaggings instance associated with the given id.")
+    public Page<FormMessageTagging> findAssociatedFormMessageTaggings(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formMessageTaggings");
+        return formMessagesService.findAssociatedFormMessageTaggings(id, pageable);
     }
 
     /**

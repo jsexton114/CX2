@@ -25,6 +25,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
+import com.civicxpress.cx2.FormMessageTagging;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
@@ -75,6 +76,10 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.FormMessagesService")
 	private FormMessagesService formMessagesService;
+
+    @Autowired
+	@Qualifier("cx2.FormMessageTaggingService")
+	private FormMessageTaggingService formMessageTaggingService;
 
     @Autowired
 	@Qualifier("cx2.VendorUsersService")
@@ -133,6 +138,14 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getFormMessageTaggings() != null) {
+            for(FormMessageTagging formMessageTagging : usersCreated.getFormMessageTaggings()) {
+                formMessageTagging.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child FormMessageTagging with information: {}", formMessageTagging);
+                formMessageTaggingService.create(formMessageTagging);
+            }
+        }
+
         if(usersCreated.getGis2formses() != null) {
             for(Gis2forms gis2formse : usersCreated.getGis2formses()) {
                 gis2formse.setUsers(usersCreated);
@@ -146,14 +159,6 @@ public class UsersServiceImpl implements UsersService {
                 masterFormse.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
                 masterFormsService.create(masterFormse);
-            }
-        }
-
-        if(usersCreated.getMunicipalityGroupMemberses() != null) {
-            for(MunicipalityGroupMembers municipalityGroupMemberse : usersCreated.getMunicipalityGroupMemberses()) {
-                municipalityGroupMemberse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child MunicipalityGroupMembers with information: {}", municipalityGroupMemberse);
-                municipalityGroupMembersService.create(municipalityGroupMemberse);
             }
         }
 
@@ -178,6 +183,14 @@ public class UsersServiceImpl implements UsersService {
                 sharedWithsForSharedWithUser.setUsersBySharedWithUser(usersCreated);
                 LOGGER.debug("Creating a new child SharedWith with information: {}", sharedWithsForSharedWithUser);
                 sharedWithService.create(sharedWithsForSharedWithUser);
+            }
+        }
+
+        if(usersCreated.getMunicipalityGroupMemberses() != null) {
+            for(MunicipalityGroupMembers municipalityGroupMemberse : usersCreated.getMunicipalityGroupMemberses()) {
+                municipalityGroupMemberse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child MunicipalityGroupMembers with information: {}", municipalityGroupMemberse);
+                municipalityGroupMembersService.create(municipalityGroupMemberse);
             }
         }
 
@@ -337,6 +350,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormMessageTagging> findAssociatedFormMessageTaggings(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formMessageTaggings");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return formMessageTaggingService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Gis2forms> findAssociatedGis2formses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gis2formses");
 
@@ -355,17 +379,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("users.id = '" + id + "'");
 
         return masterFormsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return municipalityGroupMembersService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -399,6 +412,17 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersBySharedWithUser.id = '" + id + "'");
 
         return sharedWithService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return municipalityGroupMembersService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -506,6 +530,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setFormMessagesService(FormMessagesService service) {
         this.formMessagesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormMessageTaggingService instance
+	 */
+	protected void setFormMessageTaggingService(FormMessageTaggingService service) {
+        this.formMessageTaggingService = service;
     }
 
     /**

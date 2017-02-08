@@ -57,12 +57,13 @@ public class Users implements Serializable {
     private List<Fees> feeses = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
     private List<FormMessages> formMessageses = new ArrayList<>();
+    private List<FormMessageTagging> formMessageTaggings = new ArrayList<>();
     private List<Gis2forms> gis2formses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
-    private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
     private List<SharedWith> sharedWithsForCreatedBy = new ArrayList<>();
     private List<SharedWith> sharedWithsForSharedWithUser = new ArrayList<>();
+    private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
     private List<VendorAdmins> vendorAdminses = new ArrayList<>();
@@ -260,6 +261,16 @@ public class Users implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<FormMessageTagging> getFormMessageTaggings() {
+        return this.formMessageTaggings;
+    }
+
+    public void setFormMessageTaggings(List<FormMessageTagging> formMessageTaggings) {
+        this.formMessageTaggings = formMessageTaggings;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<Gis2forms> getGis2formses() {
         return this.gis2formses;
     }
@@ -276,16 +287,6 @@ public class Users implements Serializable {
 
     public void setMasterFormses(List<MasterForms> masterFormses) {
         this.masterFormses = masterFormses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<MunicipalityGroupMembers> getMunicipalityGroupMemberses() {
-        return this.municipalityGroupMemberses;
-    }
-
-    public void setMunicipalityGroupMemberses(List<MunicipalityGroupMembers> municipalityGroupMemberses) {
-        this.municipalityGroupMemberses = municipalityGroupMemberses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -316,6 +317,16 @@ public class Users implements Serializable {
 
     public void setSharedWithsForSharedWithUser(List<SharedWith> sharedWithsForSharedWithUser) {
         this.sharedWithsForSharedWithUser = sharedWithsForSharedWithUser;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<MunicipalityGroupMembers> getMunicipalityGroupMemberses() {
+        return this.municipalityGroupMemberses;
+    }
+
+    public void setMunicipalityGroupMemberses(List<MunicipalityGroupMembers> municipalityGroupMemberses) {
+        this.municipalityGroupMemberses = municipalityGroupMemberses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

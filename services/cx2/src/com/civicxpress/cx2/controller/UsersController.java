@@ -34,6 +34,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
+import com.civicxpress.cx2.FormMessageTagging;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
@@ -202,6 +203,13 @@ public class UsersController {
         return usersService.findAssociatedFormMessageses(id, pageable);
     }
 
+    @RequestMapping(value = "/{id:.+}/formMessageTaggings", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formMessageTaggings instance associated with the given id.")
+    public Page<FormMessageTagging> findAssociatedFormMessageTaggings(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formMessageTaggings");
+        return usersService.findAssociatedFormMessageTaggings(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/gis2formses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the gis2formses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -216,14 +224,6 @@ public class UsersController {
     public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
         return usersService.findAssociatedMasterFormses(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/municipalityGroupMemberses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the municipalityGroupMemberses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
-        return usersService.findAssociatedMunicipalityGroupMemberses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)
@@ -248,6 +248,14 @@ public class UsersController {
     public Page<SharedWith> findAssociatedSharedWithsForSharedWithUser(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated sharedWithsForSharedWithUser");
         return usersService.findAssociatedSharedWithsForSharedWithUser(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/municipalityGroupMemberses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the municipalityGroupMemberses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
+        return usersService.findAssociatedMunicipalityGroupMemberses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/userPasswordResetTokenses", method = RequestMethod.GET)

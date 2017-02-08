@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormMessageTagging;
 import com.civicxpress.cx2.FormMessages;
 
 
@@ -34,6 +35,9 @@ public class FormMessagesServiceImpl implements FormMessagesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FormMessagesServiceImpl.class);
 
+    @Autowired
+	@Qualifier("cx2.FormMessageTaggingService")
+	private FormMessageTaggingService formMessageTaggingService;
 
     @Autowired
     @Qualifier("cx2.FormMessagesDao")
@@ -48,6 +52,13 @@ public class FormMessagesServiceImpl implements FormMessagesService {
 	public FormMessages create(FormMessages formMessages) {
         LOGGER.debug("Creating a new FormMessages with information: {}", formMessages);
         FormMessages formMessagesCreated = this.wmGenericDao.create(formMessages);
+        if(formMessagesCreated.getFormMessageTaggings() != null) {
+            for(FormMessageTagging formMessageTagging : formMessagesCreated.getFormMessageTaggings()) {
+                formMessageTagging.setFormMessages(formMessagesCreated);
+                LOGGER.debug("Creating a new child FormMessageTagging with information: {}", formMessageTagging);
+                formMessageTaggingService.create(formMessageTagging);
+            }
+        }
         return formMessagesCreated;
     }
 
@@ -122,7 +133,25 @@ public class FormMessagesServiceImpl implements FormMessagesService {
         return this.wmGenericDao.count(query);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormMessageTagging> findAssociatedFormMessageTaggings(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formMessageTaggings");
 
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formMessages.id = '" + id + "'");
+
+        return formMessageTaggingService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormMessageTaggingService instance
+	 */
+	protected void setFormMessageTaggingService(FormMessageTaggingService service) {
+        this.formMessageTaggingService = service;
+    }
 
 }
 
