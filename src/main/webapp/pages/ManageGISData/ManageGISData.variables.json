@@ -231,7 +231,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -794,6 +794,18 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "fullAddress",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "FullAddress",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 1050,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
       } ],
       "entityName" : "Gisrecords",
       "fullyQualifiedName" : "com.civicxpress.cx2.Gisrecords",
@@ -1040,7 +1052,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -1592,7 +1604,7 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "TRUE",
         "scale" : 0
       }, {
         "fieldName" : "globalEmailSig",
@@ -2047,7 +2059,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "globalEmailSig",
@@ -2609,6 +2621,18 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "fullAddress",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "FullAddress",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 1050,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
         "scale" : 0
       } ],
       "entityName" : "Gisrecords",
