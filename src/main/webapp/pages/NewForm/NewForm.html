@@ -142,16 +142,16 @@
                                                 </label>
                                                 <wm-container class="col-md-9" name="container3">
                                                     <input ng-if="formField.formFieldTypes.label == 'Text'" class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="formData[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}"
-                                                    name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="text" ng-required="formField.required">
+                                                    name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="text" ng-required="formField.required" />
                                                     <input class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="formData[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}" ng-if="formField.formFieldTypes.label == 'Number'"
-                                                    name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="number" ng-required="formField.required">
+                                                    name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="number" ng-required="formField.required" />
                                                     <textarea class="form-control app-textarea" apply-styles="" role="input" focus-target="" ng-model="formData[formField.fieldName]" title="" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0}" ng-if="formField.formFieldTypes.label == 'Long Text'"
                                                     name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" ng-required="formField.required"></textarea>
                                                     <datetime-picker ng-if="formField.formFieldTypes.label == 'Date'" placeholder="Please enter {{formField.label}}" date="formData[formField.fieldName]" name="{{formField.fieldName}}" time="false" ng-required="formField.required"></datetime-picker>
                                                     <datetime-picker ng-if="formField.formFieldTypes.label == 'Date+Time'" placeholder="Please enter {{formField.label}}" date="formData[formField.fieldName]" name="{{formField.fieldName}}" time="true" ng-required="formField.required"></datetime-picker>
-                                                    <div ng-if="formField.formFieldTypes.label == 'Boolean'" class="col-md-9 app-checkbox checkbox ng-scope ng-isolate-scope" style="margin-top: 0" init-widget="" role="input" name="fieldValue{{formField.fieldName}}">
-                                                        <label ng-class="{unchecked: !formData[formField.fieldName]}" style="padding-left: 0" role="button">
-                                                            <input type="checkbox" ng-model="formData[formField.fieldName]"><span class="caption ng-binding" ng-bind-html=""></span>
+                                                    <div ng-if="formField.formFieldTypes.label == 'Boolean'" class="app-checkbox checkbox" style="margin-top: 0" role="input" name="fieldValue{{formField.fieldName}}">
+                                                        <label ng-class="{unchecked: !Variables.svGetFormData.dataSet[formField.fieldName]}" style="padding-left: 0" role="button">
+                                                            <input type="checkbox" ng-model="formData[formField.fieldName]" /><span class="caption ng-binding" ng-bind-html=""></span>
                                                         </label>
                                                     </div>
                                                 </wm-container>

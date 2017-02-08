@@ -754,21 +754,6 @@
           "targetTable" : "FormTypes",
           "scale" : 0
         }, {
-          "fieldName" : "municipalityGroupsByReadAccess",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "ReadAccess",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "defaultValue" : "",
-          "relatedColumnName" : "readAccess",
-          "targetTable" : "MunicipalityGroups",
-          "scale" : 0
-        }, {
           "fieldName" : "municipalityGroupsByProcessOwners",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -4944,21 +4929,6 @@
           "targetTable" : "FormTypes",
           "scale" : 0
         }, {
-          "fieldName" : "municipalityGroupsByReadAccess",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "ReadAccess",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "defaultValue" : "",
-          "relatedColumnName" : "readAccess",
-          "targetTable" : "MunicipalityGroups",
-          "scale" : 0
-        }, {
           "fieldName" : "municipalityGroupsByProcessOwners",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -5254,21 +5224,6 @@
           "defaultValue" : "",
           "relatedColumnName" : "formTypeId",
           "targetTable" : "FormTypes",
-          "scale" : 0
-        }, {
-          "fieldName" : "municipalityGroupsByReadAccess",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "ReadAccess",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "defaultValue" : "",
-          "relatedColumnName" : "readAccess",
-          "targetTable" : "MunicipalityGroups",
           "scale" : 0
         }, {
           "fieldName" : "municipalityGroupsByProcessOwners",
@@ -7656,80 +7611,6 @@
           "scale" : 0
         } ]
       }, {
-        "fieldName" : "municipalityGroupsByReadAccess",
-        "type" : "integer",
-        "fullyQualifiedType" : "integer",
-        "columnName" : "ReadAccess",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 10,
-        "generator" : "assigned",
-        "isRelated" : true,
-        "defaultValue" : "",
-        "relatedTableName" : "MunicipalityGroups",
-        "relatedEntityName" : "MunicipalityGroups",
-        "relatedColumnName" : "readAccess",
-        "relatedFieldName" : "municipalityGroupsByReadAccess.id",
-        "isList" : false,
-        "targetTable" : "MunicipalityGroups",
-        "scale" : 0,
-        "columns" : [ {
-          "fieldName" : "municipalities",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "MunicipalityId",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "defaultValue" : "",
-          "relatedColumnName" : "municipalityId",
-          "targetTable" : "Municipalities",
-          "scale" : 0
-        }, {
-          "fieldName" : "id",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "ID",
-          "isPrimaryKey" : true,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "identity",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "groupName",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "GroupName",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "groupDescription",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "GroupDescription",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        } ]
-      }, {
         "fieldName" : "municipalityGroupsByProcessOwners",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -8045,7 +7926,7 @@
     "spinnerContext" : "livelistStatus",
     "tableName" : "FormStatuses",
     "tableType" : "TABLE",
-    "properties" : [ "municipalityGroupsByWriteAccess", "formTypes", "municipalityGroupsByReadAccess", "municipalityGroupsByProcessOwners" ],
+    "properties" : [ "municipalityGroupsByWriteAccess", "formTypes", "municipalityGroupsByProcessOwners" ],
     "relatedTables" : [ {
       "columnName" : "municipalityGroupsByWriteAccess",
       "relationName" : "municipalityGroupsByWriteAccess",
@@ -8057,12 +7938,6 @@
       "relationName" : "formTypes",
       "type" : "FormTypes",
       "watchOn" : "Cx2FormTypesData",
-      "package" : "com.civicxpress.cx2.FormStatuses"
-    }, {
-      "columnName" : "municipalityGroupsByReadAccess",
-      "relationName" : "municipalityGroupsByReadAccess",
-      "type" : "MunicipalityGroups",
-      "watchOn" : "Cx2MunicipalityGroupsData",
       "package" : "com.civicxpress.cx2.FormStatuses"
     }, {
       "columnName" : "municipalityGroupsByProcessOwners",
