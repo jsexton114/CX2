@@ -1539,31 +1539,6 @@
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "readAccess",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ReadAccess",
-      "nullable" : true,
-      "oldName" : "ReadAccess",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
         "defaultValue" : null
       },
       "fieldName" : "report",
@@ -1764,23 +1739,6 @@
       "sourceTable" : "FormStatuses",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "FormTypes",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "municipalityGroupsByReadAccess",
-      "mappings" : [ {
-        "sourceColumn" : "ReadAccess",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_MunicipalityGroups_TOMYALB",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "FormStatuses",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "MunicipalityGroups",
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
@@ -8140,23 +8098,6 @@
         "targetColumn" : "WriteAccess"
       } ],
       "name" : "FK_FormStatuses_TO_MunicV5Vf3",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "MunicipalityGroups",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "FormStatuses",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "formStatusesesForReadAccess",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "ReadAccess"
-      } ],
-      "name" : "FK_MunicipalityGroups_TOMYALB",
       "primary" : false,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,

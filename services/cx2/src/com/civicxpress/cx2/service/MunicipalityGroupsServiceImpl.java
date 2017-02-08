@@ -70,14 +70,6 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
             }
         }
 
-        if(municipalityGroupsCreated.getFormStatusesesForReadAccess() != null) {
-            for(FormStatuses formStatusesesForReadAcces : municipalityGroupsCreated.getFormStatusesesForReadAccess()) {
-                formStatusesesForReadAcces.setMunicipalityGroupsByReadAccess(municipalityGroupsCreated);
-                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusesesForReadAcces);
-                formStatusesService.create(formStatusesesForReadAcces);
-            }
-        }
-
         if(municipalityGroupsCreated.getFormStatusesesForProcessOwners() != null) {
             for(FormStatuses formStatusesesForProcessOwner : municipalityGroupsCreated.getFormStatusesesForProcessOwners()) {
                 formStatusesesForProcessOwner.setMunicipalityGroupsByProcessOwners(municipalityGroupsCreated);
@@ -182,17 +174,6 @@ public class MunicipalityGroupsServiceImpl implements MunicipalityGroupsService 
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("municipalityGroupsByWriteAccess.id = '" + id + "'");
-
-        return formStatusesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<FormStatuses> findAssociatedFormStatusesesForReadAccess(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formStatusesesForReadAccess");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalityGroupsByReadAccess.id = '" + id + "'");
 
         return formStatusesService.findAll(queryBuilder.toString(), pageable);
     }

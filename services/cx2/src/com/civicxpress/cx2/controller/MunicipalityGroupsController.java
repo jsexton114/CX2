@@ -129,14 +129,6 @@ public class MunicipalityGroupsController {
         return municipalityGroupsService.findAssociatedFormStatusesesForWriteAccess(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/formStatusesesForReadAccess", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the formStatusesesForReadAccess instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormStatuses> findAssociatedFormStatusesesForReadAccess(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formStatusesesForReadAccess");
-        return municipalityGroupsService.findAssociatedFormStatusesesForReadAccess(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/formStatusesesForProcessOwners", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the formStatusesesForProcessOwners instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

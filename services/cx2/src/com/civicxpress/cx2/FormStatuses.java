@@ -49,7 +49,6 @@ public class FormStatuses implements Serializable {
     private Long sortOrder;
     private String status;
     private String description;
-    private Integer readAccess;
     private String report;
     private Integer processOwners;
     private Boolean sendEmail;
@@ -58,7 +57,6 @@ public class FormStatuses implements Serializable {
     private boolean publicRead;
     private MunicipalityGroups municipalityGroupsByWriteAccess;
     private FormTypes formTypes;
-    private MunicipalityGroups municipalityGroupsByReadAccess;
     private MunicipalityGroups municipalityGroupsByProcessOwners;
     private List<FormHistory> formHistoriesForOldStatusId = new ArrayList<>();
     private List<FormHistory> formHistoriesForNewStatusId = new ArrayList<>();
@@ -201,15 +199,6 @@ public class FormStatuses implements Serializable {
         this.description = description;
     }
 
-    @Column(name = "`ReadAccess`", nullable = true, scale = 0, precision = 10)
-    public Integer getReadAccess() {
-        return this.readAccess;
-    }
-
-    public void setReadAccess(Integer readAccess) {
-        this.readAccess = readAccess;
-    }
-
     @Column(name = "`Report`", nullable = true, length = 255)
     public String getReport() {
         return this.report;
@@ -290,20 +279,6 @@ public class FormStatuses implements Serializable {
         }
 
         this.formTypes = formTypes;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`ReadAccess`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public MunicipalityGroups getMunicipalityGroupsByReadAccess() {
-        return this.municipalityGroupsByReadAccess;
-    }
-
-    public void setMunicipalityGroupsByReadAccess(MunicipalityGroups municipalityGroupsByReadAccess) {
-        if(municipalityGroupsByReadAccess != null) {
-            this.readAccess = municipalityGroupsByReadAccess.getId();
-        }
-
-        this.municipalityGroupsByReadAccess = municipalityGroupsByReadAccess;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -978,11 +978,9 @@
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
             <element name="municipalityGroupsByProcessOwners" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
-            <element name="municipalityGroupsByReadAccess" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="municipalityGroupsByWriteAccess" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="processOwners" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="publicRead" typeRef="java.lang.Boolean" allowNull="true"/>
-            <element name="readAccess" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="recalculateAutoFees" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="report" typeRef="java.lang.String" allowNull="true"/>
             <element name="sendEmail" typeRef="java.lang.Boolean" allowNull="true"/>
@@ -1248,7 +1246,6 @@
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.MunicipalityGroups">
             <element name="formStatusesesForProcessOwners" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
-            <element name="formStatusesesForReadAccess" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
             <element name="formStatusesesForWriteAccess" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>
             <element name="groupDescription" typeRef="java.lang.String" allowNull="true"/>
             <element name="groupName" typeRef="java.lang.String" allowNull="true"/>
