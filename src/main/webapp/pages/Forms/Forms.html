@@ -446,10 +446,10 @@
                                                 shape="circle"></wm-picture>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="8" name="gridcolumn158_1">
-                                                <wm-text name="textAddMessage" placeholder="Type a message....." on-change="textAddMessageChange($event, $scope, newVal, oldVal)" on-blur="textAddMessageBlur($event, $scope)" on-keyup="textAddMessageKeyup($event, $scope)"></wm-text>
+                                                <wm-text name="textAddMessage" placeholder="Type a message....." updateon="default"></wm-text>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="3" name="gridcolumn159_1">
-                                                <wm-button class="btn-default btn-primary" caption="Post" type="button" margin="unset 0.5em" name="buttonAddMessage" iconclass="wi wi-send" on-click="buttonAddMessageClick($event, $scope)" disabled="false"></wm-button>
+                                                <wm-button class="btn-default btn-primary" caption="Post" type="button" margin="unset 0.5em" name="buttonAddMessage" iconclass="wi wi-send" on-click="buttonAddMessageClick($event, $scope)" disabled="bind:!Widgets.textAddMessage.datavalue"></wm-button>
                                                 <wm-button class="btn-default" caption="Tag People" type="button" margin="unset 0.5em" name="button17" iconclass="wi wi-tag" on-click="Widgets.dialogTagPeople.open()" badgevalue="bind:Variables.PeopleList.dataSet.length"></wm-button>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
