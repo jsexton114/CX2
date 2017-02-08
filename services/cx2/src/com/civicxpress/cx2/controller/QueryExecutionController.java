@@ -320,6 +320,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/FormsTaggedWithGISRecords", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeFormsTaggedWithGISRecords(@RequestParam(value = "gisrecordId", required = false) java.lang.Integer gisrecordId, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query FormsTaggedWithGISRecords");
+        Page<Object> result = queryService.executeFormsTaggedWithGISRecords(pageable, gisrecordId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/getEmailId", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeGetEmailId(@RequestParam(value = "userID", required = false) java.lang.Integer userID, Pageable pageable) throws QueryParameterMismatchException {

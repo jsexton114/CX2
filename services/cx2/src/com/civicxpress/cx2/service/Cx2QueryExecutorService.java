@@ -43,6 +43,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeEmployeesOrAdminsMunicipalities(Pageable pageable, java.lang.Integer user, java.lang.String role) throws QueryParameterMismatchException;
     Page<Object> executeFormsCountForMunicipalities(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeFormsForUsersAndShared(Pageable pageable, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
+    Page<Object> executeFormsTaggedWithGISRecords(Pageable pageable, java.lang.Integer gisrecordId) throws QueryParameterMismatchException;
     Page<Object> executeGetEmailId(Pageable pageable, java.lang.Integer userID) throws QueryParameterMismatchException;
     Page<Object> executeGetFormsForMunicpality(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeGetFormTypeFieldsByTypeId(Pageable pageable, java.lang.Long formTypeId) throws QueryParameterMismatchException;

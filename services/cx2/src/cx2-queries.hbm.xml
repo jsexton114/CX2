@@ -141,6 +141,11 @@
       from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser )) ORDER BY DateModified DESC
     ]]>
   </query>
+  <query name="FormsTaggedWithGISRecords">
+    <![CDATA[
+      from MasterForms where FormGUID IN (select relatedFormGuid from Gis2forms where gisrecordId=:gisrecordId ) ORDER BY DateModified DESC
+    ]]>
+  </query>
   <sql-query name="getEmailId">
     <![CDATA[
       select Email from Users where ID =:userID
