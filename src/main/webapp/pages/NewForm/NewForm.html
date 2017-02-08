@@ -42,7 +42,7 @@
                                 <wm-layoutgrid name="layoutgrid14">
                                     <wm-gridrow name="gridrow41_2">
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn83_1">
-                                            <wm-search name="searchOnBehalfOfUser" dataset="bind:Variables.Cx2UsersData.dataSet" searchkey="email,firstName,lastName" displaylabel="bind:$[data[$i].firstName]+' '+$[data[$i].lastName]+' ('+$[data[$i].email]+')'" datafield="All Fields" placeholder="Search by Name or Email"
+                                            <wm-search name="searchOnBehalfOfUser" dataset="bind:Variables.Cx2UsersData.dataSet" searchkey="email,fullName" displaylabel="bind:$[data[$i].firstName]+' '+$[data[$i].lastName]+' ('+$[data[$i].email]+')'" datafield="All Fields" placeholder="Search by Name or Email"
                                             disabled="bind:Widgets.checkboxNewUser.datavalue" required="false"></wm-search>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn87_1">
@@ -476,7 +476,7 @@
                 <wm-gridrow name="gridrow34"></wm-gridrow>
                 <wm-gridrow name="gridrow35">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn81">
-                        <wm-search name="searchContact" dataset="bind:Variables.Cx2UsersData.dataSet" searchkey="email" displaylabel="email" datafield="All Fields" placeholder="Search by Email Address"></wm-search>
+                        <wm-search name="searchContact" dataset="bind:Variables.Cx2UsersData.dataSet" searchkey="email,fullName" displaylabel="email" datafield="All Fields" placeholder="Search by Name or Email Address"></wm-search>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>

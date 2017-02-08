@@ -9473,6 +9473,31 @@
       "scale" : 0,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "fullName",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 510,
+      "name" : "FullName",
+      "nullable" : true,
+      "oldName" : "FullName",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
     } ],
     "constraints" : [ {
       "columns" : [ "Email" ],

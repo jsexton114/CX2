@@ -53,6 +53,7 @@ public class Users implements Serializable {
     private String password;
     private Integer stateId;
     private String country;
+    private String fullName;
     private States states;
     private List<Fees> feeses = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
@@ -213,6 +214,15 @@ public class Users implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Column(name = "`FullName`", nullable = true, length = 510)
+    public String getFullName() {
+        return this.fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
