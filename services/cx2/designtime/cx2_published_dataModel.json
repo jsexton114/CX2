@@ -1684,6 +1684,31 @@
       "scale" : 0,
       "sqlType" : "number",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : "false"
+      },
+      "fieldName" : "publicRead",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "boolean",
+      "length" : 0,
+      "name" : "PublicRead",
+      "nullable" : false,
+      "oldName" : "PublicRead",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "boolean",
+      "unique" : false
     } ],
     "constraints" : [ {
       "columns" : [ "SortOrder", "FormTypeId" ],
@@ -9485,9 +9510,9 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 510,
+      "length" : 511,
       "name" : "FullName",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "FullName",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,

@@ -216,7 +216,7 @@ public class Users implements Serializable {
         this.country = country;
     }
 
-    @Column(name = "`FullName`", nullable = true, length = 510)
+    @Column(name = "`FullName`", nullable = false, length = 511)
     public String getFullName() {
         return this.fullName;
     }

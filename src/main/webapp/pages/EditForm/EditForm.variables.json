@@ -5775,6 +5775,19 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "publicRead",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "PublicRead",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
       } ],
       "entityName" : "FormStatuses",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormStatuses",

@@ -981,6 +981,7 @@
             <element name="municipalityGroupsByReadAccess" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="municipalityGroupsByWriteAccess" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="processOwners" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="publicRead" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="readAccess" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="recalculateAutoFees" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="report" typeRef="java.lang.String" allowNull="true"/>

@@ -55,6 +55,7 @@ public class FormStatuses implements Serializable {
     private Boolean sendEmail;
     private Boolean allowAttachments;
     private Integer writeAccess;
+    private boolean publicRead;
     private MunicipalityGroups municipalityGroupsByWriteAccess;
     private FormTypes formTypes;
     private MunicipalityGroups municipalityGroupsByReadAccess;
@@ -252,6 +253,15 @@ public class FormStatuses implements Serializable {
 
     public void setWriteAccess(Integer writeAccess) {
         this.writeAccess = writeAccess;
+    }
+
+    @Column(name = "`PublicRead`", nullable = false)
+    public boolean isPublicRead() {
+        return this.publicRead;
+    }
+
+    public void setPublicRead(boolean publicRead) {
+        this.publicRead = publicRead;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
