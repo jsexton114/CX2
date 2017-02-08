@@ -21,6 +21,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
 
     var userRoles = null;
     var municipalityId = null;
+    var internalForm = null;
 
     // Variables to control which steps should be available
     $scope.submitOnBehalf = false;
@@ -52,6 +53,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
     $scope.lvFormTypeonSuccess = function(variable, data) {
         var formType = data[0];
         municipalityId = formType.municipalityId;
+        internalForm = formType.municipalityInternalForm;
         $scope.Variables.stvBreadCrumbs.dataSet[1].label += (': ' + data[0].formType);
         $scope.gisRecords = formType.gisrecord;
         $scope.vendorInfo = formType.vendorSelection;
@@ -59,25 +61,22 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         $scope.documents = formType.attachments;
         $scope.sharing = formType.sharedWith;
 
-        if (!!formType.municipalityInternalForm) {
-            $scope.submitOnBehalf = false;
-            iterateLoading();
-        } else {
-            shouldSubmitOnBehalf();
-        }
+        shouldSubmitOnBehalf();
     };
 
     function shouldSubmitOnBehalf() {
-        if (!userRoles || municipalityId === false) {
+        if (!userRoles || municipalityId === false || internalForm === null) {
             return;
         }
 
-        userRoles.some(function(role, index) {
-            if ((role.RoleName === 'CXAdmin') || ((role.RoleName === 'MunicipalityAdmin' || role.RoleName === 'MunicipalityEmployee') && role.MunicipalityId == municipalityId)) {
-                $scope.submitOnBehalf = true;
-                return true;
-            }
-        });
+        if (internalForm === false) {
+            userRoles.some(function(role, index) {
+                if ((role.RoleName === 'CXAdmin') || ((role.RoleName === 'MunicipalityAdmin' || role.RoleName === 'MunicipalityEmployee') && role.MunicipalityId == municipalityId)) {
+                    $scope.submitOnBehalf = true;
+                    return true;
+                }
+            });
+        }
 
         iterateLoading();
     }
