@@ -188,16 +188,15 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
 
     $scope.GetMessageIdForCurrentPostonSuccess = function(variable, data) {
-        debugger
         var people = $scope.Variables.PeopleList.dataSet;
-        var m = data.content[0].recentMessageId;
-        var temp = [];
+        var m = data.content[0];
         // Insert people as Tagged People For RecentMessage
         for (var i = 0; i < people.length; i++) {
-            temp.push(people[i].id);
             $scope.Variables.InsertTaggedPeople.setInput({
-                'TaggedPersonId': people[i].id,
-                'FormMessageId': m
+                "taggedPersonId": people[i].id,
+                "users": people[i],
+                "formMessages": m,
+                "formMessageId": data.content[0].id,
             });
             $scope.Variables.InsertTaggedPeople.insertRecord();
         }
@@ -429,5 +428,12 @@ Application.$controller("dialogTagPeopleController", ["$scope",
             selectedMunicipalites = $scope.Variables.PeopleList.dataSet;
         };
 
+    }
+]);
+
+Application.$controller("dialogShowTaggedPeopleController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

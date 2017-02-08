@@ -428,7 +428,7 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="GetRecentMessageId">
+    <operation operationType="hqlquery" name="GetRecentMessageId">
         <parameter name="form" typeRef="java.lang.String" isList="false"/>
         <parameter name="PostedAt" typeRef="java.sql.Timestamp" isList="false"/>
         <return isList="false"/>
@@ -611,7 +611,7 @@
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2GetProcessGroupMemebersByFormGUIDrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="GetRecentMessageId">
+    <operation operationType="hqlquery" name="GetRecentMessageId">
         <parameter name="form" typeRef="java.lang.String" isList="false"/>
         <parameter name="PostedAt" typeRef="java.sql.Timestamp" isList="false"/>
         <return typeRef="cx2GetRecentMessageIdrtnType" isList="false"/>
@@ -1754,7 +1754,14 @@
             <element name="UserId" typeRef="java.math.BigDecimal"/>
         </dataobject>
         <dataobject javaType="cx2GetRecentMessageIdrtnType">
-            <element name="recentMessageId" typeRef="java.math.BigDecimal"/>
+            <element name="formMessageTaggings" typeRef="java.util.List"/>
+            <element name="id" typeRef="java.lang.Integer"/>
+            <element name="masterForms" typeRef="com.civicxpress.cx2.MasterForms"/>
+            <element name="message" typeRef="java.lang.String"/>
+            <element name="postedAt" typeRef="java.util.Date"/>
+            <element name="relatedFormGuid" typeRef="java.lang.String"/>
+            <element name="userId" typeRef="java.lang.Integer"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users"/>
         </dataobject>
         <dataobject javaType="cx2GetRolesForMunicipalityrtnType">
             <element name="Active" typeRef="java.lang.String"/>

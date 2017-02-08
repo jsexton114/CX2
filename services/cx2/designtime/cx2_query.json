@@ -1183,10 +1183,10 @@
     }
   }, {
     "name" : "GetRecentMessageId",
-    "query" : "select ID as recentMessageId from FormMessages where RelatedFormGUID=:form and PostedAt=:PostedAt",
+    "query" : "from FormMessages where RelatedFormGUID=:form and PostedAt=:PostedAt",
     "comment" : "GetRecentMessageId",
     "description" : null,
-    "nativeSql" : true,
+    "nativeSql" : false,
     "returnsSingleResult" : false,
     "update" : false,
     "queryParams" : [ {
@@ -1206,7 +1206,14 @@
     } ],
     "outputType" : "cx2GetRecentMessageIdrtnType",
     "returnTypeMetadata" : {
-      "recentMessageId" : "java.math.BigDecimal"
+      "formMessageTaggings" : "java.util.List",
+      "id" : "java.lang.Integer",
+      "masterForms" : "com.civicxpress.cx2.MasterForms",
+      "message" : "java.lang.String",
+      "postedAt" : "java.util.Date",
+      "relatedFormGuid" : "java.lang.String",
+      "userId" : "java.lang.Integer",
+      "users" : "com.civicxpress.cx2.Users"
     }
   }, {
     "name" : "GetRolesForMunicipality",

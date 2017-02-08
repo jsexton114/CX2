@@ -186,11 +186,11 @@
       select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF where  MF.FormGUID=:FormGUID and MG.ID=MF.AssignedToGroupId and MG.ID=MGM.MunicipalityGroupId
     ]]>
   </sql-query>
-  <sql-query name="GetRecentMessageId">
+  <query name="GetRecentMessageId">
     <![CDATA[
-      select ID as recentMessageId from FormMessages where RelatedFormGUID=:form and PostedAt=:PostedAt
+      from FormMessages where RelatedFormGUID=:form and PostedAt=:PostedAt
     ]]>
-  </sql-query>
+  </query>
   <sql-query name="GetRolesForMunicipality">
     <![CDATA[
       select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID
