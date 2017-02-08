@@ -288,6 +288,19 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "fullName",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "FullName",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 510,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "Users",
       "fullyQualifiedName" : "com.civicxpress.cx2.Users",
@@ -1534,6 +1547,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 510,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -2370,6 +2396,19 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 510,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
