@@ -103,14 +103,14 @@ Application.$controller("liveformUpdateFormTypeController", ["$scope",
     }
 ]);
 
-Application.$controller("grid1Controller", ["$scope",
+Application.$controller("gridFormTypeStatusController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
     }
 ]);
 
-Application.$controller("liveform2Controller", ["$scope",
+Application.$controller("lfFormTypeStatusController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;

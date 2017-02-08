@@ -237,7 +237,7 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneAttachments" title="ATTACHMENTS">
+                                <wm-tabpane name="tabpaneAttachments" title="ATTACHMENTS" show="bind:Variables.lvFormType.dataSet.data[$i].attachments">
                                     <wm-layoutgrid name="layoutgrid19">
                                         <wm-gridrow name="gridrow64">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn133">
@@ -251,11 +251,12 @@
                                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="Document List" dataset="bind:Variables.Cx2DocumentData.dataSet" navigation="Classic" name="gridDocuments">
                                                         <wm-grid-column binding="filename" caption="Filename" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-action key="addNewRow" display-name="Add" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add" action="Widgets.dialogUploadDocument.open()" shortcutkey=""
-                                                        disabled="false"></wm-grid-action>
+                                                        <wm-grid-action key="addNewRow" display-name="Add" show="bind:Variables.FormStatus.dataSet.data[$i].allowAttachments" class="btn-primary" iconclass="wi wi-plus" title="Add" action="Widgets.dialogUploadDocument.open()"
+                                                        shortcutkey="" disabled="false"></wm-grid-action>
                                                         <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download" action="Variables.svDownloadDocument.invoke()"
                                                         disabled="false"></wm-grid-row-action>
-                                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.FormStatus.dataSet.data[$i].allowAttachments" class="btn-transparent" iconclass="wi wi-trash" title="Delete"
+                                                        action="deleteRow()" disabled="false"></wm-grid-row-action>
                                                     </wm-grid>
                                                 </wm-livegrid>
                                             </wm-gridcolumn>

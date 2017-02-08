@@ -665,19 +665,19 @@ public class FormService {
 	    			}
 	    		}
 	    		
-	    		if (stateFee != null && !stateFee.equals(0)) {
-	    			totalFees = totalFees.add(stateFee);
-	    			queryParams.put("stateFeeAmount", currFormat.format(stateFee.doubleValue()));
-	    			queryParams.put("stateFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
-    				formFeesValues.add("(:formGuid, :stateFeeAmount, 'State Fee', 1, :stateFeeAccountingCode, 'Unpaid')");
-	    		}
-	    		
 	    		if (basementFee != null && !basementFee.equals(0) && fieldData.get("Basement") != null && (Boolean) fieldData.get("Basement")) {
 	    			totalFees = totalFees.add(basementFee);
 	    			queryParams.put("basementFeeAmount", currFormat.format(basementFee.doubleValue()));
 	    			queryParams.put("basementFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
-	    			// throw new SQLException("Basement Value: "+currFormat.format(basementFee.doubleValue()));
     				formFeesValues.add("(:formGuid, :basementFeeAmount, 'Basement Fee', 1, :basementFeeAccountingCode, 'Unpaid')");
+	    		}
+	    		
+	    		if (stateFee != null && !stateFee.equals(0)) {
+	    			BigDecimal calcedStateFee = totalFees.multiply(stateFee);
+	    			totalFees = totalFees.add(stateFee);
+	    			queryParams.put("stateFeeAmount", currFormat.format(calcedStateFee.doubleValue()));
+	    			queryParams.put("stateFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
+    				formFeesValues.add("(:formGuid, :stateFeeAmount, 'State Fee', 1, :stateFeeAccountingCode, 'Unpaid')");
 	    		}
 	    		
 	    		if (formFeesValues.size() > 0) {
