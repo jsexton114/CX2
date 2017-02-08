@@ -290,7 +290,8 @@
                                                             <wm-gridrow name="gridrow12">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn24">
                                                                     <wm-form-field name="usersBySharedWithUser" displayname="Who would you like to share this form with?" show="true" primary-key="false" generator="assigned" key="usersBySharedWithUser" type="list"
-                                                                    is-related="true" required="required" widget="autocomplete" placeholder="Search by Email Address" displaylabel="email" searchkey="email" orderby="email:desc"></wm-form-field>
+                                                                    is-related="true" required="required" widget="autocomplete" placeholder="Search by Name or Email Address" displaylabel="bind:$[data[$i].fullName] + ' (' + $[data[$i].email] + ')'" searchkey="email,fullName"
+                                                                    orderby="email:desc" dataset="bind:Variables.GetPeople.dataSet" datafield="All Fields"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                         </wm-layoutgrid>

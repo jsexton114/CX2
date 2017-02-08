@@ -691,6 +691,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "instructions",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Instructions",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 8000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -1917,6 +1929,19 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 510,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -3810,6 +3835,19 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 510,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -5980,6 +6018,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "instructions",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Instructions",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 8000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -6203,6 +6253,19 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 510,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -6815,6 +6878,19 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 510,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -7527,6 +7603,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "instructions",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Instructions",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 8000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "municipalityGroupsByReadAccess",
@@ -8218,13 +8306,26 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "fullName",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "FullName",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 510,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "Users",
       "fullyQualifiedName" : "com.civicxpress.cx2.Users",
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 1,
+    "bindCount" : 2,
     "spinnerContext" : "viewTagPeople",
     "tableName" : "Users",
     "tableType" : "TABLE",
@@ -8515,6 +8616,19 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 510,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -9479,6 +9593,19 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 510,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -11493,6 +11620,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 510,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formMessages",
@@ -12561,6 +12701,18 @@
         "isPrimaryKey" : false,
         "notNull" : true,
         "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "instructions",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
+        "columnName" : "Instructions",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 8000,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -14405,6 +14557,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 510,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "usersBySharedWithUser",
@@ -14628,6 +14793,19 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 510,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
