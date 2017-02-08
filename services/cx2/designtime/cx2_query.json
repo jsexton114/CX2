@@ -1022,7 +1022,7 @@
     }
   }, {
     "name" : "GetFormTypesByCategoriesAndMunicipalities",
-    "query" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=:MunicipalityInternalForm",
+    "query" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and\n(FT.MunicipalityInternalForm=0 or exists (SELECT RoleName from Roles where UserId=:userId and (MunicipalityId=FC.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))",
     "comment" : "GetFormTypesByCategoriesAndMunicipalities",
     "description" : null,
     "nativeSql" : true,
@@ -1031,7 +1031,7 @@
     "queryParams" : [ {
       "paramName" : "formCategory",
       "paramType" : "java.lang.Integer",
-      "testValue" : "3",
+      "testValue" : "1",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
@@ -1043,9 +1043,9 @@
       "systemParam" : false,
       "list" : false
     }, {
-      "paramName" : "MunicipalityInternalForm",
-      "paramType" : "java.lang.Boolean",
-      "testValue" : "true",
+      "paramName" : "userId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
@@ -1053,34 +1053,45 @@
     "outputType" : "cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType",
     "returnTypeMetadata" : {
       "Active" : "java.lang.Boolean",
-      "Attachments" : "java.lang.String",
+      "Attachments" : "java.lang.Boolean",
       "AutomaticFees" : "java.lang.Boolean",
       "BasementFee" : "java.lang.String",
       "BasementFeeAccountingCode" : "java.lang.String",
       "CollectFees" : "java.lang.Boolean",
       "CreatedDate" : "java.sql.Date",
-      "DigitalSignatures" : "java.lang.Boolean",
+      "CurrentPrefixNumber" : "java.math.BigDecimal",
+      "DigitalSignatures" : "java.lang.String",
       "FlatFee" : "java.lang.String",
       "FlatFeeAccountingCode" : "java.lang.String",
       "FormTableName" : "java.lang.String",
       "FormType" : "java.lang.String",
       "FormTypeGuid" : "java.lang.String",
-      "GISMap" : "java.lang.String",
-      "GISRecord" : "java.lang.String",
+      "GISMap" : "java.lang.Boolean",
+      "GISRecord" : "java.lang.Boolean",
       "ID" : "java.math.BigDecimal",
       "Inspections" : "java.lang.String",
       "MultipleGISRecords" : "java.lang.Boolean",
+      "MultipleVendors" : "java.lang.Boolean",
       "MunicipalityId" : "java.math.BigDecimal",
       "MunicipalityInternalForm" : "java.lang.Boolean",
-      "Payments" : "java.lang.String",
+      "Payments" : "java.lang.Boolean",
+      "PrefixDashes" : "java.lang.Boolean",
+      "PrefixDate" : "java.lang.String",
+      "PrefixNumber" : "java.lang.String",
+      "PrefixNumberResetOn" : "java.math.BigDecimal",
+      "PrefixNumberStart" : "java.math.BigDecimal",
+      "PrefixNumberStep" : "java.math.BigDecimal",
       "Report" : "java.lang.String",
+      "RequireOwner" : "java.lang.Boolean",
       "SfFee" : "java.lang.String",
       "SfFeeAccountingCode" : "java.lang.String",
-      "SharedWith" : "java.lang.String",
+      "SharedWith" : "java.lang.Boolean",
       "StateFee" : "java.lang.String",
       "StateFeeAccountingCode" : "java.lang.String",
+      "TitlePrefix" : "java.lang.String",
       "UnitFee" : "java.lang.String",
-      "UnitFeeAccountingCode" : "java.lang.String"
+      "UnitFeeAccountingCode" : "java.lang.String",
+      "VendorSelection" : "java.lang.Boolean"
     }
   }, {
     "name" : "getListofGroupName",

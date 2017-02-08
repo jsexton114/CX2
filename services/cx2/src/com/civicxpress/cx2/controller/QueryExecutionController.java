@@ -362,9 +362,9 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/GetFormTypesByCategoriesAndMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(@RequestParam(value = "formCategory", required = false) java.lang.Integer formCategory, @RequestParam(value = "isActive", required = false) java.lang.Boolean isActive, @RequestParam(value = "MunicipalityInternalForm", required = false) java.lang.Boolean MunicipalityInternalForm, Pageable pageable) throws QueryParameterMismatchException {
+    public Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(@RequestParam(value = "formCategory", required = false) java.lang.Integer formCategory, @RequestParam(value = "isActive", required = false) java.lang.Boolean isActive, @RequestParam(value = "userId", required = false) java.lang.Integer userId, Pageable pageable) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query GetFormTypesByCategoriesAndMunicipalities");
-        Page<Object> result = queryService.executeGetFormTypesByCategoriesAndMunicipalities(pageable, formCategory, isActive, MunicipalityInternalForm);
+        Page<Object> result = queryService.executeGetFormTypesByCategoriesAndMunicipalities(pageable, formCategory, isActive, userId);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

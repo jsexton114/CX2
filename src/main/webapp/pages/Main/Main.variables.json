@@ -942,13 +942,13 @@
       "value" : "bind:Widgets.selectCategory.datavalue",
       "type" : "integer"
     }, {
-      "target" : "MunicipalityInternalForm",
-      "value" : false,
-      "type" : "boolean"
-    }, {
       "target" : "isActive",
       "value" : true,
       "type" : "boolean"
+    }, {
+      "target" : "userId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
     } ],
     "type" : "cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType",
     "service" : "cx2",

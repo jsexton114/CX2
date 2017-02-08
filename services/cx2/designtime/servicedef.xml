@@ -164,12 +164,6 @@
         <parameter name="formTypeId" typeRef="java.lang.Long" isList="false"/>
         <return typeRef="cx2getFormTypeFieldsByTypeIdrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
-        <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="isActive" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="MunicipalityInternalForm" typeRef="java.lang.Boolean" isList="false"/>
-        <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
-    </operation>
     <operation operationType="nativequery" name="getListofUsers">
         <parameter name="municipalityID" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="Email" typeRef="java.lang.String" isList="false"/>
@@ -433,6 +427,12 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
+        <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="isActive" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="userId" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
@@ -590,7 +590,7 @@
     <operation operationType="nativequery" name="GetFormTypesByCategoriesAndMunicipalities">
         <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="isActive" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="MunicipalityInternalForm" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="userId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="getListofGroupName">
@@ -1687,34 +1687,45 @@
         </dataobject>
         <dataobject javaType="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType">
             <element name="Active" typeRef="java.lang.Boolean"/>
-            <element name="Attachments" typeRef="java.lang.String"/>
+            <element name="Attachments" typeRef="java.lang.Boolean"/>
             <element name="AutomaticFees" typeRef="java.lang.Boolean"/>
             <element name="BasementFee" typeRef="java.lang.String"/>
             <element name="BasementFeeAccountingCode" typeRef="java.lang.String"/>
             <element name="CollectFees" typeRef="java.lang.Boolean"/>
             <element name="CreatedDate" typeRef="java.sql.Date"/>
-            <element name="DigitalSignatures" typeRef="java.lang.Boolean"/>
+            <element name="CurrentPrefixNumber" typeRef="java.math.BigDecimal"/>
+            <element name="DigitalSignatures" typeRef="java.lang.String"/>
             <element name="FlatFee" typeRef="java.lang.String"/>
             <element name="FlatFeeAccountingCode" typeRef="java.lang.String"/>
             <element name="FormTableName" typeRef="java.lang.String"/>
             <element name="FormType" typeRef="java.lang.String"/>
             <element name="FormTypeGuid" typeRef="java.lang.String"/>
-            <element name="GISMap" typeRef="java.lang.String"/>
-            <element name="GISRecord" typeRef="java.lang.String"/>
+            <element name="GISMap" typeRef="java.lang.Boolean"/>
+            <element name="GISRecord" typeRef="java.lang.Boolean"/>
             <element name="ID" typeRef="java.math.BigDecimal"/>
             <element name="Inspections" typeRef="java.lang.String"/>
             <element name="MultipleGISRecords" typeRef="java.lang.Boolean"/>
+            <element name="MultipleVendors" typeRef="java.lang.Boolean"/>
             <element name="MunicipalityId" typeRef="java.math.BigDecimal"/>
             <element name="MunicipalityInternalForm" typeRef="java.lang.Boolean"/>
-            <element name="Payments" typeRef="java.lang.String"/>
+            <element name="Payments" typeRef="java.lang.Boolean"/>
+            <element name="PrefixDashes" typeRef="java.lang.Boolean"/>
+            <element name="PrefixDate" typeRef="java.lang.String"/>
+            <element name="PrefixNumber" typeRef="java.lang.String"/>
+            <element name="PrefixNumberResetOn" typeRef="java.math.BigDecimal"/>
+            <element name="PrefixNumberStart" typeRef="java.math.BigDecimal"/>
+            <element name="PrefixNumberStep" typeRef="java.math.BigDecimal"/>
             <element name="Report" typeRef="java.lang.String"/>
+            <element name="RequireOwner" typeRef="java.lang.Boolean"/>
             <element name="SfFee" typeRef="java.lang.String"/>
             <element name="SfFeeAccountingCode" typeRef="java.lang.String"/>
-            <element name="SharedWith" typeRef="java.lang.String"/>
+            <element name="SharedWith" typeRef="java.lang.Boolean"/>
             <element name="StateFee" typeRef="java.lang.String"/>
             <element name="StateFeeAccountingCode" typeRef="java.lang.String"/>
+            <element name="TitlePrefix" typeRef="java.lang.String"/>
             <element name="UnitFee" typeRef="java.lang.String"/>
             <element name="UnitFeeAccountingCode" typeRef="java.lang.String"/>
+            <element name="VendorSelection" typeRef="java.lang.Boolean"/>
         </dataobject>
         <dataobject javaType="cx2GetFormsForMunicpalityrtnType">
             <element name="Active" typeRef="java.lang.Boolean"/>

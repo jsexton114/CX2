@@ -163,7 +163,8 @@
   </query>
   <sql-query name="GetFormTypesByCategoriesAndMunicipalities">
     <![CDATA[
-      select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=:MunicipalityInternalForm
+      select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and
+      (FT.MunicipalityInternalForm=0 or exists (SELECT RoleName from Roles where UserId=:userId and (MunicipalityId=FC.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))
     ]]>
   </sql-query>
   <sql-query name="getListofGroupName">

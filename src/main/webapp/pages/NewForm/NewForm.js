@@ -58,7 +58,13 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         $scope.ownerInfo = formType.requireOwner && formType.gisrecord;
         $scope.documents = formType.attachments;
         $scope.sharing = formType.sharedWith;
-        shouldSubmitOnBehalf();
+
+        if (!!formType.municipalityInternalForm) {
+            $scope.submitOnBehalf = false;
+            iterateLoading();
+        } else {
+            shouldSubmitOnBehalf();
+        }
     };
 
     function shouldSubmitOnBehalf() {
