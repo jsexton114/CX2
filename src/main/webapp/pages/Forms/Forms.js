@@ -24,7 +24,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         return (!$scope.Variables.lvFormType.dataSet.data[0].multipleVendors && $scope.Variables.Cx2Vendors2formData.dataSet.data.length >= 1) ? true : false;
     };
 
-    $scope.defaultObjectForSelectStatus = {};
     $scope.currentProgress = 0;
 
     function setFormStatusProgressValue(newStatusId) {
@@ -34,17 +33,18 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         if (!!statusListData && !!currentStatusId) {
             $scope.allFormStatus = statusListData;
             // For showing current Status of form
-            var currentStatus = _.findIndex(statusListData, {
+            var currentStatusIndex = _.findIndex(statusListData, {
                 'id': _.parseInt(currentStatusId)
             });
 
-            $scope.defaultObjectForSelectStatus = statusListData[currentStatus];
-            $scope.currentProgress = parseInt(!!$scope.defaultObjectForSelectStatus.considerClosed ? 100 : ((currentStatus) / statusListData.length * 100));
+            var currentStatus = statusListData[currentStatusIndex];
+            $scope.Variables.stvCurrentStatus.dataSet = currentStatus;
+            $scope.currentProgress = parseInt(!!currentStatus.considerClosed ? 100 : ((currentStatusIndex) / statusListData.length * 100));
             $timeout(function() {
-                var a = $('.livelist-status li.app-list-item:nth-child(' + (currentStatus + 1) + ')').addClass('active');
+                var a = $('.livelist-status li.app-list-item:nth-child(' + (currentStatusIndex + 1) + ')').addClass('active');
             });
 
-            if ($scope.defaultObjectForSelectStatus.considerClosed === true) {
+            if (currentStatus.considerClosed === true) {
                 openClosedFormBreadCrumb.label = 'Closed Forms';
                 openClosedFormBreadCrumb.link = '#/UserClosedForms';
             } else {
