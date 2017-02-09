@@ -3151,7 +3151,7 @@
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
-    "autoUpdate" : true,
+    "autoUpdate" : false,
     "transformationRequired" : false,
     "liveSource" : "cx2",
     "ignoreCase" : true,
@@ -6494,11 +6494,7 @@
       "type" : "string"
     } ],
     "operation" : "gotoPage",
-    "dataSet" : [ {
-      "type" : "string",
-      "target" : "FormGUID",
-      "value" : "bind:Widgets.gridFliteredForms.selecteditem.formGuid"
-    } ],
+    "dataSet" : [ ],
     "pageTransitions" : "none"
   },
   "MunicipalityCategories" : {

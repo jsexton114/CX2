@@ -117,8 +117,7 @@
                                                     show="true" filterwidget="text"></wm-grid-column>
                                                     <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_FormsFormSearch.invoke()"
-                                                    disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-panel>
                                         </wm-gridcolumn>
@@ -362,7 +361,7 @@
                                     <wm-gridrow padding=".5em unset" name="gridrow20">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn59"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="9" horizontalalign="right" name="gridcolumn60">
-                                            <wm-button class="btn-default btn-primary" caption="SEARCH" type="button" margin="unset 0.5em" on-click="Variables.FilteredMasterForms.listRecords()" name="button2"></wm-button>
+                                            <wm-button class="btn-default btn-primary" caption="SEARCH" type="button" margin="unset 0.5em" on-click="Variables.FliteredMasterFormsAdvancedSearch.listRecords()" name="buttonSearchAdvanced"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn61"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -379,8 +378,7 @@
                                                     show="true" filterwidget="text"></wm-grid-column>
                                                     <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_FormsFormSearch.invoke()"
-                                                    disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-panel>
                                         </wm-gridcolumn>
