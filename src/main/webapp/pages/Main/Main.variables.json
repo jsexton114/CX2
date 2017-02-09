@@ -912,6 +912,19 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "fullName",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "FullName",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 511,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "Users",
       "fullyQualifiedName" : "com.civicxpress.cx2.Users",
