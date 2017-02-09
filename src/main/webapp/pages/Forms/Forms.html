@@ -104,8 +104,17 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                         <wm-panel iconclass="wi wi-list" autoclose="outsideClick" name="panelForm" title="Form Content" class="panel-primary">
                             <wm-spinner show="false" name="spinner1" servicevariabletotrack="svGetFormData" caption=""></wm-spinner>
-                            <wm-tabs name="tabs1">
-                                <wm-tabpane name="tabpaneFormData" title="DATA">
+                            <wm-tabs name="INSTRUCTIONS">
+                                <wm-tabpane name="tabpane13" title="INSTRUCTIONS">
+                                    <wm-layoutgrid name="layoutgrid26">
+                                        <wm-gridrow name="gridrow90">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn175">
+                                                <wm-label padding="unset 0.5em" name="label74" caption="bind:Variables.lvFormType.dataSet.data[$i].instructions"></wm-label>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-tabpane>
+                                <wm-tabpane name="tabpaneFormData" title="FIELDS">
                                     <wm-layoutgrid name="layoutgrid2">
                                         <wm-gridrow ng-repeat="formField in Variables.svFormTypeFields.dataSet.content" name="fieldGridrow{{$index}}">
                                             <wm-gridcolumn columnwidth="12" name="fieldGridcolumn{{$index}}">
@@ -211,7 +220,7 @@
                                     <wm-layoutgrid name="layoutgrid18">
                                         <wm-gridrow name="gridrow62">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn129">
-                                                <wm-label padding="unset 0.5em" name="label35" caption="If this form is associated to a vendor, please add the vendor to the form by clicking the “Add Vendor” button below."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label35" caption="If this form is associated with a vendor, please add the vendor to the form by clicking the “Add Vendor” button below."></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow63">
@@ -243,17 +252,19 @@
                                         <wm-gridrow name="gridrow64">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn133">
                                                 <wm-label padding="unset 0.5em" name="label31" caption="Please upload any related documents such as plans and engineering drawings by clicking “Add Attachment”."></wm-label>
-                                                <wm-label padding="unset 0.5em" name="label63" caption="You may view and markup files by clicking on the “Edit” pencil icon located in the “Actions” area below."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label63" caption="You may view and markup files by clicking the “Edit” icon or download the file in the &quot;Actions&quot; area below."></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow65">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn135">
                                                 <wm-livegrid formlayout="dialog" name="livegrid5">
-                                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Document List" dataset="bind:Variables.Cx2DocumentData.dataSet" navigation="Classic" name="gridDocuments">
-                                                        <wm-grid-column binding="filename" caption="Filename" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2DocumentData.dataSet" navigation="Classic" name="gridDocuments" filtermode="multicolumn" exportformat="EXCEL">
+                                                        <wm-grid-column binding="filename" caption="File Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="mimetype" caption="File Type" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-action key="addNewRow" display-name="Add" show="bind:Variables.stvCurrentStatus.dataSet.allowAttachments" class="btn-primary" iconclass="wi wi-plus" title="Add" action="Widgets.dialogUploadDocument.open()"
-                                                        shortcutkey="" disabled="false"></wm-grid-action>
+                                                        <wm-grid-action key="addNewRow" display-name="Add Attachment" show="bind:Variables.stvCurrentStatus.dataSet.allowAttachments" class="btn-primary" iconclass="wi wi-plus" title="Add Attachment"
+                                                        action="Widgets.dialogUploadDocument.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="" disabled="false"></wm-grid-row-action>
                                                         <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download" action="Variables.svDownloadDocument.invoke()"
                                                         disabled="false"></wm-grid-row-action>
                                                         <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.stvCurrentStatus.dataSet.allowAttachments" class="btn-transparent" iconclass="wi wi-trash" title="Delete"
@@ -268,8 +279,8 @@
                                     <wm-layoutgrid name="layoutgrid20">
                                         <wm-gridrow name="gridrow66">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn137">
-                                                <wm-label padding="unset 0.5em" name="label32" caption="You may add contacts for this form."></wm-label>
-                                                <wm-label padding="unset 0.5em" name="label64" caption="By adding a user as a contact they will have the ability to both view the form and complete transactions for the form."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label32" caption="You may share this form with other CivicXpress users by clicking the &quot;Add User&quot; button below."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label64" caption="Sharing the form with a user will grant them access to view the form information and complete transactions for the form."></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow67">
@@ -282,11 +293,10 @@
                                                         <wm-grid-column binding="createdOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="text"
                                                         readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-action key="addNewRow" display-name="Add Contact" show="true" class="btn-primary" iconclass="wi wi-person-add" title="Add Contact" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                                        <wm-grid-action key="customButton" display-name="Invite Contact" show="true" class="btn-secondary" iconclass="wi wi-contact-mail" title="Invite Contact" shortcutkey="" disabled="false"></wm-grid-action>
+                                                        <wm-grid-action key="addNewRow" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                                     </wm-grid>
-                                                    <wm-liveform novalidate="false" errormessage="That user has already been added as a Form Contact." title="Add a Form Contact" formlayout="dialog" iconclass="wi wi-person-add" dataset="bind:Variables.SharedWithData.dataSet"
+                                                    <wm-liveform novalidate="false" errormessage="That user has already been added as a Form Contact." title="Share With User" formlayout="dialog" iconclass="wi wi-share" dataset="bind:Variables.SharedWithData.dataSet"
                                                     captionalign="left" captionposition="top" name="liveformSharedwith">
                                                         <wm-layoutgrid columns="1" name="layoutgrid4">
                                                             <wm-gridrow name="gridrow12">
@@ -496,7 +506,7 @@
     <wm-view class="dialog-view" name="viewAddGISRecord">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Parcel Search" iconclass="wi wi-location-searching" name="dialogAddGISRecord">
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button3" iconclass="wi wi-cancel"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button3" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-tabs name="tabsAddGISRecord">
                 <wm-tabpane name="tabpane8" title="BY ADDRESS">
@@ -537,8 +547,8 @@
                         <wm-gridrow name="gridrow40_1" padding="unset unset .5em unset">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn95_1"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn96_1">
-                                <wm-search placeholder="Search by Subdivision Name or Short Code" dataset="bind:Variables.Subdivisions.dataSet" searchkey="subShortCode,subdivision" displaylabel="bind:$[data[$i].subdivision]+' ('+$[data[$i].subShortCode]+')'"
-                                datafield="All Fields" name="searchFliterSubdivisions" displayexpression="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]"></wm-search>
+                                <wm-search placeholder="Search by Subdivision Name" dataset="bind:Variables.Subdivisions.dataSet" searchkey="subdivision" displaylabel="bind:$[data[$i].subdivision]" datafield="All Fields" name="searchFliterSubdivisions" displayexpression="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]"
+                                orderby="subdivision:asc"></wm-search>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn97_1"></wm-gridcolumn>
                         </wm-gridrow>
@@ -816,12 +826,12 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions4">
-                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button11" iconclass="wi wi-cancel"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button11" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view5">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Attach File" iconclass="wi wi-attach-file" name="dialogUploadDocument" on-close="dialogUploadDocumentClose($event, $scope)">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Attach Document" iconclass="wi wi-attach-file" name="dialogUploadDocument" on-close="dialogUploadDocumentClose($event, $scope)">
             <wm-layoutgrid name="layoutgrid23">
                 <wm-gridrow name="gridrow85">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn167">
@@ -830,7 +840,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions5">
-                <wm-button class="btn-primary" caption="OK" on-click="buttonUploadFileClick($event, $scope)" name="buttonUploadFile" iconclass="wi wi-check" disabled="bind:!docToUpload"></wm-button>
+                <wm-button class="btn-primary" caption="Upload" on-click="buttonUploadFileClick($event, $scope)" name="buttonUploadFile" iconclass="wi wi-file-upload" disabled="bind:!docToUpload"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button13" on-click="Widgets.dialogUploadDocument.close()" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
@@ -888,14 +898,14 @@
                 <wm-gridrow name="gridrow15_1"></wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions6">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button14"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button14" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewShowTaggedPeople">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Tagged People" iconclass="wi wi-tag-faces" name="dialogShowTaggedPeople">
             <wm-dialogactions name="dialogactions7">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button18"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button18" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.GetTaggedPeopleListByMessage.dataSet" navigation="Scroll" name="livelistTaggedPeopleForMessage" nodatamessage="No Person is selected. Please search for a Person"
             orderby="id:desc">
