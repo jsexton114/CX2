@@ -13686,6 +13686,30 @@
     } ],
     "operation" : "toast"
   },
+  "nocAttachmentAdded" : {
+    "_id" : "wm-nocAttachmentAdded-wm.NotificationVariable-1486659696078",
+    "name" : "nocAttachmentAdded",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "<strong>SUCCESS</strong><br>File attached successfully",
+      "type" : "string"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "NoPersonAdded" : {
     "_id" : "wm-NoPersonAdded-wm.NotificationVariable-1486544208895",
     "name" : "NoPersonAdded",
@@ -15978,7 +16002,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.Cx2DocumentData.listRecords()",
+    "onSuccess" : "Variables.Cx2DocumentData.listRecords();Variables.nocAttachmentAdded.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
