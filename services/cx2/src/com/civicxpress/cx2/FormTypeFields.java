@@ -30,7 +30,7 @@ public class FormTypeFields implements Serializable {
     private String fieldName;
     private String label;
     private Integer displayOrder;
-    private Boolean required;
+    private boolean required;
     private String defaultValue;
     private String helpText;
     private String possibleValues;
@@ -85,12 +85,12 @@ public class FormTypeFields implements Serializable {
         this.displayOrder = displayOrder;
     }
 
-    @Column(name = "`Required`", nullable = true)
-    public Boolean getRequired() {
+    @Column(name = "`Required`", nullable = false)
+    public boolean isRequired() {
         return this.required;
     }
 
-    public void setRequired(Boolean required) {
+    public void setRequired(boolean required) {
         this.required = required;
     }
 

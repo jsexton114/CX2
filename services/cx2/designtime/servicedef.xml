@@ -175,11 +175,6 @@
         <parameter name="userId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="getListofUsers">
-        <parameter name="municipalityID" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="Email" typeRef="java.lang.String" isList="false"/>
-        <return typeRef="cx2getListofUsersrtnType" isList="false"/>
-    </operation>
     <operation operationType="nativequery" name="GetProcessGroupMemebersByFormGUID">
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2GetProcessGroupMemebersByFormGUIDrtnType" isList="false"/>
@@ -272,6 +267,10 @@
         <parameter name="Comments" typeRef="java.lang.String" isList="false"/>
         <parameter name="CreatedBy" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2RecordFormHistoryrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="RemoveVendorFromMasterForms">
+        <parameter name="hb" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2RemoveVendorFromMasterFormsrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="resetPasswordForUser">
         <parameter name="newPassword" typeRef="java.lang.String" isList="false"/>
@@ -446,8 +445,9 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="RemoveVendorFromMasterForms">
-        <parameter name="hb" typeRef="java.lang.String" isList="false"/>
+    <operation operationType="nativequery" name="getListofUsers">
+        <parameter name="municipalityID" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Email" typeRef="java.lang.String" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
@@ -2093,6 +2093,7 @@
         </dataobject>
         <dataobject javaType="cx2getListofUsersrtnType">
             <element name="Email" typeRef="java.lang.String"/>
+            <element name="FullName" typeRef="java.lang.String"/>
             <element name="UserId" typeRef="java.math.BigDecimal"/>
         </dataobject>
         <dataobject javaType="cx2getMunicipalityGroupIdIDsrtnType">

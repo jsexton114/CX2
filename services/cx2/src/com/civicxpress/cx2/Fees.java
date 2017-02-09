@@ -33,7 +33,7 @@ public class Fees implements Serializable {
     private Integer gisid;
     private String formType;
     private String feeType;
-    private Boolean autoFeeYn;
+    private boolean autoFeeYn;
     private String accountingCode;
     private String paidStatus;
     private Date paidDate;
@@ -99,12 +99,12 @@ public class Fees implements Serializable {
         this.feeType = feeType;
     }
 
-    @Column(name = "`AutoFeeYN`", nullable = true)
-    public Boolean getAutoFeeYn() {
+    @Column(name = "`AutoFeeYN`", nullable = false)
+    public boolean isAutoFeeYn() {
         return this.autoFeeYn;
     }
 
-    public void setAutoFeeYn(Boolean autoFeeYn) {
+    public void setAutoFeeYn(boolean autoFeeYn) {
         this.autoFeeYn = autoFeeYn;
     }
 

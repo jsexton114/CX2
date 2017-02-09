@@ -12,40 +12,40 @@
   "port" : "1433",
   "schemaName" : "cx2",
   "tableFilter" : [ {
-    "table" : "Fees",
+    "table" : "ContractorTypes",
     "schema" : "cx2"
   }, {
     "table" : "Document",
     "schema" : "cx2"
   }, {
+    "table" : "Fees",
+    "schema" : "cx2"
+  }, {
     "table" : "FormCategories",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormHistory",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormStatuses",
-    "schema" : "cx2"
-  }, {
-    "table" : "ContractorTypes",
     "schema" : "cx2"
   }, {
     "table" : "FormCategoryMapping",
     "schema" : "cx2"
   }, {
+    "table" : "FormFieldTypes",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormHistory",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormMessageTagging",
+    "schema" : "cx2"
+  }, {
     "table" : "FormMessages",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormStatuses",
     "schema" : "cx2"
   }, {
     "table" : "FormTypeFields",
     "schema" : "cx2"
   }, {
     "table" : "FormTypes",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormFieldTypes",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormMessageTagging",
     "schema" : "cx2"
   }, {
     "table" : "GIS2Forms",
@@ -66,19 +66,22 @@
     "table" : "ManualFeeTypes",
     "schema" : "cx2"
   }, {
-    "table" : "MasterForms",
-    "schema" : "cx2"
-  }, {
-    "table" : "Municipalities",
-    "schema" : "cx2"
-  }, {
     "table" : "MasterCases",
+    "schema" : "cx2"
+  }, {
+    "table" : "MasterForms",
     "schema" : "cx2"
   }, {
     "table" : "MasterInspections",
     "schema" : "cx2"
   }, {
     "table" : "MasterProjects",
+    "schema" : "cx2"
+  }, {
+    "table" : "Municipalities",
+    "schema" : "cx2"
+  }, {
+    "table" : "MunicipalityGroupMembers",
     "schema" : "cx2"
   }, {
     "table" : "MunicipalityGroups",
@@ -90,19 +93,10 @@
     "table" : "SharedWith",
     "schema" : "cx2"
   }, {
-    "table" : "MunicipalityGroupMembers",
-    "schema" : "cx2"
-  }, {
     "table" : "States",
     "schema" : "cx2"
   }, {
     "table" : "Subdivisions",
-    "schema" : "cx2"
-  }, {
-    "table" : "Users",
-    "schema" : "cx2"
-  }, {
-    "table" : "Vendor",
     "schema" : "cx2"
   }, {
     "table" : "UserPasswordResetTokens",
@@ -111,22 +105,28 @@
     "table" : "UserSubscriptions",
     "schema" : "cx2"
   }, {
-    "table" : "VendorApprovals",
+    "table" : "Users",
     "schema" : "cx2"
   }, {
-    "table" : "VendorLicenses",
+    "table" : "Vendor",
     "schema" : "cx2"
   }, {
     "table" : "VendorAdmins",
     "schema" : "cx2"
   }, {
+    "table" : "VendorApprovals",
+    "schema" : "cx2"
+  }, {
     "table" : "VendorLicenseTypes",
     "schema" : "cx2"
   }, {
-    "table" : "Vendors2Form",
+    "table" : "VendorLicenses",
     "schema" : "cx2"
   }, {
     "table" : "VendorUsers",
+    "schema" : "cx2"
+  }, {
+    "table" : "Vendors2Form",
     "schema" : "cx2"
   } ],
   "schemaFilter" : [ "cx2" ],

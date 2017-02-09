@@ -135,7 +135,7 @@
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : ""
+        "defaultValue" : "false"
       },
       "fieldName" : "autoFeeYn",
       "foreignKey" : false,
@@ -144,7 +144,7 @@
       "javaType" : "boolean",
       "length" : 0,
       "name" : "AutoFeeYN",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "AutoFeeYN",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -2367,7 +2367,7 @@
       "javaType" : "boolean",
       "length" : 0,
       "name" : "Required",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "Required",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,

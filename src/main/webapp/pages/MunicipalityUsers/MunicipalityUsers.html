@@ -238,8 +238,8 @@
                 <wm-button class="btn-primary" caption="Add" name="button8" on-click="Variables.MunicipalityGroupMembersData.createRecord()" disabled="bind:Widgets.searchUsers.datavalue.UserId == null" iconclass="wi wi-add"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
-            <wm-search name="searchUsers" placeholder="Search by Email Address" dataset="bind:Variables.getListOfUsers.dataSet" searchkey="Email" displaylabel="Email" datafield="All Fields" orderby="Email:desc" on-focus="Variables.getListOfUsers.invoke()"
-            required="true"></wm-search>
+            <wm-search name="searchUsers" placeholder="Search by Name or Email Address" dataset="bind:Variables.getListOfUsers.dataSet" searchkey="Email" displaylabel="bind:$[FullName] + ' (' + $[Email] + ')'" datafield="All Fields" orderby="Email:desc"
+            on-focus="Variables.getListOfUsers.invoke()" required="true"></wm-search>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view6_1">

@@ -179,7 +179,7 @@
   </sql-query>
   <sql-query name="getListofUsers">
     <![CDATA[
-      select a.UserId , b.Email from Roles a INNER JOIN Users b on a.UserId = b.ID where a.RoleName IN ('MunicipalityEmployee','MunicipalityAdmin') and a.MunicipalityId =:municipalityID and b.Email LIKE LOWER(concat('%',:Email,'%'))
+      select a.UserId , b.Email, b.FullName from Roles a INNER JOIN Users b on a.UserId = b.ID where a.RoleName IN ('MunicipalityEmployee','MunicipalityAdmin') and a.MunicipalityId =:municipalityID and (b.Email LIKE LOWER(concat('%',:Email,'%')) OR LOWER(b.FullName) LIKE LOWER(CONCAT('%',:Email,'%')))
     ]]>
   </sql-query>
   <sql-query name="getMunicipalityGroupIdIDs">
