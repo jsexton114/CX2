@@ -266,6 +266,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeFormsByCategory(Pageable pageable, java.lang.Integer formCategory, java.lang.Boolean isActive)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("formCategory", formCategory);
+        params.put("isActive", isActive);
+        return queryExecutor.executeNamedQuery("FormsByCategory", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeFormsCountForMunicipalities(Pageable pageable, java.lang.Integer MunicipalityId)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -540,6 +549,18 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("userid", userid);
         params.put("token", token);
         return queryExecutor.executeNamedQueryForUpdate("resetPasswordWithTokenForUser", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public Page<Object> executeSearchFormByVendor(Pageable pageable, java.sql.Timestamp startd, java.sql.Timestamp endd, java.lang.Integer FormTypeId, java.lang.Boolean closed, java.lang.Integer vendorId)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("startd", startd);
+        params.put("endd", endd);
+        params.put("FormTypeId", FormTypeId);
+        params.put("closed", closed);
+        params.put("vendorId", vendorId);
+        return queryExecutor.executeNamedQuery("SearchFormByVendor", params, pageable);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override

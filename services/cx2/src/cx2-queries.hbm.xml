@@ -131,6 +131,11 @@
       select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName=:role
     ]]>
   </sql-query>
+  <sql-query name="FormsByCategory">
+    <![CDATA[
+      select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=0
+    ]]>
+  </sql-query>
   <sql-query name="FormsCountForMunicipalities">
     <![CDATA[
       select count(*) as formsCount from MasterForms where MunicipalityId=:MunicipalityId
@@ -288,6 +293,11 @@
       INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :userid, :token, DATEADD(day, 2, GETDATE()))
     ]]>
   </sql-query>
+  <query name="SearchFormByVendor">
+    <![CDATA[
+      from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
+    ]]>
+  </query>
   <sql-query name="SetPrimaryVendorStatusForFormandVendor">
     <![CDATA[
       update Vendors2Form set PrimaryVendor=:pv where RelatedFormGUID=:form and VendorID=:vendor

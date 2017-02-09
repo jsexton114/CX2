@@ -57,13 +57,13 @@
                                             <wm-label padding="unset 0.5em unset unset" name="label6" caption="And Submitted between" class="control-label" width="100%"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn26_1">
-                                            <wm-datetime name="datetimeStart"></wm-datetime>
+                                            <wm-datetime name="datetimeStart" datavalue="1483228800000"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn27_1" horizontalalign="center">
                                             <wm-label padding=".5em 0.5em unset 0.5em" name="label9" caption="and" class="control-label"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn28">
-                                            <wm-datetime name="datetimeEnd"></wm-datetime>
+                                            <wm-datetime name="datetimeEnd" datavalue="CURRENT_DATE"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn22"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -138,17 +138,17 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" padding=".5em unset unset unset" name="gridcolumn76">
                                             <wm-select dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"
-                                            name="selectVENDOR"></wm-select>
+                                            name="selectMuncipalityForVENDOR"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn77"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow padding=".5em unset" name="gridrow26">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn78"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn79">
-                                            <wm-label class="col-md-3 control-label" caption="User" width="100%" name="label20"></wm-label>
+                                            <wm-label class="col-md-3 control-label" caption="Select Vendor" width="100%" name="label20"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" name="gridcolumn80">
-                                            <wm-search placeholder="Start typing Email...." dataset="bind:Variables.AllUsers.dataSet" searchkey="users.email" displaylabel="users.email" displayimagesrc="users.photo" datafield="All Fields" name="search3"></wm-search>
+                                            <wm-select dataset="bind:Variables.GetVendorsForMunicipality.dataSet" datafield="All Fields" displayfield="vendor.companyName" datavalue="bind:Variables.GetVendorsForMunicipality.firstRecord" name="selectVendor"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn81"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -158,13 +158,13 @@
                                             <wm-label padding="unset 0.5em unset unset" caption="And Submitted between" class="control-label" width="100%" name="label21"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn84">
-                                            <wm-datetime name="datetime5"></wm-datetime>
+                                            <wm-datetime name="datetimeVendorStart" datavalue="1483228800000"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn85">
                                             <wm-label padding=".5em 0.5em unset 0.5em" caption="and" class="control-label" name="label22"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn86">
-                                            <wm-datetime name="datetime6"></wm-datetime>
+                                            <wm-datetime name="datetimeVendorEnd" datavalue="CURRENT_DATE"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn87"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -174,7 +174,7 @@
                                             <wm-label class="col-md-3 control-label" caption="And form Category" width="100%" name="label23"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" name="gridcolumn90">
-                                            <wm-select dataset="bind:Variables.MunicipalityCategories.dataSet" datafield="All Fields" displayfield="category" datavalue="bind:Variables.MunicipalityCategories.firstRecord" name="select8"></wm-select>
+                                            <wm-select dataset="bind:Variables.VendorMuncipalityCategories.dataSet" datafield="All Fields" displayfield="category" datavalue="bind:Variables.VendorMuncipalityCategories.firstRecord" name="selectCategoriesForVendor"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn91"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -184,8 +184,7 @@
                                             <wm-label class="col-md-3 control-label" caption="And Form Type" width="100%" name="label24"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" name="gridcolumn94">
-                                            <wm-select dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" datavalue="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.firstRecord"
-                                            name="select9"></wm-select>
+                                            <wm-select dataset="bind:Variables.FormTypesByCategoriesForVendor.dataSet" datafield="All Fields" displayfield="FormType" datavalue="bind:Variables.FormTypesByCategoriesForVendor.firstRecord" name="selectFormTypeFromVendor"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn95"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -195,32 +194,31 @@
                                             <wm-label class="col-md-3 control-label" caption="And" name="label25"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" name="gridcolumn98">
-                                            <wm-radioset height="auto" dataset="Open,Closed" datafield="All Fields" selectedvalue="Open" usekeys="false" width="30%" name="radioset3"></wm-radioset>
+                                            <wm-radioset height="auto" dataset="Open,Closed" datafield="All Fields" selectedvalue="Open" usekeys="false" width="30%" name="radiosetFromVendor"></wm-radioset>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn99"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow padding=".5em unset" name="gridrow31">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn100"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="9" horizontalalign="right" name="gridcolumn101">
-                                            <wm-button class="btn-default btn-primary" caption="SEARCH" type="button" margin="unset 0.5em" on-click="Variables.FilteredMasterForms.listRecords()" name="button3"></wm-button>
+                                            <wm-button class="btn-default btn-primary" caption="SEARCH" type="button" margin="unset 0.5em" on-click="Variables.SearchFormByVendor.invoke()" name="button3"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn102"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow32">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn104">
                                             <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" margin="1em unset" title="Search Results" class="panel-primary" name="panel3">
-                                                <wm-grid title="Masterforms List" dataset="bind:Variables.FilteredMasterForms.dataSet" navigation="Classic" filtermode="multicolumn" nodatamessage="No Forms Found" loadingdatamsg="Please while fetching Forms"
+                                                <wm-grid title="Masterforms List" dataset="bind:Variables.SearchFormByVendor.dataSet" navigation="Classic" filtermode="multicolumn" nodatamessage="No Forms Found" loadingdatamsg="Please while fetching Forms"
                                                 exportformat="EXCEL" name="gridVENDOR">
                                                     <wm-grid-column binding="formTitle" caption="Form Title" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormTypes"></wm-grid-column>
-                                                    <wm-grid-column binding="formStatuses.status" caption="Statuses Status" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
-                                                    <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
+                                                    <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="formStatuses.status" caption="Statuses Status" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="vendor.companyName" caption="Company Name" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="submittedOn" caption="Submitted On" type="timestamp" primary-key="false" generator="assigned" readonly="true" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate"
                                                     show="true" filterwidget="text"></wm-grid-column>
-                                                    <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                                    <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_FormsFormSearch.invoke()"
-                                                    disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-panel>
                                         </wm-gridcolumn>
@@ -261,13 +259,13 @@
                                             <wm-label padding="unset 0.5em unset unset" caption="And Submitted between" class="control-label" width="100%" name="label29"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn117">
-                                            <wm-datetime name="datetime7"></wm-datetime>
+                                            <wm-datetime name="datetime7" datavalue="1483228800000"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn118">
                                             <wm-label padding=".5em 0.5em unset 0.5em" caption="and" class="control-label" name="label30"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn119">
-                                            <wm-datetime name="datetime8"></wm-datetime>
+                                            <wm-datetime name="datetime8" datavalue="CURRENT_DATE"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn120"></wm-gridcolumn>
                                     </wm-gridrow>

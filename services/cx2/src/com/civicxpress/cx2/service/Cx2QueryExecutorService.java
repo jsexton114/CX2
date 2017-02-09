@@ -41,6 +41,7 @@ public interface Cx2QueryExecutorService {
 	int executeDeleteToken(  java.lang.String token) throws QueryParameterMismatchException;
     Page<Object> executeEmployeesMunicipalities(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeEmployeesOrAdminsMunicipalities(Pageable pageable, java.lang.Integer user, java.lang.String role) throws QueryParameterMismatchException;
+    Page<Object> executeFormsByCategory(Pageable pageable, java.lang.Integer formCategory, java.lang.Boolean isActive) throws QueryParameterMismatchException;
     Page<Object> executeFormsCountForMunicipalities(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeFormsForUsersAndShared(Pageable pageable, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
     Page<Object> executeFormsTaggedWithGISRecords(Pageable pageable, java.lang.Integer gisrecordId) throws QueryParameterMismatchException;
@@ -72,6 +73,7 @@ public interface Cx2QueryExecutorService {
 	int executeRecordFormHistory(  java.lang.String FormGUID , java.lang.Integer FormTypeId , java.lang.Integer NewStatusId , java.lang.Integer OldStatusId , java.lang.String Comments , java.lang.Integer CreatedBy) throws QueryParameterMismatchException;
 	int executeResetPasswordForUser(  java.lang.String newPassword , java.lang.String token) throws QueryParameterMismatchException;
 	int executeResetPasswordWithTokenForUser(  java.lang.Integer userid , java.lang.String token) throws QueryParameterMismatchException;
+    Page<Object> executeSearchFormByVendor(Pageable pageable, java.sql.Timestamp startd, java.sql.Timestamp endd, java.lang.Integer FormTypeId, java.lang.Boolean closed, java.lang.Integer vendorId) throws QueryParameterMismatchException;
 	int executeSetPrimaryVendorStatusForFormandVendor(  java.lang.Boolean pv , java.lang.String form , java.lang.Integer vendor) throws QueryParameterMismatchException;
     Page<Object> executeStandardUserMunicipalites(Pageable pageable, java.lang.Integer USER) throws QueryParameterMismatchException;
     Page<Object> executeSubDivisonCount(Pageable pageable, java.lang.Integer municipalityId) throws QueryParameterMismatchException;

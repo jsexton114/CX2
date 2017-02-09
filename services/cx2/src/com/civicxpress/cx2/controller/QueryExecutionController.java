@@ -300,6 +300,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/FormsByCategory", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeFormsByCategory(@RequestParam(value = "formCategory", required = false) java.lang.Integer formCategory, @RequestParam(value = "isActive", required = false) java.lang.Boolean isActive, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query FormsByCategory");
+        Page<Object> result = queryService.executeFormsByCategory(pageable, formCategory, isActive);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/FormsCountForMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeFormsCountForMunicipalities(@RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, Pageable pageable) throws QueryParameterMismatchException {
@@ -605,6 +615,16 @@ public class QueryExecutionController {
     public int executeResetPasswordWithTokenForUser(@RequestParam(value = "userid", required = false) java.lang.Integer userid, @RequestParam(value = "token", required = false) java.lang.String token) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query resetPasswordWithTokenForUser");
         int result = queryService.executeResetPasswordWithTokenForUser(userid, token);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/SearchFormByVendor", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeSearchFormByVendor(@RequestParam(value = "startd", required = false) java.sql.Timestamp startd, @RequestParam(value = "endd", required = false) java.sql.Timestamp endd, @RequestParam(value = "FormTypeId", required = false) java.lang.Integer FormTypeId, @RequestParam(value = "closed", required = false) java.lang.Boolean closed, @RequestParam(value = "vendorId", required = false) java.lang.Integer vendorId, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query SearchFormByVendor");
+        Page<Object> result = queryService.executeSearchFormByVendor(pageable, startd, endd, FormTypeId, closed, vendorId);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }
