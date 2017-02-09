@@ -13819,55 +13819,6 @@
     "spinnerContext" : "livelistFormMessages",
     "spinnerMessage" : "Posting your Message....."
   },
-  "RecordFormHistory" : {
-    "_id" : "wm-RecordFormHistory-wm.ServiceVariable-1484635789565",
-    "name" : "RecordFormHistory",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "FormGUID",
-      "value" : "bind:pageParams.FormGUID",
-      "type" : "string"
-    }, {
-      "target" : "FormTypeId",
-      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTypeId",
-      "type" : "integer"
-    }, {
-      "target" : "NewStatusId",
-      "value" : "bind:Widgets.selectStatus.datavalue.id",
-      "type" : "integer"
-    }, {
-      "target" : "Comments",
-      "value" : "bind:Widgets.textareaNotes.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "CreatedBy",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    }, {
-      "target" : "OldStatusId",
-      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formStatuses.id",
-      "type" : "integer"
-    } ],
-    "type" : "cx2RecordFormHistoryrtnType",
-    "service" : "cx2",
-    "operation" : "executeRecordFormHistory",
-    "operationId" : "QueryExecutionController_executeRecordFormHistory",
-    "operationType" : "post",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "Variables.FormHistoryData.listRecords();RecordFormHistoryonSuccess($event, $scope);Variables.ncStatusUpdated.invoke()",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
   "RemoveOtherPrimaryVendors" : {
     "_id" : "wm-RemoveOtherPrimaryVendors-wm.ServiceVariable-1486370856019",
     "name" : "RemoveOtherPrimaryVendors",
@@ -15983,6 +15934,41 @@
     "saveInPhonegap" : false,
     "controller" : "Form"
   },
+  "svSetFormStatus" : {
+    "_id" : "wm-svSetFormStatus-wm.ServiceVariable-1486671622184",
+    "name" : "svSetFormStatus",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "formGuid",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formGuid",
+      "type" : "string"
+    }, {
+      "target" : "formStatusId",
+      "value" : "bind:Widgets.selectStatus.datavalue.id",
+      "type" : "integer"
+    }, {
+      "target" : "comments",
+      "value" : "bind:Widgets.textareaNotes.datavalue",
+      "type" : "string"
+    } ],
+    "service" : "FormService",
+    "operation" : "setFormStatus",
+    "operationId" : "FormController_setFormStatus",
+    "operationType" : "put",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "svSetFormStatusonSuccess($event, $scope);Variables.ncStatusUpdated.invoke();Variables.UpdateProcessOwnersForGUID.invoke();Variables.CurrentForm.listRecords();Variables.FormHistoryData.listRecords()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Form"
+  },
   "svUploadDocument" : {
     "_id" : "wm-svUploadDocument-wm.ServiceVariable-1486502420070",
     "name" : "svUploadDocument",
@@ -16034,43 +16020,6 @@
     "type" : "string",
     "isList" : true,
     "saveInPhonegap" : false
-  },
-  "UpdateFormStatusInMasterForms" : {
-    "_id" : "wm-UpdateFormStatusInMasterForms-wm.ServiceVariable-1484718991147",
-    "name" : "UpdateFormStatusInMasterForms",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "formStatus",
-      "value" : "bind:Widgets.selectStatus.datavalue.id",
-      "type" : "integer"
-    }, {
-      "target" : "FormGUID",
-      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formGuid",
-      "type" : "string"
-    }, {
-      "target" : "closed",
-      "value" : "bind:Widgets.selectStatus.datavalue.considerClosed || false",
-      "type" : "boolean"
-    } ],
-    "type" : "cx2UpdateFormStatusInMasterFormsrtnType",
-    "service" : "cx2",
-    "operation" : "executeUpdateFormStatusInMasterForms",
-    "operationId" : "QueryExecutionController_executeUpdateFormStatusInMasterForms",
-    "operationType" : "put",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "Variables.UpdateProcessOwnersForGUID.invoke();Variables.RecordFormHistory.invoke();UpdateFormStatusInMasterFormsonSuccess($event, $scope);Variables.CurrentForm.listRecords()",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
   },
   "UpdatePrimaryVendorInMasterForms" : {
     "_id" : "wm-UpdatePrimaryVendorInMasterForms-wm.ServiceVariable-1486030401815",

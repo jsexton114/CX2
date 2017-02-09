@@ -76,29 +76,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     };
 
 
-    $scope.UpdateFormStatusInMasterFormsonSuccess = function(variable, data) {
-        setFormStatusProgressValue($scope.Widgets.selectStatus._proxyModel.id);
-
-        //Checking to send mail
-        if ($scope.Widgets.selectStatus.datavalue.sendEmail) {
-            //Sending mail to  CreatedBy
-            $scope.Variables.SendStatusUpdate.setInput({
-                'username': $scope.Variables.CurrentForm.dataSet.data[0].users.firstName,
-                'recipient': $scope.Variables.CurrentForm.dataSet.data[0].users.email
-            });
-            $scope.Variables.SendStatusUpdate.update();
-            //Sending mail to SharedWith
-            var contacts = $scope.sharedWith;
-            for (let i = 0; i < contacts.length; i++) {
-                $scope.Variables.SendStatusUpdate.setInput({
-                    'username': contacts[i].usersBySharedWithUser.firstName,
-                    'recipient': contacts[i].usersBySharedWithUser.email
-                });
-                $scope.Variables.SendStatusUpdate.update();
-            }
-        }
-    };
-
     $scope.SharedWithDataonSuccess = function(variable, data) {
         $scope.sharedWith = data;
     };
@@ -125,11 +102,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         if (!((isCXAdminMunicipalityAdmin == 1) || (found > -1))) {
             // $scope.Widgets.tabpaneLocation.show = false;
         }
-    };
-
-
-    $scope.RecordFormHistoryonSuccess = function(variable, data) {
-        $scope.Widgets.textareaNotes.reset();
     };
 
 
@@ -164,10 +136,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
     };
 
-
-
-
-
     $scope.buttonAddMessageClick = function($event, $isolateScope) {
         // Posting Message
         $scope.Variables.PostFormMessage.setInput({
@@ -191,6 +159,31 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
             $scope.Variables.InsertTaggedPeople.insertRecord();
         }
 
+    };
+
+    $scope.svSetFormStatusonSuccess = function(variable, data) {
+        setFormStatusProgressValue($scope.Widgets.selectStatus._proxyModel.id);
+
+        //Checking to send mail
+        if ($scope.Widgets.selectStatus.datavalue.sendEmail) {
+            //Sending mail to  CreatedBy
+            $scope.Variables.SendStatusUpdate.setInput({
+                'username': $scope.Variables.CurrentForm.dataSet.data[0].users.firstName,
+                'recipient': $scope.Variables.CurrentForm.dataSet.data[0].users.email
+            });
+            $scope.Variables.SendStatusUpdate.update();
+            //Sending mail to SharedWith
+            var contacts = $scope.sharedWith;
+            for (let i = 0; i < contacts.length; i++) {
+                $scope.Variables.SendStatusUpdate.setInput({
+                    'username': contacts[i].usersBySharedWithUser.firstName,
+                    'recipient': contacts[i].usersBySharedWithUser.email
+                });
+                $scope.Variables.SendStatusUpdate.update();
+            }
+        }
+
+        $scope.Widgets.textareaNotes.reset();
     };
 
 }]);

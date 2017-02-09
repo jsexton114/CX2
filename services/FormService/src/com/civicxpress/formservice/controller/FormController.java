@@ -61,6 +61,13 @@ public class FormController {
         formService.saveFormTypeField(formTypeId, label, fieldTypeId, displayOrder, required, defaultValue, helpText, possibleValues);
     }
 
+    @RequestMapping(value = "/formStatus", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void setFormStatus(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "formStatusId", required = false) Long formStatusId, @RequestParam(value = "comments", required = false) String comments) throws SQLException {
+        formService.setFormStatus(formGuid, formStatusId, comments);
+    }
+
     @RequestMapping(value = "/submitForm", produces = "application/json", method = RequestMethod.POST)
     public String submitForm(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "behalfOfUserId", required = false) Long behalfOfUserId, @RequestParam(value = "ownerId", required = false) Long ownerId, @RequestParam(value = "locationIds", required = false) String locationIds, @RequestParam(value = "vendorIds", required = false) String vendorIds, @RequestParam(value = "usersWithWhomToShare", required = false) String usersWithWhomToShare, @RequestBody HashMap<String, Object> fieldData) throws SQLException {
         return formService.submitForm(formTypeId, behalfOfUserId, ownerId, locationIds, vendorIds, usersWithWhomToShare, fieldData);

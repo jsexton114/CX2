@@ -14,13 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.wavemaker.runtime.file.model.DownloadResponse;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
-import com.wavemaker.runtime.util.WMRuntimeUtils;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.NumberFormat;
@@ -35,7 +32,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import com.civicxpress.fileservice.FileService.FileUploadResponse;
 import com.tekdog.dbutils.*;
 
 //import com.civicxpress.formservice.model.*;
@@ -464,6 +460,51 @@ public class FormService {
     	dr.setContents(new ByteArrayInputStream(documentData.getBytes("Contents")));
     	
     	return dr;
+    }
+    
+    public void setFormStatus(String formGuid, Long formStatusId, String comments) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection muniDbConn = null;
+    	cx2Conn.setAutoCommit(false);
+    	
+    	try {
+    		HashMap<String, Object> queryParams = new HashMap<String, Object>();
+    		queryParams.put("formGuid", formGuid);
+    		queryParams.put("newFormStatusId", formStatusId);
+    		queryParams.put("Comments", comments);
+    		
+    		DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", queryParams).get(0);
+
+    		queryParams.put("OldStatusId", masterFormData.getLong("FormStatusId"));
+    		queryParams.put("FormTypeId", masterFormData.getLong("FormTypeId"));
+    		queryParams.put("CreatedBy", Long.parseLong(securityService.getUserId()));
+    		
+    		DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypes WHERE ID=:FormTypeId", queryParams).get(0);
+    		
+    		DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterForms SET FormStatusId=:newFormStatusId, "
+    				+"Closed=(SELECT ConsiderClosed FROM FormStatuses WHERE ID=:newFormStatusId) WHERE FormGUID=:formGuid",
+    				queryParams);
+    		
+    		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormHistory (FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) "
+    				+"VALUES (:formGuid,:FormTypeId,:newFormStatusId,:OldStatusId,:Comments,:CreatedBy,SYSUTCDATETIME())",
+    				queryParams);
+    		
+    		if (formTypeData.getBoolean("AutomaticFees") && DBUtils.selectQuery(cx2Conn, "SELECT RecalculateAutoFees FROM FormStatuses WHERE ID=:newFormStatusId", queryParams).get(0).getBoolean("RecalculateAutoFees")) {
+    			muniDbConn = getMunicipalityDbConnection(cx2Conn, formTypeData.getLong("MunicipalityId"));
+    		}
+    		
+    		cx2Conn.commit();
+    	} catch (Exception e) {
+    		cx2Conn.rollback();
+    		if (muniDbConn!=null) {
+    			muniDbConn.rollback();
+    		}
+    	} finally {
+    		cx2Conn.close();
+    		if (muniDbConn!=null) {
+    			muniDbConn.close();
+    		}
+    	}
     }
     
     public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, String usersWithWhomToShare, HashMap<String, Object> fieldData) throws SQLException {
