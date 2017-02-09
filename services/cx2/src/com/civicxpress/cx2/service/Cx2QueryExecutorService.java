@@ -71,6 +71,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeMunicipalityCount(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, java.lang.Integer UserId, java.lang.Integer MunicipalityId, java.lang.Boolean Closed) throws QueryParameterMismatchException;
 	int executeRecordFormHistory(  java.lang.String FormGUID , java.lang.Integer FormTypeId , java.lang.Integer NewStatusId , java.lang.Integer OldStatusId , java.lang.String Comments , java.lang.Integer CreatedBy) throws QueryParameterMismatchException;
+	int executeRemoveVendorFromMasterForms(  java.lang.String hb) throws QueryParameterMismatchException;
 	int executeResetPasswordForUser(  java.lang.String newPassword , java.lang.String token) throws QueryParameterMismatchException;
 	int executeResetPasswordWithTokenForUser(  java.lang.Integer userid , java.lang.String token) throws QueryParameterMismatchException;
     Page<Object> executeSearchFormByVendor(Pageable pageable, java.sql.Timestamp startd, java.sql.Timestamp endd, java.lang.Integer FormTypeId, java.lang.Boolean closed, java.lang.Integer vendorId) throws QueryParameterMismatchException;

@@ -600,6 +600,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/RemoveVendorFromMasterForms", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeRemoveVendorFromMasterForms(@RequestParam(value = "hb", required = false) java.lang.String hb) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query RemoveVendorFromMasterForms");
+        int result = queryService.executeRemoveVendorFromMasterForms(hb);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/resetPasswordForUser", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeResetPasswordForUser(@RequestParam(value = "newPassword", required = false) java.lang.String newPassword, @RequestParam(value = "token", required = false) java.lang.String token) throws QueryParameterMismatchException {

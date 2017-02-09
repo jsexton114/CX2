@@ -534,6 +534,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeRemoveVendorFromMasterForms( java.lang.String hb)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("hb", hb);
+        return queryExecutor.executeNamedQueryForUpdate("RemoveVendorFromMasterForms", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeResetPasswordForUser( java.lang.String newPassword ,java.lang.String token)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

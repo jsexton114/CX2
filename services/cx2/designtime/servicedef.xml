@@ -138,6 +138,11 @@
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2EmployeesOrAdminsMunicipalitiesrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="FormsByCategory">
+        <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="isActive" typeRef="java.lang.Boolean" isList="false"/>
+        <return typeRef="cx2FormsByCategoryrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="FormsCountForMunicipalities">
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2FormsCountForMunicipalitiesrtnType" isList="false"/>
@@ -441,9 +446,8 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="FormsByCategory">
-        <parameter name="formCategory" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="isActive" typeRef="java.lang.Boolean" isList="false"/>
+    <operation operationType="nativequery" name="RemoveVendorFromMasterForms">
+        <parameter name="hb" typeRef="java.lang.String" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
@@ -721,6 +725,10 @@
         <parameter name="Comments" typeRef="java.lang.String" isList="false"/>
         <parameter name="CreatedBy" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2RecordFormHistoryrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="RemoveVendorFromMasterForms">
+        <parameter name="hb" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2RemoveVendorFromMasterFormsrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="resetPasswordForUser">
         <parameter name="newPassword" typeRef="java.lang.String" isList="false"/>
@@ -1930,6 +1938,7 @@
             <element name="vendors2forms" typeRef="java.util.List"/>
         </dataobject>
         <dataobject javaType="cx2RecordFormHistoryrtnType"/>
+        <dataobject javaType="cx2RemoveVendorFromMasterFormsrtnType"/>
         <dataobject javaType="cx2SearchFormByVendorrtnType">
             <element name="assignedToGroupId" typeRef="java.lang.Integer"/>
             <element name="balanceDue" typeRef="java.lang.String"/>

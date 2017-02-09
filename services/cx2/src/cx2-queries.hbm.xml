@@ -282,6 +282,11 @@
       insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,SYSUTCDATETIME())
     ]]>
   </sql-query>
+  <sql-query name="RemoveVendorFromMasterForms">
+    <![CDATA[
+      Update MasterForms set  CXVendorId=null where FormGUID=:hb
+    ]]>
+  </sql-query>
   <sql-query name="resetPasswordForUser">
     <![CDATA[
       UPDATE Users SET Password=:newPassword where ID in (select UserId from UserPasswordResetTokens where ExpirationDate >= GETDATE() and Token = :token)

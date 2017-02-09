@@ -13877,6 +13877,34 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "RemoveVendorFromMasterForms" : {
+    "_id" : "wm-RemoveVendorFromMasterForms-wm.ServiceVariable-1486643740550",
+    "name" : "RemoveVendorFromMasterForms",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "hb",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
+    "type" : "cx2RemoveVendorFromMasterFormsrtnType",
+    "service" : "cx2",
+    "operation" : "executeRemoveVendorFromMasterForms",
+    "operationId" : "QueryExecutionController_executeRemoveVendorFromMasterForms",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "SendStatusUpdate" : {
     "_id" : "wm-SendStatusUpdate-wm.ServiceVariable-1485169966886",
     "name" : "SendStatusUpdate",

@@ -167,16 +167,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
 
 
 
-    $scope.textAddMessageKeyup = function($event, $isolateScope) {
-
-        // let message = $scope.Widgets.textAddMessage._model_;
-        // if ((message == undefined) || (message == "") || (message == null)) {
-        //     $scope.disableMessageBox = true;
-        // } else {
-        //     $scope.disableMessageBox = false;
-        // }
-    };
-
 
     $scope.buttonAddMessageClick = function($event, $isolateScope) {
         // Posting Message
@@ -307,6 +297,14 @@ Application.$controller("gridFormVendorsController", ["$scope",
 
 
         };
+
+        $scope.deleterowAction = function($event, $rowData) {
+            debugger
+            if ($rowData.primaryVendor) {
+                $scope.Variables.RemoveVendorFromMasterForms.update();
+            }
+        };
+
     }
 ]);
 
