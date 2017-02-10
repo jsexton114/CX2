@@ -357,9 +357,9 @@
                                                         <wm-grid-column binding="paidDate" caption="Payment Date" type="date" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="comments" caption="Comments" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-action key="addNewRow" display-name="Add Fee" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Fee" action="addNewRowAction($event);addNewRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
+                                                        <wm-grid-action key="addNewRow" display-name="Add Fee" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Fee" action="addNewRowAction($event)" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
                                                         shortcutkey="" disabled="false"></wm-grid-action>
-                                                        <wm-grid-row-action key="updaterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid'" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event);editRow()"
+                                                        <wm-grid-row-action key="updaterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid'" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)"
                                                         accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
                                                         <wm-grid-row-action key="deleterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid'" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
                                                         accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
@@ -370,9 +370,9 @@
                                                         <wm-layoutgrid columns="1" name="layoutgrid13">
                                                             <wm-gridrow name="gridrow45_2">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn104_2">
-                                                                    <wm-label name="labelmanfeeselect" caption="Fee Type" required="true" show="bind:!isEditingFee"></wm-label>
-                                                                    <wm-select name="selectManualFeeType" displayname="Fee Type" show="bind:!isEditingFee" required="bind:!isEditingFee" type="string" dataset="bind:Variables.lvManualFeeTypes.dataSet"
-                                                                    displayfield="feeType" placeholder="Select value" datafield="All Fields"></wm-select>
+                                                                    <wm-label name="labelmanfeeselect" caption="Fee Type" required="true" show="bind:isNewFee"></wm-label>
+                                                                    <wm-select name="selectManualFeeType" displayname="Fee Type" show="bind:isNewFee" required="bind:isNewFee" type="string" dataset="bind:Variables.lvManualFeeTypes.dataSet" displayfield="feeType"
+                                                                    placeholder="Select value" datafield="All Fields"></wm-select>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow46">

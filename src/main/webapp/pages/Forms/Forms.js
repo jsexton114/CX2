@@ -13,6 +13,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         openClosedFormBreadCrumb = $scope.Variables.BreadCrumb.dataSet[1];
         $scope.disableMessageBox = true;
     };
+
     $scope.sharedWith;
     $scope.allFormStatus;
 
@@ -320,7 +321,6 @@ Application.$controller("dialogAddVendorController", ["$scope",
     }
 ]);
 
-
 var liveformFeesScope = {};
 
 Application.$controller("gridFeesController", ["$scope",
@@ -328,34 +328,18 @@ Application.$controller("gridFeesController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        liveformFeesScope.isEditingFee = false;
 
         $scope.addNewRowAction = function($event) {
-            console.log(liveformFeesScope);
-            console.log('test-add');
-            liveformFeesScope.isEditingFee = false;
+            liveformFeesScope.isNewFee = true;
+            $scope.addNewRow();
         };
+
 
         $scope.updaterowAction = function($event, $rowData) {
-            console.log(liveformFeesScope);
-            console.log('test-edit');
-            liveformFeesScope.isEditingFee = true;
+            liveformFeesScope.isNewFee = false;
+            $scope.editRow();
         };
 
-    }
-]);
-
-Application.$controller("lfFeesController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-Application.$controller("gridFeesController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
     }
 ]);
 
