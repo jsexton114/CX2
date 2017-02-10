@@ -1824,6 +1824,31 @@
       "usersByModifiedBy" : "com.civicxpress.cx2.Users"
     }
   }, {
+    "name" : "ProjectSoftDelete",
+    "query" : "update Projects set Active=:active where ProjectGuid=:ProjectGuid",
+    "comment" : "ProjectSoftDelete",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "active",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "ProjectGuid",
+      "paramType" : "java.lang.String",
+      "testValue" : "2E595DC9-B2F8-42AC-8C5F-7A64E765D633",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2ProjectSoftDeletertnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "RecordFormHistory",
     "query" : "insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,SYSUTCDATETIME())",
     "comment" : "RecordFormHistory",

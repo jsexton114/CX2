@@ -33,6 +33,7 @@ Application.$controller("gridProjectsListController", ["$scope",
 
 
 
+
     }
 ]);
 
@@ -49,5 +50,12 @@ Application.$controller("dialogCreateProjectController", ["$scope",
             $scope.Variables.ProjectsData.insertRecord();
         };
 
+    }
+]);
+
+Application.$controller("confirmdialogSoftDeleteProjectCoController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

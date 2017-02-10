@@ -1109,6 +1109,39 @@
     "inputFields" : { },
     "package" : "com.civicxpress.cx2.Projects"
   },
+  "ProjectSoftDelete" : {
+    "_id" : "wm-ProjectSoftDelete-wm.ServiceVariable-1486728138971",
+    "name" : "ProjectSoftDelete",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "active",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "ProjectGuid",
+      "value" : "bind:Widgets.gridProjectsList.selecteditem.projectGuid",
+      "type" : "string"
+    } ],
+    "type" : "cx2ProjectSoftDeletertnType",
+    "service" : "cx2",
+    "operation" : "executeProjectSoftDelete",
+    "operationId" : "QueryExecutionController_executeProjectSoftDelete",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Widgets.confirmdialogSoftDeleteProjectCo.close();Variables.UserAndSharedWith.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "gridProjectsList"
+  },
   "StandardUserMunicipalites" : {
     "_id" : "wm-StandardUserMunicipalites-wm.ServiceVariable-1486716405780",
     "name" : "StandardUserMunicipalites",

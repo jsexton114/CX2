@@ -600,6 +600,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/ProjectSoftDelete", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeProjectSoftDelete(@RequestParam(value = "active", required = false) java.lang.Boolean active, @RequestParam(value = "ProjectGuid", required = false) java.lang.String ProjectGuid) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query ProjectSoftDelete");
+        int result = queryService.executeProjectSoftDelete(active, ProjectGuid);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/RecordFormHistory", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeRecordFormHistory(@RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID, @RequestParam(value = "FormTypeId", required = false) java.lang.Integer FormTypeId, @RequestParam(value = "NewStatusId", required = false) java.lang.Integer NewStatusId, @RequestParam(value = "OldStatusId", required = false) java.lang.Integer OldStatusId, @RequestParam(value = "Comments", required = false) java.lang.String Comments, @RequestParam(value = "CreatedBy", required = false) java.lang.Integer CreatedBy) throws QueryParameterMismatchException {
