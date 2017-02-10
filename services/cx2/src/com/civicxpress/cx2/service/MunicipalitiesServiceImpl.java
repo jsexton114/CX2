@@ -30,6 +30,7 @@ import com.civicxpress.cx2.ManualFeeTypes;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.MunicipalityGroups;
+import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.Subdivisions;
 import com.civicxpress.cx2.UserSubscriptions;
@@ -53,6 +54,10 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     @Autowired
 	@Qualifier("cx2.VendorApprovalsService")
 	private VendorApprovalsService vendorApprovalsService;
+
+    @Autowired
+	@Qualifier("cx2.ProjectsService")
+	private ProjectsService projectsService;
 
     @Autowired
 	@Qualifier("cx2.MasterFormsService")
@@ -168,6 +173,14 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
                 municipalityGroupse.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child MunicipalityGroups with information: {}", municipalityGroupse);
                 municipalityGroupsService.create(municipalityGroupse);
+            }
+        }
+
+        if(municipalitiesCreated.getProjectses() != null) {
+            for(Projects projectse : municipalitiesCreated.getProjectses()) {
+                projectse.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child Projects with information: {}", projectse);
+                projectsService.create(projectse);
             }
         }
 
@@ -366,6 +379,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Projects> findAssociatedProjectses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return projectsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated roleses");
 
@@ -424,6 +448,15 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	 */
 	protected void setVendorApprovalsService(VendorApprovalsService service) {
         this.vendorApprovalsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ProjectsService instance
+	 */
+	protected void setProjectsService(ProjectsService service) {
+        this.projectsService = service;
     }
 
     /**

@@ -23,6 +23,7 @@ import com.civicxpress.cx2.ManualFeeTypes;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.MunicipalityGroups;
+import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.Subdivisions;
 import com.civicxpress.cx2.UserSubscriptions;
@@ -232,6 +233,18 @@ public interface MunicipalitiesService {
      * @see Page
      */
     Page<MunicipalityGroups> findAssociatedMunicipalityGroupses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated projectses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Projects instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Projects> findAssociatedProjectses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated roleses for given Municipalities id.

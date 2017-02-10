@@ -39,6 +39,8 @@ import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
+import com.civicxpress.cx2.ProjectSharedWith;
+import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.UserPasswordResetTokens;
@@ -225,6 +227,36 @@ public class UsersController {
     public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
         return usersService.findAssociatedMasterFormses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/projectsesForCreatedBy", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectsesForCreatedBy instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Projects> findAssociatedProjectsesForCreatedBy(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectsesForCreatedBy");
+        return usersService.findAssociatedProjectsesForCreatedBy(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/projectsesForModifiedBy", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectsesForModifiedBy instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Projects> findAssociatedProjectsesForModifiedBy(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectsesForModifiedBy");
+        return usersService.findAssociatedProjectsesForModifiedBy(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/projectSharedWithsForProjectSharedBy", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectSharedWithsForProjectSharedBy instance associated with the given id.")
+    public Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedBy(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectSharedWithsForProjectSharedBy");
+        return usersService.findAssociatedProjectSharedWithsForProjectSharedBy(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/projectSharedWithsForProjectSharedWithUser", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectSharedWithsForProjectSharedWithUser instance associated with the given id.")
+    public Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedWithUser(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectSharedWithsForProjectSharedWithUser");
+        return usersService.findAssociatedProjectSharedWithsForProjectSharedWithUser(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)

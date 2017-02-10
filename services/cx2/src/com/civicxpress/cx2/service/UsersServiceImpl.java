@@ -30,6 +30,8 @@ import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
+import com.civicxpress.cx2.ProjectSharedWith;
+import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.UserPasswordResetTokens;
@@ -50,28 +52,12 @@ public class UsersServiceImpl implements UsersService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.MunicipalityGroupMembersService")
-	private MunicipalityGroupMembersService municipalityGroupMembersService;
-
-    @Autowired
 	@Qualifier("cx2.Gis2formsService")
 	private Gis2formsService gis2formsService;
 
     @Autowired
-	@Qualifier("cx2.FormHistoryService")
-	private FormHistoryService formHistoryService;
-
-    @Autowired
-	@Qualifier("cx2.MasterFormsService")
-	private MasterFormsService masterFormsService;
-
-    @Autowired
-	@Qualifier("cx2.FeesService")
-	private FeesService feesService;
-
-    @Autowired
-	@Qualifier("cx2.UserPasswordResetTokensService")
-	private UserPasswordResetTokensService userPasswordResetTokensService;
+	@Qualifier("cx2.MunicipalityGroupMembersService")
+	private MunicipalityGroupMembersService municipalityGroupMembersService;
 
     @Autowired
 	@Qualifier("cx2.FormMessagesService")
@@ -82,8 +68,36 @@ public class UsersServiceImpl implements UsersService {
 	private FormMessageTaggingService formMessageTaggingService;
 
     @Autowired
+	@Qualifier("cx2.SharedWithService")
+	private SharedWithService sharedWithService;
+
+    @Autowired
+	@Qualifier("cx2.ProjectsService")
+	private ProjectsService projectsService;
+
+    @Autowired
+	@Qualifier("cx2.FormHistoryService")
+	private FormHistoryService formHistoryService;
+
+    @Autowired
+	@Qualifier("cx2.FeesService")
+	private FeesService feesService;
+
+    @Autowired
+	@Qualifier("cx2.MasterFormsService")
+	private MasterFormsService masterFormsService;
+
+    @Autowired
+	@Qualifier("cx2.UserPasswordResetTokensService")
+	private UserPasswordResetTokensService userPasswordResetTokensService;
+
+    @Autowired
 	@Qualifier("cx2.VendorUsersService")
 	private VendorUsersService vendorUsersService;
+
+    @Autowired
+	@Qualifier("cx2.ProjectSharedWithService")
+	private ProjectSharedWithService projectSharedWithService;
 
     @Autowired
 	@Qualifier("cx2.RolesService")
@@ -92,10 +106,6 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.VendorAdminsService")
 	private VendorAdminsService vendorAdminsService;
-
-    @Autowired
-	@Qualifier("cx2.SharedWithService")
-	private SharedWithService sharedWithService;
 
     @Autowired
 	@Qualifier("cx2.UserSubscriptionsService")
@@ -159,6 +169,38 @@ public class UsersServiceImpl implements UsersService {
                 masterFormse.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
                 masterFormsService.create(masterFormse);
+            }
+        }
+
+        if(usersCreated.getProjectsesForCreatedBy() != null) {
+            for(Projects projectsesForCreatedBy : usersCreated.getProjectsesForCreatedBy()) {
+                projectsesForCreatedBy.setUsersByCreatedBy(usersCreated);
+                LOGGER.debug("Creating a new child Projects with information: {}", projectsesForCreatedBy);
+                projectsService.create(projectsesForCreatedBy);
+            }
+        }
+
+        if(usersCreated.getProjectsesForModifiedBy() != null) {
+            for(Projects projectsesForModifiedBy : usersCreated.getProjectsesForModifiedBy()) {
+                projectsesForModifiedBy.setUsersByModifiedBy(usersCreated);
+                LOGGER.debug("Creating a new child Projects with information: {}", projectsesForModifiedBy);
+                projectsService.create(projectsesForModifiedBy);
+            }
+        }
+
+        if(usersCreated.getProjectSharedWithsForProjectSharedBy() != null) {
+            for(ProjectSharedWith projectSharedWithsForProjectSharedBy : usersCreated.getProjectSharedWithsForProjectSharedBy()) {
+                projectSharedWithsForProjectSharedBy.setUsersByProjectSharedBy(usersCreated);
+                LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWithsForProjectSharedBy);
+                projectSharedWithService.create(projectSharedWithsForProjectSharedBy);
+            }
+        }
+
+        if(usersCreated.getProjectSharedWithsForProjectSharedWithUser() != null) {
+            for(ProjectSharedWith projectSharedWithsForProjectSharedWithUser : usersCreated.getProjectSharedWithsForProjectSharedWithUser()) {
+                projectSharedWithsForProjectSharedWithUser.setUsersByProjectSharedWithUser(usersCreated);
+                LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWithsForProjectSharedWithUser);
+                projectSharedWithService.create(projectSharedWithsForProjectSharedWithUser);
             }
         }
 
@@ -383,6 +425,50 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Projects> findAssociatedProjectsesForCreatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectsesForCreatedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
+
+        return projectsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Projects> findAssociatedProjectsesForModifiedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectsesForModifiedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
+
+        return projectsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectSharedWithsForProjectSharedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByProjectSharedBy.id = '" + id + "'");
+
+        return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedWithUser(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectSharedWithsForProjectSharedWithUser");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByProjectSharedWithUser.id = '" + id + "'");
+
+        return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated roleses");
 
@@ -472,15 +558,6 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalityGroupMembersService instance
-	 */
-	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
-        this.municipalityGroupMembersService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service Gis2formsService instance
 	 */
 	protected void setGis2formsService(Gis2formsService service) {
@@ -490,37 +567,10 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormHistoryService instance
+	 * @param service MunicipalityGroupMembersService instance
 	 */
-	protected void setFormHistoryService(FormHistoryService service) {
-        this.formHistoryService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service MasterFormsService instance
-	 */
-	protected void setMasterFormsService(MasterFormsService service) {
-        this.masterFormsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service FeesService instance
-	 */
-	protected void setFeesService(FeesService service) {
-        this.feesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service UserPasswordResetTokensService instance
-	 */
-	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
-        this.userPasswordResetTokensService = service;
+	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
+        this.municipalityGroupMembersService = service;
     }
 
     /**
@@ -544,10 +594,73 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service SharedWithService instance
+	 */
+	protected void setSharedWithService(SharedWithService service) {
+        this.sharedWithService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ProjectsService instance
+	 */
+	protected void setProjectsService(ProjectsService service) {
+        this.projectsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormHistoryService instance
+	 */
+	protected void setFormHistoryService(FormHistoryService service) {
+        this.formHistoryService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FeesService instance
+	 */
+	protected void setFeesService(FeesService service) {
+        this.feesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MasterFormsService instance
+	 */
+	protected void setMasterFormsService(MasterFormsService service) {
+        this.masterFormsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service UserPasswordResetTokensService instance
+	 */
+	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
+        this.userPasswordResetTokensService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service VendorUsersService instance
 	 */
 	protected void setVendorUsersService(VendorUsersService service) {
         this.vendorUsersService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ProjectSharedWithService instance
+	 */
+	protected void setProjectSharedWithService(ProjectSharedWithService service) {
+        this.projectSharedWithService = service;
     }
 
     /**
@@ -566,15 +679,6 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setVendorAdminsService(VendorAdminsService service) {
         this.vendorAdminsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SharedWithService instance
-	 */
-	protected void setSharedWithService(SharedWithService service) {
-        this.sharedWithService = service;
     }
 
     /**

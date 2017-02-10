@@ -61,6 +61,10 @@ public class Users implements Serializable {
     private List<FormMessageTagging> formMessageTaggings = new ArrayList<>();
     private List<Gis2forms> gis2formses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
+    private List<Projects> projectsesForCreatedBy = new ArrayList<>();
+    private List<Projects> projectsesForModifiedBy = new ArrayList<>();
+    private List<ProjectSharedWith> projectSharedWithsForProjectSharedBy = new ArrayList<>();
+    private List<ProjectSharedWith> projectSharedWithsForProjectSharedWithUser = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
     private List<SharedWith> sharedWithsForCreatedBy = new ArrayList<>();
     private List<SharedWith> sharedWithsForSharedWithUser = new ArrayList<>();
@@ -297,6 +301,46 @@ public class Users implements Serializable {
 
     public void setMasterFormses(List<MasterForms> masterFormses) {
         this.masterFormses = masterFormses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
+    public List<Projects> getProjectsesForCreatedBy() {
+        return this.projectsesForCreatedBy;
+    }
+
+    public void setProjectsesForCreatedBy(List<Projects> projectsesForCreatedBy) {
+        this.projectsesForCreatedBy = projectsesForCreatedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByModifiedBy")
+    public List<Projects> getProjectsesForModifiedBy() {
+        return this.projectsesForModifiedBy;
+    }
+
+    public void setProjectsesForModifiedBy(List<Projects> projectsesForModifiedBy) {
+        this.projectsesForModifiedBy = projectsesForModifiedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByProjectSharedBy")
+    public List<ProjectSharedWith> getProjectSharedWithsForProjectSharedBy() {
+        return this.projectSharedWithsForProjectSharedBy;
+    }
+
+    public void setProjectSharedWithsForProjectSharedBy(List<ProjectSharedWith> projectSharedWithsForProjectSharedBy) {
+        this.projectSharedWithsForProjectSharedBy = projectSharedWithsForProjectSharedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByProjectSharedWithUser")
+    public List<ProjectSharedWith> getProjectSharedWithsForProjectSharedWithUser() {
+        return this.projectSharedWithsForProjectSharedWithUser;
+    }
+
+    public void setProjectSharedWithsForProjectSharedWithUser(List<ProjectSharedWith> projectSharedWithsForProjectSharedWithUser) {
+        this.projectSharedWithsForProjectSharedWithUser = projectSharedWithsForProjectSharedWithUser;
     }
 
     @JsonInclude(Include.NON_EMPTY)

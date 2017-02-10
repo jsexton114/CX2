@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.ProjectSharedWith;
 import com.civicxpress.cx2.Projects;
 
 
@@ -34,6 +35,9 @@ public class ProjectsServiceImpl implements ProjectsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsServiceImpl.class);
 
+    @Autowired
+	@Qualifier("cx2.ProjectSharedWithService")
+	private ProjectSharedWithService projectSharedWithService;
 
     @Autowired
     @Qualifier("cx2.ProjectsDao")
@@ -48,6 +52,13 @@ public class ProjectsServiceImpl implements ProjectsService {
 	public Projects create(Projects projects) {
         LOGGER.debug("Creating a new Projects with information: {}", projects);
         Projects projectsCreated = this.wmGenericDao.create(projects);
+        if(projectsCreated.getProjectSharedWiths() != null) {
+            for(ProjectSharedWith projectSharedWith : projectsCreated.getProjectSharedWiths()) {
+                projectSharedWith.setProjects(projectsCreated);
+                LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWith);
+                projectSharedWithService.create(projectSharedWith);
+            }
+        }
         return projectsCreated;
     }
 
@@ -122,7 +133,25 @@ public class ProjectsServiceImpl implements ProjectsService {
         return this.wmGenericDao.count(query);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectSharedWith> findAssociatedProjectSharedWiths(String projectGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectSharedWiths");
 
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
+
+        return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ProjectSharedWithService instance
+	 */
+	protected void setProjectSharedWithService(ProjectSharedWithService service) {
+        this.projectSharedWithService = service;
+    }
 
 }
 
