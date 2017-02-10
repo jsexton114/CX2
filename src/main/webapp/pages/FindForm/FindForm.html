@@ -357,6 +357,41 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn61"></wm-gridcolumn>
                                     </wm-gridrow>
+                                    <wm-gridrow name="gridrow35_1">
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn109_1"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="9" name="gridcolumn110_1">
+                                            <wm-livefilter title="Filter Masterforms" dataset="bind:Variables.FilteredMasterForms.dataSet" captionalign="left" captionposition="top" name="livefilter1">
+                                                <wm-layoutgrid columns="1" name="layoutgrid6">
+                                                    <wm-gridrow name="gridrow36_1">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn112_1">
+                                                            <wm-filter-field name="formTypes" field="formTypes" displayname="Form Types" widget="number" lookup-type="FormTypes" lookup-field="id" is-related="true" related-entity-name="FormTypes" is-range="false"
+                                                            type="integer" is-primary-key="false" generator="assigned" show="true" inputtype="number" key="formTypes" placeholder="Enter value"></wm-filter-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow37_1">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn113_1">
+                                                            <wm-filter-field name="users" field="users" displayname="Users" widget="number" lookup-type="Users" lookup-field="id" is-related="true" related-entity-name="Users" is-range="false" type="integer"
+                                                            is-primary-key="false" generator="assigned" show="true" inputtype="number" key="users" placeholder="Enter value"></wm-filter-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow38_1">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn114_1">
+                                                            <wm-filter-field name="closed" field="closed" displayname="Closed" widget="checkbox" is-range="false" type="boolean" is-primary-key="false" generator="assigned" show="true" key="closed" placeholder=""></wm-filter-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow39_1">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn115_1">
+                                                            <wm-filter-field name="submittedOn" field="submittedOn" displayname="Submitted On" widget="timestamp" is-range="true" type="timestamp" is-primary-key="false" generator="assigned" show="true" key="submittedOn"
+                                                            placeholder="Select date time"></wm-filter-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                                <wm-filter-action key="filter" display-name="Filter" show="true" class="btn-primary" iconclass="wi wi-filter-list" title="Filter" action="filter()" disabled="false" type="button"></wm-filter-action>
+                                                <wm-filter-action key="clear" display-name="Clear" show="true" class="btn-secondary" iconclass="wi wi-cancel" title="Clear" action="clearFilter()" disabled="false" type="button"></wm-filter-action>
+                                            </wm-livefilter>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn111_1"></wm-gridcolumn>
+                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow21">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn63">
                                             <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" margin="1em unset" title="Search Results" class="panel-primary" name="panel5">

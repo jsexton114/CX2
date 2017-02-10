@@ -796,10 +796,6 @@
       "target" : "userId",
       "value" : "bind:Widgets.searchUser.datavalue.userId",
       "type" : "number"
-    }, {
-      "target" : "closed",
-      "value" : "bind:(Widgets.radiosetStatus.datavalue=='Closed')?true:false",
-      "type" : "boolean"
     } ],
     "operation" : "read",
     "dataSet" : [ ],
@@ -3081,7 +3077,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "formGuid" ]
     },
-    "bindCount" : 1,
+    "bindCount" : 2,
     "spinnerContext" : "page",
     "tableName" : "MasterForms",
     "tableType" : "TABLE",

@@ -60,3 +60,10 @@ Application.$controller("gridAddressController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("livefilter1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

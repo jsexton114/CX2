@@ -1289,6 +1289,15 @@
             <element name="municipalityGroupMemberses" typeRef="com.civicxpress.cx2.MunicipalityGroupMembers" isList="true" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.Projects">
+            <element name="estEndDate" typeRef="java.lang.String" allowNull="true"/>
+            <element name="estStartDate" typeRef="java.util.Date" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="projectDescription" typeRef="java.lang.String" allowNull="true"/>
+            <element name="projectGoals" typeRef="java.lang.String" allowNull="true"/>
+            <element name="projectGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="projectName" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Roles">
             <element name="description" typeRef="java.lang.String" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
