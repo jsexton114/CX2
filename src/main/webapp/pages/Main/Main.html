@@ -26,10 +26,10 @@
                         <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Widgets.dialogNewForm.open()">
                             <wm-layoutgrid height="100%" name="layoutgrid9">
                                 <wm-gridrow height="100%" name="gridrow12">
-                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn26">
+                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn26" class="col-xs-3">
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-plus"></wm-icon>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="3em unset unset unset" horizontalalign="center" name="gridcolumn27">
+                                    <wm-gridcolumn columnwidth="9" padding="3em unset unset unset" horizontalalign="center" name="gridcolumn27" class="col-xs-9">
                                         <wm-label name="tileTitle" caption="New Form" class="p" fontsize="1.5" fontunit="em"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
@@ -43,7 +43,7 @@
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn6" class="col-xs-3">
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-book-open"></wm-icon>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="1em unset unset unset" horizontalalign="center" name="gridcolumn7" class="col-xs-9">
+                                    <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn7" class="col-xs-9">
                                         <wm-label name="tileTitle" caption="Open Forms" class="p" fontsize="1.5" fontunit="em"></wm-label>
                                         <wm-label name="tileStatLabel" caption="bind:openCount" fontsize="3" fontunit="em" class="p"></wm-label>
                                     </wm-gridcolumn>
@@ -58,7 +58,7 @@
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn8" class="col-xs-3">
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-book-binder"></wm-icon>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="1em unset unset unset" horizontalalign="center" name="gridcolumn9" class="col-xs-9">
+                                    <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn9" class="col-xs-9">
                                         <wm-label name="tileTitle" caption="Closed Forms" class="p" fontsize="1.5" fontunit="em"></wm-label>
                                         <wm-label name="tileStatLabel" caption="bind:closedCount" fontsize="3" fontunit="em" class="p"></wm-label>
                                     </wm-gridcolumn>
@@ -75,7 +75,7 @@
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn15" class="col-xs-3">
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-message"></wm-icon>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="1em unset unset unset" horizontalalign="center" name="gridcolumn16" class="col-xs-9">
+                                    <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn16" class="col-xs-9">
                                         <wm-label name="tileTitle" caption="Messages" class="p" fontsize="1.5" fontunit="em"></wm-label>
                                         <wm-label name="tileStatLabel" caption="00" fontsize="3" fontunit="em" class="p"></wm-label>
                                     </wm-gridcolumn>
@@ -90,7 +90,7 @@
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn19" class="col-xs-3">
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-search"></wm-icon>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="1em unset unset unset" horizontalalign="center" name="gridcolumn20" class="col-xs-9">
+                                    <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn20" class="col-xs-9">
                                         <wm-label name="tileTitle" caption="Find Form" class="p" fontsize="1.5" fontunit="em"></wm-label>
                                         <wm-label name="tileStatLabel" caption="00" fontsize="3" fontunit="em" class="p"></wm-label>
                                     </wm-gridcolumn>
@@ -105,7 +105,7 @@
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn17" class="col-xs-3">
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-building"></wm-icon>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="1em unset unset unset" horizontalalign="center" name="gridcolumn18" class="col-xs-9">
+                                    <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn18" class="col-xs-9">
                                         <wm-label name="tileTitle" caption="My Projects" class="p" fontsize="1.5" fontunit="em"></wm-label>
                                         <wm-label name="tileStatLabel" caption="00" fontsize="3" fontunit="em" class="p"></wm-label>
                                     </wm-gridcolumn>
@@ -115,30 +115,30 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow10">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn21" horizontalalign="center" padding="1em unset">
-                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_MyProfile.invoke()">
-                            <wm-layoutgrid height="100%" name="layoutgrid8">
-                                <wm-gridrow height="100%" name="gridrow11">
-                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2em unset unset unset" name="gridcolumn24" class="col-xs-3">
-                                        <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-person"></wm-icon>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn22" padding="1em unset" horizontalalign="center">
+                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary">
+                            <wm-layoutgrid height="100%" name="layoutgrid4">
+                                <wm-gridrow height="100%" name="gridrow5">
+                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn10" class="col-xs-3">
+                                        <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-attach-money"></wm-icon>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="2em unset unset unset" horizontalalign="center" name="gridcolumn25" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="My Profile" class="p" fontsize="1.5" fontunit="em"></wm-label>
+                                    <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn11" class="col-xs-9">
+                                        <wm-label name="tileTitle" caption="My Fees" class="p" fontsize="1.5" fontunit="em"></wm-label>
+                                        <wm-label name="tileStatLabel" caption="00" fontsize="3" fontunit="em" class="p"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-tile>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn22" padding="1em unset" horizontalalign="center">
-                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary">
-                            <wm-layoutgrid height="100%" name="layoutgrid4">
-                                <wm-gridrow height="100%" name="gridrow5">
-                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2em unset unset unset" name="gridcolumn10" class="col-xs-3">
-                                        <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-attach-money"></wm-icon>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn21" horizontalalign="center" padding="1em unset">
+                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_MyProfile.invoke()">
+                            <wm-layoutgrid height="100%" name="layoutgrid8">
+                                <wm-gridrow height="100%" name="gridrow11">
+                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn24" class="col-xs-3">
+                                        <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-person"></wm-icon>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="2em unset unset unset" horizontalalign="center" name="gridcolumn11" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="My Fees" class="p" fontsize="1.5" fontunit="em"></wm-label>
-                                        <wm-label name="tileStatLabel" caption="00" fontsize="3" fontunit="em" class="p"></wm-label>
+                                    <wm-gridcolumn columnwidth="9" padding="3em unset unset unset" horizontalalign="center" name="gridcolumn25" class="col-xs-9">
+                                        <wm-label name="tileTitle" caption="My Profile" class="p" fontsize="1.5" fontunit="em"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -148,10 +148,10 @@
                         <wm-tile width="240px" height="160px" class="bg-primary" name="tile9" on-click="Variables.goToPage_VendorApplication.invoke()" show="true">
                             <wm-layoutgrid height="100%" name="layoutgrid10">
                                 <wm-gridrow height="100%" name="gridrow13">
-                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2em unset unset unset" class="col-xs-3" name="gridcolumn28">
+                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" class="col-xs-3" name="gridcolumn28">
                                         <wm-icon iconsize="3em" iconclass="wi wi-assignment" name="icon9"></wm-icon>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="2em unset unset unset" horizontalalign="center" class="col-xs-9" name="gridcolumn29">
+                                    <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" class="col-xs-9" name="gridcolumn29">
                                         <wm-label caption="Submit Vendor Application" class="p" fontsize="1.5" fontunit="em" name="label22"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
