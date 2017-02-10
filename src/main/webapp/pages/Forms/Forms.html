@@ -351,15 +351,15 @@
                                                 <wm-livegrid formlayout="dialog" name="livegrid4">
                                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FeesData.dataSet" navigation="Classic" name="gridFees" filtermode="multicolumn" exportformat="EXCEL">
                                                         <wm-grid-column binding="feeType" caption="Fee Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                        <wm-grid-column binding="amount" caption="Amount" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="amount" caption="Amount" type="string" generator="assigned" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="paidStatus" caption="Payment Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="paidDate" caption="Payment Date" type="date" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="comments" caption="Comments" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-action key="addNewRow" display-name="Add Fee" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Fee" action="addNewRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
+                                                        <wm-grid-action key="addNewRow" display-name="Add Fee" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Fee" action="addNewRowAction($event);addNewRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
                                                         shortcutkey="" disabled="false"></wm-grid-action>
-                                                        <wm-grid-row-action key="updaterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid'" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()"
+                                                        <wm-grid-row-action key="updaterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid'" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event);editRow()"
                                                         accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
                                                         <wm-grid-row-action key="deleterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid'" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
                                                         accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
@@ -370,58 +370,41 @@
                                                         <wm-layoutgrid columns="1" name="layoutgrid13">
                                                             <wm-gridrow name="gridrow45_2">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn104_2">
-                                                                    <wm-form-field name="formType" displayname="Form Type" show="true" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-label name="labelmanfeeselect" caption="Fee Type" required="true" show="bind:!isEditingFee"></wm-label>
+                                                                    <wm-select name="selectManualFeeType" displayname="Fee Type" show="bind:!isEditingFee" required="bind:!isEditingFee" type="string" dataset="bind:Variables.lvManualFeeTypes.dataSet"
+                                                                    displayfield="feeType" placeholder="Select value" datafield="All Fields"></wm-select>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow46">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn105">
-                                                                    <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="string" required="required" widget="currency" maxchars="255" placeholder="Enter value"
+                                                                    minvalue="0" step="0.01"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow47">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn106_1">
-                                                                    <wm-form-field name="feeType" displayname="Fee Type" show="true" primary-key="false" generator="assigned" key="feeType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                                                </wm-gridcolumn>
-                                                            </wm-gridrow>
-                                                            <wm-gridrow name="gridrow48">
-                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn107">
-                                                                    <wm-form-field name="autoFeeYn" displayname="Auto Fee Yn" show="true" primary-key="false" generator="assigned" key="autoFeeYn" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
-                                                                </wm-gridcolumn>
-                                                            </wm-gridrow>
-                                                            <wm-gridrow name="gridrow49">
-                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn108">
-                                                                    <wm-form-field name="accountingCode" displayname="Accounting Code" show="true" primary-key="false" generator="assigned" key="accountingCode" type="string" widget="text" maxchars="255" inputtype="text"
-                                                                    placeholder="Enter value"></wm-form-field>
-                                                                </wm-gridcolumn>
-                                                            </wm-gridrow>
-                                                            <wm-gridrow name="gridrow50">
-                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn109">
-                                                                    <wm-form-field name="paidStatus" displayname="Paid Status" show="true" primary-key="false" generator="assigned" key="paidStatus" type="string" widget="text" maxchars="255" inputtype="text"
-                                                                    placeholder="Enter value"></wm-form-field>
-                                                                </wm-gridcolumn>
-                                                            </wm-gridrow>
-                                                            <wm-gridrow name="gridrow51">
-                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn110">
-                                                                    <wm-form-field name="paidDate" displayname="Paid Date" show="true" primary-key="false" generator="assigned" key="paidDate" type="date" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd"></wm-form-field>
-                                                                </wm-gridcolumn>
-                                                            </wm-gridrow>
-                                                            <wm-gridrow name="gridrow52">
-                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn111">
-                                                                    <wm-form-field name="transactionId" displayname="Transaction Id" show="true" primary-key="false" generator="assigned" key="transactionId" type="string" widget="text" maxchars="255" inputtype="text"
-                                                                    placeholder="Enter value"></wm-form-field>
-                                                                </wm-gridcolumn>
-                                                            </wm-gridrow>
-                                                            <wm-gridrow name="gridrow53">
-                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn112">
                                                                     <wm-form-field name="comments" displayname="Comments" show="true" primary-key="false" generator="assigned" key="comments" type="string" widget="text" maxchars="500" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                         </wm-layoutgrid>
-                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
+                                                        <wm-form-field name="feeType" displayname="Fee Type" show="false" primary-key="false" generator="assigned" key="feeType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                        defaultvalue="bind:Widgets.selectManualFeeType.datavalue.feeType"></wm-form-field>
+                                                        <wm-form-field name="accountingCode" displayname="Accounting Code" show="false" primary-key="false" generator="assigned" key="accountingCode" type="string" required="required" widget="text"
+                                                        maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.accountingCode"></wm-form-field>
+                                                        <wm-form-field name="paidStatus" displayname="Paid Status" show="false" primary-key="false" generator="assigned" key="paidStatus" type="string" required="required" widget="text" maxchars="255"
+                                                        inputtype="text" placeholder="Enter value" defaultvalue="Unpaid"></wm-form-field>
+                                                        <wm-form-field name="formType" displayname="Form Type" show="false" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text"
+                                                        placeholder="Enter value" defaultvalue="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-form-field>
+                                                        <wm-form-field name="autoFeeYn" displayname="Auto Fee Yn" show="false" primary-key="false" generator="assigned" key="autoFeeYn" type="boolean" required="required" widget="checkbox"
+                                                        defaultvalue="false" placeholder=""></wm-form-field>
+                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"
+                                                        inputtype="number" placeholder=""></wm-form-field>
+                                                        <wm-form-field name="formGuid" displayname="Form Guid" show="false" primary-key="false" generator="assigned" key="formGuid" type="string" required="required" widget="text" maxchars="255"
+                                                        defaultvalue="bind:Variables.CurrentForm.dataSet.data[$i].formGuid" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
+                                                        disabled="false" type="submit" update-mode="true"></wm-form-action>
                                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
                                                         update-mode="true"></wm-form-action>
-                                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
-                                                        disabled="false" type="submit" update-mode="true"></wm-form-action>
                                                     </wm-liveform>
                                                 </wm-livegrid>
                                             </wm-gridcolumn>
@@ -514,8 +497,7 @@
                         <wm-gridrow name="gridrow20">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn40"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn41">
-                                <wm-search name="searchAddress" placeholder="Search by Street Number or Street Name" dataset="bind:Variables.GISRecords.dataSet" searchkey="streetName,streetNumber" displaylabel="bind:$[data[$i].streetNumber]+' '+$[data[$i].streetDirection]+' '+$[data[$i].streetName]+' '+$[data[$i].streetType]+', '+$[data[$i].unitNumber]+', '+$[data[$i].city]+', '+$[data[$i].states.stateName]+' '+$[data[$i].postalCode]"
-                                datafield="All Fields"></wm-search>
+                                <wm-search name="searchAddress" placeholder="Search by Street Number or Street Name" dataset="bind:Variables.GISRecords.dataSet" searchkey="fullAddress" displaylabel="bind:$[data[$i].fullAddress]" datafield="All Fields"></wm-search>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn44"></wm-gridcolumn>
                         </wm-gridrow>
@@ -556,8 +538,7 @@
                             <wm-gridcolumn columnwidth="1" name="gridcolumn52"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn53">
                                 <wm-select placeholder="Select Lot" dataset="bind:Variables.GISLotRecords.dataSet" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
-                                datafield="All Fields" name="searchSubdivision" show="bind:Widgets.searchFliterSubdivisions.datavalue!=undefined" displayexpression="bind:'('+$[data[$i].lot]+')   '+$[data[$i].streetNumber]+' '+$[data[$i].streetDirection]+' '+$[data[$i].streetName]+' '+$[data[$i].streetType]+', '+$[data[$i].unitNumber]+', '+$[data[$i].city]+', '+$[data[$i].states.stateName]+' '+$[data[$i].postalCode]"
-                                displayfield="lot"></wm-select>
+                                datafield="All Fields" name="searchSubdivision" show="bind:Widgets.searchFliterSubdivisions.datavalue!=undefined" displayexpression="bind:(!!$[data[$i].lot] ? '('+$[data[$i].lot]+') ' : '')+$[data[$i].fullAddress]" displayfield="lot"></wm-select>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn54"></wm-gridcolumn>
                         </wm-gridrow>
@@ -589,8 +570,7 @@
                         <wm-gridrow name="gridrow28">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn64"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn65">
-                                <wm-search placeholder="Search by Parcel Number" dataset="bind:Variables.GISRecords.dataSet" searchkey="parcel" displaylabel="bind:'('+$[data[$i].parcel]+') '+$[data[$i].streetNumber]+' '+$[data[$i].streetDirection]+' '+$[data[$i].streetName]+' '+$[data[$i].streetType]+', '+$[data[$i].unitNumber]+', '+$[data[$i].city]+', '+$[data[$i].states.stateName]+' '+$[data[$i].postalCode]"
-                                datafield="All Fields" name="searchParcel"></wm-search>
+                                <wm-search placeholder="Search by Parcel Number" dataset="bind:Variables.GISRecords.dataSet" searchkey="parcel" displaylabel="bind:'('+$[data[$i].parcel]+') '+$[data[$i].fullAddress]" datafield="All Fields" name="searchParcel"></wm-search>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn66"></wm-gridcolumn>
                         </wm-gridrow>

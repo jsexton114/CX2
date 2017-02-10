@@ -320,10 +320,28 @@ Application.$controller("dialogAddVendorController", ["$scope",
     }
 ]);
 
+
+var liveformFeesScope = {};
+
 Application.$controller("gridFeesController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        liveformFeesScope.isEditingFee = false;
+
+        $scope.addNewRowAction = function($event) {
+            console.log(liveformFeesScope);
+            console.log('test-add');
+            liveformFeesScope.isEditingFee = false;
+        };
+
+        $scope.updaterowAction = function($event, $rowData) {
+            console.log(liveformFeesScope);
+            console.log('test-edit');
+            liveformFeesScope.isEditingFee = true;
+        };
+
     }
 ]);
 
@@ -345,6 +363,8 @@ Application.$controller("liveformFeesController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        liveformFeesScope = $scope;
     }
 ]);
 
