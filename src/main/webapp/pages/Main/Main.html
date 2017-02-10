@@ -167,8 +167,8 @@
         <wm-dialog dialogtype="design-dialog" modal="true" title="New Form" iconclass="wi wi-file-text" name="dialogNewForm">
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn1">
-                        <wm-composite name="composite4_1" margin="1em unset 2em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn1" padding="1em 1em 2em 1em">
+                        <wm-composite name="composite4_1">
                             <wm-label class="col-md-3 form-control-static" caption="Select Municipality" name="label20" width="40%" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container4" width="60%">
                                 <wm-select dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Widgets.selectStandardUserMunicipality.datavalue" name="selectMunicipality" orderby="MunicipalityName:asc"
@@ -178,7 +178,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3" padding="unset 1em 2em 1em">
                         <wm-composite name="composite3" show="bind:Variables.AllCategories.dataSet.data.length > 0">
                             <wm-label class="col-md-3 form-control-static" name="label18" caption="Select Category" width="40%" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container2" width="60%">
@@ -188,30 +188,27 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                        <wm-composite name="composite4" margin="2em unset" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements != 0 &amp;&amp; Variables.AllCategories.dataSet.totalElements != 0">
-                            <wm-label class="col-md-3 form-control-static" name="label19" caption="Select Form" width="40%" fontweight="bold"></wm-label>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn5" padding="unset 1em">
+                        <wm-composite name="composite4" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements != 0 &amp;&amp; Variables.AllCategories.dataSet.totalElements != 0">
+                            <wm-label class="col-md-3 form-control-static" name="label19" caption="Select Form Design" width="40%" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container3" width="60%">
                                 <wm-select name="selectForm" dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" datavalue="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.firstRecord"
-                                orderby="FormType:asc" placeholder="Select Form Type"></wm-select>
+                                orderby="FormType:asc" placeholder="Select Form Design"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow4">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                        <wm-label padding="1em 0.5em" name="label21" caption="bind:!!Widgets.selectCategory.datavalue ? 'No forms are available for this municipality in selected category' : 'Please select a category to view forms for this Municipality'" fontweight="bold"
-                        show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements == 0" width="100%" horizontalalign="center"></wm-label>
+                        <wm-label name="label21" caption="bind:!!Widgets.selectCategory.datavalue ? 'No forms are available in the selected Category' : 'Please select a Municipality and Category to view available Form Designs'" fontweight="bold" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements == 0"
+                        width="100%" horizontalalign="center" padding="0.5em 1em 0.7em 1em"></wm-label>
                     </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow5">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn7" horizontalalign="center"></wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-primary" caption="Create" type="button" margin="unset 0.5em" name="buttonCreate" on-click="Variables.nacNewForm.invoke()" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements != 0" iconclass="wi wi-add"
                 disabled="bind:!Widgets.selectForm.datavalue.ID"></wm-button>
-                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
