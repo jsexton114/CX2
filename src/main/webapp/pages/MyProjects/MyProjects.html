@@ -15,8 +15,8 @@
                         <wm-composite name="composite1" width="50%" margin="unset unset unset 48%">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Filter by Municipality" fontweight="bold" width="30%"></wm-label>
                             <wm-container class="col-md-9" name="container1" width="70%">
-                                <wm-select name="selectStandardUserMunicipality" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" height="38px" orderby="MunicipalityName:asc" placeholder="Select Municipality"
-                                on-change="selectStandardUserMunicipalityChange($event, $scope, newVal, oldVal)"></wm-select>
+                                <wm-select name="selectStandardUserMunicipality" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" height="38px" orderby="MunicipalityName:asc" placeholder=""
+                                on-change="selectStandardUserMunicipalityChange($event, $scope, newVal, oldVal)" datavalue="bind:Variables.StandardUserMunicipalites.firstRecord"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -25,7 +25,7 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="wi wi-book-open" autoclose="outsideClick" name="panel1" title="Projects List" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegridProjectsList">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Projects List" dataset="bind:Variables.ProjectsData.dataSet" navigation="Classic" name="gridProjectsList">
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Projects List" dataset="bind:Variables.UserAndSharedWith.dataSet" navigation="Classic" name="gridProjectsList">
                                     <wm-grid-column binding="projectName" caption="Project Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
                                     <wm-grid-column-group name="group" caption="Created By">
@@ -34,7 +34,7 @@
                                     </wm-grid-column-group>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="" action="editRow()" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                                 <wm-liveform novalidate="false" errormessage="" title="Projects Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ProjectsData.dataSet" captionalign="left" captionposition="top" name="liveform1">

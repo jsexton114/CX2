@@ -590,6 +590,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/ProjectsForUsersAndSharedWith", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeProjectsForUsersAndSharedWith(@RequestParam(value = "municipalityId", required = false) java.lang.Integer municipalityId, @RequestParam(value = "Active", required = false) java.lang.Boolean Active, @RequestParam(value = "creatorUser", required = false) java.lang.Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) java.lang.Integer sharedWithUser, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query ProjectsForUsersAndSharedWith");
+        Page<Object> result = queryService.executeProjectsForUsersAndSharedWith(pageable, municipalityId, Active, creatorUser, sharedWithUser);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/RecordFormHistory", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeRecordFormHistory(@RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID, @RequestParam(value = "FormTypeId", required = false) java.lang.Integer FormTypeId, @RequestParam(value = "NewStatusId", required = false) java.lang.Integer NewStatusId, @RequestParam(value = "OldStatusId", required = false) java.lang.Integer OldStatusId, @RequestParam(value = "Comments", required = false) java.lang.String Comments, @RequestParam(value = "CreatedBy", required = false) java.lang.Integer CreatedBy) throws QueryParameterMismatchException {

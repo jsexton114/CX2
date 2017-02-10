@@ -1108,5 +1108,44 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "UserAndSharedWith" : {
+    "_id" : "wm-UserAndSharedWith-wm.ServiceVariable-1486720621686",
+    "name" : "UserAndSharedWith",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "Active",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "creatorUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "sharedWithUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2ProjectsForUsersAndSharedWithrtnType",
+    "service" : "cx2",
+    "operation" : "executeProjectsForUsersAndSharedWith",
+    "operationId" : "QueryExecutionController_executeProjectsForUsersAndSharedWith",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
   }
 }

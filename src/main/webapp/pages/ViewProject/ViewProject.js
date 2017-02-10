@@ -1,4 +1,4 @@
-Application.$controller("UserProjectsPageController", ["$scope", function ($scope) {
+Application.$controller("ViewProjectPageController", ["$scope", function ($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */

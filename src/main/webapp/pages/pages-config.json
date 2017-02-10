@@ -201,13 +201,16 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
-  "name" : "UserProjects",
-  "type" : "PAGE",
-  "params" : [ ]
-}, {
   "name" : "VendorApplication",
   "type" : "PAGE",
   "params" : [ ]
+}, {
+  "name" : "ViewProject",
+  "type" : "PAGE",
+  "params" : [ {
+    "name" : "ProjectGUID",
+    "type" : "string"
+  } ]
 }, {
   "name" : "WorkSchedule",
   "type" : "PAGE",

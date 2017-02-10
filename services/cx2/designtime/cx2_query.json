@@ -1768,6 +1768,62 @@
       "vendors2forms" : "java.util.List"
     }
   }, {
+    "name" : "ProjectsForUsersAndSharedWith",
+    "query" : "from Projects where municipalityId=:municipalityId and Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select relatedProjectGuid from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser )) ORDER BY ModifiedDate DESC",
+    "comment" : "ProjectsForUsersAndSharedWith",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "municipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "Active",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "creatorUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "sharedWithUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2ProjectsForUsersAndSharedWithrtnType",
+    "returnTypeMetadata" : {
+      "active" : "java.lang.Boolean",
+      "createdBy" : "java.lang.Integer",
+      "createdDate" : "java.util.Date",
+      "estEndDate" : "java.util.Date",
+      "estStartDate" : "java.util.Date",
+      "modifiedBy" : "java.lang.Integer",
+      "modifiedDate" : "java.util.Date",
+      "municipalities" : "com.civicxpress.cx2.Municipalities",
+      "municipalityId" : "java.lang.Integer",
+      "projectDescription" : "java.lang.String",
+      "projectGoals" : "java.lang.String",
+      "projectGuid" : "java.lang.String",
+      "projectName" : "java.lang.String",
+      "projectSharedWiths" : "java.util.List",
+      "usersByCreatedBy" : "com.civicxpress.cx2.Users",
+      "usersByModifiedBy" : "com.civicxpress.cx2.Users"
+    }
+  }, {
     "name" : "RecordFormHistory",
     "query" : "insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,SYSUTCDATETIME())",
     "comment" : "RecordFormHistory",

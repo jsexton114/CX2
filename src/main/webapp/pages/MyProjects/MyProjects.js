@@ -1,8 +1,8 @@
-Application.$controller("MyProjectsPageController", ["$scope", function ($scope) {
+Application.$controller("MyProjectsPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
+    $scope.onPageReady = function() {
         /*
          * variables can be accessed through '$scope.Variables' property here
          * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
@@ -20,15 +20,23 @@ Application.$controller("MyProjectsPageController", ["$scope", function ($scope)
 
 
 Application.$controller("gridProjectsListController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.updaterowAction = function($event, $rowData) {
+            $scope.Variables.goToPage_ViewProject.setData({
+                'ProjectGUID': $rowData.projectGuid
+            });
+            $scope.Variables.goToPage_ViewProject.navigate();
+        };
+
+    }
 ]);
 
 Application.$controller("liveform1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
