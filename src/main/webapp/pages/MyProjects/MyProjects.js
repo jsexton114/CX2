@@ -31,12 +31,23 @@ Application.$controller("gridProjectsListController", ["$scope",
             $scope.Variables.goToPage_ViewProject.navigate();
         };
 
+
+
     }
 ]);
 
-Application.$controller("liveform1Controller", ["$scope",
+Application.$controller("dialogCreateProjectController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+        $scope.today = moment().valueOf();
+
+        $scope.buttonCreateProjectClick = function($event, $isolateScope) {
+            $scope.Variables.ProjectsData.setInput({
+                'createDate': $scope.today
+            });
+            $scope.Variables.ProjectsData.insertRecord();
+        };
+
     }
 ]);

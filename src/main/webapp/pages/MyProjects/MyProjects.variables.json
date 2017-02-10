@@ -23,17 +23,42 @@
     "name" : "ProjectsData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
-    "operation" : "read",
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipalityForCreateProje.datavalue.ID | stringToNumber",
+      "type" : "number"
+    }, {
+      "target" : "projectName",
+      "value" : "bind:Widgets.textProjectName.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "projectDescription",
+      "value" : "bind:Widgets.richtexteditorProjectDescription.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "createdBy",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "number"
+    }, {
+      "target" : "createdDate",
+      "value" : "bind:today | toDate: 'timestamp'",
+      "type" : "timestamp"
+    }, {
+      "target" : "active",
+      "value" : true,
+      "type" : "boolean"
+    } ],
+    "operation" : "insert",
     "dataSet" : [ ],
     "type" : "Projects",
     "isList" : true,
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Widgets.dialogCreateProject.close();Variables.UserAndSharedWith.invoke()",
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : true,
-    "autoUpdate" : true,
+    "startUpdate" : false,
+    "autoUpdate" : false,
     "transformationRequired" : false,
     "liveSource" : "cx2",
     "ignoreCase" : true,
@@ -1057,6 +1082,7 @@
     },
     "isDefault" : true,
     "bindCount" : 1,
+    "spinnerContext" : "viewCreateProject",
     "tableName" : "Projects",
     "tableType" : "TABLE",
     "properties" : [ "municipalities", "usersByCreatedBy", "usersByModifiedBy" ],
@@ -1079,6 +1105,8 @@
       "watchOn" : "Cx2UsersData",
       "package" : "com.civicxpress.cx2.Projects"
     } ],
+    "filterFields" : { },
+    "inputFields" : { },
     "package" : "com.civicxpress.cx2.Projects"
   },
   "StandardUserMunicipalites" : {

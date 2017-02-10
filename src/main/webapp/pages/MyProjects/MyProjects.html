@@ -33,84 +33,11 @@
                                         <wm-grid-column binding="usersByCreatedBy.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                     </wm-grid-column-group>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                    <wm-grid-action key="addNewRow" display-name="New Project" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogCreateProject.open();addNewRowAction($event)" shortcutkey=""
+                                    disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
-                                <wm-liveform novalidate="false" errormessage="" title="Projects Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ProjectsData.dataSet" captionalign="left" captionposition="top" name="liveform1">
-                                    <wm-layoutgrid columns="1" name="layoutgrid2">
-                                        <wm-gridrow name="gridrow4">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn4_1">
-                                                <wm-form-field name="projectName" displayname="Project Name" required="false" show="true" generator="assigned" primary-key="false" key="projectName" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                mobile-display="true" widget="text"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow5">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                                                <wm-form-field name="projectDescription" displayname="Project Description" required="false" show="true" generator="assigned" primary-key="false" key="projectDescription" type="string" is-related="false" maxchars="1000"
-                                                pc-display="true" mobile-display="true" widget="text"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow6">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                                                <wm-form-field name="projectGoals" displayname="Project Goals" required="false" show="true" generator="assigned" primary-key="false" key="projectGoals" type="string" is-related="false" maxchars="1000" pc-display="true"
-                                                mobile-display="true" widget="text"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow7">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn7">
-                                                <wm-form-field name="estStartDate" displayname="Est Start Date" required="false" show="true" generator="assigned" primary-key="false" key="estStartDate" type="timestamp" is-related="false" pc-display="true"
-                                                mobile-display="true" widget="timestamp"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow8">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn8">
-                                                <wm-form-field name="estEndDate" displayname="Est End Date" required="false" show="true" generator="assigned" primary-key="false" key="estEndDate" type="timestamp" is-related="false" pc-display="true" mobile-display="true"
-                                                widget="timestamp"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow9">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn9">
-                                                <wm-form-field name="createdDate" displayname="Created Date" required="false" show="true" generator="assigned" primary-key="false" key="createdDate" type="timestamp" is-related="false" pc-display="true" mobile-display="true"
-                                                widget="timestamp"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow10">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn10">
-                                                <wm-form-field name="modifiedDate" displayname="Modified Date" required="false" show="true" generator="assigned" primary-key="false" key="modifiedDate" type="timestamp" is-related="false" pc-display="true" mobile-display="true"
-                                                widget="timestamp"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow11">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn11">
-                                                <wm-form-field name="active" displayname="Active" required="false" show="true" generator="assigned" primary-key="false" key="active" type="boolean" is-related="false" pc-display="true" mobile-display="true"
-                                                widget="checkbox"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow12">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn12">
-                                                <wm-form-field name="municipalities" displayname="Municipalities" required="false" show="true" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true" mobile-display="true"
-                                                widget="select"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow13">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn13">
-                                                <wm-form-field name="usersByCreatedBy" displayname="Users By Created By" required="false" show="true" generator="assigned" primary-key="false" key="usersByCreatedBy" type="list" is-related="true" pc-display="true"
-                                                mobile-display="true" widget="select"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow14">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn14">
-                                                <wm-form-field name="usersByModifiedBy" displayname="Users By Modified By" required="false" show="true" generator="assigned" primary-key="false" key="usersByModifiedBy" type="list" is-related="true" pc-display="true"
-                                                mobile-display="true" widget="select"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                    </wm-layoutgrid>
-                                    <wm-form-field name="projectGuid" displayname="Project Guid" required="true" show="false" generator="uniqueid" primary-key="true" key="projectGuid" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                                    widget="text"></wm-form-field>
-                                    <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
-                                    <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
-                                </wm-liveform>
                             </wm-livegrid>
                         </wm-panel>
                     </wm-gridcolumn>
@@ -119,4 +46,43 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="viewCreateProject">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Create Project" iconclass="wi wi-file-text" name="dialogCreateProject">
+            <wm-layoutgrid name="layoutgrid3">
+                <wm-gridrow name="gridrow15" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn15">
+                        <wm-composite name="composite2">
+                            <wm-label class="col-md-3 control-label" name="label6" caption="Select Municipality"></wm-label>
+                            <wm-container class="col-md-9" name="container2">
+                                <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.StandardUserMunicipalites.firstRecord"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow16" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn17">
+                        <wm-composite name="composite3">
+                            <wm-label class="col-md-3 control-label" name="label7" caption="Project Name"></wm-label>
+                            <wm-container class="col-md-9" name="container3">
+                                <wm-text name="textProjectName" placeholder="Enter ProjectName"></wm-text>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow17">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn19">
+                        <wm-richtexteditor name="richtexteditorProjectDescription" placeholder="Project Description"></wm-richtexteditor>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow18" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn20" horizontalalign="center">
+                        <wm-button class="btn-default btn-primary" caption="Create Project" type="button" margin="unset 0.5em" name="buttonCreateProject" on-click="buttonCreateProjectClick($event, $scope)"></wm-button>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
 </wm-page>
