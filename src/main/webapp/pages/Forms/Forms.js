@@ -274,7 +274,6 @@ Application.$controller("gridFormVendorsController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
         $scope.primaryVendorChange = function(newVal) {
-            debugger
             $scope.Variables.gridRemovePrimaryVendors.setInput({
                 'vendor': $scope.selecteditem.relatedFormGuid
             });
@@ -292,7 +291,6 @@ Application.$controller("gridFormVendorsController", ["$scope",
         };
 
         $scope.deleterowAction = function($event, $rowData) {
-            debugger
             if ($rowData.primaryVendor) {
                 $scope.Variables.RemoveVendorFromMasterForms.update();
             }

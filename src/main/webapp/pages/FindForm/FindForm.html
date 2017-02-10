@@ -345,7 +345,8 @@
                                             <wm-label class="col-md-3 form-control-static" caption="Form Title" width="100%" name="label15" fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" name="gridcolumn53">
-                                            <wm-select dataset="bind:Variables.GetFormTypes.dataSet" datafield="All Fields" displayfield="formType" datavalue="bind:Variables.GetFormTypes.firstRecord" name="selectFormTypesForAdvanced"></wm-select>
+                                            <wm-search dataset="bind:Variables.GetFormsFromMasterFormByMunicipality.dataSet" datafield="All Fields" displayfield="formTitle" name="selectFormTypesForAdvanced" orderby="formTitle:asc" displaylabel="formTitle"
+                                            searchkey="formTitle" placeholder="Search Form Name"></wm-search>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn54"></wm-gridcolumn>
                                     </wm-gridrow>
