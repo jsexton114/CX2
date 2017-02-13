@@ -324,14 +324,14 @@
                                                         <wm-gridrow name="gridrow129_1">
                                                             <wm-gridcolumn name="gridcolumn3" columnwidth="4">
                                                                 <wm-form-field name="allowAttachments" displayname="Allow Attachment Updates" show="true" primary-key="false" generator="assigned" key="allowAttachments" type="boolean" widget="checkbox" placeholder=""
-                                                                hint="This allows users in the Process Owner and Write Access groups to add, delete, and markup attachments"></wm-form-field>
+                                                                hint="This allows users in the Process Owner and Write Access groups to add, delete, and markup attachments" defaultvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn43_1">
-                                                                <wm-form-field name="allowPayment" displayname="Allow Payment" show="true" primary-key="false" generator="assigned" key="allowPayment" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                                <wm-form-field name="allowPayment" displayname="Allow Payment" show="true" primary-key="false" generator="assigned" key="allowPayment" type="boolean" widget="checkbox" placeholder="" defaultvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn44_1">
                                                                 <wm-form-field name="recalculateAutoFees" displayname="Recalculate Automatic Fees" show="true" primary-key="false" generator="assigned" key="recalculateAutoFees" type="boolean" widget="checkbox"
-                                                                placeholder=""></wm-form-field>
+                                                                placeholder="" defaultvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-panel>
@@ -342,7 +342,7 @@
                                                     <wm-panel iconclass="wi wi-email" margin="unset unset 1em unset" name="panel6_1" title="Email Settings" class="panel-primary">
                                                         <wm-gridrow name="gridrow1">
                                                             <wm-gridcolumn name="gridcolumn2" columnwidth="4">
-                                                                <wm-form-field name="sendEmail" displayname="Send Email" show="true" primary-key="false" generator="assigned" key="sendEmail" type="boolean" widget="checkbox" defaultvalue="FALSE" placeholder=""
+                                                                <wm-form-field name="sendEmail" displayname="Send Email" show="true" primary-key="false" generator="assigned" key="sendEmail" type="boolean" widget="checkbox" defaultvalue="false" placeholder=""
                                                                 hint="This sends a system-generated email to the form creator and 'shared with' users when the form enters this status"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn38">
@@ -374,11 +374,11 @@
                                                         <wm-gridrow name="gridrow120_1">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn36_1">
                                                                 <wm-form-field name="allowSharedWithEdits" displayname="Allow Shared With Edits" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean" widget="checkbox"
-                                                                placeholder="" hint="This allows users that the form has been shared with to edit the form"></wm-form-field>
+                                                                placeholder="" hint="This allows users that the form has been shared with to edit the form" defaultvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn42_1">
                                                                 <wm-form-field name="allowAuthorEdits" displayname="Allow Author Edits" show="true" primary-key="false" generator="assigned" key="allowAuthorEdits" type="boolean" widget="checkbox" placeholder=""
-                                                                hint="This allows the form creator to edit the form"></wm-form-field>
+                                                                hint="This allows the form creator to edit the form" defaultvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn name="gridcolumn1" columnwidth="4">
                                                                 <wm-form-field name="publicRead" displayname="Public Read" show="true" primary-key="false" generator="assigned" key="publicRead" type="boolean" widget="checkbox" defaultvalue="false" hint="This will allow the public to view the form as public record if chosen and the form is in this status."></wm-form-field>
@@ -392,7 +392,7 @@
                                                     <wm-panel iconclass="wi wi-assignment" margin="unset unset 1em unset" name="panel8" title="Reporting" class="panel-primary">
                                                         <wm-gridrow name="gridrow21">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn39_1">
-                                                                <wm-form-field name="allowReporting" displayname="Allow Reporting" show="true" primary-key="false" generator="assigned" key="allowReporting" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                                <wm-form-field name="allowReporting" displayname="Allow Reporting" show="true" primary-key="false" generator="assigned" key="allowReporting" type="boolean" widget="checkbox" placeholder="" defaultvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn61_2">
                                                                 <wm-form-field name="report" displayname="Report" show="true" primary-key="false" generator="assigned" key="report" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
@@ -406,7 +406,8 @@
                                                     <wm-panel iconclass="wi wi-assignment-ind" margin="unset unset 1em unset" name="panel10" title="Inspections" class="panel-primary">
                                                         <wm-gridrow name="gridrow23_1">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn45_1">
-                                                                <wm-form-field name="allowInspections" displayname="Allow Inspection Scheduling" show="true" primary-key="false" generator="assigned" key="allowInspections" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                                <wm-form-field name="allowInspections" displayname="Allow Inspection Scheduling" show="true" primary-key="false" generator="assigned" key="allowInspections" type="boolean" widget="checkbox" placeholder=""
+                                                                defaultvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-panel>
@@ -417,10 +418,11 @@
                                                     <wm-panel iconclass="wi wi-library-books" margin="unset unset 1em unset" name="panel9" title="Record Closure" class="panel-primary">
                                                         <wm-gridrow name="gridrow24_1">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn48">
-                                                                <wm-form-field name="createAsRecord" displayname="Create As Record" show="true" primary-key="false" generator="assigned" key="createAsRecord" type="boolean" widget="checkbox" placeholder="" hint="This causes a 'snapshot' PDF to be generated that shows the state of the form as it enters this status"></wm-form-field>
+                                                                <wm-form-field name="createAsRecord" displayname="Create As Record" show="true" primary-key="false" generator="assigned" key="createAsRecord" type="boolean" widget="checkbox" placeholder="" hint="This causes a 'snapshot' PDF to be generated that shows the state of the form as it enters this status"
+                                                                defaultvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn46">
-                                                                <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" widget="checkbox" defaultvalue="FALSE"
+                                                                <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" widget="checkbox" defaultvalue="false"
                                                                 placeholder="" hint="This indicates in the system that form procesing is complete and should be reserved for the final form status"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
