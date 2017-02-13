@@ -459,8 +459,7 @@
                         <wm-gridrow padding="unset unset 1em unset" name="gridrow26">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn58"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn59">
-                                <wm-label padding="unset 0.5em" caption="bind:Widgets.searchSubdivision.datavalue.streetNumber+' '+Widgets.searchSubdivision.datavalue.streetDirection+' '+Widgets.searchSubdivision.datavalue.streetName+' '+Widgets.searchSubdivision.datavalue.streetType+', '+Widgets.searchSubdivision.datavalue.unitNumber+', '+Widgets.searchSubdivision.datavalue.city+', '+Widgets.searchSubdivision.datavalue.states.stateName+' '+Widgets.searchSubdivision.datavalue.postalCode"
-                                show="bind:Widgets.searchSubdivision.datavalue!=undefined" name="label13"></wm-label>
+                                <wm-label padding="unset 0.5em" name="label27_1" caption="bind:Widgets.searchSubdivision.datavalue.fullAddress" show="bind:Widgets.searchSubdivision.datavalue!=undefined"></wm-label>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn60"></wm-gridcolumn>
                         </wm-gridrow>
@@ -521,6 +520,11 @@
         <wm-dialog dialogtype="design-dialog" modal="true" title="Share With User" iconclass="wi wi-share" name="dialogAddContact">
             <wm-layoutgrid name="layoutgrid11">
                 <wm-gridrow name="gridrow34"></wm-gridrow>
+                <wm-gridrow name="gridrow55">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn98_3">
+                        <wm-label padding="unset 0.5em" name="label27_2" caption="Who would you like to share this form with?"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow35">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn81">
                         <wm-search name="searchContact" dataset="bind:Variables.Cx2UsersData.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" datafield="All Fields" placeholder="Search by Name or Email Address" displayimagesrc="photo" orderby="fullName:asc"></wm-search>
