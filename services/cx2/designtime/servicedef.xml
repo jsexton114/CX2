@@ -36,6 +36,13 @@
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AddingVendorsToFormrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="AddMemeberToProject">
+        <parameter name="RelatedProjectGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ProjectSharedOn" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="ProjectSharedWith" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="ProjectSharedBy" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2AddMemeberToProjectrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -461,13 +468,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="AddMemeberToProject">
-        <parameter name="RelatedProjectGUID" typeRef="java.lang.String" isList="false"/>
-        <parameter name="ProjectSharedOn" typeRef="java.sql.Timestamp" isList="false"/>
-        <parameter name="ProjectSharedWith" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="ProjectSharedBy" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>

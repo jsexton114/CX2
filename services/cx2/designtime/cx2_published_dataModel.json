@@ -8611,7 +8611,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
@@ -8636,7 +8636,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -8693,7 +8693,13 @@
       "sqlType" : "number",
       "unique" : false
     } ],
-    "constraints" : [ ],
+    "constraints" : [ {
+      "columns" : [ "RelatedProjectGUID", "ProjectSharedWithUser" ],
+      "composite" : true,
+      "name" : "UK_ProjectSharedWith_RelxbhtY",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
     "entityName" : "ProjectSharedWith",
     "fullyQualifiedName" : "com.civicxpress.cx2.ProjectSharedWith",
     "name" : "ProjectSharedWith",

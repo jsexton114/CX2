@@ -49,6 +49,15 @@ public interface ProjectSharedWithService {
 	 */
 	ProjectSharedWith findById(Integer projectsharedwithId);
 
+    /**
+	 * Find and return the ProjectSharedWith for given relatedProjectGuid  andprojectSharedWithUser  if exists.
+	 *
+	 * @param relatedProjectGuid value of relatedProjectGuid; value cannot be null.
+	 * @param projectSharedWithUser value of projectSharedWithUser; value cannot be null.
+	 * @return ProjectSharedWith associated with the given inputs.
+     * @throws EntityNotFoundException if no matching ProjectSharedWith found.
+	 */
+    ProjectSharedWith getByRelatedProjectGuidAndProjectSharedWithUser(String relatedProjectGuid, Integer projectSharedWithUser)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing ProjectSharedWith. It replaces all fields of the existing ProjectSharedWith with the given projectSharedWith.

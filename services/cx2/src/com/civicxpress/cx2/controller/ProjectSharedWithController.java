@@ -83,6 +83,13 @@ public class ProjectSharedWithController {
         return deletedProjectSharedWith != null;
     }
 
+    @RequestMapping(value = "/relatedProjectGuid-projectSharedWithUser", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching ProjectSharedWith with given unique key values.")
+    public ProjectSharedWith getByRelatedProjectGuidAndProjectSharedWithUser(@RequestParam(name = "relatedProjectGuid") String relatedProjectGuid, @RequestParam(name = "projectSharedWithUser") Integer projectSharedWithUser) {
+        LOGGER.debug("Getting ProjectSharedWith with uniques key RelatedProjectGuidAndProjectSharedWithUser");
+        return projectSharedWithService.getByRelatedProjectGuidAndProjectSharedWithUser(relatedProjectGuid, projectSharedWithUser);
+    }
+
     /**
      * @deprecated Use {@link #findProjectSharedWiths(String, Pageable)} instead.
      */
