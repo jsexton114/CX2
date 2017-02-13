@@ -119,8 +119,9 @@ public class ProjectsController {
         return projectsService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/projectSharedWiths", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/projectSharedWiths", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the projectSharedWiths instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ProjectSharedWith> findAssociatedProjectSharedWiths(@PathVariable("id") String id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectSharedWiths");
         return projectsService.findAssociatedProjectSharedWiths(id, pageable);

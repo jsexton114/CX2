@@ -3,7 +3,60 @@
     <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
     <wm-content name="content1">
         <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
-        <wm-page-content columnwidth="10" name="page_content1"></wm-page-content>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn1">
+                        <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn4" horizontalalign="left">
+                        <wm-panel iconclass="" autoclose="outsideClick" name="panelProjectDetails" title="">
+                            <wm-layoutgrid name="layoutgrid2">
+                                <wm-gridrow name="gridrow4">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn4_1" horizontalalign="center">
+                                        <wm-picture name="picture1" picturesource="bind:services/cx2/Municipalities/&quot;+Variables.CurrentProject.dataSet.data[$i].municipalityId+&quot;/content/logo" width="100pt" height="100pt"></wm-picture>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow5" padding=".5em unset">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn6">
+                                        <wm-label padding="unset 0.5em" name="label2" caption="Project Details" fontsize="25" fontweight="bold"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow6" padding=".5em unset">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn8">
+                                        <wm-composite name="composite1">
+                                            <wm-label class="col-md-3 control-label" name="label3"></wm-label>
+                                            <wm-container class="col-md-9" name="container1">
+                                                <wm-text name="text1" readonly="true" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].projectName"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow7" padding=".5em unset">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn9">
+                                        <wm-html name="html1" content="bind:Variables.CurrentProject.dataSet.data[$i].projectDescription">bind:Variables.CurrentProject.dataSet.data[$i].projectDescription</wm-html>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow8" padding=".5em unset">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn10"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow9" padding=".5em unset">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn11"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow10" padding=".5em unset">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn12"></wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
 </wm-page>

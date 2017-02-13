@@ -245,15 +245,17 @@ public class UsersController {
         return usersService.findAssociatedProjectsesForModifiedBy(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/projectSharedWithsForProjectSharedBy", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/projectSharedWithsForProjectSharedBy", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the projectSharedWithsForProjectSharedBy instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedBy(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectSharedWithsForProjectSharedBy");
         return usersService.findAssociatedProjectSharedWithsForProjectSharedBy(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/projectSharedWithsForProjectSharedWithUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/projectSharedWithsForProjectSharedWithUser", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the projectSharedWithsForProjectSharedWithUser instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedWithUser(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectSharedWithsForProjectSharedWithUser");
         return usersService.findAssociatedProjectSharedWithsForProjectSharedWithUser(id, pageable);

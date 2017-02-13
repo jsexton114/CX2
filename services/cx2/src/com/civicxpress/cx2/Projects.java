@@ -83,7 +83,7 @@ public class Projects implements Serializable {
         this.projectName = projectName;
     }
 
-    @Column(name = "`ProjectDescription`", nullable = true, length = 1000)
+    @Column(name = "`ProjectDescription`", nullable = true, length = 2147483647)
     public String getProjectDescription() {
         return this.projectDescription;
     }
