@@ -30,6 +30,7 @@ import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
+import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
 import com.civicxpress.cx2.Projects;
@@ -53,12 +54,12 @@ public class UsersServiceImpl implements UsersService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.Gis2formsService")
-	private Gis2formsService gis2formsService;
-
-    @Autowired
 	@Qualifier("cx2.MunicipalityGroupMembersService")
 	private MunicipalityGroupMembersService municipalityGroupMembersService;
+
+    @Autowired
+	@Qualifier("cx2.Gis2formsService")
+	private Gis2formsService gis2formsService;
 
     @Autowired
 	@Qualifier("cx2.FormMessagesService")
@@ -75,6 +76,10 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.SharedWithService")
 	private SharedWithService sharedWithService;
+
+    @Autowired
+	@Qualifier("cx2.ProjectFormsService")
+	private ProjectFormsService projectFormsService;
 
     @Autowired
 	@Qualifier("cx2.ProjectsService")
@@ -177,6 +182,22 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getProjectFormses() != null) {
+            for(ProjectForms projectFormse : usersCreated.getProjectFormses()) {
+                projectFormse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child ProjectForms with information: {}", projectFormse);
+                projectFormsService.create(projectFormse);
+            }
+        }
+
+        if(usersCreated.getProjectGisrecordses() != null) {
+            for(ProjectGisrecords projectGisrecordse : usersCreated.getProjectGisrecordses()) {
+                projectGisrecordse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child ProjectGisrecords with information: {}", projectGisrecordse);
+                projectGisrecordsService.create(projectGisrecordse);
+            }
+        }
+
         if(usersCreated.getProjectsesForCreatedBy() != null) {
             for(Projects projectsesForCreatedBy : usersCreated.getProjectsesForCreatedBy()) {
                 projectsesForCreatedBy.setUsersByCreatedBy(usersCreated);
@@ -190,14 +211,6 @@ public class UsersServiceImpl implements UsersService {
                 projectsesForModifiedBy.setUsersByModifiedBy(usersCreated);
                 LOGGER.debug("Creating a new child Projects with information: {}", projectsesForModifiedBy);
                 projectsService.create(projectsesForModifiedBy);
-            }
-        }
-
-        if(usersCreated.getProjectGisrecordses() != null) {
-            for(ProjectGisrecords projectGisrecordse : usersCreated.getProjectGisrecordses()) {
-                projectGisrecordse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child ProjectGisrecords with information: {}", projectGisrecordse);
-                projectGisrecordsService.create(projectGisrecordse);
             }
         }
 
@@ -438,6 +451,28 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<ProjectForms> findAssociatedProjectFormses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectFormses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return projectFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectGisrecordses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return projectGisrecordsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Projects> findAssociatedProjectsesForCreatedBy(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectsesForCreatedBy");
 
@@ -456,17 +491,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
 
         return projectsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectGisrecordses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return projectGisrecordsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -582,19 +606,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service Gis2formsService instance
+	 * @param service MunicipalityGroupMembersService instance
 	 */
-	protected void setGis2formsService(Gis2formsService service) {
-        this.gis2formsService = service;
+	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
+        this.municipalityGroupMembersService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalityGroupMembersService instance
+	 * @param service Gis2formsService instance
 	 */
-	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
-        this.municipalityGroupMembersService = service;
+	protected void setGis2formsService(Gis2formsService service) {
+        this.gis2formsService = service;
     }
 
     /**
@@ -631,6 +655,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setSharedWithService(SharedWithService service) {
         this.sharedWithService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ProjectFormsService instance
+	 */
+	protected void setProjectFormsService(ProjectFormsService service) {
+        this.projectFormsService = service;
     }
 
     /**

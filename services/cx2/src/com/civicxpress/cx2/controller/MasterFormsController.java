@@ -28,6 +28,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.Vendors2form;
 import com.civicxpress.cx2.service.MasterFormsService;
@@ -144,6 +145,13 @@ public class MasterFormsController {
     public Page<Gis2forms> findAssociatedGis2formses(@PathVariable("id") String id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gis2formses");
         return masterFormsService.findAssociatedGis2formses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/projectFormses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectFormses instance associated with the given id.")
+    public Page<ProjectForms> findAssociatedProjectFormses(@PathVariable("id") String id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectFormses");
+        return masterFormsService.findAssociatedProjectFormses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/sharedWiths", method = RequestMethod.GET)

@@ -26,6 +26,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.Vendors2form;
 
@@ -39,6 +40,10 @@ import com.civicxpress.cx2.Vendors2form;
 public class MasterFormsServiceImpl implements MasterFormsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MasterFormsServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.ProjectFormsService")
+	private ProjectFormsService projectFormsService;
 
     @Autowired
 	@Qualifier("cx2.Gis2formsService")
@@ -82,6 +87,14 @@ public class MasterFormsServiceImpl implements MasterFormsService {
                 gis2formse.setMasterForms(masterFormsCreated);
                 LOGGER.debug("Creating a new child Gis2forms with information: {}", gis2formse);
                 gis2formsService.create(gis2formse);
+            }
+        }
+
+        if(masterFormsCreated.getProjectFormses() != null) {
+            for(ProjectForms projectFormse : masterFormsCreated.getProjectFormses()) {
+                projectFormse.setMasterForms(masterFormsCreated);
+                LOGGER.debug("Creating a new child ProjectForms with information: {}", projectFormse);
+                projectFormsService.create(projectFormse);
             }
         }
 
@@ -214,6 +227,17 @@ public class MasterFormsServiceImpl implements MasterFormsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<ProjectForms> findAssociatedProjectFormses(String formGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectFormses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("masterForms.formGuid = '" + formGuid + "'");
+
+        return projectFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<SharedWith> findAssociatedSharedWiths(String formGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated sharedWiths");
 
@@ -232,6 +256,15 @@ public class MasterFormsServiceImpl implements MasterFormsService {
         queryBuilder.append("masterForms.formGuid = '" + formGuid + "'");
 
         return vendors2formService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ProjectFormsService instance
+	 */
+	protected void setProjectFormsService(ProjectFormsService service) {
+        this.projectFormsService = service;
     }
 
     /**

@@ -61,9 +61,10 @@ public class Users implements Serializable {
     private List<FormMessageTagging> formMessageTaggings = new ArrayList<>();
     private List<Gis2forms> gis2formses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
+    private List<ProjectForms> projectFormses = new ArrayList<>();
+    private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
     private List<Projects> projectsesForCreatedBy = new ArrayList<>();
     private List<Projects> projectsesForModifiedBy = new ArrayList<>();
-    private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
     private List<ProjectSharedWith> projectSharedWithsForProjectSharedBy = new ArrayList<>();
     private List<ProjectSharedWith> projectSharedWithsForProjectSharedWithUser = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
@@ -305,6 +306,26 @@ public class Users implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<ProjectForms> getProjectFormses() {
+        return this.projectFormses;
+    }
+
+    public void setProjectFormses(List<ProjectForms> projectFormses) {
+        this.projectFormses = projectFormses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<ProjectGisrecords> getProjectGisrecordses() {
+        return this.projectGisrecordses;
+    }
+
+    public void setProjectGisrecordses(List<ProjectGisrecords> projectGisrecordses) {
+        this.projectGisrecordses = projectGisrecordses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
     public List<Projects> getProjectsesForCreatedBy() {
         return this.projectsesForCreatedBy;
@@ -322,16 +343,6 @@ public class Users implements Serializable {
 
     public void setProjectsesForModifiedBy(List<Projects> projectsesForModifiedBy) {
         this.projectsesForModifiedBy = projectsesForModifiedBy;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<ProjectGisrecords> getProjectGisrecordses() {
-        return this.projectGisrecordses;
-    }
-
-    public void setProjectGisrecordses(List<ProjectGisrecords> projectGisrecordses) {
-        this.projectGisrecordses = projectGisrecordses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
