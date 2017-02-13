@@ -16,7 +16,8 @@
                             <wm-layoutgrid name="layoutgrid2">
                                 <wm-gridrow name="gridrow4">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn4_1" horizontalalign="center">
-                                        <wm-picture name="picture1" picturesource="bind:services/cx2/Municipalities/&quot;+Variables.CurrentProject.dataSet.data[$i].municipalityId+&quot;/content/logo" width="100pt" height="100pt"></wm-picture>
+                                        <wm-picture name="picture1" picturesource="bind:!!Variables.CurrentProject.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.CurrentProject.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;"
+                                        width="100pt" height="100pt"></wm-picture>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow5" padding=".5em unset">
@@ -26,34 +27,70 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow6" padding=".5em unset">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn8">
-                                        <wm-composite name="composite1">
-                                            <wm-label class="col-md-3 control-label" name="label3"></wm-label>
-                                            <wm-container class="col-md-9" name="container1">
-                                                <wm-text name="text1" readonly="true" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].projectName"></wm-text>
+                                        <wm-composite name="composite1" margin="unset unset unset 0.5em">
+                                            <wm-label class="col-md-12 control-label" name="label3" margin="0.5em unset" caption="Project Name"></wm-label>
+                                            <wm-container class="col-md-12" name="container1">
+                                                <wm-text name="textProjectName" readonly="true" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].projectName"></wm-text>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow7" padding=".5em unset">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn9">
-                                        <wm-html name="html1" content="bind:Variables.CurrentProject.dataSet.data[$i].projectDescription">bind:Variables.CurrentProject.dataSet.data[$i].projectDescription</wm-html>
+                                        <wm-label class="col-md-12 control-label" name="ProjectDescription" margin="0.5em unset 0.5em 0.5em" caption="Project Description"></wm-label>
+                                        <wm-composite name="composite10">
+                                            <wm-html name="htmlProjectDescription" margin="2em unset unset 0.5em" content="bind:Variables.CurrentProject.dataSet.data[$i].projectDescription">bind:Variables.CurrentProject.dataSet.data[$i].projectDescription</wm-html>
+                                        </wm-composite>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow8" padding=".5em unset">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn10"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn10">
+                                        <wm-composite name="composite2" margin="unset unset unset 0.5em">
+                                            <wm-label class="col-md-12 control-label" name="label4" margin="0.5em unset" caption="Project Goals"></wm-label>
+                                            <wm-container class="col-md-12" name="container2">
+                                                <wm-text readonly="true" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].projectGoals" name="textProjectGoals"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow9" padding=".5em unset">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn11"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn11">
+                                        <wm-composite name="composite3" margin="unset unset unset 0.5em">
+                                            <wm-label class="col-md-12 control-label" name="label5" margin="0.5em unset" caption="Estimated Start Date"></wm-label>
+                                            <wm-container class="col-md-12" name="container3">
+                                                <wm-datetime name="datetimeEstimatedStartDate" readonly="true" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].estStartDate"></wm-datetime>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow10" padding=".5em unset">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn12"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn12">
+                                        <wm-composite name="composite4" margin="unset unset unset 0.5em">
+                                            <wm-label class="col-md-12 control-label" name="label6" margin="0.5em unset" caption="Estimated Completion Date"></wm-label>
+                                            <wm-container class="col-md-12" name="container4">
+                                                <wm-datetime name="datetimeEstimatedCompletionDat" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].estEndDate" readonly="true"></wm-datetime>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3" padding="1em unset">
+                        <wm-tabs name="tabsProjectDetails">
+                            <wm-tabpane name="tabpaneMEMBERS" title="MEMBERS"></wm-tabpane>
+                            <wm-tabpane name="tabpaneTASKS" title="TASKS"></wm-tabpane>
+                            <wm-tabpane name="tabpaneDOCUMENTS" title="DOCUMENTS"></wm-tabpane>
+                            <wm-tabpane name="tabpane4" title="MESSAGING"></wm-tabpane>
+                            <wm-tabpane name="tabpaneMAPS" title="MAPS"></wm-tabpane>
+                            <wm-tabpane name="tabpaneFORMS" title="FORMS"></wm-tabpane>
+                            <wm-tabpane name="tabpaneINSPECTIONS" title="INSPECTIONS"></wm-tabpane>
+                            <wm-tabpane name="tabpaneFEES" title="FEES"></wm-tabpane>
+                            <wm-tabpane name="tabpaneMUNICIPALITYMESSAGES" title="MUNICIPALITY MESSAGES"></wm-tabpane>
+                        </wm-tabs>
+                    </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>

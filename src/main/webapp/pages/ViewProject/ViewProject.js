@@ -4,7 +4,7 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
     /* perform any action on widgets/variables within this block */
     var crum;
     $scope.onPageReady = function() {
-        var temp = $scope.Variables.BreadCrumb.dataSet;
+        //var temp = $scope.Variables.BreadCrumb.dataSet;
     };
 
 }]);

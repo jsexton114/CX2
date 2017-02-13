@@ -968,16 +968,15 @@
         "scale" : 0
       }, {
         "fieldName" : "projectDescription",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
         "columnName" : "ProjectDescription",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 1000,
+        "length" : 2147483647,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
         "scale" : 0
       }, {
         "fieldName" : "projectGoals",
@@ -1063,7 +1062,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "projectGuid" ]
     },
-    "bindCount" : 2,
+    "bindCount" : 6,
     "spinnerContext" : "page",
     "tableName" : "Projects",
     "tableType" : "TABLE",
