@@ -50,11 +50,6 @@ import com.tekdog.dbutils.*;
 public class FormService {
 
     private static final Logger logger = LoggerFactory.getLogger(FormService.class);
-    
-    private static final String sqlUrl = "64.87.23.26";
-    private static final String defaultSqlUser = "cx2";
-    private static final String defaultSqlPassword = "F!yingFishCove1957";
-    
 
 	private static SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 	private static SimpleDateFormat datetimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -67,6 +62,12 @@ public class FormService {
 
     @Autowired
     private SecurityService securityService;
+    
+    // private final String sqlUrl = "192.168.2.211";
+    private final String sqlUrl = "64.87.23.26";
+    private final String defaultSqlUser = "cx2";
+    private final String defaultSqlDatabase = "cx2";
+    private final String defaultSqlPassword = "F!yingFishCove1957";
     
     /**
      * This is sample java operation that accepts an input from the caller and responds with "Hello".
@@ -108,7 +109,7 @@ public class FormService {
 //		}
 //    }
     
-    private static Connection getMunicipalityDbConnection(Connection conn, Long municipalityId) throws SQLException {
+    private Connection getMunicipalityDbConnection(Connection conn, Long municipalityId) throws SQLException {
     	String getMuniDbDetailsQuery = "SELECT DbName, DbUser, DbPassword FROM Municipalities WHERE ID=:municipalityId";Map<String, Object> muniDbDetailsParams = new HashMap<String, Object>();
         muniDbDetailsParams.put("municipalityId", municipalityId);
     	
@@ -117,7 +118,7 @@ public class FormService {
     }
     
     public Map<String, Object> getFormData(Long formTypeId, String formGuid) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlDatabase);
 
     	String getFormInfoQuery = "SELECT FormTableName, MunicipalityId FROM FormTypes WHERE ID=:formTypeId";
 
@@ -144,7 +145,7 @@ public class FormService {
     public void saveFormTypeField(Long formTypeId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
     	String fieldName = DBUtils.getSqlSafeString(label);
     	
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlDatabase);
     	cx2Conn.setAutoCommit(false);
     	HashMap<String, Object> queryParams = new HashMap<String, Object>();
     	queryParams.put("formTypeId",  formTypeId);
@@ -186,7 +187,7 @@ public class FormService {
     }
     
     public Long saveFormType(Long municipalityId, String formType) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlDatabase);
     	cx2Conn.setAutoCommit(false);
         Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
         muniDbConn.setAutoCommit(false);
@@ -325,7 +326,7 @@ public class FormService {
     }
     
     public void saveFormData(Long formTypeId, String formGuid, HashMap<String, Object> fieldData) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlDatabase);
     	cx2Conn.setAutoCommit(false);
     	
     	try {
@@ -413,7 +414,7 @@ public class FormService {
     }
     
     public void uploadDocuments(MultipartFile[] files, String formGuid) throws SQLException {
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlDatabase);
     	cx2Conn.setAutoCommit(false);
     	
     	StringBuilder documentAddQuery = new StringBuilder("INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents) VALUES ");
@@ -452,7 +453,7 @@ public class FormService {
     }
     
     public DownloadResponse downloadDocument(Long documentId) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlDatabase);
     	HashMap<String, Object> queryParams = new HashMap<String, Object>();
     	queryParams.put("documentId", documentId);
     	
@@ -467,7 +468,7 @@ public class FormService {
     }
     
     public void setFormStatus(String formGuid, Long formStatusId, String comments) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlDatabase);
     	Connection muniDbConn = null;
     	cx2Conn.setAutoCommit(false);
     	
@@ -585,7 +586,7 @@ public class FormService {
     }
     
     public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, String usersWithWhomToShare, HashMap<String, Object> fieldData) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlUser);
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword, defaultSqlDatabase);
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
     	
