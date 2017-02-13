@@ -25,6 +25,7 @@ import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
+import com.civicxpress.cx2.ProjectGisrecords;
 
 
 /**
@@ -48,6 +49,10 @@ public class GisrecordsServiceImpl implements GisrecordsService {
     @Autowired
 	@Qualifier("cx2.GiscontactsService")
 	private GiscontactsService giscontactsService;
+
+    @Autowired
+	@Qualifier("cx2.ProjectGisrecordsService")
+	private ProjectGisrecordsService projectGisrecordsService;
 
     @Autowired
     @Qualifier("cx2.GisrecordsDao")
@@ -83,6 +88,14 @@ public class GisrecordsServiceImpl implements GisrecordsService {
                 giscontactse.setGisrecords(gisrecordsCreated);
                 LOGGER.debug("Creating a new child Giscontacts with information: {}", giscontactse);
                 giscontactsService.create(giscontactse);
+            }
+        }
+
+        if(gisrecordsCreated.getProjectGisrecordses() != null) {
+            for(ProjectGisrecords projectGisrecordse : gisrecordsCreated.getProjectGisrecordses()) {
+                projectGisrecordse.setGisrecords(gisrecordsCreated);
+                LOGGER.debug("Creating a new child ProjectGisrecords with information: {}", projectGisrecordse);
+                projectGisrecordsService.create(projectGisrecordse);
             }
         }
         return gisrecordsCreated;
@@ -192,6 +205,17 @@ public class GisrecordsServiceImpl implements GisrecordsService {
         return giscontactsService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectGisrecordses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("gisrecords.id = '" + id + "'");
+
+        return projectGisrecordsService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -217,6 +241,15 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 	 */
 	protected void setGiscontactsService(GiscontactsService service) {
         this.giscontactsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ProjectGisrecordsService instance
+	 */
+	protected void setProjectGisrecordsService(ProjectGisrecordsService service) {
+        this.projectGisrecordsService = service;
     }
 
 }

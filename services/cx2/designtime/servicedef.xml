@@ -1170,6 +1170,7 @@
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="parcel" typeRef="java.lang.String" allowNull="true"/>
             <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="projectGisrecordses" typeRef="com.civicxpress.cx2.ProjectGisrecords" isList="true" allowNull="true"/>
             <element name="section" typeRef="java.lang.String" allowNull="true"/>
             <element name="stateId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
@@ -1328,6 +1329,15 @@
             <element name="municipalityGroupMemberses" typeRef="com.civicxpress.cx2.MunicipalityGroupMembers" isList="true" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.ProjectGisrecords">
+            <element name="addedAt" typeRef="java.util.Date" allowNull="true"/>
+            <element name="addedByUser" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="gisrecordId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="gisrecords" typeRef="com.civicxpress.cx2.Gisrecords" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="relatedProjectGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.ProjectSharedWith">
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="projectSharedBy" typeRef="java.lang.Integer" allowNull="true"/>
@@ -1433,6 +1443,7 @@
             <element name="phoneNumber" typeRef="java.lang.String" allowNull="true"/>
             <element name="photo" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
             <element name="postalCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="projectGisrecordses" typeRef="com.civicxpress.cx2.ProjectGisrecords" isList="true" allowNull="true"/>
             <element name="projectSharedWithsForProjectSharedBy" typeRef="com.civicxpress.cx2.ProjectSharedWith" isList="true" allowNull="true"/>
             <element name="projectSharedWithsForProjectSharedWithUser" typeRef="com.civicxpress.cx2.ProjectSharedWith" isList="true" allowNull="true"/>
             <element name="projectsesForCreatedBy" typeRef="com.civicxpress.cx2.Projects" isList="true" allowNull="true"/>

@@ -29,6 +29,7 @@ import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
+import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.service.GisrecordsService;
 
 /**
@@ -143,6 +144,13 @@ public class GisrecordsController {
     public Page<Giscontacts> findAssociatedGiscontactses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated giscontactses");
         return gisrecordsService.findAssociatedGiscontactses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/projectGisrecordses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectGisrecordses instance associated with the given id.")
+    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectGisrecordses");
+        return gisrecordsService.findAssociatedProjectGisrecordses(id, pageable);
     }
 
     /**

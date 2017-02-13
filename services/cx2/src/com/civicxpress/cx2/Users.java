@@ -63,6 +63,7 @@ public class Users implements Serializable {
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<Projects> projectsesForCreatedBy = new ArrayList<>();
     private List<Projects> projectsesForModifiedBy = new ArrayList<>();
+    private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
     private List<ProjectSharedWith> projectSharedWithsForProjectSharedBy = new ArrayList<>();
     private List<ProjectSharedWith> projectSharedWithsForProjectSharedWithUser = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
@@ -321,6 +322,16 @@ public class Users implements Serializable {
 
     public void setProjectsesForModifiedBy(List<Projects> projectsesForModifiedBy) {
         this.projectsesForModifiedBy = projectsesForModifiedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<ProjectGisrecords> getProjectGisrecordses() {
+        return this.projectGisrecordses;
+    }
+
+    public void setProjectGisrecordses(List<ProjectGisrecords> projectGisrecordses) {
+        this.projectGisrecordses = projectGisrecordses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

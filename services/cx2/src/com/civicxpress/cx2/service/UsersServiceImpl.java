@@ -30,6 +30,7 @@ import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
+import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Roles;
@@ -66,6 +67,10 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.FormMessageTaggingService")
 	private FormMessageTaggingService formMessageTaggingService;
+
+    @Autowired
+	@Qualifier("cx2.ProjectGisrecordsService")
+	private ProjectGisrecordsService projectGisrecordsService;
 
     @Autowired
 	@Qualifier("cx2.SharedWithService")
@@ -185,6 +190,14 @@ public class UsersServiceImpl implements UsersService {
                 projectsesForModifiedBy.setUsersByModifiedBy(usersCreated);
                 LOGGER.debug("Creating a new child Projects with information: {}", projectsesForModifiedBy);
                 projectsService.create(projectsesForModifiedBy);
+            }
+        }
+
+        if(usersCreated.getProjectGisrecordses() != null) {
+            for(ProjectGisrecords projectGisrecordse : usersCreated.getProjectGisrecordses()) {
+                projectGisrecordse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child ProjectGisrecords with information: {}", projectGisrecordse);
+                projectGisrecordsService.create(projectGisrecordse);
             }
         }
 
@@ -447,6 +460,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectGisrecordses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return projectGisrecordsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedBy(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectSharedWithsForProjectSharedBy");
 
@@ -589,6 +613,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setFormMessageTaggingService(FormMessageTaggingService service) {
         this.formMessageTaggingService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ProjectGisrecordsService instance
+	 */
+	protected void setProjectGisrecordsService(ProjectGisrecordsService service) {
+        this.projectGisrecordsService = service;
     }
 
     /**

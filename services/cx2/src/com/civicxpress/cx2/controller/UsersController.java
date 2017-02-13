@@ -39,6 +39,7 @@ import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
+import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Roles;
@@ -243,6 +244,13 @@ public class UsersController {
     public Page<Projects> findAssociatedProjectsesForModifiedBy(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectsesForModifiedBy");
         return usersService.findAssociatedProjectsesForModifiedBy(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/projectGisrecordses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectGisrecordses instance associated with the given id.")
+    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectGisrecordses");
+        return usersService.findAssociatedProjectGisrecordses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/projectSharedWithsForProjectSharedBy", method = RequestMethod.GET)

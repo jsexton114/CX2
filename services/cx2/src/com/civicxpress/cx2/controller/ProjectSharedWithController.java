@@ -85,7 +85,8 @@ public class ProjectSharedWithController {
 
     @RequestMapping(value = "/relatedProjectGuid-projectSharedWithUser", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching ProjectSharedWith with given unique key values.")
-    public ProjectSharedWith getByRelatedProjectGuidAndProjectSharedWithUser(@RequestParam(name = "relatedProjectGuid") String relatedProjectGuid, @RequestParam(name = "projectSharedWithUser") Integer projectSharedWithUser) {
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public ProjectSharedWith getByRelatedProjectGuidAndProjectSharedWithUser(@RequestParam(value = "null", required = true) String relatedProjectGuid, @RequestParam(value = "null", required = true) Integer projectSharedWithUser) {
         LOGGER.debug("Getting ProjectSharedWith with uniques key RelatedProjectGuidAndProjectSharedWithUser");
         return projectSharedWithService.getByRelatedProjectGuidAndProjectSharedWithUser(relatedProjectGuid, projectSharedWithUser);
     }
