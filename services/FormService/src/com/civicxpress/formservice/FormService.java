@@ -32,6 +32,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.tekdog.dbutils.*;
 
@@ -121,7 +123,8 @@ public class FormService {
         muniDbDetailsParams.put("municipalityId", municipalityId);
     	
     	DBRow muniDetails = DBUtils.selectQuery(conn, getMuniDbDetailsQuery, muniDbDetailsParams).get(0);
-    	String muniUrl = sqlUrl.replace("cx2", muniDetails.getString("DbName"));
+    	
+    	String muniUrl = sqlUrl.replaceAll("databaseName=.+", "databaseName="+muniDetails.getString("DbName"));
     	return DBUtils.getConnection(muniUrl, muniDetails.getString("DbUser"), muniDetails.getString("DbPassword"));
     }
     
