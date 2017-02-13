@@ -11,6 +11,11 @@
       insert into Vendors2Form(RelatedFormGUID,SharedOn,VendorId) values(:RelatedFormGUID,:SharedOn,:VendorId)
     ]]>
   </sql-query>
+  <sql-query name="AddMemeberToProject">
+    <![CDATA[
+      insert into ProjectSharedWith(RelatedProjectGUID,ProjectSharedOn,ProjectSharedWithUser,ProjectSharedBy) values (:RelatedProjectGUID,:ProjectSharedOn,:ProjectSharedWith,:ProjectSharedBy)
+    ]]>
+  </sql-query>
   <sql-query name="AddUsersToVendor">
     <![CDATA[
       insert into  VendorUsers(VendorId,UserId,JoiningDate) values(:VendorId,:UserId,:JoiningDate)

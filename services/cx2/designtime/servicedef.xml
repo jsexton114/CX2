@@ -462,6 +462,13 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="AddMemeberToProject">
+        <parameter name="RelatedProjectGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ProjectSharedOn" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="ProjectSharedWith" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="ProjectSharedBy" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
@@ -474,6 +481,13 @@
         <parameter name="SharedOn" typeRef="java.sql.Timestamp" isList="false"/>
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2AddingVendorsToFormrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="AddMemeberToProject">
+        <parameter name="RelatedProjectGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ProjectSharedOn" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="ProjectSharedWith" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="ProjectSharedBy" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2AddMemeberToProjectrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddUsersToVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
@@ -1537,6 +1551,7 @@
             <element name="queryStr" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="cx2AddGIStoFormsrtnType"/>
+        <dataobject javaType="cx2AddMemeberToProjectrtnType"/>
         <dataobject javaType="cx2AddUsersToVendorrtnType"/>
         <dataobject javaType="cx2AddingVendorsToFormrtnType"/>
         <dataobject javaType="cx2AdminVendorsListrtnType">

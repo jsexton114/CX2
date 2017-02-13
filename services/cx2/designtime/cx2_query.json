@@ -73,6 +73,45 @@
     "outputType" : "cx2AddingVendorsToFormrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "AddMemeberToProject",
+    "query" : "insert into ProjectSharedWith(RelatedProjectGUID,ProjectSharedOn,ProjectSharedWithUser,ProjectSharedBy) values (:RelatedProjectGUID,:ProjectSharedOn,:ProjectSharedWith,:ProjectSharedBy)",
+    "comment" : "AddMemeberToProject",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "RelatedProjectGUID",
+      "paramType" : "java.lang.String",
+      "testValue" : "85A109AC-AF6B-4E67-9C98-F8D99B60E677",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "ProjectSharedOn",
+      "paramType" : "java.sql.Timestamp",
+      "testValue" : "1486976397000",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "ProjectSharedWith",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "ProjectSharedBy",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2AddMemeberToProjectrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "AddUsersToVendor",
     "query" : "insert into  VendorUsers(VendorId,UserId,JoiningDate) values(:VendorId,:UserId,:JoiningDate)",
     "comment" : "AddUsersToVendor",
