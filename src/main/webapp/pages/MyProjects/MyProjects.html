@@ -11,23 +11,24 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn4" horizontalalign="left">
-                        <wm-composite name="composite1" width="50%" margin="unset unset unset 48%">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn8"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="2em unset">
+                        <wm-composite name="composite1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Filter by Municipality" fontweight="bold" width="30%"></wm-label>
                             <wm-container class="col-md-9" name="container1" width="70%">
-                                <wm-select name="selectStandardUserMunicipality" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" height="38px" orderby="MunicipalityName:asc" placeholder=""
-                                on-change="selectStandardUserMunicipalityChange($event, $scope, newVal, oldVal)" datavalue="bind:Variables.StandardUserMunicipalites.firstRecord"></wm-select>
+                                <wm-select name="selectStandardUserMunicipality" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" orderby="MunicipalityName:asc" placeholder="Select Municipality"
+                                on-change="selectStandardUserMunicipalityChange($event, $scope, newVal, oldVal)" height="38px"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-panel iconclass="wi wi-book-open" autoclose="outsideClick" name="panel1" title="Projects List" class="panel-primary">
+                        <wm-panel iconclass="wi wi-building" autoclose="outsideClick" name="panel1" title="My Projects" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegridProjectsList">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="Projects List" dataset="bind:Variables.UserAndSharedWith.dataSet" navigation="Classic" name="gridProjectsList">
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.UserAndSharedWith.dataSet" navigation="Classic" name="gridProjectsList" filtermode="multicolumn" showrowindex="false">
                                     <wm-grid-column binding="projectName" caption="Project Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                    <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
                                     <wm-grid-column-group name="group" caption="Created By">
                                         <wm-grid-column binding="usersByCreatedBy.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
                                         <wm-grid-column binding="usersByCreatedBy.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
@@ -35,7 +36,7 @@
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-action key="addNewRow" display-name="New Project" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogCreateProject.open();addNewRowAction($event);addNewRowAction1($event)"
                                     shortcutkey="" disabled="false"></wm-grid-action>
-                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="View Project" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.confirmdialogSoftDeleteProjectCo.open()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-livegrid>
@@ -47,41 +48,42 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="viewCreateProject">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Create Project" iconclass="wi wi-file-text" name="dialogCreateProject">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="New Project" iconclass="wi wi-building" name="dialogCreateProject">
             <wm-layoutgrid name="layoutgrid3">
-                <wm-gridrow name="gridrow15" padding="1em unset">
+                <wm-gridrow name="gridrow15" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn15">
-                        <wm-composite name="composite2">
-                            <wm-label class="col-md-3 control-label" name="label6" caption="Select Municipality"></wm-label>
+                        <wm-composite name="composite2" required="false">
+                            <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container2">
-                                <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.StandardUserMunicipalites.firstRecord"></wm-select>
+                                <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" placeholder="Select Municipality" orderby="MunicipalityName:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow16" padding="1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn17">
-                        <wm-composite name="composite3">
-                            <wm-label class="col-md-3 control-label" name="label7" caption="Project Name"></wm-label>
+                        <wm-composite name="composite3" required="true">
+                            <wm-label class="col-md-3 form-control-static" name="label7" caption="Project Name" fontweight="bold" required="false"></wm-label>
                             <wm-container class="col-md-9" name="container3">
-                                <wm-text name="textProjectName" placeholder="Enter ProjectName"></wm-text>
+                                <wm-text name="textProjectName" placeholder="Enter Text" required="false"></wm-text>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow17">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn19">
-                        <wm-richtexteditor name="richtexteditorProjectDescription" placeholder="Project Description"></wm-richtexteditor>
+                <wm-gridrow name="gridrow18" padding="1em unset unset unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn20" horizontalalign="left">
+                        <wm-label name="label4" class="col-md-3 form-control-static" fontweight="bold" caption="Description"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow18" padding="1em unset">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn20" horizontalalign="center">
-                        <wm-button class="btn-default btn-primary" caption="Create Project" type="button" margin="unset 0.5em" name="buttonCreateProject" on-click="buttonCreateProjectClick($event, $scope)"></wm-button>
+                <wm-gridrow name="gridrow17">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn19">
+                        <wm-richtexteditor name="richtexteditorProjectDescription" placeholder=""></wm-richtexteditor>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
+                <wm-button class="btn-primary" caption="Create" type="button" margin="unset 0.5em" name="buttonCreateProject" on-click="buttonCreateProjectClick($event, $scope)" iconclass="wi wi-plus" disabled="bind:Widgets.textProjectName.datavalue == null"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
