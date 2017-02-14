@@ -1395,6 +1395,7 @@
             <element name="gisrecordId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="gisrecords" typeRef="com.civicxpress.cx2.Gisrecords" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="projects" typeRef="com.civicxpress.cx2.Projects" allowNull="true"/>
             <element name="relatedProjectGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>
@@ -1412,6 +1413,7 @@
             <element name="addedAt" typeRef="org.joda.time.LocalDateTime" allowNull="true"/>
             <element name="addedBy" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="projects" typeRef="com.civicxpress.cx2.Projects" allowNull="true"/>
             <element name="relatedProjectGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="taskDescription" typeRef="java.lang.String" allowNull="true"/>
             <element name="taskName" typeRef="java.lang.String" allowNull="true"/>
@@ -1429,10 +1431,12 @@
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="projectDescription" typeRef="java.lang.String" allowNull="true"/>
             <element name="projectFormses" typeRef="com.civicxpress.cx2.ProjectForms" isList="true" allowNull="true"/>
+            <element name="projectGisrecordses" typeRef="com.civicxpress.cx2.ProjectGisrecords" isList="true" allowNull="true"/>
             <element name="projectGoals" typeRef="java.lang.String" allowNull="true"/>
             <element name="projectGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="projectName" typeRef="java.lang.String" allowNull="true"/>
             <element name="projectSharedWiths" typeRef="com.civicxpress.cx2.ProjectSharedWith" isList="true" allowNull="true"/>
+            <element name="projectTaskses" typeRef="com.civicxpress.cx2.ProjectTasks" isList="true" allowNull="true"/>
             <element name="usersByCreatedBy" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
             <element name="usersByModifiedBy" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>

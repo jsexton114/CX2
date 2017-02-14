@@ -8548,7 +8548,7 @@
         "defaultValue" : null
       },
       "fieldName" : "relatedProjectGuid",
-      "foreignKey" : false,
+      "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
@@ -8556,8 +8556,8 @@
       "name" : "RelatedProjectGUID",
       "nullable" : true,
       "oldName" : "RelatedProjectGUID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "precision" : 0,
@@ -8582,6 +8582,23 @@
       "virtual" : false
     },
     "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "projects",
+      "mappings" : [ {
+        "sourceColumn" : "RelatedProjectGUID",
+        "targetColumn" : "ProjectGUID"
+      } ],
+      "name" : "FK_ProjectGISRecords_TO_JvNRe",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "ProjectGISRecords",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Projects",
+      "virtual" : false
+    }, {
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -9008,6 +9025,23 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fieldName" : "projectGisrecordses",
+      "mappings" : [ {
+        "sourceColumn" : "ProjectGUID",
+        "targetColumn" : "RelatedProjectGUID"
+      } ],
+      "name" : "FK_ProjectGISRecords_TO_JvNRe",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Projects",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "ProjectGISRecords",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
       "fieldName" : "projectSharedWiths",
       "mappings" : [ {
         "sourceColumn" : "ProjectGUID",
@@ -9020,6 +9054,23 @@
       "sourceTable" : "Projects",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "ProjectSharedWith",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "projectTaskses",
+      "mappings" : [ {
+        "sourceColumn" : "ProjectGUID",
+        "targetColumn" : "RelatedProjectGUID"
+      } ],
+      "name" : "FK_ProjectTasks_TO_ProjeGpgSe",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Projects",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "ProjectTasks",
       "virtual" : false
     } ],
     "schema" : "cx2",
@@ -9362,7 +9413,7 @@
         "defaultValue" : null
       },
       "fieldName" : "relatedProjectGuid",
-      "foreignKey" : false,
+      "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
@@ -9370,8 +9421,8 @@
       "name" : "RelatedProjectGUID",
       "nullable" : true,
       "oldName" : "RelatedProjectGUID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "precision" : 0,
@@ -9396,6 +9447,23 @@
       "virtual" : false
     },
     "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "projects",
+      "mappings" : [ {
+        "sourceColumn" : "RelatedProjectGUID",
+        "targetColumn" : "ProjectGUID"
+      } ],
+      "name" : "FK_ProjectTasks_TO_ProjeGpgSe",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "ProjectTasks",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Projects",
+      "virtual" : false
+    }, {
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,

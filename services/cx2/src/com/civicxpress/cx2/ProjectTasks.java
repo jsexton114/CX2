@@ -35,6 +35,7 @@ public class ProjectTasks implements Serializable {
     @Type(type = "DateTime")
     private LocalDateTime addedAt;
     private String relatedProjectGuid;
+    private Projects projects;
     private Users users;
 
     @Id
@@ -91,6 +92,20 @@ public class ProjectTasks implements Serializable {
 
     public void setRelatedProjectGuid(String relatedProjectGuid) {
         this.relatedProjectGuid = relatedProjectGuid;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`RelatedProjectGUID`", referencedColumnName = "`ProjectGUID`", insertable = false, updatable = false)
+    public Projects getProjects() {
+        return this.projects;
+    }
+
+    public void setProjects(Projects projects) {
+        if(projects != null) {
+            this.relatedProjectGuid = projects.getProjectGuid();
+        }
+
+        this.projects = projects;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -33,6 +33,7 @@ public class ProjectGisrecords implements Serializable {
     private Date addedAt;
     private Integer gisrecordId;
     private String relatedProjectGuid;
+    private Projects projects;
     private Gisrecords gisrecords;
     private Users users;
 
@@ -82,6 +83,20 @@ public class ProjectGisrecords implements Serializable {
 
     public void setRelatedProjectGuid(String relatedProjectGuid) {
         this.relatedProjectGuid = relatedProjectGuid;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`RelatedProjectGUID`", referencedColumnName = "`ProjectGUID`", insertable = false, updatable = false)
+    public Projects getProjects() {
+        return this.projects;
+    }
+
+    public void setProjects(Projects projects) {
+        if(projects != null) {
+            this.relatedProjectGuid = projects.getProjectGuid();
+        }
+
+        this.projects = projects;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

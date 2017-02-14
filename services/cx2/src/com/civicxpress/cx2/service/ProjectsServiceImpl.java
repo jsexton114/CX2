@@ -22,7 +22,9 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.ProjectForms;
+import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
+import com.civicxpress.cx2.ProjectTasks;
 import com.civicxpress.cx2.Projects;
 
 
@@ -37,12 +39,20 @@ public class ProjectsServiceImpl implements ProjectsService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsServiceImpl.class);
 
     @Autowired
+	@Qualifier("cx2.ProjectTasksService")
+	private ProjectTasksService projectTasksService;
+
+    @Autowired
 	@Qualifier("cx2.ProjectFormsService")
 	private ProjectFormsService projectFormsService;
 
     @Autowired
 	@Qualifier("cx2.ProjectSharedWithService")
 	private ProjectSharedWithService projectSharedWithService;
+
+    @Autowired
+	@Qualifier("cx2.ProjectGisrecordsService")
+	private ProjectGisrecordsService projectGisrecordsService;
 
     @Autowired
     @Qualifier("cx2.ProjectsDao")
@@ -65,11 +75,27 @@ public class ProjectsServiceImpl implements ProjectsService {
             }
         }
 
+        if(projectsCreated.getProjectGisrecordses() != null) {
+            for(ProjectGisrecords projectGisrecordse : projectsCreated.getProjectGisrecordses()) {
+                projectGisrecordse.setProjects(projectsCreated);
+                LOGGER.debug("Creating a new child ProjectGisrecords with information: {}", projectGisrecordse);
+                projectGisrecordsService.create(projectGisrecordse);
+            }
+        }
+
         if(projectsCreated.getProjectSharedWiths() != null) {
             for(ProjectSharedWith projectSharedWith : projectsCreated.getProjectSharedWiths()) {
                 projectSharedWith.setProjects(projectsCreated);
                 LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWith);
                 projectSharedWithService.create(projectSharedWith);
+            }
+        }
+
+        if(projectsCreated.getProjectTaskses() != null) {
+            for(ProjectTasks projectTaskse : projectsCreated.getProjectTaskses()) {
+                projectTaskse.setProjects(projectsCreated);
+                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTaskse);
+                projectTasksService.create(projectTaskse);
             }
         }
         return projectsCreated;
@@ -159,6 +185,17 @@ public class ProjectsServiceImpl implements ProjectsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(String projectGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectGisrecordses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
+
+        return projectGisrecordsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<ProjectSharedWith> findAssociatedProjectSharedWiths(String projectGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectSharedWiths");
 
@@ -166,6 +203,26 @@ public class ProjectsServiceImpl implements ProjectsService {
         queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
 
         return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectTasks> findAssociatedProjectTaskses(String projectGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTaskses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
+
+        return projectTasksService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ProjectTasksService instance
+	 */
+	protected void setProjectTasksService(ProjectTasksService service) {
+        this.projectTasksService = service;
     }
 
     /**
@@ -184,6 +241,15 @@ public class ProjectsServiceImpl implements ProjectsService {
 	 */
 	protected void setProjectSharedWithService(ProjectSharedWithService service) {
         this.projectSharedWithService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ProjectGisrecordsService instance
+	 */
+	protected void setProjectGisrecordsService(ProjectGisrecordsService service) {
+        this.projectGisrecordsService = service;
     }
 
 }

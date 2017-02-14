@@ -26,7 +26,9 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.ProjectForms;
+import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
+import com.civicxpress.cx2.ProjectTasks;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.service.ProjectsService;
 
@@ -128,12 +130,27 @@ public class ProjectsController {
         return projectsService.findAssociatedProjectFormses(id, pageable);
     }
 
+    @RequestMapping(value = "/{id:.+}/projectGisrecordses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectGisrecordses instance associated with the given id.")
+    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(@PathVariable("id") String id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectGisrecordses");
+        return projectsService.findAssociatedProjectGisrecordses(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/projectSharedWiths", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the projectSharedWiths instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ProjectSharedWith> findAssociatedProjectSharedWiths(@PathVariable("id") String id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectSharedWiths");
         return projectsService.findAssociatedProjectSharedWiths(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/projectTaskses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectTaskses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<ProjectTasks> findAssociatedProjectTaskses(@PathVariable("id") String id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTaskses");
+        return projectsService.findAssociatedProjectTaskses(id, pageable);
     }
 
     /**
