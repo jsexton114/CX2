@@ -543,6 +543,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeProjectForms(Pageable pageable, java.lang.String project)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("project", project);
+        return queryExecutor.executeNamedQuery("ProjectForms", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeProjectsForUsersAndSharedWith(Pageable pageable, java.lang.Integer municipalityId, java.lang.Boolean Active, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

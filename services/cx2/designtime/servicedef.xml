@@ -30,6 +30,13 @@
         <parameter name="AddedTime" typeRef="java.sql.Timestamp" isList="false"/>
         <return typeRef="cx2AddGIStoFormsrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="AddGIStoProjects">
+        <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="RelatedProjectGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="AddedByUser" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="AddedAt" typeRef="java.sql.Timestamp" isList="false"/>
+        <return typeRef="cx2AddGIStoProjectsrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddingVendorsToForm">
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
         <parameter name="SharedOn" typeRef="java.sql.Timestamp" isList="false"/>
@@ -469,11 +476,8 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="AddGIStoProjects">
-        <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="RelatedProjectGUID" typeRef="java.lang.String" isList="false"/>
-        <parameter name="AddedByUser" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="AddedAt" typeRef="java.sql.Timestamp" isList="false"/>
+    <operation operationType="hqlquery" name="ProjectForms">
+        <parameter name="project" typeRef="java.lang.String" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
@@ -756,6 +760,10 @@
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="Closed" typeRef="java.lang.Boolean" isList="false"/>
         <return typeRef="cx2ProcessFormsForUserByMunicipalityrtnType" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="ProjectForms">
+        <parameter name="project" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2ProjectFormsrtnType" isList="false"/>
     </operation>
     <operation operationType="hqlquery" name="ProjectsForUsersAndSharedWith">
         <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
@@ -2048,6 +2056,17 @@
             <element name="users" typeRef="com.civicxpress.cx2.Users"/>
             <element name="vendor" typeRef="com.civicxpress.cx2.Vendor"/>
             <element name="vendors2forms" typeRef="java.util.List"/>
+        </dataobject>
+        <dataobject javaType="cx2ProjectFormsrtnType">
+            <element name="addedAt" typeRef="java.util.Date"/>
+            <element name="addedByUser" typeRef="java.lang.Integer"/>
+            <element name="comments" typeRef="java.lang.String"/>
+            <element name="id" typeRef="java.lang.Integer"/>
+            <element name="masterForms" typeRef="com.civicxpress.cx2.MasterForms"/>
+            <element name="projects" typeRef="com.civicxpress.cx2.Projects"/>
+            <element name="relatedFormGuid" typeRef="java.lang.String"/>
+            <element name="relatedProjectGuid" typeRef="java.lang.String"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users"/>
         </dataobject>
         <dataobject javaType="cx2ProjectSoftDeletertnType"/>
         <dataobject javaType="cx2ProjectsForUsersAndSharedWithrtnType">

@@ -610,6 +610,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/ProjectForms", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeProjectForms(@RequestParam(value = "project", required = false) java.lang.String project, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query ProjectForms");
+        Page<Object> result = queryService.executeProjectForms(pageable, project);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/ProjectsForUsersAndSharedWith", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeProjectsForUsersAndSharedWith(@RequestParam(value = "municipalityId", required = false) java.lang.Integer municipalityId, @RequestParam(value = "Active", required = false) java.lang.Boolean Active, @RequestParam(value = "creatorUser", required = false) java.lang.Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) java.lang.Integer sharedWithUser, Pageable pageable) throws QueryParameterMismatchException {

@@ -1846,6 +1846,34 @@
       "vendors2forms" : "java.util.List"
     }
   }, {
+    "name" : "ProjectForms",
+    "query" : "from ProjectForms where RelatedProjectGUID=:project",
+    "comment" : "ProjectForms",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "project",
+      "paramType" : "java.lang.String",
+      "testValue" : "85A109AC-AF6B-4E67-9C98-F8D99B60E677",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2ProjectFormsrtnType",
+    "returnTypeMetadata" : {
+      "addedAt" : "java.util.Date",
+      "addedByUser" : "java.lang.Integer",
+      "comments" : "java.lang.String",
+      "id" : "java.lang.Integer",
+      "masterForms" : "com.civicxpress.cx2.MasterForms",
+      "projects" : "com.civicxpress.cx2.Projects",
+      "relatedFormGuid" : "java.lang.String",
+      "relatedProjectGuid" : "java.lang.String",
+      "users" : "com.civicxpress.cx2.Users"
+    }
+  }, {
     "name" : "ProjectsForUsersAndSharedWith",
     "query" : "from Projects where municipalityId=:municipalityId and Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select relatedProjectGuid from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser )) ORDER BY ModifiedDate DESC",
     "comment" : "ProjectsForUsersAndSharedWith",
