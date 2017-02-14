@@ -713,7 +713,8 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -954,7 +955,8 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -964,7 +966,7 @@
         "columnName" : "ProjectGUID",
         "isPrimaryKey" : true,
         "notNull" : true,
-        "length" : 255,
+        "length" : 32,
         "precision" : 0,
         "generator" : "uniqueid",
         "isRelated" : false,
