@@ -50,6 +50,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/AddGIStoProjects", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeAddGIStoProjects(@RequestParam(value = "GISRecordId", required = false) java.lang.Integer GISRecordId, @RequestParam(value = "RelatedProjectGUID", required = false) java.lang.String RelatedProjectGUID, @RequestParam(value = "AddedByUser", required = false) java.lang.Integer AddedByUser, @RequestParam(value = "AddedAt", required = false) java.sql.Timestamp AddedAt) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query AddGIStoProjects");
+        int result = queryService.executeAddGIStoProjects(GISRecordId, RelatedProjectGUID, AddedByUser, AddedAt);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/AddingVendorsToForm", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeAddingVendorsToForm(@RequestParam(value = "RelatedFormGUID", required = false) java.lang.String RelatedFormGUID, @RequestParam(value = "SharedOn", required = false) java.sql.Timestamp SharedOn, @RequestParam(value = "VendorId", required = false) java.lang.Integer VendorId) throws QueryParameterMismatchException {

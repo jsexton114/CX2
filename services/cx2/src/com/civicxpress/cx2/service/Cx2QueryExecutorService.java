@@ -16,6 +16,7 @@ import com.wavemaker.runtime.data.exception.QueryParameterMismatchException;
 
 public interface Cx2QueryExecutorService {
 	int executeAddGIStoForms(  java.lang.Integer GISRecordId , java.lang.String RelatedFormGUID , java.lang.Integer AddedBy , java.sql.Timestamp AddedTime) throws QueryParameterMismatchException;
+	int executeAddGIStoProjects(  java.lang.Integer GISRecordId , java.lang.String RelatedProjectGUID , java.lang.Integer AddedByUser , java.sql.Timestamp AddedAt) throws QueryParameterMismatchException;
 	int executeAddingVendorsToForm(  java.lang.String RelatedFormGUID , java.sql.Timestamp SharedOn , java.lang.Integer VendorId) throws QueryParameterMismatchException;
 	int executeAddMemeberToProject(  java.lang.String RelatedProjectGUID , java.sql.Timestamp ProjectSharedOn , java.lang.Integer ProjectSharedWith , java.lang.Integer ProjectSharedBy) throws QueryParameterMismatchException;
 	int executeAddUsersToVendor(  java.lang.Integer VendorId , java.lang.Integer UserId , java.sql.Date JoiningDate) throws QueryParameterMismatchException;

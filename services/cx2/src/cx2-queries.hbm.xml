@@ -6,6 +6,11 @@
       insert into GIS2Forms(GISRecordId,RelatedFormGUID,AddedBy,AddedTime) values(:GISRecordId,:RelatedFormGUID,:AddedBy,:AddedTime)
     ]]>
   </sql-query>
+  <sql-query name="AddGIStoProjects">
+    <![CDATA[
+      insert into ProjectGISRecords(GISRecordId,RelatedProjectGUID,AddedByUser,AddedAt) values(:GISRecordId,:RelatedProjectGUID,:AddedByUser,:AddedAt)
+    ]]>
+  </sql-query>
   <sql-query name="AddingVendorsToForm">
     <![CDATA[
       insert into Vendors2Form(RelatedFormGUID,SharedOn,VendorId) values(:RelatedFormGUID,:SharedOn,:VendorId)

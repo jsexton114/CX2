@@ -12,7 +12,6 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 
 
     $scope.CurrentProjectonSuccess = function(variable, data) {
-        debugger
         if ($scope.Variables.loggedInUser.dataSet.id == data[0].usersByCreatedBy.id) {
             $scope.addMember = true;
         }
@@ -40,4 +39,50 @@ Application.$controller("dialogAddMemberController", ["$scope",
         $scope.ctrlScope = $scope;
         $scope.today = moment().valueOf();
     }
+]);
+
+Application.$controller("gridLocationController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogAddGISRecordController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+        $scope.today = moment().valueOf();
+
+        $scope.buttonAddByAddressClick = function($event, $isolateScope) {
+            $scope.Variables.AddGIStoProjects.setInput({
+                'GISRecordId': $scope.Widgets.searchAddress.datavalue.id
+            });
+            $scope.Variables.AddGIStoProjects.update();
+        };
+
+
+        $scope.buttonAddBySubdivisionClick = function($event, $isolateScope) {
+            $scope.Variables.AddGIStoProjects.setInput({
+                'GISRecordId': $scope.Widgets.searchSubdivision.datavalue.id
+            });
+            $scope.Variables.AddGIStoProjects.update();
+        };
+
+
+        $scope.buttonAddByParcelClick = function($event, $isolateScope) {
+            $scope.Variables.AddGIStoProjects.setInput({
+                'GISRecordId': $scope.Widgets.searchParcel.datavalue.id
+            });
+            $scope.Variables.AddGIStoProjects.update();
+        };
+
+    }
+]);
+
+Application.$controller("dialogParcelController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

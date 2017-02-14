@@ -99,7 +99,33 @@
                             <wm-tabpane name="tabpaneTASKS" title="TASKS"></wm-tabpane>
                             <wm-tabpane name="tabpaneDOCUMENTS" title="DOCUMENTS"></wm-tabpane>
                             <wm-tabpane name="tabpane4" title="MESSAGING"></wm-tabpane>
-                            <wm-tabpane name="tabpaneMAPS" title="MAPS"></wm-tabpane>
+                            <wm-tabpane name="tabpaneMAPS" title="MAPS">
+                                <wm-layoutgrid name="layoutgrid17">
+                                    <wm-gridrow name="gridrow61">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn127">
+                                            <wm-livegrid formlayout="dialog" name="livegridLocation">
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectGISRecords.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn" exportformat="EXCEL">
+                                                    <wm-grid-column binding="gisrecords.subdivisionId" caption="Subdivision No" type="integer" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.section" caption="Section" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetNumber" caption="Street Number" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.city" caption="City" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-action key="addNewRow" display-name="Add Parcel" show="true" class="btn-primary" iconclass="wi wi-add" title="Add Parcel" action="Widgets.dialogAddGISRecord.open()" shortcutkey=""
+                                                    disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                            </wm-livegrid>
+                                            <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.ProjectGISRecords.dataSet.data[$i].gisrecords" zoom="14" markertype="Address" address="streetNumber streetName city states.stateName"
+                                            show="bind:Variables.ProjectGISRecords.dataSet.data.length > 0"></wm-prefab>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-tabpane>
                             <wm-tabpane name="tabpaneFORMS" title="FORMS"></wm-tabpane>
                             <wm-tabpane name="tabpaneINSPECTIONS" title="INSPECTIONS"></wm-tabpane>
                             <wm-tabpane name="tabpaneFEES" title="FEES"></wm-tabpane>
@@ -127,6 +153,269 @@
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewAddGISRecord">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Parcel Search" iconclass="wi wi-location-searching" name="dialogAddGISRecord">
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button3" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
+            <wm-tabs name="tabsAddGISRecord">
+                <wm-tabpane name="tabpane8" title="BY ADDRESS">
+                    <wm-layoutgrid name="layoutgrid8">
+                        <wm-gridrow name="gridrow20">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn40"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn41">
+                                <wm-search name="searchAddress" placeholder="Search by Street Number or Street Name" dataset="bind:Variables.GISRecords.dataSet" searchkey="fullAddress" displaylabel="bind:$[data[$i].fullAddress]" datafield="All Fields"></wm-search>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn44"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow22" padding="1em unset unset unset">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn46"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn47" horizontalalign="center">
+                                <wm-label padding="unset 0.5em" name="label11" class="h4" show="bind:Widgets.searchAddress.datavalue!=undefined" caption="Parcel Details"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn48"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow21" padding="unset unset 1em unset">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn42"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn43" horizontalalign="center">
+                                <wm-label padding="unset 0.5em" name="label10" caption="bind:Widgets.searchAddress.datavalue.fullAddress" show="bind:Widgets.searchAddress.datavalue!=undefined"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn45"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow23">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn49"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn50" horizontalalign="center">
+                                <wm-button class="btn-primary" caption="Add Parcel" type="button" margin="unset 0.5em" name="buttonAddByAddress" iconclass="wi wi-add-location" show="bind:Widgets.searchAddress.datavalue!=undefined" on-click="buttonAddByAddressClick($event, $scope)"></wm-button>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn51"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane9" title="BY SUBDIVISION">
+                    <wm-layoutgrid name="layoutgrid9">
+                        <wm-gridrow name="gridrow40_1" padding="unset unset .5em unset">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn95_1"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn96_1">
+                                <wm-search placeholder="Search by Subdivision Name" dataset="bind:Variables.Subdivisions.dataSet" searchkey="subdivision" displaylabel="bind:$[data[$i].subdivision]" datafield="All Fields" name="searchFliterSubdivisions" displayexpression="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]"
+                                orderby="subdivision:asc"></wm-search>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn97_1"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow24">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn52"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn53">
+                                <wm-select placeholder="Select Lot" dataset="bind:Variables.GISLotRecords.dataSet" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
+                                datafield="All Fields" name="searchSubdivision" show="bind:Widgets.searchFliterSubdivisions.datavalue!=undefined" displayexpression="bind:(!!$[data[$i].lot] ? '('+$[data[$i].lot]+') ' : '')+$[data[$i].fullAddress]" displayfield="lot"></wm-select>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn54"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow25" padding="1em unset unset unset">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn55"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn56">
+                                <wm-label padding="unset 0.5em" class="h4" name="label12" show="bind:Widgets.searchSubdivision.datavalue!=undefined" caption="Parcel Details"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn57"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow padding="unset unset 1em unset" name="gridrow26">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn58"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn59">
+                                <wm-label padding="unset 0.5em" caption="bind:Widgets.searchSubdivision.datavalue.fullAddress" show="bind:Widgets.searchSubdivision.datavalue!=undefined" name="label13"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn60"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow27">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn61"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn62">
+                                <wm-button class="btn-primary" caption="Add Parcel" type="button" margin="unset 0.5em" iconclass="wi wi-add-location" name="buttonAddBySubdivision" show="bind:Widgets.searchSubdivision.datavalue!=undefined" on-click="buttonAddBySubdivisionClick($event, $scope)"></wm-button>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn63"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane10" title="BY PARCEL">
+                    <wm-layoutgrid name="layoutgrid10">
+                        <wm-gridrow name="gridrow28">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn64"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn65">
+                                <wm-search placeholder="Search by Parcel Number" dataset="bind:Variables.GISRecords.dataSet" searchkey="parcel" displaylabel="bind:'('+$[data[$i].parcel]+') '+$[data[$i].fullAddress]" datafield="All Fields" name="searchParcel"></wm-search>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn66"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow41_1">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn98_1"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn99">
+                                <wm-label padding="unset 0.5em" name="label23_1" caption="Example: 13-11-21-00-08-010.000"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn100"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow29" padding="1em unset unset unset">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn67"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn68">
+                                <wm-label padding="unset 0.5em" class="h4" name="label14" show="bind:Widgets.searchParcel.datavalue!=undefined" caption="Parcel Details"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn69"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow padding="unset unset 1em unset" name="gridrow30">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn70"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn71">
+                                <wm-label padding="unset 0.5em" caption="bind:Widgets.searchParcel.datavalue.fullAddress" show="bind:Widgets.searchParcel.datavalue!=undefined" name="label15"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn72"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow31">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn73"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn74">
+                                <wm-button class="btn-primary" caption="Add Parcel" type="button" margin="unset 0.5em" iconclass="wi wi-add-location" name="buttonAddByParcel" show="bind:Widgets.searchParcel.datavalue!=undefined" on-click="buttonAddByParcelClick($event, $scope)"></wm-button>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn75"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-tabpane>
+            </wm-tabs>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewParcel">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Parcel Details" iconclass="wi wi-chrome-reader-mode" name="dialogParcel">
+            <wm-layoutgrid name="layoutgrid10_1">
+                <wm-gridrow name="gridrow30_1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn72_1">
+                        <wm-label padding="unset 0.5em" caption="Parcel" name="label12_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn73_1">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.parcel" name="label13_1"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow34">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn80">
+                        <wm-label padding="unset 0.5em" caption="Subdivision" name="label18"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn81">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.subdivisions.subdivision" name="label19"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow70">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn145">
+                        <wm-label padding="unset 0.5em" name="label36" caption="Lot"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn146">
+                        <wm-label padding="unset 0.5em" name="label46" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.lot"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow71">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn147">
+                        <wm-label padding="unset 0.5em" name="label37" caption="Section"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn148">
+                        <wm-label padding="unset 0.5em" name="label47" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.section"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow31_1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn74_1">
+                        <wm-label padding="unset 0.5em" caption="Street Number" name="label14_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn75_1">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.streetNumber" name="label15_1"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow33">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn78">
+                        <wm-label padding="unset 0.5em" caption="Unit Number" name="label17"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn79">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.unitNumber" name="label20"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow74">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn153">
+                        <wm-label padding="unset 0.5em" name="label40" caption="Street Direction"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn154">
+                        <wm-label padding="unset 0.5em" name="label48" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.streetDirection"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow32">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn76">
+                        <wm-label padding="unset 0.5em" caption="Street Name" name="label16"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn77">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.streetName" name="label21"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow75">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn155">
+                        <wm-label padding="unset 0.5em" name="label40_1" caption="Street Type"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn156">
+                        <wm-label padding="unset 0.5em" name="label49" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.streetType"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow72">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn149">
+                        <wm-label padding="unset 0.5em" name="label38" caption="City"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn150">
+                        <wm-label padding="unset 0.5em" name="label50" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.city"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow76">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn141_1">
+                        <wm-label padding="unset 0.5em" name="label41" caption="State"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn142">
+                        <wm-label padding="unset 0.5em" name="label51" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.states.stateName"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow77">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn143_1">
+                        <wm-label padding="unset 0.5em" name="label42" caption="Postal Code"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn144">
+                        <wm-label padding="unset 0.5em" name="label52" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.postalCode"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow78">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn145_1">
+                        <wm-label padding="unset 0.5em" name="label43" caption="Country"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn146_1">
+                        <wm-label padding="unset 0.5em" name="label53" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.country"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow79">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn147_1">
+                        <wm-label padding="unset 0.5em" name="label44" caption="Latitude"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn148_1">
+                        <wm-label padding="unset 0.5em" name="label54" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.latitude"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow80">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn149_1">
+                        <wm-label padding="unset 0.5em" name="label45" caption="Longitude"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn150_1">
+                        <wm-label padding="unset 0.5em" name="label55" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.longitude"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow73">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn151">
+                        <wm-label padding="unset 0.5em" name="label39" caption="Inspection Zone"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn152">
+                        <wm-label padding="unset 0.5em" name="label56" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.inspectionZone"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow45_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn104_1" padding="2em unset unset unset">
+                        <wm-prefab prefabname="googlemaps" name="googlemaps2" address="streetNumber streetName city states.stateName" locations="bind:Widgets.gridLocation.selecteditem.gisrecords" markertype="Address" zoom="16"></wm-prefab>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions2">
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
