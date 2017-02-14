@@ -9,8 +9,8 @@
                     <wm-gridcolumn columnwidth="6" name="gridcolumn34"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn35">
                         <wm-composite name="composite1_1" margin="1em unset unset unset" accessroles="CXAdmin">
-                            <wm-label class="col-md-3 form-control-static" name="label2_1" caption="View as User" fontweight="bold" width="30%"></wm-label>
-                            <wm-container class="col-md-9" name="container1" width="70%">
+                            <wm-label class="col-md-3 form-control-static" name="label2_1" caption="View as User" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
                                 <wm-search name="searchUser" placeholder="Search by Name or Email Address" dataset="bind:Variables.GetAllUsersForAdmin.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" displayimagesrc="photo" datafield="id"
                                 on-change="searchUserChange($event, $scope, newVal, oldVal)" orderby="fullName:asc"></wm-search>
                             </wm-container>
@@ -19,13 +19,13 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
-                        <wm-label padding="unset 0.5em" name="label1" caption="My Dashboard" fontsize="15" fontweight="bold"></wm-label>
+                        <wm-label name="label1" caption="My Dashboard" fontweight="bold" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
                         <wm-composite name="composite1">
-                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Filter by Municipality" fontweight="bold" width="30%"></wm-label>
-                            <wm-container class="col-md-9" name="container1" width="70%">
-                                <wm-select name="selectStandardUserMunicipality" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" height="38px" orderby="MunicipalityName:asc" placeholder="Select Municipality"
+                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Filter Results" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-select name="selectStandardUserMunicipality" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" orderby="MunicipalityName:asc" placeholder="Select Municipality"
                                 on-change="selectStandardUserMunicipalityChange($event, $scope, newVal, oldVal)"></wm-select>
                             </wm-container>
                         </wm-composite>
