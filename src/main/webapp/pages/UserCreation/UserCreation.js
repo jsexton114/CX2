@@ -127,6 +127,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         } else {
             $scope.Variables.NoMuncipalitiesAdded.notify();
         }
+        $scope.Widgets.textSearchMunicipalities.reset();
     };
 
     $scope.buttonRemoveClick = function($event, $isolateScope, item, currentItemWidgets) {

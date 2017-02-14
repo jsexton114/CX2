@@ -69,6 +69,7 @@
         <security:intercept-url pattern="/services/cXPasswordReset/validateSignupToken" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/Municipalities" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/Municipalities/*" access="permitAll" method="GET"/>
+        <security:intercept-url pattern="/services/cx2/Municipalities/*/content/*" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/Roles" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/States" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/UserSubscriptions" access="permitAll" method="POST"/>
