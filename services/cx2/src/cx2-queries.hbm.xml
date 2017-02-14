@@ -242,6 +242,11 @@
       insert into FormMessages(UserId,RelatedFormGUID,Message,PostedAt) values(:UserId,:RelatedFormGUID,:Message,:PostedAt)
     ]]>
   </sql-query>
+  <sql-query name="InsertFormsIntoProject">
+    <![CDATA[
+      insert into ProjectForms(RelatedProjectGuid,RelatedFormGUID,AddedByUser,AddedAt,Comments) values(:RelatedProjectGuid,:RelatedFormGUID,:AddedByUser,:AddedAt,:Comments)
+    ]]>
+  </sql-query>
   <sql-query name="InsertGroups">
     <![CDATA[
       insert into MunicipalityGroups (GroupName,GroupDescription,MunicipalityId) values (:GroupName,:GroupDescription,:MunicipalityId)
@@ -282,6 +287,11 @@
       select count(*) as municipalitiesCount from Municipalities
     ]]>
   </sql-query>
+  <query name="OpenedOrClosedFormsForUserOrSharedWith">
+    <![CDATA[
+      from MasterForms where UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser ) ORDER BY DateModified DESC
+    ]]>
+  </query>
   <query name="ProcessFormsForUserByMunicipality">
     <![CDATA[
       from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.userId=:UserId and GM.municipalityGroupId=MG.id and MG.id=MF.assignedToGroupId and MF.municipalityId=:MunicipalityId and MF.closed=:Closed ORDER BY DateModified DESC

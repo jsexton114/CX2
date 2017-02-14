@@ -139,11 +139,14 @@
                                             <wm-grid-column binding="masterForms.vendor.companyName" caption="Company Name" type="string" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="masterForms.balanceDue" caption="Balance Due" type="string" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column-group name="group" caption="Submitted By">
-                                                <wm-grid-column binding="users.firstName" caption="Users First Name" type="string" show="true" readonly="false">users.firstName+" "+users.lastName</wm-grid-column>
+                                                <wm-grid-column binding="users.firstName" caption="Users First Name" type="string" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="users.lastName" caption="Users Last Name" type="string" show="true" readonly="false"></wm-grid-column>
                                             </wm-grid-column-group>
                                         </wm-grid-column-group>
-                                        <wm-grid-row-action key="customRow" display-name="" title="" value="" iconclass="wi wi-search" class="btn-transparent" show="true" action="Variables.GoToForms.invoke()"></wm-grid-row-action>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddFormsToProject.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="" action="Variables.GoToForms.invoke()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
                                     </wm-grid>
                                 </wm-livegrid>
                             </wm-tabpane>
@@ -436,6 +439,36 @@
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions2">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewAddFormsToProject">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add Forms" iconclass="wi wi-add-box" name="dialogAddFormsToProject">
+            <wm-layoutgrid name="layoutgrid9_1">
+                <wm-gridrow name="gridrow45" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn89">
+                        <wm-label padding="unset 0.5em" caption="You can only add form created by you else you are share with" name="label46_1"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow46" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn91">
+                        <wm-search name="searchForm" dataset="bind:Variables.OpenedOrClosedFormsByUserOrSharedWith.dataSet" searchkey="bind:Variables.OpenedOrClosedFormsByUserOrSharedWith.dataSet[$i].formTitle" displaylabel="formTitle" datafield="All Fields"
+                        orderby="formTitle:asc"></wm-search>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow47" padding="1px unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn93">
+                        <wm-textarea name="textareaFormComments" placeholder="Please Enter Your Comments"></wm-textarea>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow48" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn92" horizontalalign="center">
+                        <wm-button class="btn-default btn-primary" caption="Add Form" type="button" margin="unset 0.5em" name="buttonAddForm" on-tap="Variables.AddFormToProject.invoke()"></wm-button>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions4">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button8"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

@@ -63,6 +63,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeGetWriteAccessGroupMembersByFormGUID(Pageable pageable, java.lang.String FormGUID) throws QueryParameterMismatchException;
 	int executeInsertCategoryMapping(  java.lang.Integer FormTypeId , java.lang.Integer FormCategoryId) throws QueryParameterMismatchException;
 	int executeInsertFormMessage(  java.lang.Integer UserId , java.lang.String RelatedFormGUID , java.lang.String Message , java.sql.Timestamp PostedAt) throws QueryParameterMismatchException;
+	int executeInsertFormsIntoProject(  java.lang.String RelatedProjectGuid , java.lang.String RelatedFormGUID , java.lang.Integer AddedByUser , java.sql.Timestamp AddedAt , java.lang.String Comments) throws QueryParameterMismatchException;
 	int executeInsertGroups(  java.lang.String GroupName , java.lang.String GroupDescription , java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
 	int executeInsertNewRole(  java.lang.String RoleName , java.lang.Integer MunicipalityId , java.lang.String Description , java.lang.Integer UserId) throws QueryParameterMismatchException;
 	int executeInsertSubscription(  java.lang.Integer UserId , java.lang.Integer MunicipalityId , java.lang.String DateSubscribed) throws QueryParameterMismatchException;
@@ -71,6 +72,7 @@ public interface Cx2QueryExecutorService {
 	int executeMapAsAdminForVendor(  java.lang.Integer UserId , java.lang.Integer VendorId) throws QueryParameterMismatchException;
     Page<Object> executeMunicipalitiesGroupsCounts(Pageable pageable, java.lang.Integer municipality) throws QueryParameterMismatchException;
     Page<Object> executeMunicipalityCount(Pageable pageable) throws QueryParameterMismatchException;
+    Page<Object> executeOpenedOrClosedFormsForUserOrSharedWith(Pageable pageable, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
     Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, java.lang.Integer UserId, java.lang.Integer MunicipalityId, java.lang.Boolean Closed) throws QueryParameterMismatchException;
     Page<Object> executeProjectForms(Pageable pageable, java.lang.String project) throws QueryParameterMismatchException;
     Page<Object> executeProjectsForUsersAndSharedWith(Pageable pageable, java.lang.Integer municipalityId, java.lang.Boolean Active, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;

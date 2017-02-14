@@ -27,6 +27,52 @@
     } ],
     "operation" : "toast"
   },
+  "AddFormToProject" : {
+    "_id" : "wm-AddFormToProject-wm.ServiceVariable-1487065567817",
+    "name" : "AddFormToProject",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "RelatedProjectGuid",
+      "value" : "bind:pageParams.ProjectGUID",
+      "type" : "string"
+    }, {
+      "target" : "RelatedFormGUID",
+      "value" : "bind:Widgets.searchForm.datavalue.formGuid",
+      "type" : "string"
+    }, {
+      "target" : "AddedByUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "AddedAt",
+      "value" : "bind:today",
+      "type" : "string"
+    }, {
+      "target" : "Comments",
+      "value" : "bind:Widgets.textareaFormComments.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "cx2InsertFormsIntoProjectrtnType",
+    "service" : "cx2",
+    "operation" : "executeInsertFormsIntoProject",
+    "operationId" : "QueryExecutionController_executeInsertFormsIntoProject",
+    "operationType" : "post",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Widgets.dialogAddFormsToProject.close();Variables.ProjectForms.invoke()",
+    "onError" : "No Event",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "viewAddFormsToProject"
+  },
   "AddGIStoProjects" : {
     "_id" : "wm-AddGIStoProjects-wm.ServiceVariable-1487053206295",
     "name" : "AddGIStoProjects",
@@ -3180,6 +3226,38 @@
       "value" : "bind:Widgets.gridProjectForms.selecteditem.masterForms.formGuid"
     } ],
     "pageTransitions" : "none"
+  },
+  "OpenedOrClosedFormsByUserOrSharedWith" : {
+    "_id" : "wm-OpenedOrClosedFormsByUserOrSharedWith-wm.ServiceVariable-1487064721235",
+    "name" : "OpenedOrClosedFormsByUserOrSharedWith",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "creatorUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "sharedWithUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "cx2OpenedOrClosedFormsForUserOrSharedWithrtnType",
+    "service" : "cx2",
+    "operation" : "executeOpenedOrClosedFormsForUserOrSharedWith",
+    "operationId" : "QueryExecutionController_executeOpenedOrClosedFormsForUserOrSharedWith",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "viewAddFormsToProject"
   },
   "ProjectForms" : {
     "_id" : "wm-ProjectForms-wm.ServiceVariable-1487061887905",

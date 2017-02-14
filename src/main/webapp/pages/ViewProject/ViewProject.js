@@ -93,3 +93,10 @@ Application.$controller("gridProjectFormsController", ["$scope",
 		$scope.ctrlScope = $scope;
 	}
 ]);
+
+Application.$controller("dialogAddFormsToProjectController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

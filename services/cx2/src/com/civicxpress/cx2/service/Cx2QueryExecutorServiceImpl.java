@@ -461,6 +461,18 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeInsertFormsIntoProject( java.lang.String RelatedProjectGuid ,java.lang.String RelatedFormGUID ,java.lang.Integer AddedByUser ,java.sql.Timestamp AddedAt ,java.lang.String Comments)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("RelatedProjectGuid", RelatedProjectGuid);
+        params.put("RelatedFormGUID", RelatedFormGUID);
+        params.put("AddedByUser", AddedByUser);
+        params.put("AddedAt", AddedAt);
+        params.put("Comments", Comments);
+        return queryExecutor.executeNamedQueryForUpdate("InsertFormsIntoProject", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeInsertGroups( java.lang.String GroupName ,java.lang.String GroupDescription ,java.lang.Integer MunicipalityId)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -530,6 +542,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         return queryExecutor.executeNamedQuery("MunicipalityCount", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public Page<Object> executeOpenedOrClosedFormsForUserOrSharedWith(Pageable pageable, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
+        return queryExecutor.executeNamedQuery("OpenedOrClosedFormsForUserOrSharedWith", params, pageable);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override

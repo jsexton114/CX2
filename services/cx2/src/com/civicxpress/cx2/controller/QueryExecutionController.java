@@ -520,6 +520,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/InsertFormsIntoProject", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeInsertFormsIntoProject(@RequestParam(value = "RelatedProjectGuid", required = false) java.lang.String RelatedProjectGuid, @RequestParam(value = "RelatedFormGUID", required = false) java.lang.String RelatedFormGUID, @RequestParam(value = "AddedByUser", required = false) java.lang.Integer AddedByUser, @RequestParam(value = "AddedAt", required = false) java.sql.Timestamp AddedAt, @RequestParam(value = "Comments", required = false) java.lang.String Comments) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query InsertFormsIntoProject");
+        int result = queryService.executeInsertFormsIntoProject(RelatedProjectGuid, RelatedFormGUID, AddedByUser, AddedAt, Comments);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/InsertGroups", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeInsertGroups(@RequestParam(value = "GroupName", required = false) java.lang.String GroupName, @RequestParam(value = "GroupDescription", required = false) java.lang.String GroupDescription, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId) throws QueryParameterMismatchException {
@@ -595,6 +605,16 @@ public class QueryExecutionController {
     public Page<Object> executeMunicipalityCount(Pageable pageable) {
         LOGGER.debug("Executing named query MunicipalityCount");
         Page<Object> result = queryService.executeMunicipalityCount(pageable);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/OpenedOrClosedFormsForUserOrSharedWith", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeOpenedOrClosedFormsForUserOrSharedWith(@RequestParam(value = "creatorUser", required = false) java.lang.Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) java.lang.Integer sharedWithUser, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query OpenedOrClosedFormsForUserOrSharedWith");
+        Page<Object> result = queryService.executeOpenedOrClosedFormsForUserOrSharedWith(pageable, creatorUser, sharedWithUser);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

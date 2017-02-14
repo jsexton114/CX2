@@ -959,7 +959,7 @@
   }, {
     "name" : "FormsForUsersAndShared",
     "query" : "from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser )) ORDER BY DateModified DESC",
-    "comment" : "Brings all the Forms of creator and shared with user",
+    "comment" : "Brings closed or opened  Forms of creator and shared with user",
     "description" : null,
     "nativeSql" : false,
     "returnsSingleResult" : false,
@@ -1008,6 +1008,7 @@
       "municipalityGroups" : "com.civicxpress.cx2.MunicipalityGroups",
       "municipalityId" : "java.lang.Integer",
       "ownerId" : "java.lang.Integer",
+      "projectFormses" : "java.util.List",
       "recordType" : "java.lang.String",
       "sharedWiths" : "java.util.List",
       "submittedOn" : "java.util.Date",
@@ -1563,6 +1564,52 @@
     "outputType" : "cx2InsertFormMessagertnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "InsertFormsIntoProject",
+    "query" : "insert into ProjectForms(RelatedProjectGuid,RelatedFormGUID,AddedByUser,AddedAt,Comments) values(:RelatedProjectGuid,:RelatedFormGUID,:AddedByUser,:AddedAt,:Comments)",
+    "comment" : "InsertFormsIntoProject",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "RelatedProjectGuid",
+      "paramType" : "java.lang.String",
+      "testValue" : "85A109AC-AF6B-4E67-9C98-F8D99B60E677",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "RelatedFormGUID",
+      "paramType" : "java.lang.String",
+      "testValue" : "E90DF2F6-D1E4-E611-80C9-0CC47A46DD63",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "AddedByUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "AddedAt",
+      "paramType" : "java.sql.Timestamp",
+      "testValue" : "1487063596000",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "Comments",
+      "paramType" : "java.lang.String",
+      "testValue" : "Dev",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2InsertFormsIntoProjectrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "InsertGroups",
     "query" : "insert into MunicipalityGroups (GroupName,GroupDescription,MunicipalityId) values (:GroupName,:GroupDescription,:MunicipalityId)",
     "comment" : "Insert Groups in to Municipalities",
@@ -1767,6 +1814,62 @@
     "outputType" : "cx2MunicipalityCountrtnType",
     "returnTypeMetadata" : {
       "municipalitiesCount" : "java.lang.Integer"
+    }
+  }, {
+    "name" : "OpenedOrClosedFormsForUserOrSharedWith",
+    "query" : "from MasterForms where UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser ) ORDER BY DateModified DESC",
+    "comment" : "OpenedOrClosedFormsForUserOrSharedWith",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "creatorUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "sharedWithUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2OpenedOrClosedFormsForUserOrSharedWithrtnType",
+    "returnTypeMetadata" : {
+      "assignedToGroupId" : "java.lang.Integer",
+      "balanceDue" : "java.lang.String",
+      "closed" : "java.lang.Boolean",
+      "cxvendorId" : "java.lang.Integer",
+      "dateModified" : "java.util.Date",
+      "expiresDate" : "java.util.Date",
+      "formGuid" : "java.lang.String",
+      "formMessageses" : "java.util.List",
+      "formStatusId" : "java.lang.Integer",
+      "formStatuses" : "com.civicxpress.cx2.FormStatuses",
+      "formTitle" : "java.lang.String",
+      "formTypeId" : "java.lang.Integer",
+      "formTypes" : "com.civicxpress.cx2.FormTypes",
+      "gis2formses" : "java.util.List",
+      "giscontacts" : "com.civicxpress.cx2.Giscontacts",
+      "issuedDate" : "java.util.Date",
+      "municipalities" : "com.civicxpress.cx2.Municipalities",
+      "municipalityGroups" : "com.civicxpress.cx2.MunicipalityGroups",
+      "municipalityId" : "java.lang.Integer",
+      "ownerId" : "java.lang.Integer",
+      "projectFormses" : "java.util.List",
+      "recordType" : "java.lang.String",
+      "sharedWiths" : "java.util.List",
+      "submittedOn" : "java.util.Date",
+      "totalFees" : "java.lang.String",
+      "totalPayment" : "java.lang.String",
+      "userId" : "java.lang.Integer",
+      "users" : "com.civicxpress.cx2.Users",
+      "vendor" : "com.civicxpress.cx2.Vendor",
+      "vendors2forms" : "java.util.List"
     }
   }, {
     "name" : "ProcessFormsForUserByMunicipality",
