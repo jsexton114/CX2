@@ -5747,6 +5747,19 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.FormStatuses"
   },
+  "stvPossibleValues" : {
+    "_id" : "wm-stvPossibleValues-wm.Variable-1487099880131",
+    "name" : "stvPossibleValues",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "dataValue" : ""
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "stvPrefixDateOptions" : {
     "_id" : "wm-stvPrefixDateOptions-wm.Variable-1485294146541",
     "name" : "stvPrefixDateOptions",
@@ -5808,10 +5821,6 @@
       "target" : "required",
       "value" : "bind:Widgets.checkboxFormFieldRequired.datavalue",
       "type" : "boolean"
-    }, {
-      "target" : "defaultValue",
-      "value" : "bind:Widgets.textFormFieldDefaultValue.datavalue",
-      "type" : "string"
     }, {
       "target" : "helpText",
       "value" : "bind:Widgets.textareaFormFieldHelpText.datavalue",

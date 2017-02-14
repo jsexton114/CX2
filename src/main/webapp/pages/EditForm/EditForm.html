@@ -498,9 +498,19 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow56">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn81">
+                        <wm-grid editmode="inline" title="Possible Values" dataset="bind:Variables.stvPossibleValues.dataSet" navigation="Classic" name="gridPossibleValues" show="bind:Widgets.selectFormFieldType.datavalue.label==='Select' || Widgets.selectFormFieldType.datavalue.label==='Multi-Select'">
+                            <wm-grid-column binding="dataValue" caption="Value" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        </wm-grid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow44">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn74">
-                        <wm-composite name="composite6">
+                        <wm-composite name="composite6" show="bind:Widgets.selectFormFieldType.datavalue.label != 'Boolean'">
                             <wm-label class="col-md-3 control-label" name="label10" caption="Required"></wm-label>
                             <wm-container class="col-md-9" name="container5">
                                 <wm-checkbox caption="" class="col-md-9" name="checkboxFormFieldRequired"></wm-checkbox>
@@ -510,10 +520,15 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow42">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn72">
-                        <wm-composite name="composite4_1">
+                        <wm-composite name="composite4_1" show="bind:!!Widgets.selectFormFieldType.datavalue.label &amp;&amp; Widgets.selectFormFieldType.datavalue.label!=='Select' &amp;&amp; Widgets.selectFormFieldType.datavalue.label!=='Multi-Select'">
                             <wm-label class="col-md-3 control-label" name="label9" caption="Default Value"></wm-label>
                             <wm-container class="col-md-9" name="container4_1">
-                                <wm-text name="textFormFieldDefaultValue"></wm-text>
+                                <wm-text name="textDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Text'"></wm-text>
+                                <wm-textarea name="longTextDefault" show="bind:Widgets.selectFormFieldType.datavalue.label==='Long Text'"></wm-textarea>
+                                <wm-date name="dateDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Date'"></wm-date>
+                                <wm-datetime name="datetimeDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Date+Time'"></wm-datetime>
+                                <wm-text name="numberDefaultValue" type="number" step="0.01" placeholder="Enter number" show="bind:Widgets.selectFormFieldType.datavalue.label==='Number'"></wm-text>
+                                <wm-checkbox caption="" class="col-md-push-3 col-md-9" name="booleanDefaultValue" margin="unset unset unset -100px" show="bind:Widgets.selectFormFieldType.datavalue.label==='Boolean'"></wm-checkbox>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -540,7 +555,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Save" type="button" margin="unset 0.5em" name="buttonSaveFormField" iconclass="wi wi-save" on-click="Variables.svSaveFormField.invoke();Widgets.dlgFormTypeField.close()" disabled="bind:!Widgets.textFormFieldLabel.datavalue || !Widgets.selectFormFieldType.datavalue.id"></wm-button>
+                <wm-button class="btn-primary" caption="Save" type="button" margin="unset 0.5em" name="buttonSaveFormField" iconclass="wi wi-save" on-click="buttonSaveFormFieldClick($event, $scope)" disabled="bind:!Widgets.textFormFieldLabel.datavalue || !Widgets.selectFormFieldType.datavalue.id"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button2" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>

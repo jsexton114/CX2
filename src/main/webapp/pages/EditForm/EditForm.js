@@ -15,9 +15,15 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
         $scope.Widgets.textFormFieldLabel.reset();
         $scope.Widgets.selectFormFieldType.reset();
         $scope.Widgets.checkboxFormFieldRequired.reset();
-        $scope.Widgets.textFormFieldDefaultValue.reset();
+        $scope.Widgets.textDefaultValue.reset();
+        $scope.Widgets.longTextDefault.reset();
+        $scope.Widgets.dateDefaultValue.reset();
+        $scope.Widgets.datetimeDefaultValue.reset();
+        $scope.Widgets.numberDefaultValue.reset();
+        $scope.Widgets.booleanDefaultValue.reset();
         $scope.Widgets.textareaFormFieldHelpText.reset();
         $scope.Widgets.textFormFieldDisplayOrder.reset();
+        $scope.Variables.stvPossibleValues.dataSet = [];
     };
 
 
@@ -139,6 +145,54 @@ Application.$controller("grid3Controller", ["$scope",
 ]);
 
 Application.$controller("dlgFormTypeFieldController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.buttonSaveFormFieldClick = function($event, $isolateScope) {
+            var possibleValues = "";
+            var defaultValue = "";
+
+            switch ($scope.Widgets.selectFormFieldType._proxyModel.label) {
+                case 'Text':
+                    defaultValue = $scope.Widgets.textDefaultValue.datavalue;
+                    break;
+                case 'Long Text':
+                    defaultValue = $scope.Widgets.longTextDefault.datavalue;
+                    break;
+                case 'Date':
+                    defaultValue = $scope.Widgets.dateDefaultValue.datavalue;
+                    break;
+                case 'Date+Time':
+                    defaultValue = moment($scope.Widgets.datetimeDefaultValue.datavalue).format("YYYY-MM-DD HH:mm:ss");
+                    break;
+                case 'Number':
+                    defaultValue = $scope.Widgets.numberDefaultValue.datavalue;
+                    break;
+                case 'Boolean':
+                    defaultValue = $scope.Widgets.booleanDefaultValue.datavalue;
+                    break;
+                default:
+                    break;
+            }
+
+            $scope.Variables.stvPossibleValues.dataSet.forEach(function(possibleValue, index) {
+                if (index > 0) {
+                    possibleValues += ',';
+                }
+                possibleValues += possibleValue.dataValue.replace(/,/g, '&#44;');
+            });
+
+            $scope.Variables.svSaveFormField.setInput('possibleValues', possibleValues);
+            $scope.Variables.svSaveFormField.setInput('defaultValue', defaultValue);
+            $scope.Variables.svSaveFormField.update();
+            $scope.Widgets.dlgFormTypeField.close();
+        };
+
+    }
+]);
+
+Application.$controller("gridPossibleValuesController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
