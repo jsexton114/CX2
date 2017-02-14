@@ -12063,6 +12063,31 @@
       "scale" : 0,
       "sqlType" : "date",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "database-defined",
+        "insertable" : false,
+        "updatable" : false,
+        "defaultValue" : null
+      },
+      "fieldName" : "fullAddress",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 2000,
+      "name" : "FullAddress",
+      "nullable" : true,
+      "oldName" : "FullAddress",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
     } ],
     "constraints" : [ {
       "columns" : [ "FeinNumber" ],

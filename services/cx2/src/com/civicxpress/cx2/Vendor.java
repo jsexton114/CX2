@@ -63,6 +63,7 @@ public class Vendor implements Serializable {
     private String insuranceCompany;
     private Date insuranceExpires;
     private Date lastUpdated;
+    private String fullAddress;
     private ContractorTypes contractorTypes;
     private States states;
     private List<Fees> feeses = new ArrayList<>();
@@ -282,6 +283,15 @@ public class Vendor implements Serializable {
 
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    @Column(name = "`FullAddress`", nullable = true, insertable = false, updatable = false, length = 2000)
+    public String getFullAddress() {
+        return this.fullAddress;
+    }
+
+    public void setFullAddress(String fullAddress) {
+        this.fullAddress = fullAddress;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
