@@ -42,6 +42,7 @@ import com.civicxpress.cx2.MunicipalityGroupMembers;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
+import com.civicxpress.cx2.ProjectTasks;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SharedWith;
@@ -277,6 +278,14 @@ public class UsersController {
     public Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedWithUser(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectSharedWithsForProjectSharedWithUser");
         return usersService.findAssociatedProjectSharedWithsForProjectSharedWithUser(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/projectTaskses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectTaskses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<ProjectTasks> findAssociatedProjectTaskses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTaskses");
+        return usersService.findAssociatedProjectTaskses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)

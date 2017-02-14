@@ -67,6 +67,7 @@ public class Users implements Serializable {
     private List<Projects> projectsesForModifiedBy = new ArrayList<>();
     private List<ProjectSharedWith> projectSharedWithsForProjectSharedBy = new ArrayList<>();
     private List<ProjectSharedWith> projectSharedWithsForProjectSharedWithUser = new ArrayList<>();
+    private List<ProjectTasks> projectTaskses = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
     private List<SharedWith> sharedWithsForCreatedBy = new ArrayList<>();
     private List<SharedWith> sharedWithsForSharedWithUser = new ArrayList<>();
@@ -363,6 +364,16 @@ public class Users implements Serializable {
 
     public void setProjectSharedWithsForProjectSharedWithUser(List<ProjectSharedWith> projectSharedWithsForProjectSharedWithUser) {
         this.projectSharedWithsForProjectSharedWithUser = projectSharedWithsForProjectSharedWithUser;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<ProjectTasks> getProjectTaskses() {
+        return this.projectTaskses;
+    }
+
+    public void setProjectTaskses(List<ProjectTasks> projectTaskses) {
+        this.projectTaskses = projectTaskses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

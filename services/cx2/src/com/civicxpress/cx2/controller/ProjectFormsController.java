@@ -85,7 +85,8 @@ public class ProjectFormsController {
 
     @RequestMapping(value = "/relatedProjectGuid-relatedFormGuid", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching ProjectForms with given unique key values.")
-    public ProjectForms getByRelatedProjectGuidAndRelatedFormGuid(@RequestParam(name = "relatedProjectGuid") String relatedProjectGuid, @RequestParam(name = "relatedFormGuid") String relatedFormGuid) {
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public ProjectForms getByRelatedProjectGuidAndRelatedFormGuid(@RequestParam(value = "null", required = true) String relatedProjectGuid, @RequestParam(value = "null", required = true) String relatedFormGuid) {
         LOGGER.debug("Getting ProjectForms with uniques key RelatedProjectGuidAndRelatedFormGuid");
         return projectFormsService.getByRelatedProjectGuidAndRelatedFormGuid(relatedProjectGuid, relatedFormGuid);
     }

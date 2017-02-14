@@ -33,6 +33,7 @@ import com.civicxpress.cx2.MunicipalityGroupMembers;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
+import com.civicxpress.cx2.ProjectTasks;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SharedWith;
@@ -76,6 +77,10 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.SharedWithService")
 	private SharedWithService sharedWithService;
+
+    @Autowired
+	@Qualifier("cx2.ProjectTasksService")
+	private ProjectTasksService projectTasksService;
 
     @Autowired
 	@Qualifier("cx2.ProjectFormsService")
@@ -227,6 +232,14 @@ public class UsersServiceImpl implements UsersService {
                 projectSharedWithsForProjectSharedWithUser.setUsersByProjectSharedWithUser(usersCreated);
                 LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWithsForProjectSharedWithUser);
                 projectSharedWithService.create(projectSharedWithsForProjectSharedWithUser);
+            }
+        }
+
+        if(usersCreated.getProjectTaskses() != null) {
+            for(ProjectTasks projectTaskse : usersCreated.getProjectTaskses()) {
+                projectTaskse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTaskse);
+                projectTasksService.create(projectTaskse);
             }
         }
 
@@ -517,6 +530,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<ProjectTasks> findAssociatedProjectTaskses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTaskses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return projectTasksService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Roles> findAssociatedRoleses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated roleses");
 
@@ -655,6 +679,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setSharedWithService(SharedWithService service) {
         this.sharedWithService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ProjectTasksService instance
+	 */
+	protected void setProjectTasksService(ProjectTasksService service) {
+        this.projectTasksService = service;
     }
 
     /**

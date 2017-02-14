@@ -280,6 +280,11 @@
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="OpenedOrClosedFormsForUserOrSharedWith">
+        <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2OpenedOrClosedFormsForUserOrSharedWithrtnType" isList="false"/>
+    </operation>
     <operation operationType="hqlquery" name="ProcessFormsForUserByMunicipality">
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
@@ -487,11 +492,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="hqlquery" name="OpenedOrClosedFormsForUserOrSharedWith">
-        <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
@@ -1408,6 +1408,15 @@
             <element name="usersByProjectSharedBy" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
             <element name="usersByProjectSharedWithUser" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.ProjectTasks">
+            <element name="addedAt" typeRef="org.joda.time.LocalDateTime" allowNull="true"/>
+            <element name="addedBy" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="relatedProjectGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="taskDescription" typeRef="java.lang.String" allowNull="true"/>
+            <element name="taskName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Projects">
             <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="createdBy" typeRef="java.lang.Integer" allowNull="true"/>
@@ -1508,6 +1517,7 @@
             <element name="projectGisrecordses" typeRef="com.civicxpress.cx2.ProjectGisrecords" isList="true" allowNull="true"/>
             <element name="projectSharedWithsForProjectSharedBy" typeRef="com.civicxpress.cx2.ProjectSharedWith" isList="true" allowNull="true"/>
             <element name="projectSharedWithsForProjectSharedWithUser" typeRef="com.civicxpress.cx2.ProjectSharedWith" isList="true" allowNull="true"/>
+            <element name="projectTaskses" typeRef="com.civicxpress.cx2.ProjectTasks" isList="true" allowNull="true"/>
             <element name="projectsesForCreatedBy" typeRef="com.civicxpress.cx2.Projects" isList="true" allowNull="true"/>
             <element name="projectsesForModifiedBy" typeRef="com.civicxpress.cx2.Projects" isList="true" allowNull="true"/>
             <element name="roleses" typeRef="com.civicxpress.cx2.Roles" isList="true" allowNull="true"/>

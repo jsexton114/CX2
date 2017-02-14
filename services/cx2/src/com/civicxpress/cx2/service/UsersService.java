@@ -24,6 +24,7 @@ import com.civicxpress.cx2.MunicipalityGroupMembers;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
+import com.civicxpress.cx2.ProjectTasks;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SharedWith;
@@ -293,6 +294,18 @@ public interface UsersService {
      * @see Page
      */
     Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedWithUser(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated projectTaskses for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated ProjectTasks instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<ProjectTasks> findAssociatedProjectTaskses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated roleses for given Users id.
