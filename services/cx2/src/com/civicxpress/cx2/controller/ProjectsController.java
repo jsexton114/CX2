@@ -120,8 +120,9 @@ public class ProjectsController {
         return projectsService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/projectFormses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/projectFormses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the projectFormses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ProjectForms> findAssociatedProjectFormses(@PathVariable("id") String id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectFormses");
         return projectsService.findAssociatedProjectFormses(id, pageable);

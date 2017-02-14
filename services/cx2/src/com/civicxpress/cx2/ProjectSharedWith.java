@@ -50,7 +50,7 @@ public class ProjectSharedWith implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "`RelatedProjectGUID`", nullable = true, length = 255)
+    @Column(name = "`RelatedProjectGUID`", nullable = true, length = 32)
     public String getRelatedProjectGuid() {
         return this.relatedProjectGuid;
     }

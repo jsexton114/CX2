@@ -57,7 +57,7 @@ public class Projects implements Serializable {
     @Id
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
     @GeneratedValue(generator = "generator")
-    @Column(name = "`ProjectGUID`", nullable = false, length = 255)
+    @Column(name = "`ProjectGUID`", nullable = false, length = 32)
     public String getProjectGuid() {
         return this.projectGuid;
     }

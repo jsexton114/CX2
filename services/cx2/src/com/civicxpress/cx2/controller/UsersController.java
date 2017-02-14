@@ -231,8 +231,9 @@ public class UsersController {
         return usersService.findAssociatedMasterFormses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/projectFormses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/projectFormses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the projectFormses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ProjectForms> findAssociatedProjectFormses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectFormses");
         return usersService.findAssociatedProjectFormses(id, pageable);
