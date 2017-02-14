@@ -331,12 +331,13 @@
         "fullyQualifiedType" : "string",
         "columnName" : "FullName",
         "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 510,
+        "notNull" : true,
+        "length" : 511,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "systemInserted" : true,
+        "systemUpdated" : true,
         "scale" : 0
       } ],
       "entityName" : "Users",
@@ -913,12 +914,13 @@
           "fullyQualifiedType" : "string",
           "columnName" : "FullName",
           "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 510,
+          "notNull" : true,
+          "length" : 511,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -1241,6 +1243,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullAddress",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullAddress",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 2000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -1541,12 +1557,13 @@
           "fullyQualifiedType" : "string",
           "columnName" : "FullName",
           "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 510,
+          "notNull" : true,
+          "length" : 511,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -1869,6 +1886,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullAddress",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullAddress",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 2000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {

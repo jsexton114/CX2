@@ -10,7 +10,7 @@
                         <wm-label name="label5" caption="Municipality Administration" fontweight="bold" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn19_1" padding="2em unset">
-                        <wm-composite name="composite1">
+                        <wm-composite name="composite1" show="bind:Variables.AdminsMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
                                 <wm-select name="select1" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>

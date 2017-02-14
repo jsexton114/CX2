@@ -12,10 +12,10 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
-                        <wm-label padding="unset 0.5em" caption="Manual Fee Management" fontweight="bold" fontsize="15" name="label1"></wm-label>
+                        <wm-label caption="Manual Fee Management" fontweight="bold" name="label1" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
-                        <wm-composite name="composite1">
+                        <wm-composite name="composite1" show="bind:Variables.AdminsMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
                                 <wm-select name="selectMunicipality" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
@@ -34,7 +34,8 @@
                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
-                            <wm-liveform novalidate="false" errormessage="" title="Manual Fee Details" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.Cx2ManualFeeTypesData.dataSet" captionalign="left" captionposition="top" name="liveform3">
+                            <wm-liveform novalidate="false" errormessage="" title="Manual Fee Details" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.Cx2ManualFeeTypesData.dataSet" captionalign="left" captionposition="top"
+                            name="liveform3">
                                 <wm-layoutgrid columns="1" name="layoutgrid4">
                                     <wm-gridrow name="gridrow8">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn9" horizontalalign="center">
@@ -43,13 +44,15 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow9">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn10" horizontalalign="center">
-                                            <wm-form-field name="accountingCode" displayname="Accounting Code" show="true" primary-key="false" generator="assigned" key="accountingCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" required="true"></wm-form-field>
+                                            <wm-form-field name="accountingCode" displayname="Accounting Code" show="true" primary-key="false" generator="assigned" key="accountingCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                            required="true"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                                 <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord"
                                 placeholder="Search" displayexpression="municipalityName" dataset="bind:Variables.SelectedMunicipalityObj.dataSet" datafield="All Fields" displayfield="municipalityName"></wm-form-field>
-                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
+                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
+                                placeholder=""></wm-form-field>
                                 <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                 <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                             </wm-liveform>

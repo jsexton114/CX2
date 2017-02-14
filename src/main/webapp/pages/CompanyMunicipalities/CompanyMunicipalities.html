@@ -12,10 +12,10 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
-                        <wm-label padding="unset 0.5em" caption="Municipality Application Status" fontweight="bold" fontsize="15" name="label1"></wm-label>
+                        <wm-label caption="Municipality Application Status" fontweight="bold" name="label1" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
-                        <wm-composite name="composite1">
+                        <wm-composite name="composite1" show="bind:Variables.AdminVendorsList.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Company" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
                                 <wm-select name="selectSelectCompany" dataset="bind:Variables.AdminVendorsList.dataSet" datafield="All Fields" displayfield="CompanyName" datavalue="bind:Variables.AdminVendorsList.firstRecord" orderby="CompanyName:asc"></wm-select>

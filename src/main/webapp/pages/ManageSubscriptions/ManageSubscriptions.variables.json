@@ -683,12 +683,13 @@
           "fullyQualifiedType" : "string",
           "columnName" : "FullName",
           "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 510,
+          "notNull" : true,
+          "length" : 511,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
