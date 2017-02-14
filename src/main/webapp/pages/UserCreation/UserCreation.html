@@ -5,7 +5,7 @@
             <wm-wizard name="wizard1" horizontalalign="left" on-done="wizard1Done($scope, steps)" on-cancel="Variables.NewUserToLogin.invoke()">
                 <wm-wizardstep name="wizardstep1" title="Account Setup">
                     <wm-liveform novalidate="false" errormessage="User already exists" title="Register for CivicXpress" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left" captionposition="top" name="liveform2"
-                    insertmessage="Your account has been created. Please proceed to Login" updatemessage="User updated successfully" deletemessage="User deleted successfully">
+                    insertmessage="Your account has been created. Please proceed to Login" updatemessage="User updated successfully" deletemessage="User deleted successfully" on-success="liveform2Success($event, $operation, $data)">
                         <wm-layoutgrid columns="2" name="layoutgrid2">
                             <wm-gridrow name="gridrow6">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn11">

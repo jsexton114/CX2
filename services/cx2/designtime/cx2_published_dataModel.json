@@ -5051,9 +5051,9 @@
       "unique" : false
     }, {
       "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
+        "type" : "database-defined",
+        "insertable" : false,
+        "updatable" : false,
         "defaultValue" : null
       },
       "fieldName" : "fullAddress",
@@ -10276,10 +10276,10 @@
       "unique" : false
     }, {
       "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
+        "type" : "database-defined",
+        "insertable" : false,
+        "updatable" : false,
+        "defaultValue" : null
       },
       "fieldName" : "fullName",
       "foreignKey" : false,

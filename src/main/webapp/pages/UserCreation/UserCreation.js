@@ -79,7 +79,6 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
     }
 
     $scope.wizard1Done = function($isolateScope, steps) {
-        debugger
         let format = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/
         let password = $scope.Widgets.textPwd.datavalue;
         if (!(format.test(password))) {
@@ -89,7 +88,6 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
             // check for password match and captcha
             if (passwordCheck() && (grecaptcha.getResponse() != '')) {
                 $scope.Widgets.liveform2.save();
-                $scope.Variables.NewUserToLogin.navigate();
             } else if ((grecaptcha.getResponse() != '') && (passwordCheck() == false)) {
                 $scope.Variables.PasswordMissMatch.notify();
                 grecaptcha.reset();
@@ -102,11 +100,6 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
             }
         }
     };
-
-
-
-
-
 
     $scope.ButtonAddMuncipalitiesClick = function($event, $isolateScope) {
         if ($scope.Widgets.textSearchMunicipalities.datavalue != undefined) {
@@ -136,9 +129,6 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         }
     };
 
-
-
-
     $scope.buttonRemoveClick = function($event, $isolateScope, item, currentItemWidgets) {
         // Removing the deleted municipalities
         _.remove($scope.Variables.MunicpalitiesList.dataSet, {
@@ -148,7 +138,9 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         selectedMunicipalites = $scope.Variables.MunicpalitiesList.dataSet;
     };
 
-
+    $scope.liveform2Success = function($event, $operation, $data) {
+        $scope.Variables.NewUserToLogin.navigate();
+    };
 
 }]);
 
