@@ -158,10 +158,12 @@
                                                     <datetime-picker ng-if="formField.formFieldTypes.label == 'Date'" placeholder="Please enter {{formField.label}}" date="formData[formField.fieldName]" name="{{formField.fieldName}}" time="false" ng-required="formField.required"></datetime-picker>
                                                     <datetime-picker ng-if="formField.formFieldTypes.label == 'Date+Time'" placeholder="Please enter {{formField.label}}" date="formData[formField.fieldName]" name="{{formField.fieldName}}" time="true" ng-required="formField.required"></datetime-picker>
                                                     <div ng-if="formField.formFieldTypes.label == 'Boolean'" class="app-checkbox checkbox" style="margin-top: 0" role="input" name="fieldValue{{formField.fieldName}}">
-                                                        <label ng-class="{unchecked: !Variables.svGetFormData.dataSet[formField.fieldName]}" style="padding-left: 0" role="button">
+                                                        <label ng-class="{unchecked: !formData[formField.fieldName]}" style="padding-left: 0" role="button">
                                                             <input type="checkbox" ng-model="formData[formField.fieldName]"><span class="caption ng-binding" ng-bind-html=""></span>
                                                         </label>
                                                     </div>
+                                                    <select ng-if="formField.formFieldTypes.label == 'Select'" ng-options="item for item in (formField.possibleValues.split(','))" ng-model="formData[formField.fieldName]" ng-required="formField.required"></select>
+                                                    <cx-checkbox-set ng-if="formField.formFieldTypes.label == 'Multi-Select'" choices="formField.possibleValues" model="formData[formField.fieldName]" field-name="formField.fieldName"></cx-checkbox-set>
                                                 </wm-container>
                                             </wm-composite>
                                         </wm-gridcolumn>

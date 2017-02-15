@@ -21,6 +21,41 @@ Application.run(function($rootScope) {
 
 });
 
+Application.directive('cxCheckboxSet', [function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<div><div ng-repeat="item in choiceList" class="app-checkbox checkbox" style="margin-top: 0" role="input" name="fieldValue{{formField.fieldName+item}}">' + '    <label ng-class="{unchecked: !items[item]}" style="padding-left: 0" role="button">' + '        <input type="checkbox" ng-model="items[item]" ng-change="changeChoice(items[item], item)"><span class="caption ng-binding" ng-bind-html="item"></span>' + '    </label>' + '</div>' + '<input type="text" name="{{fieldName}}" ng-value="JSON.stringify(items)" /></div>',
+        scope: {
+            choices: '=',
+            model: '=',
+            fieldName: '='
+        },
+        link: function(scope, elem, attrs) {
+            scope.items = {};
+            scope.choiceList = scope.choices.split(',');
+            scope.chosenItems = [];
+
+            scope.choiceList.forEach(function(choiceItem, index) {
+                scope.items[choiceItem] = !!scope.model && scope.model.contains(choiceItem);
+                if (scope.items[choiceItem] === true) {
+                    scope.chosenItems.push(choiceItem);
+                }
+            });
+
+            scope.changeChoice = function(value, choice) {
+                if (value === true) {
+                    scope.chosenItems.push(choice);
+                } else {
+                    scope.chosenItems.splice(scope.chosenItems.indexOf(choice), 1);
+                }
+
+                scope.model = scope.chosenItems.join(',');
+            };
+        }
+    };
+}]);
+
 Application.directive('datetimePicker', ['uibDateParser', function(uibDateParser) {
     return {
         restrict: 'E',
