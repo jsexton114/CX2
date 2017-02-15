@@ -818,7 +818,6 @@
         <return typeRef="cx2ProjectFormsrtnType" isList="false"/>
     </operation>
     <operation operationType="hqlquery" name="ProjectsForUsersAndSharedWith">
-        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
@@ -2188,10 +2187,13 @@
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities"/>
             <element name="municipalityId" typeRef="java.lang.Integer"/>
             <element name="projectDescription" typeRef="java.lang.String"/>
+            <element name="projectFormses" typeRef="java.util.List"/>
+            <element name="projectGisrecordses" typeRef="java.util.List"/>
             <element name="projectGoals" typeRef="java.lang.String"/>
             <element name="projectGuid" typeRef="java.lang.String"/>
             <element name="projectName" typeRef="java.lang.String"/>
             <element name="projectSharedWiths" typeRef="java.util.List"/>
+            <element name="projectTaskses" typeRef="java.util.List"/>
             <element name="usersByCreatedBy" typeRef="com.civicxpress.cx2.Users"/>
             <element name="usersByModifiedBy" typeRef="com.civicxpress.cx2.Users"/>
         </dataobject>

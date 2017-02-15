@@ -25,8 +25,8 @@
                         <wm-composite name="composite1" show="bind:Variables.StandardUserMunicipalites.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Filter Results" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectStandardUserMunicipality" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" orderby="MunicipalityName:asc" placeholder="Select Municipality"
-                                on-change="selectStandardUserMunicipalityChange($event, $scope, newVal, oldVal)" datavalue="bind:Variables.StandardUserMunicipalites.dataSet.content.length > 1 ? null : Variables.StandardUserMunicipalites.firstRecord"></wm-select>
+                                <wm-select name="selectStandardUserMunicipality" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" orderby="MunicipalityName:asc" placeholder="View All" on-change="selectStandardUserMunicipalityChange($event, $scope, newVal, oldVal)"
+                                datavalue="bind:Variables.StandardUserMunicipalites.dataSet.content.length > 1 ? null : Variables.StandardUserMunicipalites.firstRecord"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>

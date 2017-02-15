@@ -662,9 +662,9 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/ProjectsForUsersAndSharedWith", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Object> executeProjectsForUsersAndSharedWith(@RequestParam(value = "municipalityId", required = false) java.lang.Integer municipalityId, @RequestParam(value = "Active", required = false) java.lang.Boolean Active, @RequestParam(value = "creatorUser", required = false) java.lang.Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) java.lang.Integer sharedWithUser, Pageable pageable) throws QueryParameterMismatchException {
+    public Page<Object> executeProjectsForUsersAndSharedWith(@RequestParam(value = "Active", required = false) java.lang.Boolean Active, @RequestParam(value = "creatorUser", required = false) java.lang.Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) java.lang.Integer sharedWithUser, Pageable pageable) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query ProjectsForUsersAndSharedWith");
-        Page<Object> result = queryService.executeProjectsForUsersAndSharedWith(pageable, municipalityId, Active, creatorUser, sharedWithUser);
+        Page<Object> result = queryService.executeProjectsForUsersAndSharedWith(pageable, Active, creatorUser, sharedWithUser);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

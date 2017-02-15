@@ -314,7 +314,7 @@
   </query>
   <query name="ProjectsForUsersAndSharedWith">
     <![CDATA[
-      from Projects where municipalityId=:municipalityId and Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select relatedProjectGuid from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser )) ORDER BY ModifiedDate DESC
+      from Projects where Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select relatedProjectGuid from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser )) ORDER BY ModifiedDate DESC
     ]]>
   </query>
   <sql-query name="ProjectSoftDelete">

@@ -10,18 +10,6 @@
                         <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow3">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn8"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="2em unset">
-                        <wm-composite name="composite1">
-                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Filter by Municipality" fontweight="bold" width="30%"></wm-label>
-                            <wm-container class="col-md-9" name="container1" width="70%">
-                                <wm-select name="selectStandardUserMunicipality" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" orderby="MunicipalityName:asc" placeholder="Select Municipality"
-                                on-change="selectStandardUserMunicipalityChange($event, $scope, newVal, oldVal)" height="38px"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="wi wi-building" autoclose="outsideClick" name="panel1" title="My Projects" class="panel-primary">
@@ -33,6 +21,7 @@
                                         <wm-grid-column binding="usersByCreatedBy.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
                                         <wm-grid-column binding="usersByCreatedBy.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
                                     </wm-grid-column-group>
+                                    <wm-grid-column binding="modifiedDate" caption="Date Modified" show="true" readonly="undefined"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-action key="addNewRow" display-name="New Project" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogCreateProject.open();addNewRowAction($event);addNewRowAction1($event)"
                                     shortcutkey="" disabled="false"></wm-grid-action>
