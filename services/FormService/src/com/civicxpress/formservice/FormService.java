@@ -102,19 +102,25 @@ public class FormService {
 ////    		e.printStackTrace();
 ////    	}
 //    	
-//    	try {
-//    		HashMap<String, Object> testValues = new HashMap<String, Object>();
-//    		testValues.put("PhoneNumber", "245736");
-//    		testValues.put("EmailAddress", "test@test.org");
-//    		testValues.put("TestAddress", "Test Address");
-//    		testValues.put("CreatedDate", 1485353756034L);
-//    		testValues.put("TotalSqft", "200");
-//    		testValues.put("TotalUnits", 10);
-//    		testValues.put("Basement", true);
-//    		submitForm("E90DF2F6-D1E4-E611-80C9-0CC47A46DD63", testValues);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+////    	try {
+////    		HashMap<String, Object> testValues = new HashMap<String, Object>();
+////    		testValues.put("PhoneNumber", "245736");
+////    		testValues.put("EmailAddress", "test@test.org");
+////    		testValues.put("TestAddress", "Test Address");
+////    		testValues.put("CreatedDate", 1485353756034L);
+////    		testValues.put("TotalSqft", "200");
+////    		testValues.put("TotalUnits", 10);
+////    		testValues.put("Basement", true);
+////    		submitForm("E90DF2F6-D1E4-E611-80C9-0CC47A46DD63", testValues);
+////		} catch (SQLException e) {
+////			e.printStackTrace();
+////		}
+//    	
+//    	Pattern p = Pattern.compile("(.+)=(.+)");
+//    	Matcher muniMatcher = p.matcher("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2");
+//    	
+////    	String muniUrl = muniMatcher.group(0);
+//    	System.out.println("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2".replaceAll("databaseName=.+", "databaseName="+"testString"));
 //    }
     
     private Connection getMunicipalityDbConnection(Connection conn, Long municipalityId) throws SQLException {
@@ -209,7 +215,12 @@ public class FormService {
         	StringBuilder formTitlePrefix = new StringBuilder();
         	String[] formTypeParts = formType.trim().replaceAll("[^a-zA-Z0-9 ]|[\n]|[\r\n]", "").split(" ");
         	for (int i = 0; i < formTypeParts.length; i++) {
-        		formTitlePrefix.append(formTypeParts[i].substring(0, 1).toUpperCase());
+        		String formTypePart = formTypeParts[i];
+        		if (formTypePart.trim().isEmpty()) {
+        			continue;
+        		}
+        		
+        		formTitlePrefix.append(formTypePart.substring(0, 1).toUpperCase());
         	}
         	
 	        HashMap<String, Object> formCreateParams = new HashMap<String, Object>();
