@@ -7,14 +7,14 @@
             <wm-tabs name="tabsProjects">
                 <wm-tabpane name="tabpane1" title="Projects">
                     <wm-livegrid formlayout="dialog" name="livegrid1">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Projects List" dataset="bind:Variables.ProjectsData.dataSet" navigation="Classic" name="grid1">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Projects List" dataset="bind:Variables.ProjectsData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                             <wm-grid-column binding="projectGuid" caption="Project Guid" type="string" primary-key="true" generator="uniqueid" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="projectName" caption="Project Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="projectGoals" caption="Project Goals" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="estStartDate" caption="Est Start Date" type="timestamp" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="estEndDate" caption="Est End Date" type="timestamp" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="createdDate" caption="Created Date" type="timestamp" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="modifiedDate" caption="Modified Date" type="timestamp" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="estStartDate" caption="Est Start Date" type="timestamp" generator="assigned" show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="estEndDate" caption="Est End Date" type="timestamp" generator="assigned" show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="createdDate" caption="Created Date" type="timestamp" generator="assigned" show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="modifiedDate" caption="Modified Date" type="timestamp" generator="assigned" show="true" filterwidget="text" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="active" caption="Active" type="boolean" generator="assigned" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
                             <wm-grid-column binding="usersByCreatedBy.email" caption="By Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
