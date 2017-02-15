@@ -309,7 +309,6 @@
         <return typeRef="cx2ProjectFormsrtnType" isList="false"/>
     </operation>
     <operation operationType="hqlquery" name="ProjectsForUsersAndSharedWith">
-        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>

@@ -25,7 +25,7 @@ Application.directive('cxCheckboxSet', [function() {
     return {
         restrict: 'E',
         replace: true,
-        template: '<div><div ng-repeat="item in choiceList" class="app-checkbox checkbox" style="margin-top: 0" role="input" name="fieldValue{{formField.fieldName+item}}">' + '    <label ng-class="{unchecked: !items[item]}" style="padding-left: 0" role="button">' + '        <input type="checkbox" ng-model="items[item]" ng-change="changeChoice(items[item], item)"><span class="caption ng-binding" ng-bind-html="item"></span>' + '    </label>' + '</div>' + '<input type="text" name="{{fieldName}}" ng-value="JSON.stringify(items)" /></div>',
+        template: '<div><div ng-repeat="item in choiceList" class="app-checkbox checkbox" style="margin-top: 0" role="input" name="fieldValue{{formField.fieldName+item}}">' + '    <label ng-class="{unchecked: !items[item]}" style="padding-left: 0" role="button">' + '        <input type="checkbox" ng-model="items[item]" ng-change="changeChoice(items[item], item)"><span class="caption ng-binding" ng-bind-html="item"></span>' + '    </label>' + '</div>' + '<input type="hidden" name="{{fieldName}}" ng-value="model" /></div>',
         scope: {
             choices: '=',
             model: '=',
@@ -37,7 +37,7 @@ Application.directive('cxCheckboxSet', [function() {
             scope.chosenItems = [];
 
             scope.choiceList.forEach(function(choiceItem, index) {
-                scope.items[choiceItem] = !!scope.model && scope.model.contains(choiceItem);
+                scope.items[choiceItem] = !!scope.model && scope.model.indexOf(choiceItem) > -1;
                 if (scope.items[choiceItem] === true) {
                     scope.chosenItems.push(choiceItem);
                 }
