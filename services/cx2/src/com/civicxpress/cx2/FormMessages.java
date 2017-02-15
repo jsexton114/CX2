@@ -40,6 +40,7 @@ public class FormMessages implements Serializable {
     private String relatedFormGuid;
     private String message;
     private Date postedAt;
+    private Boolean municipalityMessage;
     private MasterForms masterForms;
     private Users users;
     private List<FormMessageTagging> formMessageTaggings = new ArrayList<>();
@@ -90,6 +91,15 @@ public class FormMessages implements Serializable {
 
     public void setPostedAt(Date postedAt) {
         this.postedAt = postedAt;
+    }
+
+    @Column(name = "`MunicipalityMessage`", nullable = true)
+    public Boolean getMunicipalityMessage() {
+        return this.municipalityMessage;
+    }
+
+    public void setMunicipalityMessage(Boolean municipalityMessage) {
+        this.municipalityMessage = municipalityMessage;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

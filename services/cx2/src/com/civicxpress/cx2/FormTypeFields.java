@@ -112,7 +112,7 @@ public class FormTypeFields implements Serializable {
         this.helpText = helpText;
     }
 
-    @Column(name = "`PossibleValues`", nullable = true, length = 1000)
+    @Column(name = "`PossibleValues`", nullable = true, length = 2147483647)
     public String getPossibleValues() {
         return this.possibleValues;
     }

@@ -285,7 +285,7 @@ public class Vendor implements Serializable {
         this.lastUpdated = lastUpdated;
     }
 
-    @Column(name = "`FullAddress`", nullable = true, insertable = false, updatable = false, length = 2000)
+    @Column(name = "`FullAddress`", nullable = false, insertable = false, updatable = false, length = 1022)
     public String getFullAddress() {
         return this.fullAddress;
     }
