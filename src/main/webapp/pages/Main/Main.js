@@ -35,10 +35,14 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
         if (newVal == undefined) {
             $scope.Variables.CountOfClosedFormsForUser.update();
             $scope.Variables.CountOfOpenFormsForUser.update();
+            $scope.Variables.CountOfAllProjectsForUsersAndSharedWith.update();
+
         } else {
             // For selected municipality
             $scope.Variables.CountOfClosedFormsForMunicipality.update();
             $scope.Variables.CountOfOpenFormsForMunicipality.update();
+            $scope.Variables.CountOfProjectsForUsersAndSharedWithByMunicipality.update();
+
         }
     };
 
@@ -50,6 +54,7 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
     $scope.CountOfOpenFormsForUseronSuccess = function(variable, data) {
         $scope.openCount = data.content[0].count;
+        // To display on LeftNav
         $scope.Variables.UserOpenFormsCount.dataSet.dataValue = data.content[0].count;
     };
 
@@ -68,6 +73,16 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
         var navToForm = $scope.Variables.navGoToForm;
         navToForm.dataSet.FormGUID = data;
         navToForm.navigate();
+    };
+
+
+    $scope.CountOfAllProjectsForUsersAndSharedWithonSuccess = function(variable, data) {
+        $scope.projectsCount = data.content[0].count;
+    };
+
+
+    $scope.CountOfProjectsForUsersAndSharedWithByMunicipalityonSuccess = function(variable, data) {
+        $scope.projectsCount = data.content[0].count;
     };
 
 }]);

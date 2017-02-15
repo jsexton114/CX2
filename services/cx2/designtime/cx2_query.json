@@ -398,6 +398,40 @@
       "vendors2forms" : "java.util.List"
     }
   }, {
+    "name" : "CountOfAllProjectsForUsersAndSharedWith",
+    "query" : "select count(*) as count from Projects where  Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))",
+    "comment" : "CountOfAllProjectsForUsersAndSharedWith",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "Active",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "creatorUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "sharedWithUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2CountOfAllProjectsForUsersAndSharedWithrtnType",
+    "returnTypeMetadata" : {
+      "count" : "java.lang.Integer"
+    }
+  }, {
     "name" : "CountOfCompnayFormsByVendorId",
     "query" : "select count(*) as count from MasterForms where Closed=:closed and  FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId )",
     "comment" : "CountOfCompnayFormsByVendorId",
@@ -495,6 +529,47 @@
       "list" : false
     } ],
     "outputType" : "cx2CountOfProcessFormsByMuncipalityrtnType",
+    "returnTypeMetadata" : {
+      "count" : "java.lang.Integer"
+    }
+  }, {
+    "name" : "CountOfProjectsForUsersAndSharedWithByMunicipality",
+    "query" : "select count(*) as count from Projects where MunicipalityId=:municipalityId and Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))",
+    "comment" : "CountOfProjectsForUsersAndSharedWithByMunicipality",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "municipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "Active",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "creatorUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "sharedWithUser",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2CountOfProjectsForUsersAndSharedWithByMunicipalityrtnType",
     "returnTypeMetadata" : {
       "count" : "java.lang.Integer"
     }

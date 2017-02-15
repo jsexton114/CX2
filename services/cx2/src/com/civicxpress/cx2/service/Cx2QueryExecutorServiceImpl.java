@@ -138,6 +138,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeCountOfAllProjectsForUsersAndSharedWith(Pageable pageable, java.lang.Boolean Active, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("Active", Active);
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
+        return queryExecutor.executeNamedQuery("CountOfAllProjectsForUsersAndSharedWith", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeCountOfCompnayFormsByVendorId(Pageable pageable, java.lang.Boolean closed, java.lang.Integer vendorId)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -170,6 +180,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("MunicipalityId", MunicipalityId);
         params.put("closed", closed);
         return queryExecutor.executeNamedQuery("CountOfProcessFormsByMuncipality", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public Page<Object> executeCountOfProjectsForUsersAndSharedWithByMunicipality(Pageable pageable, java.lang.Integer municipalityId, java.lang.Boolean Active, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("municipalityId", municipalityId);
+        params.put("Active", Active);
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
+        return queryExecutor.executeNamedQuery("CountOfProjectsForUsersAndSharedWithByMunicipality", params, pageable);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override

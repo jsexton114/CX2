@@ -56,6 +56,11 @@
       from MasterForms where Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
     ]]>
   </query>
+  <sql-query name="CountOfAllProjectsForUsersAndSharedWith">
+    <![CDATA[
+      select count(*) as count from Projects where  Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))
+    ]]>
+  </sql-query>
   <sql-query name="CountOfCompnayFormsByVendorId">
     <![CDATA[
       select count(*) as count from MasterForms where Closed=:closed and  FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId )
@@ -74,6 +79,11 @@
   <sql-query name="CountOfProcessFormsByMuncipality">
     <![CDATA[
       select count(*) as count from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.UserId=:UserId and GM.MunicipalityGroupId=MG.ID and MG.ID=MF.AssignedToGroupId and MF.MunicipalityId=:MunicipalityId and MF.Closed=:closed
+    ]]>
+  </sql-query>
+  <sql-query name="CountOfProjectsForUsersAndSharedWithByMunicipality">
+    <![CDATA[
+      select count(*) as count from Projects where MunicipalityId=:municipalityId and Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))
     ]]>
   </sql-query>
   <sql-query name="CountOfUserForms">

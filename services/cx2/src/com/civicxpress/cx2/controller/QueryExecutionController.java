@@ -150,6 +150,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/CountOfAllProjectsForUsersAndSharedWith", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeCountOfAllProjectsForUsersAndSharedWith(@RequestParam(value = "Active", required = false) java.lang.Boolean Active, @RequestParam(value = "creatorUser", required = false) java.lang.Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) java.lang.Integer sharedWithUser, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query CountOfAllProjectsForUsersAndSharedWith");
+        Page<Object> result = queryService.executeCountOfAllProjectsForUsersAndSharedWith(pageable, Active, creatorUser, sharedWithUser);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/CountOfCompnayFormsByVendorId", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeCountOfCompnayFormsByVendorId(@RequestParam(value = "closed", required = false) java.lang.Boolean closed, @RequestParam(value = "vendorId", required = false) java.lang.Integer vendorId, Pageable pageable) throws QueryParameterMismatchException {
@@ -185,6 +195,16 @@ public class QueryExecutionController {
     public Page<Object> executeCountOfProcessFormsByMuncipality(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, @RequestParam(value = "closed", required = false) java.lang.Boolean closed, Pageable pageable) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query CountOfProcessFormsByMuncipality");
         Page<Object> result = queryService.executeCountOfProcessFormsByMuncipality(pageable, UserId, MunicipalityId, closed);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/CountOfProjectsForUsersAndSharedWithByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeCountOfProjectsForUsersAndSharedWithByMunicipality(@RequestParam(value = "municipalityId", required = false) java.lang.Integer municipalityId, @RequestParam(value = "Active", required = false) java.lang.Boolean Active, @RequestParam(value = "creatorUser", required = false) java.lang.Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) java.lang.Integer sharedWithUser, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query CountOfProjectsForUsersAndSharedWithByMunicipality");
+        Page<Object> result = queryService.executeCountOfProjectsForUsersAndSharedWithByMunicipality(pageable, municipalityId, Active, creatorUser, sharedWithUser);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

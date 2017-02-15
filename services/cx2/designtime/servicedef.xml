@@ -98,6 +98,13 @@
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
         <return typeRef="cx2CountOfProcessFormsByMuncipalityrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="CountOfProjectsForUsersAndSharedWithByMunicipality">
+        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CountOfProjectsForUsersAndSharedWithByMunicipalityrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="CountOfUserForms">
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
@@ -493,6 +500,12 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="CountOfAllProjectsForUsersAndSharedWith">
+        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
@@ -553,6 +566,12 @@
         <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CompanyFormsByVendorIdrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="CountOfAllProjectsForUsersAndSharedWith">
+        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CountOfAllProjectsForUsersAndSharedWithrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="CountOfCompnayFormsByVendorId">
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
@@ -571,6 +590,13 @@
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
         <return typeRef="cx2CountOfProcessFormsByMuncipalityrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="CountOfProjectsForUsersAndSharedWithByMunicipality">
+        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CountOfProjectsForUsersAndSharedWithByMunicipalityrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="CountOfUserForms">
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
@@ -1733,6 +1759,9 @@
             <element name="vendor" typeRef="com.civicxpress.cx2.Vendor"/>
             <element name="vendors2forms" typeRef="java.util.List"/>
         </dataobject>
+        <dataobject javaType="cx2CountOfAllProjectsForUsersAndSharedWithrtnType">
+            <element name="count" typeRef="java.lang.Integer"/>
+        </dataobject>
         <dataobject javaType="cx2CountOfCompnayFormsByVendorIdrtnType">
             <element name="count" typeRef="java.lang.Integer"/>
         </dataobject>
@@ -1743,6 +1772,9 @@
             <element name="count" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2CountOfProcessFormsByMuncipalityrtnType">
+            <element name="count" typeRef="java.lang.Integer"/>
+        </dataobject>
+        <dataobject javaType="cx2CountOfProjectsForUsersAndSharedWithByMunicipalityrtnType">
             <element name="count" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2CountOfUserFormsForMunicipalityrtnType">

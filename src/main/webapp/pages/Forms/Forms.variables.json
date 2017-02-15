@@ -2274,8 +2274,8 @@
           "fullyQualifiedType" : "string",
           "columnName" : "FullAddress",
           "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 2000,
+          "notNull" : true,
+          "length" : 1022,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -2936,8 +2936,8 @@
           "fullyQualifiedType" : "string",
           "columnName" : "FullAddress",
           "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 2000,
+          "notNull" : true,
+          "length" : 1022,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -4738,8 +4738,8 @@
           "fullyQualifiedType" : "string",
           "columnName" : "FullAddress",
           "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 2000,
+          "notNull" : true,
+          "length" : 1022,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -6978,6 +6978,19 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "municipalityMessage",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "MunicipalityMessage",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "FALSE",
+        "scale" : 0
       } ],
       "entityName" : "FormMessages",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormMessages",
@@ -8699,6 +8712,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "municipalityMessage",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "MunicipalityMessage",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
           "scale" : 0
         } ]
       }, {
@@ -11706,6 +11732,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "municipalityMessage",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "MunicipalityMessage",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
           "scale" : 0
         } ]
       }, {
@@ -16944,8 +16983,8 @@
           "fullyQualifiedType" : "string",
           "columnName" : "FullAddress",
           "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 2000,
+          "notNull" : true,
+          "length" : 1022,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
