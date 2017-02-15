@@ -126,7 +126,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         if (people.length == 0) {
             // DO nothing
         } else {
-            console.log(variable.dataBinding.PostedAt)
             $scope.Variables.GetMessageIdForCurrentPost.setInput({
                 'PostedAt': variable.dataBinding.PostedAt,
                 'form': $scope.pageParams.FormGUID
@@ -149,6 +148,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.GetMessageIdForCurrentPostonSuccess = function(variable, data) {
         var people = $scope.Variables.PeopleList.dataSet;
         var m = data.content[0];
+        var messageMailingList = '';
         // Insert people as Tagged People For RecentMessage
         for (var i = 0; i < people.length; i++) {
             $scope.Variables.InsertTaggedPeople.setInput({
@@ -158,7 +158,18 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
                 "formMessageId": data.content[0].id,
             });
             $scope.Variables.InsertTaggedPeople.insertRecord();
+
+            messageMailingList = messageMailingList + people[i].email + ",";
+
         }
+        messageMailingList = messageMailingList.substring(0, messageMailingList.length - 1)
+
+        // Send Mails of Message
+        $scope.Variables.SendFormMessagesMail.setInput({
+            "recipient": messageMailingList
+        });
+        $scope.Variables.SendFormMessagesMail.update();
+
 
     };
 

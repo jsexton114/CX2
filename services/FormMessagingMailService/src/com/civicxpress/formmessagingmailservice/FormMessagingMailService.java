@@ -22,6 +22,8 @@ import javax.mail.Transport;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.ArrayList;
+import java.util.*;
 
 
 //import com.civicxpress.formmessagingmailservice.model.*;
@@ -56,7 +58,7 @@ public class FormMessagingMailService {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
-  public String sendStatusUpdateMail(String username ,String recipient,String emailSubject,String emailBody,String municipality,String formType,String municipalitySignature,String formTitle,String formGUID) throws MessagingException {
+  public String sendStatusUpdateMail(String sender,String comments,String username ,String recipient,String municipality,String formType,String municipalitySignature,String formTitle,String formGUID) throws MessagingException {
         
       
         
@@ -74,23 +76,40 @@ public class FormMessagingMailService {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
         
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+        //message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+        
+        //String[] recipient={"sagar.vemala@wavemaker.com","anvesh.nara@wavemaker.com"};
+       
+     //String recipient="sagar.vemala@wavemaker.com,anvesh.nara@wavemaker.com";
+     ArrayList recipientList= new ArrayList(Arrays.asList(recipient.split(",")));
+
+
+        InternetAddress[] recipientAddress = new InternetAddress[recipientList.size()];
+        
+         for (int i = 0; i < recipientList.size(); i++)
+                 {
+                  recipientAddress[i] = new InternetAddress(recipientList.get(i).toString());
+                  }
+        
+        message.setRecipients(Message.RecipientType.TO, recipientAddress);
+        
+        String emailSubject="New Message for "+formTitle;
         
         String formURL=  FORM_URL+formGUID;
         logger.info(formGUID);
         
-        String emailContent = "Hi" + " "+username+","+"<br /><br />";
-        
-        emailContent =emailContent + emailBody ;
+        String emailContent = " The following message has been added by "+ sender +" to ";
+        emailContent = emailContent+"<a href ='"+formURL+ "'>"+formTitle+" </a>";
+      
         emailContent =emailContent+"<br /><br />";
         
-        emailContent =emailContent + municipality ;
-        emailContent =emailContent+"<br />";
-        emailContent =emailContent + formType ;
-        emailContent =emailContent+"<br />";
-        emailContent =emailContent + formTitle ;
-        emailContent =emailContent+"<br />";
-        emailContent = emailContent+"<a href ='"+formURL+ "'> Click Here to View Form </a>";
+        emailContent =emailContent + comments ;
+        
+        emailContent =emailContent+"<br /><br />";
+        
+         emailContent = emailContent+"<a href ='"+formURL+ "'> You may view the complete form by clicking here </a>";
+         
+          emailContent =emailContent+"<br /><br />";
         
         emailContent =emailContent+ "<br/><br/>"+ municipalitySignature +"<br/><br/>";
         
@@ -102,7 +121,7 @@ public class FormMessagingMailService {
         message.saveChanges();
         tr.sendMessage(message, message.getAllRecipients());
         tr.close();
-        String displayMessage = "Message sent successfully with body " + emailBody;
+        String displayMessage = "Message sent successfully ";
         logger.info(displayMessage);
         return displayMessage;
     }

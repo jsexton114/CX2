@@ -13977,6 +13977,58 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "SendFormMessagesMail" : {
+    "_id" : "wm-SendMessageMail-wm.ServiceVariable-1487145794825",
+    "name" : "SendFormMessagesMail",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "sender",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.firstName+\" \"+Variables.CurrentUserDetails.dataSet.lastName",
+      "type" : "string"
+    }, {
+      "target" : "comments",
+      "value" : "bind:Widgets.textAddMessage.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].municipalities.municipalityName",
+      "type" : "string"
+    }, {
+      "target" : "formType",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTypes.formType",
+      "type" : "string"
+    }, {
+      "target" : "municipalitySignature",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].municipalities.globalEmailSig",
+      "type" : "string"
+    }, {
+      "target" : "formTitle",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTitle",
+      "type" : "string"
+    }, {
+      "target" : "formGUID",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
+    "type" : "string",
+    "service" : "FormMessagingMailService",
+    "operation" : "sendStatusUpdateMail",
+    "operationId" : "FormMessagingMailController_sendStatusUpdateMail",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "FormMessagingMail",
+    "spinnerContext" : "page"
+  },
   "SendStatusUpdate" : {
     "_id" : "wm-SendStatusUpdate-wm.ServiceVariable-1485169966886",
     "name" : "SendStatusUpdate",

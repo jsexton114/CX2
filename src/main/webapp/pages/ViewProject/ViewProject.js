@@ -12,6 +12,7 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 
 
     $scope.CurrentProjectonSuccess = function(variable, data) {
+        debugger
         if ($scope.Variables.loggedInUser.dataSet.id == data[0].usersByCreatedBy.id) {
             $scope.addMember = true;
         }
@@ -29,15 +30,19 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 Application.$controller("gridProjectMembersController", ["$scope",
     function($scope) {
         "use strict";
+        debugger
         $scope.ctrlScope = $scope;
+        $scope.addMember
     }
 ]);
 
 Application.$controller("dialogAddMemberController", ["$scope",
     function($scope) {
         "use strict";
+        debugger
         $scope.ctrlScope = $scope;
         $scope.today = moment().valueOf();
+        $scope.addMember
     }
 ]);
 
@@ -81,22 +86,22 @@ Application.$controller("dialogAddGISRecordController", ["$scope",
 ]);
 
 Application.$controller("dialogParcelController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("gridProjectFormsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("dialogAddFormsToProjectController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
