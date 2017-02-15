@@ -22,7 +22,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     };
 
     $scope.canAddVendor = function() {
-        return (!$scope.Variables.lvFormType.dataSet.data[0].multipleVendors && $scope.Variables.Cx2Vendors2formData.dataSet.data.length >= 1) ? true : false;
+        return ($scope.Variables.lvFormType.dataSet.data[0].multipleVendors || $scope.Variables.Cx2Vendors2formData.dataSet.data.length == 1);
     };
 
     $scope.currentProgress = 0;

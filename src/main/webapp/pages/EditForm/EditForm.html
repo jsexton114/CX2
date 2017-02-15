@@ -275,7 +275,7 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneFormFields" title="Fields">
                                 <wm-livegrid formlayout="dialog" name="livegrid3">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet" navigation="Classic" name="gridFields" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                         <wm-grid-column binding="displayOrder" caption="Display Order" type="integer" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="label" caption="Label" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="formFieldTypes.label" caption="Type" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="FormFieldTypes"></wm-grid-column>
@@ -286,7 +286,7 @@
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="Add Field" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Field" action="Widgets.dlgFormTypeField.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="Authenticated" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                 </wm-livegrid>
                             </wm-tabpane>

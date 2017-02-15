@@ -137,7 +137,7 @@ Application.$controller("liveform3Controller", ["$scope",
     }
 ]);
 
-Application.$controller("grid3Controller", ["$scope",
+Application.$controller("gridFieldsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
