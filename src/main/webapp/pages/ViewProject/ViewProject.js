@@ -3,24 +3,22 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 
     /* perform any action on widgets/variables within this block */
     var crum;
-    $scope.addMember;
     $scope.onPageReady = function() {
         $scope.today = moment().valueOf();
         //var temp = $scope.Variables.BreadCrumb.dataSet;
-        $scope.addMember = false;
+        $scope.Widgets.gridProjectMembers.addMember = true;
     };
 
 
     $scope.CurrentProjectonSuccess = function(variable, data) {
-        debugger
         if ($scope.Variables.loggedInUser.dataSet.id == data[0].usersByCreatedBy.id) {
-            $scope.addMember = true;
+            $scope.Widgets.gridProjectMembers.addMember = false;
         }
         var temp = $scope.Variables.loggedInUser.dataSet.roles;
         //Checking if user is muniadmin or cxadmin
         for (let i = 0; i < temp.length; i++) {
             if ((temp[i] == "MunicipalityAdmin") || (temp[i] == "CXAdmin")) {
-                $scope.addMember = true;
+                $scope.Widgets.gridProjectMembers.addMember = false;
             }
         }
     };
@@ -30,19 +28,15 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 Application.$controller("gridProjectMembersController", ["$scope",
     function($scope) {
         "use strict";
-        debugger
         $scope.ctrlScope = $scope;
-        $scope.addMember
     }
 ]);
 
 Application.$controller("dialogAddMemberController", ["$scope",
     function($scope) {
         "use strict";
-        debugger
         $scope.ctrlScope = $scope;
         $scope.today = moment().valueOf();
-        $scope.addMember
     }
 ]);
 

@@ -92,7 +92,8 @@
                                             <wm-grid-column binding="usersByProjectSharedBy.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                             <wm-grid-column binding="usersByProjectSharedBy.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                         </wm-grid-column-group>
-                                        <wm-grid-action key="addNewRow" display-name="New" show="bind:addMember" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddMember.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddMember.open()" shortcutkey="" disabled="bind:addMember
+"></wm-grid-action>
                                     </wm-grid>
                                 </wm-livegrid>
                             </wm-tabpane>
