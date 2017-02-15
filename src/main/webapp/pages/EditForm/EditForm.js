@@ -103,7 +103,10 @@ Application.$controller("liveformUpdateFormTypeController", ["$scope",
         };
 
         $scope.gisOptionSelectChange = function($event, $isolateScope, newVal, oldVal) {
-            $scope.Widgets.liveformUpdateFormType.formWidgets.gismap.setProperty('disabled', (newVal === 'None'));
+            if (newVal === 'None') {
+                $scope.Widgets.liveformUpdateFormType.formWidgets.gismap.datavalue = false;
+                $scope.Widgets.liveformUpdateFormType.formWidgets.requireOwner.datavalue = false;
+            }
         };
 
     }
