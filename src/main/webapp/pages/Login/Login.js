@@ -25,7 +25,7 @@ Application.$controller("loginFormController", ["$scope", "wmToaster",
         $scope.ctrlScope = $scope;
 
         $scope.loginFormSubmit = function($event, $isolateScope) {
-            $scope.Variables.bannedUser.setInput('emailid', $("input[name='usernametext'").val());
+            $scope.Variables.bannedUser.setInput('emailid', $("input[name='usernametext']").val());
             $scope.Variables.bannedUser.update({}, function(data) {
                 if (data.content.length > 0) {
                     if (data.content[0].Banned === true) {
