@@ -148,7 +148,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.GetMessageIdForCurrentPostonSuccess = function(variable, data) {
         var people = $scope.Variables.PeopleList.dataSet;
         var m = data.content[0];
-        var messageMailingList = '';
+        $scope.messageMailingList = '';
         // Insert people as Tagged People For RecentMessage
         for (var i = 0; i < people.length; i++) {
             $scope.Variables.InsertTaggedPeople.setInput({
@@ -159,14 +159,14 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
             });
             $scope.Variables.InsertTaggedPeople.insertRecord();
 
-            messageMailingList = messageMailingList + people[i].email + ",";
+            $scope.messageMailingList = $scope.messageMailingList + people[i].email + ",";
 
         }
-        messageMailingList = messageMailingList.substring(0, messageMailingList.length - 1)
+        $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1)
 
         // Send Mails of Message
         $scope.Variables.SendFormMessagesMail.setInput({
-            "recipient": messageMailingList
+            "recipient": $scope.messageMailingList
         });
         $scope.Variables.SendFormMessagesMail.update();
 
@@ -196,6 +196,11 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         }
 
         $scope.Widgets.textareaNotes.reset();
+    };
+
+
+    $scope.SendFormMessagesMailonSuccess = function(variable, data) {
+        $scope.Variables.PeopleList.dataSet = undefined;
     };
 
 }]);
@@ -398,9 +403,11 @@ Application.$controller("dialogTagPeopleController", ["$scope",
             if ($scope.Widgets.textSearchPeople.datavalue != undefined) {
                 var temp = $scope.Widgets.textSearchPeople.datavalue;
                 var data = $scope.Variables.PeopleList.dataSet;
-                // checking for any municipalities in PeopleList variable, if not add from search 
+                // checking for any people in PeopleList variable, if not add from search 
                 if (data.length == 0) {
                     data.push(temp);
+                    // clear search after pushing
+                    $scope.Widgets.textSearchPeople.datavalue = undefined;
                 } else {
                     // checking if adding value already exist in PeopleList variable 
                     var exist = 0;
@@ -413,7 +420,8 @@ Application.$controller("dialogTagPeopleController", ["$scope",
                         $scope.Variables.PersonAlreadyTagged.notify();
                     else
                         data.push(temp);
-
+                    // clear search after pushing
+                    $scope.Widgets.textSearchPeople.datavalue = undefined;
                 }
                 // Setting for adding to Tagging
                 selectedPeople = $scope.Variables.PeopleList.dataSet;

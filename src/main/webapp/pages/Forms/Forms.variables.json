@@ -13722,6 +13722,34 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Municipalities"
   },
+  "MessageMailsSent" : {
+    "_id" : "wm-MessageMailsSent-wm.NotificationVariable-1487155097989",
+    "name" : "MessageMailsSent",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "bind:\"Notification Mails sent to \"+messageMailingList",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "ncStatusUpdated" : {
     "_id" : "wm-ncStatusUpdated-wm.NotificationVariable-1485541271377",
     "name" : "ncStatusUpdated",
@@ -14021,13 +14049,15 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "SendFormMessagesMailonSuccess($event, $scope);Variables.MessageMailsSent.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "FormMessagingMail",
-    "spinnerContext" : "page"
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Sending Mails....."
   },
   "SendStatusUpdate" : {
     "_id" : "wm-SendStatusUpdate-wm.ServiceVariable-1485169966886",
