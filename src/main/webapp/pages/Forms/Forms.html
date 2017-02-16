@@ -160,60 +160,27 @@
                                                 <wm-label padding="unset 0.5em" name="label61" caption="You may add or remove locations for this form."></wm-label>
                                                 <wm-label padding="unset 0.5em" name="label34" caption="Some forms allow for multiple locations while others may only allow a single location to be added."></wm-label>
                                                 <wm-label padding="unset 0.5em" name="label62" caption="You may also view location details by clicking on the magnifying glass located in the “Actions” area below."></wm-label>
+                                                <wm-grid title="" dataset="bind:Variables.Gis2formsData.dataSet" navigation="Classic" name="gridLocation">
+                                                    <wm-grid-column binding="gisrecords.parcel" caption="Gisrecords Parcel" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetNumber" caption="Gisrecords Street Number" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Gisrecords.subdivisions Subdivision" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.section" caption="Gisrecords Section" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.inspectionZone" caption="Gisrecords Inspection Zone" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.lot" caption="Gisrecords Lot" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.city" caption="Gisrecords City" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetName" caption="Gisrecords Street Name" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-action key="customButton" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-add" title="Add Location" action="Widgets.dialogAddGISRecord.open()" shortcutkey=""
+                                                    disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleGisrecords &amp;&amp; Variables.Gis2formsData.dataSet.totalElements >0"></wm-grid-action>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.DeleteGis2Form.invoke()" disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow61">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn127">
-                                                <wm-livegrid formlayout="dialog" name="livegridLocation">
-                                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Gis2formsData.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn" exportformat="EXCEL">
-                                                        <wm-grid-column binding="gisrecords.subdivisionId" caption="Subdivision No" type="integer" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                        <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                        <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                        <wm-grid-column binding="gisrecords.section" caption="Section" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                        <wm-grid-column binding="gisrecords.streetNumber" caption="Street Number" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                        <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                        <wm-grid-column binding="gisrecords.city" caption="City" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                        <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-action key="addNewRow" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-add" title="Add Location" action="Widgets.dialogAddGISRecord.open()"
-                                                        shortcutkey="" disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleGisrecords &amp;&amp; Variables.Gis2formsData.dataSet.data.length > 0"></wm-grid-action>
-                                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
-                                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                                    </wm-grid>
-                                                    <wm-liveform novalidate="false" errormessage="" title="Gis2forms Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Gis2formsData.dataSet" captionalign="left" captionposition="top"
-                                                    name="liveformLocation">
-                                                        <wm-layoutgrid columns="3" name="layoutgrid6">
-                                                            <wm-gridrow name="gridrow16">
-                                                                <wm-gridcolumn columnwidth="4" name="gridcolumn30_1">
-                                                                    <wm-form-field name="addedTime" displayname="Added Time" required="false" show="true" generator="assigned" primary-key="false" key="addedTime" type="timestamp" is-related="false" pc-display="true"
-                                                                    mobile-display="true" widget="timestamp"></wm-form-field>
-                                                                </wm-gridcolumn>
-                                                                <wm-gridcolumn columnwidth="4" name="gridcolumn31">
-                                                                    <wm-form-field name="gisrecords" displayname="Gisrecords" required="false" show="true" generator="assigned" primary-key="false" key="gisrecords" type="list" is-related="true" pc-display="true"
-                                                                    mobile-display="true" widget="select"></wm-form-field>
-                                                                </wm-gridcolumn>
-                                                                <wm-gridcolumn columnwidth="4" name="gridcolumn32">
-                                                                    <wm-form-field name="masterForms" displayname="Master Forms" required="false" show="true" generator="assigned" primary-key="false" key="masterForms" type="list" is-related="true" maxchars="255"
-                                                                    pc-display="true" mobile-display="true" widget="select"></wm-form-field>
-                                                                </wm-gridcolumn>
-                                                            </wm-gridrow>
-                                                            <wm-gridrow name="gridrow17">
-                                                                <wm-gridcolumn columnwidth="4" name="gridcolumn33">
-                                                                    <wm-form-field name="users" displayname="Users" required="false" show="true" generator="assigned" primary-key="false" key="users" type="list" is-related="true" pc-display="true" mobile-display="true"
-                                                                    widget="select"></wm-form-field>
-                                                                </wm-gridcolumn>
-                                                                <wm-gridcolumn columnwidth="4" name="gridcolumn34"></wm-gridcolumn>
-                                                                <wm-gridcolumn columnwidth="4" name="gridcolumn35"></wm-gridcolumn>
-                                                            </wm-gridrow>
-                                                        </wm-layoutgrid>
-                                                        <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true"
-                                                        widget="number"></wm-form-field>
-                                                        <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
-                                                        <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
-                                                    </wm-liveform>
-                                                </wm-livegrid>
-                                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.Gis2formsData.dataSet.data[$i].gisrecords" zoom="14" markertype="Address" address="streetNumber streetName city states.stateName"
-                                                show="bind:Variables.Gis2formsData.dataSet.data.length > 0 &amp;&amp; Variables.lvFormType.dataSet.data[$i].gisrecord"></wm-prefab>
+                                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.Gis2formsData.dataSet[$i].gisrecords" zoom="14" markertype="Address" address="streetNumber streetName city states.stateName"
+                                                show="bind:Variables.Gis2formsData.dataSet.totalElements > 0 &amp;&amp; Variables.lvFormType.dataSet.data[$i].gisrecord"></wm-prefab>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>

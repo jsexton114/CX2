@@ -1315,6 +1315,33 @@
       "VendorSelection" : "java.lang.Boolean"
     }
   }, {
+    "name" : "GetGis2formsByForm",
+    "query" : "from Gis2forms where relatedFormGuid=:relatedFormGuid",
+    "comment" : "GetGis2formsByForm",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "relatedFormGuid",
+      "paramType" : "java.lang.String",
+      "testValue" : "BD49AB46-61E9-E611-80C9-0CC47A46DD63",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2GetGis2formsByFormrtnType",
+    "returnTypeMetadata" : {
+      "addedBy" : "java.lang.Integer",
+      "addedTime" : "java.util.Date",
+      "gisrecordId" : "java.lang.Integer",
+      "gisrecords" : "com.civicxpress.cx2.Gisrecords",
+      "id" : "java.lang.Integer",
+      "masterForms" : "com.civicxpress.cx2.MasterForms",
+      "relatedFormGuid" : "java.lang.String",
+      "users" : "com.civicxpress.cx2.Users"
+    }
+  }, {
     "name" : "getListofGroupName",
     "query" : "select ID,GroupName from MunicipalityGroups where ID IN :MunicipalityGroupID AND MunicipalityId =:MunicipalityID",
     "comment" : "get all the list of group Names based on mun ID",

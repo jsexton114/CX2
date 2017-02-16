@@ -211,6 +211,10 @@
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2GetProcessGroupMemebersByFormGUIDrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="GetProjectGisrecords">
+        <parameter name="relatedProjectGuid" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2GetProjectGisrecordsrtnType" isList="false"/>
+    </operation>
     <operation operationType="hqlquery" name="GetRecentMessageId">
         <parameter name="form" typeRef="java.lang.String" isList="false"/>
         <parameter name="PostedAt" typeRef="java.sql.Timestamp" isList="false"/>
@@ -505,8 +509,8 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="hqlquery" name="GetProjectGisrecords">
-        <parameter name="relatedProjectGuid" typeRef="java.lang.String" isList="false"/>
+    <operation operationType="hqlquery" name="GetGis2formsByForm">
+        <parameter name="relatedFormGuid" typeRef="java.lang.String" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
@@ -700,6 +704,10 @@
         <parameter name="isActive" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="userId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2GetFormTypesByCategoriesAndMunicipalitiesrtnType" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="GetGis2formsByForm">
+        <parameter name="relatedFormGuid" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2GetGis2formsByFormrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="getListofGroupName">
         <parameter name="MunicipalityGroupID" typeRef="java.lang.Integer" isList="true"/>
@@ -2035,6 +2043,16 @@
             <element name="TbLocation" typeRef="java.lang.String"/>
             <element name="UnitFee" typeRef="java.lang.String"/>
             <element name="UnitFeeAccountingCode" typeRef="java.lang.String"/>
+        </dataobject>
+        <dataobject javaType="cx2GetGis2formsByFormrtnType">
+            <element name="addedBy" typeRef="java.lang.Integer"/>
+            <element name="addedTime" typeRef="java.util.Date"/>
+            <element name="gisrecordId" typeRef="java.lang.Integer"/>
+            <element name="gisrecords" typeRef="com.civicxpress.cx2.Gisrecords"/>
+            <element name="id" typeRef="java.lang.Integer"/>
+            <element name="masterForms" typeRef="com.civicxpress.cx2.MasterForms"/>
+            <element name="relatedFormGuid" typeRef="java.lang.String"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users"/>
         </dataobject>
         <dataobject javaType="cx2GetProcessGroupMemebersByFormGUIDrtnType">
             <element name="GroupName" typeRef="java.lang.String"/>

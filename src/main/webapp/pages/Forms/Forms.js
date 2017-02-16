@@ -228,19 +228,9 @@ Application.$controller("grid3Controller", ["$scope",
     }
 ]);
 
-Application.$controller("gridLocationController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
 
-Application.$controller("liveformLocationController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
+
 
 Application.$controller("dialogAddGISRecordController", ["$scope",
     function($scope) {
@@ -448,4 +438,11 @@ Application.$controller("dialogShowTaggedPeopleController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
     }
+]);
+
+Application.$controller("gridLocationController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

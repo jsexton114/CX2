@@ -420,6 +420,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/GetGis2formsByForm", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeGetGis2formsByForm(@RequestParam(value = "relatedFormGuid", required = false) java.lang.String relatedFormGuid, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query GetGis2formsByForm");
+        Page<Object> result = queryService.executeGetGis2formsByForm(pageable, relatedFormGuid);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/getListofGroupName", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeGetListofGroupName(@RequestParam(value = "MunicipalityGroupID", required = true) java.util.List<java.lang.Integer> MunicipalityGroupID, @RequestParam(value = "MunicipalityID", required = false) java.lang.Integer MunicipalityID, Pageable pageable) throws QueryParameterMismatchException {

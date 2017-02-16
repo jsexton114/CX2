@@ -192,6 +192,11 @@
       (FT.MunicipalityInternalForm=0 or exists (SELECT RoleName from Roles where UserId=:userId and (MunicipalityId=FC.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))
     ]]>
   </sql-query>
+  <query name="GetGis2formsByForm">
+    <![CDATA[
+      from Gis2forms where relatedFormGuid=:relatedFormGuid
+    ]]>
+  </query>
   <sql-query name="getListofGroupName">
     <![CDATA[
       select ID,GroupName from MunicipalityGroups where ID IN :MunicipalityGroupID AND MunicipalityId =:MunicipalityID
