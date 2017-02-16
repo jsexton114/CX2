@@ -118,8 +118,9 @@ public class ProjectTasksController {
         return projectTasksService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/projectTasksesForPredecessor", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/projectTasksesForPredecessor", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the projectTasksesForPredecessor instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ProjectTasks> findAssociatedProjectTasksesForPredecessor(@PathVariable("id") String id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectTasksesForPredecessor");
         return projectTasksService.findAssociatedProjectTasksesForPredecessor(id, pageable);

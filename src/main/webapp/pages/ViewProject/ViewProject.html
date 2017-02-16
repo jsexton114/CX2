@@ -96,7 +96,30 @@
 "></wm-grid-action>
                                 </wm-grid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpaneTASKS" title="TASKS"></wm-tabpane>
+                            <wm-tabpane name="tabpaneTASKS" title="TASKS">
+                                <wm-livegrid formlayout="dialog" name="livegridTasks">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Projecttasks List" dataset="bind:Variables.ProjectTasksData.dataSet" navigation="Classic" name="gridTasks">
+                                        <wm-grid-column binding="type" caption="Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="description" caption="Description" type="text" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="startAt" caption="Start At" type="timestamp" generator="assigned" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="projectTasksByPredecessor.type" caption="Predecessor Type" type="string" generator="assigned" readonly="true" show="true" related-entity-name="ProjectTasks"></wm-grid-column>
+                                        <wm-grid-column binding="name" caption="Name" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="projectTasksByPredecessor.name" caption="Predecessor Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="ProjectTasks"></wm-grid-column>
+                                        <wm-grid-column binding="endAt" caption="End At" type="timestamp" primary-key="false" generator="assigned" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column-group name="group" caption="Created By">
+                                            <wm-grid-column binding="users.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                            <wm-grid-column binding="users.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        </wm-grid-column-group>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                    </wm-grid>
+                                    <wm-liveform novalidate="false" errormessage="" title="Projecttasks Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ProjectTasksData.dataSet" captionalign="left" captionposition="top" name="liveformTasks">
+                                        <wm-layoutgrid columns="1" name="layoutgrid10_2"></wm-layoutgrid>
+                                    </wm-liveform>
+                                </wm-livegrid>
+                            </wm-tabpane>
                             <wm-tabpane name="tabpaneDOCUMENTS" title="DOCUMENTS"></wm-tabpane>
                             <wm-tabpane name="tabpane4" title="MESSAGING"></wm-tabpane>
                             <wm-tabpane name="tabpaneMAPS" title="MAPS">

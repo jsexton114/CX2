@@ -42,10 +42,11 @@ public class ProjectTasks implements Serializable {
     private String type;
     private String description;
     private Date startAt;
-    private String endAt;
     private Integer assignedTo;
     private Integer percentComplete;
     private String predecessor;
+    private String name;
+    private Date endAt;
     private Projects projects;
     private ProjectTasks projectTasksByPredecessor;
     private Users users;
@@ -100,15 +101,6 @@ public class ProjectTasks implements Serializable {
         this.startAt = startAt;
     }
 
-    @Column(name = "`EndAt`", nullable = true, length = 255)
-    public String getEndAt() {
-        return this.endAt;
-    }
-
-    public void setEndAt(String endAt) {
-        this.endAt = endAt;
-    }
-
     @Column(name = "`AssignedTo`", nullable = true, scale = 0, precision = 10)
     public Integer getAssignedTo() {
         return this.assignedTo;
@@ -134,6 +126,25 @@ public class ProjectTasks implements Serializable {
 
     public void setPredecessor(String predecessor) {
         this.predecessor = predecessor;
+    }
+
+    @Column(name = "`Name`", nullable = true, length = 255)
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "`EndAt`", nullable = true)
+    public Date getEndAt() {
+        return this.endAt;
+    }
+
+    public void setEndAt(Date endAt) {
+        this.endAt = endAt;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
