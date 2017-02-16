@@ -478,22 +478,22 @@
     <wm-view class="dialog-view" name="view1">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Form Field" iconclass="wi wi-file-text" name="dlgFormTypeField">
             <wm-layoutgrid name="layoutgrid10" columns="1">
-                <wm-gridrow name="gridrow41">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn71">
-                        <wm-composite name="composite3_1" required="true">
-                            <wm-label class="col-md-3 control-label" name="label8"></wm-label>
-                            <wm-container class="col-md-9" name="container3_1">
-                                <wm-text name="textFormFieldLabel" maxchars="120"></wm-text>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
                 <wm-gridrow name="gridrow43">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn73">
                         <wm-composite name="composite7" required="true">
                             <wm-label class="col-md-3 control-label" name="label11" caption="Type"></wm-label>
                             <wm-container class="col-md-9" name="container6">
                                 <wm-select name="selectFormFieldType" dataset="bind:Variables.lvFormFieldTypes.dataSet" datafield="All Fields" displayfield="label"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow41">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn71">
+                        <wm-composite name="composite3_1" required="true">
+                            <wm-label class="col-md-3 control-label" name="label8"></wm-label>
+                            <wm-container class="col-md-9" name="container3_1">
+                                <wm-text name="textFormFieldLabel" maxchars="120"></wm-text>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
