@@ -17,7 +17,7 @@
                                 <wm-gridrow name="gridrow4">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn4_1" horizontalalign="center">
                                         <wm-picture name="picture1" picturesource="bind:!!Variables.CurrentProject.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.CurrentProject.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;"
-                                        width="100pt" height="100pt"></wm-picture>
+                                        class="muni-logo"></wm-picture>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow5" padding=".5em unset">
@@ -116,7 +116,63 @@
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                     <wm-liveform novalidate="false" errormessage="" title="Projecttasks Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ProjectTasksData.dataSet" captionalign="left" captionposition="top" name="liveformTasks">
-                                        <wm-layoutgrid columns="1" name="layoutgrid10_2"></wm-layoutgrid>
+                                        <wm-layoutgrid name="layoutgrid1">
+                                            <wm-gridrow name="gridrow1">
+                                                <wm-gridcolumn show="show" name="gridcolumn1" columnwidth="12">
+                                                    <wm-form-field name="projects" displayname="Projects" show="true" primary-key="false" generator="assigned" key="projects" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"
+                                                    maxchars="32"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow2">
+                                                <wm-gridcolumn show="show" name="gridcolumn2" columnwidth="12">
+                                                    <wm-form-field name="projectTasksByPredecessor" displayname="Project Tasks By Predecessor" show="true" primary-key="false" generator="assigned" key="projectTasksByPredecessor" type="list" is-related="true"
+                                                    pc-display="true" mobile-display="true" widget="select" maxchars="255"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow3">
+                                                <wm-gridcolumn show="show" name="gridcolumn3" columnwidth="12">
+                                                    <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow4">
+                                                <wm-gridcolumn show="hide" name="gridcolumn4" columnwidth="12">
+                                                    <wm-form-field name="pmid" displayname="Pmid" show="false" primary-key="true" generator="uniqueid" key="pmid" type="string" is-related="false" readonly="readonly" required="required" pc-display="true" mobile-display="true"
+                                                    widget="text" maxchars="255"></wm-form-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn show="show" name="gridcolumn5" columnwidth="12">
+                                                    <wm-form-field name="type" displayname="Type" show="true" primary-key="false" generator="assigned" key="type" type="string" is-related="false" pc-display="true" mobile-display="true" widget="text" maxchars="255"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow5">
+                                                <wm-gridcolumn show="show" name="gridcolumn6" columnwidth="12">
+                                                    <wm-form-field name="description" displayname="Description" show="true" primary-key="false" generator="assigned" key="description" type="text" is-related="false" pc-display="true" mobile-display="true" widget="text"
+                                                    maxchars="2147483647"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow6">
+                                                <wm-gridcolumn show="show" name="gridcolumn7" columnwidth="12">
+                                                    <wm-form-field name="startAt" displayname="Start At" show="true" primary-key="false" generator="assigned" key="startAt" type="timestamp" is-related="false" pc-display="true" mobile-display="true" widget="timestamp"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow7">
+                                                <wm-gridcolumn show="show" name="gridcolumn8" columnwidth="12">
+                                                    <wm-form-field name="percentComplete" displayname="Percent Complete" show="true" primary-key="false" generator="assigned" key="percentComplete" type="integer" is-related="false" pc-display="true" mobile-display="true"
+                                                    step="0" widget="number"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow8">
+                                                <wm-gridcolumn show="show" name="gridcolumn9" columnwidth="12">
+                                                    <wm-form-field name="name" displayname="Name" show="true" primary-key="false" generator="assigned" key="name" type="string" is-related="false" pc-display="true" mobile-display="true" widget="text" maxchars="255"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow9">
+                                                <wm-gridcolumn show="show" name="gridcolumn10" columnwidth="12">
+                                                    <wm-form-field name="endAt" displayname="End At" show="true" primary-key="false" generator="assigned" key="endAt" type="timestamp" is-related="false" pc-display="true" mobile-display="true" widget="timestamp"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-layoutgrid>
+                                        <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true" shortcutkey=""></wm-form-action>
+                                        <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" action="" display-name="Save" show="true" type="submit" update-mode="true" shortcutkey=""></wm-form-action>
                                     </wm-liveform>
                                 </wm-livegrid>
                             </wm-tabpane>

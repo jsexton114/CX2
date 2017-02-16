@@ -21,7 +21,7 @@
                                         <wm-grid-column binding="usersByCreatedBy.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
                                         <wm-grid-column binding="usersByCreatedBy.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
                                     </wm-grid-column-group>
-                                    <wm-grid-column binding="modifiedDate" caption="Date Modified" show="true" readonly="undefined"></wm-grid-column>
+                                    <wm-grid-column binding="modifiedDate" caption="Date Modified" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-action key="addNewRow" display-name="New Project" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogCreateProject.open();addNewRowAction($event);addNewRowAction1($event)"
                                     shortcutkey="" disabled="false"></wm-grid-action>
