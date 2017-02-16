@@ -49,6 +49,15 @@ public interface ProjectGisrecordsService {
 	 */
 	ProjectGisrecords findById(Integer projectgisrecordsId);
 
+    /**
+	 * Find and return the ProjectGisrecords for given relatedProjectGuid  andgisrecordId  if exists.
+	 *
+	 * @param relatedProjectGuid value of relatedProjectGuid; value cannot be null.
+	 * @param gisrecordId value of gisrecordId; value cannot be null.
+	 * @return ProjectGisrecords associated with the given inputs.
+     * @throws EntityNotFoundException if no matching ProjectGisrecords found.
+	 */
+    ProjectGisrecords getByRelatedProjectGuidAndGisrecordId(String relatedProjectGuid, Integer gisrecordId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing ProjectGisrecords. It replaces all fields of the existing ProjectGisrecords with the given projectGisrecords.

@@ -83,6 +83,13 @@ public class ProjectGisrecordsController {
         return deletedProjectGisrecords != null;
     }
 
+    @RequestMapping(value = "/relatedProjectGuid-gisrecordId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching ProjectGisrecords with given unique key values.")
+    public ProjectGisrecords getByRelatedProjectGuidAndGisrecordId(@RequestParam(name = "relatedProjectGuid") String relatedProjectGuid, @RequestParam(name = "gisrecordId") Integer gisrecordId) {
+        LOGGER.debug("Getting ProjectGisrecords with uniques key RelatedProjectGuidAndGisrecordId");
+        return projectGisrecordsService.getByRelatedProjectGuidAndGisrecordId(relatedProjectGuid, gisrecordId);
+    }
+
     /**
      * @deprecated Use {@link #findProjectGisrecords(String, Pageable)} instead.
      */
