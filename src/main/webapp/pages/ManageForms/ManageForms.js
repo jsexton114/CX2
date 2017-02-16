@@ -1,4 +1,4 @@
-Application.$controller("ManageFormsPageController", ["$scope", function($scope) {
+Application.$controller("ManageFormsPageController", ["$scope", "$location", function($scope, $location) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -12,6 +12,11 @@ Application.$controller("ManageFormsPageController", ["$scope", function($scope)
          * e.g. to get value of text widget named 'username' use following script
          * '$scope.Widgets.username.datavalue'
          */
+    };
+
+
+    $scope.svSaveFormTypeonSuccess = function(variable, data) {
+        $location.path("/EditForm").search("FormTypeId", data);
     };
 
 }]);
@@ -83,15 +88,15 @@ Application.$controller("gridFormTypesController", ["$scope",
 ]);
 
 Application.$controller("confirmDeleteFormDesignController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("dialogDeleteFormDesignController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
