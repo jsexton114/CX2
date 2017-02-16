@@ -212,6 +212,11 @@
       select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF where  MF.FormGUID=:FormGUID and MG.ID=MF.AssignedToGroupId and MG.ID=MGM.MunicipalityGroupId
     ]]>
   </sql-query>
+  <query name="GetProjectGisrecords">
+    <![CDATA[
+      from ProjectGisrecords where relatedProjectGuid=:relatedProjectGuid
+    ]]>
+  </query>
   <query name="GetRecentMessageId">
     <![CDATA[
       from FormMessages where RelatedFormGUID=:form and PostedAt=:PostedAt

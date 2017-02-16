@@ -1415,6 +1415,33 @@
       "UserId" : "java.math.BigDecimal"
     }
   }, {
+    "name" : "GetProjectGisrecords",
+    "query" : "from ProjectGisrecords where relatedProjectGuid=:relatedProjectGuid",
+    "comment" : "GetProjectGisrecords",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "relatedProjectGuid",
+      "paramType" : "java.lang.String",
+      "testValue" : "85A109AC-AF6B-4E67-9C98-F8D99B60E677",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2GetProjectGisrecordsrtnType",
+    "returnTypeMetadata" : {
+      "addedAt" : "java.util.Date",
+      "addedByUser" : "java.lang.Integer",
+      "gisrecordId" : "java.lang.Integer",
+      "gisrecords" : "com.civicxpress.cx2.Gisrecords",
+      "id" : "java.lang.Integer",
+      "projects" : "com.civicxpress.cx2.Projects",
+      "relatedProjectGuid" : "java.lang.String",
+      "users" : "com.civicxpress.cx2.Users"
+    }
+  }, {
     "name" : "GetRecentMessageId",
     "query" : "from FormMessages where RelatedFormGUID=:form and PostedAt=:PostedAt",
     "comment" : "GetRecentMessageId",

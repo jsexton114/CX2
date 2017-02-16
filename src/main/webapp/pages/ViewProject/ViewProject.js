@@ -40,12 +40,7 @@ Application.$controller("dialogAddMemberController", ["$scope",
     }
 ]);
 
-Application.$controller("gridLocationController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
 
 Application.$controller("dialogAddGISRecordController", ["$scope",
     function($scope) {
@@ -98,4 +93,11 @@ Application.$controller("dialogAddFormsToProjectController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
     }
+]);
+
+Application.$controller("gridLocationController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

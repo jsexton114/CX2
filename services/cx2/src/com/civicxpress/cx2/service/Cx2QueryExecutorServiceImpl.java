@@ -412,6 +412,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeGetProjectGisrecords(Pageable pageable, java.lang.String relatedProjectGuid)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("relatedProjectGuid", relatedProjectGuid);
+        return queryExecutor.executeNamedQuery("GetProjectGisrecords", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeGetRecentMessageId(Pageable pageable, java.lang.String form, java.sql.Timestamp PostedAt)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

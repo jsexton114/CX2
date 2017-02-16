@@ -460,6 +460,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/GetProjectGisrecords", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeGetProjectGisrecords(@RequestParam(value = "relatedProjectGuid", required = false) java.lang.String relatedProjectGuid, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query GetProjectGisrecords");
+        Page<Object> result = queryService.executeGetProjectGisrecords(pageable, relatedProjectGuid);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/GetRecentMessageId", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeGetRecentMessageId(@RequestParam(value = "form", required = false) java.lang.String form, @RequestParam(value = "PostedAt", required = false) java.sql.Timestamp PostedAt, Pageable pageable) throws QueryParameterMismatchException {
