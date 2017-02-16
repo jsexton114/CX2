@@ -39,7 +39,7 @@ public interface ProjectTasksService {
 	 * @return ProjectTasks associated with the given projecttasksId.
      * @throws EntityNotFoundException If no ProjectTasks is found.
 	 */
-	ProjectTasks getById(Integer projecttasksId) throws EntityNotFoundException;
+	ProjectTasks getById(String projecttasksId) throws EntityNotFoundException;
 
     /**
 	 * Find and return the ProjectTasks by given id if exists, returns null otherwise.
@@ -47,7 +47,7 @@ public interface ProjectTasksService {
 	 * @param projecttasksId The id of the ProjectTasks to get; value cannot be null.
 	 * @return ProjectTasks associated with the given projecttasksId.
 	 */
-	ProjectTasks findById(Integer projecttasksId);
+	ProjectTasks findById(String projecttasksId);
 
 
 	/**
@@ -68,7 +68,7 @@ public interface ProjectTasksService {
 	 * @return The deleted ProjectTasks.
 	 * @throws EntityNotFoundException if no ProjectTasks found with the given id.
 	 */
-	ProjectTasks delete(Integer projecttasksId) throws EntityNotFoundException;
+	ProjectTasks delete(String projecttasksId) throws EntityNotFoundException;
 
 	/**
 	 * Find all ProjectTasks matching the given QueryFilter(s).
@@ -125,6 +125,17 @@ public interface ProjectTasksService {
 	 */
 	long count(String query);
 
+    /*
+     * Returns the associated projectTasksesForPredecessor for given ProjectTasks id.
+     *
+     * @param pmid value of pmid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated ProjectTasks instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<ProjectTasks> findAssociatedProjectTasksesForPredecessor(String pmid, Pageable pageable);
 
 }
 

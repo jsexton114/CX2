@@ -219,6 +219,14 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getProjectTaskses() != null) {
+            for(ProjectTasks projectTaskse : usersCreated.getProjectTaskses()) {
+                projectTaskse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTaskse);
+                projectTasksService.create(projectTaskse);
+            }
+        }
+
         if(usersCreated.getProjectSharedWithsForProjectSharedBy() != null) {
             for(ProjectSharedWith projectSharedWithsForProjectSharedBy : usersCreated.getProjectSharedWithsForProjectSharedBy()) {
                 projectSharedWithsForProjectSharedBy.setUsersByProjectSharedBy(usersCreated);
@@ -232,14 +240,6 @@ public class UsersServiceImpl implements UsersService {
                 projectSharedWithsForProjectSharedWithUser.setUsersByProjectSharedWithUser(usersCreated);
                 LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWithsForProjectSharedWithUser);
                 projectSharedWithService.create(projectSharedWithsForProjectSharedWithUser);
-            }
-        }
-
-        if(usersCreated.getProjectTaskses() != null) {
-            for(ProjectTasks projectTaskse : usersCreated.getProjectTaskses()) {
-                projectTaskse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTaskse);
-                projectTasksService.create(projectTaskse);
             }
         }
 
@@ -508,6 +508,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<ProjectTasks> findAssociatedProjectTaskses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTaskses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return projectTasksService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedBy(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectSharedWithsForProjectSharedBy");
 
@@ -526,17 +537,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersByProjectSharedWithUser.id = '" + id + "'");
 
         return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<ProjectTasks> findAssociatedProjectTaskses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectTaskses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return projectTasksService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

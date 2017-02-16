@@ -56,7 +56,7 @@ public class ProjectTasksController {
     @ApiOperation(value = "Returns the ProjectTasks instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public ProjectTasks getProjectTasks(@PathVariable("id") Integer id) throws EntityNotFoundException {
+    public ProjectTasks getProjectTasks(@PathVariable("id") String id) throws EntityNotFoundException {
         LOGGER.debug("Getting ProjectTasks with id: {}", id);
         ProjectTasks foundProjectTasks = projectTasksService.getById(id);
         LOGGER.debug("ProjectTasks details with id: {}", foundProjectTasks);
@@ -66,9 +66,9 @@ public class ProjectTasksController {
     @ApiOperation(value = "Updates the ProjectTasks instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public ProjectTasks editProjectTasks(@PathVariable("id") Integer id, @RequestBody ProjectTasks projectTasks) throws EntityNotFoundException {
-        LOGGER.debug("Editing ProjectTasks with id: {}", projectTasks.getId());
-        projectTasks.setId(id);
+    public ProjectTasks editProjectTasks(@PathVariable("id") String id, @RequestBody ProjectTasks projectTasks) throws EntityNotFoundException {
+        LOGGER.debug("Editing ProjectTasks with id: {}", projectTasks.getPmid());
+        projectTasks.setPmid(id);
         projectTasks = projectTasksService.update(projectTasks);
         LOGGER.debug("ProjectTasks details with id: {}", projectTasks);
         return projectTasks;
@@ -77,7 +77,7 @@ public class ProjectTasksController {
     @ApiOperation(value = "Deletes the ProjectTasks instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteProjectTasks(@PathVariable("id") Integer id) throws EntityNotFoundException {
+    public boolean deleteProjectTasks(@PathVariable("id") String id) throws EntityNotFoundException {
         LOGGER.debug("Deleting ProjectTasks with id: {}", id);
         ProjectTasks deletedProjectTasks = projectTasksService.delete(id);
         return deletedProjectTasks != null;
@@ -116,6 +116,13 @@ public class ProjectTasksController {
     public Long countProjectTasks(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting ProjectTasks");
         return projectTasksService.count(query);
+    }
+
+    @RequestMapping(value = "/{id:.+}/projectTasksesForPredecessor", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectTasksesForPredecessor instance associated with the given id.")
+    public Page<ProjectTasks> findAssociatedProjectTasksesForPredecessor(@PathVariable("id") String id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTasksesForPredecessor");
+        return projectTasksService.findAssociatedProjectTasksesForPredecessor(id, pageable);
     }
 
     /**

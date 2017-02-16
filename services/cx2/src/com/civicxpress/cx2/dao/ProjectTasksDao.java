@@ -20,7 +20,7 @@ import com.civicxpress.cx2.ProjectTasks;
  * which is stored in the database.
  */
 @Repository("cx2.ProjectTasksDao")
-public class ProjectTasksDao extends WMGenericDaoImpl<ProjectTasks, Integer> {
+public class ProjectTasksDao extends WMGenericDaoImpl<ProjectTasks, String> {
 
     @Autowired
     @Qualifier("cx2Template")

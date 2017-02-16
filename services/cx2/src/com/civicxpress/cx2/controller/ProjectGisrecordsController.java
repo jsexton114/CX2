@@ -85,7 +85,8 @@ public class ProjectGisrecordsController {
 
     @RequestMapping(value = "/relatedProjectGuid-gisrecordId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching ProjectGisrecords with given unique key values.")
-    public ProjectGisrecords getByRelatedProjectGuidAndGisrecordId(@RequestParam(name = "relatedProjectGuid") String relatedProjectGuid, @RequestParam(name = "gisrecordId") Integer gisrecordId) {
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public ProjectGisrecords getByRelatedProjectGuidAndGisrecordId(@RequestParam(value = "null", required = true) String relatedProjectGuid, @RequestParam(value = "null", required = true) Integer gisrecordId) {
         LOGGER.debug("Getting ProjectGisrecords with uniques key RelatedProjectGuidAndGisrecordId");
         return projectGisrecordsService.getByRelatedProjectGuidAndGisrecordId(relatedProjectGuid, gisrecordId);
     }

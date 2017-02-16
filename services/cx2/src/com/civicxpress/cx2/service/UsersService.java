@@ -272,6 +272,18 @@ public interface UsersService {
     Page<Projects> findAssociatedProjectsesForModifiedBy(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated projectTaskses for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated ProjectTasks instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<ProjectTasks> findAssociatedProjectTaskses(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated projectSharedWithsForProjectSharedBy for given Users id.
      *
      * @param id value of id; value cannot be null
@@ -294,18 +306,6 @@ public interface UsersService {
      * @see Page
      */
     Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedWithUser(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated projectTaskses for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated ProjectTasks instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<ProjectTasks> findAssociatedProjectTaskses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated roleses for given Users id.

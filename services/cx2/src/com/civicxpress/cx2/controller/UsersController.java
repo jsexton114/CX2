@@ -264,6 +264,14 @@ public class UsersController {
         return usersService.findAssociatedProjectsesForModifiedBy(id, pageable);
     }
 
+    @RequestMapping(value = "/{id}/projectTaskses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectTaskses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<ProjectTasks> findAssociatedProjectTaskses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTaskses");
+        return usersService.findAssociatedProjectTaskses(id, pageable);
+    }
+
     @RequestMapping(value = "/{id}/projectSharedWithsForProjectSharedBy", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the projectSharedWithsForProjectSharedBy instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -278,14 +286,6 @@ public class UsersController {
     public Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedWithUser(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectSharedWithsForProjectSharedWithUser");
         return usersService.findAssociatedProjectSharedWithsForProjectSharedWithUser(id, pageable);
-    }
-
-    @RequestMapping(value = "/{id}/projectTaskses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the projectTaskses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<ProjectTasks> findAssociatedProjectTaskses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectTaskses");
-        return usersService.findAssociatedProjectTaskses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/roleses", method = RequestMethod.GET)

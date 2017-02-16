@@ -37,9 +37,9 @@ public class ProjectTasksServiceImpl implements ProjectTasksService {
 
     @Autowired
     @Qualifier("cx2.ProjectTasksDao")
-    private WMGenericDao<ProjectTasks, Integer> wmGenericDao;
+    private WMGenericDao<ProjectTasks, String> wmGenericDao;
 
-    public void setWMGenericDao(WMGenericDao<ProjectTasks, Integer> wmGenericDao) {
+    public void setWMGenericDao(WMGenericDao<ProjectTasks, String> wmGenericDao) {
         this.wmGenericDao = wmGenericDao;
     }
 
@@ -48,12 +48,19 @@ public class ProjectTasksServiceImpl implements ProjectTasksService {
 	public ProjectTasks create(ProjectTasks projectTasks) {
         LOGGER.debug("Creating a new ProjectTasks with information: {}", projectTasks);
         ProjectTasks projectTasksCreated = this.wmGenericDao.create(projectTasks);
+        if(projectTasksCreated.getProjectTasksesForPredecessor() != null) {
+            for(ProjectTasks projectTasksesForPredecessor : projectTasksCreated.getProjectTasksesForPredecessor()) {
+                projectTasksesForPredecessor.setProjectTasksByPredecessor(projectTasksCreated);
+                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForPredecessor);
+                create(projectTasksesForPredecessor);
+            }
+        }
         return projectTasksCreated;
     }
 
 	@Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public ProjectTasks getById(Integer projecttasksId) throws EntityNotFoundException {
+	public ProjectTasks getById(String projecttasksId) throws EntityNotFoundException {
         LOGGER.debug("Finding ProjectTasks by id: {}", projecttasksId);
         ProjectTasks projectTasks = this.wmGenericDao.findById(projecttasksId);
         if (projectTasks == null){
@@ -65,7 +72,7 @@ public class ProjectTasksServiceImpl implements ProjectTasksService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public ProjectTasks findById(Integer projecttasksId) {
+	public ProjectTasks findById(String projecttasksId) {
         LOGGER.debug("Finding ProjectTasks by id: {}", projecttasksId);
         return this.wmGenericDao.findById(projecttasksId);
     }
@@ -77,14 +84,14 @@ public class ProjectTasksServiceImpl implements ProjectTasksService {
         LOGGER.debug("Updating ProjectTasks with information: {}", projectTasks);
         this.wmGenericDao.update(projectTasks);
 
-        Integer projecttasksId = projectTasks.getId();
+        String projecttasksId = projectTasks.getPmid();
 
         return this.wmGenericDao.findById(projecttasksId);
     }
 
     @Transactional(value = "cx2TransactionManager")
 	@Override
-	public ProjectTasks delete(Integer projecttasksId) throws EntityNotFoundException {
+	public ProjectTasks delete(String projecttasksId) throws EntityNotFoundException {
         LOGGER.debug("Deleting ProjectTasks with id: {}", projecttasksId);
         ProjectTasks deleted = this.wmGenericDao.findById(projecttasksId);
         if (deleted == null) {
@@ -122,6 +129,16 @@ public class ProjectTasksServiceImpl implements ProjectTasksService {
         return this.wmGenericDao.count(query);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectTasks> findAssociatedProjectTasksesForPredecessor(String pmid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTasksesForPredecessor");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("projectTasksByPredecessor.pmid = '" + pmid + "'");
+
+        return findAll(queryBuilder.toString(), pageable);
+    }
 
 
 }

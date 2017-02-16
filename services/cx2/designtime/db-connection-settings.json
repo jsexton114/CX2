@@ -93,19 +93,16 @@
     "table" : "Projects",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectSharedWith",
+    "table" : "ProjectTasks",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectTasks",
+    "table" : "ProjectSharedWith",
     "schema" : "cx2"
   }, {
     "table" : "Roles",
     "schema" : "cx2"
   }, {
     "table" : "SharedWith",
-    "schema" : "cx2"
-  }, {
-    "table" : "Users",
     "schema" : "cx2"
   }, {
     "table" : "MunicipalityGroupMembers",
@@ -120,7 +117,7 @@
     "table" : "UserPasswordResetTokens",
     "schema" : "cx2"
   }, {
-    "table" : "UserSubscriptions",
+    "table" : "Users",
     "schema" : "cx2"
   }, {
     "table" : "Vendor",
@@ -130,6 +127,9 @@
     "schema" : "cx2"
   }, {
     "table" : "VendorLicenses",
+    "schema" : "cx2"
+  }, {
+    "table" : "UserSubscriptions",
     "schema" : "cx2"
   }, {
     "table" : "VendorAdmins",
