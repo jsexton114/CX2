@@ -81,21 +81,20 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3" padding="1em unset">
                         <wm-tabs name="tabsProjectDetails">
                             <wm-tabpane name="tabpaneMEMBERS" title="MEMBERS">
-                                <wm-livegrid formlayout="dialog" name="livegridProjectMembers">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectSharedWithData.dataSet" navigation="Classic" name="gridProjectMembers">
-                                        <wm-grid-column-group name="group1" caption="Shared To">
-                                            <wm-grid-column binding="usersByProjectSharedWithUser.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                            <wm-grid-column binding="usersByProjectSharedWithUser.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                        </wm-grid-column-group>
-                                        <wm-grid-column binding="projectSharedOn" caption="Project Shared On" type="timestamp" generator="assigned" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column-group name="group" caption="Shared By">
-                                            <wm-grid-column binding="usersByProjectSharedBy.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                            <wm-grid-column binding="usersByProjectSharedBy.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                        </wm-grid-column-group>
-                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddMember.open()" shortcutkey="" disabled="bind:addMember
+                                <wm-livegrid formlayout="dialog" name="livegridProjectMembers"></wm-livegrid>
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectSharedWithData.dataSet" navigation="Classic" name="gridProjectMembers">
+                                    <wm-grid-column-group name="group1" caption="Shared To">
+                                        <wm-grid-column binding="usersByProjectSharedWithUser.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="usersByProjectSharedWithUser.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                    </wm-grid-column-group>
+                                    <wm-grid-column binding="projectSharedOn" caption="Project Shared On" type="timestamp" generator="assigned" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column-group name="group" caption="Shared By">
+                                        <wm-grid-column binding="usersByProjectSharedBy.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="usersByProjectSharedBy.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                    </wm-grid-column-group>
+                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddMember.open()" shortcutkey="" disabled="bind:addMember
 "></wm-grid-action>
-                                    </wm-grid>
-                                </wm-livegrid>
+                                </wm-grid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneTASKS" title="TASKS"></wm-tabpane>
                             <wm-tabpane name="tabpaneDOCUMENTS" title="DOCUMENTS"></wm-tabpane>
@@ -104,23 +103,21 @@
                                 <wm-layoutgrid name="layoutgrid17">
                                     <wm-gridrow name="gridrow61">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn127">
-                                            <wm-livegrid formlayout="dialog" name="livegridLocation">
-                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectGISRecords.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn" exportformat="EXCEL">
-                                                    <wm-grid-column binding="gisrecords.subdivisionId" caption="Subdivision No" type="integer" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.section" caption="Section" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.streetNumber" caption="Street Number" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.city" caption="City" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-action key="addNewRow" display-name="Add Parcel" show="true" class="btn-primary" iconclass="wi wi-add" title="Add Parcel" action="Widgets.dialogAddGISRecord.open()" shortcutkey=""
-                                                    disabled="false"></wm-grid-action>
-                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="customRow" display-name="" title="Delete" value="" iconclass="wi wi-trash" class="btn-transparent" show="true" action="deleteRow()"></wm-grid-row-action>
-                                                </wm-grid>
-                                            </wm-livegrid>
+                                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectGISRecords.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn" exportformat="EXCEL">
+                                                <wm-grid-column binding="gisrecords.subdivisionId" caption="Subdivision No" type="integer" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                <wm-grid-column binding="gisrecords.section" caption="Section" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                <wm-grid-column binding="gisrecords.streetNumber" caption="Street Number" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                <wm-grid-column binding="gisrecords.city" caption="City" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-action key="addNewRow" display-name="Add Parcel" show="true" class="btn-primary" iconclass="wi wi-add" title="Add Parcel" action="Widgets.dialogAddGISRecord.open()" shortcutkey=""
+                                                disabled="false"></wm-grid-action>
+                                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow" display-name="" title="Delete" value="" iconclass="wi wi-trash" class="btn-transparent" show="true" action="deleteRow()"></wm-grid-row-action>
+                                            </wm-grid>
                                             <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.ProjectGISRecords.dataSet.data[$i].gisrecords" zoom="14" markertype="Address" address="streetNumber streetName city states.stateName"
                                             show="bind:Variables.ProjectGISRecords.dataSet.data.length > 0"></wm-prefab>
                                         </wm-gridcolumn>
