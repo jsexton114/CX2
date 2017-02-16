@@ -41,7 +41,7 @@
             <wm-layoutgrid name="layoutgrid3">
                 <wm-gridrow name="gridrow15" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn15">
-                        <wm-composite name="composite2" required="false">
+                        <wm-composite name="composite2" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container2">
                                 <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" placeholder="Select Municipality" orderby="MunicipalityName:asc"></wm-select>
@@ -71,7 +71,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Create" type="button" margin="unset 0.5em" name="buttonCreateProject" on-click="buttonCreateProjectClick($event, $scope)" iconclass="wi wi-plus" disabled="bind:Widgets.textProjectName.datavalue == null"></wm-button>
+                <wm-button class="btn-primary" caption="Create" type="button" margin="unset 0.5em" name="buttonCreateProject" on-click="buttonCreateProjectClick($event, $scope)" iconclass="wi wi-plus" disabled="bind:(Widgets.textProjectName.datavalue == undefined)||(Widgets.selectMunicipalityForCreateProje.datavalue == undefined)"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>

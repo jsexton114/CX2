@@ -3,15 +3,7 @@ Application.$controller("MyProjectsPageController", ["$scope", function($scope) 
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
+        $scope.today = moment().valueOf();
     };
 
 }]);
@@ -45,7 +37,8 @@ Application.$controller("dialogCreateProjectController", ["$scope",
 
         $scope.buttonCreateProjectClick = function($event, $isolateScope) {
             $scope.Variables.ProjectsData.setInput({
-                'createDate': $scope.today
+                'modifiedDate': $scope.today,
+                'createdDate': $scope.today
             });
             $scope.Variables.ProjectsData.insertRecord();
         };
