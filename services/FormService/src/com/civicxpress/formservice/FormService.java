@@ -173,6 +173,8 @@ public class FormService {
     	muniDbConn.setAutoCommit(false);
     	
     	try {
+    		fieldName += DBUtils.selectQuery(muniDbConn, "SELECT NEXT VALUE FOR DynamicFieldIndex as DynamicFieldIndex").get(0).getString("DynamicFieldIndex");
+    		
 	    	queryParams.put("label", label);
 	    	queryParams.put("fieldName", fieldName);
 	    	queryParams.put("fieldTypeId", fieldTypeId);
@@ -211,7 +213,7 @@ public class FormService {
     	Long newFormTypeId = null;
         
         try {
-        	String formTableName = DBUtils.getSqlSafeString(formType);
+        	String formTableName = (DBUtils.getSqlSafeString(formType) + DBUtils.selectQuery(muniDbConn, "SELECT NEXT VALUE FOR DynamicFieldIndex as DynamicFieldIndex").get(0).getString("DynamicFieldIndex"));
         	StringBuilder formTitlePrefix = new StringBuilder();
         	String[] formTypeParts = formType.trim().replaceAll("[^a-zA-Z0-9 ]|[\n]|[\r\n]", "").split(" ");
         	for (int i = 0; i < formTypeParts.length; i++) {
