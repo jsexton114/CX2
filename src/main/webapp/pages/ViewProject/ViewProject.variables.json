@@ -4090,7 +4090,11 @@
     "name" : "ProjectSharedWithData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "relatedProjectGuid",
+      "value" : "bind:pageParams.ProjectGUID",
+      "type" : "string"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "ProjectSharedWith",
@@ -4827,6 +4831,7 @@
       "watchOn" : "Cx2UsersData",
       "package" : "com.civicxpress.cx2.ProjectSharedWith"
     } ],
+    "filterFields" : { },
     "package" : "com.civicxpress.cx2.ProjectSharedWith"
   },
   "Subdivisions" : {
