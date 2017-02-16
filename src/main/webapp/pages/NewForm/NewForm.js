@@ -86,6 +86,8 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         data.forEach(function(formField, index) {
             if (formField.formFieldTypes.label === 'Number') {
                 $scope.formData[formField.fieldName] = parseFloat(formField.defaultValue);
+            } else if (formField.formFieldTypes.label === 'Boolean') {
+                $scope.formData[formField.fieldName] = (formField.defaultValue === 'true');
             } else {
                 $scope.formData[formField.fieldName] = formField.defaultValue;
             }
