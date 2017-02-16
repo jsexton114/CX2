@@ -167,7 +167,7 @@ Application.$controller("dlgFormTypeFieldController", ["$scope",
                     defaultValue = $scope.Widgets.dateDefaultValue.datavalue;
                     break;
                 case 'Date+Time':
-                    defaultValue = moment($scope.Widgets.datetimeDefaultValue.datavalue).format("YYYY-MM-DD HH:mm:ss");
+                    defaultValue = !!$scope.Widgets.datetimeDefaultValue.datavalue ? moment($scope.Widgets.datetimeDefaultValue.datavalue).format("YYYY-MM-DD HH:mm:ss") : '';
                     break;
                 case 'Number':
                     defaultValue = $scope.Widgets.numberDefaultValue.datavalue;

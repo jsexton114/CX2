@@ -60,7 +60,7 @@ Application.directive('datetimePicker', ['uibDateParser', function(uibDateParser
     return {
         restrict: 'E',
         replace: true,
-        template: '<p class="input-group app-date" ng-style="{\'max-width\': (!time ? \'13em\' : \'21em\')}">' + '  <input type="text" class="form-control" name="{{name}}" uib-datepicker-popup="{{format}}" datepicker-popup-template-url="{{time===true ? \'uib/template/datepicker/datetimepickerPopup.html\' : \'uib/template/datepicker/datepickerPopup.html\'}}" ng-model="dateObj" open-on-focus="false" is-open="dateTimePopup.opened" close-on-date-selection="false" />' + '  <span class="input-group-btn">' + '    <button type="button" class="btn btn-default btn-date" ng-click="openDateTimePicker()"><i class="app-icon wi wi-calendar"></i><i ng-if="!!time" class="app-icon wi wi-clock"></i></button>' + '  </span>' + '</p>',
+        template: '<p class="input-group app-date" ng-style="{\'max-width\': (!time ? \'13em\' : \'21em\')}">' + '  <input type="text" class="form-control" name="{{name}}" uib-datepicker-popup="{{format}}" datepicker-popup-template-url="{{time===true ? \'uib/template/datepicker/datetimepickerPopup.html\' : \'uib/template/datepicker/datepickerPopup.html\'}}" ng-model="dateObj" open-on-focus="false" is-open="dateTimePopup.opened" close-on-date-selection="false" />' + '  <span class="input-group-btn">' + '    <button type="button" class="btn btn-default btn-date" ng-click="openDateTimePicker()"><i class="app-icon wi wi-calendar"></i> <i ng-if="!!time" class="app-icon wi wi-clock"></i></button>' + '  </span>' + '</p>',
         scope: {
             date: '=',
             format: '&',

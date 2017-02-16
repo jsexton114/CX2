@@ -88,6 +88,10 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
                 $scope.formData[formField.fieldName] = parseFloat(formField.defaultValue);
             } else if (formField.formFieldTypes.label === 'Boolean') {
                 $scope.formData[formField.fieldName] = (formField.defaultValue === 'true');
+            } else if (formField.formFieldTypes.label === 'Date+Time') {
+                $scope.formData[formField.fieldName] = (!formField.defaultValue ? null : moment(formField.defaultValue, "YYYY-MM-DD HH:mm:ss").toDate().getTime());
+            } else if (formField.formFieldTypes.label === 'Date') {
+                $scope.formData[formField.fieldName] = (!formField.defaultValue ? null : moment(formField.defaultValue, "YYYY-MM-DD").toDate().getTime());
             } else {
                 $scope.formData[formField.fieldName] = formField.defaultValue;
             }
