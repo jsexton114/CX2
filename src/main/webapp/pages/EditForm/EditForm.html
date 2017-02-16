@@ -31,16 +31,16 @@
                                                             required="true"></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn17" horizontalalign="left">
-                                                            <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder="" hint="This allows users to select this form design in the New Form wizard"></wm-form-field>
+                                                            <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder="" hint="An &quot;Active&quot; form will appear to users as a selection in the New Form wizard. If &quot;Active&quot; is not selected, no new forms of this design can be submitted."></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn3">
                                                             <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="true" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" widget="checkbox"
-                                                            placeholder="" hint="This makes the form hidden from standard users and only visible to employees of your Municipality"></wm-form-field>
+                                                            placeholder="" hint="This hides the form design from standard CivicXpress users and makes it available only to Municipality Employees."></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow1333">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn1333">
-                                                            <wm-form-field displayname="Instructions" widget="richtext" show="true" type="custom" name="instructions" key="instructions" hint="This is shown first on the New Form wizard to guide people when making new forms of this type."></wm-form-field>
+                                                            <wm-form-field displayname="Instructions" widget="richtext" show="true" type="custom" name="instructions" key="instructions" hint="This is the first thing that a user will see when they launch the New Form wizard."></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-panel>
@@ -128,7 +128,7 @@
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn56">
                                                                 <wm-label caption="Require Vendor" name="label13_1"></wm-label>
                                                                 <wm-select show="true" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].vendorSelection &amp;&amp; Variables.CurrentFormObj.dataSet.data[$i].multipleVendors ? 'Multiple' : (Variables.CurrentFormObj.dataSet.data[$i].vendorSelection ? 'Single' : 'None')"
-                                                                dataset="None,Single,Multiple" name="selectVendorOption" hint="This enables adding a company registered in CivicXpress to the form. You can allow for one or many companies"></wm-select>
+                                                                dataset="None,Single,Multiple" name="selectVendorOption" hint="This requires the user to add a company registered in CivicXpress to the form. You can allow for one or many companies."></wm-select>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn57">
                                                                 <wm-form-field name="inspections" displayname="Allow Inspections" show="true" primary-key="false" generator="assigned" key="inspections" type="boolean" widget="checkbox" placeholder="" hint="This enables inspections as part of the form process"></wm-form-field>
@@ -138,7 +138,7 @@
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn60_1">
                                                                 <wm-label caption="Require GIS Record" name="label2"></wm-label>
                                                                 <wm-select displayname="GIS Record" widget="select" show="true" type="custom" name="gisOptionSelect" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].gisrecord &amp;&amp; Variables.CurrentFormObj.dataSet.data[$i].multipleGisrecords ? 'Multiple' : (Variables.CurrentFormObj.dataSet.data[$i].gisrecord ? 'Single' : 'None')"
-                                                                dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)" hint="This enables adding a GIS record to the form. You can allow for one or many GIS records"></wm-select>
+                                                                dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)" hint="This requires the user to add a GIS record to the form. You can allow for one or many GIS records."></wm-select>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn61_1">
                                                                 <wm-form-field name="gismap" displayname="Show GIS Map" show="true" primary-key="false" generator="assigned" key="gismap" type="boolean" widget="checkbox" placeholder="" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'"
