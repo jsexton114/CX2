@@ -483,7 +483,7 @@
                         <wm-composite name="composite3_1" required="true">
                             <wm-label class="col-md-3 control-label" name="label8"></wm-label>
                             <wm-container class="col-md-9" name="container3_1">
-                                <wm-text name="textFormFieldLabel"></wm-text>
+                                <wm-text name="textFormFieldLabel" maxchars="128"></wm-text>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -523,11 +523,11 @@
                         <wm-composite name="composite4_1" show="bind:!!Widgets.selectFormFieldType.datavalue.label &amp;&amp; Widgets.selectFormFieldType.datavalue.label!=='Select' &amp;&amp; Widgets.selectFormFieldType.datavalue.label!=='Multi-Select'">
                             <wm-label class="col-md-3 control-label" name="label9" caption="Default Value"></wm-label>
                             <wm-container class="col-md-9" name="container4_1">
-                                <wm-text name="textDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Text'"></wm-text>
-                                <wm-textarea name="longTextDefault" show="bind:Widgets.selectFormFieldType.datavalue.label==='Long Text'"></wm-textarea>
+                                <wm-text name="textDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Text'" maxchars="1000"></wm-text>
+                                <wm-textarea name="longTextDefault" show="bind:Widgets.selectFormFieldType.datavalue.label==='Long Text'" maxchars="4000"></wm-textarea>
                                 <wm-date name="dateDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Date'"></wm-date>
                                 <wm-datetime name="datetimeDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Date+Time'"></wm-datetime>
-                                <wm-text name="numberDefaultValue" type="number" step="0.01" placeholder="Enter number" show="bind:Widgets.selectFormFieldType.datavalue.label==='Number'"></wm-text>
+                                <wm-text name="numberDefaultValue" type="number" step="1" placeholder="Enter number" show="bind:Widgets.selectFormFieldType.datavalue.label==='Number'" maxchars="38" maxvalue="99999999999999999999999999999999999999"></wm-text>
                                 <wm-checkbox caption="" class="col-md-push-3 col-md-9" name="booleanDefaultValue" margin="unset unset unset -100px" show="bind:Widgets.selectFormFieldType.datavalue.label==='Boolean'"></wm-checkbox>
                             </wm-container>
                         </wm-composite>
@@ -538,7 +538,7 @@
                         <wm-composite name="composite8">
                             <wm-label class="col-md-3 control-label" name="label12" caption="Help Text"></wm-label>
                             <wm-container class="col-md-9" name="container7">
-                                <wm-textarea name="textareaFormFieldHelpText" placeholder="Enter Tooltip Text"></wm-textarea>
+                                <wm-textarea name="textareaFormFieldHelpText" placeholder="Enter Tooltip Text" maxchars="1000"></wm-textarea>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -548,7 +548,7 @@
                         <wm-composite name="composite9">
                             <wm-label class="col-md-3 control-label" name="label13" caption="Display Order"></wm-label>
                             <wm-container class="col-md-9" name="container8">
-                                <wm-text name="textFormFieldDisplayOrder" type="number" placeholder="Enter number" datavalue="bind:Variables.Cx2FormTypeFieldsData.dataSet.data.length+1"></wm-text>
+                                <wm-text name="textFormFieldDisplayOrder" type="number" placeholder="Enter number" datavalue="bind:Variables.Cx2FormTypeFieldsData.dataSet.data.length+1" maxvalue="2147483647" minvalue="-2147483648"></wm-text>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
