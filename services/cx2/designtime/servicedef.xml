@@ -1452,6 +1452,8 @@
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.ProjectTasks">
             <element name="assignedTo" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="createdAt" typeRef="java.util.Date" allowNull="true"/>
+            <element name="createdBy" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="description" typeRef="java.lang.String" allowNull="true"/>
             <element name="endAt" typeRef="java.util.Date" allowNull="true"/>
             <element name="name" typeRef="java.lang.String" allowNull="true"/>

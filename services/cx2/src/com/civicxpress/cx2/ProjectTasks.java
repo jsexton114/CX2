@@ -47,6 +47,8 @@ public class ProjectTasks implements Serializable {
     private String predecessor;
     private String name;
     private Date endAt;
+    private Integer createdBy;
+    private Date createdAt;
     private Projects projects;
     private ProjectTasks projectTasksByPredecessor;
     private Users users;
@@ -145,6 +147,25 @@ public class ProjectTasks implements Serializable {
 
     public void setEndAt(Date endAt) {
         this.endAt = endAt;
+    }
+
+    @Column(name = "`CreatedBy`", nullable = true, scale = 0, precision = 10)
+    public Integer getCreatedBy() {
+        return this.createdBy;
+    }
+
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "`CreatedAt`", nullable = true)
+    public Date getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -337,8 +337,9 @@ public class UsersController {
         return usersService.findAssociatedUserSubscriptionses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/userViewPreferenceses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/userViewPreferenceses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the userViewPreferenceses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<UserViewPreferences> findAssociatedUserViewPreferenceses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userViewPreferenceses");
         return usersService.findAssociatedUserViewPreferenceses(id, pageable);
