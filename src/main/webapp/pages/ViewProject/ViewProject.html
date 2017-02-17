@@ -579,8 +579,14 @@
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid11">
                 <wm-gridrow name="gridrow65_1" padding="1em unset">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn109_1">
-                        <wm-progress name="progressCompleted" datavalue="bind:Variables.GetSelectedTaskDetails.dataSet.percentComplete"></wm-progress>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn109_1" horizontalalign="center">
+                        <wm-composite name="composite20" margin=".5em unset" horizontalalign="center">
+                            <wm-label class="col-md-3 control-label" name="label61" caption="Completed Percentage" width="30%"></wm-label>
+                            <wm-container class="col-md-9" name="container19" width="50%">
+                                <wm-text name="textPercentageCompleted" type="number" datavalue="bind:Variables.GetSelectedTaskDetails.dataSet.percentComplete" minvalue="0" maxvalue="100" updateon="default"></wm-text>
+                            </wm-container>
+                        </wm-composite>
+                        <wm-progress name="progressCompleted" datavalue="bind:Widgets.textPercentageCompleted.datavalue" captionplacement="inside"></wm-progress>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow58" padding="1em unset">
@@ -618,7 +624,7 @@
                         <wm-composite name="composite9">
                             <wm-label class="col-md-3 control-label" name="label54_1" caption="Predecessor"></wm-label>
                             <wm-container class="col-md-9" name="container8">
-                                <wm-select name="selectUpdateProjectPredecessor" dataset="bind:Variables.ProjectTasksData.dataSet" datafield="All Fields" displayfield="name" datavalue="bind:Variables.ProjectTasksData.dataSet.data[$i].projectTasksByPredecessor"></wm-select>
+                                <wm-select name="selectUpdateProjectPredecessor" dataset="bind:Variables.ProjectTasksData.dataSet" datafield="All Fields" displayfield="name" datavalue="bind:Variables.ProjectTasksData.dataSet.data[$i].projectTasksesForPredecessor"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -655,7 +661,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow65" padding="1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn112" horizontalalign="center">
-                        <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonTaskUpdate" iconclass="wi wi-assignment-turned-in" on-click="Variables.InsertTask.createRecord()"></wm-button>
+                        <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonTaskUpdate" iconclass="wi wi-assignment-turned-in" on-click="Variables.UpdateTask.updateRecord()"></wm-button>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
