@@ -22,12 +22,16 @@
                                     </wm-grid-column>
                                     <wm-grid-column binding="phone" caption="Phone Number" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="email" caption="Email Address" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="allowManualPayment" caption="Allow Manual Payment" type="boolean" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="manualPaymentPercent" caption="Manual Payment Percent" type="integer" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="active" caption="Active" type="boolean" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow();addNewRowAction($event)" shortcutkey="" disabled="false"></wm-grid-action>
+                                    <wm-grid-action key="addNewRow" display-name="New Municipality" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Municipality" action="addNewRow();addNewRowAction($event)" shortcutkey=""
+                                    disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
-                                <wm-liveform novalidate="false" errormessage="" title="Municipality Details" formlayout="dialog" iconclass="wi wi-building" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" captionalign="left" captionposition="top"
+                                <wm-liveform novalidate="false" errormessage="" title="Municipality Details" formlayout="dialog" iconclass="wi wi-account-balance" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" captionalign="left" captionposition="top"
                                 name="liveform1">
                                     <wm-layoutgrid columns="2" name="layoutgrid1">
                                         <wm-gridrow name="gridrow1">

@@ -30,11 +30,12 @@
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ReviewVendorApprovals.dataSet" navigation="Classic" name="gridPending" filtermode="multicolumn" exportformat="EXCEL">
                                     <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="date"
+                                    <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="date"
                                     readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="date"
+                                    <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="date"
                                     readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="active" caption="Active" type="boolean" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="Widgets.dialogPendingApprovals.open()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
@@ -51,9 +52,9 @@
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" navigation="Classic" name="gridApprovedVendors" filtermode="multicolumn" exportformat="EXCEL">
                                     <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="date"
+                                    <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="date"
                                     readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="active" caption="Active" type="boolean" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
@@ -72,10 +73,11 @@
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" navigation="Classic" name="gridSuspended" filtermode="multicolumn" exportformat="EXCEL">
                                     <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" show="true" related-entity-name="Vendor" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="date"
+                                    <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="date"
                                     readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="active" caption="Active" type="boolean" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="Widgets.dialogReviewSuspended.open()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
@@ -218,9 +220,6 @@
     </wm-view>
     <wm-view class="dialog-view" name="viewPendingApprovals">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Pending Vendor Review" iconclass="wi wi-mode-edit" name="dialogPendingApprovals">
-            <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button2" iconclass="wi wi-cancel"></wm-button>
-            </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid7">
                 <wm-gridrow name="gridrow23">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn40" horizontalalign="center" padding=".5em unset">
@@ -237,26 +236,20 @@
                         <wm-composite name="composite3">
                             <wm-label class="col-md-3 form-control-static" name="label8" caption="Expiration Date" horizontalalign="left" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container3">
-                                <wm-datetime name="datetimeExpirationFormPending" mindate="bind:today" datepattern="MM-dd-yyyy hh:mm a"></wm-datetime>
+                                <wm-date name="datetimeExpirationFormPending" mindate="bind:today" datepattern="MM-dd-yyyy" placeholder="Select Date"></wm-date>
                             </wm-container>
                         </wm-composite>
-                        <wm-label padding="unset 0.5em" name="label10_1" caption="bind:Widgets.datetimeExpirationFormPending.timestamp"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow25">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn44" horizontalalign="center" padding=".5em unset">
-                        <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdateFromPending" on-click="Variables.UpdateVendorStatusFromPending.invoke()" iconclass="wi wi-update"></wm-button>
-                        <wm-label padding="unset 0.5em" name="label9_1" caption="bind:today"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions2">
+                <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdateFromPending" on-click="Variables.UpdateVendorStatusFromPending.invoke()" iconclass="wi wi-update"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button2" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewReviewApproved">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Approved Vendor Review" iconclass="wi wi-mode-edit" name="dialogReviewApproved">
-            <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button4" iconclass="wi wi-cancel"></wm-button>
-            </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid7_1">
                 <wm-gridrow name="gridrow24_1">
                     <wm-gridcolumn columnwidth="12" horizontalalign="center" padding=".5em unset" name="gridcolumn41">
@@ -273,7 +266,7 @@
                         <wm-composite name="composite5">
                             <wm-label class="col-md-3 form-control-static" caption="Expiration Date" horizontalalign="left" name="label10" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container5">
-                                <wm-datetime mindate="bind:today" datepattern="MM-dd-yyyy hh:mm a" name="datetimeFormApproved" datavalue="bind:Widgets.gridApprovedVendors.selecteditem.expiresDate"></wm-datetime>
+                                <wm-date mindate="bind:today" datepattern="MM-dd-yyyy" name="datetimeFormApproved" datavalue="bind:Widgets.gridApprovedVendors.selecteditem.expiresDate" hourstep="0"></wm-date>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -285,19 +278,15 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow26">
-                    <wm-gridcolumn columnwidth="12" horizontalalign="center" padding=".5em unset" name="gridcolumn43">
-                        <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em" on-click="Variables.UpdateVendorStatusFromApproved.invoke()" name="buttonFromApproved" iconclass="wi wi-update"></wm-button>
-                    </wm-gridcolumn>
-                </wm-gridrow>
             </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions3">
+                <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" on-click="Variables.UpdateVendorStatusFromApproved.invoke()" name="buttonFromApproved" iconclass="wi wi-update"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button4" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewReviewSuspended">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Suspended Vendor Review" iconclass="wi wi-mode-edit" name="dialogReviewSuspended">
-            <wm-dialogactions name="dialogactions4">
-                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button6" iconclass="wi wi-cancel"></wm-button>
-            </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid7_2">
                 <wm-gridrow name="gridrow24_2">
                     <wm-gridcolumn columnwidth="12" horizontalalign="center" padding=".5em unset" name="gridcolumn41_1">
@@ -314,17 +303,16 @@
                         <wm-composite name="composite8">
                             <wm-label class="col-md-3 form-control-static" caption="Expiration Date" horizontalalign="left" name="label12" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container7">
-                                <wm-datetime mindate="bind:today" datepattern="MM-dd-yyyy hh:mm a" datavalue="bind:Widgets.gridApprovedVendors.selecteditem.expiresDate" name="datetimeFromSuspended"></wm-datetime>
+                                <wm-date mindate="bind:today" datepattern="MM-dd-yyyy" datavalue="bind:Widgets.gridApprovedVendors.selecteditem.expiresDate" name="datetimeFromSuspended"></wm-date>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow27_1">
-                    <wm-gridcolumn columnwidth="12" horizontalalign="center" padding=".5em unset" name="gridcolumn44_2">
-                        <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em" on-click="Variables.UpdateVendorStatusFromSuspended.invoke()" name="buttonFromSuspended" iconclass="wi wi-update"></wm-button>
-                    </wm-gridcolumn>
-                </wm-gridrow>
             </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions4">
+                <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" on-click="Variables.UpdateVendorStatusFromSuspended.invoke()" name="buttonFromSuspended" iconclass="wi wi-update"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button6" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
         </wm-dialog>
     </wm-view>
 </wm-page>
