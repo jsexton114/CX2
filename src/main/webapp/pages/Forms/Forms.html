@@ -161,14 +161,14 @@
                                                 <wm-label padding="unset 0.5em" name="label34" caption="Some forms allow for multiple locations while others may only allow a single location to be added."></wm-label>
                                                 <wm-label padding="unset 0.5em" name="label62" caption="You may also view location details by clicking on the magnifying glass located in the “Actions” area below."></wm-label>
                                                 <wm-grid title="" dataset="bind:Variables.Gis2formsData.dataSet" navigation="Classic" name="gridLocation">
-                                                    <wm-grid-column binding="gisrecords.parcel" caption="Gisrecords Parcel" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.streetNumber" caption="Gisrecords Street Number" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Gisrecords.subdivisions Subdivision" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.section" caption="Gisrecords Section" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.inspectionZone" caption="Gisrecords Inspection Zone" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.lot" caption="Gisrecords Lot" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.city" caption="Gisrecords City" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.streetName" caption="Gisrecords Street Name" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.section" caption="Section" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetNumber" caption="Street Number" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.city" caption="City" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" readonly="true" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="customButton" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-add" title="Add Location" action="Widgets.dialogAddGISRecord.open()" shortcutkey=""
                                                     disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleGisrecords &amp;&amp; Variables.Gis2formsData.dataSet.totalElements >0"></wm-grid-action>

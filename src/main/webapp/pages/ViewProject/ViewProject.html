@@ -117,20 +117,21 @@
                                     <wm-layoutgrid name="layoutgrid17">
                                         <wm-gridrow name="gridrow61">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn127">
-                                                <wm-grid title="" dataset="bind:Variables.ProjectGISRecords.dataSet" navigation="Classic" name="gridLocation">
-                                                    <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Gisrecords.subdivisions Subdivision" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.city" caption="Gisrecords City" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.parcel" caption="Gisrecords Parcel" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.streetNumber" caption="Gisrecords Street Number" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.streetName" caption="Gisrecords Street Name" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.section" caption="Gisrecords Section" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.inspectionZone" caption="Gisrecords Inspection Zone" type="string" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.lot" caption="Gisrecords Lot" type="string" readonly="true" show="true"></wm-grid-column>
+                                                <wm-grid title="" dataset="bind:Variables.ProjectGISRecords.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn" showrecordcount="false">
+                                                    <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.section" caption="Section" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetNumber" caption="Street Number" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.city" caption="City" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" readonly="true" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="customButton" display-name="Add Parcel" show="true" class="btn-primary" iconclass="wi wi-add" title="Add Parcel" action="Widgets.dialogAddGISRecord.open()" shortcutkey=""
                                                     disabled="false"></wm-grid-action>
-                                                    <wm-grid-row-action key="customRow" display-name="" title="View" value="" iconclass="wi wi-pageview" class="btn-transparent" show="true" action="Widgets.dialogParcel.open()"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="customRow1" display-name="" title="Delete" value="" iconclass="wi wi-trash" class="btn-transparent" show="true" action="Variables.DeleteProjectGISRecord.invoke()"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.DeleteProjectGISRecord.invoke()"
+                                                    disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                                 <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.ProjectGISRecords.dataSet[$i].gisrecords" zoom="14" markertype="Address" address="streetNumber streetName city states.stateName"
                                                 show="bind:Variables.ProjectGISRecords.dataSet.totalElements > 0"></wm-prefab>
@@ -642,7 +643,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-dialogactions name="dialogactions6">
-                    <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonTaskUpdate" iconclass="wi wi-refresh" on-click="Variables.UpdateTask.updateRecord()"></wm-button>
+                    <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonTaskUpdate" iconclass="wi wi-update" on-click="Variables.UpdateTask.updateRecord()"></wm-button>
                     <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button12" iconclass="wi wi-cancel"></wm-button>
                 </wm-dialogactions>
             </wm-layoutgrid>
