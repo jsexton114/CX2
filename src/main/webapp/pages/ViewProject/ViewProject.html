@@ -97,84 +97,23 @@
                                 </wm-grid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneTASKS" title="TASKS">
-                                <wm-livegrid formlayout="dialog" name="livegridTasks">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="Projecttasks List" dataset="bind:Variables.ProjectTasksData.dataSet" navigation="Classic" name="gridTasks">
-                                        <wm-grid-column binding="type" caption="Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="description" caption="Description" type="text" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="startAt" caption="Start At" type="timestamp" generator="assigned" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="projectTasksByPredecessor.type" caption="Predecessor Type" type="string" generator="assigned" readonly="true" show="true" related-entity-name="ProjectTasks"></wm-grid-column>
-                                        <wm-grid-column binding="name" caption="Name" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="projectTasksByPredecessor.name" caption="Predecessor Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="ProjectTasks"></wm-grid-column>
-                                        <wm-grid-column binding="endAt" caption="End At" type="timestamp" primary-key="false" generator="assigned" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column-group name="group" caption="Created By">
-                                            <wm-grid-column binding="users.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                            <wm-grid-column binding="users.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                        </wm-grid-column-group>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Projecttasks Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ProjectTasksData.dataSet" captionalign="left" captionposition="top" name="liveformTasks">
-                                        <wm-layoutgrid name="layoutgrid1">
-                                            <wm-gridrow name="gridrow1">
-                                                <wm-gridcolumn show="show" name="gridcolumn1" columnwidth="12">
-                                                    <wm-form-field name="projects" displayname="Projects" show="true" primary-key="false" generator="assigned" key="projects" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"
-                                                    maxchars="32"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow2">
-                                                <wm-gridcolumn show="show" name="gridcolumn2" columnwidth="12">
-                                                    <wm-form-field name="projectTasksByPredecessor" displayname="Project Tasks By Predecessor" show="true" primary-key="false" generator="assigned" key="projectTasksByPredecessor" type="list" is-related="true"
-                                                    pc-display="true" mobile-display="true" widget="select" maxchars="255"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow3">
-                                                <wm-gridcolumn show="show" name="gridcolumn3" columnwidth="12">
-                                                    <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow4">
-                                                <wm-gridcolumn show="hide" name="gridcolumn4" columnwidth="12">
-                                                    <wm-form-field name="pmid" displayname="Pmid" show="false" primary-key="true" generator="uniqueid" key="pmid" type="string" is-related="false" readonly="readonly" required="required" pc-display="true" mobile-display="true"
-                                                    widget="text" maxchars="255"></wm-form-field>
-                                                </wm-gridcolumn>
-                                                <wm-gridcolumn show="show" name="gridcolumn5" columnwidth="12">
-                                                    <wm-form-field name="type" displayname="Type" show="true" primary-key="false" generator="assigned" key="type" type="string" is-related="false" pc-display="true" mobile-display="true" widget="text" maxchars="255"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow5">
-                                                <wm-gridcolumn show="show" name="gridcolumn6" columnwidth="12">
-                                                    <wm-form-field name="description" displayname="Description" show="true" primary-key="false" generator="assigned" key="description" type="text" is-related="false" pc-display="true" mobile-display="true" widget="text"
-                                                    maxchars="2147483647"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow6">
-                                                <wm-gridcolumn show="show" name="gridcolumn7" columnwidth="12">
-                                                    <wm-form-field name="startAt" displayname="Start At" show="true" primary-key="false" generator="assigned" key="startAt" type="timestamp" is-related="false" pc-display="true" mobile-display="true" widget="timestamp"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow7">
-                                                <wm-gridcolumn show="show" name="gridcolumn8" columnwidth="12">
-                                                    <wm-form-field name="percentComplete" displayname="Percent Complete" show="true" primary-key="false" generator="assigned" key="percentComplete" type="integer" is-related="false" pc-display="true" mobile-display="true"
-                                                    step="0" widget="number"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow8">
-                                                <wm-gridcolumn show="show" name="gridcolumn9" columnwidth="12">
-                                                    <wm-form-field name="name" displayname="Name" show="true" primary-key="false" generator="assigned" key="name" type="string" is-related="false" pc-display="true" mobile-display="true" widget="text" maxchars="255"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow9">
-                                                <wm-gridcolumn show="show" name="gridcolumn10" columnwidth="12">
-                                                    <wm-form-field name="endAt" displayname="End At" show="true" primary-key="false" generator="assigned" key="endAt" type="timestamp" is-related="false" pc-display="true" mobile-display="true" widget="timestamp"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                        </wm-layoutgrid>
-                                        <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true" shortcutkey=""></wm-form-action>
-                                        <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" action="" display-name="Save" show="true" type="submit" update-mode="true" shortcutkey=""></wm-form-action>
-                                    </wm-liveform>
-                                </wm-livegrid>
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectTasksData.dataSet" navigation="Classic" name="gridTasks" confirmdelete="You are about to delete a milestone.  All related tasks will also be deleted.  Are you sure you would like to continue?"
+                                nodatamessage="No Tasks found.">
+                                    <wm-grid-column binding="type" caption="Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="name" caption="Name" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column-group name="group" caption="Assigned To">
+                                        <wm-grid-column binding="usersByAssignedTo.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="usersByAssignedTo.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                    </wm-grid-column-group>
+                                    <wm-grid-column-group name="group1" caption="Created By">
+                                        <wm-grid-column binding="usersByCreatedBy.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="usersByCreatedBy.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                    </wm-grid-column-group>
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                </wm-grid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneDOCUMENTS" title="DOCUMENTS"></wm-tabpane>
                             <wm-tabpane name="tabpane4" title="MESSAGING"></wm-tabpane>

@@ -1466,7 +1466,8 @@
             <element name="relatedProjectGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="startAt" typeRef="java.util.Date" allowNull="true"/>
             <element name="type" typeRef="java.lang.String" allowNull="true"/>
-            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+            <element name="usersByAssignedTo" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+            <element name="usersByCreatedBy" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Projects">
             <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
@@ -1583,7 +1584,8 @@
             <element name="projectGisrecordses" typeRef="com.civicxpress.cx2.ProjectGisrecords" isList="true" allowNull="true"/>
             <element name="projectSharedWithsForProjectSharedBy" typeRef="com.civicxpress.cx2.ProjectSharedWith" isList="true" allowNull="true"/>
             <element name="projectSharedWithsForProjectSharedWithUser" typeRef="com.civicxpress.cx2.ProjectSharedWith" isList="true" allowNull="true"/>
-            <element name="projectTaskses" typeRef="com.civicxpress.cx2.ProjectTasks" isList="true" allowNull="true"/>
+            <element name="projectTasksesForAssignedTo" typeRef="com.civicxpress.cx2.ProjectTasks" isList="true" allowNull="true"/>
+            <element name="projectTasksesForCreatedBy" typeRef="com.civicxpress.cx2.ProjectTasks" isList="true" allowNull="true"/>
             <element name="projectsesForCreatedBy" typeRef="com.civicxpress.cx2.Projects" isList="true" allowNull="true"/>
             <element name="projectsesForModifiedBy" typeRef="com.civicxpress.cx2.Projects" isList="true" allowNull="true"/>
             <element name="roleses" typeRef="com.civicxpress.cx2.Roles" isList="true" allowNull="true"/>

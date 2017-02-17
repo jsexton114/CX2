@@ -9366,7 +9366,7 @@
         "defaultValue" : ""
       },
       "fieldName" : "createdBy",
-      "foreignKey" : false,
+      "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
@@ -9374,8 +9374,8 @@
       "name" : "CreatedBy",
       "nullable" : true,
       "oldName" : "CreatedBy",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "precision" : 10,
@@ -9462,12 +9462,29 @@
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "users",
+      "fieldName" : "usersByAssignedTo",
       "mappings" : [ {
         "sourceColumn" : "AssignedTo",
         "targetColumn" : "ID"
       } ],
       "name" : "FK_ProjectTasks_TO_Usersk7bHC",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "ProjectTasks",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "usersByCreatedBy",
+      "mappings" : [ {
+        "sourceColumn" : "CreatedBy",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_ProjectTasks_TO_Usersv8OhV",
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -11294,12 +11311,29 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "projectTaskses",
+      "fieldName" : "projectTasksesForAssignedTo",
       "mappings" : [ {
         "sourceColumn" : "ID",
         "targetColumn" : "AssignedTo"
       } ],
       "name" : "FK_ProjectTasks_TO_Usersk7bHC",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Users",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "ProjectTasks",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "projectTasksesForCreatedBy",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "CreatedBy"
+      } ],
+      "name" : "FK_ProjectTasks_TO_Usersv8OhV",
       "primary" : false,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,

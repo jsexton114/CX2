@@ -65,7 +65,8 @@ public class Users implements Serializable {
     private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
     private List<Projects> projectsesForCreatedBy = new ArrayList<>();
     private List<Projects> projectsesForModifiedBy = new ArrayList<>();
-    private List<ProjectTasks> projectTaskses = new ArrayList<>();
+    private List<ProjectTasks> projectTasksesForAssignedTo = new ArrayList<>();
+    private List<ProjectTasks> projectTasksesForCreatedBy = new ArrayList<>();
     private List<ProjectSharedWith> projectSharedWithsForProjectSharedBy = new ArrayList<>();
     private List<ProjectSharedWith> projectSharedWithsForProjectSharedWithUser = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
@@ -348,13 +349,23 @@ public class Users implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<ProjectTasks> getProjectTaskses() {
-        return this.projectTaskses;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByAssignedTo")
+    public List<ProjectTasks> getProjectTasksesForAssignedTo() {
+        return this.projectTasksesForAssignedTo;
     }
 
-    public void setProjectTaskses(List<ProjectTasks> projectTaskses) {
-        this.projectTaskses = projectTaskses;
+    public void setProjectTasksesForAssignedTo(List<ProjectTasks> projectTasksesForAssignedTo) {
+        this.projectTasksesForAssignedTo = projectTasksesForAssignedTo;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
+    public List<ProjectTasks> getProjectTasksesForCreatedBy() {
+        return this.projectTasksesForCreatedBy;
+    }
+
+    public void setProjectTasksesForCreatedBy(List<ProjectTasks> projectTasksesForCreatedBy) {
+        this.projectTasksesForCreatedBy = projectTasksesForCreatedBy;
     }
 
     @JsonInclude(Include.NON_EMPTY)

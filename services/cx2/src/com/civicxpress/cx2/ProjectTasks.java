@@ -51,7 +51,8 @@ public class ProjectTasks implements Serializable {
     private Date createdAt;
     private Projects projects;
     private ProjectTasks projectTasksByPredecessor;
-    private Users users;
+    private Users usersByAssignedTo;
+    private Users usersByCreatedBy;
     private List<ProjectTasks> projectTasksesForPredecessor = new ArrayList<>();
 
     @Id
@@ -200,16 +201,30 @@ public class ProjectTasks implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`AssignedTo`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public Users getUsers() {
-        return this.users;
+    public Users getUsersByAssignedTo() {
+        return this.usersByAssignedTo;
     }
 
-    public void setUsers(Users users) {
-        if(users != null) {
-            this.assignedTo = users.getId();
+    public void setUsersByAssignedTo(Users usersByAssignedTo) {
+        if(usersByAssignedTo != null) {
+            this.assignedTo = usersByAssignedTo.getId();
         }
 
-        this.users = users;
+        this.usersByAssignedTo = usersByAssignedTo;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`CreatedBy`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Users getUsersByCreatedBy() {
+        return this.usersByCreatedBy;
+    }
+
+    public void setUsersByCreatedBy(Users usersByCreatedBy) {
+        if(usersByCreatedBy != null) {
+            this.createdBy = usersByCreatedBy.getId();
+        }
+
+        this.usersByCreatedBy = usersByCreatedBy;
     }
 
     // ignoring self relation properties to avoid circular loops.
