@@ -12,17 +12,12 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn4" horizontalalign="left">
-                        <wm-panel iconclass="" autoclose="outsideClick" name="panelProjectDetails" title="">
+                        <wm-panel iconclass="wi wi-info" autoclose="outsideClick" name="panelProjectDetails" title="Project Details" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid2">
-                                <wm-gridrow name="gridrow4">
+                                <wm-gridrow name="gridrow4" padding="2em unset unset unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn4_1" horizontalalign="center">
                                         <wm-picture name="picture1" picturesource="bind:!!Variables.CurrentProject.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.CurrentProject.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;"
                                         class="muni-logo"></wm-picture>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow5" padding=".5em unset">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn6">
-                                        <wm-label padding="unset 0.5em" name="label2" caption="Project Details" fontsize="25" fontweight="bold"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow6" padding=".5em unset">
@@ -34,6 +29,7 @@
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn109_2"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow7" padding=".5em unset">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn9">
@@ -42,6 +38,7 @@
                                             <wm-html name="htmlProjectDescription" margin="2em unset unset 0.5em" content="bind:Variables.CurrentProject.dataSet.data[$i].projectDescription">bind:Variables.CurrentProject.dataSet.data[$i].projectDescription</wm-html>
                                         </wm-composite>
                                     </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn110_1"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow8" padding=".5em unset">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn10">
@@ -52,6 +49,7 @@
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn112_1"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow9" padding=".5em unset">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn11">
@@ -62,9 +60,7 @@
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow10" padding=".5em unset">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn12">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn111_1">
                                         <wm-composite name="composite4" margin="unset unset unset 0.5em">
                                             <wm-label class="col-md-12 control-label" name="label6" margin="0.5em unset" caption="Estimated Completion Date"></wm-label>
                                             <wm-container class="col-md-12" name="container4">
@@ -79,97 +75,98 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3" padding="1em unset">
-                        <wm-tabs name="tabsProjectDetails">
-                            <wm-tabpane name="tabpaneMEMBERS" title="MEMBERS">
-                                <wm-livegrid formlayout="dialog" name="livegridProjectMembers"></wm-livegrid>
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectSharedWithData.dataSet" navigation="Classic" name="gridProjectMembers">
-                                    <wm-grid-column-group name="group1" caption="Shared To">
-                                        <wm-grid-column binding="usersByProjectSharedWithUser.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="usersByProjectSharedWithUser.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                    </wm-grid-column-group>
-                                    <wm-grid-column binding="projectSharedOn" caption="Project Shared On" type="timestamp" generator="assigned" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column-group name="group" caption="Shared By">
-                                        <wm-grid-column binding="usersByProjectSharedBy.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="usersByProjectSharedBy.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                    </wm-grid-column-group>
-                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddMember.open()" shortcutkey="" disabled="bind:addMember
-"></wm-grid-action>
-                                </wm-grid>
-                            </wm-tabpane>
-                            <wm-tabpane name="tabpaneTASKS" title="TASKS">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectTasksData.dataSet" navigation="Classic" name="gridTasks" confirmdelete="You are about to delete a milestone.  All related tasks will also be deleted.  Are you sure you would like to continue?"
-                                nodatamessage="No Tasks found.">
-                                    <wm-grid-column binding="type" caption="Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="name" caption="Name" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column-group name="group" caption="Assigned To">
-                                        <wm-grid-column binding="usersByAssignedTo.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="usersByAssignedTo.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                    </wm-grid-column-group>
-                                    <wm-grid-column-group name="group1" caption="Created By">
-                                        <wm-grid-column binding="usersByCreatedBy.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="usersByCreatedBy.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                    </wm-grid-column-group>
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddtask.open()" shortcutkey="" disabled="false"></wm-grid-action>
-                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Widgets.dialogUpdateTask.open()" disabled="false"></wm-grid-row-action>
-                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                </wm-grid>
-                            </wm-tabpane>
-                            <wm-tabpane name="tabpaneDOCUMENTS" title="DOCUMENTS"></wm-tabpane>
-                            <wm-tabpane name="tabpane4" title="MESSAGING"></wm-tabpane>
-                            <wm-tabpane name="tabpaneMAPS" title="MAPS">
-                                <wm-layoutgrid name="layoutgrid17">
-                                    <wm-gridrow name="gridrow61">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn127">
-                                            <wm-grid title="" dataset="bind:Variables.ProjectGISRecords.dataSet" navigation="Classic" name="gridLocation">
-                                                <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Gisrecords.subdivisions Subdivision" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="gisrecords.city" caption="Gisrecords City" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="gisrecords.parcel" caption="Gisrecords Parcel" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="gisrecords.streetNumber" caption="Gisrecords Street Number" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="gisrecords.streetName" caption="Gisrecords Street Name" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="gisrecords.section" caption="Gisrecords Section" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="gisrecords.inspectionZone" caption="Gisrecords Inspection Zone" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="gisrecords.lot" caption="Gisrecords Lot" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-action key="customButton" display-name="Add Parcel" show="true" class="btn-primary" iconclass="wi wi-add" title="Add Parcel" action="Widgets.dialogAddGISRecord.open()" shortcutkey=""
-                                                disabled="false"></wm-grid-action>
-                                                <wm-grid-row-action key="customRow" display-name="" title="View" value="" iconclass="wi wi-pageview" class="btn-transparent" show="true" action="Widgets.dialogParcel.open()"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="" title="Delete" value="" iconclass="wi wi-trash" class="btn-transparent" show="true" action="Variables.DeleteProjectGISRecord.invoke()"></wm-grid-row-action>
-                                            </wm-grid>
-                                            <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.ProjectGISRecords.dataSet[$i].gisrecords" zoom="14" markertype="Address" address="streetNumber streetName city states.stateName"
-                                            show="bind:Variables.ProjectGISRecords.dataSet.totalElements > 0"></wm-prefab>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-tabpane>
-                            <wm-tabpane name="tabpaneFORMS" title="FORMS">
-                                <wm-livegrid formlayout="dialog" name="livegridProjectForms">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectForms.dataSet" navigation="Classic" name="gridProjectForms">
-                                        <wm-grid-column binding="addedByUser" caption="Added By User" type="string" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="addedAt" caption="Added At" type="string" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="comments" caption="Comments" type="string" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column-group name="group1" caption="Form">
-                                            <wm-grid-column binding="masterForms.formTitle" caption="Form Title" type="string" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="masterForms.formStatuses.formTypes.formType" caption="Form Type" type="string" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="masterForms.formStatuses.status" caption="Status" type="string" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="masterForms.vendor.companyName" caption="Company Name" type="string" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="masterForms.balanceDue" caption="Balance Due" type="string" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column-group name="group" caption="Submitted By">
-                                                <wm-grid-column binding="users.firstName" caption="Users First Name" type="string" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="users.lastName" caption="Users Last Name" type="string" show="true" readonly="false"></wm-grid-column>
-                                            </wm-grid-column-group>
+                        <wm-panel iconclass="wi wi-list" autoclose="outsideClick" name="panel2" title="Project Data" class="panel-primary">
+                            <wm-tabs name="tabsProjectDetails">
+                                <wm-tabpane name="tabpaneMEMBERS" title="MEMBERS">
+                                    <wm-livegrid formlayout="dialog" name="livegridProjectMembers"></wm-livegrid>
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectSharedWithData.dataSet" navigation="Classic" name="gridProjectMembers" filtermode="multicolumn" exportformat="EXCEL">
+                                        <wm-grid-column-group name="group1" caption="Member">
+                                            <wm-grid-column binding="usersByProjectSharedWithUser.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                            <wm-grid-column binding="usersByProjectSharedWithUser.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        </wm-grid-column-group>
+                                        <wm-grid-column binding="projectSharedOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                                        <wm-grid-column-group name="group" caption="Added By">
+                                            <wm-grid-column binding="usersByProjectSharedBy.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                            <wm-grid-column binding="usersByProjectSharedBy.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        </wm-grid-column-group>
+                                        <wm-grid-action key="addNewRow" display-name="Add Member" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Member" action="Widgets.dialogAddMember.open()" shortcutkey="" disabled="bind:addMember"></wm-grid-action>
+                                    </wm-grid>
+                                </wm-tabpane>
+                                <wm-tabpane name="tabpaneTASKS" title="TASKS">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectTasksData.dataSet" navigation="Classic" name="gridTasks" confirmdelete="You are about to delete a milestone.  All related tasks will also be deleted.  Are you sure you would like to continue?"
+                                    nodatamessage="No Tasks found.">
+                                        <wm-grid-column binding="type" caption="Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="name" caption="Name" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column-group name="group" caption="Assigned To">
+                                            <wm-grid-column binding="usersByAssignedTo.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                            <wm-grid-column binding="usersByAssignedTo.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                        </wm-grid-column-group>
+                                        <wm-grid-column-group name="group1" caption="Created By">
+                                            <wm-grid-column binding="usersByCreatedBy.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                            <wm-grid-column binding="usersByCreatedBy.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                         </wm-grid-column-group>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddFormsToProject.open()" shortcutkey="" disabled="false"></wm-grid-action>
-                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="" action="Variables.GoToForms.invoke()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddtask.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Widgets.dialogUpdateTask.open()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                </wm-livegrid>
-                            </wm-tabpane>
-                            <wm-tabpane name="tabpaneINSPECTIONS" title="INSPECTIONS"></wm-tabpane>
-                            <wm-tabpane name="tabpaneFEES" title="FEES"></wm-tabpane>
-                            <wm-tabpane name="tabpaneMUNICIPALITYMESSAGES" title="MUNICIPALITY MESSAGES"></wm-tabpane>
-                        </wm-tabs>
+                                </wm-tabpane>
+                                <wm-tabpane name="tabpaneDOCUMENTS" title="DOCUMENTS"></wm-tabpane>
+                                <wm-tabpane name="tabpane4" title="MESSAGING"></wm-tabpane>
+                                <wm-tabpane name="tabpaneMAPS" title="MAPS">
+                                    <wm-layoutgrid name="layoutgrid17">
+                                        <wm-gridrow name="gridrow61">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn127">
+                                                <wm-grid title="" dataset="bind:Variables.ProjectGISRecords.dataSet" navigation="Classic" name="gridLocation">
+                                                    <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Gisrecords.subdivisions Subdivision" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.city" caption="Gisrecords City" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.parcel" caption="Gisrecords Parcel" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetNumber" caption="Gisrecords Street Number" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetName" caption="Gisrecords Street Name" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.section" caption="Gisrecords Section" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.inspectionZone" caption="Gisrecords Inspection Zone" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.lot" caption="Gisrecords Lot" type="string" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-action key="customButton" display-name="Add Parcel" show="true" class="btn-primary" iconclass="wi wi-add" title="Add Parcel" action="Widgets.dialogAddGISRecord.open()" shortcutkey=""
+                                                    disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="customRow" display-name="" title="View" value="" iconclass="wi wi-pageview" class="btn-transparent" show="true" action="Widgets.dialogParcel.open()"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow1" display-name="" title="Delete" value="" iconclass="wi wi-trash" class="btn-transparent" show="true" action="Variables.DeleteProjectGISRecord.invoke()"></wm-grid-row-action>
+                                                </wm-grid>
+                                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.ProjectGISRecords.dataSet[$i].gisrecords" zoom="14" markertype="Address" address="streetNumber streetName city states.stateName"
+                                                show="bind:Variables.ProjectGISRecords.dataSet.totalElements > 0"></wm-prefab>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-tabpane>
+                                <wm-tabpane name="tabpaneFORMS" title="FORMS">
+                                    <wm-livegrid formlayout="dialog" name="livegridProjectForms">
+                                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectForms.dataSet" navigation="Classic" name="gridProjectForms">
+                                            <wm-grid-column binding="addedByUser" caption="Added By User" type="string" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="addedAt" caption="Added At" type="string" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="comments" caption="Comments" type="string" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column-group name="group1" caption="Form">
+                                                <wm-grid-column binding="masterForms.formTitle" caption="Form Title" type="string" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="masterForms.formStatuses.formTypes.formType" caption="Form Type" type="string" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="masterForms.formStatuses.status" caption="Status" type="string" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="masterForms.vendor.companyName" caption="Company Name" type="string" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="masterForms.balanceDue" caption="Balance Due" type="string" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column-group name="group" caption="Submitted By">
+                                                    <wm-grid-column binding="users.firstName" caption="Users First Name" type="string" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="users.lastName" caption="Users Last Name" type="string" show="true" readonly="false"></wm-grid-column>
+                                                </wm-grid-column-group>
+                                            </wm-grid-column-group>
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                            <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddFormsToProject.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="" action="Variables.GoToForms.invoke()" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                                        </wm-grid>
+                                    </wm-livegrid>
+                                </wm-tabpane>
+                                <wm-tabpane name="tabpaneINSPECTIONS" title="INSPECTIONS"></wm-tabpane>
+                                <wm-tabpane name="tabpaneFEES" title="FEES"></wm-tabpane>
+                                <wm-tabpane name="tabpaneMUNICIPALITYMESSAGES" title="MUNICIPALITY MESSAGES"></wm-tabpane>
+                            </wm-tabs>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
@@ -177,21 +174,17 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="viewAddMember">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Add Members" iconclass="wi wi-file-text" name="dialogAddMember">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add a Member" iconclass="wi wi-person-add" name="dialogAddMember">
             <wm-layoutgrid name="layoutgrid3">
                 <wm-gridrow name="gridrow11" padding="1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn11_1">
-                        <wm-search name="searchForMembers" dataset="bind:Variables.GetAllUsers.dataSet" searchkey="email" displaylabel="email" displayimagesrc="photo" datafield="All Fields"></wm-search>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow12" padding="1em unset">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn13" horizontalalign="center">
-                        <wm-button class="btn-default btn-primary" caption="Add" type="button" margin="unset 0.5em" name="buttonAddMember" iconclass="wi wi-person-add" on-click="Variables.AddMembersToProject.invoke()"></wm-button>
+                        <wm-search name="searchForMembers" dataset="bind:Variables.GetAllUsers.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" displayimagesrc="photo" datafield="All Fields" orderby="fullName:asc" placeholder="Search by Name or Email Address"></wm-search>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
+                <wm-button class="btn-primary" caption="Add" type="button" margin="unset 0.5em" name="buttonAddMember" iconclass="wi wi-plus" on-click="Variables.AddMembersToProject.invoke()"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
@@ -477,14 +470,10 @@
                         <wm-textarea name="textareaFormComments" placeholder="Please Enter Your Comments"></wm-textarea>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow48" padding="1em unset">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn92" horizontalalign="center">
-                        <wm-button class="btn-default btn-primary" caption="Add Form" type="button" margin="unset 0.5em" name="buttonAddForm" on-tap="Variables.AddFormToProject.invoke()"></wm-button>
-                    </wm-gridcolumn>
-                </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions4">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button8"></wm-button>
+                <wm-button class="btn-primary" caption="Add Form" type="button" margin="unset 0.5em" name="buttonAddForm" on-tap="Variables.AddFormToProject.invoke()" iconclass="wi wi-plus"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button8" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
@@ -561,22 +550,15 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow65" padding="1em unset">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn112" horizontalalign="center">
-                        <wm-button class="btn-default btn-primary" caption="Create" type="button" margin="unset 0.5em" name="buttonTaskCreate" iconclass="wi wi-assignment-turned-in" on-click="Variables.InsertTask.createRecord()"></wm-button>
-                    </wm-gridcolumn>
-                </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions5">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button10"></wm-button>
+                <wm-button class="btn-primary" caption="Add Task" type="button" margin="unset 0.5em" name="buttonTaskCreate" iconclass="wi wi-plus" on-click="Variables.InsertTask.createRecord()"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button10" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewUpdateTask">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Update Task" iconclass="wi wi-file-text" name="dialogUpdateTask">
-            <wm-dialogactions name="dialogactions6">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button12"></wm-button>
-            </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid11">
                 <wm-gridrow name="gridrow65_1" padding="1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn109_1" horizontalalign="center">
@@ -659,11 +641,10 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow65" padding="1em unset">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn112" horizontalalign="center">
-                        <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonTaskUpdate" iconclass="wi wi-assignment-turned-in" on-click="Variables.UpdateTask.updateRecord()"></wm-button>
-                    </wm-gridcolumn>
-                </wm-gridrow>
+                <wm-dialogactions name="dialogactions6">
+                    <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonTaskUpdate" iconclass="wi wi-refresh" on-click="Variables.UpdateTask.updateRecord()"></wm-button>
+                    <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button12" iconclass="wi wi-cancel"></wm-button>
+                </wm-dialogactions>
             </wm-layoutgrid>
         </wm-dialog>
     </wm-view>
