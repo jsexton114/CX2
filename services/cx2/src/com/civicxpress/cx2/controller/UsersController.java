@@ -48,6 +48,7 @@ import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
+import com.civicxpress.cx2.UserViewPreferences;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorUsers;
@@ -334,6 +335,13 @@ public class UsersController {
     public Page<UserSubscriptions> findAssociatedUserSubscriptionses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userSubscriptionses");
         return usersService.findAssociatedUserSubscriptionses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/userViewPreferenceses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the userViewPreferenceses instance associated with the given id.")
+    public Page<UserViewPreferences> findAssociatedUserViewPreferenceses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated userViewPreferenceses");
+        return usersService.findAssociatedUserViewPreferenceses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/vendorAdminses", method = RequestMethod.GET)

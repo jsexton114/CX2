@@ -30,6 +30,7 @@ import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
+import com.civicxpress.cx2.UserViewPreferences;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorUsers;
@@ -378,6 +379,18 @@ public interface UsersService {
      * @see Page
      */
     Page<UserSubscriptions> findAssociatedUserSubscriptionses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated userViewPreferenceses for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated UserViewPreferences instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<UserViewPreferences> findAssociatedUserViewPreferenceses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated vendorAdminses for given Users id.

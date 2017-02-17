@@ -1506,6 +1506,12 @@
             <element name="usersByCreatedBy" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
             <element name="usersBySharedWithUser" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.StandardViews">
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="userViewPreferenceses" typeRef="com.civicxpress.cx2.UserViewPreferences" isList="true" allowNull="true"/>
+            <element name="viewDescription" typeRef="java.lang.String" allowNull="true"/>
+            <element name="viewName" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.States">
             <element name="giscontactses" typeRef="com.civicxpress.cx2.Giscontacts" isList="true" allowNull="true"/>
             <element name="gisrecordses" typeRef="com.civicxpress.cx2.Gisrecords" isList="true" allowNull="true"/>
@@ -1537,6 +1543,13 @@
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.UserViewPreferences">
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="preferenceId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="standardViews" typeRef="com.civicxpress.cx2.StandardViews" allowNull="true"/>
             <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>
@@ -1578,6 +1591,7 @@
             <element name="states" typeRef="com.civicxpress.cx2.States" allowNull="true"/>
             <element name="userPasswordResetTokenses" typeRef="com.civicxpress.cx2.UserPasswordResetTokens" isList="true" allowNull="true"/>
             <element name="userSubscriptionses" typeRef="com.civicxpress.cx2.UserSubscriptions" isList="true" allowNull="true"/>
+            <element name="userViewPreferenceses" typeRef="com.civicxpress.cx2.UserViewPreferences" isList="true" allowNull="true"/>
             <element name="vendorAdminses" typeRef="com.civicxpress.cx2.VendorAdmins" isList="true" allowNull="true"/>
             <element name="vendorUserses" typeRef="com.civicxpress.cx2.VendorUsers" isList="true" allowNull="true"/>
         </dataobject>

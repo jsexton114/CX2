@@ -80,8 +80,8 @@ public class Municipalities implements Serializable {
     private List<Projects> projectses = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
     private List<Subdivisions> subdivisionses = new ArrayList<>();
-    private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
+    private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -483,22 +483,22 @@ public class Municipalities implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<VendorApprovals> getVendorApprovalses() {
-        return this.vendorApprovalses;
-    }
-
-    public void setVendorApprovalses(List<VendorApprovals> vendorApprovalses) {
-        this.vendorApprovalses = vendorApprovalses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<UserSubscriptions> getUserSubscriptionses() {
         return this.userSubscriptionses;
     }
 
     public void setUserSubscriptionses(List<UserSubscriptions> userSubscriptionses) {
         this.userSubscriptionses = userSubscriptionses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<VendorApprovals> getVendorApprovalses() {
+        return this.vendorApprovalses;
+    }
+
+    public void setVendorApprovalses(List<VendorApprovals> vendorApprovalses) {
+        this.vendorApprovalses = vendorApprovalses;
     }
 
     @Override

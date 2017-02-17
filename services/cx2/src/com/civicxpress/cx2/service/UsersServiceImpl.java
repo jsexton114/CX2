@@ -39,6 +39,7 @@ import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
+import com.civicxpress.cx2.UserViewPreferences;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorUsers;
@@ -113,6 +114,10 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.ProjectSharedWithService")
 	private ProjectSharedWithService projectSharedWithService;
+
+    @Autowired
+	@Qualifier("cx2.UserViewPreferencesService")
+	private UserViewPreferencesService userViewPreferencesService;
 
     @Autowired
 	@Qualifier("cx2.RolesService")
@@ -288,6 +293,14 @@ public class UsersServiceImpl implements UsersService {
                 userSubscriptionse.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child UserSubscriptions with information: {}", userSubscriptionse);
                 userSubscriptionsService.create(userSubscriptionse);
+            }
+        }
+
+        if(usersCreated.getUserViewPreferenceses() != null) {
+            for(UserViewPreferences userViewPreferencese : usersCreated.getUserViewPreferenceses()) {
+                userViewPreferencese.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child UserViewPreferences with information: {}", userViewPreferencese);
+                userViewPreferencesService.create(userViewPreferencese);
             }
         }
 
@@ -607,6 +620,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<UserViewPreferences> findAssociatedUserViewPreferenceses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated userViewPreferenceses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return userViewPreferencesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<VendorAdmins> findAssociatedVendorAdminses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorAdminses");
 
@@ -760,6 +784,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setProjectSharedWithService(ProjectSharedWithService service) {
         this.projectSharedWithService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service UserViewPreferencesService instance
+	 */
+	protected void setUserViewPreferencesService(UserViewPreferencesService service) {
+        this.userViewPreferencesService = service;
     }
 
     /**
