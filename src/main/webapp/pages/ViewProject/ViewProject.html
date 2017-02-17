@@ -110,8 +110,8 @@
                                         <wm-grid-column binding="usersByCreatedBy.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                     </wm-grid-column-group>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogAddtask.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Widgets.dialogUpdateTask.open()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-tabpane>
@@ -486,6 +486,179 @@
             <wm-dialogactions name="dialogactions4">
                 <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button8"></wm-button>
             </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewAddtask">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Information" iconclass="wi wi-file-text" name="dialogAddtask">
+            <wm-layoutgrid name="layoutgrid11">
+                <wm-gridrow name="gridrow58" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn103">
+                        <wm-composite name="composite6">
+                            <wm-label class="col-md-3 control-label" name="label51_1" caption="Type"></wm-label>
+                            <wm-container class="col-md-9" name="container5">
+                                <wm-select name="selectProjectType" dataset="Task,Milestone" datavalue="Task"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow59" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn105">
+                        <wm-composite name="composite7">
+                            <wm-label class="col-md-3 control-label" name="label52_1" caption="Title"></wm-label>
+                            <wm-container class="col-md-9" name="container6">
+                                <wm-text name="textProjectTitle"></wm-text>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow60" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn107">
+                        <wm-composite name="composite8">
+                            <wm-label class="col-md-3 control-label" name="label53_1" caption="Description"></wm-label>
+                            <wm-container class="col-md-9" name="container7">
+                                <wm-textarea name="textareaProjectDescription"></wm-textarea>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow61_1" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn108">
+                        <wm-composite name="composite9">
+                            <wm-label class="col-md-3 control-label" name="label54_1" caption="Predecessor"></wm-label>
+                            <wm-container class="col-md-9" name="container8">
+                                <wm-select name="selectProjectPredecessor" dataset="bind:Variables.ProjectTasksData.dataSet" datafield="All Fields" displayfield="name" datavalue="bind:Variables.ProjectTasksData.firstRecord"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow62" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn109">
+                        <wm-composite name="composite10_1">
+                            <wm-label class="col-md-3 control-label" name="label55_1" caption="Start Date"></wm-label>
+                            <wm-container class="col-md-9" name="container9">
+                                <wm-datetime name="datetimeProjectStartDate" datepattern="yyyy-MM-dd"></wm-datetime>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow63" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn110">
+                        <wm-composite name="composite11">
+                            <wm-label class="col-md-3 control-label" name="label56_1" caption="End Date"></wm-label>
+                            <wm-container class="col-md-9" name="container10">
+                                <wm-datetime datepattern="yyyy-MM-dd" name="datetimeProjectEndDate"></wm-datetime>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow64" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn111">
+                        <wm-composite name="composite12">
+                            <wm-label class="col-md-3 control-label" name="label57" caption="Assigned To"></wm-label>
+                            <wm-container class="col-md-9" name="container11">
+                                <wm-search name="selectProjectAssignedTo" dataset="bind:Variables.GetAllUsers.dataSet" searchkey="email" displaylabel="email" displayimagesrc="photo" datafield="All Fields"></wm-search>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow65" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn112" horizontalalign="center">
+                        <wm-button class="btn-default btn-primary" caption="Create" type="button" margin="unset 0.5em" name="buttonTaskCreate" iconclass="wi wi-assignment-turned-in" on-click="Variables.InsertTask.createRecord()"></wm-button>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions5">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button10"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewUpdateTask">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Update Task" iconclass="wi wi-file-text" name="dialogUpdateTask">
+            <wm-dialogactions name="dialogactions6">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button12"></wm-button>
+            </wm-dialogactions>
+            <wm-layoutgrid name="layoutgrid11">
+                <wm-gridrow name="gridrow65_1" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn109_1">
+                        <wm-progress name="progressCompleted" datavalue="bind:Variables.GetSelectedTaskDetails.dataSet.percentComplete"></wm-progress>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow58" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn103">
+                        <wm-composite name="composite6">
+                            <wm-label class="col-md-3 control-label" name="label51_1" caption="Type"></wm-label>
+                            <wm-container class="col-md-9" name="container5">
+                                <wm-select name="selectUpdateProjectType" dataset="Task,Milestone" datavalue="bind:Variables.GetSelectedTaskDetails.dataSet.type"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow59" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn105">
+                        <wm-composite name="composite7">
+                            <wm-label class="col-md-3 control-label" name="label52_1" caption="Title"></wm-label>
+                            <wm-container class="col-md-9" name="container6">
+                                <wm-text name="textUpdateProjectTitle" datavalue="bind:Variables.GetSelectedTaskDetails.dataSet.name"></wm-text>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow60" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn107">
+                        <wm-composite name="composite8">
+                            <wm-label class="col-md-3 control-label" name="label53_1" caption="Description"></wm-label>
+                            <wm-container class="col-md-9" name="container7">
+                                <wm-textarea name="textareaUpdateProjectDescription" datavalue="bind:Variables.GetSelectedTaskDetails.dataSet.description"></wm-textarea>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow61_1" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn108">
+                        <wm-composite name="composite9">
+                            <wm-label class="col-md-3 control-label" name="label54_1" caption="Predecessor"></wm-label>
+                            <wm-container class="col-md-9" name="container8">
+                                <wm-select name="selectUpdateProjectPredecessor" dataset="bind:Variables.ProjectTasksData.dataSet" datafield="All Fields" displayfield="name" datavalue="bind:Variables.ProjectTasksData.dataSet.data[$i].projectTasksByPredecessor"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow62" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn109">
+                        <wm-composite name="composite10_1">
+                            <wm-label class="col-md-3 control-label" name="label55_1" caption="Start Date"></wm-label>
+                            <wm-container class="col-md-9" name="container9">
+                                <wm-datetime name="datetimeUpdateProjectStartDate" datepattern="yyyy-MM-dd" datavalue="bind:Variables.ProjectTasksData.dataSet.data[$i].startAt"></wm-datetime>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow63" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn110">
+                        <wm-composite name="composite11">
+                            <wm-label class="col-md-3 control-label" name="label56_1" caption="End Date"></wm-label>
+                            <wm-container class="col-md-9" name="container10">
+                                <wm-datetime datepattern="yyyy-MM-dd" name="datetimeUpdateProjectEndDate" datavalue="bind:Variables.ProjectTasksData.dataSet.data[$i].endAt"></wm-datetime>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow64" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn111">
+                        <wm-composite name="composite12">
+                            <wm-label class="col-md-3 control-label" name="label57" caption="Assigned To"></wm-label>
+                            <wm-container class="col-md-9" name="container11">
+                                <wm-search name="selectUpdateProjectAssignedTo" dataset="bind:Variables.GetAllUsers.dataSet" searchkey="email" displaylabel="email" displayimagesrc="photo" datafield="All Fields" datavalue="bind:Variables.ProjectTasksData.dataSet.data[$i].usersByAssignedTo"></wm-search>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow65" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn112" horizontalalign="center">
+                        <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonTaskUpdate" iconclass="wi wi-assignment-turned-in" on-click="Variables.InsertTask.createRecord()"></wm-button>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
         </wm-dialog>
     </wm-view>
 </wm-page>
