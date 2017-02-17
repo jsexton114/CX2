@@ -441,8 +441,8 @@ Application.$controller("dialogShowTaggedPeopleController", ["$scope",
 ]);
 
 Application.$controller("gridLocationController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

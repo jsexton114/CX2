@@ -191,7 +191,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
     $scope.checkboxVendorIsOwnerChange = function($event, $isolateScope, newVal, oldVal) {
         if (newVal === true) {
             var vendorInfo = $scope.Variables.stvVendors.dataSet[0];
-            $scope.Widgets.lfOwner.firstName.datavalue = vendorInfo.Company;
+            $scope.Widgets.lfOwner.formFields.firstName.datavalue = vendorInfo.Company;
             $scope.Widgets.lfOwner.address1.datavalue = vendorInfo.Address1;
             $scope.Widgets.lfOwner.address2.datavalue = vendorInfo.Address2;
             $scope.Widgets.lfOwner.city.datavalue = vendorInfo.City;

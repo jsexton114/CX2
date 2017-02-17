@@ -158,9 +158,11 @@ Application.$controller("dlgFormTypeFieldController", ["$scope",
 
             switch ($scope.Widgets.selectFormFieldType._proxyModel.label) {
                 case 'Text':
+                case 'Header':
                     defaultValue = $scope.Widgets.textDefaultValue.datavalue;
                     break;
                 case 'Long Text':
+                case 'Instruction Text':
                     defaultValue = $scope.Widgets.longTextDefault.datavalue;
                     break;
                 case 'Date':
@@ -172,10 +174,14 @@ Application.$controller("dlgFormTypeFieldController", ["$scope",
                 case 'Number':
                     defaultValue = $scope.Widgets.numberDefaultValue.datavalue;
                     break;
+                case 'Currency':
+                    defaultValue = $scope.Widgets.currencyDefaultValue.datavalue;
+                    break;
                 case 'Boolean':
                     defaultValue = $scope.Widgets.booleanDefaultValue.datavalue;
                     break;
                 default:
+                    defaultValue = $scope.Widgets.textDefaultValue.datavalue;
                     break;
             }
 

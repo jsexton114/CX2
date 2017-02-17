@@ -336,7 +336,7 @@
                                                         disabled="false"></wm-grid-row-action>
                                                     </wm-grid>
                                                     <wm-liveform novalidate="false" errormessage="" title="Add Manual Fee" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.Cx2FeesData.dataSet" captionalign="left" captionposition="top"
-                                                    name="liveformFees">
+                                                    name="liveformFees" on-beforeservicecall="liveformFeesBeforeservicecall($event, $operation, $data)">
                                                         <wm-layoutgrid columns="1" name="layoutgrid13">
                                                             <wm-gridrow name="gridrow45_2">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn104_2">

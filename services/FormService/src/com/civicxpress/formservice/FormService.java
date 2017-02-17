@@ -160,7 +160,7 @@ public class FormService {
     }
     
     public void saveFormTypeField(Long formTypeId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
-    	String fieldName = DBUtils.getSqlSafeString(label);
+    	String fieldName = label == null ? null : DBUtils.getSqlSafeString(label);
     	
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	cx2Conn.setAutoCommit(false);
@@ -190,7 +190,9 @@ public class FormService {
 	    	
 	    	String fieldSqlType = DBUtils.selectQuery(cx2Conn, "SELECT SqlType FROM FormFieldTypes WHERE ID=:fieldTypeId", queryParams).get(0).getString("SqlType");
 	    	
-	    	DBUtils.simpleQuery(muniDbConn, "ALTER TABLE "+muniData.getString("FormTableName")+" ADD "+fieldName+" "+fieldSqlType);
+	    	if (fieldSqlType != null && !fieldSqlType.isEmpty()) {
+	    		DBUtils.simpleQuery(muniDbConn, "ALTER TABLE "+muniData.getString("FormTableName")+" ADD "+fieldName+" "+fieldSqlType);
+	    	}
 	    	
 	    	cx2Conn.commit();
 	    	muniDbConn.commit();
@@ -497,16 +499,16 @@ public class FormService {
     	cx2Conn.setAutoCommit(false);
     	
     	try {
-    		HashMap<String, Object> queryParams = new HashMap<String, Object>();
-    		queryParams.put("formGuid", formGuid);
-    		queryParams.put("newFormStatusId", formStatusId);
-    		queryParams.put("Comments", comments);
+    		DBQueryParams queryParams = new DBQueryParams();
+    		queryParams.addString("formGuid", formGuid);
+    		queryParams.addLong("newFormStatusId", formStatusId);
+    		queryParams.addString("Comments", comments);
     		
     		DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", queryParams).get(0);
 
-    		queryParams.put("OldStatusId", masterFormData.getLong("FormStatusId"));
-    		queryParams.put("FormTypeId", masterFormData.getLong("FormTypeId"));
-    		queryParams.put("CreatedBy", Long.parseLong(securityService.getUserId()));
+    		queryParams.addLong("OldStatusId", masterFormData.getLong("FormStatusId"));
+    		queryParams.addLong("FormTypeId", masterFormData.getLong("FormTypeId"));
+    		queryParams.addLong("CreatedBy", Long.parseLong(securityService.getUserId()));
     		
     		DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypes WHERE ID=:FormTypeId", queryParams).get(0);
     		
@@ -522,16 +524,16 @@ public class FormService {
     			muniDbConn = getMunicipalityDbConnection(cx2Conn, formTypeData.getLong("MunicipalityId"));
     			DBRow formFieldValues = DBUtils.selectQuery(muniDbConn, "SELECT * FROM "+DBUtils.getSqlSafeString(formTypeData.getString("FormTableName"))+" WHERE FormGUID=:formGuid", queryParams).get(0);
     			
-    			HashMap<String, Object> feeQueryParams = calculateAutoFees(formTypeData, formFieldValues.getFieldValues());
+    			DBQueryParams feeQueryParams = calculateAutoFees(formTypeData, formFieldValues.getFieldValues());
     			
-    			feeQueryParams.put("formGuid", formGuid);
+    			feeQueryParams.addString("formGuid", formGuid);
     			
     			for (String autoFeeType : autoFeeTypes) {
 	    			String[] autoFeeTypeParts = autoFeeType.split(";");
 	    			String typeName = autoFeeTypeParts[0];
 	    			String argName = autoFeeTypeParts[1];
 	    			
-	    			if (feeQueryParams.containsKey(argName+"Amount")) {
+	    			if (feeQueryParams.paramExists(argName+"Amount")) {
 	    				DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE Fees SET Amount=:"+argName+"Amount WHERE FormGuid=:formGuid AND FeeType='"+typeName+"' AND PaidStatus='Unpaid'", feeQueryParams);
 	    			}
 	    		}
@@ -551,9 +553,9 @@ public class FormService {
     	}
     }
     
-    private HashMap<String, Object> calculateAutoFees(DBRow formTypeData, HashMap<String, Object> fieldData) {
+    private DBQueryParams calculateAutoFees(DBRow formTypeData, HashMap<String, Object> fieldData) {
     	BigDecimal totalFees = new BigDecimal("0.00");
-    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
+    	DBQueryParams queryParams = new DBQueryParams();
     	
 		BigDecimal flatFee = formTypeData.getBigDecimal("FlatFee");
 		BigDecimal sfFee = formTypeData.getBigDecimal("SfFee");
@@ -563,8 +565,8 @@ public class FormService {
     	
 		if (flatFee != null && !flatFee.equals(0)) {
 			totalFees = totalFees.add(flatFee);
-			queryParams.put("flatFeeAmount", currFormat.format(flatFee.doubleValue()));
-			queryParams.put("flatFeeAccountingCode", formTypeData.getString("FlatFeeAccountingCode"));
+			queryParams.addString("flatFeeAmount", flatFee.toString());
+			queryParams.addString("flatFeeAccountingCode", formTypeData.getString("FlatFeeAccountingCode"));
 		}
 		
 		if (sfFee != null && !sfFee.equals(0)) {
@@ -573,8 +575,8 @@ public class FormService {
     			
     			if (!totalSqft.equals(0)) {
     				totalFees = totalFees.add(sfFee.multiply(totalSqft));
-    				queryParams.put("sfFeeAmount", currFormat.format(sfFee.multiply(totalSqft)));
-    				queryParams.put("sfFeeAccountingCode", formTypeData.getString("SfFeeAccountingCode"));
+    				queryParams.addString("sfFeeAmount", sfFee.multiply(totalSqft).toString());
+    				queryParams.addString("sfFeeAccountingCode", formTypeData.getString("SfFeeAccountingCode"));
     			}
 			}
 		}
@@ -585,26 +587,26 @@ public class FormService {
     			
     			if (!totalUnits.equals(0)) {
     				totalFees = totalFees.add(unitFee.multiply(totalUnits));
-    				queryParams.put("unitFeeAmount", currFormat.format(unitFee.multiply(totalUnits)));
-    				queryParams.put("unitFeeAccountingCode", formTypeData.getString("UnitFeeAccountingCode"));
+    				queryParams.addString("unitFeeAmount", unitFee.multiply(totalUnits).toString());
+    				queryParams.addString("unitFeeAccountingCode", formTypeData.getString("UnitFeeAccountingCode"));
     			}
 			}
 		}
 		
 		if (basementFee != null && !basementFee.equals(0) && fieldData.get("Basement") != null && (Boolean) fieldData.get("Basement")) {
 			totalFees = totalFees.add(basementFee);
-			queryParams.put("basementFeeAmount", currFormat.format(basementFee.doubleValue()));
-			queryParams.put("basementFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
+			queryParams.addString("basementFeeAmount", basementFee.toString());
+			queryParams.addString("basementFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
 		}
 		
 		if (stateFee != null && !stateFee.equals(0)) {
 			BigDecimal calcedStateFee = totalFees.multiply(stateFee);
 			totalFees = totalFees.add(calcedStateFee);
-			queryParams.put("stateFeeAmount", currFormat.format(calcedStateFee.doubleValue()));
-			queryParams.put("stateFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
+			queryParams.addString("stateFeeAmount", calcedStateFee.toString());
+			queryParams.addString("stateFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
 		}
 		
-		queryParams.put("totalFees", currFormat.format(totalFees.doubleValue()));
+		queryParams.addString("totalFees", totalFees.toString());
 		
 		return queryParams;
     }
@@ -767,16 +769,16 @@ public class FormService {
 	        	StringBuilder formFeesQuery = new StringBuilder("INSERT INTO Fees (FormGuid, Amount, FeeType, AutoFeeYN, AccountingCode, PaidStatus) VALUES ");
 	        	List<String> formFeesValues = new ArrayList<String>();
 	    		
-	    		HashMap<String, Object> feeQueryParams = calculateAutoFees(formTypeData, fieldData);
+	    		DBQueryParams feeQueryParams = calculateAutoFees(formTypeData, fieldData);
 	    		
-	    		feeQueryParams.put("formGuid", formGuid);
+	    		feeQueryParams.addString("formGuid", formGuid);
 	    		
 	    		for (String autoFeeType : autoFeeTypes) {
 	    			String[] autoFeeTypeParts = autoFeeType.split(";");
 	    			String typeName = autoFeeTypeParts[0];
 	    			String argName = autoFeeTypeParts[1];
 	    			
-	    			if (feeQueryParams.containsKey(argName+"Amount")) {
+	    			if (feeQueryParams.paramExists(argName+"Amount")) {
 	    				formFeesValues.add("(:formGuid, :"+argName+"Amount, '"+typeName+"', 1, :"+argName+"AccountingCode, 'Unpaid')");
 	    			}
 	    		}
