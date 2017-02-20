@@ -17,12 +17,7 @@ Application.$controller("UserOpenFormsPageController", ["$scope", function ($sco
 }]);
 
 
-Application.$controller("gridOpenFormsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
-]);
+
 
 Application.$controller("dialogCompaniesListController", ["$scope",
 	function($scope) {
@@ -32,6 +27,13 @@ Application.$controller("dialogCompaniesListController", ["$scope",
 ]);
 
 Application.$controller("gridCompaniesListController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("gridOpenFormsController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;
