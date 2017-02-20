@@ -58,6 +58,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeGetListofGroupName(Pageable pageable,java.util.List<java.lang.Integer> MunicipalityGroupID, java.lang.Integer MunicipalityID) throws QueryParameterMismatchException;
     Page<Object> executeGetListofUsers(Pageable pageable, java.lang.Integer municipalityID, java.lang.String Email) throws QueryParameterMismatchException;
     Page<Object> executeGetMunicipalityGroupIdIDs(Pageable pageable, java.lang.Integer userID) throws QueryParameterMismatchException;
+    Page<Object> executeGetOwnersForGisRecords(Pageable pageable,java.util.List<java.lang.Integer> gisRecordIds) throws QueryParameterMismatchException;
     Page<Object> executeGetProcessGroupMemebersByFormGUID(Pageable pageable, java.lang.String FormGUID) throws QueryParameterMismatchException;
     Page<Object> executeGetProjectGisrecords(Pageable pageable, java.lang.String relatedProjectGuid) throws QueryParameterMismatchException;
     Page<Object> executeGetRecentMessageId(Pageable pageable, java.lang.String form, java.sql.Timestamp PostedAt) throws QueryParameterMismatchException;

@@ -6,7 +6,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "gisrecordId",
-      "value" : "bind:Variables.stvGisData.dataSet[0].ID",
+      "value" : "bind:Variables.stvGisData.dataSet[$i].ID",
       "type" : "number"
     }, {
       "target" : "contactType",
@@ -24,6 +24,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 9001,
     "designMaxResults" : 10,
+    "onSuccess" : "Cx2GiscontactsDataonSuccess($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : true,
@@ -6769,11 +6770,39 @@
       "City" : "",
       "State" : "",
       "PostalCode" : "",
-      "Country" : ""
+      "Country" : "",
+      "Primary" : false
     } ],
     "type" : "string",
     "isList" : true,
     "saveInPhonegap" : false
+  },
+  "svGetOwners" : {
+    "_id" : "wm-svGetOwners-wm.ServiceVariable-1487623077217",
+    "name" : "svGetOwners",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "gisRecordIds",
+      "value" : "bind:getOwnerGisRecordIds()",
+      "type" : "integer"
+    } ],
+    "type" : "cx2getOwnersForGisRecordsrtnType",
+    "service" : "cx2",
+    "operation" : "executeGetOwnersForGisRecords",
+    "operationId" : "QueryExecutionController_executeGetOwnersForGisRecords",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 100,
+    "designMaxResults" : 100,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
   },
   "svGetUserRoles" : {
     "_id" : "wm-svGetUserRoles-wm.ServiceVariable-1485809900405",

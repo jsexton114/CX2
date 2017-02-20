@@ -4,3 +4,7 @@
     width: auto !important;
     height: auto !important;
 }
+
+div[name=panelForm] > div.panel-content {
+    min-height: 800px;
+}

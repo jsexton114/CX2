@@ -69,8 +69,8 @@ public class FormController {
     }
 
     @RequestMapping(value = "/submitForm", produces = "application/json", method = RequestMethod.POST)
-    public String submitForm(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "behalfOfUserId", required = false) Long behalfOfUserId, @RequestParam(value = "ownerId", required = false) Long ownerId, @RequestParam(value = "locationIds", required = false) String locationIds, @RequestParam(value = "vendorIds", required = false) String vendorIds, @RequestParam(value = "usersWithWhomToShare", required = false) String usersWithWhomToShare, @RequestBody HashMap<String, Object> fieldData) throws SQLException {
-        return formService.submitForm(formTypeId, behalfOfUserId, ownerId, locationIds, vendorIds, usersWithWhomToShare, fieldData);
+    public String submitForm(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "behalfOfUserId", required = false) Long behalfOfUserId, @RequestParam(value = "ownerId", required = false) Long ownerId, @RequestParam(value = "locationIds", required = false) String locationIds, @RequestParam(value = "vendorIds", required = false) String vendorIds, @RequestParam(value = "primaryVendorId", required = false) Long primaryVendorId, @RequestParam(value = "usersWithWhomToShare", required = false) String usersWithWhomToShare, @RequestBody HashMap<String, Object> fieldData) throws SQLException {
+        return formService.submitForm(formTypeId, behalfOfUserId, ownerId, locationIds, vendorIds, primaryVendorId, usersWithWhomToShare, fieldData);
     }
 
     @RequestMapping(value = "/uploadDocuments", method = RequestMethod.POST, consumes = "multipart/form-data")

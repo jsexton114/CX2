@@ -421,6 +421,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeGetOwnersForGisRecords(Pageable pageable, java.util.List<java.lang.Integer> gisRecordIds)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("gisRecordIds", gisRecordIds);
+        return queryExecutor.executeNamedQuery("getOwnersForGisRecords", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeGetProcessGroupMemebersByFormGUID(Pageable pageable, java.lang.String FormGUID)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

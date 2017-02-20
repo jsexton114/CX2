@@ -49,6 +49,15 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         shouldSubmitOnBehalf();
     };
 
+    $scope.getOwnerGisRecordIds = function() {
+        var ownerGisRecordIds = [];
+        $scope.Variables.stvGisData.dataSet.forEach(function(gisRecord, index) {
+            ownerGisRecordIds.push(gisRecord.ID);
+        });
+
+        return ownerGisRecordIds.length > 0 ? ownerGisRecordIds : undefined;
+    };
+
 
     $scope.lvFormTypeonSuccess = function(variable, data) {
         var formType = data[0];
@@ -119,8 +128,14 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
             if (!!ownerId) {
                 $scope.Variables.svSubmitForm.setInput('ownerId', ownerId);
             } else if ($scope.Widgets.checkboxOtherOwner.datavalue || $scope.Widgets.checkboxVendorIsOwner.datavalue) {
-                $scope.Widgets.lfOwner.save();
-                return; // TBC
+                if (!$scope.Widgets.lfOwner.formfields.id.value) {
+                    $scope.Widgets.lfOwner.formfields.contactType.value = 'Owner';
+                    $scope.Widgets.lfOwner.formfields.active.value = true;
+                    $scope.Widgets.lfOwner.save();
+                    return; // TBC
+                } else {
+                    $scope.Variables.svSubmitForm.setInput('ownerId', $scope.Widgets.lfOwner.formfields.id.value);
+                }
             } else if ($scope.Widgets.gridOwners.selectedItems.length > 0) {
                 $scope.Variables.svSubmitForm.setInput('ownerId', $scope.Widgets.gridOwners.selectedItems[0].id);
             }
@@ -129,6 +144,12 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         $scope.Variables.svSubmitForm.setInput('locationIds', generateIdString($scope.Variables.stvGisData.dataSet));
         $scope.Variables.svSubmitForm.setInput('vendorIds', generateIdString($scope.Variables.stvVendors.dataSet));
         $scope.Variables.svSubmitForm.setInput('usersWithWhomToShare', generateIdString($scope.Variables.stvContacts.dataSet));
+        $scope.Variables.stvVendors.dataSet.some(function(vendorData, index) {
+            if (vendorData.Primary) {
+                $scope.Variables.svSubmitForm.setInput('primaryVendorId', vendorData.ID);
+                return true;
+            }
+        });
         $scope.Variables.svSubmitForm.update();
     }
 
@@ -187,19 +208,45 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         $location.path("/");
     };
 
+    $scope.checkForExistingOwner = function(vendorData, gisId) {
+        var vendorInfo = vendorData || _.find($scope.Variables.stvVendors.dataSet, {
+            'Primary': true
+        });
+        var gisRecordId = gisId || $scope.Widgets.gisRecordSelect.datavalue;
+        var ownerExists = false;
+        $scope.Widgets.gridOwners.gridData.some(function(gridOwner, index) {
+            if (gridOwner.firstName === vendorInfo.Company && gridOwner.email === vendorInfo.EmailAddress && gridOwner.gisrecords.id === gisRecordId) {
+                ownerExists = true;
+                $scope.Widgets.lfOwner.formfields.id.value = gridOwner.id;
+                return true;
+            }
+        });
+
+        if (!ownerExists) {
+            $scope.Widgets.lfOwner.formfields.id.value = null;
+        }
+    };
+
 
     $scope.checkboxVendorIsOwnerChange = function($event, $isolateScope, newVal, oldVal) {
         if (newVal === true) {
-            var vendorInfo = $scope.Variables.stvVendors.dataSet[0];
-            $scope.Widgets.lfOwner.formFields.firstName.datavalue = vendorInfo.Company;
-            $scope.Widgets.lfOwner.address1.datavalue = vendorInfo.Address1;
-            $scope.Widgets.lfOwner.address2.datavalue = vendorInfo.Address2;
-            $scope.Widgets.lfOwner.city.datavalue = vendorInfo.City;
-            $scope.Widgets.lfOwner.states.datavalue = vendorInfo.State;
-            $scope.Widgets.lfOwner.postalCode.datavalue = vendorInfo.PostalCode;
-            $scope.Widgets.lfOwner.phone.datavalue = vendorInfo.PhoneNumber;
-            $scope.Widgets.lfOwner.email.datavalue = vendorInfo.EmailAddress;
-            $scope.Widgets.lfOwner.country.datavalue = vendorInfo.Country;
+            var vendorInfo = _.find($scope.Variables.stvVendors.dataSet, {
+                'Primary': true
+            });
+            $scope.Widgets.lfOwner.formfields.firstName.value = vendorInfo.Company;
+            $scope.Widgets.lfOwner.formfields.address1.value = vendorInfo.Address1;
+            $scope.Widgets.lfOwner.formfields.address2.value = vendorInfo.Address2;
+            $scope.Widgets.lfOwner.formfields.city.value = vendorInfo.City;
+            $scope.Widgets.lfOwner.formfields.states.value = {
+                id: vendorInfo.StateId,
+                stateName: vendorInfo.State
+            };
+            $scope.Widgets.lfOwner.formfields.postalCode.value = vendorInfo.PostalCode;
+            $scope.Widgets.lfOwner.formfields.phone.value = vendorInfo.PhoneNumber;
+            $scope.Widgets.lfOwner.formfields.email.value = vendorInfo.EmailAddress;
+            $scope.Widgets.lfOwner.formfields.country.value = vendorInfo.Country;
+
+            $scope.checkForExistingOwner(vendorInfo);
         } else {
             $scope.Widgets.lfOwner.clearData();
         }
@@ -215,10 +262,36 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         $scope.Variables.goToPage_UserOpenForms.navigate();
     };
 
+    function setLFFieldsRO(liveForm, readOnly) {
+        liveForm.formFields.forEach(function(field, index) {
+            if (field.show === true) {
+                field.readonly = readOnly;
+                if (field.name !== 'notes' && field.name !== 'address2') {
+                    field.required = !readOnly;
+                }
+            }
+        });
+    }
 
     $scope.wizardstep9Load = function($isolateScope, stepIndex) {
-        if ($scope.Widgets.checkboxOtherOwner.datavalue) {
-            $scope.Widgets.lfOwner.setReadonly(false);
+        if (!$scope.Widgets.checkboxOtherOwner.datavalue) {
+            setLFFieldsRO($scope.Widgets.lfOwner, true);
+        }
+    };
+
+
+    $scope.checkboxOtherOwnerChange = function($event, $isolateScope, newVal, oldVal) {
+        if (newVal === true) {
+            setLFFieldsRO($scope.Widgets.lfOwner, false);
+        } else {
+            setLFFieldsRO($scope.Widgets.lfOwner, true);
+        }
+    };
+
+
+    $scope.Cx2GiscontactsDataonSuccess = function(variable, data) {
+        if (data.length === 1) {
+            $scope.Widgets.gridOwners.selectItem(0);
         }
     };
 
@@ -379,12 +452,27 @@ Application.$controller("gridVendorsController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
+        $scope.changePrimaryVendor = function($event, $rowData) {
+            $event.preventDefault();
+            if ($rowData.Primary) {
+                return;
+            } else {
+                $scope.Variables.stvVendors.dataSet.forEach(function(vendorData, index) {
+                    vendorData.Primary = (vendorData.ID === $rowData.ID);
+                });
+            }
+        };
+
         $scope.customRowAction = function($event, $rowData) {
             var rowIndex = _.findIndex($scope.Variables.stvVendors.dataSet, {
                 'ID': $rowData.ID
             });
 
             $scope.Variables.stvVendors.dataSet.splice(rowIndex, 1);
+
+            if ($rowData.Primary && $scope.Variables.stvVendors.dataSet.length > 0) {
+                $scope.Variables.stvVendors.dataSet[0].Primary = true;
+            }
         };
 
     }
@@ -412,8 +500,10 @@ Application.$controller("dialogAddVendorController", ["$scope",
                     Address2: newVendor.vendor.address2,
                     City: newVendor.vendor.city,
                     State: newVendor.vendor.states.stateName,
+                    StateId: newVendor.vendor.states.id,
                     PostalCode: newVendor.vendor.postalCode,
-                    Country: newVendor.vendor.country
+                    Country: newVendor.vendor.country,
+                    Primary: $scope.Variables.stvVendors.dataSet.length === 0
                 });
             }
         };
@@ -425,6 +515,11 @@ Application.$controller("lfOwnerController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.gisRecordSelectChange = function($event, $isolateScope, newVal, oldVal) {
+            $scope.$parent.checkForExistingOwner(null, parseInt(newVal));
+        };
+
     }
 ]);
 
@@ -432,5 +527,9 @@ Application.$controller("gridOwnersController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.selectOwner = function($event, $rowData) {
+            $event.preventDefault();
+        };
     }
 ]);

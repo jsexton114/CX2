@@ -216,6 +216,10 @@
         <parameter name="Email" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2getListofUsersrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="getOwnersForGisRecords">
+        <parameter name="gisRecordIds" typeRef="java.lang.Integer" isList="true"/>
+        <return typeRef="cx2getOwnersForGisRecordsrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="GetProcessGroupMemebersByFormGUID">
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2GetProcessGroupMemebersByFormGUIDrtnType" isList="false"/>
@@ -751,6 +755,10 @@
     <operation operationType="nativequery" name="getMunicipalityGroupIdIDs">
         <parameter name="userID" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2getMunicipalityGroupIdIDsrtnType" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="getOwnersForGisRecords">
+        <parameter name="gisRecordIds" typeRef="java.lang.Integer" isList="true"/>
+        <return typeRef="cx2getOwnersForGisRecordsrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="GetProcessGroupMemebersByFormGUID">
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
@@ -2497,6 +2505,26 @@
         </dataobject>
         <dataobject javaType="cx2getMunicipalityGroupIdIDsrtnType">
             <element name="MunicipalityGroupId" typeRef="java.math.BigDecimal"/>
+        </dataobject>
+        <dataobject javaType="cx2getOwnersForGisRecordsrtnType">
+            <element name="active" typeRef="java.lang.Boolean"/>
+            <element name="address1" typeRef="java.lang.String"/>
+            <element name="address2" typeRef="java.lang.String"/>
+            <element name="city" typeRef="java.lang.String"/>
+            <element name="contactType" typeRef="java.lang.String"/>
+            <element name="country" typeRef="java.lang.String"/>
+            <element name="email" typeRef="java.lang.String"/>
+            <element name="firstName" typeRef="java.lang.String"/>
+            <element name="gisrecordId" typeRef="java.lang.Integer"/>
+            <element name="gisrecords" typeRef="com.civicxpress.cx2.Gisrecords"/>
+            <element name="id" typeRef="java.lang.Integer"/>
+            <element name="lastName" typeRef="java.lang.String"/>
+            <element name="masterFormses" typeRef="java.util.List"/>
+            <element name="notes" typeRef="java.lang.String"/>
+            <element name="phone" typeRef="java.lang.String"/>
+            <element name="postalCode" typeRef="java.lang.String"/>
+            <element name="stateId" typeRef="java.lang.Integer"/>
+            <element name="states" typeRef="com.civicxpress.cx2.States"/>
         </dataobject>
         <dataobject javaType="cx2getRolesForUserrtnType">
             <element name="MunicipalityId" typeRef="java.math.BigDecimal"/>

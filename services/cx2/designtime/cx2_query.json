@@ -1446,6 +1446,43 @@
       "MunicipalityGroupId" : "java.math.BigDecimal"
     }
   }, {
+    "name" : "getOwnersForGisRecords",
+    "query" : "FROM Giscontacts WHERE contactType='Owner' AND active=1 AND gisRecordId IN :gisRecordIds",
+    "comment" : "Owners over multiple GIS Records",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "gisRecordIds",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "3718,53",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : true
+    } ],
+    "outputType" : "cx2getOwnersForGisRecordsrtnType",
+    "returnTypeMetadata" : {
+      "active" : "java.lang.Boolean",
+      "address1" : "java.lang.String",
+      "address2" : "java.lang.String",
+      "city" : "java.lang.String",
+      "contactType" : "java.lang.String",
+      "country" : "java.lang.String",
+      "email" : "java.lang.String",
+      "firstName" : "java.lang.String",
+      "gisrecordId" : "java.lang.Integer",
+      "gisrecords" : "com.civicxpress.cx2.Gisrecords",
+      "id" : "java.lang.Integer",
+      "lastName" : "java.lang.String",
+      "masterFormses" : "java.util.List",
+      "notes" : "java.lang.String",
+      "phone" : "java.lang.String",
+      "postalCode" : "java.lang.String",
+      "stateId" : "java.lang.Integer",
+      "states" : "com.civicxpress.cx2.States"
+    }
+  }, {
     "name" : "GetProcessGroupMemebersByFormGUID",
     "query" : "select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF where  MF.FormGUID=:FormGUID and MG.ID=MF.AssignedToGroupId and MG.ID=MGM.MunicipalityGroupId",
     "comment" : "GetProcessGroupMemebersByFormGUID",

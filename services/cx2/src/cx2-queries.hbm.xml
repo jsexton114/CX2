@@ -217,6 +217,11 @@
       select MunicipalityGroupId from MunicipalityGroupMembers where UserId =:userID
     ]]>
   </sql-query>
+  <query name="getOwnersForGisRecords">
+    <![CDATA[
+      FROM Giscontacts WHERE contactType='Owner' AND active=1 AND gisRecordId IN :gisRecordIds
+    ]]>
+  </query>
   <sql-query name="GetProcessGroupMemebersByFormGUID">
     <![CDATA[
       select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF where  MF.FormGUID=:FormGUID and MG.ID=MF.AssignedToGroupId and MG.ID=MGM.MunicipalityGroupId

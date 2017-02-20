@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,10 +29,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.tekdog.dbutils.*;
 
@@ -58,8 +54,6 @@ public class FormService {
 	private static SimpleDateFormat datetimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private static SimpleDateFormat monthYearFormatter = new SimpleDateFormat("MMyyyy");
 	private static SimpleDateFormat yearMonthFormatter = new SimpleDateFormat("yyyyMM");
-	
-	private static NumberFormat currFormat = NumberFormat.getCurrencyInstance(Locale.US);
 	
 	private static List<String> autoFeeTypes = Arrays.asList("Flat Fee;flatFee", "Square Feet Fee;sfFee", "Unit Fee;unitFee", "Basement Fee;basementFee", "State Fee;stateFee");
 
@@ -611,7 +605,7 @@ public class FormService {
 		return queryParams;
     }
     
-    public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, String usersWithWhomToShare, HashMap<String, Object> fieldData) throws SQLException {
+    public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, HashMap<String, Object> fieldData) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
@@ -717,7 +711,7 @@ public class FormService {
 	    	
 	    	// Add Vendor(s)
 	    	if (formTypeData.getBoolean("VendorSelection")) {
-		    	StringBuilder vendorsQuery = new StringBuilder("INSERT INTO Vendors2Form (RelatedFormGUID, VendorId, SharedOn) VALUES ");
+		    	StringBuilder vendorsQuery = new StringBuilder("INSERT INTO Vendors2Form (RelatedFormGUID, VendorId, PrimaryVendor, SharedOn) VALUES ");
 		    	int vendorIndex = 0;
 		    	
 	    		for (String vendorId : vendorIds.split(",")) {
@@ -725,12 +719,16 @@ public class FormService {
 	    				vendorsQuery.append(',');
 	    			}
 	    			
-	    			String paramName = DBUtils.getSqlSafeString("vendor"+vendorIndex+"VendorId");
+	    			Long vendorIdLong = Long.parseLong(vendorId);
+	    			
+	    			String paramName = "vendor"+vendorIndex+"VendorId";
+	    			String primaryParamName = "vendor"+vendorIndex+"Primary";
 	    			vendorIndex++;
 	    			
-	    			queryParams.put(paramName, Long.parseLong(vendorId));
+	    			queryParams.put(paramName, vendorIdLong);
+	    			queryParams.put(primaryParamName, vendorIdLong.equals(primaryVendorId));
 	    			
-	    			vendorsQuery.append("(:formGuid, :"+paramName+", SYSDATETIME())");
+	    			vendorsQuery.append("(:formGuid, :"+paramName+", :"+primaryParamName+", SYSUTCDATETIME())");
 	    		}
 	    		
 	    		DBUtils.simpleUpdateQuery(cx2Conn, vendorsQuery.toString(), queryParams);

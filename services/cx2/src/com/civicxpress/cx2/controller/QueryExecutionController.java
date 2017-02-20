@@ -470,6 +470,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/getOwnersForGisRecords", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeGetOwnersForGisRecords(@RequestParam(value = "gisRecordIds", required = true) java.util.List<java.lang.Integer> gisRecordIds, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query getOwnersForGisRecords");
+        Page<Object> result = queryService.executeGetOwnersForGisRecords(pageable, gisRecordIds);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/GetProcessGroupMemebersByFormGUID", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeGetProcessGroupMemebersByFormGUID(@RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID, Pageable pageable) throws QueryParameterMismatchException {
