@@ -30,7 +30,7 @@
                                 <wm-layoutgrid name="layoutgrid2_1">
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
-                                            <wm-grid title="" dataset="bind:Variables.VendorUsers.dataSet" navigation="Classic" name="gridVendorUsers" filtermode="multicolumn" exportformat="EXCEL">
+                                            <wm-grid title="" dataset="bind:Variables.VendorUsers.dataSet" navigation="Classic" name="gridVendorUsers" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                 <wm-grid-column binding="users.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="users.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
@@ -42,7 +42,7 @@
                                                 <wm-grid-action key="customButton1" display-name="Invite User" show="true" class="btn-secondary" iconclass="wi wi-contact-mail" title="Invite User" shortcutkey="" disabled="false"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="Widgets.dialogUserProfile.open()"
                                                 disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Remove" action="Variables.DeleteFromVendorUsers.invoke()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove" action="Variables.DeleteFromVendorUsers.invoke()" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -52,7 +52,7 @@
                                 <wm-layoutgrid name="layoutgrid2_1">
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
-                                            <wm-grid title="" dataset="bind:Variables.VendorAdmins.dataSet" navigation="Classic" name="gridAdmins" filtermode="multicolumn" exportformat="EXCEL">
+                                            <wm-grid title="" dataset="bind:Variables.VendorAdmins.dataSet" navigation="Classic" name="gridAdmins" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                 <wm-grid-column binding="users.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="users.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                 <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
@@ -62,7 +62,7 @@
                                                 disabled="false"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="Widgets.dialogAdminProfile.open()"
                                                 disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Remove" action="Variables.DeleteFromVendorAdmins.invoke();Variables.VendorAdmins.listRecords();Widgets.dialogAddAdmin.close()"
+                                                <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove" action="Variables.DeleteFromVendorAdmins.invoke();Variables.VendorAdmins.listRecords();Widgets.dialogAddAdmin.close()"
                                                 disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>

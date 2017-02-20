@@ -89,7 +89,7 @@
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn21"></wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow11">
+                                <wm-gridrow name="gridrow11" padding="unset unset 1em unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn21_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn22" horizontalalign="center">
                                         <wm-button class="btn-primary" caption="Update Status" type="button" margin="unset 0.5em" name="buttonUpdateStatus" on-click="Variables.svSetFormStatus.invoke()" iconclass="wi wi-update" disabled="bind:!Widgets.selectStatus.datavalue.id || !Widgets.textareaNotes.datavalue"></wm-button>
@@ -160,7 +160,7 @@
                                                 <wm-label padding="unset 0.5em" name="label61" caption="You may add or remove locations for this form."></wm-label>
                                                 <wm-label padding="unset 0.5em" name="label34" caption="Some forms allow for multiple locations while others may only allow a single location to be added."></wm-label>
                                                 <wm-label padding="unset 0.5em" name="label62" caption="You may also view location details by clicking on the magnifying glass located in the “Actions” area below."></wm-label>
-                                                <wm-grid title="" dataset="bind:Variables.Gis2formsData.dataSet" navigation="Classic" name="gridLocation">
+                                                <wm-grid title="" dataset="bind:Variables.Gis2formsData.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn">
                                                     <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" readonly="true" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" readonly="true" show="true"></wm-grid-column>

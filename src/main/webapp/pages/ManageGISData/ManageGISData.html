@@ -33,13 +33,13 @@
                                         <wm-grid-column binding="subdivision" caption="Subdivision" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="subShortCode" caption="Sub Short Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New Subdivision" show="true" class="btn-primary" iconclass="wi wi-playlist-add" title="New Subdivision" action="addNewRow();addNewRowAction($event)"
-                                        accessroles="CXAdmin,MunicipalityAdmin" shortcutkey="" disabled="false" icon="wi wi-playlist-add"></wm-grid-action>
+                                        <wm-grid-action key="addNewRow" display-name="New Subdivision" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Subdivision" action="addNewRow();addNewRowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
+                                        shortcutkey="" disabled="false" icon="wi wi-playlist-add"></wm-grid-action>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-list" title="View Details" action="Widgets.dialogSubdivisonParcels.open()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-list" title="View Parcels" action="Widgets.dialogSubdivisonParcels.open()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Subdivision Details" formlayout="dialog" iconclass="wi wi-playlist-add" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" captionalign="left" captionposition="top"
+                                    <wm-liveform novalidate="false" errormessage="" title="Subdivision Name" formlayout="dialog" iconclass="wi wi-file-text" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" captionalign="left" captionposition="top"
                                     name="liveform1">
                                         <wm-layoutgrid columns="1" name="layoutgrid1">
                                             <wm-gridrow name="gridrow1">
@@ -78,7 +78,7 @@
                                         <wm-grid-column binding="city" caption="City" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New Parcel" show="true" class="btn-primary" iconclass="wi wi-add-location" title="New Parcel" action="addNewRow();addNewRowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
+                                        <wm-grid-action key="addNewRow" display-name="New Parcel" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Parcel" action="addNewRow();addNewRowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
                                         shortcutkey="" disabled="false" icon="wi wi-add-location"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.goToPage_EditGISRecord.invoke()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
@@ -131,17 +131,17 @@
                                                     <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn42">
-                                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="required" widget="select" placeholder="Select value"
+                                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="false" widget="select" placeholder="Select value"
                                                     displayexpression="stateName" orderby="stateName:asc"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn43">
-                                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="required" widget="text" maxchars="255" inputtype="text"
+                                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="false" widget="text" maxchars="255" inputtype="text"
                                                     placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow23">
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn44">
-                                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="readonly" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
                                                     defaultvalue="USA"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn45">
@@ -171,7 +171,7 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="viewSubdivisonParcels">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Subdivision Data" iconclass="wi wi-file-text" name="dialogSubdivisonParcels" width="60%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Subdivision Details" iconclass="wi wi-file-text" name="dialogSubdivisonParcels" width="60%">
             <wm-layoutgrid name="layoutgrid4_1">
                 <wm-gridrow name="gridrow12">
                     <wm-gridcolumn columnwidth="2" name="gridcolumn30_1"></wm-gridcolumn>
