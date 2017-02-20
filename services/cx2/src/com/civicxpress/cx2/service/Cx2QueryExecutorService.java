@@ -79,6 +79,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeMunicipalityCount(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeMunicipalityProjects(Pageable pageable, java.lang.Boolean Active, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeOpenedOrClosedFormsForUserOrSharedWith(Pageable pageable, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
+    Page<Object> executePreferenceForUser(Pageable pageable, java.lang.Integer userId) throws QueryParameterMismatchException;
     Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, java.lang.Integer UserId, java.lang.Integer MunicipalityId, java.lang.Boolean Closed) throws QueryParameterMismatchException;
     Page<Object> executeProjectForms(Pageable pageable, java.lang.String project) throws QueryParameterMismatchException;
     Page<Object> executeProjectsForUsersAndSharedWith(Pageable pageable, java.lang.Boolean Active, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
@@ -104,6 +105,7 @@ public interface Cx2QueryExecutorService {
 	int executeUpdatePrimaryVendorStatusInVEndor2Forms(  java.lang.Boolean pv , java.lang.String form) throws QueryParameterMismatchException;
 	int executeUpdateProcessOwnersForGUID(  java.lang.Integer AssignedToGroupId , java.lang.String GUID) throws QueryParameterMismatchException;
 	int executeUpdateRoleForMunicipality(  java.lang.String role , java.lang.Integer municipality , java.lang.Integer user) throws QueryParameterMismatchException;
+	int executeUpdateUserPreferences(  java.lang.Integer PreferenceId , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateVendorForMasterForms(  java.lang.Integer CXVendorId , java.lang.String FormGUID) throws QueryParameterMismatchException;
 	int executeUpdateVendorStatus(  java.sql.Timestamp DateApproved , java.lang.String ApprovedBy , java.sql.Timestamp ExpiresDate , java.lang.Boolean Active , java.lang.String ApprovalStatus , java.lang.String Reviewer , java.lang.Integer municipality , java.lang.Integer vendor) throws QueryParameterMismatchException;
 	int executeUpdateWorkMunicipality(  java.lang.Boolean monday , java.lang.Boolean tuesday , java.lang.Boolean wednesday , java.lang.Boolean thursday , java.lang.Boolean friday , java.lang.Boolean saturday , java.lang.Boolean sunday , java.lang.String timezone , java.sql.Time openTime , java.sql.Time closeTime , java.lang.Integer municipalityId) throws QueryParameterMismatchException;

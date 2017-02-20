@@ -316,6 +316,10 @@
         <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2OpenedOrClosedFormsForUserOrSharedWithrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="PreferenceForUser">
+        <parameter name="userId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2PreferenceForUserrtnType" isList="false"/>
+    </operation>
     <operation operationType="hqlquery" name="ProcessFormsForUserByMunicipality">
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
@@ -522,6 +526,11 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateUserPreferences">
+        <parameter name="PreferenceId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
@@ -842,6 +851,10 @@
         <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2OpenedOrClosedFormsForUserOrSharedWithrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="PreferenceForUser">
+        <parameter name="userId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2PreferenceForUserrtnType" isList="false"/>
+    </operation>
     <operation operationType="hqlquery" name="ProcessFormsForUserByMunicipality">
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
@@ -993,6 +1006,11 @@
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateRoleForMunicipalityrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateUserPreferences">
+        <parameter name="PreferenceId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateUserPreferencesrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdateVendorForMasterForms">
         <parameter name="CXVendorId" typeRef="java.lang.Integer" isList="false"/>
@@ -2221,6 +2239,12 @@
             <element name="vendor" typeRef="com.civicxpress.cx2.Vendor"/>
             <element name="vendors2forms" typeRef="java.util.List"/>
         </dataobject>
+        <dataobject javaType="cx2PreferenceForUserrtnType">
+            <element name="id" typeRef="java.lang.Integer"/>
+            <element name="userViewPreferenceses" typeRef="java.util.List"/>
+            <element name="viewDescription" typeRef="java.lang.String"/>
+            <element name="viewName" typeRef="java.lang.String"/>
+        </dataobject>
         <dataobject javaType="cx2ProcessFormsForUserByMunicipalityrtnType">
             <element name="MunicipalityGroupMembers.municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups"/>
             <element name="MunicipalityGroupMembers.userId" typeRef="java.lang.Integer"/>
@@ -2382,6 +2406,7 @@
         <dataobject javaType="cx2UpdatePrimaryVendorStatusInVEndor2FormsrtnType"/>
         <dataobject javaType="cx2UpdateProcessOwnersForGUIDrtnType"/>
         <dataobject javaType="cx2UpdateRoleForMunicipalityrtnType"/>
+        <dataobject javaType="cx2UpdateUserPreferencesrtnType"/>
         <dataobject javaType="cx2UpdateVendorForMasterFormsrtnType"/>
         <dataobject javaType="cx2UpdateVendorStatusrtnType"/>
         <dataobject javaType="cx2UpdateWorkMunicipalityrtnType"/>

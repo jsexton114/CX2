@@ -322,6 +322,11 @@
       from MasterForms where UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser ) ORDER BY DateModified DESC
     ]]>
   </query>
+  <query name="PreferenceForUser">
+    <![CDATA[
+      from StandardViews where id IN (select preferenceId from  UserViewPreferences where userId = :userId )
+    ]]>
+  </query>
   <query name="ProcessFormsForUserByMunicipality">
     <![CDATA[
       from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.userId=:UserId and GM.municipalityGroupId=MG.id and MG.id=MF.assignedToGroupId and MF.municipalityId=:MunicipalityId and MF.closed=:Closed ORDER BY DateModified DESC
@@ -446,6 +451,11 @@
   <sql-query name="UpdateRoleForMunicipality">
     <![CDATA[
       update Roles set RoleName=:role where MunicipalityId=:municipality and UserId=:user
+    ]]>
+  </sql-query>
+  <sql-query name="UpdateUserPreferences">
+    <![CDATA[
+      update UserViewPreferences set PreferenceId=:PreferenceId where UserId=:user
     ]]>
   </sql-query>
   <sql-query name="UpdateVendorForMasterForms">

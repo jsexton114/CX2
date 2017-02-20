@@ -680,6 +680,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/PreferenceForUser", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executePreferenceForUser(@RequestParam(value = "userId", required = false) java.lang.Integer userId, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query PreferenceForUser");
+        Page<Object> result = queryService.executePreferenceForUser(pageable, userId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/ProcessFormsForUserByMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeProcessFormsForUserByMunicipality(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, @RequestParam(value = "Closed", required = false) java.lang.Boolean Closed, Pageable pageable) throws QueryParameterMismatchException {
@@ -925,6 +935,16 @@ public class QueryExecutionController {
     public int executeUpdateRoleForMunicipality(@RequestParam(value = "role", required = false) java.lang.String role, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, @RequestParam(value = "user", required = false) java.lang.Integer user) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query UpdateRoleForMunicipality");
         int result = queryService.executeUpdateRoleForMunicipality(role, municipality, user);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdateUserPreferences", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdateUserPreferences(@RequestParam(value = "PreferenceId", required = false) java.lang.Integer PreferenceId, @RequestParam(value = "user", required = false) java.lang.Integer user) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdateUserPreferences");
+        int result = queryService.executeUpdateUserPreferences(PreferenceId, user);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }
