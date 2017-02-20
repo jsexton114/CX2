@@ -49,6 +49,15 @@ public interface UserViewPreferencesService {
 	 */
 	UserViewPreferences findById(Integer userviewpreferencesId);
 
+    /**
+	 * Find and return the UserViewPreferences for given userId  andpreferenceId  if exists.
+	 *
+	 * @param userId value of userId; value cannot be null.
+	 * @param preferenceId value of preferenceId; value cannot be null.
+	 * @return UserViewPreferences associated with the given inputs.
+     * @throws EntityNotFoundException if no matching UserViewPreferences found.
+	 */
+    UserViewPreferences getByUserIdAndPreferenceId(Integer userId, Integer preferenceId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing UserViewPreferences. It replaces all fields of the existing UserViewPreferences with the given userViewPreferences.

@@ -83,6 +83,13 @@ public class UserViewPreferencesController {
         return deletedUserViewPreferences != null;
     }
 
+    @RequestMapping(value = "/userId-preferenceId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching UserViewPreferences with given unique key values.")
+    public UserViewPreferences getByUserIdAndPreferenceId(@RequestParam(name = "userId") Integer userId, @RequestParam(name = "preferenceId") Integer preferenceId) {
+        LOGGER.debug("Getting UserViewPreferences with uniques key UserIdAndPreferenceId");
+        return userViewPreferencesService.getByUserIdAndPreferenceId(userId, preferenceId);
+    }
+
     /**
      * @deprecated Use {@link #findUserViewPreferences(String, Pageable)} instead.
      */
