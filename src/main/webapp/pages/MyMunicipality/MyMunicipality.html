@@ -128,7 +128,21 @@
                             </wm-layoutgrid>
                         </wm-tile>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn22"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn22" padding="2em unset" horizontalalign="center">
+                        <wm-tile width="240px" height="160px" class="bg-primary" name="tile8" on-click="Variables.goToPage_MunicipalityProjects.invoke()">
+                            <wm-layoutgrid height="100%" name="layoutgrid9">
+                                <wm-gridrow height="100%" name="gridrow12">
+                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" class="col-xs-3" name="gridcolumn26">
+                                        <wm-icon iconsize="3em" iconclass="wi wi-message" name="icon8"></wm-icon>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" class="col-xs-9" name="gridcolumn27">
+                                        <wm-label caption="Projects" class="p" fontsize="1.5" fontunit="em" name="label16_1"></wm-label>
+                                        <wm-label caption="bind:Variables.CountOfMunicipalityProjects.dataSet[$i].count" fontsize="3" fontunit="em" class="p" name="label17"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-tile>
+                    </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn23"></wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>

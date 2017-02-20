@@ -173,6 +173,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeCountOfMunicipalityProjects(Pageable pageable, java.lang.Integer municipalityId, java.lang.Boolean Active)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("municipalityId", municipalityId);
+        params.put("Active", Active);
+        return queryExecutor.executeNamedQuery("CountOfMunicipalityProjects", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeCountOfProcessFormsByMuncipality(Pageable pageable, java.lang.Integer UserId, java.lang.Integer MunicipalityId, java.lang.Boolean closed)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
@@ -579,6 +588,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         return queryExecutor.executeNamedQuery("MunicipalityCount", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
+	public Page<Object> executeMunicipalityProjects(Pageable pageable, java.lang.Boolean Active, java.lang.Integer MunicipalityId)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("Active", Active);
+        params.put("MunicipalityId", MunicipalityId);
+        return queryExecutor.executeNamedQuery("MunicipalityProjects", params, pageable);
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override

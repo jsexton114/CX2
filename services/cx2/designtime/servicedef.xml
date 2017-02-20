@@ -301,6 +301,11 @@
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="MunicipalityProjects">
+        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2MunicipalityProjectsrtnType" isList="false"/>
+    </operation>
     <operation operationType="hqlquery" name="OpenedOrClosedFormsForUserOrSharedWith">
         <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="sharedWithUser" typeRef="java.lang.Integer" isList="false"/>
@@ -513,6 +518,11 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="CountOfMunicipalityProjects">
+        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
@@ -591,6 +601,11 @@
     <operation operationType="nativequery" name="CountOfMuncipalityApplicationsByVendor">
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2CountOfMuncipalityApplicationsByVendorrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="CountOfMunicipalityProjects">
+        <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
+        <return typeRef="cx2CountOfMunicipalityProjectsrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="CountOfProcessFormsByMuncipality">
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -816,6 +831,11 @@
     </operation>
     <operation operationType="nativequery" name="MunicipalityCount">
         <return typeRef="cx2MunicipalityCountrtnType" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="MunicipalityProjects">
+        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2MunicipalityProjectsrtnType" isList="false"/>
     </operation>
     <operation operationType="hqlquery" name="OpenedOrClosedFormsForUserOrSharedWith">
         <parameter name="creatorUser" typeRef="java.lang.Integer" isList="false"/>
@@ -1809,6 +1829,9 @@
         <dataobject javaType="cx2CountOfMuncipalityApplicationsByVendorrtnType">
             <element name="count" typeRef="java.lang.Integer"/>
         </dataobject>
+        <dataobject javaType="cx2CountOfMunicipalityProjectsrtnType">
+            <element name="count" typeRef="java.lang.Integer"/>
+        </dataobject>
         <dataobject javaType="cx2CountOfProcessFormsByMuncipalityrtnType">
             <element name="count" typeRef="java.lang.Integer"/>
         </dataobject>
@@ -2144,6 +2167,27 @@
         </dataobject>
         <dataobject javaType="cx2MunicipalityCountrtnType">
             <element name="municipalitiesCount" typeRef="java.lang.Integer"/>
+        </dataobject>
+        <dataobject javaType="cx2MunicipalityProjectsrtnType">
+            <element name="active" typeRef="java.lang.Boolean"/>
+            <element name="createdBy" typeRef="java.lang.Integer"/>
+            <element name="createdDate" typeRef="java.util.Date"/>
+            <element name="estEndDate" typeRef="java.util.Date"/>
+            <element name="estStartDate" typeRef="java.util.Date"/>
+            <element name="modifiedBy" typeRef="java.lang.Integer"/>
+            <element name="modifiedDate" typeRef="java.util.Date"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities"/>
+            <element name="municipalityId" typeRef="java.lang.Integer"/>
+            <element name="projectDescription" typeRef="java.lang.String"/>
+            <element name="projectFormses" typeRef="java.util.List"/>
+            <element name="projectGisrecordses" typeRef="java.util.List"/>
+            <element name="projectGoals" typeRef="java.lang.String"/>
+            <element name="projectGuid" typeRef="java.lang.String"/>
+            <element name="projectName" typeRef="java.lang.String"/>
+            <element name="projectSharedWiths" typeRef="java.util.List"/>
+            <element name="projectTaskses" typeRef="java.util.List"/>
+            <element name="usersByCreatedBy" typeRef="com.civicxpress.cx2.Users"/>
+            <element name="usersByModifiedBy" typeRef="com.civicxpress.cx2.Users"/>
         </dataobject>
         <dataobject javaType="cx2OpenedOrClosedFormsForUserOrSharedWithrtnType">
             <element name="assignedToGroupId" typeRef="java.lang.Integer"/>

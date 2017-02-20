@@ -1,4 +1,36 @@
 {
+  "CountOfMunicipalityProjects" : {
+    "_id" : "wm-CountOfMunicipalityProjects-wm.ServiceVariable-1487585335446",
+    "name" : "CountOfMunicipalityProjects",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    }, {
+      "target" : "Active",
+      "value" : true,
+      "type" : "boolean"
+    } ],
+    "type" : "cx2CountOfMunicipalityProjectsrtnType",
+    "service" : "cx2",
+    "operation" : "executeCountOfMunicipalityProjects",
+    "operationId" : "QueryExecutionController_executeCountOfMunicipalityProjects",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "CountOfProcessFormsByMuncipality" : {
     "_id" : "wm-CountOfProcessFormsByMuncipality-wm.ServiceVariable-1485166625482",
     "name" : "CountOfProcessFormsByMuncipality",

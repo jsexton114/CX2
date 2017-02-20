@@ -499,6 +499,33 @@
       "count" : "java.lang.Integer"
     }
   }, {
+    "name" : "CountOfMunicipalityProjects",
+    "query" : "select count(*) as count from Projects where MunicipalityId=:municipalityId and Active=:Active",
+    "comment" : "CountOfMunicipalityProjects",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "municipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "Active",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2CountOfMunicipalityProjectsrtnType",
+    "returnTypeMetadata" : {
+      "count" : "java.lang.Integer"
+    }
+  }, {
     "name" : "CountOfProcessFormsByMuncipality",
     "query" : "select count(*) as count from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.UserId=:UserId and GM.MunicipalityGroupId=MG.ID and MG.ID=MF.AssignedToGroupId and MF.MunicipalityId=:MunicipalityId and MF.Closed=:closed",
     "comment" : "CountOfProcessFormsByMuncipality",
@@ -1943,6 +1970,51 @@
     "outputType" : "cx2MunicipalityCountrtnType",
     "returnTypeMetadata" : {
       "municipalitiesCount" : "java.lang.Integer"
+    }
+  }, {
+    "name" : "MunicipalityProjects",
+    "query" : "from Projects where Active=:Active and MunicipalityId=:MunicipalityId ORDER BY ModifiedDate DESC",
+    "comment" : "MunicipalityProjects",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "Active",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "MunicipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2MunicipalityProjectsrtnType",
+    "returnTypeMetadata" : {
+      "active" : "java.lang.Boolean",
+      "createdBy" : "java.lang.Integer",
+      "createdDate" : "java.util.Date",
+      "estEndDate" : "java.util.Date",
+      "estStartDate" : "java.util.Date",
+      "modifiedBy" : "java.lang.Integer",
+      "modifiedDate" : "java.util.Date",
+      "municipalities" : "com.civicxpress.cx2.Municipalities",
+      "municipalityId" : "java.lang.Integer",
+      "projectDescription" : "java.lang.String",
+      "projectFormses" : "java.util.List",
+      "projectGisrecordses" : "java.util.List",
+      "projectGoals" : "java.lang.String",
+      "projectGuid" : "java.lang.String",
+      "projectName" : "java.lang.String",
+      "projectSharedWiths" : "java.util.List",
+      "projectTaskses" : "java.util.List",
+      "usersByCreatedBy" : "com.civicxpress.cx2.Users",
+      "usersByModifiedBy" : "com.civicxpress.cx2.Users"
     }
   }, {
     "name" : "OpenedOrClosedFormsForUserOrSharedWith",
