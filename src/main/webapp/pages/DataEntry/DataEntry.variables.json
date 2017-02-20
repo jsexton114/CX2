@@ -1202,6 +1202,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "instructions",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Instructions",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 8000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -2179,6 +2191,18 @@
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
+      }, {
+        "fieldName" : "instructions",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
+        "columnName" : "Instructions",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 8000,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
       } ],
       "entityName" : "FormTypes",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormTypes",
@@ -2978,10 +3002,12 @@
         "columnName" : "FullAddress",
         "isPrimaryKey" : false,
         "notNull" : true,
-        "length" : 1050,
+        "length" : 1563,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
+        "systemInserted" : true,
+        "systemUpdated" : true,
         "scale" : 0
       } ],
       "entityName" : "Gisrecords",
@@ -5119,6 +5145,20 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 511,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -6010,6 +6050,20 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "fullName",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "FullName",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 511,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "systemInserted" : true,
+        "systemUpdated" : true,
+        "scale" : 0
       } ],
       "entityName" : "Users",
       "fullyQualifiedName" : "com.civicxpress.cx2.Users",
@@ -6689,6 +6743,20 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 511,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -6989,6 +7057,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullName",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 511,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -7311,6 +7393,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullAddress",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullAddress",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 1022,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -7693,6 +7789,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullAddress",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullAddress",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 1022,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -8659,6 +8769,20 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "fullAddress",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullAddress",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 1022,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -9161,6 +9285,20 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "fullAddress",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "FullAddress",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 1022,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "systemInserted" : true,
+        "systemUpdated" : true,
         "scale" : 0
       } ],
       "entityName" : "Vendor",
