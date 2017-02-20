@@ -119,7 +119,7 @@
                                                 <wm-grid-column binding="municipalities.email" caption="Email Address" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Municipalities"></wm-grid-column>
                                                 <wm-grid-column binding="dateSubscribed" caption="Date Subscribed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="text" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-action key="addNewRow" display-name="Add" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                <wm-grid-action key="addNewRow" display-name="Add Municipality" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Municipality" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                             <wm-liveform novalidate="false" errormessage="You have already subscribed to that municipality." title="Add Municipality" formlayout="dialog" iconclass="wi wi-account-balance" dataset="bind:Variables.GetUserSubscriptions.dataSet"
@@ -187,21 +187,21 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow35" padding="1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn35_1">
-                        <wm-panel iconclass="wi wi-remove-red-eye" title="Default View Preferences" class="panel-primary" name="panelPreferences">
+                        <wm-panel iconclass="wi wi-remove-red-eye" title="Display Preferences" class="panel-primary" name="panelPreferences">
                             <wm-layoutgrid name="layoutgrid11">
-                                <wm-gridrow name="gridrow36">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn36_3" padding="unset 20%">
+                                <wm-gridrow name="gridrow36" padding="2em unset unset unset">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn36_3">
                                         <wm-composite name="composite13">
-                                            <wm-label class="col-md-3 control-label" name="label19" caption="Select default view"></wm-label>
-                                            <wm-container class="col-md-9" name="container13">
+                                            <wm-label class="col-md-3 form-control-static" name="label19" caption="Select Default View" fontweight="bold" width="120px"></wm-label>
+                                            <wm-container class="col-md-9" name="container13" width="260px" borderstyle="none" opacity="1">
                                                 <wm-select name="selectView" dataset="bind:Variables.StandardViews.dataSet" datafield="All Fields" displayfield="viewName" datavalue="bind:Variables.PreferenceForUser.firstRecord"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow38">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn38_1">
-                                        <wm-button class="btn-primary" caption="Update" type="button" margin="1em 2em 1em unset" iconclass="wi wi-save" on-tap="Variables.UpdateUserPreferences.invoke()" name="buttonUpdatePreference" on-click="Variables.UpdateUserPreferences.invoke()"></wm-button>
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="right" name="gridcolumn38_1">
+                                        <wm-button class="btn-primary" caption="Save" type="button" margin="1em 2em 1em unset" iconclass="wi wi-save" on-tap="Variables.UpdateUserPreferences.invoke()" name="buttonUpdatePreference" on-click="Variables.UpdateUserPreferences.invoke()"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -236,12 +236,18 @@
                         <wm-form errormessage="" captionposition="top" title="Update Password" enctype="application/x-www-form-urlencoded" method="put" dataset="UpdateNewPassword" captionalign="left" name="form1" postmessage="Password updated successfully"
                         messagelayout="Toaster" class="panel-primary" iconclass="wi wi-vpn-key">
                             <wm-layoutgrid columns="1" name="layoutgrid5_1">
+                                <wm-gridrow name="gridrow38_1">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn38_2">
+                                        <wm-label padding="2em 0.5em unset 0.5em" name="label18" caption="If you would like to update your password, please provide a new password and confirm it, then click &quot;Save&quot;."></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
                                 <wm-gridrow name="gridrow21">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
                                         <wm-composite name="composite10">
                                             <wm-label class="col-md-3 control-label" name="label14" caption="New Password"></wm-label>
                                             <wm-container class="col-md-9" name="container10">
-                                                <wm-text name="textPwd" on-keyup="textPwdKeyup($event, $scope)" required="true" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" type="password" placeholder="Enter Password"></wm-text>
+                                                <wm-text name="textPwd" on-keyup="textPwdKeyup($event, $scope)" required="true" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" type="password" placeholder="Enter Password"
+                                                width="300px"></wm-text>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -251,7 +257,8 @@
                                         <wm-composite name="composite12">
                                             <wm-label class="col-md-3 control-label" name="label16" caption="Confirm Password"></wm-label>
                                             <wm-container class="col-md-9" name="container12">
-                                                <wm-text name="textRePwd" on-keyup="textRePwdKeyup($event, $scope)" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" required="true" type="password" placeholder="Enter Password"></wm-text>
+                                                <wm-text name="textRePwd" on-keyup="textRePwdKeyup($event, $scope)" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" required="true" type="password" placeholder="Enter Password"
+                                                width="300px"></wm-text>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
