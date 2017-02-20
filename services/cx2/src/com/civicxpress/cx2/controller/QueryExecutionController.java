@@ -620,6 +620,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/InsertUserPreference", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeInsertUserPreference(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "PreferenceId", required = false) java.lang.Integer PreferenceId) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query InsertUserPreference");
+        int result = queryService.executeInsertUserPreference(UserId, PreferenceId);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/ManualFeeTypeCountForMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeManualFeeTypeCountForMunicipality(@RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, Pageable pageable) throws QueryParameterMismatchException {

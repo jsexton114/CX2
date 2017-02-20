@@ -292,6 +292,11 @@
       Insert into FormMessageTagging(FormMessageId,TaggedPersonId) values(:FormMessageId,:TaggedPersonId)
     ]]>
   </sql-query>
+  <sql-query name="InsertUserPreference">
+    <![CDATA[
+      insert into UserViewPreferences(UserId,PreferenceId) values(:UserId,:PreferenceId)
+    ]]>
+  </sql-query>
   <sql-query name="ManualFeeTypeCountForMunicipality">
     <![CDATA[
       Select count(*) from ManualFeeTypes where MunicipalityId=:MunicipalityId

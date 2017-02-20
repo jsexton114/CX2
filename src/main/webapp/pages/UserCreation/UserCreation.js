@@ -28,6 +28,14 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
 
     $scope.CreateUseronSuccess = function(variable, data) {
+        //Setting user preference
+        $scope.Variables.InsertUserPreference.setInput({
+            'UserId': data.id,
+            'PreferenceId': 1
+        });
+        $scope.Variables.InsertUserPreference.update();
+
+        // Sending welcome mail
         $scope.Variables.welcomeEmail.setInput('username', data.firstName);
         $scope.Variables.welcomeEmail.setInput('recipient', data.email);
         $scope.Variables.welcomeEmail.update({}, function(data) {});

@@ -74,6 +74,7 @@
         <security:intercept-url pattern="/services/cx2/States" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/UserSubscriptions" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/Users" access="permitAll" method="POST"/>
+        <security:intercept-url pattern="/services/cx2/queryExecutor/queries/InsertUserPreference" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/UpdatePasswordAndCF" access="permitAll" method="PUT"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/bannedDetails" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/deleteToken" access="permitAll" method="DELETE"/>

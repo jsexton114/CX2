@@ -472,6 +472,11 @@
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2UpdateRoleForMunicipalityrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateUserPreferences">
+        <parameter name="PreferenceId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2UpdateUserPreferencesrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateVendorForMasterForms">
         <parameter name="CXVendorId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
@@ -527,9 +532,9 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="UpdateUserPreferences">
+    <operation operationType="nativequery" name="InsertUserPreference">
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="PreferenceId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
@@ -824,6 +829,11 @@
         <parameter name="FormMessageId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="TaggedPersonId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2InsertTagForMessagertnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="InsertUserPreference">
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="PreferenceId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2InsertUserPreferencertnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="ManualFeeTypeCountForMunicipality">
         <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
@@ -2176,6 +2186,7 @@
         <dataobject javaType="cx2InsertNewRolertnType"/>
         <dataobject javaType="cx2InsertSubscriptionrtnType"/>
         <dataobject javaType="cx2InsertTagForMessagertnType"/>
+        <dataobject javaType="cx2InsertUserPreferencertnType"/>
         <dataobject javaType="cx2ManualFeeTypeCountForMunicipalityrtnType">
             <element name="" typeRef="java.lang.Integer"/>
         </dataobject>

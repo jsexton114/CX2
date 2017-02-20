@@ -73,6 +73,7 @@ public interface Cx2QueryExecutorService {
 	int executeInsertNewRole(  java.lang.String RoleName , java.lang.Integer MunicipalityId , java.lang.String Description , java.lang.Integer UserId) throws QueryParameterMismatchException;
 	int executeInsertSubscription(  java.lang.Integer UserId , java.lang.Integer MunicipalityId , java.lang.String DateSubscribed) throws QueryParameterMismatchException;
 	int executeInsertTagForMessage(  java.lang.Integer FormMessageId , java.lang.Integer TaggedPersonId) throws QueryParameterMismatchException;
+	int executeInsertUserPreference(  java.lang.Integer UserId , java.lang.Integer PreferenceId) throws QueryParameterMismatchException;
     Page<Object> executeManualFeeTypeCountForMunicipality(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
 	int executeMapAsAdminForVendor(  java.lang.Integer UserId , java.lang.Integer VendorId) throws QueryParameterMismatchException;
     Page<Object> executeMunicipalitiesGroupsCounts(Pageable pageable, java.lang.Integer municipality) throws QueryParameterMismatchException;
