@@ -4890,7 +4890,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.Cx2Vendors2formData.listRecords()",
+    "onSuccess" : "Variables.Cx2Vendors2formData.listRecords();Widgets.dialogVendorDeleteConf.close();Variables.DeleteVendorSuccess.invoke();DeleteVendorFromFormonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -4899,6 +4899,34 @@
     "controller" : "Vendors2form",
     "spinnerContext" : "page",
     "spinnerMessage" : "Removing Vendor..."
+  },
+  "DeleteVendorSuccess" : {
+    "_id" : "wm-DeleteVendorSuccess-wm.NotificationVariable-1487573337360",
+    "name" : "DeleteVendorSuccess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "The selected Vendor has been removed from this Form",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
   },
   "DuplicateGISRecordToForm" : {
     "_id" : "wm-DuplicateGISRecordToForm-wm.NotificationVariable-1486125985008",

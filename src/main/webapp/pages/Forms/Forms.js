@@ -203,6 +203,8 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         $scope.Variables.PeopleList.dataSet = undefined;
     };
 
+
+
 }]);
 
 
@@ -297,11 +299,12 @@ Application.$controller("gridFormVendorsController", ["$scope",
 
         };
 
-        $scope.deleterowAction = function($event, $rowData) {
-            if ($rowData.primaryVendor) {
-                $scope.Variables.RemoveVendorFromMasterForms.update();
-            }
-        };
+        // $scope.deleterowActionPrimaryVendor = function($event, $rowData) {
+        //     $scope.$rowData;
+        //     if ($rowData.primaryVendor) {
+        //         $scope.Variables.RemoveVendorFromMasterForms.update();
+        //     }
+        // };
 
     }
 ]);
@@ -448,8 +451,22 @@ Application.$controller("gridLocationController", ["$scope",
 ]);
 
 Application.$controller("dialogDeleteGISRecordConfController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogVendorDeleteConfController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.buttonDeleteVendorOKClick = function($event, $isolateScope) {
+            if ($scope.Widgets.gridFormVendors.selecteditem.primaryVendor) {
+                $scope.Variables.RemoveVendorFromMasterForms.update();
+            }
+        };
+
+    }
 ]);
