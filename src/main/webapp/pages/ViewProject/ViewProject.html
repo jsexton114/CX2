@@ -650,7 +650,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewDeleteGISRecordConf">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Delete Parcel" iconclass="wi wi-delete" name="dialogDeleteGISRecordConf">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Delete Parcel" iconclass="wi wi-trash" name="dialogDeleteGISRecordConf">
             <wm-layoutgrid name="layoutgrid26_1">
                 <wm-gridrow name="gridrow81_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn159_2" horizontalalign="center">
@@ -660,7 +660,7 @@
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions8">
                 <wm-button class="btn-primary" caption="OK" on-click="Variables.DeleteProjectGISRecord.invoke()" name="buttonDeleteGISRecordOK" iconclass="wi wi-done"></wm-button>
-                <wm-button class="btn-default" caption="Cancel" type="button" margin="unset 0.5em" name="buttonDeleteGISRecordCancel" iconclass="wi wi-cancel" on-click="Widgets.dialogDeleteGISRecordConf.close()"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="buttonDeleteGISRecordCancel" iconclass="wi wi-cancel" on-click="Widgets.dialogDeleteGISRecordConf.close()"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

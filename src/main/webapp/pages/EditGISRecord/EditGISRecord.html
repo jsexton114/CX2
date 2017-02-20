@@ -113,7 +113,7 @@
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
-                                <wm-liveform novalidate="false" errormessage="" title="GIS Contact Details" formlayout="dialog" iconclass="wi wi-person-add" dataset="bind:Variables.GiscontactsData.dataSet" captionalign="left" captionposition="top" name="liveformGISContacts">
+                                <wm-liveform novalidate="false" errormessage="" title="GIS Contact Details" formlayout="dialog" iconclass="wi wi-contacts" dataset="bind:Variables.GiscontactsData.dataSet" captionalign="left" captionposition="top" name="liveformGISContacts">
                                     <wm-layoutgrid columns="3" name="layoutgrid3_1">
                                         <wm-gridrow name="gridrow12">
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn26">
@@ -155,7 +155,7 @@
                                                 <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn36">
-                                                <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="readonly" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
                                                 defaultvalue="USA"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn37">
@@ -163,7 +163,7 @@
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow16">
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn38">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn38">
                                                 <wm-form-field name="notes" displayname="Notes" show="true" primary-key="false" generator="assigned" key="notes" type="string" widget="textarea" maxchars="500" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
