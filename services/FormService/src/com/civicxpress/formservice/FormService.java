@@ -272,19 +272,20 @@ public class FormService {
         return newFormTypeId;
     }
     
-    private String createForm(Connection cx2Conn, Long formTypeId, Long createUserId, Long ownerId) throws SQLException {
-    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
-    	queryParams.put("formTypeId", formTypeId);
+    private String createForm(Connection cx2Conn, Long formTypeId, Long primaryVendorId, Long createUserId, Long ownerId) throws SQLException {
+    	DBQueryParams queryParams = new DBQueryParams();
+    	queryParams.addLong("formTypeId", formTypeId);
     	Long municipalityId = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getLong("MunicipalityId");
     	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
     	String newFormGuid = null;
     	
     	try {
 	    	muniDbConn.setAutoCommit(false);
-	    	queryParams.put("currentUserId", createUserId);
-	    	queryParams.put("ownerId", ownerId);
-	    	queryParams.put("currentUser", DBUtils.selectQuery(cx2Conn, "SELECT Email FROM Users WHERE id=:currentUserId", queryParams).get(0).getString("Email"));
-	    	queryParams.put("municipalityId", municipalityId);
+	    	queryParams.addLong("currentUserId", createUserId);
+	    	queryParams.addLong("ownerId", ownerId);
+	    	queryParams.addString("currentUser", DBUtils.selectQuery(cx2Conn, "SELECT Email FROM Users WHERE id=:currentUserId", queryParams).get(0).getString("Email"));
+	    	queryParams.addLong("municipalityId", municipalityId);
+	    	queryParams.addLong("primaryVendorId", primaryVendorId);
 	    	
 	    	String formTableName = DBUtils.selectQuery(cx2Conn, "SELECT FormTableName FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getString("FormTableName");
 	    	
@@ -302,11 +303,11 @@ public class FormService {
 	    			
 	    			try {
 		    			if (sqlType.contains("numeric")) {
-		        			queryParams.put(fieldName, formTypeField.getBigDecimal("DefaultValue"));
+		        			queryParams.addBigDecimal(fieldName, formTypeField.getBigDecimal("DefaultValue"));
 		    			} else if (sqlType.contains("bit")) {
-		    				queryParams.put(fieldName, formTypeField.getBoolean("DefaultValue"));
+		    				queryParams.addBoolean(fieldName, formTypeField.getBoolean("DefaultValue"));
 		    			} else {
-		    				queryParams.put(fieldName, formTypeField.getObject("DefaultValue"));
+		    				queryParams.addObject(fieldName, formTypeField.getObject("DefaultValue"));
 		    			}
 	    			} catch (Exception e) {
 	    				continue;
@@ -321,15 +322,15 @@ public class FormService {
 	    	DBUtils.simpleQuery(muniDbConn, newFormQuery, queryParams);
 	    	
 	    	Long newFormId = DBUtils.selectQuery(muniDbConn, "SELECT @@IDENTITY as newFormDataId").get(0).getLong("newFormDataId");
-	    	queryParams.put("newFormId", newFormId);
+	    	queryParams.addLong("newFormId", newFormId);
 	    	newFormGuid = DBUtils.selectQuery(muniDbConn, "SELECT FormGUID FROM "+formTableName+" WHERE ID=:newFormId", queryParams).get(0).getString("FormGUID");
-	    	queryParams.put("newFormGUID", newFormGuid);
+	    	queryParams.addString("newFormGUID", newFormGuid);
 	    	
 	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(0).getLong("ID");
-	    	queryParams.put("newFormStatusId", newFormStatusId);
+	    	queryParams.addLong("newFormStatusId", newFormStatusId);
 	    	
-	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, OwnerId, FormStatusId, Closed) "
-	    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :ownerId, :newFormStatusId, 0)", queryParams);
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, CXVendorId, OwnerId, FormStatusId, Closed) "
+	    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :primaryVendorId, :ownerId, :newFormStatusId, 0)", queryParams);
 	    	
 	    	cx2Conn.commit();
 	    	muniDbConn.commit();
@@ -613,13 +614,9 @@ public class FormService {
     	try {
 	    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
 	    	
-	    	if (behalfOfUserId != null) {
-	    		queryParams.put("createUserId", behalfOfUserId);
-		    	formGuid = createForm(cx2Conn, formTypeId, behalfOfUserId, ownerId);
-	    	} else {
-	    		queryParams.put("createUserId", securityService.getUserId());
-		    	formGuid = createForm(cx2Conn, formTypeId, Long.parseLong(securityService.getUserId()), ownerId);
-	    	}
+	    	Long createUserId = (behalfOfUserId != null ? behalfOfUserId : Long.parseLong(securityService.getUserId()));
+    		queryParams.put("createUserId", createUserId);
+	    	formGuid = createForm(cx2Conn, formTypeId, primaryVendorId, createUserId, ownerId);
 	    	
 	    	queryParams.put("formGuid", formGuid);
 	    	
