@@ -23,7 +23,7 @@
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
-                        <wm-liveform novalidate="false" errormessage="" title="Projects Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ProjectsData.dataSet" captionalign="left" captionposition="top" name="liveform1">
+                        <wm-liveform novalidate="false" errormessage="" title="Project Details" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.ProjectsData.dataSet" captionalign="left" captionposition="top" name="liveform1">
                             <wm-layoutgrid columns="3" name="layoutgrid1">
                                 <wm-gridrow name="gridrow1">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn1">
@@ -62,7 +62,7 @@
                                         <wm-form-field name="active" displayname="Active" required="false" show="true" generator="assigned" primary-key="false" key="active" type="boolean" is-related="false" pc-display="true" mobile-display="true" widget="checkbox"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn9">
-                                        <wm-form-field name="municipalities" displayname="Municipalities" required="false" show="true" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                        <wm-form-field name="municipalities" displayname="Municipality" required="false" show="true" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true" mobile-display="true"
                                         widget="select"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>

@@ -179,8 +179,8 @@
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn1" padding="1em 1em 2em 1em">
                         <wm-composite name="composite4_1">
-                            <wm-label class="col-md-3 form-control-static" caption="Select Municipality" name="label20" width="40%" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container4" width="60%">
+                            <wm-label class="col-md-3 form-control-static" caption="Select Municipality" name="label20" width="160px" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container4" width="240px">
                                 <wm-select dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Widgets.selectStandardUserMunicipality.datavalue" name="selectMunicipality" orderby="MunicipalityName:asc"
                                 placeholder="Select Municipality"></wm-select>
                             </wm-container>
@@ -190,8 +190,8 @@
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3" padding="unset 1em 2em 1em">
                         <wm-composite name="composite3" show="bind:Variables.AllCategories.dataSet.data.length > 0">
-                            <wm-label class="col-md-3 form-control-static" name="label18" caption="Select Category" width="40%" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container2" width="60%">
+                            <wm-label class="col-md-3 form-control-static" name="label18" caption="Select Category" width="160px" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container2" width="240px">
                                 <wm-select name="selectCategory" dataset="bind:Variables.AllCategories.dataSet" datafield="id" displayfield="category" orderby="category:asc" placeholder="Select Category"></wm-select>
                             </wm-container>
                         </wm-composite>
@@ -200,8 +200,8 @@
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5" padding="unset 1em">
                         <wm-composite name="composite4" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements != 0 &amp;&amp; Variables.AllCategories.dataSet.totalElements != 0">
-                            <wm-label class="col-md-3 form-control-static" name="label19" caption="Select Form Design" width="40%" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container3" width="60%">
+                            <wm-label class="col-md-3 form-control-static" name="label19" caption="Select Form Design" width="160px" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container3" width="240px">
                                 <wm-select name="selectForm" dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" datavalue="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.firstRecord"
                                 orderby="FormType:asc" placeholder="Select Form Design"></wm-select>
                             </wm-container>
