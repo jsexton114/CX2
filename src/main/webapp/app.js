@@ -107,6 +107,7 @@ Application.directive('datetimePicker', ['uibDateParser', function(uibDateParser
 }]);
 
 Application.directive('ngFileModel', function() {
+    "use strict";
     return {
         restrict: 'A',
         scope: {
@@ -125,7 +126,7 @@ Application.directive('ngFileModel', function() {
                 }
 
                 if (!!attrs.multiple) {
-                    for (var i = 0; i < elem[0].files.length; i++) {
+                    for (let i = 0; i < elem[0].files.length; i++) {
                         let fileToAdd = elem[0].files[i];
                         scope.ngFileModel.push(getFileModel(
                             fileToAdd.name,
