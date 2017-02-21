@@ -125,7 +125,7 @@ Application.directive('ngFileModel', function() {
                 }
 
                 if (!!attrs.multiple) {
-                    for (let i = 0; i < elem[0].files.length; i++) {
+                    for (var i = 0; i < elem[0].files.length; i++) {
                         let fileToAdd = elem[0].files[i];
                         scope.ngFileModel.push(getFileModel(
                             fileToAdd.name,

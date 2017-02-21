@@ -123,7 +123,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.PostFormMessageonSuccess = function(variable, data) {
         $scope.Widgets.textAddMessage.datavalue = undefined;
         let people = $scope.Variables.PeopleList.dataSet;
-        if (people.length == 0) {
+        if (people.length === 0) {
             // DO nothing
         } else {
             $scope.Variables.GetMessageIdForCurrentPost.setInput({
