@@ -4,7 +4,7 @@
         <wm-page-content columnwidth="12" name="page_content1">
             <wm-wizard name="wizard1" horizontalalign="left" on-done="wizard1Done($scope, steps)" on-cancel="Variables.NewUserToLogin.invoke()">
                 <wm-wizardstep name="wizardstep1" title="Account Setup">
-                    <wm-liveform novalidate="false" errormessage="User already exists" title="Register for CivicXpress" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left" captionposition="top" name="liveform2"
+                    <wm-liveform novalidate="false" errormessage="User already exists" title="Register for CivicXpress" iconclass="wi wi-pencil" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left" captionposition="top" name="liveform2"
                     insertmessage="Your account has been created. Please proceed to Login" updatemessage="User updated successfully" deletemessage="User deleted successfully" on-success="liveform2Success($event, $operation, $data)">
                         <wm-layoutgrid columns="2" name="layoutgrid2">
                             <wm-gridrow name="gridrow6">
@@ -42,7 +42,7 @@
                             </wm-gridrow>
                             <wm-gridrow name="gridrow10">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn19">
-                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn20">
                                     <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
@@ -68,7 +68,7 @@
                     </wm-liveform>
                 </wm-wizardstep>
                 <wm-wizardstep name="wizardstep2" title="Municipalities">
-                    <wm-panel iconclass="wi wi-building" autoclose="outsideClick" name="panel4" title="Subscribe to Municipalities">
+                    <wm-panel iconclass="wi wi-library-add" autoclose="outsideClick" name="panel4" title="Subscribe to Municipalities">
                         <wm-layoutgrid name="layoutgrid4">
                             <wm-gridrow name="gridrow20" padding="unset unset 2em unset">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn31_3">
@@ -83,7 +83,7 @@
                                         <wm-label class="col-md-3 form-control-static" name="label8" caption="Search Municipalities" width="20%" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="container5" width="80%">
                                             <wm-search name="textSearchMunicipalities" placeholder="Search by Municipality Name" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="municipalityName" displaylabel="municipalityName" displayimagesrc="logo"
-                                            datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="false" width="100%" type="autocomplete"></wm-search>
+                                            datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="false" width="100%" type="autocomplete" orderby="municipalityName:asc"></wm-search>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -105,13 +105,13 @@
                                                 <wm-layoutgrid name="layoutgrid5">
                                                     <wm-gridrow name="gridrow17_1">
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn25_1">
-                                                            <wm-label padding="unset 0.5em" name="label11" caption="bind:Variables.MunicpalitiesList.dataSet[$i].municipalityName"></wm-label>
+                                                            <wm-label padding="unset 0.5em" name="label11" caption="bind:Variables.MunicpalitiesList.dataSet[$i].municipalityName" class="col-md-3 form-control-static" width="100%"></wm-label>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn31_2">
-                                                            <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.MunicpalitiesList.dataSet[$i].states.stateName"></wm-label>
+                                                            <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.MunicpalitiesList.dataSet[$i].states.stateName" class="col-md-3 form-control-static" width="100%"></wm-label>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn29">
-                                                            <wm-button class="btn-primary" caption="Remove" type="button" margin="unset 0.5em" name="buttonRemove" iconclass="wi wi-delete" on-click="buttonRemoveClick($event, $scope, item, currentItemWidgets)"></wm-button>
+                                                            <wm-button class="btn-primary" caption="Remove" type="button" margin="unset 0.5em" name="buttonRemove" iconclass="wi wi-trash" on-click="buttonRemoveClick($event, $scope, item, currentItemWidgets)"></wm-button>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-layoutgrid>
@@ -155,21 +155,21 @@
                                     <wm-label padding="unset 0.5em" name="label7" caption="All passwords must contain a minimum of 8 characters including at least 1 capital letter, 1 number, and 1 special character (e.g. @$!%*?&amp;)"></wm-label>
                                 </wm-gridcolumn>
                             </wm-gridrow>
-                            <wm-gridrow name="gridrow16">
+                            <wm-gridrow name="gridrow16" padding="2em unset unset unset">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn26">
-                                    <wm-composite name="composite3" margin="1em unset" required="false">
-                                        <wm-label class="col-md-3 form-control-static" name="label5" caption="Create Password" fontweight="bold"></wm-label>
-                                        <wm-container class="col-md-9" name="container3">
+                                    <wm-composite name="composite3" required="false">
+                                        <wm-label class="col-md-3 form-control-static" name="label5" caption="Create Password" fontweight="bold" width="120px"></wm-label>
+                                        <wm-container class="col-md-9" name="container3" width="300px">
                                             <wm-text name="textPwd" placeholder="Enter Password" type="password" regexp=".*" required="true" on-keyup="textPwdKeyup($event, $scope)" updateon="blur" on-keydown="textPwdKeydown($event, $scope)"></wm-text>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
                             </wm-gridrow>
-                            <wm-gridrow name="gridrow17">
+                            <wm-gridrow name="gridrow17" padding="unset unset 2em unset">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn27">
-                                    <wm-composite name="composite4" margin="1em unset" required="false">
-                                        <wm-label class="col-md-3 form-control-static" name="label6" caption="Confirm Password" fontweight="bold"></wm-label>
-                                        <wm-container class="col-md-9" name="container4">
+                                    <wm-composite name="composite4" required="false">
+                                        <wm-label class="col-md-3 form-control-static" name="label6" caption="Confirm Password" fontweight="bold" width="120px"></wm-label>
+                                        <wm-container class="col-md-9" name="container4" width="300px">
                                             <wm-text name="textRePwd" placeholder="Enter Password" on-keyup="textRePwdKeyup($event, $scope)" type="password" required="true" regexp=".*" updateon="blur"></wm-text>
                                         </wm-container>
                                     </wm-composite>
@@ -206,7 +206,7 @@
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-primary" caption="Accept" on-click="closeDialog();button3Click($event, $scope)" name="button3" iconclass="wi wi-check"></wm-button>
-                <wm-button class="btn-secondary" caption="Close" type="button" margin="unset 0.5em" name="button4" iconclass="wi wi-close" on-click="Widgets.dialogEULA.close()"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" type="button" margin="unset 0.5em" name="button4" iconclass="wi wi-cancel" on-click="Widgets.dialogEULA.close()"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
