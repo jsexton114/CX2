@@ -3078,6 +3078,77 @@
     "outputType" : "cx2UpdateProcessOwnersForGUIDrtnType",
     "returnTypeMetadata" : { }
   }, {
+    "name" : "UpdateProjectDescription",
+    "query" : "Update Projects set ProjectDescription=:ProjectDescription where ProjectGUID=:project",
+    "comment" : "UpdateProjectDescription",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "ProjectDescription",
+      "paramType" : "java.lang.String",
+      "testValue" : "Update",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "project",
+      "paramType" : "java.lang.String",
+      "testValue" : "49655B41-2598-49CB-B2B8-204EF05DDF1F",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateProjectDescriptionrtnType",
+    "returnTypeMetadata" : { }
+  }, {
+    "name" : "UpdateProjectDetails",
+    "query" : "Update Projects set ProjectName=:ProjectName,ProjectGoals=:ProjectGoals,EstStartDate=:EstStartDate,EstEndDate=:EstEndDate where ProjectGUID=:project",
+    "comment" : "UpdateProjectDetails",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "ProjectName",
+      "paramType" : "java.lang.String",
+      "testValue" : "Update",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "ProjectGoals",
+      "paramType" : "java.lang.String",
+      "testValue" : "Update",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "EstStartDate",
+      "paramType" : "java.sql.Timestamp",
+      "testValue" : "1487675309000",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "EstEndDate",
+      "paramType" : "java.sql.Timestamp",
+      "testValue" : "1487675313000",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "project",
+      "paramType" : "java.lang.String",
+      "testValue" : "49655B41-2598-49CB-B2B8-204EF05DDF1F",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2UpdateProjectDetailsrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "UpdateRoleForMunicipality",
     "query" : "update Roles set RoleName=:role where MunicipalityId=:municipality and UserId=:user",
     "comment" : "UpdateRoleForMunicipality",

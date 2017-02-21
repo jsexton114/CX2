@@ -458,6 +458,16 @@
       update MasterForms set AssignedToGroupId=:AssignedToGroupId where FormGUID=:GUID
     ]]>
   </sql-query>
+  <sql-query name="UpdateProjectDescription">
+    <![CDATA[
+      Update Projects set ProjectDescription=:ProjectDescription where ProjectGUID=:project
+    ]]>
+  </sql-query>
+  <sql-query name="UpdateProjectDetails">
+    <![CDATA[
+      Update Projects set ProjectName=:ProjectName,ProjectGoals=:ProjectGoals,EstStartDate=:EstStartDate,EstEndDate=:EstEndDate where ProjectGUID=:project
+    ]]>
+  </sql-query>
   <sql-query name="UpdateRoleForMunicipality">
     <![CDATA[
       update Roles set RoleName=:role where MunicipalityId=:municipality and UserId=:user

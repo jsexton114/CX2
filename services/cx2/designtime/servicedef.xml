@@ -475,6 +475,11 @@
         <parameter name="GUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2UpdateProcessOwnersForGUIDrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="UpdateProjectDescription">
+        <parameter name="ProjectDescription" typeRef="java.lang.String" isList="false"/>
+        <parameter name="project" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2UpdateProjectDescriptionrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="UpdateRoleForMunicipality">
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
@@ -540,6 +545,14 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateProjectDetails">
+        <parameter name="ProjectName" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ProjectGoals" typeRef="java.lang.String" isList="false"/>
+        <parameter name="EstStartDate" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="EstEndDate" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="project" typeRef="java.lang.String" isList="false"/>
+        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
@@ -1018,6 +1031,19 @@
         <parameter name="AssignedToGroupId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="GUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2UpdateProcessOwnersForGUIDrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateProjectDescription">
+        <parameter name="ProjectDescription" typeRef="java.lang.String" isList="false"/>
+        <parameter name="project" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2UpdateProjectDescriptionrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="UpdateProjectDetails">
+        <parameter name="ProjectName" typeRef="java.lang.String" isList="false"/>
+        <parameter name="ProjectGoals" typeRef="java.lang.String" isList="false"/>
+        <parameter name="EstStartDate" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="EstEndDate" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="project" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2UpdateProjectDetailsrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="UpdateRoleForMunicipality">
         <parameter name="role" typeRef="java.lang.String" isList="false"/>
@@ -2424,6 +2450,8 @@
         <dataobject javaType="cx2UpdatePrimaryVendorInMasterFormsrtnType"/>
         <dataobject javaType="cx2UpdatePrimaryVendorStatusInVEndor2FormsrtnType"/>
         <dataobject javaType="cx2UpdateProcessOwnersForGUIDrtnType"/>
+        <dataobject javaType="cx2UpdateProjectDescriptionrtnType"/>
+        <dataobject javaType="cx2UpdateProjectDetailsrtnType"/>
         <dataobject javaType="cx2UpdateRoleForMunicipalityrtnType"/>
         <dataobject javaType="cx2UpdateUserPreferencesrtnType"/>
         <dataobject javaType="cx2UpdateVendorForMasterFormsrtnType"/>

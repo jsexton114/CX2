@@ -1302,6 +1302,34 @@
     "controller" : "ProjectGisrecords",
     "spinnerContext" : "page"
   },
+  "DetailsUpdatedSuccessfully" : {
+    "_id" : "wm-DetailsUpdatedSuccessfully-wm.NotificationVariable-1487675786283",
+    "name" : "DetailsUpdatedSuccessfully",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "DetailsUpdatedSuccessfully",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "DuplicateGISRecordToProject" : {
     "_id" : "wm-DuplicateGISRecordToProject-wm.NotificationVariable-1487054302213",
     "name" : "DuplicateGISRecordToProject",
@@ -7070,6 +7098,107 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Subdivisions"
+  },
+  "UpdateDescriptionSuccessfull" : {
+    "_id" : "wm-UpdateDescriptionSuccessfull-wm.NotificationVariable-1487678516924",
+    "name" : "UpdateDescriptionSuccessfull",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "UpdateDescriptionSuccessfull",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "UpdateProjectDescription" : {
+    "_id" : "wm-UpdateProjectDetails-wm.ServiceVariable-1487675160136",
+    "name" : "UpdateProjectDescription",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "project",
+      "value" : "bind:pageParams.ProjectGUID",
+      "type" : "string"
+    } ],
+    "type" : "cx2UpdateProjectDescriptionrtnType",
+    "service" : "cx2",
+    "operation" : "executeUpdateProjectDescription",
+    "operationId" : "QueryExecutionController_executeUpdateProjectDescription",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.UpdateDescriptionSuccessfull.invoke();Widgets.dialogEditProjectDescription.close();Variables.CurrentProject.listRecords()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "UpdateProjectDetails" : {
+    "_id" : "wm-UpdateProjectDetails-wm.ServiceVariable-1487675786284",
+    "name" : "UpdateProjectDetails",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "ProjectName",
+      "value" : "bind:Widgets.textProjectName.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "ProjectGoals",
+      "value" : "bind:Widgets.textProjectGoals.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "EstStartDate",
+      "value" : "bind:Widgets.datetimeEstimatedStartDate.timestamp",
+      "type" : "string"
+    }, {
+      "target" : "EstEndDate",
+      "value" : "bind:Widgets.datetimeEstimatedCompletionDat.timestamp",
+      "type" : "string"
+    }, {
+      "target" : "project",
+      "value" : "bind:pageParams.ProjectGUID",
+      "type" : "string"
+    } ],
+    "type" : "cx2UpdateProjectDetailsrtnType",
+    "service" : "cx2",
+    "operation" : "executeUpdateProjectDetails",
+    "operationId" : "QueryExecutionController_executeUpdateProjectDetails",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.DetailsUpdatedSuccessfully.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "panelProjectDetails"
   },
   "UpdateTask" : {
     "_id" : "wm-UpdateTask-wm.LiveVariable-1487330442264",

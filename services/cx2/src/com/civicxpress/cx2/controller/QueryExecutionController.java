@@ -950,6 +950,26 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdateProjectDescription", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdateProjectDescription(@RequestParam(value = "ProjectDescription", required = false) java.lang.String ProjectDescription, @RequestParam(value = "project", required = false) java.lang.String project) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdateProjectDescription");
+        int result = queryService.executeUpdateProjectDescription(ProjectDescription, project);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/UpdateProjectDetails", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeUpdateProjectDetails(@RequestParam(value = "ProjectName", required = false) java.lang.String ProjectName, @RequestParam(value = "ProjectGoals", required = false) java.lang.String ProjectGoals, @RequestParam(value = "EstStartDate", required = false) java.sql.Timestamp EstStartDate, @RequestParam(value = "EstEndDate", required = false) java.sql.Timestamp EstEndDate, @RequestParam(value = "project", required = false) java.lang.String project) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query UpdateProjectDetails");
+        int result = queryService.executeUpdateProjectDetails(ProjectName, ProjectGoals, EstStartDate, EstEndDate, project);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UpdateRoleForMunicipality", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeUpdateRoleForMunicipality(@RequestParam(value = "role", required = false) java.lang.String role, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, @RequestParam(value = "user", required = false) java.lang.Integer user) throws QueryParameterMismatchException {

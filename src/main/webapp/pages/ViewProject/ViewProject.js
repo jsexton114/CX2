@@ -132,3 +132,19 @@ Application.$controller("dialogDeleteGISRecordConfController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("dialogEditProjectDescriptionController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.buttonUpdateProjectDescriptionClick = function($event, $isolateScope) {
+            var encodedDescription = btoa(unescape(encodeURIComponent($scope.Widgets.richtexteditorUpdateDescription.datavalue)));
+            $scope.Variables.UpdateProjectDescription.setInput({
+                'ProjectDescription': encodedDescription
+            });
+            $scope.Variables.UpdateProjectDescription.update();
+        };
+
+    }
+]);

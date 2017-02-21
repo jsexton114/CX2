@@ -25,27 +25,18 @@
                                         <wm-composite name="composite1" margin="unset unset unset 0.5em">
                                             <wm-label class="col-md-12 control-label" name="label3" margin="0.5em unset" caption="Project Name"></wm-label>
                                             <wm-container class="col-md-12" name="container1">
-                                                <wm-text name="textProjectName" readonly="true" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].projectName"></wm-text>
+                                                <wm-text name="textProjectName" readonly="false" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].projectName"></wm-text>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn109_2"></wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow7" padding=".5em unset">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn9">
-                                        <wm-label class="col-md-12 control-label" name="ProjectDescription" margin="0.5em unset 0.5em 0.5em" caption="Project Description"></wm-label>
-                                        <wm-composite name="composite10">
-                                            <wm-html name="htmlProjectDescription" margin="2em unset unset 0.5em"></wm-html>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn110_1"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow8" padding=".5em unset">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn10">
                                         <wm-composite name="composite2" margin="unset unset unset 0.5em">
                                             <wm-label class="col-md-12 control-label" name="label4" margin="0.5em unset" caption="Project Goals"></wm-label>
                                             <wm-container class="col-md-12" name="container2">
-                                                <wm-text readonly="true" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].projectGoals" name="textProjectGoals"></wm-text>
+                                                <wm-text readonly="false" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].projectGoals" name="textProjectGoals"></wm-text>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -56,7 +47,7 @@
                                         <wm-composite name="composite3" margin="unset unset unset 0.5em">
                                             <wm-label class="col-md-12 control-label" name="label5" margin="0.5em unset" caption="Estimated Start Date"></wm-label>
                                             <wm-container class="col-md-12" name="container3">
-                                                <wm-datetime name="datetimeEstimatedStartDate" readonly="true" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].estStartDate"></wm-datetime>
+                                                <wm-datetime name="datetimeEstimatedStartDate" readonly="false" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].estStartDate" outputformat="timestamp"></wm-datetime>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -64,9 +55,25 @@
                                         <wm-composite name="composite4" margin="unset unset unset 0.5em">
                                             <wm-label class="col-md-12 control-label" name="label6" margin="0.5em unset" caption="Estimated Completion Date"></wm-label>
                                             <wm-container class="col-md-12" name="container4">
-                                                <wm-datetime name="datetimeEstimatedCompletionDat" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].estEndDate" readonly="true"></wm-datetime>
+                                                <wm-datetime name="datetimeEstimatedCompletionDat" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].estEndDate" readonly="false" outputformat="timestamp"></wm-datetime>
                                             </wm-container>
                                         </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow62_1" padding=".5em unset">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn111_2"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn112" horizontalalign="right">
+                                        <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdateDetails" iconclass="wi wi-update" on-click="Variables.UpdateProjectDetails.invoke()"></wm-button>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow61_2">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn109_3">
+                                        <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" name="panelDescription" title="Description">
+                                            <wm-panel-footer name="panel_footer1">
+                                                <wm-button class="btn-default btn-primary" caption="Edit" type="button" margin="0.5em 0.5em 0.5em 0.5em" name="buttonUpdateDescription" iconclass="wi wi-edit" on-click="Widgets.dialogEditProjectDescription.open()"></wm-button>
+                                            </wm-panel-footer>
+                                            <wm-html name="htmlProjectDescription" margin="2em unset unset 0.5em"></wm-html>
+                                        </wm-panel>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -662,6 +669,15 @@
                 <wm-button class="btn-primary" caption="OK" on-click="Variables.DeleteProjectGISRecord.invoke()" name="buttonDeleteGISRecordOK" iconclass="wi wi-done"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="buttonDeleteGISRecordCancel" iconclass="wi wi-cancel" on-click="Widgets.dialogDeleteGISRecordConf.close()"></wm-button>
             </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewEditProjectDescription">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Edit Project Description" iconclass="wi wi-edit" name="dialogEditProjectDescription">
+            <wm-dialogactions name="dialogactions8_1">
+                <wm-button class="btn-primary" caption="Save" name="buttonUpdateProjectDescription" iconclass="wi wi-done" on-click="buttonUpdateProjectDescriptionClick($event, $scope)"></wm-button>
+                <wm-button class="btn-default" caption="Close" type="button" margin="unset 0.5em" name="buttonCloseProjectDescription" iconclass="wi wi-close" on-click="Widgets.dialogEditProjectDescription.close()"></wm-button>
+            </wm-dialogactions>
+            <wm-richtexteditor name="richtexteditorUpdateDescription" datavalue="bind:Widgets.htmlProjectDescription.content"></wm-richtexteditor>
         </wm-dialog>
     </wm-view>
 </wm-page>

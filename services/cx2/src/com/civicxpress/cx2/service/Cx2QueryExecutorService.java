@@ -106,6 +106,8 @@ public interface Cx2QueryExecutorService {
 	int executeUpdatePrimaryVendorInMasterForms(  java.lang.Integer VendorId , java.lang.String FormGUID) throws QueryParameterMismatchException;
 	int executeUpdatePrimaryVendorStatusInVEndor2Forms(  java.lang.Boolean pv , java.lang.String form) throws QueryParameterMismatchException;
 	int executeUpdateProcessOwnersForGUID(  java.lang.Integer AssignedToGroupId , java.lang.String GUID) throws QueryParameterMismatchException;
+	int executeUpdateProjectDescription(  java.lang.String ProjectDescription , java.lang.String project) throws QueryParameterMismatchException;
+	int executeUpdateProjectDetails(  java.lang.String ProjectName , java.lang.String ProjectGoals , java.sql.Timestamp EstStartDate , java.sql.Timestamp EstEndDate , java.lang.String project) throws QueryParameterMismatchException;
 	int executeUpdateRoleForMunicipality(  java.lang.String role , java.lang.Integer municipality , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateUserPreferences(  java.lang.Integer PreferenceId , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateVendorForMasterForms(  java.lang.Integer CXVendorId , java.lang.String FormGUID) throws QueryParameterMismatchException;
