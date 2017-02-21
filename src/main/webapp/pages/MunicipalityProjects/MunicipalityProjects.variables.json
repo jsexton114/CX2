@@ -1188,7 +1188,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.MunicipalityProjects.invoke();Widgets.confirmdialogSoftDeleteProjectCo.close()",
+    "onSuccess" : "Variables.MunicipalityProjects.invoke();Widgets.confirmdialogSoftDeleteProjectCo.close();Variables.SoftDeleteSuccess.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -1196,5 +1196,33 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "gridProjectsList"
+  },
+  "SoftDeleteSuccess" : {
+    "_id" : "wm-SoftDeleteSuccess-wm.NotificationVariable-1487655464309",
+    "name" : "SoftDeleteSuccess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "The Project has been deleted",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
   }
 }
