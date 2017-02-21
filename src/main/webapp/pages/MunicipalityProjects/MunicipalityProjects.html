@@ -18,7 +18,7 @@
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord"></wm-select>
+                                <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -54,9 +54,10 @@
                 <wm-gridrow name="gridrow15" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn15">
                         <wm-composite name="composite2" required="true">
-                            <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container2">
-                                <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" placeholder="Select Municipality" datavalue="bind:Widgets.selectMunicipality.datavalue"></wm-select>
+                            <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold" width="160px"></wm-label>
+                            <wm-container class="col-md-9" name="container2" width="300px">
+                                <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" placeholder="Select Municipality" datavalue="bind:Widgets.selectMunicipality.datavalue"
+                                orderby="MunicipalityName:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -64,8 +65,8 @@
                 <wm-gridrow name="gridrow16" padding="1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn17">
                         <wm-composite name="composite3" required="true">
-                            <wm-label class="col-md-3 form-control-static" name="label7" caption="Project Name" fontweight="bold" required="false"></wm-label>
-                            <wm-container class="col-md-9" name="container3">
+                            <wm-label class="col-md-3 form-control-static" name="label7" caption="Project Name" fontweight="bold" required="false" width="160px"></wm-label>
+                            <wm-container class="col-md-9" name="container3" width="300px">
                                 <wm-text name="textProjectName" placeholder="Enter Text" required="false"></wm-text>
                             </wm-container>
                         </wm-composite>
