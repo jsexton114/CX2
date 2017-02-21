@@ -157,7 +157,7 @@
                             </wm-gridrow>
                             <wm-gridrow name="gridrow16">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn26">
-                                    <wm-composite name="composite3" margin="1em unset">
+                                    <wm-composite name="composite3" margin="1em unset" required="false">
                                         <wm-label class="col-md-3 form-control-static" name="label5" caption="Create Password" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="container3">
                                             <wm-text name="textPwd" placeholder="Enter Password" type="password" regexp=".*" required="true" on-keyup="textPwdKeyup($event, $scope)" updateon="blur" on-keydown="textPwdKeydown($event, $scope)"></wm-text>
@@ -167,11 +167,19 @@
                             </wm-gridrow>
                             <wm-gridrow name="gridrow17">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn27">
-                                    <wm-composite name="composite4" margin="1em unset">
+                                    <wm-composite name="composite4" margin="1em unset" required="false">
                                         <wm-label class="col-md-3 form-control-static" name="label6" caption="Confirm Password" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="container4">
                                             <wm-text name="textRePwd" placeholder="Enter Password" on-keyup="textRePwdKeyup($event, $scope)" type="password" required="true" regexp=".*" updateon="blur"></wm-text>
                                         </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow21_2">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn30_1">
+                                    <wm-composite name="composite6_1">
+                                        <wm-checkbox caption="bind:'By signing up for an account on CivicXpress, I acknowledge that I have read and accepted the <a href=&quot;&quot; class=&quot;eulaLink&quot;>End User License Agreement</a>'" class="col-md-9"
+                                        name="checkboxAcceptEULA" required="true"></wm-checkbox>
                                     </wm-composite>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -187,4 +195,19 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="view1">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="End User License Agreement" iconclass="wi wi-file-text" name="dialogEULA">
+            <wm-layoutgrid name="layoutgrid6">
+                <wm-gridrow name="gridrow22_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn31_4">
+                        <wm-label padding="unset 0.5em" caption="bind:Variables.lvGlobalSettings.dataSet.data[$i].cxeula" name="label11_2"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-primary" caption="Accept" on-click="closeDialog();button3Click($event, $scope)" name="button3" iconclass="wi wi-check"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" type="button" margin="unset 0.5em" name="button4" iconclass="wi wi-close" on-click="Widgets.dialogEULA.close()"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
 </wm-page>

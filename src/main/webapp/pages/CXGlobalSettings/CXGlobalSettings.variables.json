@@ -280,6 +280,18 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "cxeula",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
+        "columnName" : "CXEULA",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 8000,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
       } ],
       "entityName" : "GlobalSettings",
       "fullyQualifiedName" : "com.civicxpress.cx2.GlobalSettings",
@@ -499,6 +511,18 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "cxeula",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
+        "columnName" : "CXEULA",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 8000,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
         "scale" : 0
       } ],
       "entityName" : "GlobalSettings",

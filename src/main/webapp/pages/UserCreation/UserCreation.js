@@ -4,11 +4,9 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
     $scope.onPageReady = function() {
         //Current Date for subscriptions
-        $scope.toDay = moment().valueOf();
-        console.log($scope.toDay);
         $('[name="liveform2"]').on('change', '.app-blob-upload', function() {
             readURL(this);
-        })
+        });
 
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -21,6 +19,11 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
+        $('body').on('click', 'a.eulaLink', function($event) {
+            $event.preventDefault();
+            $scope.Widgets.dialogEULA.open();
+        });
     };
 
     //unchecked municipalities
@@ -64,7 +67,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
         for (var i = 0; i < selectedMunicipalites.length; i++) {
             // For Registering User  for subscribed municialities        
             $scope.Variables.RegisterSubscriptions.setInput({
-                "dateSubscribed": $scope.toDay,
+                "dateSubscribed": moment().valueOf(),
                 "users": data,
                 "userId": data.id,
                 "municipalities": selectedMunicipalites[i],
@@ -78,12 +81,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
     // For verifying password match
     function passwordCheck() {
-        if ($scope.Widgets.textPwd.datavalue === $scope.Widgets.textRePwd.datavalue && $scope.Widgets.textPwd.datavalue != undefined && $scope.Widgets.textRePwd.datavalue != undefined) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return ($scope.Widgets.textPwd.datavalue === $scope.Widgets.textRePwd.datavalue && $scope.Widgets.textPwd.datavalue != undefined && $scope.Widgets.textRePwd.datavalue != undefined);
     }
 
     $scope.wizard1Done = function($isolateScope, steps) {
@@ -157,5 +155,17 @@ Application.$controller("liveform2Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogEULAController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.button3Click = function($event, $isolateScope) {
+            $scope.Widgets.checkboxAcceptEULA.datavalue = true;
+        };
+
     }
 ]);
