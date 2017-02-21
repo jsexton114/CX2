@@ -18,6 +18,34 @@
     "isList" : true,
     "saveInPhonegap" : false
   },
+  "NoDeleteAccess" : {
+    "_id" : "wm-NoDeleteAccess-wm.NotificationVariable-1487656447406",
+    "name" : "NoDeleteAccess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "You don't have permissions to delete this project \uD83D\uDE1B",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Info",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "ProjectsData" : {
     "_id" : "wm-ProjectsData-wm.LiveVariable-1486716503975",
     "name" : "ProjectsData",
