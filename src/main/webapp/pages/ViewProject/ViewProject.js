@@ -11,6 +11,8 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 
 
     $scope.CurrentProjectonSuccess = function(variable, data) {
+        $scope.Widgets.htmlProjectDescription.content = decodeURIComponent(escape(window.atob(data[0].projectDescription)));
+
         if ($scope.Variables.loggedInUser.dataSet.id == data[0].usersByCreatedBy.id) {
             $scope.Widgets.gridProjectMembers.addMember = false;
         }
