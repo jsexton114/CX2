@@ -1,4 +1,4 @@
-Application.$controller("NewFormPageController", ["$scope", "$location", function($scope, $location) {
+Application.$controller("NewFormPageController", ["$scope", "$location", "$timeout", function($scope, $location, $timeout) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -12,6 +12,11 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
          * e.g. to get value of text widget named 'username' use following script
          * '$scope.Widgets.username.datavalue'
          */
+
+        $scope.Variables.stvContacts.dataSet = [];
+        $scope.Variables.stvDocuments.dataSet = [];
+        $scope.Variables.stvGisData.dataSet = [];
+        $scope.Variables.stvVendors.dataSet = [];
     };
 
     $scope.loaded = false;
@@ -277,6 +282,12 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         if (!$scope.Widgets.checkboxOtherOwner.datavalue) {
             setLFFieldsRO($scope.Widgets.lfOwner, true);
         }
+
+        if ($scope.Widgets.gridOwners.gridData.length === 1) {
+            $timeout(function() {
+                $('div[name=gridOwners] div.app-grid-content table td[data-col-id=0]').click();
+            }, 1);
+        }
     };
 
 
@@ -288,12 +299,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
         }
     };
 
-
-    $scope.Cx2GiscontactsDataonSuccess = function(variable, data) {
-        if (data.length === 1) {
-            $scope.Widgets.gridOwners.selectItem(0);
-        }
-    };
+    $scope.svGetOwnersonSuccess = function(variable, data) {};
 
 }]);
 
