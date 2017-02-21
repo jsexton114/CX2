@@ -114,12 +114,35 @@ Application.directive('ngFileModel', function() {
         },
         link: function(scope, elem, attrs) {
             elem.bind('change', function() {
-                var fileToAdd = elem[0].files[0];
-                scope.ngFileModel = {
-                    Filename: fileToAdd.name,
-                    Mimetype: fileToAdd.type,
-                    Contents: fileToAdd
-                };
+                scope.ngFileModel = scope.ngFileModel || (!!attrs.multiple ? [] : {});
+
+                function getFileModel(name, type, fileToAdd) {
+                    return {
+                        Filename: name,
+                        Mimetype: type,
+                        Contents: fileToAdd
+                    };
+                }
+
+                if (!!attrs.multiple) {
+                    for (let i = 0; i < elem[0].files.length; i++) {
+                        let fileToAdd = elem[0].files[i];
+                        scope.ngFileModel.push(getFileModel(
+                            fileToAdd.name,
+                            fileToAdd.type,
+                            fileToAdd
+                        ));
+                    }
+                } else {
+                    let fileToAdd = elem[0].files[0];
+                    scope.ngFileModel = getFileModel(
+                        fileToAdd.name,
+                        fileToAdd.type,
+                        fileToAdd
+                    );
+                }
+
+                scope.$apply();
             });
         }
     };

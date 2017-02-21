@@ -372,15 +372,22 @@ Application.$controller("dialogUploadDocumentController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-        $scope.docToUpload = null;
+        $scope.docsToUpload = [];
 
         $scope.dialogUploadDocumentClose = function($event, $isolateScope) {
-            $scope.docToUpload = null;
+            $scope.docsToUpload = [];
         };
 
         $scope.buttonUploadFileClick = function($event, $isolateScope) {
-            $scope.Variables.svUploadDocument.setInput('files', [$scope.docToUpload.Contents]);
+            var filesContents = [];
+
+            console.log($scope.docsToUpload);
+            $scope.docsToUpload.forEach(function(doc, index) {
+                filesContents.push(doc.Contents);
+            });
+            $scope.Variables.svUploadDocument.setInput('files', filesContents);
             $scope.Variables.svUploadDocument.update();
+            $scope.docsToUpload = [];
             $scope.Widgets.dialogUploadDocument.close();
         };
 

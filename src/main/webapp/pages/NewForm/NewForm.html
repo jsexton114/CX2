@@ -362,12 +362,11 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow52">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn97_2">
-                                            <wm-grid editmode="inline" title="" dataset="bind:Variables.stvDocuments.dataSet" navigation="Classic" name="gridNewFormDocuments">
+                                            <wm-grid editmode="inline" title="" dataset="bind:Variables.stvDocuments.dataSet" navigation="Classic" name="gridNewFormDocuments" showrecordcount="false">
                                                 <wm-grid-column binding="Filename" caption="File Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="Mimetype" caption="File Type" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="addNewRow" display-name="Add Attachment" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Attachment" action="Widgets.dialogUploadDocument.open()" shortcutkey="" disabled="false"></wm-grid-action>
-                                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
@@ -516,12 +515,12 @@
                 <wm-gridrow name="gridrow32"></wm-gridrow>
                 <wm-gridrow name="gridrow33">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn82">
-                        <input type="file" name="uploadDocument" ng-file-model="document">
+                        <input type="file" name="uploadDocument" ng-file-model="documentsToUpload" multiple="">
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-primary" caption="Upload" on-click="closeDialog();buttonAddDocumentClick($event, $scope)" name="buttonAddDocument" iconclass="wi wi-file-upload" disabled="bind:!document"></wm-button>
+                <wm-button class="btn-primary" caption="Upload" on-click="closeDialog();buttonAddDocumentClick($event, $scope)" name="buttonAddDocument" iconclass="wi wi-file-upload" disabled="bind:documentsToUpload.length === 0"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button6" iconclass="wi wi-cancel" on-click="Widgets.dialogUploadDocument.close()"></wm-button>
             </wm-dialogactions>
         </wm-dialog>

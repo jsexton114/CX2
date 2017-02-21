@@ -170,13 +170,13 @@ Application.$controller("NewFormPageController", ["$scope", "$location", functio
     $scope.svSubmitFormonSuccess = function(variable, data) {
         if ($scope.documents && $scope.Variables.stvDocuments.dataSet.length > 0) {
             $scope.Variables.svUploadDocuments.setInput('formGuid', data);
-            var documents = [];
+            var documentFiles = [];
 
             $scope.Variables.stvDocuments.dataSet.forEach(function(document, index) {
-                documents.push(document.Contents);
+                documentFiles.push(document.Contents);
             });
 
-            $scope.Variables.svUploadDocuments.setInput('files', documents);
+            $scope.Variables.svUploadDocuments.setInput('files', documentFiles);
 
             $scope.Variables.svUploadDocuments.update();
         } else {
@@ -392,16 +392,16 @@ Application.$controller("dialogUploadDocumentController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-        $scope.document = null;
+        $scope.documentsToUpload = [];
 
         $scope.dialogUploadDocumentOpened = function($event, $isolateScope) {
-            $scope.document = null;
+            $scope.documentsToUpload = [];
         };
 
 
         $scope.buttonAddDocumentClick = function($event, $isolateScope) {
-            $scope.Variables.stvDocuments.dataSet.push(angular.copy($scope.document));
-            $scope.document = null;
+            $scope.Variables.stvDocuments.dataSet = $scope.Variables.stvDocuments.dataSet.concat($scope.documentsToUpload);
+            $scope.documentsToUpload = [];
         };
 
     }
