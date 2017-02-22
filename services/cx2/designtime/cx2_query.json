@@ -1484,7 +1484,7 @@
     }
   }, {
     "name" : "GetProcessGroupMemebersByFormGUID",
-    "query" : "select count(*) from MasterForms MF, FormStatuses FS, MunicipalityGroups MG\n    WHERE MF.FormGUID=:FormGUID\n    and FS.ID=MF.formStatusId\n\tand MG.ID=FS.processOwners\n\tand :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)",
+    "query" : "select CASE count(*) WHEN 0 THEN 0 ELSE 1 END AS IsProcessOwner from MasterForms MF, FormStatuses FS, MunicipalityGroups MG\n    WHERE MF.FormGUID=:FormGUID\n    and FS.ID=MF.formStatusId\n\tand MG.ID=FS.processOwners\n\tand :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)",
     "comment" : "GetProcessGroupMemebersByFormGUID",
     "description" : null,
     "nativeSql" : true,
@@ -1507,7 +1507,7 @@
     } ],
     "outputType" : "cx2GetProcessGroupMemebersByFormGUIDrtnType",
     "returnTypeMetadata" : {
-      "" : "java.lang.Integer"
+      "IsProcessOwner" : "java.lang.Integer"
     }
   }, {
     "name" : "GetProjectGisrecords",

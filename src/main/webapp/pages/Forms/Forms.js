@@ -67,8 +67,8 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         }
 
         // If not muniadmin or cxadmin OR not in group then hide panel
-        if (!!$scope.Widgets.panelFormReview && !((isCXAdminMunicipalityAdmin == 1) || (data > 0))) {
-            $scope.Widgets.panelFormReview.show = false;
+        if (!!$scope.Widgets.panelFormReview) {
+            $scope.Widgets.panelFormReview.show = ((isCXAdminMunicipalityAdmin === 1) || (data.content[0].IsProcessOwner === 1));
         }
     };
 

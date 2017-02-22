@@ -229,7 +229,7 @@
   </query>
   <sql-query name="GetProcessGroupMemebersByFormGUID">
     <![CDATA[
-      select count(*) from MasterForms MF, FormStatuses FS, MunicipalityGroups MG
+      select CASE count(*) WHEN 0 THEN 0 ELSE 1 END AS IsProcessOwner from MasterForms MF, FormStatuses FS, MunicipalityGroups MG
       WHERE MF.FormGUID=:FormGUID
       and FS.ID=MF.formStatusId
       and MG.ID=FS.processOwners

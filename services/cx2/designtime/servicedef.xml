@@ -2187,7 +2187,7 @@
             <element name="users" typeRef="com.civicxpress.cx2.Users"/>
         </dataobject>
         <dataobject javaType="cx2GetProcessGroupMemebersByFormGUIDrtnType">
-            <element name="" typeRef="java.lang.Integer"/>
+            <element name="IsProcessOwner" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2GetProjectGisrecordsrtnType">
             <element name="addedAt" typeRef="java.util.Date"/>

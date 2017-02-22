@@ -16,7 +16,7 @@ Application.$controller("topnavPageController", ["$scope", "$window", function($
 
 
     $scope.logoutLinkClick = function($event, $isolateScope) {
-        $window.reload();
+        $window.location.reload();
     };
 
 }]);
