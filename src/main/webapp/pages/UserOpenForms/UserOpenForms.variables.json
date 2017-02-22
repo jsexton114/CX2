@@ -54,6 +54,34 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "PreferenceForUser" : {
+    "_id" : "wm-PreferenceForUser-wm.ServiceVariable-1487744360594",
+    "name" : "PreferenceForUser",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "userId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "cx2PreferenceForUserrtnType",
+    "service" : "cx2",
+    "operation" : "executePreferenceForUser",
+    "operationId" : "QueryExecutionController_executePreferenceForUser",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "SelectView" : {
     "_id" : "wm-SelectView-wm.LiveVariable-1487589152063",
     "name" : "SelectView",
