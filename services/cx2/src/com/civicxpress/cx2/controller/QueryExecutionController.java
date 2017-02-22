@@ -800,6 +800,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/SetModifiedDateForProject", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeSetModifiedDateForProject(@RequestParam(value = "DateModified", required = false) java.sql.Timestamp DateModified, @RequestParam(value = "project", required = false) java.lang.String project) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query SetModifiedDateForProject");
+        int result = queryService.executeSetModifiedDateForProject(DateModified, project);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/SetPrimaryVendorStatusForFormandVendor", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeSetPrimaryVendorStatusForFormandVendor(@RequestParam(value = "pv", required = false) java.lang.Boolean pv, @RequestParam(value = "form", required = false) java.lang.String form, @RequestParam(value = "vendor", required = false) java.lang.Integer vendor) throws QueryParameterMismatchException {

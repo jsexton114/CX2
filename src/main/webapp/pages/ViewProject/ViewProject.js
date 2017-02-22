@@ -25,6 +25,24 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
         }
     };
 
+
+    $scope.UpdateProjectDescriptiononSuccess = function(variable, data) {
+        $scope.today = moment().valueOf();
+        $scope.Variables.SetModifiedDateForProject.setInput({
+            'DateModified': $scope.today
+        });
+        $scope.Variables.SetModifiedDateForProject.update();
+    };
+
+
+    $scope.UpdateProjectDetailsonSuccess = function(variable, data) {
+        $scope.today = moment().valueOf();
+        $scope.Variables.SetModifiedDateForProject.setInput({
+            'DateModified': $scope.today
+        });
+        $scope.Variables.SetModifiedDateForProject.update();
+    };
+
 }]);
 
 Application.$controller("gridProjectMembersController", ["$scope",

@@ -91,6 +91,7 @@ public interface Cx2QueryExecutorService {
 	int executeResetPasswordForUser(  java.lang.String newPassword , java.lang.String token) throws QueryParameterMismatchException;
 	int executeResetPasswordWithTokenForUser(  java.lang.Integer userid , java.lang.String token) throws QueryParameterMismatchException;
     Page<Object> executeSearchFormByVendor(Pageable pageable, java.sql.Timestamp startd, java.sql.Timestamp endd, java.lang.Integer FormTypeId, java.lang.Boolean closed, java.lang.Integer vendorId) throws QueryParameterMismatchException;
+	int executeSetModifiedDateForProject(  java.sql.Timestamp DateModified , java.lang.String project) throws QueryParameterMismatchException;
 	int executeSetPrimaryVendorStatusForFormandVendor(  java.lang.Boolean pv , java.lang.String form , java.lang.Integer vendor) throws QueryParameterMismatchException;
     Page<Object> executeStandardUserMunicipalites(Pageable pageable, java.lang.Integer USER) throws QueryParameterMismatchException;
     Page<Object> executeSubDivisonCount(Pageable pageable, java.lang.Integer municipalityId) throws QueryParameterMismatchException;

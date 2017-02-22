@@ -722,6 +722,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeSetModifiedDateForProject( java.sql.Timestamp DateModified ,java.lang.String project)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("DateModified", DateModified);
+        params.put("project", project);
+        return queryExecutor.executeNamedQueryForUpdate("SetModifiedDateForProject", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeSetPrimaryVendorStatusForFormandVendor( java.lang.Boolean pv ,java.lang.String form ,java.lang.Integer vendor)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

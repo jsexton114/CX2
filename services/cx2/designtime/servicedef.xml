@@ -554,6 +554,11 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="SetModifiedDateForProject">
+        <parameter name="DateModified" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="project" typeRef="java.lang.String" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
@@ -937,6 +942,11 @@
         <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2SearchFormByVendorrtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="SetModifiedDateForProject">
+        <parameter name="DateModified" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="project" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2SetModifiedDateForProjectrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="SetPrimaryVendorStatusForFormandVendor">
         <parameter name="pv" typeRef="java.lang.Boolean" isList="false"/>
@@ -2403,6 +2413,7 @@
             <element name="vendor" typeRef="com.civicxpress.cx2.Vendor"/>
             <element name="vendors2forms" typeRef="java.util.List"/>
         </dataobject>
+        <dataobject javaType="cx2SetModifiedDateForProjectrtnType"/>
         <dataobject javaType="cx2SetPrimaryVendorStatusForFormandVendorrtnType"/>
         <dataobject javaType="cx2StandardUserMunicipalitesrtnType">
             <element name="Active" typeRef="java.lang.Boolean"/>

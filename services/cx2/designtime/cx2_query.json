@@ -2537,6 +2537,31 @@
       "vendors2forms" : "java.util.List"
     }
   }, {
+    "name" : "SetModifiedDateForProject",
+    "query" : "Update Projects set ModifiedDate=:DateModified where ProjectGUID=:project",
+    "comment" : "SetModifiedDateForProject",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : true,
+    "queryParams" : [ {
+      "paramName" : "DateModified",
+      "paramType" : "java.sql.Timestamp",
+      "testValue" : "1487751372000",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "project",
+      "paramType" : "java.lang.String",
+      "testValue" : "49655B41-2598-49CB-B2B8-204EF05DDF1F",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2SetModifiedDateForProjectrtnType",
+    "returnTypeMetadata" : { }
+  }, {
     "name" : "SetPrimaryVendorStatusForFormandVendor",
     "query" : "update Vendors2Form set PrimaryVendor=:pv where RelatedFormGUID=:form and VendorID=:vendor",
     "comment" : "SetPrimaryVendorStatusForFormandVendor",
