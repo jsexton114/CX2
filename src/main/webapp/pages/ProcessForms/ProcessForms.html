@@ -25,17 +25,16 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
-                        <wm-grid title="" dataset="bind:Variables.ProcessFormsForUserByMunicipality.dataSet.content[$i].[0]" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL">
-                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="municipalityGroups.municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="vendor.companyName" caption="Primary Vendor" type="string" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="dateModified" caption="Date Modified" type="timestamp" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="date"></wm-grid-column>
-                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column>
+                        <wm-grid title="" dataset="bind:Variables.ProcessFormsForUserByMunicipality.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid-column binding="FormTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="Status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="FormType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="MunicipalityName" caption="Municipality" type="string" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="PrimaryVendor" caption="Primary Vendor" type="string" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="Email" caption="Owner" type="string" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="BalanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Variables.navGoToForm.invoke()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>

@@ -46,6 +46,24 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "navGoToForm" : {
+    "_id" : "wm-navGoToForm-wm.NavigationVariable-1487773422587",
+    "name" : "navGoToForm",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "Forms",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ {
+      "type" : "string",
+      "target" : "FormGUID",
+      "value" : "bind:Widgets.gridOpenForms.selecteditem.FormGUID"
+    } ],
+    "pageTransitions" : "none"
+  },
   "ProcessFormsForUserByMunicipality" : {
     "_id" : "wm-ProcessFormsForUserByMunicipality-wm.ServiceVariable-1485164884285",
     "name" : "ProcessFormsForUserByMunicipality",
@@ -72,7 +90,7 @@
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : true,
-    "maxResults" : 20,
+    "maxResults" : 9001,
     "designMaxResults" : 10,
     "onSuccess" : "ProcessFormsForUserByMunicipalityonSuccess($event, $scope)",
     "startUpdate" : false,

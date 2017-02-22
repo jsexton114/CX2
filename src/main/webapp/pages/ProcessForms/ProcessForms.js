@@ -16,7 +16,7 @@ Application.$controller("ProcessFormsPageController", ["$scope", function($scope
 
 
     $scope.ProcessFormsForUserByMunicipalityonSuccess = function(variable, data) {
-        debugger
+
     };
 
 }]);
@@ -25,5 +25,10 @@ Application.$controller("gridOpenFormsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+
+        };
+
     }
 ]);

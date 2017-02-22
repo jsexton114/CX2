@@ -83,7 +83,12 @@
   </sql-query>
   <sql-query name="CountOfProcessFormsByMuncipality">
     <![CDATA[
-      select count(*) as count from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.UserId=:UserId and GM.MunicipalityGroupId=MG.ID and MG.ID=MF.AssignedToGroupId and MF.MunicipalityId=:MunicipalityId and MF.Closed=:closed
+      select count(*) as count from MasterForms MF, FormStatuses FS, MunicipalityGroups MG
+      WHERE FS.id=MF.formStatusId
+      and MG.id=FS.processOwners
+      and MF.MunicipalityId=:MunicipalityId
+      and MF.closed=:closed
+      and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
     ]]>
   </sql-query>
   <sql-query name="CountOfProjectsForUsersAndSharedWithByMunicipality">
@@ -342,11 +347,22 @@
       from StandardViews where id IN (select preferenceId from  UserViewPreferences where userId = :userId )
     ]]>
   </query>
-  <query name="ProcessFormsForUserByMunicipality">
+  <sql-query name="ProcessFormsForUserByMunicipality">
     <![CDATA[
-      from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.userId=:UserId and GM.municipalityGroupId=MG.id and MG.id=MF.assignedToGroupId and MF.municipalityId=:MunicipalityId and MF.closed=:Closed ORDER BY DateModified DESC
+      select MF.FormTitle, MF.FormGUID, FS.Status, FT.FormType, MU.MunicipalityName, V.CompanyName as PrimaryVendor, U.Email, MF.BalanceDue from MasterForms MF
+      LEFT JOIN Municipalities AS MU ON MU.ID=MF.MunicipalityId
+      LEFT JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+      LEFT JOIN FormStatuses AS FS ON FS.id=MF.formStatusId
+      LEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners
+      LEFT JOIN Users AS U ON U.ID=MF.UserId
+      LEFT OUTER JOIN Vendor AS V on V.ID=MF.CXVendorId
+      where
+      MF.municipalityId=:MunicipalityId
+      and MF.closed=:Closed
+      and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
+      ORDER BY MF.DateModified DESC
     ]]>
-  </query>
+  </sql-query>
   <query name="ProjectForms">
     <![CDATA[
       from ProjectForms where RelatedProjectGUID=:project

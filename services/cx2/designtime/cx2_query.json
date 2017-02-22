@@ -527,20 +527,13 @@
     }
   }, {
     "name" : "CountOfProcessFormsByMuncipality",
-    "query" : "select count(*) as count from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.UserId=:UserId and GM.MunicipalityGroupId=MG.ID and MG.ID=MF.AssignedToGroupId and MF.MunicipalityId=:MunicipalityId and MF.Closed=:closed",
+    "query" : "select count(*) as count from MasterForms MF, FormStatuses FS, MunicipalityGroups MG\n    WHERE FS.id=MF.formStatusId\n\tand MG.id=FS.processOwners\n\tand MF.MunicipalityId=:MunicipalityId\n\tand MF.closed=:closed\n\tand :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)",
     "comment" : "CountOfProcessFormsByMuncipality",
     "description" : null,
     "nativeSql" : true,
     "returnsSingleResult" : false,
     "update" : false,
     "queryParams" : [ {
-      "paramName" : "UserId",
-      "paramType" : "java.lang.Integer",
-      "testValue" : "111",
-      "systemParamName" : null,
-      "systemParam" : false,
-      "list" : false
-    }, {
       "paramName" : "MunicipalityId",
       "paramType" : "java.lang.Integer",
       "testValue" : "2",
@@ -551,6 +544,13 @@
       "paramName" : "closed",
       "paramType" : "java.lang.Boolean",
       "testValue" : "false",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "UserId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
@@ -2198,20 +2198,13 @@
     }
   }, {
     "name" : "ProcessFormsForUserByMunicipality",
-    "query" : "from MasterForms MF,MunicipalityGroupMembers GM,MunicipalityGroups MG where GM.userId=:UserId and GM.municipalityGroupId=MG.id and MG.id=MF.assignedToGroupId and MF.municipalityId=:MunicipalityId and MF.closed=:Closed ORDER BY DateModified DESC",
+    "query" : "select MF.FormTitle, MF.FormGUID, FS.Status, FT.FormType, MU.MunicipalityName, V.CompanyName as PrimaryVendor, U.Email, MF.BalanceDue from MasterForms MF\n\tLEFT JOIN Municipalities AS MU ON MU.ID=MF.MunicipalityId\n\tLEFT JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\n\tLEFT JOIN FormStatuses AS FS ON FS.id=MF.formStatusId\n\tLEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners\n\tLEFT JOIN Users AS U ON U.ID=MF.UserId\n\tLEFT OUTER JOIN Vendor AS V on V.ID=MF.CXVendorId\n\twhere\n\tMF.municipalityId=:MunicipalityId\n\tand MF.closed=:Closed\n\tand :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)\n\tORDER BY MF.DateModified DESC",
     "comment" : "Get forms from Master Forms where employee is in group of that in current form Status",
     "description" : null,
-    "nativeSql" : false,
+    "nativeSql" : true,
     "returnsSingleResult" : false,
     "update" : false,
     "queryParams" : [ {
-      "paramName" : "UserId",
-      "paramType" : "java.lang.Integer",
-      "testValue" : "1",
-      "systemParamName" : null,
-      "systemParam" : false,
-      "list" : false
-    }, {
       "paramName" : "MunicipalityId",
       "paramType" : "java.lang.Integer",
       "testValue" : "1",
@@ -2225,53 +2218,24 @@
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
+    }, {
+      "paramName" : "UserId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
     } ],
     "outputType" : "cx2ProcessFormsForUserByMunicipalityrtnType",
     "returnTypeMetadata" : {
-      "MunicipalityGroupMembers.municipalityGroups" : "com.civicxpress.cx2.MunicipalityGroups",
-      "MunicipalityGroupMembers.userId" : "java.lang.Integer",
-      "MunicipalityGroupMembers.users" : "com.civicxpress.cx2.Users",
-      "MunicipalityGroups.id" : "java.lang.Integer",
-      "MunicipalityGroups.municipalities" : "com.civicxpress.cx2.Municipalities",
-      "MunicipalityGroups.municipalityId" : "java.lang.Integer",
-      "assignedToGroupId" : "java.lang.Integer",
-      "balanceDue" : "java.lang.String",
-      "closed" : "java.lang.Boolean",
-      "cxvendorId" : "java.lang.Integer",
-      "dateModified" : "java.util.Date",
-      "expiresDate" : "java.util.Date",
-      "formGuid" : "java.lang.String",
-      "formMessageses" : "java.util.List",
-      "formStatusId" : "java.lang.Integer",
-      "formStatuses" : "com.civicxpress.cx2.FormStatuses",
-      "formStatusesesForProcessOwners" : "java.util.List",
-      "formStatusesesForReadAccess" : "java.util.List",
-      "formStatusesesForWriteAccess" : "java.util.List",
-      "formTitle" : "java.lang.String",
-      "formTypeId" : "java.lang.Integer",
-      "formTypes" : "com.civicxpress.cx2.FormTypes",
-      "gis2formses" : "java.util.List",
-      "giscontacts" : "com.civicxpress.cx2.Giscontacts",
-      "groupDescription" : "java.lang.String",
-      "groupName" : "java.lang.String",
-      "id" : "java.lang.Integer",
-      "issuedDate" : "java.util.Date",
-      "masterFormses" : "java.util.List",
-      "municipalities" : "com.civicxpress.cx2.Municipalities",
-      "municipalityGroupId" : "java.lang.Integer",
-      "municipalityGroupMemberses" : "java.util.List",
-      "municipalityGroups" : "com.civicxpress.cx2.MunicipalityGroups",
-      "municipalityId" : "java.lang.Integer",
-      "ownerId" : "java.lang.Integer",
-      "recordType" : "java.lang.String",
-      "sharedWiths" : "java.util.List",
-      "submittedOn" : "java.util.Date",
-      "totalFees" : "java.lang.String",
-      "totalPayment" : "java.lang.String",
-      "userId" : "java.lang.Integer",
-      "users" : "com.civicxpress.cx2.Users",
-      "vendor" : "com.civicxpress.cx2.Vendor",
-      "vendors2forms" : "java.util.List"
+      "BalanceDue" : "java.lang.String",
+      "Email" : "java.lang.String",
+      "FormGUID" : "java.lang.String",
+      "FormTitle" : "java.lang.String",
+      "FormType" : "java.lang.String",
+      "MunicipalityName" : "java.lang.String",
+      "PrimaryVendor" : "java.lang.String",
+      "Status" : "java.lang.String"
     }
   }, {
     "name" : "ProjectForms",

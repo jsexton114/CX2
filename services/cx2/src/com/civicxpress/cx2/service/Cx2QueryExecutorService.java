@@ -31,7 +31,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeCountOfFormsForMunicipality(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeCountOfMuncipalityApplicationsByVendor(Pageable pageable, java.lang.Integer VendorId) throws QueryParameterMismatchException;
     Page<Object> executeCountOfMunicipalityProjects(Pageable pageable, java.lang.Integer municipalityId, java.lang.Boolean Active) throws QueryParameterMismatchException;
-    Page<Object> executeCountOfProcessFormsByMuncipality(Pageable pageable, java.lang.Integer UserId, java.lang.Integer MunicipalityId, java.lang.Boolean closed) throws QueryParameterMismatchException;
+    Page<Object> executeCountOfProcessFormsByMuncipality(Pageable pageable, java.lang.Integer MunicipalityId, java.lang.Boolean closed, java.lang.Integer UserId) throws QueryParameterMismatchException;
     Page<Object> executeCountOfProjectsForUsersAndSharedWithByMunicipality(Pageable pageable, java.lang.Integer municipalityId, java.lang.Boolean Active, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
     Page<Object> executeCountOfUserForms(Pageable pageable, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
     Page<Object> executeCountOfUserFormsForMunicipality(Pageable pageable, java.lang.Integer MunicipalityId, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
@@ -83,7 +83,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeMunicipalityProjects(Pageable pageable, java.lang.Boolean Active, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeOpenedOrClosedFormsForUserOrSharedWith(Pageable pageable, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
     Page<Object> executePreferenceForUser(Pageable pageable, java.lang.Integer userId) throws QueryParameterMismatchException;
-    Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, java.lang.Integer UserId, java.lang.Integer MunicipalityId, java.lang.Boolean Closed) throws QueryParameterMismatchException;
+    Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, java.lang.Integer MunicipalityId, java.lang.Boolean Closed, java.lang.Integer UserId) throws QueryParameterMismatchException;
     Page<Object> executeProjectForms(Pageable pageable, java.lang.String project) throws QueryParameterMismatchException;
     Page<Object> executeProjectsForUsersAndSharedWith(Pageable pageable, java.lang.Boolean Active, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;
 	int executeProjectSoftDelete(  java.lang.Boolean active , java.lang.String ProjectGuid) throws QueryParameterMismatchException;
