@@ -38,7 +38,7 @@
                                                             placeholder="" hint="This hides the form design from standard CivicXpress users and makes it available only to Municipality Employees."></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
-                                                    <wm-gridrow name="gridrow1333" padding="unset unset 1em unset">
+                                                    <wm-gridrow name="gridrow1333" padding="unset unset 2em unset">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn1333">
                                                             <wm-form-field displayname="Instructions" widget="richtext" show="true" type="custom" name="instructions" key="instructions" hint="This is the first thing that a user will see when they launch the New Form wizard."></wm-form-field>
                                                         </wm-gridcolumn>
@@ -48,7 +48,7 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow43_1">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn71_1">
-                                                <wm-panel iconclass="wi wi-edit" autoclose="outsideClick" name="panel10_1" margin="1em unset" title="Form Naming" class="panel-primary">
+                                                <wm-panel iconclass="wi wi-spellcheck" autoclose="outsideClick" name="panel10_1" margin="1em unset" title="Form Naming" class="panel-primary">
                                                     <wm-layoutgrid name="layoutgrid10_1">
                                                         <wm-gridrow name="gridrow43_2">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn68">
@@ -207,7 +207,7 @@
                                                                 maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFeeAccountingCode"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
-                                                        <wm-gridrow name="gridrow41_1" padding="unset unset 1em unset">
+                                                        <wm-gridrow name="gridrow41_1" padding="unset unset 2em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn66">
                                                                 <wm-form-field name="basementFee" displayname="Basement Fee" show="true" primary-key="false" generator="assigned" key="basementFee" type="string" widget="text" maxchars="255" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].basementFee"
                                                                 placeholder="Enter value" inputtype="text"></wm-form-field>
@@ -266,7 +266,7 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow30">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn62_1">
-                                                                <wm-label name="label62_1" caption="If this Form belongs in a Category that isn't available above, you can create new Categories on the Manage Forms page." margin="1em unset unset unset"></wm-label>
+                                                                <wm-label name="label62_1" caption="If this Form belongs in a Category that isn't available above, you can create a new Category on the Manage Forms page." margin="1em unset unset unset"></wm-label>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
@@ -287,7 +287,8 @@
                                 <wm-layoutgrid name="layoutgrid13">
                                     <wm-gridrow name="gridrow56_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn81_1">
-                                            <wm-label padding="unset 0.5em" name="label16" caption="Form Fields are used to collect information and guide a user who is submitting this Form. What data do you want to collect?"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label16" caption="Form Fields are used to collect information and guide a user who is submitting this Form. A minimum of one Form Field is required."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label19" caption="What data would you like to collect?"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow57">
@@ -296,7 +297,7 @@
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet" navigation="Classic" name="gridFields" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                     <wm-grid-column binding="displayOrder" caption="Display Order" type="integer" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="label" caption="Label" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="formFieldTypes.label" caption="Type" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="FormFieldTypes"></wm-grid-column>
+                                                    <wm-grid-column binding="formFieldTypes.label" caption="Field Type" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="FormFieldTypes"></wm-grid-column>
                                                     <wm-grid-column binding="required" caption="Required" type="boolean" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="defaultValue" caption="Default Value" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="helpText" caption="Help Text" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
@@ -305,7 +306,8 @@
                                                     <wm-grid-action key="addNewRow" display-name="Add Field" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Field" action="Widgets.dlgFormTypeField.open()" shortcutkey=""
                                                     disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="Authenticated" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.Cx2FormTypeFieldsData.dataSet.data.length > 1" class="btn-transparent" iconclass="wi wi-trash" title="Delete"
+                                                    action="deleteRow()" accessroles="Authenticated" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-livegrid>
                                         </wm-gridcolumn>
@@ -333,7 +335,7 @@
                                                     <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.StatusesData.dataSet.data.length > 2" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
                                                     disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
-                                                <wm-liveform novalidate="false" errormessage="" title="Form Status Options" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top"
+                                                <wm-liveform novalidate="false" errormessage="" title="Form Status Options" formlayout="dialog" iconclass="wi wi-settings" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top"
                                                 name="lfFormTypeStatus" on-error="liveform2Error($event, $operation, $data)">
                                                     <wm-layoutgrid columns="3" name="StatusLayout">
                                                         <wm-gridrow name="gridrowSettings">
