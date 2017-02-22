@@ -381,6 +381,11 @@
         <parameter name="vendorId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2SearchFormByVendorrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="SetModifiedDateForProject">
+        <parameter name="DateModified" typeRef="java.sql.Timestamp" isList="false"/>
+        <parameter name="project" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="cx2SetModifiedDateForProjectrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="SetPrimaryVendorStatusForFormandVendor">
         <parameter name="pv" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="form" typeRef="java.lang.String" isList="false"/>
@@ -553,11 +558,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="SetModifiedDateForProject">
-        <parameter name="DateModified" typeRef="java.sql.Timestamp" isList="false"/>
-        <parameter name="project" typeRef="java.lang.String" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
@@ -1208,7 +1208,9 @@
             <element name="message" typeRef="java.lang.String" allowNull="true"/>
             <element name="municipalityMessage" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="postedAt" typeRef="java.util.Date" allowNull="true"/>
+            <element name="projects" typeRef="com.civicxpress.cx2.Projects" allowNull="true"/>
             <element name="relatedFormGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="relatedProjectGuid" typeRef="java.lang.String" allowNull="true"/>
             <element name="userId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="users" typeRef="com.civicxpress.cx2.Users" allowNull="true"/>
         </dataobject>
@@ -1568,6 +1570,7 @@
             <element name="createdDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="estEndDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="estStartDate" typeRef="java.util.Date" allowNull="true"/>
+            <element name="formMessageses" typeRef="com.civicxpress.cx2.FormMessages" isList="true" allowNull="true"/>
             <element name="modifiedBy" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="modifiedDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>

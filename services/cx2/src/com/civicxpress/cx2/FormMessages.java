@@ -41,7 +41,9 @@ public class FormMessages implements Serializable {
     private String message;
     private Date postedAt;
     private Boolean municipalityMessage;
+    private String relatedProjectGuid;
     private MasterForms masterForms;
+    private Projects projects;
     private Users users;
     private List<FormMessageTagging> formMessageTaggings = new ArrayList<>();
 
@@ -102,6 +104,15 @@ public class FormMessages implements Serializable {
         this.municipalityMessage = municipalityMessage;
     }
 
+    @Column(name = "`RelatedProjectGUID`", nullable = true, length = 32)
+    public String getRelatedProjectGuid() {
+        return this.relatedProjectGuid;
+    }
+
+    public void setRelatedProjectGuid(String relatedProjectGuid) {
+        this.relatedProjectGuid = relatedProjectGuid;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`RelatedFormGUID`", referencedColumnName = "`FormGUID`", insertable = false, updatable = false)
     public MasterForms getMasterForms() {
@@ -114,6 +125,20 @@ public class FormMessages implements Serializable {
         }
 
         this.masterForms = masterForms;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`RelatedProjectGUID`", referencedColumnName = "`ProjectGUID`", insertable = false, updatable = false)
+    public Projects getProjects() {
+        return this.projects;
+    }
+
+    public void setProjects(Projects projects) {
+        if(projects != null) {
+            this.relatedProjectGuid = projects.getProjectGuid();
+        }
+
+        this.projects = projects;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

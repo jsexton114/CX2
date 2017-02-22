@@ -51,6 +51,7 @@ public class Projects implements Serializable {
     private Municipalities municipalities;
     private Users usersByCreatedBy;
     private Users usersByModifiedBy;
+    private List<FormMessages> formMessageses = new ArrayList<>();
     private List<ProjectForms> projectFormses = new ArrayList<>();
     private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
     private List<ProjectTasks> projectTaskses = new ArrayList<>();
@@ -211,6 +212,16 @@ public class Projects implements Serializable {
         }
 
         this.usersByModifiedBy = usersByModifiedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
+    public List<FormMessages> getFormMessageses() {
+        return this.formMessageses;
+    }
+
+    public void setFormMessageses(List<FormMessages> formMessageses) {
+        this.formMessageses = formMessageses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

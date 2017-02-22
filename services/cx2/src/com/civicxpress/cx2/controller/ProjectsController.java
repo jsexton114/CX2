@@ -25,6 +25,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
@@ -120,6 +121,13 @@ public class ProjectsController {
     public Long countProjects(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
         LOGGER.debug("counting Projects");
         return projectsService.count(query);
+    }
+
+    @RequestMapping(value = "/{id:.+}/formMessageses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the formMessageses instance associated with the given id.")
+    public Page<FormMessages> findAssociatedFormMessageses(@PathVariable("id") String id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formMessageses");
+        return projectsService.findAssociatedFormMessageses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/projectFormses", method = RequestMethod.GET)

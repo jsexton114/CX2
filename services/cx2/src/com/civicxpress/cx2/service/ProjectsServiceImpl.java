@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
@@ -47,6 +48,10 @@ public class ProjectsServiceImpl implements ProjectsService {
 	private ProjectFormsService projectFormsService;
 
     @Autowired
+	@Qualifier("cx2.FormMessagesService")
+	private FormMessagesService formMessagesService;
+
+    @Autowired
 	@Qualifier("cx2.ProjectSharedWithService")
 	private ProjectSharedWithService projectSharedWithService;
 
@@ -67,6 +72,14 @@ public class ProjectsServiceImpl implements ProjectsService {
 	public Projects create(Projects projects) {
         LOGGER.debug("Creating a new Projects with information: {}", projects);
         Projects projectsCreated = this.wmGenericDao.create(projects);
+        if(projectsCreated.getFormMessageses() != null) {
+            for(FormMessages formMessagese : projectsCreated.getFormMessageses()) {
+                formMessagese.setProjects(projectsCreated);
+                LOGGER.debug("Creating a new child FormMessages with information: {}", formMessagese);
+                formMessagesService.create(formMessagese);
+            }
+        }
+
         if(projectsCreated.getProjectFormses() != null) {
             for(ProjectForms projectFormse : projectsCreated.getProjectFormses()) {
                 projectFormse.setProjects(projectsCreated);
@@ -174,6 +187,17 @@ public class ProjectsServiceImpl implements ProjectsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormMessages> findAssociatedFormMessageses(String projectGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formMessageses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
+
+        return formMessagesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<ProjectForms> findAssociatedProjectFormses(String projectGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectFormses");
 
@@ -232,6 +256,15 @@ public class ProjectsServiceImpl implements ProjectsService {
 	 */
 	protected void setProjectFormsService(ProjectFormsService service) {
         this.projectFormsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormMessagesService instance
+	 */
+	protected void setFormMessagesService(FormMessagesService service) {
+        this.formMessagesService = service;
     }
 
     /**

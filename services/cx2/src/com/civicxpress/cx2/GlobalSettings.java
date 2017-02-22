@@ -140,7 +140,7 @@ public class GlobalSettings implements Serializable {
         this.cxpostalCode = cxpostalCode;
     }
 
-    @Column(name = "`CXEULA`", nullable = true, length = 8000)
+    @Column(name = "`CXEULA`", nullable = true, length = 2147483647)
     public String getCxeula() {
         return this.cxeula;
     }

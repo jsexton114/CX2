@@ -2181,6 +2181,31 @@
       "scale" : 0,
       "sqlType" : "boolean",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "relatedProjectGuid",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 32,
+      "name" : "RelatedProjectGUID",
+      "nullable" : true,
+      "oldName" : "RelatedProjectGUID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "FormMessages",
@@ -2213,6 +2238,23 @@
       "sourceTable" : "FormMessages",
       "targetColumnsUniqueKey" : true,
       "targetTable" : "MasterForms",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "projects",
+      "mappings" : [ {
+        "sourceColumn" : "RelatedProjectGUID",
+        "targetColumn" : "ProjectGUID"
+      } ],
+      "name" : "FK_FormMessages_TO_ProjeCr601",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "FormMessages",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Projects",
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
@@ -5526,7 +5568,7 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "text",
-      "length" : 8000,
+      "length" : 2147483647,
       "name" : "CXEULA",
       "nullable" : true,
       "oldName" : "CXEULA",
@@ -9059,6 +9101,23 @@
       "sourceTable" : "Projects",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Users",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "formMessageses",
+      "mappings" : [ {
+        "sourceColumn" : "ProjectGUID",
+        "targetColumn" : "RelatedProjectGUID"
+      } ],
+      "name" : "FK_FormMessages_TO_ProjeCr601",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Projects",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "FormMessages",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
