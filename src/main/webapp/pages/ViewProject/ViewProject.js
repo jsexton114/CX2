@@ -11,7 +11,6 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 
 
     $scope.CurrentProjectonSuccess = function(variable, data) {
-        $scope.Widgets.htmlProjectDescription.content = decodeURIComponent(escape(window.atob(data[0].projectDescription)));
 
         if ($scope.Variables.loggedInUser.dataSet.id == data[0].usersByCreatedBy.id) {
             $scope.Widgets.gridProjectMembers.addMember = false;
@@ -201,10 +200,6 @@ Application.$controller("dialogEditProjectDescriptionController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonUpdateProjectDescriptionClick = function($event, $isolateScope) {
-            var encodedDescription = btoa(unescape(encodeURIComponent($scope.Widgets.richtexteditorUpdateDescription.datavalue)));
-            $scope.Variables.UpdateProjectDescription.setInput({
-                'ProjectDescription': encodedDescription
-            });
             $scope.Variables.UpdateProjectDescription.update();
         };
 

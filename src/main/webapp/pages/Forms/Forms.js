@@ -202,9 +202,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.SendFormMessagesMailonSuccess = function(variable, data) {
         $scope.Variables.PeopleList.dataSet = undefined;
     };
-
-
-
 }]);
 
 
