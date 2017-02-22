@@ -196,7 +196,8 @@
                                                     <wm-layoutgrid columns="2" name="layoutgrid29">
                                                         <wm-gridrow name="gridrow84">
                                                             <wm-gridcolumn colwidth="6" columnwidth="12" padding="unset 1.25em" class="col-xs-6" name="gridcolumn164">
-                                                                <wm-label name="Name" caption="bind:Variables.lvOwner.dataSet.firstName" fontunit="em" color="#000" class="h4" margin="0px unset" whitespace="nowrap"></wm-label>
+                                                                <wm-label name="Name" caption="bind:Variables.lvOwner.dataSet.data[$i].firstName + (!!Variables.lvOwner.dataSet.data[$i].lastName ? ' '+Variables.lvOwner.dataSet.data[$i].lastName : '')" fontunit="em"
+                                                                color="#000" class="h4" margin="0px unset" whitespace="nowrap"></wm-label>
                                                                 <wm-label name="City" caption="bind:Variables.lvOwner.dataSet.city" class="h5" margin="0px unset unset unset" whitespace="nowrap"></wm-label>
                                                                 <wm-label name="Address1" caption="bind:Variables.lvOwner.dataSet.address1" class="p text-muted" margin="unset unset 0px unset" whitespace="nowrap"></wm-label>
                                                                 <wm-label name="Address2" caption="bind:Variables.lvOwner.dataSet.address2" class="text-muted p" whitespace="nowrap"></wm-label>

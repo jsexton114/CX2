@@ -134,6 +134,9 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
                 $scope.Variables.svSubmitForm.setInput('ownerId', ownerId);
             } else if ($scope.Widgets.checkboxOtherOwner.datavalue || $scope.Widgets.checkboxVendorIsOwner.datavalue) {
                 if (!$scope.Widgets.lfOwner.formfields.id.value) {
+                    $scope.Widgets.lfOwner.formfields.gisrecords.value = {
+                        id: $scope.Widgets.gisRecordSelect.datavalue
+                    };
                     $scope.Widgets.lfOwner.formfields.contactType.value = 'Owner';
                     $scope.Widgets.lfOwner.formfields.active.value = true;
                     $scope.Widgets.lfOwner.save();
@@ -271,9 +274,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         liveForm.formFields.forEach(function(field, index) {
             if (field.show === true) {
                 field.readonly = readOnly;
-                if (field.name !== 'notes' && field.name !== 'address2') {
-                    field.required = !readOnly;
-                }
             }
         });
     }
@@ -292,11 +292,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
 
     $scope.checkboxOtherOwnerChange = function($event, $isolateScope, newVal, oldVal) {
-        if (newVal === true) {
-            setLFFieldsRO($scope.Widgets.lfOwner, false);
-        } else {
-            setLFFieldsRO($scope.Widgets.lfOwner, true);
-        }
+        setLFFieldsRO($scope.Widgets.lfOwner, !newVal);
     };
 
     $scope.svGetOwnersonSuccess = function(variable, data) {};

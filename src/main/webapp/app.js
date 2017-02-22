@@ -114,18 +114,19 @@ Application.directive('ngFileModel', function() {
             ngFileModel: '='
         },
         link: function(scope, elem, attrs) {
+            function getFileModel(name, type, fileToAdd) {
+                return {
+                    Filename: name,
+                    Mimetype: type,
+                    Contents: fileToAdd
+                };
+            }
+
             elem.bind('change', function() {
                 scope.ngFileModel = scope.ngFileModel || (!!attrs.multiple ? [] : {});
 
-                function getFileModel(name, type, fileToAdd) {
-                    return {
-                        Filename: name,
-                        Mimetype: type,
-                        Contents: fileToAdd
-                    };
-                }
-
                 if (!!attrs.multiple) {
+                    scope.ngFileModel = [];
                     for (let i = 0; i < elem[0].files.length; i++) {
                         let fileToAdd = elem[0].files[i];
                         scope.ngFileModel.push(getFileModel(

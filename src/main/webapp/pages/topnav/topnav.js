@@ -1,4 +1,4 @@
-Application.$controller("topnavPageController", ["$scope", "$window", function($scope, $window) {
+Application.$controller("topnavPageController", ["$scope", "$location", "$window", function($scope, $location, $window) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -16,6 +16,7 @@ Application.$controller("topnavPageController", ["$scope", "$window", function($
 
 
     $scope.logoutLinkClick = function($event, $isolateScope) {
+        $location.path("/");
         $window.location.reload();
     };
 
