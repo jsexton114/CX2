@@ -166,3 +166,17 @@ Application.$controller("dialogEditProjectDescriptionController", ["$scope",
 
     }
 ]);
+
+Application.$controller("dialogTagPeopleController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("dialogShowTaggedPeopleController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
