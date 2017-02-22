@@ -429,10 +429,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
-	public Page<Object> executeGetProcessGroupMemebersByFormGUID(Pageable pageable, java.lang.String FormGUID)
+	public Page<Object> executeGetProcessGroupMemebersByFormGUID(Pageable pageable, java.lang.String FormGUID, java.lang.Integer UserId)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("FormGUID", FormGUID);
+        params.put("UserId", UserId);
         return queryExecutor.executeNamedQuery("GetProcessGroupMemebersByFormGUID", params, pageable);
 	}
 	@Transactional(value = "cx2TransactionManager")

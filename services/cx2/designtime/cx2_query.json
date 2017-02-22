@@ -1484,7 +1484,7 @@
     }
   }, {
     "name" : "GetProcessGroupMemebersByFormGUID",
-    "query" : "select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF where  MF.FormGUID=:FormGUID and MG.ID=MF.AssignedToGroupId and MG.ID=MGM.MunicipalityGroupId",
+    "query" : "select count(*) from MasterForms MF, FormStatuses FS, MunicipalityGroups MG\n    WHERE MF.FormGUID=:FormGUID\n    and FS.ID=MF.formStatusId\n\tand MG.ID=FS.processOwners\n\tand :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)",
     "comment" : "GetProcessGroupMemebersByFormGUID",
     "description" : null,
     "nativeSql" : true,
@@ -1493,17 +1493,21 @@
     "queryParams" : [ {
       "paramName" : "FormGUID",
       "paramType" : "java.lang.String",
-      "testValue" : "any7fS8UWUOP5ukVeYaTWwdNZutxlBjk",
+      "testValue" : "17B72297-1BF9-E611-80C9-0CC47A46DD63",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "UserId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "1",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false
     } ],
     "outputType" : "cx2GetProcessGroupMemebersByFormGUIDrtnType",
     "returnTypeMetadata" : {
-      "GroupName" : "java.lang.String",
-      "ID" : "java.math.BigDecimal",
-      "MunicipalityGroupId" : "java.math.BigDecimal",
-      "UserId" : "java.math.BigDecimal"
+      "" : "java.lang.Integer"
     }
   }, {
     "name" : "GetProjectGisrecords",

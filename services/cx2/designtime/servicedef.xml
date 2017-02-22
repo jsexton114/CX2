@@ -220,10 +220,6 @@
         <parameter name="gisRecordIds" typeRef="java.lang.Integer" isList="true"/>
         <return typeRef="cx2getOwnersForGisRecordsrtnType" isList="false"/>
     </operation>
-    <operation operationType="nativequery" name="GetProcessGroupMemebersByFormGUID">
-        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
-        <return typeRef="cx2GetProcessGroupMemebersByFormGUIDrtnType" isList="false"/>
-    </operation>
     <operation operationType="hqlquery" name="GetProjectGisrecords">
         <parameter name="relatedProjectGuid" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2GetProjectGisrecordsrtnType" isList="false"/>
@@ -559,6 +555,11 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="GetProcessGroupMemebersByFormGUID">
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
@@ -780,6 +781,7 @@
     </operation>
     <operation operationType="nativequery" name="GetProcessGroupMemebersByFormGUID">
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2GetProcessGroupMemebersByFormGUIDrtnType" isList="false"/>
     </operation>
     <operation operationType="hqlquery" name="GetProjectGisrecords">
@@ -2185,10 +2187,7 @@
             <element name="users" typeRef="com.civicxpress.cx2.Users"/>
         </dataobject>
         <dataobject javaType="cx2GetProcessGroupMemebersByFormGUIDrtnType">
-            <element name="GroupName" typeRef="java.lang.String"/>
-            <element name="ID" typeRef="java.math.BigDecimal"/>
-            <element name="MunicipalityGroupId" typeRef="java.math.BigDecimal"/>
-            <element name="UserId" typeRef="java.math.BigDecimal"/>
+            <element name="" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2GetProjectGisrecordsrtnType">
             <element name="addedAt" typeRef="java.util.Date"/>

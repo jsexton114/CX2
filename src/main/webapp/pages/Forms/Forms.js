@@ -65,13 +65,9 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
                 isCXAdminMunicipalityAdmin = 1;
             }
         }
-        //Checking user is in processowner(assignedto) group of that status, if not return -1
-        var found = _.findIndex(data.content, {
-            'UserId': _.parseInt($scope.Variables.loggedInUser.dataSet.id)
-        });
 
         // If not muniadmin or cxadmin OR not in group then hide panel
-        if (!!$scope.Widgets.panelFormReview && !((isCXAdminMunicipalityAdmin == 1) || (found > -1))) {
+        if (!!$scope.Widgets.panelFormReview && !((isCXAdminMunicipalityAdmin == 1) || (data > 0))) {
             $scope.Widgets.panelFormReview.show = false;
         }
     };
@@ -162,7 +158,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
             $scope.messageMailingList = $scope.messageMailingList + people[i].email + ",";
 
         }
-        $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1)
+        $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
 
         // Send Mails of Message
         $scope.Variables.SendFormMessagesMail.setInput({

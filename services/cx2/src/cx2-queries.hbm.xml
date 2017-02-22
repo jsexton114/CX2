@@ -229,7 +229,11 @@
   </query>
   <sql-query name="GetProcessGroupMemebersByFormGUID">
     <![CDATA[
-      select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF where  MF.FormGUID=:FormGUID and MG.ID=MF.AssignedToGroupId and MG.ID=MGM.MunicipalityGroupId
+      select count(*) from MasterForms MF, FormStatuses FS, MunicipalityGroups MG
+      WHERE MF.FormGUID=:FormGUID
+      and FS.ID=MF.formStatusId
+      and MG.ID=FS.processOwners
+      and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
     ]]>
   </sql-query>
   <query name="GetProjectGisrecords">

@@ -8610,6 +8610,10 @@
       "target" : "FormGUID",
       "value" : "bind:pageParams.FormGUID",
       "type" : "string"
+    }, {
+      "target" : "UserId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
     } ],
     "type" : "cx2GetProcessGroupMemebersByFormGUIDrtnType",
     "service" : "cx2",

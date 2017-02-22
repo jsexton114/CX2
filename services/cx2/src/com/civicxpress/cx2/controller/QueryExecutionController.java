@@ -482,9 +482,9 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/GetProcessGroupMemebersByFormGUID", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Object> executeGetProcessGroupMemebersByFormGUID(@RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID, Pageable pageable) throws QueryParameterMismatchException {
+    public Page<Object> executeGetProcessGroupMemebersByFormGUID(@RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID, @RequestParam(value = "UserId", required = false) java.lang.Integer UserId, Pageable pageable) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query GetProcessGroupMemebersByFormGUID");
-        Page<Object> result = queryService.executeGetProcessGroupMemebersByFormGUID(pageable, FormGUID);
+        Page<Object> result = queryService.executeGetProcessGroupMemebersByFormGUID(pageable, FormGUID, UserId);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }
