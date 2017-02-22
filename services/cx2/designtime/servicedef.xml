@@ -103,6 +103,12 @@
         <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
         <return typeRef="cx2CountOfMunicipalityProjectsrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="CountOfProcessFormsByMuncipality">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CountOfProcessFormsByMuncipalityrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="CountOfProjectsForUsersAndSharedWithByMunicipality">
         <parameter name="municipalityId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
@@ -552,12 +558,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="CountOfProcessFormsByMuncipality">
-        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="closed" typeRef="java.lang.Boolean" isList="false"/>
-        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
