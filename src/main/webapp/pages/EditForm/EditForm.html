@@ -16,7 +16,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow26_1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn58_1">
+                    <wm-gridcolumn columlivenwidth="12" name="gridcolumn58_1">
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabpaneFORMINFO" title="Settings">
                                 <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.UpdateFormTypes.dataSet" captionalign="left" captionposition="top" name="liveformUpdateFormType" backgroundcolor="#dbdbdb"
@@ -240,6 +240,11 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneCATEGORIES" title="Categories">
                                 <wm-layoutgrid name="layoutgrid6">
+                                    <wm-gridrow name="gridrow55">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn80">
+                                            <wm-label padding="unset 0.5em" name="label15" caption="You can assign this Form Design to one or many Form Categories. This will affect where this Form appears to CivicXpress users, makes the Form searchable by Category, and is used to produce Municipality Analytics."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow26">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn53">
                                             <wm-livegrid formlayout="dialog" name="livegrid2">
@@ -255,8 +260,13 @@
                                                     <wm-layoutgrid columns="1" name="layoutgrid9">
                                                         <wm-gridrow name="gridrow37">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn62">
-                                                                <wm-form-field name="formCategories" displayname="Select Category" show="true" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true" widget="select" dataset="bind:Variables.Categories.dataSet"
-                                                                datafield="All Fields" displayfield="category" orderby="category:asc" placeholder="Select value" required="true"></wm-form-field>
+                                                                <wm-form-field name="formCategories" displayname="What Category would you like to assign to this Form?" show="true" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true"
+                                                                widget="select" dataset="bind:Variables.Categories.dataSet" datafield="All Fields" displayfield="category" orderby="category:asc" placeholder="Select Category" required="true"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow30">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn62_1">
+                                                                <wm-label name="label62_1" caption="If this Form belongs in a Category that isn't available above, you can create new Categories on the Manage Forms page." margin="1em unset unset unset"></wm-label>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
@@ -274,169 +284,198 @@
                                 </wm-layoutgrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneFormFields" title="Fields">
-                                <wm-livegrid formlayout="dialog" name="livegrid3">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet" navigation="Classic" name="gridFields" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                        <wm-grid-column binding="displayOrder" caption="Display Order" type="integer" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="label" caption="Label" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="formFieldTypes.label" caption="Type" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="FormFieldTypes"></wm-grid-column>
-                                        <wm-grid-column binding="required" caption="Required" type="boolean" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="defaultValue" caption="Default Value" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="helpText" caption="Help Text" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="possibleValues" caption="Possible Values" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="Add Field" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Field" action="Widgets.dlgFormTypeField.open()" shortcutkey="" disabled="false"></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="Authenticated" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
-                                </wm-livegrid>
+                                <wm-layoutgrid name="layoutgrid13">
+                                    <wm-gridrow name="gridrow56_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn81_1">
+                                            <wm-label padding="unset 0.5em" name="label16" caption="Form Fields are used to collect information and guide a user who is submitting this Form. What data do you want to collect?"></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow57">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn83">
+                                            <wm-livegrid formlayout="dialog" name="livegrid3">
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet" navigation="Classic" name="gridFields" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                    <wm-grid-column binding="displayOrder" caption="Display Order" type="integer" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="label" caption="Label" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="formFieldTypes.label" caption="Type" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="FormFieldTypes"></wm-grid-column>
+                                                    <wm-grid-column binding="required" caption="Required" type="boolean" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="defaultValue" caption="Default Value" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="helpText" caption="Help Text" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="possibleValues" caption="Possible Values" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-action key="addNewRow" display-name="Add Field" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Field" action="Widgets.dlgFormTypeField.open()" shortcutkey=""
+                                                    disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="Authenticated" disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                            </wm-livegrid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneSTATUS" title="Statuses">
-                                <wm-livegrid formlayout="dialog" name="livegrid1">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.StatusesData.dataSet" navigation="Classic" name="gridFormTypeStatus" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                        <wm-grid-column binding="sortOrder" caption="Sort Order" type="long" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="status" caption="Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="description" caption="Description" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="Add Status" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Status" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.StatusesData.dataSet.data.length > 2" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
-                                        disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Form Status Details" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top" name="lfFormTypeStatus"
-                                    on-error="liveform2Error($event, $operation, $data)">
-                                        <wm-layoutgrid columns="3" name="StatusLayout">
-                                            <wm-gridrow name="gridrowSettings">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumnstatus">
-                                                    <wm-panel iconclass="wi wi-settings" name="panel5" margin="1em unset" title="General Settings" class="panel-primary">
-                                                        <wm-gridrow name="gridrow19_1">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn33_1">
-                                                                <wm-form-field name="status" displayname="Status" show="true" primary-key="false" generator="assigned" key="status" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn34_1">
-                                                                <wm-form-field name="description" displayname="Description" show="true" primary-key="false" generator="assigned" key="description" type="string" widget="textarea" maxchars="255" placeholder="Enter value"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn49">
-                                                                <wm-form-field name="sortOrder" displayname="Sort Order" show="true" primary-key="false" generator="assigned" key="sortOrder" type="long" step="0" widget="select" placeholder="Enter value" dataset="bind:Variables.SortOrder.dataSet"
-                                                                datafield="dataValue" displayfield="dataValue"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow129_1">
-                                                            <wm-gridcolumn name="gridcolumn3" columnwidth="4">
-                                                                <wm-form-field name="allowAttachments" displayname="Allow Attachment Updates" show="true" primary-key="false" generator="assigned" key="allowAttachments" type="boolean" widget="checkbox" placeholder=""
-                                                                hint="This allows users in the Process Owner and Write Access groups to add, delete, and markup attachments" defaultvalue="false"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn43_1">
-                                                                <wm-form-field name="allowPayment" displayname="Allow Payment" show="true" primary-key="false" generator="assigned" key="allowPayment" type="boolean" widget="checkbox" placeholder="" defaultvalue="false"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn44_1">
-                                                                <wm-form-field name="recalculateAutoFees" displayname="Recalculate Automatic Fees" show="true" primary-key="false" generator="assigned" key="recalculateAutoFees" type="boolean" widget="checkbox"
-                                                                placeholder="" defaultvalue="false"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                    </wm-panel>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow32">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn60_2">
-                                                    <wm-panel iconclass="wi wi-email" margin="unset unset 1em unset" name="panel6_1" title="Email Settings" class="panel-primary">
-                                                        <wm-gridrow name="gridrow1">
-                                                            <wm-gridcolumn name="gridcolumn2" columnwidth="4">
-                                                                <wm-form-field name="sendEmail" displayname="Send Email" show="true" primary-key="false" generator="assigned" key="sendEmail" type="boolean" widget="checkbox" defaultvalue="false" placeholder=""
-                                                                hint="This sends a system-generated email to the form creator and 'shared with' users when the form enters this status"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn38">
-                                                                <wm-form-field name="emailSubjectLine" displayname="Email Subject Line" show="true" primary-key="false" generator="assigned" key="emailSubjectLine" type="string" widget="text" maxchars="255"
-                                                                inputtype="text" placeholder="Enter value"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn37_1">
-                                                                <wm-form-field name="emailTextBody" displayname="Email Text Body" show="true" primary-key="false" generator="assigned" key="emailTextBody" type="string" widget="textarea" maxchars="255" placeholder="Enter value"></wm-form-field>
+                                <wm-layoutgrid name="layoutgrid14">
+                                    <wm-gridrow name="gridrow58">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn85">
+                                            <wm-label padding="unset 0.5em" name="label17" caption="Form Statuses are the steps that a form takes while being processed from submission to completion. &quot;Draft&quot; and &quot;Submitted&quot; are included by default, and a minimum of two Form Statuses are required."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label18" caption="Use the Edit icon to view the Form Status Options and control how you would like this Form Design to be processed by your Municipality."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow59">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn87">
+                                            <wm-livegrid formlayout="dialog" name="livegrid1">
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.StatusesData.dataSet" navigation="Classic" name="gridFormTypeStatus" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                    <wm-grid-column binding="sortOrder" caption="Sort Order" type="long" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="status" caption="Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="description" caption="Description" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-action key="addNewRow" display-name="Add Status" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Status" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.StatusesData.dataSet.data.length > 2" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
+                                                    disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                                <wm-liveform novalidate="false" errormessage="" title="Form Status Options" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top"
+                                                name="lfFormTypeStatus" on-error="liveform2Error($event, $operation, $data)">
+                                                    <wm-layoutgrid columns="3" name="StatusLayout">
+                                                        <wm-gridrow name="gridrowSettings">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumnstatus">
+                                                                <wm-panel iconclass="wi wi-settings" name="panel5" margin="1em unset" title="General Settings" class="panel-primary">
+                                                                    <wm-gridrow name="gridrow19_1">
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn33_1">
+                                                                            <wm-form-field name="status" displayname="Status" show="true" primary-key="false" generator="assigned" key="status" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn34_1">
+                                                                            <wm-form-field name="description" displayname="Description" show="true" primary-key="false" generator="assigned" key="description" type="string" widget="textarea" maxchars="255" placeholder="Enter value"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn49">
+                                                                            <wm-form-field name="sortOrder" displayname="Sort Order" show="true" primary-key="false" generator="assigned" key="sortOrder" type="long" step="0" widget="select" placeholder="Enter value"
+                                                                            dataset="bind:Variables.SortOrder.dataSet" datafield="dataValue" displayfield="dataValue"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                    <wm-gridrow name="gridrow129_1">
+                                                                        <wm-gridcolumn name="gridcolumn3" columnwidth="4">
+                                                                            <wm-form-field name="allowAttachments" displayname="Allow Attachment Updates" show="true" primary-key="false" generator="assigned" key="allowAttachments" type="boolean" widget="checkbox"
+                                                                            placeholder="" hint="This allows users in the Process Owner and Write Access groups to add, delete, and markup attachments" defaultvalue="false"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn43_1">
+                                                                            <wm-form-field name="allowPayment" displayname="Allow Payment" show="true" primary-key="false" generator="assigned" key="allowPayment" type="boolean" widget="checkbox" placeholder=""
+                                                                            defaultvalue="false"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn44_1">
+                                                                            <wm-form-field name="recalculateAutoFees" displayname="Recalculate Automatic Fees" show="true" primary-key="false" generator="assigned" key="recalculateAutoFees" type="boolean" widget="checkbox"
+                                                                            placeholder="" defaultvalue="false"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                </wm-panel>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
-                                                    </wm-panel>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow33">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn61">
-                                                    <wm-panel iconclass="wi wi-group" margin="unset unset 1em unset" name="panel7_1" title="Permissions" class="panel-primary">
-                                                        <wm-gridrow name="gridrow25">
-                                                            <wm-gridcolumn name="gridcolumn1" columnwidth="4">
-                                                                <wm-form-field name="municipalityGroupsByProcessOwners" displayname="Municipality Groups By Process Owners" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByProcessOwners"
-                                                                type="list" is-related="true" widget="select" dataset="bind:Variables.MunicipalityGroupsForProcess.dataSet" datafield="All Fields" displayfield="groupName" orderby="groupName:asc" defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord"
-                                                                placeholder="Select value" required="true"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn name="gridcolumn1" columnwidth="4">
-                                                                <wm-form-field name="municipalityGroupsByWriteAccess" displayname="Municipality Groups By Write Access" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByWriteAccess"
-                                                                type="list" is-related="true" widget="select" placeholder="Select value" dataset="bind:Variables.MunicipalityGroupsForProcess.dataSet" datafield="All Fields" displayfield="groupName" orderby="groupName:asc"
-                                                                defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord" required="true"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow120_1">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn36_1">
-                                                                <wm-form-field name="allowSharedWithEdits" displayname="Allow Shared With Edits" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean" widget="checkbox"
-                                                                placeholder="" hint="This allows users that the form has been shared with to edit the form" defaultvalue="false"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn42_1">
-                                                                <wm-form-field name="allowAuthorEdits" displayname="Allow Author Edits" show="true" primary-key="false" generator="assigned" key="allowAuthorEdits" type="boolean" widget="checkbox" placeholder=""
-                                                                hint="This allows the form creator to edit the form" defaultvalue="false"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn name="gridcolumn1" columnwidth="4">
-                                                                <wm-form-field name="publicRead" displayname="Public Read" show="true" primary-key="false" generator="assigned" key="publicRead" type="boolean" widget="checkbox" defaultvalue="false" hint="This will allow the public to view the form as public record if chosen and the form is in this status."></wm-form-field>
+                                                        <wm-gridrow name="gridrow32">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn60_2">
+                                                                <wm-panel iconclass="wi wi-email" margin="unset unset 1em unset" name="panel6_1" title="Email Settings" class="panel-primary">
+                                                                    <wm-gridrow name="gridrow1">
+                                                                        <wm-gridcolumn name="gridcolumn2" columnwidth="4">
+                                                                            <wm-form-field name="sendEmail" displayname="Send Email" show="true" primary-key="false" generator="assigned" key="sendEmail" type="boolean" widget="checkbox" defaultvalue="false"
+                                                                            placeholder="" hint="This sends a system-generated email to the form creator and 'shared with' users when the form enters this status"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn38">
+                                                                            <wm-form-field name="emailSubjectLine" displayname="Email Subject Line" show="true" primary-key="false" generator="assigned" key="emailSubjectLine" type="string" widget="text" maxchars="255"
+                                                                            inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn37_1">
+                                                                            <wm-form-field name="emailTextBody" displayname="Email Text Body" show="true" primary-key="false" generator="assigned" key="emailTextBody" type="string" widget="textarea" maxchars="255"
+                                                                            placeholder="Enter value"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                </wm-panel>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
-                                                    </wm-panel>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow34">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn62_2">
-                                                    <wm-panel iconclass="wi wi-assignment" margin="unset unset 1em unset" name="panel8" title="Reporting" class="panel-primary">
-                                                        <wm-gridrow name="gridrow21">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn39_1">
-                                                                <wm-form-field name="allowReporting" displayname="Allow Reporting" show="true" primary-key="false" generator="assigned" key="allowReporting" type="boolean" widget="checkbox" placeholder="" defaultvalue="false"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn61_2">
-                                                                <wm-form-field name="report" displayname="Report" show="true" primary-key="false" generator="assigned" key="report" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                    </wm-panel>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow36">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn64_1">
-                                                    <wm-panel iconclass="wi wi-assignment-ind" margin="unset unset 1em unset" name="panel10" title="Inspections" class="panel-primary">
-                                                        <wm-gridrow name="gridrow23_1">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn45_1">
-                                                                <wm-form-field name="allowInspections" displayname="Allow Inspection Scheduling" show="true" primary-key="false" generator="assigned" key="allowInspections" type="boolean" widget="checkbox" placeholder=""
-                                                                defaultvalue="false"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                    </wm-panel>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow35">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn63_1">
-                                                    <wm-panel iconclass="wi wi-library-books" margin="unset unset 1em unset" name="panel9" title="Record Closure" class="panel-primary">
-                                                        <wm-gridrow name="gridrow24_1">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn48">
-                                                                <wm-form-field name="createAsRecord" displayname="Create As Record" show="true" primary-key="false" generator="assigned" key="createAsRecord" type="boolean" widget="checkbox" placeholder="" hint="This causes a 'snapshot' PDF to be generated that shows the state of the form as it enters this status"
-                                                                defaultvalue="false"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn46">
-                                                                <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" widget="checkbox" defaultvalue="false"
-                                                                placeholder="" hint="This indicates in the system that form procesing is complete and should be reserved for the final form status"></wm-form-field>
+                                                        <wm-gridrow name="gridrow33">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn61">
+                                                                <wm-panel iconclass="wi wi-group" margin="unset unset 1em unset" name="panel7_1" title="Permissions" class="panel-primary">
+                                                                    <wm-gridrow name="gridrow25">
+                                                                        <wm-gridcolumn name="gridcolumn1" columnwidth="4">
+                                                                            <wm-form-field name="municipalityGroupsByProcessOwners" displayname="Municipality Groups By Process Owners" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByProcessOwners"
+                                                                            type="list" is-related="true" widget="select" dataset="bind:Variables.MunicipalityGroupsForProcess.dataSet" datafield="All Fields" displayfield="groupName" orderby="groupName:asc"
+                                                                            defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord" placeholder="Select value" required="true"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn name="gridcolumn1" columnwidth="4">
+                                                                            <wm-form-field name="municipalityGroupsByWriteAccess" displayname="Municipality Groups By Write Access" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByWriteAccess"
+                                                                            type="list" is-related="true" widget="select" placeholder="Select value" dataset="bind:Variables.MunicipalityGroupsForProcess.dataSet" datafield="All Fields" displayfield="groupName"
+                                                                            orderby="groupName:asc" defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord" required="true"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                    <wm-gridrow name="gridrow120_1">
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn36_1">
+                                                                            <wm-form-field name="allowSharedWithEdits" displayname="Allow Shared With Edits" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean" widget="checkbox"
+                                                                            placeholder="" hint="This allows users that the form has been shared with to edit the form" defaultvalue="false"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn42_1">
+                                                                            <wm-form-field name="allowAuthorEdits" displayname="Allow Author Edits" show="true" primary-key="false" generator="assigned" key="allowAuthorEdits" type="boolean" widget="checkbox"
+                                                                            placeholder="" hint="This allows the form creator to edit the form" defaultvalue="false"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn name="gridcolumn1" columnwidth="4">
+                                                                            <wm-form-field name="publicRead" displayname="Public Read" show="true" primary-key="false" generator="assigned" key="publicRead" type="boolean" widget="checkbox" defaultvalue="false"
+                                                                            hint="This will allow the public to view the form as public record if chosen and the form is in this status."></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                </wm-panel>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
-                                                    </wm-panel>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                        </wm-layoutgrid>
-                                        <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"
-                                        placeholder="Select value"></wm-form-field>
-                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                        placeholder=""></wm-form-field>
-                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                    </wm-liveform>
-                                </wm-livegrid>
+                                                        <wm-gridrow name="gridrow34">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn62_2">
+                                                                <wm-panel iconclass="wi wi-assignment" margin="unset unset 1em unset" name="panel8" title="Reporting" class="panel-primary">
+                                                                    <wm-gridrow name="gridrow21">
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn39_1">
+                                                                            <wm-form-field name="allowReporting" displayname="Allow Reporting" show="true" primary-key="false" generator="assigned" key="allowReporting" type="boolean" widget="checkbox" placeholder=""
+                                                                            defaultvalue="false"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn61_2">
+                                                                            <wm-form-field name="report" displayname="Report" show="true" primary-key="false" generator="assigned" key="report" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                </wm-panel>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow36">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn64_1">
+                                                                <wm-panel iconclass="wi wi-assignment-ind" margin="unset unset 1em unset" name="panel10" title="Inspections" class="panel-primary">
+                                                                    <wm-gridrow name="gridrow23_1">
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn45_1">
+                                                                            <wm-form-field name="allowInspections" displayname="Allow Inspection Scheduling" show="true" primary-key="false" generator="assigned" key="allowInspections" type="boolean" widget="checkbox"
+                                                                            placeholder="" defaultvalue="false"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                </wm-panel>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow35">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn63_1">
+                                                                <wm-panel iconclass="wi wi-library-books" margin="unset unset 1em unset" name="panel9" title="Record Closure" class="panel-primary">
+                                                                    <wm-gridrow name="gridrow24_1">
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn48">
+                                                                            <wm-form-field name="createAsRecord" displayname="Create As Record" show="true" primary-key="false" generator="assigned" key="createAsRecord" type="boolean" widget="checkbox" placeholder=""
+                                                                            hint="This causes a 'snapshot' PDF to be generated that shows the state of the form as it enters this status" defaultvalue="false"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn46">
+                                                                            <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" widget="checkbox" defaultvalue="false"
+                                                                            placeholder="" hint="This indicates in the system that form procesing is complete and should be reserved for the final form status"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                </wm-panel>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                    </wm-layoutgrid>
+                                                    <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"
+                                                    placeholder="Select value"></wm-form-field>
+                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"
+                                                    inputtype="number" placeholder=""></wm-form-field>
+                                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
+                                                    update-mode="true"></wm-form-action>
+                                                </wm-liveform>
+                                            </wm-livegrid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneCXADMIN" title="CX Admin" accessroles="CXAdmin">
                                 <wm-layoutgrid name="layoutgrid8">
@@ -479,9 +518,9 @@
         <wm-dialog dialogtype="design-dialog" modal="true" title="Form Field" iconclass="wi wi-file-text" name="dlgFormTypeField">
             <wm-layoutgrid name="layoutgrid10" columns="1">
                 <wm-gridrow name="gridrow43">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn73">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn73" padding="unset unset 1em unset">
                         <wm-composite name="composite7" required="true">
-                            <wm-label class="col-md-3 control-label" name="label11" caption="Type"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" name="label11" caption="Field Type" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container6">
                                 <wm-select name="selectFormFieldType" dataset="bind:Variables.lvFormFieldTypes.dataSet" datafield="All Fields" displayfield="label"></wm-select>
                             </wm-container>
@@ -491,7 +530,7 @@
                 <wm-gridrow name="gridrow41">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn71">
                         <wm-composite name="composite3_1" required="true" show="bind:!!Widgets.selectFormFieldType.datavalue.sqlType">
-                            <wm-label class="col-md-3 control-label" name="label8"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" name="label8" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container3_1">
                                 <wm-text name="textFormFieldLabel" maxchars="120" updateon="default"></wm-text>
                             </wm-container>
@@ -500,7 +539,8 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow56">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn81">
-                        <wm-grid editmode="inline" title="Possible Values" dataset="bind:Variables.stvPossibleValues.dataSet" navigation="Classic" name="gridPossibleValues" show="bind:Widgets.selectFormFieldType.datavalue.label==='Select' || Widgets.selectFormFieldType.datavalue.label==='Multi-Select'">
+                        <wm-grid editmode="inline" title="Possible Values" dataset="bind:Variables.stvPossibleValues.dataSet" navigation="Classic" name="gridPossibleValues" show="bind:Widgets.selectFormFieldType.datavalue.label==='Select' || Widgets.selectFormFieldType.datavalue.label==='Multi-Select'"
+                        iconclass="wi wi-format-list-numbered" class="panel-primary">
                             <wm-grid-column binding="dataValue" caption="Value" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
@@ -511,7 +551,7 @@
                 <wm-gridrow name="gridrow44">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn74">
                         <wm-composite name="composite6" show="bind:Widgets.selectFormFieldType.datavalue.label != 'Boolean' &amp;&amp; !!Widgets.selectFormFieldType.datavalue.sqlType">
-                            <wm-label class="col-md-3 control-label" name="label10" caption="Required"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" name="label10" caption="Required" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container5">
                                 <wm-checkbox caption="" class="col-md-9" name="checkboxFormFieldRequired"></wm-checkbox>
                             </wm-container>
@@ -521,7 +561,7 @@
                 <wm-gridrow name="gridrow42">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn72">
                         <wm-composite name="composite4_1" show="bind:!!Widgets.selectFormFieldType.datavalue.label &amp;&amp; Widgets.selectFormFieldType.datavalue.label!=='Select' &amp;&amp; Widgets.selectFormFieldType.datavalue.label!=='Multi-Select' &amp;&amp; Widgets.selectFormFieldType.datavalue.label!=='Horizontal Line'">
-                            <wm-label class="col-md-3 control-label" name="label9" caption="bind:!!Widgets.selectFormFieldType.datavalue.sqlType ? 'Default Value' : 'Text'"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" name="label9" caption="bind:!!Widgets.selectFormFieldType.datavalue.sqlType ? 'Default Value' : 'Text'" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container4_1">
                                 <wm-text name="textDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Text' || Widgets.selectFormFieldType.datavalue.label==='Header'" maxchars="1000" required="bind:Widgets.selectFormFieldType.datavalue.label === 'Header'"></wm-text>
                                 <wm-textarea name="longTextDefault" show="bind:Widgets.selectFormFieldType.datavalue.label==='Long Text' || Widgets.selectFormFieldType.datavalue.label==='Instruction Text'" maxchars="4000" required="bind:Widgets.selectFormFieldType.datavalue.label === 'Instruction Text'"></wm-textarea>
@@ -536,8 +576,8 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow45">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn75">
-                        <wm-composite name="composite8" show="bind:!!Widgets.selectFormFieldType.datavalue.sqlType">
-                            <wm-label class="col-md-3 control-label" name="label12" caption="Help Text"></wm-label>
+                        <wm-composite name="composite8" show="bind:!!Widgets.selectFormFieldType.datavalue.sqlType" padding="1em unset">
+                            <wm-label class="col-md-3 form-control-static" name="label12" caption="Help Text" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container7">
                                 <wm-textarea name="textareaFormFieldHelpText" placeholder="Enter Tooltip Text" maxchars="1000"></wm-textarea>
                             </wm-container>
@@ -547,7 +587,7 @@
                 <wm-gridrow name="gridrow46">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn76">
                         <wm-composite name="composite9">
-                            <wm-label class="col-md-3 control-label" name="label13" caption="Display Order"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" name="label13" caption="Display Order" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container8">
                                 <wm-text name="textFormFieldDisplayOrder" type="number" placeholder="Enter number" datavalue="bind:Variables.Cx2FormTypeFieldsData.dataSet.data.length+1" maxvalue="2147483647" minvalue="-2147483648"></wm-text>
                             </wm-container>
