@@ -41,14 +41,14 @@
                                 <wm-gridrow name="gridrow6">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn8">
                                         <wm-grid title="" dataset="bind:Variables.OpenCompanyFormsByVendorId.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="users.email" caption="Created By" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="bind:Widgets.selectViewOpen.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
                                             <wm-grid-column binding="giscontacts.gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" show="bind:Widgets.selectViewOpen.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
                                             <wm-grid-column binding="giscontacts.gisrecords.lot" caption="Lot" type="string" readonly="true" show="bind:Widgets.selectViewOpen.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
                                             <wm-grid-column binding="giscontacts.gisrecords.fullAddress" caption="Address" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="bind:Widgets.selectViewOpen.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column>
-                                            <wm-grid-column binding="users.email" caption="Created By" type="string" readonly="true" show="true"></wm-grid-column>
                                             <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column>
                                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                             <wm-grid-action key="customButton" display-name="New Form" show="true" class="btn-secondary" iconclass="wi wi-plus" title="New Form" shortcutkey="" disabled="false"></wm-grid-action>
@@ -77,14 +77,14 @@
                                 <wm-gridrow name="gridrow8">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn11">
                                         <wm-grid title="" dataset="bind:Variables.ClosedCompanyFormsByVendorId.dataSet" navigation="Classic" filtermode="multicolumn" exportformat="EXCEL" name="gridClosedForms" showrecordcount="true">
+                                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="users.email" caption="Created By" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="bind:Widgets.selectViewClosed.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
                                             <wm-grid-column binding="giscontacts.gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" show="bind:Widgets.selectViewClosed.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
                                             <wm-grid-column binding="giscontacts.gisrecords.lot" caption="Lot" type="string" readonly="true" show="bind:Widgets.selectViewClosed.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
                                             <wm-grid-column binding="giscontacts.gisrecords.fullAddress" caption="Address" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="bind:Widgets.selectViewClosed.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column>
-                                            <wm-grid-column binding="users.email" caption="Created By" type="string" readonly="true" show="true"></wm-grid-column>
                                             <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column>
                                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                             <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_FormsFormClosedCompanyForms.invoke()"

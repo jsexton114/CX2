@@ -220,6 +220,11 @@
         <parameter name="gisRecordIds" typeRef="java.lang.Integer" isList="true"/>
         <return typeRef="cx2getOwnersForGisRecordsrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="GetProcessGroupMemebersByFormGUID">
+        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2GetProcessGroupMemebersByFormGUIDrtnType" isList="false"/>
+    </operation>
     <operation operationType="hqlquery" name="GetProjectGisrecords">
         <parameter name="relatedProjectGuid" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2GetProjectGisrecordsrtnType" isList="false"/>
@@ -554,11 +559,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="GetProcessGroupMemebersByFormGUID">
-        <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
-        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>

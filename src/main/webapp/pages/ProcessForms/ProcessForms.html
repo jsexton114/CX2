@@ -25,13 +25,13 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
-                        <wm-grid title="" dataset="bind:Variables.ProcessFormsForUserByMunicipality.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL">
+                        <wm-grid title="" dataset="bind:Variables.ProcessFormsForUserByMunicipality.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                             <wm-grid-column binding="FormTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="Status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="FormType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="Email" caption="Created By" type="string" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="MunicipalityName" caption="Municipality" type="string" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="FormType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid-column binding="Status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="PrimaryVendor" caption="Primary Vendor" type="string" readonly="true" show="true"></wm-grid-column>
-                            <wm-grid-column binding="Email" caption="Owner" type="string" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="BalanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Variables.navGoToForm.invoke()" disabled="false"></wm-grid-row-action>
