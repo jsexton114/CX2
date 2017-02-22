@@ -72,6 +72,7 @@ public interface Cx2QueryExecutorService {
 	int executeInsertFormsIntoProject(  java.lang.String RelatedProjectGuid , java.lang.String RelatedFormGUID , java.lang.Integer AddedByUser , java.sql.Timestamp AddedAt , java.lang.String Comments) throws QueryParameterMismatchException;
 	int executeInsertGroups(  java.lang.String GroupName , java.lang.String GroupDescription , java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
 	int executeInsertNewRole(  java.lang.String RoleName , java.lang.Integer MunicipalityId , java.lang.String Description , java.lang.Integer UserId) throws QueryParameterMismatchException;
+	int executeInsertProjectMessage(  java.lang.Integer UserId , java.lang.String RelatedProjectGUID , java.lang.String Message , java.sql.Timestamp PostedAt) throws QueryParameterMismatchException;
 	int executeInsertSubscription(  java.lang.Integer UserId , java.lang.Integer MunicipalityId , java.lang.String DateSubscribed) throws QueryParameterMismatchException;
 	int executeInsertTagForMessage(  java.lang.Integer FormMessageId , java.lang.Integer TaggedPersonId) throws QueryParameterMismatchException;
 	int executeInsertUserPreference(  java.lang.Integer UserId , java.lang.Integer PreferenceId) throws QueryParameterMismatchException;

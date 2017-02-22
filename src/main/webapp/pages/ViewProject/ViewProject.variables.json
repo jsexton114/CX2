@@ -5826,6 +5826,34 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
+  "NoPersonAdded" : {
+    "_id" : "wm-NoPersonAdded-wm.NotificationVariable-1487773021637",
+    "name" : "NoPersonAdded",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "No person selected. Search for and select a Person, then click Add",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "OpenedOrClosedFormsByUserOrSharedWith" : {
     "_id" : "wm-OpenedOrClosedFormsByUserOrSharedWith-wm.ServiceVariable-1487064721235",
     "name" : "OpenedOrClosedFormsByUserOrSharedWith",
@@ -5858,9 +5886,48 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "viewAddFormsToProject"
   },
-  "PostFormMessage" : {
+  "PeopleList" : {
+    "_id" : "wm-PeopleList-wm.Variable-1487772394075",
+    "name" : "PeopleList",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ ],
+    "type" : "entry",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "PersonAlreadyTagged" : {
+    "_id" : "wm-PersonAlreadyTagged-wm.NotificationVariable-1487772956201",
+    "name" : "PersonAlreadyTagged",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "You have already tagged that Person",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "PostProjectMessage" : {
     "_id" : "wm-PostFormMessage-wm.ServiceVariable-1487767571955",
-    "name" : "PostFormMessage",
+    "name" : "PostProjectMessage",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -5868,7 +5935,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     }, {
-      "target" : "RelatedFormGUID",
+      "target" : "RelatedProjectGUID",
       "value" : "bind:pageParams.ProjectGUID",
       "type" : "string"
     }, {
@@ -5880,19 +5947,19 @@
       "value" : "bind:today",
       "type" : "string"
     } ],
-    "type" : "cx2InsertFormMessagertnType",
+    "type" : "cx2InsertProjectMessagertnType",
     "service" : "cx2",
-    "operation" : "executeInsertFormMessage",
-    "operationId" : "QueryExecutionController_executeInsertFormMessage",
+    "operation" : "executeInsertProjectMessage",
+    "operationId" : "QueryExecutionController_executeInsertProjectMessage",
     "operationType" : "post",
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.FormMessagesData.listRecords();PostFormMessageonSuccess($event, $scope)",
+    "onSuccess" : "Variables.FormMessagesData.listRecords();PostProjectMessageonSuccess($event, $scope)",
     "startUpdate" : false,
-    "autoUpdate" : true,
+    "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,

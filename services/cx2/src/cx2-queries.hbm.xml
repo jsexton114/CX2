@@ -287,6 +287,11 @@
       insert into Roles(RoleName,MunicipalityId,Description,UserId) values (:RoleName,:MunicipalityId,:Description,:UserId)
     ]]>
   </sql-query>
+  <sql-query name="InsertProjectMessage">
+    <![CDATA[
+      insert into FormMessages(UserId,RelatedProjectGUID,Message,PostedAt) values(:UserId,:RelatedProjectGUID,:Message,:PostedAt)
+    ]]>
+  </sql-query>
   <sql-query name="InsertSubscription">
     <![CDATA[
       insert into UserSubscriptions(UserId,MunicipalityId,DateSubscribed) values(:UserId,:MunicipalityId,:DateSubscribed)

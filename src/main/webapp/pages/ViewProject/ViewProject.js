@@ -45,6 +45,7 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 
 
     $scope.GetMessageIdForCurrentPostonSuccess = function(variable, data) {
+        debugger
         //Send Mails
         var people = $scope.Variables.PeopleList.dataSet;
         var m = data.content[0];
@@ -64,13 +65,14 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 
     $scope.buttonAddMessageClick = function($event, $isolateScope) {
         // Posting Message
-        $scope.Variables.PostFormMessage.setInput({
+        $scope.Variables.PostProjectMessage.setInput({
             'PostedAt': moment().valueOf()
         });
-        $scope.Variables.PostFormMessage.update();
+        $scope.Variables.PostProjectMessage.update();
     };
 
-    $scope.PostFormMessageonSuccess = function(variable, data) {
+    $scope.PostProjectMessageonSuccess = function(variable, data) {
+        debugger
         $scope.Widgets.textAddMessage.datavalue = undefined;
         let people = $scope.Variables.PeopleList.dataSet;
         if (people.length === 0) {
@@ -78,7 +80,7 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
         } else {
             $scope.Variables.GetMessageIdForCurrentPost.setInput({
                 'PostedAt': variable.dataBinding.PostedAt,
-                'form': $scope.pageParams.FormGUID
+                'form': $scope.pageParams.ProjectGUID
             });
             $scope.Variables.GetMessageIdForCurrentPost.update();
 
@@ -213,6 +215,48 @@ Application.$controller("dialogTagPeopleController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        var selectedPeople = [];
+        $scope.ButtonTagPeopleClick = function($event, $isolateScope) {
+            if ($scope.Widgets.textSearchPeople.datavalue != undefined) {
+                var temp = $scope.Widgets.textSearchPeople.datavalue;
+                var data = $scope.Variables.PeopleList.dataSet;
+                // checking for any people in PeopleList variable, if not add from search 
+                if (data.length == 0) {
+                    data.push(temp);
+                    // clear search after pushing
+                    $scope.Widgets.textSearchPeople.datavalue = undefined;
+                } else {
+                    // checking if adding value already exist in PeopleList variable 
+                    var exist = 0;
+                    for (let i = 0; i < data.length; i++) {
+                        if (temp.id == data[i].id)
+                            exist = 1;
+                    }
+                    // If already added then notify user else push to PeopleList variable
+                    if (exist == 1)
+                        $scope.Variables.PersonAlreadyTagged.notify();
+                    else
+                        data.push(temp);
+                    // clear search after pushing
+                    $scope.Widgets.textSearchPeople.datavalue = undefined;
+                }
+                // Setting for adding to Tagging
+                selectedPeople = $scope.Variables.PeopleList.dataSet;
+            } else {
+                $scope.Variables.NoPersonAdded.notify();
+            }
+        };
+
+
+        $scope.buttonRemoveClick = function($event, $isolateScope, item, currentItemWidgets) {
+
+            // Removing the deleted People
+            _.remove($scope.Variables.PeopleList.dataSet, {
+                id: item.id
+            });
+
+        };
     }
 ]);
 

@@ -610,6 +610,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/InsertProjectMessage", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public int executeInsertProjectMessage(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "RelatedProjectGUID", required = false) java.lang.String RelatedProjectGUID, @RequestParam(value = "Message", required = false) java.lang.String Message, @RequestParam(value = "PostedAt", required = false) java.sql.Timestamp PostedAt) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query InsertProjectMessage");
+        int result = queryService.executeInsertProjectMessage(UserId, RelatedProjectGUID, Message, PostedAt);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/InsertSubscription", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeInsertSubscription(@RequestParam(value = "UserId", required = false) java.lang.Integer UserId, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, @RequestParam(value = "DateSubscribed", required = false) java.lang.String DateSubscribed) throws QueryParameterMismatchException {

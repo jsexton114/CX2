@@ -548,6 +548,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public int executeInsertProjectMessage( java.lang.Integer UserId ,java.lang.String RelatedProjectGUID ,java.lang.String Message ,java.sql.Timestamp PostedAt)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("UserId", UserId);
+        params.put("RelatedProjectGUID", RelatedProjectGUID);
+        params.put("Message", Message);
+        params.put("PostedAt", PostedAt);
+        return queryExecutor.executeNamedQueryForUpdate("InsertProjectMessage", params);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeInsertSubscription( java.lang.Integer UserId ,java.lang.Integer MunicipalityId ,java.lang.String DateSubscribed)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

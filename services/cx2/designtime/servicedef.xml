@@ -559,6 +559,13 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="InsertProjectMessage">
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="RelatedProjectGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="Message" typeRef="java.lang.String" isList="false"/>
+        <parameter name="PostedAt" typeRef="java.sql.Timestamp" isList="false"/>
+        <return isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="RelatedFormGUID" typeRef="java.lang.String" isList="false"/>
@@ -844,6 +851,13 @@
         <parameter name="Description" typeRef="java.lang.String" isList="false"/>
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2InsertNewRolertnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="InsertProjectMessage">
+        <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="RelatedProjectGUID" typeRef="java.lang.String" isList="false"/>
+        <parameter name="Message" typeRef="java.lang.String" isList="false"/>
+        <parameter name="PostedAt" typeRef="java.sql.Timestamp" isList="false"/>
+        <return typeRef="cx2InsertProjectMessagertnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="InsertSubscription">
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
@@ -2232,6 +2246,7 @@
         <dataobject javaType="cx2InsertFormsIntoProjectrtnType"/>
         <dataobject javaType="cx2InsertGroupsrtnType"/>
         <dataobject javaType="cx2InsertNewRolertnType"/>
+        <dataobject javaType="cx2InsertProjectMessagertnType"/>
         <dataobject javaType="cx2InsertSubscriptionrtnType"/>
         <dataobject javaType="cx2InsertTagForMessagertnType"/>
         <dataobject javaType="cx2InsertUserPreferencertnType"/>
