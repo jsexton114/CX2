@@ -620,7 +620,7 @@
                         <wm-composite name="composite9">
                             <wm-label class="col-md-3 form-control-static" name="label54_1" caption="Predecessor" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container8">
-                                <wm-select name="selectUpdateProjectPredecessor" dataset="bind:Variables.ProjectTasksData.dataSet" datafield="All Fields" displayfield="name" datavalue="bind:Variables.ProjectTasksData.dataSet.data[$i].projectTasksesForPredecessor"></wm-select>
+                                <wm-select name="selectUpdateProjectPredecessor" dataset="bind:Variables.ProjectTasksData.dataSet" datafield="All Fields" displayfield="name" datavalue="bind:Variables.PredecessorForSelectedTask.firstRecord"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -630,7 +630,7 @@
                         <wm-composite name="composite10_1">
                             <wm-label class="col-md-3 form-control-static" name="label55_1" caption="Start Date" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container9">
-                                <wm-date name="datetimeUpdateProjectStartDate" datepattern="MM-dd-yyyy" datavalue="bind:Variables.ProjectTasksData.dataSet.data[$i].startAt"></wm-date>
+                                <wm-date name="datetimeUpdateProjectStartDate" datepattern="MM-dd-yyyy" datavalue="bind:Variables.GetSelectedTaskDetails.dataSet.startAt"></wm-date>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -640,7 +640,7 @@
                         <wm-composite name="composite11">
                             <wm-label class="col-md-3 form-control-static" name="label56_1" caption="End Date" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container10">
-                                <wm-date datepattern="MM-dd-yyyy" name="datetimeUpdateProjectEndDate" datavalue="bind:Variables.ProjectTasksData.dataSet.data[$i].endAt"></wm-date>
+                                <wm-date datepattern="MM-dd-yyyy" name="datetimeUpdateProjectEndDate" datavalue="bind:Variables.GetSelectedTaskDetails.dataSet.endAt"></wm-date>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -650,7 +650,7 @@
                         <wm-composite name="composite12">
                             <wm-label class="col-md-3 form-control-static" name="label57" caption="Assigned To" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container11">
-                                <wm-search name="selectUpdateProjectAssignedTo" dataset="bind:Variables.GetAllUsers.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" displayimagesrc="photo" datafield="All Fields" datavalue="bind:Variables.ProjectTasksData.dataSet.data[$i].usersByAssignedTo"
+                                <wm-search name="selectUpdateProjectAssignedTo" dataset="bind:Variables.GetAllUsers.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" displayimagesrc="photo" datafield="All Fields" datavalue="bind:Variables.GetSelectedTaskDetails.dataSet.usersByAssignedTo"
                                 orderby="fullName:asc" placeholder="Search by Name or Email Address"></wm-search>
                             </wm-container>
                         </wm-composite>
