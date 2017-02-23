@@ -31,10 +31,10 @@ Application.$controller("dialogCreateProjectController", ["$scope",
         $scope.today = moment().valueOf();
 
         $scope.buttonCreateProjectClick = function($event, $isolateScope) {
-            var encodedDescription = btoa(unescape(encodeURIComponent($scope.Widgets.richtexteditorProjectDescription.datavalue)));
+            // var encodedDescription = btoa(unescape(encodeURIComponent($scope.Widgets.richtexteditorProjectDescription.datavalue)));
             $scope.Variables.ProjectsData.setInput({
                 'modifiedDate': $scope.today,
-                'projectDescription': encodedDescription,
+                //'projectDescription': encodedDescription,
                 'createdDate': $scope.today
             });
             $scope.Variables.ProjectsData.insertRecord();
