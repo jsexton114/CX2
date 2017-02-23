@@ -43,8 +43,9 @@
                                 <wm-layoutgrid name="layoutgrid14">
                                     <wm-gridrow name="gridrow47_1" padding="2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn90_2">
-                                            <wm-label padding="unset 0.5em" name="label19" caption="If you would like to submit this form on behalf of another CivicXpress user, please locate their account with the Search below."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label20" caption="If they don't have a CivicXpress account, please click &quot;New User&quot;, provide their information, and they will receive an email invitation to create an account."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label19" caption="Are you submitting this form on behalf of someone else?"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label20" caption="If you are, please locate them using the Search below. If they aren't found, select &quot;New User&quot;, provide their contact information, and they will receive an email invitation to register for CivicXpress in order to view their form."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label28" caption="If not, please click the &quot;Skip&quot; link and proceed to the next step."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow41_2">
@@ -88,7 +89,8 @@
                                                             disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn4">
-                                                            <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
+                                                            <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                            disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow3">
@@ -105,18 +107,16 @@
                                                             <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn8">
-                                                            <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="bind:Widgets.checkboxNewUser.datavalue" widget="select" placeholder="Select value" displayexpression="stateName"
-                                                            disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
+                                                            <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="false" widget="select" placeholder="Select value" displayexpression="stateName" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow5">
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn9">
                                                             <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"
-                                                            required="bind:Widgets.checkboxNewUser.datavalue"></wm-form-field>
+                                                            required="false"></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn10">
-                                                            <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="readonly" required="bind:Widgets.checkboxNewUser.datavalue" widget="text" maxchars="255" placeholder="Enter value"
-                                                            defaultvalue="USA" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
+                                                            <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" required="false" widget="text" maxchars="255" placeholder="Enter value" defaultvalue="USA" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-layoutgrid>
@@ -126,21 +126,12 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-wizardstep>
-                            <wm-wizardstep name="wizardstep2_1" title="Fields" ng-if="loaded" enableskip="false">
+                            <wm-wizardstep name="wizardstep2_1" title="Form" ng-if="loaded" enableskip="false">
                                 <wm-layoutgrid name="layoutgrid2">
-                                    <wm-gridrow name="gridrow6" padding="2em unset unset unset">
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center">
-                                            <wm-picture name="picture2" picturesource="bind:!!Variables.lvFormType.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.lvFormType.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;" class="muni-logo"></wm-picture>
+                                    <wm-gridrow name="gridrow2_2" padding="2em unset 3em unset">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn2_2">
+                                            <wm-label padding="unset 0.5em" name="label28_1" caption="Please complete the following form fields, then proceed to the next step."></wm-label>
                                         </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn14"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow7" padding="unset unset 2em unset">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn10"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="8" name="gridcolumn11" horizontalalign="center">
-                                            <wm-label padding="unset 0.5em" name="label7" class="h1" caption="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow ng-repeat="formField in Variables.lvGetFormFields.dataSet.data" name="fieldGridrow{{$index}}">
                                         <wm-gridcolumn columnwidth="12" name="fieldGridcolumn{{$index}}">
@@ -175,8 +166,8 @@
                                 <wm-layoutgrid name="layoutgrid17">
                                     <wm-gridrow name="gridrow60" padding="2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn125">
-                                            <wm-label padding="unset 0.5em" name="label61" caption="You may add or remove locations for this form."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label34" caption="Some forms allow for multiple locations while others may only allow a single location to be added."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label29" caption="What location is associated with this form?"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label34" caption="Please click the &quot;+Add Parcel&quot; button to locate the land record(s) that you would like to link to the form, then proceed to the next step."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow38_1">
@@ -220,7 +211,8 @@
                                 <wm-layoutgrid name="layoutgrid15_1">
                                     <wm-gridrow name="gridrow48_1" padding="2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn91_1">
-                                            <wm-label padding="unset 0.5em" name="label20_1" caption="If this form is associated with a vendor, please add the vendor to the form by clicking the “Add Vendor” button below."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label30" caption="What vendor or company is associated with this form?"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label20_1" caption="Please click the &quot;+Add Vendor&quot; button to locate the vendor(s) that you would like to link to the form, then proceed to the next step."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow49_1">
@@ -236,7 +228,7 @@
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="customButton" display-name="Add Vendor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Vendor" action="Widgets.dialogAddVendor.open()" shortcutkey="" disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleVendors &amp;&amp; Variables.stvVendors.dataSet.length > 0"
                                                 icon="wi wi-plus"></wm-grid-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -246,9 +238,8 @@
                                 <wm-layoutgrid name="layoutgrid14_1">
                                     <wm-gridrow name="gridrow50" padding="2em unset unset unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn93_2">
-                                            <wm-label padding="unset 0.5em" name="label21" caption="If there is an owner associated with the parcel(s) that you added previously, please select them below."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label26_1" caption="If the correct owner is not listed, please select &quot;New Owner&quot; and provide their information below."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label27" caption="If the vendor you selected previously is the owner, please select &quot;Vendor is Owner&quot;."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label21" caption="What property owner would you like to specify for this form?"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label26_1" caption="Owners associated with the information you provided earlier are available as selections below. If the correct owner is not listed, please choose &quot;New Owner&quot; and provide their current contact information."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow42">
@@ -302,7 +293,7 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow45">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn90">
-                                                <wm-form-field name="ownerEmail" displayname="Email" show="true" primary-key="false" generator="assigned" key="email" type="string" widget="text" maxchars="255" disabled="false" inputtype="email" placeholder="Enter value" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-form-field>
+                                                <wm-form-field name="ownerEmail" displayname="Email Address" show="true" primary-key="false" generator="assigned" key="email" type="string" widget="text" maxchars="255" disabled="false" inputtype="email" placeholder="Enter value" required="false"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn91">
                                                 <wm-form-field name="ownerPhone" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phone" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-form-field>
@@ -310,7 +301,7 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow46">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn92">
-                                                <wm-form-field name="ownerAddress1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-form-field>
+                                                <wm-form-field name="ownerAddress1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" required="false"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn93">
                                                 <wm-form-field name="ownerAddress2" displayname="Address2" show="true" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
@@ -318,19 +309,19 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow47">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn94">
-                                                <wm-form-field name="ownerCity" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-form-field>
+                                                <wm-form-field name="ownerCity" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" required="false"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn95">
-                                                <wm-form-field name="ownerStates" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" widget="select" disabled="false" placeholder="Select value" displayexpression="stateName" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-form-field>
+                                                <wm-form-field name="ownerStates" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" widget="select" disabled="false" placeholder="Select value" displayexpression="stateName" required="false"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow48">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn96">
-                                                <wm-form-field name="ownerPostalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-form-field>
+                                                <wm-form-field name="ownerPostalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" required="false"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn97">
                                                 <wm-form-field name="ownerCountry" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" defaultvalue="bind:'USA'"
-                                                required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-form-field>
+                                                required="false"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow49">
@@ -359,7 +350,7 @@
                                 <wm-layoutgrid name="layoutgrid16">
                                     <wm-gridrow name="gridrow51" padding="2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn95_2">
-                                            <wm-label padding="unset 0.5em" name="label23_2" caption="Please upload any related documents such as plans and engineering drawings by clicking “Add Attachment”."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label29_1" caption="If you would like to upload any documents related to this form (such as blueprints, schematics, photos, etc.), please use the &quot;+Add Attachment&quot; button below, otherwise proceed to the next step."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow52">
@@ -379,8 +370,9 @@
                                 <wm-layoutgrid name="layoutgrid17_1">
                                     <wm-gridrow name="gridrow53" padding="2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn96_2">
-                                            <wm-label padding="unset 0.5em" name="label25" caption="You may share this form with other CivicXpress users by clicking the &quot;Add User&quot; button below."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label26" caption="Sharing the form with a user will grant them access to view the form information and complete transactions for the form."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label25" caption="Would you like to share this form with other users?"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label29_2" caption="Use the &quot;+Add User&quot; button to perform a search. If you would like to share your form with somebody who has not registered for CivicXpress, please use the &quot;+Invite User&quot; button, provide their contact information, and they will receive an email invitation to view your form."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label26" caption="Sharing the form with a user will allow them to complete transactions for the form."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow54">
@@ -391,7 +383,8 @@
                                                 <wm-grid-column binding="Email" caption="Email Address" type="string" readonly="true" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="customButton" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="Widgets.dialogAddContact.open()" shortcutkey="" disabled="false" icon="wi wi-plus"></wm-grid-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Remove" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-action key="customButton1" display-name="Invite User" title="Invite User" value="" iconclass="wi wi-plus" class="btn-secondary" show="true" shortcutkey=""></wm-grid-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
