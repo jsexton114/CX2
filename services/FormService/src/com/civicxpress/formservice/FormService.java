@@ -363,9 +363,9 @@ public class FormService {
     }
     
     private void saveFormData(Connection cx2Conn, Long formTypeId, String formGuid, HashMap<String, Object> fieldData) throws SQLException {
-    	Map<String, Object> queryParams = new HashMap<String, Object>();
-    	queryParams.put("formTypeId", formTypeId);
-    	queryParams.put("formGuid", formGuid);
+    	DBQueryParams queryParams = new DBQueryParams();
+    	queryParams.addLong("formTypeId", formTypeId);
+    	queryParams.addString("formGuid", formGuid);
     	
     	DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId, FormTableName FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0);
     	
@@ -383,11 +383,11 @@ public class FormService {
 	    		String sqlSafeFieldName = DBUtils.getSqlSafeString(formFieldsMetaRow.getString("FieldName"));
 	    		Object fieldValue;
 	    		
-	    		if (!fieldData.containsKey(sqlSafeFieldName)) {
+	    		String sqlType = formFieldsMetaRow.getString("SqlType");
+	    		
+	    		if (!fieldData.containsKey(sqlSafeFieldName) || sqlType == null) {
 	    			continue;
 	    		}
-	    		
-	    		String sqlType = formFieldsMetaRow.getString("SqlType");
 	    		
 	    		if (sqlType.equals("datetime2") || sqlType.equals("date")) {
 	    			Date dateFieldDate = new Date();
@@ -398,22 +398,13 @@ public class FormService {
 	    				dateFieldDate.setTime(Long.parseLong(fieldData.get(sqlSafeFieldName).toString()));
 	    			}
 	    			
-	    			if (dateFieldDate != null) {
-		    			if (sqlType.equals("date")) {
-		    				fieldValue = dateFormatter.format(dateFieldDate);
-		    			} else {
-		    				fieldValue = datetimeFormatter.format(dateFieldDate);
-		    			}
-	    			} else {
-	    				fieldValue = null;
-	    			}
+	    			queryParams.addDate(sqlSafeFieldName, dateFieldDate);
 	    		} else {
 	    			fieldValue = fieldData.get(sqlSafeFieldName);
+		    		queryParams.addObject(sqlSafeFieldName, fieldValue);
 	    		}
 	    		
 	    		formSaveQuery.append(sqlSafeFieldName+"=:"+sqlSafeFieldName);
-	    		
-	    		queryParams.put(sqlSafeFieldName, fieldValue);
 	    		
 	    		formSaveQuery.append(",");
 	    	}
@@ -454,8 +445,6 @@ public class FormService {
 	        	queryParams.put("doc"+i+"filename", file.getOriginalFilename());
 	        	queryParams.put("doc"+i+"mimetype", file.getContentType());
 	        	queryParams.put("doc"+i+"contents", file.getBytes());
-	        	
-	        	logger.error(file.getOriginalFilename());
 	        	
 	        	documentAddQuery.append("(:formGuid, :doc"+i+"filename, :doc"+i+"mimetype, :doc"+i+"contents)");
 	        }
