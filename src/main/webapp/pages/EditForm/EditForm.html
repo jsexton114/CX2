@@ -526,7 +526,7 @@
                                 <wm-datetime name="datetimeDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Date+Time'"></wm-datetime>
                                 <wm-checkbox caption="" class="col-md-push-3 col-md-9" name="booleanDefaultValue" margin="unset unset unset -100px" show="bind:Widgets.selectFormFieldType.datavalue.label==='Boolean'"></wm-checkbox>
                                 <wm-text name="numberDefaultValue" type="number" step="1" placeholder="Enter number" show="bind:Widgets.selectFormFieldType.datavalue.label==='Number'" maxchars="38" maxvalue="99999999999999999999999999999999999999"></wm-text>
-                                <wm-currency name="currencyDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label === 'Currency'" step="0.01"></wm-currency>
+                                <wm-currency name="currencyDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label === 'Currency'" step="0.01" maxvalue="1e+36"></wm-currency>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -536,7 +536,7 @@
                         <wm-composite name="composite8" show="bind:!!Widgets.selectFormFieldType.datavalue.sqlType" padding="1em unset">
                             <wm-label class="col-md-3 form-control-static" name="label12" caption="Help Text" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container7">
-                                <wm-textarea name="textareaFormFieldHelpText" placeholder="Enter Tooltip Text" maxchars="1000"></wm-textarea>
+                                <wm-textarea name="textareaFormFieldHelpText" placeholder="Enter Tooltip Text" maxchars="2000"></wm-textarea>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
