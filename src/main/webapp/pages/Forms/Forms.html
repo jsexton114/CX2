@@ -810,7 +810,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions5">
-                <wm-button class="btn-primary" caption="Upload" on-click="buttonUploadFileClick($event, $scope)" name="buttonUploadFile" iconclass="wi wi-file-upload" disabled="bind:docsToUpload.length > 0"></wm-button>
+                <wm-button class="btn-primary" caption="Upload" on-click="buttonUploadFileClick($event, $scope)" name="buttonUploadFile" iconclass="wi wi-file-upload" disabled="bind:docsToUpload.length === 0"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button13" on-click="Widgets.dialogUploadDocument.close()" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
