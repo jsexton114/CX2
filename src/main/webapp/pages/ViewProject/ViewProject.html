@@ -59,6 +59,7 @@
                                             <wm-label class="col-md-12 control-label" name="label6" margin="0.5em unset" caption="Estimated Completion Date"></wm-label>
                                             <wm-container class="col-md-12" name="container4">
                                                 <wm-date name="datetimeEstimatedCompletionDat" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].estEndDate" readonly="false" outputformat="timestamp" datepattern="MM-dd-yyyy"></wm-date>
+                                                <wm-label padding="unset 0.5em" name="label72" caption="bind:Widgets.datetimeEstimatedCompletionDat.datavalue"></wm-label>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -66,7 +67,7 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow62_1">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn112" horizontalalign="right">
-                                        <wm-button class="btn-primary" caption="Update" type="button" margin="1em 3em 1em unset" name="buttonUpdateDetails" iconclass="wi wi-update" on-click="Variables.UpdateProjectDetails.invoke()"></wm-button>
+                                        <wm-button class="btn-primary" caption="Update" type="button" margin="1em 3em 1em unset" name="buttonUpdateDetails" iconclass="wi wi-update" on-click="buttonUpdateDetailsClick($event, $scope)"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>

@@ -460,7 +460,7 @@
     }
   }, {
     "name" : "CountOfFormsForMunicipality",
-    "query" : "select count(DISTINCT ID) from FormTypes where MunicipalityId=:MunicipalityId",
+    "query" : "select count(DISTINCT ID) as count from FormTypes where MunicipalityId=:MunicipalityId",
     "comment" : "CountOfFormsForMunicipality",
     "description" : null,
     "nativeSql" : true,
@@ -476,7 +476,7 @@
     } ],
     "outputType" : "cx2CountOfFormsForMunicipalityrtnType",
     "returnTypeMetadata" : {
-      "" : "java.lang.Integer"
+      "count" : "java.lang.Integer"
     }
   }, {
     "name" : "CountOfMuncipalityApplicationsByVendor",

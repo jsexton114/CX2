@@ -86,6 +86,21 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
         }
     };
 
+
+    $scope.buttonUpdateDetailsClick = function($event, $isolateScope) {
+        if ($scope.Widgets.datetimeEstimatedStartDate.timestamp == '') {
+            $scope.Variables.UpdateProjectDetails.setInput({
+                'EstStartDate': 0
+            });
+        }
+        if ($scope.Widgets.datetimeEstimatedCompletionDat.timestamp == '') {
+            $scope.Variables.UpdateProjectDetails.setInput({
+                'EstEndDate': 0
+            });
+            $scope.Variables.UpdateProjectDetails.update();
+        }
+    };
+
 }]);
 
 Application.$controller("gridProjectMembersController", ["$scope",
