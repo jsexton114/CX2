@@ -48,7 +48,7 @@ public class ProjectTaskAssignment {
     @Autowired
     private SecurityService securityService;
     
-     public String sendStatusUpdateMail(String username ,String recipient,String emailSubject,String municipalitySignature,String projectGUID,String projectName) throws MessagingException {
+     public String sendAssignedTaskMail(String username ,String recipient,String emailSubject,String municipalitySignature,String projectGUID,String projectName) throws MessagingException {
         
       
         
@@ -71,10 +71,10 @@ public class ProjectTaskAssignment {
         String projectURL=  PROJECT_URL+projectGUID;
         logger.info(projectGUID);
         
-        String emailContent = "Hi" + " "+username+","+"<br /><br />";
+        String emailContent = "Hi" + " "+username+","+"<br />";
         
      
-        emailContent =emailContent+"<br /><br />";
+        emailContent =emailContent+"<br />";
         
         emailContent =emailContent + "You have been assigned a task for "+projectName+" You may access the task by clicking the following link:" ;
       

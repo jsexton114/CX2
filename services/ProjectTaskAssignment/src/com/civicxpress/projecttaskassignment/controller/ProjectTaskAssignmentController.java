@@ -20,8 +20,10 @@ public class ProjectTaskAssignmentController {
     @Autowired
     private ProjectTaskAssignment projectTaskAssignment;
 
-    @RequestMapping(value = "/sendStatusUpdateMail", produces = "application/json", method = RequestMethod.GET)
-    public String sendStatusUpdateMail(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "emailSubject", required = false) String emailSubject, @RequestParam(value = "municipalitySignature", required = false) String municipalitySignature, @RequestParam(value = "projectGUID", required = false) String projectGUID, @RequestParam(value = "projectName", required = false) String projectName) throws MessagingException {
-        return projectTaskAssignment.sendStatusUpdateMail(username, recipient, emailSubject, municipalitySignature, projectGUID, projectName);
+    @RequestMapping(value = "/sendAssignedTaskMail", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public String sendAssignedTaskMail(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "emailSubject", required = false) String emailSubject, @RequestParam(value = "municipalitySignature", required = false) String municipalitySignature, @RequestParam(value = "projectGUID", required = false) String projectGUID, @RequestParam(value = "projectName", required = false) String projectName) throws MessagingException {
+        return projectTaskAssignment.sendAssignedTaskMail(username, recipient, emailSubject, municipalitySignature, projectGUID, projectName);
     }
 }
