@@ -25,7 +25,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -50,8 +49,6 @@ public class FormService {
 
     private static final Logger logger = LoggerFactory.getLogger(FormService.class);
 
-	private static SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-	private static SimpleDateFormat datetimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private static SimpleDateFormat monthYearFormatter = new SimpleDateFormat("MMyyyy");
 	private static SimpleDateFormat yearMonthFormatter = new SimpleDateFormat("yyyyMM");
 	
@@ -119,8 +116,8 @@ public class FormService {
     
     private Connection getMunicipalityDbConnection(Connection conn, Long municipalityId) throws SQLException {
     	String getMuniDbDetailsQuery = "SELECT DbName, DbUser, DbPassword FROM Municipalities WHERE ID=:municipalityId";
-    	Map<String, Object> muniDbDetailsParams = new HashMap<String, Object>();
-        muniDbDetailsParams.put("municipalityId", municipalityId);
+    	DBQueryParams muniDbDetailsParams = new DBQueryParams();
+        muniDbDetailsParams.addLong("municipalityId", municipalityId);
     	
     	DBRow muniDetails = DBUtils.selectQuery(conn, getMuniDbDetailsQuery, muniDbDetailsParams).get(0);
     	
@@ -133,8 +130,8 @@ public class FormService {
 
     	String getFormInfoQuery = "SELECT FormTableName, MunicipalityId FROM FormTypes WHERE ID=:formTypeId";
 
-		Map<String, Object> formTbNameParams = new HashMap<String, Object>();
-		formTbNameParams.put("formTypeId", formTypeId);
+    	DBQueryParams formTbNameParams = new DBQueryParams();
+		formTbNameParams.addLong("formTypeId", formTypeId);
 		DBRow formInfo = DBUtils.selectQuery(cx2Conn, getFormInfoQuery, formTbNameParams).get(0);
 		String formTableName = formInfo.getString("FormTableName");
 		
@@ -144,8 +141,8 @@ public class FormService {
 		
 		cx2Conn.close();
 		
-		Map<String, Object> formDbParams = new HashMap<String, Object>();
-		formDbParams.put("formGuid", formGuid);
+		DBQueryParams formDbParams = new DBQueryParams();
+		formDbParams.addString("formGuid", formGuid);
 		DBRow formDataRow = DBUtils.selectQuery(formDbConn, ("SELECT * FROM "+formTableName+" WHERE FormGUID=:formGuid"), formDbParams).get(0);
 		
 		formDbConn.close();
@@ -158,8 +155,8 @@ public class FormService {
     	
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	cx2Conn.setAutoCommit(false);
-    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
-    	queryParams.put("formTypeId",  formTypeId);
+    	DBQueryParams queryParams = new DBQueryParams();
+    	queryParams.addLong("formTypeId",  formTypeId);
     	
     	DBRow muniData = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId, FormTableName from FormTypes WHERE ID=:formTypeId", queryParams).get(0);
     	
@@ -169,14 +166,14 @@ public class FormService {
     	try {
     		fieldName += DBUtils.selectQuery(muniDbConn, "SELECT NEXT VALUE FOR DynamicFieldIndex as DynamicFieldIndex").get(0).getString("DynamicFieldIndex");
     		
-	    	queryParams.put("label", label);
-	    	queryParams.put("fieldName", fieldName);
-	    	queryParams.put("fieldTypeId", fieldTypeId);
-	    	queryParams.put("displayOrder", displayOrder);
-	    	queryParams.put("required", required);
-	    	queryParams.put("defaultValue", defaultValue);
-	    	queryParams.put("helpText", helpText);
-	    	queryParams.put("possibleValues", possibleValues);
+	    	queryParams.addString("label", label);
+	    	queryParams.addString("fieldName", fieldName);
+	    	queryParams.addLong("fieldTypeId", fieldTypeId);
+	    	queryParams.addInteger("displayOrder", displayOrder);
+	    	queryParams.addBoolean("required", required);
+	    	queryParams.addString("defaultValue", defaultValue);
+	    	queryParams.addString("helpText", helpText);
+	    	queryParams.addString("possibleValues", possibleValues);
 	    	DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypeFields "
 	    			+ "(FormTypeId, FieldName, Label, DisplayOrder, Required, DefaultValue, HelpText, FieldTypeId, PossibleValues)"
 	    			+" VALUES (:formTypeId, :fieldName, :label, :displayOrder, :required, :defaultValue, :helpText, :fieldTypeId, :possibleValues)",
@@ -221,16 +218,16 @@ public class FormService {
         		formTitlePrefix.append(formTypePart.substring(0, 1).toUpperCase());
         	}
         	
-	        HashMap<String, Object> formCreateParams = new HashMap<String, Object>();
-	        formCreateParams.put("formType", formType);
-	        formCreateParams.put("municipalityId", municipalityId);
-	        formCreateParams.put("formTableName", formTableName);
-	        formCreateParams.put("titlePrefix", formTitlePrefix.toString());
+        	DBQueryParams formCreateParams = new DBQueryParams();
+	        formCreateParams.addString("formType", formType);
+	        formCreateParams.addLong("municipalityId", municipalityId);
+	        formCreateParams.addString("formTableName", formTableName);
+	        formCreateParams.addString("titlePrefix", formTitlePrefix.toString());
 	        
 	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypes (FormType, MunicipalityId, FormTableName, MunicipalityInternalForm, Active, TitlePrefix) VALUES (:formType, :municipalityId, :formTableName, 0, 0, :titlePrefix)", formCreateParams);
 	        
 	        newFormTypeId = DBUtils.selectQuery(cx2Conn, "SELECT @@IDENTITY as formId").get(0).getLong("formId");
-	        formCreateParams.put("newFormTypeId", newFormTypeId);
+	        formCreateParams.addLong("newFormTypeId", newFormTypeId);
 	        
 	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormStatuses (FormTypeId, ConsiderClosed, SortOrder, Status, Description, SendEmail) "
 	        		+ "VALUES (:newFormTypeId, 0, 1, 'Draft', 'Draft', 0),"
@@ -429,8 +426,8 @@ public class FormService {
     	
     	StringBuilder documentAddQuery = new StringBuilder("INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents) VALUES ");
     	
-    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
-    	queryParams.put("formGuid", formGuid);
+    	DBQueryParams queryParams = new DBQueryParams();
+    	queryParams.addString("formGuid", formGuid);
     	
     	try {
 	        for (int i = 0; i < files.length; i++) {
@@ -440,9 +437,9 @@ public class FormService {
 	        		documentAddQuery.append(',');
 	        	}
 				
-	        	queryParams.put("doc"+i+"filename", file.getOriginalFilename());
-	        	queryParams.put("doc"+i+"mimetype", file.getContentType());
-	        	queryParams.put("doc"+i+"contents", file.getBytes());
+	        	queryParams.addString("doc"+i+"filename", file.getOriginalFilename());
+	        	queryParams.addString("doc"+i+"mimetype", file.getContentType());
+	        	queryParams.addBytes("doc"+i+"contents", file.getBytes());
 	        	
 	        	documentAddQuery.append("(:formGuid, :doc"+i+"filename, :doc"+i+"mimetype, :doc"+i+"contents)");
 	        }
@@ -462,8 +459,8 @@ public class FormService {
     
     public DownloadResponse downloadDocument(Long documentId) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
-    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
-    	queryParams.put("documentId", documentId);
+    	DBQueryParams queryParams = new DBQueryParams();
+    	queryParams.addLong("documentId", documentId);
     	
     	DBRow documentData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM Document WHERE ID=:documentId", queryParams).get(0);
     	
@@ -599,17 +596,17 @@ public class FormService {
     	String formGuid = "";
     	
     	try {
-	    	HashMap<String, Object> queryParams = new HashMap<String, Object>();
+	    	DBQueryParams queryParams = new DBQueryParams();
 	    	
 	    	Long createUserId = (behalfOfUserId != null ? behalfOfUserId : Long.parseLong(securityService.getUserId()));
-    		queryParams.put("createUserId", createUserId);
+    		queryParams.addLong("createUserId", createUserId);
 	    	formGuid = createForm(cx2Conn, formTypeId, primaryVendorId, createUserId, ownerId);
 	    	
-	    	queryParams.put("formGuid", formGuid);
+	    	queryParams.addString("formGuid", formGuid);
 	    	
 	    	DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", queryParams).get(0);
 	    	
-	    	queryParams.put("formTypeId", masterFormData.getLong("FormTypeId"));
+	    	queryParams.addLong("formTypeId", masterFormData.getLong("FormTypeId"));
 	    	
 	    	DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0);
 	    	
@@ -658,11 +655,11 @@ public class FormService {
 	    	
 	    	formTitle.append(newPrefixNumber.toString());
 	    	
-	    	queryParams.put("newPrefixNumber", newPrefixNumber);
-	    	queryParams.put("newResetTime", newResetTime);
+	    	queryParams.addLong("newPrefixNumber", newPrefixNumber);
+	    	queryParams.addInteger("newResetTime", newResetTime);
 	    	
 	    	fieldData.put("FormTitle", formTitle.toString());
-	    	queryParams.put("formTitle", formTitle.toString());
+	    	queryParams.addString("formTitle", formTitle.toString());
 	    	/*
 	    	 * End form title creation
 	    	 */
@@ -685,7 +682,7 @@ public class FormService {
 	    			String paramName = DBUtils.getSqlSafeString("location"+locationIndex+"GISRecordId");
 	    			locationIndex++;
 	    			
-	    			queryParams.put(paramName, Long.parseLong(locationId));
+	    			queryParams.addLong(paramName, Long.parseLong(locationId));
 	    			
 	    			locationsQuery.append("(:formGuid, :"+paramName+", :createUserId, SYSDATETIME())");
 	    		}
@@ -709,8 +706,8 @@ public class FormService {
 	    			String primaryParamName = "vendor"+vendorIndex+"Primary";
 	    			vendorIndex++;
 	    			
-	    			queryParams.put(paramName, vendorIdLong);
-	    			queryParams.put(primaryParamName, vendorIdLong.equals(primaryVendorId));
+	    			queryParams.addLong(paramName, vendorIdLong);
+	    			queryParams.addBoolean(primaryParamName, vendorIdLong.equals(primaryVendorId));
 	    			
 	    			vendorsQuery.append("(:formGuid, :"+paramName+", :"+primaryParamName+", SYSUTCDATETIME())");
 	    		}
@@ -738,7 +735,7 @@ public class FormService {
 	    			String paramName = DBUtils.getSqlSafeString("shareUser"+shareIndex+"Id");
 	    			shareIndex++;
 	    			
-	    			queryParams.put(paramName, sharedUserIdLong);
+	    			queryParams.addLong(paramName, sharedUserIdLong);
 	    			
 	    			sharingQuery.append("(:formGuid, :"+paramName+", SYSDATETIME(), :createUserId)");
 	    		}
@@ -781,12 +778,12 @@ public class FormService {
 	    	
 	    	// Finish up by updating MasterForms and adding a history entry
 	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(1).getLong("ID");
-	    	queryParams.put("newFormStatusId", newFormStatusId);
+	    	queryParams.addLong("newFormStatusId", newFormStatusId);
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterForms SET FormStatusId=:newFormStatusId, TotalFees=:totalFees, TotalPayment='0', BalanceDue=:totalFees, FormTitle=:formTitle WHERE FormGUID=:formGuid", queryParams);
 	    	
-	    	queryParams.put("oldFormStatusId", masterFormData.getLong("FormStatusId"));
-	    	queryParams.put("createdTime", datetimeFormatter.format(today.getTime()));
+	    	queryParams.addLong("oldFormStatusId", masterFormData.getLong("FormStatusId"));
+	    	queryParams.addDateTime("createdTime", today.getTime());
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormHistory "
 	    			+"(FormGUID, FormTypeId, NewStatusId, OldStatusId, CreatedBy, CreatedTime) "
