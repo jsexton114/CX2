@@ -25,8 +25,6 @@ Application.$controller("gridProjectsListController", ["$scope",
 
 
 
-
-
         $scope.deleterowAction = function($event, $rowData) {
             var allowDelete = false;
             if ($scope.Variables.loggedInUser.dataSet.id == $rowData.usersByCreatedBy.id) {
