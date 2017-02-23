@@ -113,6 +113,21 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
         }
     };
 
+
+    $scope.UpdateTaskonSuccess = function(variable, data) {
+        if ($scope.Widgets.selectUpdateProjectAssignedTo.datavalue != undefined) {
+            if ($scope.Widgets.gridTasks.selecteditem.usersByAssignedTo.id != $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.id) {
+                var user = $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.firstName + ' ' + $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.lastName;
+                $scope.Variables.AssignedTaskMail.setInput({
+                    'username': user,
+                    'recipient': $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.email
+                });
+                $scope.Variables.AssignedTaskMail.update();
+
+            }
+        }
+    };
+
 }]);
 
 Application.$controller("gridProjectMembersController", ["$scope",
