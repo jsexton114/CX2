@@ -390,15 +390,13 @@ public class FormService {
 	    		}
 	    		
 	    		if (sqlType.equals("datetime2") || sqlType.equals("date")) {
-	    			Date dateFieldDate = new Date();
+	    			Long dateMs = fieldData.get(sqlSafeFieldName) != null ? Long.parseLong(fieldData.get(sqlSafeFieldName).toString()) : null;
 	    			
-	    			if (fieldData.get(sqlSafeFieldName) == null) {
-	    				dateFieldDate = null;
+	    			if (sqlType.equals("datetime2")) {
+	    				queryParams.addDateTime(sqlSafeFieldName, dateMs);
 	    			} else {
-	    				dateFieldDate.setTime(Long.parseLong(fieldData.get(sqlSafeFieldName).toString()));
+	    				queryParams.addDate(sqlSafeFieldName, dateMs);
 	    			}
-	    			
-	    			queryParams.addDate(sqlSafeFieldName, dateFieldDate);
 	    		} else {
 	    			fieldValue = fieldData.get(sqlSafeFieldName);
 		    		queryParams.addObject(sqlSafeFieldName, fieldValue);
