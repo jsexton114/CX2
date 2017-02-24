@@ -1,4 +1,4 @@
-<wm-page data-ng-controller="FormsPageController" pagetitle="Forms" name="page1">
+<wm-page data-ng-controller="FormsPageController" pagetitle="bind:'View Form' + (!!Variables.CurrentForm.dataSet.data[$i].formTitle ? ' '+Variables.CurrentForm.dataSet.data[$i].formTitle : '')" name="page1">
     <wm-header content="header" name="header1"></wm-header>
     <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
     <wm-content name="content1">
@@ -485,6 +485,7 @@
     <wm-view class="dialog-view" name="viewAddGISRecord">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Location Search" iconclass="wi wi-location-searching" name="dialogAddGISRecord">
             <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-primary" caption="Add Location" type="button" margin="unset 0.5em" name="buttonAddLocation" iconclass="wi wi-add-location" show="true" on-click="buttonAddLocationClick($event, $scope)" disabled="bind:cantAddLocation()"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button3" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-tabs name="tabsAddGISRecord">
@@ -510,13 +511,6 @@
                                 <wm-label padding="unset 0.5em" name="label10" caption="bind:Widgets.searchAddress.datavalue.fullAddress" show="bind:Widgets.searchAddress.datavalue!=undefined"></wm-label>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn45"></wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow23">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn49"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn50" horizontalalign="center">
-                                <wm-button class="btn-primary" caption="Add Parcel" type="button" margin="unset 0.5em" name="buttonAddByAddress" iconclass="wi wi-add-location" show="bind:Widgets.searchAddress.datavalue!=undefined" on-click="buttonAddByAddressClick($event, $scope)"></wm-button>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn51"></wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>
                 </wm-tabpane>
@@ -552,13 +546,6 @@
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn60"></wm-gridcolumn>
                         </wm-gridrow>
-                        <wm-gridrow name="gridrow27">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn61"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn62">
-                                <wm-button class="btn-primary" caption="Add Parcel" type="button" margin="unset 0.5em" iconclass="wi wi-add-location" name="buttonAddBySubdivision" show="bind:Widgets.searchSubdivision.datavalue!=undefined" on-click="buttonAddBySubdivisionClick($event, $scope)"></wm-button>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn63"></wm-gridcolumn>
-                        </wm-gridrow>
                     </wm-layoutgrid>
                 </wm-tabpane>
                 <wm-tabpane name="tabpane10" title="BY PARCEL">
@@ -590,13 +577,6 @@
                                 <wm-label padding="unset 0.5em" caption="bind:Widgets.searchParcel.datavalue.fullAddress" show="bind:Widgets.searchParcel.datavalue!=undefined" name="label15"></wm-label>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn72"></wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow31">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn73"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn74">
-                                <wm-button class="btn-primary" caption="Add Parcel" type="button" margin="unset 0.5em" iconclass="wi wi-add-location" name="buttonAddByParcel" show="bind:Widgets.searchParcel.datavalue!=undefined" on-click="buttonAddByParcelClick($event, $scope)"></wm-button>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn75"></wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>
                 </wm-tabpane>

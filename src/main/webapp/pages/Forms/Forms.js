@@ -231,27 +231,38 @@ Application.$controller("dialogAddGISRecordController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-        $scope.buttonAddByAddressClick = function($event, $isolateScope) {
-            $scope.Variables.AddGIStoForms.setInput({
-                'GISRecordId': $scope.Widgets.searchAddress.datavalue.id
-            });
-            $scope.Variables.AddGIStoForms.update();
+
+        $scope.cantAddLocation = function() {
+            var activeTabIndex = $scope.Widgets.tabsAddGISRecord.activeTabIndex;
+            if (activeTabIndex === 0) {
+                return ($scope.Widgets.searchAddress.datavalue === undefined);
+            } else if (activeTabIndex === 1) {
+                return ($scope.Widgets.searchSubdivision.datavalue === undefined);
+            } else {
+                return ($scope.Widgets.searchParcel.datavalue === undefined);
+            }
         };
 
+        $scope.buttonAddLocationClick = function($event, $isolateScope) {
+            var activeTabIndex = $scope.Widgets.tabsAddGISRecord.activeTabIndex;
+            var gisRecordId = null;
+            if (activeTabIndex === 0) {
+                gisRecordId = $scope.Widgets.searchAddress.datavalue.id;
+            } else if (activeTabIndex === 1) {
+                gisRecordId = $scope.Widgets.searchSubdivision.datavalue.id;
+            } else {
+                gisRecordId = $scope.Widgets.searchParcel.datavalue.id;
+            }
 
-        $scope.buttonAddBySubdivisionClick = function($event, $isolateScope) {
-            $scope.Variables.AddGIStoForms.setInput({
-                'GISRecordId': $scope.Widgets.searchSubdivision.datavalue.id
-            });
-            $scope.Variables.AddGIStoForms.update();
-        };
+            if (gisRecordId !== null && gisRecordId !== undefined) {
+                $scope.Variables.AddGIStoForms.setInput({
+                    'GISRecordId': gisRecordId
+                });
 
+                $scope.Variables.AddGIStoForms.update();
 
-        $scope.buttonAddByParcelClick = function($event, $isolateScope) {
-            $scope.Variables.AddGIStoForms.setInput({
-                'GISRecordId': $scope.Widgets.searchParcel.datavalue.id
-            });
-            $scope.Variables.AddGIStoForms.update();
+                $scope.Widgets.dialogAddGISRecord.close();
+            }
         };
 
     }
