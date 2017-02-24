@@ -97,8 +97,8 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
             $scope.Variables.UpdateProjectDetails.setInput({
                 'EstEndDate': 0
             });
-            $scope.Variables.UpdateProjectDetails.update();
         }
+        $scope.Variables.UpdateProjectDetails.update();
     };
 
 
