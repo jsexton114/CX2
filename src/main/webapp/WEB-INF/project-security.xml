@@ -32,7 +32,7 @@
     <bean class="com.wavemaker.studio.common.model.security.XSSConfig" id="xssConfig">
         <property name="enforceXssSecurity" value="${general.xss.enabled}"/>
         <property name="policyFile" value="wm-xss-policies.xml"/>
-        <property name="xssFilterStrategy" value="NONE"/>
+        <property name="xssFilterStrategy" value="ENCODE"/>
     </bean>
     <security:global-method-security pre-post-annotations="enabled" authentication-manager-ref="authenticationManager"/>
     <security:http pattern="/app.css" security="none"/>

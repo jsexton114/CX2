@@ -40,7 +40,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
             var currentStatus = statusListData[currentStatusIndex];
             $scope.Variables.stvCurrentStatus.dataSet = currentStatus;
-            $scope.currentProgress = parseInt(!!currentStatus.considerClosed ? 100 : ((currentStatusIndex) / statusListData.length * 100));
+            $scope.currentProgress = parseInt(!!currentStatus.considerClosed ? 100 : ((currentStatusIndex + 1) / statusListData.length * 100));
             $timeout(function() {
                 var a = $('.livelist-status li.app-list-item:nth-child(' + (currentStatusIndex + 1) + ')').addClass('active');
             });
