@@ -291,6 +291,7 @@
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                         <wm-grid-action key="addNewRow" display-name="Add User" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="addNewRow()"
                                                         shortcutkey="" disabled="false"></wm-grid-action>
+                                                        <wm-grid-action key="customButton" display-name="Invite User" title="Invite User" value="" iconclass="wi wi-plus" class="btn-secondary" show="true" shortcutkey=""></wm-grid-action>
                                                         <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
                                                         disabled="false"></wm-grid-row-action>
                                                     </wm-grid>
