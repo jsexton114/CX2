@@ -276,14 +276,23 @@ Application.$controller("gridFormVendorsController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
         $scope.primaryVendorChange = function(newVal) {
+            //UpdatePrimaryVendorStatusInVEndor2Forms
             $scope.Variables.gridRemovePrimaryVendors.setInput({
                 'vendor': $scope.selecteditem.relatedFormGuid
             });
             $scope.Variables.gridRemovePrimaryVendors.update();
-            $scope.Variables.UpdatePrimaryVendorInMasterForms.setInput({
-                'VendorId': $scope.selecteditem.vendorId
-            });
-            $scope.Variables.UpdatePrimaryVendorInMasterForms.update();
+            if (newVal == true) {
+                $scope.Variables.UpdatePrimaryVendorInMasterForms.setInput({
+                    'VendorId': $scope.selecteditem.vendorId
+                });
+                $scope.Variables.UpdatePrimaryVendorInMasterForms.update();
+            } else {
+                $scope.Variables.UpdatePrimaryVendorInMasterForms.setInput({
+                    'VendorId': null
+                });
+                $scope.Variables.UpdatePrimaryVendorInMasterForms.update();
+            }
+
             $scope.Variables.gridSetPrimaryVendorStatusForFormandVendor.setInput({
                 'pv': newVal,
                 'vendor': $scope.selecteditem.vendorId
@@ -292,12 +301,7 @@ Application.$controller("gridFormVendorsController", ["$scope",
 
         };
 
-        // $scope.deleterowActionPrimaryVendor = function($event, $rowData) {
-        //     $scope.$rowData;
-        //     if ($rowData.primaryVendor) {
-        //         $scope.Variables.RemoveVendorFromMasterForms.update();
-        //     }
-        // };
+
 
     }
 ]);
