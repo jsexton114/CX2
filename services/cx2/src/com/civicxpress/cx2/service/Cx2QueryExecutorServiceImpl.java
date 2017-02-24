@@ -488,6 +488,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeGetVendorApprovalListByMunicipality(Pageable pageable, java.lang.String ApprovalStatus, java.lang.Integer MunicipalityId, java.lang.Boolean a)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("ApprovalStatus", ApprovalStatus);
+        params.put("MunicipalityId", MunicipalityId);
+        params.put("a", a);
+        return queryExecutor.executeNamedQuery("GetVendorApprovalListByMunicipality", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public Page<Object> executeGetWriteAccessGroupMembersByFormGUID(Pageable pageable, java.lang.String FormGUID)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();

@@ -247,6 +247,12 @@
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2getUserIdFromPasswordResetTokenrtnType" isList="false"/>
     </operation>
+    <operation operationType="hqlquery" name="GetVendorApprovalListByMunicipality">
+        <parameter name="ApprovalStatus" typeRef="java.lang.String" isList="false"/>
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="a" typeRef="java.lang.Boolean" isList="false"/>
+        <return typeRef="cx2GetVendorApprovalListByMunicipalityrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="GetWriteAccessGroupMembersByFormGUID">
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2GetWriteAccessGroupMembersByFormGUIDrtnType" isList="false"/>
@@ -808,6 +814,12 @@
     <operation operationType="nativequery" name="getUserIdFromPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2getUserIdFromPasswordResetTokenrtnType" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="GetVendorApprovalListByMunicipality">
+        <parameter name="ApprovalStatus" typeRef="java.lang.String" isList="false"/>
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="a" typeRef="java.lang.Boolean" isList="false"/>
+        <return typeRef="cx2GetVendorApprovalListByMunicipalityrtnType" isList="false"/>
     </operation>
     <operation operationType="nativequery" name="GetWriteAccessGroupMembersByFormGUID">
         <parameter name="FormGUID" typeRef="java.lang.String" isList="false"/>
@@ -2224,6 +2236,18 @@
             <element name="Photo" typeRef="[B"/>
             <element name="PostalCode" typeRef="java.lang.String"/>
             <element name="StateId" typeRef="java.math.BigDecimal"/>
+        </dataobject>
+        <dataobject javaType="cx2GetVendorApprovalListByMunicipalityrtnType">
+            <element name="approvalStatus" typeRef="java.lang.String"/>
+            <element name="approvedBy" typeRef="java.lang.String"/>
+            <element name="dateApproved" typeRef="java.util.Date"/>
+            <element name="expiresDate" typeRef="java.util.Date"/>
+            <element name="id" typeRef="java.lang.Integer"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities"/>
+            <element name="municipalityId" typeRef="java.lang.Integer"/>
+            <element name="reviewer" typeRef="java.lang.String"/>
+            <element name="vendor" typeRef="com.civicxpress.cx2.Vendor"/>
+            <element name="vendorId" typeRef="java.lang.Integer"/>
         </dataobject>
         <dataobject javaType="cx2GetWriteAccessGroupMembersByFormGUIDrtnType">
             <element name="GroupName" typeRef="java.lang.String"/>

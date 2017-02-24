@@ -66,6 +66,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeGetRolesForUser(Pageable pageable, java.lang.Integer userId) throws QueryParameterMismatchException;
     Page<Object> executeGetUserID(Pageable pageable, java.lang.String Email) throws QueryParameterMismatchException;
     Page<Object> executeGetUserIdFromPasswordResetToken(Pageable pageable, java.lang.String token) throws QueryParameterMismatchException;
+    Page<Object> executeGetVendorApprovalListByMunicipality(Pageable pageable, java.lang.String ApprovalStatus, java.lang.Integer MunicipalityId, java.lang.Boolean a) throws QueryParameterMismatchException;
     Page<Object> executeGetWriteAccessGroupMembersByFormGUID(Pageable pageable, java.lang.String FormGUID) throws QueryParameterMismatchException;
 	int executeInsertCategoryMapping(  java.lang.Integer FormTypeId , java.lang.Integer FormCategoryId) throws QueryParameterMismatchException;
 	int executeInsertFormMessage(  java.lang.Integer UserId , java.lang.String RelatedFormGUID , java.lang.String Message , java.sql.Timestamp PostedAt) throws QueryParameterMismatchException;

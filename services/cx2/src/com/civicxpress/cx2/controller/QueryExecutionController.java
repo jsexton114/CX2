@@ -550,6 +550,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/GetVendorApprovalListByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeGetVendorApprovalListByMunicipality(@RequestParam(value = "ApprovalStatus", required = false) java.lang.String ApprovalStatus, @RequestParam(value = "MunicipalityId", required = false) java.lang.Integer MunicipalityId, @RequestParam(value = "a", required = false) java.lang.Boolean a, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query GetVendorApprovalListByMunicipality");
+        Page<Object> result = queryService.executeGetVendorApprovalListByMunicipality(pageable, ApprovalStatus, MunicipalityId, a);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/GetWriteAccessGroupMembersByFormGUID", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeGetWriteAccessGroupMembersByFormGUID(@RequestParam(value = "FormGUID", required = false) java.lang.String FormGUID, Pageable pageable) throws QueryParameterMismatchException {

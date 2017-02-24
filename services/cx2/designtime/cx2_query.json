@@ -1674,6 +1674,49 @@
       "UserId" : "java.math.BigDecimal"
     }
   }, {
+    "name" : "GetVendorApprovalListByMunicipality",
+    "query" : "from VendorApprovals where ApprovalStatus=:ApprovalStatus and MunicipalityId=:MunicipalityId and vendor.active=:a",
+    "comment" : "GetVendorApprovalListByMunicipality",
+    "description" : null,
+    "nativeSql" : false,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "ApprovalStatus",
+      "paramType" : "java.lang.String",
+      "testValue" : "Pending",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "MunicipalityId",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "a",
+      "paramType" : "java.lang.Boolean",
+      "testValue" : "true",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2GetVendorApprovalListByMunicipalityrtnType",
+    "returnTypeMetadata" : {
+      "approvalStatus" : "java.lang.String",
+      "approvedBy" : "java.lang.String",
+      "dateApproved" : "java.util.Date",
+      "expiresDate" : "java.util.Date",
+      "id" : "java.lang.Integer",
+      "municipalities" : "com.civicxpress.cx2.Municipalities",
+      "municipalityId" : "java.lang.Integer",
+      "reviewer" : "java.lang.String",
+      "vendor" : "com.civicxpress.cx2.Vendor",
+      "vendorId" : "java.lang.Integer"
+    }
+  }, {
     "name" : "GetWriteAccessGroupMembersByFormGUID",
     "query" : "select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF,FormStatuses FS where  MF.FormGUID=:FormGUID and MF.FormStatusId=FS.ID and FS.WriteAccess=MG.ID and MG.ID=MGM.MunicipalityGroupId",
     "comment" : "GetWriteAccessGroupMembersByFormGUID using formstatuses",
