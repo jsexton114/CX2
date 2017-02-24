@@ -79,39 +79,7 @@ public class FormService {
      */
     
 //    public static void main(String args[]) { // Function for testing/debugging purposes
-////    	Long formTypeId = 1L;
-////    	String formGuid = "xny7fS8UWUOP5ukVeYaTWwdNZutxlBjk";
-////    	HashMap<String, Object> fieldData = new HashMap<String, Object>();
-////    	fieldData.put("BuildDate", 1485406800000L);
-////    	fieldData.put("Birthday", null);
-////    	fieldData.put("Comments", null);
-////    	fieldData.put("MeetingTime", 1484551504330L);
 ////    	
-////    	try {
-////    		saveFormData(formTypeId, formGuid, fieldData);
-////    	} catch (SQLException e) {
-////    		e.printStackTrace();
-////    	}
-//    	
-////    	try {
-////    		HashMap<String, Object> testValues = new HashMap<String, Object>();
-////    		testValues.put("PhoneNumber", "245736");
-////    		testValues.put("EmailAddress", "test@test.org");
-////    		testValues.put("TestAddress", "Test Address");
-////    		testValues.put("CreatedDate", 1485353756034L);
-////    		testValues.put("TotalSqft", "200");
-////    		testValues.put("TotalUnits", 10);
-////    		testValues.put("Basement", true);
-////    		submitForm("E90DF2F6-D1E4-E611-80C9-0CC47A46DD63", testValues);
-////		} catch (SQLException e) {
-////			e.printStackTrace();
-////		}
-//    	
-//    	Pattern p = Pattern.compile("(.+)=(.+)");
-//    	Matcher muniMatcher = p.matcher("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2");
-//    	
-////    	String muniUrl = muniMatcher.group(0);
-//    	System.out.println("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2".replaceAll("databaseName=.+", "databaseName="+"testString"));
 //    }
     
     public UserPermissionsPojo getUserPermissions(String formGuid) throws SQLException {
@@ -493,6 +461,7 @@ public class FormService {
     
     public void saveFormData(Long formTypeId, String formGuid, HashMap<String, Object> fieldData) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	
     	cx2Conn.setAutoCommit(false);
     	
     	try {
@@ -508,6 +477,10 @@ public class FormService {
     }
     
     private void saveFormData(Connection cx2Conn, Long formTypeId, String formGuid, HashMap<String, Object> fieldData) throws SQLException {
+    	if (!userIsAdmin(cx2Conn, formGuid) && !userCanEdit(cx2Conn, formGuid)) {
+    		throw new SQLException("Permission Denied");
+    	}
+    	
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("formTypeId", formTypeId);
     	queryParams.addString("formGuid", formGuid);
@@ -570,6 +543,12 @@ public class FormService {
     
     public void uploadDocuments(MultipartFile[] files, String formGuid) throws SQLException {
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        
+        if (!userIsAdmin(cx2Conn, formGuid) && !userCanEdit(cx2Conn, formGuid)) {
+    		cx2Conn.close();
+    		throw new SQLException("Permission Denied");
+    	}
+        
     	cx2Conn.setAutoCommit(false);
     	
     	StringBuilder documentAddQuery = new StringBuilder("INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents) VALUES ");
@@ -607,6 +586,7 @@ public class FormService {
     
     public DownloadResponse downloadDocument(Long documentId) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("documentId", documentId);
     	
@@ -622,6 +602,12 @@ public class FormService {
     
     public void setFormStatus(String formGuid, Long formStatusId, String comments) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+		
+    	if (!userIsAdmin(cx2Conn, formGuid) && !userIsProcessOwner(cx2Conn, formGuid)) {
+    		cx2Conn.close();
+    		throw new SQLException("Permission Denied");
+    	}
+    	
     	Connection muniDbConn = null;
     	cx2Conn.setAutoCommit(false);
     	
