@@ -568,8 +568,8 @@
                             <wm-container class="col-md-9" name="container4_1">
                                 <wm-text name="textDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Text' || Widgets.selectFormFieldType.datavalue.label==='Header'" maxchars="1000" required="bind:Widgets.selectFormFieldType.datavalue.label === 'Header'"></wm-text>
                                 <wm-textarea name="longTextDefault" show="bind:Widgets.selectFormFieldType.datavalue.label==='Long Text' || Widgets.selectFormFieldType.datavalue.label==='Instruction Text'" maxchars="4000" required="bind:Widgets.selectFormFieldType.datavalue.label === 'Instruction Text'"></wm-textarea>
-                                <wm-date name="dateDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Date'"></wm-date>
-                                <wm-datetime name="datetimeDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Date+Time'"></wm-datetime>
+                                <wm-date name="dateDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Date'" datepattern="MM-dd-yyyy"></wm-date>
+                                <wm-datetime name="datetimeDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Date+Time'" datepattern="MM-dd-yyyy hh:mm a"></wm-datetime>
                                 <wm-checkbox caption="" class="col-md-push-3 col-md-9" name="booleanDefaultValue" margin="unset unset unset -100px" show="bind:Widgets.selectFormFieldType.datavalue.label==='Boolean'"></wm-checkbox>
                                 <wm-text name="numberDefaultValue" type="number" step="1" placeholder="Enter number" show="bind:Widgets.selectFormFieldType.datavalue.label==='Number'" maxchars="38" maxvalue="99999999999999999999999999999999999999"></wm-text>
                                 <wm-currency name="currencyDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label === 'Currency'" step="0.01" maxvalue="1e+36"></wm-currency>
