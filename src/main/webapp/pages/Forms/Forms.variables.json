@@ -698,7 +698,7 @@
           "columnName" : "Instructions",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 8000,
+          "length" : 2147483647,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -2282,6 +2282,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "active",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Active",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formGuid",
@@ -2943,6 +2956,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "active",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Active",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
           "scale" : 0
         } ]
       }, {
@@ -4746,6 +4772,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "active",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Active",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -6150,7 +6189,7 @@
           "columnName" : "Instructions",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 8000,
+          "length" : 2147483647,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -7937,7 +7976,7 @@
           "columnName" : "Instructions",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 8000,
+          "length" : 2147483647,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -12190,7 +12229,7 @@
         "columnName" : "Instructions",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 8000,
+        "length" : 2147483647,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -17080,6 +17119,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "active",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Active",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -17102,19 +17154,6 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 255,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
-        "fieldName" : "active",
-        "type" : "boolean",
-        "fullyQualifiedType" : "boolean",
-        "columnName" : "Active",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
