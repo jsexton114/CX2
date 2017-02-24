@@ -128,4 +128,9 @@
   "permission" : "PermitAll",
   "roles" : [ ],
   "httpMethod" : "GET"
+}, {
+  "urlPattern" : "/services/cx2/Users",
+  "permission" : "Role",
+  "roles" : [ "CXAdmin" ],
+  "httpMethod" : "GET"
 } ]
