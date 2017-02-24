@@ -66,6 +66,7 @@ public class FormService {
     @Value("${cx2.schemaName}")
     private String defaultSqlDatabase;
     
+    @Value("${cx2.password}")
     private String defaultSqlPassword = "F!yingFishCove1957";
     
     /**
@@ -79,7 +80,24 @@ public class FormService {
      */
     
 //    public static void main(String args[]) { // Function for testing/debugging purposes
-////    	
+//    	try {
+//    		Connection cx2Conn = DBUtils.getConnection("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2", "cx2", "F!yingFishCove1957");
+//	    	DBQueryParams queryParams = new DBQueryParams();
+//    		
+//    		queryParams.addLong("createUserId", 1L);
+//	    	
+//	    	queryParams.addString("formGuid", "03B5484A-DFFA-E611-80C9-0CC47A46DD63");
+//	    	
+//	    	DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", queryParams).get(0);
+//	    	
+//	    	queryParams.addLong("formTypeId", masterFormData.getLong("FormTypeId"));
+//	    	
+//	    	System.out.println(DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getLong("PrefixNumberStart"));
+//	    	System.out.println(DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getLong("CurrentPrefixNumber"));
+//    	} catch (Exception e) {
+//    		e.printStackTrace();
+//    		System.out.println("AHHHHHHHHHHHh!!!!!");
+//    	}
 //    }
     
     public UserPermissionsPojo getUserPermissions(String formGuid) throws SQLException {
@@ -709,7 +727,7 @@ public class FormService {
 		if (basementFee != null && !basementFee.equals(0) && fieldData.get("Basement") != null && (Boolean) fieldData.get("Basement")) {
 			totalFees = totalFees.add(basementFee);
 			queryParams.addString("basementFeeAmount", basementFee.toString());
-			queryParams.addString("basementFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
+			queryParams.addString("basementFeeAccountingCode", formTypeData.getString("BasementFeeAccountingCode"));
 		}
 		
 		if (stateFee != null && !stateFee.equals(0)) {
