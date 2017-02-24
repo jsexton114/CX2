@@ -1,4 +1,4 @@
-Application.$controller("FormsPageController", ["$scope", "$timeout", function($scope, $timeout) {
+Application.$controller("FormsPageController", ["$scope", "$timeout", "$location", function($scope, $timeout, $location) {
     "use strict";
 
     var currentBreadCrumb = null;
@@ -55,50 +55,12 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
         }
     }
 
-
-    $scope.GetProcessGroupMemebersByFormGUIDonSuccess = function(variable, data) {
-        var temp = $scope.Variables.loggedInUser.dataSet.roles;
-        var isCXAdminMunicipalityAdmin = 0;
-        //Checking if user is muniadmin or cxadmin
-        for (let i = 0; i < temp.length; i++) {
-            if ((temp[i] == "MunicipalityAdmin") || (temp[i] == "CXAdmin")) {
-                isCXAdminMunicipalityAdmin = 1;
-            }
-        }
-
-        // If not muniadmin or cxadmin OR not in group then hide panel
-        if (!!$scope.Widgets.panelFormReview) {
-            $scope.Widgets.panelFormReview.show = ((isCXAdminMunicipalityAdmin === 1) || (data.content[0].IsProcessOwner === 1));
-        }
-    };
-
-
     $scope.SharedWithDataonSuccess = function(variable, data) {
         $scope.sharedWith = data;
     };
 
     $scope.lvFormTypeonSuccess = function(variable, data) {
         currentBreadCrumb.label = data[0].formType;
-    };
-
-    $scope.GetWriteAccessGroupMembersByFormGUIDonSuccess = function(variable, data) {
-        var temp = $scope.Variables.loggedInUser.dataSet.roles;
-        var isCXAdminMunicipalityAdmin = 0;
-        //Checking if user is muniadmin or cxadmin
-        for (let i = 0; i < temp.length; i++) {
-            if ((temp[i] == "MunicipalityAdmin") || (temp[i] == "CXAdmin")) {
-                isCXAdminMunicipalityAdmin = 1;
-            }
-        }
-        //Checking user is in writeAccess group of that status, if not return -1
-        var found = _.findIndex(data.content, {
-            'UserId': _.parseInt($scope.Variables.loggedInUser.dataSet.id)
-        });
-
-        // If not muniadmin or cxadmin OR not in group then hide tab
-        if (!((isCXAdminMunicipalityAdmin == 1) || (found > -1))) {
-            // $scope.Widgets.tabpaneLocation.show = false;
-        }
     };
 
 
@@ -198,6 +160,14 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", function($
     $scope.SendFormMessagesMailonSuccess = function(variable, data) {
         $scope.Variables.PeopleList.dataSet = undefined;
     };
+
+    $scope.svUserPermissionsonSuccess = function(variable, data) {
+        if (!data.canView) {
+            $location.path("/");
+            return;
+        }
+    };
+
 }]);
 
 

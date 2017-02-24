@@ -8,6 +8,7 @@ import com.wavemaker.runtime.file.model.DownloadResponse;
 import java.lang.String;
 import java.lang.Object;
 import java.util.Map;
+import com.civicxpress.formservice.FormService.UserPermissionsPojo;
 import java.util.HashMap;
 import java.lang.Integer;
 import java.lang.Boolean;
@@ -40,6 +41,13 @@ public class FormController {
     @ApiOperation(value = "")
     public Map<String, Object> getFormData(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
         return formService.getFormData(formTypeId, formGuid);
+    }
+
+    @RequestMapping(value = "/userPermissions", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public UserPermissionsPojo getUserPermissions(@RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
+        return formService.getUserPermissions(formGuid);
     }
 
     @RequestMapping(value = "/saveFormData", method = RequestMethod.POST)

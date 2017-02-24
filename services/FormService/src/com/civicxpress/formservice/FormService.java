@@ -114,6 +114,154 @@ public class FormService {
 //    	System.out.println("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2".replaceAll("databaseName=.+", "databaseName="+"testString"));
 //    }
     
+    public UserPermissionsPojo getUserPermissions(String formGuid) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	UserPermissionsPojo userPermissions = getUserPermissions(cx2Conn, formGuid);
+    	
+    	cx2Conn.close();
+    	
+    	return userPermissions;
+    }
+    
+    public class UserPermissionsPojo {
+    	private Boolean isAdmin;
+    	private Boolean canEdit;
+    	private Boolean canView;
+    	private Boolean isProcessOwner;
+		public Boolean getIsAdmin() {
+			return isAdmin;
+		}
+		public void setIsAdmin(Boolean isAdmin) {
+			this.isAdmin = isAdmin;
+		}
+		public Boolean getCanEdit() {
+			return canEdit;
+		}
+		public void setCanEdit(Boolean canEdit) {
+			this.canEdit = canEdit;
+		}
+		public Boolean getCanView() {
+			return canView;
+		}
+		public void setCanView(Boolean canView) {
+			this.canView = canView;
+		}
+		public Boolean getIsProcessOwner() {
+			return isProcessOwner;
+		}
+		public void setIsProcessOwner(Boolean isProcessOwner) {
+			this.isProcessOwner = isProcessOwner;
+		}
+    }
+    
+    private UserPermissionsPojo getUserPermissions(Connection cx2Conn, String formGuid) throws SQLException {
+    	UserPermissionsPojo userPermissions = new UserPermissionsPojo();
+    	
+    	Boolean userIsAdmin = userIsAdmin(cx2Conn, formGuid);
+    	Boolean userCanEdit = userIsAdmin ? true : userCanEdit(cx2Conn, formGuid);
+    	Boolean userIsProcessOwner = userIsAdmin ? true : userIsProcessOwner(cx2Conn, formGuid);
+    	
+    	userPermissions.setIsAdmin(userIsAdmin);
+    	userPermissions.setCanEdit(userCanEdit);
+    	userPermissions.setCanView(userIsAdmin || userCanEdit || userIsProcessOwner ? true : userCanView(cx2Conn, formGuid));
+    	userPermissions.setIsProcessOwner(userIsProcessOwner);
+    	
+    	return userPermissions;
+    }
+    
+    private Boolean userIsAdmin(Connection cx2Conn, String formGuid) throws SQLException {
+    	DBQueryParams queryParams = new DBQueryParams();
+    	queryParams.addString("formGuid", formGuid);
+    	queryParams.addLong("userId", Long.parseLong(securityService.getUserId()));
+    	
+    	Boolean userIsAdmin = DBUtils.selectQuery(cx2Conn, "SELECT count(*) AS adminRoleCount FROM Roles R "
+    			+"WHERE R.UserId=:userId "
+    			+"AND ( "
+    			+"	R.RoleName='CXAdmin' "
+    			+"	OR (R.RoleName='MunicipalityAdmin' AND R.MunicipalityId=(SELECT FT.MunicipalityId FROM MasterForms MF, FormTypes FT WHERE MF.FormGUID=:formGuid AND FT.ID=MF.FormTypeId))"
+    			+")"
+    			, queryParams).get(0).getInteger("adminRoleCount") > 0;
+    	
+    	return userIsAdmin;
+    }
+    
+    private Boolean userCanEdit(Connection cx2Conn, String formGuid) throws SQLException {
+    	DBQueryParams queryParams = new DBQueryParams();
+    	queryParams.addString("FormGUID", formGuid);
+    	queryParams.addLong("UserId", Long.parseLong(securityService.getUserId()));
+    	
+    	DBRow formStatusData = DBUtils.selectQuery(cx2Conn, "SELECT FS.*, MF.UserId AS CreatedById FROM FormStatuses FS, MasterForms MF WHERE FS.ID=MF.FormStatusId AND MF.FormGUID=:FormGUID", queryParams).get(0);
+    	
+    	// No editing if it's closed
+    	if (formStatusData.getBoolean("ConsiderClosed")) {
+    		return false;
+    	}
+    	
+    	Long createdByUserId = formStatusData.getLong("CreatedById");
+    	Boolean authorEdits = formStatusData.getBoolean("AllowAuthorEdits");
+    	Boolean sharedWithEdits = formStatusData.getBoolean("AllowSharedWithEdits");
+    	
+    	// Author editing
+    	if (authorEdits && new Long(securityService.getUserId()).equals(createdByUserId)) {
+    		return true;
+    	}
+    	
+    	// Shared With
+    	if (sharedWithEdits) {
+    		if (DBUtils.selectQuery(cx2Conn, "SELECT CASE count(*) WHEN 0 THEN 0 ELSE 1 AS IsSharedWith FROM SharedWith WHERE RelatedGUID=:FormGUID AND SharedWithUser=:UserId", queryParams).get(0).getBoolean("IsSharedWith")) {
+    			return true;
+    		}
+    	}
+    	
+    	// Write group
+    	DBRow queryResult = DBUtils.selectQuery(cx2Conn,
+    			"select CASE count(*) WHEN 0 THEN 0 ELSE 1 END AS IsInWriteGroup from MasterForms MF, FormStatuses FS, MunicipalityGroups MG "
+    			+"WHERE MF.FormGUID=:FormGUID "
+    			+"and FS.ID=MF.formStatusId "
+    			+"and MG.ID=FS.WriteAccess "
+    			+"and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)", queryParams).get(0);
+    	
+    	return queryResult.getBoolean("IsInWriteGroup");
+    }
+    
+    private Boolean userCanView(Connection cx2Conn, String formGuid) throws SQLException {
+    	DBQueryParams queryParams = new DBQueryParams();
+    	queryParams.addLong("userId", Long.parseLong(securityService.getUserId()));
+    	queryParams.addString("formGuid", formGuid);
+    	
+    	DBRow formData = DBUtils.selectQuery(cx2Conn, "SELECT MF.*,FS.PublicRead FROM MasterForms MF, FormStatuses FS WHERE MF.FormGUID=:formGuid AND FS.ID=MF.FormStatusId", queryParams).get(0);
+    	
+    	// Public read
+    	if (formData.getBoolean("PublicRead")) {
+    		return true;
+    	}
+    	
+    	// Is the creator
+    	if (new Long(securityService.getUserId()).equals(formData.getLong("UserId"))) {
+    		return true;
+    	}
+    	
+    	// Shared With
+    	return DBUtils.selectQuery(cx2Conn, "SELECT CASE count(*) WHEN 0 THEN 0 ELSE 1 AS IsSharedWith FROM SharedWith WHERE RelatedGUID=:formGuid AND SharedWithUser=:userId", queryParams).get(0).getBoolean("IsSharedWith");
+    }
+    
+    private Boolean userIsProcessOwner(Connection cx2Conn, String formGuid) throws SQLException {
+    	DBQueryParams queryParams = new DBQueryParams();
+    	queryParams.addString("FormGUID", formGuid);
+    	queryParams.addLong("UserId", Long.parseLong(securityService.getUserId()));
+    	
+    	DBRow queryResult = DBUtils.selectQuery(cx2Conn,
+    			"select CASE count(*) WHEN 0 THEN 0 ELSE 1 END AS IsProcessOwner from MasterForms MF, FormStatuses FS, MunicipalityGroups MG "
+    			+"WHERE MF.FormGUID=:FormGUID "
+    			+"and FS.ID=MF.formStatusId "
+    			+"and MG.ID=FS.processOwners "
+    			+"and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)", queryParams).get(0);
+    	
+    	Boolean userIsProcessOwner = queryResult.getBoolean("IsProcessOwner");
+    	
+    	return userIsProcessOwner;
+    }
+    
     private Connection getMunicipalityDbConnection(Connection conn, Long municipalityId) throws SQLException {
     	String getMuniDbDetailsQuery = "SELECT DbName, DbUser, DbPassword FROM Municipalities WHERE ID=:municipalityId";
     	DBQueryParams muniDbDetailsParams = new DBQueryParams();
