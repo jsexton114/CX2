@@ -1022,9 +1022,9 @@ public class QueryExecutionController {
     @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/UpdateVendorStatus", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public int executeUpdateVendorStatus(@RequestParam(value = "DateApproved", required = false) java.sql.Timestamp DateApproved, @RequestParam(value = "ApprovedBy", required = false) java.lang.String ApprovedBy, @RequestParam(value = "ExpiresDate", required = false) java.sql.Timestamp ExpiresDate, @RequestParam(value = "Active", required = false) java.lang.Boolean Active, @RequestParam(value = "ApprovalStatus", required = false) java.lang.String ApprovalStatus, @RequestParam(value = "Reviewer", required = false) java.lang.String Reviewer, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, @RequestParam(value = "vendor", required = false) java.lang.Integer vendor) throws QueryParameterMismatchException {
+    public int executeUpdateVendorStatus(@RequestParam(value = "DateApproved", required = false) java.sql.Timestamp DateApproved, @RequestParam(value = "ApprovedBy", required = false) java.lang.String ApprovedBy, @RequestParam(value = "ExpiresDate", required = false) java.sql.Timestamp ExpiresDate, @RequestParam(value = "ApprovalStatus", required = false) java.lang.String ApprovalStatus, @RequestParam(value = "Reviewer", required = false) java.lang.String Reviewer, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, @RequestParam(value = "vendor", required = false) java.lang.Integer vendor) throws QueryParameterMismatchException {
         LOGGER.debug("Executing named query UpdateVendorStatus");
-        int result = queryService.executeUpdateVendorStatus(DateApproved, ApprovedBy, ExpiresDate, Active, ApprovalStatus, Reviewer, municipality, vendor);
+        int result = queryService.executeUpdateVendorStatus(DateApproved, ApprovedBy, ExpiresDate, ApprovalStatus, Reviewer, municipality, vendor);
         LOGGER.debug("got the result of named query {}", result);
         return result;
     }

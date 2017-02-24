@@ -34,7 +34,6 @@ public class VendorApprovals implements Serializable {
     private Integer municipalityId;
     private Integer vendorId;
     private String approvedBy;
-    private Boolean active;
     private String approvalStatus;
     private String reviewer;
     private Date dateApproved;
@@ -78,15 +77,6 @@ public class VendorApprovals implements Serializable {
 
     public void setApprovedBy(String approvedBy) {
         this.approvedBy = approvedBy;
-    }
-
-    @Column(name = "`Active`", nullable = true)
-    public Boolean getActive() {
-        return this.active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
     }
 
     @Column(name = "`ApprovalStatus`", nullable = true, length = 255)

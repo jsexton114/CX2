@@ -3264,7 +3264,7 @@
     "returnTypeMetadata" : { }
   }, {
     "name" : "UpdateVendorStatus",
-    "query" : "Update VendorApprovals set DateApproved=:DateApproved,ApprovedBy=:ApprovedBy,ExpiresDate=:ExpiresDate,Active=:Active,ApprovalStatus=:ApprovalStatus,Reviewer=:Reviewer where MunicipalityId=:municipality and VendorId=:vendor",
+    "query" : "Update VendorApprovals set DateApproved=:DateApproved,ApprovedBy=:ApprovedBy,ExpiresDate=:ExpiresDate,ApprovalStatus=:ApprovalStatus,Reviewer=:Reviewer where MunicipalityId=:municipality and VendorId=:vendor",
     "comment" : "UpdateVendorStatus",
     "description" : null,
     "nativeSql" : true,
@@ -3288,13 +3288,6 @@
       "paramName" : "ExpiresDate",
       "paramType" : "java.sql.Timestamp",
       "testValue" : "1486464848000",
-      "systemParamName" : null,
-      "systemParam" : false,
-      "list" : false
-    }, {
-      "paramName" : "Active",
-      "paramType" : "java.lang.Boolean",
-      "testValue" : "true",
       "systemParamName" : null,
       "systemParam" : false,
       "list" : false

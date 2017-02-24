@@ -94,7 +94,7 @@ public class FormTypeFields implements Serializable {
         this.required = required;
     }
 
-    @Column(name = "`DefaultValue`", nullable = true, length = 255)
+    @Column(name = "`DefaultValue`", nullable = true, length = 2147483647)
     public String getDefaultValue() {
         return this.defaultValue;
     }
@@ -103,7 +103,7 @@ public class FormTypeFields implements Serializable {
         this.defaultValue = defaultValue;
     }
 
-    @Column(name = "`HelpText`", nullable = true, length = 1000)
+    @Column(name = "`HelpText`", nullable = true, length = 4000)
     public String getHelpText() {
         return this.helpText;
     }

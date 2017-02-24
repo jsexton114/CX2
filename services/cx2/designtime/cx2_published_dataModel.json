@@ -2457,7 +2457,7 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 255,
+      "length" : 2147483647,
       "name" : "DefaultValue",
       "nullable" : true,
       "oldName" : "DefaultValue",
@@ -2482,7 +2482,7 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 1000,
+      "length" : 4000,
       "name" : "HelpText",
       "nullable" : true,
       "oldName" : "HelpText",
@@ -3612,7 +3612,7 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "text",
-      "length" : 8000,
+      "length" : 2147483647,
       "name" : "Instructions",
       "nullable" : true,
       "oldName" : "Instructions",
@@ -12217,6 +12217,31 @@
       "scale" : 0,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : "true"
+      },
+      "fieldName" : "active",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "boolean",
+      "length" : 0,
+      "name" : "Active",
+      "nullable" : true,
+      "oldName" : "Active",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "boolean",
+      "unique" : false
     } ],
     "constraints" : [ {
       "columns" : [ "FeinNumber" ],
@@ -12966,31 +12991,6 @@
       "primaryKey" : false,
       "scale" : 0,
       "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "active",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "boolean",
-      "length" : 0,
-      "name" : "Active",
-      "nullable" : true,
-      "oldName" : "Active",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "boolean",
       "unique" : false
     }, {
       "columnValue" : {

@@ -447,7 +447,7 @@ public class FormTypes implements Serializable {
         this.requireOwner = requireOwner;
     }
 
-    @Column(name = "`Instructions`", nullable = true, length = 8000)
+    @Column(name = "`Instructions`", nullable = true, length = 2147483647)
     public String getInstructions() {
         return this.instructions;
     }

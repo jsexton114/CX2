@@ -113,7 +113,7 @@ public interface Cx2QueryExecutorService {
 	int executeUpdateRoleForMunicipality(  java.lang.String role , java.lang.Integer municipality , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateUserPreferences(  java.lang.Integer PreferenceId , java.lang.Integer user) throws QueryParameterMismatchException;
 	int executeUpdateVendorForMasterForms(  java.lang.Integer CXVendorId , java.lang.String FormGUID) throws QueryParameterMismatchException;
-	int executeUpdateVendorStatus(  java.sql.Timestamp DateApproved , java.lang.String ApprovedBy , java.sql.Timestamp ExpiresDate , java.lang.Boolean Active , java.lang.String ApprovalStatus , java.lang.String Reviewer , java.lang.Integer municipality , java.lang.Integer vendor) throws QueryParameterMismatchException;
+	int executeUpdateVendorStatus(  java.sql.Timestamp DateApproved , java.lang.String ApprovedBy , java.sql.Timestamp ExpiresDate , java.lang.String ApprovalStatus , java.lang.String Reviewer , java.lang.Integer municipality , java.lang.Integer vendor) throws QueryParameterMismatchException;
 	int executeUpdateWorkMunicipality(  java.lang.Boolean monday , java.lang.Boolean tuesday , java.lang.Boolean wednesday , java.lang.Boolean thursday , java.lang.Boolean friday , java.lang.Boolean saturday , java.lang.Boolean sunday , java.lang.String timezone , java.sql.Time openTime , java.sql.Time closeTime , java.lang.Integer municipalityId) throws QueryParameterMismatchException;
     Page<Object> executeUserCount(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeUserSubscriptionsCount(Pageable pageable) throws QueryParameterMismatchException;

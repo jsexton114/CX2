@@ -300,6 +300,10 @@
         <parameter name="PreferenceId" typeRef="java.lang.Integer" isList="false"/>
         <return typeRef="cx2InsertUserPreferencertnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="ManualFeeTypeCountForMunicipality">
+        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2ManualFeeTypeCountForMunicipalityrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="MapAsAdminForVendor">
         <parameter name="UserId" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="VendorId" typeRef="java.lang.Integer" isList="false"/>
@@ -510,7 +514,6 @@
         <parameter name="DateApproved" typeRef="java.sql.Timestamp" isList="false"/>
         <parameter name="ApprovedBy" typeRef="java.lang.String" isList="false"/>
         <parameter name="ExpiresDate" typeRef="java.sql.Timestamp" isList="false"/>
-        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="ApprovalStatus" typeRef="java.lang.String" isList="false"/>
         <parameter name="Reviewer" typeRef="java.lang.String" isList="false"/>
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
@@ -555,10 +558,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="ManualFeeTypeCountForMunicipality">
-        <parameter name="MunicipalityId" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>
@@ -1084,7 +1083,6 @@
         <parameter name="DateApproved" typeRef="java.sql.Timestamp" isList="false"/>
         <parameter name="ApprovedBy" typeRef="java.lang.String" isList="false"/>
         <parameter name="ExpiresDate" typeRef="java.sql.Timestamp" isList="false"/>
-        <parameter name="Active" typeRef="java.lang.Boolean" isList="false"/>
         <parameter name="ApprovalStatus" typeRef="java.lang.String" isList="false"/>
         <parameter name="Reviewer" typeRef="java.lang.String" isList="false"/>
         <parameter name="municipality" typeRef="java.lang.Integer" isList="false"/>
@@ -1705,6 +1703,7 @@
             <element name="vendorUserses" typeRef="com.civicxpress.cx2.VendorUsers" isList="true" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.Vendor">
+            <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="address1" typeRef="java.lang.String" allowNull="true"/>
             <element name="address2" typeRef="java.lang.String" allowNull="true"/>
             <element name="altPhone" typeRef="java.lang.String" allowNull="true"/>
@@ -1747,7 +1746,6 @@
             <element name="vendorId" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.VendorApprovals">
-            <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="approvalStatus" typeRef="java.lang.String" allowNull="true"/>
             <element name="approvedBy" typeRef="java.lang.String" allowNull="true"/>
             <element name="dateApproved" typeRef="java.util.Date" allowNull="true"/>
