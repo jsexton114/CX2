@@ -318,7 +318,7 @@
   </sql-query>
   <sql-query name="ManualFeeTypeCountForMunicipality">
     <![CDATA[
-      Select count(*) from ManualFeeTypes where MunicipalityId=:MunicipalityId
+      Select count(*) as count from ManualFeeTypes where MunicipalityId=:MunicipalityId
     ]]>
   </sql-query>
   <sql-query name="MapAsAdminForVendor">

@@ -2000,7 +2000,7 @@
     "returnTypeMetadata" : { }
   }, {
     "name" : "ManualFeeTypeCountForMunicipality",
-    "query" : "Select count(*) from ManualFeeTypes where MunicipalityId=:MunicipalityId",
+    "query" : "Select count(*) as count from ManualFeeTypes where MunicipalityId=:MunicipalityId",
     "comment" : "ManualFeeTypeCountForMunicipality",
     "description" : null,
     "nativeSql" : true,
@@ -2016,7 +2016,7 @@
     } ],
     "outputType" : "cx2ManualFeeTypeCountForMunicipalityrtnType",
     "returnTypeMetadata" : {
-      "" : "java.lang.Integer"
+      "count" : "java.lang.Integer"
     }
   }, {
     "name" : "MapAsAdminForVendor",

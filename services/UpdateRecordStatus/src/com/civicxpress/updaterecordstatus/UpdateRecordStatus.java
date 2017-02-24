@@ -16,8 +16,8 @@ import com.wavemaker.runtime.service.annotations.ExposeToClient;
 import com.wavemaker.runtime.service.annotations.HideFromClient;
 
 import org.springframework.data.domain.Page;
-import com.civicxpress.cx2.service.Cx2QueryExecutorService;
-import com.wavemaker.runtime.data.model.CustomQuery;
+//import com.civicxpress.cx2.service.Cx2QueryExecutorService;
+//import com.wavemaker.runtime.data.model.CustomQuery;
 
 //import com.civicxpress.updaterecordstatus.model.*;
 
@@ -39,8 +39,8 @@ public class UpdateRecordStatus {
     @Autowired
     private SecurityService securityService;
 
-    @Autowired
-    private Cx2QueryExecutorService cx2QueryExecutorService;
+    // @Autowired
+    // private Cx2QueryExecutorService cx2QueryExecutorService;
     
     /**
      * This is sample java operation that accepts an input from the caller and responds with "Hello".
@@ -54,13 +54,13 @@ public class UpdateRecordStatus {
      
   //cx2QueryExecutorService.executeWMCustomQuerySelect("sdhfiusdfh",null);
   
-  public int executeUpdateService(String tableName,int formStatusId, int recordId){
-      String query = "UPDATE "+tableName +" SET FormStatusId = "+formStatusId+" WHERE ID = " +recordId;
+//   public int executeUpdateService(String tableName,int formStatusId, int recordId){
+//       String query = "UPDATE "+tableName +" SET FormStatusId = "+formStatusId+" WHERE ID = " +recordId;
       
-      CustomQuery customQuery = new CustomQuery();
-      customQuery.setQueryStr(query);
-      customQuery.setNativeSql(true);
-      return cx2QueryExecutorService.executeWMCustomQueryUpdate(customQuery);
-  }
+//       CustomQuery customQuery = new CustomQuery();
+//       customQuery.setQueryStr(query);
+//       customQuery.setNativeSql(true);
+//       return cx2QueryExecutorService.executeWMCustomQueryUpdate(customQuery);
+//   }
 
 }
