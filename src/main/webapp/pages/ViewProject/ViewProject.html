@@ -16,8 +16,7 @@
                             <wm-layoutgrid name="layoutgrid2">
                                 <wm-gridrow name="gridrow4" padding="2em unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn4_1" horizontalalign="center">
-                                        <wm-picture name="picture1" picturesource="bind:!!Variables.CurrentProject.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.CurrentProject.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;"
-                                        class="muni-logo"></wm-picture>
+                                        <wm-picture name="picture1" picturesource="bind:!!Variables.CurrentProject.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.CurrentProject.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;" class="muni-logo"></wm-picture>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow6" padding=".5em unset">
@@ -97,8 +96,7 @@
                             <wm-tabs name="tabsProjectDetails">
                                 <wm-tabpane name="tabpaneMEMBERS" title="MEMBERS">
                                     <wm-livegrid formlayout="dialog" name="livegridProjectMembers"></wm-livegrid>
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectSharedWithData.dataSet" navigation="Classic" name="gridProjectMembers" filtermode="multicolumn" exportformat="EXCEL"
-                                    showrecordcount="true">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectSharedWithData.dataSet" navigation="Classic" name="gridProjectMembers" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                         <wm-grid-column-group name="group1" caption="Member"></wm-grid-column-group>
                                         <wm-grid-column binding="usersByProjectSharedWithUser.fullName" caption="Project Member" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                         <wm-grid-column binding="projectSharedOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="text" readonly="false"></wm-grid-column>
@@ -132,21 +130,44 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow59">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn123">
-                                                <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list" dataset="bind:Variables.FormMessagesData.dataSet" navigation="Scroll" name="livelistFormMessages"
-                                                loadingdatamsg="Loading Messages..." nodatamessage="No Messages" orderby="postedAt:asc" disableitem="false">
-                                                    <wm-listtemplate layout="media" name="listtemplate1">
-                                                        <wm-container class="media-left media-top" name="container4" width="200px">
-                                                            <wm-picture name="Picture" class="media-object" width="32pt" height="32pt" shape="circle" picturesource="bind:!!Variables.CurrentUserDetails.dataSet.id ? 'services/cx2/Users/'+Variables.FormMessagesData.dataSet.data[$i].userId+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"></wm-picture>
-                                                        </wm-container>
-                                                        <wm-container class="media-body" padding="unset 1.5em unset 1.25em" name="container5">
-                                                            <wm-label class="pull-left" caption="bind:Variables.FormMessagesData.dataSet.data[$i].users.firstName +&quot; &quot;+Variables.FormMessagesData.dataSet.data[$i].users.lastName" name="Name" margin="0em unset 0.5em unset"
-                                                            fontsize="1.143" fontunit="em"></wm-label>
-                                                            <wm-label name="Time" class="pull-right text-muted" caption="bind:Variables.FormMessagesData.dataSet.data[$i].postedAt | toDate: 'MM/dd hh:mm'"></wm-label>
-                                                            <wm-label caption="bind:Variables.FormMessagesData.dataSet.message" name="Description" class="p text-muted"></wm-label>
-                                                            <wm-anchor margin="unset 0.5em" name="anchorViewTaggedPeople" caption="Tagged People" class="pull-right" iconclass="wi wi-tag" on-click="Widgets.dialogShowTaggedPeople.open()"></wm-anchor>
-                                                        </wm-container>
-                                                    </wm-listtemplate>
-                                                </wm-livelist>
+                                                <wm-container name="chatcontent" overflow="auto" class="chatcontent">
+                                                    <wm-livelist itemclass="bind:item.users.id ===Variables.CurrentUserDetails.dataSet.id? &quot;clearfix mine&quot; : &quot;clearfix&quot;" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list chat" dataset="bind:Variables.FormMessagesData.dataSet"
+                                                    navigation="None" name="chatmessageList" nodatamessage="Start Chat by entering message" listclass="list-group">
+                                                        <wm-listtemplate layout="inline" name="listtemplate1">
+
+                                                            <wm-container class="media-right" name="container4">
+                                                                <wm-picture name="userImage" width="24pt" height="24pt" picturesource="bind:!!Variables.CurrentUserDetails.dataSet.id ? 'services/cx2/Users/'+Variables.FormMessagesData.dataSet.data[$i].userId+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"
+                                                                shape="circle" margin="1em unset unset unset" class="userpic"></wm-picture>
+                                                            </wm-container>
+                                                            <wm-container class="popover media-body" name="container5">
+                                                                <wm-label name="Content" caption="bind:Variables.FormMessagesData.dataSet.message" class="p media-heading"></wm-label>
+                                                                <wm-anchor margin="unset 0.5em" name="anchorViewTaggedPeople" caption="Tagged People" class="pull-left" iconclass="wi wi-tag" on-click="Widgets.dialogShowTaggedPeople.open()"></wm-anchor>
+                                                                <wm-container class="pull-right" name="container5_1">
+
+                                                                    <wm-label name="label4" class="small" caption="by " padding="unset 0.5em unset unset"></wm-label>
+                                                                    <wm-label name="Name" class="small" caption="bind:Variables.FormMessagesData.dataSet.data[$i].users.firstName +&quot; &quot;+Variables.FormMessagesData.dataSet.data[$i].users.lastName"></wm-label>
+                                                                    <wm-label name="label4" class="small" caption="at " padding="unset 0.5em unset 1em"></wm-label>
+                                                                    <wm-label name="Time" caption="bind:Variables.FormMessagesData.dataSet.data[$i].postedAt | toDate: 'MM/dd hh:mm'" class="small"></wm-label>
+                                                                </wm-container>
+                                                            </wm-container>
+                                                        </wm-listtemplate>
+                                                    </wm-livelist>
+                                                </wm-container>
+                                                <!--<wm-livelist listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list" dataset="bind:Variables.FormMessagesData.dataSet" navigation="Scroll" name="livelistFormMessages"-->
+                                                <!--loadingdatamsg="Loading Messages..." nodatamessage="No Messages" orderby="postedAt:asc" disableitem="false">-->
+                                                <!--    <wm-listtemplate layout="media" name="listtemplate1">-->
+                                                <!--        <wm-container class="media-left media-top" name="container4" width="200px">-->
+                                                <!--            <wm-picture name="Picture" class="media-object" width="32pt" height="32pt" shape="circle" picturesource="bind:!!Variables.CurrentUserDetails.dataSet.id ? 'services/cx2/Users/'+Variables.FormMessagesData.dataSet.data[$i].userId+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"></wm-picture>-->
+                                                <!--        </wm-container>-->
+                                                <!--        <wm-container class="media-body" padding="unset 1.5em unset 1.25em" name="container5">-->
+                                                <!--            <wm-label class="pull-left" caption="bind:Variables.FormMessagesData.dataSet.data[$i].users.firstName +&quot; &quot;+Variables.FormMessagesData.dataSet.data[$i].users.lastName" name="Name" margin="0em unset 0.5em unset"-->
+                                                <!--            fontsize="1.143" fontunit="em"></wm-label>-->
+                                                <!--            <wm-label name="Time" class="pull-right text-muted" caption="bind:Variables.FormMessagesData.dataSet.data[$i].postedAt | toDate: 'MM/dd hh:mm'"></wm-label>-->
+                                                <!--            <wm-label caption="bind:Variables.FormMessagesData.dataSet.message" name="Description" class="p text-muted"></wm-label>-->
+                                                <!--            <wm-anchor margin="unset 0.5em" name="anchorViewTaggedPeople" caption="Tagged People" class="pull-right" iconclass="wi wi-tag" on-click="Widgets.dialogShowTaggedPeople.open()"></wm-anchor>-->
+                                                <!--        </wm-container>-->
+                                                <!--    </wm-listtemplate>-->
+                                                <!--</wm-livelist>-->
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow81" padding="1em unset">
@@ -178,14 +199,11 @@
                                                     <wm-grid-column binding="gisrecords.city" caption="City" type="string" readonly="true" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" readonly="true" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-action key="customButton" display-name="Add Parcel" show="true" class="btn-primary" iconclass="wi wi-add" title="Add Parcel" action="Widgets.dialogAddGISRecord.open()" shortcutkey=""
-                                                    disabled="false"></wm-grid-action>
+                                                    <wm-grid-action key="customButton" display-name="Add Parcel" show="true" class="btn-primary" iconclass="wi wi-add" title="Add Parcel" action="Widgets.dialogAddGISRecord.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogDeleteGISRecordConf.open()"
-                                                    disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogDeleteGISRecordConf.open()" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
-                                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.ProjectGISRecords.dataSet[$i].gisrecords" zoom="17" markertype="Address" address="streetNumber streetName city states.stateName"
-                                                show="bind:Variables.ProjectGISRecords.dataSet.totalElements > 0"></wm-prefab>
+                                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.ProjectGISRecords.dataSet[$i].gisrecords" zoom="17" markertype="Address" address="streetNumber streetName city states.stateName" show="bind:Variables.ProjectGISRecords.dataSet.totalElements > 0"></wm-prefab>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
@@ -291,8 +309,8 @@
                         <wm-gridrow name="gridrow24">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn52"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn53">
-                                <wm-select placeholder="Select Lot" dataset="bind:Variables.GISLotRecords.dataSet" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
-                                datafield="All Fields" name="searchSubdivision" show="bind:Widgets.searchFliterSubdivisions.datavalue!=undefined" displayexpression="bind:(!!$[data[$i].lot] ? '('+$[data[$i].lot]+') ' : '')+$[data[$i].fullAddress]" displayfield="lot"></wm-select>
+                                <wm-select placeholder="Select Lot" dataset="bind:Variables.GISLotRecords.dataSet" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]" datafield="All Fields"
+                                name="searchSubdivision" show="bind:Widgets.searchFliterSubdivisions.datavalue!=undefined" displayexpression="bind:(!!$[data[$i].lot] ? '('+$[data[$i].lot]+') ' : '')+$[data[$i].fullAddress]" displayfield="lot"></wm-select>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn54"></wm-gridcolumn>
                         </wm-gridrow>
@@ -514,8 +532,8 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow46" padding="1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn91">
-                        <wm-search name="searchForm" dataset="bind:Variables.OpenedOrClosedFormsByUserOrSharedWith.dataSet" searchkey="bind:Variables.OpenedOrClosedFormsByUserOrSharedWith.dataSet[$i].formTitle" displaylabel="formTitle" datafield="All Fields"
-                        orderby="formTitle:asc" placeholder="Search by Form Title"></wm-search>
+                        <wm-search name="searchForm" dataset="bind:Variables.OpenedOrClosedFormsByUserOrSharedWith.dataSet" searchkey="bind:Variables.OpenedOrClosedFormsByUserOrSharedWith.dataSet[$i].formTitle" displaylabel="formTitle" datafield="All Fields" orderby="formTitle:asc"
+                        placeholder="Search by Form Title"></wm-search>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow47" padding="1px unset">
@@ -598,8 +616,7 @@
                         <wm-composite name="composite12">
                             <wm-label class="col-md-3 form-control-static" name="label57" caption="Assigned To" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container11">
-                                <wm-search name="selectProjectAssignedTo" dataset="bind:Variables.GetAllUsers.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" displayimagesrc="photo" datafield="All Fields" orderby="fullName:asc"
-                                placeholder="Search by Name or Email Address"></wm-search>
+                                <wm-search name="selectProjectAssignedTo" dataset="bind:Variables.GetAllUsers.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" displayimagesrc="photo" datafield="All Fields" orderby="fullName:asc" placeholder="Search by Name or Email Address"></wm-search>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -759,8 +776,7 @@
                                     <wm-layoutgrid name="layoutgrid5">
                                         <wm-gridrow name="gridrow17_1">
                                             <wm-gridcolumn columnwidth="2" name="gridcolumn174">
-                                                <wm-picture name="picture4" picturesource="bind:!!Variables.PeopleList.dataSet[$i].id ? 'services/cx2/Users/'+Variables.PeopleList.dataSet[$i].id+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"
-                                                width="50pt" height="50pt"></wm-picture>
+                                                <wm-picture name="picture4" picturesource="bind:!!Variables.PeopleList.dataSet[$i].id ? 'services/cx2/Users/'+Variables.PeopleList.dataSet[$i].id+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'" width="50pt" height="50pt"></wm-picture>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="7" name="gridcolumn25_1">
                                                 <wm-label padding="unset 0.5em .5em 0.5em" name="label11" caption="bind:Variables.PeopleList.dataSet[$i].firstName+&quot; &quot;+Variables.PeopleList.dataSet[$i].lastName" width="100%" fontweight="bold"></wm-label>
@@ -799,8 +815,7 @@
                                 width="50pt" height="50pt"></wm-picture>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn25_1">
-                                <wm-label padding="unset 0.5em .5em 0.5em" name="label11" caption="bind:Variables.GetTaggedPeopleListByMessage.dataSet.data[$i].users.firstName+' '+Variables.GetTaggedPeopleListByMessage.dataSet.data[$i].users.lastName" width="100%"
-                                fontweight="bold"></wm-label>
+                                <wm-label padding="unset 0.5em .5em 0.5em" name="label11" caption="bind:Variables.GetTaggedPeopleListByMessage.dataSet.data[$i].users.firstName+' '+Variables.GetTaggedPeopleListByMessage.dataSet.data[$i].users.lastName" width="100%" fontweight="bold"></wm-label>
                                 <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.GetTaggedPeopleListByMessage.dataSet.data[$i].users.email" width="100%"></wm-label>
                             </wm-gridcolumn>
                         </wm-gridrow>
