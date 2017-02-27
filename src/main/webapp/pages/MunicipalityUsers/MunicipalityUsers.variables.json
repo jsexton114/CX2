@@ -385,6 +385,34 @@
     "inputFields" : { },
     "package" : "com.civicxpress.cx2.MunicipalityGroupMembers"
   },
+  "AdminDeleteSuccess" : {
+    "_id" : "wm-AdminDeleteSuccess-wm.NotificationVariable-1488184289990",
+    "name" : "AdminDeleteSuccess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "The selected user is no longer a Municipality Admin. They are still registered as a Municipality Employee",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "AdminOrEmp" : {
     "_id" : "wm-AdminOrEmp-wm.Variable-1479740418404",
     "name" : "AdminOrEmp",
@@ -1534,7 +1562,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.GetAdminRolesForMunicipality.invoke()",
+    "onSuccess" : "Variables.GetAdminRolesForMunicipality.invoke();Variables.AdminDeleteSuccess.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -1570,7 +1598,72 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.GetEmployeeRolesForMunicipality.invoke()",
+    "onSuccess" : "Variables.GetEmployeeRolesForMunicipality.invoke();Variables.DeleteEmployeeSuccess.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "DeleteEmployeeSuccess" : {
+    "_id" : "wm-DeleteEmployeeSuccess-wm.NotificationVariable-1488186382721",
+    "name" : "DeleteEmployeeSuccess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "The user is no longer a Municipality Employee",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "DeleteEmployeeWithAdmin" : {
+    "_id" : "wm-DeleteEmployeeWithAdmin-wm.ServiceVariable-1488187030202",
+    "name" : "DeleteEmployeeWithAdmin",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "role",
+      "value" : "MunicipalityEmployee",
+      "type" : "string"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    }, {
+      "target" : "user",
+      "value" : "bind:Widgets.gridEmployees.selecteditem.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2DeleteRoleForMuncipalityrtnType",
+    "service" : "cx2",
+    "operation" : "executeDeleteRoleForMuncipality",
+    "operationId" : "QueryExecutionController_executeDeleteRoleForMuncipality",
+    "operationType" : "delete",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Widgets.confirmdialogConfrimAdminDelete.close()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -2019,6 +2112,35 @@
       "type" : "string"
     } ],
     "operation" : "toast"
+  },
+  "FetchRolesForUserWithMunicipality" : {
+    "_id" : "wm-FetchRolesForUserWithMunicipality-wm.ServiceVariable-1488183888380",
+    "name" : "FetchRolesForUserWithMunicipality",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipality",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2FetchRolesForUserWithMunicipalityrtnType",
+    "service" : "cx2",
+    "operation" : "executeFetchRolesForUserWithMunicipality",
+    "operationId" : "QueryExecutionController_executeFetchRolesForUserWithMunicipality",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "FetchRolesForUserWithMunicipalityonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "GetAdminRolesForMunicipality" : {
     "_id" : "wm-GetEmployeeRolesForMunicipality-wm.ServiceVariable-1479737183806",

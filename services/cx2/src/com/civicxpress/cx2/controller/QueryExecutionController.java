@@ -350,6 +350,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/FetchRolesForUserWithMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeFetchRolesForUserWithMunicipality(@RequestParam(value = "user", required = false) java.lang.Integer user, @RequestParam(value = "municipality", required = false) java.lang.Integer municipality, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query FetchRolesForUserWithMunicipality");
+        Page<Object> result = queryService.executeFetchRolesForUserWithMunicipality(pageable, user, municipality);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/FormsByCategory", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeFormsByCategory(@RequestParam(value = "formCategory", required = false) java.lang.Integer formCategory, @RequestParam(value = "isActive", required = false) java.lang.Boolean isActive, Pageable pageable) throws QueryParameterMismatchException {

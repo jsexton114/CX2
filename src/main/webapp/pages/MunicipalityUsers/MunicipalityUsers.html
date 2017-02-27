@@ -51,7 +51,7 @@
                                                 shortcutkey="" disabled="false" icon="wi wi-plus"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Groups" action="customRow1Action($event);Variables.StateInformation.listRecords();Widgets.EmployeeDialog.open()"
                                                 disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.DeleteEmployee.invoke()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -407,5 +407,8 @@
                 <wm-button class="btn-secondary" caption="Close" on-click="Widgets.Admindialog.close()" iconclass="wi wi-cancel" name="button9"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewConfrimAdminDelete">
+        <wm-confirmdialog name="confirmdialogConfrimAdminDelete" message="This action will also revoke Municipality Admin privileges. Would you like to proceed?" on-ok="confirmdialogConfrimAdminDeleteOk($event, $scope)"></wm-confirmdialog>
     </wm-view>
 </wm-page>

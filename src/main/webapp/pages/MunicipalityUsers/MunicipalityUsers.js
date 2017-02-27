@@ -71,6 +71,19 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
         $scope.Variables.StateInformation.update();
     };
 
+
+    $scope.FetchRolesForUserWithMunicipalityonSuccess = function(variable, data) {
+        var isMunicipalityAdmin = _.findIndex(data.content, {
+            'RoleName': 'MunicipalityAdmin'
+        });
+        if (isMunicipalityAdmin > -1) {
+            $scope.Widgets.confirmdialogConfrimAdminDelete.open();
+
+        } else {
+            $scope.Variables.DeleteEmployee.update();
+        }
+    };
+
 }]);
 
 
@@ -121,6 +134,14 @@ Application.$controller("gridEmployeesController", ["$scope",
             $scope.Variables.getMunicipalityGroupIdIDs.update();
             $scope.Widgets.EmployeeDialog.open();
 
+        };
+
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.FetchRolesForUserWithMunicipality.setInput({
+                'user': $rowData.ID
+            });
+            $scope.Variables.FetchRolesForUserWithMunicipality.update();
         };
 
     }
@@ -262,6 +283,22 @@ Application.$controller("grid7Controller", ["$scope",
             $scope.Variables.deleteMunicipalityGroup.setInput('MunicipalityGroupId', $rowData.ID);
             $scope.Variables.deleteMunicipalityGroup.setInput('UserId', $scope.Widgets.gridAdmin.selecteditem.ID);
             $scope.Variables.deleteMunicipalityGroup.update();
+        };
+
+    }
+]);
+
+Application.$controller("confirmdialogConfrimAdminDeleteController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.confirmdialogConfrimAdminDeleteOk = function($event, $isolateScope) {
+            $scope.Variables.DeleteEmployeeWithAdmin.update();
+            $scope.Variables.DeleteAdmin.setInput({
+                'user': parseInt($scope.Widgets.gridEmployees.selecteditem.ID)
+            });
+            $scope.Variables.DeleteAdmin.update();
         };
 
     }

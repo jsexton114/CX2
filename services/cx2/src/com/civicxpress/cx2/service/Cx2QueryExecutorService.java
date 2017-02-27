@@ -46,6 +46,7 @@ public interface Cx2QueryExecutorService {
 	int executeDeleteToken(  java.lang.String token) throws QueryParameterMismatchException;
     Page<Object> executeEmployeesMunicipalities(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeEmployeesOrAdminsMunicipalities(Pageable pageable, java.lang.Integer user, java.lang.String role) throws QueryParameterMismatchException;
+    Page<Object> executeFetchRolesForUserWithMunicipality(Pageable pageable, java.lang.Integer user, java.lang.Integer municipality) throws QueryParameterMismatchException;
     Page<Object> executeFormsByCategory(Pageable pageable, java.lang.Integer formCategory, java.lang.Boolean isActive) throws QueryParameterMismatchException;
     Page<Object> executeFormsCountForMunicipalities(Pageable pageable, java.lang.Integer MunicipalityId) throws QueryParameterMismatchException;
     Page<Object> executeFormsForUsersAndShared(Pageable pageable, java.lang.Boolean closed, java.lang.Integer creatorUser, java.lang.Integer sharedWithUser) throws QueryParameterMismatchException;

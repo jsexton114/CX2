@@ -161,6 +161,11 @@
       select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName=:role
     ]]>
   </sql-query>
+  <sql-query name="FetchRolesForUserWithMunicipality">
+    <![CDATA[
+      select * from Roles where UserId=:user and MunicipalityId=:municipality
+    ]]>
+  </sql-query>
   <sql-query name="FormsByCategory">
     <![CDATA[
       select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=0
