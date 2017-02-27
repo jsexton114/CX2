@@ -23,6 +23,7 @@ public interface Cx2QueryExecutorService {
     Page<Object> executeAdminsMunicipalities(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeAdminVendorsList(Pageable pageable, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeBannedDetails(Pageable pageable, java.lang.String emailid) throws QueryParameterMismatchException;
+    Page<Object> executeCheckIfCompanyUserIsVendorAdmin(Pageable pageable, java.lang.Integer user, java.lang.Integer vendor) throws QueryParameterMismatchException;
     Page<Object> executeCheckingUserWithInVendorUsers(Pageable pageable, java.lang.Integer user, java.lang.Integer vendor) throws QueryParameterMismatchException;
     Page<Object> executeCheckingUserWithMunicipalityInRoles(Pageable pageable, java.lang.Integer muncipality, java.lang.Integer user) throws QueryParameterMismatchException;
     Page<Object> executeCompanyFormsByVendorId(Pageable pageable, java.lang.Boolean closed, java.lang.Integer vendorId) throws QueryParameterMismatchException;

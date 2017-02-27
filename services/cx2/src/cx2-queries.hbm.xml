@@ -41,6 +41,11 @@
       select Banned from Users where Email =:emailid
     ]]>
   </sql-query>
+  <sql-query name="CheckIfCompanyUserIsVendorAdmin">
+    <![CDATA[
+      select count(*) as count from VendorAdmins where UserId=:user and VendorId=:vendor
+    ]]>
+  </sql-query>
   <sql-query name="CheckingUserWithInVendorUsers">
     <![CDATA[
       select count(*) as exist from VendorUsers where UserId=:user and VendorId=:vendor

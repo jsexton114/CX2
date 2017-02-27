@@ -7,6 +7,16 @@ Application.$controller("CompanyUsersPageController", ["$scope", function($scope
         $scope.toDay = Date.parse(new Date().toDateString());
     };
 
+
+    $scope.CheckIfCompanyUserIsVendorAdminonSuccess = function(variable, data) {
+
+        if (data.content[0].count == 1) {
+            $scope.Widgets.confirmdialogDeleteAdminConfrim.open();
+        } else {
+            $scope.Variables.DeleteFromVendorUsers.update();
+        }
+    };
+
 }]);
 
 
@@ -29,6 +39,14 @@ Application.$controller("gridVendorUsersController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.customRow1Action = function($event, $rowData) {
+            $scope.Variables.CheckIfCompanyUserIsVendorAdmin.setInput({
+                'user': $rowData.userId
+            });
+            $scope.Variables.CheckIfCompanyUserIsVendorAdmin.update();
+        };
+
     }
 ]);
 
@@ -67,5 +85,24 @@ Application.$controller("dialogAdminProfileController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("confirmdialogDeleteAdminConfrimController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.confirmdialogDeleteAdminConfrimOk = function($event, $isolateScope) {
+            $scope.Variables.DeleteFromVendorAdmins.setInput({
+                'user': $scope.Widgets.gridVendorUsers.selecteditem.userId
+            });
+            $scope.Variables.DeleteFromVendorAdmins.update();
+            $scope.Variables.DeleteUserWithAdmin.setInput({
+                'user': $scope.Widgets.gridVendorUsers.selecteditem.userId
+            });
+            $scope.Variables.DeleteUserWithAdmin.update();
+        };
+
     }
 ]);

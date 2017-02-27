@@ -289,6 +289,33 @@
       "Banned" : "java.lang.Boolean"
     }
   }, {
+    "name" : "CheckIfCompanyUserIsVendorAdmin",
+    "query" : "select count(*) as count from VendorAdmins where UserId=:user and VendorId=:vendor",
+    "comment" : "CheckIfCompanyUserIsVendorAdmin",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "user",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "42",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    }, {
+      "paramName" : "vendor",
+      "paramType" : "java.lang.Integer",
+      "testValue" : "2",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2CheckIfCompanyUserIsVendorAdminrtnType",
+    "returnTypeMetadata" : {
+      "count" : "java.lang.Integer"
+    }
+  }, {
     "name" : "CheckingUserWithInVendorUsers",
     "query" : "select count(*) as exist from VendorUsers where UserId=:user and VendorId=:vendor",
     "comment" : "CheckingUserWithInVendorUsers",

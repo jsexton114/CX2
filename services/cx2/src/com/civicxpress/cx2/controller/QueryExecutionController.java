@@ -120,6 +120,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/CheckIfCompanyUserIsVendorAdmin", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeCheckIfCompanyUserIsVendorAdmin(@RequestParam(value = "user", required = false) java.lang.Integer user, @RequestParam(value = "vendor", required = false) java.lang.Integer vendor, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query CheckIfCompanyUserIsVendorAdmin");
+        Page<Object> result = queryService.executeCheckIfCompanyUserIsVendorAdmin(pageable, user, vendor);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/CheckingUserWithInVendorUsers", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Object> executeCheckingUserWithInVendorUsers(@RequestParam(value = "user", required = false) java.lang.Integer user, @RequestParam(value = "vendor", required = false) java.lang.Integer vendor, Pageable pageable) throws QueryParameterMismatchException {

@@ -379,6 +379,35 @@
     "isList" : true,
     "saveInPhonegap" : false
   },
+  "CheckIfCompanyUserIsVendorAdmin" : {
+    "_id" : "wm-CheckIfCompanyUserIsVendorAdmin-wm.ServiceVariable-1488188916063",
+    "name" : "CheckIfCompanyUserIsVendorAdmin",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "vendor",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2CheckIfCompanyUserIsVendorAdminrtnType",
+    "service" : "cx2",
+    "operation" : "executeCheckIfCompanyUserIsVendorAdmin",
+    "operationId" : "QueryExecutionController_executeCheckIfCompanyUserIsVendorAdmin",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "CheckIfCompanyUserIsVendorAdminonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "CheckingUserWithInVendorUsers" : {
     "_id" : "wm-CheckingUserWithInVendorUsers-wm.ServiceVariable-1484554694095",
     "name" : "CheckingUserWithInVendorUsers",
@@ -411,6 +440,34 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "DeleteCompanyuserSuccess" : {
+    "_id" : "wm-DeleteCompanyuserSuccess-wm.NotificationVariable-1488188308014",
+    "name" : "DeleteCompanyuserSuccess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "The user is no longer a Company User",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "DeleteFromVendorAdmins" : {
     "_id" : "wm-DeleteFromVendorAdmins-wm.ServiceVariable-1481034476996",
     "name" : "DeleteFromVendorAdmins",
@@ -435,7 +492,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.VendorAdmins.listRecords()",
+    "onSuccess" : "Variables.VendorAdmins.listRecords();Variables.DeleteVendorSuccess.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -468,7 +525,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.VendorUsers.listRecords()",
+    "onSuccess" : "Variables.VendorUsers.listRecords();Variables.DeleteCompanyuserSuccess.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -476,6 +533,67 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "DeleteUserWithAdmin" : {
+    "_id" : "wm-DeleteUserWithAdmin-wm.ServiceVariable-1488189468503",
+    "name" : "DeleteUserWithAdmin",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Widgets.gridAdmins.selecteditem.userId",
+      "type" : "integer"
+    }, {
+      "target" : "vendor",
+      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "cx2DeleteFromVendorUsersrtnType",
+    "service" : "cx2",
+    "operation" : "executeDeleteFromVendorUsers",
+    "operationId" : "QueryExecutionController_executeDeleteFromVendorUsers",
+    "operationType" : "delete",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Widgets.confirmdialogDeleteAdminConfrim.close();Variables.VendorUsers.listRecords()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "DeleteVendorSuccess" : {
+    "_id" : "wm-DeleteVendorSuccess-wm.NotificationVariable-1488188392068",
+    "name" : "DeleteVendorSuccess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "The selected user is no longer a Company Admin. They are still registered as a Company User.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
   },
   "DuplicateVendor" : {
     "_id" : "wm-DuplicateVendor-wm.NotificationVariable-1485759295148",
@@ -1258,6 +1376,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "active",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Active",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -1900,6 +2031,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "active",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Active",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
           "scale" : 0
         } ]
       }, {
