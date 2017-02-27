@@ -114,6 +114,7 @@ public class FormService {
     	private Boolean canEdit;
     	private Boolean canView;
     	private Boolean isProcessOwner;
+    	
 		public Boolean getIsAdmin() {
 			return isAdmin;
 		}
@@ -819,7 +820,7 @@ public class FormService {
 	    	// Save the form data
 	    	saveFormData(cx2Conn, masterFormData.getLong("FormTypeId"), formGuid, fieldData);
 	    	
-	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE FormTypes SET CurrentPrefixNumber=:newPrefixNumber, PrefixNumberResetOn=:newResetTime", queryParams);
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE FormTypes SET CurrentPrefixNumber=:newPrefixNumber, PrefixNumberResetOn=:newResetTime WHERE ID=:formTypeId", queryParams);
 
 	    	// Add Location(s)
 	    	if (formTypeData.getBoolean("GISRecord")) {
