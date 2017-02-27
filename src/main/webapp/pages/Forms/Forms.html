@@ -17,7 +17,8 @@
                                 <wm-gridrow name="gridrow6" padding="2em unset unset unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center">
-                                        <wm-picture name="picture2" picturesource="bind:!!Variables.CurrentForm.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.CurrentForm.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;" class="muni-logo"></wm-picture>
+                                        <wm-picture name="picture2" picturesource="bind:!!Variables.CurrentForm.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.CurrentForm.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;"
+                                        class="muni-logo"></wm-picture>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn14"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -123,14 +124,18 @@
                                                         <i ng-if="!!formField.helpText &amp;&amp; formField.helpText != ''" class="wi wi-help fa-lg" title="{{formField.helpText}}"></i>
                                                     </label>
                                                     <wm-container class="col-md-9" name="container3">
-                                                        <input ng-if="formField.formFieldTypes.label == 'Text'" class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}"
-                                                        name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="text" ng-required="formField.required">
-                                                        <input class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-required="formField.required" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}"
-                                                        ng-if="formField.formFieldTypes.label == 'Number'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="number">
-                                                        <textarea class="form-control app-textarea" apply-styles="" role="input" focus-target="" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]" title="" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0}" ng-if="formField.formFieldTypes.label == 'Long Text'"
-                                                        name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" ng-required="formField.required"></textarea>
-                                                        <datetime-picker ng-if="formField.formFieldTypes.label == 'Date'" placeholder="Please enter {{formField.label}}" date="Variables.svGetFormData.dataSet[formField.fieldName]" name="{{formField.fieldName}}" time="false" ng-required="formField.required"></datetime-picker>
-                                                        <datetime-picker ng-if="formField.formFieldTypes.label == 'Date+Time'" placeholder="Please enter {{formField.label}}" date="Variables.svGetFormData.dataSet[formField.fieldName]" name="{{formField.fieldName}}" time="true" ng-required="formField.required"></datetime-picker>
+                                                        <input ng-if="formField.formFieldTypes.label == 'Text'" class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]"
+                                                        pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="text"
+                                                        ng-required="formField.required">
+                                                        <input class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-required="formField.required" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]" pattern=".*"
+                                                        accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}" ng-if="formField.formFieldTypes.label == 'Number'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}"
+                                                        type="number">
+                                                        <textarea class="form-control app-textarea" apply-styles="" role="input" focus-target="" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]" title="" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0}"
+                                                        ng-if="formField.formFieldTypes.label == 'Long Text'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" ng-required="formField.required"></textarea>
+                                                        <datetime-picker ng-if="formField.formFieldTypes.label == 'Date'" placeholder="Please enter {{formField.label}}" date="Variables.svGetFormData.dataSet[formField.fieldName]" name="{{formField.fieldName}}"
+                                                        time="false" ng-required="formField.required"></datetime-picker>
+                                                        <datetime-picker ng-if="formField.formFieldTypes.label == 'Date+Time'" placeholder="Please enter {{formField.label}}" date="Variables.svGetFormData.dataSet[formField.fieldName]"
+                                                        name="{{formField.fieldName}}" time="true" ng-required="formField.required"></datetime-picker>
                                                         <div ng-if="formField.formFieldTypes.label == 'Boolean'" class="col-md-9 app-checkbox checkbox" style="margin-top: 0" init-widget="" role="input" name="fieldValue{{formField.fieldName}}">
                                                             <label ng-class="{unchecked: !Variables.svGetFormData.dataSet[formField.fieldName]}" style="padding-left: 0" role="button">
                                                                 <input type="checkbox" ng-model="Variables.svGetFormData.dataSet[formField.fieldName]"><span class="caption ng-binding" ng-bind-html=""></span>
@@ -164,15 +169,18 @@
                                                     <wm-grid-column binding="gisrecords.city" caption="City" type="string" readonly="true" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" readonly="true" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-action key="customButton" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Location" action="Widgets.dialogAddGISRecord.open()" shortcutkey="" disabled="bind:(!Variables.lvFormType.dataSet.data[$i].multipleGisrecords &amp;&amp; Variables.Gis2formsData.dataSet.totalElements >0) || !Variables.svUserPermissions.dataSet.canEdit"></wm-grid-action>
+                                                    <wm-grid-action key="customButton" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Location" action="Widgets.dialogAddGISRecord.open()"
+                                                    shortcutkey="" disabled="bind:(!Variables.lvFormType.dataSet.data[$i].multipleGisrecords &amp;&amp; Variables.Gis2formsData.dataSet.totalElements >0) || !Variables.svUserPermissions.dataSet.canEdit"></wm-grid-action>
                                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="customRow1" display-name="" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogDeleteGISRecordConf.open()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow1" display-name="" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogDeleteGISRecordConf.open()"
+                                                    disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow61">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn127">
-                                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.Gis2formsData.dataSet[$i].gisrecords" zoom="17" markertype="Address" address="streetNumber streetName city states.stateName" show="bind:Variables.Gis2formsData.dataSet.totalElements > 0 &amp;&amp; Variables.lvFormType.dataSet.data[$i].gisrecord"></wm-prefab>
+                                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.Gis2formsData.dataSet[$i].gisrecords" zoom="17" markertype="Address" address="streetNumber streetName city states.stateName"
+                                                show="bind:Variables.Gis2formsData.dataSet.totalElements > 0 &amp;&amp; Variables.lvFormType.dataSet.data[$i].gisrecord"></wm-prefab>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
@@ -185,7 +193,8 @@
                                                     <wm-layoutgrid columns="2" name="layoutgrid29">
                                                         <wm-gridrow name="gridrow84">
                                                             <wm-gridcolumn colwidth="6" columnwidth="12" padding="unset 1.25em" class="col-xs-6" name="gridcolumn164">
-                                                                <wm-label name="Name" caption="bind:Variables.lvOwner.dataSet.data[$i].firstName + (!!Variables.lvOwner.dataSet.data[$i].lastName ? ' '+Variables.lvOwner.dataSet.data[$i].lastName : '')" fontunit="em" color="#000" class="h4" margin="0px unset" whitespace="nowrap"></wm-label>
+                                                                <wm-label name="Name" caption="bind:Variables.lvOwner.dataSet.data[$i].firstName + (!!Variables.lvOwner.dataSet.data[$i].lastName ? ' '+Variables.lvOwner.dataSet.data[$i].lastName : '')" fontunit="em"
+                                                                color="#000" class="h4" margin="0px unset" whitespace="nowrap"></wm-label>
                                                                 <wm-label name="City" caption="bind:Variables.lvOwner.dataSet.city" class="h5" margin="0px unset unset unset" whitespace="nowrap"></wm-label>
                                                                 <wm-label name="Address1" caption="bind:Variables.lvOwner.dataSet.address1" class="p text-muted" margin="unset unset 0px unset" whitespace="nowrap"></wm-label>
                                                                 <wm-label name="Address2" caption="bind:Variables.lvOwner.dataSet.address2" class="text-muted p" whitespace="nowrap"></wm-label>
@@ -218,10 +227,13 @@
                                                         <wm-grid-column binding="vendor.companyPhone" caption="Phone Number" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                                                         <wm-grid-column binding="vendor.companyEmail" caption="Email Address" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
                                                         <wm-grid-column binding="vendor.companyWebsite" caption="Website" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
-                                                        <wm-grid-column binding="sharedOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="sharedOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="text"
+                                                        readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-action key="addNewRow" display-name="Add Vendor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Vendor" action="Widgets.dialogAddVendor.open()" shortcutkey="" disabled="bind:(!Variables.lvFormType.dataSet.data[$i].multipleVendors &amp;&amp; Variables.Cx2Vendors2formData.dataSet.data.length > 0) || !Variables.svUserPermissions.dataSet.canEdit"></wm-grid-action>
-                                                        <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogVendorDeleteConf.open();deleterowAction($event)" disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-action key="addNewRow" display-name="Add Vendor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Vendor" action="Widgets.dialogAddVendor.open()" shortcutkey=""
+                                                        disabled="bind:(!Variables.lvFormType.dataSet.data[$i].multipleVendors &amp;&amp; Variables.Cx2Vendors2formData.dataSet.data.length > 0) || !Variables.svUserPermissions.dataSet.canEdit"></wm-grid-action>
+                                                        <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogVendorDeleteConf.open();deleterowAction($event)"
+                                                        disabled="false"></wm-grid-row-action>
                                                     </wm-grid>
                                                 </wm-livegrid>
                                             </wm-gridcolumn>
@@ -244,12 +256,14 @@
                                                         <wm-grid-column binding="filename" caption="File Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="mimetype" caption="File Type" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-action key="addNewRow" display-name="Add Attachment" show="bind:Variables.stvCurrentStatus.dataSet.allowAttachments &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-primary" iconclass="wi wi-plus" title="Add Attachment" action="Widgets.dialogUploadDocument.open()"
-                                                        shortcutkey="" disabled="false"></wm-grid-action>
-                                                        <wm-grid-row-action key="updaterow" display-name="" show="bind:Variables.stvCurrentStatus.dataSet.allowAttachments &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="" disabled="false"></wm-grid-row-action>
-                                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download" action="Variables.svDownloadDocument.invoke()" disabled="false"></wm-grid-row-action>
-                                                        <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.stvCurrentStatus.dataSet.allowAttachments &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
+                                                        <wm-grid-action key="addNewRow" display-name="Add Attachment" show="bind:Variables.stvCurrentStatus.dataSet.allowAttachments &amp;&amp; Variables.svUserPermissions.dataSet.canEdit"
+                                                        class="btn-primary" iconclass="wi wi-plus" title="Add Attachment" action="Widgets.dialogUploadDocument.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                        <wm-grid-row-action key="updaterow" display-name="" show="bind:Variables.stvCurrentStatus.dataSet.allowAttachments &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent"
+                                                        iconclass="wi wi-pencil" title="Edit" action="" disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download" action="Variables.svDownloadDocument.invoke()"
                                                         disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.stvCurrentStatus.dataSet.allowAttachments &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent"
+                                                        iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                                     </wm-grid>
                                                 </wm-livegrid>
                                             </wm-gridcolumn>
@@ -272,28 +286,38 @@
                                                         <wm-grid-column binding="usersBySharedWithUser.firstName" caption="First Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                         <wm-grid-column binding="usersBySharedWithUser.lastName" caption="Last Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                         <wm-grid-column binding="usersBySharedWithUser.email" caption="Email Address" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                                        <wm-grid-column binding="createdOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="createdOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="text"
+                                                        readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-action key="addNewRow" display-name="Add User" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                                        <wm-grid-action key="customButton" display-name="Invite User" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-secondary" iconclass="wi wi-plus" title="Invite User" shortcutkey="" disabled="false"></wm-grid-action>
-                                                        <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-action key="addNewRow" display-name="Add User" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="addNewRow()"
+                                                        shortcutkey="" disabled="false"></wm-grid-action>
+                                                        <wm-grid-action key="customButton" display-name="Invite User" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-secondary" iconclass="wi wi-plus" title="Invite User"
+                                                        shortcutkey="" disabled="false"></wm-grid-action>
+                                                        <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
+                                                        disabled="false"></wm-grid-row-action>
                                                     </wm-grid>
-                                                    <wm-liveform novalidate="false" errormessage="That user has already been added as a Form Contact." title="Share With User" formlayout="dialog" iconclass="wi wi-share" dataset="bind:Variables.SharedWithData.dataSet" captionalign="left" captionposition="top"
-                                                    name="liveformSharedwith">
+                                                    <wm-liveform novalidate="false" errormessage="That user has already been added as a Form Contact." title="Share With User" formlayout="dialog" iconclass="wi wi-share" dataset="bind:Variables.SharedWithData.dataSet"
+                                                    captionalign="left" captionposition="top" name="liveformSharedwith">
                                                         <wm-layoutgrid columns="1" name="layoutgrid4">
                                                             <wm-gridrow name="gridrow12">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn24">
-                                                                    <wm-form-field name="usersBySharedWithUser" displayname="Who would you like to share this form with?" show="true" primary-key="false" generator="assigned" key="usersBySharedWithUser" type="list" is-related="true" widget="autocomplete" placeholder="Search by Name or Email Address"
-                                                                    displaylabel="bind:$[data[$i].fullName] + ' (' + $[data[$i].email] + ')'" searchkey="email,fullName" orderby="fullName:asc" dataset="bind:Variables.GetPeople.dataSet" datafield="All Fields"></wm-form-field>
+                                                                    <wm-form-field name="usersBySharedWithUser" displayname="Who would you like to share this form with?" show="true" primary-key="false" generator="assigned" key="usersBySharedWithUser" type="list"
+                                                                    is-related="true" widget="autocomplete" placeholder="Search by Name or Email Address" displaylabel="bind:$[data[$i].fullName] + ' (' + $[data[$i].email] + ')'" searchkey="email,fullName"
+                                                                    orderby="fullName:asc" dataset="bind:Variables.GetPeople.dataSet" datafield="All Fields"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                         </wm-layoutgrid>
-                                                        <wm-form-field name="relatedGuid" displayname="Related Guid" show="false" primary-key="false" generator="assigned" key="relatedGuid" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:pageParams.FormGUID"></wm-form-field>
-                                                        <wm-form-field name="createdOn" displayname="Created On" show="false" primary-key="false" generator="assigned" key="createdOn" type="timestamp" widget="timestamp" placeholder="Select date time" outputformat="timestamp" defaultvalue="bind:today"></wm-form-field>
-                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
-                                                        <wm-form-field name="usersByCreatedBy" displayname="Users By Created By" show="false" primary-key="false" generator="assigned" key="usersByCreatedBy" type="list" is-related="true" widget="select" placeholder="Select value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
+                                                        <wm-form-field name="relatedGuid" displayname="Related Guid" show="false" primary-key="false" generator="assigned" key="relatedGuid" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                        defaultvalue="bind:pageParams.FormGUID"></wm-form-field>
+                                                        <wm-form-field name="createdOn" displayname="Created On" show="false" primary-key="false" generator="assigned" key="createdOn" type="timestamp" widget="timestamp" placeholder="Select date time"
+                                                        outputformat="timestamp" defaultvalue="bind:today"></wm-form-field>
+                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"
+                                                        inputtype="number" placeholder=""></wm-form-field>
+                                                        <wm-form-field name="usersByCreatedBy" displayname="Users By Created By" show="false" primary-key="false" generator="assigned" key="usersByCreatedBy" type="list" is-related="true"
+                                                        widget="select" placeholder="Select value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
                                                         <wm-form-action key="save" display-name="Add" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add" type="submit" update-mode="true" disabled="bind:!Widgets.usersBySharedWithUser.datavalue.id"></wm-form-action>
-                                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
+                                                        update-mode="true"></wm-form-action>
                                                     </wm-liveform>
                                                 </wm-livegrid>
                                             </wm-gridcolumn>
@@ -318,7 +342,7 @@
                                     <wm-layoutgrid name="layoutgrid14">
                                         <wm-gridrow name="gridrow54">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn113">
-                                                <wm-label padding="unset 0.5em" name="label26" caption="The following fees have been created for this form."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label26" caption="The following fees have been automatically generated or manually added to this form."></wm-label>
                                                 <wm-label padding="unset 0.5em" name="label57" caption="You may add unpaid fees to your basket by clicking on the cart icon in the “Actions” area below."></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
@@ -333,21 +357,25 @@
                                                         <wm-grid-column binding="paidDate" caption="Payment Date" type="date" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="comments" caption="Comments" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-action key="addNewRow" display-name="Add Fee" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-primary" iconclass="wi wi-plus" title="Add Fee" action="addNewRowAction($event)" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
-                                                        shortcutkey="" disabled="false"></wm-grid-action>
-                                                        <wm-grid-row-action key="updaterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid' &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)"
-                                                        accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
-                                                        <wm-grid-row-action key="deleterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid' &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
+                                                        <wm-grid-action key="addNewRow" display-name="Add Fee" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-primary" iconclass="wi wi-plus" title="Add Fee" action="addNewRowAction($event)"
+                                                        accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" shortcutkey="" disabled="false"></wm-grid-action>
+                                                        <wm-grid-row-action key="updaterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid' &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent"
+                                                        iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-row-action key="deleterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid' &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent"
+                                                        iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-row-action key="customRow" display-name="" show="bind:row.getProperty('paidStatus') === 'Unpaid'" class="btn-transparent" iconclass="wi wi-add-shopping-cart" title="Add to Cart"
                                                         disabled="false"></wm-grid-row-action>
-                                                        <wm-grid-row-action key="customRow" display-name="" show="bind:row.getProperty('paidStatus') === 'Unpaid'" class="btn-transparent" iconclass="wi wi-add-shopping-cart" title="Add to Cart" disabled="false"></wm-grid-row-action>
                                                     </wm-grid>
-                                                    <wm-liveform novalidate="false" errormessage="" title="Add Manual Fee" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.Cx2FeesData.dataSet" captionalign="left" captionposition="top" name="liveformFees" on-beforeservicecall="liveformFeesBeforeservicecall($event, $operation, $data)">
+                                                    <wm-liveform novalidate="false" errormessage="" title="Add Manual Fee" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.Cx2FeesData.dataSet" captionalign="left" captionposition="top"
+                                                    name="liveformFees" on-beforeservicecall="liveformFeesBeforeservicecall($event, $operation, $data)">
                                                         <wm-layoutgrid columns="1" name="layoutgrid13">
                                                             <wm-gridrow name="gridrow45_2">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn104_2">
                                                                     <wm-label name="labelmanfeeselect" caption="Manual Fee Type" required="true" show="bind:isNewFee"></wm-label>
-                                                                    <wm-select name="selectManualFeeType" displayname="Manual Fee Type" show="bind:isNewFee" required="bind:isNewFee" type="string" dataset="bind:Variables.lvManualFeeTypes.dataSet" displayfield="feeType" placeholder="Select Fee" datafield="All Fields" orderby="feeType:asc"></wm-select>
-                                                                    <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="string" required="required" widget="currency" maxchars="255" placeholder="Enter Amount" minvalue="0" step="0.01"></wm-form-field>
+                                                                    <wm-select name="selectManualFeeType" displayname="Manual Fee Type" show="bind:isNewFee" required="bind:isNewFee" type="string" dataset="bind:Variables.lvManualFeeTypes.dataSet"
+                                                                    displayfield="feeType" placeholder="Select Fee" datafield="All Fields" orderby="feeType:asc"></wm-select>
+                                                                    <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="string" required="required" widget="currency" maxchars="255"
+                                                                    placeholder="Enter Amount" minvalue="0" step="0.01"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow46">
@@ -357,20 +385,27 @@
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow47">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn106_1">
-                                                                    <wm-form-field name="feeType" displayname="Manual Fee Type" show="bind:!isNewFee" primary-key="false" generator="assigned" key="feeType" type="string" readonly="readonly" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                                                    defaultvalue="bind:Widgets.selectManualFeeType.datavalue.feeType"></wm-form-field>
+                                                                    <wm-form-field name="feeType" displayname="Manual Fee Type" show="bind:!isNewFee" primary-key="false" generator="assigned" key="feeType" type="string" readonly="readonly" required="required"
+                                                                    widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.feeType"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                         </wm-layoutgrid>
                                                         <wm-form-field name="formGuid" displayname="Form Guid" show="false" primary-key="false" generator="assigned" key="formGuid" type="string" required="required" widget="text" maxchars="255" defaultvalue="bind:Variables.CurrentForm.dataSet.data[$i].formGuid"
                                                         inputtype="text" placeholder="Enter value"></wm-form-field>
-                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
-                                                        <wm-form-field name="autoFeeYn" displayname="Auto Fee Yn" show="false" primary-key="false" generator="assigned" key="autoFeeYn" type="boolean" required="required" widget="checkbox" defaultvalue="false" placeholder=""></wm-form-field>
-                                                        <wm-form-field name="formType" displayname="Form Type" show="false" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-form-field>
-                                                        <wm-form-field name="paidStatus" displayname="Paid Status" show="false" primary-key="false" generator="assigned" key="paidStatus" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="Unpaid"></wm-form-field>
-                                                        <wm-form-field name="accountingCode" displayname="Accounting Code" show="false" primary-key="false" generator="assigned" key="accountingCode" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.accountingCode"></wm-form-field>
-                                                        <wm-form-action key="save" display-name="Add" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"
+                                                        inputtype="number" placeholder=""></wm-form-field>
+                                                        <wm-form-field name="autoFeeYn" displayname="Auto Fee Yn" show="false" primary-key="false" generator="assigned" key="autoFeeYn" type="boolean" required="required" widget="checkbox"
+                                                        defaultvalue="false" placeholder=""></wm-form-field>
+                                                        <wm-form-field name="formType" displayname="Form Type" show="false" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text"
+                                                        placeholder="Enter value" defaultvalue="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-form-field>
+                                                        <wm-form-field name="paidStatus" displayname="Paid Status" show="false" primary-key="false" generator="assigned" key="paidStatus" type="string" required="required" widget="text" maxchars="255"
+                                                        inputtype="text" placeholder="Enter value" defaultvalue="Unpaid"></wm-form-field>
+                                                        <wm-form-field name="accountingCode" displayname="Accounting Code" show="false" primary-key="false" generator="assigned" key="accountingCode" type="string" required="required" widget="text"
+                                                        maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.accountingCode"></wm-form-field>
+                                                        <wm-form-action key="save" display-name="Add" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
+                                                        disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
+                                                        update-mode="true"></wm-form-action>
                                                     </wm-liveform>
                                                 </wm-livegrid>
                                             </wm-gridcolumn>
@@ -387,8 +422,8 @@
                                         <wm-gridrow name="gridrow59">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn123">
                                                 <wm-container name="chatcontent" overflow="auto" class="chatcontent">
-                                                    <wm-livelist itemclass="bind:item.users.id ===Variables.CurrentUserDetails.dataSet.id? &quot;clearfix mine&quot; : &quot;clearfix&quot;" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list chat" dataset="bind:Variables.FormMessagesData.dataSet"
-                                                    navigation="None" name="livelistFormMessages" nodatamessage="Start Chat by entering message" listclass="list-group">
+                                                    <wm-livelist itemclass="bind:item.users.id ===Variables.CurrentUserDetails.dataSet.id? &quot;clearfix mine&quot; : &quot;clearfix&quot;" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list chat"
+                                                    dataset="bind:Variables.FormMessagesData.dataSet" navigation="None" name="livelistFormMessages" nodatamessage="Start Chat by entering message" listclass="list-group">
                                                         <wm-listtemplate layout="inline" name="listtemplate1">
                                                             <wm-container class="media-right" name="container4">
                                                                 <wm-picture name="userImage" width="24pt" height="24pt" picturesource="bind:!!Variables.CurrentUserDetails.dataSet.id ? 'services/cx2/Users/'+Variables.FormMessagesData.dataSet.data[$i].userId+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"
@@ -396,7 +431,8 @@
                                                             </wm-container>
                                                             <wm-container class="popover media-body" name="container5">
                                                                 <wm-label name="Content" caption="bind:Variables.FormMessagesData.dataSet.message" class="p media-heading"></wm-label>
-                                                                <wm-anchor margin="unset 0.5em" name="anchorViewTaggedPeople" caption="Tags" class="pull-left" iconclass="wi wi-tag" on-click="Widgets.dialogShowTaggedPeople.open()" textdecoration="underline" fontsize="8" fontunit="pt"></wm-anchor>
+                                                                <wm-anchor margin="unset 0.5em" name="anchorViewTaggedPeople" caption="Tags" class="pull-left" iconclass="wi wi-tag" on-click="Widgets.dialogShowTaggedPeople.open()" textdecoration="underline"
+                                                                fontsize="8" fontunit="pt"></wm-anchor>
                                                                 <wm-container class="pull-right" name="container5_1">
                                                                     <wm-label name="label4" class="small" caption="by " padding="unset 0.5em unset unset"></wm-label>
                                                                     <wm-label name="Name" class="small" caption="bind:Variables.FormMessagesData.dataSet.data[$i].users.firstName +&quot; &quot;+Variables.FormMessagesData.dataSet.data[$i].users.lastName"></wm-label>
@@ -449,13 +485,12 @@
                                         <wm-gridrow name="gridrow69">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn143">
                                                 <wm-grid title="" dataset="bind:Variables.FormHistoryData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                                                    <wm-grid-column-group name="group" caption="Updated By"></wm-grid-column-group>
                                                     <wm-grid-column binding="createdTime" caption="Date Modified" type="timestamp" width="20%" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" show="true" filterwidget="text"></wm-grid-column>
                                                     <wm-grid-column binding="formStatusesByOldStatusId.status" caption="Previous Status" type="string" width="10%" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
                                                     <wm-grid-column binding="formStatusesByNewStatusId.status" caption="New Status" type="string" width="10%" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
                                                     <wm-grid-column binding="users.fullName" caption="Performed By" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
                                                     <wm-grid-column binding="users.email" caption="Email Address" type="string" width="20%" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                                    <wm-grid-column binding="comments" caption="Comments" type="string" width="20%" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="comments" caption="Notes" type="string" width="20%" generator="assigned" readonly="true" show="true"></wm-grid-column>
                                                 </wm-grid>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
@@ -514,8 +549,8 @@
                         <wm-gridrow name="gridrow24">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn52"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn53">
-                                <wm-select placeholder="Select Lot" dataset="bind:Variables.GISLotRecords.dataSet" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]" datafield="All Fields"
-                                name="searchSubdivision" show="bind:Widgets.searchFliterSubdivisions.datavalue!=undefined" displayexpression="bind:(!!$[data[$i].lot] ? '('+$[data[$i].lot]+') ' : '')+$[data[$i].fullAddress]" displayfield="lot"></wm-select>
+                                <wm-select placeholder="Select Lot" dataset="bind:Variables.GISLotRecords.dataSet" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
+                                datafield="All Fields" name="searchSubdivision" show="bind:Widgets.searchFliterSubdivisions.datavalue!=undefined" displayexpression="bind:(!!$[data[$i].lot] ? '('+$[data[$i].lot]+') ' : '')+$[data[$i].fullAddress]" displayfield="lot"></wm-select>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn54"></wm-gridcolumn>
                         </wm-gridrow>
@@ -814,7 +849,8 @@
                                     <wm-layoutgrid name="layoutgrid5">
                                         <wm-gridrow name="gridrow17_1">
                                             <wm-gridcolumn columnwidth="2" name="gridcolumn174">
-                                                <wm-picture name="picture4" picturesource="bind:!!Variables.PeopleList.dataSet[$i].id ? 'services/cx2/Users/'+Variables.PeopleList.dataSet[$i].id+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'" width="50pt" height="50pt"></wm-picture>
+                                                <wm-picture name="picture4" picturesource="bind:!!Variables.PeopleList.dataSet[$i].id ? 'services/cx2/Users/'+Variables.PeopleList.dataSet[$i].id+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"
+                                                width="50pt" height="50pt"></wm-picture>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="7" name="gridcolumn25_1">
                                                 <wm-label padding="unset 0.5em .5em 0.5em" name="label11" caption="bind:Variables.PeopleList.dataSet[$i].firstName+&quot; &quot;+Variables.PeopleList.dataSet[$i].lastName" width="100%" fontweight="bold"></wm-label>
@@ -853,7 +889,8 @@
                                 width="50pt" height="50pt"></wm-picture>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn25_1">
-                                <wm-label padding="unset 0.5em .5em 0.5em" name="label11" caption="bind:Variables.GetTaggedPeopleListByMessage.dataSet.data[$i].users.firstName+' '+Variables.GetTaggedPeopleListByMessage.dataSet.data[$i].users.lastName" width="100%" fontweight="bold"></wm-label>
+                                <wm-label padding="unset 0.5em .5em 0.5em" name="label11" caption="bind:Variables.GetTaggedPeopleListByMessage.dataSet.data[$i].users.firstName+' '+Variables.GetTaggedPeopleListByMessage.dataSet.data[$i].users.lastName" width="100%"
+                                fontweight="bold"></wm-label>
                                 <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.GetTaggedPeopleListByMessage.dataSet.data[$i].users.email" width="100%"></wm-label>
                             </wm-gridcolumn>
                         </wm-gridrow>
