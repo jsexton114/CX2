@@ -363,8 +363,8 @@
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                     <wm-gridrow name="gridrow1_1" padding="unset unset 1em unset">
-                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn37_1">
-                                                                            <wm-form-field name="emailTextBody" displayname="Email Text Body" show="true" primary-key="false" generator="assigned" key="emailTextBody" type="string" widget="textarea" maxchars="255" placeholder="Enter value" width="100%"></wm-form-field>
+                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn37_1" padding="unset 1em unset unset">
+                                                                            <wm-form-field name="emailTextBody" displayname="Email Body Text" show="true" primary-key="false" generator="assigned" key="emailTextBody" type="string" widget="textarea" maxchars="255" placeholder="Enter value" width="100%"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-panel>
@@ -376,22 +376,22 @@
                                                                     <wm-gridrow name="gridrow25" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
                                                                             <wm-form-field name="municipalityGroupsByProcessOwners" displayname="Process Owner Group" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByProcessOwners" type="list" is-related="true" widget="select" dataset="bind:Variables.MunicipalityGroupsForProcess.dataSet"
-                                                                            datafield="All Fields" displayfield="groupName" orderby="groupName:asc" defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord" placeholder="Select value" required="true"
-                                                                            hint="This is the municipality user group that is assigned to process the form while it is in this status."></wm-form-field>
+                                                                            datafield="All Fields" displayfield="groupName" orderby="groupName:asc" defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord" placeholder="Select user group"
+                                                                            required="true" hint="This is the municipality user group that is assigned to process the form while in this status."></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
-                                                                            <wm-form-field name="municipalityGroupsByWriteAccess" displayname="Write Access Group" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByWriteAccess" type="list" is-related="true" widget="select" placeholder="Select value"
+                                                                            <wm-form-field name="municipalityGroupsByWriteAccess" displayname="Write Access Group" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByWriteAccess" type="list" is-related="true" widget="select" placeholder="Select user group"
                                                                             dataset="bind:Variables.MunicipalityGroupsForProcess.dataSet" datafield="All Fields" displayfield="groupName" orderby="groupName:asc" defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord"
-                                                                            required="true" hint="This is the municipality user group that has can make edits to the form while it is in this status."></wm-form-field>
+                                                                            required="true" hint="This is the municipality user group that has can make edits to the form information while in this status."></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                     <wm-gridrow name="gridrow120_1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn36_1" padding="unset 1em unset unset">
-                                                                            <wm-form-field name="allowSharedWithEdits" displayname="Allow Shared With Edits" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean" widget="checkbox" placeholder="" hint="This allows users that the form has been shared with to edit the form while in this status."
+                                                                            <wm-form-field name="allowSharedWithEdits" displayname="Allow &quot;Shared With&quot; Edits" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean" widget="checkbox" placeholder="" hint="This allows users that the form has been shared with to edit the form while in this status."
                                                                             defaultvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn42_1" padding="unset 1em unset unset">
-                                                                            <wm-form-field name="allowAuthorEdits" displayname="Allow Created By Edits" show="true" primary-key="false" generator="assigned" key="allowAuthorEdits" type="boolean" widget="checkbox" placeholder="" hint="This allows the user that created the form to edit the form while in this status."
+                                                                            <wm-form-field name="allowAuthorEdits" displayname="Allow &quot;Created By&quot; Edits" show="true" primary-key="false" generator="assigned" key="allowAuthorEdits" type="boolean" widget="checkbox" placeholder="" hint="This allows the user who submitted the form to edit the form information while in this status."
                                                                             defaultvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
