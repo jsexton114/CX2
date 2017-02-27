@@ -68,6 +68,11 @@
         <parameter name="emailid" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2bannedDetailsrtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="CheckIfCompanyUserIsVendorAdmin">
+        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="cx2CheckIfCompanyUserIsVendorAdminrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="CheckingUserWithInVendorUsers">
         <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
         <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
@@ -569,11 +574,6 @@
     <operation operationType="nativequery" name="verifyPasswordResetToken">
         <parameter name="token" typeRef="java.lang.String" isList="false"/>
         <return typeRef="cx2verifyPasswordResetTokenrtnType" isList="false"/>
-    </operation>
-    <operation operationType="nativequery" name="CheckIfCompanyUserIsVendorAdmin">
-        <parameter name="user" typeRef="java.lang.Integer" isList="false"/>
-        <parameter name="vendor" typeRef="java.lang.Integer" isList="false"/>
-        <return isList="false"/>
     </operation>
     <operation operationType="nativequery" name="AddGIStoForms">
         <parameter name="GISRecordId" typeRef="java.lang.Integer" isList="false"/>

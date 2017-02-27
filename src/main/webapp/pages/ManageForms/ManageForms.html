@@ -29,7 +29,7 @@
                             <wm-layoutgrid name="layoutgrid3">
                                 <wm-gridrow name="gridrow6">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn9" padding="1em unset 2em unset">
-                                        <wm-grid title="" dataset="bind:Variables.ExecuteGetFormsForMunicpality.dataSet" navigation="Classic" name="gridFormTypes" filtermode="multicolumn">
+                                        <wm-grid title="" dataset="bind:Variables.ExecuteGetFormsForMunicpality.dataSet" navigation="Classic" name="gridFormTypes" filtermode="multicolumn" showrecordcount="true">
                                             <wm-grid-column binding="FormType" caption="Form Design Name" type="string" readonly="true" show="true"></wm-grid-column>
                                             <wm-grid-column binding="CreatedDate" caption="Date Created" type="string" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true"></wm-grid-column>
                                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
@@ -49,7 +49,7 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn26">
                         <wm-panel iconclass="wi wi-payment" name="panelFormCategories" title="Form Categories" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid1">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.FormCategoriesData.dataSet" navigation="Classic" name="gridFormcategories" filtermode="multicolumn" exportformat="EXCEL">
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.FormCategoriesData.dataSet" navigation="Classic" name="gridFormcategories" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                     <wm-grid-column binding="category" caption="Category" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="description" caption="Description" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
@@ -61,7 +61,7 @@
                                     <wm-layoutgrid columns="1" name="layoutgrid5_1">
                                         <wm-gridrow name="gridrow15">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn29">
-                                                <wm-form-field name="category" displayname="Category" show="true" primary-key="false" generator="assigned" key="category" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                <wm-form-field name="category" displayname="Category Name" show="true" primary-key="false" generator="assigned" key="category" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
                                                 required="true"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
