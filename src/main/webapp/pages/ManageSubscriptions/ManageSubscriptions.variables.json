@@ -31,6 +31,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onError" : "Variables.DulpicateSubscription.invoke()",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : true,
     "autoUpdate" : true,
@@ -742,6 +743,35 @@
       "watchOn" : "Cx2UsersData",
       "package" : "com.civicxpress.cx2.UserSubscriptions"
     } ],
+    "filterFields" : { },
     "package" : "com.civicxpress.cx2.UserSubscriptions"
+  },
+  "DulpicateSubscription" : {
+    "_id" : "wm-DulpicateSubscription-wm.NotificationVariable-1488193666831",
+    "name" : "DulpicateSubscription",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "That user is already subscribed to the selected municipality.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
   }
 }
