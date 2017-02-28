@@ -26,6 +26,7 @@ import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormTypes;
+import com.civicxpress.cx2.InspectionSequence;
 import com.civicxpress.cx2.MasterForms;
 
 
@@ -42,6 +43,10 @@ public class FormTypesServiceImpl implements FormTypesService {
     @Autowired
 	@Qualifier("cx2.FormStatusesService")
 	private FormStatusesService formStatusesService;
+
+    @Autowired
+	@Qualifier("cx2.InspectionSequenceService")
+	private InspectionSequenceService inspectionSequenceService;
 
     @Autowired
 	@Qualifier("cx2.FormTypeFieldsService")
@@ -109,6 +114,14 @@ public class FormTypesServiceImpl implements FormTypesService {
                 masterFormse.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
                 masterFormsService.create(masterFormse);
+            }
+        }
+
+        if(formTypesCreated.getInspectionSequences() != null) {
+            for(InspectionSequence inspectionSequence : formTypesCreated.getInspectionSequences()) {
+                inspectionSequence.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
+                inspectionSequenceService.create(inspectionSequence);
             }
         }
         return formTypesCreated;
@@ -240,6 +253,17 @@ public class FormTypesServiceImpl implements FormTypesService {
         return masterFormsService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<InspectionSequence> findAssociatedInspectionSequences(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionSequences");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return inspectionSequenceService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -247,6 +271,15 @@ public class FormTypesServiceImpl implements FormTypesService {
 	 */
 	protected void setFormStatusesService(FormStatusesService service) {
         this.formStatusesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service InspectionSequenceService instance
+	 */
+	protected void setInspectionSequenceService(InspectionSequenceService service) {
+        this.inspectionSequenceService = service;
     }
 
     /**

@@ -66,6 +66,7 @@ public class InspectionDesign implements Serializable {
     private Boolean prefixDashes;
     private Municipalities municipalities;
     private List<InspectionOutcome> inspectionOutcomes = new ArrayList<>();
+    private List<InspectionSequence> inspectionSequences = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -354,6 +355,16 @@ public class InspectionDesign implements Serializable {
 
     public void setInspectionOutcomes(List<InspectionOutcome> inspectionOutcomes) {
         this.inspectionOutcomes = inspectionOutcomes;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
+    public List<InspectionSequence> getInspectionSequences() {
+        return this.inspectionSequences;
+    }
+
+    public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
+        this.inspectionSequences = inspectionSequences;
     }
 
     @Override

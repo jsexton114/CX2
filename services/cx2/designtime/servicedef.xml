@@ -1319,6 +1319,7 @@
             <element name="gismap" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="gisrecord" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspectionSequences" typeRef="com.civicxpress.cx2.InspectionSequence" isList="true" allowNull="true"/>
             <element name="inspections" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="instructions" typeRef="java.lang.String" allowNull="true"/>
             <element name="masterFormses" typeRef="com.civicxpress.cx2.MasterForms" isList="true" allowNull="true"/>
@@ -1440,6 +1441,7 @@
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="inspecDesignName" typeRef="java.lang.String" allowNull="true"/>
             <element name="inspectionOutcomes" typeRef="com.civicxpress.cx2.InspectionOutcome" isList="true" allowNull="true"/>
+            <element name="inspectionSequences" typeRef="com.civicxpress.cx2.InspectionSequence" isList="true" allowNull="true"/>
             <element name="instructions" typeRef="java.lang.String" allowNull="true"/>
             <element name="maxDaysInAdvance" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
@@ -1467,6 +1469,15 @@
             <element name="inspectDesignId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="inspectionDesign" typeRef="com.civicxpress.cx2.InspectionDesign" allowNull="true"/>
             <element name="outcome" typeRef="java.lang.String" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.InspectionSequence">
+            <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="formTypes" typeRef="com.civicxpress.cx2.FormTypes" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspectDesignId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspectionDesign" typeRef="com.civicxpress.cx2.InspectionDesign" allowNull="true"/>
+            <element name="mustCompBeforeReqNxt" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="sequenceOrderNumber" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.ManualFeeTypes">
             <element name="accountingCode" typeRef="java.lang.String" allowNull="true"/>

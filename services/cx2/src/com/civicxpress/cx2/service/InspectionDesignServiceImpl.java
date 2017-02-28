@@ -23,6 +23,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionOutcome;
+import com.civicxpress.cx2.InspectionSequence;
 
 
 /**
@@ -34,6 +35,10 @@ import com.civicxpress.cx2.InspectionOutcome;
 public class InspectionDesignServiceImpl implements InspectionDesignService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InspectionDesignServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.InspectionSequenceService")
+	private InspectionSequenceService inspectionSequenceService;
 
     @Autowired
 	@Qualifier("cx2.InspectionOutcomeService")
@@ -57,6 +62,14 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
                 inspectionOutcome.setInspectionDesign(inspectionDesignCreated);
                 LOGGER.debug("Creating a new child InspectionOutcome with information: {}", inspectionOutcome);
                 inspectionOutcomeService.create(inspectionOutcome);
+            }
+        }
+
+        if(inspectionDesignCreated.getInspectionSequences() != null) {
+            for(InspectionSequence inspectionSequence : inspectionDesignCreated.getInspectionSequences()) {
+                inspectionSequence.setInspectionDesign(inspectionDesignCreated);
+                LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
+                inspectionSequenceService.create(inspectionSequence);
             }
         }
         return inspectionDesignCreated;
@@ -142,6 +155,26 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
         queryBuilder.append("inspectionDesign.id = '" + id + "'");
 
         return inspectionOutcomeService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<InspectionSequence> findAssociatedInspectionSequences(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionSequences");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionDesign.id = '" + id + "'");
+
+        return inspectionSequenceService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service InspectionSequenceService instance
+	 */
+	protected void setInspectionSequenceService(InspectionSequenceService service) {
+        this.inspectionSequenceService = service;
     }
 
     /**

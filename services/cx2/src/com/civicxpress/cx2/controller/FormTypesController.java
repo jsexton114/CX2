@@ -30,6 +30,7 @@ import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormTypes;
+import com.civicxpress.cx2.InspectionSequence;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.service.FormTypesService;
 
@@ -161,6 +162,13 @@ public class FormTypesController {
     public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
         return formTypesService.findAssociatedMasterFormses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/inspectionSequences", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionSequences instance associated with the given id.")
+    public Page<InspectionSequence> findAssociatedInspectionSequences(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionSequences");
+        return formTypesService.findAssociatedInspectionSequences(id, pageable);
     }
 
     /**

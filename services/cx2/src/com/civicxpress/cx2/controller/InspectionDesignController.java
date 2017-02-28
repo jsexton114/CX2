@@ -27,6 +27,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionOutcome;
+import com.civicxpress.cx2.InspectionSequence;
 import com.civicxpress.cx2.service.InspectionDesignService;
 
 /**
@@ -125,6 +126,13 @@ public class InspectionDesignController {
     public Page<InspectionOutcome> findAssociatedInspectionOutcomes(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionOutcomes");
         return inspectionDesignService.findAssociatedInspectionOutcomes(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/inspectionSequences", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionSequences instance associated with the given id.")
+    public Page<InspectionSequence> findAssociatedInspectionSequences(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionSequences");
+        return inspectionDesignService.findAssociatedInspectionSequences(id, pageable);
     }
 
     /**

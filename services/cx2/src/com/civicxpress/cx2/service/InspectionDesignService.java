@@ -16,6 +16,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionOutcome;
+import com.civicxpress.cx2.InspectionSequence;
 
 /**
  * Service object for domain model class {@link InspectionDesign}.
@@ -137,6 +138,18 @@ public interface InspectionDesignService {
      * @see Page
      */
     Page<InspectionOutcome> findAssociatedInspectionOutcomes(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated inspectionSequences for given InspectionDesign id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated InspectionSequence instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<InspectionSequence> findAssociatedInspectionSequences(Integer id, Pageable pageable);
 
 }
 

@@ -62,13 +62,13 @@ public class Users implements Serializable {
     private List<Gis2forms> gis2formses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<ProjectForms> projectFormses = new ArrayList<>();
+    private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
     private List<Projects> projectsesForCreatedBy = new ArrayList<>();
     private List<Projects> projectsesForModifiedBy = new ArrayList<>();
-    private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
-    private List<ProjectSharedWith> projectSharedWithsForProjectSharedBy = new ArrayList<>();
-    private List<ProjectSharedWith> projectSharedWithsForProjectSharedWithUser = new ArrayList<>();
     private List<ProjectTasks> projectTasksesForAssignedTo = new ArrayList<>();
     private List<ProjectTasks> projectTasksesForCreatedBy = new ArrayList<>();
+    private List<ProjectSharedWith> projectSharedWithsForProjectSharedBy = new ArrayList<>();
+    private List<ProjectSharedWith> projectSharedWithsForProjectSharedWithUser = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
     private List<SharedWith> sharedWithsForCreatedBy = new ArrayList<>();
     private List<SharedWith> sharedWithsForSharedWithUser = new ArrayList<>();
@@ -319,6 +319,16 @@ public class Users implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<ProjectGisrecords> getProjectGisrecordses() {
+        return this.projectGisrecordses;
+    }
+
+    public void setProjectGisrecordses(List<ProjectGisrecords> projectGisrecordses) {
+        this.projectGisrecordses = projectGisrecordses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
     public List<Projects> getProjectsesForCreatedBy() {
         return this.projectsesForCreatedBy;
@@ -339,13 +349,23 @@ public class Users implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<ProjectGisrecords> getProjectGisrecordses() {
-        return this.projectGisrecordses;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByAssignedTo")
+    public List<ProjectTasks> getProjectTasksesForAssignedTo() {
+        return this.projectTasksesForAssignedTo;
     }
 
-    public void setProjectGisrecordses(List<ProjectGisrecords> projectGisrecordses) {
-        this.projectGisrecordses = projectGisrecordses;
+    public void setProjectTasksesForAssignedTo(List<ProjectTasks> projectTasksesForAssignedTo) {
+        this.projectTasksesForAssignedTo = projectTasksesForAssignedTo;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
+    public List<ProjectTasks> getProjectTasksesForCreatedBy() {
+        return this.projectTasksesForCreatedBy;
+    }
+
+    public void setProjectTasksesForCreatedBy(List<ProjectTasks> projectTasksesForCreatedBy) {
+        this.projectTasksesForCreatedBy = projectTasksesForCreatedBy;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -366,26 +386,6 @@ public class Users implements Serializable {
 
     public void setProjectSharedWithsForProjectSharedWithUser(List<ProjectSharedWith> projectSharedWithsForProjectSharedWithUser) {
         this.projectSharedWithsForProjectSharedWithUser = projectSharedWithsForProjectSharedWithUser;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByAssignedTo")
-    public List<ProjectTasks> getProjectTasksesForAssignedTo() {
-        return this.projectTasksesForAssignedTo;
-    }
-
-    public void setProjectTasksesForAssignedTo(List<ProjectTasks> projectTasksesForAssignedTo) {
-        this.projectTasksesForAssignedTo = projectTasksesForAssignedTo;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
-    public List<ProjectTasks> getProjectTasksesForCreatedBy() {
-        return this.projectTasksesForCreatedBy;
-    }
-
-    public void setProjectTasksesForCreatedBy(List<ProjectTasks> projectTasksesForCreatedBy) {
-        this.projectTasksesForCreatedBy = projectTasksesForCreatedBy;
     }
 
     @JsonInclude(Include.NON_EMPTY)
