@@ -37,6 +37,7 @@ import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
+import com.civicxpress.cx2.Inspections;
 import com.civicxpress.cx2.ManualFeeTypes;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Municipalities;
@@ -201,6 +202,13 @@ public class MunicipalitiesController {
     public Page<Gisrecords> findAssociatedGisrecordses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gisrecordses");
         return municipalitiesService.findAssociatedGisrecordses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}/inspectionses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionses instance associated with the given id.")
+    public Page<Inspections> findAssociatedInspectionses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionses");
+        return municipalitiesService.findAssociatedInspectionses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/holidayses", method = RequestMethod.GET)

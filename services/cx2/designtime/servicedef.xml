@@ -1426,6 +1426,38 @@
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.Inspections">
+            <element name="active" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="allowAdHoc" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="allowCancel" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="allowSameDayCancel" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="allowSameDayInspections" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="callInMessage" typeRef="java.lang.String" allowNull="true"/>
+            <element name="callInOnly" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="cancelFee" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="cancelFeeAccount" typeRef="java.lang.String" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspecDesignName" typeRef="java.lang.String" allowNull="true"/>
+            <element name="instructions" typeRef="java.lang.String" allowNull="true"/>
+            <element name="maxDaysInAdvance" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
+            <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="municipalityInternalInspection" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="prefixDashes" typeRef="java.lang.Boolean" allowNull="true"/>
+            <element name="prefixDate" typeRef="java.lang.String" allowNull="true"/>
+            <element name="prefixNumber" typeRef="java.lang.String" allowNull="true"/>
+            <element name="prefixNumberStep" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="prefixStartNumber" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="sameDayCancelAcctCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="sameDayCancelFee" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="sameDayInspectionFee" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="sameDayInspectionFeeAcctCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="scheduleDateAndTime" typeRef="java.util.Date" allowNull="true"/>
+            <element name="scheduleDateOnly" typeRef="java.util.Date" allowNull="true"/>
+            <element name="titlePrefix" typeRef="java.lang.String" allowNull="true"/>
+            <element name="totalInspectionsDaily" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="totalInspectionsHourly" typeRef="java.lang.Integer" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.civicxpress.cx2.ManualFeeTypes">
             <element name="accountingCode" typeRef="java.lang.String" allowNull="true"/>
             <element name="feeType" typeRef="java.lang.String" allowNull="true"/>
@@ -1509,6 +1541,7 @@
             <element name="globalEmailSig" typeRef="java.lang.String" allowNull="true"/>
             <element name="holidayses" typeRef="com.civicxpress.cx2.Holidays" isList="true" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspectionses" typeRef="com.civicxpress.cx2.Inspections" isList="true" allowNull="true"/>
             <element name="logo" typeRef="java.lang.Byte" isList="true" allowNull="true"/>
             <element name="manualFeeTypeses" typeRef="com.civicxpress.cx2.ManualFeeTypes" isList="true" allowNull="true"/>
             <element name="manualPaymentPercent" typeRef="java.lang.Integer" allowNull="true"/>

@@ -73,6 +73,7 @@ public class Municipalities implements Serializable {
     private List<FormCategories> formCategorieses = new ArrayList<>();
     private List<FormTypes> formTypeses = new ArrayList<>();
     private List<Gisrecords> gisrecordses = new ArrayList<>();
+    private List<Inspections> inspectionses = new ArrayList<>();
     private List<Holidays> holidayses = new ArrayList<>();
     private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
@@ -409,6 +410,16 @@ public class Municipalities implements Serializable {
 
     public void setGisrecordses(List<Gisrecords> gisrecordses) {
         this.gisrecordses = gisrecordses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<Inspections> getInspectionses() {
+        return this.inspectionses;
+    }
+
+    public void setInspectionses(List<Inspections> inspectionses) {
+        this.inspectionses = inspectionses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

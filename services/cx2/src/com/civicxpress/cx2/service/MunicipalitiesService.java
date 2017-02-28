@@ -19,6 +19,7 @@ import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
+import com.civicxpress.cx2.Inspections;
 import com.civicxpress.cx2.ManualFeeTypes;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Municipalities;
@@ -185,6 +186,18 @@ public interface MunicipalitiesService {
      * @see Page
      */
     Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated inspectionses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Inspections instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Inspections> findAssociatedInspectionses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated holidayses for given Municipalities id.

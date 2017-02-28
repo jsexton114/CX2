@@ -26,6 +26,7 @@ import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
+import com.civicxpress.cx2.Inspections;
 import com.civicxpress.cx2.ManualFeeTypes;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Municipalities;
@@ -88,6 +89,10 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	private MunicipalityGroupsService municipalityGroupsService;
 
     @Autowired
+	@Qualifier("cx2.InspectionsService")
+	private InspectionsService inspectionsService;
+
+    @Autowired
 	@Qualifier("cx2.RolesService")
 	private RolesService rolesService;
 
@@ -141,6 +146,14 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
                 gisrecordse.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordse);
                 gisrecordsService.create(gisrecordse);
+            }
+        }
+
+        if(municipalitiesCreated.getInspectionses() != null) {
+            for(Inspections inspectionse : municipalitiesCreated.getInspectionses()) {
+                inspectionse.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child Inspections with information: {}", inspectionse);
+                inspectionsService.create(inspectionse);
             }
         }
 
@@ -335,6 +348,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Inspections> findAssociatedInspectionses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return inspectionsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Holidays> findAssociatedHolidayses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated holidayses");
 
@@ -520,6 +544,15 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	 */
 	protected void setMunicipalityGroupsService(MunicipalityGroupsService service) {
         this.municipalityGroupsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service InspectionsService instance
+	 */
+	protected void setInspectionsService(InspectionsService service) {
+        this.inspectionsService = service;
     }
 
     /**
