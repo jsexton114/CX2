@@ -72,6 +72,9 @@
     "table" : "MasterForms",
     "schema" : "cx2"
   }, {
+    "table" : "InspectionSequence",
+    "schema" : "cx2"
+  }, {
     "table" : "ManualFeeTypes",
     "schema" : "cx2"
   }, {
@@ -81,10 +84,10 @@
     "table" : "MasterInspections",
     "schema" : "cx2"
   }, {
-    "table" : "MasterProjects",
+    "table" : "Municipalities",
     "schema" : "cx2"
   }, {
-    "table" : "Municipalities",
+    "table" : "MasterProjects",
     "schema" : "cx2"
   }, {
     "table" : "MunicipalityGroups",
@@ -93,16 +96,16 @@
     "table" : "ProjectForms",
     "schema" : "cx2"
   }, {
-    "table" : "Projects",
-    "schema" : "cx2"
-  }, {
     "table" : "ProjectGISRecords",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectSharedWith",
+    "table" : "Projects",
     "schema" : "cx2"
   }, {
     "table" : "ProjectTasks",
+    "schema" : "cx2"
+  }, {
+    "table" : "ProjectSharedWith",
     "schema" : "cx2"
   }, {
     "table" : "Roles",
@@ -117,13 +120,10 @@
     "table" : "StandardViews",
     "schema" : "cx2"
   }, {
-    "table" : "Subdivisions",
-    "schema" : "cx2"
-  }, {
     "table" : "Users",
     "schema" : "cx2"
   }, {
-    "table" : "Vendor",
+    "table" : "Subdivisions",
     "schema" : "cx2"
   }, {
     "table" : "States",
@@ -138,16 +138,19 @@
     "table" : "UserSubscriptions",
     "schema" : "cx2"
   }, {
-    "table" : "UserViewPreferences",
-    "schema" : "cx2"
-  }, {
-    "table" : "VendorAdmins",
+    "table" : "Vendor",
     "schema" : "cx2"
   }, {
     "table" : "VendorApprovals",
     "schema" : "cx2"
   }, {
     "table" : "VendorLicenses",
+    "schema" : "cx2"
+  }, {
+    "table" : "UserViewPreferences",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorAdmins",
     "schema" : "cx2"
   }, {
     "table" : "Vendors2Form",
@@ -157,9 +160,6 @@
     "schema" : "cx2"
   }, {
     "table" : "VendorLicenseTypes",
-    "schema" : "cx2"
-  }, {
-    "table" : "InspectionSequence",
     "schema" : "cx2"
   } ],
   "schemaFilter" : [ "cx2" ],
