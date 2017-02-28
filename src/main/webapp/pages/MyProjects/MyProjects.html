@@ -14,10 +14,9 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="wi wi-building" autoclose="outsideClick" name="panel1" title="My Projects" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegridProjectsList">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.UserAndSharedWith.dataSet" navigation="Classic" name="gridProjectsList" filtermode="multicolumn" showrowindex="false">
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.UserAndSharedWith.dataSet" navigation="Classic" name="gridProjectsList" filtermode="multicolumn" showrowindex="false" showrecordcount="true">
                                     <wm-grid-column binding="projectName" caption="Project Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                    <wm-grid-column-group name="group" caption="Created By"></wm-grid-column-group>
                                     <wm-grid-column binding="usersByCreatedBy.fullName" caption="Created By" type="string" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="modifiedDate" caption="Date Modified" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
