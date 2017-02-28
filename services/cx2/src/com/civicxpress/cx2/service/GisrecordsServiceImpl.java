@@ -25,6 +25,7 @@ import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
+import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectGisrecords;
 
 
@@ -49,6 +50,10 @@ public class GisrecordsServiceImpl implements GisrecordsService {
     @Autowired
 	@Qualifier("cx2.GiscontactsService")
 	private GiscontactsService giscontactsService;
+
+    @Autowired
+	@Qualifier("cx2.MasterInspectionsService")
+	private MasterInspectionsService masterInspectionsService;
 
     @Autowired
 	@Qualifier("cx2.ProjectGisrecordsService")
@@ -88,6 +93,14 @@ public class GisrecordsServiceImpl implements GisrecordsService {
                 giscontactse.setGisrecords(gisrecordsCreated);
                 LOGGER.debug("Creating a new child Giscontacts with information: {}", giscontactse);
                 giscontactsService.create(giscontactse);
+            }
+        }
+
+        if(gisrecordsCreated.getMasterInspectionses() != null) {
+            for(MasterInspections masterInspectionse : gisrecordsCreated.getMasterInspectionses()) {
+                masterInspectionse.setGisrecords(gisrecordsCreated);
+                LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionse);
+                masterInspectionsService.create(masterInspectionse);
             }
         }
 
@@ -207,6 +220,17 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MasterInspections> findAssociatedMasterInspectionses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterInspectionses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("gisrecords.id = '" + id + "'");
+
+        return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectGisrecordses");
 
@@ -241,6 +265,15 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 	 */
 	protected void setGiscontactsService(GiscontactsService service) {
         this.giscontactsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MasterInspectionsService instance
+	 */
+	protected void setMasterInspectionsService(MasterInspectionsService service) {
+        this.masterInspectionsService = service;
     }
 
     /**

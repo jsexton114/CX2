@@ -38,6 +38,7 @@ public class InspectionOutcome implements Serializable {
     private Boolean assessFeeYn;
     private Boolean considerClosed;
     private InspectionDesign inspectionDesign;
+    private List<MasterInspections> masterInspectionses = new ArrayList<>();
     private List<OutcomeFee> outcomeFees = new ArrayList<>();
 
     @Id
@@ -99,6 +100,16 @@ public class InspectionOutcome implements Serializable {
         }
 
         this.inspectionDesign = inspectionDesign;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionOutcome")
+    public List<MasterInspections> getMasterInspectionses() {
+        return this.masterInspectionses;
+    }
+
+    public void setMasterInspectionses(List<MasterInspections> masterInspectionses) {
+        this.masterInspectionses = masterInspectionses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

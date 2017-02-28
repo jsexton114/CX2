@@ -28,6 +28,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionSequence;
+import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.service.InspectionDesignService;
 
 /**
@@ -134,6 +135,14 @@ public class InspectionDesignController {
     public Page<InspectionSequence> findAssociatedInspectionSequences(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionSequences");
         return inspectionDesignService.findAssociatedInspectionSequences(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/masterInspectionses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterInspectionses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterInspections> findAssociatedMasterInspectionses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterInspectionses");
+        return inspectionDesignService.findAssociatedMasterInspectionses(id, pageable);
     }
 
     /**

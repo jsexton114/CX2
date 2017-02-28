@@ -24,6 +24,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionSequence;
+import com.civicxpress.cx2.MasterInspections;
 
 
 /**
@@ -43,6 +44,10 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
     @Autowired
 	@Qualifier("cx2.InspectionOutcomeService")
 	private InspectionOutcomeService inspectionOutcomeService;
+
+    @Autowired
+	@Qualifier("cx2.MasterInspectionsService")
+	private MasterInspectionsService masterInspectionsService;
 
     @Autowired
     @Qualifier("cx2.InspectionDesignDao")
@@ -70,6 +75,14 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
                 inspectionSequence.setInspectionDesign(inspectionDesignCreated);
                 LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
                 inspectionSequenceService.create(inspectionSequence);
+            }
+        }
+
+        if(inspectionDesignCreated.getMasterInspectionses() != null) {
+            for(MasterInspections masterInspectionse : inspectionDesignCreated.getMasterInspectionses()) {
+                masterInspectionse.setInspectionDesign(inspectionDesignCreated);
+                LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionse);
+                masterInspectionsService.create(masterInspectionse);
             }
         }
         return inspectionDesignCreated;
@@ -168,6 +181,17 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
         return inspectionSequenceService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterInspections> findAssociatedMasterInspectionses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterInspectionses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionDesign.id = '" + id + "'");
+
+        return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -184,6 +208,15 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 	 */
 	protected void setInspectionOutcomeService(InspectionOutcomeService service) {
         this.inspectionOutcomeService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MasterInspectionsService instance
+	 */
+	protected void setMasterInspectionsService(MasterInspectionsService service) {
+        this.masterInspectionsService = service;
     }
 
 }

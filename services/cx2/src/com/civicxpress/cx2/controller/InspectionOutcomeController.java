@@ -26,6 +26,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.InspectionOutcome;
+import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.OutcomeFee;
 import com.civicxpress.cx2.service.InspectionOutcomeService;
 
@@ -119,8 +120,17 @@ public class InspectionOutcomeController {
         return inspectionOutcomeService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/outcomeFees", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/masterInspectionses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterInspectionses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterInspections> findAssociatedMasterInspectionses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterInspectionses");
+        return inspectionOutcomeService.findAssociatedMasterInspectionses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/outcomeFees", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the outcomeFees instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<OutcomeFee> findAssociatedOutcomeFees(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated outcomeFees");
         return inspectionOutcomeService.findAssociatedOutcomeFees(id, pageable);

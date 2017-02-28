@@ -1390,6 +1390,7 @@
             <element name="latitude" typeRef="java.lang.String" allowNull="true"/>
             <element name="longitude" typeRef="java.lang.String" allowNull="true"/>
             <element name="lot" typeRef="java.lang.String" allowNull="true"/>
+            <element name="masterInspectionses" typeRef="com.civicxpress.cx2.MasterInspections" isList="true" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="parcel" typeRef="java.lang.String" allowNull="true"/>
@@ -1443,6 +1444,7 @@
             <element name="inspectionOutcomes" typeRef="com.civicxpress.cx2.InspectionOutcome" isList="true" allowNull="true"/>
             <element name="inspectionSequences" typeRef="com.civicxpress.cx2.InspectionSequence" isList="true" allowNull="true"/>
             <element name="instructions" typeRef="java.lang.String" allowNull="true"/>
+            <element name="masterInspectionses" typeRef="com.civicxpress.cx2.MasterInspections" isList="true" allowNull="true"/>
             <element name="maxDaysInAdvance" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
@@ -1468,6 +1470,7 @@
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="inspectDesignId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="inspectionDesign" typeRef="com.civicxpress.cx2.InspectionDesign" allowNull="true"/>
+            <element name="masterInspectionses" typeRef="com.civicxpress.cx2.MasterInspections" isList="true" allowNull="true"/>
             <element name="outcome" typeRef="java.lang.String" allowNull="true"/>
             <element name="outcomeFees" typeRef="com.civicxpress.cx2.OutcomeFee" isList="true" allowNull="true"/>
         </dataobject>
@@ -1512,6 +1515,7 @@
             <element name="gis2formses" typeRef="com.civicxpress.cx2.Gis2forms" isList="true" allowNull="true"/>
             <element name="giscontacts" typeRef="com.civicxpress.cx2.Giscontacts" allowNull="true"/>
             <element name="issuedDate" typeRef="java.util.Date" allowNull="true"/>
+            <element name="masterInspectionses" typeRef="com.civicxpress.cx2.MasterInspections" isList="true" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityGroups" typeRef="com.civicxpress.cx2.MunicipalityGroups" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
@@ -1528,12 +1532,26 @@
             <element name="vendors2forms" typeRef="com.civicxpress.cx2.Vendors2form" isList="true" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.MasterInspections">
-            <element name="caseGuid" typeRef="java.lang.String" allowNull="true"/>
-            <element name="formGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="assignedTo" typeRef="java.lang.String" allowNull="true"/>
+            <element name="gisId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="gisrecords" typeRef="com.civicxpress.cx2.Gisrecords" allowNull="true"/>
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspecOutcomeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspectionCatId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspectionDesign" typeRef="com.civicxpress.cx2.InspectionDesign" allowNull="true"/>
+            <element name="inspectionDesignId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="inspectionGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="inspectionOutcome" typeRef="com.civicxpress.cx2.InspectionOutcome" allowNull="true"/>
             <element name="inspectionTitle" typeRef="java.lang.String" allowNull="true"/>
-            <element name="projectGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="masterForms" typeRef="com.civicxpress.cx2.MasterForms" allowNull="true"/>
+            <element name="modifiedAt" typeRef="java.util.Date" allowNull="true"/>
+            <element name="modifiedBy" typeRef="java.lang.String" allowNull="true"/>
+            <element name="projects" typeRef="com.civicxpress.cx2.Projects" allowNull="true"/>
+            <element name="relatedCaseGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="relatedFormGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="relatedProjectGuid" typeRef="java.lang.String" allowNull="true"/>
+            <element name="requestedAt" typeRef="java.util.Date" allowNull="true"/>
+            <element name="requestedBy" typeRef="java.lang.String" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.MasterProjects">
             <element name="caseGuid" typeRef="java.lang.String" allowNull="true"/>
@@ -1673,6 +1691,7 @@
             <element name="estEndDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="estStartDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="formMessageses" typeRef="com.civicxpress.cx2.FormMessages" isList="true" allowNull="true"/>
+            <element name="masterInspectionses" typeRef="com.civicxpress.cx2.MasterInspections" isList="true" allowNull="true"/>
             <element name="modifiedBy" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="modifiedDate" typeRef="java.util.Date" allowNull="true"/>
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
