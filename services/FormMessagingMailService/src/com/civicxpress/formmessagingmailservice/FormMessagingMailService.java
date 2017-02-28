@@ -98,7 +98,7 @@ public class FormMessagingMailService {
         String formURL=  FORM_URL+formGUID;
         logger.info(formGUID);
         
-        String emailContent = " The following message has been added by "+ sender +" to ";
+        String emailContent = " The following message has been added by "+ sender +" to form ";
         emailContent = emailContent+"<a href ='"+formURL+ "'>"+formTitle+" </a>";
       
         emailContent =emailContent+"<br /><br />";
@@ -107,11 +107,11 @@ public class FormMessagingMailService {
         
         emailContent =emailContent+"<br /><br />";
         
-         emailContent = emailContent+"<a href ='"+formURL+ "'> You may view the complete form by clicking here </a>";
+         emailContent = emailContent+"<a href ='"+formURL+ "'> Click Here to View Form </a>";
          
           emailContent =emailContent+"<br /><br />";
         
-        emailContent =emailContent+ "<br/><br/>"+ municipalitySignature +"<br/><br/>";
+        emailContent =emailContent+ "<br/><br/>"+ municipalitySignature ;
         
         message.setSubject(emailSubject);
         message.setContent(emailContent, "text/html");

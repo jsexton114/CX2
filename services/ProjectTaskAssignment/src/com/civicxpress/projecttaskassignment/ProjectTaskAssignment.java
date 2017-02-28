@@ -42,7 +42,7 @@ public class ProjectTaskAssignment {
     private static final Logger logger = LoggerFactory.getLogger(ProjectTaskAssignment.class);
      private static final String RESET_NOTIFICATION_MAIL_ID ="civicxpress@gmail.com ";
     private static final String RESET_NOTIFICATION_MAIL_PASSWORD ="civicxpress2016!";
-    private static final String PROJECT_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/Forms?ProjectGUID=";
+    private static final String PROJECT_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/ViewProject?ProjectGUID=";
    
 
     @Autowired
@@ -76,12 +76,12 @@ public class ProjectTaskAssignment {
      
         emailContent =emailContent+"<br />";
         
-        emailContent =emailContent + "You have been assigned a task for "+projectName+" You may access the task by clicking the following link:" ;
+        emailContent =emailContent + "You have been assigned a task for "+projectName+". You may access the task by clicking the following link:" ;
       
         emailContent =emailContent+"<br />";
-        emailContent = emailContent+"<a href ='"+projectURL+ "'> Click Here to Access Project </a>";
+        emailContent = emailContent+"<a href ='"+projectURL+ "'> Click Here to View Project </a>";
         
-        emailContent =emailContent+ "<br/><br/>"+ municipalitySignature +"<br/><br/>";
+        emailContent =emailContent+ "<br/><br/>"+municipalitySignature ;
         
         message.setSubject(emailSubject);
         message.setContent(emailContent, "text/html");
