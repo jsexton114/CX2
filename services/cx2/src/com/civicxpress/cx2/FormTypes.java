@@ -77,6 +77,7 @@ public class FormTypes implements Serializable {
     private boolean multipleVendors;
     private boolean requireOwner;
     private String instructions;
+    private Boolean forceInspectionSequence;
     private Municipalities municipalities;
     private List<FormHistory> formHistories = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
@@ -454,6 +455,15 @@ public class FormTypes implements Serializable {
 
     public void setInstructions(String instructions) {
         this.instructions = instructions;
+    }
+
+    @Column(name = "`ForceInspectionSequence`", nullable = true)
+    public Boolean getForceInspectionSequence() {
+        return this.forceInspectionSequence;
+    }
+
+    public void setForceInspectionSequence(Boolean forceInspectionSequence) {
+        this.forceInspectionSequence = forceInspectionSequence;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

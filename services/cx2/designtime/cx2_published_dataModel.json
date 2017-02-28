@@ -3625,6 +3625,31 @@
       "scale" : 0,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : "false"
+      },
+      "fieldName" : "forceInspectionSequence",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "boolean",
+      "length" : 0,
+      "name" : "ForceInspectionSequence",
+      "nullable" : true,
+      "oldName" : "ForceInspectionSequence",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "boolean",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "FormTypes",

@@ -1308,6 +1308,7 @@
             <element name="digitalSignatures" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="flatFee" typeRef="java.lang.String" allowNull="true"/>
             <element name="flatFeeAccountingCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="forceInspectionSequence" typeRef="java.lang.Boolean" allowNull="true"/>
             <element name="formCategoryMappings" typeRef="com.civicxpress.cx2.FormCategoryMapping" isList="true" allowNull="true"/>
             <element name="formHistories" typeRef="com.civicxpress.cx2.FormHistory" isList="true" allowNull="true"/>
             <element name="formStatuseses" typeRef="com.civicxpress.cx2.FormStatuses" isList="true" allowNull="true"/>

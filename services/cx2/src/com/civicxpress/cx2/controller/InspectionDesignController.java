@@ -119,8 +119,9 @@ public class InspectionDesignController {
         return inspectionDesignService.count(query);
     }
 
-    @RequestMapping(value = "/{id:.+}/inspectionOutcomes", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/inspectionOutcomes", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the inspectionOutcomes instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<InspectionOutcome> findAssociatedInspectionOutcomes(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionOutcomes");
         return inspectionDesignService.findAssociatedInspectionOutcomes(id, pageable);
