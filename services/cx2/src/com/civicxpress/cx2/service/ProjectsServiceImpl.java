@@ -96,19 +96,19 @@ public class ProjectsServiceImpl implements ProjectsService {
             }
         }
 
-        if(projectsCreated.getProjectTaskses() != null) {
-            for(ProjectTasks projectTaskse : projectsCreated.getProjectTaskses()) {
-                projectTaskse.setProjects(projectsCreated);
-                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTaskse);
-                projectTasksService.create(projectTaskse);
-            }
-        }
-
         if(projectsCreated.getProjectSharedWiths() != null) {
             for(ProjectSharedWith projectSharedWith : projectsCreated.getProjectSharedWiths()) {
                 projectSharedWith.setProjects(projectsCreated);
                 LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWith);
                 projectSharedWithService.create(projectSharedWith);
+            }
+        }
+
+        if(projectsCreated.getProjectTaskses() != null) {
+            for(ProjectTasks projectTaskse : projectsCreated.getProjectTaskses()) {
+                projectTaskse.setProjects(projectsCreated);
+                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTaskse);
+                projectTasksService.create(projectTaskse);
             }
         }
         return projectsCreated;
@@ -220,17 +220,6 @@ public class ProjectsServiceImpl implements ProjectsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<ProjectTasks> findAssociatedProjectTaskses(String projectGuid, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectTaskses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
-
-        return projectTasksService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<ProjectSharedWith> findAssociatedProjectSharedWiths(String projectGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectSharedWiths");
 
@@ -238,6 +227,17 @@ public class ProjectsServiceImpl implements ProjectsService {
         queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
 
         return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectTasks> findAssociatedProjectTaskses(String projectGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTaskses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
+
+        return projectTasksService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**

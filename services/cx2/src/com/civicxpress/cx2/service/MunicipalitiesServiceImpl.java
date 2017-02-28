@@ -26,7 +26,7 @@ import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
-import com.civicxpress.cx2.Inspections;
+import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.ManualFeeTypes;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Municipalities;
@@ -51,6 +51,10 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     @Autowired
 	@Qualifier("cx2.ManualFeeTypesService")
 	private ManualFeeTypesService manualFeeTypesService;
+
+    @Autowired
+	@Qualifier("cx2.InspectionDesignService")
+	private InspectionDesignService inspectionDesignService;
 
     @Autowired
 	@Qualifier("cx2.SubdivisionsService")
@@ -87,10 +91,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     @Autowired
 	@Qualifier("cx2.MunicipalityGroupsService")
 	private MunicipalityGroupsService municipalityGroupsService;
-
-    @Autowired
-	@Qualifier("cx2.InspectionsService")
-	private InspectionsService inspectionsService;
 
     @Autowired
 	@Qualifier("cx2.RolesService")
@@ -149,11 +149,11 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
             }
         }
 
-        if(municipalitiesCreated.getInspectionses() != null) {
-            for(Inspections inspectionse : municipalitiesCreated.getInspectionses()) {
-                inspectionse.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child Inspections with information: {}", inspectionse);
-                inspectionsService.create(inspectionse);
+        if(municipalitiesCreated.getInspectionDesigns() != null) {
+            for(InspectionDesign inspectionDesign : municipalitiesCreated.getInspectionDesigns()) {
+                inspectionDesign.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child InspectionDesign with information: {}", inspectionDesign);
+                inspectionDesignService.create(inspectionDesign);
             }
         }
 
@@ -165,19 +165,19 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
             }
         }
 
-        if(municipalitiesCreated.getManualFeeTypeses() != null) {
-            for(ManualFeeTypes manualFeeTypese : municipalitiesCreated.getManualFeeTypeses()) {
-                manualFeeTypese.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child ManualFeeTypes with information: {}", manualFeeTypese);
-                manualFeeTypesService.create(manualFeeTypese);
-            }
-        }
-
         if(municipalitiesCreated.getMasterFormses() != null) {
             for(MasterForms masterFormse : municipalitiesCreated.getMasterFormses()) {
                 masterFormse.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
                 masterFormsService.create(masterFormse);
+            }
+        }
+
+        if(municipalitiesCreated.getManualFeeTypeses() != null) {
+            for(ManualFeeTypes manualFeeTypese : municipalitiesCreated.getManualFeeTypeses()) {
+                manualFeeTypese.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child ManualFeeTypes with information: {}", manualFeeTypese);
+                manualFeeTypesService.create(manualFeeTypese);
             }
         }
 
@@ -348,13 +348,13 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Inspections> findAssociatedInspectionses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated inspectionses");
+    public Page<InspectionDesign> findAssociatedInspectionDesigns(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionDesigns");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("municipalities.id = '" + id + "'");
 
-        return inspectionsService.findAll(queryBuilder.toString(), pageable);
+        return inspectionDesignService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -370,17 +370,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<ManualFeeTypes> findAssociatedManualFeeTypeses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated manualFeeTypeses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalities.id = '" + id + "'");
-
-        return manualFeeTypesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
 
@@ -388,6 +377,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
         queryBuilder.append("municipalities.id = '" + id + "'");
 
         return masterFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ManualFeeTypes> findAssociatedManualFeeTypeses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated manualFeeTypeses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return manualFeeTypesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -463,6 +463,15 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	 */
 	protected void setManualFeeTypesService(ManualFeeTypesService service) {
         this.manualFeeTypesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service InspectionDesignService instance
+	 */
+	protected void setInspectionDesignService(InspectionDesignService service) {
+        this.inspectionDesignService = service;
     }
 
     /**
@@ -544,15 +553,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	 */
 	protected void setMunicipalityGroupsService(MunicipalityGroupsService service) {
         this.municipalityGroupsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service InspectionsService instance
-	 */
-	protected void setInspectionsService(InspectionsService service) {
-        this.inspectionsService = service;
     }
 
     /**

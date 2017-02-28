@@ -147,20 +147,20 @@ public class ProjectsController {
         return projectsService.findAssociatedProjectGisrecordses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/projectTaskses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the projectTaskses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<ProjectTasks> findAssociatedProjectTaskses(@PathVariable("id") String id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectTaskses");
-        return projectsService.findAssociatedProjectTaskses(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/projectSharedWiths", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the projectSharedWiths instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ProjectSharedWith> findAssociatedProjectSharedWiths(@PathVariable("id") String id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectSharedWiths");
         return projectsService.findAssociatedProjectSharedWiths(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/projectTaskses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectTaskses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<ProjectTasks> findAssociatedProjectTaskses(@PathVariable("id") String id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTaskses");
+        return projectsService.findAssociatedProjectTaskses(id, pageable);
     }
 
     /**

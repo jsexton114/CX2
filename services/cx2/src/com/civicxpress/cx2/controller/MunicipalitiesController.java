@@ -37,7 +37,7 @@ import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.Holidays;
-import com.civicxpress.cx2.Inspections;
+import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.ManualFeeTypes;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Municipalities;
@@ -204,11 +204,12 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedGisrecordses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/inspectionses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the inspectionses instance associated with the given id.")
-    public Page<Inspections> findAssociatedInspectionses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated inspectionses");
-        return municipalitiesService.findAssociatedInspectionses(id, pageable);
+    @RequestMapping(value = "/{id}/inspectionDesigns", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionDesigns instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<InspectionDesign> findAssociatedInspectionDesigns(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionDesigns");
+        return municipalitiesService.findAssociatedInspectionDesigns(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/holidayses", method = RequestMethod.GET)
@@ -219,20 +220,20 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedHolidayses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/manualFeeTypeses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the manualFeeTypeses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<ManualFeeTypes> findAssociatedManualFeeTypeses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated manualFeeTypeses");
-        return municipalitiesService.findAssociatedManualFeeTypeses(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
         return municipalitiesService.findAssociatedMasterFormses(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/manualFeeTypeses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the manualFeeTypeses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<ManualFeeTypes> findAssociatedManualFeeTypeses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated manualFeeTypeses");
+        return municipalitiesService.findAssociatedManualFeeTypeses(id, pageable);
     }
 
     @RequestMapping(value = "/{id}/municipalityGroupses", method = RequestMethod.GET)

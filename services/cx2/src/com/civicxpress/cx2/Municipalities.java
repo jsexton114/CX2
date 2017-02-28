@@ -73,10 +73,10 @@ public class Municipalities implements Serializable {
     private List<FormCategories> formCategorieses = new ArrayList<>();
     private List<FormTypes> formTypeses = new ArrayList<>();
     private List<Gisrecords> gisrecordses = new ArrayList<>();
-    private List<Inspections> inspectionses = new ArrayList<>();
+    private List<InspectionDesign> inspectionDesigns = new ArrayList<>();
     private List<Holidays> holidayses = new ArrayList<>();
-    private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
+    private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
     private List<MunicipalityGroups> municipalityGroupses = new ArrayList<>();
     private List<Projects> projectses = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
@@ -414,12 +414,12 @@ public class Municipalities implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<Inspections> getInspectionses() {
-        return this.inspectionses;
+    public List<InspectionDesign> getInspectionDesigns() {
+        return this.inspectionDesigns;
     }
 
-    public void setInspectionses(List<Inspections> inspectionses) {
-        this.inspectionses = inspectionses;
+    public void setInspectionDesigns(List<InspectionDesign> inspectionDesigns) {
+        this.inspectionDesigns = inspectionDesigns;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -434,22 +434,22 @@ public class Municipalities implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<ManualFeeTypes> getManualFeeTypeses() {
-        return this.manualFeeTypeses;
-    }
-
-    public void setManualFeeTypeses(List<ManualFeeTypes> manualFeeTypeses) {
-        this.manualFeeTypeses = manualFeeTypeses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<MasterForms> getMasterFormses() {
         return this.masterFormses;
     }
 
     public void setMasterFormses(List<MasterForms> masterFormses) {
         this.masterFormses = masterFormses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<ManualFeeTypes> getManualFeeTypeses() {
+        return this.manualFeeTypeses;
+    }
+
+    public void setManualFeeTypeses(List<ManualFeeTypes> manualFeeTypeses) {
+        this.manualFeeTypeses = manualFeeTypeses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
