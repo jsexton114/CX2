@@ -33,8 +33,10 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow46_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn90_1">
-                                            <wm-label padding="unset 0.5em" name="labelFormInstructions" caption="bind:'<br ></wm-label><br />' + (!!Variables.lvFormType.dataSet.data[$i].instructions ? Variables.lvFormType.dataSet.data[$i].instructions : '<div class=&quot;text-center&quot;>Welcome to the New Form Wizard. Please provide the requested data for the following steps in order to submit your new form.</div>')"
-                                            show="true"></wm-label>
+                                            <wm-html name="html1" content="bind:Variables.lvFormType.dataSet.data[$i].instructions">bind:'
+                                                <br>
+                                                <br />' + (!!Variables.lvFormType.dataSet.data[$i].instructions ? Variables.lvFormType.dataSet.data[$i].instructions : '
+                                                <div class=&quot;text-center&quot;>Welcome to the New Form Wizard. Please provide the requested data for the following steps in order to submit your new form.</div>')</wm-html>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>

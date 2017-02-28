@@ -7,9 +7,9 @@
     "excludedUrls" : null
   },
   "xssConfig" : {
-    "enforceXssSecurity" : true,
+    "enforceXssSecurity" : false,
     "policyFile" : "wm-xss-policies.xml",
-    "xssFilterStrategy" : "ENCODE",
+    "xssFilterStrategy" : "NONE",
     "policyType" : "MANUAL"
   },
   "csrfConfig" : {

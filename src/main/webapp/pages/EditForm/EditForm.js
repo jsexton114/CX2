@@ -28,11 +28,12 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
 
 
     $scope.liveformUpdateFormTypeBeforeservicecall = function($event, $operation, $data) {
+        console.log($data.instructions);
         if ($operation === 'update') {
-            if ($scope.Widgets.gisOptionSelect._proxyModel === 'Multiple') {
+            if ($scope.Widgets.gisOptionSelect.datavalue === 'Multiple') {
                 $data.gisrecord = true;
                 $data.multipleGisrecords = true;
-            } else if ($scope.Widgets.gisOptionSelect._proxyModel === 'Single') {
+            } else if ($scope.Widgets.gisOptionSelect.datavalue === 'Single') {
                 $data.gisrecord = true;
                 $data.multipleGisrecords = false;
             } else {
@@ -40,10 +41,10 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
                 $data.multipleGisrecords = false;
             }
 
-            if ($scope.Widgets.selectVendorOption._proxyModel === 'Multiple') {
+            if ($scope.Widgets.selectVendorOption.datavalue === 'Multiple') {
                 $data.vendorSelection = true;
                 $data.multipleVendors = true;
-            } else if ($scope.Widgets.selectVendorOption._proxyModel === 'Single') {
+            } else if ($scope.Widgets.selectVendorOption.datavalue === 'Single') {
                 $data.vendorSelection = true;
                 $data.multipleVendors = false;
             } else {

@@ -1,58 +1,91 @@
 {
-  "tagRules": [ {
-      "name": "script",
-      "action": "REMOVE"
-    }, {
-      "name": "noscript",
-      "action": "REMOVE"
-    }, {
-      "name": "iframe",
-      "action": "REMOVE"
-    }, {
-      "name": "frameset",
-      "action": "REMOVE"	
-    }, {
-      "name": "frame",
-      "action": "REMOVE"	
-    }, {
-      "name": "noframes",
-      "action": "REMOVE"	
-    }, {
-      "name": "p",
-      "action": "VALIDATE"	
-    }, {
-      "name": "div",
-      "action": "VALIDATE"	
-    }, {
-      "name": "i",
-      "action": "VALIDATE"	
-    }, {
-      "name": "b",
-      "action": "FILTER"	
-    }, {
-      "name": "em",
-      "action": "VALIDATE"	
-    }, {
-      "name": "blockquote",
-      "action": "VALIDATE"	
-    }, {
-      "name": "tt",
-      "action": "VALIDATE"	
-    }, {
-      "name": "br",
-      "action": "TRUNCATE"	
-    }, {
-      "name": "a",
-      "action": "VALIDATE"	
-    }, {
-      "name": "ul",
-      "action": "VALIDATE"	
-    }, {
-      "name": "ol",
-      "action": "VALIDATE"	
-    }, {
-      "name": "li",
-      "action": "VALIDATE"	
-    } ],
-  "unknownTagAction" : "REMOVE"
+  "tagRules" : [ {
+    "name" : "",
+    "action" : "FILTER"
+  }, {
+    "name" : "img",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "div",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "noscript",
+    "action" : "REMOVE"
+  }, {
+    "name" : "br",
+    "action" : "TRUNCATE"
+  }, {
+    "name" : "strike",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "h5",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "h4",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "ol",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "h6",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "h1",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "h3",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "h2",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "ul",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "b",
+    "action" : "TRUNCATE"
+  }, {
+    "name" : "a",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "blockquote",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "script",
+    "action" : "REMOVE"
+  }, {
+    "name" : "i",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "li",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "u",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "iframe",
+    "action" : "REMOVE"
+  }, {
+    "name" : "frame",
+    "action" : "REMOVE"
+  }, {
+    "name" : "frameset",
+    "action" : "REMOVE"
+  }, {
+    "name" : "tt",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "pre",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "p",
+    "action" : "VALIDATE"
+  }, {
+    "name" : "noframes",
+    "action" : "REMOVE"
+  }, {
+    "name" : "em",
+    "action" : "VALIDATE"
+  } ],
+  "unknownTagAction" : "ENCODE"
 }
