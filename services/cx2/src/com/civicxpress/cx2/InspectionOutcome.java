@@ -38,8 +38,8 @@ public class InspectionOutcome implements Serializable {
     private Boolean assessFeeYn;
     private Boolean considerClosed;
     private InspectionDesign inspectionDesign;
+    private List<InspectionOutcomeFee> inspectionOutcomeFees = new ArrayList<>();
     private List<MasterInspections> masterInspectionses = new ArrayList<>();
-    private List<OutcomeFee> outcomeFees = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -104,22 +104,22 @@ public class InspectionOutcome implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionOutcome")
+    public List<InspectionOutcomeFee> getInspectionOutcomeFees() {
+        return this.inspectionOutcomeFees;
+    }
+
+    public void setInspectionOutcomeFees(List<InspectionOutcomeFee> inspectionOutcomeFees) {
+        this.inspectionOutcomeFees = inspectionOutcomeFees;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionOutcome")
     public List<MasterInspections> getMasterInspectionses() {
         return this.masterInspectionses;
     }
 
     public void setMasterInspectionses(List<MasterInspections> masterInspectionses) {
         this.masterInspectionses = masterInspectionses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionOutcome")
-    public List<OutcomeFee> getOutcomeFees() {
-        return this.outcomeFees;
-    }
-
-    public void setOutcomeFees(List<OutcomeFee> outcomeFees) {
-        this.outcomeFees = outcomeFees;
     }
 
     @Override

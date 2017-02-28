@@ -156,20 +156,20 @@ public class FormTypesController {
         return formTypesService.findAssociatedFormTypeFieldses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)
-    @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterFormses");
-        return formTypesService.findAssociatedMasterFormses(id, pageable);
-    }
-
     @RequestMapping(value = "/{id}/inspectionSequences", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the inspectionSequences instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<InspectionSequence> findAssociatedInspectionSequences(@PathVariable("id") Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionSequences");
         return formTypesService.findAssociatedInspectionSequences(id, pageable);
+    }
+
+    @RequestMapping(value = "/{id}/masterFormses", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+        return formTypesService.findAssociatedMasterFormses(id, pageable);
     }
 
     /**

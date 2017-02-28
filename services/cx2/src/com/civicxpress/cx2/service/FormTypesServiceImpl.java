@@ -109,19 +109,19 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getMasterFormses() != null) {
-            for(MasterForms masterFormse : formTypesCreated.getMasterFormses()) {
-                masterFormse.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
-                masterFormsService.create(masterFormse);
-            }
-        }
-
         if(formTypesCreated.getInspectionSequences() != null) {
             for(InspectionSequence inspectionSequence : formTypesCreated.getInspectionSequences()) {
                 inspectionSequence.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
                 inspectionSequenceService.create(inspectionSequence);
+            }
+        }
+
+        if(formTypesCreated.getMasterFormses() != null) {
+            for(MasterForms masterFormse : formTypesCreated.getMasterFormses()) {
+                masterFormse.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
+                masterFormsService.create(masterFormse);
             }
         }
         return formTypesCreated;
@@ -244,17 +244,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterFormses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return masterFormsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<InspectionSequence> findAssociatedInspectionSequences(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionSequences");
 
@@ -262,6 +251,17 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return inspectionSequenceService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return masterFormsService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**

@@ -22,8 +22,8 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.InspectionOutcome;
+import com.civicxpress.cx2.InspectionOutcomeFee;
 import com.civicxpress.cx2.MasterInspections;
-import com.civicxpress.cx2.OutcomeFee;
 
 
 /**
@@ -37,12 +37,12 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
     private static final Logger LOGGER = LoggerFactory.getLogger(InspectionOutcomeServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.MasterInspectionsService")
-	private MasterInspectionsService masterInspectionsService;
+	@Qualifier("cx2.InspectionOutcomeFeeService")
+	private InspectionOutcomeFeeService inspectionOutcomeFeeService;
 
     @Autowired
-	@Qualifier("cx2.OutcomeFeeService")
-	private OutcomeFeeService outcomeFeeService;
+	@Qualifier("cx2.MasterInspectionsService")
+	private MasterInspectionsService masterInspectionsService;
 
     @Autowired
     @Qualifier("cx2.InspectionOutcomeDao")
@@ -57,19 +57,19 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
 	public InspectionOutcome create(InspectionOutcome inspectionOutcome) {
         LOGGER.debug("Creating a new InspectionOutcome with information: {}", inspectionOutcome);
         InspectionOutcome inspectionOutcomeCreated = this.wmGenericDao.create(inspectionOutcome);
+        if(inspectionOutcomeCreated.getInspectionOutcomeFees() != null) {
+            for(InspectionOutcomeFee inspectionOutcomeFee : inspectionOutcomeCreated.getInspectionOutcomeFees()) {
+                inspectionOutcomeFee.setInspectionOutcome(inspectionOutcomeCreated);
+                LOGGER.debug("Creating a new child InspectionOutcomeFee with information: {}", inspectionOutcomeFee);
+                inspectionOutcomeFeeService.create(inspectionOutcomeFee);
+            }
+        }
+
         if(inspectionOutcomeCreated.getMasterInspectionses() != null) {
             for(MasterInspections masterInspectionse : inspectionOutcomeCreated.getMasterInspectionses()) {
                 masterInspectionse.setInspectionOutcome(inspectionOutcomeCreated);
                 LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionse);
                 masterInspectionsService.create(masterInspectionse);
-            }
-        }
-
-        if(inspectionOutcomeCreated.getOutcomeFees() != null) {
-            for(OutcomeFee outcomeFee : inspectionOutcomeCreated.getOutcomeFees()) {
-                outcomeFee.setInspectionOutcome(inspectionOutcomeCreated);
-                LOGGER.debug("Creating a new child OutcomeFee with information: {}", outcomeFee);
-                outcomeFeeService.create(outcomeFee);
             }
         }
         return inspectionOutcomeCreated;
@@ -148,6 +148,17 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<InspectionOutcomeFee> findAssociatedInspectionOutcomeFees(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionOutcomeFees");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionOutcome.id = '" + id + "'");
+
+        return inspectionOutcomeFeeService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterInspections> findAssociatedMasterInspectionses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterInspectionses");
 
@@ -157,15 +168,13 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
         return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<OutcomeFee> findAssociatedOutcomeFees(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated outcomeFees");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("inspectionOutcome.id = '" + id + "'");
-
-        return outcomeFeeService.findAll(queryBuilder.toString(), pageable);
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service InspectionOutcomeFeeService instance
+	 */
+	protected void setInspectionOutcomeFeeService(InspectionOutcomeFeeService service) {
+        this.inspectionOutcomeFeeService = service;
     }
 
     /**
@@ -175,15 +184,6 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
 	 */
 	protected void setMasterInspectionsService(MasterInspectionsService service) {
         this.masterInspectionsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service OutcomeFeeService instance
-	 */
-	protected void setOutcomeFeeService(OutcomeFeeService service) {
-        this.outcomeFeeService = service;
     }
 
 }

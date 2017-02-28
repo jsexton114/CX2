@@ -148,8 +148,9 @@ public class MasterFormsController {
         return masterFormsService.findAssociatedGis2formses(id, pageable);
     }
 
-    @RequestMapping(value = "/{id:.+}/masterInspectionses", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/masterInspectionses", method = RequestMethod.GET)
     @ApiOperation(value = "Gets the masterInspectionses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<MasterInspections> findAssociatedMasterInspectionses(@PathVariable("id") String id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterInspectionses");
         return masterFormsService.findAssociatedMasterInspectionses(id, pageable);

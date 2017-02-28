@@ -13,14 +13,14 @@ import org.springframework.stereotype.Repository;
 
 import com.wavemaker.runtime.data.dao.WMGenericDaoImpl;
 
-import com.civicxpress.cx2.OutcomeFee;
+import com.civicxpress.cx2.InspectionOutcomeFee;
 
 /**
- * Specifies methods used to obtain and modify OutcomeFee related information
+ * Specifies methods used to obtain and modify InspectionOutcomeFee related information
  * which is stored in the database.
  */
-@Repository("cx2.OutcomeFeeDao")
-public class OutcomeFeeDao extends WMGenericDaoImpl<OutcomeFee, Integer> {
+@Repository("cx2.InspectionOutcomeFeeDao")
+public class InspectionOutcomeFeeDao extends WMGenericDaoImpl<InspectionOutcomeFee, Integer> {
 
     @Autowired
     @Qualifier("cx2Template")

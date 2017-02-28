@@ -1470,9 +1470,17 @@
             <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="inspectDesignId" typeRef="java.lang.Integer" allowNull="true"/>
             <element name="inspectionDesign" typeRef="com.civicxpress.cx2.InspectionDesign" allowNull="true"/>
+            <element name="inspectionOutcomeFees" typeRef="com.civicxpress.cx2.InspectionOutcomeFee" isList="true" allowNull="true"/>
             <element name="masterInspectionses" typeRef="com.civicxpress.cx2.MasterInspections" isList="true" allowNull="true"/>
             <element name="outcome" typeRef="java.lang.String" allowNull="true"/>
-            <element name="outcomeFees" typeRef="com.civicxpress.cx2.OutcomeFee" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.civicxpress.cx2.InspectionOutcomeFee">
+            <element name="accountCode" typeRef="java.lang.String" allowNull="true"/>
+            <element name="amount" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspeOutcomeId" typeRef="java.lang.Integer" allowNull="true"/>
+            <element name="inspectionOutcome" typeRef="com.civicxpress.cx2.InspectionOutcome" allowNull="true"/>
+            <element name="orderToApply" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.InspectionSequence">
             <element name="formTypeId" typeRef="java.lang.Integer" allowNull="true"/>
@@ -1625,14 +1633,6 @@
             <element name="municipalities" typeRef="com.civicxpress.cx2.Municipalities" allowNull="true"/>
             <element name="municipalityGroupMemberses" typeRef="com.civicxpress.cx2.MunicipalityGroupMembers" isList="true" allowNull="true"/>
             <element name="municipalityId" typeRef="java.lang.Integer" allowNull="true"/>
-        </dataobject>
-        <dataobject javaType="com.civicxpress.cx2.OutcomeFee">
-            <element name="accountCode" typeRef="java.lang.String" allowNull="true"/>
-            <element name="amount" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="id" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="inspeOutcomeId" typeRef="java.lang.Integer" allowNull="true"/>
-            <element name="inspectionOutcome" typeRef="com.civicxpress.cx2.InspectionOutcome" allowNull="true"/>
-            <element name="orderToApply" typeRef="java.lang.Integer" allowNull="true"/>
         </dataobject>
         <dataobject javaType="com.civicxpress.cx2.ProjectForms">
             <element name="addedAt" typeRef="java.util.Date" allowNull="true"/>
