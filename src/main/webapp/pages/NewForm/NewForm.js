@@ -454,15 +454,12 @@ Application.$controller("gridVendorsController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        $scope.changePrimaryVendor = function($event, $rowData) {
-            $event.preventDefault();
-            if ($rowData.Primary) {
-                return;
-            } else {
-                $scope.Variables.stvVendors.dataSet.forEach(function(vendorData, index) {
-                    vendorData.Primary = (vendorData.ID === $rowData.ID);
-                });
-            }
+        $scope.changePrimaryVendor = function($event, newPrimaryVendorData) {
+            if (!!$event) $event.preventDefault();
+
+            $scope.Variables.stvVendors.dataSet.forEach(function(vendorData, index) {
+                vendorData.Primary = (vendorData.ID === newPrimaryVendorData.ID);
+            });
         };
 
         $scope.customRowAction = function($event, $rowData) {
@@ -486,7 +483,7 @@ Application.$controller("dialogAddVendorController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonAddVendorClick = function($event, $isolateScope) {
-            var newVendor = $scope.Widgets.searchVendors._proxyModel;
+            var newVendor = $scope.Widgets.searchVendors.datavalue;
             var rowIndex = _.findIndex($scope.Variables.stvVendors.dataSet, {
                 'ID': newVendor.vendor.id
             });
@@ -505,9 +502,17 @@ Application.$controller("dialogAddVendorController", ["$scope",
                     StateId: newVendor.vendor.states.id,
                     PostalCode: newVendor.vendor.postalCode,
                     Country: newVendor.vendor.country,
-                    Primary: $scope.Variables.stvVendors.dataSet.length === 0
+                    Primary: ($scope.Variables.stvVendors.dataSet.length === 0 ? true : $scope.Widgets.checkboxVendorIsPrimary.datavalue)
                 });
             }
+
+            if ($scope.Variables.stvVendors.dataSet.length > 1 && $scope.Widgets.checkboxVendorIsPrimary.datavalue) {
+                $scope.Widgets.gridVendors.changePrimaryVendor(null, {
+                    ID: newVendor.vendor.id
+                });
+            }
+
+            $scope.Widgets.checkboxVendorIsPrimary.reset();
         };
 
     }
