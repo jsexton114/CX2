@@ -38,6 +38,7 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
+    "orderBy" : "municipalityName asc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "states",
@@ -479,6 +480,7 @@
       "watchOn" : "Cx2StatesData",
       "package" : "com.civicxpress.cx2.Municipalities"
     } ],
+    "filterFields" : { },
     "package" : "com.civicxpress.cx2.Municipalities"
   }
 }

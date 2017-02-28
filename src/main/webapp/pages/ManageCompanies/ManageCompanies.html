@@ -15,7 +15,6 @@
                         <wm-panel iconclass="wi wi-work" autoclose="outsideClick" name="panel1" title="All CX Companies" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid1">
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2VendorData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                    <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
                                     <wm-grid-column binding="companyName" caption="Company" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="companyPhone" caption="Company Phone" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="companyEmail" caption="Email Address" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>

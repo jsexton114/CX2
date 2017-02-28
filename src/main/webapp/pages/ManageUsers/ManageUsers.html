@@ -15,9 +15,9 @@
                         <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panel1" title="All CX Users" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid1">
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2UsersData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                    <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" show="true"></wm-grid-column>
-                                    <wm-grid-column binding="firstName" caption="First Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="lastName" caption="Last Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="fullName" caption="Name" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="photo" caption="Photo" type="blob" widget-type="image" primary-key="false" generator="assigned" searchable="false" show="true" filterwidget="text" readonly="false"><img ng-if="columnValue != null" width="48px" class="" data-ng-src="{{contentBaseUrl + row[primaryKey] + '/content/'+ colDef.field}}">
+                                    </wm-grid-column>
                                     <wm-grid-column binding="email" caption="Email Address" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="phoneNumber" caption="Phone Number" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="city" caption="City" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
