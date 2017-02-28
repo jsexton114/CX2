@@ -214,6 +214,16 @@
                         <property name="landingPage" value="MyCompany"/>
                     </bean>
                 </entry>
+                <entry key="Inspector">
+                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                        <property name="landingPage" value="Main"/>
+                    </bean>
+                </entry>
+                <entry key="InspectorManager">
+                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                        <property name="landingPage" value="Main"/>
+                    </bean>
+                </entry>
             </map>
         </property>
     </bean>
