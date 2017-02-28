@@ -237,18 +237,6 @@ public interface UsersService {
     Page<ProjectForms> findAssociatedProjectFormses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated projectGisrecordses for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated ProjectGisrecords instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated projectsesForCreatedBy for given Users id.
      *
      * @param id value of id; value cannot be null
@@ -273,28 +261,16 @@ public interface UsersService {
     Page<Projects> findAssociatedProjectsesForModifiedBy(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated projectTasksesForAssignedTo for given Users id.
+     * Returns the associated projectGisrecordses for given Users id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated ProjectTasks instances.
+     * @return Paginated list of associated ProjectGisrecords instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<ProjectTasks> findAssociatedProjectTasksesForAssignedTo(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated projectTasksesForCreatedBy for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated ProjectTasks instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<ProjectTasks> findAssociatedProjectTasksesForCreatedBy(Integer id, Pageable pageable);
+    Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated projectSharedWithsForProjectSharedBy for given Users id.
@@ -319,6 +295,30 @@ public interface UsersService {
      * @see Page
      */
     Page<ProjectSharedWith> findAssociatedProjectSharedWithsForProjectSharedWithUser(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated projectTasksesForAssignedTo for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated ProjectTasks instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<ProjectTasks> findAssociatedProjectTasksesForAssignedTo(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated projectTasksesForCreatedBy for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated ProjectTasks instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<ProjectTasks> findAssociatedProjectTasksesForCreatedBy(Integer id, Pageable pageable);
 
     /*
      * Returns the associated roleses for given Users id.

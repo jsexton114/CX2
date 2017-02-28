@@ -15,6 +15,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.InspectionOutcome;
+import com.civicxpress.cx2.OutcomeFee;
 
 /**
  * Service object for domain model class {@link InspectionOutcome}.
@@ -125,6 +126,17 @@ public interface InspectionOutcomeService {
 	 */
 	long count(String query);
 
+    /*
+     * Returns the associated outcomeFees for given InspectionOutcome id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated OutcomeFee instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<OutcomeFee> findAssociatedOutcomeFees(Integer id, Pageable pageable);
 
 }
 

@@ -85,7 +85,8 @@ public class InspectionSequenceController {
 
     @RequestMapping(value = "/formTypeId-inspectDesignId-sequenceOrderNumber", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching InspectionSequence with given unique key values.")
-    public InspectionSequence getByFormTypeIdAndInspectDesignIdAndSequenceOrderNumber(@RequestParam(name = "formTypeId") Integer formTypeId, @RequestParam(name = "inspectDesignId") Integer inspectDesignId, @RequestParam(name = "sequenceOrderNumber") Integer sequenceOrderNumber) {
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public InspectionSequence getByFormTypeIdAndInspectDesignIdAndSequenceOrderNumber(@RequestParam(value = "null", required = true) Integer formTypeId, @RequestParam(value = "null", required = true) Integer inspectDesignId, @RequestParam(value = "null", required = true) Integer sequenceOrderNumber) {
         LOGGER.debug("Getting InspectionSequence with uniques key FormTypeIdAndInspectDesignIdAndSequenceOrderNumber");
         return inspectionSequenceService.getByFormTypeIdAndInspectDesignIdAndSequenceOrderNumber(formTypeId, inspectDesignId, sequenceOrderNumber);
     }
