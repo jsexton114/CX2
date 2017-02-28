@@ -15,3 +15,18 @@ Application.$controller("ManageRolesPageController", ["$scope", function ($scope
     };
 
 }]);
+
+
+Application.$controller("gridMunicipalityRolesController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformMunicipalityRolesController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
