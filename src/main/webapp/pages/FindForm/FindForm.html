@@ -11,7 +11,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow19">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn31_1" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn31_1">
                         <wm-tabs name="tabsSearch">
                             <wm-tabpane name="tabpaneUSER" title="BY USER">
                                 <wm-layoutgrid name="layoutgridByUser">
@@ -91,7 +91,7 @@
                                     <wm-gridrow name="gridrow12" padding=".5em unset">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn19"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="9" name="gridcolumn20" horizontalalign="right">
-                                            <wm-button class="btn-default btn-primary" caption="Search" type="button" margin="unset 0.5em" name="buttonSearch" on-click="Variables.FilteredMasterForms.listRecords()" iconclass="wi wi-search"></wm-button>
+                                            <wm-button class="btn-primary" caption="Search" type="button" name="buttonSearch" on-click="Variables.FilteredMasterForms.listRecords()" iconclass="wi wi-search"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn26"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -193,7 +193,7 @@
                                     <wm-gridrow padding=".5em unset" name="gridrow31">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn100"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="9" horizontalalign="right" name="gridcolumn101">
-                                            <wm-button class="btn-default btn-primary" caption="Search" type="button" margin="unset 0.5em" on-click="Variables.SearchFormByVendor.invoke()" name="button3" iconclass="wi wi-search"></wm-button>
+                                            <wm-button class="btn-primary" caption="Search" type="button" on-click="Variables.SearchFormByVendor.invoke()" name="button3" iconclass="wi wi-search"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn102"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -296,7 +296,7 @@
                                     <wm-gridrow padding=".5em unset" name="gridrow40">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn133"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="9" horizontalalign="right" name="gridcolumn134">
-                                            <wm-button class="btn-default btn-primary" caption="Search" type="button" margin="unset 0.5em" on-click="Variables.FilteredMasterForms.listRecords()" name="button4" iconclass="wi wi-search"></wm-button>
+                                            <wm-button class="btn-primary" caption="Search" type="button" on-click="Variables.FilteredMasterForms.listRecords()" name="button4" iconclass="wi wi-search"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn135"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -329,38 +329,32 @@
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow22" padding="1em unset unset unset">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn65"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="3" name="gridcolumn65"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn66">
-                                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold" width="100%"></wm-label>
+                                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Municipality" fontweight="bold" width="100%"></wm-label>
                                         </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="7" name="gridcolumn67">
-                                            <wm-select dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"
-                                            name="selectMunicipalityAdvanced"></wm-select>
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn67">
+                                            <wm-select dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" orderby="MunicipalityName:asc" name="selectMunicipalityAdvanced" placeholder="Select Municipality"></wm-select>
                                         </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn68"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="3" name="gridcolumn68"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow padding=".5em unset" name="gridrow18">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn51"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="3" name="gridcolumn51"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn52">
                                             <wm-label class="col-md-3 form-control-static" caption="Form Title" width="100%" name="label15" fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="7" name="gridcolumn53">
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn53">
                                             <wm-search dataset="bind:Variables.GetFormsFromMasterFormByMunicipality.dataSet" datafield="All Fields" displayfield="formTitle" name="selectFormTypesForAdvanced" orderby="formTitle:asc" displaylabel="formTitle"
-                                            searchkey="formTitle" placeholder="Search Form Name"></wm-search>
+                                            searchkey="formTitle" placeholder="Search by Form Title" type="autocomplete"></wm-search>
                                         </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn54"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="3" name="gridcolumn54"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow padding=".5em unset" name="gridrow20">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn59"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="9" horizontalalign="right" name="gridcolumn60">
-                                            <wm-button class="btn-default btn-primary" caption="Search" type="button" margin="unset 0.5em" on-click="Variables.FliteredMasterFormsAdvancedSearch.listRecords()" name="buttonSearchAdvanced" iconclass="wi wi-search"></wm-button>
+                                        <wm-gridcolumn columnwidth="3" name="gridcolumn59"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="6" horizontalalign="right" name="gridcolumn60">
+                                            <wm-button class="btn-primary" caption="Search" type="button" on-click="Variables.FliteredMasterFormsAdvancedSearch.listRecords()" name="buttonSearchAdvanced" iconclass="wi wi-search" disabled="bind:Widgets.selectFormTypesForAdvanced.datavalue == null"></wm-button>
                                         </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn61"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow35_1">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn109_1"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="9" name="gridcolumn110_1"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn111_1"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="3" name="gridcolumn61"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow21">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn63">
