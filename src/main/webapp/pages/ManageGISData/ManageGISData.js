@@ -15,14 +15,10 @@ Application.$controller("ManageGISDataPageController", ["$scope", function($scop
 
     };
 
-
     $scope.liveform3Beforeservicecall = function($event, $operation, $data) {
-        console.log($scope.Widgets.select1.datavalue);
-        console.log($data);
+        $data.municipalityId = $scope.Widgets.selectMunicipality.datavalue.id;
     };
-
 }]);
-
 
 Application.$controller("grid1Controller", ["$scope",
     function($scope) {
@@ -38,10 +34,6 @@ Application.$controller("liveform1Controller", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
-
-
-
-
 
 Application.$controller("grid3Controller", ["$scope",
     function($scope) {
