@@ -16,8 +16,8 @@ Application.$controller("topnavPageController", ["$scope", "$location", "$window
 
 
     $scope.logoutLinkClick = function($event, $isolateScope) {
-        $location.path("/");
-        $window.location.reload();
+        $location.path("/Login").search(null);
+        // $window.location.reload();
     };
 
 }]);

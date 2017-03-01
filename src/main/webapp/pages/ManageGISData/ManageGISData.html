@@ -83,7 +83,8 @@
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.goToPage_EditGISRecord.invoke()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Parcel Details" formlayout="dialog" iconclass="wi wi-location-on" dataset="bind:Variables.Cx2GisrecordsData.dataSet" captionalign="left" captionposition="top" name="liveform3">
+                                    <wm-liveform novalidate="false" errormessage="" title="Parcel Details" formlayout="dialog" iconclass="wi wi-location-on" dataset="bind:Variables.Cx2GisrecordsData.dataSet" captionalign="left" captionposition="top" name="liveform3"
+                                    on-beforeservicecall="liveform3Beforeservicecall($event, $operation, $data)">
                                         <wm-layoutgrid columns="3" name="layoutgrid4">
                                             <wm-gridrow name="gridrow19_1">
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn32_1">
