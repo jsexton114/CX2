@@ -840,6 +840,16 @@ public class QueryExecutionController {
     }
 
     @ApiOperation(value = "Process request to execute queries")
+    @RequestMapping(value = "/queries/searchUsersByEmailOrName", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Object> executeSearchUsersByEmailOrName(@RequestParam(value = "searchString", required = false) java.lang.String searchString, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query searchUsersByEmailOrName");
+        Page<Object> result = queryService.executeSearchUsersByEmailOrName(pageable, searchString);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
+    @ApiOperation(value = "Process request to execute queries")
     @RequestMapping(value = "/queries/SetModifiedDateForProject", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public int executeSetModifiedDateForProject(@RequestParam(value = "DateModified", required = false) java.sql.Timestamp DateModified, @RequestParam(value = "project", required = false) java.lang.String project) throws QueryParameterMismatchException {

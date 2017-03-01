@@ -423,6 +423,11 @@
       from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
     ]]>
   </query>
+  <sql-query name="searchUsersByEmailOrName">
+    <![CDATA[
+      SELECT ID, FullName, Photo, Email FROM Users WHERE Active=1 AND (Email LIKE CONCAT('%',:searchString,'%') OR FullName LIKE CONCAT('%',:searchString,'%'))
+    ]]>
+  </sql-query>
   <sql-query name="SetModifiedDateForProject">
     <![CDATA[
       Update Projects set ModifiedDate=:DateModified where ProjectGUID=:project

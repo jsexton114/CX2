@@ -2645,6 +2645,29 @@
       "vendors2forms" : "java.util.List"
     }
   }, {
+    "name" : "searchUsersByEmailOrName",
+    "query" : "SELECT ID, FullName, Photo, Email FROM Users WHERE Active=1 AND (Email LIKE CONCAT('%',:searchString,'%') OR FullName LIKE CONCAT('%',:searchString,'%'))",
+    "comment" : "Searches users by email or full name",
+    "description" : null,
+    "nativeSql" : true,
+    "returnsSingleResult" : false,
+    "update" : false,
+    "queryParams" : [ {
+      "paramName" : "searchString",
+      "paramType" : "java.lang.String",
+      "testValue" : "jkeLLEr@",
+      "systemParamName" : null,
+      "systemParam" : false,
+      "list" : false
+    } ],
+    "outputType" : "cx2searchUsersByEmailOrNamertnType",
+    "returnTypeMetadata" : {
+      "Email" : "java.lang.String",
+      "FullName" : "java.lang.String",
+      "ID" : "java.math.BigDecimal",
+      "Photo" : "[B"
+    }
+  }, {
     "name" : "SetModifiedDateForProject",
     "query" : "Update Projects set ModifiedDate=:DateModified where ProjectGUID=:project",
     "comment" : "SetModifiedDateForProject",

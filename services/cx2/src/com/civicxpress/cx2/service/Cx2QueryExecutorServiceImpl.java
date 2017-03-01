@@ -762,6 +762,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 	}
 	@Transactional(value = "cx2TransactionManager")
 	@Override
+	public Page<Object> executeSearchUsersByEmailOrName(Pageable pageable, java.lang.String searchString)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("searchString", searchString);
+        return queryExecutor.executeNamedQuery("searchUsersByEmailOrName", params, pageable);
+	}
+	@Transactional(value = "cx2TransactionManager")
+	@Override
 	public int executeSetModifiedDateForProject( java.sql.Timestamp DateModified ,java.lang.String project)
 	throws QueryParameterMismatchException{
         Map<String, Object> params = new HashMap<String, Object>();
