@@ -15,3 +15,18 @@ Application.$controller("ManageInspectionsPageController", ["$scope", function (
     };
 
 }]);
+
+
+Application.$controller("gridInspectiondesignController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformInspectiondesignController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
