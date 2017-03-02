@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.InspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionSequence;
@@ -44,6 +45,10 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
     @Autowired
 	@Qualifier("cx2.InspectionOutcomeService")
 	private InspectionOutcomeService inspectionOutcomeService;
+
+    @Autowired
+	@Qualifier("cx2.InspectionCategoryMappingService")
+	private InspectionCategoryMappingService inspectionCategoryMappingService;
 
     @Autowired
 	@Qualifier("cx2.MasterInspectionsService")
@@ -83,6 +88,14 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
                 masterInspectionse.setInspectionDesign(inspectionDesignCreated);
                 LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionse);
                 masterInspectionsService.create(masterInspectionse);
+            }
+        }
+
+        if(inspectionDesignCreated.getInspectionCategoryMappings() != null) {
+            for(InspectionCategoryMapping inspectionCategoryMapping : inspectionDesignCreated.getInspectionCategoryMappings()) {
+                inspectionCategoryMapping.setInspectionDesign(inspectionDesignCreated);
+                LOGGER.debug("Creating a new child InspectionCategoryMapping with information: {}", inspectionCategoryMapping);
+                inspectionCategoryMappingService.create(inspectionCategoryMapping);
             }
         }
         return inspectionDesignCreated;
@@ -192,6 +205,17 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
         return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<InspectionCategoryMapping> findAssociatedInspectionCategoryMappings(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionCategoryMappings");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionDesign.id = '" + id + "'");
+
+        return inspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -208,6 +232,15 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 	 */
 	protected void setInspectionOutcomeService(InspectionOutcomeService service) {
         this.inspectionOutcomeService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service InspectionCategoryMappingService instance
+	 */
+	protected void setInspectionCategoryMappingService(InspectionCategoryMappingService service) {
+        this.inspectionCategoryMappingService = service;
     }
 
     /**
