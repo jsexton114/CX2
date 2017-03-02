@@ -63,6 +63,9 @@ public class InspectionDesign implements Serializable {
     private Integer prefixStartNumber;
     private Integer prefixNumberStep;
     private Boolean prefixDashes;
+    private Integer createdBy;
+    private Timestamp createdAt;
+    private Users users;
     private Municipalities municipalities;
     private List<InspectionCategoryMapping> inspectionCategoryMappings = new ArrayList<>();
     private List<InspectionOutcome> inspectionOutcomes = new ArrayList<>();
@@ -330,6 +333,38 @@ public class InspectionDesign implements Serializable {
 
     public void setPrefixDashes(Boolean prefixDashes) {
         this.prefixDashes = prefixDashes;
+    }
+
+    @Column(name = "`CreatedBy`", nullable = true, scale = 0, precision = 10)
+    public Integer getCreatedBy() {
+        return this.createdBy;
+    }
+
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    @Column(name = "`CreatedAt`", nullable = true)
+    public Timestamp getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`CreatedBy`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Users getUsers() {
+        return this.users;
+    }
+
+    public void setUsers(Users users) {
+        if(users != null) {
+            this.createdBy = users.getId();
+        }
+
+        this.users = users;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

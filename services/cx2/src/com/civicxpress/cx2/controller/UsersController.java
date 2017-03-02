@@ -43,6 +43,7 @@ import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormMessageTagging;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
+import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
@@ -257,6 +258,15 @@ public class UsersController {
 
         LOGGER.debug("Fetching all associated gis2formses");
         return usersService.findAssociatedGis2formses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/inspectionDesigns", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionDesigns instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<InspectionDesign> findAssociatedInspectionDesigns(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated inspectionDesigns");
+        return usersService.findAssociatedInspectionDesigns(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/inspectionGises", method=RequestMethod.GET)

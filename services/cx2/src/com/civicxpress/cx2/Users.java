@@ -60,6 +60,7 @@ public class Users implements Serializable {
     private List<FormMessages> formMessageses = new ArrayList<>();
     private List<FormMessageTagging> formMessageTaggings = new ArrayList<>();
     private List<Gis2forms> gis2formses = new ArrayList<>();
+    private List<InspectionDesign> inspectionDesigns = new ArrayList<>();
     private List<InspectionGis> inspectionGises = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<MasterInspections> masterInspectionsesForRequestedBy = new ArrayList<>();
@@ -299,6 +300,16 @@ public class Users implements Serializable {
 
     public void setGis2formses(List<Gis2forms> gis2formses) {
         this.gis2formses = gis2formses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<InspectionDesign> getInspectionDesigns() {
+        return this.inspectionDesigns;
+    }
+
+    public void setInspectionDesigns(List<InspectionDesign> inspectionDesigns) {
+        this.inspectionDesigns = inspectionDesigns;
     }
 
     @JsonInclude(Include.NON_EMPTY)

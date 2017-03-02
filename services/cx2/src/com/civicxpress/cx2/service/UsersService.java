@@ -19,6 +19,7 @@ import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormMessageTagging;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
+import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
@@ -213,6 +214,18 @@ public interface UsersService {
      * @see Page
      */
     Page<Gis2forms> findAssociatedGis2formses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated inspectionDesigns for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated InspectionDesign instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<InspectionDesign> findAssociatedInspectionDesigns(Integer id, Pageable pageable);
 
     /*
      * Returns the associated inspectionGises for given Users id.

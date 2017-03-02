@@ -28,6 +28,7 @@ import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormMessageTagging;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
+import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
@@ -68,6 +69,10 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.FormMessagesService")
 	private FormMessagesService formMessagesService;
+
+    @Autowired
+	@Qualifier("cx2.InspectionDesignService")
+	private InspectionDesignService inspectionDesignService;
 
     @Autowired
 	@Qualifier("cx2.FormMessageTaggingService")
@@ -191,6 +196,14 @@ public class UsersServiceImpl implements UsersService {
                 gis2formse.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child Gis2forms with information: {}", gis2formse);
                 gis2formsService.create(gis2formse);
+            }
+        }
+
+        if(usersCreated.getInspectionDesigns() != null) {
+            for(InspectionDesign inspectionDesign : usersCreated.getInspectionDesigns()) {
+                inspectionDesign.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child InspectionDesign with information: {}", inspectionDesign);
+                inspectionDesignService.create(inspectionDesign);
             }
         }
 
@@ -508,6 +521,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<InspectionDesign> findAssociatedInspectionDesigns(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionDesigns");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return inspectionDesignService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<InspectionGis> findAssociatedInspectionGises(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionGises");
 
@@ -762,6 +786,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setFormMessagesService(FormMessagesService service) {
         this.formMessagesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service InspectionDesignService instance
+	 */
+	protected void setInspectionDesignService(InspectionDesignService service) {
+        this.inspectionDesignService = service;
     }
 
     /**
