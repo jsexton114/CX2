@@ -229,6 +229,25 @@
     } ],
     "pageTransitions" : "none"
   },
+  "goToPage_EditInspection" : {
+    "_id" : "wm-goToPage_EditInspection-wm.NavigationVariable-1488447542836",
+    "name" : "goToPage_EditInspection",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "EditInspection",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "pageName" : "EditInspection",
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "InspectionDesignId",
+      "value" : "bind:Widgets.gridInspectiondesign.selecteditem.id"
+    } ],
+    "pageTransitions" : "none"
+  },
   "goToPage_FindForm" : {
     "_id" : "wm-goToPage_FindForm-wm.NavigationVariable-1486128615190",
     "name" : "goToPage_FindForm",

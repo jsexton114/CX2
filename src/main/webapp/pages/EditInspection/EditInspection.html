@@ -1,0 +1,74 @@
+<wm-page data-ng-controller="EditInspectionPageController" pagetitle="Edit Inspection" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid4">
+                <wm-gridrow name="gridrow13">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn23">
+                        <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" itemlabel="label" itemicon="icon" itemlink="link" name="breadcrumb1"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow25_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn57_1" padding="2em unset">
+                        <wm-label name="label2_1" caption="bind:'Edit Form: ' + Variables.CurrentInspectionObj.dataSet.data[$i].inspectDesignName + ' (' + Variables.CurrentInspectionObj.dataSet.data[$i].municipalities.municipalityName + ')'" fontweight="bold"
+                        class="h4"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow26_1">
+                    <wm-gridcolumn columlivenwidth="12" name="gridcolumn58_1">
+                        <wm-tabs name="tabs1">
+                            <wm-tabpane name="tabpaneFORMINFO" title="Settings"></wm-tabpane>
+                            <wm-tabpane name="tabpaneCATEGORIES" title="Categories">
+                                <wm-layoutgrid name="layoutgrid6">
+                                    <wm-gridrow name="gridrow55">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn80">
+                                            <wm-label padding="unset 0.5em" name="label15" caption="You can assign this InspectionDesign to one or many Inspection Categories. This will affect where the Inspection appears to CivicXpress users, makes the Inspection searchable by Category, and is used to generate Municipality Analytics."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow26">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn53">
+                                            <wm-livegrid formlayout="dialog" name="livegridInspectioncategorymappin">
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionCategoryMappingData.dataSet" navigation="Classic" name="gridInspectioncategorymapping">
+                                                    <wm-grid-column binding="inspectionCategories.inspectionCategory" caption="Inspection Category" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionCategories"></wm-grid-column>
+                                                    <wm-grid-column binding="inspectionCategories.inspectionCategoryDescription" caption="Category Description" type="string" generator="assigned" readonly="true" edit-widget-type="text"
+                                                    show="true" related-entity-name="InspectionCategories"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                                <wm-liveform novalidate="false" errormessage="" title="Add Category" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.InspectionCategoryMappingData.dataSet" captionalign="left" captionposition="top"
+                                                name="liveformInspectioncategorymappin">
+                                                    <wm-layoutgrid columns="1" name="layoutgrid7">
+                                                        <wm-gridrow name="gridrow28">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn38">
+                                                                <wm-form-field name="inspectionCategories" displayname="Inspection Categories" show="true" primary-key="false" generator="assigned" key="inspectionCategories" type="list" is-related="true" readonly="false"
+                                                                required="false" widget="autocomplete" placeholder="Search" dataset="bind:Variables.CurrentMunicipalityInspectionCategories.dataSet" searchkey="inspectionCategory" displaylabel="inspectionCategory"
+                                                                datafield="All Fields" orderby="inspectionCategory:desc"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                    </wm-layoutgrid>
+                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false"
+                                                    required="false" widget="select" placeholder="Select value" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord"></wm-form-field>
+                                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
+                                                    update-mode="true"></wm-form-action>
+                                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                                </wm-liveform>
+                                            </wm-livegrid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-tabpane>
+                            <wm-tabpane name="tabpaneFields" title="Fields"></wm-tabpane>
+                            <wm-tabpane name="tabpaneOutcomes" title="Outcomes"></wm-tabpane>
+                            <wm-tabpane name="tabpaneCXADMIN" title="CX Admin" accessroles="CXAdmin"></wm-tabpane>
+                        </wm-tabs>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>
