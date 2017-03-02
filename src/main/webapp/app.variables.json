@@ -614,10 +614,18 @@
     "name" : "goToPage_MyProjects",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "MyProjects",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "MyProjects",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "municipalityId",
+      "value" : "bind:!!Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID ? Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID : null"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_NewForm" : {
@@ -691,10 +699,18 @@
     "name" : "goToPage_UserClosedForms",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "UserClosedForms",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "UserClosedForms",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "municipalityId",
+      "value" : "bind:!!Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID ? Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID : null"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_UserCreation" : {
@@ -713,10 +729,18 @@
     "name" : "goToPage_UserOpenForms",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "UserOpenForms",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "UserOpenForms",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "municipalityId",
+      "value" : "bind:!!Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID ? Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID : null"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_UserStatistics" : {
@@ -1009,6 +1033,34 @@
     "pageName" : "SFNewResidentialStructure",
     "dataSet" : [ ],
     "pageTransitions" : "none"
+  },
+  "StandardUserMunicipalities" : {
+    "_id" : "wm-StandardUserMunicipalites-wm.ServiceVariable-1478775230336",
+    "name" : "StandardUserMunicipalities",
+    "owner" : "App",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "USER",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.StandardUserMunicipalitesResponse",
+    "service" : "cx2",
+    "operation" : "executeStandardUserMunicipalites",
+    "operationId" : "QueryExecutionController_executeStandardUserMunicipalites",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "StandardUserMunicipalitesonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
   },
   "successfully" : {
     "_id" : "wm-successfully-wm.NotificationVariable-1481869693445",

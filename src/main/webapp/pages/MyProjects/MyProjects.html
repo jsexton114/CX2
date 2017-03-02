@@ -10,6 +10,15 @@
                         <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
                     </wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow8">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn8"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn9">
+                        <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" content="selectMunicipality" class="panel-transparent">
+                            <wm-param name="municipalityId" value="bind:pageParams.municipalityId" type="integer"></wm-param>
+                            <wm-param name="muniType" value="s" type="string"></wm-param>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="wi wi-building" autoclose="outsideClick" name="panel1" title="My Projects" class="panel-primary">
@@ -42,7 +51,7 @@
                         <wm-composite name="composite2" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold" width="160px"></wm-label>
                             <wm-container class="col-md-9" name="container2" width="300px">
-                                <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.StandardUserMunicipalites.dataSet" datafield="All Fields" displayfield="MunicipalityName" placeholder="Select Municipality" orderby="MunicipalityName:asc"></wm-select>
+                                <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" placeholder="Select Municipality" orderby="MunicipalityName:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>

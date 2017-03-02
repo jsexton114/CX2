@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.models.query.*;
 
 public interface Cx2QueryExecutorService {
@@ -229,9 +231,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetMunicipalityGroupIdIDs(ExportType exportType, Integer userId, Pageable pageable);
 
-    Page<FormsForUsersAndSharedResponse> executeFormsForUsersAndShared(Boolean closed, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
+    Page<MasterForms> executeFormsForUsersAndShared(Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
 
-    Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
+    Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
 
     Page<GetUserIdResponse> executeGetUserID(String email, Pageable pageable);
 
@@ -351,9 +353,9 @@ public interface Cx2QueryExecutorService {
 
     Integer executeInsertFormMessage(InsertFormMessageRequest insertFormMessageRequest);
 
-    Page<ProjectsForUsersAndSharedWithResponse> executeProjectsForUsersAndSharedWith(Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
+    Page<Projects> executeProjectsForUsersAndSharedWith(Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
 
-    Downloadable exportProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
+    Downloadable exportProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
 
     Page<FormsTaggedWithGisrecordsResponse> executeFormsTaggedWithGISRecords(Integer gisrecordId, Pageable pageable);
 

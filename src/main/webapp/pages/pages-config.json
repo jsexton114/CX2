@@ -178,7 +178,10 @@
 }, {
   "name" : "MyProjects",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "municipalityId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "NewForm",
   "type" : "PAGE",
@@ -209,7 +212,10 @@
 }, {
   "name" : "UserClosedForms",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "municipalityId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "UserCreation",
   "type" : "PAGE",
@@ -217,7 +223,10 @@
 }, {
   "name" : "UserOpenForms",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "municipalityId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "UserStatistics",
   "type" : "PAGE",
@@ -259,6 +268,16 @@
   "params" : [ {
     "name" : "companyId",
     "type" : "integer"
+  } ]
+}, {
+  "name" : "selectMunicipality",
+  "type" : "PARTIAL",
+  "params" : [ {
+    "name" : "municipalityId",
+    "type" : "integer"
+  }, {
+    "name" : "muniType",
+    "type" : "string"
   } ]
 }, {
   "name" : "topnav",

@@ -19,6 +19,11 @@ Application.run(function($rootScope) {
          */
     };
 
+    $rootScope.StandardUserMunicipalitesonSuccess = function(variable, data) {
+        // For count badge in left nav
+        $rootScope.Variables.NoOfMunicipalitiesForUser.dataSet.dataValue = data.totalElements;
+    };
+
 });
 
 Application.factory('_', ['$window', function($window) {

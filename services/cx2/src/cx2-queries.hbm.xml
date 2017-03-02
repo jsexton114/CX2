@@ -885,20 +885,22 @@
 
     <query name="FormsForUsersAndShared">
         <![CDATA[
-        from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser )) ORDER BY DateModified DESC
+        from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser )) AND (:municipalityId IS NULL OR MunicipalityId=:municipalityId) ORDER BY DateModified DESC
         ]]>
     <query-param name="closed" type="java.lang.Boolean"/>
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Long"/>
     </query>
 
     <query name="FormsForUsersAndShared__count">
         <![CDATA[
-        select count(*) from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser ))
+        select count(*) from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser )) AND (:municipalityId IS NULL OR MunicipalityId=:municipalityId)
         ]]>
     <query-param name="closed" type="java.lang.Boolean"/>
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Long"/>
     </query>
 
     <sql-query name="getUserID">
@@ -1377,20 +1379,22 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
 
     <query name="ProjectsForUsersAndSharedWith">
         <![CDATA[
-        from Projects where Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select relatedProjectGuid from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser )) ORDER BY ModifiedDate DESC
+        from Projects where Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select relatedProjectGuid from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser )) AND (:municipalityId IS NULL OR MunicipalityId=:municipalityId) ORDER BY ModifiedDate DESC
         ]]>
     <query-param name="Active" type="java.lang.Boolean"/>
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Long"/>
     </query>
 
     <query name="ProjectsForUsersAndSharedWith__count">
         <![CDATA[
-        select count(*) from Projects where Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select relatedProjectGuid from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))
+        select count(*) from Projects where Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select relatedProjectGuid from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser )) AND (:municipalityId IS NULL OR MunicipalityId=:municipalityId)
         ]]>
     <query-param name="Active" type="java.lang.Boolean"/>
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Long"/>
     </query>
 
     <query name="FormsTaggedWithGISRecords">

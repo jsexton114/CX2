@@ -26,6 +26,8 @@ import com.wavemaker.runtime.data.dao.query.WMQueryExecutor;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.models.query.*;
 
 @Service
@@ -796,12 +798,13 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Object> executeFormsForUsersAndShared(Pageable pageable, Boolean closed, Integer creatorUser, Integer sharedWithUser) {
-        Map params = new HashMap(3);
+    public Page<Object> executeFormsForUsersAndShared(Pageable pageable, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId) {
+        Map params = new HashMap(4);
 
         params.put("closed", closed);
         params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
 
         return queryExecutor.executeNamedQuery("FormsForUsersAndShared", params, Object.class, pageable);
     }
@@ -1238,12 +1241,13 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Object> executeProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser) {
-        Map params = new HashMap(3);
+    public Page<Object> executeProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId) {
+        Map params = new HashMap(4);
 
         params.put("Active", active);
         params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
 
         return queryExecutor.executeNamedQuery("ProjectsForUsersAndSharedWith", params, Object.class, pageable);
     }

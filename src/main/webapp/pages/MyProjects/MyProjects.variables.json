@@ -1241,8 +1241,12 @@
       "target" : "sharedWithUser",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
     } ],
-    "type" : "com.civicxpress.cx2.models.query.ProjectsForUsersAndSharedWithResponse",
+    "type" : "com.civicxpress.cx2.Projects",
     "service" : "cx2",
     "operation" : "executeProjectsForUsersAndSharedWith",
     "operationId" : "QueryExecutionController_executeProjectsForUsersAndSharedWith",

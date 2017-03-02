@@ -540,7 +540,7 @@
       "type" : "boolean"
     }, {
       "target" : "MunicipalityId",
-      "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | stringToNumber",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
       "type" : "integer"
     }, {
       "target" : "creatorUser",
@@ -618,7 +618,7 @@
       "type" : "boolean"
     }, {
       "target" : "MunicipalityId",
-      "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | stringToNumber",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
       "type" : "integer"
     }, {
       "target" : "creatorUser",
@@ -691,7 +691,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "municipalityId",
-      "value" : "bind:Widgets.selectStandardUserMunicipality.datavalue.ID | stringToNumber",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
       "type" : "integer"
     }, {
       "target" : "Active",
@@ -1095,65 +1095,5 @@
       "value" : "bind:Widgets.selectForm.datavalue.ID"
     } ],
     "pageTransitions" : "none"
-  },
-  "StandardUserMunicipalites" : {
-    "_id" : "wm-StandardUserMunicipalites-wm.ServiceVariable-1478775230336",
-    "name" : "StandardUserMunicipalites",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "USER",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.StandardUserMunicipalitesResponse",
-    "service" : "cx2",
-    "operation" : "executeStandardUserMunicipalites",
-    "operationId" : "QueryExecutionController_executeStandardUserMunicipalites",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "StandardUserMunicipalitesonSuccess($event, $scope)",
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
-  "svCreateForm" : {
-    "_id" : "wm-svCreateForm-wm.ServiceVariable-1485195280047",
-    "name" : "svCreateForm",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "municipalityId",
-      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
-      "type" : "integer"
-    }, {
-      "target" : "formTypeId",
-      "value" : "bind:Widgets.selectForm.datavalue.ID",
-      "type" : "integer"
-    } ],
-    "type" : "string",
-    "service" : "FormService",
-    "operation" : "createForm",
-    "operationId" : "FormController_createForm",
-    "operationType" : "post",
-    "serviceType" : "JavaService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "svCreateFormonSuccess($event, $scope);Widgets.dialogNewForm.close()",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "Form"
   }
 }

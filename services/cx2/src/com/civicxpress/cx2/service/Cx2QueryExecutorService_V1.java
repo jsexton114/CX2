@@ -17,6 +17,8 @@ import org.springframework.data.domain.Pageable;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.models.query.*;
 
 @Deprecated
@@ -224,7 +226,7 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeGetMunicipalityGroupIdIDs(Pageable pageable, Integer userId);
 
     @Deprecated
-    public Page<Object> executeFormsForUsersAndShared(Pageable pageable, Boolean closed, Integer creatorUser, Integer sharedWithUser);
+    public Page<Object> executeFormsForUsersAndShared(Pageable pageable, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId);
 
     @Deprecated
     public Page<Object> executeGetUserID(Pageable pageable, String email);
@@ -341,7 +343,7 @@ public interface Cx2QueryExecutorService_V1 {
     public int executeInsertFormMessage(Integer userId, String relatedFormGuid, String message, Timestamp postedAt);
 
     @Deprecated
-    public Page<Object> executeProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser);
+    public Page<Object> executeProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId);
 
     @Deprecated
     public Page<Object> executeFormsTaggedWithGISRecords(Pageable pageable, Integer gisrecordId);
