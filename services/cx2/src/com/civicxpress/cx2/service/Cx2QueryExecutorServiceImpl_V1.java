@@ -297,6 +297,7 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQuery("OpenedOrClosedFormsForUserOrSharedWith", params, Object.class, pageable);
     }
 
+<<<<<<< HEAD
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<Object> executeSearchUsersByEmailOrName(Pageable pageable, String searchString) {
@@ -307,6 +308,8 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQuery("searchUsersByEmailOrName", params, Object.class, pageable);
     }
 
+=======
+>>>>>>> stash
     @Transactional(value = "cx2TransactionManager")
     @Override
     public int executeUpdateGlobalEmailSig(String gs, Integer municipality) {

@@ -57,6 +57,7 @@ import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.service.MunicipalitiesService;
 
 
+
 /**
  * Controller object for domain model class Municipalities.
  * @see Municipalities
@@ -238,6 +239,18 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedGisrecordses(id, pageable);
     }
 
+<<<<<<< HEAD
+=======
+    @RequestMapping(value="/{id:.+}/inspectionDesigns", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionDesigns instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<InspectionDesign> findAssociatedInspectionDesigns(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated inspectionDesigns");
+        return municipalitiesService.findAssociatedInspectionDesigns(id, pageable);
+    }
+
+>>>>>>> stash
     @RequestMapping(value="/{id:.+}/holidayses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the holidayses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -247,6 +260,7 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedHolidayses(id, pageable);
     }
 
+<<<<<<< HEAD
     @RequestMapping(value="/{id:.+}/inspectionDesigns", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the inspectionDesigns instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -265,6 +279,8 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedInspectionCategorieses(id, pageable);
     }
 
+=======
+>>>>>>> stash
     @RequestMapping(value="/{id:.+}/masterFormses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

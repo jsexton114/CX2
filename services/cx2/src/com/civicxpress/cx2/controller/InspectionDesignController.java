@@ -30,7 +30,10 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+<<<<<<< HEAD
 import com.civicxpress.cx2.InspectionCategoryMapping;
+=======
+>>>>>>> stash
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionSequence;

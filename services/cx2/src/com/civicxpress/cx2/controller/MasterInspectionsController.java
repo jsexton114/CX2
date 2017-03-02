@@ -30,7 +30,10 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+<<<<<<< HEAD
 import com.civicxpress.cx2.InspectionGis;
+=======
+>>>>>>> stash
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.service.MasterInspectionsService;
 
@@ -132,6 +135,7 @@ public class MasterInspectionsController {
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Downloadable exportMasterInspections(@PathVariable("exportType") ExportType exportType, @ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
          return masterInspectionsService.export(exportType, query, pageable);
+<<<<<<< HEAD
     }
 
 	@ApiOperation(value = "Returns the total count of MasterInspections instances matching the optional query (q) request param. If query string is too big to fit in GET request's query param, use POST method with application/x-www-form-urlencoded format.")
@@ -149,7 +153,18 @@ public class MasterInspectionsController {
 
         LOGGER.debug("Fetching all associated inspectionGises");
         return masterInspectionsService.findAssociatedInspectionGises(id, pageable);
+=======
+>>>>>>> stash
     }
+
+	@ApiOperation(value = "Returns the total count of MasterInspections instances matching the optional query (q) request param. If query string is too big to fit in GET request's query param, use POST method with application/x-www-form-urlencoded format.")
+	@RequestMapping(value = "/count", method = {RequestMethod.GET, RequestMethod.POST})
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+	public Long countMasterInspections( @ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query) {
+		LOGGER.debug("counting MasterInspections");
+		return masterInspectionsService.count(query);
+	}
+
 
     /**
 	 * This setter method should only be used by unit tests
