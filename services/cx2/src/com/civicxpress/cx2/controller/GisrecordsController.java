@@ -156,18 +156,6 @@ public class GisrecordsController {
         return gisrecordsService.findAssociatedFeeses(id, pageable);
     }
 
-<<<<<<< HEAD
-=======
-    @RequestMapping(value="/{id:.+}/gis2formses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the gis2formses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Gis2forms> findAssociatedGis2formses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated gis2formses");
-        return gisrecordsService.findAssociatedGis2formses(id, pageable);
-    }
-
->>>>>>> stash
     @RequestMapping(value="/{id:.+}/giscontactses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the giscontactses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -177,7 +165,6 @@ public class GisrecordsController {
         return gisrecordsService.findAssociatedGiscontactses(id, pageable);
     }
 
-<<<<<<< HEAD
     @RequestMapping(value="/{id:.+}/gis2formses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the gis2formses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -196,8 +183,6 @@ public class GisrecordsController {
         return gisrecordsService.findAssociatedInspectionGises(id, pageable);
     }
 
-=======
->>>>>>> stash
     @RequestMapping(value="/{id:.+}/masterInspectionses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the masterInspectionses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

@@ -29,10 +29,7 @@ import com.civicxpress.cx2.FormMessageTagging;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.InspectionDesign;
-<<<<<<< HEAD
 import com.civicxpress.cx2.InspectionGis;
-=======
->>>>>>> stash
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
@@ -118,13 +115,10 @@ public class UsersServiceImpl implements UsersService {
 	private UserPasswordResetTokensService userPasswordResetTokensService;
 
     @Autowired
-<<<<<<< HEAD
 	@Qualifier("cx2.InspectionGisService")
 	private InspectionGisService inspectionGisService;
 
     @Autowired
-=======
->>>>>>> stash
 	@Qualifier("cx2.MasterInspectionsService")
 	private MasterInspectionsService masterInspectionsService;
 
@@ -213,7 +207,6 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-<<<<<<< HEAD
         if(usersCreated.getInspectionGises() != null) {
             for(InspectionGis inspectionGise : usersCreated.getInspectionGises()) {
                 inspectionGise.setUsers(usersCreated);
@@ -222,8 +215,6 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-=======
->>>>>>> stash
         if(usersCreated.getMasterFormses() != null) {
             for(MasterForms masterFormse : usersCreated.getMasterFormses()) {
                 masterFormse.setUsers(usersCreated);
@@ -256,27 +247,19 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getMasterInspectionsesForRequestedBy() != null) {
-            for(MasterInspections masterInspectionsesForRequestedBy : usersCreated.getMasterInspectionsesForRequestedBy()) {
-                masterInspectionsesForRequestedBy.setUsersByRequestedBy(usersCreated);
-                LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionsesForRequestedBy);
-                masterInspectionsService.create(masterInspectionsesForRequestedBy);
-            }
-        }
-
-        if(usersCreated.getMasterInspectionsesForModifiedBy() != null) {
-            for(MasterInspections masterInspectionsesForModifiedBy : usersCreated.getMasterInspectionsesForModifiedBy()) {
-                masterInspectionsesForModifiedBy.setUsersByModifiedBy(usersCreated);
-                LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionsesForModifiedBy);
-                masterInspectionsService.create(masterInspectionsesForModifiedBy);
-            }
-        }
-
         if(usersCreated.getProjectFormses() != null) {
             for(ProjectForms projectFormse : usersCreated.getProjectFormses()) {
                 projectFormse.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child ProjectForms with information: {}", projectFormse);
                 projectFormsService.create(projectFormse);
+            }
+        }
+
+        if(usersCreated.getProjectGisrecordses() != null) {
+            for(ProjectGisrecords projectGisrecordse : usersCreated.getProjectGisrecordses()) {
+                projectGisrecordse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child ProjectGisrecords with information: {}", projectGisrecordse);
+                projectGisrecordsService.create(projectGisrecordse);
             }
         }
 
@@ -296,11 +279,19 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getProjectGisrecordses() != null) {
-            for(ProjectGisrecords projectGisrecordse : usersCreated.getProjectGisrecordses()) {
-                projectGisrecordse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child ProjectGisrecords with information: {}", projectGisrecordse);
-                projectGisrecordsService.create(projectGisrecordse);
+        if(usersCreated.getProjectTasksesForAssignedTo() != null) {
+            for(ProjectTasks projectTasksesForAssignedTo : usersCreated.getProjectTasksesForAssignedTo()) {
+                projectTasksesForAssignedTo.setUsersByAssignedTo(usersCreated);
+                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForAssignedTo);
+                projectTasksService.create(projectTasksesForAssignedTo);
+            }
+        }
+
+        if(usersCreated.getProjectTasksesForCreatedBy() != null) {
+            for(ProjectTasks projectTasksesForCreatedBy : usersCreated.getProjectTasksesForCreatedBy()) {
+                projectTasksesForCreatedBy.setUsersByCreatedBy(usersCreated);
+                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForCreatedBy);
+                projectTasksService.create(projectTasksesForCreatedBy);
             }
         }
 
@@ -317,22 +308,6 @@ public class UsersServiceImpl implements UsersService {
                 projectSharedWithsForProjectSharedWithUser.setUsersByProjectSharedWithUser(usersCreated);
                 LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWithsForProjectSharedWithUser);
                 projectSharedWithService.create(projectSharedWithsForProjectSharedWithUser);
-            }
-        }
-
-        if(usersCreated.getProjectTasksesForAssignedTo() != null) {
-            for(ProjectTasks projectTasksesForAssignedTo : usersCreated.getProjectTasksesForAssignedTo()) {
-                projectTasksesForAssignedTo.setUsersByAssignedTo(usersCreated);
-                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForAssignedTo);
-                projectTasksService.create(projectTasksesForAssignedTo);
-            }
-        }
-
-        if(usersCreated.getProjectTasksesForCreatedBy() != null) {
-            for(ProjectTasks projectTasksesForCreatedBy : usersCreated.getProjectTasksesForCreatedBy()) {
-                projectTasksesForCreatedBy.setUsersByCreatedBy(usersCreated);
-                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForCreatedBy);
-                projectTasksService.create(projectTasksesForCreatedBy);
             }
         }
 
@@ -557,7 +532,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-<<<<<<< HEAD
     public Page<InspectionGis> findAssociatedInspectionGises(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionGises");
 
@@ -569,8 +543,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-=======
->>>>>>> stash
     public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
 
@@ -615,28 +587,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MasterInspections> findAssociatedMasterInspectionsesForRequestedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterInspectionsesForRequestedBy");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByRequestedBy.id = '" + id + "'");
-
-        return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MasterInspections> findAssociatedMasterInspectionsesForModifiedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterInspectionsesForModifiedBy");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
-
-        return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<ProjectForms> findAssociatedProjectFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectFormses");
 
@@ -644,6 +594,17 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("users.id = '" + id + "'");
 
         return projectFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectGisrecordses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return projectGisrecordsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -670,13 +631,24 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectGisrecordses");
+    public Page<ProjectTasks> findAssociatedProjectTasksesForAssignedTo(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTasksesForAssignedTo");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
+        queryBuilder.append("usersByAssignedTo.id = '" + id + "'");
 
-        return projectGisrecordsService.findAll(queryBuilder.toString(), pageable);
+        return projectTasksService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectTasks> findAssociatedProjectTasksesForCreatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTasksesForCreatedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
+
+        return projectTasksService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -699,28 +671,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersByProjectSharedWithUser.id = '" + id + "'");
 
         return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<ProjectTasks> findAssociatedProjectTasksesForAssignedTo(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectTasksesForAssignedTo");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByAssignedTo.id = '" + id + "'");
-
-        return projectTasksService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<ProjectTasks> findAssociatedProjectTasksesForCreatedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectTasksesForCreatedBy");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
-
-        return projectTasksService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -850,15 +800,6 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service InspectionDesignService instance
-	 */
-	protected void setInspectionDesignService(InspectionDesignService service) {
-        this.inspectionDesignService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service FormMessageTaggingService instance
 	 */
 	protected void setFormMessageTaggingService(FormMessageTaggingService service) {
@@ -949,7 +890,6 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-<<<<<<< HEAD
 	 * @param service InspectionGisService instance
 	 */
 	protected void setInspectionGisService(InspectionGisService service) {
@@ -959,8 +899,6 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-=======
->>>>>>> stash
 	 * @param service MasterInspectionsService instance
 	 */
 	protected void setMasterInspectionsService(MasterInspectionsService service) {

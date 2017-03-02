@@ -416,7 +416,6 @@ public class QueryExecutionController {
         return queryService.exportOpenedOrClosedFormsForUserOrSharedWith(exportType, creatorUser, sharedWithUser, pageable);
     }
 
-<<<<<<< HEAD
     @RequestMapping(value = "/queries/searchUsersByEmailOrName", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Searches users by email or full name")
@@ -436,8 +435,6 @@ public class QueryExecutionController {
         return queryService.exportSearchUsersByEmailOrName(exportType, searchString, pageable);
     }
 
-=======
->>>>>>> stash
     @RequestMapping(value = "/queries/UpdateGlobalEmailSig", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdateGlobalEmailSig")

@@ -218,7 +218,6 @@ public class VendorController {
         return vendorService.findAssociatedMasterFormses(id, pageable);
     }
 
-<<<<<<< HEAD
     @RequestMapping(value="/{id:.+}/vendorApprovalses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the vendorApprovalses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -237,8 +236,6 @@ public class VendorController {
         return vendorService.findAssociatedVendorLicenseses(id, pageable);
     }
 
-=======
->>>>>>> stash
     @RequestMapping(value="/{id:.+}/vendorAdminses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the vendorAdminses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -248,27 +245,6 @@ public class VendorController {
         return vendorService.findAssociatedVendorAdminses(id, pageable);
     }
 
-<<<<<<< HEAD
-=======
-    @RequestMapping(value="/{id:.+}/vendorApprovalses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the vendorApprovalses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<VendorApprovals> findAssociatedVendorApprovalses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated vendorApprovalses");
-        return vendorService.findAssociatedVendorApprovalses(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/vendorLicenseses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the vendorLicenseses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<VendorLicenses> findAssociatedVendorLicenseses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated vendorLicenseses");
-        return vendorService.findAssociatedVendorLicenseses(id, pageable);
-    }
-
->>>>>>> stash
     @RequestMapping(value="/{id:.+}/vendors2forms", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the vendors2forms instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

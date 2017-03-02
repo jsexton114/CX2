@@ -23,12 +23,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-<<<<<<< HEAD
-=======
-
-import org.hibernate.annotations.Type;
-import org.joda.time.LocalDateTime;
->>>>>>> stash
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -70,12 +64,7 @@ public class InspectionDesign implements Serializable {
     private Integer prefixNumberStep;
     private Boolean prefixDashes;
     private Integer createdBy;
-<<<<<<< HEAD
     private Timestamp createdAt;
-=======
-    @Type(type = "DateTime")
-    private LocalDateTime createdAt;
->>>>>>> stash
     private Users users;
     private Municipalities municipalities;
     private List<InspectionOutcome> inspectionOutcomes = new ArrayList<>();
@@ -356,19 +345,11 @@ public class InspectionDesign implements Serializable {
     }
 
     @Column(name = "`CreatedAt`", nullable = true)
-<<<<<<< HEAD
     public Timestamp getCreatedAt() {
         return this.createdAt;
     }
 
     public void setCreatedAt(Timestamp createdAt) {
-=======
-    public LocalDateTime getCreatedAt() {
-        return this.createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
->>>>>>> stash
         this.createdAt = createdAt;
     }
 

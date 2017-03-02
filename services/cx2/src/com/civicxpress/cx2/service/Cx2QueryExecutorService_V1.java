@@ -92,12 +92,9 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeOpenedOrClosedFormsForUserOrSharedWith(Pageable pageable, Integer creatorUser, Integer sharedWithUser);
 
     @Deprecated
-<<<<<<< HEAD
     public Page<Object> executeSearchUsersByEmailOrName(Pageable pageable, String searchString);
 
     @Deprecated
-=======
->>>>>>> stash
     public int executeUpdateGlobalEmailSig(String gs, Integer municipality);
 
     @Deprecated

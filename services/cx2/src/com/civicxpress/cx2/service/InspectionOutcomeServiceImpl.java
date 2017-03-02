@@ -37,13 +37,10 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
     private static final Logger LOGGER = LoggerFactory.getLogger(InspectionOutcomeServiceImpl.class);
 
     @Autowired
-<<<<<<< HEAD
 	@Qualifier("cx2.InspectionOutcomeFeeService")
 	private InspectionOutcomeFeeService inspectionOutcomeFeeService;
 
     @Autowired
-=======
->>>>>>> stash
 	@Qualifier("cx2.MasterInspectionsService")
 	private MasterInspectionsService masterInspectionsService;
 
@@ -171,7 +168,6 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
         return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
     }
 
-<<<<<<< HEAD
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -181,8 +177,6 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
         this.inspectionOutcomeFeeService = service;
     }
 
-=======
->>>>>>> stash
     /**
 	 * This setter method should only be used by unit tests
 	 *

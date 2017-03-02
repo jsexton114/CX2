@@ -95,13 +95,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportOpenedOrClosedFormsForUserOrSharedWith(ExportType exportType, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
 
-<<<<<<< HEAD
     Page<SearchUsersByEmailOrNameResponse> executeSearchUsersByEmailOrName(String searchString, Pageable pageable);
 
     Downloadable exportSearchUsersByEmailOrName(ExportType exportType, String searchString, Pageable pageable);
 
-=======
->>>>>>> stash
     Integer executeUpdateGlobalEmailSig(UpdateGlobalEmailSigRequest updateGlobalEmailSigRequest);
 
     Integer executeDeleteFromVendorAdmins(Integer user, Integer vendor);

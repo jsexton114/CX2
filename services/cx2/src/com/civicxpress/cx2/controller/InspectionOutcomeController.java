@@ -142,7 +142,6 @@ public class InspectionOutcomeController {
 		LOGGER.debug("counting InspectionOutcomes");
 		return inspectionOutcomeService.count(query);
 	}
-<<<<<<< HEAD
 
     @RequestMapping(value="/{id:.+}/inspectionOutcomeFees", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the inspectionOutcomeFees instance associated with the given id.")
@@ -152,8 +151,6 @@ public class InspectionOutcomeController {
         LOGGER.debug("Fetching all associated inspectionOutcomeFees");
         return inspectionOutcomeService.findAssociatedInspectionOutcomeFees(id, pageable);
     }
-=======
->>>>>>> stash
 
     @RequestMapping(value="/{id:.+}/masterInspectionses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the masterInspectionses instance associated with the given id.")

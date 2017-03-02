@@ -175,7 +175,6 @@ public class FormTypesController {
         return formTypesService.findAssociatedFormCategoryMappings(id, pageable);
     }
 
-<<<<<<< HEAD
     @RequestMapping(value="/{id:.+}/formToInspectionCategoryMappings", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the formToInspectionCategoryMappings instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -185,8 +184,6 @@ public class FormTypesController {
         return formTypesService.findAssociatedFormToInspectionCategoryMappings(id, pageable);
     }
 
-=======
->>>>>>> stash
     @RequestMapping(value="/{id:.+}/formTypeFieldses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the formTypeFieldses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
