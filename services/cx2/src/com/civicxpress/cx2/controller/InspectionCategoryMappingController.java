@@ -97,6 +97,12 @@ public class InspectionCategoryMappingController {
 
         return deletedInspectionCategoryMapping != null;
     }
+    @RequestMapping(value = "/inspectionCategoryId-inspectionDesignId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching InspectionCategoryMapping with given unique key values.")
+    public InspectionCategoryMapping getByInspectionCategoryIdAndInspectionDesignId(@RequestParam(name = "inspectionCategoryId") Integer inspectionCategoryId, @RequestParam(name = "inspectionDesignId") Integer inspectionDesignId) {
+        LOGGER.debug("Getting InspectionCategoryMapping with uniques key InspectionCategoryIdAndInspectionDesignId");
+        return inspectionCategoryMappingService.getByInspectionCategoryIdAndInspectionDesignId(inspectionCategoryId, inspectionDesignId);
+    }
 
     /**
      * @deprecated Use {@link #findInspectionCategoryMappings(String, Pageable)} instead.

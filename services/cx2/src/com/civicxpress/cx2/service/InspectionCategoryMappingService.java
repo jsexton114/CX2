@@ -49,6 +49,15 @@ public interface InspectionCategoryMappingService {
 	 */
 	InspectionCategoryMapping findById(Integer inspectioncategorymappingId);
 
+    /**
+	 * Find and return the InspectionCategoryMapping for given inspectionCategoryId  andinspectionDesignId  if exists.
+	 *
+	 * @param inspectionCategoryId value of inspectionCategoryId; value cannot be null.
+	 * @param inspectionDesignId value of inspectionDesignId; value cannot be null.
+	 * @return InspectionCategoryMapping associated with the given inputs.
+     * @throws EntityNotFoundException if no matching InspectionCategoryMapping found.
+	 */
+    InspectionCategoryMapping getByInspectionCategoryIdAndInspectionDesignId(Integer inspectionCategoryId, Integer inspectionDesignId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing InspectionCategoryMapping. It replaces all fields of the existing InspectionCategoryMapping with the given inspectionCategoryMapping.
