@@ -36,28 +36,25 @@
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.goToPage_EditInspection.invoke()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
-                                <wm-liveform novalidate="false" errormessage="" title="Add Inspection Design" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.InspectionDesignData.dataSet" captionalign="left" captionposition="top" name="liveformInspectiondesign">
+                                <wm-liveform novalidate="false" errormessage="" title="Create Inspection Design" formlayout="dialog" iconclass="wi wi-find-in-page" dataset="bind:Variables.InspectionDesignData.dataSet" captionalign="left" captionposition="top"
+                                name="liveformInspectiondesign">
                                     <wm-layoutgrid columns="1" name="layoutgrid2">
                                         <wm-gridrow name="gridrow5">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                                                <wm-form-field name="inspectDesignName" displayname="Inspect Design Name" show="true" primary-key="false" generator="assigned" key="inspectDesignName" type="string" readonly="false" required="false" widget="text"
+                                                <wm-form-field name="inspectDesignName" displayname="Inspection Design Name" show="true" primary-key="false" generator="assigned" key="inspectDesignName" type="string" readonly="false" required="true" widget="text"
                                                 maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
-                                        <wm-gridrow name="gridrow6">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn7">
-                                                <wm-form-field name="users" displayname="Users" show="false" primary-key="false" generator="assigned" key="users" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"
-                                                defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
                                     </wm-layoutgrid>
-                                    <wm-form-field name="createdAt" displayname="Created At" show="false" primary-key="false" generator="assigned" key="createdAt" type="timestamp" readonly="false" required="false" widget="timestamp" placeholder="Select date time"
-                                    outputformat="timestamp" defaultvalue="CURRENT_DATE"></wm-form-field>
+                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
                                     <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" readonly="false" required="false"
                                     widget="select" placeholder="Select value" defaultvalue="bind:Variables.SelectedMunicipalityObject.firstRecord" dataset="bind:Variables.SelectedMunicipalityObject.dataSet" datafield="All Fields" displayfield="municipalityName"></wm-form-field>
-                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="createdAt" displayname="Created At" show="false" primary-key="false" generator="assigned" key="createdAt" type="timestamp" readonly="false" required="false" widget="timestamp" placeholder="Select date time"
+                                    outputformat="timestamp" defaultvalue="CURRENT_DATE"></wm-form-field>
+                                    <wm-form-field name="users" displayname="Users" show="false" primary-key="false" generator="assigned" key="users" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"
+                                    defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
+                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                 </wm-liveform>
                             </wm-livegrid>
                         </wm-panel>
@@ -75,31 +72,27 @@
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
-                                <wm-liveform novalidate="false" errormessage="" title="Add Inspection Categories" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.InspectionCategoriesData.dataSet" captionalign="left" captionposition="top"
+                                <wm-liveform novalidate="false" errormessage="" title="Inspection Category Details" formlayout="dialog" iconclass="wi wi-group-work" dataset="bind:Variables.InspectionCategoriesData.dataSet" captionalign="left" captionposition="top"
                                 name="liveformInspectioncategories">
                                     <wm-layoutgrid columns="1" name="layoutgrid3">
                                         <wm-gridrow name="gridrow7">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn8">
-                                                <wm-form-field name="inspectionCategory" displayname="Inspection Category" required="false" show="true" generator="assigned" primary-key="false" key="inspectionCategory" type="string" is-related="false" maxchars="255"
-                                                pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                                <wm-form-field name="inspectionCategory" displayname="Category Name" show="true" primary-key="false" generator="assigned" key="inspectionCategory" type="string" readonly="false" required="true" widget="text"
+                                                maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow8">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn9">
-                                                <wm-form-field name="inspectionCategoryDescription" displayname="Inspection Category Description" required="false" show="true" generator="assigned" primary-key="false" key="inspectionCategoryDescription" type="string"
-                                                is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow9">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn10">
-                                                <wm-form-field name="municipalities" displayname="Municipalities" required="false" show="false" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true" mobile-display="true"
-                                                widget="select" defaultvalue="bind:Variables.SelectedMunicipalityObject.firstRecord" dataset="bind:Variables.SelectedMunicipalityObject.dataSet" datafield="All Fields" displayfield="municipalityName"></wm-form-field>
+                                                <wm-form-field name="inspectionCategoryDescription" displayname="Description" show="true" primary-key="false" generator="assigned" key="inspectionCategoryDescription" type="string" readonly="false" required="true"
+                                                widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
-                                    <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
-                                    <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
-                                    <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" readonly="false" required="false"
+                                    widget="select" defaultvalue="bind:Variables.SelectedMunicipalityObject.firstRecord" dataset="bind:Variables.SelectedMunicipalityObject.dataSet" datafield="All Fields" displayfield="municipalityName" placeholder="Select value"></wm-form-field>
+                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                 </wm-liveform>
                             </wm-livegrid>
                         </wm-panel>
