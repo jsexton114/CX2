@@ -762,7 +762,7 @@
       "value" : "MunicipalityEmployee",
       "type" : "string"
     } ],
-    "type" : "cx2EmployeesOrAdminsMunicipalitiesrtnType",
+    "type" : "com.civicxpress.cx2.models.query.EmployeesOrAdminsMunicipalitiesResponse",
     "service" : "cx2",
     "operation" : "executeEmployeesOrAdminsMunicipalities",
     "operationId" : "QueryExecutionController_executeEmployeesOrAdminsMunicipalities",
@@ -5570,7 +5570,7 @@
       "value" : true,
       "type" : "boolean"
     } ],
-    "type" : "cx2FormsByCategoryrtnType",
+    "type" : "com.civicxpress.cx2.models.query.FormsByCategoryResponse",
     "service" : "cx2",
     "operation" : "executeFormsByCategory",
     "operationId" : "QueryExecutionController_executeFormsByCategory",
@@ -7983,7 +7983,7 @@
       "value" : true,
       "type" : "boolean"
     } ],
-    "type" : "cx2FormsByCategoryrtnType",
+    "type" : "com.civicxpress.cx2.models.query.FormsByCategoryResponse",
     "service" : "cx2",
     "operation" : "executeFormsByCategory",
     "operationId" : "QueryExecutionController_executeFormsByCategory",
@@ -11805,7 +11805,7 @@
       "value" : "bind:Widgets.selectFormTypeFromVendor.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2SearchFormByVendorrtnType",
+    "type" : "com.civicxpress.cx2.models.query.SearchFormByVendorResponse",
     "service" : "cx2",
     "operation" : "executeSearchFormByVendor",
     "operationId" : "QueryExecutionController_executeSearchFormByVendor",

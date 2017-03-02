@@ -53,7 +53,7 @@
       "value" : "bind:Widgets.textareaFormComments.datavalue",
       "type" : "string"
     } ],
-    "type" : "cx2InsertFormsIntoProjectrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeInsertFormsIntoProject",
     "operationId" : "QueryExecutionController_executeInsertFormsIntoProject",
@@ -91,7 +91,7 @@
       "value" : "bind:today",
       "type" : "string"
     } ],
-    "type" : "cx2AddGIStoProjectsrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeAddGIStoProjects",
     "operationId" : "QueryExecutionController_executeAddGIStoProjects",
@@ -133,7 +133,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2AddMemeberToProjectrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeAddMemeberToProject",
     "operationId" : "QueryExecutionController_executeAddMemeberToProject",
@@ -2502,7 +2502,7 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ ],
-    "type" : "cx2GetRecentMessageIdrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetRecentMessageIdResponse",
     "service" : "cx2",
     "operation" : "executeGetRecentMessageId",
     "operationId" : "QueryExecutionController_executeGetRecentMessageId",
@@ -6336,7 +6336,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2OpenedOrClosedFormsForUserOrSharedWithrtnType",
+    "type" : "com.civicxpress.cx2.models.query.OpenedOrClosedFormsForUserOrSharedWithResponse",
     "service" : "cx2",
     "operation" : "executeOpenedOrClosedFormsForUserOrSharedWith",
     "operationId" : "QueryExecutionController_executeOpenedOrClosedFormsForUserOrSharedWith",
@@ -6415,7 +6415,7 @@
       "value" : "bind:today",
       "type" : "string"
     } ],
-    "type" : "cx2InsertProjectMessagertnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeInsertProjectMessage",
     "operationId" : "QueryExecutionController_executeInsertProjectMessage",
@@ -7632,7 +7632,7 @@
       "value" : "bind:pageParams.ProjectGUID",
       "type" : "string"
     } ],
-    "type" : "cx2ProjectFormsrtnType",
+    "type" : "com.civicxpress.cx2.models.query.ProjectFormsResponse",
     "service" : "cx2",
     "operation" : "executeProjectForms",
     "operationId" : "QueryExecutionController_executeProjectForms",
@@ -7660,7 +7660,7 @@
       "value" : "bind:pageParams.ProjectGUID",
       "type" : "string"
     } ],
-    "type" : "cx2GetProjectGisrecordsrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetProjectGisrecordsResponse",
     "service" : "cx2",
     "operation" : "executeGetProjectGisrecords",
     "operationId" : "QueryExecutionController_executeGetProjectGisrecords",
@@ -9626,7 +9626,7 @@
       "value" : "bind:pageParams.ProjectGUID",
       "type" : "string"
     } ],
-    "type" : "cx2SetModifiedDateForProjectrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeSetModifiedDateForProject",
     "operationId" : "QueryExecutionController_executeSetModifiedDateForProject",
@@ -10222,7 +10222,7 @@
       "value" : "bind:Widgets.richtexteditorUpdateDescription.datavalue",
       "type" : "string"
     } ],
-    "type" : "cx2UpdateProjectDescriptionrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateProjectDescription",
     "operationId" : "QueryExecutionController_executeUpdateProjectDescription",
@@ -10266,7 +10266,7 @@
       "value" : "bind:pageParams.ProjectGUID",
       "type" : "string"
     } ],
-    "type" : "cx2UpdateProjectDetailsrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateProjectDetails",
     "operationId" : "QueryExecutionController_executeUpdateProjectDetails",

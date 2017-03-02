@@ -7,7 +7,7 @@ package com.civicxpress.cxpasswordresetservice;
 import com.civicxpress.resetpasswordmailservice.ResetPasswordMailService;
 
 import javax.servlet.http.HttpServletRequest;
-import com.civicxpress.cx2.service.Cx2QueryExecutorService;
+import com.civicxpress.cx2.service.Cx2QueryExecutorService_V1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class CXPasswordResetService {
     private SecurityService securityService;
 
     @Autowired
-    private Cx2QueryExecutorService queryService;
+    private Cx2QueryExecutorService_V1 queryService;
     
     @Autowired
     private ResetPasswordMailService resetPasswordMailService;

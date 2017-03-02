@@ -2347,7 +2347,7 @@
       "value" : "bind:pageParams.FormTypeId",
       "type" : "integer"
     } ],
-    "type" : "cx2DeleteCategoryMappingrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeDeleteCategoryMapping",
     "operationId" : "QueryExecutionController_executeDeleteCategoryMapping",
@@ -3076,7 +3076,7 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ ],
-    "type" : "cx2InsertCategoryMappingrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeInsertCategoryMapping",
     "operationId" : "QueryExecutionController_executeInsertCategoryMapping",
@@ -5938,7 +5938,7 @@
       "value" : "bind:Widgets.textFormTableName.datavalue",
       "type" : "string"
     } ],
-    "type" : "cx2UpdateDevFormDetailsForCXAdminrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateDevFormDetailsForCXAdmin",
     "operationId" : "QueryExecutionController_executeUpdateDevFormDetailsForCXAdmin",

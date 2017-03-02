@@ -9,7 +9,7 @@
       "value" : "bind:Variables.Today.dataSet.dataValue | toDate: 'MM-dd-yyyy'",
       "type" : "string"
     } ],
-    "type" : "cx2AddUsersToVendorrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeAddUsersToVendor",
     "operationId" : "QueryExecutionController_executeAddUsersToVendor",
@@ -52,7 +52,7 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ ],
-    "type" : "cx2MapAsAdminForVendorrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeMapAsAdminForVendor",
     "operationId" : "QueryExecutionController_executeMapAsAdminForVendor",
@@ -101,7 +101,7 @@
       "value" : "bind:null",
       "type" : "integer"
     } ],
-    "type" : "cx2UpdateAsCXVendorAdminrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateAsCXVendorAdmin",
     "operationId" : "QueryExecutionController_executeUpdateAsCXVendorAdmin",

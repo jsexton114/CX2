@@ -6825,7 +6825,7 @@
       "value" : "bind:getOwnerGisRecordIds()",
       "type" : "integer"
     } ],
-    "type" : "cx2getOwnersForGisRecordsrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetOwnersForGisRecordsResponse",
     "service" : "cx2",
     "operation" : "executeGetOwnersForGisRecords",
     "operationId" : "QueryExecutionController_executeGetOwnersForGisRecords",
@@ -6853,7 +6853,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2getRolesForUserrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetRolesForUserResponse",
     "service" : "cx2",
     "operation" : "executeGetRolesForUser",
     "operationId" : "QueryExecutionController_executeGetRolesForUser",

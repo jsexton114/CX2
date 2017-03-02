@@ -1,66 +1,60 @@
-<wm-page data-ng-controller="CompanyMunicipalitiesPageController" pagetitle="Company Municipalities" name="page1">
-    <wm-header content="header" name="header1"></wm-header>
-    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
-    <wm-content name="content1">
-        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
-        <wm-page-content columnwidth="10" name="page_content1">
-            <wm-layoutgrid name="layoutgrid1">
-                <wm-gridrow name="gridrow4">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn7_1">
-                        <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
-                        <wm-label caption="Municipality Application Status" fontweight="bold" name="label1" class="h4"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
-                        <wm-composite name="composite1" show="bind:Variables.AdminVendorsList.dataSet.content.length > 1">
-                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Company" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectSelectCompany" dataset="bind:Variables.AdminVendorsList.dataSet" datafield="All Fields" displayfield="CompanyName" datavalue="bind:Variables.AdminVendorsList.firstRecord" orderby="CompanyName:asc"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow7">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn8">
-                        <wm-livegrid formlayout="dialog" name="livegrid2">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.VendorApprovalsData.dataSet" navigation="Classic" name="grid2_1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="false">
-                                <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="date" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="date" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                <wm-grid-action key="addNewRow" display-name="Add Municipality" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Municipality" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                            </wm-grid>
-                            <wm-liveform novalidate="false" errormessage="You have already applied to this municipality." title="Apply to Municipality" formlayout="dialog" iconclass="wi wi-account-balance" dataset="bind:Variables.VendorApprovalsData.dataSet"
-                            captionalign="left" captionposition="top" name="liveform2_12" insertmessage="Your application has been submitted to the municipality. Check back later for updated application status.">
-                                <wm-layoutgrid columns="1" name="layoutgrid3">
-                                    <wm-gridrow name="gridrow11">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn12">
-                                            <wm-form-field name="municipalities" displayname="What municipality would you like to do business with?" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" required="required"
-                                            widget="select" placeholder="Select Municipality" displayexpression="municipalityName" orderby="municipalityName:asc"></wm-form-field>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                                <wm-form-field name="vendor" displayname="Vendor" show="false" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" widget="select" placeholder="Select value" dataset="bind:Variables.CurrentVendorObj.dataSet"
-                                datafield="All Fields" displayfield="companyName" defaultvalue="bind:Variables.CurrentVendorObj.firstRecord"></wm-form-field>
-                                <wm-form-field name="approvalStatus" displayname="Approval Status" show="false" primary-key="false" generator="assigned" key="approvalStatus" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                defaultvalue="Pending"></wm-form-field>
-                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                placeholder=""></wm-form-field>
-                                <wm-form-action key="save" display-name="Submit" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" action="saveAction($event);saveAction1($event)" disabled="bind:Widgets.municipalities.datavalue == null"
-                                type="button" update-mode="true"></wm-form-action>
-                                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                            </wm-liveform>
-                        </wm-livegrid>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-page-content>
-    </wm-content>
-    <wm-footer content="footer" name="footer1"></wm-footer>
+<wm-page data-ng-controller="CompanyMunicipalitiesPageController" pagetitle="Company Municipalities" name="page1"> 
+ <wm-header content="header" name="header1"></wm-header> 
+ <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav> 
+ <wm-content name="content1"> 
+  <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel> 
+  <wm-page-content columnwidth="10" name="page_content1"> 
+   <wm-layoutgrid name="layoutgrid1"> 
+    <wm-gridrow name="gridrow4"> 
+     <wm-gridcolumn columnwidth="12" name="gridcolumn7_1"> 
+      <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow1"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset"> 
+      <wm-label caption="Municipality Application Status" fontweight="bold" name="label1" class="h4"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset"> 
+      <wm-composite name="composite1" show="bind:Variables.AdminVendorsList.dataSet.content.length > 1"> 
+       <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Company" fontweight="bold"></wm-label> 
+       <wm-container class="col-md-9" name="container1"> 
+        <wm-select name="selectSelectCompany" dataset="bind:Variables.AdminVendorsList.dataSet" datafield="All Fields" displayfield="CompanyName" datavalue="bind:Variables.AdminVendorsList.firstRecord" orderby="CompanyName:asc"></wm-select> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow7"> 
+     <wm-gridcolumn columnwidth="12" name="gridcolumn8"> 
+      <wm-livegrid formlayout="dialog" name="livegrid2"> 
+       <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.VendorApprovalsData.dataSet" navigation="Classic" name="grid2_1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="false"> 
+        <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" show="true" related-entity-name="Municipalities" readonly="false"></wm-grid-column> 
+        <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column> 
+        <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="date" readonly="false"></wm-grid-column> 
+        <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column> 
+        <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="date" readonly="false"></wm-grid-column> 
+        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column> 
+        <wm-grid-action key="addNewRow" display-name="Add Municipality" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Municipality" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action> 
+        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action> 
+       </wm-grid> 
+       <wm-liveform novalidate="false" errormessage="You have already applied to this municipality." title="Apply to Municipality" formlayout="dialog" iconclass="wi wi-account-balance" dataset="bind:Variables.VendorApprovalsData.dataSet" captionalign="left" captionposition="top" name="liveform2_12" insertmessage="Your application has been submitted to the municipality. Check back later for updated application status."> 
+        <wm-layoutgrid columns="1" name="layoutgrid3"> 
+         <wm-gridrow name="gridrow11"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn12"> 
+           <wm-form-field name="municipalities" displayname="What municipality would you like to do business with?" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" required="required" widget="select" placeholder="Select Municipality" displayexpression="municipalityName" orderby="municipalityName:asc"></wm-form-field> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+        </wm-layoutgrid> 
+        <wm-form-field name="vendor" displayname="Vendor" show="false" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" widget="select" placeholder="Select value" dataset="bind:Variables.CurrentVendorObj.dataSet" datafield="All Fields" displayfield="companyName" defaultvalue="bind:Variables.CurrentVendorObj.firstRecord"></wm-form-field> 
+        <wm-form-field name="approvalStatus" displayname="Approval Status" show="false" primary-key="false" generator="assigned" key="approvalStatus" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="Pending"></wm-form-field> 
+        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field> 
+        <wm-form-action key="save" display-name="Submit" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" action="saveAction($event);saveAction1($event)" disabled="bind:Widgets.municipalities.datavalue == null" type="button" update-mode="true"></wm-form-action> 
+        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action> 
+       </wm-liveform> 
+      </wm-livegrid> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+  </wm-page-content> 
+ </wm-content> 
+ <wm-footer content="footer" name="footer1"></wm-footer> 
 </wm-page>

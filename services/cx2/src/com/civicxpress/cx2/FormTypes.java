@@ -7,8 +7,8 @@ package com.civicxpress.cx2;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,8 +23,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -205,7 +203,6 @@ public class FormTypes implements Serializable {
         this.municipalityInternalForm = municipalityInternalForm;
     }
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "`CreatedDate`", nullable = true)
     public Date getCreatedDate() {
         return this.createdDate;

@@ -21,14 +21,14 @@
 
     <servlet>
         <servlet-name>prefabs</servlet-name>
-        <servlet-class>com.wavemaker.studio.prefab.web.PrefabControllerServlet</servlet-class>
+        <servlet-class>com.wavemaker.runtime.prefab.web.PrefabControllerServlet</servlet-class>
         <init-param>
             <param-name>contextClass</param-name>
             <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
         </init-param>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>com.wavemaker.studio.prefab.config.PrefabServletConfig</param-value>
+            <param-value>com.wavemaker.runtime.prefab.config.PrefabServletConfig</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -129,7 +129,7 @@
 
     <filter>
         <filter-name>etagFilter</filter-name>
-        <filter-class>com.wavemaker.studio.common.web.filter.EtagFilter</filter-class>
+        <filter-class>com.wavemaker.commons.web.filter.EtagFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>etagFilter</filter-name>

@@ -1,612 +1,569 @@
-<wm-page data-ng-controller="NewFormPageController" pagetitle="New Form" name="page1">
-    <wm-header content="header" name="header1"></wm-header>
-    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
-    <wm-content name="content1">
-        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
-        <wm-page-content columnwidth="10" name="page_content1">
-            <wm-layoutgrid name="layoutgrid3">
-                <wm-gridrow name="gridrow9">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn16">
-                        <wm-breadcrumb dataset="bind:Variables.stvBreadCrumbs.dataSet" name="breadcrumb1"></wm-breadcrumb>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow7">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn12">
-                        <wm-spinner show="false" name="spinnerFormSubmit" caption="" servicevariabletotrack="svSubmitForm"></wm-spinner>
-                        <wm-spinner show="bind:!loaded" name="spinnerPageLoad" caption="" deferload="false"></wm-spinner>
-                        <wm-wizard stepstyle="auto" name="newFormWizard" donebtnlabel="Submit" on-done="newFormWizardDone($scope, steps)" on-cancel="newFormWizardCancel($scope, steps)">
-                            <wm-wizardstep name="wizardstepInstructions" title="Instructions">
-                                <wm-layoutgrid name="layoutgrid56">
-                                    <wm-gridrow name="gridrow6" padding="2em unset unset unset">
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center">
-                                            <wm-picture name="picture2" picturesource="bind:!!Variables.lvFormType.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.lvFormType.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;"
-                                            class="muni-logo"></wm-picture>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn14"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow7">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn10"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="8" name="gridcolumn11" horizontalalign="center">
-                                            <wm-label padding="unset 0.5em" name="label7" class="h1" caption="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow46_1">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn90_1">
-                                            <wm-html name="html1" content="bind:Variables.lvFormType.dataSet.data[$i].instructions">bind:'
-                                                <br>
-                                                <br>' + (!!Variables.lvFormType.dataSet.data[$i].instructions ? Variables.lvFormType.dataSet.data[$i].instructions : '
-                                                <div class="&quot;text-center&quot;">Welcome to the New Form Wizard. Please provide the requested data for the following steps in order to submit your new form.</div>')</wm-html>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-wizardstep>
-                            <wm-wizardstep name="wizardstep2" title="Submit on Behalf" ng-if="loaded &amp;&amp; submitOnBehalf" show="true" enableskip="true" on-skip="wizardstep2Skip($scope, currentStep, stepIndex)">
-                                <wm-layoutgrid name="layoutgrid14">
-                                    <wm-gridrow name="gridrow47_1" padding="2em unset">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn90_2">
-                                            <wm-label padding="unset 0.5em" name="label19" caption="Are you submitting this form on behalf of someone else?"></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label20" caption="If you are, please locate them using the Search below. If they aren't found, select &quot;New User&quot;, provide their contact information, and they will receive an email invitation to register for CivicXpress in order to view their form."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label28" caption="If not, please click the &quot;Skip&quot; link and proceed to the next step."></wm-label>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow41_2">
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn83_1">
-                                            <wm-search name="searchOnBehalfOfUser" dataset="bind:Variables.Cx2UsersData.dataSet" searchkey="email,fullName" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" datafield="All Fields" placeholder="Search by Name or Email Address"
-                                            disabled="bind:Widgets.checkboxNewUser.datavalue" required="false" orderby="fullName:asc"></wm-search>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn87_1">
-                                            <wm-checkbox caption="New User" class="col-md-push-3 col-md-9" name="checkboxNewUser" on-change="checkboxNewUserChange($event, $scope, newVal, oldVal)"></wm-checkbox>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow44_1">
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn86">
-                                            <wm-composite name="composite7" show="false">
-                                                <wm-label class="col-md-3 control-label" name="label17_1"></wm-label>
-                                                <wm-container class="col-md-9" name="container5">
-                                                    <wm-text name="textIdPrintout" required="bind:!Widgets.checkboxNewUser.datavalue" datavalue="bind:Widgets.searchOnBehalfOfUser.datavalue.id | numberToString"></wm-text>
-                                                </wm-container>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn87"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow42_1">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn85_1">
-                                            <wm-liveform novalidate="false" errormessage="" title="User Details" iconclass="wi wi-account-circle" defaultmode="Edit" dataset="bind:Variables.Cx2UsersData.dataSet" captionalign="left" captionposition="top" name="lfSubmitOnBehalf"
-                                            show="true" formdata="bind:Widgets.searchOnBehalfOfUser.datavalue" on-success="lfSubmitOnBehalfSuccess($event, $operation, $data)">
-                                                <wm-layoutgrid columns="2" name="layoutgrid1">
-                                                    <wm-gridrow name="gridrow1">
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn1">
-                                                            <wm-form-field name="firstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text"
-                                                            maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn2">
-                                                            <wm-form-field name="lastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text"
-                                                            maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                    </wm-gridrow>
-                                                    <wm-gridrow name="gridrow2">
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn3">
-                                                            <wm-form-field name="email" displayname="Email Address" show="true" primary-key="false" generator="assigned" key="email" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text"
-                                                            maxchars="255" inputtype="email" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn4">
-                                                            <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" required="bind:Widgets.checkboxNewUser.datavalue"
-                                                            widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                    </wm-gridrow>
-                                                    <wm-gridrow name="gridrow3">
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn5">
-                                                            <wm-form-field name="address1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text"
-                                                            maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn6">
-                                                            <wm-form-field name="address2" displayname="Address2" show="true" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                                            disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                    </wm-gridrow>
-                                                    <wm-gridrow name="gridrow4">
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn7">
-                                                            <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text" maxchars="255"
-                                                            inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn8">
-                                                            <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="false" widget="select" placeholder="Select value"
-                                                            displayexpression="stateName" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                    </wm-gridrow>
-                                                    <wm-gridrow name="gridrow5">
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn9">
-                                                            <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                                            disabled="bind:!Widgets.checkboxNewUser.datavalue" required="false"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn10">
-                                                            <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" required="false" widget="text" maxchars="255"
-                                                            placeholder="Enter value" defaultvalue="USA" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field>
-                                                        </wm-gridcolumn>
-                                                    </wm-gridrow>
-                                                </wm-layoutgrid>
-                                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                                placeholder=""></wm-form-field>
-                                            </wm-liveform>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-wizardstep>
-                            <wm-wizardstep name="wizardstep2_1" title="Form" ng-if="loaded" enableskip="false">
-                                <wm-layoutgrid name="layoutgrid2">
-                                    <wm-gridrow name="gridrow2_2" padding="2em unset 3em unset">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn2_2">
-                                            <wm-label padding="unset 0.5em" name="label28_1" caption="Please complete the following form fields, then proceed to the next step."></wm-label>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow ng-repeat="formField in Variables.lvGetFormFields.dataSet.data" name="fieldGridrow{{$index}}">
-                                        <wm-gridcolumn columnwidth="12" name="fieldGridcolumn{{$index}}">
-                                            <wm-composite name="fieldComposite{{$index}}">
-                                                <label class="col-md-3 control-label app-label" name="fieldLabel{{$index}}" ng-class="{required: formField.required}">
-                                                    {{formField.label}}
-                                                    <i ng-if="!!formField.helpText &amp;&amp; formField.helpText != ''" class="wi wi-help fa-lg" title="{{formField.helpText}}"></i>
-                                                </label>
-                                                <wm-container class="col-md-9" name="container3">
-                                                    <input ng-if="formField.formFieldTypes.label == 'Text'" class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="formData[formField.fieldName]" pattern=".*" accesskey=""
-                                                    ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="text" ng-required="formField.required">
-                                                    <input class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="formData[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}"
-                                                    ng-if="formField.formFieldTypes.label == 'Number'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="number" ng-required="formField.required">
-                                                    <textarea class="form-control app-textarea" apply-styles="" role="input" focus-target="" ng-model="formData[formField.fieldName]" title="" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0}"
-                                                    ng-if="formField.formFieldTypes.label == 'Long Text'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" ng-required="formField.required"></textarea>
-                                                    <datetime-picker ng-if="formField.formFieldTypes.label == 'Date'" placeholder="Please enter {{formField.label}}" date="formData[formField.fieldName]" name="{{formField.fieldName}}" time="false"
-                                                    ng-required="formField.required"></datetime-picker>
-                                                    <datetime-picker ng-if="formField.formFieldTypes.label == 'Date+Time'" placeholder="Please enter {{formField.label}}" date="formData[formField.fieldName]" name="{{formField.fieldName}}"
-                                                    time="true" ng-required="formField.required"></datetime-picker>
-                                                    <div ng-if="formField.formFieldTypes.label == 'Boolean'" class="app-checkbox checkbox" style="margin-top: 0" role="input" name="fieldValue{{formField.fieldName}}">
-                                                        <label ng-class="{unchecked: !formData[formField.fieldName]}" style="padding-left: 0" role="button">
-                                                            <input type="checkbox" ng-model="formData[formField.fieldName]"><span class="caption ng-binding" ng-bind-html=""></span>
-                                                        </label>
-                                                    </div>
-                                                    <select ng-if="formField.formFieldTypes.label == 'Select'" ng-options="item for item in (formField.possibleValues.split(','))" ng-model="formData[formField.fieldName]" ng-required="formField.required"></select>
-                                                    <cx-checkbox-set ng-if="formField.formFieldTypes.label == 'Multi-Select'" choices="formField.possibleValues" model="formData[formField.fieldName]" field-name="formField.fieldName"></cx-checkbox-set>
-                                                    <hr ng-if="formField.formFieldTypes.label == 'Horizontal Line'">
-                                                    <p ng-if="formField.formFieldTypes.label == 'Instruction Text'" ng-bind-html="formField.defaultValue"></p>
-                                                    <h3 ng-if="formField.formFieldTypes.label == 'Header'" ng-bind-html="formField.defaultValue"></h3>
-                                                </wm-container>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-wizardstep>
-                            <wm-wizardstep name="wizardstepLocation" title="Location" ng-if="loaded &amp;&amp; gisRecords" enableskip="false">
-                                <wm-layoutgrid name="layoutgrid17">
-                                    <wm-gridrow name="gridrow60" padding="2em unset">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn125">
-                                            <wm-label padding="unset 0.5em" name="label29" caption="What location is associated with this form?"></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label34" caption="Please click the &quot;+Add Location&quot; button to locate the land record(s) that you would like to link to the form, then proceed to the next step."></wm-label>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow38_1">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn78">
-                                            <wm-composite name="composite11" required="true" show="false">
-                                                <wm-label class="col-md-3 control-label" name="label22"></wm-label>
-                                                <wm-container class="col-md-9" name="container10">
-                                                    <wm-text name="textLocationString" required="true" datavalue="bind:Variables.stvGisData.dataSet.length === 0 ? '' : Variables.stvGisData.dataSet[0].ID"></wm-text>
-                                                </wm-container>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow61">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn127">
-                                            <wm-livegrid formlayout="dialog" name="livegridLocation">
-                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.stvGisData.dataSet" navigation="Classic" name="gridLocation" exportformat="EXCEL">
-                                                    <wm-grid-column binding="SubdivisionName" caption="Subdivision" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="Parcel" caption="Parcel" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="Lot" caption="Lot" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="Section" caption="Section" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="StreetNumber" caption="Street Number" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="StreetName" caption="Street Name" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="City" caption="City" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="InspectionZone" caption="Inspection Zone" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-action key="addNewRow" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Location" action="Widgets.dialogAddGISRecord.open()" shortcutkey=""
-                                                    disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleGisrecords &amp;&amp; Variables.stvGisData.dataSet.length >= 1"></wm-grid-action>
-                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleterowAction($event)" disabled="false"></wm-grid-row-action>
-                                                </wm-grid>
-                                            </wm-livegrid>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-wizardstep>
-                            <wm-wizardstep name="wizardstepVendor" title="Vendor" ng-if="loaded &amp;&amp; vendorInfo" enableskip="false">
-                                <wm-composite name="composite12" required="true" show="false">
-                                    <wm-label class="col-md-3 control-label" name="label23"></wm-label>
-                                    <wm-container class="col-md-9" name="container11">
-                                        <wm-text name="textVendorString" datavalue="bind:Variables.stvVendors.dataSet.length === 0 ? '' : Variables.stvVendors.dataSet[0].ID"></wm-text>
-                                    </wm-container>
-                                </wm-composite>
-                                <wm-layoutgrid name="layoutgrid15_1">
-                                    <wm-gridrow name="gridrow48_1" padding="2em unset">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn91_1">
-                                            <wm-label padding="unset 0.5em" name="label30" caption="What vendor or company is associated with this form?"></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label20_1" caption="Please click the &quot;+Add Vendor&quot; button to locate the vendor(s) that you would like to link to the form, then proceed to the next step. If multiple Vendors are involved, be sure to specify the correct Primary Vendor."></wm-label>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow49_1">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn93_1">
-                                            <wm-grid title="" dataset="bind:Variables.stvVendors.dataSet" navigation="Classic" name="gridVendors">
-                                                <wm-grid-column binding="Primary" caption="Primary" type="string" widget-type="checkbox" readonly="true" show="true">
-                                                    <wm-checkbox scopedatavalue="row['Primary']" class="" data-ng-class="" ng-click="changePrimaryVendor($event, row)"></wm-checkbox>
-                                                </wm-grid-column>
-                                                <wm-grid-column binding="Company" caption="Company" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="PhoneNumber" caption="Phone Number" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="EmailAddress" caption="Email Address" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="Website" caption="Website" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-action key="customButton" display-name="Add Vendor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Vendor" action="Widgets.dialogAddVendor.open()" shortcutkey=""
-                                                disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleVendors &amp;&amp; Variables.stvVendors.dataSet.length > 0" icon="wi wi-plus"></wm-grid-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
-                                            </wm-grid>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-wizardstep>
-                            <wm-wizardstep name="wizardstepOwner" title="Owner" ng-if="loaded &amp;&amp; ownerInfo" on-load="wizardstep9Load($scope, stepIndex)" enableskip="false">
-                                <wm-layoutgrid name="layoutgrid14_1">
-                                    <wm-gridrow name="gridrow50" padding="2em unset unset unset">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn93_2">
-                                            <wm-label padding="unset 0.5em" name="label21" caption="What property owner would you like to specify for this form?"></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label26_1" caption="Owners associated with the information you provided earlier are available as selections below. If the correct owner is not listed, please choose &quot;New Owner&quot; and provide their current contact information."></wm-label>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow42">
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn82_1">
-                                            <wm-composite name="composite4" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection || Variables.svGetOwners.dataSet.content.length > 0">
-                                                <wm-checkbox caption="New Owner" class="col-md-push-3 col-md-9" name="checkboxOtherOwner" disabled="bind:Widgets.checkboxVendorIsOwner.datavalue" datavalue="bind:!Variables.lvFormType.dataSet.data[$i].vendorSelection &amp;&amp; !Variables.svGetOwners.dataSet.content.length"
-                                                on-change="checkboxOtherOwnerChange($event, $scope, newVal, oldVal)"></wm-checkbox>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn83">
-                                            <wm-composite name="compositeVendorIsOwner" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection">
-                                                <wm-checkbox caption="Vendor is Owner" class="col-md-push-3 col-md-9" name="checkboxVendorIsOwner" disabled="bind:Widgets.checkboxOtherOwner.datavalue" on-change="checkboxVendorIsOwnerChange($event, $scope, newVal, oldVal)"></wm-checkbox>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow41_3">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn82_2">
-                                            <wm-grid title="Select Owner" dataset="bind:Variables.svGetOwners.dataSet" navigation="Classic" name="gridOwners" show="bind:!Widgets.checkboxOtherOwner.datavalue &amp;&amp; !Widgets.checkboxVendorIsOwner.datavalue"
-                                            iconclass="">
-                                                <wm-grid-column binding="nuffinmuffin" caption="&amp;#9745;" type="string" widget-type="checkbox" width="52px" readonly="true" searchable="false" show="true">
-                                                    <wm-checkbox scopedatavalue="row.selected" class="" data-ng-class="" ng-click="selectOwner($event, row)"></wm-checkbox>
-                                                </wm-grid-column>
-                                                <wm-grid-column binding="firstName" caption="First Name" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="lastName" caption="Last Name" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="city" caption="City" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="notes" caption="Notes" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="gisrecords.fullAddress" caption="Location Owned" readonly="true" show="true"></wm-grid-column>
-                                            </wm-grid>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow43">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn84_1">
-                                            <wm-composite name="composite6" show="false">
-                                                <wm-label class="col-md-3 control-label" name="label16"></wm-label>
-                                                <wm-container class="col-md-9" name="container4">
-                                                    <wm-text name="textHiddenOwnerThing" datavalue="bind:Widgets.gridOwners.selecteditem.id" required="bind:!Widgets.checkboxOtherOwner.datavalue &amp;&amp; !Widgets.checkboxVendorIsOwner.datavalue"></wm-text>
-                                                </wm-container>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                                <wm-liveform novalidate="false" errormessage="" title="Owner Details" iconclass="wi wi-account-circle" defaultmode="Edit" dataset="bind:Variables.Cx2GiscontactsData.dataSet" captionalign="left" captionposition="top" name="lfOwner"
-                                show="bind:Widgets.checkboxOtherOwner.datavalue || Widgets.checkboxVendorIsOwner.datavalue" on-success="lfOwnerSuccess($event, $operation, $data)">
-                                    <wm-layoutgrid columns="2" name="layoutgrid15">
-                                        <wm-gridrow name="gridrow44">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn88">
-                                                <wm-form-field name="ownerFirstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" widget="text" maxchars="255" disabled="false" inputtype="text"
-                                                placeholder="Enter value" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn89">
-                                                <wm-form-field name="ownerLastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow45">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn90">
-                                                <wm-form-field name="ownerEmail" displayname="Email Address" show="true" primary-key="false" generator="assigned" key="email" type="string" widget="text" maxchars="255" disabled="false" inputtype="email" placeholder="Enter value"
-                                                required="false"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn91">
-                                                <wm-form-field name="ownerPhone" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phone" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"
-                                                required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow46">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn92">
-                                                <wm-form-field name="ownerAddress1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"
-                                                required="false"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn93">
-                                                <wm-form-field name="ownerAddress2" displayname="Address2" show="true" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow47">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn94">
-                                                <wm-form-field name="ownerCity" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"
-                                                required="false"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn95">
-                                                <wm-form-field name="ownerStates" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" widget="select" disabled="false" placeholder="Select value"
-                                                displayexpression="stateName" required="false"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow48">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn96">
-                                                <wm-form-field name="ownerPostalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" disabled="false" inputtype="text"
-                                                placeholder="Enter value" required="false"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn97">
-                                                <wm-form-field name="ownerCountry" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"
-                                                defaultvalue="bind:'USA'" required="false"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow49">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn98">
-                                                <wm-form-field name="ownerNotes" displayname="Notes" show="true" primary-key="false" generator="assigned" key="notes" type="string" widget="text" maxchars="500" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn name="gridcolumn1" columnwidth="6">
-                                                <wm-label padding="unset 0.5em" name="label17" caption="Location" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-label>
-                                                <wm-select name="gisRecordSelect" displayname="Location" show="true" primary-key="false" generator="assigned" is-related="true" required="bind:Widgets.checkboxOtherOwner.datavalue" dataset="bind:Variables.stvGisData.dataSet"
-                                                datafield="ID" disabled="false" displayfield="FullAddress" width="75%" datavalue="bind:Variables.stvGisData.dataSet[0].ID" readonly="false" on-change="gisRecordSelectChange($event, $scope, newVal, oldVal)"></wm-select>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow1">
-                                            <wm-gridcolumn name="gridcolumn1" columnwidth="6">
-                                                <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" defaultvalue="bind:true" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                    </wm-layoutgrid>
-                                    <wm-form-field name="ownerContactType" displayname="Contact Type" show="false" primary-key="false" generator="assigned" key="contactType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                    defaultvalue="bind:'Owner'"></wm-form-field>
-                                    <wm-form-field name="ownerId" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                    placeholder=""></wm-form-field>
-                                    <wm-form-field name="ownerGisrecords" displayname="Gisrecords" show="false" primary-key="false" generator="assigned" key="gisrecords" type="list" is-related="true" widget="select" defaultvalue="bind:{&quot;id&quot;: Widgets.lfOwner.formWidgets.gisRecordSelect.datavalue}"
-                                    placeholder="Select value" required="true"></wm-form-field>
-                                </wm-liveform>
-                            </wm-wizardstep>
-                            <wm-wizardstep name="wizardstep5" title="Attachments" ng-if="loaded &amp;&amp; documents" enableskip="false">
-                                <wm-layoutgrid name="layoutgrid16">
-                                    <wm-gridrow name="gridrow51" padding="2em unset">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn95_2">
-                                            <wm-label padding="unset 0.5em" name="label29_1" caption="If you would like to upload any documents related to this form (such as blueprints, schematics, photos, etc.), please use the &quot;+Add Attachment&quot; button below, otherwise proceed to the next step."></wm-label>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow52">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn97_2">
-                                            <wm-grid editmode="inline" title="" dataset="bind:Variables.stvDocuments.dataSet" navigation="Classic" name="gridNewFormDocuments" showrecordcount="false">
-                                                <wm-grid-column binding="Filename" caption="File Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="Mimetype" caption="File Type" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-action key="addNewRow" display-name="Add Attachment" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Attachment" action="Widgets.dialogUploadDocument.open()" shortcutkey=""
-                                                disabled="false"></wm-grid-action>
-                                                <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                            </wm-grid>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-wizardstep>
-                            <wm-wizardstep name="wizardstep6" title="Sharing" ng-if="loaded &amp;&amp; sharing" enableskip="false">
-                                <wm-layoutgrid name="layoutgrid17_1">
-                                    <wm-gridrow name="gridrow53" padding="2em unset">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn96_2">
-                                            <wm-label padding="unset 0.5em" name="label25" caption="Would you like to share this form with other users?"></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label29_2" caption="Use the &quot;+Add User&quot; button to perform a search. If you would like to share your form with somebody who has not registered for CivicXpress, please use the &quot;+Invite User&quot; button, provide their contact information, and they will receive an email invitation to view your form."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label26" caption="Sharing the form with a user will allow them to complete transactions for the form."></wm-label>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow54">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn98_2">
-                                            <wm-grid title="" dataset="bind:Variables.stvContacts.dataSet" navigation="Classic" name="gridSharing">
-                                                <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="Email" caption="Email Address" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-action key="customButton" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="Widgets.dialogAddContact.open()" shortcutkey=""
-                                                disabled="false" icon="wi wi-plus"></wm-grid-action>
-                                                <wm-grid-action key="customButton1" display-name="Invite User" title="Invite User" value="" iconclass="wi wi-plus" class="btn-secondary" show="true" shortcutkey=""></wm-grid-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
-                                            </wm-grid>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-wizardstep>
-                            <wm-wizardstep name="wizardstep7" ng-if="loaded" title="Submit"></wm-wizardstep>
-                        </wm-wizard>
-                        <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.stvGisData.dataSet" zoom="17" markertype="Address" address="StreetNumber StreetName City State" show="bind:Variables.lvFormType.dataSet.data[$i].gismap &amp;&amp; Variables.stvGisData.dataSet.length > 0 &amp;&amp; !!Widgets.newFormWizard.currentStep.wizardstepLocation"></wm-prefab>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow8">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn14"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn15"></wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-page-content>
-    </wm-content>
-    <wm-footer content="footer" name="footer1"></wm-footer>
-    <wm-view class="dialog-view" name="viewAddGISRecord">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Location Search" iconclass="wi wi-location-searching" name="dialogAddGISRecord">
-            <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Add Location" type="button" margin="unset 0.5em" name="buttonAddLocation" iconclass="wi wi-plus" show="true" on-click="buttonAddLocationClick($event, $scope)" disabled="bind:canAddParcel()"></wm-button>
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button3" iconclass="wi wi-cancel"></wm-button>
-            </wm-dialogactions>
-            <wm-tabs name="tabsAddGISRecord">
-                <wm-tabpane name="tbpByAddress" title="BY ADDRESS">
-                    <wm-layoutgrid name="layoutgrid8">
-                        <wm-gridrow name="gridrow20">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn40"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn41">
-                                <wm-search name="searchAddress" placeholder="Search by Street Number or Street Name" dataset="bind:Variables.lvGisRecords.dataSet" searchkey="fullAddress" datafield="All Fields" displaylabel="fullAddress"></wm-search>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn44"></wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow22" padding="1em unset unset unset">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn46"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn47" horizontalalign="center">
-                                <wm-label padding="unset 0.5em" name="label11" class="h4" show="bind:!!Widgets.searchAddress.datavalue.id" caption="Parcel Details"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn48"></wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow21" padding="unset unset 1em unset">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn42"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn43" horizontalalign="center">
-                                <wm-label padding="unset 0.5em" name="label10" caption="bind:Widgets.searchAddress.datavalue.fullAddress" show="bind:!!Widgets.searchAddress.datavalue.id"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn45"></wm-gridcolumn>
-                        </wm-gridrow>
-                    </wm-layoutgrid>
-                </wm-tabpane>
-                <wm-tabpane name="tbpBySubdivision" title="BY SUBDIVISION">
-                    <wm-layoutgrid name="layoutgrid9">
-                        <wm-gridrow name="gridrow40_1" padding="unset unset .5em unset">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn95_1"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn96_1">
-                                <wm-search placeholder="Search by Subdivision Name" dataset="bind:Variables.lvSubdivisions.dataSet" searchkey="subdivision" datafield="All Fields" name="searchFliterSubdivisions" displayexpression="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]"
-                                displaylabel="bind:$[data[$i].subdivision]" orderby="subdivision:asc"></wm-search>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn97_1"></wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow24">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn52"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn53">
-                                <wm-select placeholder="Select Lot" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]" datafield="All Fields"
-                                name="searchSubdivision" show="bind:Widgets.searchFliterSubdivisions.datavalue!=undefined" dataset="bind:Variables.lvGisLotRecords.dataSet" displayfield="fullAddress" displayexpression="bind:'('+$[data[$i].lot]+') '+$[data[$i].fullAddress]"></wm-select>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn54"></wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow25" padding="1em unset unset unset">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn55"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn56">
-                                <wm-label padding="unset 0.5em" class="h4" name="label12" show="bind:Widgets.searchSubdivision.datavalue!=undefined" caption="Parcel Details"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn57"></wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow padding="unset unset 1em unset" name="gridrow26">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn58"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn59">
-                                <wm-label padding="unset 0.5em" name="label27_1" caption="bind:Widgets.searchSubdivision.datavalue.fullAddress" show="bind:Widgets.searchSubdivision.datavalue!=undefined"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn60"></wm-gridcolumn>
-                        </wm-gridrow>
-                    </wm-layoutgrid>
-                </wm-tabpane>
-                <wm-tabpane name="tbpByParcel" title="BY PARCEL">
-                    <wm-layoutgrid name="layoutgrid10">
-                        <wm-gridrow name="gridrow28">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn64"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn65">
-                                <wm-search placeholder="Search by Parcel Number" datafield="All Fields" name="searchParcel" dataset="bind:Variables.lvGisRecords.dataSet" searchkey="parcel" displaylabel="bind:'('+$[data[$i].parcel]+') '+$[data[$i].fullAddress]"></wm-search>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn66"></wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow41_1">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn98_1"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn99">
-                                <wm-label padding="unset 0.5em" name="label23_1" caption="Example: 13-11-21-00-08-010.000"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn100"></wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow29" padding="1em unset unset unset">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn67"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn68">
-                                <wm-label padding="unset 0.5em" class="h4" name="label14" show="bind:Widgets.searchParcel.datavalue!=undefined" caption="Parcel Details"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn69"></wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow padding="unset unset 1em unset" name="gridrow30">
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn70"></wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn71">
-                                <wm-label padding="unset 0.5em" caption="bind:Widgets.searchParcel.datavalue.fullAddress" show="bind:Widgets.searchParcel.datavalue!=undefined" name="label15"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn72"></wm-gridcolumn>
-                        </wm-gridrow>
-                    </wm-layoutgrid>
-                </wm-tabpane>
-            </wm-tabs>
-        </wm-dialog>
-    </wm-view>
-    <wm-view class="dialog-view" name="view2">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Attach Document" iconclass="wi wi-attach-file" name="dialogUploadDocument" on-opened="dialogUploadDocumentOpened($event, $scope)">
-            <wm-layoutgrid name="layoutgrid10_1">
-                <wm-gridrow name="gridrow32"></wm-gridrow>
-                <wm-gridrow name="gridrow33">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn82">
-                        <input type="file" name="uploadDocument" ng-file-model="documentsToUpload" multiple="">
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-            <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-primary" caption="Upload" on-click="closeDialog();buttonAddDocumentClick($event, $scope)" name="buttonAddDocument" iconclass="wi wi-file-upload" disabled="bind:documentsToUpload.length === 0"></wm-button>
-                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button6" iconclass="wi wi-cancel" on-click="Widgets.dialogUploadDocument.close()"></wm-button>
-            </wm-dialogactions>
-        </wm-dialog>
-    </wm-view>
-    <wm-view class="dialog-view" name="view3">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Share With User" iconclass="wi wi-share" name="dialogAddContact">
-            <wm-layoutgrid name="layoutgrid11">
-                <wm-gridrow name="gridrow34"></wm-gridrow>
-                <wm-gridrow name="gridrow55">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn98_3">
-                        <wm-label padding="unset 0.5em" name="label27_2" caption="Who would you like to share this form with?"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow35">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn81">
-                        <wm-search name="searchContact" dataset="bind:Variables.Cx2UsersData.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" datafield="All Fields" placeholder="Search by Name or Email Address" displayimagesrc="photo"
-                        orderby="fullName:asc"></wm-search>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-            <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-primary" caption="Add User" on-click="closeDialog();button7Click($event, $scope)" name="button7" iconclass="wi wi-plus" disabled="bind:!Widgets.searchContact.datavalue.id"></wm-button>
-                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button8" iconclass="wi wi-cancel" on-click="Widgets.dialogAddContact.close()"></wm-button>
-            </wm-dialogactions>
-        </wm-dialog>
-    </wm-view>
-    <wm-view class="dialog-view" name="view4">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Vendor Search" iconclass="wi wi-work" name="dialogAddVendor">
-            <wm-layoutgrid name="layoutgrid12">
-                <wm-gridrow name="gridrow36">
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn100_1"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="10" name="gridcolumn84">
-                        <wm-search name="searchVendors" dataset="bind:Variables.lvVendors.dataSet" searchkey="vendor.companyName" displaylabel="vendor.companyName" datafield="All Fields" placeholder="Search by Company Name" type="search"></wm-search>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn101"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow57">
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn102"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="10" name="gridcolumn103">
-                        <wm-composite name="composite9">
-                            <wm-checkbox caption="Set as Primary Vendor" class="col-md-9" name="checkboxVendorIsPrimary" datavalue="bind:!Variables.stvVendors.dataSet.length" disabled="bind:!Variables.stvVendors.dataSet.length"></wm-checkbox>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn104"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow39" padding="1em unset unset unset">
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn90"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn91">
-                        <wm-label padding="unset 0.5em" class="h4" show="bind:Widgets.searchVendors.datavalue!=undefined" caption="Company Details" name="label23"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn92"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow padding="0em unset 1em unset" name="gridrow40">
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn93"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn94">
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.searchVendors.datavalue.vendor.companyName+&quot;, &quot;+Widgets.searchVendors.datavalue.vendor.fullAddress+&quot;, &quot;+Widgets.searchVendors.datavalue.vendor.companyPhone+&quot;, &quot;+Widgets.searchVendors.datavalue.vendor.companyEmail"
-                        show="bind:Widgets.searchVendors.datavalue!=undefined" name="label24"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn95"></wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-            <wm-dialogactions name="dialogactions4">
-                <wm-button class="btn-primary" caption="Add Vendor" on-click="closeDialog();buttonAddVendorClick($event, $scope)" name="buttonAddVendor" iconclass="wi wi-plus" disabled="bind:!Widgets.searchVendors.datavalue.id"></wm-button>
-                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button10" iconclass="wi wi-cancel" on-click="Widgets.dialogAddVendor.close()"></wm-button>
-            </wm-dialogactions>
-        </wm-dialog>
-    </wm-view>
+<wm-page data-ng-controller="NewFormPageController" pagetitle="New Form" name="page1"> 
+ <wm-header content="header" name="header1"></wm-header> 
+ <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav> 
+ <wm-content name="content1"> 
+  <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel> 
+  <wm-page-content columnwidth="10" name="page_content1"> 
+   <wm-layoutgrid name="layoutgrid3"> 
+    <wm-gridrow name="gridrow9"> 
+     <wm-gridcolumn columnwidth="12" name="gridcolumn16"> 
+      <wm-breadcrumb dataset="bind:Variables.stvBreadCrumbs.dataSet" name="breadcrumb1"></wm-breadcrumb> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow7"> 
+     <wm-gridcolumn columnwidth="12" name="gridcolumn12"> 
+      <wm-spinner show="false" name="spinnerFormSubmit" caption="" servicevariabletotrack="svSubmitForm"></wm-spinner> 
+      <wm-spinner show="bind:!loaded" name="spinnerPageLoad" caption="" deferload="false"></wm-spinner> 
+      <wm-wizard stepstyle="auto" name="newFormWizard" donebtnlabel="Submit" on-done="newFormWizardDone($scope, steps)" on-cancel="newFormWizardCancel($scope, steps)"> 
+       <wm-wizardstep name="wizardstepInstructions" title="Instructions"> 
+        <wm-layoutgrid name="layoutgrid56"> 
+         <wm-gridrow name="gridrow6" padding="2em unset unset unset"> 
+          <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn> 
+          <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center"> 
+           <wm-picture name="picture2" picturesource="bind:!!Variables.lvFormType.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.lvFormType.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;" class="muni-logo"></wm-picture> 
+          </wm-gridcolumn> 
+          <wm-gridcolumn columnwidth="4" name="gridcolumn14"></wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow7"> 
+          <wm-gridcolumn columnwidth="2" name="gridcolumn10"></wm-gridcolumn> 
+          <wm-gridcolumn columnwidth="8" name="gridcolumn11" horizontalalign="center"> 
+           <wm-label padding="unset 0.5em" name="label7" class="h1" caption="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-label> 
+          </wm-gridcolumn> 
+          <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow46_1"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn90_1"> 
+           <wm-html name="html1" content="bind:Variables.lvFormType.dataSet.data[$i].instructions">
+            bind:' 
+            <br> 
+            <br>' + (!!Variables.lvFormType.dataSet.data[$i].instructions ? Variables.lvFormType.dataSet.data[$i].instructions : ' 
+            <div class="&quot;text-center&quot;">
+             Welcome to the New Form Wizard. Please provide the requested data for the following steps in order to submit your new form.
+            </div>')
+           </wm-html> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+        </wm-layoutgrid> 
+       </wm-wizardstep> 
+       <wm-wizardstep name="wizardstep2" title="Submit on Behalf" ng-if="loaded &amp;&amp; submitOnBehalf" show="true" enableskip="true" on-skip="wizardstep2Skip($scope, currentStep, stepIndex)"> 
+        <wm-layoutgrid name="layoutgrid14"> 
+         <wm-gridrow name="gridrow47_1" padding="2em unset"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn90_2"> 
+           <wm-label padding="unset 0.5em" name="label19" caption="Are you submitting this form on behalf of someone else?"></wm-label> 
+           <wm-label padding="unset 0.5em" name="label20" caption="If you are, please locate them using the Search below. If they aren't found, select &quot;New User&quot;, provide their contact information, and they will receive an email invitation to register for CivicXpress in order to view their form."></wm-label> 
+           <wm-label padding="unset 0.5em" name="label28" caption="If not, please click the &quot;Skip&quot; link and proceed to the next step."></wm-label> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow41_2"> 
+          <wm-gridcolumn columnwidth="6" name="gridcolumn83_1"> 
+           <wm-search name="searchOnBehalfOfUser" dataset="bind:Variables.Cx2UsersData.dataSet" searchkey="email,fullName" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" datafield="All Fields" placeholder="Search by Name or Email Address" disabled="bind:Widgets.checkboxNewUser.datavalue" required="false" orderby="fullName:asc"></wm-search> 
+          </wm-gridcolumn> 
+          <wm-gridcolumn columnwidth="6" name="gridcolumn87_1"> 
+           <wm-checkbox caption="New User" class="col-md-push-3 col-md-9" name="checkboxNewUser" on-change="checkboxNewUserChange($event, $scope, newVal, oldVal)"></wm-checkbox> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow44_1"> 
+          <wm-gridcolumn columnwidth="6" name="gridcolumn86"> 
+           <wm-composite name="composite7" show="false"> 
+            <wm-label class="col-md-3 control-label" name="label17_1"></wm-label> 
+            <wm-container class="col-md-9" name="container5"> 
+             <wm-text name="textIdPrintout" required="bind:!Widgets.checkboxNewUser.datavalue" datavalue="bind:Widgets.searchOnBehalfOfUser.datavalue.id | numberToString"></wm-text> 
+            </wm-container> 
+           </wm-composite> 
+          </wm-gridcolumn> 
+          <wm-gridcolumn columnwidth="6" name="gridcolumn87"></wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow42_1"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn85_1"> 
+           <wm-liveform novalidate="false" errormessage="" title="User Details" iconclass="wi wi-account-circle" defaultmode="Edit" dataset="bind:Variables.Cx2UsersData.dataSet" captionalign="left" captionposition="top" name="lfSubmitOnBehalf" show="true" formdata="bind:Widgets.searchOnBehalfOfUser.datavalue" on-success="lfSubmitOnBehalfSuccess($event, $operation, $data)"> 
+            <wm-layoutgrid columns="2" name="layoutgrid1"> 
+             <wm-gridrow name="gridrow1"> 
+              <wm-gridcolumn columnwidth="6" name="gridcolumn1"> 
+               <wm-form-field name="firstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field> 
+              </wm-gridcolumn> 
+              <wm-gridcolumn columnwidth="6" name="gridcolumn2"> 
+               <wm-form-field name="lastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field> 
+              </wm-gridcolumn> 
+             </wm-gridrow> 
+             <wm-gridrow name="gridrow2"> 
+              <wm-gridcolumn columnwidth="6" name="gridcolumn3"> 
+               <wm-form-field name="email" displayname="Email Address" show="true" primary-key="false" generator="assigned" key="email" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text" maxchars="255" inputtype="email" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field> 
+              </wm-gridcolumn> 
+              <wm-gridcolumn columnwidth="6" name="gridcolumn4"> 
+               <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field> 
+              </wm-gridcolumn> 
+             </wm-gridrow> 
+             <wm-gridrow name="gridrow3"> 
+              <wm-gridcolumn columnwidth="6" name="gridcolumn5"> 
+               <wm-form-field name="address1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field> 
+              </wm-gridcolumn> 
+              <wm-gridcolumn columnwidth="6" name="gridcolumn6"> 
+               <wm-form-field name="address2" displayname="Address2" show="true" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field> 
+              </wm-gridcolumn> 
+             </wm-gridrow> 
+             <wm-gridrow name="gridrow4"> 
+              <wm-gridcolumn columnwidth="6" name="gridcolumn7"> 
+               <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" required="bind:Widgets.checkboxNewUser.datavalue" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field> 
+              </wm-gridcolumn> 
+              <wm-gridcolumn columnwidth="6" name="gridcolumn8"> 
+               <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="false" widget="select" placeholder="Select value" displayexpression="stateName" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field> 
+              </wm-gridcolumn> 
+             </wm-gridrow> 
+             <wm-gridrow name="gridrow5"> 
+              <wm-gridcolumn columnwidth="6" name="gridcolumn9"> 
+               <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.checkboxNewUser.datavalue" required="false"></wm-form-field> 
+              </wm-gridcolumn> 
+              <wm-gridcolumn columnwidth="6" name="gridcolumn10"> 
+               <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" required="false" widget="text" maxchars="255" placeholder="Enter value" defaultvalue="USA" disabled="bind:!Widgets.checkboxNewUser.datavalue"></wm-form-field> 
+              </wm-gridcolumn> 
+             </wm-gridrow> 
+            </wm-layoutgrid> 
+            <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field> 
+           </wm-liveform> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+        </wm-layoutgrid> 
+       </wm-wizardstep> 
+       <wm-wizardstep name="wizardstep2_1" title="Form" ng-if="loaded" enableskip="false"> 
+        <wm-layoutgrid name="layoutgrid2"> 
+         <wm-gridrow name="gridrow2_2" padding="2em unset 3em unset"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn2_2"> 
+           <wm-label padding="unset 0.5em" name="label28_1" caption="Please complete the following form fields, then proceed to the next step."></wm-label> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow ng-repeat="formField in Variables.lvGetFormFields.dataSet.data" name="fieldGridrow{{$index}}"> 
+          <wm-gridcolumn columnwidth="12" name="fieldGridcolumn{{$index}}"> 
+           <wm-composite name="fieldComposite{{$index}}"> 
+            <label class="col-md-3 control-label app-label" name="fieldLabel{{$index}}" ng-class="{required: formField.required}"> {{formField.label}} <i ng-if="!!formField.helpText &amp;&amp; formField.helpText != ''" class="wi wi-help fa-lg" title="{{formField.helpText}}"></i> </label> 
+            <wm-container class="col-md-9" name="container3"> 
+             <input ng-if="formField.formFieldTypes.label == 'Text'" class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="formData[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="text" ng-required="formField.required"> 
+             <input class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="formData[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}" ng-if="formField.formFieldTypes.label == 'Number'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="number" ng-required="formField.required"> 
+             <textarea class="form-control app-textarea" apply-styles="" role="input" focus-target="" ng-model="formData[formField.fieldName]" title="" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0}" ng-if="formField.formFieldTypes.label == 'Long Text'" name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" ng-required="formField.required"></textarea> 
+             <datetime-picker ng-if="formField.formFieldTypes.label == 'Date'" placeholder="Please enter {{formField.label}}" date="formData[formField.fieldName]" name="{{formField.fieldName}}" time="false" ng-required="formField.required"></datetime-picker> 
+             <datetime-picker ng-if="formField.formFieldTypes.label == 'Date+Time'" placeholder="Please enter {{formField.label}}" date="formData[formField.fieldName]" name="{{formField.fieldName}}" time="true" ng-required="formField.required"></datetime-picker> 
+             <div ng-if="formField.formFieldTypes.label == 'Boolean'" class="app-checkbox checkbox" style="margin-top: 0" role="input" name="fieldValue{{formField.fieldName}}"> 
+              <label ng-class="{unchecked: !formData[formField.fieldName]}" style="padding-left: 0" role="button"> <input type="checkbox" ng-model="formData[formField.fieldName]"><span class="caption ng-binding" ng-bind-html=""></span> </label> 
+             </div> 
+             <select ng-if="formField.formFieldTypes.label == 'Select'" ng-options="item for item in (formField.possibleValues.split(','))" ng-model="formData[formField.fieldName]" ng-required="formField.required"></select> 
+             <cx-checkbox-set ng-if="formField.formFieldTypes.label == 'Multi-Select'" choices="formField.possibleValues" model="formData[formField.fieldName]" field-name="formField.fieldName"></cx-checkbox-set> 
+             <hr ng-if="formField.formFieldTypes.label == 'Horizontal Line'"> 
+             <p ng-if="formField.formFieldTypes.label == 'Instruction Text'" ng-bind-html="formField.defaultValue"></p> 
+             <h3 ng-if="formField.formFieldTypes.label == 'Header'" ng-bind-html="formField.defaultValue"></h3> 
+            </wm-container> 
+           </wm-composite> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+        </wm-layoutgrid> 
+       </wm-wizardstep> 
+       <wm-wizardstep name="wizardstepLocation" title="Location" ng-if="loaded &amp;&amp; gisRecords" enableskip="false"> 
+        <wm-layoutgrid name="layoutgrid17"> 
+         <wm-gridrow name="gridrow60" padding="2em unset"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn125"> 
+           <wm-label padding="unset 0.5em" name="label29" caption="What location is associated with this form?"></wm-label> 
+           <wm-label padding="unset 0.5em" name="label34" caption="Please click the &quot;+Add Location&quot; button to locate the land record(s) that you would like to link to the form, then proceed to the next step."></wm-label> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow38_1"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn78"> 
+           <wm-composite name="composite11" required="true" show="false"> 
+            <wm-label class="col-md-3 control-label" name="label22"></wm-label> 
+            <wm-container class="col-md-9" name="container10"> 
+             <wm-text name="textLocationString" required="true" datavalue="bind:Variables.stvGisData.dataSet.length === 0 ? '' : Variables.stvGisData.dataSet[0].ID"></wm-text> 
+            </wm-container> 
+           </wm-composite> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow61"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn127"> 
+           <wm-livegrid formlayout="dialog" name="livegridLocation"> 
+            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.stvGisData.dataSet" navigation="Classic" name="gridLocation" exportformat="EXCEL"> 
+             <wm-grid-column binding="SubdivisionName" caption="Subdivision" type="string" show="true" readonly="false"></wm-grid-column> 
+             <wm-grid-column binding="Parcel" caption="Parcel" type="string" show="true" readonly="false"></wm-grid-column> 
+             <wm-grid-column binding="Lot" caption="Lot" type="string" show="true" readonly="false"></wm-grid-column> 
+             <wm-grid-column binding="Section" caption="Section" type="string" show="true" readonly="false"></wm-grid-column> 
+             <wm-grid-column binding="StreetNumber" caption="Street Number" type="string" show="true" readonly="false"></wm-grid-column> 
+             <wm-grid-column binding="StreetName" caption="Street Name" type="string" show="true" readonly="false"></wm-grid-column> 
+             <wm-grid-column binding="City" caption="City" type="string" show="true" readonly="false"></wm-grid-column> 
+             <wm-grid-column binding="InspectionZone" caption="Inspection Zone" type="string" show="true" readonly="false"></wm-grid-column> 
+             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column> 
+             <wm-grid-action key="addNewRow" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Location" action="Widgets.dialogAddGISRecord.open()" shortcutkey="" disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleGisrecords &amp;&amp; Variables.stvGisData.dataSet.length >= 1"></wm-grid-action> 
+             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleterowAction($event)" disabled="false"></wm-grid-row-action> 
+            </wm-grid> 
+           </wm-livegrid> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+        </wm-layoutgrid> 
+       </wm-wizardstep> 
+       <wm-wizardstep name="wizardstepVendor" title="Vendor" ng-if="loaded &amp;&amp; vendorInfo" enableskip="false"> 
+        <wm-composite name="composite12" required="true" show="false"> 
+         <wm-label class="col-md-3 control-label" name="label23"></wm-label> 
+         <wm-container class="col-md-9" name="container11"> 
+          <wm-text name="textVendorString" datavalue="bind:Variables.stvVendors.dataSet.length === 0 ? '' : Variables.stvVendors.dataSet[0].ID"></wm-text> 
+         </wm-container> 
+        </wm-composite> 
+        <wm-layoutgrid name="layoutgrid15_1"> 
+         <wm-gridrow name="gridrow48_1" padding="2em unset"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn91_1"> 
+           <wm-label padding="unset 0.5em" name="label30" caption="What vendor or company is associated with this form?"></wm-label> 
+           <wm-label padding="unset 0.5em" name="label20_1" caption="Please click the &quot;+Add Vendor&quot; button to locate the vendor(s) that you would like to link to the form, then proceed to the next step. If multiple Vendors are involved, be sure to specify the correct Primary Vendor."></wm-label> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow49_1"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn93_1"> 
+           <wm-grid title="" dataset="bind:Variables.stvVendors.dataSet" navigation="Classic" name="gridVendors"> 
+            <wm-grid-column binding="Primary" caption="Primary" type="string" widget-type="checkbox" readonly="true" show="true"> 
+             <wm-checkbox scopedatavalue="row['Primary']" class="" data-ng-class="" ng-click="changePrimaryVendor($event, row)"></wm-checkbox> 
+            </wm-grid-column> 
+            <wm-grid-column binding="Company" caption="Company" type="string" readonly="true" show="true"></wm-grid-column> 
+            <wm-grid-column binding="PhoneNumber" caption="Phone Number" type="string" readonly="true" show="true"></wm-grid-column> 
+            <wm-grid-column binding="EmailAddress" caption="Email Address" type="string" readonly="true" show="true"></wm-grid-column> 
+            <wm-grid-column binding="Website" caption="Website" type="string" readonly="true" show="true"></wm-grid-column> 
+            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column> 
+            <wm-grid-action key="customButton" display-name="Add Vendor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Vendor" action="Widgets.dialogAddVendor.open()" shortcutkey="" disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleVendors &amp;&amp; Variables.stvVendors.dataSet.length > 0" icon="wi wi-plus"></wm-grid-action> 
+            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action> 
+           </wm-grid> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+        </wm-layoutgrid> 
+       </wm-wizardstep> 
+       <wm-wizardstep name="wizardstepOwner" title="Owner" ng-if="loaded &amp;&amp; ownerInfo" on-load="wizardstep9Load($scope, stepIndex)" enableskip="false"> 
+        <wm-layoutgrid name="layoutgrid14_1"> 
+         <wm-gridrow name="gridrow50" padding="2em unset unset unset"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn93_2"> 
+           <wm-label padding="unset 0.5em" name="label21" caption="What property owner would you like to specify for this form?"></wm-label> 
+           <wm-label padding="unset 0.5em" name="label26_1" caption="Owners associated with the information you provided earlier are available as selections below. If the correct owner is not listed, please choose &quot;New Owner&quot; and provide their current contact information."></wm-label> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow42"> 
+          <wm-gridcolumn columnwidth="6" name="gridcolumn82_1"> 
+           <wm-composite name="composite4" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection || Variables.svGetOwners.dataSet.content.length > 0"> 
+            <wm-checkbox caption="New Owner" class="col-md-push-3 col-md-9" name="checkboxOtherOwner" disabled="bind:Widgets.checkboxVendorIsOwner.datavalue" datavalue="bind:!Variables.lvFormType.dataSet.data[$i].vendorSelection &amp;&amp; !Variables.svGetOwners.dataSet.content.length" on-change="checkboxOtherOwnerChange($event, $scope, newVal, oldVal)"></wm-checkbox> 
+           </wm-composite> 
+          </wm-gridcolumn> 
+          <wm-gridcolumn columnwidth="6" name="gridcolumn83"> 
+           <wm-composite name="compositeVendorIsOwner" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection"> 
+            <wm-checkbox caption="Vendor is Owner" class="col-md-push-3 col-md-9" name="checkboxVendorIsOwner" disabled="bind:Widgets.checkboxOtherOwner.datavalue" on-change="checkboxVendorIsOwnerChange($event, $scope, newVal, oldVal)"></wm-checkbox> 
+           </wm-composite> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow41_3"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn82_2"> 
+           <wm-grid title="Select Owner" dataset="bind:Variables.svGetOwners.dataSet" navigation="Classic" name="gridOwners" show="bind:!Widgets.checkboxOtherOwner.datavalue &amp;&amp; !Widgets.checkboxVendorIsOwner.datavalue" iconclass=""> 
+            <wm-grid-column binding="nuffinmuffin" caption="&amp;#9745;" type="string" widget-type="checkbox" width="52px" readonly="true" searchable="false" show="true"> 
+             <wm-checkbox scopedatavalue="row.selected" class="" data-ng-class="" ng-click="selectOwner($event, row)"></wm-checkbox> 
+            </wm-grid-column> 
+            <wm-grid-column binding="firstName" caption="First Name" type="string" readonly="true" show="true"></wm-grid-column> 
+            <wm-grid-column binding="lastName" caption="Last Name" type="string" readonly="true" show="true"></wm-grid-column> 
+            <wm-grid-column binding="city" caption="City" type="string" readonly="true" show="true"></wm-grid-column> 
+            <wm-grid-column binding="notes" caption="Notes" type="string" readonly="true" show="true"></wm-grid-column> 
+            <wm-grid-column binding="gisrecords.fullAddress" caption="Location Owned" readonly="true" show="true"></wm-grid-column> 
+           </wm-grid> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow43"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn84_1"> 
+           <wm-composite name="composite6" show="false"> 
+            <wm-label class="col-md-3 control-label" name="label16"></wm-label> 
+            <wm-container class="col-md-9" name="container4"> 
+             <wm-text name="textHiddenOwnerThing" datavalue="bind:Widgets.gridOwners.selecteditem.id" required="bind:!Widgets.checkboxOtherOwner.datavalue &amp;&amp; !Widgets.checkboxVendorIsOwner.datavalue"></wm-text> 
+            </wm-container> 
+           </wm-composite> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+        </wm-layoutgrid> 
+        <wm-liveform novalidate="false" errormessage="" title="Owner Details" iconclass="wi wi-account-circle" defaultmode="Edit" dataset="bind:Variables.Cx2GiscontactsData.dataSet" captionalign="left" captionposition="top" name="lfOwner" show="bind:Widgets.checkboxOtherOwner.datavalue || Widgets.checkboxVendorIsOwner.datavalue" on-success="lfOwnerSuccess($event, $operation, $data)"> 
+         <wm-layoutgrid columns="2" name="layoutgrid15"> 
+          <wm-gridrow name="gridrow44"> 
+           <wm-gridcolumn columnwidth="6" name="gridcolumn88"> 
+            <wm-form-field name="ownerFirstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-form-field> 
+           </wm-gridcolumn> 
+           <wm-gridcolumn columnwidth="6" name="gridcolumn89"> 
+            <wm-form-field name="ownerLastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field> 
+           </wm-gridcolumn> 
+          </wm-gridrow> 
+          <wm-gridrow name="gridrow45"> 
+           <wm-gridcolumn columnwidth="6" name="gridcolumn90"> 
+            <wm-form-field name="ownerEmail" displayname="Email Address" show="true" primary-key="false" generator="assigned" key="email" type="string" widget="text" maxchars="255" disabled="false" inputtype="email" placeholder="Enter value" required="false"></wm-form-field> 
+           </wm-gridcolumn> 
+           <wm-gridcolumn columnwidth="6" name="gridcolumn91"> 
+            <wm-form-field name="ownerPhone" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phone" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-form-field> 
+           </wm-gridcolumn> 
+          </wm-gridrow> 
+          <wm-gridrow name="gridrow46"> 
+           <wm-gridcolumn columnwidth="6" name="gridcolumn92"> 
+            <wm-form-field name="ownerAddress1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" required="false"></wm-form-field> 
+           </wm-gridcolumn> 
+           <wm-gridcolumn columnwidth="6" name="gridcolumn93"> 
+            <wm-form-field name="ownerAddress2" displayname="Address2" show="true" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field> 
+           </wm-gridcolumn> 
+          </wm-gridrow> 
+          <wm-gridrow name="gridrow47"> 
+           <wm-gridcolumn columnwidth="6" name="gridcolumn94"> 
+            <wm-form-field name="ownerCity" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" required="false"></wm-form-field> 
+           </wm-gridcolumn> 
+           <wm-gridcolumn columnwidth="6" name="gridcolumn95"> 
+            <wm-form-field name="ownerStates" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" widget="select" disabled="false" placeholder="Select value" displayexpression="stateName" required="false"></wm-form-field> 
+           </wm-gridcolumn> 
+          </wm-gridrow> 
+          <wm-gridrow name="gridrow48"> 
+           <wm-gridcolumn columnwidth="6" name="gridcolumn96"> 
+            <wm-form-field name="ownerPostalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" required="false"></wm-form-field> 
+           </wm-gridcolumn> 
+           <wm-gridcolumn columnwidth="6" name="gridcolumn97"> 
+            <wm-form-field name="ownerCountry" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value" defaultvalue="bind:'USA'" required="false"></wm-form-field> 
+           </wm-gridcolumn> 
+          </wm-gridrow> 
+          <wm-gridrow name="gridrow49"> 
+           <wm-gridcolumn columnwidth="6" name="gridcolumn98"> 
+            <wm-form-field name="ownerNotes" displayname="Notes" show="true" primary-key="false" generator="assigned" key="notes" type="string" widget="text" maxchars="500" inputtype="text" placeholder="Enter value"></wm-form-field> 
+           </wm-gridcolumn> 
+           <wm-gridcolumn name="gridcolumn1" columnwidth="6"> 
+            <wm-label padding="unset 0.5em" name="label17" caption="Location" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-label> 
+            <wm-select name="gisRecordSelect" displayname="Location" show="true" primary-key="false" generator="assigned" is-related="true" required="bind:Widgets.checkboxOtherOwner.datavalue" dataset="bind:Variables.stvGisData.dataSet" datafield="ID" disabled="false" displayfield="FullAddress" width="75%" datavalue="bind:Variables.stvGisData.dataSet[0].ID" readonly="false" on-change="gisRecordSelectChange($event, $scope, newVal, oldVal)"></wm-select> 
+           </wm-gridcolumn> 
+          </wm-gridrow> 
+          <wm-gridrow name="gridrow1"> 
+           <wm-gridcolumn name="gridcolumn1" columnwidth="6"> 
+            <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" defaultvalue="bind:true" checkedvalue="true" uncheckedvalue="false"></wm-form-field> 
+           </wm-gridcolumn> 
+          </wm-gridrow> 
+         </wm-layoutgrid> 
+         <wm-form-field name="ownerContactType" displayname="Contact Type" show="false" primary-key="false" generator="assigned" key="contactType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:'Owner'"></wm-form-field> 
+         <wm-form-field name="ownerId" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field> 
+         <wm-form-field name="ownerGisrecords" displayname="Gisrecords" show="false" primary-key="false" generator="assigned" key="gisrecords" type="list" is-related="true" widget="select" defaultvalue="bind:{&quot;id&quot;: Widgets.lfOwner.formWidgets.gisRecordSelect.datavalue}" placeholder="Select value" required="true"></wm-form-field> 
+        </wm-liveform> 
+       </wm-wizardstep> 
+       <wm-wizardstep name="wizardstep5" title="Attachments" ng-if="loaded &amp;&amp; documents" enableskip="false"> 
+        <wm-layoutgrid name="layoutgrid16"> 
+         <wm-gridrow name="gridrow51" padding="2em unset"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn95_2"> 
+           <wm-label padding="unset 0.5em" name="label29_1" caption="If you would like to upload any documents related to this form (such as blueprints, schematics, photos, etc.), please use the &quot;+Add Attachment&quot; button below, otherwise proceed to the next step."></wm-label> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow52"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn97_2"> 
+           <wm-grid editmode="inline" title="" dataset="bind:Variables.stvDocuments.dataSet" navigation="Classic" name="gridNewFormDocuments" showrecordcount="false"> 
+            <wm-grid-column binding="Filename" caption="File Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
+            <wm-grid-column binding="Mimetype" caption="File Type" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column> 
+            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column> 
+            <wm-grid-action key="addNewRow" display-name="Add Attachment" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Attachment" action="Widgets.dialogUploadDocument.open()" shortcutkey="" disabled="false"></wm-grid-action> 
+            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action> 
+           </wm-grid> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+        </wm-layoutgrid> 
+       </wm-wizardstep> 
+       <wm-wizardstep name="wizardstep6" title="Sharing" ng-if="loaded &amp;&amp; sharing" enableskip="false"> 
+        <wm-layoutgrid name="layoutgrid17_1"> 
+         <wm-gridrow name="gridrow53" padding="2em unset"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn96_2"> 
+           <wm-label padding="unset 0.5em" name="label25" caption="Would you like to share this form with other users?"></wm-label> 
+           <wm-label padding="unset 0.5em" name="label29_2" caption="Use the &quot;+Add User&quot; button to perform a search. If you would like to share your form with somebody who has not registered for CivicXpress, please use the &quot;+Invite User&quot; button, provide their contact information, and they will receive an email invitation to view your form."></wm-label> 
+           <wm-label padding="unset 0.5em" name="label26" caption="Sharing the form with a user will allow them to complete transactions for the form."></wm-label> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+         <wm-gridrow name="gridrow54"> 
+          <wm-gridcolumn columnwidth="12" name="gridcolumn98_2"> 
+           <wm-grid title="" dataset="bind:Variables.stvContacts.dataSet" navigation="Classic" name="gridSharing"> 
+            <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" show="true"></wm-grid-column> 
+            <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" show="true"></wm-grid-column> 
+            <wm-grid-column binding="Email" caption="Email Address" type="string" readonly="true" show="true"></wm-grid-column> 
+            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column> 
+            <wm-grid-action key="customButton" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="Widgets.dialogAddContact.open()" shortcutkey="" disabled="false" icon="wi wi-plus"></wm-grid-action> 
+            <wm-grid-action key="customButton1" display-name="Invite User" title="Invite User" value="" iconclass="wi wi-plus" class="btn-secondary" show="true" shortcutkey=""></wm-grid-action> 
+            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove" action="customRowAction($event)" disabled="false"></wm-grid-row-action> 
+           </wm-grid> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+        </wm-layoutgrid> 
+       </wm-wizardstep> 
+       <wm-wizardstep name="wizardstep7" ng-if="loaded" title="Submit"></wm-wizardstep> 
+      </wm-wizard> 
+      <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.stvGisData.dataSet" zoom="17" markertype="Address" address="StreetNumber StreetName City State" show="bind:Variables.lvFormType.dataSet.data[$i].gismap &amp;&amp; Variables.stvGisData.dataSet.length > 0 &amp;&amp; !!Widgets.newFormWizard.currentStep.wizardstepLocation"></wm-prefab> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow8"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn14"></wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn15"></wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+  </wm-page-content> 
+ </wm-content> 
+ <wm-footer content="footer" name="footer1"></wm-footer> 
+ <wm-view class="dialog-view" name="viewAddGISRecord"> 
+  <wm-dialog dialogtype="design-dialog" modal="true" title="Location Search" iconclass="wi wi-location-searching" name="dialogAddGISRecord"> 
+   <wm-dialogactions name="dialogactions1"> 
+    <wm-button class="btn-primary" caption="Add Location" type="button" margin="unset 0.5em" name="buttonAddLocation" iconclass="wi wi-plus" show="true" on-click="buttonAddLocationClick($event, $scope)" disabled="bind:canAddParcel()"></wm-button> 
+    <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button3" iconclass="wi wi-cancel"></wm-button> 
+   </wm-dialogactions> 
+   <wm-tabs name="tabsAddGISRecord"> 
+    <wm-tabpane name="tbpByAddress" title="BY ADDRESS"> 
+     <wm-layoutgrid name="layoutgrid8"> 
+      <wm-gridrow name="gridrow20"> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn40"></wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="10" name="gridcolumn41"> 
+        <wm-search name="searchAddress" placeholder="Search by Street Number or Street Name" dataset="bind:Variables.lvGisRecords.dataSet" searchkey="fullAddress" datafield="All Fields" displaylabel="fullAddress"></wm-search> 
+       </wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn44"></wm-gridcolumn> 
+      </wm-gridrow> 
+      <wm-gridrow name="gridrow22" padding="1em unset unset unset"> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn46"></wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="10" name="gridcolumn47" horizontalalign="center"> 
+        <wm-label padding="unset 0.5em" name="label11" class="h4" show="bind:!!Widgets.searchAddress.datavalue.id" caption="Parcel Details"></wm-label> 
+       </wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn48"></wm-gridcolumn> 
+      </wm-gridrow> 
+      <wm-gridrow name="gridrow21" padding="unset unset 1em unset"> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn42"></wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="10" name="gridcolumn43" horizontalalign="center"> 
+        <wm-label padding="unset 0.5em" name="label10" caption="bind:Widgets.searchAddress.datavalue.fullAddress" show="bind:!!Widgets.searchAddress.datavalue.id"></wm-label> 
+       </wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn45"></wm-gridcolumn> 
+      </wm-gridrow> 
+     </wm-layoutgrid> 
+    </wm-tabpane> 
+    <wm-tabpane name="tbpBySubdivision" title="BY SUBDIVISION"> 
+     <wm-layoutgrid name="layoutgrid9"> 
+      <wm-gridrow name="gridrow40_1" padding="unset unset .5em unset"> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn95_1"></wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="10" name="gridcolumn96_1"> 
+        <wm-search placeholder="Search by Subdivision Name" dataset="bind:Variables.lvSubdivisions.dataSet" searchkey="subdivision" datafield="All Fields" name="searchFliterSubdivisions" displayexpression="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]" displaylabel="bind:$[data[$i].subdivision]" orderby="subdivision:asc"></wm-search> 
+       </wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn97_1"></wm-gridcolumn> 
+      </wm-gridrow> 
+      <wm-gridrow name="gridrow24"> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn52"></wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="10" name="gridcolumn53"> 
+        <wm-select placeholder="Select Lot" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]" datafield="All Fields" name="searchSubdivision" show="bind:Widgets.searchFliterSubdivisions.datavalue!=undefined" dataset="bind:Variables.lvGisLotRecords.dataSet" displayfield="fullAddress" displayexpression="bind:'('+$[data[$i].lot]+') '+$[data[$i].fullAddress]"></wm-select> 
+       </wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn54"></wm-gridcolumn> 
+      </wm-gridrow> 
+      <wm-gridrow name="gridrow25" padding="1em unset unset unset"> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn55"></wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn56"> 
+        <wm-label padding="unset 0.5em" class="h4" name="label12" show="bind:Widgets.searchSubdivision.datavalue!=undefined" caption="Parcel Details"></wm-label> 
+       </wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn57"></wm-gridcolumn> 
+      </wm-gridrow> 
+      <wm-gridrow padding="unset unset 1em unset" name="gridrow26"> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn58"></wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn59"> 
+        <wm-label padding="unset 0.5em" name="label27_1" caption="bind:Widgets.searchSubdivision.datavalue.fullAddress" show="bind:Widgets.searchSubdivision.datavalue!=undefined"></wm-label> 
+       </wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn60"></wm-gridcolumn> 
+      </wm-gridrow> 
+     </wm-layoutgrid> 
+    </wm-tabpane> 
+    <wm-tabpane name="tbpByParcel" title="BY PARCEL"> 
+     <wm-layoutgrid name="layoutgrid10"> 
+      <wm-gridrow name="gridrow28"> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn64"></wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="10" name="gridcolumn65"> 
+        <wm-search placeholder="Search by Parcel Number" datafield="All Fields" name="searchParcel" dataset="bind:Variables.lvGisRecords.dataSet" searchkey="parcel" displaylabel="bind:'('+$[data[$i].parcel]+') '+$[data[$i].fullAddress]"></wm-search> 
+       </wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn66"></wm-gridcolumn> 
+      </wm-gridrow> 
+      <wm-gridrow name="gridrow41_1"> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn98_1"></wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="10" name="gridcolumn99"> 
+        <wm-label padding="unset 0.5em" name="label23_1" caption="Example: 13-11-21-00-08-010.000"></wm-label> 
+       </wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn100"></wm-gridcolumn> 
+      </wm-gridrow> 
+      <wm-gridrow name="gridrow29" padding="1em unset unset unset"> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn67"></wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn68"> 
+        <wm-label padding="unset 0.5em" class="h4" name="label14" show="bind:Widgets.searchParcel.datavalue!=undefined" caption="Parcel Details"></wm-label> 
+       </wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn69"></wm-gridcolumn> 
+      </wm-gridrow> 
+      <wm-gridrow padding="unset unset 1em unset" name="gridrow30"> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn70"></wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn71"> 
+        <wm-label padding="unset 0.5em" caption="bind:Widgets.searchParcel.datavalue.fullAddress" show="bind:Widgets.searchParcel.datavalue!=undefined" name="label15"></wm-label> 
+       </wm-gridcolumn> 
+       <wm-gridcolumn columnwidth="1" name="gridcolumn72"></wm-gridcolumn> 
+      </wm-gridrow> 
+     </wm-layoutgrid> 
+    </wm-tabpane> 
+   </wm-tabs> 
+  </wm-dialog> 
+ </wm-view> 
+ <wm-view class="dialog-view" name="view2"> 
+  <wm-dialog dialogtype="design-dialog" modal="true" title="Attach Document" iconclass="wi wi-attach-file" name="dialogUploadDocument" on-opened="dialogUploadDocumentOpened($event, $scope)"> 
+   <wm-layoutgrid name="layoutgrid10_1"> 
+    <wm-gridrow name="gridrow32"></wm-gridrow> 
+    <wm-gridrow name="gridrow33"> 
+     <wm-gridcolumn columnwidth="12" name="gridcolumn82"> 
+      <input type="file" name="uploadDocument" ng-file-model="documentsToUpload" multiple> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-dialogactions name="dialogactions2"> 
+    <wm-button class="btn-primary" caption="Upload" on-click="closeDialog();buttonAddDocumentClick($event, $scope)" name="buttonAddDocument" iconclass="wi wi-file-upload" disabled="bind:documentsToUpload.length === 0"></wm-button> 
+    <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button6" iconclass="wi wi-cancel" on-click="Widgets.dialogUploadDocument.close()"></wm-button> 
+   </wm-dialogactions> 
+  </wm-dialog> 
+ </wm-view> 
+ <wm-view class="dialog-view" name="view3"> 
+  <wm-dialog dialogtype="design-dialog" modal="true" title="Share With User" iconclass="wi wi-share" name="dialogAddContact"> 
+   <wm-layoutgrid name="layoutgrid11"> 
+    <wm-gridrow name="gridrow34"></wm-gridrow> 
+    <wm-gridrow name="gridrow55"> 
+     <wm-gridcolumn columnwidth="12" name="gridcolumn98_3"> 
+      <wm-label padding="unset 0.5em" name="label27_2" caption="Who would you like to share this form with?"></wm-label> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow35"> 
+     <wm-gridcolumn columnwidth="12" name="gridcolumn81"> 
+      <wm-search name="searchContact" dataset="bind:Variables.Cx2UsersData.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" datafield="All Fields" placeholder="Search by Name or Email Address" displayimagesrc="photo" orderby="fullName:asc"></wm-search> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-dialogactions name="dialogactions3"> 
+    <wm-button class="btn-primary" caption="Add User" on-click="closeDialog();button7Click($event, $scope)" name="button7" iconclass="wi wi-plus" disabled="bind:!Widgets.searchContact.datavalue.id"></wm-button> 
+    <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button8" iconclass="wi wi-cancel" on-click="Widgets.dialogAddContact.close()"></wm-button> 
+   </wm-dialogactions> 
+  </wm-dialog> 
+ </wm-view> 
+ <wm-view class="dialog-view" name="view4"> 
+  <wm-dialog dialogtype="design-dialog" modal="true" title="Vendor Search" iconclass="wi wi-work" name="dialogAddVendor"> 
+   <wm-layoutgrid name="layoutgrid12"> 
+    <wm-gridrow name="gridrow36"> 
+     <wm-gridcolumn columnwidth="1" name="gridcolumn100_1"></wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="10" name="gridcolumn84"> 
+      <wm-search name="searchVendors" dataset="bind:Variables.lvVendors.dataSet" searchkey="vendor.companyName" displaylabel="vendor.companyName" datafield="All Fields" placeholder="Search by Company Name" type="search"></wm-search> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="1" name="gridcolumn101"></wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow57"> 
+     <wm-gridcolumn columnwidth="1" name="gridcolumn102"></wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="10" name="gridcolumn103"> 
+      <wm-composite name="composite9"> 
+       <wm-checkbox caption="Set as Primary Vendor" class="col-md-9" name="checkboxVendorIsPrimary" datavalue="bind:!Variables.stvVendors.dataSet.length" disabled="bind:!Variables.stvVendors.dataSet.length"></wm-checkbox> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="1" name="gridcolumn104"></wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow39" padding="1em unset unset unset"> 
+     <wm-gridcolumn columnwidth="1" name="gridcolumn90"></wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn91"> 
+      <wm-label padding="unset 0.5em" class="h4" show="bind:Widgets.searchVendors.datavalue!=undefined" caption="Company Details" name="label23"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="1" name="gridcolumn92"></wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow padding="0em unset 1em unset" name="gridrow40"> 
+     <wm-gridcolumn columnwidth="1" name="gridcolumn93"></wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn94"> 
+      <wm-label padding="unset 0.5em" caption="bind:Widgets.searchVendors.datavalue.vendor.companyName+&quot;, &quot;+Widgets.searchVendors.datavalue.vendor.fullAddress+&quot;, &quot;+Widgets.searchVendors.datavalue.vendor.companyPhone+&quot;, &quot;+Widgets.searchVendors.datavalue.vendor.companyEmail" show="bind:Widgets.searchVendors.datavalue!=undefined" name="label24"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="1" name="gridcolumn95"></wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-dialogactions name="dialogactions4"> 
+    <wm-button class="btn-primary" caption="Add Vendor" on-click="closeDialog();buttonAddVendorClick($event, $scope)" name="buttonAddVendor" iconclass="wi wi-plus" disabled="bind:!Widgets.searchVendors.datavalue.id"></wm-button> 
+    <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button10" iconclass="wi wi-cancel" on-click="Widgets.dialogAddVendor.close()"></wm-button> 
+   </wm-dialogactions> 
+  </wm-dialog> 
+ </wm-view> 
 </wm-page>

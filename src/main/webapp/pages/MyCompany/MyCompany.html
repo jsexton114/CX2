@@ -1,90 +1,90 @@
-<wm-page data-ng-controller="MyCompanyPageController" pagetitle="My Company" name="page1">
-    <wm-header content="header" name="header1"></wm-header>
-    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
-    <wm-content name="content1">
-        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
-        <wm-page-content columnwidth="10" name="page_content1">
-            <wm-layoutgrid name="layoutgrid1">
-                <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
-                        <wm-label name="label1" caption="My Company Dashboard" fontweight="bold" class="h4"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn16_1" padding="2em unset">
-                        <wm-composite name="composite1" show="bind:Variables.AdminVendorsList.dataSet.content.length > 1">
-                            <wm-label class="col-md-3 form-control-static" name="label9" caption="Select Company" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectSelectCompany" dataset="bind:Variables.AdminVendorsList.dataSet" datafield="All Fields" displayfield="CompanyName" datavalue="bind:Variables.AdminVendorsList.firstRecord" orderby="CompanyName:asc"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn3" horizontalalign="center" padding="2em unset">
-                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_CompanyProfile.invoke()">
-                            <wm-layoutgrid height="100%" name="layoutgrid9">
-                                <wm-gridrow height="100%" name="gridrow12">
-                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn26" class="col-xs-3">
-                                        <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-work"></wm-icon>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="3em unset unset unset" horizontalalign="center" name="gridcolumn27" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="My Company" class="p" fontsize="1.5" fontunit="em"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-tile>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn4" horizontalalign="center" padding="2em unset">
-                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_CompanyUsers.invoke()">
-                            <wm-layoutgrid height="100%" name="layoutgrid2">
-                                <wm-gridrow height="100%" name="gridrow3">
-                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn6" class="col-xs-3">
-                                        <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-group"></wm-icon>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn7" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="Company Users" class="p" fontsize="1.5" fontunit="em"></wm-label>
-                                        <wm-label name="tileStatLabel" caption="bind:Variables.CountOfVendorUsers.dataSet[$i].CountOfVendorUsers" fontsize="3" fontunit="em" class="p"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-tile>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn5" horizontalalign="center" padding="2em unset">
-                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_CompanyMunicipalities.invoke()">
-                            <wm-layoutgrid height="100%" name="layoutgrid3">
-                                <wm-gridrow height="100%" name="gridrow4">
-                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn8" class="col-xs-3">
-                                        <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-account-balance"></wm-icon>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn9" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="Municipalities" class="p" fontsize="1.5" fontunit="em"></wm-label>
-                                        <wm-label name="tileStatLabel" caption="bind:Variables.CountOfMuncipalityApplicationsByVendor.dataSet[$i].count" fontsize="3" fontunit="em" class="p"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-tile>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow6">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn12" horizontalalign="center" padding="2em unset">
-                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_CompanyForms.invoke()">
-                            <wm-layoutgrid height="100%" name="layoutgrid5">
-                                <wm-gridrow height="100%" name="gridrow7">
-                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn15" class="col-xs-3">
-                                        <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-assignment"></wm-icon>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn16" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="Company Forms" class="p" fontsize="1.5" fontunit="em"></wm-label>
-                                        <wm-label name="tileStatLabel" caption="bind:Variables.CountOfCompnayFormsByVendorId.dataSet[$i].count" fontsize="3" fontunit="em" class="p"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-tile>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn13" padding="2em unset" horizontalalign="center"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn14" padding="2em unset" horizontalalign="center"></wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-page-content>
-    </wm-content>
-    <wm-footer content="footer" name="footer1"></wm-footer>
+<wm-page data-ng-controller="MyCompanyPageController" pagetitle="My Company" name="page1"> 
+ <wm-header content="header" name="header1"></wm-header> 
+ <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav> 
+ <wm-content name="content1"> 
+  <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel> 
+  <wm-page-content columnwidth="10" name="page_content1"> 
+   <wm-layoutgrid name="layoutgrid1"> 
+    <wm-gridrow name="gridrow1"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset"> 
+      <wm-label name="label1" caption="My Company Dashboard" fontweight="bold" class="h4"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn16_1" padding="2em unset"> 
+      <wm-composite name="composite1" show="bind:Variables.AdminVendorsList.dataSet.content.length > 1"> 
+       <wm-label class="col-md-3 form-control-static" name="label9" caption="Select Company" fontweight="bold"></wm-label> 
+       <wm-container class="col-md-9" name="container1"> 
+        <wm-select name="selectSelectCompany" dataset="bind:Variables.AdminVendorsList.dataSet" datafield="All Fields" displayfield="CompanyName" datavalue="bind:Variables.AdminVendorsList.firstRecord" orderby="CompanyName:asc"></wm-select> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow2"> 
+     <wm-gridcolumn columnwidth="4" name="gridcolumn3" horizontalalign="center" padding="2em unset"> 
+      <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_CompanyProfile.invoke()"> 
+       <wm-layoutgrid height="100%" name="layoutgrid9"> 
+        <wm-gridrow height="100%" name="gridrow12"> 
+         <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn26" class="col-xs-3"> 
+          <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-work"></wm-icon> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="9" padding="3em unset unset unset" horizontalalign="center" name="gridcolumn27" class="col-xs-9"> 
+          <wm-label name="tileTitle" caption="My Company" class="p" fontsize="1.5" fontunit="em"></wm-label> 
+         </wm-gridcolumn> 
+        </wm-gridrow> 
+       </wm-layoutgrid> 
+      </wm-tile> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="4" name="gridcolumn4" horizontalalign="center" padding="2em unset"> 
+      <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_CompanyUsers.invoke()"> 
+       <wm-layoutgrid height="100%" name="layoutgrid2"> 
+        <wm-gridrow height="100%" name="gridrow3"> 
+         <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn6" class="col-xs-3"> 
+          <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-group"></wm-icon> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn7" class="col-xs-9"> 
+          <wm-label name="tileTitle" caption="Company Users" class="p" fontsize="1.5" fontunit="em"></wm-label> 
+          <wm-label name="tileStatLabel" caption="bind:Variables.CountOfVendorUsers.dataSet[$i].CountOfVendorUsers" fontsize="3" fontunit="em" class="p"></wm-label> 
+         </wm-gridcolumn> 
+        </wm-gridrow> 
+       </wm-layoutgrid> 
+      </wm-tile> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="4" name="gridcolumn5" horizontalalign="center" padding="2em unset"> 
+      <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_CompanyMunicipalities.invoke()"> 
+       <wm-layoutgrid height="100%" name="layoutgrid3"> 
+        <wm-gridrow height="100%" name="gridrow4"> 
+         <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn8" class="col-xs-3"> 
+          <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-account-balance"></wm-icon> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn9" class="col-xs-9"> 
+          <wm-label name="tileTitle" caption="Municipalities" class="p" fontsize="1.5" fontunit="em"></wm-label> 
+          <wm-label name="tileStatLabel" caption="bind:Variables.CountOfMuncipalityApplicationsByVendor.dataSet[$i].count" fontsize="3" fontunit="em" class="p"></wm-label> 
+         </wm-gridcolumn> 
+        </wm-gridrow> 
+       </wm-layoutgrid> 
+      </wm-tile> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow6"> 
+     <wm-gridcolumn columnwidth="4" name="gridcolumn12" horizontalalign="center" padding="2em unset"> 
+      <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_CompanyForms.invoke()"> 
+       <wm-layoutgrid height="100%" name="layoutgrid5"> 
+        <wm-gridrow height="100%" name="gridrow7"> 
+         <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="2.5em unset unset unset" name="gridcolumn15" class="col-xs-3"> 
+          <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-assignment"></wm-icon> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn16" class="col-xs-9"> 
+          <wm-label name="tileTitle" caption="Company Forms" class="p" fontsize="1.5" fontunit="em"></wm-label> 
+          <wm-label name="tileStatLabel" caption="bind:Variables.CountOfCompnayFormsByVendorId.dataSet[$i].count" fontsize="3" fontunit="em" class="p"></wm-label> 
+         </wm-gridcolumn> 
+        </wm-gridrow> 
+       </wm-layoutgrid> 
+      </wm-tile> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="4" name="gridcolumn13" padding="2em unset" horizontalalign="center"></wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="4" name="gridcolumn14" padding="2em unset" horizontalalign="center"></wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+  </wm-page-content> 
+ </wm-content> 
+ <wm-footer content="footer" name="footer1"></wm-footer> 
 </wm-page>

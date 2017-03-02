@@ -1,213 +1,206 @@
-<wm-page data-ng-controller="UserCreationPageController" pagetitle="User Creation" name="page1">
-    <wm-header content="header" name="header1"></wm-header>
-    <wm-content name="content1">
-        <wm-page-content columnwidth="12" name="page_content1">
-            <wm-wizard name="wizard1" horizontalalign="left" on-done="wizard1Done($scope, steps)" on-cancel="Variables.NewUserToLogin.invoke()">
-                <wm-wizardstep name="wizardstep1" title="Account Setup">
-                    <wm-liveform novalidate="false" errormessage="User already exists" title="Register for CivicXpress" iconclass="wi wi-pencil" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left" captionposition="top" name="liveform2"
-                    insertmessage="Your account has been created. Please proceed to Login" updatemessage="User updated successfully" deletemessage="User deleted successfully" on-success="liveform2Success($event, $operation, $data)">
-                        <wm-layoutgrid columns="2" name="layoutgrid2">
-                            <wm-gridrow name="gridrow6">
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn11">
-                                    <wm-form-field name="firstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn12">
-                                    <wm-form-field name="lastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow7">
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn13">
-                                    <wm-form-field name="email" displayname="Email Address" show="true" primary-key="false" generator="assigned" key="email" type="string" required="required" widget="text" maxchars="255" inputtype="email" placeholder="Enter value"></wm-form-field>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn14">
-                                    <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" required="required" widget="text" maxchars="20" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow8">
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn15">
-                                    <wm-form-field name="address1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn16">
-                                    <wm-form-field name="address2" displayname="Address2" show="true" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow9">
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn17">
-                                    <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn18">
-                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="false" widget="select" placeholder="Search" orderby="stateName:asc"
-                                    displayexpression="stateName"></wm-form-field>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow10">
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn19">
-                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn20">
-                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                    defaultvalue="USA" readonly="false"></wm-form-field>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow21_1" padding="3em unset unset unset">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn32_1">
-                                    <wm-label padding="unset 0.5em" name="label12_1" caption="Please upload an image to use as your profile photo."></wm-label>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow21" padding="unset unset unset 0.5em">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn31_1">
-                                    <wm-picture name="picture1" width="200" height="200"></wm-picture>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow1" padding="unset unset unset 0.5em">
-                                <wm-gridcolumn name="gridcolumn1" columnwidth="12" horizontalalign="left">
-                                    <wm-form-field name="photo" show="true" primary-key="false" generator="assigned" key="photo" type="blob" widget="upload" maxchars="255" filetype="image"></wm-form-field>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                        </wm-layoutgrid>
-                    </wm-liveform>
-                </wm-wizardstep>
-                <wm-wizardstep name="wizardstep2" title="Municipalities">
-                    <wm-panel iconclass="wi wi-library-add" autoclose="outsideClick" name="panel4" title="Subscribe to Municipalities">
-                        <wm-layoutgrid name="layoutgrid4">
-                            <wm-gridrow name="gridrow20" padding="unset unset 2em unset">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn31_3">
-                                    <wm-label padding="unset 0.5em unset unset" name="Instructions" caption="You will need to select at least one municipality that you would like to do business with. You may add as many municipalities as you like by searching and clicking “Add Municipality”."
-                                    horizontalalign="center" textalign="left"></wm-label>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow13">
-                                <wm-gridcolumn columnwidth="2" name="gridcolumn28_1"></wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="7" name="gridcolumn18_1">
-                                    <wm-composite name="composite5">
-                                        <wm-label class="col-md-3 form-control-static" name="label8" caption="Search Municipalities" width="20%" fontweight="bold"></wm-label>
-                                        <wm-container class="col-md-9" name="container5" width="80%">
-                                            <wm-search name="textSearchMunicipalities" placeholder="Search by Municipality Name" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="municipalityName" displaylabel="municipalityName" displayimagesrc="logo"
-                                            datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="false" width="100%" type="autocomplete" orderby="municipalityName:asc"></wm-search>
-                                        </wm-container>
-                                    </wm-composite>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="3" name="gridcolumn24" horizontalalign="left">
-                                    <wm-button class="btn-primary" caption="Add Municipality" type="button" margin="unset 0.5em" name="ButtonAddMuncipalities" iconclass="wi wi-add" on-click="ButtonAddMuncipalitiesClick($event, $scope)" horizontalalign="left"
-                                    disabled="bind:!Widgets.textSearchMunicipalities.datavalue"></wm-button>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow14" padding="2px unset unset unset">
-                                <wm-gridcolumn columnwidth="2" name="gridcolumn31">
-                                    <wm-composite name="composite6" show="false">
-                                        <wm-checkbox caption="Label" class="col-md-push-3 col-md-9" name="checkMunisBeThere" required="true" datavalue="bind:Variables.MunicpalitiesList.dataSet.length > 0" show="true"></wm-checkbox>
-                                    </wm-composite>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="7" name="gridcolumn20_1" padding="2em unset">
-                                    <wm-panel iconclass="wi wi-account-balance" name="panel1" title="Your Municipalities">
-                                        <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.MunicpalitiesList.dataSet" navigation="None" name="livelist1" nodatamessage="There is no Municipality selected. Please search for a Municipality">
-                                            <wm-listtemplate layout="media" name="listtemplate1">
-                                                <wm-layoutgrid name="layoutgrid5">
-                                                    <wm-gridrow name="gridrow17_1">
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn25_1">
-                                                            <wm-label padding="unset 0.5em" name="label11" caption="bind:Variables.MunicpalitiesList.dataSet[$i].municipalityName" class="col-md-3 form-control-static" width="100%"></wm-label>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn31_2">
-                                                            <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.MunicpalitiesList.dataSet[$i].states.stateName" class="col-md-3 form-control-static" width="100%"></wm-label>
-                                                        </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn29">
-                                                            <wm-button class="btn-primary" caption="Remove" type="button" margin="unset 0.5em" name="buttonRemove" iconclass="wi wi-trash" on-click="buttonRemoveClick($event, $scope, item, currentItemWidgets)"></wm-button>
-                                                        </wm-gridcolumn>
-                                                    </wm-gridrow>
-                                                </wm-layoutgrid>
-                                            </wm-listtemplate>
-                                        </wm-livelist>
-                                    </wm-panel>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="3" name="gridcolumn30"></wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow15_1"></wm-gridrow>
-                        </wm-layoutgrid>
-                    </wm-panel>
-                </wm-wizardstep>
-                <wm-wizardstep name="wizardstep3" title="Communication">
-                    <wm-panel iconclass="wi wi-notifications" autoclose="outsideClick" name="panel2" title="Notification Frequency">
-                        <wm-layoutgrid name="layoutgrid2_1" columns="1">
-                            <wm-gridrow name="gridrow22">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn33">
-                                    <wm-label padding="unset 0.5em" name="label13" caption="How often would you like to receive email notifications?"></wm-label>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow9_1">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn16_1">
-                                    <wm-composite name="composite2">
-                                        <wm-container class="col-md-9" name="container2">
-                                            <wm-radioset height="auto" name="radiosetCF" dataset="Immediately,Daily (Recommended),Weekly,Monthly,Never" selectedvalue="Daily (Recommended)"></wm-radioset>
-                                        </wm-container>
-                                    </wm-composite>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow10_1"></wm-gridrow>
-                        </wm-layoutgrid>
-                    </wm-panel>
-                </wm-wizardstep>
-                <wm-wizardstep name="wizardstep4" title="Finish">
-                    <wm-panel iconclass="wi wi-vpn-key" autoclose="outsideClick" name="panel3" title="Set Password">
-                        <wm-layoutgrid name="layoutgrid3" columns="1">
-                            <wm-gridrow name="gridrow18">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn28" horizontalalign="left">
-                                    <wm-label padding="unset 0.5em unset unset" name="label11_1" caption="PASSWORD REQUIREMENTS:" fontweight="bold"></wm-label>
-                                    <wm-label padding="unset 0.5em" name="label7" caption="All passwords must contain a minimum of 8 characters including at least 1 capital letter, 1 number, and 1 special character (e.g. @$!%*?&amp;)"></wm-label>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow16" padding="2em unset unset unset">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn26">
-                                    <wm-composite name="composite3" required="false">
-                                        <wm-label class="col-md-3 form-control-static" name="label5" caption="Create Password" fontweight="bold" width="120px"></wm-label>
-                                        <wm-container class="col-md-9" name="container3" width="300px">
-                                            <wm-text name="textPwd" placeholder="Enter Password" type="password" regexp=".*" required="true" on-keyup="textPwdKeyup($event, $scope)" updateon="blur" on-keydown="textPwdKeydown($event, $scope)"></wm-text>
-                                        </wm-container>
-                                    </wm-composite>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow17" padding="unset unset 2em unset">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn27">
-                                    <wm-composite name="composite4" required="false">
-                                        <wm-label class="col-md-3 form-control-static" name="label6" caption="Confirm Password" fontweight="bold" width="120px"></wm-label>
-                                        <wm-container class="col-md-9" name="container4" width="300px">
-                                            <wm-text name="textRePwd" placeholder="Enter Password" on-keyup="textRePwdKeyup($event, $scope)" type="password" required="true" regexp=".*" updateon="blur"></wm-text>
-                                        </wm-container>
-                                    </wm-composite>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow21_2">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn30_1">
-                                    <wm-composite name="composite6_1">
-                                        <wm-checkbox caption="bind:'By signing up for an account on CivicXpress, I acknowledge that I have read and accepted the <a href=&quot;&quot; class=&quot;eulaLink&quot;>End User License Agreement</a>'" class="col-md-9"
-                                        name="checkboxAcceptEULA" required="true"></wm-checkbox>
-                                    </wm-composite>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow19" padding="2em unset unset unset">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn29_1" horizontalalign="left">
-                                    <wm-prefab prefabname="Google_reCAPTCHA" name="Google_reCAPTCHA1" sitekey="6LcNeBUUAAAAAE7ACQkzLMRlZ4kHI9-ebthTlQ61"></wm-prefab>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                        </wm-layoutgrid>
-                    </wm-panel>
-                </wm-wizardstep>
-            </wm-wizard>
-        </wm-page-content>
-    </wm-content>
-    <wm-footer content="footer" name="footer1"></wm-footer>
-    <wm-view class="dialog-view" name="view1">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="End User License Agreement" iconclass="wi wi-file-text" name="dialogEULA">
-            <wm-layoutgrid name="layoutgrid6">
-                <wm-gridrow name="gridrow22_1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn31_4">
-                        <wm-label padding="unset 0.5em" caption="bind:Variables.lvGlobalSettings.dataSet.data[$i].cxeula" name="label11_2"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-            <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Accept" on-click="closeDialog();button3Click($event, $scope)" name="button3" iconclass="wi wi-check"></wm-button>
-                <wm-button class="btn-secondary" caption="Close" type="button" margin="unset 0.5em" name="button4" iconclass="wi wi-cancel" on-click="Widgets.dialogEULA.close()"></wm-button>
-            </wm-dialogactions>
-        </wm-dialog>
-    </wm-view>
+<wm-page data-ng-controller="UserCreationPageController" pagetitle="User Creation" name="page1"> 
+ <wm-header content="header" name="header1"></wm-header> 
+ <wm-content name="content1"> 
+  <wm-page-content columnwidth="12" name="page_content1"> 
+   <wm-wizard name="wizard1" horizontalalign="left" on-done="wizard1Done($scope, steps)" on-cancel="Variables.NewUserToLogin.invoke()"> 
+    <wm-wizardstep name="wizardstep1" title="Account Setup"> 
+     <wm-liveform novalidate="false" errormessage="User already exists" title="Register for CivicXpress" iconclass="wi wi-pencil" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left" captionposition="top" name="liveform2" insertmessage="Your account has been created. Please proceed to Login" updatemessage="User updated successfully" deletemessage="User deleted successfully" on-success="liveform2Success($event, $operation, $data)"> 
+      <wm-layoutgrid columns="2" name="layoutgrid2"> 
+       <wm-gridrow name="gridrow6"> 
+        <wm-gridcolumn columnwidth="6" name="gridcolumn11"> 
+         <wm-form-field name="firstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="6" name="gridcolumn12"> 
+         <wm-form-field name="lastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow7"> 
+        <wm-gridcolumn columnwidth="6" name="gridcolumn13"> 
+         <wm-form-field name="email" displayname="Email Address" show="true" primary-key="false" generator="assigned" key="email" type="string" required="required" widget="text" maxchars="255" inputtype="email" placeholder="Enter value"></wm-form-field> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="6" name="gridcolumn14"> 
+         <wm-form-field name="phoneNumber" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phoneNumber" type="string" required="required" widget="text" maxchars="20" inputtype="text" placeholder="Enter value"></wm-form-field> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow8"> 
+        <wm-gridcolumn columnwidth="6" name="gridcolumn15"> 
+         <wm-form-field name="address1" displayname="Address1" show="true" primary-key="false" generator="assigned" key="address1" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="6" name="gridcolumn16"> 
+         <wm-form-field name="address2" displayname="Address2" show="true" primary-key="false" generator="assigned" key="address2" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow9"> 
+        <wm-gridcolumn columnwidth="6" name="gridcolumn17"> 
+         <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="6" name="gridcolumn18"> 
+         <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="false" widget="select" placeholder="Search" orderby="stateName:asc" displayexpression="stateName"></wm-form-field> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow10"> 
+        <wm-gridcolumn columnwidth="6" name="gridcolumn19"> 
+         <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="6" name="gridcolumn20"> 
+         <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="USA" readonly="false"></wm-form-field> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow21_1" padding="3em unset unset unset"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn32_1"> 
+         <wm-label padding="unset 0.5em" name="label12_1" caption="Please upload an image to use as your profile photo."></wm-label> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow21" padding="unset unset unset 0.5em"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn31_1"> 
+         <wm-picture name="picture1" width="200" height="200"></wm-picture> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow1" padding="unset unset unset 0.5em"> 
+        <wm-gridcolumn name="gridcolumn1" columnwidth="12" horizontalalign="left"> 
+         <wm-form-field name="photo" show="true" primary-key="false" generator="assigned" key="photo" type="blob" widget="upload" maxchars="255" filetype="image"></wm-form-field> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-liveform> 
+    </wm-wizardstep> 
+    <wm-wizardstep name="wizardstep2" title="Municipalities"> 
+     <wm-panel iconclass="wi wi-library-add" autoclose="outsideClick" name="panel4" title="Subscribe to Municipalities"> 
+      <wm-layoutgrid name="layoutgrid4"> 
+       <wm-gridrow name="gridrow20" padding="unset unset 2em unset"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn31_3"> 
+         <wm-label padding="unset 0.5em unset unset" name="Instructions" caption="You will need to select at least one municipality that you would like to do business with. You may add as many municipalities as you like by searching and clicking “Add Municipality”." horizontalalign="center" textalign="left"></wm-label> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow13"> 
+        <wm-gridcolumn columnwidth="2" name="gridcolumn28_1"></wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="7" name="gridcolumn18_1"> 
+         <wm-composite name="composite5"> 
+          <wm-label class="col-md-3 form-control-static" name="label8" caption="Search Municipalities" width="20%" fontweight="bold"></wm-label> 
+          <wm-container class="col-md-9" name="container5" width="80%"> 
+           <wm-search name="textSearchMunicipalities" placeholder="Search by Municipality Name" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="municipalityName" displaylabel="municipalityName" displayimagesrc="logo" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="false" width="100%" type="autocomplete" orderby="municipalityName:asc"></wm-search> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn24" horizontalalign="left"> 
+         <wm-button class="btn-primary" caption="Add Municipality" type="button" margin="unset 0.5em" name="ButtonAddMuncipalities" iconclass="wi wi-add" on-click="ButtonAddMuncipalitiesClick($event, $scope)" horizontalalign="left" disabled="bind:!Widgets.textSearchMunicipalities.datavalue"></wm-button> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow14" padding="2px unset unset unset"> 
+        <wm-gridcolumn columnwidth="2" name="gridcolumn31"> 
+         <wm-composite name="composite6" show="false"> 
+          <wm-checkbox caption="Label" class="col-md-push-3 col-md-9" name="checkMunisBeThere" required="true" datavalue="bind:Variables.MunicpalitiesList.dataSet.length > 0" show="true"></wm-checkbox> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="7" name="gridcolumn20_1" padding="2em unset"> 
+         <wm-panel iconclass="wi wi-account-balance" name="panel1" title="Your Municipalities"> 
+          <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.MunicpalitiesList.dataSet" navigation="None" name="livelist1" nodatamessage="There is no Municipality selected. Please search for a Municipality"> 
+           <wm-listtemplate layout="media" name="listtemplate1"> 
+            <wm-layoutgrid name="layoutgrid5"> 
+             <wm-gridrow name="gridrow17_1"> 
+              <wm-gridcolumn columnwidth="6" name="gridcolumn25_1"> 
+               <wm-label padding="unset 0.5em" name="label11" caption="bind:Variables.MunicpalitiesList.dataSet[$i].municipalityName" class="col-md-3 form-control-static" width="100%"></wm-label> 
+              </wm-gridcolumn> 
+              <wm-gridcolumn columnwidth="3" name="gridcolumn31_2"> 
+               <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.MunicpalitiesList.dataSet[$i].states.stateName" class="col-md-3 form-control-static" width="100%"></wm-label> 
+              </wm-gridcolumn> 
+              <wm-gridcolumn columnwidth="3" name="gridcolumn29"> 
+               <wm-button class="btn-primary" caption="Remove" type="button" margin="unset 0.5em" name="buttonRemove" iconclass="wi wi-trash" on-click="buttonRemoveClick($event, $scope, item, currentItemWidgets)"></wm-button> 
+              </wm-gridcolumn> 
+             </wm-gridrow> 
+            </wm-layoutgrid> 
+           </wm-listtemplate> 
+          </wm-livelist> 
+         </wm-panel> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn30"></wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow15_1"></wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-panel> 
+    </wm-wizardstep> 
+    <wm-wizardstep name="wizardstep3" title="Communication"> 
+     <wm-panel iconclass="wi wi-notifications" autoclose="outsideClick" name="panel2" title="Notification Frequency"> 
+      <wm-layoutgrid name="layoutgrid2_1" columns="1"> 
+       <wm-gridrow name="gridrow22"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn33"> 
+         <wm-label padding="unset 0.5em" name="label13" caption="How often would you like to receive email notifications?"></wm-label> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow9_1"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn16_1"> 
+         <wm-composite name="composite2"> 
+          <wm-container class="col-md-9" name="container2"> 
+           <wm-radioset height="auto" name="radiosetCF" dataset="Immediately,Daily (Recommended),Weekly,Monthly,Never" selectedvalue="Daily (Recommended)"></wm-radioset> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow10_1"></wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-panel> 
+    </wm-wizardstep> 
+    <wm-wizardstep name="wizardstep4" title="Finish"> 
+     <wm-panel iconclass="wi wi-vpn-key" autoclose="outsideClick" name="panel3" title="Set Password"> 
+      <wm-layoutgrid name="layoutgrid3" columns="1"> 
+       <wm-gridrow name="gridrow18"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn28" horizontalalign="left"> 
+         <wm-label padding="unset 0.5em unset unset" name="label11_1" caption="PASSWORD REQUIREMENTS:" fontweight="bold"></wm-label> 
+         <wm-label padding="unset 0.5em" name="label7" caption="All passwords must contain a minimum of 8 characters including at least 1 capital letter, 1 number, and 1 special character (e.g. @$!%*?&amp;)"></wm-label> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow16" padding="2em unset unset unset"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn26"> 
+         <wm-composite name="composite3" required="false"> 
+          <wm-label class="col-md-3 form-control-static" name="label5" caption="Create Password" fontweight="bold" width="120px"></wm-label> 
+          <wm-container class="col-md-9" name="container3" width="300px"> 
+           <wm-text name="textPwd" placeholder="Enter Password" type="password" regexp=".*" required="true" on-keyup="textPwdKeyup($event, $scope)" updateon="blur" on-keydown="textPwdKeydown($event, $scope)"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow17" padding="unset unset 2em unset"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn27"> 
+         <wm-composite name="composite4" required="false"> 
+          <wm-label class="col-md-3 form-control-static" name="label6" caption="Confirm Password" fontweight="bold" width="120px"></wm-label> 
+          <wm-container class="col-md-9" name="container4" width="300px"> 
+           <wm-text name="textRePwd" placeholder="Enter Password" on-keyup="textRePwdKeyup($event, $scope)" type="password" required="true" regexp=".*" updateon="blur"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow21_2"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn30_1"> 
+         <wm-composite name="composite6_1"> 
+          <wm-checkbox caption="bind:'By signing up for an account on CivicXpress, I acknowledge that I have read and accepted the <a href=&quot;&quot; class=&quot;eulaLink&quot;>End User License Agreement</a>'" class="col-md-9" name="checkboxAcceptEULA" required="true"></wm-checkbox> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow19" padding="2em unset unset unset"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn29_1" horizontalalign="left"> 
+         <wm-prefab prefabname="Google_reCAPTCHA" name="Google_reCAPTCHA1" sitekey="6LcNeBUUAAAAAE7ACQkzLMRlZ4kHI9-ebthTlQ61"></wm-prefab> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-panel> 
+    </wm-wizardstep> 
+   </wm-wizard> 
+  </wm-page-content> 
+ </wm-content> 
+ <wm-footer content="footer" name="footer1"></wm-footer> 
+ <wm-view class="dialog-view" name="view1"> 
+  <wm-dialog dialogtype="design-dialog" modal="true" title="End User License Agreement" iconclass="wi wi-file-text" name="dialogEULA"> 
+   <wm-layoutgrid name="layoutgrid6"> 
+    <wm-gridrow name="gridrow22_1"> 
+     <wm-gridcolumn columnwidth="12" name="gridcolumn31_4"> 
+      <wm-label padding="unset 0.5em" caption="bind:Variables.lvGlobalSettings.dataSet.data[$i].cxeula" name="label11_2"></wm-label> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-dialogactions name="dialogactions1"> 
+    <wm-button class="btn-primary" caption="Accept" on-click="closeDialog();button3Click($event, $scope)" name="button3" iconclass="wi wi-check"></wm-button> 
+    <wm-button class="btn-secondary" caption="Close" type="button" margin="unset 0.5em" name="button4" iconclass="wi wi-cancel" on-click="Widgets.dialogEULA.close()"></wm-button> 
+   </wm-dialogactions> 
+  </wm-dialog> 
+ </wm-view> 
 </wm-page>

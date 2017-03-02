@@ -17,7 +17,7 @@
       "value" : "bind:toDay | toDate: 'MM-dd-yyyy'",
       "type" : "string"
     } ],
-    "type" : "cx2AddUsersToVendorrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeAddUsersToVendor",
     "operationId" : "QueryExecutionController_executeAddUsersToVendor",
@@ -47,7 +47,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2AdminVendorsListrtnType",
+    "type" : "com.civicxpress.cx2.models.query.AdminVendorsListResponse",
     "service" : "cx2",
     "operation" : "executeAdminVendorsList",
     "operationId" : "QueryExecutionController_executeAdminVendorsList",
@@ -389,7 +389,7 @@
       "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2CheckIfCompanyUserIsVendorAdminrtnType",
+    "type" : "com.civicxpress.cx2.models.query.CheckIfCompanyUserIsVendorAdminResponse",
     "service" : "cx2",
     "operation" : "executeCheckIfCompanyUserIsVendorAdmin",
     "operationId" : "QueryExecutionController_executeCheckIfCompanyUserIsVendorAdmin",
@@ -422,7 +422,7 @@
       "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2CheckingUserWithInVendorUsersrtnType",
+    "type" : "com.civicxpress.cx2.models.query.CheckingUserWithInVendorUsersResponse",
     "service" : "cx2",
     "operation" : "executeCheckingUserWithInVendorUsers",
     "operationId" : "QueryExecutionController_executeCheckingUserWithInVendorUsers",
@@ -482,7 +482,7 @@
       "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2DeleteFromVendorAdminsrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeDeleteFromVendorAdmins",
     "operationId" : "QueryExecutionController_executeDeleteFromVendorAdmins",
@@ -515,7 +515,7 @@
       "value" : "bind:Widgets.gridVendorUsers.selecteditem.userId",
       "type" : "integer"
     } ],
-    "type" : "cx2DeleteFromVendorUsersrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeDeleteFromVendorUsers",
     "operationId" : "QueryExecutionController_executeDeleteFromVendorUsers",
@@ -548,7 +548,7 @@
       "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2DeleteFromVendorUsersrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeDeleteFromVendorUsers",
     "operationId" : "QueryExecutionController_executeDeleteFromVendorUsers",
@@ -637,7 +637,7 @@
       "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | toNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2MapAsAdminForVendorrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeMapAsAdminForVendor",
     "operationId" : "QueryExecutionController_executeMapAsAdminForVendor",
@@ -699,7 +699,7 @@
       "value" : "bind:Widgets.searchForAdmin.datavalue.id",
       "type" : "integer"
     } ],
-    "type" : "cx2UpdateAsCXVendorAdminrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateAsCXVendorAdmin",
     "operationId" : "QueryExecutionController_executeUpdateAsCXVendorAdmin",

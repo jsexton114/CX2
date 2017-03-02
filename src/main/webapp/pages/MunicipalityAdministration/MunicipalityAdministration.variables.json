@@ -9,7 +9,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2AdminsMunicipalitiesrtnType",
+    "type" : "com.civicxpress.cx2.models.query.AdminsMunicipalitiesResponse",
     "service" : "cx2",
     "operation" : "executeAdminsMunicipalities",
     "operationId" : "QueryExecutionController_executeAdminsMunicipalities",
@@ -36,7 +36,7 @@
       "value" : "bind:Widgets.select1.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2CountOfFormsForMunicipalityrtnType",
+    "type" : "com.civicxpress.cx2.models.query.CountOfFormsForMunicipalityResponse",
     "service" : "cx2",
     "operation" : "executeCountOfFormsForMunicipality",
     "operationId" : "QueryExecutionController_executeCountOfFormsForMunicipality",
@@ -65,7 +65,7 @@
       "value" : "bind:Widgets.select1.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2ManualFeeTypeCountForMunicipalityrtnType",
+    "type" : "com.civicxpress.cx2.models.query.ManualFeeTypeCountForMunicipalityResponse",
     "service" : "cx2",
     "operation" : "executeManualFeeTypeCountForMunicipality",
     "operationId" : "QueryExecutionController_executeManualFeeTypeCountForMunicipality",
@@ -93,7 +93,7 @@
       "value" : "bind:Widgets.select1.datavalue.ID | toNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2MunicipalitiesGroupsCountsrtnType",
+    "type" : "com.civicxpress.cx2.models.query.MunicipalitiesGroupsCountsResponse",
     "service" : "cx2",
     "operation" : "executeMunicipalitiesGroupsCounts",
     "operationId" : "QueryExecutionController_executeMunicipalitiesGroupsCounts",
@@ -121,7 +121,7 @@
       "value" : "bind:Widgets.select1.datavalue.ID | toNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2SubDivisonCountrtnType",
+    "type" : "com.civicxpress.cx2.models.query.SubDivisonCountResponse",
     "service" : "cx2",
     "operation" : "executeSubDivisonCount",
     "operationId" : "QueryExecutionController_executeSubDivisonCount",
@@ -149,7 +149,7 @@
       "value" : "bind:Widgets.select1.datavalue.ID | toNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2userSubscriptionsCountForMunicipalityrtnType",
+    "type" : "com.civicxpress.cx2.models.query.UserSubscriptionsCountForMunicipalityResponse",
     "service" : "cx2",
     "operation" : "executeUserSubscriptionsCountForMunicipality",
     "operationId" : "QueryExecutionController_executeUserSubscriptionsCountForMunicipality",

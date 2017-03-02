@@ -36,7 +36,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2FormsForUsersAndSharedrtnType",
+    "type" : "com.civicxpress.cx2.models.query.FormsForUsersAndSharedResponse",
     "service" : "cx2",
     "operation" : "executeFormsForUsersAndShared",
     "operationId" : "QueryExecutionController_executeFormsForUsersAndShared",
@@ -64,7 +64,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2PreferenceForUserrtnType",
+    "type" : "com.civicxpress.cx2.models.query.PreferenceForUserResponse",
     "service" : "cx2",
     "operation" : "executePreferenceForUser",
     "operationId" : "QueryExecutionController_executePreferenceForUser",

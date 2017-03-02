@@ -1149,7 +1149,7 @@
       "value" : "bind:Widgets.gridProjectsList.selecteditem.projectGuid",
       "type" : "string"
     } ],
-    "type" : "cx2ProjectSoftDeletertnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeProjectSoftDelete",
     "operationId" : "QueryExecutionController_executeProjectSoftDelete",
@@ -1206,7 +1206,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2StandardUserMunicipalitesrtnType",
+    "type" : "com.civicxpress.cx2.models.query.StandardUserMunicipalitesResponse",
     "service" : "cx2",
     "operation" : "executeStandardUserMunicipalites",
     "operationId" : "QueryExecutionController_executeStandardUserMunicipalites",
@@ -1242,7 +1242,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2ProjectsForUsersAndSharedWithrtnType",
+    "type" : "com.civicxpress.cx2.models.query.ProjectsForUsersAndSharedWithResponse",
     "service" : "cx2",
     "operation" : "executeProjectsForUsersAndSharedWith",
     "operationId" : "QueryExecutionController_executeProjectsForUsersAndSharedWith",

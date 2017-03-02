@@ -25,11 +25,11 @@
         <property name="csrfConfig" ref="csrfConfig"/>
         <property name="rolesConfig" ref="rolesConfig"/>
     </bean>
-    <bean class="com.wavemaker.studio.common.model.security.SSLConfig" id="sslConfig">
+    <bean class="com.wavemaker.commons.model.security.SSLConfig" id="sslConfig">
         <property name="useSSL" value="${general.ssl.enabled}"/>
         <property name="sslPort" value="${general.ssl.port}"/>
     </bean>
-    <bean class="com.wavemaker.studio.common.model.security.XSSConfig" id="xssConfig">
+    <bean class="com.wavemaker.commons.model.security.XSSConfig" id="xssConfig">
         <property name="enforceXssSecurity" value="${general.xss.enabled}"/>
         <property name="policyFile" value="wm-xss-policies.xml"/>
         <property name="xssFilterStrategy" value="NONE"/>
@@ -87,7 +87,9 @@
         <security:intercept-url pattern="/services/servicedefs" access="permitAll"/>
         <security:intercept-url pattern="/" access="isAuthenticated()"/>
         <security:intercept-url pattern="/**" access="isAuthenticated()"/>
-        <security:headers disabled="true"/>
+        <security:headers defaults-disabled="true">
+            <security:frame-options policy="SAMEORIGIN"/>
+        </security:headers>
         <security:request-cache ref="nullRequestCache"/>
         <security:custom-filter before="PRE_AUTH_FILTER" ref="wmTokenBasedPreAuthenticatedProcessingFilter"/>
         <security:custom-filter position="REMEMBER_ME_FILTER" ref="rememberMeAuthFilter"/>
@@ -162,65 +164,65 @@
     <bean class="org.springframework.security.authentication.RememberMeAuthenticationProvider" id="rememberMeAuthenticationProvider">
         <constructor-arg value="WM_APP_KEY"/>
     </bean>
-    <bean class="com.wavemaker.studio.common.model.security.LoginConfig" id="loginConfig">
+    <bean class="com.wavemaker.commons.model.security.LoginConfig" id="loginConfig">
         <property name="pageName" value="Login"/>
         <property name="sessionTimeout">
-            <bean class="com.wavemaker.studio.common.model.security.SessionTimeoutConfig">
+            <bean class="com.wavemaker.commons.model.security.SessionTimeoutConfig">
                 <property name="pageName" value=""/>
                 <property name="timeoutValue" value="${general.session.timeout}"/>
                 <property name="type">
-                    <value type="com.wavemaker.studio.common.model.security.LoginType">DIALOG</value>
+                    <value type="com.wavemaker.commons.model.security.LoginType">DIALOG</value>
                 </property>
             </bean>
         </property>
         <property name="type">
-            <value type="com.wavemaker.studio.common.model.security.LoginType">PAGE</value>
+            <value type="com.wavemaker.commons.model.security.LoginType">PAGE</value>
         </property>
     </bean>
-    <bean class="com.wavemaker.studio.common.model.security.CSRFConfig" id="csrfConfig">
+    <bean class="com.wavemaker.commons.model.security.CSRFConfig" id="csrfConfig">
         <property name="enforceCsrfSecurity" value="${general.xsrf.enabled}"/>
         <property name="headerName" value="X-WM-XSRF-TOKEN"/>
     </bean>
-    <bean class="com.wavemaker.studio.common.model.security.RememberMeConfig" id="rememberMeConfig">
+    <bean class="com.wavemaker.commons.model.security.RememberMeConfig" id="rememberMeConfig">
         <property name="enabled" value="${general.rememberMe.enabled}"/>
         <property name="tokenValiditySeconds" value="${general.rememberMe.timeOut}"/>
     </bean>
-    <bean class="com.wavemaker.studio.common.model.security.RolesConfig" id="rolesConfig">
+    <bean class="com.wavemaker.commons.model.security.RolesConfig" id="rolesConfig">
         <property name="roleMap">
             <description>Roles based landing page definitions</description>
-            <map key-type="java.lang.String" value-type="com.wavemaker.studio.common.model.security.RoleConfig">
+            <map key-type="java.lang.String" value-type="com.wavemaker.commons.model.security.RoleConfig">
                 <entry key="CXAdmin">
-                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
                         <property name="landingPage" value="CXAdmin"/>
                     </bean>
                 </entry>
                 <entry key="MunicipalityAdmin">
-                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
                         <property name="landingPage" value="MunicipalityAdministration"/>
                     </bean>
                 </entry>
                 <entry key="MunicipalityEmployee">
-                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
                         <property name="landingPage" value="MyMunicipality"/>
                     </bean>
                 </entry>
                 <entry key="User">
-                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
                         <property name="landingPage" value="Main"/>
                     </bean>
                 </entry>
                 <entry key="CXVendorAdmin">
-                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
                         <property name="landingPage" value="MyCompany"/>
                     </bean>
                 </entry>
                 <entry key="Inspector">
-                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
                         <property name="landingPage" value="Main"/>
                     </bean>
                 </entry>
                 <entry key="InspectorManager">
-                    <bean class="com.wavemaker.studio.common.model.security.RoleConfig">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
                         <property name="landingPage" value="Main"/>
                     </bean>
                 </entry>

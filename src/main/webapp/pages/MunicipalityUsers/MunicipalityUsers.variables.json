@@ -440,7 +440,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2AdminsMunicipalitiesrtnType",
+    "type" : "com.civicxpress.cx2.models.query.AdminsMunicipalitiesResponse",
     "service" : "cx2",
     "operation" : "executeAdminsMunicipalities",
     "operationId" : "QueryExecutionController_executeAdminsMunicipalities",
@@ -785,7 +785,7 @@
       "value" : "bind:Widgets.textSelectUser.datavalue",
       "type" : "integer"
     } ],
-    "type" : "cx2CheckingUserWithMunicipalityInRolesrtnType",
+    "type" : "com.civicxpress.cx2.models.query.CheckingUserWithMunicipalityInRolesResponse",
     "service" : "cx2",
     "operation" : "executeCheckingUserWithMunicipalityInRoles",
     "operationId" : "QueryExecutionController_executeCheckingUserWithMunicipalityInRoles",
@@ -1553,7 +1553,7 @@
       "value" : "bind:Widgets.gridAdmin.selecteditem.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2DeleteRoleForMuncipalityrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeDeleteRoleForMuncipality",
     "operationId" : "QueryExecutionController_executeDeleteRoleForMuncipality",
@@ -1589,7 +1589,7 @@
       "value" : "bind:Widgets.gridEmployees.selecteditem.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2DeleteRoleForMuncipalityrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeDeleteRoleForMuncipality",
     "operationId" : "QueryExecutionController_executeDeleteRoleForMuncipality",
@@ -1654,7 +1654,7 @@
       "value" : "bind:Widgets.gridEmployees.selecteditem.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2DeleteRoleForMuncipalityrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeDeleteRoleForMuncipality",
     "operationId" : "QueryExecutionController_executeDeleteRoleForMuncipality",
@@ -1687,7 +1687,7 @@
       "value" : "bind:Widgets.gridEmployees.selecteditem.ID ? Widgets.gridEmployees.selecteditem.ID : Widgets.gridAdmin.selecteditem.ID",
       "type" : "integer"
     } ],
-    "type" : "cx2deleteMunicipalityGrouprtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeDeleteMunicipalityGroup",
     "operationId" : "QueryExecutionController_executeDeleteMunicipalityGroup",
@@ -2124,7 +2124,7 @@
       "value" : "bind:Widgets.selectMunicipality.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2FetchRolesForUserWithMunicipalityrtnType",
+    "type" : "com.civicxpress.cx2.models.query.FetchRolesForUserWithMunicipalityResponse",
     "service" : "cx2",
     "operation" : "executeFetchRolesForUserWithMunicipality",
     "operationId" : "QueryExecutionController_executeFetchRolesForUserWithMunicipality",
@@ -2157,7 +2157,7 @@
       "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2GetRolesForMunicipalityrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetRolesForMunicipalityResponse",
     "service" : "cx2",
     "operation" : "executeGetRolesForMunicipality",
     "operationId" : "QueryExecutionController_executeGetRolesForMunicipality",
@@ -2190,7 +2190,7 @@
       "value" : "bind:Widgets.selectMunicipality.datavalue.ID | toNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2GetRolesForMunicipalityrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetRolesForMunicipalityResponse",
     "service" : "cx2",
     "operation" : "executeGetRolesForMunicipality",
     "operationId" : "QueryExecutionController_executeGetRolesForMunicipality",
@@ -2215,7 +2215,7 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ ],
-    "type" : "cx2getListofGroupNamertnType",
+    "type" : "com.civicxpress.cx2.models.query.GetListofGroupNameResponse",
     "service" : "cx2",
     "operation" : "executeGetListofGroupName",
     "operationId" : "QueryExecutionController_executeGetListofGroupName",
@@ -2246,7 +2246,7 @@
       "value" : "bind:'%'+Widgets.searchUsers.query+'%'",
       "type" : "string"
     } ],
-    "type" : "cx2getListofUsersrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetListofUsersResponse",
     "service" : "cx2",
     "operation" : "executeGetListofUsers",
     "operationId" : "QueryExecutionController_executeGetListofUsers",
@@ -2275,7 +2275,7 @@
       "value" : "bind:Widgets.gridEmployees.selecteditem.ID ? Widgets.gridEmployees.selecteditem.ID : Widgets.gridAdmin.selecteditem.ID",
       "type" : "integer"
     } ],
-    "type" : "cx2getMunicipalityGroupIdIDsrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetMunicipalityGroupIdIdsResponse",
     "service" : "cx2",
     "operation" : "executeGetMunicipalityGroupIdIDs",
     "operationId" : "QueryExecutionController_executeGetMunicipalityGroupIdIDs",
@@ -4541,7 +4541,7 @@
       "value" : "bind:Widgets.textSelectUser.datavalue",
       "type" : "integer"
     } ],
-    "type" : "cx2InsertNewRolertnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeInsertNewRole",
     "operationId" : "QueryExecutionController_executeInsertNewRole",
@@ -6378,7 +6378,7 @@
       "value" : "bind:Widgets.textSelectUser.datavalue",
       "type" : "integer"
     } ],
-    "type" : "cx2UpdateRoleForMunicipalityrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateRoleForMunicipality",
     "operationId" : "QueryExecutionController_executeUpdateRoleForMunicipality",

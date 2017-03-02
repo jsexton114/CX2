@@ -398,7 +398,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2DeleteExistingSubscriptionsForUserrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeDeleteExistingSubscriptionsForUser",
     "operationId" : "QueryExecutionController_executeDeleteExistingSubscriptionsForUser",
@@ -2288,7 +2288,7 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ ],
-    "type" : "cx2InsertSubscriptionrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeInsertSubscription",
     "operationId" : "QueryExecutionController_executeInsertSubscription",
@@ -2412,7 +2412,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2PreferenceForUserrtnType",
+    "type" : "com.civicxpress.cx2.models.query.PreferenceForUserResponse",
     "service" : "cx2",
     "operation" : "executePreferenceForUser",
     "operationId" : "QueryExecutionController_executePreferenceForUser",
@@ -2547,7 +2547,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2UpdateCFInProfilertnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateCFInProfile",
     "operationId" : "QueryExecutionController_executeUpdateCFInProfile",
@@ -2616,7 +2616,7 @@
       "value" : "bind:Widgets.textctry.datavalue",
       "type" : "string"
     } ],
-    "type" : "cx2UpdateInfoFromMyProfilertnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateInfoFromMyProfile",
     "operationId" : "QueryExecutionController_executeUpdateInfoFromMyProfile",
@@ -2648,7 +2648,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2UpdateNewPasswordrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateNewPassword",
     "operationId" : "QueryExecutionController_executeUpdateNewPassword",
@@ -2680,7 +2680,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2UpdateUserPreferencesrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateUserPreferences",
     "operationId" : "QueryExecutionController_executeUpdateUserPreferences",

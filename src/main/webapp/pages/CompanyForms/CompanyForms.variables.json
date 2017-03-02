@@ -9,7 +9,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2AdminVendorsListrtnType",
+    "type" : "com.civicxpress.cx2.models.query.AdminVendorsListResponse",
     "service" : "cx2",
     "operation" : "executeAdminVendorsList",
     "operationId" : "QueryExecutionController_executeAdminVendorsList",
@@ -60,7 +60,7 @@
       "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2CompanyFormsByVendorIdrtnType",
+    "type" : "com.civicxpress.cx2.models.query.CompanyFormsByVendorIdResponse",
     "service" : "cx2",
     "operation" : "executeCompanyFormsByVendorId",
     "operationId" : "QueryExecutionController_executeCompanyFormsByVendorId",
@@ -110,7 +110,7 @@
       "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2CompanyFormsByVendorIdrtnType",
+    "type" : "com.civicxpress.cx2.models.query.CompanyFormsByVendorIdResponse",
     "service" : "cx2",
     "operation" : "executeCompanyFormsByVendorId",
     "operationId" : "QueryExecutionController_executeCompanyFormsByVendorId",
@@ -138,7 +138,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2PreferenceForUserrtnType",
+    "type" : "com.civicxpress.cx2.models.query.PreferenceForUserResponse",
     "service" : "cx2",
     "operation" : "executePreferenceForUser",
     "operationId" : "QueryExecutionController_executePreferenceForUser",

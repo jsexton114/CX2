@@ -13,7 +13,7 @@
       "value" : true,
       "type" : "boolean"
     } ],
-    "type" : "cx2CountOfMunicipalityProjectsrtnType",
+    "type" : "com.civicxpress.cx2.models.query.CountOfMunicipalityProjectsResponse",
     "service" : "cx2",
     "operation" : "executeCountOfMunicipalityProjects",
     "operationId" : "QueryExecutionController_executeCountOfMunicipalityProjects",
@@ -49,7 +49,7 @@
       "value" : false,
       "type" : "boolean"
     } ],
-    "type" : "cx2CountOfProcessFormsByMuncipalityrtnType",
+    "type" : "com.civicxpress.cx2.models.query.CountOfProcessFormsByMuncipalityResponse",
     "service" : "cx2",
     "operation" : "executeCountOfProcessFormsByMuncipality",
     "operationId" : "QueryExecutionController_executeCountOfProcessFormsByMuncipality",
@@ -78,7 +78,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2EmployeesMunicipalitiesrtnType",
+    "type" : "com.civicxpress.cx2.models.query.EmployeesMunicipalitiesResponse",
     "service" : "cx2",
     "operation" : "executeEmployeesMunicipalities",
     "operationId" : "QueryExecutionController_executeEmployeesMunicipalities",
@@ -105,7 +105,7 @@
       "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2SubDivisonCountrtnType",
+    "type" : "com.civicxpress.cx2.models.query.SubDivisonCountResponse",
     "service" : "cx2",
     "operation" : "executeSubDivisonCount",
     "operationId" : "QueryExecutionController_executeSubDivisonCount",
@@ -133,7 +133,7 @@
       "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2VendorsCountForMunicipalitiesrtnType",
+    "type" : "com.civicxpress.cx2.models.query.VendorsCountForMunicipalitiesResponse",
     "service" : "cx2",
     "operation" : "executeVendorsCountForMunicipalities",
     "operationId" : "QueryExecutionController_executeVendorsCountForMunicipalities",

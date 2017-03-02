@@ -16,7 +16,7 @@ import com.wavemaker.runtime.service.annotations.ExposeToClient;
 import com.wavemaker.runtime.service.annotations.HideFromClient;
 
 import org.springframework.data.domain.Page;
-//import com.civicxpress.cx2.service.Cx2QueryExecutorService;
+//import com.civicxpress.cx2.service.Cx2QueryExecutorService_V1;
 //import com.wavemaker.runtime.data.model.CustomQuery;
 
 //import com.civicxpress.updaterecordstatus.model.*;
@@ -40,7 +40,7 @@ public class UpdateRecordStatus {
     private SecurityService securityService;
 
     // @Autowired
-    // private Cx2QueryExecutorService cx2QueryExecutorService;
+    // private Cx2QueryExecutorService_V1 cx2QueryExecutorService;
     
     /**
      * This is sample java operation that accepts an input from the caller and responds with "Hello".

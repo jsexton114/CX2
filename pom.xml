@@ -156,7 +156,6 @@
                         </goals>
                         <configuration>
                             <sources>
-                            
                                 <source>services/CXPasswordResetService/src</source>
                                 <source>services/FileService/src</source>
                                 <source>services/FormMessagingMailService/src</source>
@@ -241,7 +240,7 @@
                             <outputDirectory>${basedir}/src/main/webapp/wmapp</outputDirectory>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>com.wavemaker.studio</groupId>
+                                    <groupId>com.wavemaker.runtime</groupId>
                                     <artifactId>wavemaker-app-runtime</artifactId>
                                     <version>${wavemaker.studio.version}</version>
                                     <classifier>wmapp</classifier>
@@ -253,7 +252,7 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.wavemaker.studio</groupId>
+                <groupId>com.wavemaker.app.build</groupId>
                 <artifactId>wavemaker-app-build-maven-plugin</artifactId>
                 <version>${wavemaker.studio.version}</version>
                 <executions>
@@ -303,7 +302,7 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>com.wavemaker.studio</groupId>
+                    <groupId>com.wavemaker.runtime</groupId>
                     <artifactId>wavemaker-app-runtime-core</artifactId>
                     <version>${wavemaker.studio.version}</version>
                 </dependency>
@@ -396,7 +395,7 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.wavemaker.studio</groupId>
+                <groupId>com.wavemaker.runtime</groupId>
                 <artifactId>wavemaker-app-runtime</artifactId>
                 <version>${wavemaker.studio.version}</version>
                 <type>pom</type>
@@ -408,6 +407,6 @@
         <profile.props.file>development.properties</profile.props.file>
         <spring.version>4.2.0.RELEASE</spring.version>
         <spring.security.version>4.1.2.RELEASE</spring.security.version>
-        <wavemaker.studio.version>8.4.0.2</wavemaker.studio.version>
+        <wavemaker.studio.version>8.4.1</wavemaker.studio.version>
     </properties>
 </project>

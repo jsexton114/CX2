@@ -1,157 +1,154 @@
-<wm-page data-ng-controller="WorkSchedulePageController" pagetitle="Work Schedule" name="page1">
-    <wm-header content="header" name="header1"></wm-header>
-    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
-    <wm-content name="content1">
-        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
-        <wm-page-content columnwidth="10" name="page_content1">
-            <wm-layoutgrid name="layoutgrid1">
-                <wm-gridrow name="gridrow4">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn7_1">
-                        <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
-                        <wm-label caption="Schedule Management" fontweight="bold" name="label1" class="h4"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
-                        <wm-composite name="composite1" show="bind:Variables.AdminsMunicipalities.dataSet.content.length > 1">
-                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectMunicipality" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-panel iconclass="wi wi-schedule" name="panel1" title="Operating Hours" class="panel-primary">
-                            <wm-layoutgrid name="layoutgrid2">
-                                <wm-gridrow name="gridrow4_1" padding="1em unset">
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn5">
-                                        <wm-composite name="composite3" horizontalalign="left">
-                                            <wm-checkbox caption="Sunday" class="col-md-push-3 col-md-9" name="checkboxSunday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.sundayYn"></wm-checkbox>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn6">
-                                        <wm-composite name="composite4" horizontalalign="left">
-                                            <wm-checkbox caption="Monday" class="col-md-push-3 col-md-9" name="checkboxMonday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.mondayYn"></wm-checkbox>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn14">
-                                        <wm-composite name="composite5" horizontalalign="left">
-                                            <wm-checkbox caption="Tuesday" class="col-md-push-3 col-md-9" name="checkboxTuesday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.tuesdayYn"></wm-checkbox>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn15">
-                                        <wm-composite name="composite6" horizontalalign="left">
-                                            <wm-checkbox caption="Wednesday" class="col-md-push-3 col-md-9" name="checkboxWednesday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.wednesdayYn"></wm-checkbox>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow5" padding="unset unset 1em unset">
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn7" horizontalalign="center">
-                                        <wm-composite horizontalalign="left" name="composite7">
-                                            <wm-checkbox caption="Thursday" class="col-md-push-3 col-md-9" name="checkboxThursday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.thursdayYn"></wm-checkbox>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn8" horizontalalign="center">
-                                        <wm-composite horizontalalign="left" name="composite8">
-                                            <wm-checkbox caption="Friday" class="col-md-push-3 col-md-9" name="checkboxFriday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.fridayYn"></wm-checkbox>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn16" horizontalalign="center">
-                                        <wm-composite horizontalalign="left" name="composite9">
-                                            <wm-checkbox caption="Saturday" class="col-md-push-3 col-md-9" name="checkboxSaturday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.saturdayYn"></wm-checkbox>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow6" padding="3em unset 1em unset">
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn17"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn18">
-                                        <wm-composite name="composite14">
-                                            <wm-label class="col-md-3 form-control-static" name="label8" caption="Opening Time" fontweight="bold"></wm-label>
-                                            <wm-container class="col-md-9" name="container6" horizontalalign="center">
-                                                <wm-time name="timeOpenTime" timepattern="hh:mm a" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.openTime"></wm-time>
-                                            </wm-container>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn19"></wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow7" padding="unset unset 2em unset">
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn20"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn21">
-                                        <wm-composite name="composite15">
-                                            <wm-label class="col-md-3 form-control-static" name="label9" caption="Closing Time" fontweight="bold"></wm-label>
-                                            <wm-container class="col-md-9" name="container7" horizontalalign="center">
-                                                <wm-time name="timeCloseTime" timepattern="hh:mm a" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.closeTime"></wm-time>
-                                            </wm-container>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn22"></wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow8">
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn23"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn24">
-                                        <wm-composite name="composite12">
-                                            <wm-label class="col-md-3 form-control-static" name="label6" caption="Time Zone" fontweight="bold"></wm-label>
-                                            <wm-container class="col-md-9" name="container4">
-                                                <wm-select name="selectTimezone" dataset="Eastern,Central,Mountain,Pacific" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.timeZone" width="168px"></wm-select>
-                                            </wm-container>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn25"></wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow9" padding="3em unset 1em unset">
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn21_1"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn22_1" horizontalalign="center">
-                                        <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdate" on-click="Variables.UpdateWorkMunicipality.invoke()" iconclass="wi wi-update"></wm-button>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn23_1"></wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-panel>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow10">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
-                        <wm-panel iconclass="wi wi-today" name="panel2" title="Work Holidays" class="panel-primary">
-                            <wm-livegrid formlayout="dialog" name="livegrid1">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2HolidaysData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL">
-                                    <wm-grid-column binding="holiday" caption="Holiday" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="date" caption="Date" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="Add Holiday" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Holiday" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                </wm-grid>
-                                <wm-liveform novalidate="false" errormessage="" title="Holiday Details" formlayout="dialog" iconclass="wi wi-today" dataset="bind:Variables.Cx2HolidaysData.dataSet" captionalign="left" captionposition="top" name="liveform1">
-                                    <wm-layoutgrid columns="1" name="layoutgrid3">
-                                        <wm-gridrow name="gridrow11">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn25_1">
-                                                <wm-form-field name="holiday" displayname="Holiday" show="true" primary-key="false" generator="assigned" key="holiday" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter Holiday Name"
-                                                required="true"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow12">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn26">
-                                                <wm-form-field name="date" displayname="Date" show="true" primary-key="false" generator="assigned" key="date" type="date" widget="date" placeholder="Select date" datepattern="MM-dd-yyyy" required="true"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                    </wm-layoutgrid>
-                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" dataset="bind:Variables.SelectedMunicipalityObj.dataSet"
-                                    datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord" placeholder="Select value"></wm-form-field>
-                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                    placeholder=""></wm-form-field>
-                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                </wm-liveform>
-                            </wm-livegrid>
-                        </wm-panel>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-page-content>
-    </wm-content>
-    <wm-footer content="footer" name="footer1"></wm-footer>
+<wm-page data-ng-controller="WorkSchedulePageController" pagetitle="Work Schedule" name="page1"> 
+ <wm-header content="header" name="header1"></wm-header> 
+ <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav> 
+ <wm-content name="content1"> 
+  <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel> 
+  <wm-page-content columnwidth="10" name="page_content1"> 
+   <wm-layoutgrid name="layoutgrid1"> 
+    <wm-gridrow name="gridrow4"> 
+     <wm-gridcolumn columnwidth="12" name="gridcolumn7_1"> 
+      <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow1"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset"> 
+      <wm-label caption="Schedule Management" fontweight="bold" name="label1" class="h4"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset"> 
+      <wm-composite name="composite1" show="bind:Variables.AdminsMunicipalities.dataSet.content.length > 1"> 
+       <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label> 
+       <wm-container class="col-md-9" name="container1"> 
+        <wm-select name="selectMunicipality" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow2"> 
+     <wm-gridcolumn columnwidth="12" name="gridcolumn3"> 
+      <wm-panel iconclass="wi wi-schedule" name="panel1" title="Operating Hours" class="panel-primary"> 
+       <wm-layoutgrid name="layoutgrid2"> 
+        <wm-gridrow name="gridrow4_1" padding="1em unset"> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn5"> 
+          <wm-composite name="composite3" horizontalalign="left"> 
+           <wm-checkbox caption="Sunday" class="col-md-push-3 col-md-9" name="checkboxSunday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.sundayYn"></wm-checkbox> 
+          </wm-composite> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn6"> 
+          <wm-composite name="composite4" horizontalalign="left"> 
+           <wm-checkbox caption="Monday" class="col-md-push-3 col-md-9" name="checkboxMonday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.mondayYn"></wm-checkbox> 
+          </wm-composite> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn14"> 
+          <wm-composite name="composite5" horizontalalign="left"> 
+           <wm-checkbox caption="Tuesday" class="col-md-push-3 col-md-9" name="checkboxTuesday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.tuesdayYn"></wm-checkbox> 
+          </wm-composite> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn15"> 
+          <wm-composite name="composite6" horizontalalign="left"> 
+           <wm-checkbox caption="Wednesday" class="col-md-push-3 col-md-9" name="checkboxWednesday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.wednesdayYn"></wm-checkbox> 
+          </wm-composite> 
+         </wm-gridcolumn> 
+        </wm-gridrow> 
+        <wm-gridrow name="gridrow5" padding="unset unset 1em unset"> 
+         <wm-gridcolumn columnwidth="4" name="gridcolumn7" horizontalalign="center"> 
+          <wm-composite horizontalalign="left" name="composite7"> 
+           <wm-checkbox caption="Thursday" class="col-md-push-3 col-md-9" name="checkboxThursday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.thursdayYn"></wm-checkbox> 
+          </wm-composite> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="4" name="gridcolumn8" horizontalalign="center"> 
+          <wm-composite horizontalalign="left" name="composite8"> 
+           <wm-checkbox caption="Friday" class="col-md-push-3 col-md-9" name="checkboxFriday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.fridayYn"></wm-checkbox> 
+          </wm-composite> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="4" name="gridcolumn16" horizontalalign="center"> 
+          <wm-composite horizontalalign="left" name="composite9"> 
+           <wm-checkbox caption="Saturday" class="col-md-push-3 col-md-9" name="checkboxSaturday" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.saturdayYn"></wm-checkbox> 
+          </wm-composite> 
+         </wm-gridcolumn> 
+        </wm-gridrow> 
+        <wm-gridrow name="gridrow6" padding="3em unset 1em unset"> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn17"></wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="6" name="gridcolumn18"> 
+          <wm-composite name="composite14"> 
+           <wm-label class="col-md-3 form-control-static" name="label8" caption="Opening Time" fontweight="bold"></wm-label> 
+           <wm-container class="col-md-9" name="container6" horizontalalign="center"> 
+            <wm-time name="timeOpenTime" timepattern="hh:mm a" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.openTime"></wm-time> 
+           </wm-container> 
+          </wm-composite> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn19"></wm-gridcolumn> 
+        </wm-gridrow> 
+        <wm-gridrow name="gridrow7" padding="unset unset 2em unset"> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn20"></wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="6" name="gridcolumn21"> 
+          <wm-composite name="composite15"> 
+           <wm-label class="col-md-3 form-control-static" name="label9" caption="Closing Time" fontweight="bold"></wm-label> 
+           <wm-container class="col-md-9" name="container7" horizontalalign="center"> 
+            <wm-time name="timeCloseTime" timepattern="hh:mm a" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.closeTime"></wm-time> 
+           </wm-container> 
+          </wm-composite> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn22"></wm-gridcolumn> 
+        </wm-gridrow> 
+        <wm-gridrow name="gridrow8"> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn23"></wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="6" name="gridcolumn24"> 
+          <wm-composite name="composite12"> 
+           <wm-label class="col-md-3 form-control-static" name="label6" caption="Time Zone" fontweight="bold"></wm-label> 
+           <wm-container class="col-md-9" name="container4"> 
+            <wm-select name="selectTimezone" dataset="Eastern,Central,Mountain,Pacific" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.timeZone" width="168px"></wm-select> 
+           </wm-container> 
+          </wm-composite> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn25"></wm-gridcolumn> 
+        </wm-gridrow> 
+        <wm-gridrow name="gridrow9" padding="3em unset 1em unset"> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn21_1"></wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="6" name="gridcolumn22_1" horizontalalign="center"> 
+          <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdate" on-click="Variables.UpdateWorkMunicipality.invoke()" iconclass="wi wi-update"></wm-button> 
+         </wm-gridcolumn> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn23_1"></wm-gridcolumn> 
+        </wm-gridrow> 
+       </wm-layoutgrid> 
+      </wm-panel> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow10"> 
+     <wm-gridcolumn columnwidth="12" name="gridcolumn24_1"> 
+      <wm-panel iconclass="wi wi-today" name="panel2" title="Work Holidays" class="panel-primary"> 
+       <wm-livegrid formlayout="dialog" name="livegrid1"> 
+        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2HolidaysData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL"> 
+         <wm-grid-column binding="holiday" caption="Holiday" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column> 
+         <wm-grid-column binding="date" caption="Date" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" readonly="false"></wm-grid-column> 
+         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column> 
+         <wm-grid-action key="addNewRow" display-name="Add Holiday" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Holiday" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action> 
+         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action> 
+         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action> 
+        </wm-grid> 
+        <wm-liveform novalidate="false" errormessage="" title="Holiday Details" formlayout="dialog" iconclass="wi wi-today" dataset="bind:Variables.Cx2HolidaysData.dataSet" captionalign="left" captionposition="top" name="liveform1"> 
+         <wm-layoutgrid columns="1" name="layoutgrid3"> 
+          <wm-gridrow name="gridrow11"> 
+           <wm-gridcolumn columnwidth="12" name="gridcolumn25_1"> 
+            <wm-form-field name="holiday" displayname="Holiday" show="true" primary-key="false" generator="assigned" key="holiday" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter Holiday Name" required="true"></wm-form-field> 
+           </wm-gridcolumn> 
+          </wm-gridrow> 
+          <wm-gridrow name="gridrow12"> 
+           <wm-gridcolumn columnwidth="12" name="gridcolumn26"> 
+            <wm-form-field name="date" displayname="Date" show="true" primary-key="false" generator="assigned" key="date" type="date" widget="date" placeholder="Select date" datepattern="MM-dd-yyyy" required="true"></wm-form-field> 
+           </wm-gridcolumn> 
+          </wm-gridrow> 
+         </wm-layoutgrid> 
+         <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" dataset="bind:Variables.SelectedMunicipalityObj.dataSet" datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord" placeholder="Select value"></wm-form-field> 
+         <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field> 
+         <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action> 
+         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action> 
+        </wm-liveform> 
+       </wm-livegrid> 
+      </wm-panel> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+  </wm-page-content> 
+ </wm-content> 
+ <wm-footer content="footer" name="footer1"></wm-footer> 
 </wm-page>

@@ -9,7 +9,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2AdminsMunicipalitiesrtnType",
+    "type" : "com.civicxpress.cx2.models.query.AdminsMunicipalitiesResponse",
     "service" : "cx2",
     "operation" : "executeAdminsMunicipalities",
     "operationId" : "QueryExecutionController_executeAdminsMunicipalities",
@@ -643,7 +643,7 @@
       "value" : "bind:Widgets.select1.datavalue.ID | toNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2UpdateGlobalEmailSigrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateGlobalEmailSig",
     "operationId" : "QueryExecutionController_executeUpdateGlobalEmailSig",
@@ -1173,7 +1173,7 @@
       "value" : "bind:Widgets.select1.datavalue.ID | toNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2UpdateMunicipalityInfortnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateMunicipalityInfo",
     "operationId" : "QueryExecutionController_executeUpdateMunicipalityInfo",

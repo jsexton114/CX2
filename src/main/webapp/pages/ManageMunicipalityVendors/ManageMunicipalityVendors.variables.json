@@ -17,7 +17,7 @@
       "value" : "Approved",
       "type" : "string"
     } ],
-    "type" : "cx2GetVendorApprovalListByMunicipalityrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetVendorApprovalListByMunicipalityResponse",
     "service" : "cx2",
     "operation" : "executeGetVendorApprovalListByMunicipality",
     "operationId" : "QueryExecutionController_executeGetVendorApprovalListByMunicipality",
@@ -64,7 +64,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2EmployeesMunicipalitiesrtnType",
+    "type" : "com.civicxpress.cx2.models.query.EmployeesMunicipalitiesResponse",
     "service" : "cx2",
     "operation" : "executeEmployeesMunicipalities",
     "operationId" : "QueryExecutionController_executeEmployeesMunicipalities",
@@ -100,7 +100,7 @@
       "value" : "Pending",
       "type" : "string"
     } ],
-    "type" : "cx2GetVendorApprovalListByMunicipalityrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetVendorApprovalListByMunicipalityResponse",
     "service" : "cx2",
     "operation" : "executeGetVendorApprovalListByMunicipality",
     "operationId" : "QueryExecutionController_executeGetVendorApprovalListByMunicipality",
@@ -136,7 +136,7 @@
       "value" : "Suspended",
       "type" : "string"
     } ],
-    "type" : "cx2GetVendorApprovalListByMunicipalityrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetVendorApprovalListByMunicipalityResponse",
     "service" : "cx2",
     "operation" : "executeGetVendorApprovalListByMunicipality",
     "operationId" : "QueryExecutionController_executeGetVendorApprovalListByMunicipality",
@@ -188,7 +188,7 @@
       "value" : "bind:Widgets.gridApprovedVendors.selecteditem.vendorId",
       "type" : "integer"
     } ],
-    "type" : "cx2UpdateVendorStatusrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateVendorStatus",
     "operationId" : "QueryExecutionController_executeUpdateVendorStatus",
@@ -241,7 +241,7 @@
       "value" : "bind:today",
       "type" : "string"
     } ],
-    "type" : "cx2UpdateVendorStatusrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateVendorStatus",
     "operationId" : "QueryExecutionController_executeUpdateVendorStatus",
@@ -294,7 +294,7 @@
       "value" : "bind:Widgets.gridSuspended.selecteditem.vendorId",
       "type" : "integer"
     } ],
-    "type" : "cx2UpdateVendorStatusrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateVendorStatus",
     "operationId" : "QueryExecutionController_executeUpdateVendorStatus",

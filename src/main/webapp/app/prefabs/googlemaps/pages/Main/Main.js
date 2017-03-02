@@ -520,11 +520,14 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
         function mapTypeOperations(newVal) {
             if ($s.widgetid) {
                 var wp = $s.widgetProps,
-                    markerProps  = ['onMarkerclick', 'onMarkerhover', 'radius', 'shade', 'info', 'icon', 'markertype', 'locations', 'lat', 'lng'],
+                    markerProps  = ['onMarkerclick', 'onMarkerhover', 'onClick', 'radius', 'shade', 'info', 'icon', 'markertype', 'locations', 'lat', 'lng'],
                     heatmapProps = ['locations', 'lat', 'lng', 'gradient', 'pixeldensity', 'opacity'],
                     routeProps   = ['origin', 'destination', 'trafficlayer', 'transitlayer', 'travelmode', 'waypoints', 'stopover'],
                     commonProps  = ['name', 'tabindex', 'maptype', 'zoom', 'height', 'width', 'show', 'animation', 'onLoad', 'onDestroy', 'accessroles', 'class', 'margin', 'active', 'debugurl', 'showindevice'],
                     maptypeProps;
+
+                wp.zoom.options = ['Auto', 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+
                 if (newVal === 'Markers') {
                     wp.lat.displayName = 'Marker Latitude';
                     wp.lng.displayName = 'Marker Longitude';
@@ -636,7 +639,7 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
                     break;
                 case 'zoom':
                     if (!isNaN(newVal)) {
-                        $s.zoom = newVal;
+                        $s.zoomLevel = newVal >= 2 ? newVal : 2;
                     }
                     break;
                 case 'origin':
@@ -725,6 +728,37 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
                 evtMap.lastBounds = evtMap.getBounds();
                 toggleLoader(false);
             });
+            //this function places the marker based on the click event lat/lng values
+            function placeMarker(location) {
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: evtMap
+                });
+                evtMap.panTo(location);
+                google.maps.event.addListener(marker, 'click', function(event) {
+                    prefabScope.activeMarker = {
+                        'event' : event,
+                        'marker': marker
+                    };
+                    Utils.triggerFn($s.onMarkerClick.bind(event, event.latLng));
+                });
+            }
+            //if the onClick event is specified then add a active click listener on the map
+            if ($s.onClick) {
+                Utils.triggerFn(function() {
+                    google.maps.event.addListener(evtMap, 'click', function(event) {
+                        prefabScope.activeClick = {
+                            'event': event,
+                            'latLng': event.latLng
+                        };
+                        if ($s.addMarkerOnClick) {
+                            placeMarker(event.latLng);
+                        }
+                        Utils.triggerFn($s.onClick);
+                    });
+                });
+            }
+
             /*Necessary in order to set the map to idle state as adding heat map is only a layer
               but not the operation on the map.
             */

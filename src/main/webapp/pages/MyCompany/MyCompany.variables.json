@@ -9,7 +9,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2AdminVendorsListrtnType",
+    "type" : "com.civicxpress.cx2.models.query.AdminVendorsListResponse",
     "service" : "cx2",
     "operation" : "executeAdminVendorsList",
     "operationId" : "QueryExecutionController_executeAdminVendorsList",
@@ -41,7 +41,7 @@
       "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2CountOfCompnayFormsByVendorIdrtnType",
+    "type" : "com.civicxpress.cx2.models.query.CountOfCompnayFormsByVendorIdResponse",
     "service" : "cx2",
     "operation" : "executeCountOfCompnayFormsByVendorId",
     "operationId" : "QueryExecutionController_executeCountOfCompnayFormsByVendorId",
@@ -70,7 +70,7 @@
       "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2CountOfMuncipalityApplicationsByVendorrtnType",
+    "type" : "com.civicxpress.cx2.models.query.CountOfMuncipalityApplicationsByVendorResponse",
     "service" : "cx2",
     "operation" : "executeCountOfMuncipalityApplicationsByVendor",
     "operationId" : "QueryExecutionController_executeCountOfMuncipalityApplicationsByVendor",
@@ -98,7 +98,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "cx2CountOfVendorsrtnType",
+    "type" : "com.civicxpress.cx2.models.query.CountOfVendorsResponse",
     "service" : "cx2",
     "operation" : "executeCountOfVendors",
     "operationId" : "QueryExecutionController_executeCountOfVendors",
@@ -126,7 +126,7 @@
       "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | toNumber",
       "type" : "integer"
     } ],
-    "type" : "cx2CountOfVendorUsersrtnType",
+    "type" : "com.civicxpress.cx2.models.query.CountOfVendorUsersResponse",
     "service" : "cx2",
     "operation" : "executeCountOfVendorUsers",
     "operationId" : "QueryExecutionController_executeCountOfVendorUsers",

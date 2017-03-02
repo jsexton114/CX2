@@ -1,14 +1,18 @@
-<wm-page data-ng-controller="TestPageController" pagetitle="Test" name="page1">
-    <wm-header content="header" name="header1"></wm-header>
-    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
-    <wm-content name="content1">
-        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
-        <wm-page-content columnwidth="10" name="page_content1">
-            <wm-richtexteditor name="richtexteditor1"></wm-richtexteditor>
-            <wm-button class="btn-default" caption="Button" type="button" margin="unset 0.5em" name="button1" on-click="Variables.liveVariable1.createRecord()"></wm-button>
-            <wm-html name="html1" content="bind:Variables.liveVariable2.firstRecord.description">bind:Variables.liveVariable2.firstRecord.description</wm-html>
-            <wm-html name="html2" content="bind:Widgets.html1.content">bind:Widgets.html1.content</wm-html>
-        </wm-page-content>
-    </wm-content>
-    <wm-footer content="footer" name="footer1"></wm-footer>
+<wm-page data-ng-controller="TestPageController" pagetitle="Test" name="page1"> 
+ <wm-header content="header" name="header1"></wm-header> 
+ <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav> 
+ <wm-content name="content1"> 
+  <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel> 
+  <wm-page-content columnwidth="10" name="page_content1"> 
+   <wm-richtexteditor name="richtexteditor1"></wm-richtexteditor> 
+   <wm-button class="btn-default" caption="Button" type="button" margin="unset 0.5em" name="button1" on-click="Variables.liveVariable1.createRecord()"></wm-button> 
+   <wm-html name="html1" content="bind:Variables.liveVariable2.firstRecord.description">
+    bind:Variables.liveVariable2.firstRecord.description
+   </wm-html> 
+   <wm-html name="html2" content="bind:Widgets.html1.content">
+    bind:Widgets.html1.content
+   </wm-html> 
+  </wm-page-content> 
+ </wm-content> 
+ <wm-footer content="footer" name="footer1"></wm-footer> 
 </wm-page>

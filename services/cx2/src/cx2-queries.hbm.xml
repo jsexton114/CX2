@@ -1,581 +1,1441 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-  <sql-query name="AddGIStoForms">
-    <![CDATA[
-      insert into GIS2Forms(GISRecordId,RelatedFormGUID,AddedBy,AddedTime) values(:GISRecordId,:RelatedFormGUID,:AddedBy,:AddedTime)
-    ]]>
-  </sql-query>
-  <sql-query name="AddGIStoProjects">
-    <![CDATA[
-      insert into ProjectGISRecords(GISRecordId,RelatedProjectGUID,AddedByUser,AddedAt) values(:GISRecordId,:RelatedProjectGUID,:AddedByUser,:AddedAt)
-    ]]>
-  </sql-query>
-  <sql-query name="AddingVendorsToForm">
-    <![CDATA[
-      insert into Vendors2Form(RelatedFormGUID,SharedOn,VendorId) values(:RelatedFormGUID,:SharedOn,:VendorId)
-    ]]>
-  </sql-query>
-  <sql-query name="AddMemeberToProject">
-    <![CDATA[
-      insert into ProjectSharedWith(RelatedProjectGUID,ProjectSharedOn,ProjectSharedWithUser,ProjectSharedBy) values (:RelatedProjectGUID,:ProjectSharedOn,:ProjectSharedWith,:ProjectSharedBy)
-    ]]>
-  </sql-query>
-  <sql-query name="AddUsersToVendor">
-    <![CDATA[
-      insert into  VendorUsers(VendorId,UserId,JoiningDate) values(:VendorId,:UserId,:JoiningDate)
-    ]]>
-  </sql-query>
-  <sql-query name="AdminsMunicipalities">
-    <![CDATA[
-      select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID  and R.RoleName='MunicipalityAdmin'
-    ]]>
-  </sql-query>
-  <sql-query name="AdminVendorsList">
-    <![CDATA[
-      select V.* from Vendor V,VendorAdmins VM,Users U where U.ID=:user and VM.UserId=U.ID and VM.VendorId=V.ID
-    ]]>
-  </sql-query>
-  <sql-query name="bannedDetails">
-    <![CDATA[
-      select Banned from Users where Email =:emailid
-    ]]>
-  </sql-query>
-  <sql-query name="CheckIfCompanyUserIsVendorAdmin">
-    <![CDATA[
-      select count(*) as count from VendorAdmins where UserId=:user and VendorId=:vendor
-    ]]>
-  </sql-query>
-  <sql-query name="CheckingUserWithInVendorUsers">
-    <![CDATA[
-      select count(*) as exist from VendorUsers where UserId=:user and VendorId=:vendor
-    ]]>
-  </sql-query>
-  <sql-query name="CheckingUserWithMunicipalityInRoles">
-    <![CDATA[
-      select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user and RoleName='MunicipalityEmployee'
-    ]]>
-  </sql-query>
-  <query name="CompanyFormsByVendorId">
-    <![CDATA[
-      from MasterForms where Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
-    ]]>
-  </query>
-  <sql-query name="CountOfAllProjectsForUsersAndSharedWith">
-    <![CDATA[
-      select count(*) as count from Projects where  Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))
-    ]]>
-  </sql-query>
-  <sql-query name="CountOfCompnayFormsByVendorId">
-    <![CDATA[
-      select count(*) as count from MasterForms where Closed=:closed and  FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId )
-    ]]>
-  </sql-query>
-  <sql-query name="CountOfFormsForMunicipality">
-    <![CDATA[
-      select count(DISTINCT ID) as count from FormTypes where MunicipalityId=:MunicipalityId
-    ]]>
-  </sql-query>
-  <sql-query name="CountOfMuncipalityApplicationsByVendor">
-    <![CDATA[
-      select count(*) as count from VendorApprovals where VendorId=:VendorId
-    ]]>
-  </sql-query>
-  <sql-query name="CountOfMunicipalityProjects">
-    <![CDATA[
-      select count(*) as count from Projects where MunicipalityId=:municipalityId and Active=:Active
-    ]]>
-  </sql-query>
-  <sql-query name="CountOfProcessFormsByMuncipality">
-    <![CDATA[
-      select count(*) as count from MasterForms MF, FormStatuses FS, MunicipalityGroups MG
-      WHERE FS.id=MF.formStatusId
-      and MG.id=FS.processOwners
-      and MF.MunicipalityId=:MunicipalityId
-      and MF.closed=:closed
-      and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
-    ]]>
-  </sql-query>
-  <sql-query name="CountOfProjectsForUsersAndSharedWithByMunicipality">
-    <![CDATA[
-      select count(*) as count from Projects where MunicipalityId=:municipalityId and Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))
-    ]]>
-  </sql-query>
-  <sql-query name="CountOfUserForms">
-    <![CDATA[
-      select count(*) as count from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))
-    ]]>
-  </sql-query>
-  <sql-query name="CountOfUserFormsForMunicipality">
-    <![CDATA[
-      select count(*) as count from MasterForms where MunicipalityId=:MunicipalityId and Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))
-    ]]>
-  </sql-query>
-  <sql-query name="CountOfVendors">
-    <![CDATA[
-      select count(*) as CountOfVendors from VendorAdmins where UserId=:vendor
-    ]]>
-  </sql-query>
-  <sql-query name="CountOfVendorUsers">
-    <![CDATA[
-      select count(*) as CountOfVendorUsers from VendorUsers where VendorId=:vendor
-    ]]>
-  </sql-query>
-  <sql-query name="DeleteCategoryMapping">
-    <![CDATA[
-      delete from FormCategoryMapping where FormTypeId=:form
-    ]]>
-  </sql-query>
-  <sql-query name="DeleteExistingSubscriptionsForUser">
-    <![CDATA[
-      delete from UserSubscriptions where UserId=:user
-    ]]>
-  </sql-query>
-  <sql-query name="DeleteFromVendorAdmins">
-    <![CDATA[
-      delete from VendorAdmins where UserId=:user and VendorId=:vendor
-    ]]>
-  </sql-query>
-  <sql-query name="DeleteFromVendorUsers">
-    <![CDATA[
-      delete from VendorUsers where UserId=:user and VendorId=:vendor
-    ]]>
-  </sql-query>
-  <sql-query name="deleteMunicipalityGroup">
-    <![CDATA[
-      delete from MunicipalityGroupMembers where MunicipalityGroupId =:MunicipalityGroupId AND UserId =:UserId
-    ]]>
-  </sql-query>
-  <sql-query name="DeleteRoleForMuncipality">
-    <![CDATA[
-      delete from Roles where RoleName=:role and MunicipalityId=:municipality and UserId=:user
-    ]]>
-  </sql-query>
-  <sql-query name="deleteToken">
-    <![CDATA[
-      delete from UserPasswordResetTokens where Token =:token
-    ]]>
-  </sql-query>
-  <sql-query name="EmployeesMunicipalities">
-    <![CDATA[
-      select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName='MunicipalityEmployee'
-    ]]>
-  </sql-query>
-  <sql-query name="EmployeesOrAdminsMunicipalities">
-    <![CDATA[
-      select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName=:role
-    ]]>
-  </sql-query>
-  <sql-query name="FetchRolesForUserWithMunicipality">
-    <![CDATA[
-      select * from Roles where UserId=:user and MunicipalityId=:municipality
-    ]]>
-  </sql-query>
-  <sql-query name="FormsByCategory">
-    <![CDATA[
-      select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=0
-    ]]>
-  </sql-query>
-  <sql-query name="FormsCountForMunicipalities">
-    <![CDATA[
-      select count(*) as formsCount from MasterForms where MunicipalityId=:MunicipalityId
-    ]]>
-  </sql-query>
-  <query name="FormsForUsersAndShared">
-    <![CDATA[
-      from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser )) ORDER BY DateModified DESC
-    ]]>
-  </query>
-  <query name="FormsTaggedWithGISRecords">
-    <![CDATA[
-      from MasterForms where FormGUID IN (select relatedFormGuid from Gis2forms where gisrecordId=:gisrecordId ) ORDER BY DateModified DESC
-    ]]>
-  </query>
-  <sql-query name="getEmailId">
-    <![CDATA[
-      select Email from Users where ID =:userID
-    ]]>
-  </sql-query>
-  <sql-query name="GetFormsForMunicpality">
-    <![CDATA[
-      select DISTINCT * from FormTypes where MunicipalityId=:MunicipalityId
-    ]]>
-  </sql-query>
-  <query name="getFormTypeFieldsByTypeId">
-    <![CDATA[
-      FROM FormTypeFields WHERE FormTypeId=:formTypeId order by DisplayOrder asc
-    ]]>
-  </query>
-  <sql-query name="GetFormTypesByCategoriesAndMunicipalities">
-    <![CDATA[
-      select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and
-      (FT.MunicipalityInternalForm=0 or exists (SELECT RoleName from Roles where UserId=:userId and (MunicipalityId=FC.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))
-    ]]>
-  </sql-query>
-  <query name="GetGis2formsByForm">
-    <![CDATA[
-      from Gis2forms where relatedFormGuid=:relatedFormGuid
-    ]]>
-  </query>
-  <sql-query name="getListofGroupName">
-    <![CDATA[
-      select ID,GroupName from MunicipalityGroups where ID IN :MunicipalityGroupID AND MunicipalityId =:MunicipalityID
-    ]]>
-  </sql-query>
-  <sql-query name="getListofUsers">
-    <![CDATA[
-      select a.UserId , b.Email, b.FullName from Roles a INNER JOIN Users b on a.UserId = b.ID where a.RoleName IN ('MunicipalityEmployee','MunicipalityAdmin') and a.MunicipalityId =:municipalityID and (b.Email LIKE LOWER(concat('%',:Email,'%')) OR LOWER(b.FullName) LIKE LOWER(CONCAT('%',:Email,'%')))
-    ]]>
-  </sql-query>
-  <sql-query name="getMunicipalityGroupIdIDs">
-    <![CDATA[
-      select MunicipalityGroupId from MunicipalityGroupMembers where UserId =:userID
-    ]]>
-  </sql-query>
-  <query name="getOwnersForGisRecords">
-    <![CDATA[
-      FROM Giscontacts WHERE contactType='Owner' AND active=1 AND gisRecordId IN :gisRecordIds
-    ]]>
-  </query>
-  <sql-query name="GetProcessGroupMemebersByFormGUID">
-    <![CDATA[
-      select CASE count(*) WHEN 0 THEN 0 ELSE 1 END AS IsProcessOwner from MasterForms MF, FormStatuses FS, MunicipalityGroups MG
-      WHERE MF.FormGUID=:FormGUID
-      and FS.ID=MF.formStatusId
-      and MG.ID=FS.processOwners
-      and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
-    ]]>
-  </sql-query>
-  <query name="GetProjectGisrecords">
-    <![CDATA[
-      from ProjectGisrecords where relatedProjectGuid=:relatedProjectGuid
-    ]]>
-  </query>
-  <query name="GetRecentMessageId">
-    <![CDATA[
-      from FormMessages where RelatedFormGUID=:form and PostedAt=:PostedAt
-    ]]>
-  </query>
-  <sql-query name="GetRolesForMunicipality">
-    <![CDATA[
-      select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID
-    ]]>
-  </sql-query>
-  <sql-query name="getRolesForUser">
-    <![CDATA[
-      SELECT RoleName, MunicipalityId FROM Roles WHERE UserId=:userId
-    ]]>
-  </sql-query>
-  <sql-query name="getUserID">
-    <![CDATA[
-      select ID from Users where Email =:Email
-    ]]>
-  </sql-query>
-  <sql-query name="getUserIdFromPasswordResetToken">
-    <![CDATA[
-      select UserId from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)
-    ]]>
-  </sql-query>
-  <query name="GetVendorApprovalListByMunicipality">
-    <![CDATA[
-      from VendorApprovals where ApprovalStatus=:ApprovalStatus and MunicipalityId=:MunicipalityId and vendor.active=:a
-    ]]>
-  </query>
-  <sql-query name="GetWriteAccessGroupMembersByFormGUID">
-    <![CDATA[
-      select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF,FormStatuses FS where  MF.FormGUID=:FormGUID and MF.FormStatusId=FS.ID and FS.WriteAccess=MG.ID and MG.ID=MGM.MunicipalityGroupId
-    ]]>
-  </sql-query>
-  <sql-query name="InsertCategoryMapping">
-    <![CDATA[
-      insert into FormCategoryMapping(FormTypeId,FormCategoryId) values(:FormTypeId,:FormCategoryId)
-    ]]>
-  </sql-query>
-  <sql-query name="InsertFormMessage">
-    <![CDATA[
-      insert into FormMessages(UserId,RelatedFormGUID,Message,PostedAt) values(:UserId,:RelatedFormGUID,:Message,:PostedAt)
-    ]]>
-  </sql-query>
-  <sql-query name="InsertFormsIntoProject">
-    <![CDATA[
-      insert into ProjectForms(RelatedProjectGuid,RelatedFormGUID,AddedByUser,AddedAt,Comments) values(:RelatedProjectGuid,:RelatedFormGUID,:AddedByUser,:AddedAt,:Comments)
-    ]]>
-  </sql-query>
-  <sql-query name="InsertGroups">
-    <![CDATA[
-      insert into MunicipalityGroups (GroupName,GroupDescription,MunicipalityId) values (:GroupName,:GroupDescription,:MunicipalityId)
-    ]]>
-  </sql-query>
-  <sql-query name="InsertNewRole">
-    <![CDATA[
-      insert into Roles(RoleName,MunicipalityId,Description,UserId) values (:RoleName,:MunicipalityId,:Description,:UserId)
-    ]]>
-  </sql-query>
-  <sql-query name="InsertProjectMessage">
-    <![CDATA[
-      insert into FormMessages(UserId,RelatedProjectGUID,Message,PostedAt) values(:UserId,:RelatedProjectGUID,:Message,:PostedAt)
-    ]]>
-  </sql-query>
-  <sql-query name="InsertSubscription">
-    <![CDATA[
-      insert into UserSubscriptions(UserId,MunicipalityId,DateSubscribed) values(:UserId,:MunicipalityId,:DateSubscribed)
-    ]]>
-  </sql-query>
-  <sql-query name="InsertTagForMessage">
-    <![CDATA[
-      Insert into FormMessageTagging(FormMessageId,TaggedPersonId) values(:FormMessageId,:TaggedPersonId)
-    ]]>
-  </sql-query>
-  <sql-query name="InsertUserPreference">
-    <![CDATA[
-      insert into UserViewPreferences(UserId,PreferenceId) values(:UserId,:PreferenceId)
-    ]]>
-  </sql-query>
-  <sql-query name="ManualFeeTypeCountForMunicipality">
-    <![CDATA[
-      Select count(*) as count from ManualFeeTypes where MunicipalityId=:MunicipalityId
-    ]]>
-  </sql-query>
-  <sql-query name="MapAsAdminForVendor">
-    <![CDATA[
-      insert into VendorAdmins(UserId,VendorId) values(:UserId,:VendorId)
-    ]]>
-  </sql-query>
-  <sql-query name="MunicipalitiesGroupsCounts">
-    <![CDATA[
-      select count(*) as groupsCount from MunicipalityGroups where MunicipalityId=:municipality
-    ]]>
-  </sql-query>
-  <sql-query name="MunicipalityCount">
-    <![CDATA[
-      select count(*) as municipalitiesCount from Municipalities
-    ]]>
-  </sql-query>
-  <query name="MunicipalityProjects">
-    <![CDATA[
-      from Projects where Active=:Active and MunicipalityId=:MunicipalityId ORDER BY ModifiedDate DESC
-    ]]>
-  </query>
-  <query name="OpenedOrClosedFormsForUserOrSharedWith">
-    <![CDATA[
-      from MasterForms where UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser ) ORDER BY DateModified DESC
-    ]]>
-  </query>
-  <query name="PreferenceForUser">
-    <![CDATA[
-      from StandardViews where id IN (select preferenceId from  UserViewPreferences where userId = :userId )
-    ]]>
-  </query>
-  <sql-query name="ProcessFormsForUserByMunicipality">
-    <![CDATA[
-      select MF.FormTitle, MF.FormGUID, FS.Status, FT.FormType, MU.MunicipalityName, V.CompanyName as PrimaryVendor, U.Email, MF.BalanceDue from MasterForms MF
-      LEFT JOIN Municipalities AS MU ON MU.ID=MF.MunicipalityId
-      LEFT JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
-      LEFT JOIN FormStatuses AS FS ON FS.id=MF.formStatusId
-      LEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners
-      LEFT JOIN Users AS U ON U.ID=MF.UserId
-      LEFT OUTER JOIN Vendor AS V on V.ID=MF.CXVendorId
-      where
-      MF.municipalityId=:MunicipalityId
-      and MF.closed=:Closed
-      and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
-      ORDER BY MF.DateModified DESC
-    ]]>
-  </sql-query>
-  <query name="ProjectForms">
-    <![CDATA[
-      from ProjectForms where RelatedProjectGUID=:project
-    ]]>
-  </query>
-  <query name="ProjectsForUsersAndSharedWith">
-    <![CDATA[
-      from Projects where Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select relatedProjectGuid from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser )) ORDER BY ModifiedDate DESC
-    ]]>
-  </query>
-  <sql-query name="ProjectSoftDelete">
-    <![CDATA[
-      update Projects set Active=:active where ProjectGuid=:ProjectGuid
-    ]]>
-  </sql-query>
-  <sql-query name="RecordFormHistory">
-    <![CDATA[
-      insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,SYSUTCDATETIME())
-    ]]>
-  </sql-query>
-  <sql-query name="RemoveVendorFromMasterForms">
-    <![CDATA[
-      Update MasterForms set  CXVendorId=null where FormGUID=:hb
-    ]]>
-  </sql-query>
-  <sql-query name="resetPasswordForUser">
-    <![CDATA[
-      UPDATE Users SET Password=:newPassword where ID in (select UserId from UserPasswordResetTokens where ExpirationDate >= GETDATE() and Token = :token)
-    ]]>
-  </sql-query>
-  <sql-query name="resetPasswordWithTokenForUser">
-    <![CDATA[
-      DELETE FROM UserPasswordResetTokens WHERE UserId = :userid
-      INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :userid, :token, DATEADD(day, 2, GETDATE()))
-    ]]>
-  </sql-query>
-  <query name="SearchFormByVendor">
-    <![CDATA[
-      from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
-    ]]>
-  </query>
-  <sql-query name="searchUsersByEmailOrName">
-    <![CDATA[
-      SELECT ID, FullName, Photo, Email FROM Users WHERE Active=1 AND (Email LIKE CONCAT('%',:searchString,'%') OR FullName LIKE CONCAT('%',:searchString,'%'))
-    ]]>
-  </sql-query>
-  <sql-query name="SetModifiedDateForProject">
-    <![CDATA[
-      Update Projects set ModifiedDate=:DateModified where ProjectGUID=:project
-    ]]>
-  </sql-query>
-  <sql-query name="SetPrimaryVendorStatusForFormandVendor">
-    <![CDATA[
-      update Vendors2Form set PrimaryVendor=:pv where RelatedFormGUID=:form and VendorID=:vendor
-    ]]>
-  </sql-query>
-  <sql-query name="StandardUserMunicipalites">
-    <![CDATA[
-      select M.* from Municipalities M,UserSubscriptions US,Users U where U.ID=:USER and U.ID=US.UserId and US.MunicipalityId=M.ID ORDER BY M.MunicipalityName ASC
-    ]]>
-  </sql-query>
-  <sql-query name="SubDivisonCount">
-    <![CDATA[
-      select count(*) as SubDivisonCount from Subdivisions where MunicipalityId=:municipalityId
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateAsCXVendorAdmin">
-    <![CDATA[
-      update Roles set roleName=:role,MunicipalityId=:municipality where UserId=:user
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateCFInProfile">
-    <![CDATA[
-      Update Users set CommunicationFrequency=:cf where ID=:user
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateDevFormDetailsForCXAdmin">
-    <![CDATA[
-      UPDATE FormTypes set Report=:Report, FormTableName=:FormTableName where ID=:form
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateFormStatusInMasterForms">
-    <![CDATA[
-      Update MasterForms set FormStatusId=:formStatus, Closed=:closed where FormGUID=:FormGUID
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateGlobalEmailSig">
-    <![CDATA[
-      Update Municipalities set GlobalEmailSig=:gs where ID=:municipality
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateInfoFromMyProfile">
-    <![CDATA[
-      Update Users set FirstName=:fn,LastName=:ln,Email=:em,PhoneNumber=:ph,Address1=:ad1,Address2=:ad2,StateId=:st,City=:ct,Country=:ctry,PostalCode=:pc where ID=:user
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateMunicipalityInfo">
-    <![CDATA[
-      Update Municipalities set MunicipalityName=:mn,Email=:em,Phone=:ph,Address1=:ad1,Address2=:ad2,StateId=:st,City=:ct,PostalCode=:pc where ID=:municipality
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateNewPassword">
-    <![CDATA[
-      UPDATE Users SET Password=:password where ID=:newUser
-    ]]>
-  </sql-query>
-  <sql-query name="UpdatePasswordAndCF">
-    <![CDATA[
-      UPDATE Users SET Password=:password, CommunicationFrequency=:cf where ID=:newUser
-    ]]>
-  </sql-query>
-  <sql-query name="UpdatePrimaryVendorInMasterForms">
-    <![CDATA[
-      Update MasterForms set CXVendorId=:VendorId where FormGUID=:FormGUID
-    ]]>
-  </sql-query>
-  <sql-query name="UpdatePrimaryVendorStatusInVEndor2Forms">
-    <![CDATA[
-      update Vendors2Form set PrimaryVendor=:pv where RelatedFormGUID=:form
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateProcessOwnersForGUID">
-    <![CDATA[
-      update MasterForms set AssignedToGroupId=:AssignedToGroupId where FormGUID=:GUID
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateProjectDescription">
-    <![CDATA[
-      Update Projects set ProjectDescription=:ProjectDescription where ProjectGUID=:project
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateProjectDetails">
-    <![CDATA[
-      Update Projects set ProjectName=:ProjectName,ProjectGoals=:ProjectGoals,EstStartDate=:EstStartDate,EstEndDate=:EstEndDate where ProjectGUID=:project
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateRoleForMunicipality">
-    <![CDATA[
-      update Roles set RoleName=:role where MunicipalityId=:municipality and UserId=:user
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateUserPreferences">
-    <![CDATA[
-      update UserViewPreferences set PreferenceId=:PreferenceId where UserId=:user
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateVendorForMasterForms">
-    <![CDATA[
-      update MasterForms set CXVendorId=:CXVendorId where FormGUID=:FormGUID
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateVendorStatus">
-    <![CDATA[
-      Update VendorApprovals set DateApproved=:DateApproved,ApprovedBy=:ApprovedBy,ExpiresDate=:ExpiresDate,ApprovalStatus=:ApprovalStatus,Reviewer=:Reviewer where MunicipalityId=:municipality and VendorId=:vendor
-    ]]>
-  </sql-query>
-  <sql-query name="UpdateWorkMunicipality">
-    <![CDATA[
-      Update Municipalities set MondayYN=:monday,TuesdayYN=:tuesday,WednesdayYN=:wednesday,ThursdayYN=:thursday,FridayYN=:friday,SaturdayYN=:saturday,SundayYN=:sunday,TimeZone=:timezone,OpenTime=:openTime,CloseTime=:closeTime where ID=:municipalityId
-    ]]>
-  </sql-query>
-  <sql-query name="UserCount">
-    <![CDATA[
-      select count(*) as usersCount from Users
-    ]]>
-  </sql-query>
-  <sql-query name="userSubscriptionsCount">
-    <![CDATA[
-      select count(*) as userSubscriptionsCount from UserSubscriptions
-    ]]>
-  </sql-query>
-  <sql-query name="userSubscriptionsCountForMunicipality">
-    <![CDATA[
-      select count(*) as userSubscriptionsCountForMunicipality from UserSubscriptions where MunicipalityId=:municipalityId
-    ]]>
-  </sql-query>
-  <sql-query name="VendorCount">
-    <![CDATA[
-      select count(*) as VendorCount from Vendor
-    ]]>
-  </sql-query>
-  <sql-query name="VendorsCountForMunicipalities">
-    <![CDATA[
-      select count(*) as vendorsCount from VendorApprovals where MunicipalityId=:MunicipalityId
-    ]]>
-  </sql-query>
-  <query name="VendorsLinkedWithForm">
-    <![CDATA[
-      from Vendor where id IN (select vendorId from Vendors2form where relatedFormGuid=:RelatedFormGUID)
-    ]]>
-  </query>
-  <sql-query name="verifyPasswordResetToken">
-    <![CDATA[
-      select * from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)
-    ]]>
-  </sql-query>
+    <query name="GetRecentMessageId">
+        <![CDATA[
+        from FormMessages where RelatedFormGUID=:form and PostedAt=:PostedAt
+        ]]>
+    <query-param name="form" type="java.lang.String"/>
+    <query-param name="PostedAt" type="java.sql.Timestamp"/>
+    </query>
+
+    <query name="GetRecentMessageId__count">
+        <![CDATA[
+        select count(*) from FormMessages where RelatedFormGUID=:form and PostedAt=:PostedAt
+        ]]>
+    <query-param name="form" type="java.lang.String"/>
+    <query-param name="PostedAt" type="java.sql.Timestamp"/>
+    </query>
+
+    <sql-query name="AdminsMunicipalities">
+        <![CDATA[
+        select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID  and R.RoleName='MunicipalityAdmin'
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="AdminsMunicipalities__count">
+        <![CDATA[
+        select count(*) from (select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID  and R.RoleName='MunicipalityAdmin') wmTempTable
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="ProjectSoftDelete">
+        <![CDATA[
+        update Projects set Active=:active where ProjectGuid=:ProjectGuid
+        ]]>
+    <query-param name="active" type="java.lang.Boolean"/>
+    <query-param name="ProjectGuid" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="UpdatePrimaryVendorInMasterForms">
+        <![CDATA[
+        Update MasterForms set CXVendorId=:VendorId where FormGUID=:FormGUID
+        ]]>
+    <query-param name="VendorId" type="java.lang.Integer"/>
+    <query-param name="FormGUID" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="StandardUserMunicipalites">
+        <![CDATA[
+        select M.* from Municipalities M,UserSubscriptions US,Users U where U.ID=:USER and U.ID=US.UserId and US.MunicipalityId=M.ID ORDER BY M.MunicipalityName ASC
+        ]]>
+    <query-param name="USER" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getEmailId">
+        <![CDATA[
+        select Email from Users where ID =:userID
+        ]]>
+    <query-param name="userID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getEmailId__count">
+        <![CDATA[
+        select count(*) from (select Email from Users where ID =:userID) wmTempTable
+        ]]>
+    <query-param name="userID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="AddUsersToVendor">
+        <![CDATA[
+        insert into  VendorUsers(VendorId,UserId,JoiningDate) values(:VendorId,:UserId,:JoiningDate)
+        ]]>
+    <query-param name="VendorId" type="java.lang.Integer"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    <query-param name="JoiningDate" type="java.sql.Date"/>
+    </sql-query>
+
+    <sql-query name="UpdatePasswordAndCF">
+        <![CDATA[
+        UPDATE Users SET Password=:password, CommunicationFrequency=:cf where ID=:newUser
+        ]]>
+    <query-param name="password" type="java.lang.String"/>
+    <query-param name="cf" type="java.lang.String"/>
+    <query-param name="newUser" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CheckingUserWithMunicipalityInRoles">
+        <![CDATA[
+        select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user and RoleName='MunicipalityEmployee'
+        ]]>
+    <query-param name="muncipality" type="java.lang.Integer"/>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CheckingUserWithMunicipalityInRoles__count">
+        <![CDATA[
+        select count(*) from (select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user and RoleName='MunicipalityEmployee') wmTempTable
+        ]]>
+    <query-param name="muncipality" type="java.lang.Integer"/>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="MunicipalitiesGroupsCounts">
+        <![CDATA[
+        select count(*) as groupsCount from MunicipalityGroups where MunicipalityId=:municipality
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="MunicipalitiesGroupsCounts__count">
+        <![CDATA[
+        select count(*) from (select count(*) as groupsCount from MunicipalityGroups where MunicipalityId=:municipality) wmTempTable
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UpdateCFInProfile">
+        <![CDATA[
+        Update Users set CommunicationFrequency=:cf where ID=:user
+        ]]>
+    <query-param name="cf" type="java.lang.String"/>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="InsertCategoryMapping">
+        <![CDATA[
+        insert into FormCategoryMapping(FormTypeId,FormCategoryId) values(:FormTypeId,:FormCategoryId)
+        ]]>
+    <query-param name="FormTypeId" type="java.lang.Integer"/>
+    <query-param name="FormCategoryId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfMunicipalityProjects">
+        <![CDATA[
+        select count(*) as count from Projects where MunicipalityId=:municipalityId and Active=:Active
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="Active" type="java.lang.Boolean"/>
+    </sql-query>
+
+    <sql-query name="CountOfMunicipalityProjects__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from Projects where MunicipalityId=:municipalityId and Active=:Active) wmTempTable
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="Active" type="java.lang.Boolean"/>
+    </sql-query>
+
+    <sql-query name="FormsCountForMunicipalities">
+        <![CDATA[
+        select count(*) as formsCount from MasterForms where MunicipalityId=:MunicipalityId
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="FormsCountForMunicipalities__count">
+        <![CDATA[
+        select count(*) from (select count(*) as formsCount from MasterForms where MunicipalityId=:MunicipalityId) wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="ProcessFormsForUserByMunicipality">
+        <![CDATA[
+        select MF.FormTitle, MF.FormGUID, FS.Status, FT.FormType, MU.MunicipalityName, V.CompanyName as PrimaryVendor, U.Email, MF.BalanceDue from MasterForms MF
+	LEFT JOIN Municipalities AS MU ON MU.ID=MF.MunicipalityId
+	LEFT JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+	LEFT JOIN FormStatuses AS FS ON FS.id=MF.formStatusId
+	LEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners
+	LEFT JOIN Users AS U ON U.ID=MF.UserId
+	LEFT OUTER JOIN Vendor AS V on V.ID=MF.CXVendorId
+	where
+	MF.municipalityId=:MunicipalityId
+	and MF.closed=:Closed
+	and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
+	ORDER BY MF.DateModified DESC
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    <query-param name="Closed" type="java.lang.Boolean"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="ProcessFormsForUserByMunicipality__count">
+        <![CDATA[
+        select count(*) from (select MF.FormTitle, MF.FormGUID, FS.Status, FT.FormType, MU.MunicipalityName, V.CompanyName as PrimaryVendor, U.Email, MF.BalanceDue from MasterForms MF
+	LEFT JOIN Municipalities AS MU ON MU.ID=MF.MunicipalityId
+	LEFT JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+	LEFT JOIN FormStatuses AS FS ON FS.id=MF.formStatusId
+	LEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners
+	LEFT JOIN Users AS U ON U.ID=MF.UserId
+	LEFT OUTER JOIN Vendor AS V on V.ID=MF.CXVendorId
+	where
+	MF.municipalityId=:MunicipalityId
+	and MF.closed=:Closed
+	and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
+	ORDER BY MF.DateModified DESC) wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    <query-param name="Closed" type="java.lang.Boolean"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="VendorCount">
+        <![CDATA[
+        select count(*) as VendorCount from Vendor
+        ]]>
+    </sql-query>
+
+    <sql-query name="VendorCount__count">
+        <![CDATA[
+        select count(*) from (select count(*) as VendorCount from Vendor) wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="UpdateWorkMunicipality">
+        <![CDATA[
+        Update Municipalities set MondayYN=:monday,TuesdayYN=:tuesday,WednesdayYN=:wednesday,ThursdayYN=:thursday,FridayYN=:friday,SaturdayYN=:saturday,SundayYN=:sunday,TimeZone=:timezone,OpenTime=:openTime,CloseTime=:closeTime where ID=:municipalityId
+        ]]>
+    <query-param name="monday" type="java.lang.Boolean"/>
+    <query-param name="tuesday" type="java.lang.Boolean"/>
+    <query-param name="wednesday" type="java.lang.Boolean"/>
+    <query-param name="thursday" type="java.lang.Boolean"/>
+    <query-param name="friday" type="java.lang.Boolean"/>
+    <query-param name="saturday" type="java.lang.Boolean"/>
+    <query-param name="sunday" type="java.lang.Boolean"/>
+    <query-param name="timezone" type="java.lang.String"/>
+    <query-param name="openTime" type="java.sql.Time"/>
+    <query-param name="closeTime" type="java.sql.Time"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <query name="getFormTypeFieldsByTypeId">
+        <![CDATA[
+        FROM FormTypeFields WHERE FormTypeId=:formTypeId order by DisplayOrder asc
+        ]]>
+    <query-param name="formTypeId" type="java.lang.Long"/>
+    </query>
+
+    <query name="getFormTypeFieldsByTypeId__count">
+        <![CDATA[
+        select count(*) FROM FormTypeFields WHERE FormTypeId=:formTypeId
+        ]]>
+    <query-param name="formTypeId" type="java.lang.Long"/>
+    </query>
+
+    <sql-query name="CountOfProjectsForUsersAndSharedWithByMunicipality">
+        <![CDATA[
+        select count(*) as count from Projects where MunicipalityId=:municipalityId and Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="Active" type="java.lang.Boolean"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfProjectsForUsersAndSharedWithByMunicipality__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from Projects where MunicipalityId=:municipalityId and Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))) wmTempTable
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="Active" type="java.lang.Boolean"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="FormsByCategory">
+        <![CDATA[
+        select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=0
+        ]]>
+    <query-param name="formCategory" type="java.lang.Integer"/>
+    <query-param name="isActive" type="java.lang.Boolean"/>
+    </sql-query>
+
+    <sql-query name="FormsByCategory__count">
+        <![CDATA[
+        select count(*) from (select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=0) wmTempTable
+        ]]>
+    <query-param name="formCategory" type="java.lang.Integer"/>
+    <query-param name="isActive" type="java.lang.Boolean"/>
+    </sql-query>
+
+    <sql-query name="UpdateAsCXVendorAdmin">
+        <![CDATA[
+        update Roles set roleName=:role,MunicipalityId=:municipality where UserId=:user
+        ]]>
+    <query-param name="role" type="java.lang.String"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfCompnayFormsByVendorId">
+        <![CDATA[
+        select count(*) as count from MasterForms where Closed=:closed and  FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId )
+        ]]>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfCompnayFormsByVendorId__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from MasterForms where Closed=:closed and  FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId )) wmTempTable
+        ]]>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <query name="OpenedOrClosedFormsForUserOrSharedWith">
+        <![CDATA[
+        from MasterForms where UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser ) ORDER BY DateModified DESC
+        ]]>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </query>
+
+    <query name="OpenedOrClosedFormsForUserOrSharedWith__count">
+        <![CDATA[
+        select count(*) from MasterForms where UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser )
+        ]]>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </query>
+
+    <sql-query name="searchUsersByEmailOrName">
+        <![CDATA[
+        SELECT ID, FullName, Photo, Email FROM Users WHERE Active=1 AND (Email LIKE CONCAT('%',:searchString,'%') OR FullName LIKE CONCAT('%',:searchString,'%'))
+        ]]>
+    <query-param name="searchString" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="searchUsersByEmailOrName__count">
+        <![CDATA[
+        select count(*) from (SELECT ID, FullName, Photo, Email FROM Users WHERE Active=1 AND (Email LIKE CONCAT('%',:searchString,'%') OR FullName LIKE CONCAT('%',:searchString,'%'))) wmTempTable
+        ]]>
+    <query-param name="searchString" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="UpdateGlobalEmailSig">
+        <![CDATA[
+        Update Municipalities set GlobalEmailSig=:gs where ID=:municipality
+        ]]>
+    <query-param name="gs" type="java.lang.String"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="DeleteFromVendorAdmins">
+        <![CDATA[
+        delete from VendorAdmins where UserId=:user and VendorId=:vendor
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="SetPrimaryVendorStatusForFormandVendor">
+        <![CDATA[
+        update Vendors2Form set PrimaryVendor=:pv where RelatedFormGUID=:form and VendorID=:vendor
+        ]]>
+    <query-param name="pv" type="java.lang.Boolean"/>
+    <query-param name="form" type="java.lang.String"/>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="DeleteCategoryMapping">
+        <![CDATA[
+        delete from FormCategoryMapping where FormTypeId=:form
+        ]]>
+    <query-param name="form" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getUserIdFromPasswordResetToken">
+        <![CDATA[
+        select UserId from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)
+        ]]>
+    <query-param name="token" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="getUserIdFromPasswordResetToken__count">
+        <![CDATA[
+        select count(*) from (select UserId from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)) wmTempTable
+        ]]>
+    <query-param name="token" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="CountOfProcessFormsByMuncipality">
+        <![CDATA[
+        select count(*) as count from MasterForms MF, FormStatuses FS, MunicipalityGroups MG
+    WHERE FS.id=MF.formStatusId
+	and MG.id=FS.processOwners
+	and MF.MunicipalityId=:MunicipalityId
+	and MF.closed=:closed
+	and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfProcessFormsByMuncipality__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from MasterForms MF, FormStatuses FS, MunicipalityGroups MG
+    WHERE FS.id=MF.formStatusId
+	and MG.id=FS.processOwners
+	and MF.MunicipalityId=:MunicipalityId
+	and MF.closed=:closed
+	and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)) wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="AddingVendorsToForm">
+        <![CDATA[
+        insert into Vendors2Form(RelatedFormGUID,SharedOn,VendorId) values(:RelatedFormGUID,:SharedOn,:VendorId)
+        ]]>
+    <query-param name="RelatedFormGUID" type="java.lang.String"/>
+    <query-param name="SharedOn" type="java.sql.Timestamp"/>
+    <query-param name="VendorId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <query name="PreferenceForUser">
+        <![CDATA[
+        from StandardViews where id IN (select preferenceId from  UserViewPreferences where userId = :userId )
+        ]]>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="PreferenceForUser__count">
+        <![CDATA[
+        select count(*) from StandardViews where id IN (select preferenceId from  UserViewPreferences where userId = :userId )
+        ]]>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </query>
+
+    <sql-query name="UserCount">
+        <![CDATA[
+        select count(*) as usersCount from Users
+        ]]>
+    </sql-query>
+
+    <sql-query name="UserCount__count">
+        <![CDATA[
+        select count(*) from (select count(*) as usersCount from Users) wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="CheckIfCompanyUserIsVendorAdmin">
+        <![CDATA[
+        select count(*) as count from VendorAdmins where UserId=:user and VendorId=:vendor
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CheckIfCompanyUserIsVendorAdmin__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from VendorAdmins where UserId=:user and VendorId=:vendor) wmTempTable
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="InsertUserPreference">
+        <![CDATA[
+        insert into UserViewPreferences(UserId,PreferenceId) values(:UserId,:PreferenceId)
+        ]]>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    <query-param name="PreferenceId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UpdateProjectDetails">
+        <![CDATA[
+        Update Projects set ProjectName=:ProjectName,ProjectGoals=:ProjectGoals,EstStartDate=:EstStartDate,EstEndDate=:EstEndDate where ProjectGUID=:project
+        ]]>
+    <query-param name="ProjectName" type="java.lang.String"/>
+    <query-param name="ProjectGoals" type="java.lang.String"/>
+    <query-param name="EstStartDate" type="java.sql.Timestamp"/>
+    <query-param name="EstEndDate" type="java.sql.Timestamp"/>
+    <query-param name="project" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="CountOfMuncipalityApplicationsByVendor">
+        <![CDATA[
+        select count(*) as count from VendorApprovals where VendorId=:VendorId
+        ]]>
+    <query-param name="VendorId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfMuncipalityApplicationsByVendor__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from VendorApprovals where VendorId=:VendorId) wmTempTable
+        ]]>
+    <query-param name="VendorId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="userSubscriptionsCountForMunicipality">
+        <![CDATA[
+        select count(*) as userSubscriptionsCountForMunicipality from UserSubscriptions where MunicipalityId=:municipalityId
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="userSubscriptionsCountForMunicipality__count">
+        <![CDATA[
+        select count(*) from (select count(*) as userSubscriptionsCountForMunicipality from UserSubscriptions where MunicipalityId=:municipalityId) wmTempTable
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="AddGIStoProjects">
+        <![CDATA[
+        insert into ProjectGISRecords(GISRecordId,RelatedProjectGUID,AddedByUser,AddedAt) values(:GISRecordId,:RelatedProjectGUID,:AddedByUser,:AddedAt)
+        ]]>
+    <query-param name="GISRecordId" type="java.lang.Integer"/>
+    <query-param name="RelatedProjectGUID" type="java.lang.String"/>
+    <query-param name="AddedByUser" type="java.lang.Integer"/>
+    <query-param name="AddedAt" type="java.sql.Timestamp"/>
+    </sql-query>
+
+    <sql-query name="CountOfFormsForMunicipality">
+        <![CDATA[
+        select count(DISTINCT ID) as count from FormTypes where MunicipalityId=:MunicipalityId
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfFormsForMunicipality__count">
+        <![CDATA[
+        select count(*) from (select count(DISTINCT ID) as count from FormTypes where MunicipalityId=:MunicipalityId) wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfUserForms">
+        <![CDATA[
+        select count(*) as count from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))
+        ]]>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfUserForms__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))) wmTempTable
+        ]]>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UpdateDevFormDetailsForCXAdmin">
+        <![CDATA[
+        UPDATE FormTypes set Report=:Report, FormTableName=:FormTableName where ID=:form
+        ]]>
+    <query-param name="Report" type="java.lang.String"/>
+    <query-param name="FormTableName" type="java.lang.String"/>
+    <query-param name="form" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UpdateVendorForMasterForms">
+        <![CDATA[
+        update MasterForms set CXVendorId=:CXVendorId where FormGUID=:FormGUID
+        ]]>
+    <query-param name="CXVendorId" type="java.lang.Integer"/>
+    <query-param name="FormGUID" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="EmployeesOrAdminsMunicipalities">
+        <![CDATA[
+        select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName=:role
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="role" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="EmployeesOrAdminsMunicipalities__count">
+        <![CDATA[
+        select count(*) from (select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName=:role) wmTempTable
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="role" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="CountOfVendors">
+        <![CDATA[
+        select count(*) as CountOfVendors from VendorAdmins where UserId=:vendor
+        ]]>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfVendors__count">
+        <![CDATA[
+        select count(*) from (select count(*) as CountOfVendors from VendorAdmins where UserId=:vendor) wmTempTable
+        ]]>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UpdateMunicipalityInfo">
+        <![CDATA[
+        Update Municipalities set MunicipalityName=:mn,Email=:em,Phone=:ph,Address1=:ad1,Address2=:ad2,StateId=:st,City=:ct,PostalCode=:pc where ID=:municipality
+        ]]>
+    <query-param name="mn" type="java.lang.String"/>
+    <query-param name="em" type="java.lang.String"/>
+    <query-param name="ph" type="java.lang.String"/>
+    <query-param name="ad1" type="java.lang.String"/>
+    <query-param name="ad2" type="java.lang.String"/>
+    <query-param name="st" type="java.lang.Integer"/>
+    <query-param name="ct" type="java.lang.String"/>
+    <query-param name="pc" type="java.lang.String"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfUserFormsForMunicipality">
+        <![CDATA[
+        select count(*) as count from MasterForms where MunicipalityId=:MunicipalityId and Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfUserFormsForMunicipality__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from MasterForms where MunicipalityId=:MunicipalityId and Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))) wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfAllProjectsForUsersAndSharedWith">
+        <![CDATA[
+        select count(*) as count from Projects where  Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))
+        ]]>
+    <query-param name="Active" type="java.lang.Boolean"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfAllProjectsForUsersAndSharedWith__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from Projects where  Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))) wmTempTable
+        ]]>
+    <query-param name="Active" type="java.lang.Boolean"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="deleteToken">
+        <![CDATA[
+        delete from UserPasswordResetTokens where Token =:token
+        ]]>
+    <query-param name="token" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="InsertTagForMessage">
+        <![CDATA[
+        Insert into FormMessageTagging(FormMessageId,TaggedPersonId) values(:FormMessageId,:TaggedPersonId)
+        ]]>
+    <query-param name="FormMessageId" type="java.lang.Integer"/>
+    <query-param name="TaggedPersonId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="ManualFeeTypeCountForMunicipality">
+        <![CDATA[
+        Select count(*) as count from ManualFeeTypes where MunicipalityId=:MunicipalityId
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="ManualFeeTypeCountForMunicipality__count">
+        <![CDATA[
+        select count(*) from (Select count(*) as count from ManualFeeTypes where MunicipalityId=:MunicipalityId) wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetProcessGroupMemebersByFormGUID">
+        <![CDATA[
+        select CASE count(*) WHEN 0 THEN 0 ELSE 1 END AS IsProcessOwner from MasterForms MF, FormStatuses FS, MunicipalityGroups MG
+    WHERE MF.FormGUID=:FormGUID
+    and FS.ID=MF.formStatusId
+	and MG.ID=FS.processOwners
+	and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
+        ]]>
+    <query-param name="FormGUID" type="java.lang.String"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetProcessGroupMemebersByFormGUID__count">
+        <![CDATA[
+        select count(*) from (select CASE count(*) WHEN 0 THEN 0 ELSE 1 END AS IsProcessOwner from MasterForms MF, FormStatuses FS, MunicipalityGroups MG
+    WHERE MF.FormGUID=:FormGUID
+    and FS.ID=MF.formStatusId
+	and MG.ID=FS.processOwners
+	and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)) wmTempTable
+        ]]>
+    <query-param name="FormGUID" type="java.lang.String"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="InsertSubscription">
+        <![CDATA[
+        insert into UserSubscriptions(UserId,MunicipalityId,DateSubscribed) values(:UserId,:MunicipalityId,:DateSubscribed)
+        ]]>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    <query-param name="DateSubscribed" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="AdminVendorsList">
+        <![CDATA[
+        select V.* from Vendor V,VendorAdmins VM,Users U where U.ID=:user and VM.UserId=U.ID and VM.VendorId=V.ID
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="AdminVendorsList__count">
+        <![CDATA[
+        select count(*) from (select V.* from Vendor V,VendorAdmins VM,Users U where U.ID=:user and VM.UserId=U.ID and VM.VendorId=V.ID) wmTempTable
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="DeleteRoleForMuncipality">
+        <![CDATA[
+        delete from Roles where RoleName=:role and MunicipalityId=:municipality and UserId=:user
+        ]]>
+    <query-param name="role" type="java.lang.String"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetFormTypesByCategoriesAndMunicipalities">
+        <![CDATA[
+        select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and
+(FT.MunicipalityInternalForm=0 or exists (SELECT RoleName from Roles where UserId=:userId and (MunicipalityId=FC.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))
+        ]]>
+    <query-param name="formCategory" type="java.lang.Integer"/>
+    <query-param name="isActive" type="java.lang.Boolean"/>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetFormTypesByCategoriesAndMunicipalities__count">
+        <![CDATA[
+        select count(*) from (select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and
+(FT.MunicipalityInternalForm=0 or exists (SELECT RoleName from Roles where UserId=:userId and (MunicipalityId=FC.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))) wmTempTable
+        ]]>
+    <query-param name="formCategory" type="java.lang.Integer"/>
+    <query-param name="isActive" type="java.lang.Boolean"/>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="MapAsAdminForVendor">
+        <![CDATA[
+        insert into VendorAdmins(UserId,VendorId) values(:UserId,:VendorId)
+        ]]>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    <query-param name="VendorId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="InsertFormsIntoProject">
+        <![CDATA[
+        insert into ProjectForms(RelatedProjectGuid,RelatedFormGUID,AddedByUser,AddedAt,Comments) values(:RelatedProjectGuid,:RelatedFormGUID,:AddedByUser,:AddedAt,:Comments)
+        ]]>
+    <query-param name="RelatedProjectGuid" type="java.lang.String"/>
+    <query-param name="RelatedFormGUID" type="java.lang.String"/>
+    <query-param name="AddedByUser" type="java.lang.Integer"/>
+    <query-param name="AddedAt" type="java.sql.Timestamp"/>
+    <query-param name="Comments" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="EmployeesMunicipalities">
+        <![CDATA[
+        select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName='MunicipalityEmployee'
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="EmployeesMunicipalities__count">
+        <![CDATA[
+        select count(*) from (select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName='MunicipalityEmployee') wmTempTable
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetWriteAccessGroupMembersByFormGUID">
+        <![CDATA[
+        select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF,FormStatuses FS where  MF.FormGUID=:FormGUID and MF.FormStatusId=FS.ID and FS.WriteAccess=MG.ID and MG.ID=MGM.MunicipalityGroupId
+        ]]>
+    <query-param name="FormGUID" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetWriteAccessGroupMembersByFormGUID__count">
+        <![CDATA[
+        select count(*) from (select MGM.*,MG.GroupName from MunicipalityGroupMembers MGM,MunicipalityGroups MG, MasterForms MF,FormStatuses FS where  MF.FormGUID=:FormGUID and MF.FormStatusId=FS.ID and FS.WriteAccess=MG.ID and MG.ID=MGM.MunicipalityGroupId) wmTempTable
+        ]]>
+    <query-param name="FormGUID" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="RecordFormHistory">
+        <![CDATA[
+        insert into FormHistory(FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) values(:FormGUID,:FormTypeId,:NewStatusId,:OldStatusId,:Comments,:CreatedBy,SYSUTCDATETIME())
+        ]]>
+    <query-param name="FormGUID" type="java.lang.String"/>
+    <query-param name="FormTypeId" type="java.lang.Integer"/>
+    <query-param name="NewStatusId" type="java.lang.Integer"/>
+    <query-param name="OldStatusId" type="java.lang.Integer"/>
+    <query-param name="Comments" type="java.lang.String"/>
+    <query-param name="CreatedBy" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="RemoveVendorFromMasterForms">
+        <![CDATA[
+        Update MasterForms set  CXVendorId=null where FormGUID=:hb
+        ]]>
+    <query-param name="hb" type="java.lang.String"/>
+    </sql-query>
+
+    <query name="ProjectForms">
+        <![CDATA[
+        from ProjectForms where RelatedProjectGUID=:project
+        ]]>
+    <query-param name="project" type="java.lang.String"/>
+    </query>
+
+    <query name="ProjectForms__count">
+        <![CDATA[
+        select count(*) from ProjectForms where RelatedProjectGUID=:project
+        ]]>
+    <query-param name="project" type="java.lang.String"/>
+    </query>
+
+    <sql-query name="UpdateFormStatusInMasterForms">
+        <![CDATA[
+        Update MasterForms set FormStatusId=:formStatus, Closed=:closed where FormGUID=:FormGUID
+        ]]>
+    <query-param name="formStatus" type="java.lang.Integer"/>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="FormGUID" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="UpdatePrimaryVendorStatusInVEndor2Forms">
+        <![CDATA[
+        update Vendors2Form set PrimaryVendor=:pv where RelatedFormGUID=:form
+        ]]>
+    <query-param name="pv" type="java.lang.Boolean"/>
+    <query-param name="form" type="java.lang.String"/>
+    </sql-query>
+
+    <query name="MunicipalityProjects">
+        <![CDATA[
+        from Projects where Active=:Active and MunicipalityId=:MunicipalityId ORDER BY ModifiedDate DESC
+        ]]>
+    <query-param name="Active" type="java.lang.Boolean"/>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="MunicipalityProjects__count">
+        <![CDATA[
+        select count(*) from Projects where Active=:Active and MunicipalityId=:MunicipalityId
+        ]]>
+    <query-param name="Active" type="java.lang.Boolean"/>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </query>
+
+    <sql-query name="getMunicipalityGroupIdIDs">
+        <![CDATA[
+        select MunicipalityGroupId from MunicipalityGroupMembers where UserId =:userID
+        ]]>
+    <query-param name="userID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getMunicipalityGroupIdIDs__count">
+        <![CDATA[
+        select count(*) from (select MunicipalityGroupId from MunicipalityGroupMembers where UserId =:userID) wmTempTable
+        ]]>
+    <query-param name="userID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <query name="FormsForUsersAndShared">
+        <![CDATA[
+        from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser )) ORDER BY DateModified DESC
+        ]]>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </query>
+
+    <query name="FormsForUsersAndShared__count">
+        <![CDATA[
+        select count(*) from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser ))
+        ]]>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </query>
+
+    <sql-query name="getUserID">
+        <![CDATA[
+        select ID from Users where Email =:Email
+        ]]>
+    <query-param name="Email" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="getUserID__count">
+        <![CDATA[
+        select count(*) from (select ID from Users where Email =:Email) wmTempTable
+        ]]>
+    <query-param name="Email" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="getListofUsers">
+        <![CDATA[
+        select a.UserId , b.Email, b.FullName from Roles a INNER JOIN Users b on a.UserId = b.ID where a.RoleName IN ('MunicipalityEmployee','MunicipalityAdmin') and a.MunicipalityId =:municipalityID and (b.Email LIKE LOWER(concat('%',:Email,'%')) OR LOWER(b.FullName) LIKE LOWER(CONCAT('%',:Email,'%')))
+        ]]>
+    <query-param name="municipalityID" type="java.lang.Integer"/>
+    <query-param name="Email" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="getListofUsers__count">
+        <![CDATA[
+        select count(*) from (select a.UserId , b.Email, b.FullName from Roles a INNER JOIN Users b on a.UserId = b.ID where a.RoleName IN ('MunicipalityEmployee','MunicipalityAdmin') and a.MunicipalityId =:municipalityID and (b.Email LIKE LOWER(concat('%',:Email,'%')) OR LOWER(b.FullName) LIKE LOWER(CONCAT('%',:Email,'%')))) wmTempTable
+        ]]>
+    <query-param name="municipalityID" type="java.lang.Integer"/>
+    <query-param name="Email" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="InsertNewRole">
+        <![CDATA[
+        insert into Roles(RoleName,MunicipalityId,Description,UserId) values (:RoleName,:MunicipalityId,:Description,:UserId)
+        ]]>
+    <query-param name="RoleName" type="java.lang.String"/>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    <query-param name="Description" type="java.lang.String"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="bannedDetails">
+        <![CDATA[
+        select Banned from Users where Email =:emailid
+        ]]>
+    <query-param name="emailid" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="bannedDetails__count">
+        <![CDATA[
+        select count(*) from (select Banned from Users where Email =:emailid) wmTempTable
+        ]]>
+    <query-param name="emailid" type="java.lang.String"/>
+    </sql-query>
+
+    <query name="GetVendorApprovalListByMunicipality">
+        <![CDATA[
+        from VendorApprovals where ApprovalStatus=:ApprovalStatus and MunicipalityId=:MunicipalityId and vendor.active=:a
+        ]]>
+    <query-param name="ApprovalStatus" type="java.lang.String"/>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    <query-param name="a" type="java.lang.Boolean"/>
+    </query>
+
+    <query name="GetVendorApprovalListByMunicipality__count">
+        <![CDATA[
+        select count(*) from VendorApprovals where ApprovalStatus=:ApprovalStatus and MunicipalityId=:MunicipalityId and vendor.active=:a
+        ]]>
+    <query-param name="ApprovalStatus" type="java.lang.String"/>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    <query-param name="a" type="java.lang.Boolean"/>
+    </query>
+
+    <sql-query name="deleteMunicipalityGroup">
+        <![CDATA[
+        delete from MunicipalityGroupMembers where MunicipalityGroupId =:MunicipalityGroupId AND UserId =:UserId
+        ]]>
+    <query-param name="MunicipalityGroupId" type="java.lang.Integer"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="verifyPasswordResetToken">
+        <![CDATA[
+        select * from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)
+        ]]>
+    <query-param name="token" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="verifyPasswordResetToken__count">
+        <![CDATA[
+        select count(*) from (select * from UserPasswordResetTokens WHERE( ExpirationDate >= GETDATE() AND Token = :token)) wmTempTable
+        ]]>
+    <query-param name="token" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="getListofGroupName">
+        <![CDATA[
+        select ID,GroupName from MunicipalityGroups where ID IN :MunicipalityGroupID AND MunicipalityId =:MunicipalityID
+        ]]>
+    <query-param name="MunicipalityGroupID" type="java.lang.Integer"/>
+    <query-param name="MunicipalityID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getListofGroupName__count">
+        <![CDATA[
+        select count(*) from (select ID,GroupName from MunicipalityGroups where ID IN :MunicipalityGroupID AND MunicipalityId =:MunicipalityID) wmTempTable
+        ]]>
+    <query-param name="MunicipalityGroupID" type="java.lang.Integer"/>
+    <query-param name="MunicipalityID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <query name="GetProjectGisrecords">
+        <![CDATA[
+        from ProjectGisrecords where relatedProjectGuid=:relatedProjectGuid
+        ]]>
+    <query-param name="relatedProjectGuid" type="java.lang.String"/>
+    </query>
+
+    <query name="GetProjectGisrecords__count">
+        <![CDATA[
+        select count(*) from ProjectGisrecords where relatedProjectGuid=:relatedProjectGuid
+        ]]>
+    <query-param name="relatedProjectGuid" type="java.lang.String"/>
+    </query>
+
+    <sql-query name="SubDivisonCount">
+        <![CDATA[
+        select count(*) as SubDivisonCount from Subdivisions where MunicipalityId=:municipalityId
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="SubDivisonCount__count">
+        <![CDATA[
+        select count(*) from (select count(*) as SubDivisonCount from Subdivisions where MunicipalityId=:municipalityId) wmTempTable
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetRolesForMunicipality">
+        <![CDATA[
+        select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID
+        ]]>
+    <query-param name="role" type="java.lang.String"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetRolesForMunicipality__count">
+        <![CDATA[
+        select count(*) from (select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID) wmTempTable
+        ]]>
+    <query-param name="role" type="java.lang.String"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="resetPasswordForUser">
+        <![CDATA[
+        UPDATE Users SET Password=:newPassword where ID in (select UserId from UserPasswordResetTokens where ExpirationDate >= GETDATE() and Token = :token)
+        ]]>
+    <query-param name="newPassword" type="java.lang.String"/>
+    <query-param name="token" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="InsertGroups">
+        <![CDATA[
+        insert into MunicipalityGroups (GroupName,GroupDescription,MunicipalityId) values (:GroupName,:GroupDescription,:MunicipalityId)
+        ]]>
+    <query-param name="GroupName" type="java.lang.String"/>
+    <query-param name="GroupDescription" type="java.lang.String"/>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="AddGIStoForms">
+        <![CDATA[
+        insert into GIS2Forms(GISRecordId,RelatedFormGUID,AddedBy,AddedTime) values(:GISRecordId,:RelatedFormGUID,:AddedBy,:AddedTime)
+        ]]>
+    <query-param name="GISRecordId" type="java.lang.Integer"/>
+    <query-param name="RelatedFormGUID" type="java.lang.String"/>
+    <query-param name="AddedBy" type="java.lang.Integer"/>
+    <query-param name="AddedTime" type="java.sql.Timestamp"/>
+    </sql-query>
+
+    <sql-query name="UpdateUserPreferences">
+        <![CDATA[
+        update UserViewPreferences set PreferenceId=:PreferenceId where UserId=:user
+        ]]>
+    <query-param name="PreferenceId" type="java.lang.Integer"/>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="AddMemeberToProject">
+        <![CDATA[
+        insert into ProjectSharedWith(RelatedProjectGUID,ProjectSharedOn,ProjectSharedWithUser,ProjectSharedBy) values (:RelatedProjectGUID,:ProjectSharedOn,:ProjectSharedWith,:ProjectSharedBy)
+        ]]>
+    <query-param name="RelatedProjectGUID" type="java.lang.String"/>
+    <query-param name="ProjectSharedOn" type="java.sql.Timestamp"/>
+    <query-param name="ProjectSharedWith" type="java.lang.Integer"/>
+    <query-param name="ProjectSharedBy" type="java.lang.Integer"/>
+    </sql-query>
+
+    <query name="getOwnersForGisRecords">
+        <![CDATA[
+        FROM Giscontacts WHERE contactType='Owner' AND active=1 AND gisRecordId IN :gisRecordIds
+        ]]>
+    <query-param name="gisRecordIds" type="java.lang.Integer"/>
+    </query>
+
+    <query name="getOwnersForGisRecords__count">
+        <![CDATA[
+        select count(*) FROM Giscontacts WHERE contactType='Owner' AND active=1 AND gisRecordId IN :gisRecordIds
+        ]]>
+    <query-param name="gisRecordIds" type="java.lang.Integer"/>
+    </query>
+
+    <sql-query name="FetchRolesForUserWithMunicipality">
+        <![CDATA[
+        select * from Roles where UserId=:user and MunicipalityId=:municipality
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="FetchRolesForUserWithMunicipality__count">
+        <![CDATA[
+        select count(*) from (select * from Roles where UserId=:user and MunicipalityId=:municipality) wmTempTable
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="SetModifiedDateForProject">
+        <![CDATA[
+        Update Projects set ModifiedDate=:DateModified where ProjectGUID=:project
+        ]]>
+    <query-param name="DateModified" type="java.sql.Timestamp"/>
+    <query-param name="project" type="java.lang.String"/>
+    </sql-query>
+
+    <query name="CompanyFormsByVendorId">
+        <![CDATA[
+        from MasterForms where Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
+        ]]>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="CompanyFormsByVendorId__count">
+        <![CDATA[
+        select count(*) from MasterForms where Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )
+        ]]>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    </query>
+
+    <sql-query name="UpdateInfoFromMyProfile">
+        <![CDATA[
+        Update Users set FirstName=:fn,LastName=:ln,Email=:em,PhoneNumber=:ph,Address1=:ad1,Address2=:ad2,StateId=:st,City=:ct,Country=:ctry,PostalCode=:pc where ID=:user
+        ]]>
+    <query-param name="fn" type="java.lang.String"/>
+    <query-param name="ln" type="java.lang.String"/>
+    <query-param name="em" type="java.lang.String"/>
+    <query-param name="ph" type="java.lang.String"/>
+    <query-param name="ad1" type="java.lang.String"/>
+    <query-param name="ad2" type="java.lang.String"/>
+    <query-param name="st" type="java.lang.Integer"/>
+    <query-param name="ct" type="java.lang.String"/>
+    <query-param name="ctry" type="java.lang.String"/>
+    <query-param name="pc" type="java.lang.String"/>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="resetPasswordWithTokenForUser">
+        <![CDATA[
+        DELETE FROM UserPasswordResetTokens WHERE UserId = :userid 
+INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :userid, :token, DATEADD(day, 2, GETDATE()))
+        ]]>
+    <query-param name="userid" type="java.lang.Integer"/>
+    <query-param name="token" type="java.lang.String"/>
+    </sql-query>
+
+    <query name="VendorsLinkedWithForm">
+        <![CDATA[
+        from Vendor where id IN (select vendorId from Vendors2form where relatedFormGuid=:RelatedFormGUID)
+        ]]>
+    <query-param name="RelatedFormGUID" type="java.lang.String"/>
+    </query>
+
+    <query name="VendorsLinkedWithForm__count">
+        <![CDATA[
+        select count(*) from Vendor where id IN (select vendorId from Vendors2form where relatedFormGuid=:RelatedFormGUID)
+        ]]>
+    <query-param name="RelatedFormGUID" type="java.lang.String"/>
+    </query>
+
+    <sql-query name="UpdateRoleForMunicipality">
+        <![CDATA[
+        update Roles set RoleName=:role where MunicipalityId=:municipality and UserId=:user
+        ]]>
+    <query-param name="role" type="java.lang.String"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetFormsForMunicpality">
+        <![CDATA[
+        select DISTINCT * from FormTypes where MunicipalityId=:MunicipalityId
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetFormsForMunicpality__count">
+        <![CDATA[
+        select count(*) from (select DISTINCT * from FormTypes where MunicipalityId=:MunicipalityId) wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UpdateProcessOwnersForGUID">
+        <![CDATA[
+        update MasterForms set AssignedToGroupId=:AssignedToGroupId where FormGUID=:GUID
+        ]]>
+    <query-param name="AssignedToGroupId" type="java.lang.Integer"/>
+    <query-param name="GUID" type="java.lang.String"/>
+    </sql-query>
+
+    <query name="SearchFormByVendor">
+        <![CDATA[
+        from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
+        ]]>
+    <query-param name="startd" type="java.sql.Timestamp"/>
+    <query-param name="endd" type="java.sql.Timestamp"/>
+    <query-param name="FormTypeId" type="java.lang.Integer"/>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="SearchFormByVendor__count">
+        <![CDATA[
+        select count(*) from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )
+        ]]>
+    <query-param name="startd" type="java.sql.Timestamp"/>
+    <query-param name="endd" type="java.sql.Timestamp"/>
+    <query-param name="FormTypeId" type="java.lang.Integer"/>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    </query>
+
+    <sql-query name="UpdateProjectDescription">
+        <![CDATA[
+        Update Projects set ProjectDescription=:ProjectDescription where ProjectGUID=:project
+        ]]>
+    <query-param name="ProjectDescription" type="java.lang.String"/>
+    <query-param name="project" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="VendorsCountForMunicipalities">
+        <![CDATA[
+        select count(*) as vendorsCount from VendorApprovals where MunicipalityId=:MunicipalityId
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="VendorsCountForMunicipalities__count">
+        <![CDATA[
+        select count(*) from (select count(*) as vendorsCount from VendorApprovals where MunicipalityId=:MunicipalityId) wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getRolesForUser">
+        <![CDATA[
+        SELECT RoleName, MunicipalityId FROM Roles WHERE UserId=:userId
+        ]]>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getRolesForUser__count">
+        <![CDATA[
+        select count(*) from (SELECT RoleName, MunicipalityId FROM Roles WHERE UserId=:userId) wmTempTable
+        ]]>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="DeleteFromVendorUsers">
+        <![CDATA[
+        delete from VendorUsers where UserId=:user and VendorId=:vendor
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CheckingUserWithInVendorUsers">
+        <![CDATA[
+        select count(*) as exist from VendorUsers where UserId=:user and VendorId=:vendor
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CheckingUserWithInVendorUsers__count">
+        <![CDATA[
+        select count(*) from (select count(*) as exist from VendorUsers where UserId=:user and VendorId=:vendor) wmTempTable
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UpdateVendorStatus">
+        <![CDATA[
+        Update VendorApprovals set DateApproved=:DateApproved,ApprovedBy=:ApprovedBy,ExpiresDate=:ExpiresDate,ApprovalStatus=:ApprovalStatus,Reviewer=:Reviewer where MunicipalityId=:municipality and VendorId=:vendor
+        ]]>
+    <query-param name="DateApproved" type="java.sql.Timestamp"/>
+    <query-param name="ApprovedBy" type="java.lang.String"/>
+    <query-param name="ExpiresDate" type="java.sql.Timestamp"/>
+    <query-param name="ApprovalStatus" type="java.lang.String"/>
+    <query-param name="Reviewer" type="java.lang.String"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <query name="GetGis2formsByForm">
+        <![CDATA[
+        from Gis2forms where relatedFormGuid=:relatedFormGuid
+        ]]>
+    <query-param name="relatedFormGuid" type="java.lang.String"/>
+    </query>
+
+    <query name="GetGis2formsByForm__count">
+        <![CDATA[
+        select count(*) from Gis2forms where relatedFormGuid=:relatedFormGuid
+        ]]>
+    <query-param name="relatedFormGuid" type="java.lang.String"/>
+    </query>
+
+    <sql-query name="DeleteExistingSubscriptionsForUser">
+        <![CDATA[
+        delete from UserSubscriptions where UserId=:user
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="MunicipalityCount">
+        <![CDATA[
+        select count(*) as municipalitiesCount from Municipalities
+        ]]>
+    </sql-query>
+
+    <sql-query name="MunicipalityCount__count">
+        <![CDATA[
+        select count(*) from (select count(*) as municipalitiesCount from Municipalities) wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="userSubscriptionsCount">
+        <![CDATA[
+        select count(*) as userSubscriptionsCount from UserSubscriptions
+        ]]>
+    </sql-query>
+
+    <sql-query name="userSubscriptionsCount__count">
+        <![CDATA[
+        select count(*) from (select count(*) as userSubscriptionsCount from UserSubscriptions) wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="InsertFormMessage">
+        <![CDATA[
+        insert into FormMessages(UserId,RelatedFormGUID,Message,PostedAt) values(:UserId,:RelatedFormGUID,:Message,:PostedAt)
+        ]]>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    <query-param name="RelatedFormGUID" type="java.lang.String"/>
+    <query-param name="Message" type="java.lang.String"/>
+    <query-param name="PostedAt" type="java.sql.Timestamp"/>
+    </sql-query>
+
+    <query name="ProjectsForUsersAndSharedWith">
+        <![CDATA[
+        from Projects where Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select relatedProjectGuid from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser )) ORDER BY ModifiedDate DESC
+        ]]>
+    <query-param name="Active" type="java.lang.Boolean"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </query>
+
+    <query name="ProjectsForUsersAndSharedWith__count">
+        <![CDATA[
+        select count(*) from Projects where Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select relatedProjectGuid from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))
+        ]]>
+    <query-param name="Active" type="java.lang.Boolean"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    </query>
+
+    <query name="FormsTaggedWithGISRecords">
+        <![CDATA[
+        from MasterForms where FormGUID IN (select relatedFormGuid from Gis2forms where gisrecordId=:gisrecordId ) ORDER BY DateModified DESC
+        ]]>
+    <query-param name="gisrecordId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="FormsTaggedWithGISRecords__count">
+        <![CDATA[
+        select count(*) from MasterForms where FormGUID IN (select relatedFormGuid from Gis2forms where gisrecordId=:gisrecordId )
+        ]]>
+    <query-param name="gisrecordId" type="java.lang.Integer"/>
+    </query>
+
+    <sql-query name="UpdateNewPassword">
+        <![CDATA[
+        UPDATE Users SET Password=:password where ID=:newUser
+        ]]>
+    <query-param name="password" type="java.lang.String"/>
+    <query-param name="newUser" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfVendorUsers">
+        <![CDATA[
+        select count(*) as CountOfVendorUsers from VendorUsers where VendorId=:vendor
+        ]]>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfVendorUsers__count">
+        <![CDATA[
+        select count(*) from (select count(*) as CountOfVendorUsers from VendorUsers where VendorId=:vendor) wmTempTable
+        ]]>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="InsertProjectMessage">
+        <![CDATA[
+        insert into FormMessages(UserId,RelatedProjectGUID,Message,PostedAt) values(:UserId,:RelatedProjectGUID,:Message,:PostedAt)
+        ]]>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    <query-param name="RelatedProjectGUID" type="java.lang.String"/>
+    <query-param name="Message" type="java.lang.String"/>
+    <query-param name="PostedAt" type="java.sql.Timestamp"/>
+    </sql-query>
 </hibernate-mapping>

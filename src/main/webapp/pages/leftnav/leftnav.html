@@ -1,34 +1,34 @@
-<wm-partial data-ng-controller="leftnavPageController" name="leftnav" type="leftnav">
-    <wm-nav name="DevDataEntry" type="pills" layout="stacked">
-        <wm-nav-item name="list_dashboard">
-            <wm-anchor caption="My Dashboard" name="dashboardLink" iconclass="wi wi-apps" on-click="Variables.goToPage_Main.invoke()" accessroles="User,CXAdmin,MunicipalityAdmin,MunicipalityEmployee,CXVendorAdmin" badgevalue="bind:Variables.UserOpenFormsCount.dataSet.dataValue"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item5">
-            <wm-anchor name="anchor15" iconclass="wi wi-work" caption="My Company" on-click="Variables.goToPage_MyCompany.invoke()" accessroles="CXVendorAdmin,CXAdmin" badgevalue="bind:Variables.CompanyOpenFormsCount.dataSet.dataValue"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="list_order">
-            <wm-anchor caption="My Municipality" name="orderLink" iconclass="wi wi-account-balance" on-click="Variables.goToPage_MyMunicipality.invoke()" accessroles="MunicipalityEmployee,CXAdmin,MunicipalityAdmin" badgevalue="bind:Variables.ProcessFormsCountForEmployee.dataSet.dataValue"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="list_inventory">
-            <wm-anchor caption="Administration" name="inventoryLink" iconclass="wi wi-domain" on-click="Variables.goToPage_MunicipalityAdministration.invoke()" accessroles="MunicipalityAdmin,CXAdmin" badgevalue="bind:Variables.FormDesignsForMuniAdmin.dataSet.dataValue"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item10">
-            <wm-anchor name="anchor10" iconclass="wi wi-bar-graph" caption="Statistics" on-click="Variables.goToPage_UserStatistics.invoke()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item6">
-            <wm-anchor name="anchor6" iconclass="wi wi-phone" caption="Support" on-click="Variables.goToPage_Support.invoke()"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item5">
-            <wm-anchor name="anchor5" iconclass="wi wi-public" caption="CX Admin" on-click="Variables.goToPage_CXAdmin.invoke()" accessroles="CXAdmin"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item7">
-            <wm-anchor name="anchor7" iconclass="wi wi-file" caption="DevDataEntry" on-click="Variables.goToPage_DataEntry.invoke()" accessroles="CXAdmin"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item9">
-            <wm-anchor name="anchor9" iconclass="wi wi-file" caption="Forms DevDataEntry" on-click="Variables.goToPage_DevFormDataEntry.invoke()" accessroles="CXAdmin"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item9_1">
-            <wm-anchor name="anchor9_1" iconclass="wi wi-file" caption="Projects DevDataEntry" on-click="Variables.goToPage_ProjectsDevDataEntry.invoke()" accessroles="CXAdmin"></wm-anchor>
-        </wm-nav-item>
-    </wm-nav>
+<wm-partial data-ng-controller="leftnavPageController" name="leftnav" type="leftnav"> 
+ <wm-nav name="DevDataEntry" type="pills" layout="stacked"> 
+  <wm-nav-item name="list_dashboard"> 
+   <wm-anchor caption="My Dashboard" name="dashboardLink" iconclass="wi wi-apps" on-click="Variables.goToPage_Main.invoke()" accessroles="User,CXAdmin,MunicipalityAdmin,MunicipalityEmployee,CXVendorAdmin" badgevalue="bind:Variables.UserOpenFormsCount.dataSet.dataValue"></wm-anchor> 
+  </wm-nav-item> 
+  <wm-nav-item name="nav_item5"> 
+   <wm-anchor name="anchor15" iconclass="wi wi-work" caption="My Company" on-click="Variables.goToPage_MyCompany.invoke()" accessroles="CXVendorAdmin,CXAdmin" badgevalue="bind:Variables.CompanyOpenFormsCount.dataSet.dataValue"></wm-anchor> 
+  </wm-nav-item> 
+  <wm-nav-item name="list_order"> 
+   <wm-anchor caption="My Municipality" name="orderLink" iconclass="wi wi-account-balance" on-click="Variables.goToPage_MyMunicipality.invoke()" accessroles="MunicipalityEmployee,CXAdmin,MunicipalityAdmin" badgevalue="bind:Variables.ProcessFormsCountForEmployee.dataSet.dataValue"></wm-anchor> 
+  </wm-nav-item> 
+  <wm-nav-item name="list_inventory"> 
+   <wm-anchor caption="Administration" name="inventoryLink" iconclass="wi wi-domain" on-click="Variables.goToPage_MunicipalityAdministration.invoke()" accessroles="MunicipalityAdmin,CXAdmin" badgevalue="bind:Variables.FormDesignsForMuniAdmin.dataSet.dataValue"></wm-anchor> 
+  </wm-nav-item> 
+  <wm-nav-item name="nav_item10"> 
+   <wm-anchor name="anchor10" iconclass="wi wi-bar-graph" caption="Statistics" on-click="Variables.goToPage_UserStatistics.invoke()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"></wm-anchor> 
+  </wm-nav-item> 
+  <wm-nav-item name="nav_item6"> 
+   <wm-anchor name="anchor6" iconclass="wi wi-phone" caption="Support" on-click="Variables.goToPage_Support.invoke()"></wm-anchor> 
+  </wm-nav-item> 
+  <wm-nav-item name="nav_item5"> 
+   <wm-anchor name="anchor5" iconclass="wi wi-public" caption="CX Admin" on-click="Variables.goToPage_CXAdmin.invoke()" accessroles="CXAdmin"></wm-anchor> 
+  </wm-nav-item> 
+  <wm-nav-item name="nav_item7"> 
+   <wm-anchor name="anchor7" iconclass="wi wi-file" caption="DevDataEntry" on-click="Variables.goToPage_DataEntry.invoke()" accessroles="CXAdmin"></wm-anchor> 
+  </wm-nav-item> 
+  <wm-nav-item name="nav_item9"> 
+   <wm-anchor name="anchor9" iconclass="wi wi-file" caption="Forms DevDataEntry" on-click="Variables.goToPage_DevFormDataEntry.invoke()" accessroles="CXAdmin"></wm-anchor> 
+  </wm-nav-item> 
+  <wm-nav-item name="nav_item9_1"> 
+   <wm-anchor name="anchor9_1" iconclass="wi wi-file" caption="Projects DevDataEntry" on-click="Variables.goToPage_ProjectsDevDataEntry.invoke()" accessroles="CXAdmin"></wm-anchor> 
+  </wm-nav-item> 
+ </wm-nav> 
 </wm-partial>

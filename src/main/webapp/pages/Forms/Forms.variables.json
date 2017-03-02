@@ -45,7 +45,7 @@
       "value" : "bind:today",
       "type" : "string"
     } ],
-    "type" : "cx2AddGIStoFormsrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeAddGIStoForms",
     "operationId" : "QueryExecutionController_executeAddGIStoForms",
@@ -83,7 +83,7 @@
       "value" : "bind:Widgets.searchVendor.datavalue.vendorId",
       "type" : "integer"
     } ],
-    "type" : "cx2AddingVendorsToFormrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeAddingVendorsToForm",
     "operationId" : "QueryExecutionController_executeAddingVendorsToForm",
@@ -8367,7 +8367,7 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ ],
-    "type" : "cx2GetRecentMessageIdrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetRecentMessageIdResponse",
     "service" : "cx2",
     "operation" : "executeGetRecentMessageId",
     "operationId" : "QueryExecutionController_executeGetRecentMessageId",
@@ -9115,7 +9115,7 @@
       "value" : "bind:pageParams.FormGUID",
       "type" : "string"
     } ],
-    "type" : "cx2GetGis2formsByFormrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetGis2formsByFormResponse",
     "service" : "cx2",
     "operation" : "executeGetGis2formsByForm",
     "operationId" : "QueryExecutionController_executeGetGis2formsByForm",
@@ -10790,7 +10790,7 @@
       "value" : "bind:pageParams.FormGUID",
       "type" : "string"
     } ],
-    "type" : "cx2UpdatePrimaryVendorStatusInVEndor2FormsrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdatePrimaryVendorStatusInVEndor2Forms",
     "operationId" : "QueryExecutionController_executeUpdatePrimaryVendorStatusInVEndor2Forms",
@@ -10819,7 +10819,7 @@
       "value" : "bind:pageParams.FormGUID",
       "type" : "string"
     } ],
-    "type" : "cx2SetPrimaryVendorStatusForFormandVendorrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeSetPrimaryVendorStatusForFormandVendor",
     "operationId" : "QueryExecutionController_executeSetPrimaryVendorStatusForFormandVendor",
@@ -13961,7 +13961,7 @@
       "value" : "bind:today",
       "type" : "string"
     } ],
-    "type" : "cx2InsertFormMessagertnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeInsertFormMessage",
     "operationId" : "QueryExecutionController_executeInsertFormMessage",
@@ -13995,7 +13995,7 @@
       "value" : "bind:pageParams.FormGUID",
       "type" : "string"
     } ],
-    "type" : "cx2UpdatePrimaryVendorStatusInVEndor2FormsrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdatePrimaryVendorStatusInVEndor2Forms",
     "operationId" : "QueryExecutionController_executeUpdatePrimaryVendorStatusInVEndor2Forms",
@@ -14024,7 +14024,7 @@
       "value" : "bind:pageParams.FormGUID",
       "type" : "string"
     } ],
-    "type" : "cx2RemoveVendorFromMasterFormsrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeRemoveVendorFromMasterForms",
     "operationId" : "QueryExecutionController_executeRemoveVendorFromMasterForms",
@@ -14162,7 +14162,7 @@
       "value" : "bind:pageParams.FormGUID",
       "type" : "string"
     } ],
-    "type" : "cx2SetPrimaryVendorStatusForFormandVendorrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeSetPrimaryVendorStatusForFormandVendor",
     "operationId" : "QueryExecutionController_executeSetPrimaryVendorStatusForFormandVendor",
@@ -16069,7 +16069,7 @@
       "value" : "bind:Variables.lvFormType.dataSet.data[$i].id",
       "type" : "integer"
     } ],
-    "type" : "cx2getFormTypeFieldsByTypeIdrtnType",
+    "type" : "com.civicxpress.cx2.models.query.GetFormTypeFieldsByTypeIdResponse",
     "service" : "cx2",
     "operation" : "executeGetFormTypeFieldsByTypeId",
     "operationId" : "QueryExecutionController_executeGetFormTypeFieldsByTypeId",
@@ -16281,7 +16281,7 @@
       "value" : "bind:pageParams.FormGUID",
       "type" : "string"
     } ],
-    "type" : "cx2UpdatePrimaryVendorInMasterFormsrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdatePrimaryVendorInMasterForms",
     "operationId" : "QueryExecutionController_executeUpdatePrimaryVendorInMasterForms",
@@ -16313,7 +16313,7 @@
       "value" : "bind:pageParams.FormGUID",
       "type" : "string"
     } ],
-    "type" : "cx2UpdateProcessOwnersForGUIDrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateProcessOwnersForGUID",
     "operationId" : "QueryExecutionController_executeUpdateProcessOwnersForGUID",
@@ -16345,7 +16345,7 @@
       "value" : "bind:pageParams.FormGUID",
       "type" : "string"
     } ],
-    "type" : "cx2UpdateVendorForMasterFormsrtnType",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
     "operation" : "executeUpdateVendorForMasterForms",
     "operationId" : "QueryExecutionController_executeUpdateVendorForMasterForms",
