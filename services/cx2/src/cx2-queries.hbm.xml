@@ -165,42 +165,22 @@
 
     <sql-query name="ProcessFormsForUserByMunicipality">
         <![CDATA[
-        select MF.FormTitle, MF.FormGUID, FS.Status, FT.FormType, MU.MunicipalityName, V.CompanyName as PrimaryVendor, U.Email, MF.BalanceDue from MasterForms MF
+        SELECT MF.FormTitle, MF.FormGUID, FS.Status, FT.FormType, MU.MunicipalityName, V.CompanyName AS PrimaryVendor, U.Email, MF.BalanceDue from MasterForms MF
 	LEFT JOIN Municipalities AS MU ON MU.ID=MF.MunicipalityId
 	LEFT JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
 	LEFT JOIN FormStatuses AS FS ON FS.id=MF.formStatusId
 	LEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners
 	LEFT JOIN Users AS U ON U.ID=MF.UserId
 	LEFT OUTER JOIN Vendor AS V on V.ID=MF.CXVendorId
-	where
+	WHERE
 	MF.municipalityId=:MunicipalityId
-	and MF.closed=:Closed
-	and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
+	AND MF.closed=:Closed
+	AND :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
 	ORDER BY MF.DateModified DESC
         ]]>
-    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    <query-param name="MunicipalityId" type="java.lang.Long"/>
     <query-param name="Closed" type="java.lang.Boolean"/>
-    <query-param name="UserId" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="ProcessFormsForUserByMunicipality__count">
-        <![CDATA[
-        select count(*) from (select MF.FormTitle, MF.FormGUID, FS.Status, FT.FormType, MU.MunicipalityName, V.CompanyName as PrimaryVendor, U.Email, MF.BalanceDue from MasterForms MF
-	LEFT JOIN Municipalities AS MU ON MU.ID=MF.MunicipalityId
-	LEFT JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
-	LEFT JOIN FormStatuses AS FS ON FS.id=MF.formStatusId
-	LEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners
-	LEFT JOIN Users AS U ON U.ID=MF.UserId
-	LEFT OUTER JOIN Vendor AS V on V.ID=MF.CXVendorId
-	where
-	MF.municipalityId=:MunicipalityId
-	and MF.closed=:Closed
-	and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)
-	ORDER BY MF.DateModified DESC) wmTempTable
-        ]]>
-    <query-param name="MunicipalityId" type="java.lang.Integer"/>
-    <query-param name="Closed" type="java.lang.Boolean"/>
-    <query-param name="UserId" type="java.lang.Integer"/>
+    <query-param name="UserId" type="java.lang.Long"/>
     </sql-query>
 
     <sql-query name="VendorCount">

@@ -192,7 +192,7 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, Integer municipalityId, Boolean closed, Integer userId) {
+    public Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, Long municipalityId, Boolean closed, Long userId) {
         Map params = new HashMap(3);
 
         params.put("MunicipalityId", municipalityId);

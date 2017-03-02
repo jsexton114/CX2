@@ -19,18 +19,15 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
 
-    @JsonProperty("BalanceDue")
-    @ColumnAlias("BalanceDue")
-    private String balanceDue;
-    @JsonProperty("Email")
-    @ColumnAlias("Email")
-    private String email;
-    @JsonProperty("FormGUID")
-    @ColumnAlias("FormGUID")
-    private String formGuid;
     @JsonProperty("FormTitle")
     @ColumnAlias("FormTitle")
     private String formTitle;
+    @JsonProperty("FormGUID")
+    @ColumnAlias("FormGUID")
+    private String formGuid;
+    @JsonProperty("Status")
+    @ColumnAlias("Status")
+    private String status;
     @JsonProperty("FormType")
     @ColumnAlias("FormType")
     private String formType;
@@ -40,24 +37,19 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
     @JsonProperty("PrimaryVendor")
     @ColumnAlias("PrimaryVendor")
     private String primaryVendor;
-    @JsonProperty("Status")
-    @ColumnAlias("Status")
-    private String status;
+    @JsonProperty("Email")
+    @ColumnAlias("Email")
+    private String email;
+    @JsonProperty("BalanceDue")
+    @ColumnAlias("BalanceDue")
+    private String balanceDue;
 
-    public String getBalanceDue() {
-        return this.balanceDue;
+    public String getFormTitle() {
+        return this.formTitle;
     }
 
-    public void setBalanceDue(String balanceDue) {
-        this.balanceDue = balanceDue;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setFormTitle(String formTitle) {
+        this.formTitle = formTitle;
     }
 
     public String getFormGuid() {
@@ -68,12 +60,12 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
         this.formGuid = formGuid;
     }
 
-    public String getFormTitle() {
-        return this.formTitle;
+    public String getStatus() {
+        return this.status;
     }
 
-    public void setFormTitle(String formTitle) {
-        this.formTitle = formTitle;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getFormType() {
@@ -100,12 +92,20 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
         this.primaryVendor = primaryVendor;
     }
 
-    public String getStatus() {
-        return this.status;
+    public String getEmail() {
+        return this.email;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getBalanceDue() {
+        return this.balanceDue;
+    }
+
+    public void setBalanceDue(String balanceDue) {
+        this.balanceDue = balanceDue;
     }
 
     @Override
@@ -113,25 +113,25 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof ProcessFormsForUserByMunicipalityResponse)) return false;
         final ProcessFormsForUserByMunicipalityResponse processFormsForUserByMunicipalityResponse = (ProcessFormsForUserByMunicipalityResponse) o;
-        return Objects.equals(getBalanceDue(), processFormsForUserByMunicipalityResponse.getBalanceDue()) &&
-                Objects.equals(getEmail(), processFormsForUserByMunicipalityResponse.getEmail()) &&
+        return Objects.equals(getFormTitle(), processFormsForUserByMunicipalityResponse.getFormTitle()) &&
                 Objects.equals(getFormGuid(), processFormsForUserByMunicipalityResponse.getFormGuid()) &&
-                Objects.equals(getFormTitle(), processFormsForUserByMunicipalityResponse.getFormTitle()) &&
+                Objects.equals(getStatus(), processFormsForUserByMunicipalityResponse.getStatus()) &&
                 Objects.equals(getFormType(), processFormsForUserByMunicipalityResponse.getFormType()) &&
                 Objects.equals(getMunicipalityName(), processFormsForUserByMunicipalityResponse.getMunicipalityName()) &&
                 Objects.equals(getPrimaryVendor(), processFormsForUserByMunicipalityResponse.getPrimaryVendor()) &&
-                Objects.equals(getStatus(), processFormsForUserByMunicipalityResponse.getStatus());
+                Objects.equals(getEmail(), processFormsForUserByMunicipalityResponse.getEmail()) &&
+                Objects.equals(getBalanceDue(), processFormsForUserByMunicipalityResponse.getBalanceDue());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getBalanceDue(),
-                getEmail(),
+        return Objects.hash(getFormTitle(),
                 getFormGuid(),
-                getFormTitle(),
+                getStatus(),
                 getFormType(),
                 getMunicipalityName(),
                 getPrimaryVendor(),
-                getStatus());
+                getEmail(),
+                getBalanceDue());
     }
 }

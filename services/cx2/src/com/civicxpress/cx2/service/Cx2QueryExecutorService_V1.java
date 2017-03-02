@@ -67,7 +67,7 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeFormsCountForMunicipalities(Pageable pageable, Integer municipalityId);
 
     @Deprecated
-    public Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, Integer municipalityId, Boolean closed, Integer userId);
+    public Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, Long municipalityId, Boolean closed, Long userId);
 
     @Deprecated
     public Page<Object> executeVendorCount(Pageable pageable);

@@ -65,9 +65,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportFormsCountForMunicipalities(ExportType exportType, Integer municipalityId, Pageable pageable);
 
-    Page<ProcessFormsForUserByMunicipalityResponse> executeProcessFormsForUserByMunicipality(Integer municipalityId, Boolean closed, Integer userId, Pageable pageable);
+    Page<ProcessFormsForUserByMunicipalityResponse> executeProcessFormsForUserByMunicipality(Long municipalityId, Boolean closed, Long userId, Pageable pageable);
 
-    Downloadable exportProcessFormsForUserByMunicipality(ExportType exportType, Integer municipalityId, Boolean closed, Integer userId, Pageable pageable);
+    Downloadable exportProcessFormsForUserByMunicipality(ExportType exportType, Long municipalityId, Boolean closed, Long userId, Pageable pageable);
 
     Page<VendorCountResponse> executeVendorCount(Pageable pageable);
 

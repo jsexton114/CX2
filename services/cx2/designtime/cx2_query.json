@@ -5756,14 +5756,14 @@
     "name" : "ProcessFormsForUserByMunicipality",
     "description" : "Get forms from Master Forms where employee is in group of that in current form Status",
     "version" : "V1",
-    "queryString" : "select MF.FormTitle, MF.FormGUID, FS.Status, FT.FormType, MU.MunicipalityName, V.CompanyName as PrimaryVendor, U.Email, MF.BalanceDue from MasterForms MF\n\tLEFT JOIN Municipalities AS MU ON MU.ID=MF.MunicipalityId\n\tLEFT JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\n\tLEFT JOIN FormStatuses AS FS ON FS.id=MF.formStatusId\n\tLEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners\n\tLEFT JOIN Users AS U ON U.ID=MF.UserId\n\tLEFT OUTER JOIN Vendor AS V on V.ID=MF.CXVendorId\n\twhere\n\tMF.municipalityId=:MunicipalityId\n\tand MF.closed=:Closed\n\tand :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)\n\tORDER BY MF.DateModified DESC",
-    "countQueryString" : "select count(*) from (select MF.FormTitle, MF.FormGUID, FS.Status, FT.FormType, MU.MunicipalityName, V.CompanyName as PrimaryVendor, U.Email, MF.BalanceDue from MasterForms MF\n\tLEFT JOIN Municipalities AS MU ON MU.ID=MF.MunicipalityId\n\tLEFT JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\n\tLEFT JOIN FormStatuses AS FS ON FS.id=MF.formStatusId\n\tLEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners\n\tLEFT JOIN Users AS U ON U.ID=MF.UserId\n\tLEFT OUTER JOIN Vendor AS V on V.ID=MF.CXVendorId\n\twhere\n\tMF.municipalityId=:MunicipalityId\n\tand MF.closed=:Closed\n\tand :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)\n\tORDER BY MF.DateModified DESC) wmTempTable",
+    "queryString" : "SELECT MF.FormTitle, MF.FormGUID, FS.Status, FT.FormType, MU.MunicipalityName, V.CompanyName AS PrimaryVendor, U.Email, MF.BalanceDue from MasterForms MF\n\tLEFT JOIN Municipalities AS MU ON MU.ID=MF.MunicipalityId\n\tLEFT JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\n\tLEFT JOIN FormStatuses AS FS ON FS.id=MF.formStatusId\n\tLEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners\n\tLEFT JOIN Users AS U ON U.ID=MF.UserId\n\tLEFT OUTER JOIN Vendor AS V on V.ID=MF.CXVendorId\n\tWHERE\n\tMF.municipalityId=:MunicipalityId\n\tAND MF.closed=:Closed\n\tAND :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)\n\tORDER BY MF.DateModified DESC",
+    "countQueryString" : null,
     "nativeSql" : true,
-    "fetchCount" : true,
+    "fetchCount" : false,
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "MunicipalityId",
-      "type" : "integer",
+      "type" : "long",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
@@ -5777,7 +5777,7 @@
       "required" : false
     }, {
       "name" : "UserId",
-      "type" : "integer",
+      "type" : "long",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
@@ -5793,17 +5793,8 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "BalanceDue",
-        "fieldName" : "balanceDue",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Email",
-        "fieldName" : "email",
+        "name" : "FormTitle",
+        "fieldName" : "formTitle",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -5820,8 +5811,8 @@
           "list" : false
         }
       }, {
-        "name" : "FormTitle",
-        "fieldName" : "formTitle",
+        "name" : "Status",
+        "fieldName" : "status",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -5856,8 +5847,17 @@
           "list" : false
         }
       }, {
-        "name" : "Status",
-        "fieldName" : "status",
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "BalanceDue",
+        "fieldName" : "balanceDue",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",

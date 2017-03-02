@@ -268,7 +268,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/ProcessFormsForUserByMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get forms from Master Forms where employee is in group of that in current form Status")
-    public Page<ProcessFormsForUserByMunicipalityResponse> executeProcessFormsForUserByMunicipality(@RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "UserId", required = false) Integer userId, Pageable pageable) {
+    public Page<ProcessFormsForUserByMunicipalityResponse> executeProcessFormsForUserByMunicipality(@RequestParam(value = "MunicipalityId", required = false) Long municipalityId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "UserId", required = false) Long userId, Pageable pageable) {
         LOGGER.debug("Executing named query: ProcessFormsForUserByMunicipality");
         Page<ProcessFormsForUserByMunicipalityResponse> _result = queryService.executeProcessFormsForUserByMunicipality(municipalityId, closed, userId, pageable);
         LOGGER.debug("got the result for named query: ProcessFormsForUserByMunicipality, result:{}", _result);
@@ -278,7 +278,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query ProcessFormsForUserByMunicipality")
     @RequestMapping(value = "/queries/ProcessFormsForUserByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportProcessFormsForUserByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "UserId", required = false) Integer userId, Pageable pageable) {
+    public Downloadable exportProcessFormsForUserByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId", required = false) Long municipalityId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "UserId", required = false) Long userId, Pageable pageable) {
         LOGGER.debug("Exporting named query: ProcessFormsForUserByMunicipality");
 
         return queryService.exportProcessFormsForUserByMunicipality(exportType, municipalityId, closed, userId, pageable);
