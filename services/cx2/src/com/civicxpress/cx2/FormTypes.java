@@ -77,9 +77,9 @@ public class FormTypes implements Serializable {
     private String instructions;
     private Boolean forceInspectionSequence;
     private Municipalities municipalities;
-    private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
-    private List<FormStatuses> formStatuseses = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
+    private List<FormStatuses> formStatuseses = new ArrayList<>();
+    private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings = new ArrayList<>();
     private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
@@ -481,12 +481,12 @@ public class FormTypes implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<FormCategoryMapping> getFormCategoryMappings() {
-        return this.formCategoryMappings;
+    public List<FormHistory> getFormHistories() {
+        return this.formHistories;
     }
 
-    public void setFormCategoryMappings(List<FormCategoryMapping> formCategoryMappings) {
-        this.formCategoryMappings = formCategoryMappings;
+    public void setFormHistories(List<FormHistory> formHistories) {
+        this.formHistories = formHistories;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -501,12 +501,12 @@ public class FormTypes implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<FormHistory> getFormHistories() {
-        return this.formHistories;
+    public List<FormCategoryMapping> getFormCategoryMappings() {
+        return this.formCategoryMappings;
     }
 
-    public void setFormHistories(List<FormHistory> formHistories) {
-        this.formHistories = formHistories;
+    public void setFormCategoryMappings(List<FormCategoryMapping> formCategoryMappings) {
+        this.formCategoryMappings = formCategoryMappings;
     }
 
     @JsonInclude(Include.NON_EMPTY)

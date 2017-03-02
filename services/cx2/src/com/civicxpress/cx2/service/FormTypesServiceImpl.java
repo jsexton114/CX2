@@ -82,11 +82,11 @@ public class FormTypesServiceImpl implements FormTypesService {
 	public FormTypes create(FormTypes formTypes) {
         LOGGER.debug("Creating a new FormTypes with information: {}", formTypes);
         FormTypes formTypesCreated = this.wmGenericDao.create(formTypes);
-        if(formTypesCreated.getFormCategoryMappings() != null) {
-            for(FormCategoryMapping formCategoryMapping : formTypesCreated.getFormCategoryMappings()) {
-                formCategoryMapping.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormCategoryMapping with information: {}", formCategoryMapping);
-                formCategoryMappingService.create(formCategoryMapping);
+        if(formTypesCreated.getFormHistories() != null) {
+            for(FormHistory formHistorie : formTypesCreated.getFormHistories()) {
+                formHistorie.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormHistory with information: {}", formHistorie);
+                formHistoryService.create(formHistorie);
             }
         }
 
@@ -98,11 +98,11 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getFormHistories() != null) {
-            for(FormHistory formHistorie : formTypesCreated.getFormHistories()) {
-                formHistorie.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormHistory with information: {}", formHistorie);
-                formHistoryService.create(formHistorie);
+        if(formTypesCreated.getFormCategoryMappings() != null) {
+            for(FormCategoryMapping formCategoryMapping : formTypesCreated.getFormCategoryMappings()) {
+                formCategoryMapping.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormCategoryMapping with information: {}", formCategoryMapping);
+                formCategoryMappingService.create(formCategoryMapping);
             }
         }
 
@@ -213,13 +213,13 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormCategoryMapping> findAssociatedFormCategoryMappings(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formCategoryMappings");
+    public Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formHistories");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("formTypes.id = '" + id + "'");
 
-        return formCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+        return formHistoryService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -235,13 +235,13 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formHistories");
+    public Page<FormCategoryMapping> findAssociatedFormCategoryMappings(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formCategoryMappings");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("formTypes.id = '" + id + "'");
 
-        return formHistoryService.findAll(queryBuilder.toString(), pageable);
+        return formCategoryMappingService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

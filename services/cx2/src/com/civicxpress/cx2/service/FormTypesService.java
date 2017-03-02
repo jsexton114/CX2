@@ -133,16 +133,16 @@ public interface FormTypesService {
 	long count(String query);
 
     /*
-     * Returns the associated formCategoryMappings for given FormTypes id.
+     * Returns the associated formHistories for given FormTypes id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated FormCategoryMapping instances.
+     * @return Paginated list of associated FormHistory instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<FormCategoryMapping> findAssociatedFormCategoryMappings(Integer id, Pageable pageable);
+    Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable);
 
     /*
      * Returns the associated formStatuseses for given FormTypes id.
@@ -157,16 +157,16 @@ public interface FormTypesService {
     Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated formHistories for given FormTypes id.
+     * Returns the associated formCategoryMappings for given FormTypes id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated FormHistory instances.
+     * @return Paginated list of associated FormCategoryMapping instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable);
+    Page<FormCategoryMapping> findAssociatedFormCategoryMappings(Integer id, Pageable pageable);
 
     /*
      * Returns the associated formToInspectionCategoryMappings for given FormTypes id.
