@@ -68,33 +68,6 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
-  "EmployeesMunicipalities" : {
-    "_id" : "wm-EmployeesMunicipalities-wm.ServiceVariable-1478840896695",
-    "name" : "EmployeesMunicipalities",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "user",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.EmployeesMunicipalitiesResponse",
-    "service" : "cx2",
-    "operation" : "executeEmployeesMunicipalities",
-    "operationId" : "QueryExecutionController_executeEmployeesMunicipalities",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
   "SubDivisonCount" : {
     "_id" : "wm-SubDivisonCount-wm.ServiceVariable-1484300297097",
     "name" : "SubDivisonCount",

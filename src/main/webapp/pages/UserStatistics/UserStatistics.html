@@ -1,26 +1,26 @@
 <wm-page data-ng-controller="UserStatisticsPageController" pagetitle="User Statistics" name="page1"> 
- <wm-header content="header" name="header1"></wm-header> 
- <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav> 
- <wm-content name="content1"> 
-  <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel> 
-  <wm-page-content columnwidth="10" name="page_content1"> 
-   <wm-layoutgrid name="layoutgrid1"> 
-    <wm-gridrow name="gridrow1"> 
-     <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="1em"> 
-      <wm-chart type="Column" title="Column Chart" height="250px" iconclass="wi wi-bar-chart" name="chart1" dataset="bind:Variables.MasterForms.dataSet" xaxisdatakey="submittedOn" yaxisdatakey="formStatuses.id" groupby="submittedOn" aggregation="sum" aggregationcolumn="formStatuses.id" xdateformat="%x"></wm-chart> 
-     </wm-gridcolumn> 
-     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="1em"> 
-      <wm-chart type="Donut" title="Municipality Subscriptions" height="250px" iconclass="wi wi-donut-large" name="chart4" dataset="bind:Variables.Subscriptions.dataSet" xaxisdatakey="municipalities.municipalityName" yaxisdatakey="userId" aggregation="count" aggregationcolumn="userId" groupby="municipalities.municipalityName"></wm-chart> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow2"> 
-     <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="1em"> 
-      <wm-chart type="Area" title="User Subscriptions" height="250px" iconclass="fa fa-area-chart" name="chart3" dataset="bind:Variables.Subscriptions.dataSet" xaxisdatakey="dateSubscribed" yaxisdatakey="userId" aggregation="count" aggregationcolumn="userId" groupby="dateSubscribed" xdateformat="%x"></wm-chart> 
-     </wm-gridcolumn> 
-     <wm-gridcolumn columnwidth="6" name="gridcolumn4"></wm-gridcolumn> 
-    </wm-gridrow> 
-   </wm-layoutgrid> 
-  </wm-page-content> 
- </wm-content> 
- <wm-footer content="footer" name="footer1"></wm-footer> 
+    <wm-header content="header" name="header1"></wm-header> 
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav> 
+    <wm-content name="content1"> 
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel> 
+        <wm-page-content columnwidth="10" name="page_content1"> 
+            <wm-layoutgrid name="layoutgrid1"> 
+                <wm-gridrow name="gridrow1"> 
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="1em"> 
+                        <wm-chart type="Column" title="Column Chart" height="250px" iconclass="wi wi-bar-chart" name="chart1" dataset="bind:Variables.MasterForms.dataSet" xaxisdatakey="submittedOn" yaxisdatakey="formStatuses.id" groupby="submittedOn" aggregation="sum" aggregationcolumn="formStatuses.id" xdateformat="%x"></wm-chart> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="1em"> 
+                        <wm-chart type="Donut" title="Municipality Subscriptions" height="250px" iconclass="wi wi-donut-large" name="chart4" dataset="bind:Variables.Subscriptions.dataSet" xaxisdatakey="municipalities.municipalityName" yaxisdatakey="userId" aggregation="count" aggregationcolumn="userId" groupby="municipalities.municipalityName"></wm-chart> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow2"> 
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="1em"> 
+                        <wm-chart type="Area" title="User Subscriptions" height="250px" iconclass="fa fa-area-chart" name="chart3" dataset="bind:Variables.Subscriptions.dataSet" xaxisdatakey="dateSubscribed" yaxisdatakey="userId" aggregation="count" aggregationcolumn="userId" groupby="dateSubscribed" xdateformat="%x"></wm-chart> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4"></wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-layoutgrid> 
+        </wm-page-content> 
+    </wm-content> 
+    <wm-footer content="footer" name="footer1"></wm-footer> 
 </wm-page>

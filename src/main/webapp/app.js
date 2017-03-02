@@ -21,6 +21,10 @@ Application.run(function($rootScope) {
 
 });
 
+Application.factory('_', ['$window', function($window) {
+    return $window._;
+}]);
+
 Application.directive('cxCheckboxSet', [function() {
     return {
         restrict: 'E',
@@ -148,6 +152,7 @@ Application.directive('ngFileModel', function() {
             });
         }
     };
+
 });
 
 Application.run(["$templateCache", function($templateCache) {

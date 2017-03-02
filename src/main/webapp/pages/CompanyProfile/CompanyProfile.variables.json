@@ -1,32 +1,4 @@
 {
-  "AdminVendorsList" : {
-    "_id" : "wm-AdminVendorsList-wm.ServiceVariable-1480581805889",
-    "name" : "AdminVendorsList",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "user",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.AdminVendorsListResponse",
-    "service" : "cx2",
-    "operation" : "executeAdminVendorsList",
-    "operationId" : "QueryExecutionController_executeAdminVendorsList",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
   "BreadCrum" : {
     "_id" : "wm-BreadCrum-wm.Variable-1480921403817",
     "name" : "BreadCrum",
@@ -53,7 +25,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "id",
-      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID",
+      "value" : "bind:Widgets.panel2.Widgets.selectCompany.datavalue.ID",
       "type" : "number"
     } ],
     "operation" : "read",
@@ -442,13 +414,26 @@
         "fullyQualifiedType" : "string",
         "columnName" : "FullAddress",
         "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 2000,
+        "notNull" : true,
+        "length" : 1022,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
         "systemInserted" : true,
         "systemUpdated" : true,
+        "scale" : 0
+      }, {
+        "fieldName" : "active",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "Active",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "true",
         "scale" : 0
       } ],
       "entityName" : "Vendor",
@@ -895,13 +880,26 @@
         "fullyQualifiedType" : "string",
         "columnName" : "FullAddress",
         "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 2000,
+        "notNull" : true,
+        "length" : 1022,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
         "systemInserted" : true,
         "systemUpdated" : true,
+        "scale" : 0
+      }, {
+        "fieldName" : "active",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "Active",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "true",
         "scale" : 0
       } ],
       "entityName" : "Vendor",
@@ -939,7 +937,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "vendorId",
-      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | toNumber",
+      "value" : "bind:Widgets.panel2.Widgets.selectCompany.datavalue.ID",
       "type" : "number"
     } ],
     "operation" : "read",
@@ -1284,13 +1282,26 @@
           "fullyQualifiedType" : "string",
           "columnName" : "FullAddress",
           "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 2000,
+          "notNull" : true,
+          "length" : 1022,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "active",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Active",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
           "scale" : 0
         } ]
       }, {

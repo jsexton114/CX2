@@ -12,6 +12,8 @@ Application.$controller("CompanyMunicipalitiesPageController", ["$scope", functi
          * e.g. to get value of text widget named 'username' use following script
          * '$scope.Widgets.username.datavalue'
          */
+
+        $scope.Variables.BreadCrum.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyId);
     };
 
 }]);

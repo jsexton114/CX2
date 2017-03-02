@@ -1,102 +1,100 @@
-<wm-page data-ng-controller="CompanyFormsPageController" pagetitle="Company Forms" name="page1"> 
- <wm-header content="header" name="header1"></wm-header> 
- <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav> 
- <wm-content name="content1"> 
-  <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel> 
-  <wm-page-content columnwidth="10" name="page_content1"> 
-   <wm-layoutgrid name="layoutgrid1"> 
-    <wm-gridrow name="gridrow1"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn1"> 
-      <wm-breadcrumb dataset="bind:Variables.Breadcrumb.dataSet" name="breadcrumb1"></wm-breadcrumb> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow2"> 
-     <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="2em unset"> 
-      <wm-label name="label1" caption="My Company Forms" fontweight="bold" class="h4"></wm-label> 
-     </wm-gridcolumn> 
-     <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="2em unset"> 
-      <wm-composite name="composite1" show="bind:Variables.AdminVendorsList.dataSet.content.length > 1"> 
-       <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Company" fontweight="bold"></wm-label> 
-       <wm-container class="col-md-9" name="container1"> 
-        <wm-select name="selectSelectCompany" datavalue="bind:Variables.AdminVendorsList.firstRecord" dataset="bind:Variables.AdminVendorsList.dataSet" datafield="All Fields" displayfield="CompanyName" orderby="CompanyName:asc"></wm-select> 
-       </wm-container> 
-      </wm-composite> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow3"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn4_1"> 
-      <wm-panel iconclass="wi wi-book-open" autoclose="outsideClick" name="panelOpenForms" title="Open Forms" class="panel-primary"> 
-       <wm-layoutgrid name="layoutgrid2"> 
-        <wm-gridrow name="gridrow3"> 
-         <wm-gridcolumn columnwidth="6" name="gridcolumn3_1" padding="1em unset"> 
-          <wm-composite name="composite1" margin="unset unset unset 0.2em"> 
-           <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label> 
-           <wm-container class="col-md-9" name="container1" width="180px"> 
-            <wm-select name="selectViewOpen" dataset="bind:Variables.SelectView.dataSet" datafield="All Fields" displayfield="viewName" datavalue="bind:Variables.PreferenceForUser.firstRecord"></wm-select> 
-           </wm-container> 
-          </wm-composite> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="6" name="gridcolumn5_1"></wm-gridcolumn> 
-        </wm-gridrow> 
-        <wm-gridrow name="gridrow6"> 
-         <wm-gridcolumn columnwidth="12" name="gridcolumn8"> 
-          <wm-grid title="" dataset="bind:Variables.OpenCompanyFormsByVendorId.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true"> 
-           <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column> 
-           <wm-grid-column binding="users.email" caption="Created By" type="string" readonly="true" show="true"></wm-grid-column> 
-           <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="bind:Widgets.selectViewOpen.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column> 
-           <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column> 
-           <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column> 
-           <wm-grid-column binding="giscontacts.gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" show="bind:Widgets.selectViewOpen.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column> 
-           <wm-grid-column binding="giscontacts.gisrecords.lot" caption="Lot" type="string" readonly="true" show="bind:Widgets.selectViewOpen.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column> 
-           <wm-grid-column binding="giscontacts.gisrecords.fullAddress" caption="Address" type="string" readonly="true" show="true"></wm-grid-column> 
-           <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column> 
-           <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column> 
-           <wm-grid-action key="customButton" display-name="New Form" show="true" class="btn-secondary" iconclass="wi wi-plus" title="New Form" shortcutkey="" disabled="false"></wm-grid-action> 
-           <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action> 
-          </wm-grid> 
-         </wm-gridcolumn> 
-        </wm-gridrow> 
-       </wm-layoutgrid> 
-      </wm-panel> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow5"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn6"> 
-      <wm-panel iconclass="wi wi-book-binder" autoclose="outsideClick" title="Closed Forms" class="panel-primary" name="panelClosedForms" margin="1em unset unset unset"> 
-       <wm-layoutgrid name="layoutgrid3"> 
-        <wm-gridrow name="gridrow3"> 
-         <wm-gridcolumn columnwidth="6" name="gridcolumn3_1" padding="1em unset"> 
-          <wm-composite name="composite1" margin="unset unset unset 0.2em"> 
-           <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label> 
-           <wm-container class="col-md-9" name="container1" width="180px"> 
-            <wm-select name="selectViewClosed" dataset="bind:Variables.SelectView.dataSet" datafield="All Fields" displayfield="viewName" datavalue="bind:Variables.PreferenceForUser.firstRecord"></wm-select> 
-           </wm-container> 
-          </wm-composite> 
-         </wm-gridcolumn> 
-        </wm-gridrow> 
-        <wm-gridrow name="gridrow8"> 
-         <wm-gridcolumn columnwidth="12" name="gridcolumn11"> 
-          <wm-grid title="" dataset="bind:Variables.ClosedCompanyFormsByVendorId.dataSet" navigation="Classic" filtermode="multicolumn" exportformat="EXCEL" name="gridClosedForms" showrecordcount="true"> 
-           <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column> 
-           <wm-grid-column binding="users.email" caption="Created By" type="string" readonly="true" show="true"></wm-grid-column> 
-           <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="bind:Widgets.selectViewClosed.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column> 
-           <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column> 
-           <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column> 
-           <wm-grid-column binding="giscontacts.gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" show="bind:Widgets.selectViewClosed.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column> 
-           <wm-grid-column binding="giscontacts.gisrecords.lot" caption="Lot" type="string" readonly="true" show="bind:Widgets.selectViewClosed.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column> 
-           <wm-grid-column binding="giscontacts.gisrecords.fullAddress" caption="Address" type="string" readonly="true" show="true"></wm-grid-column> 
-           <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column> 
-           <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column> 
-           <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_FormsFormClosedCompanyForms.invoke()" disabled="false"></wm-grid-row-action> 
-          </wm-grid> 
-         </wm-gridcolumn> 
-        </wm-gridrow> 
-       </wm-layoutgrid> 
-      </wm-panel> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-   </wm-layoutgrid> 
-  </wm-page-content> 
- </wm-content> 
- <wm-footer content="footer" name="footer1"></wm-footer> 
+<wm-page data-ng-controller="CompanyFormsPageController" pagetitle="Company Forms" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn1">
+                        <wm-breadcrumb dataset="bind:Variables.Breadcrumb.dataSet" name="breadcrumb1"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="2em unset">
+                        <wm-label name="label1" caption="My Company Forms" fontweight="bold" class="h4"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="2em unset">
+                        <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectCompany" title="" content="selectCompany" class="panel-transparent">
+                            <wm-param name="companyId" value="bind:pageParams.companyId" type="integer"></wm-param>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn4_1">
+                        <wm-panel iconclass="wi wi-book-open" autoclose="outsideClick" name="panelOpenForms" title="Open Forms" class="panel-primary">
+                            <wm-layoutgrid name="layoutgrid2">
+                                <wm-gridrow name="gridrow3">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn3_1" padding="1em unset">
+                                        <wm-composite name="composite1" margin="unset unset unset 0.2em">
+                                            <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
+                                            <wm-container class="col-md-9" name="container1" width="180px">
+                                                <wm-select name="selectViewOpen" dataset="bind:Variables.SelectView.dataSet" datafield="All Fields" displayfield="viewName" datavalue="bind:Variables.PreferenceForUser.firstRecord"></wm-select>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn5_1"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow6">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn8">
+                                        <wm-grid title="" dataset="bind:Variables.OpenCompanyFormsByVendorId.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="users.email" caption="Created By" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="bind:Widgets.selectViewOpen.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="giscontacts.gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" show="bind:Widgets.selectViewOpen.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="giscontacts.gisrecords.lot" caption="Lot" type="string" readonly="true" show="bind:Widgets.selectViewOpen.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="giscontacts.gisrecords.fullAddress" caption="Address" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                            <wm-grid-action key="customButton" display-name="New Form" show="true" class="btn-secondary" iconclass="wi wi-plus" title="New Form" shortcutkey="" disabled="false"></wm-grid-action>
+                                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
+                                        </wm-grid>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow5">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                        <wm-panel iconclass="wi wi-book-binder" autoclose="outsideClick" title="Closed Forms" class="panel-primary" name="panelClosedForms" margin="1em unset unset unset">
+                            <wm-layoutgrid name="layoutgrid3">
+                                <wm-gridrow name="gridrow3">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn3_1" padding="1em unset">
+                                        <wm-composite name="composite1" margin="unset unset unset 0.2em">
+                                            <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
+                                            <wm-container class="col-md-9" name="container1" width="180px">
+                                                <wm-select name="selectViewClosed" dataset="bind:Variables.SelectView.dataSet" datafield="All Fields" displayfield="viewName" datavalue="bind:Variables.PreferenceForUser.firstRecord"></wm-select>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow8">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn11">
+                                        <wm-grid title="" dataset="bind:Variables.ClosedCompanyFormsByVendorId.dataSet" navigation="Classic" filtermode="multicolumn" exportformat="EXCEL" name="gridClosedForms" showrecordcount="true">
+                                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="users.email" caption="Created By" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="bind:Widgets.selectViewClosed.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="giscontacts.gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" show="bind:Widgets.selectViewClosed.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="giscontacts.gisrecords.lot" caption="Lot" type="string" readonly="true" show="bind:Widgets.selectViewClosed.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="giscontacts.gisrecords.fullAddress" caption="Address" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_FormsFormClosedCompanyForms.invoke()"
+                                            disabled="false"></wm-grid-row-action>
+                                        </wm-grid>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
 </wm-page>

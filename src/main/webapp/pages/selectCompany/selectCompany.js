@@ -1,4 +1,4 @@
-Application.$controller("CompanyFormsPageController", ["$scope", function($scope) {
+Application.$controller("selectCompanyPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -12,25 +12,15 @@ Application.$controller("CompanyFormsPageController", ["$scope", function($scope
          * e.g. to get value of text widget named 'username' use following script
          * '$scope.Widgets.username.datavalue'
          */
+    };
 
-        $scope.Variables.Breadcrumb.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyId);
+    $scope.getSelectedCompany = function(variable, data) {
+        variable = variable || $scope.Variables.AdminVendorsList;
+        data = data || variable.dataSet;
+
+        return (!!$scope.pageParams.companyId ? _.find(data.content, {
+            ID: parseInt($scope.pageParams.companyId)
+        }) : variable.firstRecord);
     };
 
 }]);
-
-
-
-
-Application.$controller("gridClosedFormsController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-Application.$controller("gridOpenFormsController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);

@@ -18,34 +18,6 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
-  "EmployeesMunicipalities" : {
-    "_id" : "wm-EmployeesMunicipalities-wm.ServiceVariable-1484924633424",
-    "name" : "EmployeesMunicipalities",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "user",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.EmployeesMunicipalitiesResponse",
-    "service" : "cx2",
-    "operation" : "executeEmployeesMunicipalities",
-    "operationId" : "QueryExecutionController_executeEmployeesMunicipalities",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
   "navGoToForm" : {
     "_id" : "wm-navGoToForm-wm.NavigationVariable-1487773422587",
     "name" : "navGoToForm",

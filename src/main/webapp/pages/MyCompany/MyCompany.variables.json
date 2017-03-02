@@ -1,32 +1,4 @@
 {
-  "AdminVendorsList" : {
-    "_id" : "wm-AdminVendorsList-wm.ServiceVariable-1480921073966",
-    "name" : "AdminVendorsList",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "user",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.AdminVendorsListResponse",
-    "service" : "cx2",
-    "operation" : "executeAdminVendorsList",
-    "operationId" : "QueryExecutionController_executeAdminVendorsList",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
   "CountOfCompnayFormsByVendorId" : {
     "_id" : "wm-CountOfCompnayFormsByVendorId-wm.ServiceVariable-1486125050286",
     "name" : "CountOfCompnayFormsByVendorId",
@@ -38,7 +10,7 @@
       "type" : "boolean"
     }, {
       "target" : "vendorId",
-      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.models.query.CountOfCompnayFormsByVendorIdResponse",
@@ -67,7 +39,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "VendorId",
-      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.models.query.CountOfMuncipalityApplicationsByVendorResponse",
@@ -123,7 +95,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "vendor",
-      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | toNumber",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID | stringToNumber",
       "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.models.query.CountOfVendorUsersResponse",

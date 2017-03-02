@@ -13,11 +13,17 @@
 }, {
   "name" : "CompanyForms",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "companyId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "CompanyMunicipalities",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "companyId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "CompanyProfile",
   "type" : "PAGE",
@@ -28,7 +34,10 @@
 }, {
   "name" : "CompanyUsers",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "companyId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "DataEntry",
   "type" : "PAGE",
@@ -95,6 +104,9 @@
   "params" : [ {
     "name" : "from",
     "type" : "string"
+  }, {
+    "name" : "municipalityId",
+    "type" : "integer"
   } ]
 }, {
   "name" : "ManageInspections",
@@ -151,7 +163,10 @@
 }, {
   "name" : "MyCompany",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "companyId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "MyMunicipality",
   "type" : "PAGE",
@@ -238,6 +253,13 @@
   "name" : "rightnav",
   "type" : "RIGHTNAV",
   "params" : [ ]
+}, {
+  "name" : "selectCompany",
+  "type" : "PARTIAL",
+  "params" : [ {
+    "name" : "companyId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "topnav",
   "type" : "TOPNAV",

@@ -1,4 +1,60 @@
 {
+  "AdminsMunicipalities" : {
+    "_id" : "wm-AdminsMunicipalities-wm.ServiceVariable-1478682649249",
+    "name" : "AdminsMunicipalities",
+    "owner" : "App",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.AdminsMunicipalitiesResponse",
+    "service" : "cx2",
+    "operation" : "executeAdminsMunicipalities",
+    "operationId" : "QueryExecutionController_executeAdminsMunicipalities",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "AdminVendorsList" : {
+    "_id" : "wm-AdminVendorsList-wm.ServiceVariable-1480921073966",
+    "name" : "AdminVendorsList",
+    "owner" : "App",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.AdminVendorsListResponse",
+    "service" : "cx2",
+    "operation" : "executeAdminVendorsList",
+    "operationId" : "QueryExecutionController_executeAdminVendorsList",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "AdminVendorsListonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "appNotification" : {
     "_id" : "wm-appErrorHandler-wm.NotificationVariable-1454664620943",
     "name" : "appNotification",
@@ -55,6 +111,33 @@
     "saveInPhonegap" : false,
     "controller" : "Users"
   },
+  "EmployeesMunicipalities" : {
+    "_id" : "wm-EmployeesMunicipalities-wm.ServiceVariable-1478840896695",
+    "name" : "EmployeesMunicipalities",
+    "owner" : "App",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.EmployeesMunicipalitiesResponse",
+    "service" : "cx2",
+    "operation" : "executeEmployeesMunicipalities",
+    "operationId" : "QueryExecutionController_executeEmployeesMunicipalities",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "FileServiceUploadFile" : {
     "_id" : "wm-FileServiceUploadFile-wm.ServiceVariable-1482387425645",
     "name" : "FileServiceUploadFile",
@@ -96,10 +179,18 @@
     "name" : "goToPage_CompanyForms",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "CompanyForms",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "CompanyForms",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "companyId",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_CompanyMunicipalities" : {
@@ -114,7 +205,11 @@
     } ],
     "operation" : "gotoPage",
     "pageName" : "CompanyMunicipalities",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "companyId",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_CompanyProfile" : {
@@ -132,7 +227,7 @@
     "dataSet" : [ {
       "type" : "integer",
       "target" : "companyID",
-      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber"
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID | stringToNumber"
     } ],
     "pageTransitions" : "none"
   },
@@ -141,10 +236,18 @@
     "name" : "goToPage_CompanyUsers",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "CompanyUsers",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "CompanyUsers",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "companyId",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_CXAdmin" : {

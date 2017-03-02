@@ -1,10 +1,9 @@
-Application.$controller("CompanyUsersPageController", ["$scope", function($scope) {
+Application.$controller("CompanyUsersPageController", ["$scope", "$filter", function($scope, $filter) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        //current date
-        $scope.toDay = Date.parse(new Date().toDateString());
+        $scope.Variables.BreadCrum.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyId);
     };
 
 
@@ -15,6 +14,10 @@ Application.$controller("CompanyUsersPageController", ["$scope", function($scope
         } else {
             $scope.Variables.DeleteFromVendorUsers.update();
         }
+    };
+
+    $scope.getJoinDate = function() {
+        return $filter('toDate')(new Date().getTime(), 'MM-dd-yyyy');
     };
 
 }]);

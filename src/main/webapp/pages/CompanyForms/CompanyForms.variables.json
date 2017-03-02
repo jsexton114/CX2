@@ -1,32 +1,4 @@
 {
-  "AdminVendorsList" : {
-    "_id" : "wm-AdminVendorsList-wm.ServiceVariable-1484923635102",
-    "name" : "AdminVendorsList",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "user",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.AdminVendorsListResponse",
-    "service" : "cx2",
-    "operation" : "executeAdminVendorsList",
-    "operationId" : "QueryExecutionController_executeAdminVendorsList",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
   "Breadcrumb" : {
     "_id" : "wm-Breadcrumb-wm.Variable-1484922963189",
     "name" : "Breadcrumb",
