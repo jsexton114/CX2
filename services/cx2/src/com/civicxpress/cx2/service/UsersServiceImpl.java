@@ -58,12 +58,12 @@ public class UsersServiceImpl implements UsersService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.Gis2formsService")
-	private Gis2formsService gis2formsService;
-
-    @Autowired
 	@Qualifier("cx2.MunicipalityGroupMembersService")
 	private MunicipalityGroupMembersService municipalityGroupMembersService;
+
+    @Autowired
+	@Qualifier("cx2.Gis2formsService")
+	private Gis2formsService gis2formsService;
 
     @Autowired
 	@Qualifier("cx2.FormMessagesService")
@@ -226,14 +226,6 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getMunicipalityGroupMemberses() != null) {
-            for(MunicipalityGroupMembers municipalityGroupMemberse : usersCreated.getMunicipalityGroupMemberses()) {
-                municipalityGroupMemberse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child MunicipalityGroupMembers with information: {}", municipalityGroupMemberse);
-                municipalityGroupMembersService.create(municipalityGroupMemberse);
-            }
-        }
-
         if(usersCreated.getProjectFormses() != null) {
             for(ProjectForms projectFormse : usersCreated.getProjectFormses()) {
                 projectFormse.setUsers(usersCreated);
@@ -319,6 +311,14 @@ public class UsersServiceImpl implements UsersService {
                 sharedWithsForSharedWithUser.setUsersBySharedWithUser(usersCreated);
                 LOGGER.debug("Creating a new child SharedWith with information: {}", sharedWithsForSharedWithUser);
                 sharedWithService.create(sharedWithsForSharedWithUser);
+            }
+        }
+
+        if(usersCreated.getMunicipalityGroupMemberses() != null) {
+            for(MunicipalityGroupMembers municipalityGroupMemberse : usersCreated.getMunicipalityGroupMemberses()) {
+                municipalityGroupMemberse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child MunicipalityGroupMembers with information: {}", municipalityGroupMemberse);
+                municipalityGroupMembersService.create(municipalityGroupMemberse);
             }
         }
 
@@ -552,17 +552,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return municipalityGroupMembersService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<ProjectForms> findAssociatedProjectFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectFormses");
 
@@ -684,6 +673,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return municipalityGroupMembersService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<UserPasswordResetTokens> findAssociatedUserPasswordResetTokenses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userPasswordResetTokenses");
 
@@ -740,19 +740,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service Gis2formsService instance
+	 * @param service MunicipalityGroupMembersService instance
 	 */
-	protected void setGis2formsService(Gis2formsService service) {
-        this.gis2formsService = service;
+	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
+        this.municipalityGroupMembersService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalityGroupMembersService instance
+	 * @param service Gis2formsService instance
 	 */
-	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
-        this.municipalityGroupMembersService = service;
+	protected void setGis2formsService(Gis2formsService service) {
+        this.gis2formsService = service;
     }
 
     /**

@@ -295,15 +295,6 @@ public class UsersController {
         return usersService.findAssociatedMasterInspectionsesForModifiedBy(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/municipalityGroupMemberses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the municipalityGroupMemberses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
-        return usersService.findAssociatedMunicipalityGroupMemberses(id, pageable);
-    }
-
     @RequestMapping(value="/{id:.+}/projectFormses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the projectFormses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -401,6 +392,15 @@ public class UsersController {
 
         LOGGER.debug("Fetching all associated sharedWithsForSharedWithUser");
         return usersService.findAssociatedSharedWithsForSharedWithUser(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/municipalityGroupMemberses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the municipalityGroupMemberses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
+        return usersService.findAssociatedMunicipalityGroupMemberses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/userPasswordResetTokenses", method=RequestMethod.GET)

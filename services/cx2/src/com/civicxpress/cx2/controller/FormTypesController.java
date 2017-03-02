@@ -33,6 +33,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.FormCategoryMapping;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.FormToInspectionCategoryMapping;
 import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.InspectionSequence;
@@ -183,13 +184,13 @@ public class FormTypesController {
         return formTypesService.findAssociatedFormTypeFieldses(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/inspectionSequences", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the inspectionSequences instance associated with the given id.")
+    @RequestMapping(value="/{id:.+}/formToInspectionCategoryMappings", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the formToInspectionCategoryMappings instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<InspectionSequence> findAssociatedInspectionSequences(@PathVariable("id") Integer id, Pageable pageable) {
+    public Page<FormToInspectionCategoryMapping> findAssociatedFormToInspectionCategoryMappings(@PathVariable("id") Integer id, Pageable pageable) {
 
-        LOGGER.debug("Fetching all associated inspectionSequences");
-        return formTypesService.findAssociatedInspectionSequences(id, pageable);
+        LOGGER.debug("Fetching all associated formToInspectionCategoryMappings");
+        return formTypesService.findAssociatedFormToInspectionCategoryMappings(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/masterFormses", method=RequestMethod.GET)
@@ -199,6 +200,15 @@ public class FormTypesController {
 
         LOGGER.debug("Fetching all associated masterFormses");
         return formTypesService.findAssociatedMasterFormses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/inspectionSequences", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionSequences instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<InspectionSequence> findAssociatedInspectionSequences(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated inspectionSequences");
+        return formTypesService.findAssociatedInspectionSequences(id, pageable);
     }
 
     /**

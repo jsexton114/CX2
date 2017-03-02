@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormToInspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionCategories;
 import com.civicxpress.cx2.InspectionCategoryMapping;
 
@@ -40,6 +41,10 @@ public class InspectionCategoriesServiceImpl implements InspectionCategoriesServ
 	private InspectionCategoryMappingService inspectionCategoryMappingService;
 
     @Autowired
+	@Qualifier("cx2.FormToInspectionCategoryMappingService")
+	private FormToInspectionCategoryMappingService formToInspectionCategoryMappingService;
+
+    @Autowired
     @Qualifier("cx2.InspectionCategoriesDao")
     private WMGenericDao<InspectionCategories, Integer> wmGenericDao;
 
@@ -52,6 +57,14 @@ public class InspectionCategoriesServiceImpl implements InspectionCategoriesServ
 	public InspectionCategories create(InspectionCategories inspectionCategories) {
         LOGGER.debug("Creating a new InspectionCategories with information: {}", inspectionCategories);
         InspectionCategories inspectionCategoriesCreated = this.wmGenericDao.create(inspectionCategories);
+        if(inspectionCategoriesCreated.getFormToInspectionCategoryMappings() != null) {
+            for(FormToInspectionCategoryMapping formToInspectionCategoryMapping : inspectionCategoriesCreated.getFormToInspectionCategoryMappings()) {
+                formToInspectionCategoryMapping.setInspectionCategories(inspectionCategoriesCreated);
+                LOGGER.debug("Creating a new child FormToInspectionCategoryMapping with information: {}", formToInspectionCategoryMapping);
+                formToInspectionCategoryMappingService.create(formToInspectionCategoryMapping);
+            }
+        }
+
         if(inspectionCategoriesCreated.getInspectionCategoryMappings() != null) {
             for(InspectionCategoryMapping inspectionCategoryMapping : inspectionCategoriesCreated.getInspectionCategoryMappings()) {
                 inspectionCategoryMapping.setInspectionCategories(inspectionCategoriesCreated);
@@ -135,6 +148,17 @@ public class InspectionCategoriesServiceImpl implements InspectionCategoriesServ
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormToInspectionCategoryMapping> findAssociatedFormToInspectionCategoryMappings(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formToInspectionCategoryMappings");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionCategories.id = '" + id + "'");
+
+        return formToInspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<InspectionCategoryMapping> findAssociatedInspectionCategoryMappings(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionCategoryMappings");
 
@@ -151,6 +175,15 @@ public class InspectionCategoriesServiceImpl implements InspectionCategoriesServ
 	 */
 	protected void setInspectionCategoryMappingService(InspectionCategoryMappingService service) {
         this.inspectionCategoryMappingService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormToInspectionCategoryMappingService instance
+	 */
+	protected void setFormToInspectionCategoryMappingService(FormToInspectionCategoryMappingService service) {
+        this.formToInspectionCategoryMappingService = service;
     }
 
 }

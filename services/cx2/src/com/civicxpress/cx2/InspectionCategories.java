@@ -37,6 +37,7 @@ public class InspectionCategories implements Serializable {
     private String inspectionCategoryDescription;
     private Integer municipalityId;
     private Municipalities municipalities;
+    private List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings = new ArrayList<>();
     private List<InspectionCategoryMapping> inspectionCategoryMappings = new ArrayList<>();
 
     @Id
@@ -89,6 +90,16 @@ public class InspectionCategories implements Serializable {
         }
 
         this.municipalities = municipalities;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionCategories")
+    public List<FormToInspectionCategoryMapping> getFormToInspectionCategoryMappings() {
+        return this.formToInspectionCategoryMappings;
+    }
+
+    public void setFormToInspectionCategoryMappings(List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings) {
+        this.formToInspectionCategoryMappings = formToInspectionCategoryMappings;
     }
 
     @JsonInclude(Include.NON_EMPTY)

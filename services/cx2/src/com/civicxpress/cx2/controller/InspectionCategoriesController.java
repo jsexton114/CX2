@@ -30,6 +30,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.FormToInspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionCategories;
 import com.civicxpress.cx2.InspectionCategoryMapping;
 import com.civicxpress.cx2.service.InspectionCategoriesService;
@@ -141,6 +142,15 @@ public class InspectionCategoriesController {
 		LOGGER.debug("counting InspectionCategories");
 		return inspectionCategoriesService.count(query);
 	}
+
+    @RequestMapping(value="/{id:.+}/formToInspectionCategoryMappings", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the formToInspectionCategoryMappings instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<FormToInspectionCategoryMapping> findAssociatedFormToInspectionCategoryMappings(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated formToInspectionCategoryMappings");
+        return inspectionCategoriesService.findAssociatedFormToInspectionCategoryMappings(id, pageable);
+    }
 
     @RequestMapping(value="/{id:.+}/inspectionCategoryMappings", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the inspectionCategoryMappings instance associated with the given id.")

@@ -64,7 +64,6 @@ public class Users implements Serializable {
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<MasterInspections> masterInspectionsesForRequestedBy = new ArrayList<>();
     private List<MasterInspections> masterInspectionsesForModifiedBy = new ArrayList<>();
-    private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<ProjectForms> projectFormses = new ArrayList<>();
     private List<Projects> projectsesForCreatedBy = new ArrayList<>();
     private List<Projects> projectsesForModifiedBy = new ArrayList<>();
@@ -76,6 +75,7 @@ public class Users implements Serializable {
     private List<Roles> roleses = new ArrayList<>();
     private List<SharedWith> sharedWithsForCreatedBy = new ArrayList<>();
     private List<SharedWith> sharedWithsForSharedWithUser = new ArrayList<>();
+    private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
     private List<UserViewPreferences> userViewPreferenceses = new ArrayList<>();
@@ -343,16 +343,6 @@ public class Users implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<MunicipalityGroupMembers> getMunicipalityGroupMemberses() {
-        return this.municipalityGroupMemberses;
-    }
-
-    public void setMunicipalityGroupMemberses(List<MunicipalityGroupMembers> municipalityGroupMemberses) {
-        this.municipalityGroupMemberses = municipalityGroupMemberses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<ProjectForms> getProjectFormses() {
         return this.projectFormses;
     }
@@ -459,6 +449,16 @@ public class Users implements Serializable {
 
     public void setSharedWithsForSharedWithUser(List<SharedWith> sharedWithsForSharedWithUser) {
         this.sharedWithsForSharedWithUser = sharedWithsForSharedWithUser;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<MunicipalityGroupMembers> getMunicipalityGroupMemberses() {
+        return this.municipalityGroupMemberses;
+    }
+
+    public void setMunicipalityGroupMemberses(List<MunicipalityGroupMembers> municipalityGroupMemberses) {
+        this.municipalityGroupMemberses = municipalityGroupMemberses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

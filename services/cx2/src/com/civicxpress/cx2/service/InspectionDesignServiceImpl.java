@@ -67,6 +67,14 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 	public InspectionDesign create(InspectionDesign inspectionDesign) {
         LOGGER.debug("Creating a new InspectionDesign with information: {}", inspectionDesign);
         InspectionDesign inspectionDesignCreated = this.wmGenericDao.create(inspectionDesign);
+        if(inspectionDesignCreated.getInspectionCategoryMappings() != null) {
+            for(InspectionCategoryMapping inspectionCategoryMapping : inspectionDesignCreated.getInspectionCategoryMappings()) {
+                inspectionCategoryMapping.setInspectionDesign(inspectionDesignCreated);
+                LOGGER.debug("Creating a new child InspectionCategoryMapping with information: {}", inspectionCategoryMapping);
+                inspectionCategoryMappingService.create(inspectionCategoryMapping);
+            }
+        }
+
         if(inspectionDesignCreated.getInspectionOutcomes() != null) {
             for(InspectionOutcome inspectionOutcome : inspectionDesignCreated.getInspectionOutcomes()) {
                 inspectionOutcome.setInspectionDesign(inspectionDesignCreated);
@@ -88,14 +96,6 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
                 masterInspectionse.setInspectionDesign(inspectionDesignCreated);
                 LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionse);
                 masterInspectionsService.create(masterInspectionse);
-            }
-        }
-
-        if(inspectionDesignCreated.getInspectionCategoryMappings() != null) {
-            for(InspectionCategoryMapping inspectionCategoryMapping : inspectionDesignCreated.getInspectionCategoryMappings()) {
-                inspectionCategoryMapping.setInspectionDesign(inspectionDesignCreated);
-                LOGGER.debug("Creating a new child InspectionCategoryMapping with information: {}", inspectionCategoryMapping);
-                inspectionCategoryMappingService.create(inspectionCategoryMapping);
             }
         }
         return inspectionDesignCreated;
@@ -174,6 +174,17 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<InspectionCategoryMapping> findAssociatedInspectionCategoryMappings(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionCategoryMappings");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionDesign.id = '" + id + "'");
+
+        return inspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<InspectionOutcome> findAssociatedInspectionOutcomes(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionOutcomes");
 
@@ -203,17 +214,6 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
         queryBuilder.append("inspectionDesign.id = '" + id + "'");
 
         return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<InspectionCategoryMapping> findAssociatedInspectionCategoryMappings(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated inspectionCategoryMappings");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("inspectionDesign.id = '" + id + "'");
-
-        return inspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**

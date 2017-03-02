@@ -81,8 +81,9 @@ public class FormTypes implements Serializable {
     private List<FormStatuses> formStatuseses = new ArrayList<>();
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
-    private List<InspectionSequence> inspectionSequences = new ArrayList<>();
+    private List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
+    private List<InspectionSequence> inspectionSequences = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -520,12 +521,12 @@ public class FormTypes implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<InspectionSequence> getInspectionSequences() {
-        return this.inspectionSequences;
+    public List<FormToInspectionCategoryMapping> getFormToInspectionCategoryMappings() {
+        return this.formToInspectionCategoryMappings;
     }
 
-    public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
-        this.inspectionSequences = inspectionSequences;
+    public void setFormToInspectionCategoryMappings(List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings) {
+        this.formToInspectionCategoryMappings = formToInspectionCategoryMappings;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -536,6 +537,16 @@ public class FormTypes implements Serializable {
 
     public void setMasterFormses(List<MasterForms> masterFormses) {
         this.masterFormses = masterFormses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<InspectionSequence> getInspectionSequences() {
+        return this.inspectionSequences;
+    }
+
+    public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
+        this.inspectionSequences = inspectionSequences;
     }
 
     @Override
