@@ -136,7 +136,7 @@
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn123">
                                                 <wm-container name="chatcontent" overflow="auto" class="chatcontent">
                                                     <wm-livelist itemclass="bind:item.users.id ===Variables.CurrentUserDetails.dataSet.id? &quot;clearfix mine&quot; : &quot;clearfix&quot;" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list chat"
-                                                    dataset="bind:Variables.FormMessagesData.dataSet" navigation="None" name="livelistFormMessages" nodatamessage="Start Chat by entering message" listclass="list-group">
+                                                    dataset="bind:Variables.FormMessagesData.dataSet" navigation="None" name="livelistFormMessages" nodatamessage="" listclass="list-group">
                                                         <wm-listtemplate layout="inline" name="listtemplate1">
                                                             <wm-container class="media-right" name="container4">
                                                                 <wm-picture name="userImage" width="24pt" height="24pt" picturesource="bind:!!Variables.CurrentUserDetails.dataSet.id ? 'services/cx2/Users/'+Variables.FormMessagesData.dataSet.data[$i].userId+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"
@@ -144,13 +144,15 @@
                                                             </wm-container>
                                                             <wm-container class="popover media-body" name="container5">
                                                                 <wm-label name="Content" caption="bind:Variables.FormMessagesData.dataSet.message" class="p media-heading"></wm-label>
-                                                                <wm-anchor margin="unset 0.5em" name="anchorViewTaggedPeople" caption="Tags" class="pull-left" iconclass="wi wi-tag" on-click="Widgets.dialogShowTaggedPeople.open()" textdecoration="underline"
-                                                                fontsize="8" fontunit="pt"></wm-anchor>
+                                                                <wm-anchor margin="unset 0.5em" name="anchorViewTaggedPeople" caption="Tagged" class="pull-left" iconclass="wi wi-tag" on-click="Widgets.dialogShowTaggedPeople.open()" fontsize="8"
+                                                                fontunit="pt"></wm-anchor>
                                                                 <wm-container class="pull-right" name="container5_1">
                                                                     <wm-label name="label4" class="small" caption="by " padding="unset 0.5em unset unset"></wm-label>
                                                                     <wm-label name="Name" class="small" caption="bind:Variables.FormMessagesData.dataSet.data[$i].users.firstName +&quot; &quot;+Variables.FormMessagesData.dataSet.data[$i].users.lastName"></wm-label>
-                                                                    <wm-label name="label4" class="small" caption="at " padding="unset 0.5em unset 1em"></wm-label>
-                                                                    <wm-label name="Time" caption="bind:Variables.FormMessagesData.dataSet.data[$i].postedAt | toDate: 'MM/dd hh:mm'" class="small"></wm-label>
+                                                                    <wm-label name="label4" class="small" caption="on" padding="unset 0.5em"></wm-label>
+                                                                    <wm-label name="Date" caption="bind:Variables.FormMessagesData.dataSet.data[$i].postedAt | toDate: 'MM/dd/yy'" class="small"></wm-label>
+                                                                    <wm-label padding="unset 0.5em" name="label75" caption="at" class="small"></wm-label>
+                                                                    <wm-label name="Time" caption="bind:Variables.FormMessagesData.dataSet.data[$i].postedAt | toDate: 'hh:mm a'" class="small"></wm-label>
                                                                 </wm-container>
                                                             </wm-container>
                                                         </wm-listtemplate>
@@ -158,17 +160,17 @@
                                                 </wm-container>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
-                                        <wm-gridrow name="gridrow81" padding="1em unset">
+                                        <wm-gridrow name="gridrow81" padding="2em unset 1em unset">
                                             <wm-gridcolumn columnwidth="1" name="gridcolumn157_2" horizontalalign="center">
                                                 <wm-picture class="media-object" width="32pt" height="32pt" name="picture3" picturesource="bind:!!Variables.CurrentUserDetails.dataSet.id ? 'services/cx2/Users/'+Variables.CurrentUserDetails.dataSet.id+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"
                                                 shape="circle"></wm-picture>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="8" name="gridcolumn158_1">
-                                                <wm-text name="textAddMessage" placeholder="Type a message....." updateon="default"></wm-text>
+                                                <wm-text name="textAddMessage" placeholder="Type a message..." updateon="default"></wm-text>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="3" name="gridcolumn159_1">
                                                 <wm-button class="btn-primary" caption="Post" type="button" margin="unset 0.5em" name="buttonAddMessage" iconclass="wi wi-send" on-click="buttonAddMessageClick($event, $scope)" disabled="bind:!Widgets.textAddMessage.datavalue"></wm-button>
-                                                <wm-button class="btn-default" caption="Tag People" type="button" margin="unset 0.5em" name="button17" iconclass="wi wi-tag" on-click="Widgets.dialogTagPeople.open()" badgevalue="bind:Variables.PeopleList.dataSet.length"></wm-button>
+                                                <wm-button class="btn-secondary" caption="Tag People" type="button" name="button17" iconclass="wi wi-tag" on-click="Widgets.dialogTagPeople.open()" badgevalue="bind:Variables.PeopleList.dataSet.length"></wm-button>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
@@ -746,33 +748,40 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewTagPeople">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Tag People" iconclass="wi wi-user" name="dialogTagPeople" width="70%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Tag People" iconclass="wi wi-tag" name="dialogTagPeople" width="70%">
             <wm-layoutgrid name="layoutgrid4">
-                <wm-gridrow name="gridrow20" padding="unset unset 2em unset">
+                <wm-gridrow name="gridrow20" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn31_3">
-                        <wm-label padding="unset 0.5em unset unset" name="Instructions" caption="You may tag as many people as you like by searching and clicking “Tag Person”." horizontalalign="center" textalign="left"></wm-label>
+                        <wm-label padding="unset 0.5em unset unset" name="Instructions" caption="You may tag as many people as you like by searching for them then clicking the “+Add Tag” button. Tagging somebody will send them an alert that they have been tagged on your message."
+                        horizontalalign="center" textalign="left"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow75_1" padding="unset unset 4em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn135">
+                        <wm-label name="label74" caption="When you are done tagging people, click the &quot;Close&quot; button below and post your message."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow13">
                     <wm-gridcolumn columnwidth="2" name="gridcolumn28_1"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="7" name="gridcolumn18_1">
                         <wm-composite name="composite5">
-                            <wm-label class="col-md-3 form-control-static" name="label8" caption="Search People" width="20%" fontweight="bold"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" name="label8" caption="User Search" width="20%" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container5" width="80%">
-                                <wm-search name="textSearchPeople" placeholder="Search by Name or Email Address" dataset="bind:Variables.GetAllUsers.dataSet" searchkey="email,fullName" displaylabel="bind:$[data[$i].email]" displayimagesrc="photo" datafield="All Fields"
-                                on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="true" width="100%" orderby="fullName:asc"></wm-search>
+                                <wm-search name="textSearchPeople" placeholder="Search by Name or Email Address" dataset="bind:Variables.GetAllUsers.dataSet" searchkey="email,fullName" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" displayimagesrc="photo"
+                                datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="true" width="100%" orderby="fullName:asc"></wm-search>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="3" name="gridcolumn24" horizontalalign="left">
-                        <wm-button class="btn-primary" caption="Tag People" type="button" name="ButtonTagPeople" iconclass="wi wi-tag-faces" on-click="ButtonTagPeopleClick($event, $scope)" horizontalalign="left"></wm-button>
+                        <wm-button class="btn-primary" caption="Add Tag" type="button" name="ButtonTagPeople" iconclass="wi wi-plus" on-click="ButtonTagPeopleClick($event, $scope)" horizontalalign="left" disabled="bind:!Widgets.textSearchPeople.datavalue"
+                        margin="unset 0.5em"></wm-button>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow14" padding="2px unset unset unset">
                     <wm-gridcolumn columnwidth="2" name="gridcolumn31"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="7" name="gridcolumn20_1" padding="2em unset">
-                        <wm-panel iconclass="wi wi-person-add" name="panel1" title="Tagged People">
-                            <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.PeopleList.dataSet" navigation="Scroll" name="livelistTaggedPeople" nodatamessage="No Person is selected. Please search for a Person">
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn20_1" padding="2em unset unset unset">
+                        <wm-panel iconclass="wi wi-tag" name="panel1" title="Tagged">
+                            <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.PeopleList.dataSet" navigation="Scroll" name="livelistTaggedPeople" nodatamessage="No people have been selected.">
                                 <wm-listtemplate layout="media" name="listtemplate1">
                                     <wm-layoutgrid name="layoutgrid5">
                                         <wm-gridrow name="gridrow17_1">
@@ -795,19 +804,18 @@
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="3" name="gridcolumn30"></wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow15_1"></wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions6">
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button14" iconclass="wi wi-cancel"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button14" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewShowTaggedPeople">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Tagged People" iconclass="wi wi-tag-faces" name="dialogShowTaggedPeople">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Tagged" iconclass="wi wi-tag" name="dialogShowTaggedPeople">
             <wm-dialogactions name="dialogactions7">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button18" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
-            <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.GetTaggedPeopleListByMessage.dataSet" navigation="Scroll" name="livelistTaggedPeopleForMessage" nodatamessage="No Person is selected. Please search for a Person"
+            <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.GetTaggedPeopleListByMessage.dataSet" navigation="Scroll" name="livelistTaggedPeopleForMessage" nodatamessage="No people have been tagged on this message."
             orderby="id:desc">
                 <wm-listtemplate layout="media" name="listtemplate1">
                     <wm-layoutgrid name="layoutgrid5">
