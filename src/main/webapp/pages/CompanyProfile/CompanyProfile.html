@@ -134,15 +134,15 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn27">
                         <wm-panel iconclass="wi wi-notepad" name="panel1" title="Licenses" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid1">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.VendorLicensesData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL">
-                                    <wm-grid-column binding="vendorLicenseTypes.licenseType" caption="License Type" type="string" generator="assigned" show="true" related-entity-name="VendorLicenseTypes" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="licenseNumber" caption="License Number" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="issuedDate" caption="Date Issued" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="issuingAuthority" caption="Issuing Authority" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="expirationDate" caption="Expiration Date" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="scope" caption="Scope" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.VendorLicensesData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                    <wm-grid-column binding="vendorLicenseTypes.licenseType" caption="License Type" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="VendorLicenseTypes" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="licenseNumber" caption="License Number" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="issuedDate" caption="Date Issued" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="issuingAuthority" caption="Issuing Authority" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="expirationDate" caption="Expiration Date" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="scope" caption="Scope" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                    <wm-grid-action key="addNewRow" display-name="New License" show="true" class="btn-primary" iconclass="wi wi-plus" title="New License" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
