@@ -484,7 +484,7 @@ public class FormService {
     	cx2Conn.setAutoCommit(false);
     	
     	try {
-    		saveFormData(cx2Conn, formTypeId, formGuid, fieldData);
+    		saveFormData(cx2Conn, formTypeId, formGuid, fieldData, false);
     		cx2Conn.commit();
     	} catch (SQLException e) {
     		cx2Conn.rollback();
@@ -495,8 +495,8 @@ public class FormService {
     	}
     }
     
-    private void saveFormData(Connection cx2Conn, Long formTypeId, String formGuid, HashMap<String, Object> fieldData) throws SQLException {
-    	if (!userIsAdmin(cx2Conn, formGuid) && !userCanEdit(cx2Conn, formGuid)) {
+    private void saveFormData(Connection cx2Conn, Long formTypeId, String formGuid, HashMap<String, Object> fieldData, Boolean isNew) throws SQLException {
+    	if (!isNew && !userIsAdmin(cx2Conn, formGuid) && !userCanEdit(cx2Conn, formGuid)) {
     		throw new SQLException("Permission Denied");
     	}
     	
@@ -563,10 +563,10 @@ public class FormService {
     public void uploadDocuments(MultipartFile[] files, String formGuid) throws SQLException {
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
         
-        if (!userIsAdmin(cx2Conn, formGuid) && !userCanEdit(cx2Conn, formGuid)) {
-    		cx2Conn.close();
-    		throw new SQLException("Permission Denied");
-    	}
+//        if (!userIsAdmin(cx2Conn, formGuid) && !userCanEdit(cx2Conn, formGuid)) {
+//    		cx2Conn.close();
+//    		throw new SQLException("Permission Denied");
+//    	}
         
     	cx2Conn.setAutoCommit(false);
     	
@@ -818,7 +818,7 @@ public class FormService {
 	    	 */
 	    	
 	    	// Save the form data
-	    	saveFormData(cx2Conn, masterFormData.getLong("FormTypeId"), formGuid, fieldData);
+	    	saveFormData(cx2Conn, masterFormData.getLong("FormTypeId"), formGuid, fieldData, true);
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE FormTypes SET CurrentPrefixNumber=:newPrefixNumber, PrefixNumberResetOn=:newResetTime WHERE ID=:formTypeId", queryParams);
 

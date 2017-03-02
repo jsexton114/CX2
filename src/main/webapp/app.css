@@ -50,3 +50,8 @@ div.app-checkbox label.disabled input[type=checkbox] + .caption:before {
     -ms-box-shadow: none !important;
     -o-box-shadow: none !important;
 }
+.wm-app .nav-pills > li.active > a,
+.wm-app .nav-pills > li.active > a:hover,
+.wm-app .nav-pills > li.active > a:focus {
+    color: #ef6262 !important;
+}
