@@ -72,8 +72,8 @@ public class Municipalities implements Serializable {
     private List<FormTypes> formTypeses = new ArrayList<>();
     private List<Gisrecords> gisrecordses = new ArrayList<>();
     private List<Holidays> holidayses = new ArrayList<>();
-    private List<InspectionCategories> inspectionCategorieses = new ArrayList<>();
     private List<InspectionDesign> inspectionDesigns = new ArrayList<>();
+    private List<InspectionCategories> inspectionCategorieses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
     private List<MunicipalityGroups> municipalityGroupses = new ArrayList<>();
@@ -421,22 +421,22 @@ public class Municipalities implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<InspectionCategories> getInspectionCategorieses() {
-        return this.inspectionCategorieses;
-    }
-
-    public void setInspectionCategorieses(List<InspectionCategories> inspectionCategorieses) {
-        this.inspectionCategorieses = inspectionCategorieses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<InspectionDesign> getInspectionDesigns() {
         return this.inspectionDesigns;
     }
 
     public void setInspectionDesigns(List<InspectionDesign> inspectionDesigns) {
         this.inspectionDesigns = inspectionDesigns;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<InspectionCategories> getInspectionCategorieses() {
+        return this.inspectionCategorieses;
+    }
+
+    public void setInspectionCategorieses(List<InspectionCategories> inspectionCategorieses) {
+        this.inspectionCategorieses = inspectionCategorieses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

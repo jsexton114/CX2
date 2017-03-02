@@ -59,12 +59,12 @@ public class UsersServiceImpl implements UsersService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Autowired
-	@Qualifier("cx2.MunicipalityGroupMembersService")
-	private MunicipalityGroupMembersService municipalityGroupMembersService;
-
-    @Autowired
 	@Qualifier("cx2.Gis2formsService")
 	private Gis2formsService gis2formsService;
+
+    @Autowired
+	@Qualifier("cx2.MunicipalityGroupMembersService")
+	private MunicipalityGroupMembersService municipalityGroupMembersService;
 
     @Autowired
 	@Qualifier("cx2.FormMessagesService")
@@ -91,12 +91,12 @@ public class UsersServiceImpl implements UsersService {
 	private ProjectTasksService projectTasksService;
 
     @Autowired
-	@Qualifier("cx2.ProjectFormsService")
-	private ProjectFormsService projectFormsService;
-
-    @Autowired
 	@Qualifier("cx2.ProjectsService")
 	private ProjectsService projectsService;
+
+    @Autowired
+	@Qualifier("cx2.ProjectFormsService")
+	private ProjectFormsService projectFormsService;
 
     @Autowired
 	@Qualifier("cx2.FormHistoryService")
@@ -239,11 +239,27 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getMunicipalityGroupMemberses() != null) {
+            for(MunicipalityGroupMembers municipalityGroupMemberse : usersCreated.getMunicipalityGroupMemberses()) {
+                municipalityGroupMemberse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child MunicipalityGroupMembers with information: {}", municipalityGroupMemberse);
+                municipalityGroupMembersService.create(municipalityGroupMemberse);
+            }
+        }
+
         if(usersCreated.getProjectFormses() != null) {
             for(ProjectForms projectFormse : usersCreated.getProjectFormses()) {
                 projectFormse.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child ProjectForms with information: {}", projectFormse);
                 projectFormsService.create(projectFormse);
+            }
+        }
+
+        if(usersCreated.getProjectGisrecordses() != null) {
+            for(ProjectGisrecords projectGisrecordse : usersCreated.getProjectGisrecordses()) {
+                projectGisrecordse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child ProjectGisrecords with information: {}", projectGisrecordse);
+                projectGisrecordsService.create(projectGisrecordse);
             }
         }
 
@@ -263,11 +279,19 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getProjectGisrecordses() != null) {
-            for(ProjectGisrecords projectGisrecordse : usersCreated.getProjectGisrecordses()) {
-                projectGisrecordse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child ProjectGisrecords with information: {}", projectGisrecordse);
-                projectGisrecordsService.create(projectGisrecordse);
+        if(usersCreated.getProjectTasksesForAssignedTo() != null) {
+            for(ProjectTasks projectTasksesForAssignedTo : usersCreated.getProjectTasksesForAssignedTo()) {
+                projectTasksesForAssignedTo.setUsersByAssignedTo(usersCreated);
+                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForAssignedTo);
+                projectTasksService.create(projectTasksesForAssignedTo);
+            }
+        }
+
+        if(usersCreated.getProjectTasksesForCreatedBy() != null) {
+            for(ProjectTasks projectTasksesForCreatedBy : usersCreated.getProjectTasksesForCreatedBy()) {
+                projectTasksesForCreatedBy.setUsersByCreatedBy(usersCreated);
+                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForCreatedBy);
+                projectTasksService.create(projectTasksesForCreatedBy);
             }
         }
 
@@ -284,22 +308,6 @@ public class UsersServiceImpl implements UsersService {
                 projectSharedWithsForProjectSharedWithUser.setUsersByProjectSharedWithUser(usersCreated);
                 LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWithsForProjectSharedWithUser);
                 projectSharedWithService.create(projectSharedWithsForProjectSharedWithUser);
-            }
-        }
-
-        if(usersCreated.getProjectTasksesForAssignedTo() != null) {
-            for(ProjectTasks projectTasksesForAssignedTo : usersCreated.getProjectTasksesForAssignedTo()) {
-                projectTasksesForAssignedTo.setUsersByAssignedTo(usersCreated);
-                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForAssignedTo);
-                projectTasksService.create(projectTasksesForAssignedTo);
-            }
-        }
-
-        if(usersCreated.getProjectTasksesForCreatedBy() != null) {
-            for(ProjectTasks projectTasksesForCreatedBy : usersCreated.getProjectTasksesForCreatedBy()) {
-                projectTasksesForCreatedBy.setUsersByCreatedBy(usersCreated);
-                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForCreatedBy);
-                projectTasksService.create(projectTasksesForCreatedBy);
             }
         }
 
@@ -324,14 +332,6 @@ public class UsersServiceImpl implements UsersService {
                 sharedWithsForSharedWithUser.setUsersBySharedWithUser(usersCreated);
                 LOGGER.debug("Creating a new child SharedWith with information: {}", sharedWithsForSharedWithUser);
                 sharedWithService.create(sharedWithsForSharedWithUser);
-            }
-        }
-
-        if(usersCreated.getMunicipalityGroupMemberses() != null) {
-            for(MunicipalityGroupMembers municipalityGroupMemberse : usersCreated.getMunicipalityGroupMemberses()) {
-                municipalityGroupMemberse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child MunicipalityGroupMembers with information: {}", municipalityGroupMemberse);
-                municipalityGroupMembersService.create(municipalityGroupMemberse);
             }
         }
 
@@ -576,6 +576,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return municipalityGroupMembersService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<ProjectForms> findAssociatedProjectFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectFormses");
 
@@ -583,6 +594,17 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("users.id = '" + id + "'");
 
         return projectFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectGisrecordses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return projectGisrecordsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -609,13 +631,24 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectGisrecordses");
+    public Page<ProjectTasks> findAssociatedProjectTasksesForAssignedTo(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTasksesForAssignedTo");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
+        queryBuilder.append("usersByAssignedTo.id = '" + id + "'");
 
-        return projectGisrecordsService.findAll(queryBuilder.toString(), pageable);
+        return projectTasksService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectTasks> findAssociatedProjectTasksesForCreatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTasksesForCreatedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
+
+        return projectTasksService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -638,28 +671,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersByProjectSharedWithUser.id = '" + id + "'");
 
         return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<ProjectTasks> findAssociatedProjectTasksesForAssignedTo(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectTasksesForAssignedTo");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByAssignedTo.id = '" + id + "'");
-
-        return projectTasksService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<ProjectTasks> findAssociatedProjectTasksesForCreatedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectTasksesForCreatedBy");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
-
-        return projectTasksService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -693,17 +704,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersBySharedWithUser.id = '" + id + "'");
 
         return sharedWithService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MunicipalityGroupMembers> findAssociatedMunicipalityGroupMemberses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated municipalityGroupMemberses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return municipalityGroupMembersService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -764,19 +764,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalityGroupMembersService instance
+	 * @param service Gis2formsService instance
 	 */
-	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
-        this.municipalityGroupMembersService = service;
+	protected void setGis2formsService(Gis2formsService service) {
+        this.gis2formsService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service Gis2formsService instance
+	 * @param service MunicipalityGroupMembersService instance
 	 */
-	protected void setGis2formsService(Gis2formsService service) {
-        this.gis2formsService = service;
+	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
+        this.municipalityGroupMembersService = service;
     }
 
     /**
@@ -836,19 +836,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service ProjectFormsService instance
+	 * @param service ProjectsService instance
 	 */
-	protected void setProjectFormsService(ProjectFormsService service) {
-        this.projectFormsService = service;
+	protected void setProjectsService(ProjectsService service) {
+        this.projectsService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service ProjectsService instance
+	 * @param service ProjectFormsService instance
 	 */
-	protected void setProjectsService(ProjectsService service) {
-        this.projectsService = service;
+	protected void setProjectFormsService(ProjectFormsService service) {
+        this.projectFormsService = service;
     }
 
     /**

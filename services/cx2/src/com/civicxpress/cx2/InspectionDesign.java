@@ -67,10 +67,10 @@ public class InspectionDesign implements Serializable {
     private Timestamp createdAt;
     private Users users;
     private Municipalities municipalities;
-    private List<InspectionCategoryMapping> inspectionCategoryMappings = new ArrayList<>();
     private List<InspectionOutcome> inspectionOutcomes = new ArrayList<>();
     private List<InspectionSequence> inspectionSequences = new ArrayList<>();
     private List<MasterInspections> masterInspectionses = new ArrayList<>();
+    private List<InspectionCategoryMapping> inspectionCategoryMappings = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -383,16 +383,6 @@ public class InspectionDesign implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
-    public List<InspectionCategoryMapping> getInspectionCategoryMappings() {
-        return this.inspectionCategoryMappings;
-    }
-
-    public void setInspectionCategoryMappings(List<InspectionCategoryMapping> inspectionCategoryMappings) {
-        this.inspectionCategoryMappings = inspectionCategoryMappings;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
     public List<InspectionOutcome> getInspectionOutcomes() {
         return this.inspectionOutcomes;
     }
@@ -419,6 +409,16 @@ public class InspectionDesign implements Serializable {
 
     public void setMasterInspectionses(List<MasterInspections> masterInspectionses) {
         this.masterInspectionses = masterInspectionses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
+    public List<InspectionCategoryMapping> getInspectionCategoryMappings() {
+        return this.inspectionCategoryMappings;
+    }
+
+    public void setInspectionCategoryMappings(List<InspectionCategoryMapping> inspectionCategoryMappings) {
+        this.inspectionCategoryMappings = inspectionCategoryMappings;
     }
 
     @Override

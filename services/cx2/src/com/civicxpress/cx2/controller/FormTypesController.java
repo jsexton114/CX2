@@ -148,13 +148,13 @@ public class FormTypesController {
 		return formTypesService.count(query);
 	}
 
-    @RequestMapping(value="/{id:.+}/formHistories", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the formHistories instance associated with the given id.")
+    @RequestMapping(value="/{id:.+}/formCategoryMappings", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the formCategoryMappings instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormHistory> findAssociatedFormHistories(@PathVariable("id") Integer id, Pageable pageable) {
+    public Page<FormCategoryMapping> findAssociatedFormCategoryMappings(@PathVariable("id") Integer id, Pageable pageable) {
 
-        LOGGER.debug("Fetching all associated formHistories");
-        return formTypesService.findAssociatedFormHistories(id, pageable);
+        LOGGER.debug("Fetching all associated formCategoryMappings");
+        return formTypesService.findAssociatedFormCategoryMappings(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/formStatuseses", method=RequestMethod.GET)
@@ -166,22 +166,13 @@ public class FormTypesController {
         return formTypesService.findAssociatedFormStatuseses(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/formCategoryMappings", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the formCategoryMappings instance associated with the given id.")
+    @RequestMapping(value="/{id:.+}/formHistories", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the formHistories instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormCategoryMapping> findAssociatedFormCategoryMappings(@PathVariable("id") Integer id, Pageable pageable) {
+    public Page<FormHistory> findAssociatedFormHistories(@PathVariable("id") Integer id, Pageable pageable) {
 
-        LOGGER.debug("Fetching all associated formCategoryMappings");
-        return formTypesService.findAssociatedFormCategoryMappings(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/formTypeFieldses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the formTypeFieldses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormTypeFields> findAssociatedFormTypeFieldses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated formTypeFieldses");
-        return formTypesService.findAssociatedFormTypeFieldses(id, pageable);
+        LOGGER.debug("Fetching all associated formHistories");
+        return formTypesService.findAssociatedFormHistories(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/formToInspectionCategoryMappings", method=RequestMethod.GET)
@@ -191,6 +182,15 @@ public class FormTypesController {
 
         LOGGER.debug("Fetching all associated formToInspectionCategoryMappings");
         return formTypesService.findAssociatedFormToInspectionCategoryMappings(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/formTypeFieldses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the formTypeFieldses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<FormTypeFields> findAssociatedFormTypeFieldses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated formTypeFieldses");
+        return formTypesService.findAssociatedFormTypeFieldses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/masterFormses", method=RequestMethod.GET)

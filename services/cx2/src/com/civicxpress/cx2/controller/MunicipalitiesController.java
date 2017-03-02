@@ -247,15 +247,6 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedHolidayses(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/inspectionCategorieses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the inspectionCategorieses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<InspectionCategories> findAssociatedInspectionCategorieses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated inspectionCategorieses");
-        return municipalitiesService.findAssociatedInspectionCategorieses(id, pageable);
-    }
-
     @RequestMapping(value="/{id:.+}/inspectionDesigns", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the inspectionDesigns instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -263,6 +254,15 @@ public class MunicipalitiesController {
 
         LOGGER.debug("Fetching all associated inspectionDesigns");
         return municipalitiesService.findAssociatedInspectionDesigns(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/inspectionCategorieses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionCategorieses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<InspectionCategories> findAssociatedInspectionCategorieses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated inspectionCategorieses");
+        return municipalitiesService.findAssociatedInspectionCategorieses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/masterFormses", method=RequestMethod.GET)
