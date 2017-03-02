@@ -30,6 +30,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.service.MasterInspectionsService;
 
@@ -65,7 +66,7 @@ public class MasterInspectionsController {
     @ApiOperation(value = "Returns the MasterInspections instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public MasterInspections getMasterInspections(@PathVariable("id") Integer id) throws EntityNotFoundException {
+    public MasterInspections getMasterInspections(@PathVariable("id") String id) throws EntityNotFoundException {
         LOGGER.debug("Getting MasterInspections with id: {}" , id);
 
         MasterInspections foundMasterInspections = masterInspectionsService.getById(id);
@@ -77,10 +78,10 @@ public class MasterInspectionsController {
     @ApiOperation(value = "Updates the MasterInspections instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public MasterInspections editMasterInspections(@PathVariable("id") Integer id, @RequestBody MasterInspections masterInspections) throws EntityNotFoundException {
-        LOGGER.debug("Editing MasterInspections with id: {}" , masterInspections.getId());
+    public MasterInspections editMasterInspections(@PathVariable("id") String id, @RequestBody MasterInspections masterInspections) throws EntityNotFoundException {
+        LOGGER.debug("Editing MasterInspections with id: {}" , masterInspections.getInspectionGuid());
 
-        masterInspections.setId(id);
+        masterInspections.setInspectionGuid(id);
         masterInspections = masterInspectionsService.update(masterInspections);
         LOGGER.debug("MasterInspections details with id: {}" , masterInspections);
 
@@ -90,7 +91,7 @@ public class MasterInspectionsController {
     @ApiOperation(value = "Deletes the MasterInspections instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteMasterInspections(@PathVariable("id") Integer id) throws EntityNotFoundException {
+    public boolean deleteMasterInspections(@PathVariable("id") String id) throws EntityNotFoundException {
         LOGGER.debug("Deleting MasterInspections with id: {}" , id);
 
         MasterInspections deletedMasterInspections = masterInspectionsService.delete(id);
@@ -141,6 +142,14 @@ public class MasterInspectionsController {
 		return masterInspectionsService.count(query);
 	}
 
+    @RequestMapping(value="/{id:.+}/inspectionGises", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionGises instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<InspectionGis> findAssociatedInspectionGises(@PathVariable("id") String id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated inspectionGises");
+        return masterInspectionsService.findAssociatedInspectionGises(id, pageable);
+    }
 
     /**
 	 * This setter method should only be used by unit tests

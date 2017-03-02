@@ -26,7 +26,7 @@ import javax.persistence.Table;
 public class InspectionOutcomeFee implements Serializable {
 
     private Integer id;
-    private Integer inspeOutcomeId;
+    private Integer inspectOutcomeId;
     private Integer amount;
     private String accountCode;
     private Integer orderToApply;
@@ -43,13 +43,13 @@ public class InspectionOutcomeFee implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "`InspeOutcomeId`", nullable = true, scale = 0, precision = 10)
-    public Integer getInspeOutcomeId() {
-        return this.inspeOutcomeId;
+    @Column(name = "`InspectOutcomeId`", nullable = true, scale = 0, precision = 10)
+    public Integer getInspectOutcomeId() {
+        return this.inspectOutcomeId;
     }
 
-    public void setInspeOutcomeId(Integer inspeOutcomeId) {
-        this.inspeOutcomeId = inspeOutcomeId;
+    public void setInspectOutcomeId(Integer inspectOutcomeId) {
+        this.inspectOutcomeId = inspectOutcomeId;
     }
 
     @Column(name = "`Amount`", nullable = true, scale = 0, precision = 10)
@@ -80,14 +80,14 @@ public class InspectionOutcomeFee implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`InspeOutcomeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`InspectOutcomeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public InspectionOutcome getInspectionOutcome() {
         return this.inspectionOutcome;
     }
 
     public void setInspectionOutcome(InspectionOutcome inspectionOutcome) {
         if(inspectionOutcome != null) {
-            this.inspeOutcomeId = inspectionOutcome.getId();
+            this.inspectOutcomeId = inspectionOutcome.getId();
         }
 
         this.inspectionOutcome = inspectionOutcome;

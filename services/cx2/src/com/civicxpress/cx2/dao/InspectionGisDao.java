@@ -13,14 +13,14 @@ import org.springframework.stereotype.Repository;
 
 import com.wavemaker.runtime.data.dao.WMGenericDaoImpl;
 
-import com.civicxpress.cx2.MasterInspections;
+import com.civicxpress.cx2.InspectionGis;
 
 /**
- * Specifies methods used to obtain and modify MasterInspections related information
+ * Specifies methods used to obtain and modify InspectionGis related information
  * which is stored in the database.
  */
-@Repository("cx2.MasterInspectionsDao")
-public class MasterInspectionsDao extends WMGenericDaoImpl<MasterInspections, String> {
+@Repository("cx2.InspectionGisDao")
+public class InspectionGisDao extends WMGenericDaoImpl<InspectionGis, Integer> {
 
     @Autowired
     @Qualifier("cx2Template")

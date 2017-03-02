@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterInspections;
 
 
@@ -34,12 +35,15 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MasterInspectionsServiceImpl.class);
 
+    @Autowired
+	@Qualifier("cx2.InspectionGisService")
+	private InspectionGisService inspectionGisService;
 
     @Autowired
     @Qualifier("cx2.MasterInspectionsDao")
-    private WMGenericDao<MasterInspections, Integer> wmGenericDao;
+    private WMGenericDao<MasterInspections, String> wmGenericDao;
 
-    public void setWMGenericDao(WMGenericDao<MasterInspections, Integer> wmGenericDao) {
+    public void setWMGenericDao(WMGenericDao<MasterInspections, String> wmGenericDao) {
         this.wmGenericDao = wmGenericDao;
     }
 
@@ -48,12 +52,19 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
 	public MasterInspections create(MasterInspections masterInspections) {
         LOGGER.debug("Creating a new MasterInspections with information: {}", masterInspections);
         MasterInspections masterInspectionsCreated = this.wmGenericDao.create(masterInspections);
+        if(masterInspectionsCreated.getInspectionGises() != null) {
+            for(InspectionGis inspectionGise : masterInspectionsCreated.getInspectionGises()) {
+                inspectionGise.setMasterInspections(masterInspectionsCreated);
+                LOGGER.debug("Creating a new child InspectionGis with information: {}", inspectionGise);
+                inspectionGisService.create(inspectionGise);
+            }
+        }
         return masterInspectionsCreated;
     }
 
 	@Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public MasterInspections getById(Integer masterinspectionsId) throws EntityNotFoundException {
+	public MasterInspections getById(String masterinspectionsId) throws EntityNotFoundException {
         LOGGER.debug("Finding MasterInspections by id: {}", masterinspectionsId);
         MasterInspections masterInspections = this.wmGenericDao.findById(masterinspectionsId);
         if (masterInspections == null){
@@ -65,7 +76,7 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public MasterInspections findById(Integer masterinspectionsId) {
+	public MasterInspections findById(String masterinspectionsId) {
         LOGGER.debug("Finding MasterInspections by id: {}", masterinspectionsId);
         return this.wmGenericDao.findById(masterinspectionsId);
     }
@@ -77,14 +88,14 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
         LOGGER.debug("Updating MasterInspections with information: {}", masterInspections);
         this.wmGenericDao.update(masterInspections);
 
-        Integer masterinspectionsId = masterInspections.getId();
+        String masterinspectionsId = masterInspections.getInspectionGuid();
 
         return this.wmGenericDao.findById(masterinspectionsId);
     }
 
     @Transactional(value = "cx2TransactionManager")
 	@Override
-	public MasterInspections delete(Integer masterinspectionsId) throws EntityNotFoundException {
+	public MasterInspections delete(String masterinspectionsId) throws EntityNotFoundException {
         LOGGER.debug("Deleting MasterInspections with id: {}", masterinspectionsId);
         MasterInspections deleted = this.wmGenericDao.findById(masterinspectionsId);
         if (deleted == null) {
@@ -122,7 +133,25 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
         return this.wmGenericDao.count(query);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<InspectionGis> findAssociatedInspectionGises(String inspectionGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionGises");
 
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("masterInspections.inspectionGuid = '" + inspectionGuid + "'");
+
+        return inspectionGisService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service InspectionGisService instance
+	 */
+	protected void setInspectionGisService(InspectionGisService service) {
+        this.inspectionGisService = service;
+    }
 
 }
 

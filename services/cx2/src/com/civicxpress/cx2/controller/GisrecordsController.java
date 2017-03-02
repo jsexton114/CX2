@@ -34,6 +34,7 @@ import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
+import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.service.GisrecordsService;
@@ -171,6 +172,15 @@ public class GisrecordsController {
 
         LOGGER.debug("Fetching all associated giscontactses");
         return gisrecordsService.findAssociatedGiscontactses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/inspectionGises", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionGises instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<InspectionGis> findAssociatedInspectionGises(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated inspectionGises");
+        return gisrecordsService.findAssociatedInspectionGises(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/masterInspectionses", method=RequestMethod.GET)

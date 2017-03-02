@@ -36,7 +36,7 @@ public class InspectionDesign implements Serializable {
 
     private Integer id;
     private Integer municipalityId;
-    private String inspecDesignName;
+    private String inspectDesignName;
     private String instructions;
     private Boolean active;
     private Boolean municipalityInternalInspection;
@@ -88,13 +88,13 @@ public class InspectionDesign implements Serializable {
         this.municipalityId = municipalityId;
     }
 
-    @Column(name = "`InspecDesignName`", nullable = true, length = 255)
-    public String getInspecDesignName() {
-        return this.inspecDesignName;
+    @Column(name = "`InspectDesignName`", nullable = true, length = 255)
+    public String getInspectDesignName() {
+        return this.inspectDesignName;
     }
 
-    public void setInspecDesignName(String inspecDesignName) {
-        this.inspecDesignName = inspecDesignName;
+    public void setInspectDesignName(String inspectDesignName) {
+        this.inspectDesignName = inspectDesignName;
     }
 
     @Column(name = "`Instructions`", nullable = true, length = 1000)

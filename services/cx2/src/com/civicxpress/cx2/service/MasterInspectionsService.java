@@ -14,6 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterInspections;
 
 /**
@@ -39,7 +40,7 @@ public interface MasterInspectionsService {
 	 * @return MasterInspections associated with the given masterinspectionsId.
      * @throws EntityNotFoundException If no MasterInspections is found.
 	 */
-	MasterInspections getById(Integer masterinspectionsId) throws EntityNotFoundException;
+	MasterInspections getById(String masterinspectionsId) throws EntityNotFoundException;
 
     /**
 	 * Find and return the MasterInspections by given id if exists, returns null otherwise.
@@ -47,7 +48,7 @@ public interface MasterInspectionsService {
 	 * @param masterinspectionsId The id of the MasterInspections to get; value cannot be null.
 	 * @return MasterInspections associated with the given masterinspectionsId.
 	 */
-	MasterInspections findById(Integer masterinspectionsId);
+	MasterInspections findById(String masterinspectionsId);
 
 
 	/**
@@ -68,7 +69,7 @@ public interface MasterInspectionsService {
 	 * @return The deleted MasterInspections.
 	 * @throws EntityNotFoundException if no MasterInspections found with the given id.
 	 */
-	MasterInspections delete(Integer masterinspectionsId) throws EntityNotFoundException;
+	MasterInspections delete(String masterinspectionsId) throws EntityNotFoundException;
 
 	/**
 	 * Find all MasterInspections matching the given QueryFilter(s).
@@ -125,6 +126,17 @@ public interface MasterInspectionsService {
 	 */
 	long count(String query);
 
+    /*
+     * Returns the associated inspectionGises for given MasterInspections id.
+     *
+     * @param inspectionGuid value of inspectionGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated InspectionGis instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<InspectionGis> findAssociatedInspectionGises(String inspectionGuid, Pageable pageable);
 
 }
 
