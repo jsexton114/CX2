@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.lang.Integer;
 import java.lang.Boolean;
 import org.springframework.web.multipart.MultipartFile;
+import java.lang.Exception;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,9 +77,9 @@ public class FormController {
         formService.setFormStatus(formGuid, formStatusId, comments);
     }
 
-    @RequestMapping(value = "/submitForm", produces = "application/json", method = RequestMethod.POST)
-    public String submitForm(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "behalfOfUserId", required = false) Long behalfOfUserId, @RequestParam(value = "ownerId", required = false) Long ownerId, @RequestParam(value = "locationIds", required = false) String locationIds, @RequestParam(value = "vendorIds", required = false) String vendorIds, @RequestParam(value = "primaryVendorId", required = false) Long primaryVendorId, @RequestParam(value = "usersWithWhomToShare", required = false) String usersWithWhomToShare, @RequestBody HashMap<String, Object> fieldData) throws SQLException {
-        return formService.submitForm(formTypeId, behalfOfUserId, ownerId, locationIds, vendorIds, primaryVendorId, usersWithWhomToShare, fieldData);
+    @RequestMapping(value = "/submitForm", produces = "application/json", method = RequestMethod.POST, consumes = "multipart/form-data")
+    public String submitForm(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "behalfOfUserId", required = false) Long behalfOfUserId, @RequestParam(value = "ownerId", required = false) Long ownerId, @RequestParam(value = "locationIds", required = false) String locationIds, @RequestParam(value = "vendorIds", required = false) String vendorIds, @RequestParam(value = "primaryVendorId", required = false) Long primaryVendorId, @RequestParam(value = "usersWithWhomToShare", required = false) String usersWithWhomToShare, @RequestParam(value = "fieldDataJsonString", required = false) String fieldDataJsonString, @RequestPart(value = "attachments") MultipartFile[] attachments) throws Exception {
+        return formService.submitForm(formTypeId, behalfOfUserId, ownerId, locationIds, vendorIds, primaryVendorId, usersWithWhomToShare, fieldDataJsonString, attachments);
     }
 
     @RequestMapping(value = "/uploadDocuments", method = RequestMethod.POST, consumes = "multipart/form-data")

@@ -6902,28 +6902,5 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "Form"
-  },
-  "svUploadDocuments" : {
-    "_id" : "wm-svUploadDocuments-wm.ServiceVariable-1486491805660",
-    "name" : "svUploadDocuments",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ ],
-    "service" : "FormService",
-    "operation" : "uploadDocuments",
-    "operationId" : "FormController_uploadDocuments",
-    "operationType" : "post",
-    "serviceType" : "JavaService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "svUploadDocumentsonSuccess($event, $scope)",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "Form"
   }
 }

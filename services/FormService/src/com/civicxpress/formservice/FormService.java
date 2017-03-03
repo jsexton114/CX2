@@ -18,6 +18,7 @@ import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -30,6 +31,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.civicxpress.fileservice.FileService.WMFile;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.tekdog.dbutils.*;
 
 //import com.civicxpress.formservice.model.*;
@@ -463,11 +469,9 @@ public class FormService {
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, CXVendorId, OwnerId, FormStatusId, Closed) "
 	    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :primaryVendorId, :ownerId, :newFormStatusId, 0)", queryParams);
-	    	
-	    	cx2Conn.commit();
+
 	    	muniDbConn.commit();
     	} catch (SQLException e) {
-    		cx2Conn.rollback();
     		muniDbConn.rollback();
     		logger.error(e.getLocalizedMessage());
     		throw e;
@@ -560,39 +564,42 @@ public class FormService {
     	}
     }
     
-    public void uploadDocuments(MultipartFile[] files, String formGuid) throws SQLException {
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
-        
-//        if (!userIsAdmin(cx2Conn, formGuid) && !userCanEdit(cx2Conn, formGuid)) {
-//    		cx2Conn.close();
-//    		throw new SQLException("Permission Denied");
-//    	}
-        
-    	cx2Conn.setAutoCommit(false);
-    	
+    private void uploadDocuments(Connection cx2Conn, MultipartFile[] files, String formGuid, Boolean isNew) throws SQLException, IOException {
     	StringBuilder documentAddQuery = new StringBuilder("INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents) VALUES ");
+    	
+    	if (!isNew && !userIsAdmin(cx2Conn, formGuid) && !userCanEdit(cx2Conn, formGuid)) {
+	  		throw new SQLException("Permission Denied");
+	  	}
     	
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addString("formGuid", formGuid);
+
+        for (int i = 0; i < files.length; i++) {
+        	MultipartFile file = files[i];
+        	
+        	if (i > 0) {
+        		documentAddQuery.append(',');
+        	}
+			
+        	queryParams.addString("doc"+i+"filename", file.getOriginalFilename());
+        	queryParams.addString("doc"+i+"mimetype", file.getContentType());
+        	queryParams.addBytes("doc"+i+"contents", file.getBytes());
+        	
+        	documentAddQuery.append("(:formGuid, :doc"+i+"filename, :doc"+i+"mimetype, :doc"+i+"contents)");
+        }
+        
+        if (files.length > 0) {
+        	DBUtils.simpleUpdateQuery(cx2Conn, documentAddQuery.toString(), queryParams);
+        }
+    }
+    
+    public void uploadDocuments(MultipartFile[] files, String formGuid) throws SQLException {
+        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        
+    	cx2Conn.setAutoCommit(false);
     	
     	try {
-	        for (int i = 0; i < files.length; i++) {
-	        	MultipartFile file = files[i];
-	        	
-	        	if (i > 0) {
-	        		documentAddQuery.append(',');
-	        	}
-				
-	        	queryParams.addString("doc"+i+"filename", file.getOriginalFilename());
-	        	queryParams.addString("doc"+i+"mimetype", file.getContentType());
-	        	queryParams.addBytes("doc"+i+"contents", file.getBytes());
-	        	
-	        	documentAddQuery.append("(:formGuid, :doc"+i+"filename, :doc"+i+"mimetype, :doc"+i+"contents)");
-	        }
-	        
-	        if (files.length > 0) {
-	        	DBUtils.simpleUpdateQuery(cx2Conn, documentAddQuery.toString(), queryParams);
-	        }
+	        uploadDocuments(cx2Conn, files, formGuid, false);
 	        
 	        cx2Conn.commit();
         } catch (IOException e) {
@@ -743,10 +750,15 @@ public class FormService {
 		return queryParams;
     }
     
-    public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, HashMap<String, Object> fieldData) throws SQLException {
+    public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, MultipartFile[] attachments) throws Exception {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
+    	
+    	Gson gson = new Gson();
+    	HashMap<String, Object> fieldData = new HashMap<String, Object>();
+    	Type genericType = new TypeToken<HashMap<String, Object>>(){}.getType();
+    	fieldData = gson.fromJson(fieldDataJsonString, genericType);
     	
     	try {
 	    	DBQueryParams queryParams = new DBQueryParams();
@@ -928,6 +940,9 @@ public class FormService {
 	    			DBUtils.simpleUpdateQuery(cx2Conn, formFeesQuery.toString(), feeQueryParams);
 	    		}
 	    	}
+	    	
+	    	// Upload attachments
+	    	uploadDocuments(cx2Conn, attachments, formGuid, true);
 	    	
 	    	// Finish up by updating MasterForms and adding a history entry
 	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(1).getLong("ID");

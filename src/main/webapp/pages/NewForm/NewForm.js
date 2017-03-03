@@ -158,6 +158,21 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
                 return true;
             }
         });
+
+        // Form data
+        $scope.Variables.svSubmitForm.setInput('fieldDataJsonString', JSON.stringify($scope.formData));
+
+        // Documents
+        if ($scope.documents && $scope.Variables.stvDocuments.dataSet.length > 0) {
+            var documentFiles = [];
+
+            $scope.Variables.stvDocuments.dataSet.forEach(function(document, index) {
+                documentFiles.push(document.Contents);
+            });
+
+            $scope.Variables.svSubmitForm.setInput('attachments', documentFiles);
+        }
+
         $scope.Variables.svSubmitForm.update();
     }
 
@@ -176,21 +191,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
 
     $scope.svSubmitFormonSuccess = function(variable, data) {
-        debugger
-        if ($scope.documents && $scope.Variables.stvDocuments.dataSet.length > 0) {
-            $scope.Variables.svUploadDocuments.setInput('formGuid', data);
-            var documentFiles = [];
-
-            $scope.Variables.stvDocuments.dataSet.forEach(function(document, index) {
-                documentFiles.push(document.Contents);
-            });
-
-            $scope.Variables.svUploadDocuments.setInput('files', documentFiles);
-
-            $scope.Variables.svUploadDocuments.update();
-        } else {
-            $scope.Variables.goToPage_UserOpenForms.navigate();
-        }
+        $scope.Variables.goToPage_UserOpenForms.navigate();
     };
 
     $scope.checkboxNewUserChange = function($event, $isolateScope, newVal, oldVal) {
