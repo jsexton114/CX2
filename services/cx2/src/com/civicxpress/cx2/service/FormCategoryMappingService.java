@@ -49,6 +49,15 @@ public interface FormCategoryMappingService {
 	 */
 	FormCategoryMapping findById(Integer formcategorymappingId);
 
+    /**
+	 * Find and return the FormCategoryMapping for given formTypeId  andformCategoryId  if exists.
+	 *
+	 * @param formTypeId value of formTypeId; value cannot be null.
+	 * @param formCategoryId value of formCategoryId; value cannot be null.
+	 * @return FormCategoryMapping associated with the given inputs.
+     * @throws EntityNotFoundException if no matching FormCategoryMapping found.
+	 */
+    FormCategoryMapping getByFormTypeIdAndFormCategoryId(Integer formTypeId, Integer formCategoryId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing FormCategoryMapping. It replaces all fields of the existing FormCategoryMapping with the given formCategoryMapping.

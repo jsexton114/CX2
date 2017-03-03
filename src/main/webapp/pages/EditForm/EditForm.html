@@ -267,13 +267,13 @@
                                                     <wm-grid-action key="addNewRow" display-name="Add Category" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Category" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
-                                                <wm-liveform novalidate="false" errormessage="" title="Add Form Category" formlayout="dialog" iconclass="wi wi-payment" dataset="bind:Variables.FormCategories.dataSet" captionalign="left" captionposition="top"
-                                                name="liveform3">
+                                                <wm-liveform novalidate="false" errormessage="The selected category has already been assigned to this form." title="Add Form Category" formlayout="dialog" iconclass="wi wi-payment" dataset="bind:Variables.FormCategories.dataSet"
+                                                captionalign="left" captionposition="top" name="liveform3">
                                                     <wm-layoutgrid columns="1" name="layoutgrid9">
                                                         <wm-gridrow name="gridrow37">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn62">
                                                                 <wm-form-field name="formCategories" displayname="What category would you like to assign to this form?" show="true" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true"
-                                                                required="required" widget="select" dataset="bind:Variables.Categories.dataSet" datafield="All Fields" displayfield="category" orderby="category:asc" placeholder="Select Category"></wm-form-field>
+                                                                readonly="false" required="true" widget="select" dataset="bind:Variables.Categories.dataSet" datafield="All Fields" displayfield="category" orderby="category:asc" placeholder="Select Category"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow30">
@@ -282,10 +282,9 @@
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
-                                                    <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" widget="select" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"
-                                                    placeholder="Select value"></wm-form-field>
-                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"
-                                                    inputtype="number" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="false"
+                                                    widget="select" defaultvalue="bind:Variables.CurrentFormObj.firstRecord" placeholder="Select value"></wm-form-field>
                                                     <wm-form-action key="save" display-name="Add Category" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add Category" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
                                                     update-mode="true"></wm-form-action>

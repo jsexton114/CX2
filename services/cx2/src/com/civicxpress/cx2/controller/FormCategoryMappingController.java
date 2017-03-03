@@ -97,6 +97,12 @@ public class FormCategoryMappingController {
 
         return deletedFormCategoryMapping != null;
     }
+    @RequestMapping(value = "/formTypeId-formCategoryId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching FormCategoryMapping with given unique key values.")
+    public FormCategoryMapping getByFormTypeIdAndFormCategoryId(@RequestParam(name = "formTypeId") Integer formTypeId, @RequestParam(name = "formCategoryId") Integer formCategoryId) {
+        LOGGER.debug("Getting FormCategoryMapping with uniques key FormTypeIdAndFormCategoryId");
+        return formCategoryMappingService.getByFormTypeIdAndFormCategoryId(formTypeId, formCategoryId);
+    }
 
     /**
      * @deprecated Use {@link #findFormCategoryMappings(String, Pageable)} instead.
