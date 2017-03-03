@@ -39,8 +39,8 @@
                                                     <wm-grid-action key="addNewRow" display-name="Add Category" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Category" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
-                                                <wm-liveform novalidate="false" errormessage="" title="Add Inspection Category" formlayout="dialog" iconclass="wi wi-group-work" dataset="bind:Variables.InspectionCategoryMappingData.dataSet" captionalign="left"
-                                                captionposition="top" name="liveformInspectioncategorymappin">
+                                                <wm-liveform novalidate="false" errormessage="The selected category has already been assigned to this inspection." title="Add Inspection Category" formlayout="dialog" iconclass="wi wi-group-work" dataset="bind:Variables.InspectionCategoryMappingData.dataSet"
+                                                captionalign="left" captionposition="top" name="liveformInspectioncategorymappin">
                                                     <wm-layoutgrid columns="1" name="layoutgrid7">
                                                         <wm-gridrow name="gridrow28">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn38">
@@ -55,9 +55,10 @@
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
-                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
-                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false"
-                                                    required="false" widget="select" placeholder="Select value" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord"></wm-form-field>
+                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false" required="false"
+                                                    widget="select" placeholder="Select value" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord"></wm-form-field>
+                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
+                                                    placeholder="Enter value"></wm-form-field>
                                                     <wm-form-action key="save" display-name="Add Category" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add Category" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
                                                     update-mode="true"></wm-form-action>
