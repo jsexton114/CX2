@@ -2588,7 +2588,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -2613,7 +2613,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -2621,16 +2621,16 @@
       "unique" : false
     }, {
       "columnValue" : {
-        "type" : "user-defined",
+        "type" : "server-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : ""
+        "variableType" : "DATE_TIME"
       },
       "fieldName" : "addedAt",
       "foreignKey" : false,
       "generatorType" : "assigned",
       "generatorValue" : null,
-      "javaType" : "timestamp",
+      "javaType" : "datetime",
       "length" : 0,
       "name" : "AddedAt",
       "nullable" : true,
@@ -2642,10 +2642,16 @@
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
-      "sqlType" : "timestamp",
+      "sqlType" : "datetime",
       "unique" : false
     } ],
-    "constraints" : [ ],
+    "constraints" : [ {
+      "columns" : [ "FormTypeId", "InspectionCategoryId" ],
+      "composite" : true,
+      "name" : "UK_FormToInspectionCategw6Nop",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
     "entityName" : "FormToInspectionCategoryMapping",
     "fullyQualifiedName" : "com.civicxpress.cx2.FormToInspectionCategoryMapping",
     "name" : "FormToInspectionCategoryMapping",

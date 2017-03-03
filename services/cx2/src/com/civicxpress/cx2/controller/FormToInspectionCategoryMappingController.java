@@ -97,6 +97,12 @@ public class FormToInspectionCategoryMappingController {
 
         return deletedFormToInspectionCategoryMapping != null;
     }
+    @RequestMapping(value = "/formTypeId-inspectionCategoryId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching FormToInspectionCategoryMapping with given unique key values.")
+    public FormToInspectionCategoryMapping getByFormTypeIdAndInspectionCategoryId(@RequestParam(name = "formTypeId") Integer formTypeId, @RequestParam(name = "inspectionCategoryId") Integer inspectionCategoryId) {
+        LOGGER.debug("Getting FormToInspectionCategoryMapping with uniques key FormTypeIdAndInspectionCategoryId");
+        return formToInspectionCategoryMappingService.getByFormTypeIdAndInspectionCategoryId(formTypeId, inspectionCategoryId);
+    }
 
     /**
      * @deprecated Use {@link #findFormToInspectionCategoryMappings(String, Pageable)} instead.

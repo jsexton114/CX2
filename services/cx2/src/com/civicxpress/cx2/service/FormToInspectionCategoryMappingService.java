@@ -49,6 +49,15 @@ public interface FormToInspectionCategoryMappingService {
 	 */
 	FormToInspectionCategoryMapping findById(Integer formtoinspectioncategorymappingId);
 
+    /**
+	 * Find and return the FormToInspectionCategoryMapping for given formTypeId  andinspectionCategoryId  if exists.
+	 *
+	 * @param formTypeId value of formTypeId; value cannot be null.
+	 * @param inspectionCategoryId value of inspectionCategoryId; value cannot be null.
+	 * @return FormToInspectionCategoryMapping associated with the given inputs.
+     * @throws EntityNotFoundException if no matching FormToInspectionCategoryMapping found.
+	 */
+    FormToInspectionCategoryMapping getByFormTypeIdAndInspectionCategoryId(Integer formTypeId, Integer inspectionCategoryId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing FormToInspectionCategoryMapping. It replaces all fields of the existing FormToInspectionCategoryMapping with the given formToInspectionCategoryMapping.
