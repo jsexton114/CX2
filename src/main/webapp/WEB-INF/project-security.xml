@@ -74,6 +74,7 @@
         <security:intercept-url pattern="/services/cx2/Roles" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/States" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/UserSubscriptions" access="permitAll" method="POST"/>
+        <security:intercept-url pattern="/services/cx2/UserSubscriptions/export/*" access="isAuthenticated()" method="POST"/>
         <security:intercept-url pattern="/services/cx2/Users" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/Users" access="hasAnyRole('ROLE_CXAdmin')" method="GET"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/InsertUserPreference" access="permitAll" method="POST"/>
@@ -85,6 +86,7 @@
         <security:intercept-url pattern="/services/resetPasswordMail/sendWelcomeEmail" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/security/**" access="permitAll"/>
         <security:intercept-url pattern="/services/servicedefs" access="permitAll"/>
+        <security:intercept-url pattern="/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/" access="isAuthenticated()"/>
         <security:intercept-url pattern="/**" access="isAuthenticated()"/>
         <security:headers defaults-disabled="true">

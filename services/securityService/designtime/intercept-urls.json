@@ -133,4 +133,9 @@
   "permission" : "Role",
   "roles" : [ "CXAdmin" ],
   "httpMethod" : "GET"
+}, {
+  "urlPattern" : "/services/cx2/UserSubscriptions/export/{exportType}",
+  "permission" : "Authenticated",
+  "roles" : [ ],
+  "httpMethod" : "POST"
 } ]

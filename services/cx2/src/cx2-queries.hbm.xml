@@ -613,6 +613,13 @@
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="deleteToken">
+        <![CDATA[
+        delete from UserPasswordResetTokens where Token =:token
+        ]]>
+    <query-param name="token" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="CountOfAllProjectsForUsersAndSharedWith">
         <![CDATA[
         select count(*) as count from Projects where  Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))
@@ -629,13 +636,6 @@
     <query-param name="Active" type="java.lang.Boolean"/>
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="deleteToken">
-        <![CDATA[
-        delete from UserPasswordResetTokens where Token =:token
-        ]]>
-    <query-param name="token" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="InsertTagForMessage">
@@ -734,6 +734,20 @@
     <query-param name="formCategory" type="java.lang.Integer"/>
     <query-param name="isActive" type="java.lang.Boolean"/>
     <query-param name="userId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfInspectionDesignByMunicipality">
+        <![CDATA[
+        select count(*) as count from InspectionDesign where MunicipalityId=:MunicipalityId
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfInspectionDesignByMunicipality__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from InspectionDesign where MunicipalityId=:MunicipalityId) wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="MapAsAdminForVendor">

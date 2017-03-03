@@ -171,11 +171,11 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfUserFormsForMunicipality(ExportType exportType, Integer municipalityId, Boolean closed, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
 
+    Integer executeDeleteToken(String token);
+
     Page<CountOfAllProjectsForUsersAndSharedWithResponse> executeCountOfAllProjectsForUsersAndSharedWith(Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
 
     Downloadable exportCountOfAllProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
-
-    Integer executeDeleteToken(String token);
 
     Integer executeInsertTagForMessage(InsertTagForMessageRequest insertTagForMessageRequest);
 
@@ -198,6 +198,10 @@ public interface Cx2QueryExecutorService {
     Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(Integer formCategory, Boolean isActive, Integer userId, Pageable pageable);
 
     Downloadable exportGetFormTypesByCategoriesAndMunicipalities(ExportType exportType, Integer formCategory, Boolean isActive, Integer userId, Pageable pageable);
+
+    Page<CountOfInspectionDesignByMunicipalityResponse> executeCountOfInspectionDesignByMunicipality(Integer municipalityId, Pageable pageable);
+
+    Downloadable exportCountOfInspectionDesignByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable);
 
     Integer executeMapAsAdminForVendor(MapAsAdminForVendorRequest mapAsAdminForVendorRequest);
 

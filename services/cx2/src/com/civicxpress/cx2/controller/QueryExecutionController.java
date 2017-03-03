@@ -775,6 +775,16 @@ public class QueryExecutionController {
         return queryService.exportCountOfUserFormsForMunicipality(exportType, municipalityId, closed, creatorUser, sharedWithUser, pageable);
     }
 
+    @RequestMapping(value = "/queries/deleteToken", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "to deleted token after changing password")
+    public Integer executeDeleteToken(@RequestParam(value = "token", required = false) String token) {
+        LOGGER.debug("Executing named query: deleteToken");
+        Integer _result = queryService.executeDeleteToken(token);
+        LOGGER.debug("got the result for named query: deleteToken, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/CountOfAllProjectsForUsersAndSharedWith", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CountOfAllProjectsForUsersAndSharedWith")
@@ -792,16 +802,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: CountOfAllProjectsForUsersAndSharedWith");
 
         return queryService.exportCountOfAllProjectsForUsersAndSharedWith(exportType, active, creatorUser, sharedWithUser, pageable);
-    }
-
-    @RequestMapping(value = "/queries/deleteToken", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "to deleted token after changing password")
-    public Integer executeDeleteToken(@RequestParam(value = "token", required = false) String token) {
-        LOGGER.debug("Executing named query: deleteToken");
-        Integer _result = queryService.executeDeleteToken(token);
-        LOGGER.debug("got the result for named query: deleteToken, result:{}", _result);
-        return _result;
     }
 
     @RequestMapping(value = "/queries/InsertTagForMessage", method = RequestMethod.POST)
@@ -908,6 +908,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetFormTypesByCategoriesAndMunicipalities");
 
         return queryService.exportGetFormTypesByCategoriesAndMunicipalities(exportType, formCategory, isActive, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/CountOfInspectionDesignByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountOfInspectionDesignByMunicipality")
+    public Page<CountOfInspectionDesignByMunicipalityResponse> executeCountOfInspectionDesignByMunicipality(@RequestParam(value = "MunicipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfInspectionDesignByMunicipality");
+        Page<CountOfInspectionDesignByMunicipalityResponse> _result = queryService.executeCountOfInspectionDesignByMunicipality(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: CountOfInspectionDesignByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfInspectionDesignByMunicipality")
+    @RequestMapping(value = "/queries/CountOfInspectionDesignByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfInspectionDesignByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfInspectionDesignByMunicipality");
+
+        return queryService.exportCountOfInspectionDesignByMunicipality(exportType, municipalityId, pageable);
     }
 
     @RequestMapping(value = "/queries/MapAsAdminForVendor", method = RequestMethod.POST)

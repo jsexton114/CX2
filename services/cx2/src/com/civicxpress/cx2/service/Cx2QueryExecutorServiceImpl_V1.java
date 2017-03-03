@@ -572,6 +572,16 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQuery("CountOfUserFormsForMunicipality", params, Object.class, pageable);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeDeleteToken(String token) {
+        Map params = new HashMap(1);
+
+        params.put("token", token);
+
+        return queryExecutor.executeNamedQueryForUpdate("deleteToken", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<Object> executeCountOfAllProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser) {
@@ -582,16 +592,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("sharedWithUser", sharedWithUser);
 
         return queryExecutor.executeNamedQuery("CountOfAllProjectsForUsersAndSharedWith", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeDeleteToken(String token) {
-        Map params = new HashMap(1);
-
-        params.put("token", token);
-
-        return queryExecutor.executeNamedQueryForUpdate("deleteToken", params);
     }
 
     @Transactional(value = "cx2TransactionManager")

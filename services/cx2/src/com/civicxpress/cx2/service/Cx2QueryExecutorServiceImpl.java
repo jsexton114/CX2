@@ -870,6 +870,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("CountOfUserFormsForMunicipality", params, exportType, CountOfUserFormsForMunicipalityResponse.class, pageable);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeDeleteToken(String token) {
+        Map params = new HashMap(1);
+
+        params.put("token", token);
+
+        return queryExecutor.executeNamedQueryForUpdate("deleteToken", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<CountOfAllProjectsForUsersAndSharedWithResponse> executeCountOfAllProjectsForUsersAndSharedWith(Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable) {
@@ -892,16 +902,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("sharedWithUser", sharedWithUser);
 
         return queryExecutor.exportNamedQueryData("CountOfAllProjectsForUsersAndSharedWith", params, exportType, CountOfAllProjectsForUsersAndSharedWithResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeDeleteToken(String token) {
-        Map params = new HashMap(1);
-
-        params.put("token", token);
-
-        return queryExecutor.executeNamedQueryForUpdate("deleteToken", params);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -1023,6 +1023,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("userId", userId);
 
         return queryExecutor.exportNamedQueryData("GetFormTypesByCategoriesAndMunicipalities", params, exportType, GetFormTypesByCategoriesAndMunicipalitiesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountOfInspectionDesignByMunicipalityResponse> executeCountOfInspectionDesignByMunicipality(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("CountOfInspectionDesignByMunicipality", params, CountOfInspectionDesignByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountOfInspectionDesignByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("CountOfInspectionDesignByMunicipality", params, exportType, CountOfInspectionDesignByMunicipalityResponse.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")

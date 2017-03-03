@@ -166,10 +166,10 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeCountOfUserFormsForMunicipality(Pageable pageable, Integer municipalityId, Boolean closed, Integer creatorUser, Integer sharedWithUser);
 
     @Deprecated
-    public Page<Object> executeCountOfAllProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser);
+    public int executeDeleteToken(String token);
 
     @Deprecated
-    public int executeDeleteToken(String token);
+    public Page<Object> executeCountOfAllProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser);
 
     @Deprecated
     public int executeInsertTagForMessage(Integer formMessageId, Integer taggedPersonId);

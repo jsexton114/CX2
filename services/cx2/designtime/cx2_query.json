@@ -1287,6 +1287,44 @@
       } ]
     }
   },
+  "CountOfInspectionDesignByMunicipality" : {
+    "name" : "CountOfInspectionDesignByMunicipality",
+    "description" : "CountOfInspectionDesignByMunicipality",
+    "version" : "V2",
+    "queryString" : "select count(*) as count from InspectionDesign where MunicipalityId=:MunicipalityId",
+    "countQueryString" : "select count(*) from (select count(*) as count from InspectionDesign where MunicipalityId=:MunicipalityId) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "MunicipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CountOfInspectionDesignByMunicipalityResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "count",
+        "fieldName" : "_count",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "CountOfMuncipalityApplicationsByVendor" : {
     "name" : "CountOfMuncipalityApplicationsByVendor",
     "description" : "CountOfMuncipalityApplicationsByVendor",
