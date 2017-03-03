@@ -29,7 +29,7 @@
       "type" : "boolean"
     }, {
       "target" : "vendorId",
-      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID",
       "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.models.query.CompanyFormsByVendorIdResponse",
@@ -79,7 +79,7 @@
       "type" : "boolean"
     }, {
       "target" : "vendorId",
-      "value" : "bind:Widgets.selectSelectCompany.datavalue.ID | stringToNumber",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID",
       "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.models.query.CompanyFormsByVendorIdResponse",
