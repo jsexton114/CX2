@@ -188,7 +188,7 @@
     <wm-view class="dialog-view" name="view2">
         <wm-dialog dialogtype="design-dialog" modal="true" title="bind:&quot;Add &quot;+Variables.AdminOrEmp.dataSet.dataValue" iconclass="wi wi-person-add" name="dialogAddEmployeeORAdmin">
             <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-primary" caption="Add User" name="buttonRole" on-click="buttonRoleClick($event, $scope)" iconclass="wi wi-plus" disabled="bind:Widgets.textSelectUser.datavalue == null"></wm-button>
+                <wm-button class="btn-primary" caption="Add User" name="buttonRole" on-click="buttonRoleClick($event, $scope)" iconclass="wi wi-plus" disabled="bind:!Widgets.textSelectUser.datavalue"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button4" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid6">
@@ -217,14 +217,12 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view4" viewgroup="userdialog">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Manage Group Members" iconclass="wi wi-people" name="GroupMembersData" width="70%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="bind:Variables.GroupMembersData.dataSet.data[$i].municipalityGroups.groupName" iconclass="wi wi-people" name="GroupMembersData" width="70%">
             <wm-livegrid formlayout="dialog" name="livegrid2">
-                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GroupMembersData.dataSet" navigation="Classic" name="grid4" filtermode="multicolumn" exportformat="EXCEL" width="100%" height="100%">
-                    <wm-grid-column binding="municipalityGroups.groupName" caption="Group Name" type="string" generator="assigned" show="true" related-entity-name="MunicipalityGroups" readonly="false"></wm-grid-column>
-                    <wm-grid-column binding="users.firstName" caption="First Name" type="string" generator="assigned" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
-                    <wm-grid-column binding="users.lastName" caption="Last Name" type="string" generator="assigned" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
-                    <wm-grid-column binding="users.email" caption="Email" type="string" generator="assigned" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
-                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GroupMembersData.dataSet" navigation="Classic" name="grid4" filtermode="multicolumn" exportformat="EXCEL" width="100%" height="100%" showrecordcount="true">
+                    <wm-grid-column binding="users.fullName" caption="Name" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                    <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>
+                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                     <wm-grid-action key="addNewRow" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="Widgets.GroupMembersData.close();Widgets.ManageUsers.open()" shortcutkey="" disabled="false"></wm-grid-action>
                     <wm-grid-action key="customButton" display-name="Close" show="true" class="btn-secondary" iconclass="wi wi-cancel" title="Close" action="Widgets.GroupMembersData.close()" shortcutkey="" disabled="false"></wm-grid-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.deleteMunicipalityGroupMember.deleteRecord()" disabled="false"></wm-grid-row-action>
@@ -235,7 +233,7 @@
     <wm-view class="dialog-view" name="view4_1">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Add User to Group" iconclass="wi wi-person-add" name="ManageUsers">
             <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-primary" caption="Add User" name="button8" on-click="Variables.MunicipalityGroupMembersData.createRecord()" disabled="bind:Widgets.searchUsers.datavalue.UserId == null" iconclass="wi wi-plus"></wm-button>
+                <wm-button class="btn-primary" caption="Add User" name="button8" on-click="Variables.MunicipalityGroupMembersData.createRecord()" disabled="bind:!Widgets.searchUsers.datavalue" iconclass="wi wi-plus"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-search name="searchUsers" placeholder="Search by Name or Email Address" dataset="bind:Variables.getListOfUsers.dataSet" searchkey="Email" displaylabel="bind:$[FullName] + ' (' + $[Email] + ')'" datafield="All Fields" orderby="FullName:asc"
@@ -306,11 +304,11 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn53_1">
                         <wm-panel iconclass="wi wi-people" autoclose="outsideClick" name="panel1" title="Groups" class="panel-primary">
                             <wm-grid title="" dataset="bind:Variables.getListofGroupName.dataSet" navigation="Classic" name="grid6" nodatamessage="No Groups found." filtermode="multicolumn">
-                                <wm-grid-column binding="GroupName" caption="Group Name" type="string" readonly="true" show="true"></wm-grid-column>
-                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                <wm-grid-column binding="GroupName" caption="Group Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-action key="customButton" display-name="Add to Group" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add" action="Variables.GetMunicipalityGroups.listRecords();Widgets.AddGroupstoMembers.open()"
                                 shortcutkey="" disabled="false" icon="wi wi-add"></wm-grid-action>
-                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                             </wm-grid>
                         </wm-panel>
                     </wm-gridcolumn>
@@ -322,8 +320,8 @@
         <wm-dialog dialogtype="design-dialog" modal="true" title="Add User to Group" iconclass="wi wi-people" name="AddGroupstoMembers">
             <wm-form errormessage="" captionposition="top" class="app-dialog-form" name="form1">
                 <wm-composite name="composite4_1">
-                    <wm-form-field displayname="Municipality User Groups" widget="select" show="true" type="custom" name="addGroupMembersSelect" dataset="bind:Variables.MunicipalityGroups.dataSet" datafield="All Fields" displayfield="groupName" placeholder="Select Group"
-                    defaultvalue="bind:Variables.GetMunicipalityGroups.firstRecord.groupName" required="true"></wm-form-field>
+                    <wm-form-field displayname="Which group would you like to add this user to?" widget="select" show="true" type="custom" name="addGroupMembersSelect" dataset="bind:Variables.MunicipalityGroups.dataSet" datafield="All Fields" displayfield="groupName"
+                    placeholder="Select Group" defaultvalue="bind:Variables.GetMunicipalityGroups.firstRecord.groupName" required="true"></wm-form-field>
                 </wm-composite>
             </wm-form>
             <wm-dialogactions name="dialogactions5">
@@ -397,7 +395,7 @@
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-action key="customButton" display-name="Add to Group" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add" action="Variables.GetMunicipalityGroups.listRecords();Widgets.AddGroupstoMembers.open()"
                                 shortcutkey="" disabled="false" icon="wi wi-add"></wm-grid-action>
-                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                             </wm-grid>
                         </wm-panel>
                     </wm-gridcolumn>
