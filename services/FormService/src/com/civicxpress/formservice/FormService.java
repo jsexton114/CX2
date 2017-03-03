@@ -195,20 +195,20 @@ public class FormService {
     	
     	// Shared With
     	if (sharedWithEdits) {
-    		if (DBUtils.selectQuery(cx2Conn, "SELECT CASE count(*) WHEN 0 THEN 0 ELSE 1 AS IsSharedWith FROM SharedWith WHERE RelatedGUID=:FormGUID AND SharedWithUser=:UserId", queryParams).get(0).getBoolean("IsSharedWith")) {
+    		if (DBUtils.selectQuery(cx2Conn, "SELECT count(*) AS isSharedWith FROM SharedWith WHERE RelatedGUID=:FormGUID AND SharedWithUser=:UserId", queryParams).get(0).getLong("isSharedWith") > 0) {
     			return true;
     		}
     	}
     	
     	// Write group
-    	DBRow queryResult = DBUtils.selectQuery(cx2Conn,
-    			"select CASE count(*) WHEN 0 THEN 0 ELSE 1 END AS IsInWriteGroup from MasterForms MF, FormStatuses FS, MunicipalityGroups MG "
+    	Boolean queryResult = DBUtils.selectQuery(cx2Conn,
+    			"select count(*) AS isInWriteGroup from MasterForms MF, FormStatuses FS, MunicipalityGroups MG "
     			+"WHERE MF.FormGUID=:FormGUID "
     			+"and FS.ID=MF.formStatusId "
     			+"and MG.ID=FS.WriteAccess "
-    			+"and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)", queryParams).get(0);
+    			+"and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)", queryParams).get(0).getLong("isInWriteGroup") > 0;
     	
-    	return queryResult.getBoolean("IsInWriteGroup");
+    	return queryResult;
     }
     
     private Boolean userCanView(Connection cx2Conn, String formGuid) throws SQLException {
@@ -229,7 +229,7 @@ public class FormService {
     	}
     	
     	// Shared With
-    	return DBUtils.selectQuery(cx2Conn, "SELECT CASE count(*) WHEN 0 THEN 0 ELSE 1 AS IsSharedWith FROM SharedWith WHERE RelatedGUID=:formGuid AND SharedWithUser=:userId", queryParams).get(0).getBoolean("IsSharedWith");
+    	return DBUtils.selectQuery(cx2Conn, "SELECT count(*) AS IsSharedWith FROM SharedWith WHERE RelatedGUID=:formGuid AND SharedWithUser=:userId", queryParams).get(0).getLong("IsSharedWith") > 0;
     }
     
     private Boolean userIsProcessOwner(Connection cx2Conn, String formGuid) throws SQLException {
@@ -238,13 +238,13 @@ public class FormService {
     	queryParams.addLong("UserId", Long.parseLong(securityService.getUserId()));
     	
     	DBRow queryResult = DBUtils.selectQuery(cx2Conn,
-    			"select CASE count(*) WHEN 0 THEN 0 ELSE 1 END AS IsProcessOwner from MasterForms MF, FormStatuses FS, MunicipalityGroups MG "
+    			"select count(*) AS IsProcessOwner from MasterForms MF, FormStatuses FS, MunicipalityGroups MG "
     			+"WHERE MF.FormGUID=:FormGUID "
     			+"and FS.ID=MF.formStatusId "
     			+"and MG.ID=FS.processOwners "
     			+"and :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)", queryParams).get(0);
     	
-    	Boolean userIsProcessOwner = queryResult.getBoolean("IsProcessOwner");
+    	Boolean userIsProcessOwner = queryResult.getLong("IsProcessOwner") > 0;
     	
     	return userIsProcessOwner;
     }
