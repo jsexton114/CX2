@@ -17,6 +17,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.FormToInspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionCategories;
 import com.civicxpress.cx2.InspectionCategoryMapping;
+import com.civicxpress.cx2.MasterInspections;
 
 /**
  * Service object for domain model class {@link InspectionCategories}.
@@ -138,6 +139,18 @@ public interface InspectionCategoriesService {
      * @see Page
      */
     Page<FormToInspectionCategoryMapping> findAssociatedFormToInspectionCategoryMappings(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated masterInspectionses for given InspectionCategories id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterInspections instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterInspections> findAssociatedMasterInspectionses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated inspectionCategoryMappings for given InspectionCategories id.

@@ -7063,6 +7063,23 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fieldName" : "masterInspectionses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "InspectionCatId"
+      } ],
+      "name" : "FK_MasterInspections_TO_LMejZ",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "InspectionCategories",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "MasterInspections",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
       "fieldName" : "inspectionCategoryMappings",
       "mappings" : [ {
         "sourceColumn" : "ID",
@@ -7460,7 +7477,7 @@
       "fieldName" : "masterInspectionses",
       "mappings" : [ {
         "sourceColumn" : "ID",
-        "targetColumn" : "InspecOutcomeId"
+        "targetColumn" : "InspectionOutcomeId"
       } ],
       "name" : "FK_MasterInspections_TO_8c5TW",
       "primary" : false,
@@ -8817,15 +8834,15 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "inspecOutcomeId",
+      "fieldName" : "inspectionOutcomeId",
       "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "InspecOutcomeId",
+      "name" : "InspectionOutcomeId",
       "nullable" : true,
-      "oldName" : "InspecOutcomeId",
+      "oldName" : "InspectionOutcomeId",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
@@ -8842,33 +8859,8 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "assignedTo",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "AssignedTo",
-      "nullable" : true,
-      "oldName" : "AssignedTo",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
       "fieldName" : "inspectionCatId",
-      "foreignKey" : false,
+      "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
@@ -8876,8 +8868,8 @@
       "name" : "InspectionCatId",
       "nullable" : true,
       "oldName" : "InspectionCatId",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "precision" : 10,
@@ -9010,6 +9002,31 @@
       "scale" : 0,
       "sqlType" : "datetime",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "assignedTo",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "AssignedTo",
+      "nullable" : true,
+      "oldName" : "AssignedTo",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "MasterInspections",
@@ -9032,7 +9049,7 @@
       "composite" : false,
       "fieldName" : "inspectionOutcome",
       "mappings" : [ {
-        "sourceColumn" : "InspecOutcomeId",
+        "sourceColumn" : "InspectionOutcomeId",
         "targetColumn" : "ID"
       } ],
       "name" : "FK_MasterInspections_TO_8c5TW",
@@ -9076,6 +9093,40 @@
       "sourceTable" : "MasterInspections",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "GISRecords",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "usersByAssignedTo",
+      "mappings" : [ {
+        "sourceColumn" : "AssignedTo",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_MasterInspections_TO_JPfwc",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "MasterInspections",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "inspectionCategories",
+      "mappings" : [ {
+        "sourceColumn" : "InspectionCatId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_MasterInspections_TO_LMejZ",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "MasterInspections",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "InspectionCategories",
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
@@ -14136,6 +14187,23 @@
       "sourceTable" : "Users",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "MasterForms",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "masterInspectionsesForAssignedTo",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "AssignedTo"
+      } ],
+      "name" : "FK_MasterInspections_TO_JPfwc",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Users",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "MasterInspections",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",

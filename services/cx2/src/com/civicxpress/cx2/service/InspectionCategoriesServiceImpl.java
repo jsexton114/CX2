@@ -24,6 +24,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.FormToInspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionCategories;
 import com.civicxpress.cx2.InspectionCategoryMapping;
+import com.civicxpress.cx2.MasterInspections;
 
 
 /**
@@ -39,6 +40,10 @@ public class InspectionCategoriesServiceImpl implements InspectionCategoriesServ
     @Autowired
 	@Qualifier("cx2.InspectionCategoryMappingService")
 	private InspectionCategoryMappingService inspectionCategoryMappingService;
+
+    @Autowired
+	@Qualifier("cx2.MasterInspectionsService")
+	private MasterInspectionsService masterInspectionsService;
 
     @Autowired
 	@Qualifier("cx2.FormToInspectionCategoryMappingService")
@@ -62,6 +67,14 @@ public class InspectionCategoriesServiceImpl implements InspectionCategoriesServ
                 formToInspectionCategoryMapping.setInspectionCategories(inspectionCategoriesCreated);
                 LOGGER.debug("Creating a new child FormToInspectionCategoryMapping with information: {}", formToInspectionCategoryMapping);
                 formToInspectionCategoryMappingService.create(formToInspectionCategoryMapping);
+            }
+        }
+
+        if(inspectionCategoriesCreated.getMasterInspectionses() != null) {
+            for(MasterInspections masterInspectionse : inspectionCategoriesCreated.getMasterInspectionses()) {
+                masterInspectionse.setInspectionCategories(inspectionCategoriesCreated);
+                LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionse);
+                masterInspectionsService.create(masterInspectionse);
             }
         }
 
@@ -159,6 +172,17 @@ public class InspectionCategoriesServiceImpl implements InspectionCategoriesServ
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MasterInspections> findAssociatedMasterInspectionses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterInspectionses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionCategories.id = '" + id + "'");
+
+        return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<InspectionCategoryMapping> findAssociatedInspectionCategoryMappings(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionCategoryMappings");
 
@@ -175,6 +199,15 @@ public class InspectionCategoriesServiceImpl implements InspectionCategoriesServ
 	 */
 	protected void setInspectionCategoryMappingService(InspectionCategoryMappingService service) {
         this.inspectionCategoryMappingService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MasterInspectionsService instance
+	 */
+	protected void setMasterInspectionsService(MasterInspectionsService service) {
+        this.masterInspectionsService = service;
     }
 
     /**

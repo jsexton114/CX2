@@ -42,8 +42,7 @@ public class MasterInspections implements Serializable {
     private String relatedProjectGuid;
     private Integer inspectionDesignId;
     private Integer gisId;
-    private Integer inspecOutcomeId;
-    private String assignedTo;
+    private Integer inspectionOutcomeId;
     private Integer inspectionCatId;
     private String relatedFormGuid;
     private Integer requestedBy;
@@ -54,9 +53,12 @@ public class MasterInspections implements Serializable {
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime modifiedAt;
+    private Integer assignedTo;
     private InspectionOutcome inspectionOutcome;
     private MasterForms masterForms;
     private Gisrecords gisrecords;
+    private Users usersByAssignedTo;
+    private InspectionCategories inspectionCategories;
     private InspectionDesign inspectionDesign;
     private Users usersByRequestedBy;
     private Users usersByModifiedBy;
@@ -118,22 +120,13 @@ public class MasterInspections implements Serializable {
         this.gisId = gisId;
     }
 
-    @Column(name = "`InspecOutcomeId`", nullable = true, scale = 0, precision = 10)
-    public Integer getInspecOutcomeId() {
-        return this.inspecOutcomeId;
+    @Column(name = "`InspectionOutcomeId`", nullable = true, scale = 0, precision = 10)
+    public Integer getInspectionOutcomeId() {
+        return this.inspectionOutcomeId;
     }
 
-    public void setInspecOutcomeId(Integer inspecOutcomeId) {
-        this.inspecOutcomeId = inspecOutcomeId;
-    }
-
-    @Column(name = "`AssignedTo`", nullable = true, length = 255)
-    public String getAssignedTo() {
-        return this.assignedTo;
-    }
-
-    public void setAssignedTo(String assignedTo) {
-        this.assignedTo = assignedTo;
+    public void setInspectionOutcomeId(Integer inspectionOutcomeId) {
+        this.inspectionOutcomeId = inspectionOutcomeId;
     }
 
     @Column(name = "`InspectionCatId`", nullable = true, scale = 0, precision = 10)
@@ -190,15 +183,24 @@ public class MasterInspections implements Serializable {
         this.modifiedAt = modifiedAt;
     }
 
+    @Column(name = "`AssignedTo`", nullable = true, scale = 0, precision = 10)
+    public Integer getAssignedTo() {
+        return this.assignedTo;
+    }
+
+    public void setAssignedTo(Integer assignedTo) {
+        this.assignedTo = assignedTo;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`InspecOutcomeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`InspectionOutcomeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public InspectionOutcome getInspectionOutcome() {
         return this.inspectionOutcome;
     }
 
     public void setInspectionOutcome(InspectionOutcome inspectionOutcome) {
         if(inspectionOutcome != null) {
-            this.inspecOutcomeId = inspectionOutcome.getId();
+            this.inspectionOutcomeId = inspectionOutcome.getId();
         }
 
         this.inspectionOutcome = inspectionOutcome;
@@ -230,6 +232,34 @@ public class MasterInspections implements Serializable {
         }
 
         this.gisrecords = gisrecords;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`AssignedTo`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Users getUsersByAssignedTo() {
+        return this.usersByAssignedTo;
+    }
+
+    public void setUsersByAssignedTo(Users usersByAssignedTo) {
+        if(usersByAssignedTo != null) {
+            this.assignedTo = usersByAssignedTo.getId();
+        }
+
+        this.usersByAssignedTo = usersByAssignedTo;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`InspectionCatId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public InspectionCategories getInspectionCategories() {
+        return this.inspectionCategories;
+    }
+
+    public void setInspectionCategories(InspectionCategories inspectionCategories) {
+        if(inspectionCategories != null) {
+            this.inspectionCatId = inspectionCategories.getId();
+        }
+
+        this.inspectionCategories = inspectionCategories;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

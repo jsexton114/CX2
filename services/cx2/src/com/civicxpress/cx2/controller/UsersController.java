@@ -287,6 +287,15 @@ public class UsersController {
         return usersService.findAssociatedMasterFormses(id, pageable);
     }
 
+    @RequestMapping(value="/{id:.+}/masterInspectionsesForAssignedTo", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterInspectionsesForAssignedTo instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterInspections> findAssociatedMasterInspectionsesForAssignedTo(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated masterInspectionsesForAssignedTo");
+        return usersService.findAssociatedMasterInspectionsesForAssignedTo(id, pageable);
+    }
+
     @RequestMapping(value="/{id:.+}/masterInspectionsesForRequestedBy", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the masterInspectionsesForRequestedBy instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

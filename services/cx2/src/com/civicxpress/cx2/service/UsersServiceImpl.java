@@ -223,6 +223,14 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getMasterInspectionsesForAssignedTo() != null) {
+            for(MasterInspections masterInspectionsesForAssignedTo : usersCreated.getMasterInspectionsesForAssignedTo()) {
+                masterInspectionsesForAssignedTo.setUsersByAssignedTo(usersCreated);
+                LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionsesForAssignedTo);
+                masterInspectionsService.create(masterInspectionsesForAssignedTo);
+            }
+        }
+
         if(usersCreated.getMasterInspectionsesForRequestedBy() != null) {
             for(MasterInspections masterInspectionsesForRequestedBy : usersCreated.getMasterInspectionsesForRequestedBy()) {
                 masterInspectionsesForRequestedBy.setUsersByRequestedBy(usersCreated);
@@ -550,6 +558,17 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("users.id = '" + id + "'");
 
         return masterFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterInspections> findAssociatedMasterInspectionsesForAssignedTo(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterInspectionsesForAssignedTo");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByAssignedTo.id = '" + id + "'");
+
+        return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

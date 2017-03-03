@@ -252,6 +252,18 @@ public interface UsersService {
     Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated masterInspectionsesForAssignedTo for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterInspections instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterInspections> findAssociatedMasterInspectionsesForAssignedTo(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated masterInspectionsesForRequestedBy for given Users id.
      *
      * @param id value of id; value cannot be null
