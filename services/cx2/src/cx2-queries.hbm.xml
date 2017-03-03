@@ -578,6 +578,14 @@
     <query-param name="vendor" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="UpdateForceInspectionSequenceForForm">
+        <![CDATA[
+        update FormTypes set ForceInspectionSequence=:ForceInspectionSequence where ID=:form
+        ]]>
+    <query-param name="ForceInspectionSequence" type="java.lang.Boolean"/>
+    <query-param name="form" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="UpdateMunicipalityInfo">
         <![CDATA[
         Update Municipalities set MunicipalityName=:mn,Email=:em,Phone=:ph,Address1=:ad1,Address2=:ad2,StateId=:st,City=:ct,PostalCode=:pc where ID=:municipality

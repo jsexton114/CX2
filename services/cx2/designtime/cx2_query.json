@@ -7069,6 +7069,41 @@
       "responseType" : "SINGLE"
     }
   },
+  "UpdateForceInspectionSequenceForForm" : {
+    "name" : "UpdateForceInspectionSequenceForForm",
+    "description" : "UpdateForceInspectionSequenceForForm",
+    "version" : "V2",
+    "queryString" : "update FormTypes set ForceInspectionSequence=:ForceInspectionSequence where ID=:form",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "ForceInspectionSequence",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    }, {
+      "name" : "form",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "58",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.UpdateForceInspectionSequenceForFormRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "UpdateFormStatusInMasterForms" : {
     "name" : "UpdateFormStatusInMasterForms",
     "description" : "UpdateFormStatusInMasterForms",

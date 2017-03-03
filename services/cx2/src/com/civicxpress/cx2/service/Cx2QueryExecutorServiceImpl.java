@@ -829,6 +829,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
+    public Integer executeUpdateForceInspectionSequenceForForm(UpdateForceInspectionSequenceForFormRequest updateForceInspectionSequenceForFormRequest) {
+        Map params = new HashMap(2);
+
+        params.put("ForceInspectionSequence", updateForceInspectionSequenceForFormRequest.getForceInspectionSequence());
+        params.put("form", updateForceInspectionSequenceForFormRequest.getForm());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateForceInspectionSequenceForForm", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
     public Integer executeUpdateMunicipalityInfo(UpdateMunicipalityInfoRequest updateMunicipalityInfoRequest) {
         Map params = new HashMap(9);
 

@@ -166,6 +166,8 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfVendors(ExportType exportType, Integer vendor, Pageable pageable);
 
+    Integer executeUpdateForceInspectionSequenceForForm(UpdateForceInspectionSequenceForFormRequest updateForceInspectionSequenceForFormRequest);
+
     Integer executeUpdateMunicipalityInfo(UpdateMunicipalityInfoRequest updateMunicipalityInfoRequest);
 
     Page<CountOfUserFormsForMunicipalityResponse> executeCountOfUserFormsForMunicipality(Integer municipalityId, Boolean closed, Integer creatorUser, Integer sharedWithUser, Pageable pageable);

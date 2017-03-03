@@ -542,7 +542,8 @@
                                                     <wm-gridrow name="gridrow66" padding="1em unset">
                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn103_2"></wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn96" horizontalalign="center">
-                                                            <wm-checkbox caption="Force Inspection Sequence" class="col-md-push-3 col-md-9" name="checkboxForceInspectionSequenc" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.CurrentFormObj.firstRecord.forceInspectionSequence"></wm-checkbox>
+                                                            <wm-checkbox caption="Force Inspection Sequence" class="col-md-push-3 col-md-9" name="checkboxForceInspectionSequenc" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.CurrentFormObj.firstRecord.forceInspectionSequence"
+                                                            on-change="Variables.UpdateForceInspectionSequenceForForm.invoke()"></wm-checkbox>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn102_2"></wm-gridcolumn>
                                                     </wm-gridrow>

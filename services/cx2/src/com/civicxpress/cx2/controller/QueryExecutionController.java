@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wavemaker.commons.wrapper.IntegerWrapper;
 import com.wavemaker.runtime.data.dao.query.WMQueryExecutor;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
@@ -745,6 +746,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: CountOfVendors");
 
         return queryService.exportCountOfVendors(exportType, vendor, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdateForceInspectionSequenceForForm", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateForceInspectionSequenceForForm")
+    public IntegerWrapper executeUpdateForceInspectionSequenceForForm(@Valid @RequestBody UpdateForceInspectionSequenceForFormRequest updateForceInspectionSequenceForFormRequest) {
+        LOGGER.debug("Executing named query: UpdateForceInspectionSequenceForForm");
+        Integer _result = queryService.executeUpdateForceInspectionSequenceForForm(updateForceInspectionSequenceForFormRequest);
+        LOGGER.debug("got the result for named query: UpdateForceInspectionSequenceForForm, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/UpdateMunicipalityInfo", method = RequestMethod.PUT)

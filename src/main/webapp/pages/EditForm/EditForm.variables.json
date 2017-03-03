@@ -8280,6 +8280,38 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "UpdateForceInspectionSequenceForForm" : {
+    "_id" : "wm-UpdateForceInspectionSequenceForForm-wm.ServiceVariable-1488540562935",
+    "name" : "UpdateForceInspectionSequenceForForm",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "form",
+      "value" : "bind:pageParams.FormTypeId",
+      "type" : "integer"
+    }, {
+      "target" : "ForceInspectionSequence",
+      "value" : "bind:Widgets.checkboxForceInspectionSequenc.datavalue",
+      "type" : "boolean"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "cx2",
+    "operation" : "executeUpdateForceInspectionSequenceForForm",
+    "operationId" : "QueryExecutionController_executeUpdateForceInspectionSequenceForForm",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "UpdateFormTypes" : {
     "_id" : "wm-UpdateFormTypes-wm.LiveVariable-1480050753997",
     "name" : "UpdateFormTypes",
