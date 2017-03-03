@@ -98,16 +98,36 @@
                         <wm-panel iconclass="wi wi-list" autoclose="outsideClick" name="panel2" title="Project Data" class="panel-primary">
                             <wm-tabs name="tabsProjectDetails">
                                 <wm-tabpane name="tabpaneMEMBERS" title="MEMBERS">
-                                    <wm-livegrid formlayout="dialog" name="livegridProjectMembers"></wm-livegrid>
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectSharedWithData.dataSet" navigation="Classic" name="gridProjectMembers" filtermode="multicolumn" exportformat="EXCEL"
-                                    showrecordcount="true">
-                                        <wm-grid-column binding="usersByProjectSharedWithUser.fullName" caption="Project Member" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="projectSharedOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="text" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="usersByProjectSharedBy.fullName" caption="Added By" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="Add Member" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Member" action="Widgets.dialogAddMember.open()" shortcutkey="" disabled="bind:addMember"></wm-grid-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
+                                    <wm-layoutgrid name="layoutgrid18">
+                                        <wm-gridrow name="gridrow76_1">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn135_1">
+                                                <wm-label name="label77" caption="The following members have been added to this project." margin="unset 0.5em"></wm-label>
+                                                <wm-label name="label78" caption="If you would like to add an additional project member, use the &quot;+Add Member&quot; button to perform a search for CivicXpress users. If that user is not in the system, use the &quot;+Invite Member&quot; button to send them an invitation to view the project."
+                                                margin="unset 0.5em"></wm-label>
+                                                <wm-label name="label79" caption="Users who appear below can complete transactions for the project." margin="unset 0.5em"></wm-label>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow77_1">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn137">
+                                                <wm-livegrid formlayout="dialog" name="livegridProjectMembers">
+                                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectSharedWithData.dataSet" navigation="Classic" name="gridProjectMembers" filtermode="multicolumn" exportformat="EXCEL"
+                                                    showrecordcount="true">
+                                                        <wm-grid-column binding="usersByProjectSharedWithUser.fullName" caption="Project Member" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                                        <wm-grid-column binding="projectSharedOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
+                                                        show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="usersByProjectSharedBy.fullName" caption="Added By" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true"
+                                                        related-entity-name="Users"></wm-grid-column>
+                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                        <wm-grid-action key="addNewRow" display-name="Add Member" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Member" action="Widgets.dialogAddMember.open()" shortcutkey=""
+                                                        disabled="bind:addMember"></wm-grid-action>
+                                                        <wm-grid-action key="customButton" display-name="Invite Member" title="Invite Member" value="" iconclass="wi wi-plus" class="btn-secondary" show="true" shortcutkey=""></wm-grid-action>
+                                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin"
+                                                        disabled="false"></wm-grid-row-action>
+                                                    </wm-grid>
+                                                </wm-livegrid>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneTASKS" title="TASKS">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectTasksData.dataSet" navigation="Classic" name="gridTasks" confirmdelete="You are about to delete a milestone.  All related tasks will also be deleted.  Are you sure you would like to continue?"
@@ -245,7 +265,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Add Member" type="button" margin="unset 0.5em" name="buttonAddMember" iconclass="wi wi-plus" on-click="Variables.AddMembersToProject.invoke()" disabled="bind:Widgets.searchForMembers.datavalue == null"></wm-button>
+                <wm-button class="btn-primary" caption="Add Member" type="button" margin="unset 0.5em" name="buttonAddMember" iconclass="wi wi-plus" on-click="Variables.AddMembersToProject.invoke()" disabled="bind:!Widgets.searchForMembers.datavalue"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>

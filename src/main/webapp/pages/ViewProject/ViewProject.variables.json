@@ -153,6 +153,34 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "viewAddMember"
   },
+  "AddMemberSuccess" : {
+    "_id" : "wm-AddMemberSuccess-wm.NotificationVariable-1488556981333",
+    "name" : "AddMemberSuccess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "The selected user is now a project member",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "AssignedTaskMail" : {
     "_id" : "wm-AssignedTaskMail-wm.ServiceVariable-1487849129437",
     "name" : "AssignedTaskMail",
