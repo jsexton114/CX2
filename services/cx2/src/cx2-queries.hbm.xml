@@ -1330,6 +1330,20 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
     <query-param name="relatedFormGuid" type="java.lang.String"/>
     </query>
 
+    <query name="InspectionDesignForCategoriesMappedToForms">
+        <![CDATA[
+        from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId))
+        ]]>
+    <query-param name="formTypeId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="InspectionDesignForCategoriesMappedToForms__count">
+        <![CDATA[
+        select count(*) from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId))
+        ]]>
+    <query-param name="formTypeId" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="DeleteExistingSubscriptionsForUser">
         <![CDATA[
         delete from UserSubscriptions where UserId=:user

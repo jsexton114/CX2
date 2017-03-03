@@ -222,3 +222,17 @@ Application.$controller("liveformFormtoinspectioncategoryController", ["$scope",
 		$scope.ctrlScope = $scope;
 	}
 ]);
+
+Application.$controller("gridInspectionSequenceController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformInspectionSequenceController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

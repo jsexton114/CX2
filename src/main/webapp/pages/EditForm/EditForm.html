@@ -537,7 +537,63 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow4_1" padding="1em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                                            <wm-panel iconclass="wi wi-format-list-numbered" autoclose="outsideClick" name="panelInspectionSequence" title="Inspection Sequence" class="panel-primary"></wm-panel>
+                                            <wm-panel iconclass="wi wi-format-list-numbered" autoclose="outsideClick" name="panelInspectionSequence" title="Inspection Sequence" class="panel-primary">
+                                                <wm-layoutgrid name="layoutgrid17">
+                                                    <wm-gridrow name="gridrow66" padding="1em unset">
+                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn103_2"></wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn96" horizontalalign="center">
+                                                            <wm-checkbox caption="Force Inspection Sequence" class="col-md-push-3 col-md-9" name="checkboxForceInspectionSequenc" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.CurrentFormObj.firstRecord.forceInspectionSequence"></wm-checkbox>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn102_2"></wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow67">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn98">
+                                                            <wm-livegrid formlayout="dialog" name="livegridInspectionSequence" show="bind:Widgets.checkboxForceInspectionSequenc.datavalue">
+                                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionSequenceData.dataSet" navigation="Classic" name="gridInspectionSequence">
+                                                                    <wm-grid-column binding="sequenceOrderNumber" caption="Sequence Order Number" type="integer" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
+                                                                    <wm-grid-column binding="inspectionDesign.inspectDesignName" caption="Design Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"
+                                                                    related-entity-name="InspectionDesign"></wm-grid-column>
+                                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                                                </wm-grid>
+                                                                <wm-liveform novalidate="false" errormessage="Please check if same sequence order or inspection design is added" title="Add Inspection" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.InspectionSequenceData.dataSet"
+                                                                captionalign="left" captionposition="top" name="liveformInspectionSequence">
+                                                                    <wm-layoutgrid columns="1" name="layoutgrid18_1">
+                                                                        <wm-gridrow name="gridrow68">
+                                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn100">
+                                                                                <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="true" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true"
+                                                                                readonly="false" required="true" widget="select" dataset="bind:Variables.InspectionDesignByDesignCategoriesRelatedToForm.dataSet" datafield="All Fields" displayfield="inspectDesignName"
+                                                                                defaultvalue="bind:Variables.InspectionDesignByDesignCategoriesRelatedToForm.firstRecord" placeholder="Select value"></wm-form-field>
+                                                                            </wm-gridcolumn>
+                                                                        </wm-gridrow>
+                                                                        <wm-gridrow name="gridrow69">
+                                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn101">
+                                                                                <wm-form-field name="mustCompBeforeReqNxt" displayname="Must Comp Before Req Nxt" show="true" primary-key="false" generator="assigned" key="mustCompBeforeReqNxt" type="boolean"
+                                                                                readonly="false" required="false" widget="checkbox" defaultvalue="false" placeholder=""></wm-form-field>
+                                                                            </wm-gridcolumn>
+                                                                        </wm-gridrow>
+                                                                        <wm-gridrow name="gridrow70">
+                                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn102_1">
+                                                                                <wm-form-field name="sequenceOrderNumber" displayname="Sequence Order Number" show="true" primary-key="false" generator="assigned" key="sequenceOrderNumber" type="integer" readonly="false"
+                                                                                required="true" step="0" widget="number" inputtype="number" placeholder="Enter value" minvalue="1"></wm-form-field>
+                                                                            </wm-gridcolumn>
+                                                                        </wm-gridrow>
+                                                                    </wm-layoutgrid>
+                                                                    <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="false"
+                                                                    widget="select" dataset="bind:Variables.CurrentFormObj.dataSet" datafield="All Fields" displayfield="formType" defaultvalue="bind:Variables.CurrentFormObj.firstRecord" placeholder="Select value"></wm-form-field>
+                                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number"
+                                                                    inputtype="number" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false"
+                                                                    type="button" update-mode="true"></wm-form-action>
+                                                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                                                </wm-liveform>
+                                                            </wm-livegrid>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-panel>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>

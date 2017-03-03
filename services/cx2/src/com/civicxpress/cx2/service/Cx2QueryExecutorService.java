@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.models.query.*;
@@ -344,6 +345,10 @@ public interface Cx2QueryExecutorService {
     Page<GetGis2formsByFormResponse> executeGetGis2formsByForm(String relatedFormGuid, Pageable pageable);
 
     Downloadable exportGetGis2formsByForm(ExportType exportType, String relatedFormGuid, Pageable pageable);
+
+    Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(Integer formTypeId, Pageable pageable);
+
+    Downloadable exportInspectionDesignForCategoriesMappedToForms(ExportType exportType, Integer formTypeId, Pageable pageable);
 
     Integer executeDeleteExistingSubscriptionsForUser(Integer user);
 

@@ -26,6 +26,7 @@ import com.wavemaker.runtime.data.dao.query.WMQueryExecutor;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.models.query.*;

@@ -38,6 +38,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 
+import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.service.Cx2QueryExecutorService;
@@ -1612,6 +1613,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetGis2formsByForm");
 
         return queryService.exportGetGis2formsByForm(exportType, relatedFormGuid, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InspectionDesignForCategoriesMappedToForms", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InspectionDesignForCategoriesMappedToForms")
+    public Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(@RequestParam(value = "formTypeId") Integer formTypeId, Pageable pageable) {
+        LOGGER.debug("Executing named query: InspectionDesignForCategoriesMappedToForms");
+        Page<InspectionDesign> _result = queryService.executeInspectionDesignForCategoriesMappedToForms(formTypeId, pageable);
+        LOGGER.debug("got the result for named query: InspectionDesignForCategoriesMappedToForms, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query InspectionDesignForCategoriesMappedToForms")
+    @RequestMapping(value = "/queries/InspectionDesignForCategoriesMappedToForms/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportInspectionDesignForCategoriesMappedToForms(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formTypeId") Integer formTypeId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: InspectionDesignForCategoriesMappedToForms");
+
+        return queryService.exportInspectionDesignForCategoriesMappedToForms(exportType, formTypeId, pageable);
     }
 
     @RequestMapping(value = "/queries/DeleteExistingSubscriptionsForUser", method = RequestMethod.DELETE)

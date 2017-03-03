@@ -5070,6 +5070,34 @@
       "responseType" : "SINGLE"
     }
   },
+  "InspectionDesignForCategoriesMappedToForms" : {
+    "name" : "InspectionDesignForCategoriesMappedToForms",
+    "description" : "InspectionDesignForCategoriesMappedToForms",
+    "version" : "V2",
+    "queryString" : "from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId))",
+    "countQueryString" : "select count(*) from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId))",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "formTypeId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "58",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.InspectionDesign",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
+    }
+  },
   "ManualFeeTypeCountForMunicipality" : {
     "name" : "ManualFeeTypeCountForMunicipality",
     "description" : "ManualFeeTypeCountForMunicipality",

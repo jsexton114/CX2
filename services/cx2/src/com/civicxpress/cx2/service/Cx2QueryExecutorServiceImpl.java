@@ -26,6 +26,7 @@ import com.wavemaker.runtime.data.dao.query.WMQueryExecutor;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.models.query.*;
@@ -1835,6 +1836,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("relatedFormGuid", relatedFormGuid);
 
         return queryExecutor.exportNamedQueryData("GetGis2formsByForm", params, exportType, GetGis2formsByFormResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(Integer formTypeId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("formTypeId", formTypeId);
+
+        return queryExecutor.executeNamedQuery("InspectionDesignForCategoriesMappedToForms", params, InspectionDesign.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportInspectionDesignForCategoriesMappedToForms(ExportType exportType, Integer formTypeId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("formTypeId", formTypeId);
+
+        return queryExecutor.exportNamedQueryData("InspectionDesignForCategoriesMappedToForms", params, exportType, InspectionDesign.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
