@@ -7978,6 +7978,48 @@
       } ]
     }
   },
+  "VendorsByMunicipalityAndStatus" : {
+    "name" : "VendorsByMunicipalityAndStatus",
+    "description" : "VendorsByMunicipalityAndStatus",
+    "version" : "V2",
+    "queryString" : "from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus and vendor.active=:active",
+    "countQueryString" : "select count(*) from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus and vendor.active=:active",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "approvalStatus",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Approved",
+      "required" : true
+    }, {
+      "name" : "active",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.VendorApprovals",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
+    }
+  },
   "VendorsCountForMunicipalities" : {
     "name" : "VendorsCountForMunicipalities",
     "description" : "VendorsCountForMunicipalities",

@@ -1142,6 +1142,24 @@
     <query-param name="project" type="java.lang.String"/>
     </sql-query>
 
+    <query name="VendorsByMunicipalityAndStatus">
+        <![CDATA[
+        from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus and vendor.active=:active
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="approvalStatus" type="java.lang.String"/>
+    <query-param name="active" type="java.lang.Boolean"/>
+    </query>
+
+    <query name="VendorsByMunicipalityAndStatus__count">
+        <![CDATA[
+        select count(*) from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus and vendor.active=:active
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="approvalStatus" type="java.lang.String"/>
+    <query-param name="active" type="java.lang.Boolean"/>
+    </query>
+
     <query name="CompanyFormsByVendorId">
         <![CDATA[
         from MasterForms where Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC

@@ -42,6 +42,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.service.Cx2QueryExecutorService;
 import com.civicxpress.cx2.models.query.*;
 
@@ -1402,6 +1403,25 @@ public class QueryExecutionController {
         Integer _result = queryService.executeSetModifiedDateForProject(setModifiedDateForProjectRequest);
         LOGGER.debug("got the result for named query: SetModifiedDateForProject, result:{}", _result);
         return _result;
+    }
+
+    @RequestMapping(value = "/queries/VendorsByMunicipalityAndStatus", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "VendorsByMunicipalityAndStatus")
+    public Page<VendorApprovals> executeVendorsByMunicipalityAndStatus(@RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "approvalStatus") String approvalStatus, @RequestParam(value = "active") Boolean active, Pageable pageable) {
+        LOGGER.debug("Executing named query: VendorsByMunicipalityAndStatus");
+        Page<VendorApprovals> _result = queryService.executeVendorsByMunicipalityAndStatus(municipalityId, approvalStatus, active, pageable);
+        LOGGER.debug("got the result for named query: VendorsByMunicipalityAndStatus, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query VendorsByMunicipalityAndStatus")
+    @RequestMapping(value = "/queries/VendorsByMunicipalityAndStatus/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportVendorsByMunicipalityAndStatus(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "approvalStatus") String approvalStatus, @RequestParam(value = "active") Boolean active, Pageable pageable) {
+        LOGGER.debug("Exporting named query: VendorsByMunicipalityAndStatus");
+
+        return queryService.exportVendorsByMunicipalityAndStatus(exportType, municipalityId, approvalStatus, active, pageable);
     }
 
     @RequestMapping(value = "/queries/CompanyFormsByVendorId", method = RequestMethod.GET)

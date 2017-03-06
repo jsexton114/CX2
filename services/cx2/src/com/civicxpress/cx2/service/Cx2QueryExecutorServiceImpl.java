@@ -29,6 +29,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.models.query.*;
 
 @Service
@@ -1583,6 +1584,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("project", setModifiedDateForProjectRequest.getProject());
 
         return queryExecutor.executeNamedQueryForUpdate("SetModifiedDateForProject", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<VendorApprovals> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipalityId", municipalityId);
+        params.put("approvalStatus", approvalStatus);
+        params.put("active", active);
+
+        return queryExecutor.executeNamedQuery("VendorsByMunicipalityAndStatus", params, VendorApprovals.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportVendorsByMunicipalityAndStatus(ExportType exportType, Integer municipalityId, String approvalStatus, Boolean active, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipalityId", municipalityId);
+        params.put("approvalStatus", approvalStatus);
+        params.put("active", active);
+
+        return queryExecutor.exportNamedQueryData("VendorsByMunicipalityAndStatus", params, exportType, VendorApprovals.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

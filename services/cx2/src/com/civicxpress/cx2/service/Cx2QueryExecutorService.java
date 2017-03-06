@@ -18,6 +18,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.models.query.*;
 
 public interface Cx2QueryExecutorService {
@@ -301,6 +302,10 @@ public interface Cx2QueryExecutorService {
     Downloadable exportFetchRolesForUserWithMunicipality(ExportType exportType, Integer user, Integer municipality, Pageable pageable);
 
     Integer executeSetModifiedDateForProject(SetModifiedDateForProjectRequest setModifiedDateForProjectRequest);
+
+    Page<VendorApprovals> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, Pageable pageable);
+
+    Downloadable exportVendorsByMunicipalityAndStatus(ExportType exportType, Integer municipalityId, String approvalStatus, Boolean active, Pageable pageable);
 
     Page<CompanyFormsByVendorIdResponse> executeCompanyFormsByVendorId(Boolean closed, Integer vendorId, Pageable pageable);
 
