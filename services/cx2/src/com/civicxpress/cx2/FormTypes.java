@@ -80,10 +80,10 @@ public class FormTypes implements Serializable {
     private List<FormHistory> formHistories = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
-    private List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings = new ArrayList<>();
     private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
-    private List<MasterForms> masterFormses = new ArrayList<>();
+    private List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings = new ArrayList<>();
     private List<InspectionSequence> inspectionSequences = new ArrayList<>();
+    private List<MasterForms> masterFormses = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -511,16 +511,6 @@ public class FormTypes implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<FormToInspectionCategoryMapping> getFormToInspectionCategoryMappings() {
-        return this.formToInspectionCategoryMappings;
-    }
-
-    public void setFormToInspectionCategoryMappings(List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings) {
-        this.formToInspectionCategoryMappings = formToInspectionCategoryMappings;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
     public List<FormTypeFields> getFormTypeFieldses() {
         return this.formTypeFieldses;
     }
@@ -531,12 +521,12 @@ public class FormTypes implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<MasterForms> getMasterFormses() {
-        return this.masterFormses;
+    public List<FormToInspectionCategoryMapping> getFormToInspectionCategoryMappings() {
+        return this.formToInspectionCategoryMappings;
     }
 
-    public void setMasterFormses(List<MasterForms> masterFormses) {
-        this.masterFormses = masterFormses;
+    public void setFormToInspectionCategoryMappings(List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings) {
+        this.formToInspectionCategoryMappings = formToInspectionCategoryMappings;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -547,6 +537,16 @@ public class FormTypes implements Serializable {
 
     public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
         this.inspectionSequences = inspectionSequences;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<MasterForms> getMasterFormses() {
+        return this.masterFormses;
+    }
+
+    public void setMasterFormses(List<MasterForms> masterFormses) {
+        this.masterFormses = masterFormses;
     }
 
     @Override

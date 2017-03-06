@@ -31,6 +31,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.FormMessages;
+import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
@@ -160,6 +161,15 @@ public class MasterFormsController {
 
         LOGGER.debug("Fetching all associated formMessageses");
         return masterFormsService.findAssociatedFormMessageses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/formsToInspectionses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the formsToInspectionses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<FormsToInspections> findAssociatedFormsToInspectionses(@PathVariable("id") String id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated formsToInspectionses");
+        return masterFormsService.findAssociatedFormsToInspectionses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/gis2formses", method=RequestMethod.GET)

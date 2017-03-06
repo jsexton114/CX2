@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterInspections;
 
@@ -34,6 +35,10 @@ import com.civicxpress.cx2.MasterInspections;
 public class MasterInspectionsServiceImpl implements MasterInspectionsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MasterInspectionsServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.FormsToInspectionsService")
+	private FormsToInspectionsService formsToInspectionsService;
 
     @Autowired
 	@Qualifier("cx2.InspectionGisService")
@@ -52,6 +57,14 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
 	public MasterInspections create(MasterInspections masterInspections) {
         LOGGER.debug("Creating a new MasterInspections with information: {}", masterInspections);
         MasterInspections masterInspectionsCreated = this.wmGenericDao.create(masterInspections);
+        if(masterInspectionsCreated.getFormsToInspectionses() != null) {
+            for(FormsToInspections formsToInspectionse : masterInspectionsCreated.getFormsToInspectionses()) {
+                formsToInspectionse.setMasterInspections(masterInspectionsCreated);
+                LOGGER.debug("Creating a new child FormsToInspections with information: {}", formsToInspectionse);
+                formsToInspectionsService.create(formsToInspectionse);
+            }
+        }
+
         if(masterInspectionsCreated.getInspectionGises() != null) {
             for(InspectionGis inspectionGise : masterInspectionsCreated.getInspectionGises()) {
                 inspectionGise.setMasterInspections(masterInspectionsCreated);
@@ -135,6 +148,17 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormsToInspections> findAssociatedFormsToInspectionses(String inspectionGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formsToInspectionses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("masterInspections.inspectionGuid = '" + inspectionGuid + "'");
+
+        return formsToInspectionsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<InspectionGis> findAssociatedInspectionGises(String inspectionGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionGises");
 
@@ -142,6 +166,15 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
         queryBuilder.append("masterInspections.inspectionGuid = '" + inspectionGuid + "'");
 
         return inspectionGisService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormsToInspectionsService instance
+	 */
+	protected void setFormsToInspectionsService(FormsToInspectionsService service) {
+        this.formsToInspectionsService = service;
     }
 
     /**

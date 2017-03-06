@@ -15,6 +15,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormMessages;
+import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
@@ -150,6 +151,18 @@ public interface MasterFormsService {
      * @see Page
      */
     Page<FormMessages> findAssociatedFormMessageses(String formGuid, Pageable pageable);
+
+    /*
+     * Returns the associated formsToInspectionses for given MasterForms id.
+     *
+     * @param formGuid value of formGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormsToInspections instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormsToInspections> findAssociatedFormsToInspectionses(String formGuid, Pageable pageable);
 
     /*
      * Returns the associated gis2formses for given MasterForms id.

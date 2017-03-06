@@ -60,6 +60,7 @@ public class MasterForms implements Serializable {
     private Users users;
     private Vendor vendor;
     private List<FormMessages> formMessageses = new ArrayList<>();
+    private List<FormsToInspections> formsToInspectionses = new ArrayList<>();
     private List<Gis2forms> gis2formses = new ArrayList<>();
     private List<MasterInspections> masterInspectionses = new ArrayList<>();
     private List<ProjectForms> projectFormses = new ArrayList<>();
@@ -335,6 +336,16 @@ public class MasterForms implements Serializable {
 
     public void setFormMessageses(List<FormMessages> formMessageses) {
         this.formMessageses = formMessageses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "masterForms")
+    public List<FormsToInspections> getFormsToInspectionses() {
+        return this.formsToInspectionses;
+    }
+
+    public void setFormsToInspectionses(List<FormsToInspections> formsToInspectionses) {
+        this.formsToInspectionses = formsToInspectionses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
