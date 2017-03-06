@@ -18,6 +18,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.models.query.*;
 
@@ -242,6 +243,10 @@ public interface Cx2QueryExecutorService {
     Page<MasterForms> executeFormsForUsersAndShared(Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
 
     Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
+
+    Page<UserSubscriptions> executeUserSubscriptionsByMunicipality(Integer municipalityId, Pageable pageable);
+
+    Downloadable exportUserSubscriptionsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable);
 
     Page<GetUserIdResponse> executeGetUserID(String email, Pageable pageable);
 

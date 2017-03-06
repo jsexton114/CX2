@@ -29,6 +29,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.models.query.*;
 
@@ -1257,6 +1258,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("municipalityId", municipalityId);
 
         return queryExecutor.exportNamedQueryData("FormsForUsersAndShared", params, exportType, MasterForms.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<UserSubscriptions> executeUserSubscriptionsByMunicipality(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("UserSubscriptionsByMunicipality", params, UserSubscriptions.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportUserSubscriptionsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("UserSubscriptionsByMunicipality", params, exportType, UserSubscriptions.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

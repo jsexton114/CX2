@@ -7947,6 +7947,34 @@
       } ]
     }
   },
+  "UserSubscriptionsByMunicipality" : {
+    "name" : "UserSubscriptionsByMunicipality",
+    "description" : "UserSubscriptionsByMunicipality",
+    "version" : "V2",
+    "queryString" : "from UserSubscriptions where municipalityId=:municipalityId",
+    "countQueryString" : "select count(*) from UserSubscriptions where municipalityId=:municipalityId",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.UserSubscriptions",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
+    }
+  },
   "VendorCount" : {
     "name" : "VendorCount",
     "description" : "A count of Vendor entries",

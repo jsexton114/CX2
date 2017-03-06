@@ -905,6 +905,20 @@
     <query-param name="municipalityId" type="java.lang.Long"/>
     </query>
 
+    <query name="UserSubscriptionsByMunicipality">
+        <![CDATA[
+        from UserSubscriptions where municipalityId=:municipalityId
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="UserSubscriptionsByMunicipality__count">
+        <![CDATA[
+        select count(*) from UserSubscriptions where municipalityId=:municipalityId
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="getUserID">
         <![CDATA[
         select ID from Users where Email =:Email

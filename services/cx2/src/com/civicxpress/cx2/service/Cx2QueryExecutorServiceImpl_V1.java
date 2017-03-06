@@ -29,6 +29,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.models.query.*;
 

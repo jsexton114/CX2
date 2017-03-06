@@ -2114,6 +2114,37 @@
     } ],
     "operation" : "toast"
   },
+  "ExportUserSubscriptionsByMunicipality" : {
+    "_id" : "wm-ExportUserSubscriptionsByMunicipality-wm.ServiceVariable-1488803309410",
+    "name" : "ExportUserSubscriptionsByMunicipality",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "exportType",
+      "value" : "EXCEL",
+      "type" : "string"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.runtime.file.model.Downloadable",
+    "service" : "cx2",
+    "operation" : "exportUserSubscriptionsByMunicipality",
+    "operationId" : "QueryExecutionController_exportUserSubscriptionsByMunicipality",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "FetchRolesForUserWithMunicipality" : {
     "_id" : "wm-FetchRolesForUserWithMunicipality-wm.ServiceVariable-1488183888380",
     "name" : "FetchRolesForUserWithMunicipality",

@@ -42,6 +42,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.service.Cx2QueryExecutorService;
 import com.civicxpress.cx2.models.query.*;
@@ -1114,6 +1115,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: FormsForUsersAndShared");
 
         return queryService.exportFormsForUsersAndShared(exportType, closed, creatorUser, sharedWithUser, municipalityId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UserSubscriptionsByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UserSubscriptionsByMunicipality")
+    public Page<UserSubscriptions> executeUserSubscriptionsByMunicipality(@RequestParam(value = "municipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: UserSubscriptionsByMunicipality");
+        Page<UserSubscriptions> _result = queryService.executeUserSubscriptionsByMunicipality(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: UserSubscriptionsByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query UserSubscriptionsByMunicipality")
+    @RequestMapping(value = "/queries/UserSubscriptionsByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportUserSubscriptionsByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: UserSubscriptionsByMunicipality");
+
+        return queryService.exportUserSubscriptionsByMunicipality(exportType, municipalityId, pageable);
     }
 
     @RequestMapping(value = "/queries/getUserID", method = RequestMethod.GET)

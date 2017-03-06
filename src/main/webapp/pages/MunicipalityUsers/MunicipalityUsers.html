@@ -28,12 +28,15 @@
                         <wm-tabs name="Manage">
                             <wm-tabpane name="tabpane1" title="Subscribers">
                                 <wm-grid title="" dataset="bind:Variables.Cx2UserSubscriptionsData.dataSet" navigation="Classic" name="gridUsersubscriptionsList" on-click="Widgets.dialog1.open()" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                    <wm-grid-column binding="users.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                    <wm-grid-column binding="users.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                    <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                    <wm-grid-column binding="users.phoneNumber" caption="Phone Number" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                    <wm-grid-column binding="dateSubscribed" caption="Date Subscribed" type="timestamp" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" show="true" filterwidget="text"></wm-grid-column>
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="150px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                    <wm-grid-column binding="users.firstName" caption="First Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                    <wm-grid-column binding="users.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                    <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                    <wm-grid-column binding="users.phoneNumber" caption="Phone Number" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                    <wm-grid-column binding="dateSubscribed" caption="Date Subscribed" type="timestamp" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
+                                    show="true" filterwidget="text"></wm-grid-column>
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="150px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                    <wm-grid-action key="customButton" display-name="Export" title="Export" value="" iconclass="" class="btn-secondary" show="true" action="Variables.ExportUserSubscriptionsByMunicipality.invoke()" position="header"
+                                    shortcutkey=""></wm-grid-action>
                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="Widgets.dialog1.open()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-tabpane>
