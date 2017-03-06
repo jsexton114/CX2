@@ -1,7 +1,7 @@
 <wm-partial data-ng-controller="newFormDialogPageController" name="partial1">
     <wm-layoutgrid name="layoutgrid1">
-        <wm-gridrow name="gridrow1">
-            <wm-gridcolumn columnwidth="12" name="gridcolumn1" padding="1em 1em 2em 1em">
+        <wm-gridrow name="gridrow1" padding="1em unset 2em unset">
+            <wm-gridcolumn columnwidth="12" name="gridcolumn1">
                 <wm-composite name="composite4_1">
                     <wm-label class="col-md-3 form-control-static" caption="Select Municipality" name="label20" width="160px" fontweight="bold"></wm-label>
                     <wm-container class="col-md-9" name="container4" width="240px">
@@ -10,30 +10,24 @@
                 </wm-composite>
             </wm-gridcolumn>
         </wm-gridrow>
-        <wm-gridrow name="gridrow2">
-            <wm-gridcolumn columnwidth="12" name="gridcolumn3" padding="unset 1em 2em 1em">
+        <wm-gridrow name="gridrow2" padding="unset unset 2em unset">
+            <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                 <wm-composite name="composite3" show="bind:!!Widgets.selectMunicipality.datavalue">
-                    <wm-label class="col-md-3 form-control-static" name="label18" caption="Category" width="160px" fontweight="bold"></wm-label>
+                    <wm-label class="col-md-3 form-control-static" name="label18" caption="Filter by Category" width="160px" fontweight="bold"></wm-label>
                     <wm-container class="col-md-9" name="container2" width="240px">
-                        <wm-select name="selectCategory" datafield="id" placeholder="Any" dataset="bind:Variables.lvFormCategories.dataSet" displayfield="category" on-change="Variables.svFormTypes.invoke()"></wm-select>
+                        <wm-select name="selectCategory" datafield="id" placeholder="All Categories" dataset="bind:Variables.lvFormCategories.dataSet" displayfield="category" on-change="Variables.svFormTypes.invoke()"></wm-select>
                     </wm-container>
                 </wm-composite>
             </wm-gridcolumn>
         </wm-gridrow>
-        <wm-gridrow name="gridrow3">
-            <wm-gridcolumn columnwidth="12" name="gridcolumn5" padding="unset 1em">
+        <wm-gridrow name="gridrow3" padding="unset unset 1em unset">
+            <wm-gridcolumn columnwidth="12" name="gridcolumn5">
                 <wm-composite name="composite4" show="bind:!!Variables.svFormTypes.dataSet.content.length">
                     <wm-label class="col-md-3 form-control-static" name="label19" caption="Select Form Design" width="160px" fontweight="bold"></wm-label>
                     <wm-container class="col-md-9" name="container3" width="240px">
                         <wm-select name="selectForm" dataset="bind:Variables.svFormTypes.dataSet" datafield="ID" displayfield="FormType" placeholder="Select Form Design"></wm-select>
                     </wm-container>
                 </wm-composite>
-            </wm-gridcolumn>
-        </wm-gridrow>
-        <wm-gridrow name="gridrow4">
-            <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                <wm-label name="label21" caption="No forms are available in the selected Category" fontweight="bold" show="bind:!!Widgets.selectMunicipality.datavalue &amp;&amp; !Variables.svFormTypes.dataSet.content.length" width="100%" horizontalalign="center"
-                padding="0.5em 1em 0.7em 1em"></wm-label>
             </wm-gridcolumn>
         </wm-gridrow>
     </wm-layoutgrid>
