@@ -32,6 +32,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.LongSerializationPolicy;
 import com.google.gson.reflect.TypeToken;
 import com.tekdog.dbutils.*;
 
@@ -555,13 +557,15 @@ public class FormService {
 	    		}
 	    		
 	    		if (sqlType.equals("datetime2") || sqlType.equals("date")) {
-	    			Long dateMs = fieldData.get(sqlSafeFieldName) != null ? Long.parseLong(fieldData.get(sqlSafeFieldName).toString()) : null;
+	    			Long dateMs = fieldData.get(sqlSafeFieldName) != null ? Double.valueOf(fieldData.get(sqlSafeFieldName).toString()).longValue() : null;
 	    			
 	    			if (sqlType.equals("datetime2")) {
 	    				queryParams.addDateTime(sqlSafeFieldName, dateMs);
 	    			} else {
 	    				queryParams.addDate(sqlSafeFieldName, dateMs);
 	    			}
+	    		} else if (sqlType.contains("numeric") && fieldData.get(sqlSafeFieldName) != null) {
+	    			queryParams.addBigDecimal(sqlSafeFieldName, new BigDecimal(fieldData.get(sqlSafeFieldName).toString()));
 	    		} else {
 	    			fieldValue = fieldData.get(sqlSafeFieldName);
 		    		queryParams.addObject(sqlSafeFieldName, fieldValue);
@@ -734,7 +738,7 @@ public class FormService {
 		
 		if (sfFee != null && !sfFee.equals(0)) {
 			if (fieldData.get("TotalSqft") != null) {
-    			BigDecimal totalSqft = new BigDecimal(Math.abs(Long.parseLong(fieldData.get("TotalSqft").toString())));
+    			BigDecimal totalSqft = new BigDecimal(fieldData.get("TotalSqft").toString());
     			
     			if (!totalSqft.equals(0)) {
     				totalFees = totalFees.add(sfFee.multiply(totalSqft));
@@ -746,7 +750,7 @@ public class FormService {
 		
 		if (unitFee != null && !unitFee.equals(0)) {
 			if (fieldData.get("TotalUnits") != null) {
-				BigDecimal totalUnits = new BigDecimal(Math.abs(Long.parseLong(fieldData.get("TotalUnits").toString())));
+				BigDecimal totalUnits = new BigDecimal(fieldData.get("TotalUnits").toString());
     			
     			if (!totalUnits.equals(0)) {
     				totalFees = totalFees.add(unitFee.multiply(totalUnits));
@@ -774,15 +778,19 @@ public class FormService {
 		return queryParams;
     }
     
-    public String submitForm(MultipartFile[] attachments, Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString) throws Exception {
+    public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, MultipartFile[] attachments) throws Exception {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
     	
-    	Gson gson = new Gson();
+    	GsonBuilder gb = new GsonBuilder();
+    	gb.setLongSerializationPolicy(LongSerializationPolicy.STRING);
+    	Gson gson = gb.create();
     	HashMap<String, Object> fieldData = new HashMap<String, Object>();
     	Type genericType = new TypeToken<HashMap<String, Object>>(){}.getType();
     	fieldData = gson.fromJson(fieldDataJsonString, genericType);
+    	
+    	logger.debug(fieldData.toString());
     	
     	try {
 	    	DBQueryParams queryParams = new DBQueryParams();

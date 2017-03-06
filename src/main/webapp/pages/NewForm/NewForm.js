@@ -172,6 +172,8 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
             });
 
             $scope.Variables.svSubmitForm.setInput('attachments', documentFiles);
+        } else {
+            $scope.Variables.svSubmitForm.setInput('attachments', []);
         }
 
         $scope.Variables.svSubmitForm.update();
