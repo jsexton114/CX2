@@ -69,7 +69,50 @@
                                 </wm-layoutgrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneFields" title="Fields"></wm-tabpane>
-                            <wm-tabpane name="tabpaneOutcomes" title="Outcomes"></wm-tabpane>
+                            <wm-tabpane name="tabpaneOutcomes" title="Outcomes">
+                                <wm-livegrid formlayout="dialog" name="livegridOutcome">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionOutcomeData.dataSet" navigation="Classic" name="gridOutcome">
+                                        <wm-grid-column binding="outcome" caption="Outcome" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="assessFeeYn" caption="Assess Fee Yn" type="boolean" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-attach-money" title="Fees" action="Widgets.dialogOutcomeFee.open()" disabled="false"></wm-grid-row-action>
+                                    </wm-grid>
+                                    <wm-liveform novalidate="false" errormessage="" title="Add Outcome" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.InspectionOutcomeData.dataSet" captionalign="left" captionposition="top" name="liveformOutcome">
+                                        <wm-layoutgrid columns="1" name="layoutgrid4_1">
+                                            <wm-gridrow name="gridrow8">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn8">
+                                                    <wm-form-field name="outcome" displayname="Outcome" show="true" primary-key="false" generator="assigned" key="outcome" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
+                                                    placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow9">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn9">
+                                                    <wm-form-field name="assessFeeYn" displayname="Assess Fee Yn" show="true" primary-key="false" generator="assigned" key="assessFeeYn" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="true"
+                                                    placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow10">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn10">
+                                                    <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" readonly="false" required="false" widget="checkbox"
+                                                    defaultvalue="false" placeholder="" uncheckedvalue="false" checkedvalue="true"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow1">
+                                                <wm-gridcolumn name="gridcolumn1" columnwidth="12">
+                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false" required="false"
+                                                    widget="select" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-layoutgrid>
+                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                    </wm-liveform>
+                                </wm-livegrid>
+                            </wm-tabpane>
                             <wm-tabpane name="tabpaneCXADMIN" title="CX Admin" accessroles="CXAdmin"></wm-tabpane>
                         </wm-tabs>
                     </wm-gridcolumn>
@@ -78,4 +121,52 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="viewtrue">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Outcome Fee" iconclass="wi wi-attach-money" name="dialogOutcomeFee">
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
+            </wm-dialogactions>
+            <wm-livegrid formlayout="dialog" name="livegridOutcomeFee">
+                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionOutcomeFeeData.dataSet" navigation="Classic" name="gridOutcomeFee">
+                    <wm-grid-column binding="amount" caption="Amount" type="integer" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
+                    <wm-grid-column binding="accountCode" caption="Account Code" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                    <wm-grid-column binding="orderToApply" caption="Order To Apply" type="integer" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
+                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                </wm-grid>
+                <wm-liveform novalidate="false" errormessage="" title="Add OutcomeFee" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.InspectionOutcomeFeeData.dataSet" captionalign="left" captionposition="top" name="liveformOutcomeFee">
+                    <wm-layoutgrid columns="1" name="layoutgrid6_1">
+                        <wm-gridrow name="gridrow14">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn16">
+                                <wm-form-field name="amount" displayname="Amount" required="false" show="true" generator="assigned" primary-key="false" key="amount" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow15">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn17">
+                                <wm-form-field name="accountCode" displayname="Account Code" required="false" show="true" generator="assigned" primary-key="false" key="accountCode" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                widget="text"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow16">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn18">
+                                <wm-form-field name="orderToApply" displayname="Order To Apply" required="false" show="true" generator="assigned" primary-key="false" key="orderToApply" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true"
+                                widget="number" minvalue="1" maxvalue="100"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow17">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn19">
+                                <wm-form-field name="inspectionOutcome" displayname="Inspection Outcome" required="false" show="false" generator="assigned" primary-key="false" key="inspectionOutcome" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                widget="select" dataset="bind:Variables.InspectionOutcomeData.dataSet" datafield="All Fields" displayfield="outcome" defaultvalue="bind:Widgets.gridOutcome.selecteditem"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                    <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                    <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                    <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                </wm-liveform>
+            </wm-livegrid>
+        </wm-dialog>
+    </wm-view>
 </wm-page>
