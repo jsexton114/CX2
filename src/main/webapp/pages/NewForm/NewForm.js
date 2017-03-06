@@ -65,6 +65,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
 
     $scope.lvFormTypeonSuccess = function(variable, data) {
+
         var formType = data[0];
         municipalityId = formType.municipalityId;
         internalForm = formType.municipalityInternalForm;
@@ -404,6 +405,7 @@ Application.$controller("dialogUploadDocumentController", ["$scope",
 
 
         $scope.buttonAddDocumentClick = function($event, $isolateScope) {
+
             $scope.Variables.stvDocuments.dataSet = $scope.Variables.stvDocuments.dataSet.concat($scope.documentsToUpload);
             $scope.documentsToUpload = [];
         };

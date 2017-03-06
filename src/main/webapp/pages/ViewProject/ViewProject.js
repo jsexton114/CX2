@@ -130,12 +130,7 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 
 }]);
 
-Application.$controller("gridProjectMembersController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
 
 Application.$controller("dialogAddMemberController", ["$scope",
     function($scope) {

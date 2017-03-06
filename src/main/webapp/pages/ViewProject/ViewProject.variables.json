@@ -143,7 +143,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Widgets.dialogAddMember.close();Variables.ProjectSharedWithData.listRecords()",
+    "onSuccess" : "Widgets.dialogAddMember.close();Variables.ProjectSharedWithData.listRecords();Variables.AddMemberSuccess.invoke()",
     "onError" : "Variables.DuplicateMemberToProject.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
