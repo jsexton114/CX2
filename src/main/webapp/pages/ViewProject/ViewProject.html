@@ -117,11 +117,10 @@
                                                     <wm-grid-column binding="usersByProjectSharedBy.fullName" caption="Added By" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true"
                                                     related-entity-name="Users"></wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-action key="addNewRow" display-name="Add Member" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Member" action="Widgets.dialogAddMember.open()" shortcutkey=""
-                                                    disabled="bind:addMember"></wm-grid-action>
-                                                    <wm-grid-action key="customButton" display-name="Invite Member" title="Invite Member" value="" iconclass="wi wi-plus" class="btn-secondary" show="true" shortcutkey=""></wm-grid-action>
-                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin"
-                                                    disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-action key="addNewRow" display-name="Add Member" show="bind:addMember" class="btn-primary" iconclass="wi wi-plus" title="Add Member" action="Widgets.dialogAddMember.open()"
+                                                    shortcutkey="" disabled=""></wm-grid-action>
+                                                    <wm-grid-action key="customButton" display-name="Invite Member" show="true" class="btn-secondary" iconclass="wi wi-plus" title="Invite Member" shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="bind:addMember" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-gridcolumn>
                                         </wm-gridrow>

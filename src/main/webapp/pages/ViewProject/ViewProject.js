@@ -6,20 +6,20 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
     $scope.onPageReady = function() {
         $scope.today = moment().valueOf();
         //var temp = $scope.Variables.BreadCrumb.dataSet;
-        $scope.Widgets.gridProjectMembers.addMember = true;
+        $scope.Widgets.gridProjectMembers.addMember = false;
     };
 
 
     $scope.CurrentProjectonSuccess = function(variable, data) {
 
         if ($scope.Variables.loggedInUser.dataSet.id == data[0].usersByCreatedBy.id) {
-            $scope.Widgets.gridProjectMembers.addMember = false;
+            $scope.Widgets.gridProjectMembers.addMember = true;
         }
         var temp = $scope.Variables.loggedInUser.dataSet.roles;
         //Checking if user is muniadmin or cxadmin
         for (let i = 0; i < temp.length; i++) {
             if ((temp[i] == "MunicipalityAdmin") || (temp[i] == "CXAdmin")) {
-                $scope.Widgets.gridProjectMembers.addMember = false;
+                $scope.Widgets.gridProjectMembers.addMember = true;
             }
         }
     };
@@ -293,6 +293,13 @@ Application.$controller("dialogTagPeopleController", ["$scope",
 ]);
 
 Application.$controller("dialogShowTaggedPeopleController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridProjectMembersController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
