@@ -6,6 +6,14 @@ Application.$controller("MyProjectsPageController", ["$scope", function($scope) 
         $scope.today = moment().valueOf();
     };
 
+
+    $scope.ProjectsDataonSuccess = function(variable, data) {
+        $scope.Variables.goToPage_ViewProject.setData({
+            'ProjectGUID': data.projectGuid
+        });
+        $scope.Variables.goToPage_ViewProject.navigate();
+    };
+
 }]);
 
 

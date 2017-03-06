@@ -972,6 +972,34 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
+  "ProjectCreatedSuccesfully" : {
+    "_id" : "wm-ProjectCreatedSuccesfully-wm.NotificationVariable-1488783338225",
+    "name" : "ProjectCreatedSuccesfully",
+    "owner" : "App",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Your project has been created successfully",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "PUDApplication" : {
     "_id" : "wm-goToPage_PUDApplication-wm.NavigationVariable-1481015708845",
     "name" : "PUDApplication",

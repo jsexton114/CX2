@@ -111,7 +111,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Widgets.dialogCreateProject.close();Variables.MunicipalityProjects.invoke()",
+    "onSuccess" : "Widgets.dialogCreateProject.close();Variables.MunicipalityProjects.invoke();Variables.ProjectCreatedSuccesfully.invoke();ProjectsDataonSuccess($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,

@@ -79,7 +79,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Widgets.dialogCreateProject.close();Variables.UserAndSharedWith.invoke()",
+    "onSuccess" : "Widgets.dialogCreateProject.close();Variables.UserAndSharedWith.invoke();ProjectsDataonSuccess($event, $scope);Variables.ProjectCreatedSuccesfully.invoke()",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
