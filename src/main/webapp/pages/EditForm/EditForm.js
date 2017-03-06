@@ -27,8 +27,8 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
 
     $scope.svSaveFormFieldonSuccess = function(variable, data) {
         resetFormFieldDialog();
+        $scope.Widgets.dlgFormTypeField.close();
     };
-
 
     $scope.liveformUpdateFormTypeBeforeservicecall = function($event, $operation, $data) {
         if ($operation === 'update') {
@@ -54,6 +54,11 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
                 $data.multipleVendors = false;
             }
         }
+    };
+
+    $scope.svUpdateFormTypeFieldonSuccess = function(variable, data) {
+        resetFormFieldDialog();
+        $scope.Widgets.dlgFormTypeField.close();
     };
 
 }]);
@@ -149,50 +154,51 @@ Application.$controller("gridFieldsController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.updaterowAction = function($event, $rowData) {
-            $scope.Widgets.dlgFormTypeField.formTypeField = $rowData;
+            formTypeFieldToEdit = $rowData;
             $scope.Widgets.dlgFormTypeField.open();
         };
     }
 ]);
+
+var formTypeFieldToEdit = null;
 
 Application.$controller("dlgFormTypeFieldController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
 
+        function getDefaultValueWidgetByType(formFieldType) {
+            switch (formFieldType) {
+                case 'Text':
+                case 'Header':
+                    return $scope.Widgets.textDefaultValue;
+                case 'Long Text':
+                case 'Instruction Text':
+                    return $scope.Widgets.longTextDefault;
+                case 'Date':
+                    return $scope.Widgets.dateDefaultValue;
+                case 'Date+Time':
+                    return $scope.Widgets.datetimeDefaultValue;
+                case 'Number':
+                    return $scope.Widgets.numberDefaultValue;
+                case 'Currency':
+                    return $scope.Widgets.currencyDefaultValue;
+                case 'Boolean':
+                    return $scope.Widgets.booleanDefaultValue;
+                default:
+                    return $scope.Widgets.textDefaultValue;
+            }
+        }
+
         $scope.buttonSaveFormFieldClick = function($event, $isolateScope) {
             var possibleValues = "";
             var defaultValue = "";
 
-            var variable = !$scope.formTypeFieldId ? $scope.Variables.svSaveFormField : $scope.Variables.svUpdateFormTypeField;
-
-            switch ($scope.Widgets.selectFormFieldType._proxyModel.label) {
-                case 'Text':
-                case 'Header':
-                    defaultValue = $scope.Widgets.textDefaultValue.datavalue;
-                    break;
-                case 'Long Text':
-                case 'Instruction Text':
-                    defaultValue = $scope.Widgets.longTextDefault.datavalue;
-                    break;
-                case 'Date':
-                    defaultValue = $scope.Widgets.dateDefaultValue.datavalue;
-                    break;
-                case 'Date+Time':
-                    defaultValue = !!$scope.Widgets.datetimeDefaultValue.datavalue ? moment($scope.Widgets.datetimeDefaultValue.datavalue).format("YYYY-MM-DD HH:mm:ss") : '';
-                    break;
-                case 'Number':
-                    defaultValue = $scope.Widgets.numberDefaultValue.datavalue;
-                    break;
-                case 'Currency':
-                    defaultValue = $scope.Widgets.currencyDefaultValue.datavalue;
-                    break;
-                case 'Boolean':
-                    defaultValue = $scope.Widgets.booleanDefaultValue.datavalue;
-                    break;
-                default:
-                    defaultValue = $scope.Widgets.textDefaultValue.datavalue;
-                    break;
+            var defaultValueWidget = getDefaultValueWidgetByType($scope.Widgets.selectFormFieldType.datavalue.label);
+            if ($scope.Widgets.selectFormFieldType.datavalue.label == 'Date+Time') {
+                defaultValue = !!defaultValueWidget.datavalue ? moment(defaultValueWidget.datavalue).format("YYYY-MM-DD HH:mm:ss") : '';
+            } else {
+                defaultValue = defaultValueWidget.datavalue;
             }
 
             $scope.Variables.stvPossibleValues.dataSet.forEach(function(possibleValue, index) {
@@ -202,21 +208,45 @@ Application.$controller("dlgFormTypeFieldController", ["$scope",
                 possibleValues += possibleValue.dataValue.replace(/,/g, '&#44;');
             });
 
-            if (!!$scope.formTypeFieldId) {
-                variable.setInput('formTypeFieldId', $scope.formTypeFieldId);
+            var variable = null;
+
+            if (!!formTypeFieldToEdit) {
+                variable = $scope.Variables.svUpdateFormTypeField;
+                variable.setInput('formTypeFieldId', formTypeFieldToEdit.id);
+            } else {
+                variable = $scope.Variables.svSaveFormField;
             }
 
+            variable.setInput('required', !!$scope.Widgets.checkboxFormFieldRequired.datavalue);
             variable.setInput('possibleValues', possibleValues);
             variable.setInput('defaultValue', defaultValue);
             variable.update();
+            formTypeFieldToEdit = null;
             $scope.Widgets.dlgFormTypeField.close();
         };
 
         $scope.dlgFormTypeFieldOpened = function($event, $isolateScope) {
-            console.log($scope.Widgets.dlgFormTypeField);
-            if (!!$scope.Widgets.dlgFormTypeField.formTypeField) {
-                console.log($scope.Widgets.dlgFormTypeField.formTypeField);
+            var formTypeFieldData = formTypeFieldToEdit;
+            if (!!formTypeFieldData) {
+                $scope.Widgets.textFormFieldLabel.datavalue = formTypeFieldData.label;
+                $scope.Widgets.selectFormFieldType.datavalue = formTypeFieldData.formFieldTypes;
+                $scope.Widgets.selectFormFieldType.setProperty('disabled', true);
+                $scope.Widgets.checkboxFormFieldRequired.datavalue = formTypeFieldData.required;
+                getDefaultValueWidgetByType(formTypeFieldData.formFieldTypes.label).datavalue = formTypeFieldData.formFieldTypes.label === 'Boolean' ? formTypeFieldData.defaultValue === 'true' : (formTypeFieldData.defaultValue || '');
+                $scope.Widgets.textareaFormFieldHelpText.datavalue = (formTypeFieldData.helpText || '');
+                $scope.Widgets.textFormFieldDisplayOrder.datavalue = formTypeFieldData.displayOrder;
 
+                $scope.Variables.stvPossibleValues.dataSet = [];
+                if (!!formTypeFieldData.possibleValues) {
+                    var possibleValues = formTypeFieldData.possibleValues.split(',');
+                    possibleValues.forEach(function(possibleValue) {
+                        $scope.Variables.stvPossibleValues.dataSet.push({
+                            dataValue: possibleValue
+                        });
+                    });
+                }
+            } else {
+                $scope.Widgets.selectFormFieldType.setProperty('disabled', false);
                 $scope.Widgets.textFormFieldLabel.reset();
                 $scope.Widgets.selectFormFieldType.reset();
                 $scope.Widgets.checkboxFormFieldRequired.reset();
@@ -232,11 +262,14 @@ Application.$controller("dlgFormTypeFieldController", ["$scope",
             }
         };
 
-
         $scope.dlgFormTypeFieldClose = function($event, $isolateScope) {
-            $scope.Widgets.dlgFormTypeField.formTypeField = undefined;
+            formTypeFieldToEdit = null;
         };
 
+        $scope.button2Click = function($event, $isolateScope) {
+            $scope.dlgFormTypeFieldClose($event, $isolateScope);
+            $scope.Widgets.dlgFormTypeField.close();
+        };
     }
 ]);
 

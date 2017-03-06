@@ -719,7 +719,7 @@
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-primary" caption="Save" type="button" margin="unset 0.5em" name="buttonSaveFormField" iconclass="wi wi-save" on-click="buttonSaveFormFieldClick($event, $scope)" disabled="bind:(!Widgets.textFormFieldLabel.datavalue &amp;&amp; !!Widgets.selectFormFieldType.datavalue.sqlType) || !Widgets.selectFormFieldType.datavalue.id"></wm-button>
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button2" iconclass="wi wi-cancel"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="button2Click($event, $scope)" name="button2" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

@@ -8266,6 +8266,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "svUpdateFormTypeFieldonSuccess($event, $scope);Variables.CXDevInfoUpdatedSuccess.invoke();Variables.Cx2FormTypeFieldsData.listRecords()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
