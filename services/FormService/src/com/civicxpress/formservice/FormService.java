@@ -750,7 +750,7 @@ public class FormService {
 		return queryParams;
     }
     
-    public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, MultipartFile[] attachments) throws Exception {
+    public String submitForm(MultipartFile[] attachments, Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString) throws Exception {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";

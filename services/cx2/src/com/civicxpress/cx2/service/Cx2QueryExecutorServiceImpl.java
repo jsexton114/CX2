@@ -1017,11 +1017,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(Integer formCategory, Boolean isActive, Integer userId, Pageable pageable) {
+    public Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(Integer formCategory, Integer municipalityId, Integer userId, Pageable pageable) {
         Map params = new HashMap(3);
 
         params.put("formCategory", formCategory);
-        params.put("isActive", isActive);
+        params.put("municipalityId", municipalityId);
         params.put("userId", userId);
 
         return queryExecutor.executeNamedQuery("GetFormTypesByCategoriesAndMunicipalities", params, GetFormTypesByCategoriesAndMunicipalitiesResponse.class, pageable);
@@ -1029,11 +1029,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportGetFormTypesByCategoriesAndMunicipalities(ExportType exportType, Integer formCategory, Boolean isActive, Integer userId, Pageable pageable) {
+    public Downloadable exportGetFormTypesByCategoriesAndMunicipalities(ExportType exportType, Integer formCategory, Integer municipalityId, Integer userId, Pageable pageable) {
         Map params = new HashMap(3);
 
         params.put("formCategory", formCategory);
-        params.put("isActive", isActive);
+        params.put("municipalityId", municipalityId);
         params.put("userId", userId);
 
         return queryExecutor.exportNamedQueryData("GetFormTypesByCategoriesAndMunicipalities", params, exportType, GetFormTypesByCategoriesAndMunicipalitiesResponse.class, pageable);

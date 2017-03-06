@@ -193,7 +193,7 @@ public interface Cx2QueryExecutorService_V1 {
     public int executeDeleteRoleForMuncipality(String role, Integer municipality, Integer user);
 
     @Deprecated
-    public Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, Integer formCategory, Boolean isActive, Integer userId);
+    public Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, Integer formCategory, Integer municipalityId, Integer userId);
 
     @Deprecated
     public int executeMapAsAdminForVendor(Integer userId, Integer vendorId);

@@ -200,9 +200,9 @@ public interface Cx2QueryExecutorService {
 
     Integer executeDeleteRoleForMuncipality(String role, Integer municipality, Integer user);
 
-    Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(Integer formCategory, Boolean isActive, Integer userId, Pageable pageable);
+    Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(Integer formCategory, Integer municipalityId, Integer userId, Pageable pageable);
 
-    Downloadable exportGetFormTypesByCategoriesAndMunicipalities(ExportType exportType, Integer formCategory, Boolean isActive, Integer userId, Pageable pageable);
+    Downloadable exportGetFormTypesByCategoriesAndMunicipalities(ExportType exportType, Integer formCategory, Integer municipalityId, Integer userId, Pageable pageable);
 
     Page<CountOfInspectionDesignByMunicipalityResponse> executeCountOfInspectionDesignByMunicipality(Integer municipalityId, Pageable pageable);
 

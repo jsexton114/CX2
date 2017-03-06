@@ -75,3 +75,10 @@ Application.$controller("pagedialogNewFormController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("pdlgNewFormController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

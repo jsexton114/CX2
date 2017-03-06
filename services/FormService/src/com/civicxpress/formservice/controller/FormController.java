@@ -78,8 +78,8 @@ public class FormController {
     }
 
     @RequestMapping(value = "/submitForm", produces = "application/json", method = RequestMethod.POST, consumes = "multipart/form-data")
-    public String submitForm(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "behalfOfUserId", required = false) Long behalfOfUserId, @RequestParam(value = "ownerId", required = false) Long ownerId, @RequestParam(value = "locationIds", required = false) String locationIds, @RequestParam(value = "vendorIds", required = false) String vendorIds, @RequestParam(value = "primaryVendorId", required = false) Long primaryVendorId, @RequestParam(value = "usersWithWhomToShare", required = false) String usersWithWhomToShare, @RequestParam(value = "fieldDataJsonString", required = false) String fieldDataJsonString, @RequestPart(value = "attachments") MultipartFile[] attachments) throws Exception {
-        return formService.submitForm(formTypeId, behalfOfUserId, ownerId, locationIds, vendorIds, primaryVendorId, usersWithWhomToShare, fieldDataJsonString, attachments);
+    public String submitForm(@RequestPart(value = "attachments") MultipartFile[] attachments, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "behalfOfUserId", required = false) Long behalfOfUserId, @RequestParam(value = "ownerId", required = false) Long ownerId, @RequestParam(value = "locationIds", required = false) String locationIds, @RequestParam(value = "vendorIds", required = false) String vendorIds, @RequestParam(value = "primaryVendorId", required = false) Long primaryVendorId, @RequestParam(value = "usersWithWhomToShare", required = false) String usersWithWhomToShare, @RequestParam(value = "fieldDataJsonString", required = false) String fieldDataJsonString) throws Exception {
+        return formService.submitForm(attachments, formTypeId, behalfOfUserId, ownerId, locationIds, vendorIds, primaryVendorId, usersWithWhomToShare, fieldDataJsonString);
     }
 
     @RequestMapping(value = "/uploadDocuments", method = RequestMethod.POST, consumes = "multipart/form-data")

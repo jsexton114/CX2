@@ -3256,8 +3256,8 @@
     "name" : "GetFormTypesByCategoriesAndMunicipalities",
     "description" : "GetFormTypesByCategoriesAndMunicipalities",
     "version" : "V1",
-    "queryString" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and\n(FT.MunicipalityInternalForm=0 or exists (SELECT RoleName from Roles where UserId=:userId and (MunicipalityId=FC.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))",
-    "countQueryString" : "select count(*) from (select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and\n(FT.MunicipalityInternalForm=0 or exists (SELECT RoleName from Roles where UserId=:userId and (MunicipalityId=FC.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))) wmTempTable",
+    "queryString" : "select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand (FT.MunicipalityInternalForm=0\n\t\tOR EXISTS (SELECT RoleName from Roles where\n\t\t\t\t\tUserId=:userId\n\t\t\t\t\tand (MunicipalityId=FT.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))",
+    "countQueryString" : "select count(*) from (select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand (FT.MunicipalityInternalForm=0\n\t\tOR EXISTS (SELECT RoleName from Roles where\n\t\t\t\t\tUserId=:userId\n\t\t\t\t\tand (MunicipalityId=FT.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -3266,14 +3266,14 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
+      "testValue" : "18",
       "required" : false
     }, {
-      "name" : "isActive",
-      "type" : "boolean",
+      "name" : "municipalityId",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "true",
+      "testValue" : "2",
       "required" : false
     }, {
       "name" : "userId",
@@ -3281,7 +3281,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -3293,80 +3293,17 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "Active",
-        "fieldName" : "active",
+        "name" : "ID",
+        "fieldName" : "id",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       }, {
-        "name" : "Attachments",
-        "fieldName" : "attachments",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "AutomaticFees",
-        "fieldName" : "automaticFees",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "BasementFee",
-        "fieldName" : "basementFee",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "BasementFeeAccountingCode",
-        "fieldName" : "basementFeeAccountingCode",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "CollectFees",
-        "fieldName" : "collectFees",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "CreatedDate",
-        "fieldName" : "createdDate",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Date",
-          "list" : false
-        }
-      }, {
-        "name" : "CurrentPrefixNumber",
-        "fieldName" : "currentPrefixNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "DigitalSignatures",
-        "fieldName" : "digitalSignatures",
+        "name" : "FormType",
+        "fieldName" : "formType",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -3392,186 +3329,6 @@
           "list" : false
         }
       }, {
-        "name" : "FormTableName",
-        "fieldName" : "formTableName",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FormType",
-        "fieldName" : "formType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FormTypeGuid",
-        "fieldName" : "formTypeGuid",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "GISMap",
-        "fieldName" : "gismap",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "GISRecord",
-        "fieldName" : "gisrecord",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "Inspections",
-        "fieldName" : "inspections",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "MultipleGISRecords",
-        "fieldName" : "multipleGisrecords",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "MultipleVendors",
-        "fieldName" : "multipleVendors",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "MunicipalityId",
-        "fieldName" : "municipalityId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "MunicipalityInternalForm",
-        "fieldName" : "municipalityInternalForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "Payments",
-        "fieldName" : "payments",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "PrefixDashes",
-        "fieldName" : "prefixDashes",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "PrefixDate",
-        "fieldName" : "prefixDate",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "PrefixNumber",
-        "fieldName" : "prefixNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "PrefixNumberResetOn",
-        "fieldName" : "prefixNumberResetOn",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "PrefixNumberStart",
-        "fieldName" : "prefixNumberStart",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "PrefixNumberStep",
-        "fieldName" : "prefixNumberStep",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "Report",
-        "fieldName" : "report",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "RequireOwner",
-        "fieldName" : "requireOwner",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
         "name" : "SfFee",
         "fieldName" : "sfFee",
         "optional" : false,
@@ -3583,42 +3340,6 @@
       }, {
         "name" : "SfFeeAccountingCode",
         "fieldName" : "sfFeeAccountingCode",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "SharedWith",
-        "fieldName" : "sharedWith",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "StateFee",
-        "fieldName" : "stateFee",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "StateFeeAccountingCode",
-        "fieldName" : "stateFeeAccountingCode",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "TitlePrefix",
-        "fieldName" : "titlePrefix",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -3644,8 +3365,305 @@
           "list" : false
         }
       }, {
+        "name" : "StateFee",
+        "fieldName" : "stateFee",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "StateFeeAccountingCode",
+        "fieldName" : "stateFeeAccountingCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Report",
+        "fieldName" : "report",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Active",
+        "fieldName" : "active",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "MunicipalityInternalForm",
+        "fieldName" : "municipalityInternalForm",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "CreatedDate",
+        "fieldName" : "createdDate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Date",
+          "list" : false
+        }
+      }, {
+        "name" : "CollectFees",
+        "fieldName" : "collectFees",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "AutomaticFees",
+        "fieldName" : "automaticFees",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "DigitalSignatures",
+        "fieldName" : "digitalSignatures",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "Inspections",
+        "fieldName" : "inspections",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "Payments",
+        "fieldName" : "payments",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "SharedWith",
+        "fieldName" : "sharedWith",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "Attachments",
+        "fieldName" : "attachments",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "GISRecord",
+        "fieldName" : "gisrecord",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "MultipleGISRecords",
+        "fieldName" : "multipleGisrecords",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "GISMap",
+        "fieldName" : "gismap",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "FormTableName",
+        "fieldName" : "formTableName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "MunicipalityId",
+        "fieldName" : "municipalityId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "FormTypeGuid",
+        "fieldName" : "formTypeGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "BasementFee",
+        "fieldName" : "basementFee",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "BasementFeeAccountingCode",
+        "fieldName" : "basementFeeAccountingCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
         "name" : "VendorSelection",
         "fieldName" : "vendorSelection",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "TitlePrefix",
+        "fieldName" : "titlePrefix",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixDate",
+        "fieldName" : "prefixDate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixNumber",
+        "fieldName" : "prefixNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixNumberStart",
+        "fieldName" : "prefixNumberStart",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigInteger",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixNumberStep",
+        "fieldName" : "prefixNumberStep",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixDashes",
+        "fieldName" : "prefixDashes",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "CurrentPrefixNumber",
+        "fieldName" : "currentPrefixNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigInteger",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixNumberResetOn",
+        "fieldName" : "prefixNumberResetOn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "MultipleVendors",
+        "fieldName" : "multipleVendors",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "RequireOwner",
+        "fieldName" : "requireOwner",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "Instructions",
+        "fieldName" : "instructions",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ForceInspectionSequence",
+        "fieldName" : "forceInspectionSequence",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",

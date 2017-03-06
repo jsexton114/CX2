@@ -726,21 +726,33 @@
 
     <sql-query name="GetFormTypesByCategoriesAndMunicipalities">
         <![CDATA[
-        select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and
-(FT.MunicipalityInternalForm=0 or exists (SELECT RoleName from Roles where UserId=:userId and (MunicipalityId=FC.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))
+        select FT.* from FormTypes FT, FormCategoryMapping FM 
+WHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))
+and FM.FormTypeId=FT.ID
+and FT.Active=1
+and (FT.MunicipalityInternalForm=0
+		OR EXISTS (SELECT RoleName from Roles where
+					UserId=:userId
+					and (MunicipalityId=FT.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))
         ]]>
     <query-param name="formCategory" type="java.lang.Integer"/>
-    <query-param name="isActive" type="java.lang.Boolean"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="userId" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetFormTypesByCategoriesAndMunicipalities__count">
         <![CDATA[
-        select count(*) from (select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and
-(FT.MunicipalityInternalForm=0 or exists (SELECT RoleName from Roles where UserId=:userId and (MunicipalityId=FC.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))) wmTempTable
+        select count(*) from (select FT.* from FormTypes FT, FormCategoryMapping FM 
+WHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))
+and FM.FormTypeId=FT.ID
+and FT.Active=1
+and (FT.MunicipalityInternalForm=0
+		OR EXISTS (SELECT RoleName from Roles where
+					UserId=:userId
+					and (MunicipalityId=FT.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))) wmTempTable
         ]]>
     <query-param name="formCategory" type="java.lang.Integer"/>
-    <query-param name="isActive" type="java.lang.Boolean"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="userId" type="java.lang.Integer"/>
     </sql-query>
 

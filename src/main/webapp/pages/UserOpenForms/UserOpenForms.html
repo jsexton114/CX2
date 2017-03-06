@@ -36,18 +36,19 @@
                                 <wm-gridrow name="gridrow4">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn5">
                                         <wm-grid title="" dataset="bind:Variables.FormsForUsersAndShared.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="users.email" caption="Created By" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" show="bind:Widgets.selectView.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column>
-                                            <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="giscontacts.gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" show="bind:Widgets.selectView.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
-                                            <wm-grid-column binding="giscontacts.gisrecords.lot" caption="Lot" type="string" readonly="true" show="bind:Widgets.selectView.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
-                                            <wm-grid-column binding="giscontacts.gisrecords.fullAddress" caption="Address" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="vendor.companyName" caption="Primary Vendor" type="string" readonly="true" show="bind:Widgets.selectView.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column>
-                                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                            <wm-grid-action key="customButton" display-name="New Form" show="true" class="btn-secondary" iconclass="wi wi-plus" title="New Forms" shortcutkey="" disabled="false"></wm-grid-action>
+                                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="users.email" caption="Created By" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="giscontacts.gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="giscontacts.gisrecords.lot" caption="Lot" type="string" readonly="true" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="giscontacts.gisrecords.fullAddress" caption="Address" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="vendor.companyName" caption="Primary Vendor" type="string" readonly="true" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                            <wm-grid-action key="customButton" display-name="New Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Forms" action="Widgets.dialogNewForm.open()" shortcutkey="" disabled="false"
+                                            position="header"></wm-grid-action>
                                             <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                     </wm-gridcolumn>
@@ -60,4 +61,12 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="view1">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="New Form" iconclass="wi wi-file-text" name="dialogNewForm">
+            <wm-panel iconclass="" autoclose="outsideClick" name="panel4" title="" content="newFormDialog" margin="0px" class="panel-transparent">
+                <wm-param name="municipalityId" value="bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID" type="integer"></wm-param>
+                <wm-param name="dialogName" value="dialogNewForm" type="string"></wm-param>
+            </wm-panel>
+        </wm-dialog>
+    </wm-view>
 </wm-page>

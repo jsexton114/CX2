@@ -171,51 +171,10 @@
     <wm-footer name="footer" content="footer"></wm-footer>
     <wm-view class="dialog-view" name="viewNewForm">
         <wm-dialog dialogtype="design-dialog" modal="true" title="New Form" iconclass="wi wi-file-text" name="dialogNewForm">
-            <wm-layoutgrid name="layoutgrid1">
-                <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn1" padding="1em 1em 2em 1em">
-                        <wm-composite name="composite4_1">
-                            <wm-label class="col-md-3 form-control-static" caption="Select Municipality" name="label20" width="160px" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container4" width="240px">
-                                <wm-select dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue" name="selectMunicipality"
-                                orderby="MunicipalityName:asc" placeholder="Select Municipality"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3" padding="unset 1em 2em 1em">
-                        <wm-composite name="composite3" show="bind:Variables.AllCategories.dataSet.data.length > 0">
-                            <wm-label class="col-md-3 form-control-static" name="label18" caption="Select Category" width="160px" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container2" width="240px">
-                                <wm-select name="selectCategory" dataset="bind:Variables.AllCategories.dataSet" datafield="id" displayfield="category" orderby="category:asc" placeholder="Select Category"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow3">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn5" padding="unset 1em">
-                        <wm-composite name="composite4" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements != 0 &amp;&amp; Variables.AllCategories.dataSet.totalElements != 0">
-                            <wm-label class="col-md-3 form-control-static" name="label19" caption="Select Form Design" width="160px" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container3" width="240px">
-                                <wm-select name="selectForm" dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" datavalue="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.firstRecord"
-                                orderby="FormType:asc" placeholder="Select Form Design"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow4">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                        <wm-label name="label21" caption="bind:!!Widgets.selectCategory.datavalue ? 'No forms are available in the selected Category' : 'Please select a Municipality and Category to view available Form Designs'" fontweight="bold" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements == 0"
-                        width="100%" horizontalalign="center" padding="0.5em 1em 0.7em 1em"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-            <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Create" type="button" margin="unset 0.5em" name="buttonCreate" on-click="Variables.nacNewForm.invoke()" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.totalElements != 0" iconclass="wi wi-plus"
-                disabled="bind:!Widgets.selectForm.datavalue.ID"></wm-button>
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
-            </wm-dialogactions>
+            <wm-panel iconclass="" autoclose="outsideClick" name="panelNewFormPage" content="newFormDialog" title="" class="panel-transparent" margin="0px">
+                <wm-param name="municipalityId" value="bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID" type="integer"></wm-param>
+                <wm-param name="dialogName" value="dialogNewForm" type="string"></wm-param>
+            </wm-panel>
         </wm-dialog>
     </wm-view>
 </wm-page>

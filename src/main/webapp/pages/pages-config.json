@@ -263,6 +263,16 @@
   "type" : "LEFTNAV",
   "params" : [ ]
 }, {
+  "name" : "newFormDialog",
+  "type" : "PARTIAL",
+  "params" : [ {
+    "name" : "municipalityId",
+    "type" : "integer"
+  }, {
+    "name" : "dialogName",
+    "type" : "string"
+  } ]
+}, {
   "name" : "rightnav",
   "type" : "RIGHTNAV",
   "params" : [ ]
