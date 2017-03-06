@@ -31,10 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.civicxpress.fileservice.FileService.WMFile;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.tekdog.dbutils.*;
 
@@ -289,6 +286,33 @@ public class FormService {
 		formDbConn.close();
         
         return formDataRow.getFieldValues();
+    }
+    
+    public void updateFormTypeField(Long formTypeFieldId, String label, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	cx2Conn.setAutoCommit(false);
+    	DBQueryParams queryParams = new DBQueryParams();
+    	
+    	try {
+	    	queryParams.addString("label", label);
+	    	queryParams.addInteger("displayOrder", displayOrder);
+	    	queryParams.addBoolean("required", required);
+	    	queryParams.addString("defaultValue", defaultValue);
+	    	queryParams.addString("helpText", helpText);
+	    	queryParams.addString("possibleValues", possibleValues);
+	    	queryParams.addLong("formTypeFieldId", formTypeFieldId);
+	    	DBUtils.simpleQuery(cx2Conn, "UPDATE FormTypeFields "
+	    			+ "SET Label=:label, DisplayOrder=:displayOrder, Required=:required, DefaultValue=:defaultValue, HelpText=:helpText, PossibleValues=:possibleValues WHERE ID=:formTypeFieldId",
+	    			queryParams);
+	    	
+	    	cx2Conn.commit();
+    	} catch (SQLException e) {
+    		cx2Conn.rollback();
+    		logger.error(e.getLocalizedMessage());
+    		throw e;
+    	} finally {
+    		cx2Conn.close();
+    	}
     }
     
     public void saveFormTypeField(Long formTypeId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {

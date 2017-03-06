@@ -10,8 +10,7 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
         wmToaster.show('error', 'ERROR', 'Sort Order cannot be duplicated.', 5000);
     };
 
-
-    $scope.svSaveFormFieldonSuccess = function(variable, data) {
+    function resetFormFieldDialog() {
         $scope.Widgets.textFormFieldLabel.reset();
         $scope.Widgets.selectFormFieldType.reset();
         $scope.Widgets.checkboxFormFieldRequired.reset();
@@ -24,11 +23,14 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
         $scope.Widgets.textareaFormFieldHelpText.reset();
         $scope.Widgets.textFormFieldDisplayOrder.reset();
         $scope.Variables.stvPossibleValues.dataSet = [];
+    }
+
+    $scope.svSaveFormFieldonSuccess = function(variable, data) {
+        resetFormFieldDialog();
     };
 
 
     $scope.liveformUpdateFormTypeBeforeservicecall = function($event, $operation, $data) {
-        console.log($data.instructions);
         if ($operation === 'update') {
             if ($scope.Widgets.gisOptionSelect.datavalue === 'Multiple') {
                 $data.gisrecord = true;
@@ -145,6 +147,11 @@ Application.$controller("gridFieldsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.updaterowAction = function($event, $rowData) {
+            $scope.Widgets.dlgFormTypeField.formTypeField = $rowData;
+            $scope.Widgets.dlgFormTypeField.open();
+        };
     }
 ]);
 
@@ -156,6 +163,8 @@ Application.$controller("dlgFormTypeFieldController", ["$scope",
         $scope.buttonSaveFormFieldClick = function($event, $isolateScope) {
             var possibleValues = "";
             var defaultValue = "";
+
+            var variable = !$scope.formTypeFieldId ? $scope.Variables.svSaveFormField : $scope.Variables.svUpdateFormTypeField;
 
             switch ($scope.Widgets.selectFormFieldType._proxyModel.label) {
                 case 'Text':
@@ -193,10 +202,39 @@ Application.$controller("dlgFormTypeFieldController", ["$scope",
                 possibleValues += possibleValue.dataValue.replace(/,/g, '&#44;');
             });
 
-            $scope.Variables.svSaveFormField.setInput('possibleValues', possibleValues);
-            $scope.Variables.svSaveFormField.setInput('defaultValue', defaultValue);
-            $scope.Variables.svSaveFormField.update();
+            if (!!$scope.formTypeFieldId) {
+                variable.setInput('formTypeFieldId', $scope.formTypeFieldId);
+            }
+
+            variable.setInput('possibleValues', possibleValues);
+            variable.setInput('defaultValue', defaultValue);
+            variable.update();
             $scope.Widgets.dlgFormTypeField.close();
+        };
+
+        $scope.dlgFormTypeFieldOpened = function($event, $isolateScope) {
+            console.log($scope.Widgets.dlgFormTypeField);
+            if (!!$scope.Widgets.dlgFormTypeField.formTypeField) {
+                console.log($scope.Widgets.dlgFormTypeField.formTypeField);
+
+                $scope.Widgets.textFormFieldLabel.reset();
+                $scope.Widgets.selectFormFieldType.reset();
+                $scope.Widgets.checkboxFormFieldRequired.reset();
+                $scope.Widgets.textDefaultValue.reset();
+                $scope.Widgets.longTextDefault.reset();
+                $scope.Widgets.dateDefaultValue.reset();
+                $scope.Widgets.datetimeDefaultValue.reset();
+                $scope.Widgets.numberDefaultValue.reset();
+                $scope.Widgets.booleanDefaultValue.reset();
+                $scope.Widgets.textareaFormFieldHelpText.reset();
+                $scope.Widgets.textFormFieldDisplayOrder.reset();
+                $scope.Variables.stvPossibleValues.dataSet = [];
+            }
+        };
+
+
+        $scope.dlgFormTypeFieldClose = function($event, $isolateScope) {
+            $scope.Widgets.dlgFormTypeField.formTypeField = undefined;
         };
 
     }
@@ -210,29 +248,29 @@ Application.$controller("gridPossibleValuesController", ["$scope",
 ]);
 
 Application.$controller("gridFormtoinspectioncategorymappController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveformFormtoinspectioncategoryController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("gridInspectionSequenceController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveformInspectionSequenceController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

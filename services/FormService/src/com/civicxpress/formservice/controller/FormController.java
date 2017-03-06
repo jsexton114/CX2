@@ -82,6 +82,11 @@ public class FormController {
         return formService.submitForm(attachments, formTypeId, behalfOfUserId, ownerId, locationIds, vendorIds, primaryVendorId, usersWithWhomToShare, fieldDataJsonString);
     }
 
+    @RequestMapping(value = "/formTypefield", method = RequestMethod.PUT)
+    public void updateFormTypeField(@RequestParam(value = "formTypeFieldId", required = false) Long formTypeFieldId, @RequestParam(value = "label", required = false) String label, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues) throws SQLException {
+        formService.updateFormTypeField(formTypeFieldId, label, displayOrder, required, defaultValue, helpText, possibleValues);
+    }
+
     @RequestMapping(value = "/uploadDocuments", method = RequestMethod.POST, consumes = "multipart/form-data")
     public void uploadDocuments(@RequestPart(value = "files") MultipartFile[] files, @RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
         formService.uploadDocuments(files, formGuid);

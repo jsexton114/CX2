@@ -306,17 +306,17 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn83">
                                             <wm-livegrid formlayout="dialog" name="livegrid3">
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FormTypeFieldsData.dataSet" navigation="Classic" name="gridFields" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                                    <wm-grid-column binding="displayOrder" caption="Display Order" type="integer" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="label" caption="Label" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="formFieldTypes.label" caption="Field Type" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="FormFieldTypes"></wm-grid-column>
-                                                    <wm-grid-column binding="required" caption="Required" type="boolean" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="defaultValue" caption="Default Value" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="helpText" caption="Help Text" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="possibleValues" caption="Possible Values" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="displayOrder" caption="Display Order" type="integer" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="label" caption="Label" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="formFieldTypes.label" caption="Field Type" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormFieldTypes"></wm-grid-column>
+                                                    <wm-grid-column binding="required" caption="Required" type="boolean" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="defaultValue" caption="Default Value" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="helpText" caption="Help Text" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="possibleValues" caption="Possible Values" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="Add Field" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Field" action="Widgets.dlgFormTypeField.open()" shortcutkey=""
                                                     disabled="false"></wm-grid-action>
-                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.Cx2FormTypeFieldsData.dataSet.data.length > 1" class="btn-transparent" iconclass="wi wi-trash" title="Delete"
                                                     action="deleteRow()" accessroles="Authenticated" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
@@ -637,14 +637,14 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view1">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Form Field" iconclass="wi wi-file-text" name="dlgFormTypeField">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Form Field" iconclass="wi wi-file-text" name="dlgFormTypeField" on-opened="dlgFormTypeFieldOpened($event, $scope)" on-close="dlgFormTypeFieldClose($event, $scope)">
             <wm-layoutgrid name="layoutgrid10" columns="1">
                 <wm-gridrow name="gridrow43">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn73" padding="unset unset 1em unset">
                         <wm-composite name="composite7" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label11" caption="Field Type" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container6">
-                                <wm-select name="selectFormFieldType" dataset="bind:Variables.lvFormFieldTypes.dataSet" datafield="All Fields" displayfield="label"></wm-select>
+                                <wm-select name="selectFormFieldType" dataset="bind:Variables.lvFormFieldTypes.dataSet" datafield="All Fields" displayfield="label" disabled="bind:!!formTypeFieldId"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>

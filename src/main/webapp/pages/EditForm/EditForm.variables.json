@@ -8235,6 +8235,44 @@
     "saveInPhonegap" : false,
     "controller" : "Form"
   },
+  "svUpdateFormTypeField" : {
+    "_id" : "wm-svUpdateFormTypeField-wm.ServiceVariable-1488821399315",
+    "name" : "svUpdateFormTypeField",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "label",
+      "value" : "bind:Widgets.textFormFieldLabel.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "displayOrder",
+      "value" : "bind:Widgets.textFormFieldDisplayOrder.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "required",
+      "value" : "bind:Widgets.checkboxFormFieldRequired.datavalue",
+      "type" : "boolean"
+    }, {
+      "target" : "helpText",
+      "value" : "bind:Widgets.textareaFormFieldHelpText.datavalue",
+      "type" : "string"
+    } ],
+    "service" : "FormService",
+    "operation" : "updateFormTypeField",
+    "operationId" : "FormController_updateFormTypeField",
+    "operationType" : "put",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Form"
+  },
   "UpdateDevFormDetailsForCXAdmin" : {
     "_id" : "wm-UpdateDevFormDetailsForCXAdmin-wm.ServiceVariable-1481878761977",
     "name" : "UpdateDevFormDetailsForCXAdmin",
