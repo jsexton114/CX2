@@ -974,7 +974,9 @@ public class FormService {
 	    	}
 	    	
 	    	// Upload attachments
-	    	uploadDocuments(cx2Conn, attachments, formGuid, true);
+	    	if (attachments.length > 0) {
+	    		uploadDocuments(cx2Conn, attachments, formGuid, true);
+	    	}
 	    	
 	    	// Finish up by updating MasterForms and adding a history entry
 	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(1).getLong("ID");
