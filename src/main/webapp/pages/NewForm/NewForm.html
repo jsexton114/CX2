@@ -144,7 +144,12 @@
                                             <wm-composite name="fieldComposite{{$index}}">
                                                 <label class="col-md-3 control-label app-label" name="fieldLabel{{$index}}" ng-class="{required: formField.required}"> {{formField.label}} <i ng-if="!!formField.helpText &amp;&amp; formField.helpText != ''" class="wi wi-help fa-lg" title="{{formField.helpText}}"></i>
                                                 </label>
-                                                <wm-container class="col-md-9" name="container3">
+
+                                                <hr ng-if="formField.formFieldTypes.label == 'Horizontal Line'">
+                                                <p ng-if="formField.formFieldTypes.label == 'Instruction Text'" ng-bind-html="formField.defaultValue"></p>
+                                                <h3 class="panel-heading" ng-if="formField.formFieldTypes.label == 'Header'" ng-bind-html="formField.defaultValue"></h3>
+
+                                                <wm-container ng-if="!!formField.formFieldTypes.sqlType" class="col-md-9" name="container3">
                                                     <input ng-if="formField.formFieldTypes.label == 'Text'" class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="formData[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}"
                                                     name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="text" ng-required="formField.required">
                                                     <input class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="formData[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}" ng-if="formField.formFieldTypes.label == 'Number'"
@@ -160,9 +165,6 @@
                                                     </div>
                                                     <select ng-if="formField.formFieldTypes.label == 'Select'" ng-options="item for item in (formField.possibleValues.split(','))" ng-model="formData[formField.fieldName]" ng-required="formField.required"></select>
                                                     <cx-checkbox-set ng-if="formField.formFieldTypes.label == 'Multi-Select'" choices="formField.possibleValues" model="formData[formField.fieldName]" field-name="formField.fieldName"></cx-checkbox-set>
-                                                    <hr ng-if="formField.formFieldTypes.label == 'Horizontal Line'">
-                                                    <p ng-if="formField.formFieldTypes.label == 'Instruction Text'" ng-bind-html="formField.defaultValue"></p>
-                                                    <h3 class="panel-heading" ng-if="formField.formFieldTypes.label == 'Header'" ng-bind-html="formField.defaultValue"></h3>
                                                 </wm-container>
                                             </wm-composite>
                                         </wm-gridcolumn>

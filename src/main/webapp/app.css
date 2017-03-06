@@ -55,3 +55,7 @@ div.app-checkbox label.disabled input[type=checkbox] + .caption:before {
 .wm-app .nav-pills > li.active > a:focus {
     color: #ef6262 !important;
 }
+.wm-app .radio .caption,
+.wm-app .checkbox .caption {
+    min-height: 1.4em !important;
+}
