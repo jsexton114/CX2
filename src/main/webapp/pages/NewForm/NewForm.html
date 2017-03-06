@@ -133,43 +133,7 @@
                                 </wm-layoutgrid>
                             </wm-wizardstep>
                             <wm-wizardstep name="wizardstep2_1" title="Form" ng-if="loaded" enableskip="false">
-                                <wm-layoutgrid name="layoutgrid2">
-                                    <wm-gridrow name="gridrow2_2" padding="2em unset 3em unset">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn2_2">
-                                            <wm-label padding="unset 0.5em" name="label28_1" caption="Please complete the following form fields, then proceed to the next step."></wm-label>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow ng-repeat="formField in Variables.lvGetFormFields.dataSet.data" name="fieldGridrow{{$index}}">
-                                        <wm-gridcolumn columnwidth="12" name="fieldGridcolumn{{$index}}">
-                                            <wm-composite name="fieldComposite{{$index}}">
-                                                <label class="col-md-3 control-label app-label" name="fieldLabel{{$index}}" ng-class="{required: formField.required}"> {{formField.label}} <i ng-if="!!formField.helpText &amp;&amp; formField.helpText != ''" class="wi wi-help fa-lg" title="{{formField.helpText}}"></i>
-                                                </label>
-
-                                                <hr ng-if="formField.formFieldTypes.label == 'Horizontal Line'">
-                                                <p ng-if="formField.formFieldTypes.label == 'Instruction Text'" ng-bind-html="formField.defaultValue"></p>
-                                                <h3 class="panel-heading" ng-if="formField.formFieldTypes.label == 'Header'" ng-bind-html="formField.defaultValue"></h3>
-
-                                                <wm-container ng-if="!!formField.formFieldTypes.sqlType" class="col-md-9" name="container3">
-                                                    <input ng-if="formField.formFieldTypes.label == 'Text'" class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="formData[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}"
-                                                    name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="text" ng-required="formField.required">
-                                                    <input class="form-control app-textbox" apply-styles="" role="input" focus-target="" title="" ng-model="formData[formField.fieldName]" pattern=".*" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}" ng-if="formField.formFieldTypes.label == 'Number'"
-                                                    name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" type="number" ng-required="formField.required">
-                                                    <textarea class="form-control app-textarea" apply-styles="" role="input" focus-target="" ng-model="formData[formField.fieldName]" title="" accesskey="" ng-model-options="{ updateOn:'blur change', debounce: 0}" ng-if="formField.formFieldTypes.label == 'Long Text'"
-                                                    name="fieldValue{{formField.fieldName}}" placeholder="Please enter {{formField.label}}" ng-required="formField.required"></textarea>
-                                                    <datetime-picker ng-if="formField.formFieldTypes.label == 'Date'" placeholder="Please enter {{formField.label}}" date="formData[formField.fieldName]" name="{{formField.fieldName}}" time="false" ng-required="formField.required"></datetime-picker>
-                                                    <datetime-picker ng-if="formField.formFieldTypes.label == 'Date+Time'" placeholder="Please enter {{formField.label}}" date="formData[formField.fieldName]" name="{{formField.fieldName}}" time="true" ng-required="formField.required"></datetime-picker>
-                                                    <div ng-if="formField.formFieldTypes.label == 'Boolean'" class="app-checkbox checkbox" style="margin-top: 0" role="input" name="fieldValue{{formField.fieldName}}">
-                                                        <label ng-class="{unchecked: !formData[formField.fieldName]}" style="padding-left: 0" role="button">
-                                                            <input type="checkbox" ng-model="formData[formField.fieldName]"><span class="caption ng-binding" ng-bind-html=""></span>
-                                                        </label>
-                                                    </div>
-                                                    <select ng-if="formField.formFieldTypes.label == 'Select'" ng-options="item for item in (formField.possibleValues.split(','))" ng-model="formData[formField.fieldName]" ng-required="formField.required"></select>
-                                                    <cx-checkbox-set ng-if="formField.formFieldTypes.label == 'Multi-Select'" choices="formField.possibleValues" model="formData[formField.fieldName]" field-name="formField.fieldName"></cx-checkbox-set>
-                                                </wm-container>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
+                                <dynamic-form-fields form-field-list="Variables.lvGetFormFields.dataSet.data" form-data="formData"></dynamic-form-fields>
                             </wm-wizardstep>
                             <wm-wizardstep name="wizardstepLocation" title="Location" ng-if="loaded &amp;&amp; gisRecords" enableskip="false">
                                 <wm-layoutgrid name="layoutgrid17">

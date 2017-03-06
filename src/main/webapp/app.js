@@ -115,6 +115,19 @@ Application.directive('datetimePicker', ['uibDateParser', function(uibDateParser
     };
 }]);
 
+Application.directive('dynamicFormFields', function() {
+    "use strict";
+    return {
+        restrict: 'E',
+        scope: {
+            formFieldList: '=',
+            formData: '='
+        },
+        replace: true,
+        templateUrl: 'dynamicFormFields.html'
+    };
+});
+
 Application.directive('ngFileModel', function() {
     "use strict";
     return {
@@ -174,9 +187,7 @@ Application.run(["$templateCache", function($templateCache) {
         "  </li>\n" +
         "</ul>\n" +
         "");
-}]);
 
-Application.run(["$templateCache", function($templateCache) {
     $templateCache.put("uib/template/datepicker/datepickerPopup.html",
         "<ul role=\"presentation\" class=\"uib-datepicker-popup dropdown-menu uib-position-measure\" dropdown-nested ng-if=\"isOpen\" ng-keydown=\"keydown($event)\" ng-click=\"$event.stopPropagation()\">\n" +
         "  <li ng-transclude></li>\n" +
@@ -189,4 +200,33 @@ Application.run(["$templateCache", function($templateCache) {
         "  </li>\n" +
         "</ul>\n" +
         "");
+
+    $templateCache.put("dynamicFormFields.html",
+        "<div class=\"app-grid-layout clearfix\" name=\"layoutgridDynamicFields\">\n" +
+        "<wm-gridrow ng-repeat=\"formField in formFieldList\" name=\"fieldGridrow{{$index}}\">\n" +
+        "    <div class=\"app-grid-column col-sm-12\" name=\"fieldGridcolumn{{$index}}\" ng-class=\"{'panel-primary': formField.formFieldTypes.label == 'Header'}\">\n" +
+        "        <hr ng-if=\"formField.formFieldTypes.label == 'Horizontal Line'\">\n" +
+        "        <p ng-if=\"formField.formFieldTypes.label == 'Instruction Text'\" ng-bind-html=\"formField.defaultValue\"></p>\n" +
+        "        <h3 class=\"panel-heading\" ng-if=\"formField.formFieldTypes.label == 'Header'\" ng-bind-html=\"formField.defaultValue\"></h3>\n\n" +
+        "        <wm-composite ng-if=\"!!formField.formFieldTypes.sqlType\" name=\"fieldComposite{{$index}}\">\n" +
+        "            <label class=\"col-md-3 control-label app-label\" name=\"fieldLabel{{$index}}\" ng-class=\"{required: formField.required}\"> {{formField.label}} <i ng-if=\"!!formField.helpText &amp;&amp; formField.helpText != ''\" class=\"wi wi-help fa-lg\" title=\"{{formField.helpText}}\"></i>\n" +
+        "            </label>\n\n" +
+        "            <wm-container class=\"col-md-9\" name=\"container3\">\n" +
+        "                <input ng-if=\"formField.formFieldTypes.label == 'Text'\" class=\"form-control app-textbox\" apply-styles=\"\" role=\"input\" focus-target=\"\" title=\"\" ng-model=\"formData[formField.fieldName]\" pattern=\".*\" accesskey=\"\" ng-model-options=\"{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}\"" +
+        "                name=\"fieldValue{{formField.fieldName}}\" placeholder=\"Please enter {{formField.label}}\" type=\"text\" ng-required=\"formField.required\">\n" +
+        "                <input class=\"form-control app-textbox\" apply-styles=\"\" role=\"input\" focus-target=\"\" title=\"\" ng-model=\"formData[formField.fieldName]\" pattern=\".*\" accesskey=\"\" ng-model-options=\"{ updateOn:'blur change', debounce: 0 ,allowInvalid: false}\" ng-if=\"formField.formFieldTypes.label == 'Number'\" name=\"fieldValue{{formField.fieldName}}\" placeholder=\"Please enter {{formField.label}}\" type=\"number\" ng-required=\"formField.required\">\n" +
+        "                <textarea class=\"form-control app-textarea\" apply-styles=\"\" role=\"input\" focus-target=\"\" ng-model=\"formData[formField.fieldName]\" title=\"\" accesskey=\"\" ng-model-options=\"{ updateOn:'blur change', debounce: 0}\" ng-if=\"formField.formFieldTypes.label == 'Long Text'\" name=\"fieldValue{{formField.fieldName}}\" placeholder=\"Please enter {{formField.label}}\" ng-required=\"formField.required\"></textarea>\n" +
+        "                <datetime-picker ng-if=\"formField.formFieldTypes.label == 'Date'\" placeholder=\"Please enter {{formField.label}}\" date=\"formData[formField.fieldName]\" name=\"{{formField.fieldName}}\" time=\"false\" ng-required=\"formField.required\"></datetime-picker>\n" +
+        "                <datetime-picker ng-if=\"formField.formFieldTypes.label == 'Date+Time'\" placeholder=\"Please enter {{formField.label}}\" date=\"formData[formField.fieldName]\" name=\"{{formField.fieldName}}\" time=\"true\" ng-required=\"formField.required\"></datetime-picker>\n" +
+        "                <div ng-if=\"formField.formFieldTypes.label == 'Boolean'\" class=\"app-checkbox checkbox\" style=\"margin-top: 0\" role=\"input\" name=\"fieldValue{{formField.fieldName}}\">\n" +
+        "                    <label ng-class=\"{unchecked: !formData[formField.fieldName]}\" style=\"padding-left: 0\" role=\"button\">\n" +
+        "                        <input type=\"checkbox\" ng-model=\"formData[formField.fieldName]\"><span class=\"caption ng-binding\" ng-bind-html=\"\"></span>\n" +
+        "                    </label>\n" +
+        "                </div>\n" +
+        "                <select ng-if=\"formField.formFieldTypes.label == 'Select'\" ng-options=\"item for item in (formField.possibleValues.split(','))\" ng-model=\"formData[formField.fieldName]\" ng-required=\"formField.required\"></select>\n" +
+        "                <cx-checkbox-set ng-if=\"formField.formFieldTypes.label == 'Multi-Select'\" choices=\"formField.possibleValues\" model=\"formData[formField.fieldName]\" field-name=\"formField.fieldName\"></cx-checkbox-set>\n" +
+        "            </wm-container>\n" +
+        "        </wm-composite>\n" +
+        "    </div>\n" +
+        "</wm-gridrow>\n</div>");
 }]);
