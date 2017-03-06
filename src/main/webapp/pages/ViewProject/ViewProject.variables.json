@@ -10209,6 +10209,34 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Subdivisions"
   },
+  "TaskUpdatedSuccessfully" : {
+    "_id" : "wm-TaskUpdatedSuccessfully-wm.NotificationVariable-1488787411443",
+    "name" : "TaskUpdatedSuccessfully",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Record updated successfully",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "UpdateDescriptionSuccess" : {
     "_id" : "wm-UpdateDescriptionSuccess-wm.NotificationVariable-1487693059149",
     "name" : "UpdateDescriptionSuccess",
@@ -10403,7 +10431,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Widgets.dialogUpdateTask.close();Variables.ProjectTasksData.listRecords();UpdateTaskonSuccess($event, $scope)",
+    "onSuccess" : "Widgets.dialogUpdateTask.close();Variables.ProjectTasksData.listRecords();Variables.TaskUpdatedSuccessfully.invoke();UpdateTaskonSuccess($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
