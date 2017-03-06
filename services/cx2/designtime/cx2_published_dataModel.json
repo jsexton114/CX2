@@ -7578,7 +7578,7 @@
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : ""
+        "defaultValue" : "true"
       },
       "fieldName" : "assessFeeYn",
       "foreignKey" : false,
@@ -7603,7 +7603,7 @@
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : ""
+        "defaultValue" : "false"
       },
       "fieldName" : "considerClosed",
       "foreignKey" : false,
@@ -7739,7 +7739,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -7814,14 +7814,20 @@
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
       "sqlType" : "number",
       "unique" : false
     } ],
-    "constraints" : [ ],
+    "constraints" : [ {
+      "columns" : [ "InspectOutcomeId", "OrderToApply" ],
+      "composite" : true,
+      "name" : "UK_InspectionOutcomeFee_nARAs",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
     "entityName" : "InspectionOutcomeFee",
     "fullyQualifiedName" : "com.civicxpress.cx2.InspectionOutcomeFee",
     "name" : "InspectionOutcomeFee",

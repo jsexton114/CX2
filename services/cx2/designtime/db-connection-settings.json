@@ -42,7 +42,7 @@
     "table" : "FormMessageTagging",
     "schema" : "cx2"
   }, {
-    "table" : "FormToInspectionCategoryMapping",
+    "table" : "FormsToInspections",
     "schema" : "cx2"
   }, {
     "table" : "FormTypes",
@@ -51,22 +51,25 @@
     "table" : "FormTypeFields",
     "schema" : "cx2"
   }, {
-    "table" : "GISContacts",
-    "schema" : "cx2"
-  }, {
-    "table" : "GISRecords",
-    "schema" : "cx2"
-  }, {
-    "table" : "GlobalSettings",
+    "table" : "FormToInspectionCategoryMapping",
     "schema" : "cx2"
   }, {
     "table" : "GIS2Forms",
     "schema" : "cx2"
   }, {
-    "table" : "Holidays",
+    "table" : "GISRecords",
+    "schema" : "cx2"
+  }, {
+    "table" : "GISContacts",
+    "schema" : "cx2"
+  }, {
+    "table" : "GlobalSettings",
     "schema" : "cx2"
   }, {
     "table" : "InspectionDesign",
+    "schema" : "cx2"
+  }, {
+    "table" : "Holidays",
     "schema" : "cx2"
   }, {
     "table" : "InspectionCategories",
@@ -81,22 +84,22 @@
     "table" : "InspectionOutcomeFee",
     "schema" : "cx2"
   }, {
-    "table" : "MasterForms",
-    "schema" : "cx2"
-  }, {
     "table" : "InspectionSequence",
     "schema" : "cx2"
   }, {
     "table" : "ManualFeeTypes",
     "schema" : "cx2"
   }, {
-    "table" : "MasterInspections",
+    "table" : "MasterCases",
+    "schema" : "cx2"
+  }, {
+    "table" : "MasterForms",
     "schema" : "cx2"
   }, {
     "table" : "Municipalities",
     "schema" : "cx2"
   }, {
-    "table" : "MasterCases",
+    "table" : "MasterInspections",
     "schema" : "cx2"
   }, {
     "table" : "MasterProjects",
@@ -114,16 +117,16 @@
     "table" : "ProjectForms",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectGISRecords",
-    "schema" : "cx2"
-  }, {
     "table" : "Projects",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectTasks",
+    "table" : "ProjectGISRecords",
     "schema" : "cx2"
   }, {
     "table" : "ProjectSharedWith",
+    "schema" : "cx2"
+  }, {
+    "table" : "ProjectTasks",
     "schema" : "cx2"
   }, {
     "table" : "Roles",
@@ -141,28 +144,28 @@
     "table" : "Subdivisions",
     "schema" : "cx2"
   }, {
-    "table" : "UserPasswordResetTokens",
-    "schema" : "cx2"
-  }, {
     "table" : "Users",
     "schema" : "cx2"
   }, {
     "table" : "Vendor",
     "schema" : "cx2"
   }, {
+    "table" : "UserPasswordResetTokens",
+    "schema" : "cx2"
+  }, {
     "table" : "UserSubscriptions",
-    "schema" : "cx2"
-  }, {
-    "table" : "UserViewPreferences",
-    "schema" : "cx2"
-  }, {
-    "table" : "VendorAdmins",
     "schema" : "cx2"
   }, {
     "table" : "VendorApprovals",
     "schema" : "cx2"
   }, {
     "table" : "VendorLicenses",
+    "schema" : "cx2"
+  }, {
+    "table" : "UserViewPreferences",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorAdmins",
     "schema" : "cx2"
   }, {
     "table" : "Vendors2Form",
@@ -172,9 +175,6 @@
     "schema" : "cx2"
   }, {
     "table" : "VendorLicenseTypes",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormsToInspections",
     "schema" : "cx2"
   } ],
   "schemaFilter" : [ "cx2" ],

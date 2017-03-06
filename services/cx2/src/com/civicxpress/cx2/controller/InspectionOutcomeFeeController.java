@@ -97,6 +97,12 @@ public class InspectionOutcomeFeeController {
 
         return deletedInspectionOutcomeFee != null;
     }
+    @RequestMapping(value = "/inspectOutcomeId-orderToApply", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching InspectionOutcomeFee with given unique key values.")
+    public InspectionOutcomeFee getByInspectOutcomeIdAndOrderToApply(@RequestParam(name = "inspectOutcomeId") Integer inspectOutcomeId, @RequestParam(name = "orderToApply") Integer orderToApply) {
+        LOGGER.debug("Getting InspectionOutcomeFee with uniques key InspectOutcomeIdAndOrderToApply");
+        return inspectionOutcomeFeeService.getByInspectOutcomeIdAndOrderToApply(inspectOutcomeId, orderToApply);
+    }
 
     /**
      * @deprecated Use {@link #findInspectionOutcomeFees(String, Pageable)} instead.

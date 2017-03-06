@@ -49,6 +49,15 @@ public interface InspectionOutcomeFeeService {
 	 */
 	InspectionOutcomeFee findById(Integer inspectionoutcomefeeId);
 
+    /**
+	 * Find and return the InspectionOutcomeFee for given inspectOutcomeId  andorderToApply  if exists.
+	 *
+	 * @param inspectOutcomeId value of inspectOutcomeId; value cannot be null.
+	 * @param orderToApply value of orderToApply; value cannot be null.
+	 * @return InspectionOutcomeFee associated with the given inputs.
+     * @throws EntityNotFoundException if no matching InspectionOutcomeFee found.
+	 */
+    InspectionOutcomeFee getByInspectOutcomeIdAndOrderToApply(Integer inspectOutcomeId, Integer orderToApply)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing InspectionOutcomeFee. It replaces all fields of the existing InspectionOutcomeFee with the given inspectionOutcomeFee.
