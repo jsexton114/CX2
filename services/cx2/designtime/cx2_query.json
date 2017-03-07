@@ -7073,6 +7073,41 @@
       "responseType" : "SINGLE"
     }
   },
+  "UpdateConsiderClosedForInspectionOutcome" : {
+    "name" : "UpdateConsiderClosedForInspectionOutcome",
+    "description" : "UpdateConsiderClosedForInspectionOutcome",
+    "version" : "V2",
+    "queryString" : "update InspectionOutcome set ConsiderClosed=:ConsiderClosed where ID=:id",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "ConsiderClosed",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    }, {
+      "name" : "id",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.UpdateConsiderClosedForInspectionOutcomeRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "UpdateDevFormDetailsForCXAdmin" : {
     "name" : "UpdateDevFormDetailsForCXAdmin",
     "description" : "UpdateDevFormDetailsForCXAdmin",
@@ -9327,6 +9362,41 @@
           "list" : false
         }
       } ]
+    }
+  },
+  "updateAssessFeeYN" : {
+    "name" : "updateAssessFeeYN",
+    "description" : "updateAssessFeeYNAndForInspectionOutcome",
+    "version" : "V2",
+    "queryString" : "update InspectionOutcome set AssessFeeYN=:AssessFeeYN where ID=:id",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "AssessFeeYN",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : false
+    }, {
+      "name" : "id",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.UpdateAssessFeeYnRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
     }
   },
   "userSubscriptionsCount" : {

@@ -291,8 +291,12 @@
                                 <wm-livegrid formlayout="dialog" name="livegridOutcome">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionOutcomeData.dataSet" navigation="Classic" name="gridOutcome" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                                         <wm-grid-column binding="outcome" caption="Outcome" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="assessFeeYn" caption="Assess Fee" type="boolean" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="considerClosed" caption="Consider Closed" type="boolean" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="assessFeeYn" caption="Assess Fee" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                            <wm-checkbox scopedatavalue="row['assessFeeYn']" disabled="Enable" class="" data-ng-class="" on-change="assessFeeChange(row['assessFeeYn'])"></wm-checkbox>
+                                        </wm-grid-column>
+                                        <wm-grid-column binding="considerClosed" caption="Consider Closed" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                            <wm-checkbox scopedatavalue="row['considerClosed']" disabled="Enable" class="" data-ng-class="" on-change="considerClosedChange(row['considerClosed'])"></wm-checkbox>
+                                        </wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="New Outcome" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Outcome" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-attach-money" title="Fees" action="Widgets.dialogOutcomeFee.open()" disabled="false"></wm-grid-row-action>

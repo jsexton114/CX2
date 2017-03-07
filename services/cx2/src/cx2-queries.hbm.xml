@@ -246,6 +246,14 @@
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="UpdateConsiderClosedForInspectionOutcome">
+        <![CDATA[
+        update InspectionOutcome set ConsiderClosed=:ConsiderClosed where ID=:id
+        ]]>
+    <query-param name="ConsiderClosed" type="java.lang.Boolean"/>
+    <query-param name="id" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="FormsByCategory">
         <![CDATA[
         select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=0
@@ -1165,6 +1173,14 @@ and (FT.MunicipalityInternalForm=0
         ]]>
     <query-param name="user" type="java.lang.Integer"/>
     <query-param name="municipality" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="updateAssessFeeYN">
+        <![CDATA[
+        update InspectionOutcome set AssessFeeYN=:AssessFeeYN where ID=:id
+        ]]>
+    <query-param name="AssessFeeYN" type="java.lang.Boolean"/>
+    <query-param name="id" type="java.lang.Integer"/>
     </sql-query>
 
     <query name="VendorsByMunicipalityAndStatus">

@@ -4125,5 +4125,61 @@
     "type" : "string",
     "isList" : true,
     "saveInPhonegap" : false
+  },
+  "svUpdateAssessFeeYN" : {
+    "_id" : "wm-svUpdateAssessFeeYNAndConsiderClosed-wm.ServiceVariable-1488884276102",
+    "name" : "svUpdateAssessFeeYN",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "id",
+      "value" : "bind:Widgets.gridOutcome.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "java.lang.Integer",
+    "service" : "cx2",
+    "operation" : "executeUpdateAssessFeeYN",
+    "operationId" : "QueryExecutionController_executeUpdateAssessFeeYN",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "svUpdateConsiderClosedForInspectionOutcome" : {
+    "_id" : "wm-svUpdateConsiderClosedForInspectionOutcome-wm.ServiceVariable-1488884852751",
+    "name" : "svUpdateConsiderClosedForInspectionOutcome",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "id",
+      "value" : "bind:Widgets.gridOutcome.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "cx2",
+    "operation" : "executeUpdateConsiderClosedForInspectionOutcome",
+    "operationId" : "QueryExecutionController_executeUpdateConsiderClosedForInspectionOutcome",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }

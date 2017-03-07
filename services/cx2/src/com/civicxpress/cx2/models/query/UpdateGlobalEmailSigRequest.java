@@ -10,6 +10,8 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UpdateGlobalEmailSigRequest implements Serializable {

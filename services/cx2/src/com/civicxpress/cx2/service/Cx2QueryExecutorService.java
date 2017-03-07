@@ -87,6 +87,8 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfProjectsForUsersAndSharedWithByMunicipality(ExportType exportType, Integer municipalityId, Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
 
+    Integer executeUpdateConsiderClosedForInspectionOutcome(UpdateConsiderClosedForInspectionOutcomeRequest updateConsiderClosedForInspectionOutcomeRequest);
+
     Page<FormsByCategoryResponse> executeFormsByCategory(Integer formCategory, Boolean isActive, Pageable pageable);
 
     Downloadable exportFormsByCategory(ExportType exportType, Integer formCategory, Boolean isActive, Pageable pageable);
@@ -310,6 +312,8 @@ public interface Cx2QueryExecutorService {
     Page<FetchRolesForUserWithMunicipalityResponse> executeFetchRolesForUserWithMunicipality(Integer user, Integer municipality, Pageable pageable);
 
     Downloadable exportFetchRolesForUserWithMunicipality(ExportType exportType, Integer user, Integer municipality, Pageable pageable);
+
+    Integer executeUpdateAssessFeeYN(UpdateAssessFeeYnRequest updateAssessFeeYnRequest);
 
     Page<VendorApprovals> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, Pageable pageable);
 

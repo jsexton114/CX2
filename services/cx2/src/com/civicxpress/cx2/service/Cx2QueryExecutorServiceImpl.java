@@ -385,6 +385,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("CountOfProjectsForUsersAndSharedWithByMunicipality", params, exportType, CountOfProjectsForUsersAndSharedWithByMunicipalityResponse.class, pageable);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateConsiderClosedForInspectionOutcome(UpdateConsiderClosedForInspectionOutcomeRequest updateConsiderClosedForInspectionOutcomeRequest) {
+        Map params = new HashMap(2);
+
+        params.put("ConsiderClosed", updateConsiderClosedForInspectionOutcomeRequest.getConsiderClosed());
+        params.put("id", updateConsiderClosedForInspectionOutcomeRequest.getId());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateConsiderClosedForInspectionOutcome", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<FormsByCategoryResponse> executeFormsByCategory(Integer formCategory, Boolean isActive, Pageable pageable) {
@@ -1615,6 +1626,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("municipality", municipality);
 
         return queryExecutor.exportNamedQueryData("FetchRolesForUserWithMunicipality", params, exportType, FetchRolesForUserWithMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateAssessFeeYN(UpdateAssessFeeYnRequest updateAssessFeeYnRequest) {
+        Map params = new HashMap(2);
+
+        params.put("AssessFeeYN", updateAssessFeeYnRequest.getAssessFeeYn());
+        params.put("id", updateAssessFeeYnRequest.getId());
+
+        return queryExecutor.executeNamedQueryForUpdate("updateAssessFeeYN", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

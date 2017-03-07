@@ -356,6 +356,16 @@ public class QueryExecutionController {
         return queryService.exportCountOfProjectsForUsersAndSharedWithByMunicipality(exportType, municipalityId, active, creatorUser, sharedWithUser, pageable);
     }
 
+    @RequestMapping(value = "/queries/UpdateConsiderClosedForInspectionOutcome", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateConsiderClosedForInspectionOutcome")
+    public IntegerWrapper executeUpdateConsiderClosedForInspectionOutcome(@Valid @RequestBody UpdateConsiderClosedForInspectionOutcomeRequest updateConsiderClosedForInspectionOutcomeRequest) {
+        LOGGER.debug("Executing named query: UpdateConsiderClosedForInspectionOutcome");
+        Integer _result = queryService.executeUpdateConsiderClosedForInspectionOutcome(updateConsiderClosedForInspectionOutcomeRequest);
+        LOGGER.debug("got the result for named query: UpdateConsiderClosedForInspectionOutcome, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/FormsByCategory", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "FormsByCategory")
@@ -1433,6 +1443,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: FetchRolesForUserWithMunicipality");
 
         return queryService.exportFetchRolesForUserWithMunicipality(exportType, user, municipality, pageable);
+    }
+
+    @RequestMapping(value = "/queries/updateAssessFeeYN", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "updateAssessFeeYNAndForInspectionOutcome")
+    public IntegerWrapper executeUpdateAssessFeeYN(@Valid @RequestBody UpdateAssessFeeYnRequest updateAssessFeeYnRequest) {
+        LOGGER.debug("Executing named query: updateAssessFeeYN");
+        Integer _result = queryService.executeUpdateAssessFeeYN(updateAssessFeeYnRequest);
+        LOGGER.debug("got the result for named query: updateAssessFeeYN, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/VendorsByMunicipalityAndStatus", method = RequestMethod.GET)
