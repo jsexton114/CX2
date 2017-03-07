@@ -5116,6 +5116,34 @@
       "responseType" : "PAGINATED"
     }
   },
+  "InspectionsOfForm" : {
+    "name" : "InspectionsOfForm",
+    "description" : "InspectionsOfForm",
+    "version" : "V2",
+    "queryString" : "from FormsToInspections where RelatedFormGUID=:form",
+    "countQueryString" : null,
+    "nativeSql" : false,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "form",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "q",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.FormsToInspections",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
+    }
+  },
   "ManualFeeTypeCountForMunicipality" : {
     "name" : "ManualFeeTypeCountForMunicipality",
     "description" : "ManualFeeTypeCountForMunicipality",

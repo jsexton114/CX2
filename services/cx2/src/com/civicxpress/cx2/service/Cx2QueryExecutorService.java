@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
@@ -119,6 +120,10 @@ public interface Cx2QueryExecutorService {
     Page<CountOfProcessFormsByMuncipalityResponse> executeCountOfProcessFormsByMuncipality(Integer municipalityId, Boolean closed, Integer userId, Pageable pageable);
 
     Downloadable exportCountOfProcessFormsByMuncipality(ExportType exportType, Integer municipalityId, Boolean closed, Integer userId, Pageable pageable);
+
+    Page<FormsToInspections> executeInspectionsOfForm(String form, Pageable pageable);
+
+    Downloadable exportInspectionsOfForm(ExportType exportType, String form, Pageable pageable);
 
     Integer executeAddingVendorsToForm(AddingVendorsToFormRequest addingVendorsToFormRequest);
 
@@ -306,11 +311,11 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportFetchRolesForUserWithMunicipality(ExportType exportType, Integer user, Integer municipality, Pageable pageable);
 
-    Integer executeSetModifiedDateForProject(SetModifiedDateForProjectRequest setModifiedDateForProjectRequest);
-
     Page<VendorApprovals> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, Pageable pageable);
 
     Downloadable exportVendorsByMunicipalityAndStatus(ExportType exportType, Integer municipalityId, String approvalStatus, Boolean active, Pageable pageable);
+
+    Integer executeSetModifiedDateForProject(SetModifiedDateForProjectRequest setModifiedDateForProjectRequest);
 
     Page<CompanyFormsByVendorIdResponse> executeCompanyFormsByVendorId(Boolean closed, Integer vendorId, Pageable pageable);
 

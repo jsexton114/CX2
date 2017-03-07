@@ -305,7 +305,18 @@
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow57">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn119"></wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn119">
+                                                <wm-grid title="" dataset="bind:Variables.svInspectionsOfForm.dataSet" navigation="Classic" name="gridFormInspections">
+                                                    <wm-grid-column binding="masterInspections.inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="masterInspections.inspectionOutcome.outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="masterInspections.inspectionDesign.inspectDesignName" caption="Inspect Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="addedAt" caption="Added At" type="string" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column-group name="group" caption="User">
+                                                        <wm-grid-column binding="users.firstName" caption="Users First Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="users.lastName" caption="Users Last Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    </wm-grid-column-group>
+                                                </wm-grid>
+                                            </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>

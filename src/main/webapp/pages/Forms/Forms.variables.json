@@ -16117,6 +16117,34 @@
     "saveInPhonegap" : false,
     "controller" : "Form"
   },
+  "svInspectionsOfForm" : {
+    "_id" : "wm-svInspectionsOfForm-wm.ServiceVariable-1488867778700",
+    "name" : "svInspectionsOfForm",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "form",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.FormsToInspections",
+    "service" : "cx2",
+    "operation" : "executeInspectionsOfForm",
+    "operationId" : "QueryExecutionController_executeInspectionsOfForm",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "svSaveFormData" : {
     "_id" : "wm-svSaveFormData-wm.ServiceVariable-1484856175360",
     "name" : "svSaveFormData",

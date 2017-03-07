@@ -391,6 +391,13 @@
     <query-param name="UserId" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="InspectionsOfForm">
+        <![CDATA[
+        from FormsToInspections where RelatedFormGUID=:form
+        ]]>
+    <query-param name="form" type="java.lang.String"/>
+    </query>
+
     <sql-query name="AddingVendorsToForm">
         <![CDATA[
         insert into Vendors2Form(RelatedFormGUID,SharedOn,VendorId) values(:RelatedFormGUID,:SharedOn,:VendorId)
@@ -1160,14 +1167,6 @@ and (FT.MunicipalityInternalForm=0
     <query-param name="municipality" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="SetModifiedDateForProject">
-        <![CDATA[
-        Update Projects set ModifiedDate=:DateModified where ProjectGUID=:project
-        ]]>
-    <query-param name="DateModified" type="java.sql.Timestamp"/>
-    <query-param name="project" type="java.lang.String"/>
-    </sql-query>
-
     <query name="VendorsByMunicipalityAndStatus">
         <![CDATA[
         from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus and vendor.active=:active
@@ -1185,6 +1184,14 @@ and (FT.MunicipalityInternalForm=0
     <query-param name="approvalStatus" type="java.lang.String"/>
     <query-param name="active" type="java.lang.Boolean"/>
     </query>
+
+    <sql-query name="SetModifiedDateForProject">
+        <![CDATA[
+        Update Projects set ModifiedDate=:DateModified where ProjectGUID=:project
+        ]]>
+    <query-param name="DateModified" type="java.sql.Timestamp"/>
+    <query-param name="project" type="java.lang.String"/>
+    </sql-query>
 
     <query name="CompanyFormsByVendorId">
         <![CDATA[

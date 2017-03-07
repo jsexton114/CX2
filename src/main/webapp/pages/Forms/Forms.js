@@ -455,3 +455,10 @@ Application.$controller("dialogVendorDeleteConfController", ["$scope",
 
     }
 ]);
+
+Application.$controller("gridFormInspectionsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

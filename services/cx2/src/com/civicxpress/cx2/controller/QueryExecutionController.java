@@ -39,6 +39,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 
+import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
@@ -517,6 +518,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: CountOfProcessFormsByMuncipality");
 
         return queryService.exportCountOfProcessFormsByMuncipality(exportType, municipalityId, closed, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InspectionsOfForm", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InspectionsOfForm")
+    public Page<FormsToInspections> executeInspectionsOfForm(@RequestParam(value = "form") String form, Pageable pageable) {
+        LOGGER.debug("Executing named query: InspectionsOfForm");
+        Page<FormsToInspections> _result = queryService.executeInspectionsOfForm(form, pageable);
+        LOGGER.debug("got the result for named query: InspectionsOfForm, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query InspectionsOfForm")
+    @RequestMapping(value = "/queries/InspectionsOfForm/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportInspectionsOfForm(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "form") String form, Pageable pageable) {
+        LOGGER.debug("Exporting named query: InspectionsOfForm");
+
+        return queryService.exportInspectionsOfForm(exportType, form, pageable);
     }
 
     @RequestMapping(value = "/queries/AddingVendorsToForm", method = RequestMethod.POST)
@@ -1415,16 +1435,6 @@ public class QueryExecutionController {
         return queryService.exportFetchRolesForUserWithMunicipality(exportType, user, municipality, pageable);
     }
 
-    @RequestMapping(value = "/queries/SetModifiedDateForProject", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "SetModifiedDateForProject")
-    public Integer executeSetModifiedDateForProject(@Valid @RequestBody SetModifiedDateForProjectRequest setModifiedDateForProjectRequest) {
-        LOGGER.debug("Executing named query: SetModifiedDateForProject");
-        Integer _result = queryService.executeSetModifiedDateForProject(setModifiedDateForProjectRequest);
-        LOGGER.debug("got the result for named query: SetModifiedDateForProject, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/VendorsByMunicipalityAndStatus", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "VendorsByMunicipalityAndStatus")
@@ -1442,6 +1452,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: VendorsByMunicipalityAndStatus");
 
         return queryService.exportVendorsByMunicipalityAndStatus(exportType, municipalityId, approvalStatus, active, pageable);
+    }
+
+    @RequestMapping(value = "/queries/SetModifiedDateForProject", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "SetModifiedDateForProject")
+    public Integer executeSetModifiedDateForProject(@Valid @RequestBody SetModifiedDateForProjectRequest setModifiedDateForProjectRequest) {
+        LOGGER.debug("Executing named query: SetModifiedDateForProject");
+        Integer _result = queryService.executeSetModifiedDateForProject(setModifiedDateForProjectRequest);
+        LOGGER.debug("got the result for named query: SetModifiedDateForProject, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/CompanyFormsByVendorId", method = RequestMethod.GET)

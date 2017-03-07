@@ -26,6 +26,7 @@ import com.wavemaker.runtime.data.dao.query.WMQueryExecutor;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
@@ -568,6 +569,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("UserId", userId);
 
         return queryExecutor.exportNamedQueryData("CountOfProcessFormsByMuncipality", params, exportType, CountOfProcessFormsByMuncipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormsToInspections> executeInspectionsOfForm(String form, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("form", form);
+
+        return queryExecutor.executeNamedQuery("InspectionsOfForm", params, FormsToInspections.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportInspectionsOfForm(ExportType exportType, String form, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("form", form);
+
+        return queryExecutor.exportNamedQueryData("InspectionsOfForm", params, exportType, FormsToInspections.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -1596,17 +1617,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("FetchRolesForUserWithMunicipality", params, exportType, FetchRolesForUserWithMunicipalityResponse.class, pageable);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeSetModifiedDateForProject(SetModifiedDateForProjectRequest setModifiedDateForProjectRequest) {
-        Map params = new HashMap(2);
-
-        params.put("DateModified", setModifiedDateForProjectRequest.getDateModified());
-        params.put("project", setModifiedDateForProjectRequest.getProject());
-
-        return queryExecutor.executeNamedQueryForUpdate("SetModifiedDateForProject", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<VendorApprovals> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, Pageable pageable) {
@@ -1629,6 +1639,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("active", active);
 
         return queryExecutor.exportNamedQueryData("VendorsByMunicipalityAndStatus", params, exportType, VendorApprovals.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeSetModifiedDateForProject(SetModifiedDateForProjectRequest setModifiedDateForProjectRequest) {
+        Map params = new HashMap(2);
+
+        params.put("DateModified", setModifiedDateForProjectRequest.getDateModified());
+        params.put("project", setModifiedDateForProjectRequest.getProject());
+
+        return queryExecutor.executeNamedQueryForUpdate("SetModifiedDateForProject", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
