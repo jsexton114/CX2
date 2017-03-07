@@ -308,48 +308,61 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneFields" title="Fields"></wm-tabpane>
                             <wm-tabpane name="tabpaneOutcomes" title="Outcomes">
-                                <wm-livegrid formlayout="dialog" name="livegridOutcome">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionOutcomeData.dataSet" navigation="Classic" name="gridOutcome" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                                        <wm-grid-column binding="outcome" caption="Outcome" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="assessFeeYn" caption="Assess Fee" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
-                                            <wm-checkbox scopedatavalue="row['assessFeeYn']" disabled="Enable" class="" data-ng-class="" on-change="assessFeeChange(row['assessFeeYn'])"></wm-checkbox>
-                                        </wm-grid-column>
-                                        <wm-grid-column binding="considerClosed" caption="Consider Closed" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
-                                            <wm-checkbox scopedatavalue="row['considerClosed']" disabled="Enable" class="" data-ng-class="" on-change="considerClosedChange(row['considerClosed'])"></wm-checkbox>
-                                        </wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New Outcome" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Outcome" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-attach-money" title="Fees" action="Widgets.dialogOutcomeFee.open()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="The Order to Apply must be unique. Please select a different number" title="Outcome Details" formlayout="dialog" iconclass="wi wi-thumbs-up-down" dataset="bind:Variables.InspectionOutcomeData.dataSet"
-                                    captionalign="left" captionposition="top" name="liveformOutcome">
-                                        <wm-layoutgrid columns="1" name="layoutgrid4_1">
-                                            <wm-gridrow name="gridrow8">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn8">
-                                                    <wm-form-field name="outcome" displayname="Outcome Name" show="true" primary-key="false" generator="assigned" key="outcome" type="string" readonly="false" required="true" widget="text" maxchars="255" inputtype="text"
-                                                    placeholder="Enter value" margin="unset unset 1em unset"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow9">
-                                                <wm-gridcolumn columnwidth="6" name="gridcolumn9">
-                                                    <wm-form-field name="assessFeeYn" displayname="Assess Fee" show="true" primary-key="false" generator="assigned" key="assessFeeYn" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="true"
-                                                    placeholder="" checkedvalue="true" uncheckedvalue="false" hint="If selected, this outcome will result in one or many fees being assessed."></wm-form-field>
-                                                </wm-gridcolumn>
-                                                <wm-gridcolumn columnwidth="6" name="gridcolumn10">
-                                                    <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                    defaultvalue="false" placeholder="" uncheckedvalue="false" checkedvalue="true" hint="If selected, this outcome will result in the inspections process being considered &quot;Closed&quot;, and should be reserved for the final outcome."></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                        </wm-layoutgrid>
-                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
-                                        <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false"
-                                        required="false" widget="select" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord" placeholder="Select value"></wm-form-field>
-                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                    </wm-liveform>
-                                </wm-livegrid>
+                                <wm-layoutgrid name="layoutgrid12">
+                                    <wm-gridrow name="gridrow41">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn67">
+                                            <wm-label padding="unset 0.5em" name="label8" caption="Inspection Outcomes are the results of an inspection. These are the options that an inspector in the field can select after this inspection has been performed."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow42_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn69">
+                                            <wm-livegrid formlayout="dialog" name="livegridOutcome">
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionOutcomeData.dataSet" navigation="Classic" name="gridOutcome" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                                    <wm-grid-column binding="outcome" caption="Outcome" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="assessFeeYn" caption="Assess Fee" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                                        <wm-checkbox scopedatavalue="row['assessFeeYn']" disabled="Enable" class="" data-ng-class="" on-change="assessFeeChange(row['assessFeeYn'])"></wm-checkbox>
+                                                    </wm-grid-column>
+                                                    <wm-grid-column binding="considerClosed" caption="Consider Closed" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                                        <wm-checkbox scopedatavalue="row['considerClosed']" disabled="Enable" class="" data-ng-class="" on-change="considerClosedChange(row['considerClosed'])"></wm-checkbox>
+                                                    </wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-action key="addNewRow" display-name="New Outcome" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Outcome" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-attach-money" title="Fees" action="Widgets.dialogOutcomeFee.open()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                                <wm-liveform novalidate="false" errormessage="The Order to Apply must be unique. Please select a different number" title="Outcome Details" formlayout="dialog" iconclass="wi wi-thumbs-up-down" dataset="bind:Variables.InspectionOutcomeData.dataSet"
+                                                captionalign="left" captionposition="top" name="liveformOutcome">
+                                                    <wm-layoutgrid columns="1" name="layoutgrid4_1">
+                                                        <wm-gridrow name="gridrow8">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn8">
+                                                                <wm-form-field name="outcome" displayname="Outcome Name" show="true" primary-key="false" generator="assigned" key="outcome" type="string" readonly="false" required="true" widget="text" maxchars="255"
+                                                                inputtype="text" placeholder="Enter value" margin="unset unset 1em unset"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow9">
+                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn9">
+                                                                <wm-form-field name="assessFeeYn" displayname="Assess Fee" show="true" primary-key="false" generator="assigned" key="assessFeeYn" type="boolean" readonly="false" required="false" widget="checkbox"
+                                                                defaultvalue="true" placeholder="" checkedvalue="true" uncheckedvalue="false" hint="If selected, this outcome will result in one or many fees being assessed."></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn10">
+                                                                <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" readonly="false" required="false" widget="checkbox"
+                                                                defaultvalue="false" placeholder="" uncheckedvalue="false" checkedvalue="true" hint="If selected, this outcome will result in the inspections process being considered &quot;Closed&quot;, and should be reserved for the final outcome."></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                    </wm-layoutgrid>
+                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false"
+                                                    required="false" widget="select" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord"
+                                                    placeholder="Select value"></wm-form-field>
+                                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
+                                                    update-mode="true"></wm-form-action>
+                                                </wm-liveform>
+                                            </wm-livegrid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneCXADMIN" title="CX Admin" accessroles="CXAdmin"></wm-tabpane>
                         </wm-tabs>
