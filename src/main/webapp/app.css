@@ -32,10 +32,26 @@ div.app-checkbox label.disabled.unchecked input[type=checkbox] + .caption:before
     box-shadow: inset 0 0 0 3px #aaa;
     background-color: #aaa;
 }
+label.app-radioset-label.disabled > input:checked + .caption:before {
+    background-color: #555;
+}
 label.app-radioset-label.disabled > input:checked + .caption:before,
 div.app-checkbox label.disabled input[type=checkbox] + .caption:before {
     border: 2px #555 solid;
-    background-color: #555;
+    color: #555;
+}
+div.app-checkbox label.disabled input[type=checkbox] + .caption:before {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+div.app-checkbox label.disabled input[type=checkbox]:not(:checked) + .caption:before {
+    border: solid 2px #ccc;
+}
+div.app-checkbox label.disabled input[type=checkbox]:checked + .caption:before {
+    content: "\2714";
+    padding: 0 1px;
+    text-shadow: none;
 }
 .wm-app .app-grid .table thead th .header-data {
     text-transform: none !important;
