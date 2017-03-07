@@ -29,7 +29,7 @@ public class InspectionOutcomeFee implements Serializable {
 
     private Integer id;
     private Integer inspectOutcomeId;
-    private Integer amount;
+    private Float amount;
     private String accountCode;
     private Integer orderToApply;
     private InspectionOutcome inspectionOutcome;
@@ -54,12 +54,12 @@ public class InspectionOutcomeFee implements Serializable {
         this.inspectOutcomeId = inspectOutcomeId;
     }
 
-    @Column(name = "`Amount`", nullable = true, scale = 0, precision = 10)
-    public Integer getAmount() {
+    @Column(name = "`Amount`", nullable = true, scale = 2, precision = 10)
+    public Float getAmount() {
         return this.amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Float amount) {
         this.amount = amount;
     }
 
