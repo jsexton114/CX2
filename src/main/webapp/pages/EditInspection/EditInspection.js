@@ -90,3 +90,10 @@ Application.$controller("liveformOutcomeFeeController", ["$scope",
 		$scope.ctrlScope = $scope;
 	}
 ]);
+
+Application.$controller("liveformUpdateInspectiondesignController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
