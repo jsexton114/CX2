@@ -4358,7 +4358,7 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
-    "orderBy" : "id asc",
+    "orderBy" : "sequenceOrderNumber asc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "formTypes",
@@ -5415,6 +5415,7 @@
       "watchOn" : "Cx2InspectionDesignData",
       "package" : "com.civicxpress.cx2.InspectionSequence"
     } ],
+    "filterFields" : { },
     "package" : "com.civicxpress.cx2.InspectionSequence"
   },
   "lvFormFieldTypes" : {

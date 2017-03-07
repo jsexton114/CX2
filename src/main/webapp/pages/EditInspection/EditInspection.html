@@ -316,7 +316,7 @@
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn10">
                                                     <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                    defaultvalue="false" placeholder="" uncheckedvalue="false" checkedvalue="true" hint="If selected, this outcome will result in the inspections process being considered &quot;Closed&quot;, and should be reserved for the"></wm-form-field>
+                                                    defaultvalue="false" placeholder="" uncheckedvalue="false" checkedvalue="true" hint="If selected, this outcome will result in the inspections process being considered &quot;Closed&quot;, and should be reserved for the final outcome."></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
@@ -356,7 +356,7 @@
                         <wm-gridrow name="gridrow16">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn18">
                                 <wm-form-field name="orderToApply" displayname="Order To Apply" show="true" primary-key="false" generator="assigned" key="orderToApply" type="integer" maxvalue="100" readonly="false" required="true" step="0" widget="select"
-                                minvalue="1" placeholder="Enter value" dataset="bind:Variables.SortOrder.dataSet" datafield="dataValue" displayfield="dataValue"></wm-form-field>
+                                minvalue="1" placeholder="Select value" dataset="bind:Variables.SortOrder.dataSet" datafield="dataValue" displayfield="dataValue"></wm-form-field>
                             </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow15">
@@ -367,8 +367,8 @@
                         </wm-gridrow>
                         <wm-gridrow name="gridrow14">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn16">
-                                <wm-form-field name="amount" displayname="Fee Amount" show="true" primary-key="false" generator="assigned" key="amount" type="float" readonly="false" required="true" step="0.01" widget="number" placeholder="Enter value" minvalue="0.01"
-                                inputtype="number"></wm-form-field>
+                                <wm-form-field name="amount" displayname="Fee Amount (USD)" show="true" primary-key="false" generator="assigned" key="amount" type="float" readonly="false" required="true" step="0.01" widget="number" placeholder="Enter value"
+                                minvalue="0.01" inputtype="number"></wm-form-field>
                             </wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>
