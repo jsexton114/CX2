@@ -1,0 +1,466 @@
+<wm-page data-ng-controller="InspectionsDevDataEntryPageController" pagetitle="Inspections Dev Data Entry" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-tabs name="MasterInspections">
+                <wm-tabpane name="tabpane1" title="MasterInspections">
+                    <wm-livegrid formlayout="dialog" name="livegrid1">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Masterinspections List" dataset="bind:Variables.Cx2MasterInspectionsData.dataSet" navigation="Classic" name="grid1">
+                            <wm-grid-column binding="inspectionGuid" caption="Inspection Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" primary-key="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionTitle" caption="Inspection Title" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="relatedCaseGuid" caption="Related Case Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="requestedAt" caption="Requested At" generator="assigned" pcdisplay="true" mobiledisplay="true" type="datetime" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="modifiedAt" caption="Modified At" generator="assigned" pcdisplay="true" mobiledisplay="true" type="datetime" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionOutcome.id" caption="Outcome Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="InspectionOutcome"></wm-grid-column>
+                            <wm-grid-column binding="inspectionOutcome.outcome" caption="Outcome Outcome" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionOutcome" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionOutcome.assessFeeYn" caption="Fee Yn" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="InspectionOutcome" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionOutcome.considerClosed" caption="Consider Closed" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="InspectionOutcome" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionOutcome.inspectDesignId" caption="Design Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="InspectionOutcome" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.formGuid" caption="Form Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" primary-key="true" related-entity-name="MasterForms"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.closed" caption="Forms Closed" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.totalFees" caption="Total Fees" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.totalPayment" caption="Total Payment" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.balanceDue" caption="Balance Due" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.recordType" caption="Record Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.issuedDate" caption="Issued Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="date" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.expiresDate" caption="Expires Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="date" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.formTitle" caption="Form Title" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.dateModified" caption="Date Modified" generator="assigned" pcdisplay="true" mobiledisplay="true" type="timestamp" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.submittedOn" caption="Submitted On" generator="assigned" pcdisplay="true" mobiledisplay="true" type="timestamp" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.formTypeId" caption="Type Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.formStatusId" caption="Status Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.ownerId" caption="Owner Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.assignedToGroupId" caption="Group Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.municipalityId" caption="Municipality Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.userId" caption="User Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="masterForms.cxvendorId" caption="Cxvendor Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="MasterForms" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.id" caption="Gisrecords Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Gisrecords"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.landGuid" caption="Land Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.parcel" caption="Gisrecords Parcel" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.lot" caption="Gisrecords Lot" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.section" caption="Gisrecords Section" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.streetNumber" caption="Street Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.streetName" caption="Street Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.city" caption="Gisrecords City" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.streetType" caption="Street Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.streetDirection" caption="Street Direction" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.latitude" caption="Gisrecords Latitude" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.longitude" caption="Gisrecords Longitude" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.country" caption="Gisrecords Country" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.unitNumber" caption="Unit Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.postalCode" caption="Postal Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.fullAddress" caption="Full Address" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.municipalityId" caption="Municipality Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.stateId" caption="State Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="gisrecords.subdivisionId" caption="Subdivision Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Gisrecords" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.id" caption="To Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Users"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.firstName" caption="First Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.lastName" caption="Last Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.email" caption="To Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.address1" caption="To Address1" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.address2" caption="To Address2" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.city" caption="To City" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.postalCode" caption="Postal Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.phoneNumber" caption="Phone Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.communicationFrequency" caption="Communication Frequency" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.active" caption="To Active" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.photo" caption="To Photo" generator="assigned" pcdisplay="true" mobiledisplay="true" type="blob" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.banned" caption="To Banned" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.password" caption="To Password" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.country" caption="To Country" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.fullName" caption="Full Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByAssignedTo.stateId" caption="State Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionCategories.id" caption="Categories Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="InspectionCategories"></wm-grid-column>
+                            <wm-grid-column binding="inspectionCategories.inspectionCategory" caption="Inspection Category" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionCategories"
+                            readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionCategories.inspectionCategoryDescription" caption="Category Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionCategories"
+                            readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionCategories.municipalityId" caption="Municipality Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="InspectionCategories" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.id" caption="Design Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="InspectionDesign"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.inspectDesignName" caption="Design Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.instructions" caption="Design Instructions" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.active" caption="Design Active" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.municipalityInternalInspection" caption="Internal Inspection" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="InspectionDesign"
+                            readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.allowSameDayInspections" caption="Day Inspections" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="InspectionDesign"
+                            readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.sameDayInspectionFee" caption="Inspection Fee" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.sameDayInspectionFeeAcctCode" caption="Acct Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.allowCancel" caption="Allow Cancel" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.cancelFee" caption="Cancel Fee" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.cancelFeeAccount" caption="Fee Account" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.allowSameDayCancel" caption="Day Cancel" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.sameDayCancelFee" caption="Cancel Fee" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.sameDayCancelAcctCode" caption="Acct Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.totalInspectionsDaily" caption="Inspections Daily" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="InspectionDesign"
+                            readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.totalInspectionsHourly" caption="Inspections Hourly" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="InspectionDesign"
+                            readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.allowAdHoc" caption="Ad Hoc" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.callInOnly" caption="In Only" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.callInMessage" caption="In Message" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.maxDaysInAdvance" caption="In Advance" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.scheduleDateOnly" caption="Date Only" generator="assigned" pcdisplay="true" mobiledisplay="true" type="date" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.scheduleDateAndTime" caption="And Time" generator="assigned" pcdisplay="true" mobiledisplay="true" type="timestamp" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.titlePrefix" caption="Title Prefix" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.prefixDate" caption="Prefix Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.prefixNumber" caption="Prefix Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.prefixStartNumber" caption="Start Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.prefixNumberStep" caption="Number Step" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.prefixDashes" caption="Prefix Dashes" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.createdAt" caption="Created At" generator="assigned" pcdisplay="true" mobiledisplay="true" type="timestamp" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.createdBy" caption="Created By" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionDesign.municipalityId" caption="Municipality Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.id" caption="By Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Users"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.firstName" caption="First Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.lastName" caption="Last Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.email" caption="By Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.address1" caption="By Address1" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.address2" caption="By Address2" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.city" caption="By City" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.postalCode" caption="Postal Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.phoneNumber" caption="Phone Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.communicationFrequency" caption="Communication Frequency" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.active" caption="By Active" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.photo" caption="By Photo" generator="assigned" pcdisplay="true" mobiledisplay="true" type="blob" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.banned" caption="By Banned" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.password" caption="By Password" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.country" caption="By Country" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.fullName" caption="Full Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByRequestedBy.stateId" caption="State Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.id" caption="By Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Users"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.firstName" caption="First Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.lastName" caption="Last Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.email" caption="By Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.address1" caption="By Address1" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.address2" caption="By Address2" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.city" caption="By City" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.postalCode" caption="Postal Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.phoneNumber" caption="Phone Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.communicationFrequency" caption="Communication Frequency" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.active" caption="By Active" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.photo" caption="By Photo" generator="assigned" pcdisplay="true" mobiledisplay="true" type="blob" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.banned" caption="By Banned" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.password" caption="By Password" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.country" caption="By Country" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.fullName" caption="Full Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="usersByModifiedBy.stateId" caption="State Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="projects.projectGuid" caption="Project Guid" generator="uniqueid" pcdisplay="true" mobiledisplay="true" type="string" primary-key="true" related-entity-name="Projects"></wm-grid-column>
+                            <wm-grid-column binding="projects.projectName" caption="Project Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Projects" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="projects.projectDescription" caption="Project Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Projects" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="projects.projectGoals" caption="Project Goals" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Projects" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="projects.estStartDate" caption="Start Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="timestamp" related-entity-name="Projects" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="projects.estEndDate" caption="End Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="timestamp" related-entity-name="Projects" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="projects.createdDate" caption="Created Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="timestamp" related-entity-name="Projects" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="projects.modifiedDate" caption="Modified Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="timestamp" related-entity-name="Projects" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="projects.active" caption="Projects Active" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Projects" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="projects.municipalityId" caption="Municipality Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Projects" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="projects.createdBy" caption="Created By" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Projects" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="projects.modifiedBy" caption="Modified By" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Projects" readonly="true"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        </wm-grid>
+                        <wm-liveform novalidate="false" errormessage="" title="Masterinspections Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2MasterInspectionsData.dataSet" captionalign="left" captionposition="top" name="liveform1">
+                            <wm-layoutgrid columns="3" name="layoutgrid1">
+                                <wm-gridrow name="gridrow1">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn1">
+                                        <wm-form-field name="inspectionGuid" displayname="Inspection Guid" required="true" show="true" generator="assigned" primary-key="true" key="inspectionGuid" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn2">
+                                        <wm-form-field name="inspectionTitle" displayname="Inspection Title" required="false" show="true" generator="assigned" primary-key="false" key="inspectionTitle" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn3">
+                                        <wm-form-field name="relatedCaseGuid" displayname="Related Case Guid" required="false" show="true" generator="assigned" primary-key="false" key="relatedCaseGuid" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow2">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn4">
+                                        <wm-form-field name="inspectionOutcome" displayname="Inspection Outcome" required="false" show="true" generator="assigned" primary-key="false" key="inspectionOutcome" type="list" is-related="true" pc-display="true"
+                                        mobile-display="true" widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn5">
+                                        <wm-form-field name="masterForms" displayname="Master Forms" required="false" show="true" generator="assigned" primary-key="false" key="masterForms" type="list" is-related="true" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn6">
+                                        <wm-form-field name="gisrecords" displayname="Gisrecords" required="false" show="true" generator="assigned" primary-key="false" key="gisrecords" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow3">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn7">
+                                        <wm-form-field name="usersByAssignedTo" displayname="Users By Assigned To" required="false" show="true" generator="assigned" primary-key="false" key="usersByAssignedTo" type="list" is-related="true" pc-display="true"
+                                        mobile-display="true" widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn8">
+                                        <wm-form-field name="inspectionCategories" displayname="Inspection Categories" required="false" show="true" generator="assigned" primary-key="false" key="inspectionCategories" type="list" is-related="true" pc-display="true"
+                                        mobile-display="true" widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn9">
+                                        <wm-form-field name="inspectionDesign" displayname="Inspection Design" required="false" show="true" generator="assigned" primary-key="false" key="inspectionDesign" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow4">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn10">
+                                        <wm-form-field name="usersByRequestedBy" displayname="Users By Requested By" required="false" show="true" generator="assigned" primary-key="false" key="usersByRequestedBy" type="list" is-related="true" pc-display="true"
+                                        mobile-display="true" widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn11">
+                                        <wm-form-field name="usersByModifiedBy" displayname="Users By Modified By" required="false" show="true" generator="assigned" primary-key="false" key="usersByModifiedBy" type="list" is-related="true" pc-display="true"
+                                        mobile-display="true" widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn12">
+                                        <wm-form-field name="projects" displayname="Projects" required="false" show="true" generator="assigned" primary-key="false" key="projects" type="list" is-related="true" maxchars="32" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                        </wm-liveform>
+                    </wm-livegrid>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane2" title="InspectionDesign">
+                    <wm-livegrid formlayout="dialog" name="livegrid2">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Inspectiondesign List" dataset="bind:Variables.Cx2InspectionDesignData.dataSet" navigation="Classic" name="grid2">
+                            <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectDesignName" caption="Inspect Design Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="instructions" caption="Instructions" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="active" caption="Active" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean"></wm-grid-column>
+                            <wm-grid-column binding="municipalityInternalInspection" caption="Municipality Internal Inspection" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean"></wm-grid-column>
+                            <wm-grid-column binding="allowSameDayInspections" caption="Allow Same Day Inspections" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean"></wm-grid-column>
+                            <wm-grid-column binding="sameDayInspectionFee" caption="Same Day Inspection Fee" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer"></wm-grid-column>
+                            <wm-grid-column binding="sameDayInspectionFeeAcctCode" caption="Same Day Inspection Fee Acct Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="allowCancel" caption="Allow Cancel" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean"></wm-grid-column>
+                            <wm-grid-column binding="cancelFee" caption="Cancel Fee" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer"></wm-grid-column>
+                            <wm-grid-column binding="cancelFeeAccount" caption="Cancel Fee Account" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="allowSameDayCancel" caption="Allow Same Day Cancel" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean"></wm-grid-column>
+                            <wm-grid-column binding="sameDayCancelFee" caption="Same Day Cancel Fee" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer"></wm-grid-column>
+                            <wm-grid-column binding="sameDayCancelAcctCode" caption="Same Day Cancel Acct Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="totalInspectionsDaily" caption="Total Inspections Daily" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer"></wm-grid-column>
+                            <wm-grid-column binding="totalInspectionsHourly" caption="Total Inspections Hourly" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer"></wm-grid-column>
+                            <wm-grid-column binding="allowAdHoc" caption="Allow Ad Hoc" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean"></wm-grid-column>
+                            <wm-grid-column binding="callInOnly" caption="Call In Only" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean"></wm-grid-column>
+                            <wm-grid-column binding="callInMessage" caption="Call In Message" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="maxDaysInAdvance" caption="Max Days In Advance" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer"></wm-grid-column>
+                            <wm-grid-column binding="scheduleDateOnly" caption="Schedule Date Only" generator="assigned" pcdisplay="true" mobiledisplay="true" type="date"></wm-grid-column>
+                            <wm-grid-column binding="scheduleDateAndTime" caption="Schedule Date And Time" generator="assigned" pcdisplay="true" mobiledisplay="true" type="timestamp"></wm-grid-column>
+                            <wm-grid-column binding="titlePrefix" caption="Title Prefix" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="prefixDate" caption="Prefix Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="prefixNumber" caption="Prefix Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                            <wm-grid-column binding="prefixStartNumber" caption="Prefix Start Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer"></wm-grid-column>
+                            <wm-grid-column binding="prefixNumberStep" caption="Prefix Number Step" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer"></wm-grid-column>
+                            <wm-grid-column binding="prefixDashes" caption="Prefix Dashes" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean"></wm-grid-column>
+                            <wm-grid-column binding="createdAt" caption="Created At" generator="assigned" pcdisplay="true" mobiledisplay="true" type="timestamp"></wm-grid-column>
+                            <wm-grid-column binding="users.id" caption="Users Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Users"></wm-grid-column>
+                            <wm-grid-column binding="users.firstName" caption="First Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.lastName" caption="Last Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.email" caption="Users Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.address1" caption="Users Address1" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.address2" caption="Users Address2" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.city" caption="Users City" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.postalCode" caption="Postal Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.phoneNumber" caption="Phone Number" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.communicationFrequency" caption="Communication Frequency" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.active" caption="Users Active" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.photo" caption="Users Photo" generator="assigned" pcdisplay="true" mobiledisplay="true" type="blob" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.banned" caption="Users Banned" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.password" caption="Users Password" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.country" caption="Users Country" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.fullName" caption="Full Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="users.stateId" caption="State Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Users" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.id" caption="Municipalities Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Municipalities"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityGuid" caption="Municipality Guid" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.address1" caption="Municipalities Address1" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.address2" caption="Municipalities Address2" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.city" caption="Municipalities City" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.postalCode" caption="Postal Code" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.phone" caption="Municipalities Phone" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.email" caption="Municipalities Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.allowManualPayment" caption="Manual Payment" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.manualPaymentPercent" caption="Payment Percent" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.active" caption="Municipalities Active" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.globalEmailSig" caption="Email Sig" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.logo" caption="Municipalities Logo" generator="assigned" pcdisplay="true" mobiledisplay="true" type="blob" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.mondayYn" caption="Monday Yn" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.tuesdayYn" caption="Tuesday Yn" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.wednesdayYn" caption="Wednesday Yn" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.thursdayYn" caption="Thursday Yn" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.fridayYn" caption="Friday Yn" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.saturdayYn" caption="Saturday Yn" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.sundayYn" caption="Sunday Yn" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.timeZone" caption="Time Zone" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.openTime" caption="Open Time" generator="assigned" pcdisplay="true" mobiledisplay="true" type="time" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.closeTime" caption="Close Time" generator="assigned" pcdisplay="true" mobiledisplay="true" type="time" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.dbName" caption="Db Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.dbUser" caption="Db User" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.dbPassword" caption="Db Password" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.userLimit" caption="User Limit" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.formLimit" caption="Form Limit" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-column binding="municipalities.stateId" caption="State Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer" related-entity-name="Municipalities" readonly="true"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        </wm-grid>
+                        <wm-liveform novalidate="false" errormessage="" title="Inspectiondesign Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2InspectionDesignData.dataSet" captionalign="left" captionposition="top" name="liveform2">
+                            <wm-layoutgrid columns="3" name="layoutgrid2">
+                                <wm-gridrow name="gridrow5">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn13">
+                                        <wm-form-field name="inspectDesignName" displayname="Inspect Design Name" required="false" show="true" generator="assigned" primary-key="false" key="inspectDesignName" type="string" is-related="false" maxchars="255"
+                                        pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn14">
+                                        <wm-form-field name="instructions" displayname="Instructions" required="false" show="true" generator="assigned" primary-key="false" key="instructions" type="string" is-related="false" maxchars="1000" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn15">
+                                        <wm-form-field name="active" displayname="Active" required="false" show="true" generator="assigned" primary-key="false" key="active" type="boolean" is-related="false" pc-display="true" mobile-display="true" widget="checkbox"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow6">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn16">
+                                        <wm-form-field name="municipalityInternalInspection" displayname="Municipality Internal Inspection" required="false" show="true" generator="assigned" primary-key="false" key="municipalityInternalInspection" type="boolean"
+                                        is-related="false" pc-display="true" mobile-display="true" widget="checkbox"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn17">
+                                        <wm-form-field name="allowSameDayInspections" displayname="Allow Same Day Inspections" required="false" show="true" generator="assigned" primary-key="false" key="allowSameDayInspections" type="boolean" is-related="false"
+                                        pc-display="true" mobile-display="true" widget="checkbox"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn18">
+                                        <wm-form-field name="sameDayInspectionFee" displayname="Same Day Inspection Fee" required="false" show="true" generator="assigned" primary-key="false" key="sameDayInspectionFee" type="integer" is-related="false" step="0"
+                                        pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow7">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn19">
+                                        <wm-form-field name="sameDayInspectionFeeAcctCode" displayname="Same Day Inspection Fee Acct Code" required="false" show="true" generator="assigned" primary-key="false" key="sameDayInspectionFeeAcctCode" type="string"
+                                        is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn20">
+                                        <wm-form-field name="allowCancel" displayname="Allow Cancel" required="false" show="true" generator="assigned" primary-key="false" key="allowCancel" type="boolean" is-related="false" pc-display="true" mobile-display="true"
+                                        widget="checkbox"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn21">
+                                        <wm-form-field name="cancelFee" displayname="Cancel Fee" required="false" show="true" generator="assigned" primary-key="false" key="cancelFee" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true"
+                                        widget="number"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow8">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn22">
+                                        <wm-form-field name="cancelFeeAccount" displayname="Cancel Fee Account" required="false" show="true" generator="assigned" primary-key="false" key="cancelFeeAccount" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn23">
+                                        <wm-form-field name="allowSameDayCancel" displayname="Allow Same Day Cancel" required="false" show="true" generator="assigned" primary-key="false" key="allowSameDayCancel" type="boolean" is-related="false" pc-display="true"
+                                        mobile-display="true" widget="checkbox"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn24">
+                                        <wm-form-field name="sameDayCancelFee" displayname="Same Day Cancel Fee" required="false" show="true" generator="assigned" primary-key="false" key="sameDayCancelFee" type="integer" is-related="false" step="0" pc-display="true"
+                                        mobile-display="true" widget="number"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow9">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn25">
+                                        <wm-form-field name="sameDayCancelAcctCode" displayname="Same Day Cancel Acct Code" required="false" show="true" generator="assigned" primary-key="false" key="sameDayCancelAcctCode" type="string" is-related="false"
+                                        maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn26">
+                                        <wm-form-field name="totalInspectionsDaily" displayname="Total Inspections Daily" required="false" show="true" generator="assigned" primary-key="false" key="totalInspectionsDaily" type="integer" is-related="false" step="0"
+                                        pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn27">
+                                        <wm-form-field name="totalInspectionsHourly" displayname="Total Inspections Hourly" required="false" show="true" generator="assigned" primary-key="false" key="totalInspectionsHourly" type="integer" is-related="false"
+                                        step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow10">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn28">
+                                        <wm-form-field name="allowAdHoc" displayname="Allow Ad Hoc" required="false" show="true" generator="assigned" primary-key="false" key="allowAdHoc" type="boolean" is-related="false" pc-display="true" mobile-display="true"
+                                        widget="checkbox"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn29">
+                                        <wm-form-field name="callInOnly" displayname="Call In Only" required="false" show="true" generator="assigned" primary-key="false" key="callInOnly" type="boolean" is-related="false" pc-display="true" mobile-display="true"
+                                        widget="checkbox"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn30">
+                                        <wm-form-field name="callInMessage" displayname="Call In Message" required="false" show="true" generator="assigned" primary-key="false" key="callInMessage" type="string" is-related="false" maxchars="1000" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow11">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn31">
+                                        <wm-form-field name="maxDaysInAdvance" displayname="Max Days In Advance" required="false" show="true" generator="assigned" primary-key="false" key="maxDaysInAdvance" type="integer" is-related="false" step="0" pc-display="true"
+                                        mobile-display="true" widget="number"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn32">
+                                        <wm-form-field name="scheduleDateOnly" displayname="Schedule Date Only" required="false" show="true" generator="assigned" primary-key="false" key="scheduleDateOnly" type="date" is-related="false" pc-display="true" mobile-display="true"
+                                        widget="date"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn33">
+                                        <wm-form-field name="scheduleDateAndTime" displayname="Schedule Date And Time" required="false" show="true" generator="assigned" primary-key="false" key="scheduleDateAndTime" type="timestamp" is-related="false" pc-display="true"
+                                        mobile-display="true" widget="timestamp"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow12">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn34">
+                                        <wm-form-field name="titlePrefix" displayname="Title Prefix" required="false" show="true" generator="assigned" primary-key="false" key="titlePrefix" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn35">
+                                        <wm-form-field name="prefixDate" displayname="Prefix Date" required="false" show="true" generator="assigned" primary-key="false" key="prefixDate" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                        widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn36">
+                                        <wm-form-field name="prefixNumber" displayname="Prefix Number" required="false" show="true" generator="assigned" primary-key="false" key="prefixNumber" type="string" is-related="false" maxchars="255" pc-display="true"
+                                        mobile-display="true" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow13">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn37">
+                                        <wm-form-field name="prefixStartNumber" displayname="Prefix Start Number" required="false" show="true" generator="assigned" primary-key="false" key="prefixStartNumber" type="integer" is-related="false" step="0" pc-display="true"
+                                        mobile-display="true" widget="number"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn38">
+                                        <wm-form-field name="prefixNumberStep" displayname="Prefix Number Step" required="false" show="true" generator="assigned" primary-key="false" key="prefixNumberStep" type="integer" is-related="false" step="0" pc-display="true"
+                                        mobile-display="true" widget="number"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn39">
+                                        <wm-form-field name="prefixDashes" displayname="Prefix Dashes" required="false" show="true" generator="assigned" primary-key="false" key="prefixDashes" type="boolean" is-related="false" pc-display="true" mobile-display="true"
+                                        widget="checkbox"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow14">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn40">
+                                        <wm-form-field name="createdAt" displayname="Created At" required="false" show="true" generator="assigned" primary-key="false" key="createdAt" type="timestamp" is-related="false" pc-display="true" mobile-display="true"
+                                        widget="timestamp"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn41">
+                                        <wm-form-field name="users" displayname="Users" required="false" show="true" generator="assigned" primary-key="false" key="users" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn42">
+                                        <wm-form-field name="municipalities" displayname="Municipalities" required="false" show="true" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                        widget="select"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                            <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                        </wm-liveform>
+                    </wm-livegrid>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane3"></wm-tabpane>
+            </wm-tabs>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

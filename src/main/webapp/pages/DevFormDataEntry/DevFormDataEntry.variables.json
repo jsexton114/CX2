@@ -566,10 +566,23 @@
           "columnName" : "Instructions",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 8000,
+          "length" : 2147483647,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "forceInspectionSequence",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "ForceInspectionSequence",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -2149,6 +2162,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "active",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Active",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
           "scale" : 0
         } ]
       }, {
