@@ -299,22 +299,19 @@
                                     <wm-layoutgrid name="layoutgrid15">
                                         <wm-gridrow name="gridrow56">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn117">
-                                                <wm-label padding="unset 0.5em" name="label27" caption="Please select the “Request Inspection” button to request an inspection."></wm-label>
-                                                <wm-label padding="unset 0.5em" name="label60" caption="If the button is greyed out, this means the current form status does not allow for inspections."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label27" caption="Please select the “+Request Inspection” button to request an inspection. If the button is disabled, then inspections are not allowed in this current form status."></wm-label>
                                                 <wm-label padding="unset 0.5em" name="label58" caption="Please contact the municipality directly with any questions related to inspections."></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow57">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn119">
-                                                <wm-grid title="" dataset="bind:Variables.svInspectionsOfForm.dataSet" navigation="Classic" name="gridFormInspections">
+                                                <wm-grid title="" dataset="bind:Variables.svInspectionsOfForm.dataSet" navigation="Classic" name="gridFormInspections" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                                                     <wm-grid-column binding="masterInspections.inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="masterInspections.inspectionOutcome.outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="masterInspections.inspectionDesign.inspectDesignName" caption="Inspect Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="addedAt" caption="Added At" type="string" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column-group name="group" caption="User">
-                                                        <wm-grid-column binding="users.firstName" caption="Users First Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                        <wm-grid-column binding="users.lastName" caption="Users Last Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    </wm-grid-column-group>
+                                                    <wm-grid-column binding="masterInspections.inspectionDesign.inspectDesignName" caption="Inspection Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="addedAt" caption="Date Requested" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="users.fullName" caption="Requested By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column-group name="group" caption="User"></wm-grid-column-group>
                                                 </wm-grid>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
