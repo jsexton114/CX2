@@ -138,4 +138,9 @@
   "permission" : "Authenticated",
   "roles" : [ ],
   "httpMethod" : "POST"
+}, {
+  "urlPattern" : "/services/cx2/UserSubscriptions/export/{exportType}",
+  "permission" : "Authenticated",
+  "roles" : [ ],
+  "httpMethod" : "GET"
 } ]
