@@ -1,4 +1,4 @@
-Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pwordValidator", function($scope, $timeout, pwordValidator) {
+Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pwordValidator", "vcRecaptchaService", function($scope, $timeout, pwordValidator, vcRecaptchaService) {
     "use strict";
     $scope.newUser;
 
@@ -28,7 +28,6 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
 
     //unchecked municipalities
     var selectedMunicipalites = [];
-
 
     $scope.CreateUseronSuccess = function(variable, data) {
         //Setting user preference
@@ -84,18 +83,18 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
 
         if (pwordValidation === -2) {
             $scope.Variables.PasswordRequirements.notify();
-            grecaptcha.reset();
-        } else if (pwordValidation === true && (grecaptcha.getResponse() !== '')) { // check for password match and captcha
+            vcRecaptchaService.reload();
+        } else if (pwordValidation === true && (vcRecaptchaService.getResponse() !== '')) { // check for password match and captcha
             $scope.Widgets.liveform2.save();
-        } else if ((grecaptcha.getResponse() !== '') && pwordValidation !== true) {
+        } else if ((vcRecaptchaService.getResponse() !== '') && pwordValidation !== true) {
             $scope.Variables.PasswordMissMatch.notify();
-            grecaptcha.reset();
-        } else if ((grecaptcha.getResponse() === '') && pwordValidation === true) {
+            vcRecaptchaService.reload();
+        } else if ((vcRecaptchaService.getResponse() === '') && pwordValidation === true) {
             $scope.Variables.Capcha.notify();
-            grecaptcha.reset();
+            vcRecaptchaService.reload();
         } else {
             $scope.Variables.PasswordsAndCaptcha.notify();
-            grecaptcha.reset();
+            vcRecaptchaService.reload();
         }
     };
 

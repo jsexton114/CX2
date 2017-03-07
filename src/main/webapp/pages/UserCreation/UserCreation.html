@@ -4,8 +4,8 @@
         <wm-page-content columnwidth="12" name="page_content1">
             <wm-wizard name="wizard1" horizontalalign="left" on-done="wizard1Done($scope, steps)" on-cancel="Variables.NewUserToLogin.invoke()">
                 <wm-wizardstep name="wizardstep1" title="Account Setup">
-                    <wm-liveform novalidate="false" errormessage="User already exists" title="Register for CivicXpress" iconclass="wi wi-pencil" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left" captionposition="top" name="liveform2"
-                    insertmessage="Your account has been created. Please proceed to Login" updatemessage="User updated successfully" deletemessage="User deleted successfully" on-success="liveform2Success($event, $operation, $data)">
+                    <wm-liveform novalidate="false" errormessage="User already exists" title="Register for CivicXpress" iconclass="wi wi-pencil" defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left" captionposition="top" name="liveform2" insertmessage="Your account has been created. Please proceed to Login"
+                    updatemessage="User updated successfully" deletemessage="User deleted successfully" on-success="liveform2Success($event, $operation, $data)">
                         <wm-layoutgrid columns="2" name="layoutgrid2">
                             <wm-gridrow name="gridrow6">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn11">
@@ -36,8 +36,7 @@
                                     <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn18">
-                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="false" widget="select" placeholder="Search" orderby="stateName:asc"
-                                    displayexpression="stateName"></wm-form-field>
+                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="false" widget="select" placeholder="Search" orderby="stateName:asc" displayexpression="stateName"></wm-form-field>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow10">
@@ -45,8 +44,7 @@
                                     <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn20">
-                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                    defaultvalue="USA" readonly="false"></wm-form-field>
+                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="USA" readonly="false"></wm-form-field>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow21_1" padding="3em unset unset unset">
@@ -82,8 +80,8 @@
                                     <wm-composite name="composite5">
                                         <wm-label class="col-md-3 form-control-static" name="label8" caption="Municipality Search" width="20%" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="container5" width="80%">
-                                            <wm-search name="textSearchMunicipalities" placeholder="Search by Municipality Name" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="municipalityName" displaylabel="municipalityName" displayimagesrc="logo"
-                                            datafield="All Fields" required="false" width="100%" type="autocomplete" orderby="municipalityName:asc" on-select="textSearchMunicipalitiesSelect($event, $scope, selectedValue)"></wm-search>
+                                            <wm-search name="textSearchMunicipalities" placeholder="Search by Municipality Name" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="municipalityName" displaylabel="municipalityName" displayimagesrc="logo" datafield="All Fields" required="false"
+                                            width="100%" type="autocomplete" orderby="municipalityName:asc" on-select="textSearchMunicipalitiesSelect($event, $scope, selectedValue)"></wm-search>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -159,8 +157,7 @@
                                         <wm-container class="col-md-9" name="container3" width="300px">
                                             <wm-text name="textPwd" placeholder="Enter Password" type="password" regexp=".*" required="true" updateon="default" updatedelay="300" on-change="textPwdChange($event, $scope, newVal, oldVal)" autocomplete="false"></wm-text>
                                         </wm-container>
-                                        <wm-label padding="unset 0.5em" name="label12_2" show="bind:pwordRequirementsMet === false" caption="<i class=&quot;fa fa-warning&quot;></i> Password requirements have not been met. Please choose a strong password."
-                                        color="#9b8a38"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label12_2" show="bind:pwordRequirementsMet === false" caption="<i class=&quot;fa fa-warning&quot;></i> Password requirements have not been met. Please choose a strong password." color="#9b8a38"></wm-label>
                                     </wm-composite>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -181,8 +178,7 @@
                         <wm-layoutgrid name="layoutgrid7">
                             <wm-gridrow name="gridrow23">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn32">
-                                    <wm-checkbox caption="bind:'By signing up for an account on CivicXpress, I acknowledge that I have read and accepted the <a href=&quot;&quot; class=&quot;eulaLink&quot;>End User License Agreement</a>'" class="col-md-9"
-                                    name="checkboxAcceptEULA" required="true"></wm-checkbox>
+                                    <wm-checkbox caption="bind:'By signing up for an account on CivicXpress, I acknowledge that I have read and accepted the <a href=&quot;&quot; class=&quot;eulaLink&quot;>End User License Agreement</a>'" class="col-md-9" name="checkboxAcceptEULA" required="true"></wm-checkbox>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
@@ -190,7 +186,7 @@
                     <wm-layoutgrid name="layoutgrid8">
                         <wm-gridrow name="gridrow25">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn36" padding="unset unset unset 1em">
-                                <wm-prefab prefabname="Google_reCAPTCHA" name="Google_reCAPTCHA1" sitekey="6LcNeBUUAAAAAE7ACQkzLMRlZ4kHI9-ebthTlQ61"></wm-prefab>
+                                <div vc-recaptcha ng-model="recaptchaResponse"></div>
                             </wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>

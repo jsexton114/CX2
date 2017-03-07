@@ -1,3 +1,9 @@
+Application.requires.push('vcRecaptcha');
+
+Application.config(['vcRecaptchaServiceProvider', function(vcRecaptchaServiceProvider) {
+    vcRecaptchaServiceProvider.setSiteKey("6LcNeBUUAAAAAE7ACQkzLMRlZ4kHI9-ebthTlQ61");
+}]);
+
 Application.run(function($rootScope) {
     "use strict";
     /* perform any action on the variables within this block(on-page-load) */
