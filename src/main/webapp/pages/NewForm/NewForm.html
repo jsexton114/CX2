@@ -418,7 +418,7 @@
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn48"></wm-gridcolumn>
                         </wm-gridrow>
-                        <wm-gridrow name="gridrow21" padding="unset unset 1em unset">
+                        <wm-gridrow name="gridrow21">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn42"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn43" horizontalalign="center">
                                 <wm-label padding="unset 0.5em" name="label10" caption="bind:Widgets.searchAddress.datavalue.fullAddress" show="bind:!!Widgets.searchAddress.datavalue.id"></wm-label>
@@ -429,7 +429,7 @@
                 </wm-tabpane>
                 <wm-tabpane name="tbpBySubdivision" title="BY SUBDIVISION">
                     <wm-layoutgrid name="layoutgrid9">
-                        <wm-gridrow name="gridrow40_1" padding="unset unset .5em unset">
+                        <wm-gridrow name="gridrow40_1" padding="unset unset 0.5em unset">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn95_1"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn96_1">
                                 <wm-search placeholder="Search by Subdivision Name" dataset="bind:Variables.lvSubdivisions.dataSet" searchkey="subdivision" datafield="All Fields" name="searchFliterSubdivisions" displayexpression="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]"
@@ -452,7 +452,7 @@
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn57"></wm-gridcolumn>
                         </wm-gridrow>
-                        <wm-gridrow padding="unset unset 1em unset" name="gridrow26">
+                        <wm-gridrow name="gridrow26">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn58"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn59">
                                 <wm-label padding="unset 0.5em" name="label27_1" caption="bind:Widgets.searchSubdivision.datavalue.fullAddress" show="bind:!!Widgets.searchSubdivision.datavalue.id"></wm-label>
@@ -463,7 +463,7 @@
                 </wm-tabpane>
                 <wm-tabpane name="tbpByParcel" title="BY PARCEL">
                     <wm-layoutgrid name="layoutgrid10">
-                        <wm-gridrow name="gridrow28">
+                        <wm-gridrow name="gridrow28" padding="unset unset 0.5em unset">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn64"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn65">
                                 <wm-search placeholder="Search by Parcel Number" datafield="All Fields" name="searchParcel" dataset="bind:Variables.lvGisRecords.dataSet" searchkey="parcel" displaylabel="bind:'('+$[data[$i].parcel]+') '+$[data[$i].fullAddress]"></wm-search>
@@ -484,7 +484,7 @@
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn69"></wm-gridcolumn>
                         </wm-gridrow>
-                        <wm-gridrow padding="unset unset 1em unset" name="gridrow30">
+                        <wm-gridrow name="gridrow30">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn70"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn71">
                                 <wm-label padding="unset 0.5em" caption="bind:Widgets.searchParcel.datavalue.fullAddress" show="bind:!!Widgets.searchParcel.datavalue.id" name="label15"></wm-label>
@@ -548,7 +548,7 @@
                     <wm-gridcolumn columnwidth="1" name="gridcolumn102"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" name="gridcolumn103">
                         <wm-composite name="composite9">
-                            <wm-checkbox caption="Set as Primary Vendor" class="col-md-9" name="checkboxVendorIsPrimary" datavalue="bind:!Variables.stvVendors.dataSet.length" disabled="bind:!Variables.stvVendors.dataSet.length"></wm-checkbox>
+                            <wm-checkbox caption="Set as Primary Vendor" name="checkboxVendorIsPrimary" datavalue="bind:!Variables.stvVendors.dataSet.length" disabled="bind:!Variables.stvVendors.dataSet.length"></wm-checkbox>
                         </wm-composite>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn104"></wm-gridcolumn>
@@ -560,7 +560,7 @@
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn92"></wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow padding="0em unset 1em unset" name="gridrow40">
+                <wm-gridrow name="gridrow40">
                     <wm-gridcolumn columnwidth="1" name="gridcolumn93"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn94">
                         <wm-label padding="unset 0.5em" caption="bind:Widgets.searchVendors.datavalue.vendor.companyName+&quot;, &quot;+Widgets.searchVendors.datavalue.vendor.fullAddress+&quot;, &quot;+Widgets.searchVendors.datavalue.vendor.companyPhone+&quot;, &quot;+Widgets.searchVendors.datavalue.vendor.companyEmail"
