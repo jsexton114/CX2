@@ -23,40 +23,46 @@
                                 <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.lvInspectionDesignUpdate.dataSet" captionalign="left" captionposition="top" name="liveformUpdateInspectiondesign"
                                 backgroundcolor="#dbdbdb" formdata="bind:Variables.CurrentInspectionObj.firstRecord">
                                     <wm-layoutgrid name="layoutgrid7_1">
-                                        <wm-gridrow name="gridrow45">
+                                        <wm-gridrow name="gridrow45" padding="unset unset 1em unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn46">
                                                 <wm-panel iconclass="wi wi-info-outline" name="panelInspectionInfo" title="Inspection Details" class="panel-primary">
                                                     <wm-gridrow name="gridrow3" padding="unset unset 1em unset">
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="unset 1em unset unset">
-                                                            <wm-form-field name="inspectDesignName" displayname="Inspect Design Name" required="false" show="true" generator="assigned" primary-key="false" key="inspectDesignName" type="string" is-related="false"
+                                                            <wm-form-field name="inspectDesignName" displayname="Inspection Design Name" required="true" show="true" generator="assigned" primary-key="false" key="inspectDesignName" type="string" is-related="false"
                                                             maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn17" horizontalalign="left" padding="unset 1em unset unset">
                                                             <wm-form-field name="active" displayname="Active" required="false" show="true" generator="assigned" primary-key="false" key="active" type="boolean" is-related="false" pc-display="true" mobile-display="true"
-                                                            widget="checkbox"></wm-form-field>
+                                                            widget="checkbox" hint="An &quot;Active&quot; inspection will appear to users as a selection on forms that have inspections enabled. If &quot;Active&quot; is not selected, no inspections of this design can be performed."></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn3" padding="unset 1em unset unset">
                                                             <wm-form-field name="municipalityInternalInspection" displayname="Municipality Internal Inspection" required="false" show="true" generator="assigned" primary-key="false" key="municipalityInternalInspection"
-                                                            type="boolean" is-related="false" pc-display="true" mobile-display="true" widget="checkbox"></wm-form-field>
+                                                            type="boolean" is-related="false" pc-display="true" mobile-display="true" widget="checkbox" hint="This hides the inspection design from standard CivicXpress users and makes it available only to Municipality Employees."></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow1333" padding="unset unset 1em unset">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn1333">
-                                                            <wm-form-field name="instructions" displayname="Instructions" required="false" show="true" generator="assigned" primary-key="false" key="instructions" type="string" is-related="false" maxchars="1000"
-                                                            pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                                            <wm-form-field name="instructions" displayname="Inspection Instructions" required="false" show="true" generator="assigned" primary-key="false" key="instructions" type="string" is-related="false"
+                                                            maxchars="1000" pc-display="true" mobile-display="true" widget="text" hint="This is the first thing that an inspector will see when they launch the inspection. If you would like to include additional instruction text throughout the body of the inspection, use the &quot;Instruction Text&quot; field type on the Fields tab."></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-panel>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
-                                        <wm-gridrow name="gridrow46">
+                                        <wm-gridrow name="gridrow46" padding="unset unset 1em unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn48">
-                                                <wm-panel iconclass="wi wi-spellcheck" autoclose="outsideClick" name="panel10_1" margin="1em unset" title="Inspection Naming" class="panel-primary">
+                                                <wm-panel iconclass="wi wi-spellcheck" autoclose="outsideClick" name="panel10_1" title="Inspection Naming" class="panel-primary">
                                                     <wm-layoutgrid name="layoutgrid10_1">
+                                                        <wm-gridrow name="gridrow37">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn62">
+                                                                <wm-label padding="unset 0.5em" name="label4" caption="These settings control the appearance of the unique Inspection Title that is generated for each inspection of this design that is performed."></wm-label>
+                                                                <wm-label padding="unset 0.5em" name="label5" caption="Inspection Naming options can only be set once during initial inspection design setup. After the first inspection of this design has been performed, these settings are automatically disabled in order to prevent changes causing duplicate Inspection Titles."></wm-label>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
                                                         <wm-gridrow name="gridrow43_2" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn68">
-                                                                <wm-form-field name="titlePrefix" displayname="Title Prefix" required="false" show="true" generator="assigned" primary-key="false" key="titlePrefix" type="string" is-related="false" maxchars="255"
-                                                                pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                                                <wm-form-field name="titlePrefix" displayname="Prefix" required="true" show="true" generator="assigned" primary-key="false" key="titlePrefix" type="string" is-related="false" maxchars="12" pc-display="true"
+                                                                mobile-display="true" widget="text" width="160px"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn88"></wm-gridcolumn>
                                                         </wm-gridrow>
@@ -69,21 +75,21 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow45_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn72_1">
-                                                                <wm-form-field name="prefixDate" displayname="Prefix Date" required="false" show="true" generator="assigned" primary-key="false" key="prefixDate" type="string" is-related="false" maxchars="255"
+                                                                <wm-form-field name="prefixDate" displayname="Number Generation" required="true" show="true" generator="assigned" primary-key="false" key="prefixDate" type="string" is-related="false" maxchars="255"
                                                                 pc-display="true" mobile-display="true" widget="radioset" dataset="bind:Variables.stvPrefixNumberOptions.dataSet" datafield="value" displayfield="label"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn72_2">
                                                                 <wm-layoutgrid name="layoutgrid11">
                                                                     <wm-gridrow name="gridrow47">
                                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn74_1">
-                                                                            <wm-form-field name="prefixStartNumber" displayname="Prefix Start Number" required="false" show="true" generator="assigned" primary-key="false" key="prefixStartNumber" type="integer"
-                                                                            is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                                                                            <wm-form-field name="prefixStartNumber" displayname="Number Start" required="true" show="true" generator="assigned" primary-key="false" key="prefixStartNumber" type="integer" is-related="false"
+                                                                            step="0" pc-display="true" mobile-display="true" widget="number" placeholder="Enter number" width="160px" maxvalue="100000000000" minvalue="0"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                     <wm-gridrow name="gridrow48">
                                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn76_1">
-                                                                            <wm-form-field name="prefixNumberStep" displayname="Prefix Number Step" required="false" show="true" generator="assigned" primary-key="false" key="prefixNumberStep" type="integer"
-                                                                            is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                                                                            <wm-form-field name="prefixNumberStep" displayname="Increment By" required="true" show="true" generator="assigned" primary-key="false" key="prefixNumberStep" type="integer" is-related="false"
+                                                                            pc-display="true" mobile-display="true" widget="number" placeholder="Enter number" minvalue="1" maxvalue="10000000" width="160px"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-layoutgrid>
@@ -91,18 +97,35 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow51" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn76_3">
-                                                                <wm-form-field name="prefixDashes" displayname="Prefix Dashes" required="false" show="true" generator="assigned" primary-key="false" key="prefixDashes" type="boolean" is-related="false" pc-display="true"
-                                                                mobile-display="true" widget="checkbox"></wm-form-field>
+                                                                <wm-form-field name="prefixDashes" displayname="Separate By Dashes" required="false" show="true" generator="assigned" primary-key="false" key="prefixDashes" type="boolean" is-related="false"
+                                                                pc-display="true" mobile-display="true" widget="checkbox"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn85_1"></wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow38_2">
+                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn64">
+                                                                <wm-layoutgrid name="layoutgrid11_1">
+                                                                    <wm-gridrow name="gridrow39_2">
+                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn66">
+                                                                            <wm-label padding="unset 0.5em" name="label6" caption="Inspection Title Preview" margin="unset unset unset 0.5em"></wm-label>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                    <wm-gridrow name="gridrow40">
+                                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn68_1">
+                                                                            <wm-label padding="unset 0.5em" name="label7" fontstyle="italic" margin="unset unset unset 0.5em" caption="caption not bound"></wm-label>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                </wm-layoutgrid>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn65"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
                                                 </wm-panel>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
-                                        <wm-gridrow name="gridrow47">
+                                        <wm-gridrow name="gridrow47" padding="unset unset 1em unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn50">
-                                                <wm-panel iconclass="wi wi-control-point" autoclose="outsideClick" name="panel9_1" margin="1em unset" title="Inspection Options" class="panel-primary">
+                                                <wm-panel iconclass="wi wi-control-point" autoclose="outsideClick" name="panel9_1" title="Inspection Options" class="panel-primary">
                                                     <wm-layoutgrid name="layoutgrid9_1">
                                                         <wm-gridrow name="gridrow37_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn54" padding="unset 1em unset unset">
@@ -231,8 +254,8 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                     <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                                    <wm-form-action key="save" class="form-save btn-primary" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
                                     <wm-form-action key="reset" class="form-reset btn-secondary" iconclass="wi wi-refresh" action="reset()" display-name="Reset" show="true" type="button" update-mode="true"></wm-form-action>
-                                    <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
                                 </wm-liveform>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneCATEGORIES" title="Categories">
