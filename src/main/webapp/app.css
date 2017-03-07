@@ -40,6 +40,10 @@ div.app-checkbox label.disabled input[type=checkbox] + .caption:before {
     border: 2px #555 solid;
     color: #555;
 }
+div.app-checkbox label.disabled,
+div.app-checkbox label.disabled input[type=checkbox] + .caption {
+    cursor: not-allowed;
+}
 div.app-checkbox label.disabled input[type=checkbox] + .caption:before {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
