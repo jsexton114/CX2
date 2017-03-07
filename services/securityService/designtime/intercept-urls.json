@@ -143,4 +143,19 @@
   "permission" : "Authenticated",
   "roles" : [ ],
   "httpMethod" : "GET"
+}, {
+  "urlPattern" : "/services/cx2/GlobalSettings/filter",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "POST"
+}, {
+  "urlPattern" : "/services/cx2/Municipalities/filter",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "POST"
+}, {
+  "urlPattern" : "/services/cx2/States/filter",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "POST"
 } ]

@@ -27,10 +27,32 @@ Application.run(function($rootScope) {
 });
 
 Application.factory('_', ['$window', function($window) {
+    "use strict";
     return $window._;
 }]);
 
+Application.factory('pwordValidator', [function() {
+    "use strict";
+    return {
+        validate: function(pword, rePword) {
+            if (!pword && !rePword) {
+                return -1;
+            } else if (pword === rePword) {
+                let format = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
+                if (!(format.test(pword))) {
+                    return -2;
+                } else {
+                    return true;
+                }
+            } else {
+                return -3;
+            }
+        }
+    };
+}]);
+
 Application.directive('cxCheckboxSet', [function() {
+    "use strict";
     return {
         restrict: 'E',
         replace: true,
@@ -66,6 +88,7 @@ Application.directive('cxCheckboxSet', [function() {
 }]);
 
 Application.directive('datetimePicker', ['uibDateParser', function(uibDateParser) {
+    "use strict";
     return {
         restrict: 'E',
         replace: true,
@@ -174,6 +197,7 @@ Application.directive('ngFileModel', function() {
 });
 
 Application.run(["$templateCache", function($templateCache) {
+    "use strict";
     $templateCache.put("uib/template/datepicker/datetimepickerPopup.html",
         "<ul role=\"presentation\" class=\"uib-datepicker-popup dropdown-menu uib-position-measure\" dropdown-nested ng-if=\"isOpen\" ng-keydown=\"keydown($event)\" ng-click=\"$event.stopPropagation()\">\n" +
         "  <li ng-transclude></li>\n" +

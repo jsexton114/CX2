@@ -1,4 +1,4 @@
-Application.$controller("UserCreationPageController", ["$scope", "$timeout", function($scope, $timeout) {
+Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pwordValidator", function($scope, $timeout, pwordValidator) {
     "use strict";
     $scope.newUser;
 
@@ -79,40 +79,65 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
 
     };
 
-    // For verifying password match
-    function passwordCheck() {
-        return ($scope.Widgets.textPwd.datavalue === $scope.Widgets.textRePwd.datavalue && $scope.Widgets.textPwd.datavalue != undefined && $scope.Widgets.textRePwd.datavalue != undefined);
-    }
-
     $scope.wizard1Done = function($isolateScope, steps) {
-        let format = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/
-        let password = $scope.Widgets.textPwd.datavalue;
-        if (!(format.test(password))) {
+        let pwordValidation = pwordValidator.validate($scope.Widgets.textPwd.datavalue, $scope.Widgets.textRePwd.datavalue);
+
+        if (pwordValidation === -2) {
             $scope.Variables.PasswordRequirements.notify();
             grecaptcha.reset();
+        } else if (pwordValidation === true && (grecaptcha.getResponse() !== '')) { // check for password match and captcha
+            $scope.Widgets.liveform2.save();
+        } else if ((grecaptcha.getResponse() !== '') && pwordValidation !== true) {
+            $scope.Variables.PasswordMissMatch.notify();
+            grecaptcha.reset();
+        } else if ((grecaptcha.getResponse() === '') && pwordValidation === true) {
+            $scope.Variables.Capcha.notify();
+            grecaptcha.reset();
         } else {
-            // check for password match and captcha
-            if (passwordCheck() && (grecaptcha.getResponse() != '')) {
-                $scope.Widgets.liveform2.save();
-            } else if ((grecaptcha.getResponse() != '') && (passwordCheck() == false)) {
-                $scope.Variables.PasswordMissMatch.notify();
-                grecaptcha.reset();
-            } else if ((grecaptcha.getResponse() == '') && (passwordCheck() == true)) {
-                $scope.Variables.Capcha.notify();
-                grecaptcha.reset();
-            } else {
-                $scope.Variables.PasswordsAndCaptcha.notify();
-                grecaptcha.reset();
-            }
+            $scope.Variables.PasswordsAndCaptcha.notify();
+            grecaptcha.reset();
         }
     };
 
-    $scope.ButtonAddMuncipalitiesClick = function($event, $isolateScope) {
-        if ($scope.Widgets.textSearchMunicipalities.datavalue != undefined) {
+    $scope.buttonRemoveClick = function($event, $isolateScope, item, currentItemWidgets) {
+        // Removing the deleted municipalities
+        _.remove($scope.Variables.MunicpalitiesList.dataSet, {
+            id: item.id
+        });
+        // Setting for adding to subscriptions
+        selectedMunicipalites = $scope.Variables.MunicpalitiesList.dataSet;
+    };
+
+    $scope.liveform2Success = function($event, $operation, $data) {
+        $scope.Variables.NewUserToLogin.navigate();
+    };
+
+    var pwdKeypressTimeout = null;
+
+    $scope.textPwdChange = function($event, $isolateScope, newVal, oldVal) {
+        let pwordValidation = pwordValidator.validate(newVal, newVal);
+
+        $scope.pwordRequirementsMet = (pwordValidation !== -2);
+
+        let rePwdValue = $scope.Widgets.textRePwd.datavalue;
+        if (!!rePwdValue) {
+            $scope.textRePwdChange($event, $isolateScope, rePwdValue);
+        }
+    };
+
+
+    $scope.textRePwdChange = function($event, $isolateScope, newVal, oldVal) {
+        let pwordValidation = pwordValidator.validate($scope.Widgets.textPwd.datavalue, newVal);
+
+        $scope.passwordsDontMatch = (pwordValidation === -3);
+    };
+
+    $scope.textSearchMunicipalitiesSelect = function($event, $isolateScope, selectedValue) {
+        if (!!$scope.Widgets.textSearchMunicipalities.datavalue) {
             var temp = $scope.Widgets.textSearchMunicipalities.datavalue;
             var data = $scope.Variables.MunicpalitiesList.dataSet;
             // checking for any municipalities in MunicpalitiesList variable, if not add from search 
-            if (data.length == 0) {
+            if (!data.length) {
                 data.push(temp);
             } else {
                 // checking if adding value already exist in MunicpalitiesList variable 
@@ -134,19 +159,6 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", fun
             $scope.Variables.NoMuncipalitiesAdded.notify();
         }
         $scope.Widgets.textSearchMunicipalities.reset();
-    };
-
-    $scope.buttonRemoveClick = function($event, $isolateScope, item, currentItemWidgets) {
-        // Removing the deleted municipalities
-        _.remove($scope.Variables.MunicpalitiesList.dataSet, {
-            id: item.id
-        });
-        // Setting for adding to subscriptions
-        selectedMunicipalites = $scope.Variables.MunicpalitiesList.dataSet;
-    };
-
-    $scope.liveform2Success = function($event, $operation, $data) {
-        $scope.Variables.NewUserToLogin.navigate();
     };
 
 }]);
