@@ -316,7 +316,7 @@
                                                     <wm-grid-column binding="required" caption="Required" type="boolean" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="defaultValue" caption="Default Value" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="helpText" caption="Help Text" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="possibleValues" caption="Possible Values" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="possibleValues" caption="Possible Selections" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="New Field" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Field" action="Widgets.dlgFormTypeField.open()" shortcutkey=""
                                                     disabled="false"></wm-grid-action>
@@ -674,7 +674,7 @@
                         <wm-composite name="composite7" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label11" caption="Field Type" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container6">
-                                <wm-select name="selectFormFieldType" dataset="bind:Variables.lvFormFieldTypes.dataSet" datafield="All Fields" displayfield="label" disabled="bind:!!formTypeFieldId"></wm-select>
+                                <wm-select name="selectFormFieldType" dataset="bind:Variables.lvFormFieldTypes.dataSet" datafield="All Fields" displayfield="label" disabled="bind:!!formTypeFieldId" placeholder="Select Type"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -691,12 +691,13 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow56">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn81">
-                        <wm-grid editmode="inline" title="Possible Values" dataset="bind:Variables.stvPossibleValues.dataSet" navigation="Classic" name="gridPossibleValues" show="bind:Widgets.selectFormFieldType.datavalue.label==='Select' || Widgets.selectFormFieldType.datavalue.label==='Multi-Select'"
-                        iconclass="wi wi-format-list-numbered" class="panel-primary">
-                            <wm-grid-column binding="dataValue" caption="Value" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        <wm-grid editmode="inline" title="Possible Selections" dataset="bind:Variables.stvPossibleValues.dataSet" navigation="Classic" name="gridPossibleValues" show="bind:Widgets.selectFormFieldType.datavalue.label==='Select' || Widgets.selectFormFieldType.datavalue.label==='Multi-Select'"
+                        iconclass="wi wi-more-vert" class="panel-primary">
+                            <wm-grid-column binding="dataValue" caption="Selection" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New Selection" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Selection" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>
@@ -716,12 +717,13 @@
                             <wm-label class="col-md-3 form-control-static" name="label9" caption="bind:!!Widgets.selectFormFieldType.datavalue.sqlType ? 'Default Value' : 'Text'" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container4_1">
                                 <wm-text name="textDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Text' || Widgets.selectFormFieldType.datavalue.label==='Header'" maxchars="1000" required="bind:Widgets.selectFormFieldType.datavalue.label === 'Header'"></wm-text>
-                                <wm-textarea name="longTextDefault" show="bind:Widgets.selectFormFieldType.datavalue.label==='Long Text' || Widgets.selectFormFieldType.datavalue.label==='Instruction Text'" maxchars="4000" required="bind:Widgets.selectFormFieldType.datavalue.label === 'Instruction Text'"></wm-textarea>
+                                <wm-textarea name="longTextDefault" show="bind:Widgets.selectFormFieldType.datavalue.label==='Long Text' || Widgets.selectFormFieldType.datavalue.label==='Instruction Text'" maxchars="4000" required="bind:Widgets.selectFormFieldType.datavalue.label === 'Instruction Text'"
+                                placeholder="Enter text"></wm-textarea>
                                 <wm-date name="dateDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Date'" datepattern="MM-dd-yyyy"></wm-date>
                                 <wm-datetime name="datetimeDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label==='Date+Time'" datepattern="MM-dd-yyyy hh:mm a"></wm-datetime>
                                 <wm-checkbox caption="" class="col-md-push-3 col-md-9" name="booleanDefaultValue" margin="unset unset unset -100px" show="bind:Widgets.selectFormFieldType.datavalue.label==='Boolean'"></wm-checkbox>
                                 <wm-text name="numberDefaultValue" type="number" step="1" placeholder="Enter number" show="bind:Widgets.selectFormFieldType.datavalue.label==='Number'" maxchars="38" maxvalue="99999999999999999999999999999999999999"></wm-text>
-                                <wm-currency name="currencyDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label === 'Currency'" step="0.01" maxvalue="1e+36"></wm-currency>
+                                <wm-currency name="currencyDefaultValue" show="bind:Widgets.selectFormFieldType.datavalue.label === 'Currency'" step="0.01" maxvalue="1000000000000" minvalue="0"></wm-currency>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
