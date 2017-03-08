@@ -856,7 +856,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "true",
           "scale" : 0
         }, {
           "fieldName" : "allowReporting",
@@ -6438,7 +6438,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "true",
           "scale" : 0
         }, {
           "fieldName" : "allowReporting",
@@ -6735,7 +6735,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "true",
           "scale" : 0
         }, {
           "fieldName" : "allowReporting",
@@ -9408,7 +9408,7 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "true",
         "scale" : 0
       }, {
         "fieldName" : "allowReporting",
@@ -15137,6 +15137,34 @@
     } ],
     "operation" : "toast"
   },
+  "nvAddedToCart" : {
+    "_id" : "wm-nvAddedToCart-wm.NotificationVariable-1488969771095",
+    "name" : "nvAddedToCart",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Your Fee is added to Cart",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "PeopleList" : {
     "_id" : "wm-PeopleList-wm.Variable-1486543729601",
     "name" : "PeopleList",
@@ -17472,6 +17500,7 @@
     "isList" : false,
     "maxResults" : 19,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.Cx2FeesData.listRecords();Variables.nvAddedToCart.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
