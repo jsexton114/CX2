@@ -268,12 +268,7 @@ Application.$controller("gridFormVendorsController", ["$scope",
                 'pv': newVal,
                 'vendor': $scope.selecteditem.vendorId
             });
-
-
         };
-
-
-
     }
 ]);
 
@@ -294,7 +289,6 @@ Application.$controller("dialogAddVendorController", ["$scope",
                 $scope.Variables.AddingVendorsToForm.update();
             }
         };
-
     }
 ]);
 
@@ -305,21 +299,15 @@ Application.$controller("gridFeesController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-
         $scope.addNewRowAction = function($event) {
             liveformFeesScope.isNewFee = true;
-            $scope.addNewRow();
         };
-
 
         $scope.updaterowAction = function($event, $rowData) {
             liveformFeesScope.isNewFee = false;
-            $scope.editRow();
         };
 
-
         $scope.customRowAction = function($event, $rowData) {
-            debugger
             let temp = $scope.Variables.loggedInUser.dataSet.roles;
             let allowToCart = false;
             if ($scope.Variables.CurrentForm.dataSet.data[0].formStatuses.allowPayment) {
@@ -341,9 +329,7 @@ Application.$controller("gridFeesController", ["$scope",
                 });
                 $scope.Variables.svUpdateFeeStatus.update();
             }
-
         };
-
     }
 ]);
 
@@ -469,7 +455,6 @@ Application.$controller("dialogVendorDeleteConfController", ["$scope",
                 $scope.Variables.RemoveVendorFromMasterForms.update();
             }
         };
-
     }
 ]);
 

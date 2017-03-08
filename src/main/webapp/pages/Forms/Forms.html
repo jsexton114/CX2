@@ -331,8 +331,8 @@
                                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FeesData.dataSet" navigation="Classic" name="gridFees" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                         <wm-grid-column binding="feeType" caption="Manual Fee Type" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}" edit-widget-type="text"
                                                         show="true" readonly="false"></wm-grid-column>
-                                                        <wm-grid-column binding="amount" caption="Amount" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
-                                                        formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="amount" caption="Amount" type="big_decimal" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
+                                                        formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" filterwidget="text" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'pendingFee-class':row.paidStatus=='Pending'}"
                                                         edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="paidStatus" caption="Payment Status" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
@@ -342,10 +342,10 @@
                                                         <wm-grid-column binding="comments" caption="Comments" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
                                                         edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-action key="addNewRow" display-name="Add Fee" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-primary" iconclass="wi wi-plus" title="Add Fee" action="addNewRowAction($event)"
+                                                        <wm-grid-action key="addNewRow" display-name="Add Fee" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-primary" iconclass="wi wi-plus" title="Add Fee" action="addNewRowAction($event);addNewRow()"
                                                         accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" shortcutkey="" disabled="false"></wm-grid-action>
                                                         <wm-grid-row-action key="updaterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid' &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent"
-                                                        iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
+                                                        iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event);editRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
                                                         <wm-grid-row-action key="deleterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid' &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent"
                                                         iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
                                                         <wm-grid-row-action key="customRow" display-name="" show="bind:row.getProperty('paidStatus') === 'Pending'" class="btn-transparent" iconclass="wi wi-add-shopping-cart" title="Add to Cart"
@@ -359,32 +359,24 @@
                                                                     <wm-label name="labelmanfeeselect" caption="Manual Fee Type" required="true" show="bind:isNewFee"></wm-label>
                                                                     <wm-select name="selectManualFeeType" displayname="Manual Fee Type" show="bind:isNewFee" required="bind:isNewFee" type="string" dataset="bind:Variables.lvManualFeeTypes.dataSet"
                                                                     displayfield="feeType" placeholder="Select Fee" datafield="All Fields" orderby="feeType:asc"></wm-select>
-                                                                    <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="string" readonly="false" required="true" widget="currency"
-                                                                    maxchars="255" placeholder="Enter Amount" minvalue="0" step="0.01"></wm-form-field>
-                                                                </wm-gridcolumn>
-                                                            </wm-gridrow>
-                                                            <wm-gridrow name="gridrow46">
-                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn105">
-                                                                    <wm-form-field name="comments" displayname="Comments" show="true" primary-key="false" generator="assigned" key="comments" type="string" readonly="false" required="false" widget="text" maxchars="500"
-                                                                    inputtype="text" placeholder="Enter Comments"></wm-form-field>
-                                                                </wm-gridcolumn>
-                                                            </wm-gridrow>
-                                                            <wm-gridrow name="gridrow47">
-                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn106_1">
-                                                                    <wm-form-field name="feeType" displayname="Manual Fee Type" show="bind:!isNewFee" primary-key="false" generator="assigned" key="feeType" type="string" readonly="true" required="true" widget="text"
-                                                                    maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.feeType"></wm-form-field>
+                                                                    <wm-form-field name="feeType" displayname="Manual Fee Type" show="bind:!isNewFee" primary-key="false" generator="assigned" key="feeType" type="string" readonly="true" required="true"
+                                                                    widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.feeType"></wm-form-field>
+                                                                    <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="big_decimal" readonly="false" required="true"
+                                                                    step="0.01" widget="currency" maxchars="255" placeholder="Enter Amount" minvalue="0"></wm-form-field>
+                                                                    <wm-form-field name="comments" displayname="Comments" show="true" primary-key="false" generator="assigned" key="comments" type="string" readonly="false" required="false"
+                                                                    widget="text" maxchars="500" inputtype="text" placeholder="Enter Comments"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                         </wm-layoutgrid>
-                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
-                                                        placeholder=""></wm-form-field>
-                                                        <wm-form-field name="autoFeeYn" displayname="Auto Fee Yn" show="false" primary-key="false" generator="assigned" key="autoFeeYn" type="boolean" readonly="false" required="true" widget="checkbox"
-                                                        defaultvalue="false" placeholder=""></wm-form-field>
+                                                        <wm-form-field name="accountingCode" displayname="Accounting Code" show="false" primary-key="false" generator="assigned" key="accountingCode" type="string" readonly="false" required="true" widget="text"
+                                                        maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.accountingCode"></wm-form-field>
                                                         <wm-form-field name="paidStatus" displayname="Paid Status" show="false" primary-key="false" generator="assigned" key="paidStatus" type="string" readonly="false" required="true" widget="text"
                                                         defaultvalue="Unpaid" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                                        <wm-form-field name="accountingCode" displayname="Accounting Code" show="false" primary-key="false" generator="assigned" key="accountingCode" type="string" readonly="false" required="true"
-                                                        widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.accountingCode"></wm-form-field>
-                                                        <wm-form-action key="save" display-name="Add" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
+                                                        <wm-form-field name="autoFeeYn" displayname="Auto Fee Yn" show="false" primary-key="false" generator="assigned" key="autoFeeYn" type="boolean" readonly="false" required="true" widget="checkbox"
+                                                        defaultvalue="false" placeholder=""></wm-form-field>
+                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
+                                                        placeholder=""></wm-form-field>
+                                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Save" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
                                                         disabled="false" type="submit" update-mode="true"></wm-form-action>
                                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
                                                         update-mode="true"></wm-form-action>
