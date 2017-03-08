@@ -3,15 +3,15 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
+
+    };
+
+
+    $scope.lvFeesDataonSuccess = function(variable, data) {
+        $scope.totalSumInCart = _.sumBy(data, function(obj) {
+            return _.toNumber(obj.amount);
+        });
+        $scope.Widgets.gridFeesList.totalSumInCart = $scope.totalSumInCart;
     };
 
 }]);
@@ -28,7 +28,7 @@ Application.$controller("gridFeesListController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-
+        $scope.totalSumInCart;
         $scope.customRowAction = function($event, $rowData) {
             $scope.Variables.svUpdateFeesStatus.setInput({
                 'status': 'Pending'

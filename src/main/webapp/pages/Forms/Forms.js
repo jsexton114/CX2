@@ -327,6 +327,33 @@ Application.$controller("gridFeesController", ["$scope",
             $scope.editRow();
         };
 
+
+        $scope.customRowAction = function($event, $rowData) {
+            debugger
+            let temp = $scope.Variables.loggedInUser.dataSet.roles;
+            let allowToCart = false;
+            if ($scope.Variables.CurrentForm.dataSet.data[0].formStatuses.allowPayment) {
+                allowToCart = true;
+            } else {
+                $scope.Variables.DontAddToCart.notify();
+                //Checking if user is muniadmin or cxadmin or muniemp
+                for (let i = 0; i < temp.length; i++) {
+                    if ((temp[i] == "MunicipalityAdmin") || (temp[i] == "CXAdmin") || (temp[i] == "MunicipalityEmployee")) {
+                        allowToCart = true;
+                    }
+                }
+            }
+
+            if (allowToCart) {
+                // Add to Cart Functionality
+                $scope.Variables.svUpdateFeeStatus.setInput({
+                    'status': 'Cart'
+                });
+                $scope.Variables.svUpdateFeeStatus.update();
+            }
+
+        };
+
     }
 ]);
 
@@ -457,8 +484,8 @@ Application.$controller("dialogVendorDeleteConfController", ["$scope",
 ]);
 
 Application.$controller("gridFormInspectionsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

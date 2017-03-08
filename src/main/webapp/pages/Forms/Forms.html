@@ -329,21 +329,27 @@
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn115">
                                                 <wm-livegrid formlayout="dialog" name="livegrid4">
                                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FeesData.dataSet" navigation="Classic" name="gridFees" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                                        <wm-grid-column binding="feeType" caption="Manual Fee Type" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                        <wm-grid-column binding="amount" caption="Amount" type="string" generator="assigned" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" show="true" readonly="false"></wm-grid-column>
-                                                        <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                        <wm-grid-column binding="paidStatus" caption="Payment Status" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                        <wm-grid-column binding="paidDate" caption="Payment Date" type="date" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                        <wm-grid-column binding="comments" caption="Comments" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                        <wm-grid-column binding="feeType" caption="Manual Fee Type" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}" edit-widget-type="text"
+                                                        show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="amount" caption="Amount" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
+                                                        formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'pendingFee-class':row.paidStatus=='Pending'}"
+                                                        edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="paidStatus" caption="Payment Status" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
+                                                        edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="paidDate" caption="Payment Date" type="date" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'pendingFee-class':row.paidStatus=='Pending'}"
+                                                        edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="comments" caption="Comments" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
+                                                        edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                         <wm-grid-action key="addNewRow" display-name="Add Fee" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-primary" iconclass="wi wi-plus" title="Add Fee" action="addNewRowAction($event)"
                                                         accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" shortcutkey="" disabled="false"></wm-grid-action>
                                                         <wm-grid-row-action key="updaterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid' &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent"
                                                         iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
                                                         <wm-grid-row-action key="deleterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid' &amp;&amp; Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent"
                                                         iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
-                                                        <wm-grid-row-action key="customRow" display-name="" show="bind:row.getProperty('paidStatus') === 'Unpaid'" class="btn-transparent" iconclass="wi wi-add-shopping-cart" title="Add to Cart"
-                                                        disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-row-action key="customRow" display-name="" show="bind:row.getProperty('paidStatus') === 'Pending'" class="btn-transparent" iconclass="wi wi-add-shopping-cart" title="Add to Cart"
+                                                        action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                                     </wm-grid>
                                                     <wm-liveform novalidate="false" errormessage="" title="Add Manual Fee" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.Cx2FeesData.dataSet" captionalign="left" captionposition="top"
                                                     name="liveformFees" on-beforeservicecall="liveformFeesBeforeservicecall($event, $operation, $data)">

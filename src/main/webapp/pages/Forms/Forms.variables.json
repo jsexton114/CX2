@@ -2616,8 +2616,8 @@
     "owner" : "Page",
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
-      "target" : "formGuid",
-      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formGuid",
+      "target" : "relatedFormGuid",
+      "value" : "bind:pageParams.FormGUID",
       "type" : "string"
     } ],
     "operation" : "read",
@@ -6181,6 +6181,34 @@
     }, {
       "target" : "class",
       "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "DontAddToCart" : {
+    "_id" : "wm-DontAddToCart-wm.NotificationVariable-1488968800727",
+    "name" : "DontAddToCart",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Sorry, fees cannot be paid while the form is under the current status.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
       "type" : "string"
     }, {
       "target" : "toasterPosition",
@@ -17423,6 +17451,34 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "Form"
+  },
+  "svUpdateFeeStatus" : {
+    "_id" : "wm-svUpdateFeeStatus-wm.ServiceVariable-1488969017491",
+    "name" : "svUpdateFeeStatus",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "feeEntry",
+      "value" : "bind:Widgets.gridFees.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "cx2",
+    "operation" : "executeUpdateFeesStatus",
+    "operationId" : "QueryExecutionController_executeUpdateFeesStatus",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 19,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "svUploadDocument" : {
     "_id" : "wm-svUploadDocument-wm.ServiceVariable-1486502420070",
