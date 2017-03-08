@@ -387,7 +387,8 @@
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                 </wm-grid>
-                <wm-liveform novalidate="false" errormessage="" title="Fee Details" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.InspectionOutcomeFeeData.dataSet" captionalign="left" captionposition="top" name="liveformOutcomeFee">
+                <wm-liveform novalidate="false" errormessage="The Order to Apply must be unique. Please select a different number" title="Fee Details" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.InspectionOutcomeFeeData.dataSet"
+                captionalign="left" captionposition="top" name="liveformOutcomeFee">
                     <wm-layoutgrid columns="1" name="layoutgrid6_1">
                         <wm-gridrow name="gridrow16">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn18">
@@ -408,9 +409,9 @@
                             </wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>
+                    <wm-form-field name="inspectionOutcome" displayname="Inspection Outcome" show="false" primary-key="false" generator="assigned" key="inspectionOutcome" type="list" is-related="true" readonly="false" required="false" widget="select"
+                    dataset="bind:Variables.InspectionOutcomeData.dataSet" datafield="All Fields" displayfield="outcome" defaultvalue="bind:Widgets.gridOutcome.selecteditem" placeholder="Select value"></wm-form-field>
                     <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
-                    <wm-form-field name="inspectionOutcome" displayname="Inspection Outcome" show="false" primary-key="false" generator="assigned" key="inspectionOutcome" type="list" is-related="true" readonly="false" required="false"
-                    widget="select" dataset="bind:Variables.InspectionOutcomeData.dataSet" datafield="All Fields" displayfield="outcome" defaultvalue="bind:Widgets.gridOutcome.selecteditem" placeholder="Select value"></wm-form-field>
                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                 </wm-liveform>
