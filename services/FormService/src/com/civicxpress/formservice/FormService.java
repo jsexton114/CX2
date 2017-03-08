@@ -732,7 +732,7 @@ public class FormService {
     	
 		if (flatFee != null && !flatFee.equals(0)) {
 			totalFees = totalFees.add(flatFee);
-			queryParams.addString("flatFeeAmount", flatFee.toString());
+			queryParams.addBigDecimal("flatFeeAmount", flatFee);
 			queryParams.addString("flatFeeAccountingCode", formTypeData.getString("FlatFeeAccountingCode"));
 		}
 		
@@ -742,7 +742,7 @@ public class FormService {
     			
     			if (!totalSqft.equals(0)) {
     				totalFees = totalFees.add(sfFee.multiply(totalSqft));
-    				queryParams.addString("sfFeeAmount", sfFee.multiply(totalSqft).toString());
+    				queryParams.addBigDecimal("sfFeeAmount", sfFee.multiply(totalSqft));
     				queryParams.addString("sfFeeAccountingCode", formTypeData.getString("SfFeeAccountingCode"));
     			}
 			}
@@ -754,7 +754,7 @@ public class FormService {
     			
     			if (!totalUnits.equals(0)) {
     				totalFees = totalFees.add(unitFee.multiply(totalUnits));
-    				queryParams.addString("unitFeeAmount", unitFee.multiply(totalUnits).toString());
+    				queryParams.addBigDecimal("unitFeeAmount", unitFee.multiply(totalUnits));
     				queryParams.addString("unitFeeAccountingCode", formTypeData.getString("UnitFeeAccountingCode"));
     			}
 			}
@@ -762,14 +762,14 @@ public class FormService {
 		
 		if (basementFee != null && !basementFee.equals(0) && fieldData.get("Basement") != null && (Boolean) fieldData.get("Basement")) {
 			totalFees = totalFees.add(basementFee);
-			queryParams.addString("basementFeeAmount", basementFee.toString());
+			queryParams.addBigDecimal("basementFeeAmount", basementFee);
 			queryParams.addString("basementFeeAccountingCode", formTypeData.getString("BasementFeeAccountingCode"));
 		}
 		
 		if (stateFee != null && !stateFee.equals(0)) {
 			BigDecimal calcedStateFee = totalFees.multiply(stateFee);
 			totalFees = totalFees.add(calcedStateFee);
-			queryParams.addString("stateFeeAmount", calcedStateFee.toString());
+			queryParams.addBigDecimal("stateFeeAmount", calcedStateFee);
 			queryParams.addString("stateFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
 		}
 		
