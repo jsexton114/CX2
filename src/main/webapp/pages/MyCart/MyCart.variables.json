@@ -2774,5 +2774,34 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Fees"
+  },
+  "svUpdateFeesStatus" : {
+    "_id" : "wm-svUpdateFeesStatus-wm.ServiceVariable-1488959907749",
+    "name" : "svUpdateFeesStatus",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "feeEntry",
+      "value" : "bind:Widgets.gridFeesList.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "cx2",
+    "operation" : "executeUpdateFeesStatus",
+    "operationId" : "QueryExecutionController_executeUpdateFeesStatus",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.lvFeesData.listRecords()",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }

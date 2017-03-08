@@ -155,6 +155,8 @@ public interface Cx2QueryExecutorService {
 
     Integer executeAddGIStoProjects(AddGistoProjectsRequest addGistoProjectsRequest);
 
+    Integer executeUpdateFeesStatus(UpdateFeesStatusRequest updateFeesStatusRequest);
+
     Page<CountOfFormsForMunicipalityResponse> executeCountOfFormsForMunicipality(Integer municipalityId, Pageable pageable);
 
     Downloadable exportCountOfFormsForMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable);
@@ -247,13 +249,13 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetMunicipalityGroupIdIDs(ExportType exportType, Integer userId, Pageable pageable);
 
-    Page<MasterForms> executeFormsForUsersAndShared(Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
-
-    Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
-
     Page<UserSubscriptions> executeUserSubscriptionsByMunicipality(Integer municipalityId, Pageable pageable);
 
     Downloadable exportUserSubscriptionsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable);
+
+    Page<MasterForms> executeFormsForUsersAndShared(Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
+
+    Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
 
     Page<GetUserIdResponse> executeGetUserID(String email, Pageable pageable);
 

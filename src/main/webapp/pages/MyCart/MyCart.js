@@ -1,8 +1,8 @@
-Application.$controller("MyCartPageController", ["$scope", function ($scope) {
+Application.$controller("MyCartPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
+    $scope.onPageReady = function() {
         /*
          * variables can be accessed through '$scope.Variables' property here
          * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
@@ -18,15 +18,23 @@ Application.$controller("MyCartPageController", ["$scope", function ($scope) {
 
 
 Application.$controller("pagedialogNewFormController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("gridFeesListController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.svUpdateFeesStatus.setInput({
+                'status': 'Pending'
+            });
+            $scope.Variables.svUpdateFeesStatus.update();
+        };
+
+    }
 ]);

@@ -7150,6 +7150,41 @@
       "responseType" : "SINGLE"
     }
   },
+  "UpdateFeesStatus" : {
+    "name" : "UpdateFeesStatus",
+    "description" : "UpdateFeesStatus",
+    "version" : "V2",
+    "queryString" : "update Fees set PaidStatus=:status where ID=:feeEntry",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "status",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Cart",
+      "required" : true
+    }, {
+      "name" : "feeEntry",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.UpdateFeesStatusRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "UpdateForceInspectionSequenceForForm" : {
     "name" : "UpdateForceInspectionSequenceForForm",
     "description" : "UpdateForceInspectionSequenceForForm",

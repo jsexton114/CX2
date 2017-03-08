@@ -514,6 +514,14 @@
     <query-param name="AddedAt" type="java.sql.Timestamp"/>
     </sql-query>
 
+    <sql-query name="UpdateFeesStatus">
+        <![CDATA[
+        update Fees set PaidStatus=:status where ID=:feeEntry
+        ]]>
+    <query-param name="status" type="java.lang.String"/>
+    <query-param name="feeEntry" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="CountOfFormsForMunicipality">
         <![CDATA[
         select count(DISTINCT ID) as count from FormTypes where MunicipalityId=:MunicipalityId
@@ -912,6 +920,20 @@ and (FT.MunicipalityInternalForm=0
     <query-param name="userID" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="UserSubscriptionsByMunicipality">
+        <![CDATA[
+        from UserSubscriptions where municipalityId=:municipalityId
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="UserSubscriptionsByMunicipality__count">
+        <![CDATA[
+        select count(*) from UserSubscriptions where municipalityId=:municipalityId
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </query>
+
     <query name="FormsForUsersAndShared">
         <![CDATA[
         from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :sharedWithUser )) AND (:municipalityId IS NULL OR MunicipalityId=:municipalityId) ORDER BY DateModified DESC
@@ -930,20 +952,6 @@ and (FT.MunicipalityInternalForm=0
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
     <query-param name="municipalityId" type="java.lang.Long"/>
-    </query>
-
-    <query name="UserSubscriptionsByMunicipality">
-        <![CDATA[
-        from UserSubscriptions where municipalityId=:municipalityId
-        ]]>
-    <query-param name="municipalityId" type="java.lang.Integer"/>
-    </query>
-
-    <query name="UserSubscriptionsByMunicipality__count">
-        <![CDATA[
-        select count(*) from UserSubscriptions where municipalityId=:municipalityId
-        ]]>
-    <query-param name="municipalityId" type="java.lang.Integer"/>
     </query>
 
     <sql-query name="getUserID">

@@ -25,8 +25,8 @@
                                 <wm-grid-column binding="gisrecords.fullAddress" caption="Full Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
                                 <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Municipalities"></wm-grid-column>
                                 <wm-grid-column binding="amount" caption="Amount" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-remove-shopping-cart" title="" disabled="false"></wm-grid-row-action>
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-remove-shopping-cart" title="RemoveFromCart" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                             </wm-grid>
                         </wm-panel>
                     </wm-gridcolumn>
