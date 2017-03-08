@@ -23,7 +23,11 @@
     "name" : "lvFeesData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "paidStatus",
+      "value" : "Cart",
+      "type" : "string"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "Fees",
@@ -2768,6 +2772,7 @@
       "watchOn" : "Cx2UsersData",
       "package" : "com.civicxpress.cx2.Fees"
     } ],
+    "filterFields" : { },
     "package" : "com.civicxpress.cx2.Fees"
   }
 }
