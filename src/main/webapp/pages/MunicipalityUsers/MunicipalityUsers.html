@@ -35,8 +35,6 @@
                                     <wm-grid-column binding="dateSubscribed" caption="Date Subscribed" type="timestamp" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
                                     show="true" filterwidget="text"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="150px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="customButton" display-name="Export" title="Export" value="" iconclass="" class="btn-secondary" show="true" action="Variables.ExportUserSubscriptionsByMunicipality.invoke()" position="header"
-                                    shortcutkey=""></wm-grid-action>
                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="Widgets.dialog1.open()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-tabpane>
@@ -225,6 +223,11 @@
                 <wm-gridrow name="gridrow32_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn67">
                         <wm-label padding="unset 0.5em" name="label47_2" class="h3" caption="bind:Variables.GroupMembersData.dataSet.data[$i].municipalityGroups.groupName" fontweight="bold"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow34_1" padding="unset unset 1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn69_1">
+                        <wm-label padding="unset 0.5em unset 1em" name="label48_1" caption="bind:Variables.GroupMembersData.dataSet.data[$i].municipalityGroups.groupDescription"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow33">
