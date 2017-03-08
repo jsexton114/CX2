@@ -5431,6 +5431,34 @@
       } ]
     }
   },
+  "OpenedOrClosedFormsForUserOrSharedWith" : {
+    "name" : "OpenedOrClosedFormsForUserOrSharedWith",
+    "description" : "OpenedOrClosedFormsForUserOrSharedWith",
+    "version" : "V2",
+    "queryString" : "from MasterForms where UserId=:userId or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :userId) ORDER BY DateModified DESC",
+    "countQueryString" : "select count(*) from MasterForms where UserId=:userId or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :userId)",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "userId",
+      "type" : "long",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.MasterForms",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
+    }
+  },
   "PreferenceForUser" : {
     "name" : "PreferenceForUser",
     "description" : "PreferenceForUser",

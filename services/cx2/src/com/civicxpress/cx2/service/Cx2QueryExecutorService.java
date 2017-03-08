@@ -17,6 +17,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
+import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
@@ -97,6 +98,10 @@ public interface Cx2QueryExecutorService {
     Page<CountOfCompnayFormsByVendorIdResponse> executeCountOfCompnayFormsByVendorId(Boolean closed, Integer vendorId, Pageable pageable);
 
     Downloadable exportCountOfCompnayFormsByVendorId(ExportType exportType, Boolean closed, Integer vendorId, Pageable pageable);
+
+    Page<MasterForms> executeOpenedOrClosedFormsForUserOrSharedWith(Long userId, Pageable pageable);
+
+    Downloadable exportOpenedOrClosedFormsForUserOrSharedWith(ExportType exportType, Long userId, Pageable pageable);
 
     Page<SearchUsersByEmailOrNameResponse> executeSearchUsersByEmailOrName(String searchString, Pageable pageable);
 
@@ -244,13 +249,13 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetMunicipalityGroupIdIDs(ExportType exportType, Integer userId, Pageable pageable);
 
-    Page<FormsForUsersAndSharedResponse> executeFormsForUsersAndShared(Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
-
-    Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
-
     Page<UserSubscriptions> executeUserSubscriptionsByMunicipality(Integer municipalityId, Pageable pageable);
 
     Downloadable exportUserSubscriptionsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable);
+
+    Page<FormsForUsersAndSharedResponse> executeFormsForUsersAndShared(Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
+
+    Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
 
     Page<GetUserIdResponse> executeGetUserID(String email, Pageable pageable);
 

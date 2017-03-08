@@ -314,6 +314,20 @@ ORDER BY DateModified DESC
     <query-param name="vendorId" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="OpenedOrClosedFormsForUserOrSharedWith">
+        <![CDATA[
+        from MasterForms where UserId=:userId or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :userId) ORDER BY DateModified DESC
+        ]]>
+    <query-param name="userId" type="java.lang.Long"/>
+    </query>
+
+    <query name="OpenedOrClosedFormsForUserOrSharedWith__count">
+        <![CDATA[
+        select count(*) from MasterForms where UserId=:userId or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :userId)
+        ]]>
+    <query-param name="userId" type="java.lang.Long"/>
+    </query>
+
     <sql-query name="searchUsersByEmailOrName">
         <![CDATA[
         SELECT ID, FullName, Photo, Email FROM Users WHERE Active=1 AND (Email LIKE CONCAT('%',:searchString,'%') OR FullName LIKE CONCAT('%',:searchString,'%'))
@@ -923,6 +937,20 @@ and (FT.MunicipalityInternalForm=0
     <query-param name="userID" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="UserSubscriptionsByMunicipality">
+        <![CDATA[
+        from UserSubscriptions where municipalityId=:municipalityId
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="UserSubscriptionsByMunicipality__count">
+        <![CDATA[
+        select count(*) from UserSubscriptions where municipalityId=:municipalityId
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="FormsForUsersAndShared">
         <![CDATA[
         SELECT MF.FormGuid as formGuid,
@@ -960,20 +988,6 @@ ORDER BY DateModified DESC
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
     <query-param name="municipalityId" type="java.lang.Long"/>
     </sql-query>
-
-    <query name="UserSubscriptionsByMunicipality">
-        <![CDATA[
-        from UserSubscriptions where municipalityId=:municipalityId
-        ]]>
-    <query-param name="municipalityId" type="java.lang.Integer"/>
-    </query>
-
-    <query name="UserSubscriptionsByMunicipality__count">
-        <![CDATA[
-        select count(*) from UserSubscriptions where municipalityId=:municipalityId
-        ]]>
-    <query-param name="municipalityId" type="java.lang.Integer"/>
-    </query>
 
     <sql-query name="getUserID">
         <![CDATA[

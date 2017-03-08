@@ -4727,17 +4727,16 @@
         "scale" : 0
       }, {
         "fieldName" : "amount",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
+        "type" : "big_decimal",
+        "fullyQualifiedType" : "big_decimal",
         "columnName" : "Amount",
         "isPrimaryKey" : false,
         "notNull" : true,
-        "length" : 255,
-        "precision" : 0,
+        "length" : 0,
+        "precision" : 36,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
+        "scale" : 2
       } ],
       "entityName" : "Fees",
       "fullyQualifiedName" : "com.civicxpress.cx2.Fees",

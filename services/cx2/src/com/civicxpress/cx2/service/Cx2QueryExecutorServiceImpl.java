@@ -28,6 +28,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
+import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
@@ -449,6 +450,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("vendorId", vendorId);
 
         return queryExecutor.exportNamedQueryData("CountOfCompnayFormsByVendorId", params, exportType, CountOfCompnayFormsByVendorIdResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterForms> executeOpenedOrClosedFormsForUserOrSharedWith(Long userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userId", userId);
+
+        return queryExecutor.executeNamedQuery("OpenedOrClosedFormsForUserOrSharedWith", params, MasterForms.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportOpenedOrClosedFormsForUserOrSharedWith(ExportType exportType, Long userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userId", userId);
+
+        return queryExecutor.exportNamedQueryData("OpenedOrClosedFormsForUserOrSharedWith", params, exportType, MasterForms.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1256,6 +1277,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<UserSubscriptions> executeUserSubscriptionsByMunicipality(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("UserSubscriptionsByMunicipality", params, UserSubscriptions.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportUserSubscriptionsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("UserSubscriptionsByMunicipality", params, exportType, UserSubscriptions.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<FormsForUsersAndSharedResponse> executeFormsForUsersAndShared(Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
         Map params = new HashMap(4);
 
@@ -1278,26 +1319,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("municipalityId", municipalityId);
 
         return queryExecutor.exportNamedQueryData("FormsForUsersAndShared", params, exportType, FormsForUsersAndSharedResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<UserSubscriptions> executeUserSubscriptionsByMunicipality(Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("UserSubscriptionsByMunicipality", params, UserSubscriptions.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportUserSubscriptionsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.exportNamedQueryData("UserSubscriptionsByMunicipality", params, exportType, UserSubscriptions.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
