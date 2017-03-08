@@ -1,23 +1,41 @@
-<wm-page data-ng-controller="MyCartPageController" pagetitle="My Cart" name="page1"> 
- <wm-header content="header" name="header1"></wm-header> 
- <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav> 
- <wm-content name="content1"> 
-  <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel> 
-  <wm-page-content columnwidth="10" name="page_content1"> 
-   <wm-layoutgrid name="layoutgrid1"> 
-    <wm-gridrow name="gridrow1"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn1"> 
-      <wm-breadcrumb dataset="bind:Variables.Breadcrumb.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow2"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn3"></wm-gridcolumn> 
-    </wm-gridrow> 
-   </wm-layoutgrid> 
-  </wm-page-content> 
- </wm-content> 
- <wm-footer content="footer" name="footer1"></wm-footer> 
- <wm-view class="dialog-view" name="view1"> 
-  <wm-pagedialog name="pagedialogNewForm" title="New Form" content="NewForm" oktext="Close" iconclass=""></wm-pagedialog> 
- </wm-view> 
+<wm-page data-ng-controller="MyCartPageController" pagetitle="My Cart" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn1">
+                        <wm-breadcrumb dataset="bind:Variables.Breadcrumb.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                        <wm-label padding="unset 0.5em" name="label1" caption="All credit card transactions are subject to either a $1.00 or 3.5% convenience fee, whichever is greater.  This fee is imposed by CivicXpress, not the participating municipalities.  This fee covers bank transaction costs associated with credit card transac"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
+                        <wm-panel iconclass="wi wi-shopping-cart" autoclose="outsideClick" name="panelMyCart" title="My Cart" class="panel-primary">
+                            <wm-grid title="" dataset="bind:Variables.lvFeesData.dataSet" navigation="Classic" name="gridFeesList">
+                                <wm-grid-column binding="masterForms.formTitle" caption="Form Title" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="MasterForms"></wm-grid-column>
+                                <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
+                                <wm-grid-column binding="feeType" caption="Fee Type" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="gisrecords.fullAddress" caption="Full Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Municipalities"></wm-grid-column>
+                                <wm-grid-column binding="amount" caption="Amount" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-remove-shopping-cart" title="" disabled="false"></wm-grid-row-action>
+                            </wm-grid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="view1">
+        <wm-pagedialog name="pagedialogNewForm" title="New Form" content="NewForm" oktext="Close" iconclass=""></wm-pagedialog>
+    </wm-view>
 </wm-page>
