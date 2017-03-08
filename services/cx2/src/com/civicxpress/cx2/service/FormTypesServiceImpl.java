@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormCategoryMapping;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
@@ -62,6 +63,10 @@ public class FormTypesServiceImpl implements FormTypesService {
 	private MasterFormsService masterFormsService;
 
     @Autowired
+	@Qualifier("cx2.FeesService")
+	private FeesService feesService;
+
+    @Autowired
 	@Qualifier("cx2.FormToInspectionCategoryMappingService")
 	private FormToInspectionCategoryMappingService formToInspectionCategoryMappingService;
 
@@ -82,6 +87,14 @@ public class FormTypesServiceImpl implements FormTypesService {
 	public FormTypes create(FormTypes formTypes) {
         LOGGER.debug("Creating a new FormTypes with information: {}", formTypes);
         FormTypes formTypesCreated = this.wmGenericDao.create(formTypes);
+        if(formTypesCreated.getFeeses() != null) {
+            for(Fees feese : formTypesCreated.getFeeses()) {
+                feese.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child Fees with information: {}", feese);
+                feesService.create(feese);
+            }
+        }
+
         if(formTypesCreated.getFormHistories() != null) {
             for(FormHistory formHistorie : formTypesCreated.getFormHistories()) {
                 formHistorie.setFormTypes(formTypesCreated);
@@ -213,6 +226,17 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated feeses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return feesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formHistories");
 
@@ -331,6 +355,15 @@ public class FormTypesServiceImpl implements FormTypesService {
 	 */
 	protected void setMasterFormsService(MasterFormsService service) {
         this.masterFormsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FeesService instance
+	 */
+	protected void setFeesService(FeesService service) {
+        this.feesService = service;
     }
 
     /**

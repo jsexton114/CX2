@@ -23,6 +23,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.Gis2forms;
@@ -56,6 +57,10 @@ public class MasterFormsServiceImpl implements MasterFormsService {
 	private Gis2formsService gis2formsService;
 
     @Autowired
+	@Qualifier("cx2.FeesService")
+	private FeesService feesService;
+
+    @Autowired
 	@Qualifier("cx2.FormMessagesService")
 	private FormMessagesService formMessagesService;
 
@@ -84,6 +89,14 @@ public class MasterFormsServiceImpl implements MasterFormsService {
 	public MasterForms create(MasterForms masterForms) {
         LOGGER.debug("Creating a new MasterForms with information: {}", masterForms);
         MasterForms masterFormsCreated = this.wmGenericDao.create(masterForms);
+        if(masterFormsCreated.getFeeses() != null) {
+            for(Fees feese : masterFormsCreated.getFeeses()) {
+                feese.setMasterForms(masterFormsCreated);
+                LOGGER.debug("Creating a new child Fees with information: {}", feese);
+                feesService.create(feese);
+            }
+        }
+
         if(masterFormsCreated.getFormMessageses() != null) {
             for(FormMessages formMessagese : masterFormsCreated.getFormMessageses()) {
                 formMessagese.setMasterForms(masterFormsCreated);
@@ -231,6 +244,17 @@ public class MasterFormsServiceImpl implements MasterFormsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Fees> findAssociatedFeeses(String formGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated feeses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("masterForms.formGuid = '" + formGuid + "'");
+
+        return feesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<FormMessages> findAssociatedFormMessageses(String formGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated formMessageses");
 
@@ -331,6 +355,15 @@ public class MasterFormsServiceImpl implements MasterFormsService {
 	 */
 	protected void setGis2formsService(Gis2formsService service) {
         this.gis2formsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FeesService instance
+	 */
+	protected void setFeesService(FeesService service) {
+        this.feesService = service;
     }
 
     /**

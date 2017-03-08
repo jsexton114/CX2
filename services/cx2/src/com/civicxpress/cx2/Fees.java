@@ -29,7 +29,6 @@ public class Fees implements Serializable {
     private Integer id;
     private Integer municipalityId;
     private Integer gisid;
-    private String formType;
     private String feeType;
     private boolean autoFeeYn;
     private String accountingCode;
@@ -38,13 +37,18 @@ public class Fees implements Serializable {
     private Integer paidByUserId;
     private String transactionId;
     private String comments;
-    private String formGuid;
-    private String inspectionGuid;
-    private String caseGuid;
-    private String projectGuid;
+    private String relatedInspectionGuid;
+    private String relatedCaseGuid;
+    private String relatedProjectGuid;
     private Integer cxvendorId;
     private String itemTitle;
     private String amount;
+    private String relatedFormGuid;
+    private Integer formType;
+    private FormTypes formTypes;
+    private MasterForms masterForms;
+    private MasterInspections masterInspections;
+    private Projects projects;
     private Vendor vendor;
     private Gisrecords gisrecords;
     private Municipalities municipalities;
@@ -77,15 +81,6 @@ public class Fees implements Serializable {
 
     public void setGisid(Integer gisid) {
         this.gisid = gisid;
-    }
-
-    @Column(name = "`FormType`", nullable = true, length = 255)
-    public String getFormType() {
-        return this.formType;
-    }
-
-    public void setFormType(String formType) {
-        this.formType = formType;
     }
 
     @Column(name = "`FeeType`", nullable = true, length = 255)
@@ -160,40 +155,31 @@ public class Fees implements Serializable {
         this.comments = comments;
     }
 
-    @Column(name = "`FormGuid`", nullable = true, length = 255)
-    public String getFormGuid() {
-        return this.formGuid;
+    @Column(name = "`RelatedInspectionGuid`", nullable = true, length = 255)
+    public String getRelatedInspectionGuid() {
+        return this.relatedInspectionGuid;
     }
 
-    public void setFormGuid(String formGuid) {
-        this.formGuid = formGuid;
+    public void setRelatedInspectionGuid(String relatedInspectionGuid) {
+        this.relatedInspectionGuid = relatedInspectionGuid;
     }
 
-    @Column(name = "`InspectionGuid`", nullable = true, length = 255)
-    public String getInspectionGuid() {
-        return this.inspectionGuid;
+    @Column(name = "`RelatedCaseGuid`", nullable = true, length = 255)
+    public String getRelatedCaseGuid() {
+        return this.relatedCaseGuid;
     }
 
-    public void setInspectionGuid(String inspectionGuid) {
-        this.inspectionGuid = inspectionGuid;
+    public void setRelatedCaseGuid(String relatedCaseGuid) {
+        this.relatedCaseGuid = relatedCaseGuid;
     }
 
-    @Column(name = "`CaseGuid`", nullable = true, length = 255)
-    public String getCaseGuid() {
-        return this.caseGuid;
+    @Column(name = "`RelatedProjectGuid`", nullable = true, length = 32)
+    public String getRelatedProjectGuid() {
+        return this.relatedProjectGuid;
     }
 
-    public void setCaseGuid(String caseGuid) {
-        this.caseGuid = caseGuid;
-    }
-
-    @Column(name = "`ProjectGuid`", nullable = true, length = 255)
-    public String getProjectGuid() {
-        return this.projectGuid;
-    }
-
-    public void setProjectGuid(String projectGuid) {
-        this.projectGuid = projectGuid;
+    public void setRelatedProjectGuid(String relatedProjectGuid) {
+        this.relatedProjectGuid = relatedProjectGuid;
     }
 
     @Column(name = "`CXVendorId`", nullable = true, scale = 0, precision = 10)
@@ -221,6 +207,80 @@ public class Fees implements Serializable {
 
     public void setAmount(String amount) {
         this.amount = amount;
+    }
+
+    @Column(name = "`RelatedFormGuid`", nullable = true, length = 255)
+    public String getRelatedFormGuid() {
+        return this.relatedFormGuid;
+    }
+
+    public void setRelatedFormGuid(String relatedFormGuid) {
+        this.relatedFormGuid = relatedFormGuid;
+    }
+
+    @Column(name = "`FormType`", nullable = true, scale = 0, precision = 10)
+    public Integer getFormType() {
+        return this.formType;
+    }
+
+    public void setFormType(Integer formType) {
+        this.formType = formType;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`FormType`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public FormTypes getFormTypes() {
+        return this.formTypes;
+    }
+
+    public void setFormTypes(FormTypes formTypes) {
+        if(formTypes != null) {
+            this.formType = formTypes.getId();
+        }
+
+        this.formTypes = formTypes;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`RelatedFormGuid`", referencedColumnName = "`FormGUID`", insertable = false, updatable = false)
+    public MasterForms getMasterForms() {
+        return this.masterForms;
+    }
+
+    public void setMasterForms(MasterForms masterForms) {
+        if(masterForms != null) {
+            this.relatedFormGuid = masterForms.getFormGuid();
+        }
+
+        this.masterForms = masterForms;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`RelatedInspectionGuid`", referencedColumnName = "`InspectionGuid`", insertable = false, updatable = false)
+    public MasterInspections getMasterInspections() {
+        return this.masterInspections;
+    }
+
+    public void setMasterInspections(MasterInspections masterInspections) {
+        if(masterInspections != null) {
+            this.relatedInspectionGuid = masterInspections.getInspectionGuid();
+        }
+
+        this.masterInspections = masterInspections;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`RelatedProjectGuid`", referencedColumnName = "`ProjectGUID`", insertable = false, updatable = false)
+    public Projects getProjects() {
+        return this.projects;
+    }
+
+    public void setProjects(Projects projects) {
+        if(projects != null) {
+            this.relatedProjectGuid = projects.getProjectGuid();
+        }
+
+        this.projects = projects;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

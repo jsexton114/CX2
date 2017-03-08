@@ -30,6 +30,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectForms;
@@ -146,6 +147,15 @@ public class ProjectsController {
 		LOGGER.debug("counting Projects");
 		return projectsService.count(query);
 	}
+
+    @RequestMapping(value="/{id:.+}/feeses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the feeses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Fees> findAssociatedFeeses(@PathVariable("id") String id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated feeses");
+        return projectsService.findAssociatedFeeses(id, pageable);
+    }
 
     @RequestMapping(value="/{id:.+}/formMessageses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the formMessageses instance associated with the given id.")

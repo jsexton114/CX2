@@ -30,6 +30,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormCategoryMapping;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
@@ -147,6 +148,15 @@ public class FormTypesController {
 		LOGGER.debug("counting FormTypes");
 		return formTypesService.count(query);
 	}
+
+    @RequestMapping(value="/{id:.+}/feeses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the feeses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Fees> findAssociatedFeeses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated feeses");
+        return formTypesService.findAssociatedFeeses(id, pageable);
+    }
 
     @RequestMapping(value="/{id:.+}/formHistories", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the formHistories instance associated with the given id.")

@@ -14,6 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectForms;
@@ -130,6 +131,18 @@ public interface ProjectsService {
 	 * @return The count of the Projects.
 	 */
 	long count(String query);
+
+    /*
+     * Returns the associated feeses for given Projects id.
+     *
+     * @param projectGuid value of projectGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Fees instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Fees> findAssociatedFeeses(String projectGuid, Pageable pageable);
 
     /*
      * Returns the associated formMessageses for given Projects id.

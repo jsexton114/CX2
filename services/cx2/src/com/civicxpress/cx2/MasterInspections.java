@@ -63,6 +63,7 @@ public class MasterInspections implements Serializable {
     private Users usersByRequestedBy;
     private Users usersByModifiedBy;
     private Projects projects;
+    private List<Fees> feeses = new ArrayList<>();
     private List<FormsToInspections> formsToInspectionses = new ArrayList<>();
     private List<InspectionGis> inspectionGises = new ArrayList<>();
 
@@ -317,6 +318,16 @@ public class MasterInspections implements Serializable {
         }
 
         this.projects = projects;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "masterInspections")
+    public List<Fees> getFeeses() {
+        return this.feeses;
+    }
+
+    public void setFeeses(List<Fees> feeses) {
+        this.feeses = feeses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

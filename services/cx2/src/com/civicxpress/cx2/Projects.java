@@ -49,6 +49,7 @@ public class Projects implements Serializable {
     private Municipalities municipalities;
     private Users usersByCreatedBy;
     private Users usersByModifiedBy;
+    private List<Fees> feeses = new ArrayList<>();
     private List<FormMessages> formMessageses = new ArrayList<>();
     private List<MasterInspections> masterInspectionses = new ArrayList<>();
     private List<ProjectForms> projectFormses = new ArrayList<>();
@@ -207,6 +208,16 @@ public class Projects implements Serializable {
         }
 
         this.usersByModifiedBy = usersByModifiedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
+    public List<Fees> getFeeses() {
+        return this.feeses;
+    }
+
+    public void setFeeses(List<Fees> feeses) {
+        this.feeses = feeses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
