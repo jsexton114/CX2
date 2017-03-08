@@ -345,11 +345,11 @@ Application.$controller("dialogAddGISRecordController", ["$scope",
         $scope.canAddParcel = function() {
             var activeTabIndex = $scope.Widgets.tabsAddGISRecord.activeTabIndex;
             if (activeTabIndex === 0) {
-                return ($scope.Widgets.searchAddress.datavalue === undefined);
+                return (!$scope.Widgets.searchAddress.datavalue.id);
             } else if (activeTabIndex === 1) {
-                return ($scope.Widgets.searchSubdivision.datavalue === undefined);
+                return (!$scope.Widgets.searchSubdivision.datavalue.id);
             } else {
-                return ($scope.Widgets.searchParcel.datavalue === undefined);
+                return (!$scope.Widgets.searchParcel.datavalue.id);
             }
         };
 
