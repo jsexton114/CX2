@@ -1,5 +1,5 @@
 <wm-partial data-ng-controller="selectMunicipalityPageController" name="partial1">
-    <wm-composite name="composite1" show="bind:muniCount > 0">
+    <wm-composite name="composite1" show="bind:(pageParams.muniType==='a'?Variables.AdminsMunicipalities.dataSet.content.length:(pageParams.muniType==='e'?Variables.EmployeesMunicipalities.dataSet.content.length:Variables.StandardUserMunicipalities.dataSet.content.length)) > 1">
         <wm-label class="col-md-3 form-control-static" name="label1" caption="bind:pageParams.muniType==='s' ? 'Filter Results' : 'Select Municipality'" fontweight="bold"></wm-label>
         <wm-container class="col-md-9" name="container1">
             <wm-select name="selectMunicipality" placeholder="View All" dataset="bind:pageParams.muniType==='a'?Variables.AdminsMunicipalities.dataSet:(pageParams.muniType==='e'?Variables.EmployeesMunicipalities.dataSet:Variables.StandardUserMunicipalities.dataSet)"
