@@ -28,7 +28,6 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
-import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
@@ -196,11 +195,11 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, Long municipalityId, Boolean closed, Long userId) {
+    public Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, Boolean closed, Long municipalityId, Long userId) {
         Map params = new HashMap(3);
 
+        params.put("closed", closed);
         params.put("MunicipalityId", municipalityId);
-        params.put("Closed", closed);
         params.put("UserId", userId);
 
         return queryExecutor.executeNamedQuery("ProcessFormsForUserByMunicipality", params, Object.class, pageable);
@@ -290,17 +289,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("vendorId", vendorId);
 
         return queryExecutor.executeNamedQuery("CountOfCompnayFormsByVendorId", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeOpenedOrClosedFormsForUserOrSharedWith(Pageable pageable, Integer creatorUser, Integer sharedWithUser) {
-        Map params = new HashMap(2);
-
-        params.put("creatorUser", creatorUser);
-        params.put("sharedWithUser", sharedWithUser);
-
-        return queryExecutor.executeNamedQuery("OpenedOrClosedFormsForUserOrSharedWith", params, Object.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

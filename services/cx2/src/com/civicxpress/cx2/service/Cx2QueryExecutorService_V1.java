@@ -19,7 +19,6 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
-import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
@@ -71,7 +70,7 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeFormsCountForMunicipalities(Pageable pageable, Integer municipalityId);
 
     @Deprecated
-    public Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, Long municipalityId, Boolean closed, Long userId);
+    public Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, Boolean closed, Long municipalityId, Long userId);
 
     @Deprecated
     public Page<Object> executeVendorCount(Pageable pageable);
@@ -93,9 +92,6 @@ public interface Cx2QueryExecutorService_V1 {
 
     @Deprecated
     public Page<Object> executeCountOfCompnayFormsByVendorId(Pageable pageable, Boolean closed, Integer vendorId);
-
-    @Deprecated
-    public Page<Object> executeOpenedOrClosedFormsForUserOrSharedWith(Pageable pageable, Integer creatorUser, Integer sharedWithUser);
 
     @Deprecated
     public Page<Object> executeSearchUsersByEmailOrName(Pageable pageable, String searchString);

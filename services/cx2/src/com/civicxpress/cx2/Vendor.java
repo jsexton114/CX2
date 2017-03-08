@@ -62,7 +62,7 @@ public class Vendor implements Serializable {
     private Date insuranceExpires;
     private Date lastUpdated;
     private String fullAddress;
-    private Boolean active;
+    private boolean active;
     private ContractorTypes contractorTypes;
     private States states;
     private List<Fees> feeses = new ArrayList<>();
@@ -291,12 +291,12 @@ public class Vendor implements Serializable {
         this.fullAddress = fullAddress;
     }
 
-    @Column(name = "`Active`", nullable = true)
-    public Boolean getActive() {
+    @Column(name = "`Active`", nullable = false)
+    public boolean isActive() {
         return this.active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 

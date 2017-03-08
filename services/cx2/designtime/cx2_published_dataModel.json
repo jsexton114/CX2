@@ -287,15 +287,15 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "relatedInspectionGuid",
+      "fieldName" : "inspectionGuid",
       "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
       "length" : 255,
-      "name" : "RelatedInspectionGuid",
+      "name" : "InspectionGuid",
       "nullable" : true,
-      "oldName" : "RelatedInspectionGuid",
+      "oldName" : "InspectionGuid",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
@@ -312,15 +312,15 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "relatedCaseGuid",
+      "fieldName" : "caseGuid",
       "foreignKey" : false,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
       "length" : 255,
-      "name" : "RelatedCaseGuid",
+      "name" : "CaseGuid",
       "nullable" : true,
-      "oldName" : "RelatedCaseGuid",
+      "oldName" : "CaseGuid",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
@@ -337,15 +337,15 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "relatedProjectGuid",
+      "fieldName" : "projectGuid",
       "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
       "length" : 32,
-      "name" : "RelatedProjectGuid",
+      "name" : "ProjectGuid",
       "nullable" : true,
-      "oldName" : "RelatedProjectGuid",
+      "oldName" : "ProjectGuid",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
@@ -412,12 +412,37 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "amount",
-      "foreignKey" : false,
+      "fieldName" : "formGuid",
+      "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
       "length" : 255,
+      "name" : "FormGuid",
+      "nullable" : true,
+      "oldName" : "FormGuid",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
+      "fieldName" : "amount",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "big_decimal",
+      "length" : 0,
       "name" : "Amount",
       "nullable" : false,
       "oldName" : "Amount",
@@ -425,59 +450,9 @@
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
-      "precision" : 0,
+      "precision" : 36,
       "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "relatedFormGuid",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "RelatedFormGuid",
-      "nullable" : true,
-      "oldName" : "RelatedFormGuid",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "formType",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "FormType",
-      "nullable" : true,
-      "oldName" : "FormType",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
+      "scale" : 2,
       "sqlType" : "number",
       "unique" : false
     } ],
@@ -500,26 +475,9 @@
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "formTypes",
-      "mappings" : [ {
-        "sourceColumn" : "FormType",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_Fees_TO_FormTypes_ForQLXKI",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "Fees",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "FormTypes",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
       "fieldName" : "masterForms",
       "mappings" : [ {
-        "sourceColumn" : "RelatedFormGuid",
+        "sourceColumn" : "FormGuid",
         "targetColumn" : "FormGUID"
       } ],
       "name" : "FK_Fees_TO_MasterForms_RKUFwB",
@@ -536,7 +494,7 @@
       "composite" : false,
       "fieldName" : "masterInspections",
       "mappings" : [ {
-        "sourceColumn" : "RelatedInspectionGuid",
+        "sourceColumn" : "InspectionGuid",
         "targetColumn" : "InspectionGuid"
       } ],
       "name" : "FK_Fees_TO_MasterInspect7IwPj",
@@ -553,7 +511,7 @@
       "composite" : false,
       "fieldName" : "projects",
       "mappings" : [ {
-        "sourceColumn" : "RelatedProjectGuid",
+        "sourceColumn" : "ProjectGuid",
         "targetColumn" : "ProjectGUID"
       } ],
       "name" : "FK_Fees_TO_Projects_RelawEZC8",
@@ -3891,23 +3849,6 @@
       "sourceTable" : "FormTypes",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Municipalities",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "feeses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "FormType"
-      } ],
-      "name" : "FK_Fees_TO_FormTypes_ForQLXKI",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "FormTypes",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Fees",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -9042,7 +8983,7 @@
       "fieldName" : "feeses",
       "mappings" : [ {
         "sourceColumn" : "FormGUID",
-        "targetColumn" : "RelatedFormGuid"
+        "targetColumn" : "FormGuid"
       } ],
       "name" : "FK_Fees_TO_MasterForms_RKUFwB",
       "primary" : false,
@@ -10745,7 +10686,7 @@
       "fieldName" : "feeses",
       "mappings" : [ {
         "sourceColumn" : "InspectionGuid",
-        "targetColumn" : "RelatedInspectionGuid"
+        "targetColumn" : "InspectionGuid"
       } ],
       "name" : "FK_Fees_TO_MasterInspect7IwPj",
       "primary" : false,
@@ -12045,7 +11986,7 @@
       "fieldName" : "feeses",
       "mappings" : [ {
         "sourceColumn" : "ProjectGUID",
-        "targetColumn" : "RelatedProjectGuid"
+        "targetColumn" : "ProjectGuid"
       } ],
       "name" : "FK_Fees_TO_Projects_RelawEZC8",
       "primary" : false,
@@ -15405,7 +15346,7 @@
       "javaType" : "boolean",
       "length" : 0,
       "name" : "Active",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "Active",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,

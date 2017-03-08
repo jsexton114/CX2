@@ -41,7 +41,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
-import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
@@ -273,9 +272,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/ProcessFormsForUserByMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get forms from Master Forms where employee is in group of that in current form Status")
-    public Page<ProcessFormsForUserByMunicipalityResponse> executeProcessFormsForUserByMunicipality(@RequestParam(value = "MunicipalityId", required = false) Long municipalityId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "UserId", required = false) Long userId, Pageable pageable) {
+    public Page<ProcessFormsForUserByMunicipalityResponse> executeProcessFormsForUserByMunicipality(@RequestParam(value = "closed") Boolean closed, @RequestParam(value = "MunicipalityId") Long municipalityId, @RequestParam(value = "UserId") Long userId, Pageable pageable) {
         LOGGER.debug("Executing named query: ProcessFormsForUserByMunicipality");
-        Page<ProcessFormsForUserByMunicipalityResponse> _result = queryService.executeProcessFormsForUserByMunicipality(municipalityId, closed, userId, pageable);
+        Page<ProcessFormsForUserByMunicipalityResponse> _result = queryService.executeProcessFormsForUserByMunicipality(closed, municipalityId, userId, pageable);
         LOGGER.debug("got the result for named query: ProcessFormsForUserByMunicipality, result:{}", _result);
         return _result;
     }
@@ -283,10 +282,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query ProcessFormsForUserByMunicipality")
     @RequestMapping(value = "/queries/ProcessFormsForUserByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportProcessFormsForUserByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId", required = false) Long municipalityId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "UserId", required = false) Long userId, Pageable pageable) {
+    public Downloadable exportProcessFormsForUserByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "MunicipalityId") Long municipalityId, @RequestParam(value = "UserId") Long userId, Pageable pageable) {
         LOGGER.debug("Exporting named query: ProcessFormsForUserByMunicipality");
 
-        return queryService.exportProcessFormsForUserByMunicipality(exportType, municipalityId, closed, userId, pageable);
+        return queryService.exportProcessFormsForUserByMunicipality(exportType, closed, municipalityId, userId, pageable);
     }
 
     @RequestMapping(value = "/queries/VendorCount", method = RequestMethod.GET)
@@ -412,25 +411,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: CountOfCompnayFormsByVendorId");
 
         return queryService.exportCountOfCompnayFormsByVendorId(exportType, closed, vendorId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/OpenedOrClosedFormsForUserOrSharedWith", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "OpenedOrClosedFormsForUserOrSharedWith")
-    public Page<OpenedOrClosedFormsForUserOrSharedWithResponse> executeOpenedOrClosedFormsForUserOrSharedWith(@RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, Pageable pageable) {
-        LOGGER.debug("Executing named query: OpenedOrClosedFormsForUserOrSharedWith");
-        Page<OpenedOrClosedFormsForUserOrSharedWithResponse> _result = queryService.executeOpenedOrClosedFormsForUserOrSharedWith(creatorUser, sharedWithUser, pageable);
-        LOGGER.debug("got the result for named query: OpenedOrClosedFormsForUserOrSharedWith, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query OpenedOrClosedFormsForUserOrSharedWith")
-    @RequestMapping(value = "/queries/OpenedOrClosedFormsForUserOrSharedWith/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportOpenedOrClosedFormsForUserOrSharedWith(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, Pageable pageable) {
-        LOGGER.debug("Exporting named query: OpenedOrClosedFormsForUserOrSharedWith");
-
-        return queryService.exportOpenedOrClosedFormsForUserOrSharedWith(exportType, creatorUser, sharedWithUser, pageable);
     }
 
     @RequestMapping(value = "/queries/searchUsersByEmailOrName", method = RequestMethod.GET)
@@ -1138,6 +1118,25 @@ public class QueryExecutionController {
         return queryService.exportGetMunicipalityGroupIdIDs(exportType, userId, pageable);
     }
 
+    @RequestMapping(value = "/queries/FormsForUsersAndShared", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Brings closed or opened  Forms of creator and shared with user")
+    public Page<FormsForUsersAndSharedResponse> executeFormsForUsersAndShared(@RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Long municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: FormsForUsersAndShared");
+        Page<FormsForUsersAndSharedResponse> _result = queryService.executeFormsForUsersAndShared(closed, creatorUser, sharedWithUser, municipalityId, pageable);
+        LOGGER.debug("got the result for named query: FormsForUsersAndShared, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query FormsForUsersAndShared")
+    @RequestMapping(value = "/queries/FormsForUsersAndShared/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportFormsForUsersAndShared(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Long municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: FormsForUsersAndShared");
+
+        return queryService.exportFormsForUsersAndShared(exportType, closed, creatorUser, sharedWithUser, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/UserSubscriptionsByMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UserSubscriptionsByMunicipality")
@@ -1155,25 +1154,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: UserSubscriptionsByMunicipality");
 
         return queryService.exportUserSubscriptionsByMunicipality(exportType, municipalityId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/FormsForUsersAndShared", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Brings closed or opened  Forms of creator and shared with user")
-    public Page<MasterForms> executeFormsForUsersAndShared(@RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Long municipalityId, Pageable pageable) {
-        LOGGER.debug("Executing named query: FormsForUsersAndShared");
-        Page<MasterForms> _result = queryService.executeFormsForUsersAndShared(closed, creatorUser, sharedWithUser, municipalityId, pageable);
-        LOGGER.debug("got the result for named query: FormsForUsersAndShared, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query FormsForUsersAndShared")
-    @RequestMapping(value = "/queries/FormsForUsersAndShared/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportFormsForUsersAndShared(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Long municipalityId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: FormsForUsersAndShared");
-
-        return queryService.exportFormsForUsersAndShared(exportType, closed, creatorUser, sharedWithUser, municipalityId, pageable);
     }
 
     @RequestMapping(value = "/queries/getUserID", method = RequestMethod.GET)

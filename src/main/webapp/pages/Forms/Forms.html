@@ -359,34 +359,31 @@
                                                                     <wm-label name="labelmanfeeselect" caption="Manual Fee Type" required="true" show="bind:isNewFee"></wm-label>
                                                                     <wm-select name="selectManualFeeType" displayname="Manual Fee Type" show="bind:isNewFee" required="bind:isNewFee" type="string" dataset="bind:Variables.lvManualFeeTypes.dataSet"
                                                                     displayfield="feeType" placeholder="Select Fee" datafield="All Fields" orderby="feeType:asc"></wm-select>
-                                                                    <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="string" required="required" widget="currency" maxchars="255"
-                                                                    placeholder="Enter Amount" minvalue="0" step="0.01"></wm-form-field>
+                                                                    <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="string" readonly="false" required="true" widget="currency"
+                                                                    maxchars="255" placeholder="Enter Amount" minvalue="0" step="0.01"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow46">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn105">
-                                                                    <wm-form-field name="comments" displayname="Comments" show="true" primary-key="false" generator="assigned" key="comments" type="string" widget="text" maxchars="500" inputtype="text" placeholder="Enter Comments"></wm-form-field>
+                                                                    <wm-form-field name="comments" displayname="Comments" show="true" primary-key="false" generator="assigned" key="comments" type="string" readonly="false" required="false" widget="text" maxchars="500"
+                                                                    inputtype="text" placeholder="Enter Comments"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow47">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn106_1">
-                                                                    <wm-form-field name="feeType" displayname="Manual Fee Type" show="bind:!isNewFee" primary-key="false" generator="assigned" key="feeType" type="string" readonly="readonly" required="required"
-                                                                    widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.feeType"></wm-form-field>
+                                                                    <wm-form-field name="feeType" displayname="Manual Fee Type" show="bind:!isNewFee" primary-key="false" generator="assigned" key="feeType" type="string" readonly="true" required="true" widget="text"
+                                                                    maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.feeType"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                         </wm-layoutgrid>
-                                                        <wm-form-field name="formGuid" displayname="Form Guid" show="false" primary-key="false" generator="assigned" key="formGuid" type="string" required="required" widget="text" maxchars="255" defaultvalue="bind:Variables.CurrentForm.dataSet.data[$i].formGuid"
-                                                        inputtype="text" placeholder="Enter value"></wm-form-field>
-                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"
-                                                        inputtype="number" placeholder=""></wm-form-field>
-                                                        <wm-form-field name="autoFeeYn" displayname="Auto Fee Yn" show="false" primary-key="false" generator="assigned" key="autoFeeYn" type="boolean" required="required" widget="checkbox"
+                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
+                                                        placeholder=""></wm-form-field>
+                                                        <wm-form-field name="autoFeeYn" displayname="Auto Fee Yn" show="false" primary-key="false" generator="assigned" key="autoFeeYn" type="boolean" readonly="false" required="true" widget="checkbox"
                                                         defaultvalue="false" placeholder=""></wm-form-field>
-                                                        <wm-form-field name="formType" displayname="Form Type" show="false" primary-key="false" generator="assigned" key="formType" type="string" widget="text" maxchars="255" inputtype="text"
-                                                        placeholder="Enter value" defaultvalue="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-form-field>
-                                                        <wm-form-field name="paidStatus" displayname="Paid Status" show="false" primary-key="false" generator="assigned" key="paidStatus" type="string" required="required" widget="text" maxchars="255"
-                                                        inputtype="text" placeholder="Enter value" defaultvalue="Unpaid"></wm-form-field>
-                                                        <wm-form-field name="accountingCode" displayname="Accounting Code" show="false" primary-key="false" generator="assigned" key="accountingCode" type="string" required="required" widget="text"
-                                                        maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.accountingCode"></wm-form-field>
+                                                        <wm-form-field name="paidStatus" displayname="Paid Status" show="false" primary-key="false" generator="assigned" key="paidStatus" type="string" readonly="false" required="true" widget="text"
+                                                        defaultvalue="Unpaid" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                        <wm-form-field name="accountingCode" displayname="Accounting Code" show="false" primary-key="false" generator="assigned" key="accountingCode" type="string" readonly="false" required="true"
+                                                        widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.accountingCode"></wm-form-field>
                                                         <wm-form-action key="save" display-name="Add" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
                                                         disabled="false" type="submit" update-mode="true"></wm-form-action>
                                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"

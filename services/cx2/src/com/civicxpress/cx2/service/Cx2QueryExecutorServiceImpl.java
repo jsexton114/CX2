@@ -28,7 +28,6 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
-import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
@@ -279,11 +278,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<ProcessFormsForUserByMunicipalityResponse> executeProcessFormsForUserByMunicipality(Long municipalityId, Boolean closed, Long userId, Pageable pageable) {
+    public Page<ProcessFormsForUserByMunicipalityResponse> executeProcessFormsForUserByMunicipality(Boolean closed, Long municipalityId, Long userId, Pageable pageable) {
         Map params = new HashMap(3);
 
+        params.put("closed", closed);
         params.put("MunicipalityId", municipalityId);
-        params.put("Closed", closed);
         params.put("UserId", userId);
 
         return queryExecutor.executeNamedQuery("ProcessFormsForUserByMunicipality", params, ProcessFormsForUserByMunicipalityResponse.class, pageable);
@@ -291,11 +290,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportProcessFormsForUserByMunicipality(ExportType exportType, Long municipalityId, Boolean closed, Long userId, Pageable pageable) {
+    public Downloadable exportProcessFormsForUserByMunicipality(ExportType exportType, Boolean closed, Long municipalityId, Long userId, Pageable pageable) {
         Map params = new HashMap(3);
 
+        params.put("closed", closed);
         params.put("MunicipalityId", municipalityId);
-        params.put("Closed", closed);
         params.put("UserId", userId);
 
         return queryExecutor.exportNamedQueryData("ProcessFormsForUserByMunicipality", params, exportType, ProcessFormsForUserByMunicipalityResponse.class, pageable);
@@ -450,28 +449,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("vendorId", vendorId);
 
         return queryExecutor.exportNamedQueryData("CountOfCompnayFormsByVendorId", params, exportType, CountOfCompnayFormsByVendorIdResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<OpenedOrClosedFormsForUserOrSharedWithResponse> executeOpenedOrClosedFormsForUserOrSharedWith(Integer creatorUser, Integer sharedWithUser, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("creatorUser", creatorUser);
-        params.put("sharedWithUser", sharedWithUser);
-
-        return queryExecutor.executeNamedQuery("OpenedOrClosedFormsForUserOrSharedWith", params, OpenedOrClosedFormsForUserOrSharedWithResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportOpenedOrClosedFormsForUserOrSharedWith(ExportType exportType, Integer creatorUser, Integer sharedWithUser, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("creatorUser", creatorUser);
-        params.put("sharedWithUser", sharedWithUser);
-
-        return queryExecutor.exportNamedQueryData("OpenedOrClosedFormsForUserOrSharedWith", params, exportType, OpenedOrClosedFormsForUserOrSharedWithResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1279,6 +1256,32 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormsForUsersAndSharedResponse> executeFormsForUsersAndShared(Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("closed", closed);
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("FormsForUsersAndShared", params, FormsForUsersAndSharedResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("closed", closed);
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("FormsForUsersAndShared", params, exportType, FormsForUsersAndSharedResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<UserSubscriptions> executeUserSubscriptionsByMunicipality(Integer municipalityId, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -1295,32 +1298,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("municipalityId", municipalityId);
 
         return queryExecutor.exportNamedQueryData("UserSubscriptionsByMunicipality", params, exportType, UserSubscriptions.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MasterForms> executeFormsForUsersAndShared(Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("closed", closed);
-        params.put("creatorUser", creatorUser);
-        params.put("sharedWithUser", sharedWithUser);
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("FormsForUsersAndShared", params, MasterForms.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("closed", closed);
-        params.put("creatorUser", creatorUser);
-        params.put("sharedWithUser", sharedWithUser);
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.exportNamedQueryData("FormsForUsersAndShared", params, exportType, MasterForms.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

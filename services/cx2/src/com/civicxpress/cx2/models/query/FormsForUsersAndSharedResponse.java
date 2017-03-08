@@ -7,17 +7,22 @@ package com.civicxpress.cx2.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import com.civicxpress.cx2.FormFieldTypes;
+import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.Municipalities;
+import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
+public class FormsForUsersAndSharedResponse implements Serializable {
 
     @JsonProperty("formGuid")
     @ColumnAlias("formGuid")
@@ -144,19 +149,19 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ProcessFormsForUserByMunicipalityResponse)) return false;
-        final ProcessFormsForUserByMunicipalityResponse processFormsForUserByMunicipalityResponse = (ProcessFormsForUserByMunicipalityResponse) o;
-        return Objects.equals(getFormGuid(), processFormsForUserByMunicipalityResponse.getFormGuid()) &&
-                Objects.equals(getFormTitle(), processFormsForUserByMunicipalityResponse.getFormTitle()) &&
-                Objects.equals(getMunicipalityName(), processFormsForUserByMunicipalityResponse.getMunicipalityName()) &&
-                Objects.equals(getCreatedBy(), processFormsForUserByMunicipalityResponse.getCreatedBy()) &&
-                Objects.equals(getFormDesign(), processFormsForUserByMunicipalityResponse.getFormDesign()) &&
-                Objects.equals(getFormStatus(), processFormsForUserByMunicipalityResponse.getFormStatus()) &&
-                Objects.equals(getLot(), processFormsForUserByMunicipalityResponse.getLot()) &&
-                Objects.equals(getSubdivision(), processFormsForUserByMunicipalityResponse.getSubdivision()) &&
-                Objects.equals(getAddress(), processFormsForUserByMunicipalityResponse.getAddress()) &&
-                Objects.equals(getPrimaryVendor(), processFormsForUserByMunicipalityResponse.getPrimaryVendor()) &&
-                Objects.equals(getBalanceDue(), processFormsForUserByMunicipalityResponse.getBalanceDue());
+        if (!(o instanceof FormsForUsersAndSharedResponse)) return false;
+        final FormsForUsersAndSharedResponse formsForUsersAndSharedResponse = (FormsForUsersAndSharedResponse) o;
+        return Objects.equals(getFormGuid(), formsForUsersAndSharedResponse.getFormGuid()) &&
+                Objects.equals(getFormTitle(), formsForUsersAndSharedResponse.getFormTitle()) &&
+                Objects.equals(getMunicipalityName(), formsForUsersAndSharedResponse.getMunicipalityName()) &&
+                Objects.equals(getCreatedBy(), formsForUsersAndSharedResponse.getCreatedBy()) &&
+                Objects.equals(getFormDesign(), formsForUsersAndSharedResponse.getFormDesign()) &&
+                Objects.equals(getFormStatus(), formsForUsersAndSharedResponse.getFormStatus()) &&
+                Objects.equals(getLot(), formsForUsersAndSharedResponse.getLot()) &&
+                Objects.equals(getSubdivision(), formsForUsersAndSharedResponse.getSubdivision()) &&
+                Objects.equals(getAddress(), formsForUsersAndSharedResponse.getAddress()) &&
+                Objects.equals(getPrimaryVendor(), formsForUsersAndSharedResponse.getPrimaryVendor()) &&
+                Objects.equals(getBalanceDue(), formsForUsersAndSharedResponse.getBalanceDue());
     }
 
     @Override

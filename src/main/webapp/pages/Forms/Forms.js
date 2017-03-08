@@ -63,7 +63,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         currentBreadCrumb.label = data[0].formType;
     };
 
-
     $scope.RemoveOtherPrimaryVendorsonSuccess = function(variable, data) {
         $scope.Variables.SetPrimaryVendorStatusForFormandVendor.setInput({
             'vendor': $scope.Widgets.searchVendor.datavalue.vendorId
@@ -72,11 +71,9 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
     };
 
-
     $scope.gridRemovePrimaryVendorsonSuccess = function(variable, data) {
         $scope.Variables.gridSetPrimaryVendorStatusForFormandVendor.update();
     };
-
 
     $scope.PostFormMessageonSuccess = function(variable, data) {
         $scope.Widgets.textAddMessage.datavalue = undefined;
@@ -91,7 +88,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
             $scope.Variables.GetMessageIdForCurrentPost.update();
 
         }
-
     };
 
     $scope.buttonAddMessageClick = function($event, $isolateScope) {
@@ -101,7 +97,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         });
         $scope.Variables.PostFormMessage.update();
     };
-
 
     $scope.GetMessageIdForCurrentPostonSuccess = function(variable, data) {
         var people = $scope.Variables.PeopleList.dataSet;
@@ -127,8 +122,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
             "recipient": $scope.messageMailingList
         });
         $scope.Variables.SendFormMessagesMail.update();
-
-
     };
 
     $scope.svSetFormStatusonSuccess = function(variable, data) {
@@ -156,7 +149,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         $scope.Widgets.textareaNotes.reset();
     };
 
-
     $scope.SendFormMessagesMailonSuccess = function(variable, data) {
         $scope.Variables.PeopleList.dataSet = undefined;
     };
@@ -168,9 +160,11 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         }
     };
 
+    $scope.liveformFeesBeforeservicecall = function($event, $operation, $data) {
+        $data.formGuid = $scope.Variables.CurrentForm.dataSet.data[0].formGuid;
+    };
+
 }]);
-
-
 
 Application.$controller("gridSharedwithController", ["$scope",
     function($scope) {
@@ -192,10 +186,6 @@ Application.$controller("grid3Controller", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
-
-
-
-
 
 Application.$controller("dialogAddGISRecordController", ["$scope",
     function($scope) {

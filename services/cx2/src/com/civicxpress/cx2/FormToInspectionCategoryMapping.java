@@ -37,7 +37,7 @@ public class FormToInspectionCategoryMapping implements Serializable {
     private Integer id;
     private Integer formTypeId;
     private Integer inspectionCategoryId;
-    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT, Scope.UPDATE })
+    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime addedAt;
     private FormTypes formTypes;

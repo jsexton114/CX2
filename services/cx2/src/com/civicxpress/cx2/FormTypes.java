@@ -77,7 +77,6 @@ public class FormTypes implements Serializable {
     private String instructions;
     private Boolean forceInspectionSequence;
     private Municipalities municipalities;
-    private List<Fees> feeses = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
@@ -478,16 +477,6 @@ public class FormTypes implements Serializable {
         }
 
         this.municipalities = municipalities;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<Fees> getFeeses() {
-        return this.feeses;
-    }
-
-    public void setFeeses(List<Fees> feeses) {
-        this.feeses = feeses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
