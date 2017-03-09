@@ -106,7 +106,7 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
     };
 
     $scope.svUploadProfilePhotoonSuccess = function(variable, data) {
-        $scope.Widgets.picture1.picturesource = "services/cx2/Users/" + $scope.Variables.loggedInUser.dataSet.id + "/content/photo?ts=" + moment().valueOf();
+        $('img.profile-photo').attr("src", ("services/cx2/Users/" + $scope.Variables.loggedInUser.dataSet.id + "/content/photo?ts=" + moment().valueOf()));
         $scope.Widgets.dialogUploadPhoto.close();
     };
 
