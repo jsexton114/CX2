@@ -22,7 +22,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow10">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn25">
-                        <wm-liveform novalidate="false" errormessage="" title="Vendor Info" iconclass="wi wi-file-text" defaultmode="Edit" dataset="bind:Variables.UpdateVendorData.dataSet" captionalign="left" captionposition="top" name="liveform1" formdata="bind:Variables.CurrentVendorObj.firstRecord"
+                        <wm-liveform novalidate="false" errormessage="" title="Company Details" iconclass="wi wi-work" defaultmode="Edit" dataset="bind:Variables.UpdateVendorData.dataSet" captionalign="left" captionposition="top" name="liveform1" formdata="bind:Variables.CurrentVendorObj.firstRecord"
                         class="panel-primary" on-beforeservicecall="liveform1Beforeservicecall($event, $operation, $data)">
                             <wm-layoutgrid columns="3" name="layoutgrid1">
                                 <wm-gridrow name="gridrow1">
@@ -44,17 +44,16 @@
                                         validationmessage="City is required"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn5">
-                                        <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="required" widget="select" placeholder="Select value" displayexpression="stateName"
-                                        orderby="stateName:asc" validationmessage="State is required"></wm-form-field>
+                                        <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="false" widget="select" placeholder="Select value" displayexpression="stateName"
+                                        orderby="stateName:asc"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn6">
-                                        <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                        validationmessage="Postal Code is required"></wm-form-field>
+                                        <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow3">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn7">
-                                        <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="USA"></wm-form-field>
+                                        <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" widget="text" maxchars="255" inputtype="text" placeholder="USA" defaultvalue="USA"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn8">
                                         <wm-form-field name="companyPhone" displayname="Company Phone" show="true" primary-key="false" generator="assigned" key="companyPhone" type="string" required="required" widget="text" maxchars="255" inputtype="text"
@@ -100,7 +99,7 @@
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn18">
                                         <wm-form-field name="feinNumber" displayname="Employer Identification Number (EIN)" show="true" primary-key="false" generator="assigned" key="feinNumber" type="string" required="required" widget="text" maxchars="255"
-                                        inputtype="text" placeholder="Enter value" validationmessage="Employer Identification Number (EIN) is required"></wm-form-field>
+                                        inputtype="text" placeholder="Enter value" validationmessage="Employer Identification Number (EIN) is required" hint="Example: 12-3456789"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow7">

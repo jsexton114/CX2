@@ -70,7 +70,7 @@
                         <wm-layoutgrid name="layoutgrid4">
                             <wm-gridrow name="gridrow20" padding="unset unset 2em unset">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn31_3">
-                                    <wm-label padding="unset 0.5em unset unset" name="Instructions" caption="You will need to select at least one municipality that you would like to do business with. You may add as many municipalities as you like by searching and clicking “Add Municipality”."
+                                    <wm-label padding="unset 0.5em unset unset" name="Instructions" caption="You will need to select at least one municipality that you would like to do business with. You may add as many municipalities as you like by performing a search and clicking on the municipality name."
                                     horizontalalign="center" textalign="left"></wm-label>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -93,7 +93,7 @@
                                         <wm-checkbox caption="Label" class="col-md-push-3 col-md-9" name="checkMunisBeThere" required="true" datavalue="bind:Variables.MunicpalitiesList.dataSet.length > 0" show="true"></wm-checkbox>
                                     </wm-composite>
                                 </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="7" name="gridcolumn20_1" padding="2em unset unset unset">
+                                <wm-gridcolumn columnwidth="7" name="gridcolumn20_1" padding="1em unset unset unset">
                                     <wm-panel iconclass="wi wi-account-balance" name="panel1" title="Your Municipalities">
                                         <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.MunicpalitiesList.dataSet" navigation="None" name="livelist1" nodatamessage="There is no Municipality selected. Please search for a Municipality">
                                             <wm-listtemplate layout="media" name="listtemplate1">
@@ -116,14 +116,13 @@
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="3" name="gridcolumn30"></wm-gridcolumn>
                             </wm-gridrow>
-                            <wm-gridrow name="gridrow15_1"></wm-gridrow>
                         </wm-layoutgrid>
                     </wm-panel>
                 </wm-wizardstep>
                 <wm-wizardstep name="wizardstep3" title="Communication">
                     <wm-panel iconclass="wi wi-notifications" autoclose="outsideClick" name="panel2" title="Notification Frequency">
                         <wm-layoutgrid name="layoutgrid2_1" columns="1">
-                            <wm-gridrow name="gridrow22">
+                            <wm-gridrow name="gridrow22" padding="unset unset 1em unset">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn33">
                                     <wm-label padding="unset 0.5em" name="label13" caption="How often would you like to receive email notifications?"></wm-label>
                                 </wm-gridcolumn>
@@ -142,7 +141,7 @@
                     </wm-panel>
                 </wm-wizardstep>
                 <wm-wizardstep name="wizardstep4" title="Finish">
-                    <wm-panel iconclass="wi wi-vpn-key" autoclose="outsideClick" name="panel3" title="Set Password">
+                    <wm-panel iconclass="wi wi-vpn-key" autoclose="outsideClick" name="panel3" title="Set Password" margin="unset unset 2em unset">
                         <wm-layoutgrid name="layoutgrid3" columns="1">
                             <wm-gridrow name="gridrow18">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn28" horizontalalign="left">
@@ -157,7 +156,7 @@
                                         <wm-container class="col-md-9" name="container3" width="300px">
                                             <wm-text name="textPwd" placeholder="Enter Password" type="password" regexp=".*" required="true" updateon="default" updatedelay="300" on-change="textPwdChange($event, $scope, newVal, oldVal)" autocomplete="false"></wm-text>
                                         </wm-container>
-                                        <wm-label padding="unset 0.5em" name="label12_2" show="bind:pwordRequirementsMet === false" caption="<i class=&quot;fa fa-warning&quot;></i> Password requirements have not been met. Please choose a strong password." color="#9b8a38"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label12_2" show="bind:pwordRequirementsMet === false" caption="<i class=&quot;fa fa-warning&quot;></i> Password requirements have not been met. Please choose a strong password." color="#e81d1d" class="form-control-static"></wm-label>
                                     </wm-composite>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -168,13 +167,13 @@
                                         <wm-container class="col-md-9" name="container4" width="300px">
                                             <wm-text name="textRePwd" placeholder="Enter Password" on-keyup="textRePwdKeyup($event, $scope)" type="password" required="true" regexp=".*" updateon="default" updatedelay="300" autocomplete="false" on-change="textRePwdChange($event, $scope, newVal, oldVal)"></wm-text>
                                         </wm-container>
-                                        <wm-label padding="unset 0.5em" name="label13_1" caption="<i class=&quot;fa fa-warning&quot;></i> Passwords don't match." show="bind:passwordsDontMatch === true" color="#9b8a38"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label13_1" caption="<i class=&quot;fa fa-warning&quot;></i> Passwords don't match." show="bind:passwordsDontMatch === true" color="#e81d1d" class="form-control-static"></wm-label>
                                     </wm-composite>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
                     </wm-panel>
-                    <wm-panel iconclass="fa fa-legal" autoclose="outsideClick" name="panel5" title="License Agreement">
+                    <wm-panel iconclass="fa fa-legal" autoclose="outsideClick" name="panel5" title="License Agreement" margin="unset unset 2em unset">
                         <wm-layoutgrid name="layoutgrid7">
                             <wm-gridrow name="gridrow23">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn32">
@@ -186,7 +185,7 @@
                     <wm-layoutgrid name="layoutgrid8">
                         <wm-gridrow name="gridrow25">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn36" padding="unset unset unset 1em">
-                                <div vc-recaptcha ng-model="recaptchaResponse"></div>
+                                <div vc-recaptcha="" ng-model="recaptchaResponse"></div>
                             </wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>

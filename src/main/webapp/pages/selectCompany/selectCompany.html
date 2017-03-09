@@ -2,7 +2,7 @@
     <wm-layoutgrid name="layoutgrid1">
         <wm-gridrow name="gridrow2">
             <wm-gridcolumn columnwidth="12" name="gridcolumn4">
-                <wm-composite name="composite1">
+                <wm-composite name="composite1" show="bind:Variables.AdminVendorsList.dataSet.content.length > 1">
                     <wm-label class="col-md-3 form-control-static" name="label1" caption="Select Company" fontweight="bold"></wm-label>
                     <wm-container class="col-md-9" name="container1">
                         <wm-select name="selectCompany" dataset="bind:Variables.AdminVendorsList.dataSet" datafield="All Fields" displayfield="CompanyName" orderby="CompanyName:asc" datavalue="bind:getSelectedCompany()"></wm-select>
