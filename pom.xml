@@ -69,6 +69,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/UserService/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/cx2/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -164,6 +171,7 @@
                                 <source>services/ProjectTaskAssignment/src</source>
                                 <source>services/ResetPasswordMailService/src</source>
                                 <source>services/UpdateRecordStatus/src</source>
+                                <source>services/UserService/src</source>
                                 <source>services/cx2/src</source>
                                 <source>services/fishers/src</source>
                                 <source>services/securityService/src</source>

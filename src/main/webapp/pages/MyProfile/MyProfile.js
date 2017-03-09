@@ -8,7 +8,6 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
 
     };
 
-
     // For verifying password match
     var proceedSubmission = false;
 
@@ -30,34 +29,22 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
         }
     }
 
-
-
-
     $scope.buttonUpdateNewClick = function($event, $isolateScope) {
         // check for password match
-        if (proceedSubmission == true) {
+        if (proceedSubmission === true) {
             $scope.Variables.UpdateNewPassword.update();
         } else {
             $scope.Variables.PasswordMissMatch.notify();
         }
     };
 
-
-
     $scope.textRePwdKeyup = function($event, $isolateScope) {
         passwordCheck();
     };
 
-
     $scope.textPwdKeyup = function($event, $isolateScope) {
         passwordCheck();
     };
-
-
-    $scope.Cx2UsersDataonSuccess = function(variable, data) {
-        $scope.Widgets.picture1.picturesource = "services/cx2/Users/" + data.id + "/content/photo?ts=" + moment().valueOf();
-    };
-
 
     $scope.GetUserSubscriptionsonSuccess = function(variable, data) {
         for (let i = 0; i < data.length; i++) {
@@ -67,12 +54,11 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
 
     };
 
-
     $scope.buttonAddMunicipalityClick = function($event, $isolateScope) {
         var temp = $scope.Widgets.search2.datavalue;
         var data = $scope.Variables.MunicpalitiesList.dataSet;
         // checking for any municipalities in MunicpalitiesList variable, if not add from search 
-        if (data.length == 0) {
+        if (data.length === 0) {
             data.push(temp);
         } else {
             // checking if adding value already exist in MunicpalitiesList variable 
@@ -91,14 +77,12 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
 
     };
 
-
     $scope.buttonRemoveClick = function($event, $isolateScope, item, currentItemWidgets) {
         // Removing the deleted municipalities
         _.remove($scope.Variables.MunicpalitiesList.dataSet, {
             id: item.id
         });
     };
-
 
     $scope.buttonUpdateSubscriptionsClick = function($event, $isolateScope) {
         var temp = $scope.Variables.MunicpalitiesList.dataSet;
@@ -107,7 +91,6 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
         } else
             $scope.Variables.DeleteSubscriptions.update();
     };
-
 
     $scope.DeleteSubscriptionsonSuccess = function(variable, data) {
         var temp = $scope.Variables.MunicpalitiesList.dataSet;
@@ -122,16 +105,22 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
         }
     };
 
+    $scope.svUploadProfilePhotoonSuccess = function(variable, data) {
+        $scope.Widgets.picture1.picturesource = "services/cx2/Users/" + $scope.Variables.loggedInUser.dataSet.id + "/content/photo?ts=" + moment().valueOf();
+        $scope.Widgets.dialogUploadPhoto.close();
+    };
+
 }]);
 
-
-Application.$controller("dialog1Controller", ["$scope",
+Application.$controller("dialogUploadPhotoController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
 
-        function readURL(input) {
-            if (input.files && input.files[0]) {
+        $scope.newProfilePhoto = {};
+
+        $scope.$watch('newProfilePhoto', function(newVal, oldVal) {
+            if (!!newVal && !!newVal.Contents) {
                 var reader = new FileReader();
 
                 reader.onload = function(e) {
@@ -139,28 +128,14 @@ Application.$controller("dialog1Controller", ["$scope",
                     $scope.$root.$safeApply($scope);
                 };
 
-                reader.readAsDataURL(input.files[0]);
+                reader.readAsDataURL(newVal.Contents);
             }
-        }
-        $scope.dialog1Opened = function($event, $isolateScope) {
-            $('[name="dialog1"]').on('change', '.app-blob-upload', function() {
-                readURL(this);
-            })
+        });
+
+        $scope.buttonSaveClick = function($event, $isolateScope) {
+            $scope.Variables.svUploadProfilePhoto.setInput('photo', [$scope.newProfilePhoto.Contents]);
+            $scope.Variables.svUploadProfilePhoto.update();
         };
-
-    }
-]);
-
-Application.$controller("liveformUpdatePhotoController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-
-
-        $scope.photoClick = function($event, $isolateScope) {};
-
-
-
     }
 ]);
 
@@ -185,32 +160,30 @@ Application.$controller("liveform2Controller", ["$scope",
     }
 ]);
 
-
-
 Application.$controller("usersDialogController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveform4Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("grid2Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveform3Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
