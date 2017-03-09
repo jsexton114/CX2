@@ -599,7 +599,8 @@
                                                                         <wm-gridrow name="gridrow70">
                                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn102_1">
                                                                                 <wm-form-field name="sequenceOrderNumber" displayname="Sequence Order" show="true" primary-key="false" generator="assigned" key="sequenceOrderNumber" type="integer" readonly="false"
-                                                                                required="true" step="0" widget="number" inputtype="number" placeholder="Enter value" minvalue="1" margin="unset unset 2em unset"></wm-form-field>
+                                                                                required="true" step="0" widget="select" inputtype="number" placeholder="Enter value" minvalue="1" margin="unset unset 2em unset" dataset="bind:Variables.SortOrder.dataSet"
+                                                                                datafield="dataValue" displayfield="dataValue"></wm-form-field>
                                                                             </wm-gridcolumn>
                                                                         </wm-gridrow>
                                                                         <wm-gridrow name="gridrow69">
@@ -609,10 +610,11 @@
                                                                             </wm-gridcolumn>
                                                                         </wm-gridrow>
                                                                     </wm-layoutgrid>
-                                                                    <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="false"
-                                                                    widget="select" dataset="bind:Variables.CurrentFormObj.dataSet" datafield="All Fields" displayfield="formType" defaultvalue="bind:Variables.CurrentFormObj.firstRecord" placeholder="Select value"></wm-form-field>
-                                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number"
-                                                                    inputtype="number" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
+                                                                    placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false"
+                                                                    required="false" widget="select" dataset="bind:Variables.CurrentFormObj.dataSet" datafield="All Fields" displayfield="formType" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"
+                                                                    placeholder="Select value"></wm-form-field>
                                                                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false"
                                                                     type="button" update-mode="true"></wm-form-action>

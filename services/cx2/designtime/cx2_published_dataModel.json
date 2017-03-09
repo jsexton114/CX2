@@ -8048,9 +8048,15 @@
       "unique" : false
     } ],
     "constraints" : [ {
-      "columns" : [ "FormTypeId", "InspectDesignId", "SequenceOrderNumber" ],
+      "columns" : [ "FormTypeId", "SequenceOrderNumber" ],
       "composite" : true,
-      "name" : "UK_InspectionSequence_Fo1gYjM",
+      "name" : "UK_InspectionSequence_FoAu9ID",
+      "type" : "UNIQUE",
+      "virtual" : false
+    }, {
+      "columns" : [ "FormTypeId", "InspectDesignId" ],
+      "composite" : true,
+      "name" : "UK_InspectionSequence_FoiVJoR",
       "type" : "UNIQUE",
       "virtual" : false
     } ],

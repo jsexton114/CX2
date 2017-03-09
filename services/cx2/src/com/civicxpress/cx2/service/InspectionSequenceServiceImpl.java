@@ -74,18 +74,35 @@ public class InspectionSequenceServiceImpl implements InspectionSequenceService 
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public InspectionSequence getByFormTypeIdAndInspectDesignIdAndSequenceOrderNumber(Integer formTypeId, Integer inspectDesignId, Integer sequenceOrderNumber) {
-        Map<String, Object> formTypeIdAndInspectDesignIdAndSequenceOrderNumberMap = new HashMap<>();
-        formTypeIdAndInspectDesignIdAndSequenceOrderNumberMap.put("formTypeId", formTypeId);
-        formTypeIdAndInspectDesignIdAndSequenceOrderNumberMap.put("inspectDesignId", inspectDesignId);
-        formTypeIdAndInspectDesignIdAndSequenceOrderNumberMap.put("sequenceOrderNumber", sequenceOrderNumber);
+    public InspectionSequence getByFormTypeIdAndSequenceOrderNumber(Integer formTypeId, Integer sequenceOrderNumber) {
+        Map<String, Object> formTypeIdAndSequenceOrderNumberMap = new HashMap<>();
+        formTypeIdAndSequenceOrderNumberMap.put("formTypeId", formTypeId);
+        formTypeIdAndSequenceOrderNumberMap.put("sequenceOrderNumber", sequenceOrderNumber);
 
-        LOGGER.debug("Finding InspectionSequence by unique keys: {}", formTypeIdAndInspectDesignIdAndSequenceOrderNumberMap);
-        InspectionSequence inspectionSequence = this.wmGenericDao.findByUniqueKey(formTypeIdAndInspectDesignIdAndSequenceOrderNumberMap);
+        LOGGER.debug("Finding InspectionSequence by unique keys: {}", formTypeIdAndSequenceOrderNumberMap);
+        InspectionSequence inspectionSequence = this.wmGenericDao.findByUniqueKey(formTypeIdAndSequenceOrderNumberMap);
 
         if (inspectionSequence == null){
-            LOGGER.debug("No InspectionSequence found with given unique key values: {}", formTypeIdAndInspectDesignIdAndSequenceOrderNumberMap);
-            throw new EntityNotFoundException(String.valueOf(formTypeIdAndInspectDesignIdAndSequenceOrderNumberMap));
+            LOGGER.debug("No InspectionSequence found with given unique key values: {}", formTypeIdAndSequenceOrderNumberMap);
+            throw new EntityNotFoundException(String.valueOf(formTypeIdAndSequenceOrderNumberMap));
+        }
+
+        return inspectionSequence;
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public InspectionSequence getByFormTypeIdAndInspectDesignId(Integer formTypeId, Integer inspectDesignId) {
+        Map<String, Object> formTypeIdAndInspectDesignIdMap = new HashMap<>();
+        formTypeIdAndInspectDesignIdMap.put("formTypeId", formTypeId);
+        formTypeIdAndInspectDesignIdMap.put("inspectDesignId", inspectDesignId);
+
+        LOGGER.debug("Finding InspectionSequence by unique keys: {}", formTypeIdAndInspectDesignIdMap);
+        InspectionSequence inspectionSequence = this.wmGenericDao.findByUniqueKey(formTypeIdAndInspectDesignIdMap);
+
+        if (inspectionSequence == null){
+            LOGGER.debug("No InspectionSequence found with given unique key values: {}", formTypeIdAndInspectDesignIdMap);
+            throw new EntityNotFoundException(String.valueOf(formTypeIdAndInspectDesignIdMap));
         }
 
         return inspectionSequence;

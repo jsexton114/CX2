@@ -4343,7 +4343,11 @@
     "name" : "InspectionSequenceData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "formTypeId",
+      "value" : "bind:pageParams.FormTypeId",
+      "type" : "number"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "InspectionSequence",
@@ -5398,7 +5402,7 @@
       "primaryFields" : [ "id" ]
     },
     "isDefault" : true,
-    "bindCount" : 1,
+    "bindCount" : 0,
     "tableName" : "InspectionSequence",
     "tableType" : "TABLE",
     "properties" : [ "formTypes", "inspectionDesign" ],

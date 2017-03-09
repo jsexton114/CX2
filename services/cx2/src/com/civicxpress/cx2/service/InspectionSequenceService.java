@@ -50,15 +50,24 @@ public interface InspectionSequenceService {
 	InspectionSequence findById(Integer inspectionsequenceId);
 
     /**
-	 * Find and return the InspectionSequence for given formTypeId  andinspectDesignId  andsequenceOrderNumber  if exists.
+	 * Find and return the InspectionSequence for given formTypeId  andsequenceOrderNumber  if exists.
 	 *
 	 * @param formTypeId value of formTypeId; value cannot be null.
-	 * @param inspectDesignId value of inspectDesignId; value cannot be null.
 	 * @param sequenceOrderNumber value of sequenceOrderNumber; value cannot be null.
 	 * @return InspectionSequence associated with the given inputs.
      * @throws EntityNotFoundException if no matching InspectionSequence found.
 	 */
-    InspectionSequence getByFormTypeIdAndInspectDesignIdAndSequenceOrderNumber(Integer formTypeId, Integer inspectDesignId, Integer sequenceOrderNumber)throws EntityNotFoundException;
+    InspectionSequence getByFormTypeIdAndSequenceOrderNumber(Integer formTypeId, Integer sequenceOrderNumber)throws EntityNotFoundException;
+
+    /**
+	 * Find and return the InspectionSequence for given formTypeId  andinspectDesignId  if exists.
+	 *
+	 * @param formTypeId value of formTypeId; value cannot be null.
+	 * @param inspectDesignId value of inspectDesignId; value cannot be null.
+	 * @return InspectionSequence associated with the given inputs.
+     * @throws EntityNotFoundException if no matching InspectionSequence found.
+	 */
+    InspectionSequence getByFormTypeIdAndInspectDesignId(Integer formTypeId, Integer inspectDesignId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing InspectionSequence. It replaces all fields of the existing InspectionSequence with the given inspectionSequence.

@@ -97,11 +97,18 @@ public class InspectionSequenceController {
 
         return deletedInspectionSequence != null;
     }
-    @RequestMapping(value = "/formTypeId-inspectDesignId-sequenceOrderNumber", method = RequestMethod.GET)
+    @RequestMapping(value = "/formTypeId-sequenceOrderNumber", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching InspectionSequence with given unique key values.")
-    public InspectionSequence getByFormTypeIdAndInspectDesignIdAndSequenceOrderNumber(@RequestParam(name = "formTypeId") Integer formTypeId, @RequestParam(name = "inspectDesignId") Integer inspectDesignId, @RequestParam(name = "sequenceOrderNumber") Integer sequenceOrderNumber) {
-        LOGGER.debug("Getting InspectionSequence with uniques key FormTypeIdAndInspectDesignIdAndSequenceOrderNumber");
-        return inspectionSequenceService.getByFormTypeIdAndInspectDesignIdAndSequenceOrderNumber(formTypeId, inspectDesignId, sequenceOrderNumber);
+    public InspectionSequence getByFormTypeIdAndSequenceOrderNumber(@RequestParam(name = "formTypeId") Integer formTypeId, @RequestParam(name = "sequenceOrderNumber") Integer sequenceOrderNumber) {
+        LOGGER.debug("Getting InspectionSequence with uniques key FormTypeIdAndSequenceOrderNumber");
+        return inspectionSequenceService.getByFormTypeIdAndSequenceOrderNumber(formTypeId, sequenceOrderNumber);
+    }
+
+    @RequestMapping(value = "/formTypeId-inspectDesignId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching InspectionSequence with given unique key values.")
+    public InspectionSequence getByFormTypeIdAndInspectDesignId(@RequestParam(name = "formTypeId") Integer formTypeId, @RequestParam(name = "inspectDesignId") Integer inspectDesignId) {
+        LOGGER.debug("Getting InspectionSequence with uniques key FormTypeIdAndInspectDesignId");
+        return inspectionSequenceService.getByFormTypeIdAndInspectDesignId(formTypeId, inspectDesignId);
     }
 
     /**
