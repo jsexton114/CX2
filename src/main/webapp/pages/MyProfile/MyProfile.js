@@ -51,7 +51,6 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
             var temp = $scope.Variables.MunicpalitiesList.dataSet;
             temp.push(data[i].municipalities);
         }
-
     };
 
     $scope.buttonAddMunicipalityClick = function($event, $isolateScope) {
@@ -72,9 +71,7 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
                 $scope.Variables.MunicipalityExist.notify();
             else
                 data.push(temp);
-
         }
-
     };
 
     $scope.buttonRemoveClick = function($event, $isolateScope, item, currentItemWidgets) {
@@ -106,10 +103,9 @@ Application.$controller("MyProfilePageController", ["$scope", function($scope) {
     };
 
     $scope.svUploadProfilePhotoonSuccess = function(variable, data) {
-        $('img.profile-photo').attr("src", ("services/cx2/Users/" + $scope.Variables.loggedInUser.dataSet.id + "/content/photo?ts=" + moment().valueOf()));
+        $scope.$root.$broadcast('profilePhotoUpdated');
         $scope.Widgets.dialogUploadPhoto.close();
     };
-
 }]);
 
 Application.$controller("dialogUploadPhotoController", ["$scope",

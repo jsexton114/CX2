@@ -12,7 +12,6 @@ Application.run(function($rootScope) {
          * variables can be accessed through '$rootScope.Variables' property here
          * e.g. $rootScope.Variables.staticVariable1.getData()
          */
-
     };
 
     /* perform any action on session timeout here, e.g clearing some data, etc */
@@ -30,10 +29,6 @@ Application.run(function($rootScope) {
         $rootScope.Variables.NoOfMunicipalitiesForUser.dataSet.dataValue = data.totalElements;
     };
 });
-
-window.avatarFallback = function(e) {
-    $(e.target).attr("src", 'resources/images/imagelists/fa-user-170.png');
-};
 
 Application.factory('_', ['$window', function($window) {
     "use strict";
@@ -56,6 +51,38 @@ Application.factory('pwordValidator', [function() {
             } else {
                 return -3;
             }
+        }
+    };
+}]);
+
+Application.factory('variableImageData', [function() {
+    "use strict";
+    return {
+        profilePhotoUpdated: null
+    };
+}]);
+
+Application.directive('profilePhoto', ['variableImageData', '$timeout', function(variableImageData, $timeout) {
+    "use strict";
+    return {
+        restrict: 'C',
+        link: function(scope, elem, attrs) {
+            if (!!variableImageData.profilePhotoUpdated) {
+                console.log(variableImageData.profilePhotoUpdated);
+                $timeout(function() {
+                    elem.attr('src', ("services/cx2/Users/" + scope.Variables.loggedInUser.dataSet.id + "/content/photo?ts=" + variableImageData.profilePhotoUpdated));
+                }, 0);
+            }
+
+            elem.on('error', function(e) {
+                elem.attr("src", 'resources/images/imagelists/fa-user-170.png');
+            });
+
+            scope.$on('profilePhotoUpdated', function(newImg) {
+                console.log(variableImageData.profilePhotoUpdated);
+                variableImageData.profilePhotoUpdated = moment().valueOf();
+                elem.attr("src", ("services/cx2/Users/" + scope.Variables.loggedInUser.dataSet.id + "/content/photo?ts=" + variableImageData.profilePhotoUpdated));
+            });
         }
     };
 }]);
