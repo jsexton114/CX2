@@ -318,6 +318,7 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn69">
                                             <wm-livegrid formlayout="dialog" name="livegridOutcome">
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionOutcomeData.dataSet" navigation="Classic" name="gridOutcome" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                                    <wm-grid-column binding="outcomeOrder" caption="Outcome Order" type="integer" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="outcome" caption="Outcome" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="assessFeeYn" caption="Assess Fee" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                                         <wm-checkbox scopedatavalue="row['assessFeeYn']" disabled="Enable" class="" data-ng-class="" on-change="assessFeeChange(row['assessFeeYn'])"></wm-checkbox>
@@ -336,7 +337,7 @@
                                                     <wm-layoutgrid columns="1" name="layoutgrid4_1">
                                                         <wm-gridrow name="gridrow8">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn8">
-                                                                <wm-form-field name="outcome" displayname="Outcome Name" show="true" primary-key="false" generator="assigned" key="outcome" type="string" readonly="false" required="true" widget="text" maxchars="255"
+                                                                <wm-form-field name="outcome" displayname="Outcome" show="true" primary-key="false" generator="assigned" key="outcome" type="string" readonly="false" required="true" widget="text" maxchars="255"
                                                                 inputtype="text" placeholder="Enter value" margin="unset unset 1em unset"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
@@ -348,6 +349,12 @@
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn10">
                                                                 <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" readonly="false" required="false" widget="checkbox"
                                                                 defaultvalue="false" placeholder="" uncheckedvalue="false" checkedvalue="true" hint="If selected, this outcome will result in the inspections process being considered &quot;Closed&quot;, and should be reserved for the final outcome."></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow1">
+                                                            <wm-gridcolumn name="gridcolumn1" columnwidth="12">
+                                                                <wm-form-field name="outcomeOrder" displayname="Outcome Order" show="true" primary-key="false" generator="assigned" key="outcomeOrder" type="integer" readonly="false" required="true" step="0"
+                                                                widget="select" placeholder="Enter value" dataset="bind:Variables.SortOrder.dataSet" datafield="dataValue" displayfield="dataValue"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>

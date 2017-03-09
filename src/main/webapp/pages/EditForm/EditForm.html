@@ -522,7 +522,7 @@
                                                                     disabled="false"></wm-grid-action>
                                                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                                                 </wm-grid>
-                                                                <wm-liveform novalidate="false" errormessage="" title="Add Inspection Category" formlayout="dialog" iconclass="wi wi-group-work" dataset="bind:Variables.FormToInspectionCategoryMappingData.dataSet"
+                                                                <wm-liveform novalidate="false" errormessage="That category has already been assigned to the form" title="Add Inspection Category" formlayout="dialog" iconclass="wi wi-group-work" dataset="bind:Variables.FormToInspectionCategoryMappingData.dataSet"
                                                                 captionalign="left" captionposition="top" name="liveformFormtoinspectioncategory">
                                                                     <wm-layoutgrid columns="1" name="layoutgrid18">
                                                                         <wm-gridrow name="gridrow71">
@@ -532,16 +532,13 @@
                                                                                 datafield="All Fields" displayfield="inspectionCategory"></wm-form-field>
                                                                             </wm-gridcolumn>
                                                                         </wm-gridrow>
-                                                                        <wm-gridrow name="gridrow72">
-                                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn103">
-                                                                                <wm-form-field name="addedAt" displayname="Added At" show="true" primary-key="false" generator="assigned" key="addedAt" type="timestamp" readonly="false" required="false" widget="timestamp"></wm-form-field>
-                                                                            </wm-gridcolumn>
-                                                                        </wm-gridrow>
                                                                     </wm-layoutgrid>
-                                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
-                                                                    placeholder="Enter value"></wm-form-field>
-                                                                    <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false"
-                                                                    required="false" widget="select" placeholder="Select value" dataset="bind:Variables.CurrentFormObj.dataSet" datafield="All Fields" displayfield="formType" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"></wm-form-field>
+                                                                    <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="false"
+                                                                    widget="select" placeholder="Select value" dataset="bind:Variables.CurrentFormObj.dataSet" datafield="All Fields" displayfield="formType" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"></wm-form-field>
+                                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number"
+                                                                    inputtype="number" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="addedAt" displayname="Added At" show="false" primary-key="false" generator="assigned" key="addedAt" type="timestamp" readonly="false" required="false"
+                                                                    widget="timestamp" placeholder="Select date time" outputformat="timestamp"></wm-form-field>
                                                                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false"
                                                                     type="button" update-mode="true"></wm-form-action>
