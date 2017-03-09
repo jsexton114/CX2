@@ -23,11 +23,17 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow6" padding="unset unset 1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn7">
+                        <wm-label padding="unset 0.5em" name="label3" caption="The &quot;Manual&quot; fees created here can be manually added by municipality employees to forms after the form has been submitted."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label4" caption="These are not to be confused with &quot;Automatic&quot; fees, set at the form design level on the EditForm page, which are automatically added to a form on submission."></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-livegrid formlayout="dialog" name="livegrid3">
                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2ManualFeeTypesData.dataSet" navigation="Classic" name="grid4" filtermode="multicolumn" exportformat="EXCEL" showrowindex="false" showrecordcount="true">
-                                <wm-grid-column binding="feeType" caption="Fee Type" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="feeType" caption="Fee" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="New Fee" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Fee" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
@@ -38,12 +44,12 @@
                             name="liveform3">
                                 <wm-layoutgrid columns="1" name="layoutgrid4">
                                     <wm-gridrow name="gridrow8">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn9" horizontalalign="center">
-                                            <wm-form-field name="feeType" displayname="Fee Type" show="true" primary-key="false" generator="assigned" key="feeType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" required="true"></wm-form-field>
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn9">
+                                            <wm-form-field name="feeType" displayname="Fee Name" show="true" primary-key="false" generator="assigned" key="feeType" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" required="true"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow9">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn10" horizontalalign="center">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn10">
                                             <wm-form-field name="accountingCode" displayname="Accounting Code" show="true" primary-key="false" generator="assigned" key="accountingCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
                                             required="true"></wm-form-field>
                                         </wm-gridcolumn>

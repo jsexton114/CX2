@@ -167,11 +167,11 @@
                                                         <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn63_2" padding="unset 1em unset unset">
                                                                 <wm-form-field name="collectFees" displayname="Collect Fees" show="true" primary-key="false" generator="assigned" key="collectFees" type="boolean" widget="checkbox" placeholder="" checkedvalue="true"
-                                                                uncheckedvalue="false" hint="This enables Automatic and/or Manual Fees to be generated and assessed when a user submits this form."></wm-form-field>
+                                                                uncheckedvalue="false" hint="This enables fees to be collected with this form. &quot;Automatic&quot; fees are generated when a user submits the form and &quot;Manual&quot; fees, set on the ManualFeeTypes page, must be manually added to the form by a municipality employee viewing the form."></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn77" padding="unset 1em unset unset">
-                                                                <wm-form-field name="automaticFees" displayname="Automatic Fees" show="bind:Widgets.liveformUpdateFormType.formWidgets.collectFees.datavalue" primary-key="false" generator="assigned" key="automaticFees"
-                                                                type="boolean" widget="checkbox" placeholder="" checkedvalue="true" uncheckedvalue="false" hint="This enables the addition of the &quot;Automatic Fees&quot; set in the &quot;Automatic Fee Details&quot; section below."></wm-form-field>
+                                                                <wm-form-field name="automaticFees" displayname="Generate Automatic Fees" show="bind:Widgets.liveformUpdateFormType.formWidgets.collectFees.datavalue" primary-key="false" generator="assigned"
+                                                                key="automaticFees" type="boolean" widget="checkbox" placeholder="" checkedvalue="true" uncheckedvalue="false" hint="When enabled, the &quot;Automatic&quot; fees that are set on the &quot;Automatic Fee Details&quot; section below will be added to all forms of this design that are submitted."></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn86"></wm-gridcolumn>
                                                         </wm-gridrow>
