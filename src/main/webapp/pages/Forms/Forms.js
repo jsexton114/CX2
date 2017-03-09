@@ -324,10 +324,10 @@ Application.$controller("gridFeesController", ["$scope",
 
             if (allowToCart) {
                 // Add to Cart Functionality
-                $scope.Variables.svUpdateFeeStatus.setInput({
-                    'status': 'Cart'
+                $scope.Variables.svInsertIntoCart.setInput({
+                    'FeeId': $rowData.id
                 });
-                $scope.Variables.svUpdateFeeStatus.update();
+                $scope.Variables.svInsertIntoCart.update();
             }
         };
     }

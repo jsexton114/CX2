@@ -32,6 +32,14 @@
     <query-param name="user" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="InsertIntoCart">
+        <![CDATA[
+        insert into MyCart(FeeId,UserId) values(:FeeId,:UserId)
+        ]]>
+    <query-param name="FeeId" type="java.lang.Integer"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="ProjectSoftDelete">
         <![CDATA[
         update Projects set Active=:active where ProjectGuid=:ProjectGuid
@@ -457,6 +465,20 @@ ORDER BY DateModified DESC
         select count(*) from (select count(*) as usersCount from Users) wmTempTable
         ]]>
     </sql-query>
+
+    <query name="FeesInCartByUser">
+        <![CDATA[
+        from MyCart where userId=:user and fees.paidStatus='Unpaid'
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </query>
+
+    <query name="FeesInCartByUser__count">
+        <![CDATA[
+        select count(*) from MyCart where userId=:user and fees.paidStatus='Unpaid'
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </query>
 
     <sql-query name="CheckIfCompanyUserIsVendorAdmin">
         <![CDATA[

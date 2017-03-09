@@ -18,6 +18,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
@@ -32,6 +33,8 @@ public interface Cx2QueryExecutorService {
     Page<AdminsMunicipalitiesResponse> executeAdminsMunicipalities(Integer user, Pageable pageable);
 
     Downloadable exportAdminsMunicipalities(ExportType exportType, Integer user, Pageable pageable);
+
+    Integer executeInsertIntoCart(InsertIntoCartRequest insertIntoCartRequest);
 
     Integer executeProjectSoftDelete(ProjectSoftDeleteRequest projectSoftDeleteRequest);
 
@@ -136,6 +139,10 @@ public interface Cx2QueryExecutorService {
     Page<UserCountResponse> executeUserCount(Pageable pageable);
 
     Downloadable exportUserCount(ExportType exportType, Pageable pageable);
+
+    Page<MyCart> executeFeesInCartByUser(Integer user, Pageable pageable);
+
+    Downloadable exportFeesInCartByUser(ExportType exportType, Integer user, Pageable pageable);
 
     Page<CheckIfCompanyUserIsVendorAdminResponse> executeCheckIfCompanyUserIsVendorAdmin(Integer user, Integer vendor, Pageable pageable);
 

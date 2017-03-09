@@ -2227,6 +2227,34 @@
       } ]
     }
   },
+  "FeesInCartByUser" : {
+    "name" : "FeesInCartByUser",
+    "description" : "FeesInCartByUser",
+    "version" : "V2",
+    "queryString" : "from MyCart where userId=:user and fees.paidStatus='Unpaid'",
+    "countQueryString" : "select count(*) from MyCart where userId=:user and fees.paidStatus='Unpaid'",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "user",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.MyCart",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
+    }
+  },
   "FetchRolesForUserWithMunicipality" : {
     "name" : "FetchRolesForUserWithMunicipality",
     "description" : "FetchRolesForUserWithMunicipality",
@@ -4813,6 +4841,41 @@
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "InsertIntoCart" : {
+    "name" : "InsertIntoCart",
+    "description" : "InsertIntoCart",
+    "version" : "V2",
+    "queryString" : "insert into MyCart(FeeId,UserId) values(:FeeId,:UserId)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "FeeId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "11",
+      "required" : true
+    }, {
+      "name" : "UserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.InsertIntoCartRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
       "responseType" : "SINGLE"
     }
   },

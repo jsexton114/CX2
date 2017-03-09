@@ -29,6 +29,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
@@ -83,6 +84,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("user", user);
 
         return queryExecutor.exportNamedQueryData("AdminsMunicipalities", params, exportType, AdminsMunicipalitiesResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeInsertIntoCart(InsertIntoCartRequest insertIntoCartRequest) {
+        Map params = new HashMap(2);
+
+        params.put("FeeId", insertIntoCartRequest.getFeeId());
+        params.put("UserId", insertIntoCartRequest.getUserId());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertIntoCart", params);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -648,6 +660,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
 
         return queryExecutor.exportNamedQueryData("UserCount", params, exportType, UserCountResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MyCart> executeFeesInCartByUser(Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQuery("FeesInCartByUser", params, MyCart.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportFeesInCartByUser(ExportType exportType, Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.exportNamedQueryData("FeesInCartByUser", params, exportType, MyCart.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

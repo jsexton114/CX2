@@ -42,6 +42,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.VendorApprovals;
@@ -94,6 +95,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: AdminsMunicipalities");
 
         return queryService.exportAdminsMunicipalities(exportType, user, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InsertIntoCart", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InsertIntoCart")
+    public IntegerWrapper executeInsertIntoCart(@Valid @RequestBody InsertIntoCartRequest insertIntoCartRequest) {
+        LOGGER.debug("Executing named query: InsertIntoCart");
+        Integer _result = queryService.executeInsertIntoCart(insertIntoCartRequest);
+        LOGGER.debug("got the result for named query: InsertIntoCart, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/ProjectSoftDelete", method = RequestMethod.PUT)
@@ -595,6 +606,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: UserCount");
 
         return queryService.exportUserCount(exportType, pageable);
+    }
+
+    @RequestMapping(value = "/queries/FeesInCartByUser", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "FeesInCartByUser")
+    public Page<MyCart> executeFeesInCartByUser(@RequestParam(value = "user") Integer user, Pageable pageable) {
+        LOGGER.debug("Executing named query: FeesInCartByUser");
+        Page<MyCart> _result = queryService.executeFeesInCartByUser(user, pageable);
+        LOGGER.debug("got the result for named query: FeesInCartByUser, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query FeesInCartByUser")
+    @RequestMapping(value = "/queries/FeesInCartByUser/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportFeesInCartByUser(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user") Integer user, Pageable pageable) {
+        LOGGER.debug("Exporting named query: FeesInCartByUser");
+
+        return queryService.exportFeesInCartByUser(exportType, user, pageable);
     }
 
     @RequestMapping(value = "/queries/CheckIfCompanyUserIsVendorAdmin", method = RequestMethod.GET)
