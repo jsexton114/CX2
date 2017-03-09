@@ -15,13 +15,7 @@ Application.$controller("CompanyMunicipalitiesPageController", ["$scope", functi
 
         $scope.Variables.BreadCrum.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyId);
     };
-
 }]);
-
-
-
-
-
 
 Application.$controller("grid2_1Controller", ["$scope",
     function($scope) {
@@ -35,7 +29,7 @@ Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
         "use strict";
         //$scope.ctrlScope = $scope;
         $scope.saveAction1 = function($event) {
-            $scope.InsuranceDate = $scope.Widgets.selectSelectCompany.datavalue.InsuranceExpires;
+            $scope.InsuranceDate = $scope.Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.InsuranceExpires;
             $scope.InsuranceDate = moment($scope.InsuranceDate);
             var curDate = moment()
             var differnceDays = $scope.InsuranceDate.diff(curDate, 'days')
@@ -44,7 +38,6 @@ Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
                 $scope.Variables.goToPage_CompanyProfile.navigate();
                 return;
             } else if (differnceDays <= 30) {
-
                 wmToaster.show('error', 'ERROR', 'You may not add municipalities at this time because your business insurance is expiring in the next 30 days.  Please provide a new Certificate of Insurance and update your Insurance Expiration Date then reapply to the municipality.', 5000);
                 $scope.Variables.goToPage_CompanyProfile.navigate();
                 return;
@@ -54,8 +47,5 @@ Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
             }
 
         };
-
-
-
     }
 ]);

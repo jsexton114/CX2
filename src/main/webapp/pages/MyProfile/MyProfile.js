@@ -151,7 +151,7 @@ Application.$controller("dialog1Controller", ["$scope",
     }
 ]);
 
-Application.$controller("liveformUpdateController", ["$scope",
+Application.$controller("liveformUpdatePhotoController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;

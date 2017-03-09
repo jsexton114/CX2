@@ -1,4 +1,4 @@
-Application.$controller("FormsPageController", ["$scope", "$timeout", "$location", function($scope, $timeout, $location) {
+Application.$controller("FormsPageController", ["$scope", "$timeout", "$location", "$filter", function($scope, $timeout, $location, $filter) {
     "use strict";
 
     var currentBreadCrumb = null;
@@ -164,6 +164,10 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         $data.formGuid = $scope.Variables.CurrentForm.dataSet.data[0].formGuid;
     };
 
+    $scope.liveformFeesSuccess = function($event, $operation, $data) {
+        $scope.Variables.svRecordHistory.setInput('Comments', ('Added a ' + $filter('toCurrency')($data.amount, '$', 2) + ' ' + $data.feeType + ' fee.'));
+        $scope.Variables.svRecordHistory.update();
+    };
 }]);
 
 Application.$controller("gridSharedwithController", ["$scope",

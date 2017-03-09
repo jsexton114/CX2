@@ -29,8 +29,11 @@ Application.run(function($rootScope) {
         // For count badge in left nav
         $rootScope.Variables.NoOfMunicipalitiesForUser.dataSet.dataValue = data.totalElements;
     };
-
 });
+
+window.avatarFallback = function(e) {
+    $(e.target).attr("src", 'resources/images/imagelists/fa-user-170.png');
+};
 
 Application.factory('_', ['$window', function($window) {
     "use strict";
