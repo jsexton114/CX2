@@ -19,7 +19,7 @@
                                         <wm-layoutgrid name="layoutgrid8">
                                             <wm-gridrow name="gridrow28">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn34_2" horizontalalign="center">
-                                                    <wm-picture name="picture1" picturesource="bind:'services/cx2/Users/'+Variables.CurrentUserDetails.dataSet.id+'/content/photo'" margin="2em unset unset unset" class="profile-photo" onerror="avatarFallback(event)"></wm-picture>
+                                                    <wm-picture name="picture1" picturesource="bind:'services/cx2/Users/'+Variables.CurrentUserDetails.dataSet.id+'/content/photo'" margin="2em unset unset unset" class="profile-photo"></wm-picture>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow29">
@@ -75,8 +75,7 @@
                                         <wm-composite width="100%" margin="2% unset unset unset" name="composite7">
                                             <wm-label class="col-md-3 form-control-static" name="label27" caption="State" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-9" name="container7">
-                                                <wm-select name="selectSt" dataset="bind:Variables.AllStates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="All Fields" orderby="stateName:asc" datavalue="bind:Variables.CurrentUserDetails.dataSet.states"
-                                                displayfield="stateName" placeholder=""></wm-select>
+                                                <wm-select name="selectSt" dataset="bind:Variables.AllStates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="All Fields" orderby="stateName:asc" datavalue="bind:Variables.CurrentUserDetails.dataSet.states" displayfield="stateName" placeholder=""></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                         <wm-composite width="100%" margin="2% unset" name="composite8">
@@ -111,36 +110,31 @@
                                         <wm-livegrid formlayout="dialog" name="livegrid1">
                                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GetUserSubscriptions.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                 <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Municipalities"></wm-grid-column>
-                                                <wm-grid-column binding="municipalities.logo" caption="Logo" type="blob" widget-type="image" primary-key="false" generator="assigned" edit-widget-type="upload" sortable="false" searchable="false"
-                                                show="true" filterwidget="text" related-entity-name="Municipalities" readonly="false"><img ng-if="columnValue != null" class="" data-ng-src="{{'services/cx2/Municipalities/' + row.municipalities.id + '/content/'+ 'logo'}}" width="48px">
+                                                <wm-grid-column binding="municipalities.logo" caption="Logo" type="blob" widget-type="image" primary-key="false" generator="assigned" edit-widget-type="upload" sortable="false" searchable="false" show="true" filterwidget="text" related-entity-name="Municipalities"
+                                                readonly="false"><img ng-if="columnValue != null" class="" data-ng-src="{{'services/cx2/Municipalities/' + row.municipalities.id + '/content/'+ 'logo'}}" width="48px">
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="municipalities.phone" caption="Phone Number" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Municipalities"></wm-grid-column>
                                                 <wm-grid-column binding="municipalities.email" caption="Email Address" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Municipalities"></wm-grid-column>
-                                                <wm-grid-column binding="dateSubscribed" caption="Date Subscribed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true"
-                                                filterwidget="text" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="dateSubscribed" caption="Date Subscribed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true" filterwidget="text" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="addNewRow" display-name="Add Municipality" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Municipality" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
-                                            <wm-liveform novalidate="false" errormessage="You have already subscribed to that municipality." title="Add Municipality" formlayout="dialog" iconclass="wi wi-account-balance" dataset="bind:Variables.GetUserSubscriptions.dataSet"
-                                            captionalign="left" captionposition="top" name="liveform2" insertmessage="Municipality added successfully" deletemessage="Municipality deleted successfully">
+                                            <wm-liveform novalidate="false" errormessage="You have already subscribed to that municipality." title="Add Municipality" formlayout="dialog" iconclass="wi wi-account-balance" dataset="bind:Variables.GetUserSubscriptions.dataSet" captionalign="left" captionposition="top"
+                                            name="liveform2" insertmessage="Municipality added successfully" deletemessage="Municipality deleted successfully">
                                                 <wm-layoutgrid columns="1" name="layoutgrid7">
                                                     <wm-gridrow name="gridrow27_1">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn33_1">
-                                                            <wm-form-field name="municipalities" displayname="Which municipality would you like to subscribe to?" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true"
-                                                            required="required" widget="select" placeholder="Select Muncipality" displayexpression="municipalityName" orderby="municipalityName:asc"></wm-form-field>
+                                                            <wm-form-field name="municipalities" displayname="Which municipality would you like to subscribe to?" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" required="required" widget="select" placeholder="Select Muncipality"
+                                                            displayexpression="municipalityName" orderby="municipalityName:asc"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-layoutgrid>
-                                                <wm-form-field name="dateSubscribed" displayname="Date Subscribed" show="false" primary-key="false" generator="assigned" key="dateSubscribed" type="timestamp" widget="date" maxchars="255" placeholder="Enter value"
-                                                defaultvalue="CURRENT_DATE" outputformat="timestamp"></wm-form-field>
-                                                <wm-form-field name="users" displayname="Users" show="false" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="select" placeholder="Select value"
-                                                defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
-                                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                                placeholder="Enter value"></wm-form-field>
+                                                <wm-form-field name="dateSubscribed" displayname="Date Subscribed" show="false" primary-key="false" generator="assigned" key="dateSubscribed" type="timestamp" widget="date" maxchars="255" placeholder="Enter value" defaultvalue="CURRENT_DATE" outputformat="timestamp"></wm-form-field>
+                                                <wm-form-field name="users" displayname="Users" show="false" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="select" placeholder="Select value" defaultvalue="bind:Variables.CurrentUserDetails.dataSet"></wm-form-field>
+                                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
                                                 <wm-form-action key="save" display-name="Add" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
-                                                update-mode="true"></wm-form-action>
+                                                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                             </wm-liveform>
                                         </wm-livegrid>
                                     </wm-gridcolumn>
@@ -162,18 +156,16 @@
                                                 <wm-grid-column binding="vendor.companyWebsite" caption="Website" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
                                                 <wm-grid-column binding="joiningDate" caption="Date Added" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
                                             </wm-grid>
-                                            <wm-liveform novalidate="false" errormessage="You have already added that company" title="Add Company" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.GetUserVendors.dataSet" captionalign="left"
-                                            captionposition="top" name="liveform3" insertmessage="Company added successfully" deletemessage="Company deleted successfully">
+                                            <wm-liveform novalidate="false" errormessage="You have already added that company" title="Add Company" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.GetUserVendors.dataSet" captionalign="left" captionposition="top" name="liveform3"
+                                            insertmessage="Company added successfully" deletemessage="Company deleted successfully">
                                                 <wm-layoutgrid columns="3" name="layoutgrid10">
                                                     <wm-gridrow name="gridrow34">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn35">
-                                                            <wm-form-field name="vendor" displayname="Companies" show="true" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" required="required" widget="select" placeholder="Select Company"
-                                                            orderby="companyName:asc" displayexpression="companyName"></wm-form-field>
+                                                            <wm-form-field name="vendor" displayname="Companies" show="true" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" required="required" widget="select" placeholder="Select Company" orderby="companyName:asc" displayexpression="companyName"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-layoutgrid>
-                                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                                placeholder="Enter value"></wm-form-field>
+                                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
                                                 <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                                 <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                             </wm-liveform>
@@ -246,8 +238,7 @@
                                         <wm-composite name="composite10">
                                             <wm-label class="col-md-3 control-label" name="label14" caption="New Password"></wm-label>
                                             <wm-container class="col-md-9" name="container10">
-                                                <wm-text name="textPwd" on-keyup="textPwdKeyup($event, $scope)" required="true" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" type="password" placeholder="Enter Password"
-                                                width="300px"></wm-text>
+                                                <wm-text name="textPwd" on-keyup="textPwdKeyup($event, $scope)" required="true" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" type="password" placeholder="Enter Password" width="300px"></wm-text>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -257,8 +248,7 @@
                                         <wm-composite name="composite12">
                                             <wm-label class="col-md-3 control-label" name="label16" caption="Confirm Password"></wm-label>
                                             <wm-container class="col-md-9" name="container12">
-                                                <wm-text name="textRePwd" on-keyup="textRePwdKeyup($event, $scope)" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" required="true" type="password" placeholder="Enter Password"
-                                                width="300px"></wm-text>
+                                                <wm-text name="textRePwd" on-keyup="textRePwdKeyup($event, $scope)" regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&amp;])[A-Za-z\d$@$!%*?&amp;]{8,}" required="true" type="password" placeholder="Enter Password" width="300px"></wm-text>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>

@@ -8,7 +8,7 @@
             <wm-nav-item name="list_profile">
                 <wm-gridcolumn columnwidth="3" name="gridcolumn1">
                     <wm-picture class="desktop-only profile-photo" name="picture1" width="30pt" height="30pt" shape="circle" margin="0.4em unset" picturesource="bind:'services/cx2/Users/'+Variables.CurrentUserDetails.dataSet.id+'/content/photo'" on-click="Variables.goToPage_MyProfile.invoke()"
-                    show="bind:!!Variables.CurrentUserDetails.dataSet.id" onerror="avatarFallback(event)"></wm-picture>
+                    show="bind:!!Variables.CurrentUserDetails.dataSet.id"></wm-picture>
                 </wm-gridcolumn>
                 <wm-gridcolumn columnwidth="9" name="gridcolumn2">
                     <wm-anchor name="profileLink" iconclass="" caption="My Profile" on-click="Variables.goToPage_MyProfile.invoke()" iconposition="left"></wm-anchor>
