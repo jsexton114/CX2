@@ -412,7 +412,18 @@
                         </wm-liveform>
                     </wm-livegrid>
                 </wm-tabpane>
-                <wm-tabpane name="tabpane3"></wm-tabpane>
+                <wm-tabpane name="tabpane3" title="Inspection Outcome">
+                    <wm-grid editmode="quickedit" title="Inspectionoutcome List" dataset="bind:Variables.lvInspectionOutcomeData.dataSet" navigation="Classic" name="grid4">
+                        <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
+                        <wm-grid-column binding="outcome" caption="Outcome" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                        <wm-grid-column binding="assessFeeYn" caption="Assess Fee Yn" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" defaultvalue="true"></wm-grid-column>
+                        <wm-grid-column binding="considerClosed" caption="Consider Closed" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean" defaultvalue="false"></wm-grid-column>
+                        <wm-grid-column binding="outcomeOrder" caption="Outcome Order" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer"></wm-grid-column>
+                        <wm-grid-column binding="inspectionDesign.inspectDesignName" caption="Design Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="InspectionDesign" readonly="true"></wm-grid-column>
+                        <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                        <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                    </wm-grid>
+                </wm-tabpane>
             </wm-tabs>
         </wm-page-content>
     </wm-content>

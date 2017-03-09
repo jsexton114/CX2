@@ -51,6 +51,15 @@ public interface InspectionOutcomeService {
 	 */
 	InspectionOutcome findById(Integer inspectionoutcomeId);
 
+    /**
+	 * Find and return the InspectionOutcome for given inspectDesignId  andoutcomeOrder  if exists.
+	 *
+	 * @param inspectDesignId value of inspectDesignId; value cannot be null.
+	 * @param outcomeOrder value of outcomeOrder; value cannot be null.
+	 * @return InspectionOutcome associated with the given inputs.
+     * @throws EntityNotFoundException if no matching InspectionOutcome found.
+	 */
+    InspectionOutcome getByInspectDesignIdAndOutcomeOrder(Integer inspectDesignId, Integer outcomeOrder)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing InspectionOutcome. It replaces all fields of the existing InspectionOutcome with the given inspectionOutcome.

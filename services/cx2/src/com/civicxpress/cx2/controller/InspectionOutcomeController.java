@@ -99,6 +99,12 @@ public class InspectionOutcomeController {
 
         return deletedInspectionOutcome != null;
     }
+    @RequestMapping(value = "/inspectDesignId-outcomeOrder", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching InspectionOutcome with given unique key values.")
+    public InspectionOutcome getByInspectDesignIdAndOutcomeOrder(@RequestParam(name = "inspectDesignId") Integer inspectDesignId, @RequestParam(name = "outcomeOrder") Integer outcomeOrder) {
+        LOGGER.debug("Getting InspectionOutcome with uniques key InspectDesignIdAndOutcomeOrder");
+        return inspectionOutcomeService.getByInspectDesignIdAndOutcomeOrder(inspectDesignId, outcomeOrder);
+    }
 
     /**
      * @deprecated Use {@link #findInspectionOutcomes(String, Pageable)} instead.
