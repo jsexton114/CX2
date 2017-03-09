@@ -34,6 +34,7 @@ import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
+import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
@@ -86,6 +87,10 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.ProjectGisrecordsService")
 	private ProjectGisrecordsService projectGisrecordsService;
+
+    @Autowired
+	@Qualifier("cx2.MyCartService")
+	private MyCartService myCartService;
 
     @Autowired
 	@Qualifier("cx2.SharedWithService")
@@ -353,6 +358,14 @@ public class UsersServiceImpl implements UsersService {
                 sharedWithsForSharedWithUser.setUsersBySharedWithUser(usersCreated);
                 LOGGER.debug("Creating a new child SharedWith with information: {}", sharedWithsForSharedWithUser);
                 sharedWithService.create(sharedWithsForSharedWithUser);
+            }
+        }
+
+        if(usersCreated.getMyCarts() != null) {
+            for(MyCart myCart : usersCreated.getMyCarts()) {
+                myCart.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child MyCart with information: {}", myCart);
+                myCartService.create(myCart);
             }
         }
 
@@ -751,6 +764,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MyCart> findAssociatedMyCarts(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated myCarts");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return myCartService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<UserPasswordResetTokens> findAssociatedUserPasswordResetTokenses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userPasswordResetTokenses");
 
@@ -865,6 +889,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setProjectGisrecordsService(ProjectGisrecordsService service) {
         this.projectGisrecordsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MyCartService instance
+	 */
+	protected void setMyCartService(MyCartService service) {
+        this.myCartService = service;
     }
 
     /**

@@ -31,6 +31,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.Fees;
+import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.service.FeesService;
 
 
@@ -141,6 +142,14 @@ public class FeesController {
 		return feesService.count(query);
 	}
 
+    @RequestMapping(value="/{id:.+}/myCarts", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the myCarts instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MyCart> findAssociatedMyCarts(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated myCarts");
+        return feesService.findAssociatedMyCarts(id, pageable);
+    }
 
     /**
 	 * This setter method should only be used by unit tests

@@ -49,6 +49,7 @@ import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
+import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
@@ -430,6 +431,15 @@ public class UsersController {
 
         LOGGER.debug("Fetching all associated sharedWithsForSharedWithUser");
         return usersService.findAssociatedSharedWithsForSharedWithUser(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/myCarts", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the myCarts instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MyCart> findAssociatedMyCarts(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated myCarts");
+        return usersService.findAssociatedMyCarts(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/userPasswordResetTokenses", method=RequestMethod.GET)

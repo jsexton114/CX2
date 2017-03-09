@@ -25,6 +25,7 @@ import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
+import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
@@ -443,6 +444,18 @@ public interface UsersService {
      * @see Page
      */
     Page<SharedWith> findAssociatedSharedWithsForSharedWithUser(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated myCarts for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MyCart instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MyCart> findAssociatedMyCarts(Integer id, Pageable pageable);
 
     /*
      * Returns the associated userPasswordResetTokenses for given Users id.

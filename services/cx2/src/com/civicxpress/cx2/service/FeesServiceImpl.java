@@ -22,6 +22,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
+import com.civicxpress.cx2.MyCart;
 
 
 /**
@@ -34,6 +35,9 @@ public class FeesServiceImpl implements FeesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FeesServiceImpl.class);
 
+    @Autowired
+	@Qualifier("cx2.MyCartService")
+	private MyCartService myCartService;
 
     @Autowired
     @Qualifier("cx2.FeesDao")
@@ -48,6 +52,13 @@ public class FeesServiceImpl implements FeesService {
 	public Fees create(Fees fees) {
         LOGGER.debug("Creating a new Fees with information: {}", fees);
         Fees feesCreated = this.wmGenericDao.create(fees);
+        if(feesCreated.getMyCarts() != null) {
+            for(MyCart myCart : feesCreated.getMyCarts()) {
+                myCart.setFees(feesCreated);
+                LOGGER.debug("Creating a new child MyCart with information: {}", myCart);
+                myCartService.create(myCart);
+            }
+        }
         return feesCreated;
     }
 
@@ -122,7 +133,25 @@ public class FeesServiceImpl implements FeesService {
         return this.wmGenericDao.count(query);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MyCart> findAssociatedMyCarts(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated myCarts");
 
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("fees.id = '" + id + "'");
+
+        return myCartService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MyCartService instance
+	 */
+	protected void setMyCartService(MyCartService service) {
+        this.myCartService = service;
+    }
 
 }
 

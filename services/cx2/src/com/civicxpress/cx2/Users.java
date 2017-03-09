@@ -79,6 +79,7 @@ public class Users implements Serializable {
     private List<Roles> roleses = new ArrayList<>();
     private List<SharedWith> sharedWithsForCreatedBy = new ArrayList<>();
     private List<SharedWith> sharedWithsForSharedWithUser = new ArrayList<>();
+    private List<MyCart> myCarts = new ArrayList<>();
     private List<UserPasswordResetTokens> userPasswordResetTokenses = new ArrayList<>();
     private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
     private List<UserViewPreferences> userViewPreferenceses = new ArrayList<>();
@@ -492,6 +493,16 @@ public class Users implements Serializable {
 
     public void setSharedWithsForSharedWithUser(List<SharedWith> sharedWithsForSharedWithUser) {
         this.sharedWithsForSharedWithUser = sharedWithsForSharedWithUser;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<MyCart> getMyCarts() {
+        return this.myCarts;
+    }
+
+    public void setMyCarts(List<MyCart> myCarts) {
+        this.myCarts = myCarts;
     }
 
     @JsonInclude(Include.NON_EMPTY)
