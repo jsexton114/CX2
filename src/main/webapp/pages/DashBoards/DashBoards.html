@@ -1,0 +1,48 @@
+<wm-page data-ng-controller="DashBoardsPageController" pagetitle="Dash Boards" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
+                        <wm-label name="label1" caption="Dashboards" fontweight="bold" class="h4"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow13">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn28">
+                        <wm-composite name="composite2">
+                            <wm-label class="col-md-3 control-label" name="label18" caption="Select a Dashboard"></wm-label>
+                            <wm-container class="col-md-9" name="container2">
+                                <wm-select name="selectDashBoeard" dataset="Forms" datafield="All Fields" datavalue="Forms"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn29">
+                        <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
+                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-select name="selectStandardUserMunicipalites" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord"
+                                orderby="MunicipalityName:asc" placeholder=""></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow14" padding="1em unset">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn30">
+                        <wm-composite name="composite3">
+                            <wm-label class="col-md-3 control-label" name="label19" caption="By"></wm-label>
+                            <wm-container class="col-md-9" name="container3">
+                                <wm-select name="selectTerms" dataset="Today,Week,Month,Quarter,Year" datavalue="Year" datafield="All Fields"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn31"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn32"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>
