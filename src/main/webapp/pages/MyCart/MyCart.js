@@ -6,10 +6,10 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
     };
 
-
-    $scope.lvFeesDataonSuccess = function(variable, data) {
-        $scope.totalSumInCart = _.sumBy(data, function(obj) {
-            return _.toNumber(obj.amount);
+    $scope.svFeesInCartByUseronSuccess = function(variable, data) {
+        debugger
+        $scope.totalSumInCart = _.sumBy(data.content, function(obj) {
+            return _.toNumber(obj.fees.amount);
         });
         $scope.Widgets.gridFeesList.totalSumInCart = $scope.totalSumInCart;
     };
@@ -36,5 +36,12 @@ Application.$controller("gridFeesListController", ["$scope",
             $scope.Variables.svUpdateFeesStatus.update();
         };
 
+    }
+]);
+
+Application.$controller("gridFeesListController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

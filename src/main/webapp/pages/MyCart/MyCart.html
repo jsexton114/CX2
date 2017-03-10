@@ -2168,6 +2168,17 @@
                             <!--    <wm-grid-column binding="fees.municipalities.active" caption="Fees.municipalities Active" type="string" pcdisplay="true" mobiledisplay="true" searchable="true" readonly="undefined"></wm-grid-column>-->
                             <!--    <wm-grid-column binding="fees.municipalities.saturdayYn" caption="Fees.municipalities Saturday Yn" type="string" pcdisplay="true" mobiledisplay="true" searchable="true" readonly="undefined"></wm-grid-column>-->
                             <!--</wm-grid>-->
+                            <wm-grid title="" dataset="bind:Variables.svFeesInCartByUser.dataSet" navigation="Classic" name="gridFeesList">
+                                <wm-grid-column binding="fees.masterForms.formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="fees.masterForms.formTypes.formType" caption="Form Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="fees.feeType" caption="Fee Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="fees.gisrecords.fullAddress" caption="Full Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="fees.masterForms.formTypes.municipalities.municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="fees.amount" caption="Fees Amount" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-action key="addNewRow" display-name="Proceed to Checkout" iconclass="wi wi-plus" show="true" class="btn-primary" action="" shortcutkey="" title="Checkout"></wm-grid-action>
+                                <wm-grid-action key="customButton" display-name="bind:&quot;$ &quot;+totalSumInCart" title="Total" value="" iconclass="" class="btn-secondary" show="true" shortcutkey=""></wm-grid-action>
+                                <wm-grid-row-action key="customRow" display-name="" title="RemoveFromCart" value="" iconclass="wi wi-remove-shopping-cart" class="btn-transparent" show="true" icon="wi wi-remove-shopping-cart"></wm-grid-row-action>
+                            </wm-grid>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
