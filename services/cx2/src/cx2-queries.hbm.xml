@@ -480,6 +480,20 @@ ORDER BY DateModified DESC
     <query-param name="user" type="java.lang.Integer"/>
     </query>
 
+    <sql-query name="NoOfItemsInUserCart">
+        <![CDATA[
+        select count(*) as count from MyCart where UserId=:user
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="NoOfItemsInUserCart__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from MyCart where UserId=:user) wmTempTable
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="CheckIfCompanyUserIsVendorAdmin">
         <![CDATA[
         select count(*) as count from VendorAdmins where UserId=:user and VendorId=:vendor
@@ -919,6 +933,20 @@ and (FT.MunicipalityInternalForm=0
     <query-param name="formStatus" type="java.lang.Integer"/>
     <query-param name="closed" type="java.lang.Boolean"/>
     <query-param name="FormGUID" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetFeeIdsOfUserInCart">
+        <![CDATA[
+        select FeeId as id from MyCart where UserId=:user
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetFeeIdsOfUserInCart__count">
+        <![CDATA[
+        select count(*) from (select FeeId as id from MyCart where UserId=:user) wmTempTable
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="UpdatePrimaryVendorStatusInVEndor2Forms">

@@ -3218,6 +3218,44 @@
       } ]
     }
   },
+  "GetFeeIdsOfUserInCart" : {
+    "name" : "GetFeeIdsOfUserInCart",
+    "description" : "GetFeeIdsOfUserInCart",
+    "version" : "V2",
+    "queryString" : "select FeeId as id from MyCart where UserId=:user",
+    "countQueryString" : "select count(*) from (select FeeId as id from MyCart where UserId=:user) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "user",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.GetFeeIdsOfUserInCartResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "id",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "GetFormTypesByCategoriesAndMunicipalities" : {
     "name" : "GetFormTypesByCategoriesAndMunicipalities",
     "description" : "GetFormTypesByCategoriesAndMunicipalities",
@@ -5489,6 +5527,44 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "com.civicxpress.cx2.Users",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "NoOfItemsInUserCart" : {
+    "name" : "NoOfItemsInUserCart",
+    "description" : "NoOfItemsInUserCart",
+    "version" : "V2",
+    "queryString" : "select count(*) as count from MyCart where UserId=:user",
+    "countQueryString" : "select count(*) from (select count(*) as count from MyCart where UserId=:user) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "user",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.NoOfItemsInUserCartResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "count",
+        "fieldName" : "_count",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       } ]

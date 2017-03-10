@@ -627,6 +627,25 @@ public class QueryExecutionController {
         return queryService.exportFeesInCartByUser(exportType, user, pageable);
     }
 
+    @RequestMapping(value = "/queries/NoOfItemsInUserCart", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "NoOfItemsInUserCart")
+    public Page<NoOfItemsInUserCartResponse> executeNoOfItemsInUserCart(@RequestParam(value = "user") Integer user, Pageable pageable) {
+        LOGGER.debug("Executing named query: NoOfItemsInUserCart");
+        Page<NoOfItemsInUserCartResponse> _result = queryService.executeNoOfItemsInUserCart(user, pageable);
+        LOGGER.debug("got the result for named query: NoOfItemsInUserCart, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query NoOfItemsInUserCart")
+    @RequestMapping(value = "/queries/NoOfItemsInUserCart/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportNoOfItemsInUserCart(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user") Integer user, Pageable pageable) {
+        LOGGER.debug("Exporting named query: NoOfItemsInUserCart");
+
+        return queryService.exportNoOfItemsInUserCart(exportType, user, pageable);
+    }
+
     @RequestMapping(value = "/queries/CheckIfCompanyUserIsVendorAdmin", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CheckIfCompanyUserIsVendorAdmin")
@@ -1118,6 +1137,25 @@ public class QueryExecutionController {
         Integer _result = queryService.executeUpdateFormStatusInMasterForms(updateFormStatusInMasterFormsRequest);
         LOGGER.debug("got the result for named query: UpdateFormStatusInMasterForms, result:{}", _result);
         return _result;
+    }
+
+    @RequestMapping(value = "/queries/GetFeeIdsOfUserInCart", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "GetFeeIdsOfUserInCart")
+    public Page<GetFeeIdsOfUserInCartResponse> executeGetFeeIdsOfUserInCart(@RequestParam(value = "user") Integer user, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetFeeIdsOfUserInCart");
+        Page<GetFeeIdsOfUserInCartResponse> _result = queryService.executeGetFeeIdsOfUserInCart(user, pageable);
+        LOGGER.debug("got the result for named query: GetFeeIdsOfUserInCart, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetFeeIdsOfUserInCart")
+    @RequestMapping(value = "/queries/GetFeeIdsOfUserInCart/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetFeeIdsOfUserInCart(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user") Integer user, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetFeeIdsOfUserInCart");
+
+        return queryService.exportGetFeeIdsOfUserInCart(exportType, user, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdatePrimaryVendorStatusInVEndor2Forms", method = RequestMethod.PUT)

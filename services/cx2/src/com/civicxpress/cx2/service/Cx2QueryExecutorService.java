@@ -144,6 +144,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportFeesInCartByUser(ExportType exportType, Integer user, Pageable pageable);
 
+    Page<NoOfItemsInUserCartResponse> executeNoOfItemsInUserCart(Integer user, Pageable pageable);
+
+    Downloadable exportNoOfItemsInUserCart(ExportType exportType, Integer user, Pageable pageable);
+
     Page<CheckIfCompanyUserIsVendorAdminResponse> executeCheckIfCompanyUserIsVendorAdmin(Integer user, Integer vendor, Pageable pageable);
 
     Downloadable exportCheckIfCompanyUserIsVendorAdmin(ExportType exportType, Integer user, Integer vendor, Pageable pageable);
@@ -245,6 +249,10 @@ public interface Cx2QueryExecutorService {
     Downloadable exportProjectForms(ExportType exportType, String project, Pageable pageable);
 
     Integer executeUpdateFormStatusInMasterForms(UpdateFormStatusInMasterFormsRequest updateFormStatusInMasterFormsRequest);
+
+    Page<GetFeeIdsOfUserInCartResponse> executeGetFeeIdsOfUserInCart(Integer user, Pageable pageable);
+
+    Downloadable exportGetFeeIdsOfUserInCart(ExportType exportType, Integer user, Pageable pageable);
 
     Integer executeUpdatePrimaryVendorStatusInVEndor2Forms(UpdatePrimaryVendorStatusInVendor2formsRequest updatePrimaryVendorStatusInVendor2formsRequest);
 

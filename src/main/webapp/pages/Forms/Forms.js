@@ -12,6 +12,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         currentBreadCrumb.link += $scope.pageParams.FormGUID;
         openClosedFormBreadCrumb = $scope.Variables.BreadCrumb.dataSet[1];
         $scope.disableMessageBox = true;
+        $scope.showCannotAddFee = true;
     };
 
     $scope.sharedWith;
@@ -168,6 +169,26 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         $scope.Variables.svRecordHistory.setInput('Comments', ('Added a ' + $filter('toCurrency')($data.amount, '$', 2) + ' ' + $data.feeType + ' fee.'));
         $scope.Variables.svRecordHistory.update();
     };
+
+    $scope.CurrentFormonSuccess = function(variable, data) {
+        if (data[0].formStatuses.allowPayment) {
+            $scope.showCannotAddFee = false;
+        }
+    };
+
+
+    $scope.svGetFeeIdsOfUserInCartonSuccess = function(variable, data) {
+        debugger;
+        // let userFees = $scope.Variables.Cx2FeesData.dataSet.data;
+        // let cartFees = data.content;
+        // let notInCartFees = _(userFees)
+        //     .differenceBy(cartFees, 'id')
+        //     .map(_.partial(_.pick, _, 'id'))
+        //     .value();
+
+
+    };
+
 }]);
 
 Application.$controller("gridSharedwithController", ["$scope",
@@ -312,6 +333,7 @@ Application.$controller("gridFeesController", ["$scope",
         };
 
         $scope.customRowAction = function($event, $rowData) {
+            debugger
             let temp = $scope.Variables.loggedInUser.dataSet.roles;
             let allowToCart = false;
             if ($scope.Variables.CurrentForm.dataSet.data[0].formStatuses.allowPayment) {

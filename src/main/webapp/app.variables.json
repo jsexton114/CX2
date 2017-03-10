@@ -1152,6 +1152,34 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
+  "svNoOfItemsInUserCart" : {
+    "_id" : "wm-svNoOfItemsInUserCart-wm.ServiceVariable-1489135536990",
+    "name" : "svNoOfItemsInUserCart",
+    "owner" : "App",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.NoOfItemsInUserCartResponse",
+    "service" : "cx2",
+    "operation" : "executeNoOfItemsInUserCart",
+    "operationId" : "QueryExecutionController_executeNoOfItemsInUserCart",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "UserOpenFormsCount" : {
     "_id" : "wm-UserOpenFormsCount-wm.Variable-1486466257530",
     "name" : "UserOpenFormsCount",

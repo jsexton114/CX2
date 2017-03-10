@@ -3,7 +3,7 @@
         <wm-nav name="leftTopLinks" type="navbar" class="navbar-left"></wm-nav>
         <wm-nav name="rightTopLinks" type="navbar" class="navbar-right">
             <wm-nav-item name="list_cart">
-                <wm-anchor caption="My Cart" name="cartLink" iconclass="wi wi-shopping-cart" on-click="Variables.goToPage_MyCart.invoke()" margin="unset 2em unset unset"></wm-anchor>
+                <wm-anchor caption="My Cart" name="cartLink" iconclass="wi wi-shopping-cart" on-click="Variables.goToPage_MyCart.invoke()" margin="unset 2em unset unset" badgevalue="bind:Variables.svNoOfItemsInUserCart.firstRecord._count"></wm-anchor>
             </wm-nav-item>
             <wm-nav-item name="list_profile">
                 <wm-gridcolumn columnwidth="3" name="gridcolumn1">

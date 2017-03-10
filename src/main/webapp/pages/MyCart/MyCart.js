@@ -7,7 +7,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
     };
 
     $scope.svFeesInCartByUseronSuccess = function(variable, data) {
-        debugger
+
         $scope.totalSumInCart = _.sumBy(data.content, function(obj) {
             return _.toNumber(obj.fees.amount);
         });

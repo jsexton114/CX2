@@ -684,6 +684,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<NoOfItemsInUserCartResponse> executeNoOfItemsInUserCart(Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQuery("NoOfItemsInUserCart", params, NoOfItemsInUserCartResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportNoOfItemsInUserCart(ExportType exportType, Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.exportNamedQueryData("NoOfItemsInUserCart", params, exportType, NoOfItemsInUserCartResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<CheckIfCompanyUserIsVendorAdminResponse> executeCheckIfCompanyUserIsVendorAdmin(Integer user, Integer vendor, Pageable pageable) {
         Map params = new HashMap(2);
 
@@ -1252,6 +1272,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("FormGUID", updateFormStatusInMasterFormsRequest.getFormGuid());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateFormStatusInMasterForms", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetFeeIdsOfUserInCartResponse> executeGetFeeIdsOfUserInCart(Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQuery("GetFeeIdsOfUserInCart", params, GetFeeIdsOfUserInCartResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetFeeIdsOfUserInCart(ExportType exportType, Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.exportNamedQueryData("GetFeeIdsOfUserInCart", params, exportType, GetFeeIdsOfUserInCartResponse.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
