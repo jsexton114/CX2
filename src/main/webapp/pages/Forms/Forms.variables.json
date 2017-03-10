@@ -16902,7 +16902,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.nvAddedToCart.invoke();Variables.Cx2FeesData.listRecords()",
+    "onSuccess" : "Variables.nvAddedToCart.invoke();Variables.Cx2FeesData.listRecords();Variables.svNoOfItemsInUserCart.invoke()",
     "onError" : "Variables.nvAlreadyInCart.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
