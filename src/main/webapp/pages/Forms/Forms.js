@@ -179,12 +179,15 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
     $scope.svGetFeeIdsOfUserInCartonSuccess = function(variable, data) {
         debugger;
-        // let userFees = $scope.Variables.Cx2FeesData.dataSet.data;
-        // let cartFees = data.content;
-        // let notInCartFees = _(userFees)
-        //     .differenceBy(cartFees, 'id')
-        //     .map(_.partial(_.pick, _, 'id'))
-        //     .value();
+        let userFees = $scope.Variables.Cx2FeesData.dataSet.data;
+        let cartFees = data.content;
+
+        _.forEach(cartFees, function(obj) {
+            let inCartFee = _.find(userFees, {
+                'id': obj.id
+            });
+            inCartFee.hideCart = true;
+        });
 
 
     };
@@ -333,7 +336,6 @@ Application.$controller("gridFeesController", ["$scope",
         };
 
         $scope.customRowAction = function($event, $rowData) {
-            debugger
             let temp = $scope.Variables.loggedInUser.dataSet.roles;
             let allowToCart = false;
             if ($scope.Variables.CurrentForm.dataSet.data[0].formStatuses.allowPayment) {

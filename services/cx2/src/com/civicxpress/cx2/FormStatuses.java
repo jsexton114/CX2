@@ -82,7 +82,7 @@ public class FormStatuses implements Serializable {
         this.formTypeId = formTypeId;
     }
 
-    @Column(name = "`EmailTextBody`", nullable = true, length = 255)
+    @Column(name = "`EmailTextBody`", nullable = true, length = 4000)
     public String getEmailTextBody() {
         return this.emailTextBody;
     }
