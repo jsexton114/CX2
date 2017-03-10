@@ -270,10 +270,10 @@ public interface Cx2QueryExecutorService_V1 {
     public int executeInsertGroups(String groupName, String groupDescription, Integer municipalityId);
 
     @Deprecated
-    public int executeAddGIStoForms(Integer gisrecordId, String relatedFormGuid, Integer addedBy, Timestamp addedTime);
+    public int executeUpdateUserPreferences(Integer preferenceId, Integer user);
 
     @Deprecated
-    public int executeUpdateUserPreferences(Integer preferenceId, Integer user);
+    public int executeAddGIStoForms(Integer gisrecordId, String relatedFormGuid, Integer addedBy, Timestamp addedTime);
 
     @Deprecated
     public int executeAddMemeberToProject(String relatedProjectGuid, Timestamp projectSharedOn, Integer projectSharedWith, Integer projectSharedBy);

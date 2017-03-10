@@ -1,0 +1,30 @@
+{
+  "svFormsData" : {
+    "_id" : "wm-svFormsData-wm.ServiceVariable-1489143765845",
+    "name" : "svFormsData",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipality",
+      "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.MasterForms",
+    "service" : "cx2",
+    "operation" : "executeFormsForDashboard",
+    "operationId" : "QueryExecutionController_executeFormsForDashboard",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  }
+}

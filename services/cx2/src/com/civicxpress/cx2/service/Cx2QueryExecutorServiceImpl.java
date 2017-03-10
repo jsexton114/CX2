@@ -1179,6 +1179,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MasterForms> executeFormsForDashboard(Integer municipality, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipality", municipality);
+
+        return queryExecutor.executeNamedQuery("FormsForDashboard", params, MasterForms.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportFormsForDashboard(ExportType exportType, Integer municipality, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipality", municipality);
+
+        return queryExecutor.exportNamedQueryData("FormsForDashboard", params, exportType, MasterForms.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<EmployeesMunicipalitiesResponse> executeEmployeesMunicipalities(Integer user, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -1632,6 +1652,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
+    public Integer executeUpdateUserPreferences(UpdateUserPreferencesRequest updateUserPreferencesRequest) {
+        Map params = new HashMap(2);
+
+        params.put("PreferenceId", updateUserPreferencesRequest.getPreferenceId());
+        params.put("user", updateUserPreferencesRequest.getUser());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateUserPreferences", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
     public Integer executeAddGIStoForms(AddGistoFormsRequest addGistoFormsRequest) {
         Map params = new HashMap(4);
 
@@ -1641,17 +1672,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("AddedTime", addGistoFormsRequest.getAddedTime());
 
         return queryExecutor.executeNamedQueryForUpdate("AddGIStoForms", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateUserPreferences(UpdateUserPreferencesRequest updateUserPreferencesRequest) {
-        Map params = new HashMap(2);
-
-        params.put("PreferenceId", updateUserPreferencesRequest.getPreferenceId());
-        params.put("user", updateUserPreferencesRequest.getUser());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateUserPreferences", params);
     }
 
     @Transactional(value = "cx2TransactionManager")

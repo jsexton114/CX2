@@ -2779,6 +2779,34 @@
       } ]
     }
   },
+  "FormsForDashboard" : {
+    "name" : "FormsForDashboard",
+    "description" : "FormsForDashboard",
+    "version" : "V2",
+    "queryString" : "from MasterForms where MunicipalityId=:municipality",
+    "countQueryString" : "select count(*) from MasterForms where MunicipalityId=:municipality",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.MasterForms",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
+    }
+  },
   "FormsForUsersAndShared" : {
     "name" : "FormsForUsersAndShared",
     "description" : "Brings closed or opened  Forms of creator and shared with user",

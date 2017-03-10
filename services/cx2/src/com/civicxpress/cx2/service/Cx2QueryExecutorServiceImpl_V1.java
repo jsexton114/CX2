@@ -947,6 +947,17 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(value = "cx2TransactionManager")
     @Override
+    public int executeUpdateUserPreferences(Integer preferenceId, Integer user) {
+        Map params = new HashMap(2);
+
+        params.put("PreferenceId", preferenceId);
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateUserPreferences", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
     public int executeAddGIStoForms(Integer gisrecordId, String relatedFormGuid, Integer addedBy, Timestamp addedTime) {
         Map params = new HashMap(4);
 
@@ -956,17 +967,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("AddedTime", addedTime);
 
         return queryExecutor.executeNamedQueryForUpdate("AddGIStoForms", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeUpdateUserPreferences(Integer preferenceId, Integer user) {
-        Map params = new HashMap(2);
-
-        params.put("PreferenceId", preferenceId);
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateUserPreferences", params);
     }
 
     @Transactional(value = "cx2TransactionManager")

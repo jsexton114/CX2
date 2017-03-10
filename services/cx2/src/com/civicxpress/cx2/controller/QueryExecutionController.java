@@ -1052,6 +1052,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/FormsForDashboard", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "FormsForDashboard")
+    public Page<MasterForms> executeFormsForDashboard(@RequestParam(value = "municipality") Integer municipality, Pageable pageable) {
+        LOGGER.debug("Executing named query: FormsForDashboard");
+        Page<MasterForms> _result = queryService.executeFormsForDashboard(municipality, pageable);
+        LOGGER.debug("got the result for named query: FormsForDashboard, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query FormsForDashboard")
+    @RequestMapping(value = "/queries/FormsForDashboard/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportFormsForDashboard(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, Pageable pageable) {
+        LOGGER.debug("Exporting named query: FormsForDashboard");
+
+        return queryService.exportFormsForDashboard(exportType, municipality, pageable);
+    }
+
     @RequestMapping(value = "/queries/EmployeesMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "EmployeesMunicipalities")
@@ -1455,16 +1474,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/AddGIStoForms", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "AddGIStoForms")
-    public Integer executeAddGIStoForms(@Valid @RequestBody AddGistoFormsRequest addGistoFormsRequest) {
-        LOGGER.debug("Executing named query: AddGIStoForms");
-        Integer _result = queryService.executeAddGIStoForms(addGistoFormsRequest);
-        LOGGER.debug("got the result for named query: AddGIStoForms, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/UpdateUserPreferences", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdateUserPreferences")
@@ -1472,6 +1481,16 @@ public class QueryExecutionController {
         LOGGER.debug("Executing named query: UpdateUserPreferences");
         Integer _result = queryService.executeUpdateUserPreferences(updateUserPreferencesRequest);
         LOGGER.debug("got the result for named query: UpdateUserPreferences, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/AddGIStoForms", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "AddGIStoForms")
+    public Integer executeAddGIStoForms(@Valid @RequestBody AddGistoFormsRequest addGistoFormsRequest) {
+        LOGGER.debug("Executing named query: AddGIStoForms");
+        Integer _result = queryService.executeAddGIStoForms(addGistoFormsRequest);
+        LOGGER.debug("got the result for named query: AddGIStoForms, result:{}", _result);
         return _result;
     }
 

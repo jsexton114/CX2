@@ -865,6 +865,20 @@ and (FT.MunicipalityInternalForm=0
     <query-param name="Comments" type="java.lang.String"/>
     </sql-query>
 
+    <query name="FormsForDashboard">
+        <![CDATA[
+        from MasterForms where MunicipalityId=:municipality
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </query>
+
+    <query name="FormsForDashboard__count">
+        <![CDATA[
+        select count(*) from MasterForms where MunicipalityId=:municipality
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="EmployeesMunicipalities">
         <![CDATA[
         select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName='MunicipalityEmployee'
@@ -1210,6 +1224,14 @@ ORDER BY DateModified DESC
     <query-param name="MunicipalityId" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="UpdateUserPreferences">
+        <![CDATA[
+        update UserViewPreferences set PreferenceId=:PreferenceId where UserId=:user
+        ]]>
+    <query-param name="PreferenceId" type="java.lang.Integer"/>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="AddGIStoForms">
         <![CDATA[
         insert into GIS2Forms(GISRecordId,RelatedFormGUID,AddedBy,AddedTime) values(:GISRecordId,:RelatedFormGUID,:AddedBy,:AddedTime)
@@ -1218,14 +1240,6 @@ ORDER BY DateModified DESC
     <query-param name="RelatedFormGUID" type="java.lang.String"/>
     <query-param name="AddedBy" type="java.lang.Integer"/>
     <query-param name="AddedTime" type="java.sql.Timestamp"/>
-    </sql-query>
-
-    <sql-query name="UpdateUserPreferences">
-        <![CDATA[
-        update UserViewPreferences set PreferenceId=:PreferenceId where UserId=:user
-        ]]>
-    <query-param name="PreferenceId" type="java.lang.Integer"/>
-    <query-param name="user" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="AddMemeberToProject">
