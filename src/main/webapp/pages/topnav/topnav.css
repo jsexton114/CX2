@@ -13,3 +13,13 @@
         display:none !important;
     }
 }
+
+.wm-app .btn .badge, .wm-app a .badge {
+    right: -1em;
+    top: -1em;
+    z-index: 3;
+    margin-top: 5pt;
+    background-color: black;
+    border-radius: 100px;
+    font-weight: bold;
+}
