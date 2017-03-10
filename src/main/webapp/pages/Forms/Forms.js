@@ -178,7 +178,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
 
     $scope.svGetFeeIdsOfUserInCartonSuccess = function(variable, data) {
-        debugger;
         let userFees = $scope.Variables.Cx2FeesData.dataSet.data;
         let cartFees = data.content;
 
