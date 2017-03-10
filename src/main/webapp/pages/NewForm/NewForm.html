@@ -156,16 +156,16 @@
                                     <wm-gridrow name="gridrow61">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn127">
                                             <wm-livegrid formlayout="dialog" name="livegridLocation">
-                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.stvGisData.dataSet" navigation="Classic" name="gridLocation" exportformat="EXCEL">
-                                                    <wm-grid-column binding="SubdivisionName" caption="Subdivision" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="Parcel" caption="Parcel" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="Lot" caption="Lot" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="Section" caption="Section" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="StreetNumber" caption="Street Number" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="StreetName" caption="Street Name" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="City" caption="City" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="InspectionZone" caption="Inspection Zone" type="string" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.stvGisData.dataSet" navigation="Classic" name="gridLocation" exportformat="EXCEL" showrecordcount="true">
+                                                    <wm-grid-column binding="SubdivisionName" caption="Subdivision" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="Parcel" caption="Parcel" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="Lot" caption="Lot" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="Section" caption="Section" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="StreetNumber" caption="Street Number" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="StreetName" caption="Street Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="City" caption="City" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="InspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Location" action="Widgets.dialogAddGISRecord.open()" shortcutkey="" disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleGisrecords &amp;&amp; Variables.stvGisData.dataSet.length >= 1"></wm-grid-action>
                                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleterowAction($event)" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
@@ -190,15 +190,15 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow49_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn93_1">
-                                            <wm-grid title="" dataset="bind:Variables.stvVendors.dataSet" navigation="Classic" name="gridVendors">
-                                                <wm-grid-column binding="Primary" caption="Primary" type="string" widget-type="checkbox" readonly="true" show="true">
+                                            <wm-grid title="" dataset="bind:Variables.stvVendors.dataSet" navigation="Classic" name="gridVendors" showrecordcount="true">
+                                                <wm-grid-column binding="Primary" caption="Primary" type="string" widget-type="checkbox" readonly="true" edit-widget-type="text" show="true">
                                                     <wm-checkbox scopedatavalue="row['Primary']" class="" data-ng-class="" ng-click="changePrimaryVendor($event, row)"></wm-checkbox>
                                                 </wm-grid-column>
-                                                <wm-grid-column binding="Company" caption="Company" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="PhoneNumber" caption="Phone Number" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="EmailAddress" caption="Email Address" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="Website" caption="Website" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="Company" caption="Company" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="PhoneNumber" caption="Phone Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="EmailAddress" caption="Email Address" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="Website" caption="Website" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="customButton" display-name="Add Vendor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Vendor" action="Widgets.dialogAddVendor.open()" shortcutkey="" disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleVendors &amp;&amp; Variables.stvVendors.dataSet.length > 0"
                                                 icon="wi wi-plus"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
@@ -328,7 +328,7 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow52">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn97_2">
-                                            <wm-grid editmode="inline" title="" dataset="bind:Variables.stvDocuments.dataSet" navigation="Classic" name="gridNewFormDocuments" showrecordcount="false">
+                                            <wm-grid editmode="inline" title="" dataset="bind:Variables.stvDocuments.dataSet" navigation="Classic" name="gridNewFormDocuments" showrecordcount="true">
                                                 <wm-grid-column binding="Filename" caption="File Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="Mimetype" caption="File Type" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
@@ -350,13 +350,13 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow54">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn98_2">
-                                            <wm-grid title="" dataset="bind:Variables.stvContacts.dataSet" navigation="Classic" name="gridSharing">
-                                                <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="Email" caption="Email Address" type="string" readonly="true" show="true"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                            <wm-grid title="" dataset="bind:Variables.stvContacts.dataSet" navigation="Classic" name="gridSharing" showrecordcount="true">
+                                                <wm-grid-column binding="FirstName" caption="First Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="Email" caption="Email Address" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="customButton" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="Widgets.dialogAddContact.open()" shortcutkey="" disabled="false" icon="wi wi-plus"></wm-grid-action>
-                                                <wm-grid-action key="customButton1" display-name="Invite User" title="Invite User" value="" iconclass="wi wi-plus" class="btn-secondary" show="true" shortcutkey=""></wm-grid-action>
+                                                <wm-grid-action key="customButton1" display-name="Invite User" show="true" class="btn-secondary" iconclass="wi wi-plus" title="Invite User" shortcutkey="" disabled="false"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
@@ -478,9 +478,13 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view2">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Attach Document" iconclass="wi wi-attach-file" name="dialogUploadDocument" on-opened="dialogUploadDocumentOpened($event, $scope)">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Document Upload" iconclass="wi wi-attach-file" name="dialogUploadDocument" on-opened="dialogUploadDocumentOpened($event, $scope)">
             <wm-layoutgrid name="layoutgrid10_1">
-                <wm-gridrow name="gridrow32"></wm-gridrow>
+                <wm-gridrow name="gridrow32">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn82_0">
+                        <wm-label padding="unset 0.5em 2em 0.5em" caption="Click the &quot;Choose Files&quot; button to select one or many documents you would like to add to the form, then click the &quot;Upload&quot; button to attach the file(s)." name="label82_0"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow33">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn82">
                         <input type="file" name="uploadDocument" ng-file-model="documentsToUpload" multiple="">

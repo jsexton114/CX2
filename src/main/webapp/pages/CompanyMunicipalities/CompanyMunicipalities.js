@@ -34,16 +34,17 @@ Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
             var curDate = moment()
             var differnceDays = $scope.InsuranceDate.diff(curDate, 'days')
             if (differnceDays <= 0) {
-                wmToaster.show('error', 'ERROR', 'You may not add municipalities at this time because your business insurance has expired.  Please provide a new Certificate of Insurance and update your Insurance Expiration Date then reapply to the municipality.', 5000);
+                wmToaster.show('error', 'ERROR', 'You may not add municipalities at this time because your business insurance has expired. Please provide a new Certificate of Insurance, update your Insurance Expiration Date, then reapply to the municipality.', 12000);
                 $scope.Variables.goToPage_CompanyProfile.navigate();
                 return;
             } else if (differnceDays <= 30) {
-                wmToaster.show('error', 'ERROR', 'You may not add municipalities at this time because your business insurance is expiring in the next 30 days.  Please provide a new Certificate of Insurance and update your Insurance Expiration Date then reapply to the municipality.', 5000);
+                wmToaster.show('error', 'ERROR', 'You may not add municipalities at this time because your business insurance is expiring in the next 30 days. Please provide a new Certificate of Insurance, update your Insurance Expiration Date, then reapply to the municipality.', 12000);
                 $scope.Variables.goToPage_CompanyProfile.navigate();
                 return;
             } else {
                 $scope.Widgets.liveform2_12.save();
-                // wmToaster.show('success', 'SUCCESS', 'Your application has been submitted to the municipality. Check back later for updated application status.', 5000);
+                // wmToaster.show('success', 'SUCCESS', 'Your application has been submitted to the municipality. Please check back later for updated application status.', 8000);
+                // blocked for being a duplicate of "insert message" in markup
             }
 
         };

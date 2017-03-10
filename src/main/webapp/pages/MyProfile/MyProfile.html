@@ -25,7 +25,7 @@
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow29">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn36_2" horizontalalign="center">
-                                                    <wm-button class="btn-primary" caption="Upload Photo" type="button" name="buttonUpdateProfilePic" iconclass="wi wi-upload" on-click="Widgets.dialogUploadPhoto.open()" margin="2em unset"></wm-button>
+                                                    <wm-button class="btn-primary" caption="Upload Photo" type="button" name="buttonUpdateProfilePic" iconclass="wi wi-file-upload" on-click="Widgets.dialogUploadPhoto.open()" margin="2em unset"></wm-button>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
@@ -274,15 +274,15 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view1">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Upload Photo" iconclass="wi wi-upload" name="dialogUploadPhoto" on-opened="dialog1Opened($event, $scope)">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Update Profile Photo" iconclass="wi wi-account-circle" name="dialogUploadPhoto" on-opened="dialog1Opened($event, $scope)">
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Upload" name="buttonSave" on-click="buttonSaveClick($event, $scope)" iconclass="wi wi-upload"></wm-button>
+                <wm-button class="btn-primary" caption="Upload" name="buttonSave" on-click="buttonSaveClick($event, $scope)" iconclass="wi wi-file-upload"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid12" columns="1">
                 <wm-gridrow name="gridrow41">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn43">
-                        <wm-label padding="unset 0.5em" name="label16_1" caption="Please upload an image to use as your profile photo."></wm-label>
+                        <wm-label padding="unset 0.5em 2em 0.5em" name="label16_1" caption="Use the &quot;Choose File&quot; button to select an image, then click &quot;Upload&quot; to update your profile photo."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow42">
