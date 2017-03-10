@@ -52,7 +52,6 @@ public class Fees implements Serializable {
     private String itemTitle;
     private String formGuid;
     private BigDecimal amount;
-    private Boolean hideCart;
     private MasterForms masterForms;
     private MasterInspections masterInspections;
     private Projects projects;
@@ -224,15 +223,6 @@ public class Fees implements Serializable {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
-    }
-
-    @Column(name = "`HideCart`", nullable = true)
-    public Boolean getHideCart() {
-        return this.hideCart;
-    }
-
-    public void setHideCart(Boolean hideCart) {
-        this.hideCart = hideCart;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

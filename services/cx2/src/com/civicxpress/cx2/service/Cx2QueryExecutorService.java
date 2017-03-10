@@ -132,6 +132,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeAddingVendorsToForm(AddingVendorsToFormRequest addingVendorsToFormRequest);
 
+    Page<GetCartItemIdsResponse> executeGetCartItemIds(Long userId, Pageable pageable);
+
+    Downloadable exportGetCartItemIds(ExportType exportType, Long userId, Pageable pageable);
+
     Page<PreferenceForUserResponse> executePreferenceForUser(Integer userId, Pageable pageable);
 
     Downloadable exportPreferenceForUser(ExportType exportType, Integer userId, Pageable pageable);

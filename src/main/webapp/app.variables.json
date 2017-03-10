@@ -1163,33 +1163,32 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
-  "svNoOfItemsInUserCart" : {
-    "_id" : "wm-svNoOfItemsInUserCart-wm.ServiceVariable-1489135536990",
-    "name" : "svNoOfItemsInUserCart",
+  "svCartItemIds" : {
+    "_id" : "wm-svCartItemIds-wm.ServiceVariable-1489161244868",
+    "name" : "svCartItemIds",
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "user",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "target" : "userId",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "com.civicxpress.cx2.models.query.NoOfItemsInUserCartResponse",
+    "type" : "com.civicxpress.cx2.models.query.GetCartItemIdsResponse",
     "service" : "cx2",
-    "operation" : "executeNoOfItemsInUserCart",
-    "operationId" : "QueryExecutionController_executeNoOfItemsInUserCart",
+    "operation" : "executeGetCartItemIds",
+    "operationId" : "QueryExecutionController_executeGetCartItemIds",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : true,
-    "maxResults" : 20,
+    "maxResults" : 9000,
     "designMaxResults" : 10,
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
+    "controller" : "QueryExecution"
   },
   "UserOpenFormsCount" : {
     "_id" : "wm-UserOpenFormsCount-wm.Variable-1486466257530",

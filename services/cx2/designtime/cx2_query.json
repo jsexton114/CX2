@@ -8474,6 +8474,53 @@
       "responseType" : "SINGLE"
     }
   },
+  "getCartItemIds" : {
+    "name" : "getCartItemIds",
+    "description" : "Get the card item IDs for the current user.",
+    "version" : "V2",
+    "queryString" : "select ID, FeeId from MyCart where UserId=:userId",
+    "countQueryString" : "select count(*) from (select ID, FeeId from MyCart where UserId=:userId) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "userId",
+      "type" : "long",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.GetCartItemIdsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "FeeId",
+        "fieldName" : "feeId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "getEmailId" : {
     "name" : "getEmailId",
     "description" : "Returns the Email ID of the Respective UserID",

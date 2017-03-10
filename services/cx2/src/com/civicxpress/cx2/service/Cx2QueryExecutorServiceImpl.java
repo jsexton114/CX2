@@ -626,6 +626,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<GetCartItemIdsResponse> executeGetCartItemIds(Long userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userId", userId);
+
+        return queryExecutor.executeNamedQuery("getCartItemIds", params, GetCartItemIdsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetCartItemIds(ExportType exportType, Long userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userId", userId);
+
+        return queryExecutor.exportNamedQueryData("getCartItemIds", params, exportType, GetCartItemIdsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<PreferenceForUserResponse> executePreferenceForUser(Integer userId, Pageable pageable) {
         Map params = new HashMap(1);
 

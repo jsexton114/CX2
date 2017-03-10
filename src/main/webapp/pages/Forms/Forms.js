@@ -68,8 +68,8 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         $scope.Variables.SetPrimaryVendorStatusForFormandVendor.setInput({
             'vendor': $scope.Widgets.searchVendor.datavalue.vendorId
         });
-        $scope.Variables.SetPrimaryVendorStatusForFormandVendor.update();
 
+        $scope.Variables.SetPrimaryVendorStatusForFormandVendor.update();
     };
 
     $scope.gridRemovePrimaryVendorsonSuccess = function(variable, data) {
@@ -175,22 +175,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
             $scope.showCannotAddFee = false;
         }
     };
-
-
-    $scope.svGetFeeIdsOfUserInCartonSuccess = function(variable, data) {
-        let userFees = $scope.Variables.Cx2FeesData.dataSet.data;
-        let cartFees = data.content;
-
-        _.forEach(cartFees, function(obj) {
-            let inCartFee = _.find(userFees, {
-                'id': obj.id
-            });
-            inCartFee.hideCart = true;
-        });
-
-
-    };
-
 }]);
 
 Application.$controller("gridSharedwithController", ["$scope",
@@ -332,6 +316,18 @@ Application.$controller("gridFeesController", ["$scope",
 
         $scope.updaterowAction = function($event, $rowData) {
             liveformFeesScope.isNewFee = false;
+        };
+
+        $scope.itemInCart = function(feeId) {
+            let cartItems = $scope.Variables.svCartItemIds.dataSet.content;
+
+            if (!cartItems) {
+                return true; // By default, disable add to cart for anything if we don't have the cart data yet.
+            }
+
+            return !!_.find(cartItems, {
+                feeId: feeId
+            });
         };
 
         $scope.customRowAction = function($event, $rowData) {

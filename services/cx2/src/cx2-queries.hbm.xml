@@ -440,6 +440,20 @@ ORDER BY DateModified DESC
     <query-param name="VendorId" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="getCartItemIds">
+        <![CDATA[
+        select ID, FeeId from MyCart where UserId=:userId
+        ]]>
+    <query-param name="userId" type="java.lang.Long"/>
+    </sql-query>
+
+    <sql-query name="getCartItemIds__count">
+        <![CDATA[
+        select count(*) from (select ID, FeeId from MyCart where UserId=:userId) wmTempTable
+        ]]>
+    <query-param name="userId" type="java.lang.Long"/>
+    </sql-query>
+
     <query name="PreferenceForUser">
         <![CDATA[
         from StandardViews where id IN (select preferenceId from  UserViewPreferences where userId = :userId )

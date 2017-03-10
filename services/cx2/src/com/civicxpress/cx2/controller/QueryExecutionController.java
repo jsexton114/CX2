@@ -570,6 +570,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/getCartItemIds", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get the card item IDs for the current user.")
+    public Page<GetCartItemIdsResponse> executeGetCartItemIds(@RequestParam(value = "userId") Long userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: getCartItemIds");
+        Page<GetCartItemIdsResponse> _result = queryService.executeGetCartItemIds(userId, pageable);
+        LOGGER.debug("got the result for named query: getCartItemIds, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getCartItemIds")
+    @RequestMapping(value = "/queries/getCartItemIds/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetCartItemIds(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userId") Long userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getCartItemIds");
+
+        return queryService.exportGetCartItemIds(exportType, userId, pageable);
+    }
+
     @RequestMapping(value = "/queries/PreferenceForUser", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "PreferenceForUser")
