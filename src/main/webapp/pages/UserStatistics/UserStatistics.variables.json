@@ -4,7 +4,11 @@
     "name" : "MasterForms",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : 2,
+      "type" : "number"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "MasterForms",
@@ -571,6 +575,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "forceInspectionSequence",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "ForceInspectionSequence",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -655,7 +672,7 @@
           "columnName" : "EmailTextBody",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 255,
+          "length" : 4000,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -711,7 +728,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "true",
           "scale" : 0
         }, {
           "fieldName" : "allowReporting",
@@ -2156,7 +2173,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -2313,7 +2330,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "formGuid" ]
     },
-    "bindCount" : 4,
+    "bindCount" : 5,
     "spinnerContext" : "page",
     "tableName" : "MasterForms",
     "tableType" : "TABLE",

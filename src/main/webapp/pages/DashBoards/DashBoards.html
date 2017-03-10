@@ -50,7 +50,8 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow15" padding="2em unset">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn33">
-                        <wm-chart type="Pie" title="Pie Chart" height="250px" iconclass="wi wi-pie-chart" name="chartFormByType" dataset="bind:Variables.svFormsData.dataSet"></wm-chart>
+                        <wm-chart type="Pie" title="Pie Chart" height="250px" iconclass="wi wi-pie-chart" name="chartFormTypes" dataset="bind:Variables.lvMasterForms.dataSet" aggregation="count" aggregationcolumn="formTypeId" groupby="formTypes.formType"
+                        xaxisdatakey="formTypes.formType" yaxisdatakey="formTypeId" labeltype="value" showlegend="top"></wm-chart>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn34"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn35"></wm-gridcolumn>
