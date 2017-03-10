@@ -93,25 +93,29 @@ public class FormMessagingMailService {
         
         message.setRecipients(Message.RecipientType.TO, recipientAddress);
         
-        String emailSubject="New Message for "+formTitle;
+        String emailSubject="New Message on CivicXpress form "+formTitle;
         
         String formURL=  FORM_URL+formGUID;
         logger.info(formGUID);
         
-        String emailContent = " The following message has been added by "+ sender +" to form ";
-        emailContent = emailContent+"<a href ='"+formURL+ "'>"+formTitle+" </a>";
+        String emailContent = " You have been tagged by "+ sender +" on the following message on "+ municipality +" form ";
+        emailContent = emailContent+"<a href ='"+formURL+ "'>"+formTitle+" </a>: ";
       
-        emailContent =emailContent+"<br /><br />";
+        emailContent = emailContent+"<br /><br />";
         
-        emailContent =emailContent + comments ;
+        emailContent = emailContent + comments ;
         
-        emailContent =emailContent+"<br /><br />";
+        emailContent = emailContent+"<br /><br />";
         
-         emailContent = emailContent+"<a href ='"+formURL+ "'> Click Here to View Form </a>";
+        emailContent = emailContent+"If you would like to reply, "; 
          
-          emailContent =emailContent+"<br /><br />";
+        emailContent = emailContent+"<a href ='"+formURL+ "'> Click Here </a>";
+         
+        emailContent = emailContent+" to view the form and browse to the Messages tab.";
+         
+        emailContent = emailContent+"<br /><br />";
         
-        emailContent =emailContent+ "<br/><br/>"+ municipalitySignature ;
+        emailContent = emailContent+ "<br/><br/>"+ municipalitySignature ;
         
         message.setSubject(emailSubject);
         message.setContent(emailContent, "text/html");
