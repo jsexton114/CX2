@@ -166,7 +166,17 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     };
 
     $scope.liveformFeesSuccess = function($event, $operation, $data) {
-        $scope.Variables.svRecordHistory.setInput('Comments', ('Added a ' + $filter('toCurrency')($data.amount, '$', 2) + ' ' + $data.feeType + ' fee.'));
+        var comments = null;
+
+        if ($operation === 'insert') {
+            comments = ('Added a ' + $filter('toCurrency')($data.amount, '$', 2) + ' ' + $data.feeType + ' fee.');
+        } else if ($operation === 'update') {
+            comments = ('Comments', ('Updated the ' + $data.feeType + ' fee [' + $filter('toCurrency')($data.amount, '$', 2) + '].'));
+        } else if ($operation === 'delete') {
+            comments = ('Removed the ' + $data.feeType + ' fee [' + $filter('toCurrency')($data.amount, '$', 2) + '].');
+        }
+
+        $scope.Variables.svRecordHistory.setInput('Comments', comments);
         $scope.Variables.svRecordHistory.update();
     };
 
