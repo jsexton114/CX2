@@ -50,21 +50,21 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow15" padding="2em unset">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn33" padding="unset 1em">
-                        <wm-chart type="Pie" title="Pie Chart" height="250px" iconclass="wi wi-pie-chart" name="chartFormTypes" dataset="bind:Variables.lvMasterForms.dataSet" aggregation="count" aggregationcolumn="formTypeId" groupby="formTypes.formType"
+                        <wm-chart type="Pie" title="FormTypes" height="250px" iconclass="wi wi-pie-chart" name="chartFormTypes" dataset="bind:Variables.lvMasterForms.dataSet" aggregation="count" aggregationcolumn="formTypeId" groupby="formTypes.formType"
                         xaxisdatakey="formTypes.formType" yaxisdatakey="formTypeId" labeltype="value" showlegend="top"></wm-chart>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn34" padding="unset 1em unset unset">
-                        <wm-chart type="Pie" title="Pie Chart" height="250px" iconclass="wi wi-pie-chart" dataset="bind:Variables.lvMasterForms.dataSet" aggregation="count" aggregationcolumn="formTypeId" groupby="formTypes.formType" xaxisdatakey="formTypes.formType"
+                        <wm-chart type="Pie" title="Chart Categories" height="250px" iconclass="wi wi-pie-chart" dataset="bind:Variables.lvMasterForms.dataSet" aggregation="count" aggregationcolumn="formTypeId" groupby="formTypes.formType" xaxisdatakey="formTypes.formType"
                         yaxisdatakey="formTypeId" labeltype="value" showlegend="top" name="chartCategories"></wm-chart>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow16" padding="2em unset">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn36" padding="unset 1em unset unset">
-                        <wm-chart type="Pie" title="Pie Chart" height="250px" iconclass="wi wi-pie-chart" dataset="bind:Variables.lvFees.dataSet" aggregation="count" aggregationcolumn="formStatuses.formTypes.id" groupby="feeType" xaxisdatakey="feeType" yaxisdatakey="formStatuses.formTypes.id"
+                        <wm-chart type="Pie" title="chartFee" height="250px" iconclass="wi wi-pie-chart" dataset="bind:Variables.lvFees.dataSet" aggregation="count" aggregationcolumn="formStatuses.formTypes.id" groupby="feeType" xaxisdatakey="feeType" yaxisdatakey="formStatuses.formTypes.id"
                         labeltype="value" showlegend="top" name="chartFee" orderby="id:desc"></wm-chart>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn37" padding="unset unset unset 1em">
-                        <wm-chart type="Column" title="Column Chart" height="250px" iconclass="wi wi-bar-chart" name="chartDay" dataset="bind:Variables.lvMasterForms.dataSet" aggregation="count" aggregationcolumn="formGuid" groupby="dateModified" xaxisdatakey="dateModified"
+                        <wm-chart type="Column" title="chartFee" height="250px" iconclass="wi wi-bar-chart" name="chartDay" dataset="bind:Variables.lvMasterForms.dataSet" aggregation="count" aggregationcolumn="formGuid" groupby="dateModified" xaxisdatakey="dateModified"
                         yaxisdatakey="formGuid" xdateformat="%c" ynumberformat=".f"></wm-chart>
                     </wm-gridcolumn>
                 </wm-gridrow>
