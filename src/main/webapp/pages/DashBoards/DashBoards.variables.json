@@ -4567,9 +4567,85 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.MasterForms"
   },
-  "svFormsData" : {
+  "stvDashBoards" : {
+    "_id" : "wm-stvDashBoards-wm.Variable-1489397103525",
+    "name" : "stvDashBoards",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "dataValue" : "Forms"
+    }, {
+      "dataValue" : "Fees"
+    }, {
+      "dataValue" : "Users"
+    }, {
+      "dataValue" : "GISRecords"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "stvPeriods" : {
+    "_id" : "wm-stvPeriods-wm.Variable-1489396942147",
+    "name" : "stvPeriods",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "dataValue" : "Year"
+    }, {
+      "dataValue" : "Quarter"
+    }, {
+      "dataValue" : "Month"
+    }, {
+      "dataValue" : "Week"
+    }, {
+      "dataValue" : "Today"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "svFormsCategoriesData" : {
+    "_id" : "wm-svFormsCategoriesData-wm.ServiceVariable-1489396229576",
+    "name" : "svFormsCategoriesData",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipality",
+      "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "startDate",
+      "value" : "bind:Widgets.datetimeStart.timestamp",
+      "type" : "string"
+    }, {
+      "target" : "endDate",
+      "value" : "bind:Widgets.datetimeEnd.timestamp",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.FormsByCategoryForDashBoardResponse",
+    "service" : "cx2",
+    "operation" : "executeFormsByCategoryForDashBoard",
+    "operationId" : "QueryExecutionController_executeFormsByCategoryForDashBoard",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "svFormsTypesData" : {
     "_id" : "wm-svFormsData-wm.ServiceVariable-1489143765845",
-    "name" : "svFormsData",
+    "name" : "svFormsTypesData",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -4589,6 +4665,42 @@
     "service" : "cx2",
     "operation" : "executeFormsTypesForDashboard",
     "operationId" : "QueryExecutionController_executeFormsTypesForDashboard",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "svFormsVendorsData" : {
+    "_id" : "wm-svFormsVendorsData-wm.ServiceVariable-1489396499443",
+    "name" : "svFormsVendorsData",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipality",
+      "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "startDate",
+      "value" : "bind:Widgets.datetimeStart.timestamp",
+      "type" : "string"
+    }, {
+      "target" : "endDate",
+      "value" : "bind:Widgets.datetimeEnd.timestamp",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.FormsByVendorsForDashboardResponse",
+    "service" : "cx2",
+    "operation" : "executeFormsByVendorsForDashboard",
+    "operationId" : "QueryExecutionController_executeFormsByVendorsForDashboard",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],

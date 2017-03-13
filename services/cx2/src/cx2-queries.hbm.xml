@@ -396,6 +396,30 @@ ORDER BY DateModified DESC
     <query-param name="token" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="FormsByVendorsForDashboard">
+        <![CDATA[
+        select V.companyName as vendorCompany ,count(MF.formGuid) as counts 
+from MasterForms  MF inner join cx2.Vendor V
+on MF.CXVendorId=V.ID where MF.MunicipalityId=:municipality and MF.SubmittedOn BETWEEN :startDate and :endDate
+group by V.companyName
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="startDate" type="java.sql.Timestamp"/>
+    <query-param name="endDate" type="java.sql.Timestamp"/>
+    </sql-query>
+
+    <sql-query name="FormsByVendorsForDashboard__count">
+        <![CDATA[
+        select count(*) from (select V.companyName as vendorCompany ,count(MF.formGuid) as counts 
+from MasterForms  MF inner join cx2.Vendor V
+on MF.CXVendorId=V.ID where MF.MunicipalityId=:municipality and MF.SubmittedOn BETWEEN :startDate and :endDate
+group by V.companyName) wmTempTable
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="startDate" type="java.sql.Timestamp"/>
+    <query-param name="endDate" type="java.sql.Timestamp"/>
+    </sql-query>
+
     <sql-query name="CountOfProcessFormsByMuncipality">
         <![CDATA[
         select count(*) as count from MasterForms MF, FormStatuses FS, MunicipalityGroups MG
@@ -524,14 +548,6 @@ ORDER BY DateModified DESC
     <query-param name="vendor" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="InsertUserPreference">
-        <![CDATA[
-        insert into UserViewPreferences(UserId,PreferenceId) values(:UserId,:PreferenceId)
-        ]]>
-    <query-param name="UserId" type="java.lang.Integer"/>
-    <query-param name="PreferenceId" type="java.lang.Integer"/>
-    </sql-query>
-
     <sql-query name="UpdateProjectDetails">
         <![CDATA[
         Update Projects set ProjectName=:ProjectName,ProjectGoals=:ProjectGoals,EstStartDate=:EstStartDate,EstEndDate=:EstEndDate where ProjectGUID=:project
@@ -541,6 +557,14 @@ ORDER BY DateModified DESC
     <query-param name="EstStartDate" type="java.sql.Timestamp"/>
     <query-param name="EstEndDate" type="java.sql.Timestamp"/>
     <query-param name="project" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="InsertUserPreference">
+        <![CDATA[
+        insert into UserViewPreferences(UserId,PreferenceId) values(:UserId,:PreferenceId)
+        ]]>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    <query-param name="PreferenceId" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="CountOfMuncipalityApplicationsByVendor">
@@ -891,6 +915,46 @@ and (FT.MunicipalityInternalForm=0
         select count(*) from (select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName='MunicipalityEmployee') wmTempTable
         ]]>
     <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="FormsByCategoryForDashBoard">
+        <![CDATA[
+        select count(MF.FormGUID) as counts,FC.Category
+--MF.FormTypeId,MF.FormGUID,FT.ID,FT.FormType,FC.ID,FC.Category
+from cx2.MasterForms MF 
+inner join cx2.FormTypes FT
+on  MF.FormTypeId=FT.ID
+inner join  cx2.FormCategoryMapping FCM
+on FCM.FormTypeId=FT.ID
+inner join cx2.FormCategories FC
+on FC.ID=FCM.FormCategoryId
+
+where MF.MunicipalityId=:municipality and MF.SubmittedOn BETWEEN :startDate and :endDate
+group by FC.Category
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="startDate" type="java.sql.Timestamp"/>
+    <query-param name="endDate" type="java.sql.Timestamp"/>
+    </sql-query>
+
+    <sql-query name="FormsByCategoryForDashBoard__count">
+        <![CDATA[
+        select count(*) from (select count(MF.FormGUID) as counts,FC.Category
+--MF.FormTypeId,MF.FormGUID,FT.ID,FT.FormType,FC.ID,FC.Category
+from cx2.MasterForms MF 
+inner join cx2.FormTypes FT
+on  MF.FormTypeId=FT.ID
+inner join  cx2.FormCategoryMapping FCM
+on FCM.FormTypeId=FT.ID
+inner join cx2.FormCategories FC
+on FC.ID=FCM.FormCategoryId
+
+where MF.MunicipalityId=:municipality and MF.SubmittedOn BETWEEN :startDate and :endDate
+group by FC.Category) wmTempTable
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="startDate" type="java.sql.Timestamp"/>
+    <query-param name="endDate" type="java.sql.Timestamp"/>
     </sql-query>
 
     <sql-query name="GetWriteAccessGroupMembersByFormGUID">

@@ -570,6 +570,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormsByVendorsForDashboardResponse> executeFormsByVendorsForDashboard(Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipality", municipality);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return queryExecutor.executeNamedQuery("FormsByVendorsForDashboard", params, FormsByVendorsForDashboardResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportFormsByVendorsForDashboard(ExportType exportType, Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipality", municipality);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return queryExecutor.exportNamedQueryData("FormsByVendorsForDashboard", params, exportType, FormsByVendorsForDashboardResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<CountOfProcessFormsByMuncipalityResponse> executeCountOfProcessFormsByMuncipality(Integer municipalityId, Boolean closed, Integer userId, Pageable pageable) {
         Map params = new HashMap(3);
 
@@ -746,17 +770,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
-    public Integer executeInsertUserPreference(InsertUserPreferenceRequest insertUserPreferenceRequest) {
-        Map params = new HashMap(2);
-
-        params.put("UserId", insertUserPreferenceRequest.getUserId());
-        params.put("PreferenceId", insertUserPreferenceRequest.getPreferenceId());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertUserPreference", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
     public Integer executeUpdateProjectDetails(UpdateProjectDetailsRequest updateProjectDetailsRequest) {
         Map params = new HashMap(5);
 
@@ -767,6 +780,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("project", updateProjectDetailsRequest.getProject());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateProjectDetails", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeInsertUserPreference(InsertUserPreferenceRequest insertUserPreferenceRequest) {
+        Map params = new HashMap(2);
+
+        params.put("UserId", insertUserPreferenceRequest.getUserId());
+        params.put("PreferenceId", insertUserPreferenceRequest.getPreferenceId());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertUserPreference", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1215,6 +1239,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("user", user);
 
         return queryExecutor.exportNamedQueryData("EmployeesMunicipalities", params, exportType, EmployeesMunicipalitiesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormsByCategoryForDashBoardResponse> executeFormsByCategoryForDashBoard(Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipality", municipality);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return queryExecutor.executeNamedQuery("FormsByCategoryForDashBoard", params, FormsByCategoryForDashBoardResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportFormsByCategoryForDashBoard(ExportType exportType, Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipality", municipality);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return queryExecutor.exportNamedQueryData("FormsByCategoryForDashBoard", params, exportType, FormsByCategoryForDashBoardResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

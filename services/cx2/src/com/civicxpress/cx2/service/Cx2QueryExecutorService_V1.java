@@ -129,10 +129,10 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeCheckIfCompanyUserIsVendorAdmin(Pageable pageable, Integer user, Integer vendor);
 
     @Deprecated
-    public int executeInsertUserPreference(Integer userId, Integer preferenceId);
+    public int executeUpdateProjectDetails(String projectName, String projectGoals, Timestamp estStartDate, Timestamp estEndDate, String project);
 
     @Deprecated
-    public int executeUpdateProjectDetails(String projectName, String projectGoals, Timestamp estStartDate, Timestamp estEndDate, String project);
+    public int executeInsertUserPreference(Integer userId, Integer preferenceId);
 
     @Deprecated
     public Page<Object> executeCountOfMuncipalityApplicationsByVendor(Pageable pageable, Integer vendorId);

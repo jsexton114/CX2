@@ -413,17 +413,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(value = "cx2TransactionManager")
     @Override
-    public int executeInsertUserPreference(Integer userId, Integer preferenceId) {
-        Map params = new HashMap(2);
-
-        params.put("UserId", userId);
-        params.put("PreferenceId", preferenceId);
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertUserPreference", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
     public int executeUpdateProjectDetails(String projectName, String projectGoals, Timestamp estStartDate, Timestamp estEndDate, String project) {
         Map params = new HashMap(5);
 
@@ -434,6 +423,17 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("project", project);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateProjectDetails", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeInsertUserPreference(Integer userId, Integer preferenceId) {
+        Map params = new HashMap(2);
+
+        params.put("UserId", userId);
+        params.put("PreferenceId", preferenceId);
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertUserPreference", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

@@ -122,6 +122,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetUserIdFromPasswordResetToken(ExportType exportType, String token, Pageable pageable);
 
+    Page<FormsByVendorsForDashboardResponse> executeFormsByVendorsForDashboard(Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
+
+    Downloadable exportFormsByVendorsForDashboard(ExportType exportType, Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
+
     Page<CountOfProcessFormsByMuncipalityResponse> executeCountOfProcessFormsByMuncipality(Integer municipalityId, Boolean closed, Integer userId, Pageable pageable);
 
     Downloadable exportCountOfProcessFormsByMuncipality(ExportType exportType, Integer municipalityId, Boolean closed, Integer userId, Pageable pageable);
@@ -156,9 +160,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCheckIfCompanyUserIsVendorAdmin(ExportType exportType, Integer user, Integer vendor, Pageable pageable);
 
-    Integer executeInsertUserPreference(InsertUserPreferenceRequest insertUserPreferenceRequest);
-
     Integer executeUpdateProjectDetails(UpdateProjectDetailsRequest updateProjectDetailsRequest);
+
+    Integer executeInsertUserPreference(InsertUserPreferenceRequest insertUserPreferenceRequest);
 
     Page<CountOfMuncipalityApplicationsByVendorResponse> executeCountOfMuncipalityApplicationsByVendor(Integer vendorId, Pageable pageable);
 
@@ -239,6 +243,10 @@ public interface Cx2QueryExecutorService {
     Page<EmployeesMunicipalitiesResponse> executeEmployeesMunicipalities(Integer user, Pageable pageable);
 
     Downloadable exportEmployeesMunicipalities(ExportType exportType, Integer user, Pageable pageable);
+
+    Page<FormsByCategoryForDashBoardResponse> executeFormsByCategoryForDashBoard(Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
+
+    Downloadable exportFormsByCategoryForDashBoard(ExportType exportType, Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
 
     Page<GetWriteAccessGroupMembersByFormGuidResponse> executeGetWriteAccessGroupMembersByFormGUID(String formGuid, Pageable pageable);
 

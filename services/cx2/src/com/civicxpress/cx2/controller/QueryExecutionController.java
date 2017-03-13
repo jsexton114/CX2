@@ -522,6 +522,25 @@ public class QueryExecutionController {
         return queryService.exportGetUserIdFromPasswordResetToken(exportType, token, pageable);
     }
 
+    @RequestMapping(value = "/queries/FormsByVendorsForDashboard", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "FormsByVendorsForDashboard")
+    public Page<FormsByVendorsForDashboardResponse> executeFormsByVendorsForDashboard(@RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "startDate") Timestamp startDate, @RequestParam(value = "endDate") Timestamp endDate, Pageable pageable) {
+        LOGGER.debug("Executing named query: FormsByVendorsForDashboard");
+        Page<FormsByVendorsForDashboardResponse> _result = queryService.executeFormsByVendorsForDashboard(municipality, startDate, endDate, pageable);
+        LOGGER.debug("got the result for named query: FormsByVendorsForDashboard, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query FormsByVendorsForDashboard")
+    @RequestMapping(value = "/queries/FormsByVendorsForDashboard/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportFormsByVendorsForDashboard(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "startDate") Timestamp startDate, @RequestParam(value = "endDate") Timestamp endDate, Pageable pageable) {
+        LOGGER.debug("Exporting named query: FormsByVendorsForDashboard");
+
+        return queryService.exportFormsByVendorsForDashboard(exportType, municipality, startDate, endDate, pageable);
+    }
+
     @RequestMapping(value = "/queries/CountOfProcessFormsByMuncipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CountOfProcessFormsByMuncipality")
@@ -684,16 +703,6 @@ public class QueryExecutionController {
         return queryService.exportCheckIfCompanyUserIsVendorAdmin(exportType, user, vendor, pageable);
     }
 
-    @RequestMapping(value = "/queries/InsertUserPreference", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InsertUserPreference")
-    public Integer executeInsertUserPreference(@Valid @RequestBody InsertUserPreferenceRequest insertUserPreferenceRequest) {
-        LOGGER.debug("Executing named query: InsertUserPreference");
-        Integer _result = queryService.executeInsertUserPreference(insertUserPreferenceRequest);
-        LOGGER.debug("got the result for named query: InsertUserPreference, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/UpdateProjectDetails", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdateProjectDetails")
@@ -701,6 +710,16 @@ public class QueryExecutionController {
         LOGGER.debug("Executing named query: UpdateProjectDetails");
         Integer _result = queryService.executeUpdateProjectDetails(updateProjectDetailsRequest);
         LOGGER.debug("got the result for named query: UpdateProjectDetails, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/InsertUserPreference", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InsertUserPreference")
+    public Integer executeInsertUserPreference(@Valid @RequestBody InsertUserPreferenceRequest insertUserPreferenceRequest) {
+        LOGGER.debug("Executing named query: InsertUserPreference");
+        Integer _result = queryService.executeInsertUserPreference(insertUserPreferenceRequest);
+        LOGGER.debug("got the result for named query: InsertUserPreference, result:{}", _result);
         return _result;
     }
 
@@ -1088,6 +1107,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: EmployeesMunicipalities");
 
         return queryService.exportEmployeesMunicipalities(exportType, user, pageable);
+    }
+
+    @RequestMapping(value = "/queries/FormsByCategoryForDashBoard", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "FormsByCategoryForDashBoard")
+    public Page<FormsByCategoryForDashBoardResponse> executeFormsByCategoryForDashBoard(@RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "startDate") Timestamp startDate, @RequestParam(value = "endDate") Timestamp endDate, Pageable pageable) {
+        LOGGER.debug("Executing named query: FormsByCategoryForDashBoard");
+        Page<FormsByCategoryForDashBoardResponse> _result = queryService.executeFormsByCategoryForDashBoard(municipality, startDate, endDate, pageable);
+        LOGGER.debug("got the result for named query: FormsByCategoryForDashBoard, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query FormsByCategoryForDashBoard")
+    @RequestMapping(value = "/queries/FormsByCategoryForDashBoard/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportFormsByCategoryForDashBoard(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "startDate") Timestamp startDate, @RequestParam(value = "endDate") Timestamp endDate, Pageable pageable) {
+        LOGGER.debug("Exporting named query: FormsByCategoryForDashBoard");
+
+        return queryService.exportFormsByCategoryForDashBoard(exportType, municipality, startDate, endDate, pageable);
     }
 
     @RequestMapping(value = "/queries/GetWriteAccessGroupMembersByFormGUID", method = RequestMethod.GET)

@@ -2741,6 +2741,128 @@
       } ]
     }
   },
+  "FormsByCategoryForDashBoard" : {
+    "name" : "FormsByCategoryForDashBoard",
+    "description" : "FormsByCategoryForDashBoard",
+    "version" : "V2",
+    "queryString" : "select count(MF.FormGUID) as counts,FC.Category\n--MF.FormTypeId,MF.FormGUID,FT.ID,FT.FormType,FC.ID,FC.Category\nfrom cx2.MasterForms MF \ninner join cx2.FormTypes FT\non  MF.FormTypeId=FT.ID\ninner join  cx2.FormCategoryMapping FCM\non FCM.FormTypeId=FT.ID\ninner join cx2.FormCategories FC\non FC.ID=FCM.FormCategoryId\n\nwhere MF.MunicipalityId=:municipality and MF.SubmittedOn BETWEEN :startDate and :endDate\ngroup by FC.Category",
+    "countQueryString" : "select count(*) from (select count(MF.FormGUID) as counts,FC.Category\n--MF.FormTypeId,MF.FormGUID,FT.ID,FT.FormType,FC.ID,FC.Category\nfrom cx2.MasterForms MF \ninner join cx2.FormTypes FT\non  MF.FormTypeId=FT.ID\ninner join  cx2.FormCategoryMapping FCM\non FCM.FormTypeId=FT.ID\ninner join cx2.FormCategories FC\non FC.ID=FCM.FormCategoryId\n\nwhere MF.MunicipalityId=:municipality and MF.SubmittedOn BETWEEN :startDate and :endDate\ngroup by FC.Category) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "startDate",
+      "type" : "timestamp",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : 1472373993000,
+      "required" : true
+    }, {
+      "name" : "endDate",
+      "type" : "timestamp",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : 1489567596000,
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.FormsByCategoryForDashBoardResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "counts",
+        "fieldName" : "counts",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Category",
+        "fieldName" : "category",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "FormsByVendorsForDashboard" : {
+    "name" : "FormsByVendorsForDashboard",
+    "description" : "FormsByVendorsForDashboard",
+    "version" : "V2",
+    "queryString" : "select V.companyName as vendorCompany ,count(MF.formGuid) as counts \nfrom MasterForms  MF inner join cx2.Vendor V\non MF.CXVendorId=V.ID where MF.MunicipalityId=:municipality and MF.SubmittedOn BETWEEN :startDate and :endDate\ngroup by V.companyName",
+    "countQueryString" : "select count(*) from (select V.companyName as vendorCompany ,count(MF.formGuid) as counts \nfrom MasterForms  MF inner join cx2.Vendor V\non MF.CXVendorId=V.ID where MF.MunicipalityId=:municipality and MF.SubmittedOn BETWEEN :startDate and :endDate\ngroup by V.companyName) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "startDate",
+      "type" : "timestamp",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : 1470128608000,
+      "required" : true
+    }, {
+      "name" : "endDate",
+      "type" : "timestamp",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : 1489568611000,
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.FormsByVendorsForDashboardResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "vendorCompany",
+        "fieldName" : "vendorCompany",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "counts",
+        "fieldName" : "counts",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "FormsCountForMunicipalities" : {
     "name" : "FormsCountForMunicipalities",
     "description" : "FormsCountForMunicipalities",
