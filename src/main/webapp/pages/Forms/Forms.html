@@ -309,11 +309,10 @@
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn119">
                                                 <wm-grid title="" dataset="bind:Variables.svInspectionsOfForm.dataSet" navigation="Classic" name="gridFormInspections" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                                                     <wm-grid-column binding="masterInspections.inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="masterInspections.inspectionOutcome.outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="masterInspections.inspectionDesign.inspectDesignName" caption="Inspection Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="addedAt" caption="Date Requested" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="users.fullName" caption="Requested By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column-group name="group" caption="User"></wm-grid-column-group>
+                                                    <wm-grid-column binding="masterInspections.inspectionOutcome.outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 </wm-grid>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
