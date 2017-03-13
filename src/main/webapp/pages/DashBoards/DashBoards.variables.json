@@ -4576,8 +4576,16 @@
       "target" : "municipality",
       "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID",
       "type" : "integer"
+    }, {
+      "target" : "startDate",
+      "value" : "bind:Widgets.datetimeStart.timestamp",
+      "type" : "string"
+    }, {
+      "target" : "endDate",
+      "value" : "bind:Widgets.datetimeEnd.timestamp",
+      "type" : "string"
     } ],
-    "type" : "com.civicxpress.cx2.MasterForms",
+    "type" : "com.civicxpress.cx2.models.query.FormsForDashboardResponse",
     "service" : "cx2",
     "operation" : "executeFormsForDashboard",
     "operationId" : "QueryExecutionController_executeFormsForDashboard",

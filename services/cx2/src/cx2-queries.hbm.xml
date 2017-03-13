@@ -881,16 +881,20 @@ and (FT.MunicipalityInternalForm=0
 
     <query name="FormsForDashboard">
         <![CDATA[
-        from MasterForms where MunicipalityId=:municipality
+        select formTitle,formGuid,closed,expiresDate,issuedDate,submittedOn,dateModified,formTypes.formType,formStatuses.status from MasterForms where municipalityId=:municipality and SubmittedOn BETWEEN :startDate and :endDate
         ]]>
     <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="startDate" type="java.sql.Timestamp"/>
+    <query-param name="endDate" type="java.sql.Timestamp"/>
     </query>
 
     <query name="FormsForDashboard__count">
         <![CDATA[
-        select count(*) from MasterForms where MunicipalityId=:municipality
+        select count(*)  from MasterForms where municipalityId=:municipality and SubmittedOn BETWEEN :startDate and :endDate
         ]]>
     <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="startDate" type="java.sql.Timestamp"/>
+    <query-param name="endDate" type="java.sql.Timestamp"/>
     </query>
 
     <sql-query name="EmployeesMunicipalities">

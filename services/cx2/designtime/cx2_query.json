@@ -2783,8 +2783,8 @@
     "name" : "FormsForDashboard",
     "description" : "FormsForDashboard",
     "version" : "V2",
-    "queryString" : "from MasterForms where MunicipalityId=:municipality",
-    "countQueryString" : "select count(*) from MasterForms where MunicipalityId=:municipality",
+    "queryString" : "select formTitle,formGuid,closed,expiresDate,issuedDate,submittedOn,dateModified,formTypes.formType,formStatuses.status from MasterForms where municipalityId=:municipality and SubmittedOn BETWEEN :startDate and :endDate",
+    "countQueryString" : "select count(*)  from MasterForms where municipalityId=:municipality and SubmittedOn BETWEEN :startDate and :endDate",
     "nativeSql" : false,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -2795,6 +2795,20 @@
       "variableType" : "PROMPT",
       "testValue" : "2",
       "required" : true
+    }, {
+      "name" : "startDate",
+      "type" : "timestamp",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : 1488953918000,
+      "required" : true
+    }, {
+      "name" : "endDate",
+      "type" : "timestamp",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : 1489558720000,
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -2802,9 +2816,91 @@
       "method" : "GET"
     },
     "response" : {
-      "typeRef" : "com.civicxpress.cx2.MasterForms",
-      "returns" : "ENTITY",
-      "responseType" : "PAGINATED"
+      "typeRef" : "com.civicxpress.cx2.models.query.FormsForDashboardResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "0",
+        "fieldName" : "col0",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "1",
+        "fieldName" : "col1",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "2",
+        "fieldName" : "col2",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "3",
+        "fieldName" : "col3",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.util.Date",
+          "list" : false
+        }
+      }, {
+        "name" : "4",
+        "fieldName" : "col4",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.util.Date",
+          "list" : false
+        }
+      }, {
+        "name" : "5",
+        "fieldName" : "col5",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.util.Date",
+          "list" : false
+        }
+      }, {
+        "name" : "6",
+        "fieldName" : "col6",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.util.Date",
+          "list" : false
+        }
+      }, {
+        "name" : "7",
+        "fieldName" : "col7",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "8",
+        "fieldName" : "col8",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
     }
   },
   "FormsForUsersAndShared" : {

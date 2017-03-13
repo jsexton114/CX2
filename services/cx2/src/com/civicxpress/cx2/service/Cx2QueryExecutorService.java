@@ -236,9 +236,9 @@ public interface Cx2QueryExecutorService {
 
     Integer executeInsertFormsIntoProject(InsertFormsIntoProjectRequest insertFormsIntoProjectRequest);
 
-    Page<MasterForms> executeFormsForDashboard(Integer municipality, Pageable pageable);
+    Page<FormsForDashboardResponse> executeFormsForDashboard(Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
 
-    Downloadable exportFormsForDashboard(ExportType exportType, Integer municipality, Pageable pageable);
+    Downloadable exportFormsForDashboard(ExportType exportType, Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
 
     Page<EmployeesMunicipalitiesResponse> executeEmployeesMunicipalities(Integer user, Pageable pageable);
 

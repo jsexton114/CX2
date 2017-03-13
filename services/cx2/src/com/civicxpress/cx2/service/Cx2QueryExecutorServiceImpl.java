@@ -1199,22 +1199,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MasterForms> executeFormsForDashboard(Integer municipality, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Page<FormsForDashboardResponse> executeFormsForDashboard(Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable) {
+        Map params = new HashMap(3);
 
         params.put("municipality", municipality);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
 
-        return queryExecutor.executeNamedQuery("FormsForDashboard", params, MasterForms.class, pageable);
+        return queryExecutor.executeNamedQuery("FormsForDashboard", params, FormsForDashboardResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportFormsForDashboard(ExportType exportType, Integer municipality, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Downloadable exportFormsForDashboard(ExportType exportType, Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable) {
+        Map params = new HashMap(3);
 
         params.put("municipality", municipality);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
 
-        return queryExecutor.exportNamedQueryData("FormsForDashboard", params, exportType, MasterForms.class, pageable);
+        return queryExecutor.exportNamedQueryData("FormsForDashboard", params, exportType, FormsForDashboardResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

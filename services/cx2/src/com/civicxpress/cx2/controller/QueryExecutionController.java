@@ -1074,9 +1074,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/FormsForDashboard", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "FormsForDashboard")
-    public Page<MasterForms> executeFormsForDashboard(@RequestParam(value = "municipality") Integer municipality, Pageable pageable) {
+    public Page<FormsForDashboardResponse> executeFormsForDashboard(@RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "startDate") Timestamp startDate, @RequestParam(value = "endDate") Timestamp endDate, Pageable pageable) {
         LOGGER.debug("Executing named query: FormsForDashboard");
-        Page<MasterForms> _result = queryService.executeFormsForDashboard(municipality, pageable);
+        Page<FormsForDashboardResponse> _result = queryService.executeFormsForDashboard(municipality, startDate, endDate, pageable);
         LOGGER.debug("got the result for named query: FormsForDashboard, result:{}", _result);
         return _result;
     }
@@ -1084,10 +1084,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query FormsForDashboard")
     @RequestMapping(value = "/queries/FormsForDashboard/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportFormsForDashboard(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, Pageable pageable) {
+    public Downloadable exportFormsForDashboard(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "startDate") Timestamp startDate, @RequestParam(value = "endDate") Timestamp endDate, Pageable pageable) {
         LOGGER.debug("Exporting named query: FormsForDashboard");
 
-        return queryService.exportFormsForDashboard(exportType, municipality, pageable);
+        return queryService.exportFormsForDashboard(exportType, municipality, startDate, endDate, pageable);
     }
 
     @RequestMapping(value = "/queries/EmployeesMunicipalities", method = RequestMethod.GET)
