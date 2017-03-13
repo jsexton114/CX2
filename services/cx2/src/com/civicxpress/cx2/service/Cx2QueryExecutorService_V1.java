@@ -57,22 +57,22 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeCheckingUserWithMunicipalityInRoles(Pageable pageable, Integer muncipality, Integer user);
 
     @Deprecated
-    public Page<Object> executeMunicipalitiesGroupsCounts(Pageable pageable, Integer municipality);
+    public int executeUpdateCFInProfile(String cf, Integer user);
 
     @Deprecated
-    public int executeUpdateCFInProfile(String cf, Integer user);
+    public Page<Object> executeMunicipalitiesGroupsCounts(Pageable pageable, Integer municipality);
 
     @Deprecated
     public int executeInsertCategoryMapping(Integer formTypeId, Integer formCategoryId);
 
     @Deprecated
-    public Page<Object> executeCountOfMunicipalityProjects(Pageable pageable, Integer municipalityId, Boolean active);
+    public Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, Boolean closed, Long municipalityId, Long userId);
 
     @Deprecated
     public Page<Object> executeFormsCountForMunicipalities(Pageable pageable, Integer municipalityId);
 
     @Deprecated
-    public Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, Boolean closed, Long municipalityId, Long userId);
+    public Page<Object> executeCountOfMunicipalityProjects(Pageable pageable, Integer municipalityId, Boolean active);
 
     @Deprecated
     public Page<Object> executeVendorCount(Pageable pageable);
@@ -87,10 +87,10 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeCountOfProjectsForUsersAndSharedWithByMunicipality(Pageable pageable, Integer municipalityId, Boolean active, Integer creatorUser, Integer sharedWithUser);
 
     @Deprecated
-    public Page<Object> executeFormsByCategory(Pageable pageable, Integer formCategory, Boolean isActive);
+    public int executeUpdateAsCXVendorAdmin(String role, Integer municipality, Integer user);
 
     @Deprecated
-    public int executeUpdateAsCXVendorAdmin(String role, Integer municipality, Integer user);
+    public Page<Object> executeFormsByCategory(Pageable pageable, Integer formCategory, Boolean isActive);
 
     @Deprecated
     public Page<Object> executeCountOfCompnayFormsByVendorId(Pageable pageable, Boolean closed, Integer vendorId);
@@ -144,10 +144,10 @@ public interface Cx2QueryExecutorService_V1 {
     public int executeAddGIStoProjects(Integer gisrecordId, String relatedProjectGuid, Integer addedByUser, Timestamp addedAt);
 
     @Deprecated
-    public Page<Object> executeCountOfFormsForMunicipality(Pageable pageable, Integer municipalityId);
+    public Page<Object> executeCountOfUserForms(Pageable pageable, Boolean closed, Integer creatorUser, Integer sharedWithUser);
 
     @Deprecated
-    public Page<Object> executeCountOfUserForms(Pageable pageable, Boolean closed, Integer creatorUser, Integer sharedWithUser);
+    public Page<Object> executeCountOfFormsForMunicipality(Pageable pageable, Integer municipalityId);
 
     @Deprecated
     public int executeUpdateDevFormDetailsForCXAdmin(String report, String formTableName, Integer form);
@@ -180,19 +180,19 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeManualFeeTypeCountForMunicipality(Pageable pageable, Integer municipalityId);
 
     @Deprecated
-    public Page<Object> executeGetProcessGroupMemebersByFormGUID(Pageable pageable, String formGuid, Integer userId);
+    public int executeInsertSubscription(Integer userId, Integer municipalityId, String dateSubscribed);
 
     @Deprecated
-    public int executeInsertSubscription(Integer userId, Integer municipalityId, String dateSubscribed);
+    public Page<Object> executeGetProcessGroupMemebersByFormGUID(Pageable pageable, String formGuid, Integer userId);
 
     @Deprecated
     public Page<Object> executeAdminVendorsList(Pageable pageable, Integer user);
 
     @Deprecated
-    public int executeDeleteRoleForMuncipality(String role, Integer municipality, Integer user);
+    public Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, Integer formCategory, Integer municipalityId, Integer userId);
 
     @Deprecated
-    public Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, Integer formCategory, Integer municipalityId, Integer userId);
+    public int executeDeleteRoleForMuncipality(String role, Integer municipality, Integer user);
 
     @Deprecated
     public int executeMapAsAdminForVendor(Integer userId, Integer vendorId);
@@ -201,22 +201,22 @@ public interface Cx2QueryExecutorService_V1 {
     public int executeInsertFormsIntoProject(String relatedProjectGuid, String relatedFormGuid, Integer addedByUser, Timestamp addedAt, String comments);
 
     @Deprecated
-    public Page<Object> executeEmployeesMunicipalities(Pageable pageable, Integer user);
+    public int executeRecordFormHistory(String formGuid, Integer formTypeId, Integer newStatusId, Integer oldStatusId, String comments, Integer createdBy);
 
     @Deprecated
     public Page<Object> executeGetWriteAccessGroupMembersByFormGUID(Pageable pageable, String formGuid);
 
     @Deprecated
-    public int executeRecordFormHistory(String formGuid, Integer formTypeId, Integer newStatusId, Integer oldStatusId, String comments, Integer createdBy);
+    public Page<Object> executeEmployeesMunicipalities(Pageable pageable, Integer user);
 
     @Deprecated
     public int executeRemoveVendorFromMasterForms(String hb);
 
     @Deprecated
-    public Page<Object> executeProjectForms(Pageable pageable, String project);
+    public int executeUpdateFormStatusInMasterForms(Integer formStatus, Boolean closed, String formGuid);
 
     @Deprecated
-    public int executeUpdateFormStatusInMasterForms(Integer formStatus, Boolean closed, String formGuid);
+    public Page<Object> executeProjectForms(Pageable pageable, String project);
 
     @Deprecated
     public int executeUpdatePrimaryVendorStatusInVEndor2Forms(Boolean pv, String form);
@@ -348,10 +348,10 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId);
 
     @Deprecated
-    public Page<Object> executeFormsTaggedWithGISRecords(Pageable pageable, Integer gisrecordId);
+    public int executeUpdateNewPassword(String password, Integer newUser);
 
     @Deprecated
-    public int executeUpdateNewPassword(String password, Integer newUser);
+    public Page<Object> executeFormsTaggedWithGISRecords(Pageable pageable, Integer gisrecordId);
 
     @Deprecated
     public Page<Object> executeCountOfVendorUsers(Pageable pageable, Integer vendor);

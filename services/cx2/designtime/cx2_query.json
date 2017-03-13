@@ -2227,6 +2227,67 @@
       } ]
     }
   },
+  "FeeByFeeTypesToDashboard" : {
+    "name" : "FeeByFeeTypesToDashboard",
+    "description" : "FeeByFeeTypesToDashboard",
+    "version" : "V2",
+    "queryString" : "select FeeType as Fee, count(ID) as counts from Fees \nwhere MunicipalityId=:municpality and PaidDate BETWEEN :startDate and :endDate\ngroup by FeeType",
+    "countQueryString" : "select count(*) from (select FeeType as Fee, count(ID) as counts from Fees \nwhere MunicipalityId=:municpality and PaidDate BETWEEN :startDate and :endDate\ngroup by FeeType) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municpality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "startDate",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2015-12-27",
+      "required" : true
+    }, {
+      "name" : "endDate",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-03-22",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.FeeByFeeTypesToDashboardResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Fee",
+        "fieldName" : "fee",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "counts",
+        "fieldName" : "counts",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "FeesInCartByUser" : {
     "name" : "FeesInCartByUser",
     "description" : "FeesInCartByUser",

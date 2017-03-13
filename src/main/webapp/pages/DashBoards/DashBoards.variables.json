@@ -2133,7 +2133,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 1,
+    "bindCount" : 0,
     "spinnerContext" : "page",
     "tableName" : "Fees",
     "tableType" : "TABLE",
@@ -4606,6 +4606,42 @@
     "type" : "string",
     "isList" : true,
     "saveInPhonegap" : false
+  },
+  "svFeeByTypes" : {
+    "_id" : "wm-svFeeByTypes-wm.ServiceVariable-1489403429517",
+    "name" : "svFeeByTypes",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municpality",
+      "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "startDate",
+      "value" : "bind:Widgets.datetimeStart.timestamp | toDate: 'yyyy-MM-dd'",
+      "type" : "string"
+    }, {
+      "target" : "endDate",
+      "value" : "bind:Widgets.datetimeEnd.timestamp | toDate: 'yyyy-MM-dd'",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.FeeByFeeTypesToDashboardResponse",
+    "service" : "cx2",
+    "operation" : "executeFeeByFeeTypesToDashboard",
+    "operationId" : "QueryExecutionController_executeFeeByFeeTypesToDashboard",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "svFormsCategoriesData" : {
     "_id" : "wm-svFormsCategoriesData-wm.ServiceVariable-1489396229576",
