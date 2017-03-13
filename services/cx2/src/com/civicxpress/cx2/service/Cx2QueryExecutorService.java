@@ -236,10 +236,6 @@ public interface Cx2QueryExecutorService {
 
     Integer executeInsertFormsIntoProject(InsertFormsIntoProjectRequest insertFormsIntoProjectRequest);
 
-    Page<FormsForDashboardResponse> executeFormsForDashboard(Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
-
-    Downloadable exportFormsForDashboard(ExportType exportType, Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
-
     Page<EmployeesMunicipalitiesResponse> executeEmployeesMunicipalities(Integer user, Pageable pageable);
 
     Downloadable exportEmployeesMunicipalities(ExportType exportType, Integer user, Pageable pageable);
@@ -397,6 +393,10 @@ public interface Cx2QueryExecutorService {
     Downloadable exportInspectionDesignForCategoriesMappedToForms(ExportType exportType, Integer formTypeId, Pageable pageable);
 
     Integer executeDeleteExistingSubscriptionsForUser(Integer user);
+
+    Page<FormsTypesForDashboardResponse> executeFormsTypesForDashboard(Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
+
+    Downloadable exportFormsTypesForDashboard(ExportType exportType, Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
 
     Page<MunicipalityCountResponse> executeMunicipalityCount(Pageable pageable);
 

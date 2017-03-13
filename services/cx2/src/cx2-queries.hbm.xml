@@ -879,24 +879,6 @@ and (FT.MunicipalityInternalForm=0
     <query-param name="Comments" type="java.lang.String"/>
     </sql-query>
 
-    <query name="FormsForDashboard">
-        <![CDATA[
-        select formTitle,formGuid,closed,expiresDate,issuedDate,submittedOn,dateModified,formTypes.formType,formStatuses.status from MasterForms where municipalityId=:municipality and SubmittedOn BETWEEN :startDate and :endDate
-        ]]>
-    <query-param name="municipality" type="java.lang.Integer"/>
-    <query-param name="startDate" type="java.sql.Timestamp"/>
-    <query-param name="endDate" type="java.sql.Timestamp"/>
-    </query>
-
-    <query name="FormsForDashboard__count">
-        <![CDATA[
-        select count(*)  from MasterForms where municipalityId=:municipality and SubmittedOn BETWEEN :startDate and :endDate
-        ]]>
-    <query-param name="municipality" type="java.lang.Integer"/>
-    <query-param name="startDate" type="java.sql.Timestamp"/>
-    <query-param name="endDate" type="java.sql.Timestamp"/>
-    </query>
-
     <sql-query name="EmployeesMunicipalities">
         <![CDATA[
         select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName='MunicipalityEmployee'
@@ -1569,6 +1551,16 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
         ]]>
     <query-param name="user" type="java.lang.Integer"/>
     </sql-query>
+
+    <query name="FormsTypesForDashboard">
+        <![CDATA[
+        select formTypes.formType as formType ,count(formGuid) as counts from MasterForms where municipalityId=:municipality and SubmittedOn BETWEEN :startDate and :endDate
+group by formTypes.formType
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="startDate" type="java.sql.Timestamp"/>
+    <query-param name="endDate" type="java.sql.Timestamp"/>
+    </query>
 
     <sql-query name="MunicipalityCount">
         <![CDATA[

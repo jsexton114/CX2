@@ -54,7 +54,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow15" padding="2em unset">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn33" padding="unset 1em">
-                        <wm-chart type="Pie" title="FormTypes" height="250px" iconclass="wi wi-pie-chart" name="chartFormTypes" dataset="bind:Variables.svFormsData.dataSet" labeltype="value" showlegend="top" xaxisdatakey="col0" yaxisdatakey="col8"></wm-chart>
+                        <wm-chart type="Pie" title="FormTypes" height="250px" iconclass="wi wi-pie-chart" name="chartFormTypes" dataset="bind:Variables.svFormsData.dataSet" labeltype="percent" showlegend="top" xaxisdatakey="formType" yaxisdatakey="counts"></wm-chart>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn34" padding="unset 1em unset unset">
                         <wm-chart type="Pie" title="Chart Categories" height="250px" iconclass="wi wi-pie-chart" dataset="bind:Variables.lvMasterForms.dataSet" aggregation="count" aggregationcolumn="formTypeId" groupby="formTypes.formType" xaxisdatakey="formTypes.formType"
