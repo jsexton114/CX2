@@ -38,19 +38,23 @@
                     <wm-gridcolumn columnwidth="4" name="gridcolumn44"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow14" padding="1em unset">
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn30">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn30">
                         <wm-composite name="composite3">
                             <wm-label class="col-md-3 control-label" name="label19" caption="By"></wm-label>
                             <wm-container class="col-md-9" name="container3">
-                                <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"></wm-select>
+                                <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"
+                                placeholder=""></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn17" horizontalalign="center">
                         <wm-label padding="unset 0.5em" name="label6" caption="OR"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="5" name="gridcolumn31">
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn31">
                         <wm-datetime name="datetimeStart"></wm-datetime>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn18" horizontalalign="center">
+                        <wm-label padding="unset 0.5em" caption="AND" name="label7"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="3" name="gridcolumn32">
                         <wm-datetime name="datetimeEnd"></wm-datetime>
@@ -71,15 +75,12 @@
                         <wm-chart type="Pie" title="chartFee" height="250px" iconclass="wi wi-pie-chart" dataset="bind:Variables.svFeeByTypes.dataSet" labeltype="value" showlegend="top" name="chartFee" xaxisdatakey="fee" yaxisdatakey="counts" theme="Orient"></wm-chart>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn37" padding="unset 1em unset unset">
-                        <wm-chart type="Column" title="chartFee" height="250px" iconclass="wi wi-bar-chart" name="chartDay" dataset="bind:Variables.lvMasterForms.dataSet" aggregation="count" aggregationcolumn="formGuid" groupby="dateModified" xaxisdatakey="dateModified"
-                        yaxisdatakey="formGuid" xdateformat="%c" ynumberformat=".f"></wm-chart>
+                        <wm-chart type="Pie" title="Vendors" height="250px" iconclass="wi wi-pie-chart" name="chartVendors" dataset="bind:Variables.svFormsVendorsData.dataSet" xaxisdatakey="vendorCompany" yaxisdatakey="counts" theme="Orient"></wm-chart>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17" padding="2em unset">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn39"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn40" padding="unset unset unset 1em">
-                        <wm-chart type="Pie" title="Vendors" height="250px" iconclass="wi wi-pie-chart" name="chartVendors" dataset="bind:Variables.svFormsVendorsData.dataSet" xaxisdatakey="vendorCompany" yaxisdatakey="counts" theme="Orient"></wm-chart>
-                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn40" padding="unset unset unset 1em"></wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
