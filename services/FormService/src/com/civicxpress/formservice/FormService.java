@@ -646,6 +646,10 @@ public class FormService {
     	
     	DBRow documentData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM Document WHERE ID=:documentId", queryParams).get(0);
     	
+    	if (!userCanView(cx2Conn, documentData.getString("ItemGUID"))) {
+    		return null;
+    	}
+    	
     	DownloadResponse dr = new DownloadResponse();
     	dr.setFileName(documentData.getString("Filename"));
     	dr.setContentType(documentData.getString("Mimetype"));

@@ -26,7 +26,7 @@
                                 <wm-grid-column binding="fees.masterForms.formTypes.municipalities.municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="fees.amount" caption="Fees Amount" type="string" formatpattern="toCurrency" currencypattern="USD" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                <wm-grid-action key="customButton" display-name="bind:&quot;$ &quot;+totalSumInCart" show="true" class="btn-secondary" iconclass="" title="Total" shortcutkey="" disabled="false"></wm-grid-action>
+                                <wm-grid-action key="customButton" display-name="bind:totalSumInCart | toCurrency:'$':2" show="true" class="btn-secondary" iconclass="" title="Total" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-action key="addNewRow" display-name="Proceed to Checkout" show="true" class="btn-primary" iconclass="wi wi-plus" title="Checkout" action="" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-remove-shopping-cart" title="RemoveFromCart" action="Variables.lvDeleteFromCart.deleteRecord()" disabled="false"></wm-grid-row-action>
                             </wm-grid>

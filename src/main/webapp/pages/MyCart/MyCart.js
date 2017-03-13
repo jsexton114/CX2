@@ -7,15 +7,11 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
     };
 
     $scope.svFeesInCartByUseronSuccess = function(variable, data) {
-
-        $scope.totalSumInCart = _.sumBy(data.content, function(obj) {
+        $scope.Widgets.gridFeesList.totalSumInCart = _.sumBy(data.content, function(obj) {
             return _.toNumber(obj.fees.amount);
         });
-        $scope.Widgets.gridFeesList.totalSumInCart = $scope.totalSumInCart;
     };
-
 }]);
-
 
 Application.$controller("pagedialogNewFormController", ["$scope",
     function($scope) {

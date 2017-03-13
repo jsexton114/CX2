@@ -395,7 +395,6 @@ Application.$controller("dialogUploadDocumentController", ["$scope",
         $scope.buttonUploadFileClick = function($event, $isolateScope) {
             var filesContents = [];
 
-            console.log($scope.docsToUpload);
             $scope.docsToUpload.forEach(function(doc, index) {
                 filesContents.push(doc.Contents);
             });

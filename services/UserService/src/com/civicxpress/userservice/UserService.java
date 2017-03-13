@@ -41,7 +41,7 @@ public class UserService {
     @Autowired
     private SecurityService securityService;
     
-    @Value("${cx2.url}")
+    @Value("${cx2.url}") 
     private String sqlUrl;
     
     @Value("${cx2.username}")
