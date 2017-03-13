@@ -10,29 +10,29 @@
                         <wm-breadcrumb dataset="bind:Variables.Breadcrumb.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow2" padding="unset unset 1em unset">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-label padding="unset 0.5em" name="label1" caption="All credit card transactions are subject to either a $1.00 or 3.5% convenience fee, whichever is greater."></wm-label>
-                        <wm-label padding="unset 0.5em" name="label2" caption="This fee is imposed by CivicXpress, not the participating municipalities.  This fee covers bank transaction costs associated with credit card transactions.  This convenience fee may be avoided by paying directly at the municipalities payment counter."></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
                         <wm-panel iconclass="wi wi-shopping-cart" autoclose="outsideClick" name="panelMyCart" title="My Cart" class="panel-primary">
-                            <wm-grid title="" dataset="bind:Variables.svFeesInCartByUser.dataSet" navigation="Classic" name="gridFeesList">
+                            <wm-grid title="" dataset="bind:Variables.svFeesInCartByUser.dataSet" navigation="None" name="gridFeesList">
                                 <wm-grid-column binding="fees.masterForms.formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="fees.masterForms.formTypes.formType" caption="Form Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="fees.feeType" caption="Fee Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="fees.gisrecords.fullAddress" caption="Full Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="fees.masterForms.formTypes.formType" caption="Form Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="fees.masterForms.formTypes.municipalities.municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="fees.amount" caption="Fees Amount" type="string" formatpattern="toCurrency" currencypattern="USD" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="fees.gisrecords.fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="fees.feeType" caption="Fee" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="fees.amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-action key="customButton" display-name="bind:totalSumInCart | toCurrency:'$':2" show="true" class="btn-secondary" iconclass="" title="Total" shortcutkey="" disabled="false"></wm-grid-action>
-                                <wm-grid-action key="addNewRow" display-name="Proceed to Checkout" show="true" class="btn-primary" iconclass="wi wi-plus" title="Checkout" action="" shortcutkey="" disabled="false"></wm-grid-action>
-                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-delete" title="RemoveFromCart" action="Variables.lvDeleteFromCart.deleteRecord()" disabled="false"
-                                icon="wi wi-delete"></wm-grid-row-action>
+                                <wm-grid-action key="addNewRow" display-name="Proceed to Checkout" show="true" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="" shortcutkey="" disabled="false" icon="wi wi-navigate-next"></wm-grid-action>
+                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="RemoveFromCart" action="Variables.lvDeleteFromCart.deleteRecord()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
                         </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                        <wm-label padding="unset 0.5em" name="label1" caption="All credit card transactions are subject to either a $1.00 or 3.5% convenience fee, whichever is greater."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label2" caption="This fee is imposed by CivicXpress, not the participating municipalities, and it covers bank transaction costs associated with credit card transactions."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label3" caption="This convenience fee may be avoided by paying in person at the municipality payment counter."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
