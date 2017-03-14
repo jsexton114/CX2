@@ -1,4 +1,28 @@
 {
+  "CXAdminCasesCount" : {
+    "_id" : "wm-CXAdminCasesCount-wm.ServiceVariable-1489519281137",
+    "name" : "CXAdminCasesCount",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "integer",
+    "service" : "cx2",
+    "operation" : "countCaseTypes",
+    "operationId" : "CaseTypesController_countCaseTypes",
+    "operationType" : "post",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "CaseTypes",
+    "spinnerContext" : "page"
+  },
   "CXAdminFormsCount" : {
     "_id" : "wm-CXAdminFormsCount-wm.ServiceVariable-1482389199067",
     "name" : "CXAdminFormsCount",

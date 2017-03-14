@@ -1,4 +1,32 @@
 {
+  "CountOfCasesForMunicipality" : {
+    "_id" : "wm-CountOfCasesForMunicipality-wm.ServiceVariable-1489518007644",
+    "name" : "CountOfCasesForMunicipality",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "MunicipalityId",
+      "value" : "bind:Widgets.select1.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.CountOfCasesForMunicipalityResponse",
+    "service" : "cx2",
+    "operation" : "executeCountOfCasesForMunicipality",
+    "operationId" : "QueryExecutionController_executeCountOfCasesForMunicipality",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "CountOfFormsForMunicipality" : {
     "_id" : "wm-CountOfFormsForMunicipality-wm.ServiceVariable-1482227995837",
     "name" : "CountOfFormsForMunicipality",
