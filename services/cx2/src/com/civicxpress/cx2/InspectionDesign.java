@@ -65,6 +65,8 @@ public class InspectionDesign implements Serializable {
     private boolean prefixDashes;
     private Integer createdBy;
     private Timestamp createdAt;
+    private Boolean requireFeesPaidBeforeScheduling;
+    private Boolean allowUnscheduledInspection;
     private Users users;
     private Municipalities municipalities;
     private List<InspectionOutcome> inspectionOutcomes = new ArrayList<>();
@@ -351,6 +353,24 @@ public class InspectionDesign implements Serializable {
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Column(name = "`RequireFeesPaidBeforeScheduling`", nullable = true)
+    public Boolean getRequireFeesPaidBeforeScheduling() {
+        return this.requireFeesPaidBeforeScheduling;
+    }
+
+    public void setRequireFeesPaidBeforeScheduling(Boolean requireFeesPaidBeforeScheduling) {
+        this.requireFeesPaidBeforeScheduling = requireFeesPaidBeforeScheduling;
+    }
+
+    @Column(name = "`AllowUnscheduledInspection`", nullable = true)
+    public Boolean getAllowUnscheduledInspection() {
+        return this.allowUnscheduledInspection;
+    }
+
+    public void setAllowUnscheduledInspection(Boolean allowUnscheduledInspection) {
+        this.allowUnscheduledInspection = allowUnscheduledInspection;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
