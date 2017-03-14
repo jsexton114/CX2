@@ -38,22 +38,25 @@ public class MasterInspections implements Serializable {
 
     private String inspectionGuid;
     private String inspectionTitle;
-    private String relatedCaseGuid;
-    private String relatedProjectGuid;
+    private String caseGuid;
+    private String projectGuid;
     private Integer inspectionDesignId;
     private Integer gisId;
     private Integer inspectionOutcomeId;
     private Integer inspectionCatId;
-    private String relatedFormGuid;
+    private String formGuid;
     private Integer requestedBy;
     private Integer modifiedBy;
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT })
     @Type(type = "DateTime")
-    private LocalDateTime requestedAt;
+    private LocalDateTime dateRequested;
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
     @Type(type = "DateTime")
-    private LocalDateTime modifiedAt;
+    private LocalDateTime dateModified;
     private Integer assignedTo;
+    private Boolean closed;
+    @Type(type = "DateTime")
+    private LocalDateTime dateAssigned;
     private InspectionOutcome inspectionOutcome;
     private MasterForms masterForms;
     private Gisrecords gisrecords;
@@ -87,22 +90,22 @@ public class MasterInspections implements Serializable {
         this.inspectionTitle = inspectionTitle;
     }
 
-    @Column(name = "`RelatedCaseGuid`", nullable = true, length = 255)
-    public String getRelatedCaseGuid() {
-        return this.relatedCaseGuid;
+    @Column(name = "`CaseGuid`", nullable = true, length = 255)
+    public String getCaseGuid() {
+        return this.caseGuid;
     }
 
-    public void setRelatedCaseGuid(String relatedCaseGuid) {
-        this.relatedCaseGuid = relatedCaseGuid;
+    public void setCaseGuid(String caseGuid) {
+        this.caseGuid = caseGuid;
     }
 
-    @Column(name = "`RelatedProjectGuid`", nullable = true, length = 32)
-    public String getRelatedProjectGuid() {
-        return this.relatedProjectGuid;
+    @Column(name = "`ProjectGuid`", nullable = true, length = 32)
+    public String getProjectGuid() {
+        return this.projectGuid;
     }
 
-    public void setRelatedProjectGuid(String relatedProjectGuid) {
-        this.relatedProjectGuid = relatedProjectGuid;
+    public void setProjectGuid(String projectGuid) {
+        this.projectGuid = projectGuid;
     }
 
     @Column(name = "`InspectionDesignId`", nullable = true, scale = 0, precision = 10)
@@ -141,13 +144,13 @@ public class MasterInspections implements Serializable {
         this.inspectionCatId = inspectionCatId;
     }
 
-    @Column(name = "`RelatedFormGuid`", nullable = true, length = 255)
-    public String getRelatedFormGuid() {
-        return this.relatedFormGuid;
+    @Column(name = "`FormGuid`", nullable = true, length = 255)
+    public String getFormGuid() {
+        return this.formGuid;
     }
 
-    public void setRelatedFormGuid(String relatedFormGuid) {
-        this.relatedFormGuid = relatedFormGuid;
+    public void setFormGuid(String formGuid) {
+        this.formGuid = formGuid;
     }
 
     @Column(name = "`RequestedBy`", nullable = true, scale = 0, precision = 10)
@@ -168,22 +171,22 @@ public class MasterInspections implements Serializable {
         this.modifiedBy = modifiedBy;
     }
 
-    @Column(name = "`RequestedAt`", nullable = true, updatable = false)
-    public LocalDateTime getRequestedAt() {
-        return this.requestedAt;
+    @Column(name = "`DateRequested`", nullable = true, updatable = false)
+    public LocalDateTime getDateRequested() {
+        return this.dateRequested;
     }
 
-    public void setRequestedAt(LocalDateTime requestedAt) {
-        this.requestedAt = requestedAt;
+    public void setDateRequested(LocalDateTime dateRequested) {
+        this.dateRequested = dateRequested;
     }
 
-    @Column(name = "`ModifiedAt`", nullable = true)
-    public LocalDateTime getModifiedAt() {
-        return this.modifiedAt;
+    @Column(name = "`DateModified`", nullable = true)
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
     }
 
-    public void setModifiedAt(LocalDateTime modifiedAt) {
-        this.modifiedAt = modifiedAt;
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
     }
 
     @Column(name = "`AssignedTo`", nullable = true, scale = 0, precision = 10)
@@ -193,6 +196,24 @@ public class MasterInspections implements Serializable {
 
     public void setAssignedTo(Integer assignedTo) {
         this.assignedTo = assignedTo;
+    }
+
+    @Column(name = "`Closed`", nullable = true)
+    public Boolean getClosed() {
+        return this.closed;
+    }
+
+    public void setClosed(Boolean closed) {
+        this.closed = closed;
+    }
+
+    @Column(name = "`DateAssigned`", nullable = true)
+    public LocalDateTime getDateAssigned() {
+        return this.dateAssigned;
+    }
+
+    public void setDateAssigned(LocalDateTime dateAssigned) {
+        this.dateAssigned = dateAssigned;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -210,14 +231,14 @@ public class MasterInspections implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`RelatedFormGuid`", referencedColumnName = "`FormGUID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`FormGuid`", referencedColumnName = "`FormGUID`", insertable = false, updatable = false)
     public MasterForms getMasterForms() {
         return this.masterForms;
     }
 
     public void setMasterForms(MasterForms masterForms) {
         if(masterForms != null) {
-            this.relatedFormGuid = masterForms.getFormGuid();
+            this.formGuid = masterForms.getFormGuid();
         }
 
         this.masterForms = masterForms;
@@ -308,14 +329,14 @@ public class MasterInspections implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`RelatedProjectGuid`", referencedColumnName = "`ProjectGUID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`ProjectGuid`", referencedColumnName = "`ProjectGUID`", insertable = false, updatable = false)
     public Projects getProjects() {
         return this.projects;
     }
 
     public void setProjects(Projects projects) {
         if(projects != null) {
-            this.relatedProjectGuid = projects.getProjectGuid();
+            this.projectGuid = projects.getProjectGuid();
         }
 
         this.projects = projects;
