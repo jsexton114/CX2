@@ -1,0 +1,25 @@
+{
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1489476342501",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/MunicipalityAdministration"
+    }, {
+      "label" : "Manage Inspections",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/ManageInspections"
+    }, {
+      "label" : "Edit Inspection",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/EditInspection"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  }
+}

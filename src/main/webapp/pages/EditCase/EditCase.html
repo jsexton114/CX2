@@ -1,0 +1,32 @@
+<wm-page data-ng-controller="EditCasePageController" pagetitle="Edit Case" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid4">
+                <wm-gridrow name="gridrow13">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn23">
+                        <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" itemlabel="label" itemicon="icon" itemlink="link" name="breadcrumb1"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow25_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn57_1" padding="2em unset">
+                        <wm-label name="label2_1" caption="Case" fontweight="bold" class="h4"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow26_1">
+                    <wm-gridcolumn columlivenwidth="12" name="gridcolumn58_1">
+                        <wm-tabs name="tabs1">
+                            <wm-tabpane name="tabpaneFORMINFO" title="Settings"></wm-tabpane>
+                            <wm-tabpane name="tabpaneFields" title="Fields"></wm-tabpane>
+                            <wm-tabpane name="tabpaneStatuses" title="Statuses"></wm-tabpane>
+                            <wm-tabpane name="tabpaneLetters" title="Letters" accessroles="Everyone"></wm-tabpane>
+                        </wm-tabs>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>
