@@ -23,6 +23,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormMessages;
+import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.ProjectGisrecords;
@@ -70,6 +71,10 @@ public class ProjectsServiceImpl implements ProjectsService {
 	private ProjectGisrecordsService projectGisrecordsService;
 
     @Autowired
+	@Qualifier("cx2.MasterCasesService")
+	private MasterCasesService masterCasesService;
+
+    @Autowired
     @Qualifier("cx2.ProjectsDao")
     private WMGenericDao<Projects, String> wmGenericDao;
 
@@ -98,6 +103,14 @@ public class ProjectsServiceImpl implements ProjectsService {
             }
         }
 
+        if(projectsCreated.getMasterCaseses() != null) {
+            for(MasterCases masterCasese : projectsCreated.getMasterCaseses()) {
+                masterCasese.setProjects(projectsCreated);
+                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasese);
+                masterCasesService.create(masterCasese);
+            }
+        }
+
         if(projectsCreated.getMasterInspectionses() != null) {
             for(MasterInspections masterInspectionse : projectsCreated.getMasterInspectionses()) {
                 masterInspectionse.setProjects(projectsCreated);
@@ -122,19 +135,19 @@ public class ProjectsServiceImpl implements ProjectsService {
             }
         }
 
-        if(projectsCreated.getProjectSharedWiths() != null) {
-            for(ProjectSharedWith projectSharedWith : projectsCreated.getProjectSharedWiths()) {
-                projectSharedWith.setProjects(projectsCreated);
-                LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWith);
-                projectSharedWithService.create(projectSharedWith);
-            }
-        }
-
         if(projectsCreated.getProjectTaskses() != null) {
             for(ProjectTasks projectTaskse : projectsCreated.getProjectTaskses()) {
                 projectTaskse.setProjects(projectsCreated);
                 LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTaskse);
                 projectTasksService.create(projectTaskse);
+            }
+        }
+
+        if(projectsCreated.getProjectSharedWiths() != null) {
+            for(ProjectSharedWith projectSharedWith : projectsCreated.getProjectSharedWiths()) {
+                projectSharedWith.setProjects(projectsCreated);
+                LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWith);
+                projectSharedWithService.create(projectSharedWith);
             }
         }
         return projectsCreated;
@@ -235,6 +248,17 @@ public class ProjectsServiceImpl implements ProjectsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MasterCases> findAssociatedMasterCaseses(String projectGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterCaseses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
+
+        return masterCasesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterInspections> findAssociatedMasterInspectionses(String projectGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterInspectionses");
 
@@ -268,17 +292,6 @@ public class ProjectsServiceImpl implements ProjectsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<ProjectSharedWith> findAssociatedProjectSharedWiths(String projectGuid, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectSharedWiths");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
-
-        return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<ProjectTasks> findAssociatedProjectTaskses(String projectGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectTaskses");
 
@@ -286,6 +299,17 @@ public class ProjectsServiceImpl implements ProjectsService {
         queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
 
         return projectTasksService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectSharedWith> findAssociatedProjectSharedWiths(String projectGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectSharedWiths");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
+
+        return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
@@ -349,6 +373,15 @@ public class ProjectsServiceImpl implements ProjectsService {
 	 */
 	protected void setProjectGisrecordsService(ProjectGisrecordsService service) {
         this.projectGisrecordsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MasterCasesService instance
+	 */
+	protected void setMasterCasesService(MasterCasesService service) {
+        this.masterCasesService = service;
     }
 
 }

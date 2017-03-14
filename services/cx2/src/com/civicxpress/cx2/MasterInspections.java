@@ -50,7 +50,7 @@ public class MasterInspections implements Serializable {
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime requestedAt;
-    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT, Scope.UPDATE })
+    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime modifiedAt;
     private Integer assignedTo;
@@ -66,6 +66,7 @@ public class MasterInspections implements Serializable {
     private List<Fees> feeses = new ArrayList<>();
     private List<FormsToInspections> formsToInspectionses = new ArrayList<>();
     private List<InspectionGis> inspectionGises = new ArrayList<>();
+    private List<MasterCases> masterCaseses = new ArrayList<>();
 
     @Id
     @Column(name = "`InspectionGuid`", nullable = false, length = 255)
@@ -348,6 +349,16 @@ public class MasterInspections implements Serializable {
 
     public void setInspectionGises(List<InspectionGis> inspectionGises) {
         this.inspectionGises = inspectionGises;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "masterInspections")
+    public List<MasterCases> getMasterCaseses() {
+        return this.masterCaseses;
+    }
+
+    public void setMasterCaseses(List<MasterCases> masterCaseses) {
+        this.masterCaseses = masterCaseses;
     }
 
     @Override

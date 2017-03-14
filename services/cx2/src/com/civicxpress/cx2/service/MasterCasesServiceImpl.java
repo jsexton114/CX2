@@ -37,9 +37,9 @@ public class MasterCasesServiceImpl implements MasterCasesService {
 
     @Autowired
     @Qualifier("cx2.MasterCasesDao")
-    private WMGenericDao<MasterCases, Integer> wmGenericDao;
+    private WMGenericDao<MasterCases, String> wmGenericDao;
 
-    public void setWMGenericDao(WMGenericDao<MasterCases, Integer> wmGenericDao) {
+    public void setWMGenericDao(WMGenericDao<MasterCases, String> wmGenericDao) {
         this.wmGenericDao = wmGenericDao;
     }
 
@@ -53,7 +53,7 @@ public class MasterCasesServiceImpl implements MasterCasesService {
 
 	@Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public MasterCases getById(Integer mastercasesId) throws EntityNotFoundException {
+	public MasterCases getById(String mastercasesId) throws EntityNotFoundException {
         LOGGER.debug("Finding MasterCases by id: {}", mastercasesId);
         MasterCases masterCases = this.wmGenericDao.findById(mastercasesId);
         if (masterCases == null){
@@ -65,7 +65,7 @@ public class MasterCasesServiceImpl implements MasterCasesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public MasterCases findById(Integer mastercasesId) {
+	public MasterCases findById(String mastercasesId) {
         LOGGER.debug("Finding MasterCases by id: {}", mastercasesId);
         return this.wmGenericDao.findById(mastercasesId);
     }
@@ -77,14 +77,14 @@ public class MasterCasesServiceImpl implements MasterCasesService {
         LOGGER.debug("Updating MasterCases with information: {}", masterCases);
         this.wmGenericDao.update(masterCases);
 
-        Integer mastercasesId = masterCases.getId();
+        String mastercasesId = masterCases.getCaseGuid();
 
         return this.wmGenericDao.findById(mastercasesId);
     }
 
     @Transactional(value = "cx2TransactionManager")
 	@Override
-	public MasterCases delete(Integer mastercasesId) throws EntityNotFoundException {
+	public MasterCases delete(String mastercasesId) throws EntityNotFoundException {
         LOGGER.debug("Deleting MasterCases with id: {}", mastercasesId);
         MasterCases deleted = this.wmGenericDao.findById(mastercasesId);
         if (deleted == null) {

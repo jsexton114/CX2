@@ -39,7 +39,7 @@ public interface MasterCasesService {
 	 * @return MasterCases associated with the given mastercasesId.
      * @throws EntityNotFoundException If no MasterCases is found.
 	 */
-	MasterCases getById(Integer mastercasesId) throws EntityNotFoundException;
+	MasterCases getById(String mastercasesId) throws EntityNotFoundException;
 
     /**
 	 * Find and return the MasterCases by given id if exists, returns null otherwise.
@@ -47,7 +47,7 @@ public interface MasterCasesService {
 	 * @param mastercasesId The id of the MasterCases to get; value cannot be null.
 	 * @return MasterCases associated with the given mastercasesId.
 	 */
-	MasterCases findById(Integer mastercasesId);
+	MasterCases findById(String mastercasesId);
 
 
 	/**
@@ -68,7 +68,7 @@ public interface MasterCasesService {
 	 * @return The deleted MasterCases.
 	 * @throws EntityNotFoundException if no MasterCases found with the given id.
 	 */
-	MasterCases delete(Integer mastercasesId) throws EntityNotFoundException;
+	MasterCases delete(String mastercasesId) throws EntityNotFoundException;
 
 	/**
 	 * Find all MasterCases matching the given QueryFilter(s).

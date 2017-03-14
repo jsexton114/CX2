@@ -24,6 +24,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionGis;
+import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterInspections;
 
 
@@ -48,6 +49,10 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
     @Autowired
 	@Qualifier("cx2.InspectionGisService")
 	private InspectionGisService inspectionGisService;
+
+    @Autowired
+	@Qualifier("cx2.MasterCasesService")
+	private MasterCasesService masterCasesService;
 
     @Autowired
     @Qualifier("cx2.MasterInspectionsDao")
@@ -83,6 +88,14 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
                 inspectionGise.setMasterInspections(masterInspectionsCreated);
                 LOGGER.debug("Creating a new child InspectionGis with information: {}", inspectionGise);
                 inspectionGisService.create(inspectionGise);
+            }
+        }
+
+        if(masterInspectionsCreated.getMasterCaseses() != null) {
+            for(MasterCases masterCasese : masterInspectionsCreated.getMasterCaseses()) {
+                masterCasese.setMasterInspections(masterInspectionsCreated);
+                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasese);
+                masterCasesService.create(masterCasese);
             }
         }
         return masterInspectionsCreated;
@@ -192,6 +205,17 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
         return inspectionGisService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterCases> findAssociatedMasterCaseses(String inspectionGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterCaseses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("masterInspections.inspectionGuid = '" + inspectionGuid + "'");
+
+        return masterCasesService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -217,6 +241,15 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
 	 */
 	protected void setInspectionGisService(InspectionGisService service) {
         this.inspectionGisService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MasterCasesService instance
+	 */
+	protected void setMasterCasesService(MasterCasesService service) {
+        this.masterCasesService = service;
     }
 
 }

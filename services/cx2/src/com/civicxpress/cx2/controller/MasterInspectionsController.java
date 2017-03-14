@@ -33,6 +33,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionGis;
+import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.service.MasterInspectionsService;
 
@@ -169,6 +170,15 @@ public class MasterInspectionsController {
 
         LOGGER.debug("Fetching all associated inspectionGises");
         return masterInspectionsService.findAssociatedInspectionGises(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/masterCaseses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterCaseses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterCases> findAssociatedMasterCaseses(@PathVariable("id") String id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated masterCaseses");
+        return masterInspectionsService.findAssociatedMasterCaseses(id, pageable);
     }
 
     /**

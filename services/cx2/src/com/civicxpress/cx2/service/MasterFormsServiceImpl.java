@@ -27,6 +27,7 @@ import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.Gis2forms;
+import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectForms;
@@ -67,6 +68,10 @@ public class MasterFormsServiceImpl implements MasterFormsService {
     @Autowired
 	@Qualifier("cx2.MasterInspectionsService")
 	private MasterInspectionsService masterInspectionsService;
+
+    @Autowired
+	@Qualifier("cx2.MasterCasesService")
+	private MasterCasesService masterCasesService;
 
     @Autowired
 	@Qualifier("cx2.Vendors2formService")
@@ -118,6 +123,14 @@ public class MasterFormsServiceImpl implements MasterFormsService {
                 gis2formse.setMasterForms(masterFormsCreated);
                 LOGGER.debug("Creating a new child Gis2forms with information: {}", gis2formse);
                 gis2formsService.create(gis2formse);
+            }
+        }
+
+        if(masterFormsCreated.getMasterCaseses() != null) {
+            for(MasterCases masterCasese : masterFormsCreated.getMasterCaseses()) {
+                masterCasese.setMasterForms(masterFormsCreated);
+                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasese);
+                masterCasesService.create(masterCasese);
             }
         }
 
@@ -288,6 +301,17 @@ public class MasterFormsServiceImpl implements MasterFormsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MasterCases> findAssociatedMasterCaseses(String formGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterCaseses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("masterForms.formGuid = '" + formGuid + "'");
+
+        return masterCasesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterInspections> findAssociatedMasterInspectionses(String formGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterInspectionses");
 
@@ -382,6 +406,15 @@ public class MasterFormsServiceImpl implements MasterFormsService {
 	 */
 	protected void setMasterInspectionsService(MasterInspectionsService service) {
         this.masterInspectionsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service MasterCasesService instance
+	 */
+	protected void setMasterCasesService(MasterCasesService service) {
+        this.masterCasesService = service;
     }
 
     /**

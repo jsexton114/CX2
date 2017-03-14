@@ -20,7 +20,7 @@ import com.civicxpress.cx2.MasterCases;
  * which is stored in the database.
  */
 @Repository("cx2.MasterCasesDao")
-public class MasterCasesDao extends WMGenericDaoImpl<MasterCases, Integer> {
+public class MasterCasesDao extends WMGenericDaoImpl<MasterCases, String> {
 
     @Autowired
     @Qualifier("cx2Template")

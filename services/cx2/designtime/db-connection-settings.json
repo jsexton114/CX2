@@ -12,70 +12,67 @@
   "port" : "1433",
   "schemaName" : "cx2",
   "tableFilter" : [ {
-    "table" : "ContractorTypes",
+    "table" : "Fees",
     "schema" : "cx2"
   }, {
     "table" : "Document",
     "schema" : "cx2"
   }, {
-    "table" : "Fees",
-    "schema" : "cx2"
-  }, {
     "table" : "FormCategories",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormCategoryMapping",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormFieldTypes",
     "schema" : "cx2"
   }, {
     "table" : "FormHistory",
     "schema" : "cx2"
   }, {
-    "table" : "FormMessageTagging",
+    "table" : "FormStatuses",
+    "schema" : "cx2"
+  }, {
+    "table" : "ContractorTypes",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormCategoryMapping",
     "schema" : "cx2"
   }, {
     "table" : "FormMessages",
     "schema" : "cx2"
   }, {
-    "table" : "FormStatuses",
+    "table" : "FormFieldTypes",
     "schema" : "cx2"
   }, {
-    "table" : "FormToInspectionCategoryMapping",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormTypeFields",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormTypes",
+    "table" : "FormMessageTagging",
     "schema" : "cx2"
   }, {
     "table" : "FormsToInspections",
     "schema" : "cx2"
   }, {
-    "table" : "GIS2Forms",
+    "table" : "FormTypes",
     "schema" : "cx2"
   }, {
-    "table" : "GISContacts",
+    "table" : "FormTypeFields",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormToInspectionCategoryMapping",
+    "schema" : "cx2"
+  }, {
+    "table" : "GIS2Forms",
     "schema" : "cx2"
   }, {
     "table" : "GISRecords",
     "schema" : "cx2"
   }, {
+    "table" : "GISContacts",
+    "schema" : "cx2"
+  }, {
     "table" : "GlobalSettings",
+    "schema" : "cx2"
+  }, {
+    "table" : "InspectionDesign",
     "schema" : "cx2"
   }, {
     "table" : "Holidays",
     "schema" : "cx2"
   }, {
     "table" : "InspectionCategories",
-    "schema" : "cx2"
-  }, {
-    "table" : "InspectionCategoryMapping",
-    "schema" : "cx2"
-  }, {
-    "table" : "InspectionDesign",
     "schema" : "cx2"
   }, {
     "table" : "InspectionGis",
@@ -90,9 +87,6 @@
     "table" : "InspectionSequence",
     "schema" : "cx2"
   }, {
-    "table" : "ManualFeeTypes",
-    "schema" : "cx2"
-  }, {
     "table" : "MasterCases",
     "schema" : "cx2"
   }, {
@@ -102,10 +96,16 @@
     "table" : "MasterInspections",
     "schema" : "cx2"
   }, {
+    "table" : "ManualFeeTypes",
+    "schema" : "cx2"
+  }, {
     "table" : "MasterProjects",
     "schema" : "cx2"
   }, {
     "table" : "Municipalities",
+    "schema" : "cx2"
+  }, {
+    "table" : "InspectionCategoryMapping",
     "schema" : "cx2"
   }, {
     "table" : "MunicipalityGroupMembers",
@@ -114,22 +114,19 @@
     "table" : "MunicipalityGroups",
     "schema" : "cx2"
   }, {
-    "table" : "MyCart",
-    "schema" : "cx2"
-  }, {
     "table" : "ProjectForms",
     "schema" : "cx2"
   }, {
     "table" : "ProjectGISRecords",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectSharedWith",
+    "table" : "Projects",
     "schema" : "cx2"
   }, {
     "table" : "ProjectTasks",
     "schema" : "cx2"
   }, {
-    "table" : "Projects",
+    "table" : "ProjectSharedWith",
     "schema" : "cx2"
   }, {
     "table" : "Roles",
@@ -138,10 +135,13 @@
     "table" : "SharedWith",
     "schema" : "cx2"
   }, {
+    "table" : "MyCart",
+    "schema" : "cx2"
+  }, {
     "table" : "StandardViews",
     "schema" : "cx2"
   }, {
-    "table" : "States",
+    "table" : "Users",
     "schema" : "cx2"
   }, {
     "table" : "Subdivisions",
@@ -153,31 +153,31 @@
     "table" : "UserSubscriptions",
     "schema" : "cx2"
   }, {
-    "table" : "UserViewPreferences",
+    "table" : "States",
     "schema" : "cx2"
   }, {
-    "table" : "Users",
+    "table" : "UserViewPreferences",
     "schema" : "cx2"
   }, {
     "table" : "Vendor",
     "schema" : "cx2"
   }, {
-    "table" : "VendorAdmins",
-    "schema" : "cx2"
-  }, {
     "table" : "VendorApprovals",
-    "schema" : "cx2"
-  }, {
-    "table" : "VendorLicenseTypes",
     "schema" : "cx2"
   }, {
     "table" : "VendorLicenses",
     "schema" : "cx2"
   }, {
-    "table" : "VendorUsers",
+    "table" : "VendorAdmins",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorLicenseTypes",
     "schema" : "cx2"
   }, {
     "table" : "Vendors2Form",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorUsers",
     "schema" : "cx2"
   } ],
   "schemaFilter" : [ "cx2" ],

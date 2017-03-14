@@ -65,7 +65,7 @@ public class MasterCasesController {
     @ApiOperation(value = "Returns the MasterCases instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public MasterCases getMasterCases(@PathVariable("id") Integer id) throws EntityNotFoundException {
+    public MasterCases getMasterCases(@PathVariable("id") String id) throws EntityNotFoundException {
         LOGGER.debug("Getting MasterCases with id: {}" , id);
 
         MasterCases foundMasterCases = masterCasesService.getById(id);
@@ -77,10 +77,10 @@ public class MasterCasesController {
     @ApiOperation(value = "Updates the MasterCases instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public MasterCases editMasterCases(@PathVariable("id") Integer id, @RequestBody MasterCases masterCases) throws EntityNotFoundException {
-        LOGGER.debug("Editing MasterCases with id: {}" , masterCases.getId());
+    public MasterCases editMasterCases(@PathVariable("id") String id, @RequestBody MasterCases masterCases) throws EntityNotFoundException {
+        LOGGER.debug("Editing MasterCases with id: {}" , masterCases.getCaseGuid());
 
-        masterCases.setId(id);
+        masterCases.setCaseGuid(id);
         masterCases = masterCasesService.update(masterCases);
         LOGGER.debug("MasterCases details with id: {}" , masterCases);
 
@@ -90,7 +90,7 @@ public class MasterCasesController {
     @ApiOperation(value = "Deletes the MasterCases instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteMasterCases(@PathVariable("id") Integer id) throws EntityNotFoundException {
+    public boolean deleteMasterCases(@PathVariable("id") String id) throws EntityNotFoundException {
         LOGGER.debug("Deleting MasterCases with id: {}" , id);
 
         MasterCases deletedMasterCases = masterCasesService.delete(id);

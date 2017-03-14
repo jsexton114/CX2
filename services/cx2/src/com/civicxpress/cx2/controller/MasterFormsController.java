@@ -34,6 +34,7 @@ import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.Gis2forms;
+import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectForms;
@@ -189,6 +190,15 @@ public class MasterFormsController {
 
         LOGGER.debug("Fetching all associated gis2formses");
         return masterFormsService.findAssociatedGis2formses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/masterCaseses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterCaseses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterCases> findAssociatedMasterCaseses(@PathVariable("id") String id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated masterCaseses");
+        return masterFormsService.findAssociatedMasterCaseses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/masterInspectionses", method=RequestMethod.GET)

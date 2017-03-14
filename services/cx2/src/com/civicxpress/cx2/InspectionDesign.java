@@ -38,21 +38,21 @@ public class InspectionDesign implements Serializable {
     private Integer municipalityId;
     private String inspectDesignName;
     private String instructions;
-    private Boolean active;
-    private Boolean municipalityInternalInspection;
-    private Boolean allowSameDayInspections;
+    private boolean active;
+    private boolean municipalityInternalInspection;
+    private boolean allowSameDayInspections;
     private Integer sameDayInspectionFee;
     private String sameDayInspectionFeeAcctCode;
-    private Boolean allowCancel;
+    private boolean allowCancel;
     private Integer cancelFee;
     private String cancelFeeAccount;
-    private Boolean allowSameDayCancel;
+    private boolean allowSameDayCancel;
     private Integer sameDayCancelFee;
     private String sameDayCancelAcctCode;
     private Integer totalInspectionsDaily;
     private Integer totalInspectionsHourly;
-    private Boolean allowAdHoc;
-    private Boolean callInOnly;
+    private boolean allowAdHoc;
+    private boolean callInOnly;
     private String callInMessage;
     private Integer maxDaysInAdvance;
     private Date scheduleDateOnly;
@@ -62,7 +62,7 @@ public class InspectionDesign implements Serializable {
     private String prefixNumber;
     private Integer prefixStartNumber;
     private Integer prefixNumberStep;
-    private Boolean prefixDashes;
+    private boolean prefixDashes;
     private Integer createdBy;
     private Timestamp createdAt;
     private Users users;
@@ -110,30 +110,30 @@ public class InspectionDesign implements Serializable {
         this.instructions = instructions;
     }
 
-    @Column(name = "`Active`", nullable = true)
-    public Boolean getActive() {
+    @Column(name = "`Active`", nullable = false)
+    public boolean isActive() {
         return this.active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
-    @Column(name = "`MunicipalityInternalInspection`", nullable = true)
-    public Boolean getMunicipalityInternalInspection() {
+    @Column(name = "`MunicipalityInternalInspection`", nullable = false)
+    public boolean isMunicipalityInternalInspection() {
         return this.municipalityInternalInspection;
     }
 
-    public void setMunicipalityInternalInspection(Boolean municipalityInternalInspection) {
+    public void setMunicipalityInternalInspection(boolean municipalityInternalInspection) {
         this.municipalityInternalInspection = municipalityInternalInspection;
     }
 
-    @Column(name = "`AllowSameDayInspections`", nullable = true)
-    public Boolean getAllowSameDayInspections() {
+    @Column(name = "`AllowSameDayInspections`", nullable = false)
+    public boolean isAllowSameDayInspections() {
         return this.allowSameDayInspections;
     }
 
-    public void setAllowSameDayInspections(Boolean allowSameDayInspections) {
+    public void setAllowSameDayInspections(boolean allowSameDayInspections) {
         this.allowSameDayInspections = allowSameDayInspections;
     }
 
@@ -155,12 +155,12 @@ public class InspectionDesign implements Serializable {
         this.sameDayInspectionFeeAcctCode = sameDayInspectionFeeAcctCode;
     }
 
-    @Column(name = "`AllowCancel`", nullable = true)
-    public Boolean getAllowCancel() {
+    @Column(name = "`AllowCancel`", nullable = false)
+    public boolean isAllowCancel() {
         return this.allowCancel;
     }
 
-    public void setAllowCancel(Boolean allowCancel) {
+    public void setAllowCancel(boolean allowCancel) {
         this.allowCancel = allowCancel;
     }
 
@@ -182,12 +182,12 @@ public class InspectionDesign implements Serializable {
         this.cancelFeeAccount = cancelFeeAccount;
     }
 
-    @Column(name = "`AllowSameDayCancel`", nullable = true)
-    public Boolean getAllowSameDayCancel() {
+    @Column(name = "`AllowSameDayCancel`", nullable = false)
+    public boolean isAllowSameDayCancel() {
         return this.allowSameDayCancel;
     }
 
-    public void setAllowSameDayCancel(Boolean allowSameDayCancel) {
+    public void setAllowSameDayCancel(boolean allowSameDayCancel) {
         this.allowSameDayCancel = allowSameDayCancel;
     }
 
@@ -227,21 +227,21 @@ public class InspectionDesign implements Serializable {
         this.totalInspectionsHourly = totalInspectionsHourly;
     }
 
-    @Column(name = "`AllowAdHoc`", nullable = true)
-    public Boolean getAllowAdHoc() {
+    @Column(name = "`AllowAdHoc`", nullable = false)
+    public boolean isAllowAdHoc() {
         return this.allowAdHoc;
     }
 
-    public void setAllowAdHoc(Boolean allowAdHoc) {
+    public void setAllowAdHoc(boolean allowAdHoc) {
         this.allowAdHoc = allowAdHoc;
     }
 
-    @Column(name = "`CallInOnly`", nullable = true)
-    public Boolean getCallInOnly() {
+    @Column(name = "`CallInOnly`", nullable = false)
+    public boolean isCallInOnly() {
         return this.callInOnly;
     }
 
-    public void setCallInOnly(Boolean callInOnly) {
+    public void setCallInOnly(boolean callInOnly) {
         this.callInOnly = callInOnly;
     }
 
@@ -326,12 +326,12 @@ public class InspectionDesign implements Serializable {
         this.prefixNumberStep = prefixNumberStep;
     }
 
-    @Column(name = "`PrefixDashes`", nullable = true)
-    public Boolean getPrefixDashes() {
+    @Column(name = "`PrefixDashes`", nullable = false)
+    public boolean isPrefixDashes() {
         return this.prefixDashes;
     }
 
-    public void setPrefixDashes(Boolean prefixDashes) {
+    public void setPrefixDashes(boolean prefixDashes) {
         this.prefixDashes = prefixDashes;
     }
 
