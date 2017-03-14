@@ -232,6 +232,16 @@
                         <property name="landingPage" value="Main"/>
                     </bean>
                 </entry>
+                <entry key="CodeOfficer">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
+                        <property name="landingPage" value="Main"/>
+                    </bean>
+                </entry>
+                <entry key="CodeManager">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
+                        <property name="landingPage" value="Main"/>
+                    </bean>
+                </entry>
             </map>
         </property>
     </bean>
