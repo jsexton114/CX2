@@ -13,7 +13,7 @@
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
                         <wm-panel iconclass="wi wi-shopping-cart" autoclose="outsideClick" name="panelMyCart" title="My Cart" class="panel-primary">
-                            <wm-grid title="" dataset="bind:Variables.svFeesInCartByUser.dataSet" navigation="None" name="gridFeesList">
+                            <wm-grid title="" dataset="bind:Variables.svFeesInCartByUser.dataSet" navigation="None" name="gridFeesList" nodatamessage="Your cart is empty.">
                                 <wm-grid-column binding="fees.masterForms.formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="fees.masterForms.formTypes.formType" caption="Form Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="fees.masterForms.formTypes.municipalities.municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
