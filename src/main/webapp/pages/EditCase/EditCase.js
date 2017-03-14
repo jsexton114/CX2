@@ -15,3 +15,18 @@ Application.$controller("EditCasePageController", ["$scope", function ($scope) {
     };
 
 }]);
+
+
+Application.$controller("gridCaseStatusesController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformCaseStatusesController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

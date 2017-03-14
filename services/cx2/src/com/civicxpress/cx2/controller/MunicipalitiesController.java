@@ -203,15 +203,6 @@ public class MunicipalitiesController {
 		return municipalitiesService.count(query);
 	}
 
-    @RequestMapping(value="/{id:.+}/feeses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the feeses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Fees> findAssociatedFeeses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated feeses");
-        return municipalitiesService.findAssociatedFeeses(id, pageable);
-    }
-
     @RequestMapping(value="/{id:.+}/caseTypeses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the caseTypeses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -219,6 +210,15 @@ public class MunicipalitiesController {
 
         LOGGER.debug("Fetching all associated caseTypeses");
         return municipalitiesService.findAssociatedCaseTypeses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/feeses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the feeses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Fees> findAssociatedFeeses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated feeses");
+        return municipalitiesService.findAssociatedFeeses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/formCategorieses", method=RequestMethod.GET)
@@ -257,15 +257,6 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedHolidayses(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/inspectionCategorieses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the inspectionCategorieses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<InspectionCategories> findAssociatedInspectionCategorieses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated inspectionCategorieses");
-        return municipalitiesService.findAssociatedInspectionCategorieses(id, pageable);
-    }
-
     @RequestMapping(value="/{id:.+}/inspectionDesigns", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the inspectionDesigns instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -275,13 +266,13 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedInspectionDesigns(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/masterFormses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
+    @RequestMapping(value="/{id:.+}/inspectionCategorieses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionCategorieses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
+    public Page<InspectionCategories> findAssociatedInspectionCategorieses(@PathVariable("id") Integer id, Pageable pageable) {
 
-        LOGGER.debug("Fetching all associated masterFormses");
-        return municipalitiesService.findAssociatedMasterFormses(id, pageable);
+        LOGGER.debug("Fetching all associated inspectionCategorieses");
+        return municipalitiesService.findAssociatedInspectionCategorieses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/manualFeeTypeses", method=RequestMethod.GET)
@@ -291,6 +282,15 @@ public class MunicipalitiesController {
 
         LOGGER.debug("Fetching all associated manualFeeTypeses");
         return municipalitiesService.findAssociatedManualFeeTypeses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/masterFormses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterForms> findAssociatedMasterFormses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated masterFormses");
+        return municipalitiesService.findAssociatedMasterFormses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/municipalityGroupses", method=RequestMethod.GET)

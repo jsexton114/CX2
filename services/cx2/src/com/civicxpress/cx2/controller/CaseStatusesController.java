@@ -98,6 +98,12 @@ public class CaseStatusesController {
 
         return deletedCaseStatuses != null;
     }
+    @RequestMapping(value = "/caseTypeId-sortNumber", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching CaseStatuses with given unique key values.")
+    public CaseStatuses getByCaseTypeIdAndSortNumber(@RequestParam(name = "caseTypeId") Integer caseTypeId, @RequestParam(name = "sortNumber") Integer sortNumber) {
+        LOGGER.debug("Getting CaseStatuses with uniques key CaseTypeIdAndSortNumber");
+        return caseStatusesService.getByCaseTypeIdAndSortNumber(caseTypeId, sortNumber);
+    }
 
     /**
      * @deprecated Use {@link #findCaseStatuses(String, Pageable)} instead.

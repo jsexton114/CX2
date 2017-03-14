@@ -67,16 +67,16 @@ public class Municipalities implements Serializable {
     private int userLimit;
     private int formLimit;
     private States states;
-    private List<Fees> feeses = new ArrayList<>();
     private List<CaseTypes> caseTypeses = new ArrayList<>();
+    private List<Fees> feeses = new ArrayList<>();
     private List<FormCategories> formCategorieses = new ArrayList<>();
     private List<FormTypes> formTypeses = new ArrayList<>();
     private List<Gisrecords> gisrecordses = new ArrayList<>();
     private List<Holidays> holidayses = new ArrayList<>();
-    private List<InspectionCategories> inspectionCategorieses = new ArrayList<>();
     private List<InspectionDesign> inspectionDesigns = new ArrayList<>();
-    private List<MasterForms> masterFormses = new ArrayList<>();
+    private List<InspectionCategories> inspectionCategorieses = new ArrayList<>();
     private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
+    private List<MasterForms> masterFormses = new ArrayList<>();
     private List<MunicipalityGroups> municipalityGroupses = new ArrayList<>();
     private List<Projects> projectses = new ArrayList<>();
     private List<Roles> roleses = new ArrayList<>();
@@ -372,22 +372,22 @@ public class Municipalities implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<Fees> getFeeses() {
-        return this.feeses;
-    }
-
-    public void setFeeses(List<Fees> feeses) {
-        this.feeses = feeses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<CaseTypes> getCaseTypeses() {
         return this.caseTypeses;
     }
 
     public void setCaseTypeses(List<CaseTypes> caseTypeses) {
         this.caseTypeses = caseTypeses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<Fees> getFeeses() {
+        return this.feeses;
+    }
+
+    public void setFeeses(List<Fees> feeses) {
+        this.feeses = feeses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -432,16 +432,6 @@ public class Municipalities implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<InspectionCategories> getInspectionCategorieses() {
-        return this.inspectionCategorieses;
-    }
-
-    public void setInspectionCategorieses(List<InspectionCategories> inspectionCategorieses) {
-        this.inspectionCategorieses = inspectionCategorieses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<InspectionDesign> getInspectionDesigns() {
         return this.inspectionDesigns;
     }
@@ -452,12 +442,12 @@ public class Municipalities implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<MasterForms> getMasterFormses() {
-        return this.masterFormses;
+    public List<InspectionCategories> getInspectionCategorieses() {
+        return this.inspectionCategorieses;
     }
 
-    public void setMasterFormses(List<MasterForms> masterFormses) {
-        this.masterFormses = masterFormses;
+    public void setInspectionCategorieses(List<InspectionCategories> inspectionCategorieses) {
+        this.inspectionCategorieses = inspectionCategorieses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -468,6 +458,16 @@ public class Municipalities implements Serializable {
 
     public void setManualFeeTypeses(List<ManualFeeTypes> manualFeeTypeses) {
         this.manualFeeTypeses = manualFeeTypeses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<MasterForms> getMasterFormses() {
+        return this.masterFormses;
+    }
+
+    public void setMasterFormses(List<MasterForms> masterFormses) {
+        this.masterFormses = masterFormses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

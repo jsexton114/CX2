@@ -50,6 +50,15 @@ public interface CaseStatusesService {
 	 */
 	CaseStatuses findById(Integer casestatusesId);
 
+    /**
+	 * Find and return the CaseStatuses for given caseTypeId  andsortNumber  if exists.
+	 *
+	 * @param caseTypeId value of caseTypeId; value cannot be null.
+	 * @param sortNumber value of sortNumber; value cannot be null.
+	 * @return CaseStatuses associated with the given inputs.
+     * @throws EntityNotFoundException if no matching CaseStatuses found.
+	 */
+    CaseStatuses getByCaseTypeIdAndSortNumber(Integer caseTypeId, Integer sortNumber)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing CaseStatuses. It replaces all fields of the existing CaseStatuses with the given caseStatuses.

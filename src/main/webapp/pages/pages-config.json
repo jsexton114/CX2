@@ -57,7 +57,10 @@
 }, {
   "name" : "EditCase",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "CaseTypeId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "EditForm",
   "type" : "PAGE",

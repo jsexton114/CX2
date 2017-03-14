@@ -321,10 +321,18 @@
     "name" : "goToPage_EditCase",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "EditCase",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "EditCase",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "CaseTypeId",
+      "value" : "bind:Widgets.gridCasetypes.selecteditem.id"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_EditForm" : {

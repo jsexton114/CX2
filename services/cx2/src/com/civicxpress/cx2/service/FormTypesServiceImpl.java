@@ -82,19 +82,19 @@ public class FormTypesServiceImpl implements FormTypesService {
 	public FormTypes create(FormTypes formTypes) {
         LOGGER.debug("Creating a new FormTypes with information: {}", formTypes);
         FormTypes formTypesCreated = this.wmGenericDao.create(formTypes);
-        if(formTypesCreated.getFormHistories() != null) {
-            for(FormHistory formHistorie : formTypesCreated.getFormHistories()) {
-                formHistorie.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormHistory with information: {}", formHistorie);
-                formHistoryService.create(formHistorie);
-            }
-        }
-
         if(formTypesCreated.getFormCategoryMappings() != null) {
             for(FormCategoryMapping formCategoryMapping : formTypesCreated.getFormCategoryMappings()) {
                 formCategoryMapping.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child FormCategoryMapping with information: {}", formCategoryMapping);
                 formCategoryMappingService.create(formCategoryMapping);
+            }
+        }
+
+        if(formTypesCreated.getFormHistories() != null) {
+            for(FormHistory formHistorie : formTypesCreated.getFormHistories()) {
+                formHistorie.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormHistory with information: {}", formHistorie);
+                formHistoryService.create(formHistorie);
             }
         }
 
@@ -106,19 +106,19 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getFormTypeFieldses() != null) {
-            for(FormTypeFields formTypeFieldse : formTypesCreated.getFormTypeFieldses()) {
-                formTypeFieldse.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormTypeFields with information: {}", formTypeFieldse);
-                formTypeFieldsService.create(formTypeFieldse);
-            }
-        }
-
         if(formTypesCreated.getFormToInspectionCategoryMappings() != null) {
             for(FormToInspectionCategoryMapping formToInspectionCategoryMapping : formTypesCreated.getFormToInspectionCategoryMappings()) {
                 formToInspectionCategoryMapping.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child FormToInspectionCategoryMapping with information: {}", formToInspectionCategoryMapping);
                 formToInspectionCategoryMappingService.create(formToInspectionCategoryMapping);
+            }
+        }
+
+        if(formTypesCreated.getFormTypeFieldses() != null) {
+            for(FormTypeFields formTypeFieldse : formTypesCreated.getFormTypeFieldses()) {
+                formTypeFieldse.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormTypeFields with information: {}", formTypeFieldse);
+                formTypeFieldsService.create(formTypeFieldse);
             }
         }
 
@@ -213,17 +213,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formHistories");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return formHistoryService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormCategoryMapping> findAssociatedFormCategoryMappings(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formCategoryMappings");
 
@@ -231,6 +220,17 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return formCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formHistories");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formHistoryService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -246,17 +246,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formTypeFieldses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return formTypeFieldsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormToInspectionCategoryMapping> findAssociatedFormToInspectionCategoryMappings(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formToInspectionCategoryMappings");
 
@@ -264,6 +253,17 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return formToInspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formTypeFieldses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formTypeFieldsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

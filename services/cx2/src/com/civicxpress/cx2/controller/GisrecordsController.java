@@ -156,15 +156,6 @@ public class GisrecordsController {
         return gisrecordsService.findAssociatedFeeses(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/gis2formses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the gis2formses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Gis2forms> findAssociatedGis2formses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated gis2formses");
-        return gisrecordsService.findAssociatedGis2formses(id, pageable);
-    }
-
     @RequestMapping(value="/{id:.+}/giscontactses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the giscontactses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -172,6 +163,15 @@ public class GisrecordsController {
 
         LOGGER.debug("Fetching all associated giscontactses");
         return gisrecordsService.findAssociatedGiscontactses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/gis2formses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the gis2formses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Gis2forms> findAssociatedGis2formses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated gis2formses");
+        return gisrecordsService.findAssociatedGis2formses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/inspectionGises", method=RequestMethod.GET)
