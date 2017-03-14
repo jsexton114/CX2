@@ -14,6 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.CaseStatuses;
 import com.civicxpress.cx2.CaseTypes;
 import com.civicxpress.cx2.MasterCases;
 
@@ -125,6 +126,18 @@ public interface CaseTypesService {
 	 * @return The count of the CaseTypes.
 	 */
 	long count(String query);
+
+    /*
+     * Returns the associated caseStatuseses for given CaseTypes id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated CaseStatuses instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<CaseStatuses> findAssociatedCaseStatuseses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated masterCaseses for given CaseTypes id.

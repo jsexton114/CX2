@@ -30,6 +30,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.CaseStatuses;
 import com.civicxpress.cx2.CaseTypes;
 import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.service.CaseTypesService;
@@ -141,6 +142,15 @@ public class CaseTypesController {
 		LOGGER.debug("counting CaseTypes");
 		return caseTypesService.count(query);
 	}
+
+    @RequestMapping(value="/{id:.+}/caseStatuseses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the caseStatuseses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<CaseStatuses> findAssociatedCaseStatuseses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated caseStatuseses");
+        return caseTypesService.findAssociatedCaseStatuseses(id, pageable);
+    }
 
     @RequestMapping(value="/{id:.+}/masterCaseses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the masterCaseses instance associated with the given id.")

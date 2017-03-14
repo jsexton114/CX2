@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.CaseStatuses;
 import com.civicxpress.cx2.CaseTypes;
 import com.civicxpress.cx2.MasterCases;
 
@@ -34,6 +35,10 @@ import com.civicxpress.cx2.MasterCases;
 public class CaseTypesServiceImpl implements CaseTypesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CaseTypesServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.CaseStatusesService")
+	private CaseStatusesService caseStatusesService;
 
     @Autowired
 	@Qualifier("cx2.MasterCasesService")
@@ -52,6 +57,14 @@ public class CaseTypesServiceImpl implements CaseTypesService {
 	public CaseTypes create(CaseTypes caseTypes) {
         LOGGER.debug("Creating a new CaseTypes with information: {}", caseTypes);
         CaseTypes caseTypesCreated = this.wmGenericDao.create(caseTypes);
+        if(caseTypesCreated.getCaseStatuseses() != null) {
+            for(CaseStatuses caseStatusese : caseTypesCreated.getCaseStatuseses()) {
+                caseStatusese.setCaseTypes(caseTypesCreated);
+                LOGGER.debug("Creating a new child CaseStatuses with information: {}", caseStatusese);
+                caseStatusesService.create(caseStatusese);
+            }
+        }
+
         if(caseTypesCreated.getMasterCaseses() != null) {
             for(MasterCases masterCasese : caseTypesCreated.getMasterCaseses()) {
                 masterCasese.setCaseTypes(caseTypesCreated);
@@ -135,6 +148,17 @@ public class CaseTypesServiceImpl implements CaseTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<CaseStatuses> findAssociatedCaseStatuseses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated caseStatuseses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("caseTypes.id = '" + id + "'");
+
+        return caseStatusesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterCases> findAssociatedMasterCaseses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterCaseses");
 
@@ -142,6 +166,15 @@ public class CaseTypesServiceImpl implements CaseTypesService {
         queryBuilder.append("caseTypes.id = '" + id + "'");
 
         return masterCasesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service CaseStatusesService instance
+	 */
+	protected void setCaseStatusesService(CaseStatusesService service) {
+        this.caseStatusesService = service;
     }
 
     /**

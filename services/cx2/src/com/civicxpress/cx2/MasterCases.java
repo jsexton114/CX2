@@ -43,8 +43,9 @@ public class MasterCases implements Serializable {
     @Type(type = "DateTime")
     private LocalDateTime dateModified;
     private Integer modifiedBy;
-    private String caseStatus;
     private Integer caseType;
+    private Integer caseStatus;
+    private CaseStatuses caseStatuses;
     private CaseTypes caseTypes;
     private MasterForms masterForms;
     private MasterInspections masterInspections;
@@ -134,15 +135,6 @@ public class MasterCases implements Serializable {
         this.modifiedBy = modifiedBy;
     }
 
-    @Column(name = "`CaseStatus`", nullable = true, length = 255)
-    public String getCaseStatus() {
-        return this.caseStatus;
-    }
-
-    public void setCaseStatus(String caseStatus) {
-        this.caseStatus = caseStatus;
-    }
-
     @Column(name = "`CaseType`", nullable = true, scale = 0, precision = 10)
     public Integer getCaseType() {
         return this.caseType;
@@ -150,6 +142,29 @@ public class MasterCases implements Serializable {
 
     public void setCaseType(Integer caseType) {
         this.caseType = caseType;
+    }
+
+    @Column(name = "`CaseStatus`", nullable = true, scale = 0, precision = 10)
+    public Integer getCaseStatus() {
+        return this.caseStatus;
+    }
+
+    public void setCaseStatus(Integer caseStatus) {
+        this.caseStatus = caseStatus;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`CaseStatus`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public CaseStatuses getCaseStatuses() {
+        return this.caseStatuses;
+    }
+
+    public void setCaseStatuses(CaseStatuses caseStatuses) {
+        if(caseStatuses != null) {
+            this.caseStatus = caseStatuses.getId();
+        }
+
+        this.caseStatuses = caseStatuses;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
