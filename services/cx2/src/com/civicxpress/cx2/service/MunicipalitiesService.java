@@ -14,6 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.CaseTypes;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormTypes;
@@ -153,6 +154,18 @@ public interface MunicipalitiesService {
     Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated caseTypeses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated CaseTypes instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<CaseTypes> findAssociatedCaseTypeses(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated formCategorieses for given Municipalities id.
      *
      * @param id value of id; value cannot be null
@@ -225,18 +238,6 @@ public interface MunicipalitiesService {
     Page<InspectionCategories> findAssociatedInspectionCategorieses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated masterFormses for given Municipalities id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated MasterForms instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated manualFeeTypeses for given Municipalities id.
      *
      * @param id value of id; value cannot be null
@@ -247,6 +248,18 @@ public interface MunicipalitiesService {
      * @see Page
      */
     Page<ManualFeeTypes> findAssociatedManualFeeTypeses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated masterFormses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterForms instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated municipalityGroupses for given Municipalities id.

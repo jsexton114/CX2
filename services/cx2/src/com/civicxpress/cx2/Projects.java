@@ -55,8 +55,8 @@ public class Projects implements Serializable {
     private List<MasterInspections> masterInspectionses = new ArrayList<>();
     private List<ProjectForms> projectFormses = new ArrayList<>();
     private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
-    private List<ProjectTasks> projectTaskses = new ArrayList<>();
     private List<ProjectSharedWith> projectSharedWiths = new ArrayList<>();
+    private List<ProjectTasks> projectTaskses = new ArrayList<>();
 
     @Id
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
@@ -273,22 +273,22 @@ public class Projects implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
-    public List<ProjectTasks> getProjectTaskses() {
-        return this.projectTaskses;
-    }
-
-    public void setProjectTaskses(List<ProjectTasks> projectTaskses) {
-        this.projectTaskses = projectTaskses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
     public List<ProjectSharedWith> getProjectSharedWiths() {
         return this.projectSharedWiths;
     }
 
     public void setProjectSharedWiths(List<ProjectSharedWith> projectSharedWiths) {
         this.projectSharedWiths = projectSharedWiths;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
+    public List<ProjectTasks> getProjectTaskses() {
+        return this.projectTaskses;
+    }
+
+    public void setProjectTaskses(List<ProjectTasks> projectTaskses) {
+        this.projectTaskses = projectTaskses;
     }
 
     @Override
