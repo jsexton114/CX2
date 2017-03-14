@@ -36,9 +36,6 @@ public class CaseTypes implements Serializable {
     private String caseType;
     private String description;
     private Integer municipalityId;
-    private Boolean sendEmail;
-    private String emailSubject;
-    private String emailBody;
     private Municipalities municipalities;
     private List<MasterCases> masterCaseses = new ArrayList<>();
 
@@ -78,33 +75,6 @@ public class CaseTypes implements Serializable {
 
     public void setMunicipalityId(Integer municipalityId) {
         this.municipalityId = municipalityId;
-    }
-
-    @Column(name = "`SendEmail`", nullable = true)
-    public Boolean getSendEmail() {
-        return this.sendEmail;
-    }
-
-    public void setSendEmail(Boolean sendEmail) {
-        this.sendEmail = sendEmail;
-    }
-
-    @Column(name = "`EmailSubject`", nullable = true, length = 500)
-    public String getEmailSubject() {
-        return this.emailSubject;
-    }
-
-    public void setEmailSubject(String emailSubject) {
-        this.emailSubject = emailSubject;
-    }
-
-    @Column(name = "`EmailBody`", nullable = true, length = 2147483647)
-    public String getEmailBody() {
-        return this.emailBody;
-    }
-
-    public void setEmailBody(String emailBody) {
-        this.emailBody = emailBody;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
