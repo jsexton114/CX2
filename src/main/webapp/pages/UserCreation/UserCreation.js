@@ -75,7 +75,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
             $scope.Variables.RegisterSubscriptions.insertRecord();
         }
         $scope.Variables.NewUserToLogin.navigate();
-
+        window.location.reload();
     };
 
     $scope.wizard1Done = function($isolateScope, steps) {

@@ -2943,7 +2943,7 @@
           "fieldName" : "masterForms",
           "type" : "string",
           "fullyQualifiedType" : "string",
-          "columnName" : "RelatedFormGuid",
+          "columnName" : "FormGuid",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
@@ -2951,7 +2951,7 @@
           "generator" : "assigned",
           "isRelated" : true,
           "defaultValue" : "",
-          "relatedColumnName" : "relatedFormGuid",
+          "relatedColumnName" : "formGuid",
           "targetTable" : "MasterForms",
           "scale" : 0
         }, {
@@ -3048,7 +3048,7 @@
           "fieldName" : "projects",
           "type" : "string",
           "fullyQualifiedType" : "string",
-          "columnName" : "RelatedProjectGuid",
+          "columnName" : "ProjectGuid",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 32,
@@ -3056,7 +3056,7 @@
           "generator" : "assigned",
           "isRelated" : true,
           "defaultValue" : "",
-          "relatedColumnName" : "relatedProjectGuid",
+          "relatedColumnName" : "projectGuid",
           "targetTable" : "Projects",
           "scale" : 0
         }, {
@@ -3086,10 +3086,10 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "relatedCaseGuid",
+          "fieldName" : "caseGuid",
           "type" : "string",
           "fullyQualifiedType" : "string",
-          "columnName" : "RelatedCaseGuid",
+          "columnName" : "CaseGuid",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 255,
@@ -3099,10 +3099,10 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "requestedAt",
+          "fieldName" : "dateRequested",
           "type" : "datetime",
           "fullyQualifiedType" : "datetime",
-          "columnName" : "RequestedAt",
+          "columnName" : "DateRequested",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
@@ -3113,10 +3113,10 @@
           "systemUpdated" : true,
           "scale" : 0
         }, {
-          "fieldName" : "modifiedAt",
+          "fieldName" : "dateModified",
           "type" : "datetime",
           "fullyQualifiedType" : "datetime",
-          "columnName" : "ModifiedAt",
+          "columnName" : "DateModified",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
@@ -3125,6 +3125,32 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "closed",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Closed",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "dateAssigned",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateAssigned",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
