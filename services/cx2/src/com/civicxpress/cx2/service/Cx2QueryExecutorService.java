@@ -271,6 +271,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetFeeIdsOfUserInCart(ExportType exportType, Integer user, Pageable pageable);
 
+    Page<CountOfCasesForMunicipalityResponse> executeCountOfCasesForMunicipality(Integer municipalityId, Pageable pageable);
+
+    Downloadable exportCountOfCasesForMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable);
+
     Integer executeUpdatePrimaryVendorStatusInVEndor2Forms(UpdatePrimaryVendorStatusInVendor2formsRequest updatePrimaryVendorStatusInVendor2formsRequest);
 
     Page<MunicipalityProjectsResponse> executeMunicipalityProjects(Boolean active, Integer municipalityId, Pageable pageable);

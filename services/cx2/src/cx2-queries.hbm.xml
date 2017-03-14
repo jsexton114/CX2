@@ -1049,6 +1049,20 @@ group by FC.Category) wmTempTable
     <query-param name="user" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="CountOfCasesForMunicipality">
+        <![CDATA[
+        select count(DISTINCT ID) as count from CaseTypes where MunicipalityId=:MunicipalityId
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfCasesForMunicipality__count">
+        <![CDATA[
+        select count(*) from (select count(DISTINCT ID) as count from CaseTypes where MunicipalityId=:MunicipalityId) wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="UpdatePrimaryVendorStatusInVEndor2Forms">
         <![CDATA[
         update Vendors2Form set PrimaryVendor=:pv where RelatedFormGUID=:form

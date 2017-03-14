@@ -1234,6 +1234,25 @@ public class QueryExecutionController {
         return queryService.exportGetFeeIdsOfUserInCart(exportType, user, pageable);
     }
 
+    @RequestMapping(value = "/queries/CountOfCasesForMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountOfCasesForMunicipality")
+    public Page<CountOfCasesForMunicipalityResponse> executeCountOfCasesForMunicipality(@RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfCasesForMunicipality");
+        Page<CountOfCasesForMunicipalityResponse> _result = queryService.executeCountOfCasesForMunicipality(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: CountOfCasesForMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfCasesForMunicipality")
+    @RequestMapping(value = "/queries/CountOfCasesForMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfCasesForMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfCasesForMunicipality");
+
+        return queryService.exportCountOfCasesForMunicipality(exportType, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdatePrimaryVendorStatusInVEndor2Forms", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdatePrimaryVendorStatusInVEndor2Forms")

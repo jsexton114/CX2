@@ -1042,6 +1042,44 @@
       } ]
     }
   },
+  "CountOfCasesForMunicipality" : {
+    "name" : "CountOfCasesForMunicipality",
+    "description" : "CountOfCasesForMunicipality",
+    "version" : "V2",
+    "queryString" : "select count(DISTINCT ID) as count from CaseTypes where MunicipalityId=:MunicipalityId",
+    "countQueryString" : "select count(*) from (select count(DISTINCT ID) as count from CaseTypes where MunicipalityId=:MunicipalityId) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "MunicipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CountOfCasesForMunicipalityResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "count",
+        "fieldName" : "_count",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "CountOfCompnayFormsByVendorId" : {
     "name" : "CountOfCompnayFormsByVendorId",
     "description" : "CountOfCompnayFormsByVendorId",

@@ -25,17 +25,18 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2" padding="1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-panel iconclass="wi wi-featured-play-list" autoclose="outsideClick" name="panelCasetypes" title="My Cases Types" class="panel-primary">
+                        <wm-panel iconclass="wi wi-chrome-reader-mode" autoclose="outsideClick" name="panelCasetypes" title="My Cases Types" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegridCasetypes">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvCaseTypesData.dataSet" navigation="Classic" name="gridCasetypes">
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvCaseTypesData.dataSet" navigation="Classic" name="gridCasetypes" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                     <wm-grid-column binding="caseType" caption="Case Type" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="description" caption="Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                    <wm-grid-action key="addNewRow" display-name="New Type" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Type" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.goToPage_EditCase.invoke()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
-                                <wm-liveform novalidate="false" errormessage="" title="Case Type" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvCaseTypesData.dataSet" captionalign="left" captionposition="top" name="liveformCasetypes">
+                                <wm-liveform novalidate="false" errormessage="" title="Create Case Type" formlayout="dialog" iconclass="wi wi-chrome-reader-mode" dataset="bind:Variables.lvCaseTypesData.dataSet" captionalign="left" captionposition="top"
+                                name="liveformCasetypes">
                                     <wm-layoutgrid columns="3" name="layoutgrid4">
                                         <wm-gridrow name="gridrow8">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn9">
@@ -53,8 +54,8 @@
                                     <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
                                     <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" readonly="false" required="false"
                                     widget="select" placeholder="Select value" dataset="bind:Variables.lvSelectedMunicipalityObject.dataSet" datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.lvSelectedMunicipalityObject.firstRecord"></wm-form-field>
+                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                 </wm-liveform>
                             </wm-livegrid>
                         </wm-panel>
