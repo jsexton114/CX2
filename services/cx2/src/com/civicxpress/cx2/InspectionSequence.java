@@ -24,8 +24,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "`InspectionSequence`", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"`FormTypeId`", "`SequenceOrderNumber`"}),
-        @UniqueConstraint(columnNames = {"`FormTypeId`", "`InspectDesignId`"})})
+        @UniqueConstraint(columnNames = {"`FormTypeId`", "`SequenceOrderNumber`"})})
 public class InspectionSequence implements Serializable {
 
     private Integer id;

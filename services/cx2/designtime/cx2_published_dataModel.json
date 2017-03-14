@@ -8440,7 +8440,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
+      "partOfUniqueKey" : false,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -8501,12 +8501,6 @@
       "columns" : [ "FormTypeId", "SequenceOrderNumber" ],
       "composite" : true,
       "name" : "UK_InspectionSequence_FoAu9ID",
-      "type" : "UNIQUE",
-      "virtual" : false
-    }, {
-      "columns" : [ "FormTypeId", "InspectDesignId" ],
-      "composite" : true,
-      "name" : "UK_InspectionSequence_FoiVJoR",
       "type" : "UNIQUE",
       "virtual" : false
     } ],

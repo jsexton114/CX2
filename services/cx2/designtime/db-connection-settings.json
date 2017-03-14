@@ -12,9 +12,6 @@
   "port" : "1433",
   "schemaName" : "cx2",
   "tableFilter" : [ {
-    "table" : "Fees",
-    "schema" : "cx2"
-  }, {
     "table" : "CaseStatuses",
     "schema" : "cx2"
   }, {
@@ -24,10 +21,10 @@
     "table" : "Document",
     "schema" : "cx2"
   }, {
-    "table" : "FormCategories",
+    "table" : "Fees",
     "schema" : "cx2"
   }, {
-    "table" : "FormHistory",
+    "table" : "FormCategories",
     "schema" : "cx2"
   }, {
     "table" : "ContractorTypes",
@@ -36,13 +33,16 @@
     "table" : "FormCategoryMapping",
     "schema" : "cx2"
   }, {
-    "table" : "FormMessages",
+    "table" : "FormHistory",
     "schema" : "cx2"
   }, {
     "table" : "FormStatuses",
     "schema" : "cx2"
   }, {
     "table" : "FormTypes",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormMessages",
     "schema" : "cx2"
   }, {
     "table" : "FormFieldTypes",
@@ -54,13 +54,10 @@
     "table" : "FormsToInspections",
     "schema" : "cx2"
   }, {
-    "table" : "FormTypeFields",
-    "schema" : "cx2"
-  }, {
     "table" : "FormToInspectionCategoryMapping",
     "schema" : "cx2"
   }, {
-    "table" : "GIS2Forms",
+    "table" : "FormTypeFields",
     "schema" : "cx2"
   }, {
     "table" : "GISContacts",
@@ -72,13 +69,16 @@
     "table" : "GlobalSettings",
     "schema" : "cx2"
   }, {
+    "table" : "GIS2Forms",
+    "schema" : "cx2"
+  }, {
     "table" : "Holidays",
     "schema" : "cx2"
   }, {
-    "table" : "InspectionCategories",
+    "table" : "InspectionDesign",
     "schema" : "cx2"
   }, {
-    "table" : "InspectionDesign",
+    "table" : "InspectionCategories",
     "schema" : "cx2"
   }, {
     "table" : "InspectionGis",
@@ -93,19 +93,19 @@
     "table" : "InspectionSequence",
     "schema" : "cx2"
   }, {
-    "table" : "MasterForms",
+    "table" : "ManualFeeTypes",
     "schema" : "cx2"
   }, {
     "table" : "MasterCases",
     "schema" : "cx2"
   }, {
-    "table" : "MasterInspections",
+    "table" : "MasterForms",
     "schema" : "cx2"
   }, {
     "table" : "Municipalities",
     "schema" : "cx2"
   }, {
-    "table" : "ManualFeeTypes",
+    "table" : "MasterInspections",
     "schema" : "cx2"
   }, {
     "table" : "MasterProjects",
@@ -123,16 +123,16 @@
     "table" : "ProjectForms",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectGISRecords",
-    "schema" : "cx2"
-  }, {
     "table" : "Projects",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectTasks",
+    "table" : "ProjectGISRecords",
     "schema" : "cx2"
   }, {
     "table" : "ProjectSharedWith",
+    "schema" : "cx2"
+  }, {
+    "table" : "ProjectTasks",
     "schema" : "cx2"
   }, {
     "table" : "Roles",
@@ -150,28 +150,28 @@
     "table" : "Subdivisions",
     "schema" : "cx2"
   }, {
-    "table" : "UserPasswordResetTokens",
-    "schema" : "cx2"
-  }, {
     "table" : "Users",
     "schema" : "cx2"
   }, {
     "table" : "Vendor",
     "schema" : "cx2"
   }, {
+    "table" : "UserPasswordResetTokens",
+    "schema" : "cx2"
+  }, {
     "table" : "UserSubscriptions",
-    "schema" : "cx2"
-  }, {
-    "table" : "States",
-    "schema" : "cx2"
-  }, {
-    "table" : "UserViewPreferences",
     "schema" : "cx2"
   }, {
     "table" : "VendorApprovals",
     "schema" : "cx2"
   }, {
     "table" : "VendorLicenses",
+    "schema" : "cx2"
+  }, {
+    "table" : "States",
+    "schema" : "cx2"
+  }, {
+    "table" : "UserViewPreferences",
     "schema" : "cx2"
   }, {
     "table" : "VendorAdmins",

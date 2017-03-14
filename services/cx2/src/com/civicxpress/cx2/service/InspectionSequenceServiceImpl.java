@@ -90,24 +90,6 @@ public class InspectionSequenceServiceImpl implements InspectionSequenceService 
         return inspectionSequence;
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public InspectionSequence getByFormTypeIdAndInspectDesignId(Integer formTypeId, Integer inspectDesignId) {
-        Map<String, Object> formTypeIdAndInspectDesignIdMap = new HashMap<>();
-        formTypeIdAndInspectDesignIdMap.put("formTypeId", formTypeId);
-        formTypeIdAndInspectDesignIdMap.put("inspectDesignId", inspectDesignId);
-
-        LOGGER.debug("Finding InspectionSequence by unique keys: {}", formTypeIdAndInspectDesignIdMap);
-        InspectionSequence inspectionSequence = this.wmGenericDao.findByUniqueKey(formTypeIdAndInspectDesignIdMap);
-
-        if (inspectionSequence == null){
-            LOGGER.debug("No InspectionSequence found with given unique key values: {}", formTypeIdAndInspectDesignIdMap);
-            throw new EntityNotFoundException(String.valueOf(formTypeIdAndInspectDesignIdMap));
-        }
-
-        return inspectionSequence;
-    }
-
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "cx2TransactionManager")
 	@Override
 	public InspectionSequence update(InspectionSequence inspectionSequence) throws EntityNotFoundException {

@@ -104,13 +104,6 @@ public class InspectionSequenceController {
         return inspectionSequenceService.getByFormTypeIdAndSequenceOrderNumber(formTypeId, sequenceOrderNumber);
     }
 
-    @RequestMapping(value = "/formTypeId-inspectDesignId", method = RequestMethod.GET)
-    @ApiOperation(value = "Returns the matching InspectionSequence with given unique key values.")
-    public InspectionSequence getByFormTypeIdAndInspectDesignId(@RequestParam(name = "formTypeId") Integer formTypeId, @RequestParam(name = "inspectDesignId") Integer inspectDesignId) {
-        LOGGER.debug("Getting InspectionSequence with uniques key FormTypeIdAndInspectDesignId");
-        return inspectionSequenceService.getByFormTypeIdAndInspectDesignId(formTypeId, inspectDesignId);
-    }
-
     /**
      * @deprecated Use {@link #findInspectionSequences(String, Pageable)} instead.
      */
