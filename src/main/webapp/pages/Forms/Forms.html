@@ -927,32 +927,32 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewInspectionRequest">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Inspection Request" iconclass="wi wi-file-text" name="dialogInspectionRequest">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Inspection Request" iconclass="wi wi-date-range" name="dialogInspectionRequest">
             <wm-layoutgrid name="layoutgrid29_1">
-                <wm-gridrow name="gridrow81_3" padding="1em unset">
+                <wm-gridrow name="gridrow81_3" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn153_2" horizontalalign="center">
                         <wm-composite name="composite5_2" padding="unset 2em" required="true">
-                            <wm-label class="col-md-3 control-label" name="label93" caption="Inspection Type"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" name="label93" caption="Inspection Type" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container8">
                                 <wm-select name="selectInspectionDesign" dataset="bind:Variables.svDistinctInspectionDesignsForFormType.dataSet" datafield="All Fields" displayfield="inspectDesignName"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow82" padding="1em unset">
+                <wm-gridrow name="gridrow82" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn155_1" horizontalalign="center">
                         <wm-composite name="composite6" padding="unset 2em" required="true">
-                            <wm-label class="col-md-3 control-label" name="label94" caption="Date"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" name="label94" caption="Date" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container9">
-                                <wm-datetime name="datetimeInspectionRequest" mindate="CURRENT_DATE"></wm-datetime>
+                                <wm-date name="dateInspectionRequest" mindate="CURRENT_DATE" datepattern="MM-dd-yyyy"></wm-date>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions10">
-                <wm-button class="btn-sec" caption="Request" type="button" margin="unset 0.5em" name="button2InspectionRequest" on-click="button2InspectionRequestClick($event, $scope)"></wm-button>
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button21"></wm-button>
+                <wm-button class="btn-primary" caption="Request" type="button" margin="unset 0.5em" name="button2InspectionRequest" on-click="button2InspectionRequestClick($event, $scope)" iconclass="wi wi-plus"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button21" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
