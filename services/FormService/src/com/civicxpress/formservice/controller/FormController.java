@@ -5,15 +5,16 @@ import com.civicxpress.formservice.FormService;
 import java.lang.Long;
 import java.sql.SQLException;
 import com.wavemaker.runtime.file.model.DownloadResponse;
+import java.lang.Integer;
 import java.lang.String;
+import java.lang.Exception;
+import org.apache.http.HttpEntity;
 import java.lang.Object;
 import java.util.Map;
 import com.civicxpress.formservice.FormService.UserPermissionsPojo;
 import java.util.HashMap;
-import java.lang.Integer;
 import java.lang.Boolean;
 import org.springframework.web.multipart.MultipartFile;
-import java.lang.Exception;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class FormController {
     @ApiOperation(value = "")
     public DownloadResponse downloadDocument(@RequestParam(value = "documentId", required = false) Long documentId) throws SQLException {
         return formService.downloadDocument(documentId);
+    }
+
+    @RequestMapping(value = "/document", method = RequestMethod.PUT)
+    public HttpEntity editDocument(@RequestParam(value = "documentId", required = false) Long documentId, @RequestParam(value = "resolution", required = false) Integer resolution, @RequestParam(value = "options", required = false) String options) throws Exception {
+        return formService.editDocument(documentId, resolution, options);
     }
 
     @RequestMapping(value = "/formData", method = RequestMethod.GET)

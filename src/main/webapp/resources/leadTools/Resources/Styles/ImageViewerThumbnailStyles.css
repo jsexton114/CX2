@@ -1,0 +1,74 @@
+﻿/* This file was created in SCSS (SASS). Please change the .scss file, not the .css file. */
+.lt-imageviewer-viewdiv + .lt-imageviewer-forecanvas {
+  -webkit-transition: opacity 0.4s ease;
+  -moz-transition: opacity 0.4s ease;
+  -o-transition: opacity 0.4s ease;
+  transition: opacity 0.4s ease;
+}
+
+canvas.lt-imageviewer-forecanvas.hide-for-transitions {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+  opacity: 0;
+}
+
+.lt-imageviewer .lt-thumb-item {
+  /* Box Shadow (view, item, image border) */
+  box-shadow: #333 1px 1px 4px -1px;
+}
+
+.lt-imageviewer .lt-thumb-view, .lt-imageviewer .lt-thumb-view * {
+  /* CSS Transitions (view, all elements inside) */
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  /*-moz-transition-property: color, border-color, background-color;
+         -o-transition-property: color, border-color, background-color;
+         -webkit-transition-property: color, border-color, background-color;
+         transition-property: color, border-color, background-color;*/
+  -moz-transition-property: color, border-color, background-color;
+  -o-transition-property: color, border-color, background-color;
+  -webkit-transition-property: color, border-color, background-color;
+  transition-property: color, border-color, background-color;
+}
+
+.lt-imageviewer .lt-thumb-view {
+  /* View */
+  border: 0 solid transparent;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.lt-imageviewer .lt-thumb-item {
+  /* Item */
+  border: 1px solid #62a2e4;
+  background-color: #c9e0f7;
+  margin: 4px;
+  padding: 4px;
+  padding-bottom: 20px;
+}
+
+.lt-imageviewer .lt-thumb-item.lt-thumb-item-hovered {
+  /* Hovered Item in selection mode */
+  border-color: #257bd5;
+  background-color: #86baed;
+}
+
+.lt-imageviewer .lt-thumb-item.lt-thumb-item-selected {
+  /* Selected Item in selection mode */
+  border-color: #5ab95a;
+  background-color: #aedfae;
+}
+
+.lt-imageviewer .lt-thumb-item-text {
+  /* Item Text */
+  color: #333;
+  font-size: 14px;
+  bottom: 0;
+  width: inherit;
+  text-align: center;
+}

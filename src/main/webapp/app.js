@@ -1,7 +1,11 @@
 Application.requires.push('vcRecaptcha');
 
-Application.config(['vcRecaptchaServiceProvider', function(vcRecaptchaServiceProvider) {
+Application.config(['vcRecaptchaServiceProvider', '$routeProvider', function(vcRecaptchaServiceProvider, $routeProvider) {
     vcRecaptchaServiceProvider.setSiteKey("6LcNeBUUAAAAAE7ACQkzLMRlZ4kHI9-ebthTlQ61");
+
+    $routeProvider.when("/editDocument/:docId", {
+        templateUrl: "resources/leadTools/index.html"
+    });
 }]);
 
 Application.run(function($rootScope) {

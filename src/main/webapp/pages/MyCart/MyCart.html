@@ -19,7 +19,7 @@
                                 <wm-grid-column binding="fees.masterForms.formTypes.municipalities.municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="fees.gisrecords.fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="fees.feeType" caption="Fee" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="fees.amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="fees.amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-action key="customButton" display-name="bind:totalSumInCart | toCurrency:'$':2" show="true" class="btn-secondary" iconclass="" title="Total" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-action key="addNewRow" display-name="Proceed to Checkout" show="true" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="" shortcutkey="" disabled="false" icon="wi wi-navigate-next"></wm-grid-action>

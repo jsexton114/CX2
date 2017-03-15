@@ -5,6 +5,13 @@ package com.civicxpress.formservice;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -661,9 +668,7 @@ public class FormService {
 		}
     }
     
-    public DownloadResponse downloadDocument(Long documentId) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
-    	
+    private DBRow getDocument(Connection cx2Conn, Long documentId) throws SQLException {
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("documentId", documentId);
     	
@@ -673,12 +678,51 @@ public class FormService {
     		return null;
     	}
     	
+    	return documentData;
+    }
+    
+    public DownloadResponse downloadDocument(Long documentId) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	
+    	DBRow documentData = getDocument(cx2Conn, documentId);
+    	
+    	if (documentData == null) {
+    		cx2Conn.close();
+    		return null;
+    	}
+    	
     	DownloadResponse dr = new DownloadResponse();
     	dr.setFileName(documentData.getString("Filename"));
     	dr.setContentType(documentData.getString("Mimetype"));
     	dr.setContents(new ByteArrayInputStream(documentData.getBytes("Contents")));
     	
+    	cx2Conn.close();
+    	
     	return dr;
+    }
+    
+    public HttpEntity editDocument(Long documentId, Integer resolution, String options) throws Exception {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	
+    	DBRow documentData = getDocument(cx2Conn, documentId);
+    	
+    	if (documentData == null) {
+    		return null;
+    	}
+    	
+    	CloseableHttpClient httpClient = HttpClients.createDefault();
+    	HttpPost sendDocument = new HttpPost("...");
+    	MultipartEntityBuilder request = MultipartEntityBuilder.create();
+    	request.addBinaryBody("uploadFile", documentData.getBytes("Contents"), ContentType.APPLICATION_OCTET_STREAM, documentData.getString("Filename"));
+    	request.addTextBody("resolution", resolution.toString());
+    	request.addTextBody("options", options);
+    	
+    	HttpEntity multipart = request.build();
+    	sendDocument.setEntity(multipart);
+    	CloseableHttpResponse docserviceresponse = httpClient.execute(sendDocument);
+    	HttpEntity response = docserviceresponse.getEntity();
+    	
+    	return response;
     }
     
     public void setFormStatus(String formGuid, Long formStatusId, String comments) throws SQLException {
