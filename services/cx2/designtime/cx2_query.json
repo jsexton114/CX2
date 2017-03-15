@@ -5199,6 +5199,76 @@
       "responseType" : "SINGLE"
     }
   },
+  "InsertMasterInspections" : {
+    "name" : "InsertMasterInspections",
+    "description" : "InsertMasterInspections",
+    "version" : "V2",
+    "queryString" : "insert into MasterInspections(InspectionGuid,InspectionTitle,InspectionDesignId,FormGuid,RequestedBy,DateRequested,RequestedFor)\n values(:InspectionGuid,:InspectionTitle,:InspectionDesignId,:FormGuid,:RequestedBy,:DateRequested,:RequestedFor)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "InspectionGuid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "7ec3a26e-d5ce-4b82-a291-14a27b958508",
+      "required" : true
+    }, {
+      "name" : "InspectionTitle",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Inspection",
+      "required" : true
+    }, {
+      "name" : "InspectionDesignId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "FormGuid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "C97D05AE-3403-E711-80C9-0CC47A46DD63",
+      "required" : true
+    }, {
+      "name" : "RequestedBy",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    }, {
+      "name" : "DateRequested",
+      "type" : "datetime",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-03-15T15:13:23",
+      "required" : true
+    }, {
+      "name" : "RequestedFor",
+      "type" : "datetime",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-03-22T15:13:30",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.InsertMasterInspectionsRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "InsertNewRole" : {
     "name" : "InsertNewRole",
     "description" : "InsertNewRole",
@@ -8726,6 +8796,71 @@
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
       "responseType" : "SINGLE"
+    }
+  },
+  "distinctInspectionDesignsForFormType" : {
+    "name" : "distinctInspectionDesignsForFormType",
+    "description" : "distinctInspectionDesignsForFormType",
+    "version" : "V2",
+    "queryString" : "select DISTINCT inspectDesignId as inspectionDesignId,inspectionDesign.inspectDesignName as inspectDesignName,sequenceOrderNumber as sequenceOrderNumber,mustCompBeforeReqNxt as mustCompBeforeReqNxt from InspectionSequence\nwhere formTypeId=:form order by sequenceOrderNumber asc",
+    "countQueryString" : "select count(*)  from InspectionSequence\nwhere formTypeId=:form",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "form",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "58",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.DistinctInspectionDesignsForFormTypeResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "inspectionDesignId",
+        "fieldName" : "inspectionDesignId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "inspectDesignName",
+        "fieldName" : "inspectDesignName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "sequenceOrderNumber",
+        "fieldName" : "sequenceOrderNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "mustCompBeforeReqNxt",
+        "fieldName" : "mustCompBeforeReqNxt",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      } ]
     }
   },
   "getCartItemIds" : {

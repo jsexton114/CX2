@@ -155,7 +155,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     };
 
     $scope.svUserPermissionsonSuccess = function(variable, data) {
-        debugger
         if (!data.canView) {
             $location.path("/");
             return;
@@ -186,6 +185,11 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
             $scope.showCannotAddFee = false;
         }
     };
+
+    $scope.svInsertMasterInspectionsonError = function(variable, data) {
+        debugger;
+    };
+
 }]);
 
 Application.$controller("gridSharedwithController", ["$scope",
@@ -495,5 +499,27 @@ Application.$controller("gridFormInspectionsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogInspectionRequestController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.button2InspectionRequestClick = function($event, $isolateScope) {
+            debugger
+            var guid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0,
+                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+            $scope.Variables.svInsertMasterInspections.setInput({
+                'InspectionGuid': guid
+            });
+            $scope.Variables.svInsertMasterInspections.invoke();
+            $scope.Variables.svInsertMasterInspections.update();
+        };
+
     }
 ]);

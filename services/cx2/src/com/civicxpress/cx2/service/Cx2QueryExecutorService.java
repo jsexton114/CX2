@@ -135,6 +135,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfProcessFormsByMuncipality(ExportType exportType, Integer municipalityId, Boolean closed, Integer userId, Pageable pageable);
 
+    Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer form, Pageable pageable);
+
+    Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer form, Pageable pageable);
+
     Page<FormsToInspections> executeInspectionsOfForm(String form, Pageable pageable);
 
     Downloadable exportInspectionsOfForm(ExportType exportType, String form, Pageable pageable);
@@ -148,6 +152,8 @@ public interface Cx2QueryExecutorService {
     Page<PreferenceForUserResponse> executePreferenceForUser(Integer userId, Pageable pageable);
 
     Downloadable exportPreferenceForUser(ExportType exportType, Integer userId, Pageable pageable);
+
+    Integer executeInsertMasterInspections(InsertMasterInspectionsRequest insertMasterInspectionsRequest);
 
     Page<UserCountResponse> executeUserCount(Pageable pageable);
 

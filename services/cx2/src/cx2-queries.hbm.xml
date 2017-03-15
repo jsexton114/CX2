@@ -470,6 +470,22 @@ group by V.companyName) wmTempTable
     <query-param name="UserId" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="distinctInspectionDesignsForFormType">
+        <![CDATA[
+        select DISTINCT inspectDesignId as inspectionDesignId,inspectionDesign.inspectDesignName as inspectDesignName,sequenceOrderNumber as sequenceOrderNumber,mustCompBeforeReqNxt as mustCompBeforeReqNxt from InspectionSequence
+where formTypeId=:form order by sequenceOrderNumber asc
+        ]]>
+    <query-param name="form" type="java.lang.Integer"/>
+    </query>
+
+    <query name="distinctInspectionDesignsForFormType__count">
+        <![CDATA[
+        select count(*)  from InspectionSequence
+where formTypeId=:form
+        ]]>
+    <query-param name="form" type="java.lang.Integer"/>
+    </query>
+
     <query name="InspectionsOfForm">
         <![CDATA[
         from FormsToInspections where RelatedFormGUID=:form
@@ -513,6 +529,20 @@ group by V.companyName) wmTempTable
         ]]>
     <query-param name="userId" type="java.lang.Integer"/>
     </query>
+
+    <sql-query name="InsertMasterInspections">
+        <![CDATA[
+        insert into MasterInspections(InspectionGuid,InspectionTitle,InspectionDesignId,FormGuid,RequestedBy,DateRequested,RequestedFor)
+ values(:InspectionGuid,:InspectionTitle,:InspectionDesignId,:FormGuid,:RequestedBy,:DateRequested,:RequestedFor)
+        ]]>
+    <query-param name="InspectionGuid" type="java.lang.String"/>
+    <query-param name="InspectionTitle" type="java.lang.String"/>
+    <query-param name="InspectionDesignId" type="java.lang.Integer"/>
+    <query-param name="FormGuid" type="java.lang.String"/>
+    <query-param name="RequestedBy" type="java.lang.Integer"/>
+    <query-param name="DateRequested" type="org.joda.time.LocalDateTime"/>
+    <query-param name="RequestedFor" type="org.joda.time.LocalDateTime"/>
+    </sql-query>
 
     <sql-query name="UserCount">
         <![CDATA[

@@ -579,6 +579,25 @@ public class QueryExecutionController {
         return queryService.exportCountOfProcessFormsByMuncipality(exportType, municipalityId, closed, userId, pageable);
     }
 
+    @RequestMapping(value = "/queries/distinctInspectionDesignsForFormType", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "distinctInspectionDesignsForFormType")
+    public Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(@RequestParam(value = "form") Integer form, Pageable pageable) {
+        LOGGER.debug("Executing named query: distinctInspectionDesignsForFormType");
+        Page<DistinctInspectionDesignsForFormTypeResponse> _result = queryService.executeDistinctInspectionDesignsForFormType(form, pageable);
+        LOGGER.debug("got the result for named query: distinctInspectionDesignsForFormType, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query distinctInspectionDesignsForFormType")
+    @RequestMapping(value = "/queries/distinctInspectionDesignsForFormType/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportDistinctInspectionDesignsForFormType(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "form") Integer form, Pageable pageable) {
+        LOGGER.debug("Exporting named query: distinctInspectionDesignsForFormType");
+
+        return queryService.exportDistinctInspectionDesignsForFormType(exportType, form, pageable);
+    }
+
     @RequestMapping(value = "/queries/InspectionsOfForm", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "InspectionsOfForm")
@@ -644,6 +663,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: PreferenceForUser");
 
         return queryService.exportPreferenceForUser(exportType, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InsertMasterInspections", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InsertMasterInspections")
+    public IntegerWrapper executeInsertMasterInspections(@Valid @RequestBody InsertMasterInspectionsRequest insertMasterInspectionsRequest) {
+        LOGGER.debug("Executing named query: InsertMasterInspections");
+        Integer _result = queryService.executeInsertMasterInspections(insertMasterInspectionsRequest);
+        LOGGER.debug("got the result for named query: InsertMasterInspections, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/UserCount", method = RequestMethod.GET)

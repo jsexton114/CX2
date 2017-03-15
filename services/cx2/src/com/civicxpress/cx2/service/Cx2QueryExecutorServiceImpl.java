@@ -642,6 +642,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer form, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("form", form);
+
+        return queryExecutor.executeNamedQuery("distinctInspectionDesignsForFormType", params, DistinctInspectionDesignsForFormTypeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer form, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("form", form);
+
+        return queryExecutor.exportNamedQueryData("distinctInspectionDesignsForFormType", params, exportType, DistinctInspectionDesignsForFormTypeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<FormsToInspections> executeInspectionsOfForm(String form, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -710,6 +730,22 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("userId", userId);
 
         return queryExecutor.exportNamedQueryData("PreferenceForUser", params, exportType, PreferenceForUserResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeInsertMasterInspections(InsertMasterInspectionsRequest insertMasterInspectionsRequest) {
+        Map params = new HashMap(7);
+
+        params.put("InspectionGuid", insertMasterInspectionsRequest.getInspectionGuid());
+        params.put("InspectionTitle", insertMasterInspectionsRequest.getInspectionTitle());
+        params.put("InspectionDesignId", insertMasterInspectionsRequest.getInspectionDesignId());
+        params.put("FormGuid", insertMasterInspectionsRequest.getFormGuid());
+        params.put("RequestedBy", insertMasterInspectionsRequest.getRequestedBy());
+        params.put("DateRequested", insertMasterInspectionsRequest.getDateRequested());
+        params.put("RequestedFor", insertMasterInspectionsRequest.getRequestedFor());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertMasterInspections", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
