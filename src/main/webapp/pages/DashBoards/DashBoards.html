@@ -1,4 +1,4 @@
-<wm-page data-ng-controller="DashBoardsPageController" pagetitle="Dash Boards" name="page1">
+<wm-page data-ng-controller="DashBoardsPageController" pagetitle="Dashboards" name="page1">
     <wm-header content="header" name="header1"></wm-header>
     <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
     <wm-content name="content1">
@@ -6,58 +6,52 @@
         <wm-page-content columnwidth="10" name="page_content1">
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
-                        <wm-label name="label1" caption="Dashboards" fontweight="bold" class="h4"></wm-label>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn1" padding="2em unset">
+                        <wm-label name="label1" caption="Statistics Dashboards" fontweight="bold" class="h4"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow13">
-                    <wm-gridcolumn columnwidth="5" name="gridcolumn28">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn28">
                         <wm-composite name="composite2">
-                            <wm-label class="col-md-5 control-label" name="label18" caption="Select a Dashboard"></wm-label>
+                            <wm-label class="col-md-5 form-control-static" name="label18" caption="Select Dashboard" fontweight="bold"></wm-label>
                             <wm-container class="col-md-7" name="container2">
                                 <wm-select name="selectDashBoeard" dataset="bind:Variables.stvDashBoards.dataSet" datafield="dataValue" datavalue="bind:Variables.stvDashBoards.dataSet[0].dataValue" displayfield="dataValue"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="5" name="gridcolumn29" padding="unset unset unset 1em">
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn17_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn29">
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
-                            <wm-label class="col-md-5 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-7" name="container1">
+                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
                                 <wm-select name="selectStandardUserMunicipalites" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord"
                                 orderby="MunicipalityName:asc" placeholder=""></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn16"></wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow18" padding="1em unset unset unset">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn42">
-                        <wm-label padding="unset 0.5em unset unset" name="label20" caption="Select date" fontweight="bold"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn43"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn44"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow14" padding="1em unset">
+                <wm-gridrow name="gridrow14" padding="2em unset">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn30">
                         <wm-composite name="composite3">
-                            <wm-label class="col-md-3 control-label" name="label19" caption="By"></wm-label>
-                            <wm-container class="col-md-9" name="container3">
+                            <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-7" name="container3">
                                 <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"
                                 placeholder=""></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn17" horizontalalign="center">
-                        <wm-label padding="unset 0.5em" name="label6" caption="OR"></wm-label>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn16"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn17" horizontalalign="center">
+                        <wm-label padding="unset 0.5em" name="label6" caption="OR between" class="col-md-12 form-control-static" fontweight="bold" textalign="right"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn31">
-                        <wm-datetime name="datetimeStart"></wm-datetime>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn31">
+                        <wm-date name="datetimeStart" datepattern="MM-dd-yyyy"></wm-date>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn18" horizontalalign="center">
-                        <wm-label padding="unset 0.5em" caption="AND" name="label7"></wm-label>
+                        <wm-label padding="unset 0.5em" caption="and" name="label7" class="col-md-12 form-control-static" fontweight="bold"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn32">
-                        <wm-datetime name="datetimeEnd"></wm-datetime>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn32">
+                        <wm-date name="datetimeEnd" datepattern="MM-dd-yyyy"></wm-date>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow15" padding="2em unset">
