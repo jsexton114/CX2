@@ -155,6 +155,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     };
 
     $scope.svUserPermissionsonSuccess = function(variable, data) {
+        debugger
         if (!data.canView) {
             $location.path("/");
             return;

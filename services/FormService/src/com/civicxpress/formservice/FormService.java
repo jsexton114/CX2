@@ -115,11 +115,18 @@ public class FormService {
     }
     
     public class UserPermissionsPojo {
+        private Boolean isEmployee;
     	private Boolean isAdmin;
     	private Boolean canEdit;
     	private Boolean canView;
     	private Boolean isProcessOwner;
     	
+    	public Boolean getIsEmployee(){
+    	    return isEmployee;
+    	}
+    	public void setIsEmployee(Boolean isEmployee){
+    	    this.isEmployee=isEmployee;
+    	}
 		public Boolean getIsAdmin() {
 			return isAdmin;
 		}
@@ -149,16 +156,32 @@ public class FormService {
     private UserPermissionsPojo getUserPermissions(Connection cx2Conn, String formGuid) throws SQLException {
     	UserPermissionsPojo userPermissions = new UserPermissionsPojo();
     	
+    	Boolean userIsEmployee=userIsEmployee(cx2Conn, formGuid);
     	Boolean userIsAdmin = userIsAdmin(cx2Conn, formGuid);
     	Boolean userCanEdit = userIsAdmin ? true : userCanEdit(cx2Conn, formGuid);
     	Boolean userIsProcessOwner = userIsAdmin ? true : userIsProcessOwner(cx2Conn, formGuid);
     	
+    	userPermissions.setIsEmployee(userIsEmployee);
     	userPermissions.setIsAdmin(userIsAdmin);
     	userPermissions.setCanEdit(userCanEdit);
     	userPermissions.setCanView(userIsAdmin || userCanEdit || userIsProcessOwner ? true : userCanView(cx2Conn, formGuid));
     	userPermissions.setIsProcessOwner(userIsProcessOwner);
     	
     	return userPermissions;
+    }
+    
+    private Boolean userIsEmployee(Connection cx2Conn, String formGuid) throws SQLException {
+        DBQueryParams queryParams = new DBQueryParams();
+    	queryParams.addString("formGuid", formGuid);
+    	queryParams.addLong("userId", Long.parseLong(securityService.getUserId()));
+    	
+    	Boolean userIsEmployee =DBUtils.selectQuery(cx2Conn, "SELECT count(*) AS employeeRoleCount FROM Roles R "
+    			+"WHERE R.UserId=:userId "
+    			+"AND "
+    			+"R.RoleName='MunicipalityEmployee' AND R.MunicipalityId=(SELECT FT.MunicipalityId FROM MasterForms MF, FormTypes FT WHERE MF.FormGUID=:formGuid AND FT.ID=MF.FormTypeId)"
+    			, queryParams).get(0).getInteger("employeeRoleCount") > 0;;
+    	
+    	return userIsEmployee;
     }
     
     private Boolean userIsAdmin(Connection cx2Conn, String formGuid) throws SQLException {
