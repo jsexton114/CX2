@@ -1,4 +1,23 @@
 {
+  "Breadcrumb" : {
+    "_id" : "wm-Breadcrumb-wm.Variable-1489600550376",
+    "name" : "Breadcrumb",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/Main"
+    }, {
+      "label" : "Statistics",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/DashBoards"
+    } ],
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
   "lvFees" : {
     "_id" : "wm-lvFees-wm.LiveVariable-1489153259976",
     "name" : "lvFees",

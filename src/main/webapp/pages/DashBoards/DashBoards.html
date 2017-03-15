@@ -1,16 +1,21 @@
-<wm-page data-ng-controller="DashBoardsPageController" pagetitle="Dashboards" name="page1">
+<wm-page data-ng-controller="DashBoardsPageController" pagetitle="Statistics" name="page1">
     <wm-header content="header" name="header1"></wm-header>
     <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
     <wm-content name="content1">
         <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
         <wm-page-content columnwidth="10" name="page_content1">
             <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow7">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn17_2">
+                        <wm-breadcrumb dataset="bind:Variables.Breadcrumb.dataSet" name="breadcrumb1"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn1" padding="2em unset">
                         <wm-label name="label1" caption="Statistics Dashboards" fontweight="bold" class="h4"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow13">
+                <wm-gridrow name="gridrow13" padding="unset unset 2em unset">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn28">
                         <wm-composite name="composite2">
                             <wm-label class="col-md-5 form-control-static" name="label18" caption="Select Dashboard" fontweight="bold"></wm-label>
@@ -24,19 +29,18 @@
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectStandardUserMunicipalites" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord"
-                                orderby="MunicipalityName:asc" placeholder=""></wm-select>
+                                <wm-select name="selectStandardUserMunicipalites" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord" orderby="MunicipalityName:asc"
+                                placeholder=""></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow14" padding="2em unset">
+                <wm-gridrow name="gridrow14" padding="unset unset 4em unset">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn30">
                         <wm-composite name="composite3">
                             <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold"></wm-label>
                             <wm-container class="col-md-7" name="container3">
-                                <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"
-                                placeholder=""></wm-select>
+                                <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)" placeholder=""></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -56,12 +60,10 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow15" padding="2em unset">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn33" padding="unset 1em">
-                        <wm-chart type="Pie" title="FormTypes" height="250px" iconclass="wi wi-pie-chart" name="chartFormTypes" dataset="bind:Variables.svFormsTypesData.dataSet" labeltype="percent" showlegend="top" xaxisdatakey="formType" yaxisdatakey="counts"
-                        theme="Orient"></wm-chart>
+                        <wm-chart type="Pie" title="FormTypes" height="250px" iconclass="wi wi-pie-chart" name="chartFormTypes" dataset="bind:Variables.svFormsTypesData.dataSet" labeltype="percent" showlegend="top" xaxisdatakey="formType" yaxisdatakey="counts" theme="Orient"></wm-chart>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn34" padding="unset 1em unset unset">
-                        <wm-chart type="Pie" title="Chart Categories" height="250px" iconclass="wi wi-pie-chart" dataset="bind:Variables.svFormsCategoriesData.dataSet" labeltype="percent" showlegend="top" name="chartCategories" yaxisdatakey="counts" xaxisdatakey="category"
-                        theme="Orient"></wm-chart>
+                        <wm-chart type="Pie" title="Chart Categories" height="250px" iconclass="wi wi-pie-chart" dataset="bind:Variables.svFormsCategoriesData.dataSet" labeltype="percent" showlegend="top" name="chartCategories" yaxisdatakey="counts" xaxisdatakey="category" theme="Orient"></wm-chart>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow16" padding="2em unset">
