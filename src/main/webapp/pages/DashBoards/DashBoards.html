@@ -29,8 +29,8 @@
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectStandardUserMunicipalites" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord" orderby="MunicipalityName:asc"
-                                placeholder=""></wm-select>
+                                <wm-select name="selectStandardUserMunicipalites" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord"
+                                orderby="MunicipalityName:asc" placeholder=""></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -40,7 +40,8 @@
                         <wm-composite name="composite3">
                             <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold"></wm-label>
                             <wm-container class="col-md-7" name="container3">
-                                <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)" placeholder=""></wm-select>
+                                <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"
+                                placeholder=""></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -49,21 +50,23 @@
                         <wm-label padding="unset 0.5em" name="label6" caption="OR between" class="col-md-12 form-control-static" fontweight="bold" textalign="right"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="2" name="gridcolumn31">
-                        <wm-date name="datetimeStart" datepattern="MM-dd-yyyy"></wm-date>
+                        <wm-date name="datetimeStart" datepattern="MM-dd-yyyy" datavalue="START DATE" placeholder="Start Date"></wm-date>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn18" horizontalalign="center">
                         <wm-label padding="unset 0.5em" caption="and" name="label7" class="col-md-12 form-control-static" fontweight="bold"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="2" name="gridcolumn32">
-                        <wm-date name="datetimeEnd" datepattern="MM-dd-yyyy"></wm-date>
+                        <wm-date name="datetimeEnd" datepattern="MM-dd-yyyy" placeholder="End Date"></wm-date>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow15" padding="2em unset">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn33" padding="unset 1em">
-                        <wm-chart type="Pie" title="FormTypes" height="250px" iconclass="wi wi-pie-chart" name="chartFormTypes" dataset="bind:Variables.svFormsTypesData.dataSet" labeltype="percent" showlegend="top" xaxisdatakey="formType" yaxisdatakey="counts" theme="Orient"></wm-chart>
+                        <wm-chart type="Pie" title="FormTypes" height="250px" iconclass="wi wi-pie-chart" name="chartFormTypes" dataset="bind:Variables.svFormsTypesData.dataSet" labeltype="percent" showlegend="top" xaxisdatakey="formType" yaxisdatakey="counts"
+                        theme="Orient"></wm-chart>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn34" padding="unset 1em unset unset">
-                        <wm-chart type="Pie" title="Chart Categories" height="250px" iconclass="wi wi-pie-chart" dataset="bind:Variables.svFormsCategoriesData.dataSet" labeltype="percent" showlegend="top" name="chartCategories" yaxisdatakey="counts" xaxisdatakey="category" theme="Orient"></wm-chart>
+                        <wm-chart type="Pie" title="Chart Categories" height="250px" iconclass="wi wi-pie-chart" dataset="bind:Variables.svFormsCategoriesData.dataSet" labeltype="percent" showlegend="top" name="chartCategories" yaxisdatakey="counts" xaxisdatakey="category"
+                        theme="Orient"></wm-chart>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow16" padding="2em unset">
