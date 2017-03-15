@@ -336,13 +336,13 @@
                                                     <wm-layoutgrid columns="3" name="StatusLayout">
                                                         <wm-gridrow name="gridrowSettings">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumnstatus">
-                                                                <wm-panel iconclass="wi wi-settings" name="panel5" margin="1em unset" title="General Settings" class="panel-primary">
+                                                                <wm-panel iconclass="wi wi-settings" name="panel5" title="General Settings" class="panel-primary">
                                                                     <wm-gridrow name="gridrow19_1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn33_1" padding="unset 1em unset unset">
-                                                                            <wm-form-field name="status" displayname="Status Name" show="true" primary-key="false" generator="assigned" key="status" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                            <wm-form-field name="status" displayname="Status Name" show="true" primary-key="false" generator="assigned" key="status" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" required="true"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn34_1" padding="unset 1em unset unset">
-                                                                            <wm-form-field name="description" displayname="Status Description" show="true" primary-key="false" generator="assigned" key="description" type="string" widget="textarea" maxchars="255" placeholder="Enter value"></wm-form-field>
+                                                                            <wm-form-field name="description" displayname="Status Description" show="true" primary-key="false" generator="assigned" key="description" type="string" widget="textarea" maxchars="255" placeholder="Enter value" required="true"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn49" padding="unset 1em unset unset">
                                                                             <wm-form-field name="sortOrder" displayname="Sort Order" show="true" primary-key="false" generator="assigned" key="sortOrder" type="long" step="0" widget="select" placeholder="Select value" dataset="bind:Variables.SortOrder.dataSet" datafield="dataValue"
@@ -366,7 +366,7 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow32">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn60_2">
-                                                                <wm-panel iconclass="wi wi-email" margin="unset unset 1em unset" name="panel6_1" title="Email Settings" class="panel-primary">
+                                                                <wm-panel iconclass="wi wi-email" name="panel6_1" title="Email Settings" class="panel-primary">
                                                                     <wm-gridrow name="gridrow1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn name="gridcolumn2" columnwidth="4" padding="unset 1em unset unset">
                                                                             <wm-form-field name="sendEmail" displayname="Send Email" show="true" primary-key="false" generator="assigned" key="sendEmail" type="boolean" widget="checkbox" defaultvalue="false" placeholder="" hint="If selected, a system-generated email will be sent to the user who submitted the form and the users who the form has been shared with when the form enters this status."></wm-form-field>
@@ -385,7 +385,7 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow33">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn61">
-                                                                <wm-panel iconclass="wi wi-group" margin="unset unset 1em unset" name="panel7_1" title="Permissions" class="panel-primary">
+                                                                <wm-panel iconclass="wi wi-group" name="panel7_1" title="Permissions" class="panel-primary">
                                                                     <wm-gridrow name="gridrow25" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
                                                                             <wm-form-field name="municipalityGroupsByProcessOwners" displayname="Process Owner Group" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByProcessOwners" type="list" is-related="true" widget="select" dataset="bind:Variables.MunicipalityGroupsForProcess.dataSet"
@@ -416,7 +416,7 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow34">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn62_2">
-                                                                <wm-panel iconclass="wi wi-assignment" margin="unset unset 1em unset" name="panel8" title="Reporting" class="panel-primary">
+                                                                <wm-panel iconclass="wi wi-assignment" name="panel8" title="Reporting" class="panel-primary">
                                                                     <wm-gridrow name="gridrow21" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn39_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowReporting" displayname="Allow Reporting" show="true" primary-key="false" generator="assigned" key="allowReporting" type="boolean" widget="checkbox" placeholder="" defaultvalue="false"></wm-form-field>
@@ -430,7 +430,7 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow36">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn64_1">
-                                                                <wm-panel iconclass="wi wi-find-in-page" margin="unset unset 1em unset" name="panel10" title="Inspections" class="panel-primary">
+                                                                <wm-panel iconclass="wi wi-find-in-page" name="panel10" title="Inspections" class="panel-primary">
                                                                     <wm-gridrow name="gridrow23_1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn45_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowInspections" displayname="Allow Inspection Scheduling" show="true" primary-key="false" generator="assigned" key="allowInspections" type="boolean" widget="checkbox" placeholder="" defaultvalue="false" hint="If this form requires inspections, this option allows inspections to be scheduled while the form is in this status."></wm-form-field>
@@ -441,7 +441,7 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow35">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn63_1">
-                                                                <wm-panel iconclass="wi wi-library-books" margin="unset unset 1em unset" name="panel9" title="Record Closure" class="panel-primary">
+                                                                <wm-panel iconclass="wi wi-library-books" name="panel9" title="Record Closure" class="panel-primary">
                                                                     <wm-gridrow name="gridrow24_1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn48" padding="unset 1em unset unset">
                                                                             <wm-form-field name="createAsRecord" displayname="Create as Record" show="true" primary-key="false" generator="assigned" key="createAsRecord" type="boolean" widget="checkbox" placeholder="" hint="This causes a PDF to be generated, saving a snapshot of the form at the point in time when the form enters this status."
