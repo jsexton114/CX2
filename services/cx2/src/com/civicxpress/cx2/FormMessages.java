@@ -65,7 +65,7 @@ public class FormMessages implements Serializable {
         this.userId = userId;
     }
 
-    @Column(name = "`RelatedFormGUID`", nullable = true, length = 255)
+    @Column(name = "`RelatedFormGUID`", nullable = true, length = 32)
     public String getRelatedFormGuid() {
         return this.relatedFormGuid;
     }

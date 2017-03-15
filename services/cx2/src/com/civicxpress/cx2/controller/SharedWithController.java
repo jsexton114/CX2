@@ -97,12 +97,6 @@ public class SharedWithController {
 
         return deletedSharedWith != null;
     }
-    @RequestMapping(value = "/relatedGuid-sharedWithUser-createdBy", method = RequestMethod.GET)
-    @ApiOperation(value = "Returns the matching SharedWith with given unique key values.")
-    public SharedWith getByRelatedGuidAndSharedWithUserAndCreatedBy(@RequestParam(name = "relatedGuid") String relatedGuid, @RequestParam(name = "sharedWithUser") Integer sharedWithUser, @RequestParam(name = "createdBy") Integer createdBy) {
-        LOGGER.debug("Getting SharedWith with uniques key RelatedGuidAndSharedWithUserAndCreatedBy");
-        return sharedWithService.getByRelatedGuidAndSharedWithUserAndCreatedBy(relatedGuid, sharedWithUser, createdBy);
-    }
 
     /**
      * @deprecated Use {@link #findSharedWiths(String, Pageable)} instead.

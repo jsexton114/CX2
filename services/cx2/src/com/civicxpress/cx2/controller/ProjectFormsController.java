@@ -97,12 +97,6 @@ public class ProjectFormsController {
 
         return deletedProjectForms != null;
     }
-    @RequestMapping(value = "/relatedProjectGuid-relatedFormGuid", method = RequestMethod.GET)
-    @ApiOperation(value = "Returns the matching ProjectForms with given unique key values.")
-    public ProjectForms getByRelatedProjectGuidAndRelatedFormGuid(@RequestParam(name = "relatedProjectGuid") String relatedProjectGuid, @RequestParam(name = "relatedFormGuid") String relatedFormGuid) {
-        LOGGER.debug("Getting ProjectForms with uniques key RelatedProjectGuidAndRelatedFormGuid");
-        return projectFormsService.getByRelatedProjectGuidAndRelatedFormGuid(relatedProjectGuid, relatedFormGuid);
-    }
 
     /**
      * @deprecated Use {@link #findProjectForms(String, Pageable)} instead.

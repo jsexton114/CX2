@@ -49,15 +49,6 @@ public interface ProjectFormsService {
 	 */
 	ProjectForms findById(Integer projectformsId);
 
-    /**
-	 * Find and return the ProjectForms for given relatedProjectGuid  andrelatedFormGuid  if exists.
-	 *
-	 * @param relatedProjectGuid value of relatedProjectGuid; value cannot be null.
-	 * @param relatedFormGuid value of relatedFormGuid; value cannot be null.
-	 * @return ProjectForms associated with the given inputs.
-     * @throws EntityNotFoundException if no matching ProjectForms found.
-	 */
-    ProjectForms getByRelatedProjectGuidAndRelatedFormGuid(String relatedProjectGuid, String relatedFormGuid)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing ProjectForms. It replaces all fields of the existing ProjectForms with the given projectForms.

@@ -54,7 +54,7 @@ public class FormsToInspections implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "`RelatedFormGUID`", nullable = true, length = 255)
+    @Column(name = "`RelatedFormGUID`", nullable = true, length = 32)
     public String getRelatedFormGuid() {
         return this.relatedFormGuid;
     }

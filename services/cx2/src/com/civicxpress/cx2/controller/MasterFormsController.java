@@ -34,7 +34,6 @@ import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.Gis2forms;
-import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectForms;
@@ -105,12 +104,6 @@ public class MasterFormsController {
         MasterForms deletedMasterForms = masterFormsService.delete(id);
 
         return deletedMasterForms != null;
-    }
-    @RequestMapping(value = "/formGuid/{formGuid}", method = RequestMethod.GET)
-    @ApiOperation(value = "Returns the matching MasterForms with given unique key values.")
-    public MasterForms getByFormGuid(@PathVariable("formGuid") String formGuid) {
-        LOGGER.debug("Getting MasterForms with uniques key FormGuid");
-        return masterFormsService.getByFormGuid(formGuid);
     }
 
     /**
@@ -190,15 +183,6 @@ public class MasterFormsController {
 
         LOGGER.debug("Fetching all associated gis2formses");
         return masterFormsService.findAssociatedGis2formses(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/masterCaseses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the masterCaseses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MasterCases> findAssociatedMasterCaseses(@PathVariable("id") String id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated masterCaseses");
-        return masterFormsService.findAssociatedMasterCaseses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/masterInspectionses", method=RequestMethod.GET)

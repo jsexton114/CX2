@@ -47,7 +47,6 @@ public class MasterCases implements Serializable {
     private Integer caseStatus;
     private CaseStatuses caseStatuses;
     private CaseTypes caseTypes;
-    private MasterForms masterForms;
     private MasterInspections masterInspections;
     private Projects projects;
     private Users usersByCreatedBy;
@@ -179,20 +178,6 @@ public class MasterCases implements Serializable {
         }
 
         this.caseTypes = caseTypes;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`RelatedFormGuid`", referencedColumnName = "`FormGUID`", insertable = false, updatable = false)
-    public MasterForms getMasterForms() {
-        return this.masterForms;
-    }
-
-    public void setMasterForms(MasterForms masterForms) {
-        if(masterForms != null) {
-            this.relatedFormGuid = masterForms.getFormGuid();
-        }
-
-        this.masterForms = masterForms;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

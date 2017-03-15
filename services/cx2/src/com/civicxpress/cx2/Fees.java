@@ -207,7 +207,7 @@ public class Fees implements Serializable {
         this.itemTitle = itemTitle;
     }
 
-    @Column(name = "`FormGuid`", nullable = true, length = 255)
+    @Column(name = "`FormGuid`", nullable = true, length = 32)
     public String getFormGuid() {
         return this.formGuid;
     }

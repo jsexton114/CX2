@@ -57,6 +57,9 @@ public class MasterInspections implements Serializable {
     private Boolean closed;
     @Type(type = "DateTime")
     private LocalDateTime dateAssigned;
+    private String inspectionZone;
+    @Type(type = "DateTime")
+    private LocalDateTime requestedFor;
     private InspectionOutcome inspectionOutcome;
     private MasterForms masterForms;
     private Gisrecords gisrecords;
@@ -144,7 +147,7 @@ public class MasterInspections implements Serializable {
         this.inspectionCatId = inspectionCatId;
     }
 
-    @Column(name = "`FormGuid`", nullable = true, length = 255)
+    @Column(name = "`FormGuid`", nullable = true, length = 32)
     public String getFormGuid() {
         return this.formGuid;
     }
@@ -214,6 +217,24 @@ public class MasterInspections implements Serializable {
 
     public void setDateAssigned(LocalDateTime dateAssigned) {
         this.dateAssigned = dateAssigned;
+    }
+
+    @Column(name = "`InspectionZone`", nullable = true, length = 255)
+    public String getInspectionZone() {
+        return this.inspectionZone;
+    }
+
+    public void setInspectionZone(String inspectionZone) {
+        this.inspectionZone = inspectionZone;
+    }
+
+    @Column(name = "`RequestedFor`", nullable = true)
+    public LocalDateTime getRequestedFor() {
+        return this.requestedFor;
+    }
+
+    public void setRequestedFor(LocalDateTime requestedFor) {
+        this.requestedFor = requestedFor;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -996,7 +996,7 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 255,
+      "length" : 32,
       "name" : "FormGuid",
       "nullable" : true,
       "oldName" : "FormGuid",
@@ -1064,7 +1064,7 @@
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "Fees",
-      "targetColumnsUniqueKey" : true,
+      "targetColumnsUniqueKey" : false,
       "targetTable" : "MasterForms",
       "virtual" : false
     }, {
@@ -3782,7 +3782,7 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 255,
+      "length" : 32,
       "name" : "RelatedFormGUID",
       "nullable" : true,
       "oldName" : "RelatedFormGUID",
@@ -3925,7 +3925,7 @@
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "FormMessages",
-      "targetColumnsUniqueKey" : true,
+      "targetColumnsUniqueKey" : false,
       "targetTable" : "MasterForms",
       "virtual" : false
     }, {
@@ -4264,7 +4264,7 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 255,
+      "length" : 32,
       "name" : "RelatedFormGUID",
       "nullable" : true,
       "oldName" : "RelatedFormGUID",
@@ -4399,7 +4399,7 @@
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "FormsToInspections",
-      "targetColumnsUniqueKey" : true,
+      "targetColumnsUniqueKey" : false,
       "targetTable" : "MasterForms",
       "virtual" : false
     }, {
@@ -6393,7 +6393,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
+      "partOfUniqueKey" : false,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -6411,14 +6411,14 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 255,
+      "length" : 32,
       "name" : "RelatedFormGUID",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "RelatedFormGUID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
+      "partOfUniqueKey" : false,
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
@@ -6475,13 +6475,7 @@
       "sqlType" : "timestamp",
       "unique" : false
     } ],
-    "constraints" : [ {
-      "columns" : [ "GISRecordId", "RelatedFormGUID" ],
-      "composite" : true,
-      "name" : "UK_GIS2Forms_GISRecordId23nuv",
-      "type" : "UNIQUE",
-      "virtual" : false
-    } ],
+    "constraints" : [ ],
     "entityName" : "Gis2forms",
     "fullyQualifiedName" : "com.civicxpress.cx2.Gis2forms",
     "name" : "GIS2Forms",
@@ -6527,7 +6521,7 @@
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "GIS2Forms",
-      "targetColumnsUniqueKey" : true,
+      "targetColumnsUniqueKey" : false,
       "targetTable" : "MasterForms",
       "virtual" : false
     }, {
@@ -8828,7 +8822,7 @@
         "defaultValue" : ""
       },
       "fieldName" : "relatedFormGuid",
-      "foreignKey" : true,
+      "foreignKey" : false,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
@@ -8836,8 +8830,8 @@
       "name" : "RelatedFormGuid",
       "nullable" : true,
       "oldName" : "RelatedFormGuid",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "precision" : 0,
@@ -9074,23 +9068,6 @@
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "masterForms",
-      "mappings" : [ {
-        "sourceColumn" : "RelatedFormGuid",
-        "targetColumn" : "FormGUID"
-      } ],
-      "name" : "FK_MasterCases_TO_Master2cgu5",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "MasterCases",
-      "targetColumnsUniqueKey" : true,
-      "targetTable" : "MasterForms",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
       "fieldName" : "masterInspections",
       "mappings" : [ {
         "sourceColumn" : "RelatedInspectionGuid",
@@ -9172,7 +9149,7 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 255,
+      "length" : 32,
       "name" : "FormGUID",
       "nullable" : false,
       "oldName" : "FormGUID",
@@ -9611,13 +9588,7 @@
       "sqlType" : "timestamp",
       "unique" : false
     } ],
-    "constraints" : [ {
-      "columns" : [ "FormGUID" ],
-      "composite" : false,
-      "name" : "UK_MasterForms_FormGUID",
-      "type" : "UNIQUE",
-      "virtual" : false
-    } ],
+    "constraints" : [ ],
     "entityName" : "MasterForms",
     "fullyQualifiedName" : "com.civicxpress.cx2.MasterForms",
     "name" : "MasterForms",
@@ -9753,7 +9724,7 @@
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
-      "columnsUniqueKey" : true,
+      "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "feeses",
       "mappings" : [ {
@@ -9763,14 +9734,14 @@
       "name" : "FK_Fees_TO_MasterForms_RKUFwB",
       "primary" : false,
       "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : false,
+      "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "MasterForms",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Fees",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
-      "columnsUniqueKey" : true,
+      "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "formMessageses",
       "mappings" : [ {
@@ -9780,14 +9751,14 @@
       "name" : "FK_FormMessages_TO_MastekJTPf",
       "primary" : false,
       "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : false,
+      "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "MasterForms",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "FormMessages",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
-      "columnsUniqueKey" : true,
+      "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "formsToInspectionses",
       "mappings" : [ {
@@ -9797,14 +9768,14 @@
       "name" : "FK_FormsToInspections_TOuCOYl",
       "primary" : false,
       "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : false,
+      "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "MasterForms",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "FormsToInspections",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
-      "columnsUniqueKey" : true,
+      "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "gis2formses",
       "mappings" : [ {
@@ -9814,31 +9785,14 @@
       "name" : "FK_GIS2Forms_TO_MasterFocGt8k",
       "primary" : false,
       "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : false,
+      "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "MasterForms",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "GIS2Forms",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
-      "columnsUniqueKey" : true,
-      "composite" : false,
-      "fieldName" : "masterCaseses",
-      "mappings" : [ {
-        "sourceColumn" : "FormGUID",
-        "targetColumn" : "RelatedFormGuid"
-      } ],
-      "name" : "FK_MasterCases_TO_Master2cgu5",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : false,
-      "sourceTable" : "MasterForms",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "MasterCases",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : true,
+      "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "masterInspectionses",
       "mappings" : [ {
@@ -9848,14 +9802,14 @@
       "name" : "FK_MasterInspections_TO_fr6rB",
       "primary" : false,
       "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : false,
+      "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "MasterForms",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "MasterInspections",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
-      "columnsUniqueKey" : true,
+      "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "projectFormses",
       "mappings" : [ {
@@ -9865,14 +9819,14 @@
       "name" : "FK_ProjectForms_TO_MasteEGvVe",
       "primary" : false,
       "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : false,
+      "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "MasterForms",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "ProjectForms",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
-      "columnsUniqueKey" : true,
+      "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "sharedWiths",
       "mappings" : [ {
@@ -9882,14 +9836,14 @@
       "name" : "FK_SharedWith_TO_MasterFuoppm",
       "primary" : false,
       "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : false,
+      "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "MasterForms",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "SharedWith",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
-      "columnsUniqueKey" : true,
+      "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "vendors2forms",
       "mappings" : [ {
@@ -9899,7 +9853,7 @@
       "name" : "FK_Vendors2Form_TO_MasteSGtOe",
       "primary" : false,
       "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : false,
+      "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "MasterForms",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Vendors2Form",
@@ -10121,7 +10075,7 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 255,
+      "length" : 32,
       "name" : "FormGuid",
       "nullable" : true,
       "oldName" : "FormGuid",
@@ -10309,6 +10263,56 @@
       "scale" : 0,
       "sqlType" : "datetime",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "inspectionZone",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "InspectionZone",
+      "nullable" : true,
+      "oldName" : "InspectionZone",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "requestedFor",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "datetime",
+      "length" : 0,
+      "name" : "RequestedFor",
+      "nullable" : true,
+      "oldName" : "RequestedFor",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "datetime",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "MasterInspections",
@@ -10356,7 +10360,7 @@
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "MasterInspections",
-      "targetColumnsUniqueKey" : true,
+      "targetColumnsUniqueKey" : false,
       "targetTable" : "MasterForms",
       "virtual" : false
     }, {
@@ -12304,7 +12308,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
+      "partOfUniqueKey" : false,
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
@@ -12322,14 +12326,14 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 255,
+      "length" : 32,
       "name" : "RelatedFormGUID",
       "nullable" : true,
       "oldName" : "RelatedFormGUID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
+      "partOfUniqueKey" : false,
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
@@ -12411,13 +12415,7 @@
       "sqlType" : "string",
       "unique" : false
     } ],
-    "constraints" : [ {
-      "columns" : [ "RelatedProjectGUID", "RelatedFormGUID" ],
-      "composite" : true,
-      "name" : "UK_ProjectForms_RelatedPFR2Yb",
-      "type" : "UNIQUE",
-      "virtual" : false
-    } ],
+    "constraints" : [ ],
     "entityName" : "ProjectForms",
     "fullyQualifiedName" : "com.civicxpress.cx2.ProjectForms",
     "name" : "ProjectForms",
@@ -12446,7 +12444,7 @@
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "ProjectForms",
-      "targetColumnsUniqueKey" : true,
+      "targetColumnsUniqueKey" : false,
       "targetTable" : "MasterForms",
       "virtual" : false
     }, {
@@ -14031,14 +14029,14 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 255,
+      "length" : 32,
       "name" : "RelatedGUID",
       "nullable" : true,
       "oldName" : "RelatedGUID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
+      "partOfUniqueKey" : false,
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
@@ -14063,7 +14061,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
+      "partOfUniqueKey" : false,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -14113,20 +14111,14 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
+      "partOfUniqueKey" : false,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
       "sqlType" : "number",
       "unique" : false
     } ],
-    "constraints" : [ {
-      "columns" : [ "RelatedGUID", "SharedWithUser", "CreatedBy" ],
-      "composite" : true,
-      "name" : "UK_SharedWith_RelatedGUIGkN6m",
-      "type" : "UNIQUE",
-      "virtual" : false
-    } ],
+    "constraints" : [ ],
     "entityName" : "SharedWith",
     "fullyQualifiedName" : "com.civicxpress.cx2.SharedWith",
     "name" : "SharedWith",
@@ -14155,7 +14147,7 @@
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "SharedWith",
-      "targetColumnsUniqueKey" : true,
+      "targetColumnsUniqueKey" : false,
       "targetTable" : "MasterForms",
       "virtual" : false
     }, {
@@ -17829,14 +17821,14 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "string",
-      "length" : 255,
+      "length" : 32,
       "name" : "RelatedFormGUID",
       "nullable" : true,
       "oldName" : "RelatedFormGUID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
+      "partOfUniqueKey" : false,
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
@@ -17861,7 +17853,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
+      "partOfUniqueKey" : false,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -17918,13 +17910,7 @@
       "sqlType" : "boolean",
       "unique" : false
     } ],
-    "constraints" : [ {
-      "columns" : [ "RelatedFormGUID", "VendorId" ],
-      "composite" : true,
-      "name" : "UK_Vendors2Form_RelatedFoQTKT",
-      "type" : "UNIQUE",
-      "virtual" : false
-    } ],
+    "constraints" : [ ],
     "entityName" : "Vendors2form",
     "fullyQualifiedName" : "com.civicxpress.cx2.Vendors2form",
     "name" : "Vendors2Form",
@@ -17953,7 +17939,7 @@
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "Vendors2Form",
-      "targetColumnsUniqueKey" : true,
+      "targetColumnsUniqueKey" : false,
       "targetTable" : "MasterForms",
       "virtual" : false
     }, {

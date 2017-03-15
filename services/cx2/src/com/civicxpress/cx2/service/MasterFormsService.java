@@ -18,7 +18,6 @@ import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.Gis2forms;
-import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectForms;
@@ -58,14 +57,6 @@ public interface MasterFormsService {
 	 */
 	MasterForms findById(String masterformsId);
 
-    /**
-	 * Find and return the MasterForms for given formGuid  if exists.
-	 *
-	 * @param formGuid value of formGuid; value cannot be null.
-	 * @return MasterForms associated with the given inputs.
-     * @throws EntityNotFoundException if no matching MasterForms found.
-	 */
-    MasterForms getByFormGuid(String formGuid)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing MasterForms. It replaces all fields of the existing MasterForms with the given masterForms.
@@ -189,18 +180,6 @@ public interface MasterFormsService {
      * @see Page
      */
     Page<Gis2forms> findAssociatedGis2formses(String formGuid, Pageable pageable);
-
-    /*
-     * Returns the associated masterCaseses for given MasterForms id.
-     *
-     * @param formGuid value of formGuid; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated MasterCases instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<MasterCases> findAssociatedMasterCaseses(String formGuid, Pageable pageable);
 
     /*
      * Returns the associated masterInspectionses for given MasterForms id.
