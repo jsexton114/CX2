@@ -39,6 +39,8 @@ public class FormController {
     }
 
     @RequestMapping(value = "/document", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public HttpEntity editDocument(@RequestParam(value = "documentId", required = false) Long documentId, @RequestParam(value = "resolution", required = false) Integer resolution, @RequestParam(value = "options", required = false) String options) throws Exception {
         return formService.editDocument(documentId, resolution, options);
     }

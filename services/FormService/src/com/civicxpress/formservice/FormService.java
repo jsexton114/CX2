@@ -27,6 +27,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -792,14 +793,14 @@ public class FormService {
     }
     
     private DBQueryParams calculateAutoFees(DBRow formTypeData, HashMap<String, Object> fieldData) {
-    	BigDecimal totalFees = new BigDecimal("0.00");
+    	BigDecimal totalFees = new BigDecimal("0.00").setScale(2, RoundingMode.HALF_UP);
     	DBQueryParams queryParams = new DBQueryParams();
     	
-		BigDecimal flatFee = formTypeData.getBigDecimal("FlatFee");
-		BigDecimal sfFee = formTypeData.getBigDecimal("SfFee");
-		BigDecimal unitFee = formTypeData.getBigDecimal("UnitFee");
-		BigDecimal stateFee = formTypeData.getBigDecimal("StateFee");
-		BigDecimal basementFee = formTypeData.getBigDecimal("BasementFee");
+		BigDecimal flatFee = formTypeData.getBigDecimal("FlatFee").setScale(2, RoundingMode.HALF_UP);
+		BigDecimal sfFee = formTypeData.getBigDecimal("SfFee").setScale(2, RoundingMode.HALF_UP);
+		BigDecimal unitFee = formTypeData.getBigDecimal("UnitFee").setScale(2, RoundingMode.HALF_UP);
+		BigDecimal stateFee = formTypeData.getBigDecimal("StateFee").setScale(2, RoundingMode.HALF_UP);
+		BigDecimal basementFee = formTypeData.getBigDecimal("BasementFee").setScale(2, RoundingMode.HALF_UP);
     	
 		if (flatFee != null && !flatFee.equals(0)) {
 			totalFees = totalFees.add(flatFee);
@@ -809,11 +810,11 @@ public class FormService {
 		
 		if (sfFee != null && !sfFee.equals(0)) {
 			if (fieldData.get("TotalSqft") != null) {
-    			BigDecimal totalSqft = new BigDecimal(fieldData.get("TotalSqft").toString());
+    			BigDecimal totalSqft = new BigDecimal(fieldData.get("TotalSqft").toString()).setScale(2, RoundingMode.HALF_UP);
     			
     			if (!totalSqft.equals(0)) {
-    				totalFees = totalFees.add(sfFee.multiply(totalSqft));
-    				queryParams.addBigDecimal("sfFeeAmount", sfFee.multiply(totalSqft));
+    				totalFees = totalFees.add(sfFee.multiply(totalSqft)).setScale(2, RoundingMode.HALF_UP);
+    				queryParams.addBigDecimal("sfFeeAmount", sfFee.multiply(totalSqft).setScale(2, RoundingMode.HALF_UP));
     				queryParams.addString("sfFeeAccountingCode", formTypeData.getString("SfFeeAccountingCode"));
     			}
 			}
@@ -824,22 +825,22 @@ public class FormService {
 				BigDecimal totalUnits = new BigDecimal(fieldData.get("TotalUnits").toString());
     			
     			if (!totalUnits.equals(0)) {
-    				totalFees = totalFees.add(unitFee.multiply(totalUnits));
-    				queryParams.addBigDecimal("unitFeeAmount", unitFee.multiply(totalUnits));
+    				totalFees = totalFees.add(unitFee.multiply(totalUnits)).setScale(2, RoundingMode.HALF_UP);
+    				queryParams.addBigDecimal("unitFeeAmount", unitFee.multiply(totalUnits).setScale(2, RoundingMode.HALF_UP));
     				queryParams.addString("unitFeeAccountingCode", formTypeData.getString("UnitFeeAccountingCode"));
     			}
 			}
 		}
 		
 		if (basementFee != null && !basementFee.equals(0) && fieldData.get("Basement") != null && (Boolean) fieldData.get("Basement")) {
-			totalFees = totalFees.add(basementFee);
-			queryParams.addBigDecimal("basementFeeAmount", basementFee);
+			totalFees = totalFees.add(basementFee).setScale(2, RoundingMode.HALF_UP);
+			queryParams.addBigDecimal("basementFeeAmount", basementFee.setScale(2, RoundingMode.HALF_UP));
 			queryParams.addString("basementFeeAccountingCode", formTypeData.getString("BasementFeeAccountingCode"));
 		}
 		
 		if (stateFee != null && !stateFee.equals(0)) {
-			BigDecimal calcedStateFee = totalFees.multiply(stateFee);
-			totalFees = totalFees.add(calcedStateFee);
+			BigDecimal calcedStateFee = totalFees.multiply(stateFee).setScale(2, RoundingMode.HALF_UP);
+			totalFees = totalFees.add(calcedStateFee).setScale(2, RoundingMode.HALF_UP);
 			queryParams.addBigDecimal("stateFeeAmount", calcedStateFee);
 			queryParams.addString("stateFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));
 		}
