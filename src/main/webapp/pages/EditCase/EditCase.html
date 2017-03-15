@@ -31,7 +31,8 @@
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="Sort Order should not repeated" title="Case Status Options" formlayout="dialog" iconclass="wi wi-settings" dataset="bind:Variables.lvCaseStatusesData.dataSet" captionalign="left" captionposition="top" name="liveformCaseStatuses">
+                                    <wm-liveform novalidate="false" errormessage="Sort Order cannot be duplicated." title="Case Status Options" formlayout="dialog" iconclass="wi wi-settings" dataset="bind:Variables.lvCaseStatusesData.dataSet" captionalign="left"
+                                    captionposition="top" name="liveformCaseStatuses">
                                         <wm-layoutgrid columns="1" name="layoutgrid2">
                                             <wm-gridrow name="gridrow12">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn12">
@@ -39,14 +40,16 @@
                                                         <wm-layoutgrid name="layoutgrid3">
                                                             <wm-gridrow name="gridrow13_1" padding="unset unset 1em unset">
                                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn13" padding="unset 1em unset unset">
-                                                                    <wm-form-field name="status" displayname="Status Name" show="true" primary-key="false" generator="assigned" key="status" type="string" readonly="false" required="true" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="status" displayname="Status Name" show="true" primary-key="false" generator="assigned" key="status" type="string" readonly="false" required="true" widget="text" maxchars="255"
+                                                                    inputtype="text" placeholder="Enter value"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn14" padding="unset 1em unset unset">
-                                                                    <wm-form-field name="description" displayname="Status Description" show="true" primary-key="false" generator="assigned" key="description" type="string" readonly="false" required="true" widget="textarea" maxchars="1000" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="description" displayname="Status Description" show="true" primary-key="false" generator="assigned" key="description" type="string" readonly="false" required="true" widget="textarea"
+                                                                    maxchars="1000" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn17" padding="unset 1em unset unset">
-                                                                    <wm-form-field name="sortNumber" displayname="Sort Order" show="true" primary-key="false" generator="assigned" key="sortNumber" type="integer" readonly="false" required="true" step="0" widget="select" placeholder="Enter value" minvalue="1" dataset="bind:Variables.SortOrder.dataSet"
-                                                                    datafield="dataValue" displayfield="dataValue"></wm-form-field>
+                                                                    <wm-form-field name="sortNumber" displayname="Sort Order" show="true" primary-key="false" generator="assigned" key="sortNumber" type="integer" readonly="false" required="true" step="0" widget="select"
+                                                                    placeholder="Enter value" minvalue="1" dataset="bind:Variables.SortOrder.dataSet" datafield="dataValue" displayfield="dataValue"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                         </wm-layoutgrid>
@@ -59,17 +62,18 @@
                                                         <wm-layoutgrid name="layoutgrid4_1">
                                                             <wm-gridrow name="gridrow15" padding="unset unset 1em unset">
                                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn18" padding="unset 1em unset unset">
-                                                                    <wm-form-field name="sendEmail" displayname="Send Email" show="true" primary-key="false" generator="assigned" key="sendEmail" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="true" placeholder=""></wm-form-field>
+                                                                    <wm-form-field name="sendEmail" displayname="Send Email" show="true" primary-key="false" generator="assigned" key="sendEmail" type="boolean" readonly="false" required="false" widget="checkbox"
+                                                                    defaultvalue="false" placeholder=""></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn columnwidth="8" name="gridcolumn19" padding="unset 1em unset unset">
-                                                                    <wm-form-field name="emailSubject" displayname="Email Subject Line" show="true" primary-key="false" generator="assigned" key="emailSubject" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                                                    width="100%"></wm-form-field>
+                                                                    <wm-form-field name="emailSubject" displayname="Email Subject Line" show="true" primary-key="false" generator="assigned" key="emailSubject" type="string" readonly="false" required="false"
+                                                                    widget="text" maxchars="255" inputtype="text" placeholder="Enter value" width="100%"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow15_1" padding="unset unset 1em unset">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn20" padding="unset 1em unset unset">
-                                                                    <wm-form-field name="emailBody" displayname="Email Body Text" show="true" primary-key="false" generator="assigned" key="emailBody" type="text" readonly="false" required="false" widget="textarea" maxchars="4000" inputtype="text" placeholder="Enter value"
-                                                                    width="100%"></wm-form-field>
+                                                                    <wm-form-field name="emailBody" displayname="Email Body Text" show="true" primary-key="false" generator="assigned" key="emailBody" type="text" readonly="false" required="false" widget="textarea"
+                                                                    maxchars="4000" inputtype="text" placeholder="Enter value" width="100%"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                         </wm-layoutgrid>
@@ -78,8 +82,8 @@
                                             </wm-gridrow>
                                         </wm-layoutgrid>
                                         <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
-                                        <wm-form-field name="caseTypes" displayname="Case Types" show="false" primary-key="false" generator="assigned" key="caseTypes" type="list" is-related="true" readonly="false" required="false" widget="select" dataset="bind:Variables.lvCurrentCaseObject.dataSet"
-                                        datafield="All Fields" displayfield="caseType" defaultvalue="bind:Variables.lvCurrentCaseObject.firstRecord" placeholder="Select value"></wm-form-field>
+                                        <wm-form-field name="caseTypes" displayname="Case Types" show="false" primary-key="false" generator="assigned" key="caseTypes" type="list" is-related="true" readonly="false" required="false" widget="select"
+                                        dataset="bind:Variables.lvCurrentCaseObject.dataSet" datafield="All Fields" displayfield="caseType" defaultvalue="bind:Variables.lvCurrentCaseObject.firstRecord" placeholder="Select value"></wm-form-field>
                                         <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                         <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                                     </wm-liveform>
