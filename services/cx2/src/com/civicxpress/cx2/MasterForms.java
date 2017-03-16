@@ -49,7 +49,7 @@ public class MasterForms implements Serializable {
     private String formTitle;
     private Integer ownerId;
     private Timestamp dateModified;
-    private Timestamp submittedOn;
+    private Timestamp dateSubmitted;
     private FormTypes formTypes;
     private FormStatuses formStatuses;
     private Giscontacts giscontacts;
@@ -220,13 +220,13 @@ public class MasterForms implements Serializable {
         this.dateModified = dateModified;
     }
 
-    @Column(name = "`SubmittedOn`", nullable = true)
-    public Timestamp getSubmittedOn() {
-        return this.submittedOn;
+    @Column(name = "`DateSubmitted`", nullable = true)
+    public Timestamp getDateSubmitted() {
+        return this.dateSubmitted;
     }
 
-    public void setSubmittedOn(Timestamp submittedOn) {
-        this.submittedOn = submittedOn;
+    public void setDateSubmitted(Timestamp dateSubmitted) {
+        this.dateSubmitted = dateSubmitted;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
