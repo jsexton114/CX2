@@ -236,20 +236,16 @@
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectForms.dataSet" navigation="Classic" name="gridProjectForms" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                                         <wm-grid-column-group name="group1" caption="Form Details">
                                             <wm-grid-column binding="masterForms.formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="users.email" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="masterForms.users.fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="masterForms.formStatuses.formTypes.formType" caption="Form Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="masterForms.formStatuses.status" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="masterForms.giscontacts.gisrecords.fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="masterForms.vendor.companyName" caption="Primary Vendor" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="masterForms.balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         </wm-grid-column-group>
-                                        <wm-grid-column-group name="group" caption="User">
-                                            <wm-grid-column binding="users.firstName" caption="First Name" type="string" widget-type="label" edit-widget-type="text" show="true" readonly="false">
-                                                <wm-label caption="{{row.getProperty('users.firstName')}}" class="" data-ng-class=""></wm-label>
-                                            </wm-grid-column>
-                                            <wm-grid-column binding="users.lastName" caption="Last Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        </wm-grid-column-group>
+                                        <wm-grid-column-group name="group" caption="User"></wm-grid-column-group>
                                         <wm-grid-column binding="addedAt" caption="Date Added" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="users.fullName" caption="Added By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="comments" caption="Comments" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="Add Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Form" action="Widgets.dialogAddFormsToProject.open()" shortcutkey="" disabled="false"></wm-grid-action>
@@ -552,7 +548,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions4">
-                <wm-button class="btn-primary" caption="Add Form" type="button" margin="unset 0.5em" name="buttonAddForm" on-tap="Variables.AddFormToProject.invoke()" iconclass="wi wi-plus" disabled="bind:Widgets.searchForm.datavalue == null"></wm-button>
+                <wm-button class="btn-primary" caption="Add Form" type="button" margin="unset 0.5em" name="buttonAddForm" on-tap="Variables.AddFormToProject.invoke()" iconclass="wi wi-plus" disabled="bind:!Widgets.searchForm.datavalue"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button8" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
