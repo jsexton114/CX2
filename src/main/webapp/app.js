@@ -8,7 +8,7 @@ Application.config(['vcRecaptchaServiceProvider', '$routeProvider', function(vcR
     });
 }]);
 
-Application.run(function($rootScope) {
+Application.run(function($rootScope, Utils) {
     "use strict";
     /* perform any action on the variables within this block(on-page-load) */
     $rootScope.onAppVariablesReady = function() {
@@ -32,6 +32,21 @@ Application.run(function($rootScope) {
         // For count badge in left nav
         $rootScope.Variables.NoOfMunicipalitiesForUser.dataSet.dataValue = data.totalElements;
     };
+
+
+    // Gets value of a cookie by its name
+    function getCookie(name) {
+        var val = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+        return val ? val.pop() : '';
+    }
+
+    var _simulateFileDownload = Utils.simulateFileDownload;
+    Utils.simulateFileDownload = function(params) {
+        // add csrf cookie to the query params for download requests
+        params.url += '&_csrf=' + getCookie('wm_xsrf_token');
+        _simulateFileDownload(params);
+    }
+
 });
 
 Application.factory('_', ['$window', function($window) {

@@ -1101,12 +1101,13 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Object> executeSearchFormByVendor(Pageable pageable, Timestamp startd, Timestamp endd, Integer formTypeId, Boolean closed, Integer vendorId) {
-        Map params = new HashMap(5);
+    public Page<Object> executeSearchFormByVendor(Pageable pageable, Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId) {
+        Map params = new HashMap(6);
 
         params.put("startd", startd);
         params.put("endd", endd);
         params.put("FormTypeId", formTypeId);
+        params.put("municipalityId", municipalityId);
         params.put("closed", closed);
         params.put("vendorId", vendorId);
 

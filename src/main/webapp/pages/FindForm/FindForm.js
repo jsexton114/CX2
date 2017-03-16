@@ -3,7 +3,10 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        $scope.today = moment().valueOf();
+        //$scope.today = moment().valueOf();
+
+        $scope.Widgets.datetimeVendorEnd.timestamp = moment().valueOf();
+        $scope.Widgets.datetimeVendorStart.timestamp = moment.utc(new Date(2016, 6, 1)).valueOf();
     };
 
 }]);
@@ -62,8 +65,8 @@ Application.$controller("gridAddressController", ["$scope",
 ]);
 
 Application.$controller("livefilter1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

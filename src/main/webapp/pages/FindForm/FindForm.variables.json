@@ -797,10 +797,6 @@
       "target" : "userId",
       "value" : "bind:Widgets.searchUser.datavalue.userId",
       "type" : "number"
-    }, {
-      "target" : "submittedOn",
-      "value" : "between wm_ts('1483276056000') and wm_ts('1487855261000')",
-      "type" : "timestamp"
     } ],
     "operation" : "read",
     "dataSet" : [ ],
@@ -1465,7 +1461,7 @@
           "columnName" : "EmailTextBody",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 255,
+          "length" : 4000,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -1521,7 +1517,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "true",
           "scale" : 0
         }, {
           "fieldName" : "allowReporting",
@@ -2966,7 +2962,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -2981,7 +2977,7 @@
         "columnName" : "FormGUID",
         "isPrimaryKey" : true,
         "notNull" : true,
-        "length" : 255,
+        "length" : 32,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -3847,7 +3843,7 @@
           "columnName" : "EmailTextBody",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 255,
+          "length" : 4000,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -3903,7 +3899,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "true",
           "scale" : 0
         }, {
           "fieldName" : "allowReporting",
@@ -5348,7 +5344,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -5363,7 +5359,7 @@
         "columnName" : "FormGUID",
         "isPrimaryKey" : true,
         "notNull" : true,
-        "length" : 255,
+        "length" : 32,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -6260,7 +6256,7 @@
           "columnName" : "EmailTextBody",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 255,
+          "length" : 4000,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -6316,7 +6312,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "true",
           "scale" : 0
         }, {
           "fieldName" : "allowReporting",
@@ -7761,7 +7757,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -7776,7 +7772,7 @@
         "columnName" : "FormGUID",
         "isPrimaryKey" : true,
         "notNull" : true,
-        "length" : 255,
+        "length" : 32,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -8782,7 +8778,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -9577,7 +9573,7 @@
           "columnName" : "EmailTextBody",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 255,
+          "length" : 4000,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -9633,7 +9629,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "true",
           "scale" : 0
         }, {
           "fieldName" : "allowReporting",
@@ -11078,7 +11074,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -11093,7 +11089,7 @@
         "columnName" : "FormGUID",
         "isPrimaryKey" : true,
         "notNull" : true,
-        "length" : 255,
+        "length" : 32,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -11794,18 +11790,22 @@
       "type" : "integer"
     }, {
       "target" : "startd",
-      "value" : "bind:Widgets.datetimeVendorStart.timestamp",
+      "value" : "bind:Widgets.datetimeVendorStart.datavalue",
       "type" : "string"
     }, {
       "target" : "endd",
-      "value" : "bind:Widgets.datetimeVendorEnd.timestamp",
+      "value" : "bind:Widgets.datetimeVendorEnd.datavalue",
       "type" : "string"
     }, {
       "target" : "FormTypeId",
       "value" : "bind:Widgets.selectFormTypeFromVendor.datavalue.ID | stringToNumber",
       "type" : "integer"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMuncipalityForVENDOR.datavalue.ID",
+      "type" : "integer"
     } ],
-    "type" : "com.civicxpress.cx2.models.query.SearchFormByVendorResponse",
+    "type" : "com.civicxpress.cx2.MasterForms",
     "service" : "cx2",
     "operation" : "executeSearchFormByVendor",
     "operationId" : "QueryExecutionController_executeSearchFormByVendor",

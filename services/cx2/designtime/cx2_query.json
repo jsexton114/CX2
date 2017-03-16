@@ -6446,8 +6446,8 @@
     "name" : "SearchFormByVendor",
     "description" : "SearchFormByVendor",
     "version" : "V1",
-    "queryString" : "from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC",
-    "countQueryString" : "select count(*) from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )",
+    "queryString" : "from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and municipalityId=:municipalityId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC",
+    "countQueryString" : "select count(*) from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and municipalityId=:municipalityId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )",
     "nativeSql" : false,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -6456,36 +6456,43 @@
       "type" : "timestamp",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1485937937000",
+      "testValue" : 1485937937000,
       "required" : false
     }, {
       "name" : "endd",
       "type" : "timestamp",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1486974741000",
+      "testValue" : 1495009941000,
       "required" : false
     }, {
       "name" : "FormTypeId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "58",
+      "testValue" : "107",
       "required" : false
+    }, {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
     }, {
       "name" : "closed",
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "",
+      "testValue" : true,
       "required" : false
     }, {
       "name" : "vendorId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "26",
-      "required" : false
+      "testValue" : "28",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -6493,271 +6500,9 @@
       "method" : "GET"
     },
     "response" : {
-      "typeRef" : "com.civicxpress.cx2.models.query.SearchFormByVendorResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "assignedToGroupId",
-        "fieldName" : "assignedToGroupId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "balanceDue",
-        "fieldName" : "balanceDue",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "closed",
-        "fieldName" : "closed",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "cxvendorId",
-        "fieldName" : "cxvendorId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "dateModified",
-        "fieldName" : "dateModified",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.Date",
-          "list" : false
-        }
-      }, {
-        "name" : "expiresDate",
-        "fieldName" : "expiresDate",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.Date",
-          "list" : false
-        }
-      }, {
-        "name" : "formGuid",
-        "fieldName" : "formGuid",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "formMessageses",
-        "fieldName" : "formMessageses",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.List",
-          "list" : false
-        }
-      }, {
-        "name" : "formStatusId",
-        "fieldName" : "formStatusId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "formStatuses",
-        "fieldName" : "formStatuses",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.FormStatuses",
-          "list" : false
-        }
-      }, {
-        "name" : "formTitle",
-        "fieldName" : "formTitle",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "formTypeId",
-        "fieldName" : "formTypeId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "formTypes",
-        "fieldName" : "formTypes",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.FormTypes",
-          "list" : false
-        }
-      }, {
-        "name" : "gis2formses",
-        "fieldName" : "gis2formses",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.List",
-          "list" : false
-        }
-      }, {
-        "name" : "giscontacts",
-        "fieldName" : "giscontacts",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.Giscontacts",
-          "list" : false
-        }
-      }, {
-        "name" : "issuedDate",
-        "fieldName" : "issuedDate",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.Date",
-          "list" : false
-        }
-      }, {
-        "name" : "municipalities",
-        "fieldName" : "municipalities",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.Municipalities",
-          "list" : false
-        }
-      }, {
-        "name" : "municipalityGroups",
-        "fieldName" : "municipalityGroups",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.MunicipalityGroups",
-          "list" : false
-        }
-      }, {
-        "name" : "municipalityId",
-        "fieldName" : "municipalityId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ownerId",
-        "fieldName" : "ownerId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "recordType",
-        "fieldName" : "recordType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "sharedWiths",
-        "fieldName" : "sharedWiths",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.List",
-          "list" : false
-        }
-      }, {
-        "name" : "submittedOn",
-        "fieldName" : "submittedOn",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.Date",
-          "list" : false
-        }
-      }, {
-        "name" : "totalFees",
-        "fieldName" : "totalFees",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "totalPayment",
-        "fieldName" : "totalPayment",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "userId",
-        "fieldName" : "userId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "users",
-        "fieldName" : "users",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.Users",
-          "list" : false
-        }
-      }, {
-        "name" : "vendor",
-        "fieldName" : "vendor",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.Vendor",
-          "list" : false
-        }
-      }, {
-        "name" : "vendors2forms",
-        "fieldName" : "vendors2forms",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.List",
-          "list" : false
-        }
-      } ]
+      "typeRef" : "com.civicxpress.cx2.MasterForms",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
     }
   },
   "SetModifiedDateForProject" : {

@@ -1786,9 +1786,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/SearchFormByVendor", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "SearchFormByVendor")
-    public Page<SearchFormByVendorResponse> executeSearchFormByVendor(@RequestParam(value = "startd", required = false) Timestamp startd, @RequestParam(value = "endd", required = false) Timestamp endd, @RequestParam(value = "FormTypeId", required = false) Integer formTypeId, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "vendorId", required = false) Integer vendorId, Pageable pageable) {
+    public Page<MasterForms> executeSearchFormByVendor(@RequestParam(value = "startd", required = false) Timestamp startd, @RequestParam(value = "endd", required = false) Timestamp endd, @RequestParam(value = "FormTypeId", required = false) Integer formTypeId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "vendorId") Integer vendorId, Pageable pageable) {
         LOGGER.debug("Executing named query: SearchFormByVendor");
-        Page<SearchFormByVendorResponse> _result = queryService.executeSearchFormByVendor(startd, endd, formTypeId, closed, vendorId, pageable);
+        Page<MasterForms> _result = queryService.executeSearchFormByVendor(startd, endd, formTypeId, municipalityId, closed, vendorId, pageable);
         LOGGER.debug("got the result for named query: SearchFormByVendor, result:{}", _result);
         return _result;
     }
@@ -1796,10 +1796,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query SearchFormByVendor")
     @RequestMapping(value = "/queries/SearchFormByVendor/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportSearchFormByVendor(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "startd", required = false) Timestamp startd, @RequestParam(value = "endd", required = false) Timestamp endd, @RequestParam(value = "FormTypeId", required = false) Integer formTypeId, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "vendorId", required = false) Integer vendorId, Pageable pageable) {
+    public Downloadable exportSearchFormByVendor(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "startd", required = false) Timestamp startd, @RequestParam(value = "endd", required = false) Timestamp endd, @RequestParam(value = "FormTypeId", required = false) Integer formTypeId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "vendorId") Integer vendorId, Pageable pageable) {
         LOGGER.debug("Exporting named query: SearchFormByVendor");
 
-        return queryService.exportSearchFormByVendor(exportType, startd, endd, formTypeId, closed, vendorId, pageable);
+        return queryService.exportSearchFormByVendor(exportType, startd, endd, formTypeId, municipalityId, closed, vendorId, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateProjectDescription", method = RequestMethod.PUT)

@@ -188,12 +188,7 @@ Application.$controller("dialogParcelController", ["$scope",
     }
 ]);
 
-Application.$controller("gridProjectFormsController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
 
 Application.$controller("dialogAddFormsToProjectController", ["$scope",
     function($scope) {
@@ -311,4 +306,11 @@ Application.$controller("gridProjectMembersController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
     }
+]);
+
+Application.$controller("gridProjectFormsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

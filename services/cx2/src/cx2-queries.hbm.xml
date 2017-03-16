@@ -1554,22 +1554,24 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
 
     <query name="SearchFormByVendor">
         <![CDATA[
-        from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
+        from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and municipalityId=:municipalityId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
         ]]>
     <query-param name="startd" type="java.sql.Timestamp"/>
     <query-param name="endd" type="java.sql.Timestamp"/>
     <query-param name="FormTypeId" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="closed" type="java.lang.Boolean"/>
     <query-param name="vendorId" type="java.lang.Integer"/>
     </query>
 
     <query name="SearchFormByVendor__count">
         <![CDATA[
-        select count(*) from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )
+        select count(*) from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and municipalityId=:municipalityId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )
         ]]>
     <query-param name="startd" type="java.sql.Timestamp"/>
     <query-param name="endd" type="java.sql.Timestamp"/>
     <query-param name="FormTypeId" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="closed" type="java.lang.Boolean"/>
     <query-param name="vendorId" type="java.lang.Integer"/>
     </query>

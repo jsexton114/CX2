@@ -2021,30 +2021,32 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<SearchFormByVendorResponse> executeSearchFormByVendor(Timestamp startd, Timestamp endd, Integer formTypeId, Boolean closed, Integer vendorId, Pageable pageable) {
-        Map params = new HashMap(5);
+    public Page<MasterForms> executeSearchFormByVendor(Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId, Pageable pageable) {
+        Map params = new HashMap(6);
 
         params.put("startd", startd);
         params.put("endd", endd);
         params.put("FormTypeId", formTypeId);
+        params.put("municipalityId", municipalityId);
         params.put("closed", closed);
         params.put("vendorId", vendorId);
 
-        return queryExecutor.executeNamedQuery("SearchFormByVendor", params, SearchFormByVendorResponse.class, pageable);
+        return queryExecutor.executeNamedQuery("SearchFormByVendor", params, MasterForms.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportSearchFormByVendor(ExportType exportType, Timestamp startd, Timestamp endd, Integer formTypeId, Boolean closed, Integer vendorId, Pageable pageable) {
-        Map params = new HashMap(5);
+    public Downloadable exportSearchFormByVendor(ExportType exportType, Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId, Pageable pageable) {
+        Map params = new HashMap(6);
 
         params.put("startd", startd);
         params.put("endd", endd);
         params.put("FormTypeId", formTypeId);
+        params.put("municipalityId", municipalityId);
         params.put("closed", closed);
         params.put("vendorId", vendorId);
 
-        return queryExecutor.exportNamedQueryData("SearchFormByVendor", params, exportType, SearchFormByVendorResponse.class, pageable);
+        return queryExecutor.exportNamedQueryData("SearchFormByVendor", params, exportType, MasterForms.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")

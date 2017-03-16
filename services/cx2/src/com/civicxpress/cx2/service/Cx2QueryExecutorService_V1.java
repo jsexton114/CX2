@@ -309,7 +309,7 @@ public interface Cx2QueryExecutorService_V1 {
     public int executeUpdateProcessOwnersForGUID(Integer assignedToGroupId, String guid);
 
     @Deprecated
-    public Page<Object> executeSearchFormByVendor(Pageable pageable, Timestamp startd, Timestamp endd, Integer formTypeId, Boolean closed, Integer vendorId);
+    public Page<Object> executeSearchFormByVendor(Pageable pageable, Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId);
 
     @Deprecated
     public int executeUpdateProjectDescription(String projectDescription, String project);
