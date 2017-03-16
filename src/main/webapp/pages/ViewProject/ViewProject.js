@@ -215,6 +215,18 @@ Application.$controller("dialogAddtaskController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+
+
+
+        $scope.buttonTaskCreateClick = function($event, $isolateScope) {
+            $scope.Variables.InsertTask.setInput({
+                'assignedTo': $scope.Widgets.selectProjectAssignedTo.datavalue.id
+            });
+            $scope.Variables.InsertTask.insertRecord();
+
+        };
+
     }
 ]);
 
@@ -309,8 +321,8 @@ Application.$controller("gridProjectMembersController", ["$scope",
 ]);
 
 Application.$controller("gridProjectFormsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

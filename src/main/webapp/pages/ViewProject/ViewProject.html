@@ -627,14 +627,14 @@
                             <wm-label class="col-md-3 form-control-static" name="label57" caption="Assigned To" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container11">
                                 <wm-search name="selectProjectAssignedTo" dataset="bind:Variables.GetAllUsers.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" displayimagesrc="photo" datafield="All Fields" orderby="fullName:asc"
-                                placeholder="Search by Name or Email Address"></wm-search>
+                                placeholder="Search by Name or Email Address" on-change="selectProjectAssignedToChange($event, $scope, newVal, oldVal)"></wm-search>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions5">
-                <wm-button class="btn-primary" caption="Add Task" type="button" margin="unset 0.5em" name="buttonTaskCreate" iconclass="wi wi-plus" on-click="Variables.InsertTask.createRecord()" disabled="bind:Widgets.textProjectTitle.datavalue == null"></wm-button>
+                <wm-button class="btn-primary" caption="Add Task" type="button" margin="unset 0.5em" name="buttonTaskCreate" iconclass="wi wi-plus" on-click="buttonTaskCreateClick($event, $scope)" disabled="bind:Widgets.textProjectTitle.datavalue == null"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button10" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
