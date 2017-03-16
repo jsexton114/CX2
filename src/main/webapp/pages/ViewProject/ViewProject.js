@@ -216,9 +216,6 @@ Application.$controller("dialogAddtaskController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-
-
-
         $scope.buttonTaskCreateClick = function($event, $isolateScope) {
             $scope.Variables.InsertTask.setInput({
                 'assignedTo': $scope.Widgets.selectProjectAssignedTo.datavalue.id
