@@ -11,27 +11,27 @@ Application.$controller("DashBoardsPageController", ["$scope", function($scope) 
 
     $scope.selectTermsChange = function($event, $isolateScope, newVal, oldVal) {
         switch (newVal) {
-            case "AllTime":
+            case "All Time":
                 $scope.Widgets.datetimeEnd.timestamp = moment().valueOf();
                 $scope.Widgets.datetimeStart.timestamp = moment.utc(new Date(2016, 6, 1)).valueOf();
                 break;
-            case "Year":
+            case "This Year":
                 $scope.Widgets.datetimeEnd.timestamp = moment().valueOf();
                 $scope.Widgets.datetimeStart.timestamp = moment().subtract(1, 'years').valueOf();
                 break;
-            case "Half":
+            case "This Half":
                 $scope.Widgets.datetimeEnd.timestamp = moment().valueOf();
                 $scope.Widgets.datetimeStart.timestamp = moment().subtract(6, 'months').valueOf();
                 break;
-            case "Quarter":
+            case "This Quarter":
                 $scope.Widgets.datetimeEnd.timestamp = moment().valueOf();
                 $scope.Widgets.datetimeStart.timestamp = moment().subtract(4, 'months').valueOf();
                 break;
-            case "Month":
+            case "This Month":
                 $scope.Widgets.datetimeEnd.timestamp = moment().valueOf();
                 $scope.Widgets.datetimeStart.timestamp = moment().subtract(1, 'months').valueOf();
                 break;
-            case "Week":
+            case "This Week":
                 $scope.Widgets.datetimeEnd.timestamp = moment().valueOf();
                 $scope.Widgets.datetimeStart.timestamp = moment().subtract(1, 'weeks').valueOf();
                 break;
