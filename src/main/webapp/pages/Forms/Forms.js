@@ -186,9 +186,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         }
     };
 
-    $scope.svInsertMasterInspectionsonError = function(variable, data) {
-        debugger;
-    };
 
 }]);
 
@@ -508,7 +505,6 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.button2InspectionRequestClick = function($event, $isolateScope) {
-            debugger
             var guid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                 var r = Math.random() * 16 | 0,
                     v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -517,7 +513,6 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
             $scope.Variables.svInsertMasterInspections.setInput({
                 'InspectionGuid': guid
             });
-            $scope.Variables.svInsertMasterInspections.invoke();
             $scope.Variables.svInsertMasterInspections.update();
         };
 

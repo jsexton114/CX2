@@ -313,8 +313,8 @@
                                                     <wm-grid-column binding="addedAt" caption="Date Requested" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="users.fullName" caption="Requested By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="masterInspections.inspectionOutcome.outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-action key="addNewRow" display-name="Request Inspection" show="true" class="btn-primary" iconclass="wi wi-plus" title="Request Inspection" action="Widgets.dialogInspectionRequest.open()"
-                                                    shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-action key="addNewRow" display-name="Request Inspection" show="bind:(Variables.CurrentForm.firstRecord.formTypes.inspections=='true')&amp;&amp;(Variables.CurrentForm.firstRecord.formStatuses.allowInspections=='true')"
+                                                    class="btn-primary" iconclass="wi wi-plus" title="Request Inspection" action="Widgets.dialogInspectionRequest.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                                 </wm-grid>
                                             </wm-gridcolumn>
                                         </wm-gridrow>

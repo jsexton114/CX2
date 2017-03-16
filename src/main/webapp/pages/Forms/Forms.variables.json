@@ -5671,34 +5671,6 @@
     } ],
     "operation" : "toast"
   },
-  "DontAddToCart" : {
-    "_id" : "wm-DontAddToCart-wm.NotificationVariable-1488968800727",
-    "name" : "DontAddToCart",
-    "owner" : "Page",
-    "category" : "wm.NotificationVariable",
-    "dataBinding" : [ {
-      "target" : "content",
-      "value" : "inline",
-      "type" : "string"
-    }, {
-      "target" : "text",
-      "value" : "Sorry, fees cannot be paid while the form is in the current status",
-      "type" : "string"
-    }, {
-      "target" : "duration",
-      "value" : "5000",
-      "type" : "number"
-    }, {
-      "target" : "class",
-      "value" : "Error",
-      "type" : "string"
-    }, {
-      "target" : "toasterPosition",
-      "value" : "bottom right",
-      "type" : "string"
-    } ],
-    "operation" : "toast"
-  },
   "DuplicateGISRecordToForm" : {
     "_id" : "wm-DuplicateGISRecordToForm-wm.NotificationVariable-1486125985008",
     "name" : "DuplicateGISRecordToForm",
