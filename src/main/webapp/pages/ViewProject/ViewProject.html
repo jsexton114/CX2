@@ -554,7 +554,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewAddtask">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Task Details" iconclass="wi wi-playlist-add-check" name="dialogAddtask">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add a Task or Milestone" iconclass="wi wi-playlist-add-check" name="dialogAddtask">
             <wm-layoutgrid name="layoutgrid11">
                 <wm-gridrow name="gridrow58" padding="1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn103">
@@ -586,15 +586,20 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow61_1" padding="1em unset">
+                <wm-gridrow name="gridrow61_1" padding="1em unset unset unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn108">
                         <wm-composite name="composite9">
                             <wm-label class="col-md-3 form-control-static" name="label54_1" caption="Predecessor" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container8">
                                 <wm-select name="selectProjectPredecessor" dataset="bind:Variables.ProjectTasksData.dataSet" datafield="All Fields" displayfield="name" datavalue="bind:Variables.ProjectTasksData.lastRecord" placeholder="Select Task/Milestone"
-                                orderby="createdAt:asc,name:asc"></wm-select>
+                                orderby="createdAt:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow76_2" padding="unset unset 1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn132_1">
+                        <wm-label padding="unset 0.5em" name="label82" class="help-block" fontsize="0.8" fontunit="em" caption="If this task/milestone is dependent on a previous task/milestone, you can set the &quot;Predecessor&quot; here."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow62" padding="1em unset">
@@ -636,7 +641,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewUpdateTask">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Update Task" iconclass="wi wi-playlist-add-check" name="dialogUpdateTask">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="bind:'Update '+Variables.GetSelectedTaskDetails.dataSet.type" iconclass="wi wi-playlist-add-check" name="dialogUpdateTask">
             <wm-layoutgrid name="layoutgrid11">
                 <wm-gridrow name="gridrow74_1" padding="1em unset unset unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn133">
@@ -683,15 +688,20 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow61_1" padding="1em unset">
+                <wm-gridrow name="gridrow61_1" padding="1em unset unset unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn108">
                         <wm-composite name="composite9">
                             <wm-label class="col-md-3 form-control-static" name="label54_1" caption="Predecessor" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container8">
                                 <wm-select name="selectUpdateProjectPredecessor" dataset="bind:Variables.ProjectTasksData.dataSet" datafield="All Fields" displayfield="name" datavalue="bind:Variables.PredecessorForSelectedTask.firstRecord" placeholder="Select Task/Milestone"
-                                orderby="createdAt:asc,name:asc"></wm-select>
+                                orderby="createdAt:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow77_2" padding="unset unset 1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn133_1">
+                        <wm-label padding="unset 0.5em" name="label83" class="help-block" fontsize="0.8" fontunit="em" caption="If this task/milestone is dependent on a previous task/milestone, you can set the &quot;Predecessor&quot; here."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow62" padding="1em unset">
