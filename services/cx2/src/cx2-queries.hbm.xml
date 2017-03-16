@@ -422,7 +422,7 @@ group by FeeType) wmTempTable
         <![CDATA[
         select V.companyName as vendorCompany ,count(MF.formGuid) as counts 
 from MasterForms  MF inner join cx2.Vendor V
-on MF.CXVendorId=V.ID where MF.MunicipalityId=:municipality and MF.SubmittedOn BETWEEN :startDate and :endDate
+on MF.CXVendorId=V.ID where MF.MunicipalityId=:municipality and MF.DateSubmitted BETWEEN :startDate and :endDate
 group by V.companyName
         ]]>
     <query-param name="municipality" type="java.lang.Integer"/>
@@ -434,7 +434,7 @@ group by V.companyName
         <![CDATA[
         select count(*) from (select V.companyName as vendorCompany ,count(MF.formGuid) as counts 
 from MasterForms  MF inner join cx2.Vendor V
-on MF.CXVendorId=V.ID where MF.MunicipalityId=:municipality and MF.SubmittedOn BETWEEN :startDate and :endDate
+on MF.CXVendorId=V.ID where MF.MunicipalityId=:municipality and MF.DateSubmitted BETWEEN :startDate and :endDate
 group by V.companyName) wmTempTable
         ]]>
     <query-param name="municipality" type="java.lang.Integer"/>
@@ -993,7 +993,7 @@ on FCM.FormTypeId=FT.ID
 inner join cx2.FormCategories FC
 on FC.ID=FCM.FormCategoryId
 
-where MF.MunicipalityId=:municipality and MF.SubmittedOn BETWEEN :startDate and :endDate
+where MF.MunicipalityId=:municipality and MF.DateSubmitted BETWEEN :startDate and :endDate
 group by FC.Category
         ]]>
     <query-param name="municipality" type="java.lang.Integer"/>
@@ -1013,7 +1013,7 @@ on FCM.FormTypeId=FT.ID
 inner join cx2.FormCategories FC
 on FC.ID=FCM.FormCategoryId
 
-where MF.MunicipalityId=:municipality and MF.SubmittedOn BETWEEN :startDate and :endDate
+where MF.MunicipalityId=:municipality and MF.DateSubmitted BETWEEN :startDate and :endDate
 group by FC.Category) wmTempTable
         ]]>
     <query-param name="municipality" type="java.lang.Integer"/>
@@ -1554,7 +1554,7 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
 
     <query name="SearchFormByVendor">
         <![CDATA[
-        from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and municipalityId=:municipalityId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
+        from MasterForms where DateSubmitted BETWEEN :startd and :endd and FormTypeId=:FormTypeId and municipalityId=:municipalityId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
         ]]>
     <query-param name="startd" type="java.sql.Timestamp"/>
     <query-param name="endd" type="java.sql.Timestamp"/>
@@ -1566,7 +1566,7 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
 
     <query name="SearchFormByVendor__count">
         <![CDATA[
-        select count(*) from MasterForms where SubmittedOn BETWEEN :startd and :endd and FormTypeId=:FormTypeId and municipalityId=:municipalityId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )
+        select count(*) from MasterForms where DateSubmitted BETWEEN :startd and :endd and FormTypeId=:FormTypeId and municipalityId=:municipalityId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId )
         ]]>
     <query-param name="startd" type="java.sql.Timestamp"/>
     <query-param name="endd" type="java.sql.Timestamp"/>
@@ -1679,7 +1679,7 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
 
     <query name="FormsTypesForDashboard">
         <![CDATA[
-        select formTypes.formType as formType ,count(formGuid) as counts from MasterForms where municipalityId=:municipality and SubmittedOn BETWEEN :startDate and :endDate
+        select formTypes.formType as formType ,count(formGuid) as counts from MasterForms where municipalityId=:municipality and DateSubmitted BETWEEN :startDate and :endDate
 group by formTypes.formType
         ]]>
     <query-param name="municipality" type="java.lang.Integer"/>
