@@ -5,13 +5,16 @@ Application.$controller("DashBoardsPageController", ["$scope", function($scope) 
     $scope.onPageReady = function() {
         //setting default to year
         $scope.Widgets.datetimeEnd.timestamp = moment().valueOf();
-        $scope.Widgets.datetimeStart.timestamp = moment().subtract(1, 'years').valueOf();
+        $scope.Widgets.datetimeStart.timestamp = moment.utc(new Date(2016, 6, 1)).valueOf();
     };
 
 
     $scope.selectTermsChange = function($event, $isolateScope, newVal, oldVal) {
         switch (newVal) {
-
+            case "AllTime":
+                $scope.Widgets.datetimeEnd.timestamp = moment().valueOf();
+                $scope.Widgets.datetimeStart.timestamp = moment.utc(new Date(2016, 6, 1)).valueOf();
+                break;
             case "Year":
                 $scope.Widgets.datetimeEnd.timestamp = moment().valueOf();
                 $scope.Widgets.datetimeStart.timestamp = moment().subtract(1, 'years').valueOf();
