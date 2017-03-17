@@ -187,6 +187,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     };
 
 
+
 }]);
 
 Application.$controller("gridSharedwithController", ["$scope",
@@ -503,17 +504,6 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        $scope.button2InspectionRequestClick = function($event, $isolateScope) {
-            var guid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                var r = Math.random() * 16 | 0,
-                    v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-            $scope.Variables.svInsertMasterInspections.setInput({
-                'InspectionGuid': guid
-            });
-            $scope.Variables.svInsertMasterInspections.update();
-        };
 
     }
 ]);

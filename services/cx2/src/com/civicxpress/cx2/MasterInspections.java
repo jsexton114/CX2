@@ -14,12 +14,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 
@@ -50,7 +52,7 @@ public class MasterInspections implements Serializable {
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime dateRequested;
-    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT, Scope.UPDATE })
+    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime dateModified;
     private Integer assignedTo;
@@ -75,6 +77,8 @@ public class MasterInspections implements Serializable {
     private List<MasterCases> masterCaseses = new ArrayList<>();
 
     @Id
+    @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
+    @GeneratedValue(generator = "generator")
     @Column(name = "`InspectionGuid`", nullable = false, length = 255)
     public String getInspectionGuid() {
         return this.inspectionGuid;

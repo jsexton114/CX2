@@ -313,8 +313,8 @@
                                                     <wm-grid-column binding="addedAt" caption="Date Requested" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="users.fullName" caption="Requested By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="masterInspections.inspectionOutcome.outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-action key="addNewRow" display-name="Request Inspection" show="bind:(Variables.CurrentForm.firstRecord.formTypes.inspections=='true')&amp;&amp;(Variables.CurrentForm.firstRecord.formStatuses.allowInspections=='true')"
-                                                    class="btn-primary" iconclass="wi wi-plus" title="Request Inspection" action="Widgets.dialogInspectionRequest.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-action key="addNewRow" display-name="Request Inspection" show="true" class="btn-primary" iconclass="wi wi-plus" title="Request Inspection" action="Widgets.dialogInspectionRequest.open()"
+                                                    shortcutkey="" disabled="false" position="footer,header"></wm-grid-action>
                                                 </wm-grid>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
@@ -951,7 +951,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions10">
-                <wm-button class="btn-primary" caption="Request" type="button" margin="unset 0.5em" name="button2InspectionRequest" on-click="button2InspectionRequestClick($event, $scope)" iconclass="wi wi-plus"></wm-button>
+                <wm-button class="btn-primary" caption="Request" type="button" margin="unset 0.5em" name="button2InspectionRequest" on-click="Variables.lvMasterInspectionsInsert.createRecord()" iconclass="wi wi-plus"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button21" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>

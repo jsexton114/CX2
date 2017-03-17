@@ -9872,8 +9872,8 @@
       },
       "fieldName" : "inspectionGuid",
       "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
+      "generatorType" : "uniqueid",
+      "generatorValue" : "",
       "javaType" : "string",
       "length" : 255,
       "name" : "InspectionGuid",
@@ -10323,8 +10323,8 @@
       "columns" : [ "InspectionGuid" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "assigned",
-        "generatorValue" : null
+        "generatorType" : "uniqueid",
+        "generatorValue" : ""
       },
       "name" : "PRIMARY",
       "virtual" : false
