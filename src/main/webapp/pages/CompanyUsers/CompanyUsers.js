@@ -20,6 +20,8 @@ Application.$controller("CompanyUsersPageController", ["$scope", "$filter", func
         return $filter('toDate')(new Date().getTime(), 'MM-dd-yyyy');
     };
 
+
+
 }]);
 
 
@@ -44,6 +46,7 @@ Application.$controller("gridVendorUsersController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRow1Action = function($event, $rowData) {
+            debugger
             $scope.Variables.CheckIfCompanyUserIsVendorAdmin.setInput({
                 'user': $rowData.userId
             });
@@ -66,6 +69,7 @@ Application.$controller("dialogAddAdminController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonSaveAdminClick = function($event, $isolateScope) {
+
             if ($scope.Variables.CheckingUserWithInVendorUsers.dataSet.content[0].exist > 0) {
                 //already a user of company then add as admin
                 $scope.Variables.MapAsAdminForVendor.update();
