@@ -5181,6 +5181,48 @@
       "responseType" : "SINGLE"
     }
   },
+  "InsertFormsToInspectionsMapping" : {
+    "name" : "InsertFormsToInspectionsMapping",
+    "description" : "InsertFormsToInspectionsMapping",
+    "version" : "V2",
+    "queryString" : "insert into FormsToInspections(RelatedFormGUID,RelatedInspectionGUID,AddedBy) values(:RelatedFormGUID,:RelatedInspectionGUID,:AddedBy)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "RelatedFormGUID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "C97D05AE-3403-E711-80C9-0CC47A46DD63",
+      "required" : true
+    }, {
+      "name" : "RelatedInspectionGUID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "BE22B864-82A2-4567-9CC3-60A813C3D98E",
+      "required" : true
+    }, {
+      "name" : "AddedBy",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.InsertFormsToInspectionsMappingRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "InsertGroups" : {
     "name" : "InsertGroups",
     "description" : "Insert Groups in to Municipalities",

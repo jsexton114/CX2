@@ -188,6 +188,16 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
 
 
+
+    $scope.lvMasterInspectionsInsertonSuccess = function(variable, data) {
+        $scope.Variables.svInsertFormsToInspectionsMapping.setInput({
+            'RelatedInspectionGUID': data.inspectionGuid,
+            'RelatedFormGUID': data.formGuid,
+            'AddedBy': $scope.Variables.CurrentUserDetails.dataSet.id
+        });
+        $scope.Variables.svInsertFormsToInspectionsMapping.update();
+    };
+
 }]);
 
 Application.$controller("gridSharedwithController", ["$scope",

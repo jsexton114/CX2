@@ -1408,6 +1408,15 @@ ORDER BY DateModified DESC
     <query-param name="gisRecordIds" type="java.lang.Integer"/>
     </query>
 
+    <sql-query name="InsertFormsToInspectionsMapping">
+        <![CDATA[
+        insert into FormsToInspections(RelatedFormGUID,RelatedInspectionGUID,AddedBy) values(:RelatedFormGUID,:RelatedInspectionGUID,:AddedBy)
+        ]]>
+    <query-param name="RelatedFormGUID" type="java.lang.String"/>
+    <query-param name="RelatedInspectionGUID" type="java.lang.String"/>
+    <query-param name="AddedBy" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="FetchRolesForUserWithMunicipality">
         <![CDATA[
         select * from Roles where UserId=:user and MunicipalityId=:municipality

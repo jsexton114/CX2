@@ -1647,6 +1647,16 @@ public class QueryExecutionController {
         return queryService.exportGetOwnersForGisRecords(exportType, gisRecordIds, pageable);
     }
 
+    @RequestMapping(value = "/queries/InsertFormsToInspectionsMapping", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InsertFormsToInspectionsMapping")
+    public IntegerWrapper executeInsertFormsToInspectionsMapping(@Valid @RequestBody InsertFormsToInspectionsMappingRequest insertFormsToInspectionsMappingRequest) {
+        LOGGER.debug("Executing named query: InsertFormsToInspectionsMapping");
+        Integer _result = queryService.executeInsertFormsToInspectionsMapping(insertFormsToInspectionsMappingRequest);
+        LOGGER.debug("got the result for named query: InsertFormsToInspectionsMapping, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/FetchRolesForUserWithMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "FetchRolesForUserWithMunicipality")

@@ -13450,7 +13450,7 @@
       "type" : "number"
     }, {
       "target" : "requestedFor",
-      "value" : "bind:Widgets.datetimeInspectionRequest.datavalue",
+      "value" : "bind:Widgets.dateInspectionRequest.datavalue",
       "type" : "datetime"
     }, {
       "target" : "inspectionDesignId",
@@ -13464,6 +13464,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "lvMasterInspectionsInsertonSuccess($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
@@ -17107,6 +17108,34 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "RequestInspectionSuccess" : {
+    "_id" : "wm-RequestInspectionSuccess-wm.NotificationVariable-1489750832178",
+    "name" : "RequestInspectionSuccess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Request Inspection Success",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "SendFormMessagesMail" : {
     "_id" : "wm-SendMessageMail-wm.ServiceVariable-1487145794825",
     "name" : "SendFormMessagesMail",
@@ -19238,6 +19267,31 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "Form"
+  },
+  "svInsertFormsToInspectionsMapping" : {
+    "_id" : "wm-svInsertFormsToInspectionsMapping-wm.ServiceVariable-1489750437728",
+    "name" : "svInsertFormsToInspectionsMapping",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "cx2",
+    "operation" : "executeInsertFormsToInspectionsMapping",
+    "operationId" : "QueryExecutionController_executeInsertFormsToInspectionsMapping",
+    "operationType" : "post",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.svInspectionsOfForm.invoke();Widgets.dialogInspectionRequest.close();Variables.RequestInspectionSuccess.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "svInsertIntoCart" : {
     "_id" : "wm-svInsertIntoCart-wm.ServiceVariable-1489055239161",
