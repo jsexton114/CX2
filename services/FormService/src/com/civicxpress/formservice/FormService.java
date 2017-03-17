@@ -46,6 +46,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import java.io.ByteArrayOutputStream;
 
 import java.io.IOException;
 
@@ -132,7 +133,7 @@ public class FormService {
     	return userPermissions;
     }
     
-    private String createDynamicFormPdf(Connection cx2Conn, String formGuid) throws Exception {
+    private byte[] createDynamicFormPdf(Connection cx2Conn, String formGuid) throws Exception {
         DBQueryParams params = new DBQueryParams();
         params.addString("formGuid", formGuid);
         
@@ -165,7 +166,7 @@ public class FormService {
             contentStream.moveTextPositionByAmount( 0, -LINE_HEIGHT );
             contentStream.drawString(entry.getKey());
             contentStream.moveTextPositionByAmount( COLUMN_WIDTH, 0);
-            contentStream.drawString(entry.getValue().toString());
+            contentStream.drawString(entry.getValue() == null ? "" : entry.getValue().toString());
             contentStream.moveTextPositionByAmount( -COLUMN_WIDTH, 0);
         }
         
@@ -173,11 +174,15 @@ public class FormService {
 
         contentStream.endText();
         contentStream.close();
-//        OutputStream os = new ByteArrayOutputStream();
-        document.save(formGuid);
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        document.save(os);
+        
         document.close();
         
-        return masterFormData.getString("FormTitle");
+        byte[] pdfBytes = os.toByteArray();
+        os.close();
+        
+        return pdfBytes;
     }
     
     public String getDocumentSignatureLink(String formGuid) throws Exception {
@@ -187,9 +192,10 @@ public class FormService {
         params.addLong("userId", Long.parseLong(securityService.getUserId()));
         DBRow userData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Users WHERE ID=:userId", params);
         
-    	String formTitle = createDynamicFormPdf(cx2Conn, formGuid);
+    	String formTitle = "TestThing";
+    	byte[] pdfBytes = createDynamicFormPdf(cx2Conn, formGuid);
 
-    	String url = eSignGenieApi.CreateFolder("/", formGuid, formTitle, "a4bb2dd0071640b6936f5cf80cf533b4", "268ebb57a93e4ef197235c68111ed5a6", userData.getString("FirstName"), userData.getString("LastName"), userData.getString("Email"));
+    	String url = eSignGenieApi.createFolder(pdfBytes, formTitle, "a4bb2dd0071640b6936f5cf80cf533b4", "268ebb57a93e4ef197235c68111ed5a6", userData.getString("FirstName"), userData.getString("LastName"), userData.getString("Email"));
         
         cx2Conn.close();
         

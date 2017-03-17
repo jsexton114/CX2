@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public class eSignGenieApi {
 
-    public static String CreateFolder(String filePath, String filename,
+    public static String createFolder(byte[] pdfBytes,
                                       String folderName, String clientId, String clientSecret,
                                       String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty)
             throws MalformedURLException, IOException {
@@ -44,7 +44,7 @@ public class eSignGenieApi {
         System.out.println("Access token is " + accessTokenObject.access_token);
 
         nvc.put("data", json);
-        response = httpUploadFile(webAddress, filePath, filename, "file", "application/pdf", nvc, accessTokenObject.access_token);
+        response = httpUploadFile(webAddress, pdfBytes, folderName, "file", "application/pdf", nvc, accessTokenObject.access_token);
         return response;
     }
 
@@ -85,12 +85,11 @@ public class eSignGenieApi {
 
     // "Upload files with HTTPWebrequest (multipart/form-data)", Cristian Romanescu, 6/8/2010, retrieved 3/4/2017
     // http://stackoverflow.com/questions/566462/upload-files-with-httpwebrequest-multipart-form-data
-    private static String httpUploadFile(String url, String filePath, String filename, String paramName, String contentType,
+    private static String httpUploadFile(String url, byte[] pdfBytes, String filename, String paramName, String contentType,
                                          LinkedHashMap nvc, String accessTokenString)
             throws MalformedURLException, IOException {
 
         List<String> response = null;
-        System.out.println(String.format("Uploading %s to %s", filePath, url));
         String boundary = "---------------------------" + Long.toHexString(System.currentTimeMillis());
         byte[] boundaryBytes = ("\r\n--" + boundary + "\r\n").getBytes(StandardCharsets.UTF_8);
 
@@ -119,8 +118,7 @@ public class eSignGenieApi {
         byte[] headerBytes = header.getBytes(StandardCharsets.UTF_8);
         rs.write(headerBytes, 0, headerBytes.length);
 
-        File binaryFile = new File(filePath);
-        Files.copy(binaryFile.toPath(), rs);
+        rs.write(pdfBytes, 0, pdfBytes.length);
         rs.flush();
 
         byte[] trailer = ("\r\n--" + boundary + "--\r\n").getBytes(StandardCharsets.UTF_8);
