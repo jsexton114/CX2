@@ -232,8 +232,9 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow20" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn36" padding="unset 1em unset unset">
-                                                                <wm-form-field name="stateFee" displayname="State Fee" show="true" primary-key="false" generator="assigned" key="stateFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                                                defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFee" hint="The value specified above is a decimal percentage that gets multiplied by the total of all the Automatic Fees above that have been added to the form. Example: &quot;0.035&quot; = a 3.5% State Fee"></wm-form-field>
+                                                                <wm-form-field name="stateFee" displayname="State Fee" show="true" primary-key="false" generator="assigned" key="stateFee" type="string" widget="text" maxchars="255" inputtype="number" placeholder="Enter value"
+                                                                defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFee" hint="The value specified above is a decimal percentage that gets multiplied by the sum of all of the Automatic Fees above that have been added to the form. Example: &quot;0.0357&quot; = a 3.57% State Fee"
+                                                                step="0.0001" minvalue="0" maxvalue="1"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn19" horizontalalign="left" padding="unset 1em unset unset">
                                                                 <wm-form-field name="stateFeeAccountingCode" displayname="State Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="stateFeeAccountingCode" type="string" widget="text"
