@@ -45,6 +45,11 @@ public class FormController {
         return formService.editDocument(documentId, resolution, options);
     }
 
+    @RequestMapping(value = "/documentSignatureLink", produces = "application/json", method = RequestMethod.GET)
+    public String getDocumentSignatureLink(@RequestParam(value = "formGuid", required = false) String formGuid) throws Exception {
+        return formService.getDocumentSignatureLink(formGuid);
+    }
+
     @RequestMapping(value = "/formData", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

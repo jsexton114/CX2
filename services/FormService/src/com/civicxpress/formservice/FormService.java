@@ -5,6 +5,8 @@ package com.civicxpress.formservice;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.civicxpress.esigngenie.eSignGenieApi;
+
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -38,6 +40,14 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+import java.io.IOException;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -120,6 +130,70 @@ public class FormService {
     	cx2Conn.close();
     	
     	return userPermissions;
+    }
+    
+    private String createDynamicFormPdf(Connection cx2Conn, String formGuid) throws Exception {
+        DBQueryParams params = new DBQueryParams();
+        params.addString("formGuid", formGuid);
+        
+        DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", params).get(0);
+        
+        params.addLong("formTypeId", masterFormData.getLong("FormTypeId"));
+        
+        List<DBRow> fields = DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypeFields WHERE FormTypeId=:formTypeId", params);
+        
+        Map<String, Object> formData = getFormData(masterFormData.getLong("FormTypeId"), formGuid);
+        
+        final float LINE_HEIGHT = 20;
+        final float COLUMN_WIDTH = 200;
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+        document.addPage( page );
+
+        PDFont font = PDType1Font.HELVETICA_BOLD;
+        PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+        contentStream.beginText();
+        contentStream.setFont( font, 14 );
+        contentStream.moveTextPositionByAmount( 100, 700 );
+        contentStream.drawString(masterFormData.getString("FormTitle"));
+
+        font = PDType1Font.HELVETICA;
+        contentStream.setFont( font, 12 );
+        for (Map.Entry<String, Object> entry : formData.entrySet())
+        {
+            contentStream.moveTextPositionByAmount( 0, -LINE_HEIGHT );
+            contentStream.drawString(entry.getKey());
+            contentStream.moveTextPositionByAmount( COLUMN_WIDTH, 0);
+            contentStream.drawString(entry.getValue().toString());
+            contentStream.moveTextPositionByAmount( -COLUMN_WIDTH, 0);
+        }
+        
+        // TODO: Add signature thing
+
+        contentStream.endText();
+        contentStream.close();
+//        OutputStream os = new ByteArrayOutputStream();
+        document.save(formGuid);
+        document.close();
+        
+        return masterFormData.getString("FormTitle");
+    }
+    
+    public String getDocumentSignatureLink(String formGuid) throws Exception {
+        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        
+        DBQueryParams params = new DBQueryParams();
+        params.addLong("userId", Long.parseLong(securityService.getUserId()));
+        DBRow userData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Users WHERE ID=:userId", params);
+        
+    	String formTitle = createDynamicFormPdf(cx2Conn, formGuid);
+
+    	String url = eSignGenieApi.CreateFolder("/", formGuid, formTitle, "a4bb2dd0071640b6936f5cf80cf533b4", "268ebb57a93e4ef197235c68111ed5a6", userData.getString("FirstName"), userData.getString("LastName"), userData.getString("Email"));
+        
+        cx2Conn.close();
+        
+    	return url;
     }
     
     public class UserPermissionsPojo {
@@ -296,7 +370,7 @@ public class FormService {
     	return DBUtils.getConnection(muniUrl, muniDetails.getString("DbUser"), muniDetails.getString("DbPassword"));
     }
     
-    public Map<String, Object> getFormData(Long formTypeId, String formGuid) throws SQLException {
+    public Map<String, Object> getFormData(Long formTypeId, String formGuid) throws SQLException { // TODO: Wtf is formTypeId doing here?
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
 
     	String getFormInfoQuery = "SELECT FormTableName, MunicipalityId FROM FormTypes WHERE ID=:formTypeId";

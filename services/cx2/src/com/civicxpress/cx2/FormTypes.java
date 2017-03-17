@@ -50,7 +50,6 @@ public class FormTypes implements Serializable {
     private Date createdDate;
     private Boolean collectFees;
     private Boolean automaticFees;
-    private Boolean digitalSignatures;
     private Boolean inspections;
     private Boolean payments;
     private Boolean sharedWith;
@@ -76,6 +75,7 @@ public class FormTypes implements Serializable {
     private boolean requireOwner;
     private String instructions;
     private Boolean forceInspectionSequence;
+    private boolean requireSignature;
     private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
@@ -229,15 +229,6 @@ public class FormTypes implements Serializable {
 
     public void setAutomaticFees(Boolean automaticFees) {
         this.automaticFees = automaticFees;
-    }
-
-    @Column(name = "`DigitalSignatures`", nullable = true)
-    public Boolean getDigitalSignatures() {
-        return this.digitalSignatures;
-    }
-
-    public void setDigitalSignatures(Boolean digitalSignatures) {
-        this.digitalSignatures = digitalSignatures;
     }
 
     @Column(name = "`Inspections`", nullable = true)
@@ -463,6 +454,15 @@ public class FormTypes implements Serializable {
 
     public void setForceInspectionSequence(Boolean forceInspectionSequence) {
         this.forceInspectionSequence = forceInspectionSequence;
+    }
+
+    @Column(name = "`RequireSignature`", nullable = false)
+    public boolean isRequireSignature() {
+        return this.requireSignature;
+    }
+
+    public void setRequireSignature(boolean requireSignature) {
+        this.requireSignature = requireSignature;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

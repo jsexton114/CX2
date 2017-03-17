@@ -130,8 +130,7 @@
                                                                 <wm-form-field name="attachments" displayname="Allow Attachments" show="true" primary-key="false" generator="assigned" key="attachments" type="boolean" widget="checkbox" placeholder="" hint="This enables attaching multiple documents to a form."></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn58" padding="unset 1em unset unset">
-                                                                <wm-form-field name="digitalSignatures" displayname="Require Digital Signature" show="true" primary-key="false" generator="assigned" key="digitalSignatures" type="boolean" widget="checkbox" placeholder=""
-                                                                hint="This option requires that the user provide a digital signature when submitting the form to the municipality."></wm-form-field>
+                                                                <wm-form-field displayname="Require Digital Signature" widget="checkbox" show="true" type="custom" name="requireSignature" hint="When enabled, people will be required to provide an electronic signature upon submitting their form."></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow38_1" padding="unset unset 1em unset">
@@ -143,7 +142,7 @@
                                                                 class="help-block" fontsize="0.8" fontunit="em"></wm-label>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn57" padding="unset 1em unset unset">
-                                                                <wm-form-field name="inspections" displayname="Allow Inspections" show="true" primary-key="false" generator="assigned" key="inspections" type="boolean" widget="checkbox" placeholder="" hint="This option allows inspections as part of the form process and enables an &quot;Inspections&quot; tab at the top of this page that contains further settings."></wm-form-field>
+                                                                <wm-form-field name="inspections" displayname="Allow Inspections" show="true" primary-key="false" generator="assigned" key="inspections" type="boolean" widget="checkbox" placeholder="" hint="This option allows inspections as part of the form process and enables an &quot;Inspections&quot; tab on this page that contains further settings."></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn87_1"></wm-gridcolumn>
                                                         </wm-gridrow>
@@ -190,8 +189,7 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn31" padding="unset 1em unset unset">
                                                                 <wm-form-field name="flatFeeAccountingCode" displayname="Flat Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="flatFeeAccountingCode" type="string" widget="text"
-                                                                maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].flatFeeAccountingCode" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.flatFee.datavalue"
-                                                                disabled="false"></wm-form-field>
+                                                                maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].flatFeeAccountingCode"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow18" padding="unset unset 1em unset">
@@ -202,8 +200,7 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn33" padding="unset 1em unset unset">
                                                                 <wm-form-field name="sfFeeAccountingCode" displayname="SF Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="sfFeeAccountingCode" type="string" widget="text" maxchars="255"
-                                                                inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].sfFeeAccountingCode" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.sfFee.datavalue"
-                                                                disabled="false"></wm-form-field>
+                                                                inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].sfFeeAccountingCode"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow19" padding="unset unset 1em unset">
@@ -214,8 +211,7 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn35" padding="unset 1em unset unset">
                                                                 <wm-form-field name="unitFeeAccountingCode" displayname="Unit Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="unitFeeAccountingCode" type="string" widget="text"
-                                                                maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].unitFeeAccountingCode" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.unitFee.datavalue"
-                                                                disabled="false"></wm-form-field>
+                                                                maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].unitFeeAccountingCode"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow41_1" padding="unset unset 1em unset">
@@ -226,19 +222,17 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn67" padding="unset 1em unset unset">
                                                                 <wm-form-field name="basementFeeAccountingCode" displayname="Basement Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="basementFeeAccountingCode" type="string" widget="text"
-                                                                maxchars="255" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].basementFeeAccountingCode" placeholder="Enter value" inputtype="text" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.basementFee.datavalue"
-                                                                disabled="false"></wm-form-field>
+                                                                maxchars="255" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].basementFeeAccountingCode" placeholder="Enter value" inputtype="text"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow20" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn36" padding="unset 1em unset unset">
-                                                                <wm-form-field name="stateFee" displayname="State Fee" show="true" primary-key="false" generator="assigned" key="stateFee" type="string" widget="text" maxchars="255" inputtype="number" placeholder="Enter value"
-                                                                defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFee" hint="The value specified above is a decimal percentage that gets multiplied by the sum of all of the Automatic Fees above that have been added to the form. Example: &quot;0.0357&quot; = a 3.57% State Fee"
-                                                                step="0.0001" minvalue="0" maxvalue="1"></wm-form-field>
+                                                                <wm-form-field name="stateFee" displayname="State Fee" show="true" primary-key="false" generator="assigned" key="stateFee" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                                defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFee" hint="The value specified above is a decimal percentage that gets multiplied by the total of all the Automatic Fees above that have been added to the form. Example: &quot;0.035&quot; = a 3.5% State Fee"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn19" horizontalalign="left" padding="unset 1em unset unset">
                                                                 <wm-form-field name="stateFeeAccountingCode" displayname="State Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="stateFeeAccountingCode" type="string" widget="text"
-                                                                maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFeeAccountingCode" disabled="false" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.stateFee.datavalue"></wm-form-field>
+                                                                maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFeeAccountingCode"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>

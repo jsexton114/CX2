@@ -1377,6 +1377,19 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "requireSignature",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RequireSignature",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -3101,10 +3114,10 @@
         "defaultValue" : "SYSUTCDATETIME()",
         "scale" : 0
       }, {
-        "fieldName" : "submittedOn",
+        "fieldName" : "dateSubmitted",
         "type" : "timestamp",
         "fullyQualifiedType" : "timestamp",
-        "columnName" : "SubmittedOn",
+        "columnName" : "DateSubmitted",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
@@ -3759,6 +3772,19 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "requireSignature",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RequireSignature",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -5483,10 +5509,10 @@
         "defaultValue" : "SYSUTCDATETIME()",
         "scale" : 0
       }, {
-        "fieldName" : "submittedOn",
+        "fieldName" : "dateSubmitted",
         "type" : "timestamp",
         "fullyQualifiedType" : "timestamp",
-        "columnName" : "SubmittedOn",
+        "columnName" : "DateSubmitted",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
@@ -6172,6 +6198,19 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "requireSignature",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RequireSignature",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -7896,10 +7935,10 @@
         "defaultValue" : "SYSUTCDATETIME()",
         "scale" : 0
       }, {
-        "fieldName" : "submittedOn",
+        "fieldName" : "dateSubmitted",
         "type" : "timestamp",
         "fullyQualifiedType" : "timestamp",
-        "columnName" : "SubmittedOn",
+        "columnName" : "DateSubmitted",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
@@ -9489,6 +9528,19 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "requireSignature",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RequireSignature",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -11213,10 +11265,10 @@
         "defaultValue" : "SYSUTCDATETIME()",
         "scale" : 0
       }, {
-        "fieldName" : "submittedOn",
+        "fieldName" : "dateSubmitted",
         "type" : "timestamp",
         "fullyQualifiedType" : "timestamp",
-        "columnName" : "SubmittedOn",
+        "columnName" : "DateSubmitted",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,

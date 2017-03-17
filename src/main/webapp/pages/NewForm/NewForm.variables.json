@@ -1500,19 +1500,6 @@
         "defaultValue" : "FALSE",
         "scale" : 0
       }, {
-        "fieldName" : "digitalSignatures",
-        "type" : "boolean",
-        "fullyQualifiedType" : "boolean",
-        "columnName" : "DigitalSignatures",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
         "fieldName" : "inspections",
         "type" : "boolean",
         "fullyQualifiedType" : "boolean",
@@ -1821,6 +1808,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "requireSignature",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "RequireSignature",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "FALSE",
         "scale" : 0
       } ],
       "entityName" : "FormTypes",
@@ -2183,19 +2183,6 @@
           "defaultValue" : "FALSE",
           "scale" : 0
         }, {
-          "fieldName" : "digitalSignatures",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "DigitalSignatures",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "inspections",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -2504,6 +2491,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "requireSignature",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RequireSignature",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
           "scale" : 0
         } ]
       }, {
@@ -3170,19 +3170,6 @@
           "defaultValue" : "FALSE",
           "scale" : 0
         }, {
-          "fieldName" : "digitalSignatures",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "DigitalSignatures",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "inspections",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -3491,6 +3478,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "requireSignature",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RequireSignature",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
           "scale" : 0
         } ]
       }, {
@@ -5950,6 +5950,30 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
+  },
+  "svGetSignLink" : {
+    "_id" : "wm-svMakePdf-wm.ServiceVariable-1489780883909",
+    "name" : "svGetSignLink",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "string",
+    "service" : "FormService",
+    "operation" : "getDocumentSignatureLink",
+    "operationId" : "FormController_getDocumentSignatureLink",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "svGetSignLinkonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Form"
   },
   "svGetUserRoles" : {
     "_id" : "wm-svGetUserRoles-wm.ServiceVariable-1485809900405",

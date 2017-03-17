@@ -13,7 +13,7 @@ Application.run(function($rootScope, Utils) {
     /* perform any action on the variables within this block(on-page-load) */
     $rootScope.onAppVariablesReady = function() {
         /*
-         * variables can be accessed through '$rootScope.Variables' property here
+         * variables can be accessed through '$rootScope.Variables' property heret
          * e.g. $rootScope.Variables.staticVariable1.getData()
          */
     };
@@ -45,8 +45,7 @@ Application.run(function($rootScope, Utils) {
         // add csrf cookie to the query params for download requests
         params.url += '&_csrf=' + getCookie('wm_xsrf_token');
         _simulateFileDownload(params);
-    }
-
+    };
 });
 
 Application.factory('_', ['$window', function($window) {

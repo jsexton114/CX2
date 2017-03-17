@@ -1,1227 +1,1279 @@
-﻿<!DOCTYPE html>
-<html ng-app>
+
+<!DOCTYPE html>
+<html ng-app="cx2LeadTools">
+
 <head>
-   <meta charset="utf-8" />
-   <title id="demoTitle"></title>
-   <link rel="shortcut icon" type="image/x-icon" href="Resources/Images/favicon.ico" />
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=IE8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta charset="utf-8" />
+    <title id="demoTitle"></title>
+    <link rel="shortcut icon" type="image/x-icon" href="Resources/Images/favicon.ico" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=IE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
 
-   <meta name="apple-mobile-web-app-capable" content="yes" />
-   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-   <link rel="Stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-   <link rel="stylesheet" href="Resources/Styles/DocumentViewerDemo.css" type="text/css" />
-   <link rel="stylesheet" href="Resources/Styles/Toolbars.css" type="text/css" />
-   <link rel="stylesheet" href="Resources/Styles/ImageViewerStyles.css" type="text/css" />
-   <link rel="stylesheet" href="Resources/Styles/ImageViewerThumbnailStyles.css" type="text/css" />
-   <link rel="stylesheet" href="Resources/Styles/Sidebar.css" type="text/css" />
-   <link rel="stylesheet" href="Resources/Styles/Dialogs.css" type="text/css" />
-   <link rel="stylesheet" href="Resources/Styles/Icons.css" type="text/css" />
-   <link rel="stylesheet" href="Resources/Styles/AutomationObjectsList.css" type="text/css" />
-   <link rel="stylesheet" href="Resources/Styles/spectrum/spectrum.css" type="text/css" />
+    <link rel="Stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="Resources/Styles/DocumentViewerDemo.css" type="text/css" />
+    <link rel="stylesheet" href="Resources/Styles/Toolbars.css" type="text/css" />
+    <link rel="stylesheet" href="Resources/Styles/ImageViewerStyles.css" type="text/css" />
+    <link rel="stylesheet" href="Resources/Styles/ImageViewerThumbnailStyles.css" type="text/css" />
+    <link rel="stylesheet" href="Resources/Styles/Sidebar.css" type="text/css" />
+    <link rel="stylesheet" href="Resources/Styles/Dialogs.css" type="text/css" />
+    <link rel="stylesheet" href="Resources/Styles/Icons.css" type="text/css" />
+    <link rel="stylesheet" href="Resources/Styles/AutomationObjectsList.css" type="text/css" />
+    <link rel="stylesheet" href="Resources/Styles/spectrum/spectrum.css" type="text/css" />
 
-   <script type="text/javascript">
-      // check if HTML5 canvas is supported
-      if (!("HTMLCanvasElement" in window)) {
-         alert("HTML5 Canvas not supported, redirecting ...");
-         location.href = "Resources/NoHTML5Support.html";
-      }
-   </script>
+    <script type="text/javascript">
+        // check if HTML5 canvas is supported
+        if (!("HTMLCanvasElement" in window)) {
+            alert("HTML5 Canvas not supported, redirecting ...");
+            location.href = "Resources/NoHTML5Support.html";
+        }
+    </script>
 
-   <!-- External .js files -->
-   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.js"></script>
-   <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-   <script type="text/javascript" src="Main/angular.min.js"></script>
-   <script type="text/javascript" src="Common/Libs/spectrum/spectrum.js"></script>
+    <!-- External .js files -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Main/angular.min.js"></script>
+    <script type="text/javascript" src="Common/Libs/spectrum/spectrum.js"></script>
 
-   <!-- OneDrive -->
-   <!-- Replace APP_ID with your registered app's ID or client ID -->
-   <script type="text/javascript" src="https://js.live.net/v5.0/OneDrive.js" id="onedrive-js" client-id="APP_ID"></script>
+    <!-- OneDrive -->
+    <!-- Replace APP_ID with your registered app's ID or client ID -->
+    <script type="text/javascript" src="https://js.live.net/v5.0/OneDrive.js" id="onedrive-js" client-id="APP_ID"></script>
 
-   <!-- Google Drive (conditional comment below targets IE 5-9, for which Google Drive is not supported) -->
-   <!--[if !IE]><!-->
-   <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
-   <script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
-   <script src="https://apis.google.com/js/platform.js" async defer></script>
-   <!--<![endif]-->
+    <!-- Google Drive (conditional comment below targets IE 5-9, for which Google Drive is not supported) -->
+    <!--[if !IE]><!-->
+    <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+    <script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!--<![endif]-->
 
-   <!-- Leadtools .js files -->
-   <script type="text/javascript" src="Common/Libs/Leadtools.js"></script>
-   <script type="text/javascript" src="Common/Libs/Leadtools.Controls.js"></script>
-   <script type="text/javascript" src="Common/Libs/Leadtools.Annotations.Core.js"></script>
-   <script type="text/javascript" src="Common/Libs/Leadtools.Annotations.Designers.js"></script>
-   <script type="text/javascript" src="Common/Libs/Leadtools.Annotations.Rendering.JavaScript.js"></script>
-   <script type="text/javascript" src="Common/Libs/Leadtools.Annotations.Automation.js"></script>
-   <script type="text/javascript" src="Common/Libs/Leadtools.Annotations.Documents.js"></script>
-   <script type="text/javascript" src="Common/Libs/Leadtools.Annotations.JavaScript.js"></script>
-   <script type="text/javascript" src="Common/Libs/Leadtools.Documents.js"></script>
-   <script type="text/javascript" src="Common/Libs/Leadtools.Documents.UI.js"></script>
+    <!-- Leadtools .js files -->
+    <script type="text/javascript" src="Common/Libs/Leadtools.js"></script>
+    <script type="text/javascript" src="Common/Libs/Leadtools.Controls.js"></script>
+    <script type="text/javascript" src="Common/Libs/Leadtools.Annotations.Core.js"></script>
+    <script type="text/javascript" src="Common/Libs/Leadtools.Annotations.Designers.js"></script>
+    <script type="text/javascript" src="Common/Libs/Leadtools.Annotations.Rendering.JavaScript.js"></script>
+    <script type="text/javascript" src="Common/Libs/Leadtools.Annotations.Automation.js"></script>
+    <script type="text/javascript" src="Common/Libs/Leadtools.Annotations.Documents.js"></script>
+    <script type="text/javascript" src="Common/Libs/Leadtools.Annotations.JavaScript.js"></script>
+    <script type="text/javascript" src="Common/Libs/Leadtools.Documents.js"></script>
+    <script type="text/javascript" src="Common/Libs/Leadtools.Documents.UI.js"></script>
 
-   <!-- DocumentViewerDemo .js fies -->
-   <script type="text/javascript" src="Common/Utils.js"></script>
-   <script type="text/javascript" src="Main/CommandBinder.js"></script>
-   <script type="text/javascript" src="Main/Main.js"></script>
-   <script type="text/javascript" src="Main/Main.File.js"></script>
-   <script type="text/javascript" src="Main/Main.Edit.js"></script>
-   <script type="text/javascript" src="Main/Main.View.js"></script>
-   <script type="text/javascript" src="Main/Main.Page.js"></script>
-   <script type="text/javascript" src="Main/Main.Interactive.js"></script>
-   <script type="text/javascript" src="Main/Main.Annotations.js"></script>
-   <script type="text/javascript" src="Main/Main.Preferences.js"></script>
-   <script type="text/javascript" src="Converter/DocumentConverterFormats.js"></script>
-   <script type="text/javascript" src="Converter/Dialogs/DocumentConverterDlg.js"></script>
-   <script type="text/javascript" src="Converter/Dialogs/DocumentFormatOptionsDlg.js"></script>
-   <script type="text/javascript" src="Converter/Dialogs/AdvancedPdfOptionsDlg.js"></script>
-   <script type="text/javascript" src="Converter/Dialogs/SaveToDlg.js"></script>
-   <script type="text/javascript" src="Dialogs/ParsePageLinksDlg.js"></script>
-   <script type="text/javascript" src="Dialogs/OpenDocumentDlg.js"></script>
-   <script type="text/javascript" src="Dialogs/PagesDlg.js"></script>
-   <script type="text/javascript" src="Common/Dialogs/TextResultDlg.js"></script>
-   <script type="text/javascript" src="Dialogs/DocumentPropertiesDlg.js"></script>
-   <script type="text/javascript" src="Dialogs/ProcessingPagesDlg.js"></script>
-   <script type="text/javascript" src="Dialogs/CustomRenderModeDlg.js"></script>
-   <script type="text/javascript" src="Dialogs/InputDlg.js"></script>
-   <script type="text/javascript" src="Dialogs/DocumentViewerOptionsDlg.js"></script>
-   <script type="text/javascript" src="Dialogs/LinkValueDlg.js"></script>
-   <script type="text/javascript" src="Dialogs/LoadingDlg.js"></script>
-   <script type="text/javascript" src="Common/Dialogs/AboutDlg.js"></script>
+    <!-- DocumentViewerDemo .js fies -->
+    <script type="text/javascript" src="Common/Utils.js"></script>
+    <script type="text/javascript" src="Main/CommandBinder.js"></script>
+    <script type="text/javascript" src="Main/Main.js"></script>
+    <script type="text/javascript" src="Main/Main.File.js"></script>
+    <script type="text/javascript" src="Main/Main.Edit.js"></script>
+    <script type="text/javascript" src="Main/Main.View.js"></script>
+    <script type="text/javascript" src="Main/Main.Page.js"></script>
+    <script type="text/javascript" src="Main/Main.Interactive.js"></script>
+    <script type="text/javascript" src="Main/Main.Annotations.js"></script>
+    <script type="text/javascript" src="Main/Main.Preferences.js"></script>
+    <script type="text/javascript" src="Converter/DocumentConverterFormats.js"></script>
+    <script type="text/javascript" src="Converter/Dialogs/DocumentConverterDlg.js"></script>
+    <script type="text/javascript" src="Converter/Dialogs/DocumentFormatOptionsDlg.js"></script>
+    <script type="text/javascript" src="Converter/Dialogs/AdvancedPdfOptionsDlg.js"></script>
+    <script type="text/javascript" src="Converter/Dialogs/SaveToDlg.js"></script>
+    <script type="text/javascript" src="Dialogs/ParsePageLinksDlg.js"></script>
+    <script type="text/javascript" src="Dialogs/OpenDocumentDlg.js"></script>
+    <script type="text/javascript" src="Dialogs/PagesDlg.js"></script>
+    <script type="text/javascript" src="Common/Dialogs/TextResultDlg.js"></script>
+    <script type="text/javascript" src="Dialogs/DocumentPropertiesDlg.js"></script>
+    <script type="text/javascript" src="Dialogs/ProcessingPagesDlg.js"></script>
+    <script type="text/javascript" src="Dialogs/CustomRenderModeDlg.js"></script>
+    <script type="text/javascript" src="Dialogs/InputDlg.js"></script>
+    <script type="text/javascript" src="Dialogs/DocumentViewerOptionsDlg.js"></script>
+    <script type="text/javascript" src="Dialogs/LinkValueDlg.js"></script>
+    <script type="text/javascript" src="Dialogs/LoadingDlg.js"></script>
+    <script type="text/javascript" src="Common/Dialogs/AboutDlg.js"></script>
 
-   <!-- DriverHelper -->
-   <script type="text/javascript" src="DriveHelper/DriveHelper.js"></script>
-   <script type="text/javascript" src="DriveHelper/SharePointPickerDlg.js"></script>
+    <!-- DriverHelper -->
+    <script type="text/javascript" src="DriveHelper/DriveHelper.js"></script>
+    <script type="text/javascript" src="DriveHelper/SharePointPickerDlg.js"></script>
 </head>
+
 <body style="display:none;">
-   <!-- Header toolbar -->
-   <nav id="headerToolbarContainer" class="mobileToolbar navbar navbar-fixed-top">
-      <div class="navbar-header">
-         <button type="button" class="pull-left navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon documentIcon"></span>
-         </button>
-         <button type="button" id="ocrSave_shortcut" style="display:none;">
-            <span class="icon icon-sm runModeIcon"></span>
-         </button>
-         <button type="button" id="rubberBandInteractiveMode_shortcut" style="display:none;">
-            <span class="icon icon-sm selectAreaIcon"></span>
-         </button>
-         <button type="button" id="selectTextMode">
-            <span class="icon icon-sm selectTextIcon"></span>
-         </button>
-         <button type="button" id="panZoomMode" style="border-left:1px solid silver">
-            <span class="icon icon-sm panZoomIcon"></span>
-         </button>
-         <button id="showThumbnails">
-            <span class="icon thumbnailsIcon"></span>
-         </button>
-      </div>
-      <div id="mainControls" class="navbar-collapse collapse">
-         <ul class="nav navbar-nav">
-            <!-- Upload document -->
-            <li>
-               <button id="uploadDocument" class="mainControlsItem menuItem">
-                  <span class="icon icon-md openIcon"></span>
-                  <span class="text">Upload document...</span>
-               </button>
-            </li>
-            <!-- Open document from url -->
-            <li>
-               <button id="openDocumentFromUrl" class="mainControlsItem menuItem">
-                  <span class="icon icon-md openUrlIcon"></span>
-                  <span class="text">Open URL...</span>
-               </button>
-            </li>
-            <!-- Open from external document storage service -->
-            <li>
-               <button id="openFromDocumentStorage" class="mainControlsItem menuItem">
-                  <span class="icon icon-md server"></span>
-                  <span class="text">Open from document storage...</span>
-               </button>
-            </li>
-            <!-- Save/Convert document -->
-            <li>
-               <button id="saveDocument" class="mainControlsItem menuItem">
-                  <span class="icon icon-md saveIcon"></span>
-                  <span class="text">Save...</span>
-               </button>
-            </li>
-            <!-- Close document -->
-            <li>
-               <button id="closeDocument" class="mainControlsItem menuItem">
-                  <span class="icon icon-md closeIcon"></span>
-                  <span class="text">Close</span>
-               </button>
-            </li>
-            <!-- Show about dialog -->
-            <li>
-               <button id="about" class="mainControlsItem menuItem" style="border-bottom:none;">
-                  <span class="icon icon-md helpIcon"></span>
-                  <span class="text">About</span>
-               </button>
-            </li>
-         </ul>
-      </div>
-   </nav>
-   <!-- Footer toolbar -->
-   <div class="footerToolbar">
-      <button id="showViewControls">
-         <span class="icon viewIcon"></span>
-      </button>
-      <button id="showAnnotationsEditControls" class="annotations">
-         <span class="icon icon annotationsIcon"></span>
-      </button>
-      <div class="footerTextControls" style="display:inline-table;height:100%;">
-         <button id="findText">
-            <span class="icon icon findTextIcon"></span>
-         </button>
-         <button id="copyText">
-            <span class="icon icon copyTextIcon"></span>
-         </button>
-      </div>
-      <button id="readPageBarcodes" style="display:none;">
-         <span class="icon icon barcodeIcon"></span>
-      </button>
-      <button id="readAllBarcodes" style="display:none;">
-         <span class="icon icon runIcon"></span>
-      </button>
-   </div>
-   <!-- Thumbnails control and context menu -->
-   <div id="thumbnailsControl" class="affectedContainers">
-      <div class="controlHeader">
-         <label>Pages</label>
-      </div>
-      <div id="thumbnails">
-      </div>
-   </div>
-   <div id="thumbnailsContextMenu" class="dropdown clearfix" tabindex="-1">
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display:block;margin-bottom:5px;">
-         <li>
-            <button id="contextMenu_thisPageGetText" class="menuItem">
-               <span class="text">Get text for this page</span>
+    <!-- Header toolbar -->
+    <nav id="headerToolbarContainer" class="mobileToolbar navbar navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="pull-left navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon documentIcon"></span>
             </button>
-         </li>
-         <li>
-            <button id="contextMenu_allPagesGetText" class="menuItem">
-               <span class="text">Get text for all pages</span>
+            <button type="button" id="ocrSave_shortcut" style="display:none;">
+                <span class="icon icon-sm runModeIcon"></span>
             </button>
-         </li>
-      </ul>
-   </div>
-   <!-- Annotations edit controls -->
-   <!-- Header annotations edit controls -->
-   <div id="annotationsHeaderEditControls" class="mobileVersionControls annotationsEditControls annotations">
-      <button type="button" id="doneAnnotationsEdit" style="float:left;">Done</button>
-      <button type="button" id="redo">
-         <span class="icon icon-sm redoIcon"></span>
-      </button>
-      <button type="button" id="undo" style="border-left:1px solid silver;">
-         <span class="icon icon-sm undoIcon"></span>
-      </button>
-      <button type="button" id="annotationsProperties">
-         <span class="icon icon-sm propertiesIcon"></span>
-      </button>
-      <button type="button" id="deleteAnnotation">
-         <span class="icon icon-sm closeIcon"></span>
-      </button>
-   </div>
-   <!-- Footer annotations edit controls -->
-   <div id="annotationObjectBtnsContainer" class="mobileVersionControls footerToolbar mobileVersion annotationsEditControls annotations">
-      <button class="annotationObjectBtn" value="-32">
-         <span class="icon icon-md stickyNoteIcon"></span>
-      </button>
-      <button class="annotationObjectBtn" value="-33">
-         <span class="icon icon-md textHiliteIcon"></span>
-      </button>
-      <button class="annotationObjectBtn" value="-34">
-         <span class="icon icon-md textStrikeoutIcon"></span>
-      </button>
-      <button class="annotationObjectBtn" value="-35">
-         <span class="icon icon-md textUnderlineIcon"></span>
-      </button>
-      <button class="annotationObjectBtn" value="-36">
-         <span class="icon icon-md textRedactionIcon"></span>
-      </button>
-      <button class="annotationObjectBtn" value="-10">
-         <span class="icon icon-md freehandIcon"></span>
-      </button>
-   </div>
-   <!-- View controls -->
-   <div id="viewControlsContainer" class="mobileVersionControls">
-      <div class="viewControlsHeader">
-         <label>View Controls</label>
-         <button type="button" id="closeViewControls">Close</button>
-      </div>
-      <div class="viewControls">
-         <button id="verticalPagesDisplay" class="menuItem">
-            <span class="icon icon-md verticalLayoutIcon"></span>
-            <span class="text">Vertical</span>
-         </button>
-         <button id="horizontalPagesDisplay" class="menuItem">
-            <span class="icon icon-md horizontalLayoutIcon"></span>
-            <span class="text">Horizontal</span>
-         </button>
-         <button id="viewAsSVG" class="menuItem">
-            <span class="icon icon-md svgViewIcon"></span>
-            <span class="text">As SVG</span>
-         </button>
-         <button id="viewAsImage" class="menuItem">
-            <span class="icon icon-md imageViewIcon"></span>
-            <span class="text">As image</span>
-         </button>
-      </div>
-   </div>
-   <!-- find text panel -->
-   <div id="findTextPanel" class="mobileVersion mobileVersionControls">
-      <div class="input-group">
-         <input id="textToFind" type="text" class="form-control" placeholder="Enter text to search">
-         <div class="input-group-btn">
-            <button id="findPrevious" class="btn btn-default" type="button">
-               <span class="icon icon-xs previous-xs-Icon"></span>
+            <button type="button" id="rubberBandInteractiveMode_shortcut" style="display:none;">
+                <span class="icon icon-sm selectAreaIcon"></span>
             </button>
-            <button id="findNext" class="btn btn-default" type="button">
-               <span class="icon icon-xs next-xs-Icon"></span>
+            <button type="button" id="selectTextMode">
+                <span class="icon icon-sm selectTextIcon"></span>
             </button>
-            <button id="closeFindPanel" class="btn btn-default">Close</button>
-         </div>
-      </div>
-   </div>
-   <div id="imageViewerContainer" class="affectedContainers">
-      <!-- The viewer will be dynamically created inside imageViewerDiv -->
-      <div id="imageViewerDiv">
-      </div>
-   </div>
-   <div id="tooltip" class="dropdown clearfix" tabindex="-1">
-   </div>
-   <!-- Upload document dialog -->
-   <div id="uploadDocumentDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-               <label>Upload Document</label>
+            <button type="button" id="panZoomMode" style="border-left:1px solid silver">
+                <span class="icon icon-sm panZoomIcon"></span>
+            </button>
+            <button id="showThumbnails">
+                <span class="icon thumbnailsIcon"></span>
+            </button>
+        </div>
+        <div id="mainControls" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <!-- Upload document -->
+                <li>
+                    <button id="uploadDocument" class="mainControlsItem menuItem">
+                        <span class="icon icon-md openIcon"></span>
+                        <span class="text">Upload document...</span>
+                    </button>
+                </li>
+                <!-- Open document from url -->
+                <li>
+                    <button id="openDocumentFromUrl" class="mainControlsItem menuItem">
+                        <span class="icon icon-md openUrlIcon"></span>
+                        <span class="text">Open URL...</span>
+                    </button>
+                </li>
+                <!-- Open from external document storage service -->
+                <li>
+                    <button id="openFromDocumentStorage" class="mainControlsItem menuItem">
+                        <span class="icon icon-md server"></span>
+                        <span class="text">Open from document storage...</span>
+                    </button>
+                </li>
+                <!-- Save/Convert document -->
+                <li>
+                    <button id="saveDocument" class="mainControlsItem menuItem">
+                        <span class="icon icon-md saveIcon"></span>
+                        <span class="text">Save...</span>
+                    </button>
+                </li>
+                <!-- Close document -->
+                <li>
+                    <button id="closeDocument" class="mainControlsItem menuItem">
+                        <span class="icon icon-md closeIcon"></span>
+                        <span class="text">Close</span>
+                    </button>
+                </li>
+                <!-- Show about dialog -->
+                <li>
+                    <button id="about" class="mainControlsItem menuItem" style="border-bottom:none;">
+                        <span class="icon icon-md helpIcon"></span>
+                        <span class="text">About</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Footer toolbar -->
+    <div class="footerToolbar">
+        <button id="showViewControls">
+            <span class="icon viewIcon"></span>
+        </button>
+        <button id="showAnnotationsEditControls" class="annotations">
+            <span class="icon icon annotationsIcon"></span>
+        </button>
+        <div class="footerTextControls" style="display:inline-table;height:100%;">
+            <button id="findText">
+                <span class="icon icon findTextIcon"></span>
+            </button>
+            <button id="copyText">
+                <span class="icon icon copyTextIcon"></span>
+            </button>
+        </div>
+        <button id="readPageBarcodes" style="display:none;">
+            <span class="icon icon barcodeIcon"></span>
+        </button>
+        <button id="readAllBarcodes" style="display:none;">
+            <span class="icon icon runIcon"></span>
+        </button>
+    </div>
+    <!-- Thumbnails control and context menu -->
+    <div id="thumbnailsControl" class="affectedContainers">
+        <div class="controlHeader">
+            <label>Pages</label>
+        </div>
+        <div id="thumbnails">
+        </div>
+    </div>
+    <div id="thumbnailsContextMenu" class="dropdown clearfix" tabindex="-1">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display:block;margin-bottom:5px;">
+            <li>
+                <button id="contextMenu_thisPageGetText" class="menuItem">
+                    <span class="text">Get text for this page</span>
+                </button>
+            </li>
+            <li>
+                <button id="contextMenu_allPagesGetText" class="menuItem">
+                    <span class="text">Get text for all pages</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!-- Annotations edit controls -->
+    <!-- Header annotations edit controls -->
+    <div id="annotationsHeaderEditControls" class="mobileVersionControls annotationsEditControls annotations">
+        <button type="button" id="doneAnnotationsEdit" style="float:left;">Done</button>
+        <button type="button" id="redo">
+            <span class="icon icon-sm redoIcon"></span>
+        </button>
+        <button type="button" id="undo" style="border-left:1px solid silver;">
+            <span class="icon icon-sm undoIcon"></span>
+        </button>
+        <button type="button" id="annotationsProperties">
+            <span class="icon icon-sm propertiesIcon"></span>
+        </button>
+        <button type="button" id="deleteAnnotation">
+            <span class="icon icon-sm closeIcon"></span>
+        </button>
+    </div>
+    <!-- Footer annotations edit controls -->
+    <div id="annotationObjectBtnsContainer" class="mobileVersionControls footerToolbar mobileVersion annotationsEditControls annotations">
+        <button class="annotationObjectBtn" value="-32">
+            <span class="icon icon-md stickyNoteIcon"></span>
+        </button>
+        <button class="annotationObjectBtn" value="-33">
+            <span class="icon icon-md textHiliteIcon"></span>
+        </button>
+        <button class="annotationObjectBtn" value="-34">
+            <span class="icon icon-md textStrikeoutIcon"></span>
+        </button>
+        <button class="annotationObjectBtn" value="-35">
+            <span class="icon icon-md textUnderlineIcon"></span>
+        </button>
+        <button class="annotationObjectBtn" value="-36">
+            <span class="icon icon-md textRedactionIcon"></span>
+        </button>
+        <button class="annotationObjectBtn" value="-10">
+            <span class="icon icon-md freehandIcon"></span>
+        </button>
+    </div>
+    <!-- View controls -->
+    <div id="viewControlsContainer" class="mobileVersionControls">
+        <div class="viewControlsHeader">
+            <label>View Controls</label>
+            <button type="button" id="closeViewControls">Close</button>
+        </div>
+        <div class="viewControls">
+            <button id="verticalPagesDisplay" class="menuItem">
+                <span class="icon icon-md verticalLayoutIcon"></span>
+                <span class="text">Vertical</span>
+            </button>
+            <button id="horizontalPagesDisplay" class="menuItem">
+                <span class="icon icon-md horizontalLayoutIcon"></span>
+                <span class="text">Horizontal</span>
+            </button>
+            <button id="viewAsSVG" class="menuItem">
+                <span class="icon icon-md svgViewIcon"></span>
+                <span class="text">As SVG</span>
+            </button>
+            <button id="viewAsImage" class="menuItem">
+                <span class="icon icon-md imageViewIcon"></span>
+                <span class="text">As image</span>
+            </button>
+        </div>
+    </div>
+    <!-- find text panel -->
+    <div id="findTextPanel" class="mobileVersion mobileVersionControls">
+        <div class="input-group">
+            <input id="textToFind" type="text" class="form-control" placeholder="Enter text to search">
+            <div class="input-group-btn">
+                <button id="findPrevious" class="btn btn-default" type="button">
+                    <span class="icon icon-xs previous-xs-Icon"></span>
+                </button>
+                <button id="findNext" class="btn btn-default" type="button">
+                    <span class="icon icon-xs next-xs-Icon"></span>
+                </button>
+                <button id="closeFindPanel" class="btn btn-default">Close</button>
             </div>
-            <div class="modal-body">
-               <div class="groupBox">
-                  <label>Document File Name:</label>
-                  <br />
-                  <br />
-                  <div class="controls">
-                     <input id="documentFile" type="file" style="width:100%;">
-                  </div>
-               </div>
-               <br />
-               <div class="groupBox annotations">
-                  <label>Annotations</label>
-                  <form role="form">
-                     <div class="radio">
-                        <label><input type="radio" name="uploadDocumentDialog_annotationsLoadOptions" value="0" checked>Do not load any annotations</label>
-                     </div>
-                     <ul><li>Annotations will not be loaded.</li></ul>
-                     <br />
-                     <div class="radio">
-                        <label><input type="radio" name="uploadDocumentDialog_annotationsLoadOptions" value="1">Load the annotations embedded in the document</label>
-                     </div>
-                     <ul><li>Some document formats such as PDF and TIFF can have embedded annotations inside the file itself. Select this option to try to load these annotations if they exist.</li></ul>
-                     <br />
-                     <div id="loadExternalAnnotationsControls">
-                        <div class="radio">
-                           <label><input type="radio" name="uploadDocumentDialog_annotationsLoadOptions" value="2">Load the annotations from an external location</label>
+        </div>
+    </div>
+    <div id="imageViewerContainer" class="affectedContainers">
+        <!-- The viewer will be dynamically created inside imageViewerDiv -->
+        <div id="imageViewerDiv">
+        </div>
+    </div>
+    <div id="tooltip" class="dropdown clearfix" tabindex="-1">
+    </div>
+    <!-- Upload document dialog -->
+    <div id="uploadDocumentDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <label>Upload Document</label>
+                </div>
+                <div class="modal-body">
+                    <div class="groupBox">
+                        <label>Document File Name:</label>
+                        <br />
+                        <br />
+                        <div class="controls">
+                            <input id="documentFile" type="file" style="width:100%;">
                         </div>
-                        <ul style="list-style-type:none;"><li>Select this option if the annotations are stored in an external location, such as LEADTOOLS annotations stored in an XML file.</li></ul>
+                    </div>
+                    <br />
+                    <div class="groupBox annotations">
+                        <label>Annotations</label>
+                        <form role="form">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="uploadDocumentDialog_annotationsLoadOptions" value="0" checked>Do not load any annotations</label>
+                            </div>
+                            <ul>
+                                <li>Annotations will not be loaded.</li>
+                            </ul>
+                            <br />
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="uploadDocumentDialog_annotationsLoadOptions" value="1">Load the annotations embedded in the document</label>
+                            </div>
+                            <ul>
+                                <li>Some document formats such as PDF and TIFF can have embedded annotations inside the file itself. Select this option to try to load these annotations if they exist.</li>
+                            </ul>
+                            <br />
+                            <div id="loadExternalAnnotationsControls">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="uploadDocumentDialog_annotationsLoadOptions" value="2">Load the annotations from an external location</label>
+                                </div>
+                                <ul style="list-style-type:none;">
+                                    <li>Select this option if the annotations are stored in an external location, such as LEADTOOLS annotations stored in an XML file.</li>
+                                </ul>
+                                <br />
+                                <ul>
+                                    <li>
+                                        <input id="annotationsFile" class="input-xs" type="file" style="width:100%;" disabled>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="uploadDocumentDialog_OK" class="btn btn-default">OK</button>
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Open document from url dialog -->
+    <div id="openDocumentFromUrlDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <label>Open Document From URL</label>
+                </div>
+                <div class="modal-body">
+                    <div class="groupBox">
+                        <label>Document Location:</label>
                         <br />
-                        <ul><li><input id="annotationsFile" class="input-xs" type="file" style="width:100%;" disabled></li></ul>
-                     </div>
-                  </form>
-               </div>
-            </div>
-            <div class="modal-footer">
-               <button id="uploadDocumentDialog_OK" class="btn btn-default">OK</button>
-               <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- Open document from url dialog -->
-   <div id="openDocumentFromUrlDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-               <label>Open Document From URL</label>
-            </div>
-            <div class="modal-body">
-               <div class="groupBox">
-                  <label>Document Location:</label>
-                  <br />
-                  <br />
-                  <div class="controls">
-                     <select id="fileSelect" class="form-control">
-                        <option selected="selected">Leadtools.pdf</option>
-                        <option>OCR1-4.tif</option>
-                        <option>Combined.pdf</option>
-                        <option>Enter URL</option>
-                     </select>
-                  </div>
-                  <div id="urlDiv" style="display:none;">
-                     <label>URL</label>
-                     <br />
-                     <input id="fileUrl" type="text" class="form-control" value="http://demo.leadtools.com/images/pdf/leadtools.pdf" />
-                     <br />
-                  </div>
-               </div>
-               <br />
-               <div class="groupBox annotations">
-                  <label>Annotations</label>
-                  <form role="form">
-                     <div class="radio">
-                        <label><input type="radio" name="openDocumentFromUrlDialog_annotationsLoadOptions" value="0" checked>Do not load any annotations</label>
-                     </div>
-                     <ul><li>Annotations will not be loaded.</li></ul>
-                     <br />
-                     <div class="radio">
-                        <label><input type="radio" name="openDocumentFromUrlDialog_annotationsLoadOptions" value="1">Load the annotations embedded in the document</label>
-                     </div>
-                     <ul><li>Some document formats such as PDF and TIFF can have embedded annotations inside the file itself. Select this option to try to load these annotations if they exist.</li></ul>
-                     <br />
-                     <div class="radio">
-                        <label><input type="radio" name="openDocumentFromUrlDialog_annotationsLoadOptions" value="2">Load the annotations from an external address</label>
-                     </div>
-                     <ul><li>Select this option if the annotations are stored in an external address, such as LEADTOOLS annotations store in an XML file.</li></ul>
-                     <br />
-                     <ul><li><input id="annotationsUrl" type="text" class="form-control input-xs" disabled /></li></ul>
-                  </form>
-               </div>
-            </div>
-            <div class="modal-footer">
-               <button id="openDocumentFromUrlDialog_load" class="btn btn-default">Load</button>
-               <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- Open from external document storage dialog -->
-   <div id="openFromDocumentStorageDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-               <label>Open From Document Storage</label>
-            </div>
-            <div class="modal-body">
-               <div class="groupBox">
-                  <p id="openFromDocumentStorageInformation" class="text-center"></p>
-                  <label>Document Location:</label>
-                  <br />
-                  <br />
-                  <div class="btn-group btn-group-justified">
-                     <div class="btn-group">
-                        <button id="openDocumentFromOneDrive" type="button" class="btn btn-default">OneDrive</button>
-                     </div>
-                     <div class="btn-group">
-                        <button id="openDocumentFromSharePoint" type="button" class="btn btn-default">SharePoint</button>
-                     </div>
-                     <div class="btn-group">
-                        <button id="openDocumentFromGoogleDrive" type="button" class="btn btn-default">Google Drive</button>
-                     </div>
-                  </div>
-                  <br />
-                  <input id="documentFileName" type="text" class="form-control input-xs" readonly style="visibility:hidden;" />
-                  <br />
-                  <img id="documentLoading" class="loadingFromDrive" src="Resources/Images/Loading.gif" />
-               </div>
-               <br />
-               <div class="groupBox annotations">
-                  <label>Annotations</label>
-                  <form role="form">
-                     <div class="radio">
-                        <label><input type="radio" name="openFromDocumentStorageDialog_annotationsLoadOptions" value="0" checked>Do not load any annotations</label>
-                     </div>
-                     <ul><li>Annotations will not be loaded.</li></ul>
-                     <br />
-                     <div class="radio">
-                        <label><input type="radio" name="openFromDocumentStorageDialog_annotationsLoadOptions" value="1">Load the annotations embedded in the document</label>
-                     </div>
-                     <ul><li>Some document formats such as PDF and TIFF can have embedded annotations inside the file itself. Select this option to try to load these annotations if they exist.</li></ul>
-                     <br />
-                     <div class="radio">
-                        <label><input type="radio" name="openFromDocumentStorageDialog_annotationsLoadOptions" value="2">Load the annotations from an external address</label>
-                     </div>
-                     <ul><li>Select this option if the annotations are stored in an external document storage service, such as LEADTOOLS annotations store in an XML file.</li></ul>
-                     <br />
-                     <div class="btn-group btn-group-justified">
-                        <div class="btn-group">
-                           <button id="openAnnotationsFromOneDrive" type="button" class="btn btn-default" disabled>OneDrive</button>
+                        <br />
+                        <div class="controls">
+                            <select id="fileSelect" class="form-control">
+                                <option selected="selected">Leadtools.pdf</option>
+                                <option>OCR1-4.tif</option>
+                                <option>Combined.pdf</option>
+                                <option>Enter URL</option>
+                            </select>
                         </div>
-                        <div class="btn-group">
-                           <button id="openAnnotationsFromSharePoint" type="button" class="btn btn-default" disabled>SharePoint</button>
+                        <div id="urlDiv" style="display:none;">
+                            <label>URL</label>
+                            <br />
+                            <input id="fileUrl" type="text" class="form-control" value="//demo.leadtools.com/images/pdf/leadtools.pdf" />
+                            <br />
                         </div>
-                        <div class="btn-group">
-                           <button id="openAnnotationsFromGoogleDrive" type="button" class="btn btn-default" disabled>Google Drive</button>
-                        </div>
-                     </div>
-                     <br />
-                     <input id="annotationsFileName" type="text" class="form-control input-xs" readonly style="visibility:hidden;" />
-                     <br />
-                     <img id="annotationsLoading" class="loadingFromDrive" src="Resources/Images/Loading.gif" />
-                  </form>
-               </div>
+                    </div>
+                    <br />
+                    <div class="groupBox annotations">
+                        <label>Annotations</label>
+                        <form role="form">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="openDocumentFromUrlDialog_annotationsLoadOptions" value="0" checked>Do not load any annotations</label>
+                            </div>
+                            <ul>
+                                <li>Annotations will not be loaded.</li>
+                            </ul>
+                            <br />
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="openDocumentFromUrlDialog_annotationsLoadOptions" value="1">Load the annotations embedded in the document</label>
+                            </div>
+                            <ul>
+                                <li>Some document formats such as PDF and TIFF can have embedded annotations inside the file itself. Select this option to try to load these annotations if they exist.</li>
+                            </ul>
+                            <br />
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="openDocumentFromUrlDialog_annotationsLoadOptions" value="2">Load the annotations from an external address</label>
+                            </div>
+                            <ul>
+                                <li>Select this option if the annotations are stored in an external address, such as LEADTOOLS annotations store in an XML file.</li>
+                            </ul>
+                            <br />
+                            <ul>
+                                <li>
+                                    <input id="annotationsUrl" type="text" class="form-control input-xs" disabled />
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="openDocumentFromUrlDialog_load" class="btn btn-default">Load</button>
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
             </div>
-            <div class="modal-footer">
-               <button id="openFromDocumentStorageDialog_OK" class="btn btn-default">OK</button>
-               <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- SharePoint picker -->
-   <div id="sharePointPickerDialog" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close closeSharePointPicker" data-dismiss="modal" aria-hidden="true">x</button>
-               <label id="sharePointPickerTitle"></label>
-               <br />
-               <button type="button" id="setServerProperties" class="btn btn-default btn-xs">
-                  <span class="icon icon-sm server"></span>
-                  <span class="text">Server Properties</span>
-               </button>
-            </div>
-            <div class="modal-body">
-               <div id="connectToSharePointServerDiv">
-                  Enter the SharePoint server properties and click OK to connect
-                  <br />
-                  <br />
-                  <div class="groupBox">
-                     SharePoint server address (Root only, for "Shared Documents"):
-                     <br />
-                     <br />
-                     <input id="sharePointServer" type="text" class="form-control" placeholder="For Example: http://myserver/mysite" />
-                  </div>
-                  <br />
-                  <div class="groupBox">
-                     Network credentials to use when connecting to the server:
-                     <br />
-                     <br />
-                     <input id="useCredentials" type="checkbox" />
-                     <label for="useCredentials">Use the following credentials when connecting to the server</label>
-                     <br />
-                     <div class="input-group">
-                        <span class="input-group-addon">Username</span>
-                        <input id="sharePointCredentialsUsername" type="text" class="form-control sharePointCredentials" />
-                     </div>
-                     <br />
-                     <div class="input-group">
-                        <span class="input-group-addon">Password</span>
-                        <input id="sharePointCredentialsPassword" type="password" class="form-control sharePointCredentials" />
-                     </div>
-                     <br />
-                     <div class="input-group">
-                        <span class="input-group-addon">Domain</span>
-                        <input id="sharePointCredentialsDomain" type="text" class="form-control sharePointCredentials" />
-                     </div>
-                  </div>
-               </div>
-               <div id="sharePointServerDirectoryDiv">
-                  <div>
-                     <table class="table">
-                        <tbody id="directoryItems">
-                           <!-- The table data will be dynamically created -->
-                        </tbody>
-                     </table>
-                  </div>
-               </div>
-            </div>
-            <div class="modal-footer">
-               <img id="sharePointPickerDialog_LoadingIndicator" src="Resources/Images/Loading.gif" style="position:absolute;left:20px;display:none;" />
-               <button id="sharePointPickerDialog_OK" class="btn btn-default">OK</button>
-               <button class="btn btn-default closeSharePointPicker" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!--  Document converter dialog -->
-   <div id="documentConverterDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-               <label>Document Converter Options</label>
-            </div>
-            <div class="modal-body">
-               <ul class="nav nav-tabs">
-                  <li class="active"><a id="documentTabBtn" href="#documentTab" data-toggle="tab">Document</a></li>
-                  <li><a id="optionsTabBtn" href="#optionsTab" data-toggle="tab">Options</a></li>
-               </ul>
-               <div class="tab-content" style="height:440px;">
-                  <div class="tab-pane active" id="documentTab">
-                     <br />
-                     <div class="groupBox inputDocumentPages">
-                        <label>Input Document Pages</label>
+        </div>
+    </div>
+    <!-- Open from external document storage dialog -->
+    <div id="openFromDocumentStorageDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <label>Open From Document Storage</label>
+                </div>
+                <div class="modal-body">
+                    <div class="groupBox">
+                        <p id="openFromDocumentStorageInformation" class="text-center"></p>
+                        <label>Document Location:</label>
                         <br />
                         <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">From:</span>
-                           <input id="startPage" type="text" class="form-control" value="1" disabled>
-                           <span class="input-group-addon">
-                              <input id="documentConverterDialog_FirstPage" type="checkbox" />
-                              <label for="documentConverterDialog_FirstPage">First Page</label>
-                           </span>
-                        </div>
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon" style="padding-right:29px;">To:</span>
-                           <input id="endPage" type="text" class="form-control" disabled>
-                           <span class="input-group-addon">
-                              <input id="documentConverterDialog_LastPage" type="checkbox" />
-                              <label for="documentConverterDialog_LastPage">Last Page</label>
-                           </span>
-                        </div>
-                     </div>
-                     <br />
-                     <div class="groupBox">
-                        <label>Output Document</label>
-                        <br />
-                        <br />
-                        <p>Format:</p>
-                        <!-- Document or raster conversion  -->
-                        <select id="mainConverterFormats" class="form-control">
-                           <option selected="selected" value="document">Document</option>
-                           <option value="raster">Raster</option>
-                        </select>
-                        <br />
-                        <div id="documentFormatsControls" class="input-group">
-                           <select id="documentFormats" class="form-control"></select>
-                           <span class="input-group-btn">
-                              <button class="btn btn-default" id="documentFormatOptions">...</button>
-                           </span>
-                        </div>
-                        <select id="rasterFormats" class="form-control"></select>
-                        <br />
-                        <div class="annotations">
-                           <p>Annotations:</p>
-                           <select id="annotationsMode" class="form-control">
-                              <option value="0">Do not export any annotations</option>
-                              <option value="1">Export to an external file</option>
-                              <option value="2">Overlay (works with Raster formats only)</option>
-                              <option value="3">Embed into the output document (works with PDF and TIF files only)</option>
-                           </select>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="tab-pane" id="optionsTab">
-                     <br />
-                     <div class="groupBox">
-                        <label>General</label>
-                        <br />
-                        <input id="enableSvgConversion" type="checkbox" />
-                        <label for="enableSvgConversion">Use SVG conversion if available</label>
-                        <br />
-                        <div class="input-group input-group-sm">
-                           <span class="input-group-addon">SVG Images Recognition</span>
-                           <select id="svgImagesRecognitionMode" class="form-control">
-                              <option value="0">Auto</option>
-                              <option value="1">Disabled</option>
-                              <option value="2">Always</option>
-                           </select>
-                        </div>
-                        <br />
-                        <div class="input-group input-group-sm">
-                           <span class="input-group-addon">Empty Page Mode</span>
-                           <select id="emptyPageMode" class="form-control">
-                              <option value="0">None</option>
-                              <option value="1">Skip</option>
-                              <option value="2">Skip Ignore Annotations</option>
-                           </select>
+                        <div class="btn-group btn-group-justified">
+                            <div class="btn-group">
+                                <button id="openDocumentFromOneDrive" type="button" class="btn btn-default">OneDrive</button>
+                            </div>
+                            <div class="btn-group">
+                                <button id="openDocumentFromSharePoint" type="button" class="btn btn-default">SharePoint</button>
+                            </div>
+                            <div class="btn-group">
+                                <button id="openDocumentFromGoogleDrive" type="button" class="btn btn-default">Google Drive</button>
+                            </div>
                         </div>
                         <br />
-                        <input id="jobErrorMode" type="checkbox" />
-                        <label for="jobErrorMode">Continue on recoverable errors</label>
+                        <input id="documentFileName" type="text" class="form-control input-xs" readonly style="visibility:hidden;" />
                         <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Job Name: </span>
-                           <input id="jobName" type="text" class="form-control" />
-                        </div>
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Page Numbering Template: </span>
-                           <input id="pageNumberingTemplate" type="text" class="form-control" />
-                        </div>
-                     </div>
-                     <br />
-                     <div class="groupBox">
-                        <label>Preprocessing</label>
-                        <br />
-                        <input id="preprocessorDeskew" type="checkbox" style="margin:10px;" />
-                        <label for="preprocessorDeskew">Deskew</label>
-                        <input id="preprocessorInvert" type="checkbox" style="margin:10px;" />
-                        <label for="preprocessorInvert">Invert</label>
-                        <input id="preprocessorOrient" type="checkbox" style="margin:10px;" />
-                        <label for="preprocessorOrient">Orient</label>
-                     </div>
-                     <br />
-                     <button id="revertToDefaults" type="button" class="btn btn-default">Revert Back to Defaults</button>
-                  </div>
-               </div>
+                        <img id="documentLoading" class="loadingFromDrive" src="Resources/Images/Loading.gif" />
+                    </div>
+                    <br />
+                    <div class="groupBox annotations">
+                        <label>Annotations</label>
+                        <form role="form">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="openFromDocumentStorageDialog_annotationsLoadOptions" value="0" checked>Do not load any annotations</label>
+                            </div>
+                            <ul>
+                                <li>Annotations will not be loaded.</li>
+                            </ul>
+                            <br />
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="openFromDocumentStorageDialog_annotationsLoadOptions" value="1">Load the annotations embedded in the document</label>
+                            </div>
+                            <ul>
+                                <li>Some document formats such as PDF and TIFF can have embedded annotations inside the file itself. Select this option to try to load these annotations if they exist.</li>
+                            </ul>
+                            <br />
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="openFromDocumentStorageDialog_annotationsLoadOptions" value="2">Load the annotations from an external address</label>
+                            </div>
+                            <ul>
+                                <li>Select this option if the annotations are stored in an external document storage service, such as LEADTOOLS annotations store in an XML file.</li>
+                            </ul>
+                            <br />
+                            <div class="btn-group btn-group-justified">
+                                <div class="btn-group">
+                                    <button id="openAnnotationsFromOneDrive" type="button" class="btn btn-default" disabled>OneDrive</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button id="openAnnotationsFromSharePoint" type="button" class="btn btn-default" disabled>SharePoint</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button id="openAnnotationsFromGoogleDrive" type="button" class="btn btn-default" disabled>Google Drive</button>
+                                </div>
+                            </div>
+                            <br />
+                            <input id="annotationsFileName" type="text" class="form-control input-xs" readonly style="visibility:hidden;" />
+                            <br />
+                            <img id="annotationsLoading" class="loadingFromDrive" src="Resources/Images/Loading.gif" />
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="openFromDocumentStorageDialog_OK" class="btn btn-default">OK</button>
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
             </div>
-            <div class="modal-footer">
-               <button id="documentConverterDialog_OK" class="btn btn-default" data-dismiss="modal">OK</button>
-               <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- Document formats options dialog -->
-   <div id="documentFormatOptionsDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog options-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-               <label id="documentFormatName"></label>
-            </div>
-            <div class="modal-body">
-               <div class="groupBox">
-                  <div id="pdfOptionsControl" class="optionsControls">
-                     <p>Document Type:</p>
-                     <select id="pdfDocumentType" class="form-control">
-                        <option value="0">Pdf</option>
-                        <option value="1">PdfA</option>
-                        <option value="2">Pdf12</option>
-                        <option value="3">Pdf13</option>
-                        <option value="4">Pdf15</option>
-                        <option value="5">Pdf16</option>
-                     </select>
-                     <br>
-                     <button id="pdfAdvancedOptions" type="button" class="btn btn-default">Advanced Options ...</button>
-                     <br>
-                     <br>
-                     <input id="pdfImageOverText" type="checkbox" />
-                     <label for="pdfImageOverText">Image Over Text</label>
-                     <br>
-                  </div>
-                  <div id="docOptionsControl" class="optionsControls">
-                     <input id="docFrameText" type="checkbox" />
-                     <label for="docFrameText">Frame Text</label>
-                     <br>
-                     <br>
-                     This format uses text flow and using frames helps achieve maximum resembling between the input file and final generated document since the document writer can place objects using absolute (X and Y) position parameters.
-                     <br>
-                     <br>
-                  </div>
-                  <div id="rtfOptionsControl" class="optionsControls">
-                     <input id="rtfFrameText" type="checkbox" />
-                     <label for="rtfFrameText">Frame Text</label>
-                     <br>
-                     <br>
-                     This format uses text flow and using frames helps achieve maximum resembling between the input file and final generated document since the document writer can place objects using absolute (X and Y) position parameters.
-                     <br>
-                     <br>
-                  </div>
-                  <div id="htmOptionsControl" class="optionsControls">
-                     <p>Embed Font Mode:</p>
-                     <select id="htmEmbedFontMode" class="form-control">
-                        <option value="0">None</option>
-                        <option value="1">Auto</option>
-                        <option value="2">force</option>
-                        <option value="3">All</option>
-                     </select>
-                     <br>
-                     <input id="htmUseBackgroundColor" type="checkbox" />
-                     <label for="htmUseBackgroundColor">Use Background Color</label>
-                     <br>
-                     <br>
-                     <br />
-                     <div>
-                        <input id="htmBackgroundColor" readonly>
-                        <script>$("#htmBackgroundColor").spectrum({ showAlpha: true, preferredFormat: "hex", disabled: true })</script>
-                     </div>
-                  </div>
-                  <div id="txtOptionsControl" class="optionsControls">
-                     <p>Document Type:</p>
-                     <select id="txtDocumentType" class="form-control">
-                        <option value="0">Ansi</option>
-                        <option value="1">Unicode</option>
-                        <option value="2">Unicode Big Endian</option>
-                        <option value="3">UTF8</option>
-                     </select>
-                     <br>
-                     <input id="txtAddPageNumber" type="checkbox" />
-                     <label for="txtAddPageNumber">Add Page Number</label>
-                     <br>
-                     <input id="txtAddPageBreake" type="checkbox" />
-                     <label for="txtAddPageBreake">Add Page Breake</label>
-                     <br>
-                     <input id="txtFormatted" type="checkbox" />
-                     <label for="txtFormatted">Formatted</label>
-                     <br>
-                  </div>
-                  <div id="emfOptionsControl" class="optionsControls">
-                     <br>
-                     Note that the EMF format does not support multiple-pages, hence when saving a multi-page document to EMF the result is the last page only.
-                  </div>
-                  <div id="docxOptionsControl" class="optionsControls">
-                     <input id="docxFrameText" type="checkbox" />
-                     <label for="docxFrameText">Frame Text</label>
-                     <br>
-                     <br>
-                     This format uses text flow and using frames helps achieve maximum resembling between the input file and final generated document since the document writer can place objects using absolute (X and Y) position parameters.
-                     <br>
-                     <br>
-                  </div>
-                  <!-- For formats with no options -->
-                  <div id="noOptionsFormats" class="optionsControls">
-                     This format has no extra options.
-                  </div>
-               </div>
-            </div>
-            <div class="modal-footer">
-               <button id="documentFormatsOptionsDialog_OK" class="btn btn-default" data-dismiss="modal">OK</button>
-               <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!--  Advanced PDF options dialog -->
-   <div id="advancedPdfOptionsDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-               <label>Advanced PDF options</label>
-            </div>
-            <div class="modal-body">
-               <ul class="nav nav-tabs">
-                  <li class="active"><a id="descriptionTabBtn" href="#descriptionTab" data-toggle="tab">Description</a></li>
-                  <li><a id="fontTabBtn" href="#fontTab" data-toggle="tab">Font</a></li>
-                  <li><a id="securityTabBtn" href="#securityTab" data-toggle="tab">Security</a></li>
-                  <li><a id="compressionTabBtn" href="#compressionTab" data-toggle="tab">Compression</a></li>
-                  <li><a id="initialViewTabBtn" href="#initialViewTab" data-toggle="tab">Initial View</a></li>
-               </ul>
-               <div class="tab-content" style="height:600px;">
-                  <div class="tab-pane active" id="descriptionTab">
-                     <br />
-                     <div class="groupBox">
-                        <label>Description :</label>
+        </div>
+    </div>
+    <!-- SharePoint picker -->
+    <div id="sharePointPickerDialog" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close closeSharePointPicker" data-dismiss="modal" aria-hidden="true">x</button>
+                    <label id="sharePointPickerTitle"></label>
+                    <br />
+                    <button type="button" id="setServerProperties" class="btn btn-default btn-xs">
+                        <span class="icon icon-sm server"></span>
+                        <span class="text">Server Properties</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="connectToSharePointServerDiv">
+                        Enter the SharePoint server properties and click OK to connect
                         <br />
                         <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Title</span>
-                           <input id="pdfTitle" type="text" class="form-control" />
-                        </div>
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Subject</span>
-                           <input id="pdfSubject" type="text" class="form-control" />
-                        </div>
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Author</span>
-                           <input id="pdfAuthor" type="text" class="form-control" />
-                        </div>
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Keywords</span>
-                           <input id="pdfKeywords" type="text" class="form-control" />
-                        </div>
-                        <br />
-                        Note : Keywords can be separted with a comma or a dot.
-                     </div>
-                  </div>
-                  <div class="tab-pane" id="fontTab">
-                     <br />
-                     <div class="groupBox">
-                        <label>Fonts :</label>
-                        <br />
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Font Embedding</span>
-                           <select id="pdfFontEmbedding" class="form-control">
-                              <option value="0">None</option>
-                              <option value="1">Auto</option>
-                              <option value="2">Force</option>
-                              <option value="3">All</option>
-                           </select>
-                        </div>
-                        <br />
-                        <input id="pdfLinearized" type="checkbox" />
-                        <label for="pdfLinearized">Fast Web View (Linearized)</label>
-                     </div>
-                  </div>
-                  <div class="tab-pane" id="securityTab">
-                     <br />
-                     <div class="groupBox">
-                        <label>Document Security :</label>
-                        <br />
-                        <input id="pdfProtectedDocument" type="checkbox" class="securityTabInput" />
-                        <label for="pdfProtectedDocument">Protected Document</label>
-                        <br />
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Encryption Mode</span>
-                           <select id="pdfEncryptionMode" class="form-control securityTabInput">
-                              <option value="0">RC40Bit</option>
-                              <option value="1">RC128Bit</option>
-                           </select>
-                        </div>
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">User Password</span>
-                           <input id="pdfUserPassword" type="password" class="form-control securityTabInput" />
-                        </div>
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Owner Password</span>
-                           <input id="pdfOwnerPassword" type="password" class="form-control securityTabInput" />
+                        <div class="groupBox">
+                            SharePoint server address (Root only, for "Shared Documents"):
+                            <br />
+                            <br />
+                            <input id="sharePointServer" type="text" class="form-control" placeholder="For Example: http://myserver/mysite" />
                         </div>
                         <br />
                         <div class="groupBox">
-                           <label>Permissions :</label>
-                           <br />
-                           <input id="pdfCopyEnabled" type="checkbox" class="securityTabInput permissionsGroup" />
-                           <label for="pdfCopyEnabled">Enable copy from document and text extraction</label>
-                           <br />
-                           <input id="pdfEditEnabled" type="checkbox" class="securityTabInput permissionsGroup" />
-                           <label for="pdfEditEnabled">Enable document editing</label>
-                           <br />
-                           <input id="pdfAnnotationsEnabled" type="checkbox" class="securityTabInput permissionsGroup" />
-                           <label for="pdfAnnotationsEnabled">Enable comment and annotations</label>
-                           <br />
-                           <input id="pdfPrintEnabled" type="checkbox" class="securityTabInput permissionsGroup" />
-                           <label for="pdfPrintEnabled">Enable printing</label>
-                           <br />
-                           <input id="pdfAssemblyEnabled" type="checkbox" class="securityTabInput permissionsGroup" />
-                           <label for="pdfAssemblyEnabled">Enable document assembly</label>
-                           <br />
-                           <input id="pdfHighQualityPrintEnabled" type="checkbox" class="securityTabInput permissionsGroup" />
-                           <label for="pdfHighQualityPrintEnabled">Enable high quality (faithful) printing</label>
+                            Network credentials to use when connecting to the server:
+                            <br />
+                            <br />
+                            <input id="useCredentials" type="checkbox" />
+                            <label for="useCredentials">Use the following credentials when connecting to the server</label>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">Username</span>
+                                <input id="sharePointCredentialsUsername" type="text" class="form-control sharePointCredentials" />
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">Password</span>
+                                <input id="sharePointCredentialsPassword" type="password" class="form-control sharePointCredentials" />
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">Domain</span>
+                                <input id="sharePointCredentialsDomain" type="text" class="form-control sharePointCredentials" />
+                            </div>
                         </div>
-                     </div>
-                  </div>
-                  <div class="tab-pane" id="compressionTab">
-                     <br />
-                     <div class="groupBox">
-                        <label>Compression Options :</label>
-                        <br />
+                    </div>
+                    <div id="sharePointServerDirectoryDiv">
+                        <div>
+                            <table class="table">
+                                <tbody id="directoryItems">
+                                    <!-- The table data will be dynamically created -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <img id="sharePointPickerDialog_LoadingIndicator" src="Resources/Images/Loading.gif" style="position:absolute;left:20px;display:none;" />
+                    <button id="sharePointPickerDialog_OK" class="btn btn-default">OK</button>
+                    <button class="btn btn-default closeSharePointPicker" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  Document converter dialog -->
+    <div id="documentConverterDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <label>Document Converter Options</label>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a id="documentTabBtn" href="#documentTab" data-toggle="tab">Document</a>
+                        </li>
+                        <li><a id="optionsTabBtn" href="#optionsTab" data-toggle="tab">Options</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" style="height:440px;">
+                        <div class="tab-pane active" id="documentTab">
+                            <br />
+                            <div class="groupBox inputDocumentPages">
+                                <label>Input Document Pages</label>
+                                <br />
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">From:</span>
+                                    <input id="startPage" type="text" class="form-control" value="1" disabled>
+                                    <span class="input-group-addon">
+
+                              <input id="documentConverterDialog_FirstPage" type="checkbox" />
+
+                              <label for="documentConverterDialog_FirstPage">First Page</label>
+
+                           </span>
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon" style="padding-right:29px;">To:</span>
+                                    <input id="endPage" type="text" class="form-control" disabled>
+                                    <span class="input-group-addon">
+
+                              <input id="documentConverterDialog_LastPage" type="checkbox" />
+
+                              <label for="documentConverterDialog_LastPage">Last Page</label>
+
+                           </span>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="groupBox">
+                                <label>Output Document</label>
+                                <br />
+                                <br />
+                                <p>Format:</p>
+                                <!-- Document or raster conversion  -->
+                                <select id="mainConverterFormats" class="form-control">
+                                    <option selected="selected" value="document">Document</option>
+                                    <option value="raster">Raster</option>
+                                </select>
+                                <br />
+                                <div id="documentFormatsControls" class="input-group">
+                                    <select id="documentFormats" class="form-control"></select>
+                                    <span class="input-group-btn">
+
+                              <button class="btn btn-default" id="documentFormatOptions">...</button>
+
+                           </span>
+                                </div>
+                                <select id="rasterFormats" class="form-control"></select>
+                                <br />
+                                <div class="annotations">
+                                    <p>Annotations:</p>
+                                    <select id="annotationsMode" class="form-control">
+                                        <option value="0">Do not export any annotations</option>
+                                        <option value="1">Export to an external file</option>
+                                        <option value="2">Overlay (works with Raster formats only)</option>
+                                        <option value="3">Embed into the output document (works with PDF and TIF files only)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="optionsTab">
+                            <br />
+                            <div class="groupBox">
+                                <label>General</label>
+                                <br />
+                                <input id="enableSvgConversion" type="checkbox" />
+                                <label for="enableSvgConversion">Use SVG conversion if available</label>
+                                <br />
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon">SVG Images Recognition</span>
+                                    <select id="svgImagesRecognitionMode" class="form-control">
+                                        <option value="0">Auto</option>
+                                        <option value="1">Disabled</option>
+                                        <option value="2">Always</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon">Empty Page Mode</span>
+                                    <select id="emptyPageMode" class="form-control">
+                                        <option value="0">None</option>
+                                        <option value="1">Skip</option>
+                                        <option value="2">Skip Ignore Annotations</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <input id="jobErrorMode" type="checkbox" />
+                                <label for="jobErrorMode">Continue on recoverable errors</label>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Job Name: </span>
+                                    <input id="jobName" type="text" class="form-control" />
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Page Numbering Template: </span>
+                                    <input id="pageNumberingTemplate" type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="groupBox">
+                                <label>Preprocessing</label>
+                                <br />
+                                <input id="preprocessorDeskew" type="checkbox" style="margin:10px;" />
+                                <label for="preprocessorDeskew">Deskew</label>
+                                <input id="preprocessorInvert" type="checkbox" style="margin:10px;" />
+                                <label for="preprocessorInvert">Invert</label>
+                                <input id="preprocessorOrient" type="checkbox" style="margin:10px;" />
+                                <label for="preprocessorOrient">Orient</label>
+                            </div>
+                            <br />
+                            <button id="revertToDefaults" type="button" class="btn btn-default">Revert Back to Defaults</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="documentConverterDialog_OK" class="btn btn-default" data-dismiss="modal">OK</button>
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Document formats options dialog -->
+    <div id="documentFormatOptionsDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog options-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <label id="documentFormatName"></label>
+                </div>
+                <div class="modal-body">
+                    <div class="groupBox">
+                        <div id="pdfOptionsControl" class="optionsControls">
+                            <p>Document Type:</p>
+                            <select id="pdfDocumentType" class="form-control">
+                                <option value="0">Pdf</option>
+                                <option value="1">PdfA</option>
+                                <option value="2">Pdf12</option>
+                                <option value="3">Pdf13</option>
+                                <option value="4">Pdf15</option>
+                                <option value="5">Pdf16</option>
+                            </select>
+                            <br>
+                            <button id="pdfAdvancedOptions" type="button" class="btn btn-default">Advanced Options ...</button>
+                            <br>
+                            <br>
+                            <input id="pdfImageOverText" type="checkbox" />
+                            <label for="pdfImageOverText">Image Over Text</label>
+                            <br>
+                        </div>
+                        <div id="docOptionsControl" class="optionsControls">
+                            <input id="docFrameText" type="checkbox" />
+                            <label for="docFrameText">Frame Text</label>
+                            <br>
+                            <br> This format uses text flow and using frames helps achieve maximum resembling between the input file and final generated document since the document writer can place objects using absolute (X and Y) position parameters.
+                            <br>
+                            <br>
+                        </div>
+                        <div id="rtfOptionsControl" class="optionsControls">
+                            <input id="rtfFrameText" type="checkbox" />
+                            <label for="rtfFrameText">Frame Text</label>
+                            <br>
+                            <br> This format uses text flow and using frames helps achieve maximum resembling between the input file and final generated document since the document writer can place objects using absolute (X and Y) position parameters.
+                            <br>
+                            <br>
+                        </div>
+                        <div id="htmOptionsControl" class="optionsControls">
+                            <p>Embed Font Mode:</p>
+                            <select id="htmEmbedFontMode" class="form-control">
+                                <option value="0">None</option>
+                                <option value="1">Auto</option>
+                                <option value="2">force</option>
+                                <option value="3">All</option>
+                            </select>
+                            <br>
+                            <input id="htmUseBackgroundColor" type="checkbox" />
+                            <label for="htmUseBackgroundColor">Use Background Color</label>
+                            <br>
+                            <br>
+                            <br />
+                            <div>
+                                <input id="htmBackgroundColor" readonly>
+                                <script>
+                                    $("#htmBackgroundColor").spectrum({
+                                        showAlpha: true,
+                                        preferredFormat: "hex",
+                                        disabled: true
+                                    })
+                                </script>
+                            </div>
+                        </div>
+                        <div id="txtOptionsControl" class="optionsControls">
+                            <p>Document Type:</p>
+                            <select id="txtDocumentType" class="form-control">
+                                <option value="0">Ansi</option>
+                                <option value="1">Unicode</option>
+                                <option value="2">Unicode Big Endian</option>
+                                <option value="3">UTF8</option>
+                            </select>
+                            <br>
+                            <input id="txtAddPageNumber" type="checkbox" />
+                            <label for="txtAddPageNumber">Add Page Number</label>
+                            <br>
+                            <input id="txtAddPageBreake" type="checkbox" />
+                            <label for="txtAddPageBreake">Add Page Breake</label>
+                            <br>
+                            <input id="txtFormatted" type="checkbox" />
+                            <label for="txtFormatted">Formatted</label>
+                            <br>
+                        </div>
+                        <div id="emfOptionsControl" class="optionsControls">
+                            <br> Note that the EMF format does not support multiple-pages, hence when saving a multi-page document to EMF the result is the last page only.
+                        </div>
+                        <div id="docxOptionsControl" class="optionsControls">
+                            <input id="docxFrameText" type="checkbox" />
+                            <label for="docxFrameText">Frame Text</label>
+                            <br>
+                            <br> This format uses text flow and using frames helps achieve maximum resembling between the input file and final generated document since the document writer can place objects using absolute (X and Y) position parameters.
+                            <br>
+                            <br>
+                        </div>
+                        <!-- For formats with no options -->
+                        <div id="noOptionsFormats" class="optionsControls">
+                            This format has no extra options.
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="documentFormatsOptionsDialog_OK" class="btn btn-default" data-dismiss="modal">OK</button>
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  Advanced PDF options dialog -->
+    <div id="advancedPdfOptionsDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <label>Advanced PDF options</label>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a id="descriptionTabBtn" href="#descriptionTab" data-toggle="tab">Description</a>
+                        </li>
+                        <li><a id="fontTabBtn" href="#fontTab" data-toggle="tab">Font</a>
+                        </li>
+                        <li><a id="securityTabBtn" href="#securityTab" data-toggle="tab">Security</a>
+                        </li>
+                        <li><a id="compressionTabBtn" href="#compressionTab" data-toggle="tab">Compression</a>
+                        </li>
+                        <li><a id="initialViewTabBtn" href="#initialViewTab" data-toggle="tab">Initial View</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" style="height:600px;">
+                        <div class="tab-pane active" id="descriptionTab">
+                            <br />
+                            <div class="groupBox">
+                                <label>Description :</label>
+                                <br />
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Title</span>
+                                    <input id="pdfTitle" type="text" class="form-control" />
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Subject</span>
+                                    <input id="pdfSubject" type="text" class="form-control" />
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Author</span>
+                                    <input id="pdfAuthor" type="text" class="form-control" />
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Keywords</span>
+                                    <input id="pdfKeywords" type="text" class="form-control" />
+                                </div>
+                                <br /> Note : Keywords can be separted with a comma or a dot.
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="fontTab">
+                            <br />
+                            <div class="groupBox">
+                                <label>Fonts :</label>
+                                <br />
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Font Embedding</span>
+                                    <select id="pdfFontEmbedding" class="form-control">
+                                        <option value="0">None</option>
+                                        <option value="1">Auto</option>
+                                        <option value="2">Force</option>
+                                        <option value="3">All</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <input id="pdfLinearized" type="checkbox" />
+                                <label for="pdfLinearized">Fast Web View (Linearized)</label>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="securityTab">
+                            <br />
+                            <div class="groupBox">
+                                <label>Document Security :</label>
+                                <br />
+                                <input id="pdfProtectedDocument" type="checkbox" class="securityTabInput" />
+                                <label for="pdfProtectedDocument">Protected Document</label>
+                                <br />
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Encryption Mode</span>
+                                    <select id="pdfEncryptionMode" class="form-control securityTabInput">
+                                        <option value="0">RC40Bit</option>
+                                        <option value="1">RC128Bit</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">User Password</span>
+                                    <input id="pdfUserPassword" type="password" class="form-control securityTabInput" />
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Owner Password</span>
+                                    <input id="pdfOwnerPassword" type="password" class="form-control securityTabInput" />
+                                </div>
+                                <br />
+                                <div class="groupBox">
+                                    <label>Permissions :</label>
+                                    <br />
+                                    <input id="pdfCopyEnabled" type="checkbox" class="securityTabInput permissionsGroup" />
+                                    <label for="pdfCopyEnabled">Enable copy from document and text extraction</label>
+                                    <br />
+                                    <input id="pdfEditEnabled" type="checkbox" class="securityTabInput permissionsGroup" />
+                                    <label for="pdfEditEnabled">Enable document editing</label>
+                                    <br />
+                                    <input id="pdfAnnotationsEnabled" type="checkbox" class="securityTabInput permissionsGroup" />
+                                    <label for="pdfAnnotationsEnabled">Enable comment and annotations</label>
+                                    <br />
+                                    <input id="pdfPrintEnabled" type="checkbox" class="securityTabInput permissionsGroup" />
+                                    <label for="pdfPrintEnabled">Enable printing</label>
+                                    <br />
+                                    <input id="pdfAssemblyEnabled" type="checkbox" class="securityTabInput permissionsGroup" />
+                                    <label for="pdfAssemblyEnabled">Enable document assembly</label>
+                                    <br />
+                                    <input id="pdfHighQualityPrintEnabled" type="checkbox" class="securityTabInput permissionsGroup" />
+                                    <label for="pdfHighQualityPrintEnabled">Enable high quality (faithful) printing</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="compressionTab">
+                            <br />
+                            <div class="groupBox">
+                                <label>Compression Options :</label>
+                                <br />
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">One-Bit Image Compression :</span>
+                                    <select id="pdfOneBitImageCompression" class="form-control">
+                                        <option value="0">Flate</option>
+                                        <option value="1">FaxG31D</option>
+                                        <option value="2">faxG32D</option>
+                                        <option value="3">faxG4</option>
+                                        <option value="4">Lzw</option>
+                                        <option value="5">Jbig2</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Colored Image Compression :</span>
+                                    <select id="pdfColoredImageCompression" class="form-control">
+                                        <option value="0">FlateJpeg</option>
+                                        <option value="1">LzwJpeg</option>
+                                        <option value="2">Flate</option>
+                                        <option value="3">Lzw</option>
+                                        <option value="4">Jpeg</option>
+                                        <option value="5">FlateJpx</option>
+                                        <option value="6">LzwJpx</option>
+                                        <option value="7">Jpx</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Quality Factor :</span>
+                                    <input id="pdfQualityFactor" type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="groupBox">
+                                <label>Image Over Text Compression Options :</label>
+                                <br />
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Image Over Text Size :</span>
+                                    <select id="pdfImageOverTextSize" class="form-control">
+                                        <option value="0">Original</option>
+                                        <option value="1">Half</option>
+                                        <option value="2">Quarter</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Image Over Text Mode :</span>
+                                    <select id="pdfImageOverTextMode" class="form-control">
+                                        <option value="0">None</option>
+                                        <option value="1">Strict</option>
+                                        <option value="2">Relaxed</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="initialViewTab">
+                            <br />
+                            <div class="groupBox">
+                                <label>Layout and Page Mode:</label>
+                                <br />
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Page Mode :</span>
+                                    <select id="PdfDocumentPageModeType" class="form-control">
+                                        <option value="0">Page Only</option>
+                                        <option value="1">Bookmarks And Page</option>
+                                        <option value="2">Thumbnail And Page</option>
+                                        <option value="3">Full Screen</option>
+                                        <option value="4">Layer And Page</option>
+                                        <option value="5">Attachments And Page</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Page Layout :</span>
+                                    <select id="PdfDocumentPageLayoutType" class="form-control">
+                                        <option value="0">Single Page Display</option>
+                                        <option value="1">One Column Display</option>
+                                        <option value="2">Two Column Left Display</option>
+                                        <option value="3">Two Column Right Display</option>
+                                        <option value="4">Two Page Left</option>
+                                        <option value="5">Two Page Right</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Page Fit Type :</span>
+                                    <select id="PdfDocumentPageFitType" class="form-control">
+                                        <option value="0">Default</option>
+                                        <option value="1">Fit Width</option>
+                                        <option value="2">Fit Height</option>
+                                        <option value="3">Fit Width Bounds</option>
+                                        <option value="4">Fit Height Bounds</option>
+                                        <option value="5">Fit Bounds</option>
+                                        <option value="25">25 %</option>
+                                        <option value="50">50 %</option>
+                                        <option value="75">75 %</option>
+                                        <option value="100">100 %</option>
+                                        <option value="125">125 %</option>
+                                        <option value="150">150 %</option>
+                                        <option value="200">200 %</option>
+                                        <option value="400">400 %</option>
+                                        <option value="800">800 %</option>
+                                        <option value="1600">1600 %</option>
+                                        <option value="2400">2400 %</option>
+                                        <option value="3200">3200 %</option>
+                                        <option value="6400">6400 %</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Open To Page</span>
+                                    <input id="pdfInitialPageNumber" type="text" class="form-control" />
+                                    <span id="totalPages" class="input-group-addon"></span>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="groupBox">
+                                <label>Wondow Options:</label>
+                                <br />
+                                <input id="pdfFitWindow" type="checkbox" />
+                                <label for="pdfFitWindow">Resize Window to Initial Page</label>
+                                <br />
+                                <input id="pdfCenterWindow" type="checkbox" />
+                                <label for="pdfCenterWindow">Center Window on Screen</label>
+                                <br />
+                                <br />
+                                <div class="input-group">
+                                    <span class="input-group-addon">Show :</span>
+                                    <select id="pdfDisplayDocTitle" class="form-control">
+                                        <option value="0">File Name</option>
+                                        <option value="1">Document Title</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="groupBox">
+                                <label>User Interface Options:</label>
+                                <br />
+                                <input id="pdfHideMenubar" type="checkbox" />
+                                <label for="pdfHideMenubar">Hide Menu Bar</label>
+                                <br />
+                                <input id="pdfHideToolbar" type="checkbox" />
+                                <label for="pdfHideToolbar">Hide Toolbar</label>
+                                <br />
+                                <input id="pdfHideWindowUI" type="checkbox" />
+                                <label for="pdfHideWindowUI">Hide Window Controls</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="advancedPdfOptionsDialog_OK" class="btn btn-default" data-dismiss="modal">OK</button>
+                    <button id="advancedPdfOptionsDialog_Cancel" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  Save to dialog -->
+    <div id="saveToDialog" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="z-index:1049;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <label>Save To:</label>
+                </div>
+                <div class="modal-body">
+                    <br />
+                    <div class="groupBox">
+                        <div class="btn-group btn-group-justified">
+                            <div class="btn-group">
+                                <button type="button" id="localSave" class="btn btn-default">Local Save</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" id="saveToOneDrive" class="btn btn-default">OneDrive</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" id="saveToSharePoint" class="btn btn-default">SharePoint</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" id="saveToGoogleDrive" class="btn btn-default">Google Drive</button>
+                            </div>
+                        </div>
                         <br />
                         <div class="input-group">
-                           <span class="input-group-addon">One-Bit Image Compression :</span>
-                           <select id="pdfOneBitImageCompression" class="form-control">
-                              <option value="0">Flate</option>
-                              <option value="1">FaxG31D</option>
-                              <option value="2">faxG32D</option>
-                              <option value="3">faxG4</option>
-                              <option value="4">Lzw</option>
-                              <option value="5">Jbig2</option>
-                           </select>
+                            <span class="input-group-addon">File Name : </span>
+                            <input id="fileName" type="text" class="form-control" />
                         </div>
                         <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Colored Image Compression :</span>
-                           <select id="pdfColoredImageCompression" class="form-control">
-                              <option value="0">FlateJpeg</option>
-                              <option value="1">LzwJpeg</option>
-                              <option value="2">Flate</option>
-                              <option value="3">Lzw</option>
-                              <option value="4">Jpeg</option>
-                              <option value="5">FlateJpx</option>
-                              <option value="6">LzwJpx</option>
-                              <option value="7">Jpx</option>
-                           </select>
+                        <img id="fileSaving" class="saveTo" src="Resources/Images/Loading.gif" />
+                        <div id="googleSaveContainer" class="input-group" style="display:none;">
+                            <span>Save your file to Google Drive :</span>
+                            <div id="googleSaveButtonContainer"></div>
                         </div>
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Quality Factor :</span>
-                           <input id="pdfQualityFactor" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Text results dialog -->
+    <div id="resultsDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <label id="dialogLabel"></label>
+                </div>
+                <div class="modal-body">
+                    <textarea id="results" readonly="readonly" rows="7"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  Processing pages dialog (Barcode results) -->
+    <div id="processingPagesDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <label class="process-name">Processing</label>
+                </div>
+                <div class="modal-body">
+                    <h3><strong class="process-name">[Process]</strong> for <strong class="process-pages">#</strong> page(s)</h3>
+                    <h4><span class="process-status"></span><img id="documentLoading" class="process-loading" src="Resources/Images/Loading.gif" /></h4>
+                    <h5 class="process-summary"></h5>
+                    <div class="process-content"></div>
+                    <button class="process-cancel btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+                <div class="modal-footer">
+                    <button class="process-close btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  Automation update object dialog -->
+    <div id="automationUpdateObjectDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <label>Annotations Properties</label>
+                </div>
+                <div id="automationUpdateObjectDialog_Body" class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About dialog -->
+    <div id="aboutDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content about-dialog">
+                <div class="modal-body">
+                    <br />
+                    <label id="demoName"></label>
+                    <div id="demoDescription" style="display:none">
+                        <ul style="list-style-type:square">
+                            <li>Upload and view any document, such as PDF, DOCX or TIFF</li>
+                            <li>Convert and download to any supported document</li>
+                            <li>View pages as SVG or raster image</li>
+                            <li>Annotations support</li>
+                            <li>Parse and select text using SVG and OCR technologies</li>
+                            <li>Interactive modes including pan zoom, magnify glass, auto-pan and more</li>
+                            <li>Multi-touch and gesture support for mobile devices and tablets</li>
+                        </ul>
+                    </div>
+                    <label>Copyright © 1991-2016 All Rights Reserved.</label>
+                    <label>LEAD Technologies, Inc.</label>
+                    <br />
+                    <br />
+                    <div style="text-align:center;">
+                        <img src="Resources/Images/LEAD.png" alt="LEADTOOLS" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Loading dialog -->
+    <div id="documentViewerDemoLoadingDlg" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog loading-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <br />
+                    <label id="processText"></label>
+                    <br />
+                    <br />
+                    <div class="progress">
+                        <div id="progressbar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                            <span id="progressPercentage"></span>
                         </div>
-                     </div>
-                     <br />
-                     <div class="groupBox">
-                        <label>Image Over Text Compression Options :</label>
-                        <br />
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Image Over Text Size :</span>
-                           <select id="pdfImageOverTextSize" class="form-control">
-                              <option value="0">Original</option>
-                              <option value="1">Half</option>
-                              <option value="2">Quarter</option>
-                           </select>
-                        </div>
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Image Over Text Mode :</span>
-                           <select id="pdfImageOverTextMode" class="form-control">
-                              <option value="0">None</option>
-                              <option value="1">Strict</option>
-                              <option value="2">Relaxed</option>
-                           </select>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="tab-pane" id="initialViewTab">
-                     <br />
-                     <div class="groupBox">
-                        <label>Layout and Page Mode:</label>
-                        <br />
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Page Mode :</span>
-                           <select id="PdfDocumentPageModeType" class="form-control">
-                              <option value="0">Page Only</option>
-                              <option value="1">Bookmarks And Page</option>
-                              <option value="2">Thumbnail And Page</option>
-                              <option value="3">Full Screen</option>
-                              <option value="4">Layer And Page</option>
-                              <option value="5">Attachments And Page</option>
-                           </select>
-                        </div>
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Page Layout :</span>
-                           <select id="PdfDocumentPageLayoutType" class="form-control">
-                              <option value="0">Single Page Display</option>
-                              <option value="1">One Column Display</option>
-                              <option value="2">Two Column Left Display</option>
-                              <option value="3">Two Column Right Display</option>
-                              <option value="4">Two Page Left</option>
-                              <option value="5">Two Page Right</option>
-                           </select>
-                        </div>
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Page Fit Type :</span>
-                           <select id="PdfDocumentPageFitType" class="form-control">
-                              <option value="0">Default</option>
-                              <option value="1">Fit Width</option>
-                              <option value="2">Fit Height</option>
-                              <option value="3">Fit Width Bounds</option>
-                              <option value="4">Fit Height Bounds</option>
-                              <option value="5">Fit Bounds</option>
-                              <option value="25">25 %</option>
-                              <option value="50">50 %</option>
-                              <option value="75">75 %</option>
-                              <option value="100">100 %</option>
-                              <option value="125">125 %</option>
-                              <option value="150">150 %</option>
-                              <option value="200">200 %</option>
-                              <option value="400">400 %</option>
-                              <option value="800">800 %</option>
-                              <option value="1600">1600 %</option>
-                              <option value="2400">2400 %</option>
-                              <option value="3200">3200 %</option>
-                              <option value="6400">6400 %</option>
-                           </select>
-                        </div>
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Open To Page</span>
-                           <input id="pdfInitialPageNumber" type="text" class="form-control" />
-                           <span id="totalPages" class="input-group-addon"></span>
-                        </div>
-                     </div>
-                     <br />
-                     <div class="groupBox">
-                        <label>Wondow Options:</label>
-                        <br />
-                        <input id="pdfFitWindow" type="checkbox" />
-                        <label for="pdfFitWindow">Resize Window to Initial Page</label>
-                        <br />
-                        <input id="pdfCenterWindow" type="checkbox" />
-                        <label for="pdfCenterWindow">Center Window on Screen</label>
-                        <br />
-                        <br />
-                        <div class="input-group">
-                           <span class="input-group-addon">Show :</span>
-                           <select id="pdfDisplayDocTitle" class="form-control">
-                              <option value="0">File Name</option>
-                              <option value="1">Document Title</option>
-                           </select>
-                        </div>
-                     </div>
-                     <br />
-                     <div class="groupBox">
-                        <label>User Interface Options:</label>
-                        <br />
-                        <input id="pdfHideMenubar" type="checkbox" />
-                        <label for="pdfHideMenubar">Hide Menu Bar</label>
-                        <br />
-                        <input id="pdfHideToolbar" type="checkbox" />
-                        <label for="pdfHideToolbar">Hide Toolbar</label>
-                        <br />
-                        <input id="pdfHideWindowUI" type="checkbox" />
-                        <label for="pdfHideWindowUI">Hide Window Controls</label>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
+                <div id="cancelDiv" class="modal-footer">
+                    <button id="cancel" class="btn btn-default">Cancel</button>
+                </div>
             </div>
-            <div class="modal-footer">
-               <button id="advancedPdfOptionsDialog_OK" class="btn btn-default" data-dismiss="modal">OK</button>
-               <button id="advancedPdfOptionsDialog_Cancel" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!--  Save to dialog -->
-   <div id="saveToDialog" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="z-index:1049;">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <label>Save To:</label>
-            </div>
-            <div class="modal-body">
-               <br />
-               <div class="groupBox">
-                  <div class="btn-group btn-group-justified">
-                     <div class="btn-group">
-                        <button type="button" id="localSave" class="btn btn-default">Local Save</button>
-                     </div>
-                     <div class="btn-group">
-                        <button type="button" id="saveToOneDrive" class="btn btn-default">OneDrive</button>
-                     </div>
-                     <div class="btn-group">
-                        <button type="button" id="saveToSharePoint" class="btn btn-default">SharePoint</button>
-                     </div>
-                     <div class="btn-group">
-                        <button type="button" id="saveToGoogleDrive" class="btn btn-default">Google Drive</button>
-                     </div>
-                  </div>
-                  <br />
-                  <div class="input-group">
-                     <span class="input-group-addon">File Name : </span>
-                     <input id="fileName" type="text" class="form-control" />
-                  </div>
-                  <br />
-                  <img id="fileSaving" class="saveTo" src="Resources/Images/Loading.gif" />
-                  <div id="googleSaveContainer" class="input-group" style="display:none;">
-                     <span>Save your file to Google Drive :</span>
-                     <div id="googleSaveButtonContainer"></div>
-                  </div>
-               </div>
-            </div>
-            <div class="modal-footer">
-               <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- Text results dialog -->
-   <div id="resultsDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-               <label id="dialogLabel"></label>
-            </div>
-            <div class="modal-body">
-               <textarea id="results" readonly="readonly" rows="7"></textarea>
-            </div>
-            <div class="modal-footer">
-               <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!--  Processing pages dialog (Barcode results) -->
-   <div id="processingPagesDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-               <label class="process-name">Processing</label>
-            </div>
-            <div class="modal-body">
-               <h3><strong class="process-name">[Process]</strong> for <strong class="process-pages">#</strong> page(s)</h3>
-               <h4><span class="process-status"></span><img id="documentLoading" class="process-loading" src="Resources/Images/Loading.gif" /></h4>
-               <h5 class="process-summary"></h5>
-               <div class="process-content"></div>
-               <button class="process-cancel btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            </div>
-            <div class="modal-footer">
-               <button class="process-close btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!--  Automation update object dialog -->
-   <div id="automationUpdateObjectDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-               <label>Annotations Properties</label>
-            </div>
-            <div id="automationUpdateObjectDialog_Body" class="modal-body">
-            </div>
-            <div class="modal-footer">
-               <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">OK</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- About dialog -->
-   <div id="aboutDialog" class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content about-dialog">
-            <div class="modal-body">
-               <br />
-               <label id="demoName"></label>
-               <div id="demoDescription" style="display:none">
-                  <ul style="list-style-type:square">
-                     <li>Upload and view any document, such as PDF, DOCX or TIFF</li>
-                     <li>Convert and download to any supported document</li>
-                     <li>View pages as SVG or raster image</li>
-                     <li>Annotations support</li>
-                     <li>Parse and select text using SVG and OCR technologies</li>
-                     <li>Interactive modes including pan zoom, magnify glass, auto-pan and more</li>
-                     <li>Multi-touch and gesture support for mobile devices and tablets</li>
-                  </ul>
-               </div>
-               <label>Copyright © 1991-2016 All Rights Reserved.</label>
-               <label>LEAD Technologies, Inc.</label>
-               <br />
-               <br />
-               <div style="text-align:center;">
-                  <img src="Resources/Images/LEAD.png" alt="LEADTOOLS" />
-               </div>
-            </div>
-            <div class="modal-footer">
-               <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- Loading dialog -->
-   <div id="documentViewerDemoLoadingDlg" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog loading-dialog">
-         <div class="modal-content">
-            <div class="modal-body">
-               <br />
-               <label id="processText"></label>
-               <br />
-               <br />
-               <div class="progress">
-                  <div id="progressbar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-                     <span id="progressPercentage"></span>
-                  </div>
-               </div>
-            </div>
-            <div id="cancelDiv" class="modal-footer">
-               <button id="cancel" class="btn btn-default">Cancel</button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <script language="javascript">
-      if (!String.prototype.format) {
-         String.prototype.format = function () {
-            var args = arguments;
-            return this.replace(/{(\d+)}/g, function (match, number) {
-               return typeof args[number] != "undefined"
-                 ? args[number]
-                 : match
-               ;
-            });
-         };
-      }
-   </script>
+        </div>
+    </div>
+    <script language="javascript">
+        if (!String.prototype.format) {
+            String.prototype.format = function() {
+                var args = arguments;
+                return this.replace(/{(\d+)}/g, function(match, number) {
+                    return typeof args[number] != "undefined" ? args[number] : match;
+                });
+            };
+        }
+    </script>
 </body>
+
 </html>

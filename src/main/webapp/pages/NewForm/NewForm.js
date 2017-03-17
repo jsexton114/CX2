@@ -35,6 +35,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     $scope.ownerInfo = false;
     $scope.documents = false;
     $scope.sharing = false;
+    $scope.signature = false;
 
     $scope.formData = {};
     $scope.locationIds = '';
@@ -75,6 +76,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         $scope.ownerInfo = formType.requireOwner && formType.gisrecord;
         $scope.documents = formType.attachments;
         $scope.sharing = formType.sharedWith;
+        $scope.signature = formType.requireSignature;
 
         shouldSubmitOnBehalf();
     };
@@ -194,7 +196,12 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
 
     $scope.svSubmitFormonSuccess = function(variable, data) {
-        $scope.Variables.goToPage_UserOpenForms.navigate();
+        if ($scope.signature === true) {
+            $scope.Variables.svGetSignLink.setInput('formGuid', data);
+            $scope.Variables.svGetSignLink.update();
+        } else {
+            $scope.Variables.goToPage_UserOpenForms.navigate();
+        }
     };
 
     $scope.checkboxNewUserChange = function($event, $isolateScope, newVal, oldVal) {
@@ -301,6 +308,11 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     };
 
     $scope.svGetOwnersonSuccess = function(variable, data) {};
+
+
+    $scope.svGetSignLinkonSuccess = function(variable, data) {
+        window.open(data);
+    };
 
 }]);
 

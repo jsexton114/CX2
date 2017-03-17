@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="cx2LeadTools">
 
 <head>
     <meta charset="utf-8" />
@@ -33,7 +34,8 @@
 
     <!-- External .js files -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Main/angular.min.js"></script>
     <script type="text/javascript" src="Common/Libs/spectrum/spectrum.js"></script>
 
     <!-- OneDrive -->
@@ -107,20 +109,6 @@
                             <button id="uploadDocument" class="menuItem" title="Upload local document...">
                                 <span class="icon icon-sm openIcon"></span>
                                 <span class="text">Upload document...</span>
-                            </button>
-                        </li>
-                        <!-- Open document from url -->
-                        <li>
-                            <button id="openDocumentFromUrl" class="menuItem" title="Open document from URL...">
-                                <span class="icon icon-sm openUrlIcon"></span>
-                                <span class="text">Open URL...</span>
-                            </button>
-                        </li>
-                        <!-- Open from external document storage service -->
-                        <li>
-                            <button id="openFromDocumentStorage" class="menuItem" title="Open document from storage...">
-                                <span class="icon icon-sm server"></span>
-                                <span class="text">Open from document storage...</span>
                             </button>
                         </li>
                         <!-- Save/Convert document -->
@@ -786,7 +774,7 @@
         <button class="annotationObjectBtn" title="Freehand" value="-10">
             <span class="icon freehandIcon"></span>
         </button>
-        <button class="annotationObjectBtn" title="Hilite" value="-11">
+        <button class="annotationObjectBtn" title="Highlight" value="-11">
             <span class="icon hiliteIcon"></span>
         </button>
         <button class="annotationObjectBtn" title="Text" value="-12">
@@ -840,7 +828,7 @@
         <button class="annotationObjectBtn" title="Encrypt" value="-27">
             <span class="icon lockIcon"></span>
         </button>
-        <button class="annotationObjectBtn" title="Text Hilite" value="-33">
+        <button class="annotationObjectBtn" title="Text Highlight" value="-33">
             <span class="icon textHiliteIcon"></span>
         </button>
         <button class="annotationObjectBtn" title="Text Strikeout" value="-34">
