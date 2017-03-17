@@ -348,7 +348,7 @@ Application.$controller("gridFeesController", ["$scope",
             if ($scope.Variables.CurrentForm.dataSet.data[0].formStatuses.allowPayment) {
                 allowToCart = true;
             } else {
-                $scope.Variables.DontAddToCart.notify();
+
                 //Checking if user is muniadmin or cxadmin or muniemp
                 for (let i = 0; i < temp.length; i++) {
                     if ((temp[i] == "MunicipalityAdmin") || (temp[i] == "CXAdmin") || (temp[i] == "MunicipalityEmployee")) {
