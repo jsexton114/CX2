@@ -367,6 +367,25 @@ public class QueryExecutionController {
         return queryService.exportGetFormTypeFieldsByTypeId(exportType, formTypeId, pageable);
     }
 
+    @RequestMapping(value = "/queries/CountOfCXProjects", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountOfCXProjects")
+    public Page<CountOfCxprojectsResponse> executeCountOfCXProjects(Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfCXProjects");
+        Page<CountOfCxprojectsResponse> _result = queryService.executeCountOfCXProjects(pageable);
+        LOGGER.debug("got the result for named query: CountOfCXProjects, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfCXProjects")
+    @RequestMapping(value = "/queries/CountOfCXProjects/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfCXProjects(@PathVariable("exportType") ExportType exportType, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfCXProjects");
+
+        return queryService.exportCountOfCXProjects(exportType, pageable);
+    }
+
     @RequestMapping(value = "/queries/CountOfProjectsForUsersAndSharedWithByMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CountOfProjectsForUsersAndSharedWithByMunicipality")

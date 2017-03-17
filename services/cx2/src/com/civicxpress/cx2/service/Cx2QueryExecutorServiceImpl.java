@@ -397,6 +397,24 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<CountOfCxprojectsResponse> executeCountOfCXProjects(Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("CountOfCXProjects", params, CountOfCxprojectsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountOfCXProjects(ExportType exportType, Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.exportNamedQueryData("CountOfCXProjects", params, exportType, CountOfCxprojectsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<CountOfProjectsForUsersAndSharedWithByMunicipalityResponse> executeCountOfProjectsForUsersAndSharedWithByMunicipality(Integer municipalityId, Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable) {
         Map params = new HashMap(4);
 

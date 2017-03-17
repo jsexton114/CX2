@@ -1042,6 +1042,37 @@
       } ]
     }
   },
+  "CountOfCXProjects" : {
+    "name" : "CountOfCXProjects",
+    "description" : "CountOfCXProjects",
+    "version" : "V2",
+    "queryString" : "select count(*) as count from Projects",
+    "countQueryString" : "select count(*) from (select count(*) as count from Projects) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CountOfCxprojectsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "count",
+        "fieldName" : "_count",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "CountOfCasesForMunicipality" : {
     "name" : "CountOfCasesForMunicipality",
     "description" : "CountOfCasesForMunicipality",
