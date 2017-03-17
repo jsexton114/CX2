@@ -231,6 +231,15 @@ Application.$controller("dialogUpdateTaskController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.buttonTaskUpdateClick = function($event, $isolateScope) {
+            $scope.Variables.UpdateTask.setInput({
+                'assignedTo': $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.id
+            });
+            $scope.Variables.UpdateTask.insertRecord();
+
+        };
+
     }
 ]);
 

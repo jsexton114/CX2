@@ -736,7 +736,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-dialogactions name="dialogactions6">
-                    <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonTaskUpdate" iconclass="wi wi-update" on-click="Variables.UpdateTask.updateRecord()" disabled="bind:Widgets.textUpdateProjectTitle.datavalue == null"></wm-button>
+                    <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonTaskUpdate" iconclass="wi wi-update" on-click="buttonTaskUpdateClick($event, $scope)" disabled="bind:Widgets.textUpdateProjectTitle.datavalue == null"></wm-button>
                     <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button12" iconclass="wi wi-cancel"></wm-button>
                 </wm-dialogactions>
             </wm-layoutgrid>
