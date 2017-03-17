@@ -407,6 +407,8 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateVendorStatus(UpdateVendorStatusRequest updateVendorStatusRequest);
 
+    Integer executeDeleteProjectForms(Integer projectForm);
+
     Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(Integer formTypeId, Pageable pageable);
 
     Downloadable exportInspectionDesignForCategoriesMappedToForms(ExportType exportType, Integer formTypeId, Pageable pageable);

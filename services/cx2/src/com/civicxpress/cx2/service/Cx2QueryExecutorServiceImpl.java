@@ -2149,6 +2149,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("UpdateVendorStatus", params);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeDeleteProjectForms(Integer projectForm) {
+        Map params = new HashMap(1);
+
+        params.put("projectForm", projectForm);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteProjectForms", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(Integer formTypeId, Pageable pageable) {

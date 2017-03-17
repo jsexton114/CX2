@@ -53,7 +53,7 @@
       "value" : "bind:Widgets.textareaFormComments.datavalue",
       "type" : "string"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "cx2",
     "operation" : "executeInsertFormsIntoProject",
     "operationId" : "QueryExecutionController_executeInsertFormsIntoProject",
@@ -64,7 +64,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "onSuccess" : "Widgets.dialogAddFormsToProject.close();Variables.ProjectForms.invoke()",
-    "onError" : "No Event",
+    "onError" : "Variables.FormAlreadyAdded.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -1344,6 +1344,35 @@
     } ],
     "operation" : "toast"
   },
+  "DeleteProjectForms" : {
+    "_id" : "wm-DeleteProjectForms-wm.ServiceVariable-1489731082407",
+    "name" : "DeleteProjectForms",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "id",
+      "value" : "bind:Widgets.gridProjectForms.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "boolean",
+    "service" : "cx2",
+    "operation" : "deleteProjectForms",
+    "operationId" : "ProjectFormsController_deleteProjectForms",
+    "operationType" : "delete",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.FormDeletedSuccess.invoke();Variables.ProjectForms.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProjectForms",
+    "spinnerContext" : "page"
+  },
   "DeleteProjectGISRecord" : {
     "_id" : "wm-DeleteProjectGISRecord-wm.ServiceVariable-1487233894502",
     "name" : "DeleteProjectGISRecord",
@@ -1449,6 +1478,62 @@
     }, {
       "target" : "class",
       "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "FormAlreadyAdded" : {
+    "_id" : "wm-FormAlreadyAdded-wm.NotificationVariable-1489730328474",
+    "name" : "FormAlreadyAdded",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "That form has already been added to the project.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "FormDeletedSuccess" : {
+    "_id" : "wm-FormDeletedSuccess-wm.NotificationVariable-1489731078550",
+    "name" : "FormDeletedSuccess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Form Deleted from Project",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
       "type" : "string"
     }, {
       "target" : "toasterPosition",

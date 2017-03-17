@@ -1649,6 +1649,13 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
     <query-param name="vendor" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="DeleteProjectForms">
+        <![CDATA[
+        delete from ProjectForms where ID=:projectForm
+        ]]>
+    <query-param name="projectForm" type="java.lang.Integer"/>
+    </sql-query>
+
     <query name="InspectionDesignForCategoriesMappedToForms">
         <![CDATA[
         from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId))

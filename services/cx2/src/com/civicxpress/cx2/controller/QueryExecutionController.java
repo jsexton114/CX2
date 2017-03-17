@@ -1889,6 +1889,16 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/DeleteProjectForms", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "DeleteProjectForms")
+    public IntegerWrapper executeDeleteProjectForms(@RequestParam(value = "projectForm") Integer projectForm) {
+        LOGGER.debug("Executing named query: DeleteProjectForms");
+        Integer _result = queryService.executeDeleteProjectForms(projectForm);
+        LOGGER.debug("got the result for named query: DeleteProjectForms, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/InspectionDesignForCategoriesMappedToForms", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "InspectionDesignForCategoriesMappedToForms")

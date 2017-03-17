@@ -25,7 +25,7 @@
   @wm-left-panel-link-active-bg: transparent;
   @wm-left-panel-link-hover-text-color: #fff;
   @wm-left-panel-link-hover-border-color: transparent;
-  @wm-left-panel-dropdown-menu-bg: transparent;
+  @wm-left-panel-dropdown-menu-bg: @wm-left-panel-bg;
 
   //right panel
   @wm-right-panel-border-color: #CFDBE2;
@@ -57,7 +57,7 @@
 
   @form-border-color: #d1d1d1;
   @wm-calendar-header-color: #adadad;
-  @wm-calendar-text-color: #ccc;
+  @wm-calendar-text-color: #adadad;
   @wm-datepicker-text-color: #000;
   @wm-datepicker-header-bg: transparent;
   @wm-datepicker-btn-hover-bg: #f0f0f0;
@@ -139,6 +139,13 @@
      background-color: transparent;
   }
 
+  //stylings for tile widget
+  .app-tile {
+    &.bg-danger, &.bg-success, &.bg-info, &.bg-warning {
+      color: @panel-primary-text;
+    }
+  }
+
   /***Tabs Widget: Styling for the tabs widget comes here********/
   //Tab Content
   .tab-content {
@@ -148,7 +155,7 @@
     }
   }
   //navigation
-  .nav-tabs, .nav-justified {
+  .nav-tabs {
     border-bottom-color: @nav-tabs-border-color;
     background-color: @nav-tabs-bg;
     > li {
@@ -233,8 +240,11 @@
     &.btn-lg {
       font-size: 1.4em;
     }
+    &.btn-sm {
+      padding: @padding-small-vertical @padding-small-horizontal;
+    }
     &.btn-xs {
-      padding: 0 0.5em;
+      padding: @padding-xs-vertical @padding-xs-horizontal;
     }
     .caret {
       margin-left: 0.7em;
@@ -386,6 +396,33 @@
     }
   }
 
+  /****nav widget****/
+  .app-nav {
+    &.nav-pills {
+      .app-nav-item {
+        .app-menu {
+          .dropdown-toggle {
+            padding: @nav-link-padding;
+            &:hover {
+              color: @nav-pills-active-link-hover-color;
+              background-color: @nav-link-hover-bg;
+            }
+          }
+          &.open {
+            .dropdown-toggle {
+              color: @nav-pills-active-link-hover-color;
+              background-color: @nav-pills-active-link-hover-bg;
+              &:active, &:active:hover {
+                color: @nav-pills-active-link-hover-color;
+                background-color: @nav-pills-active-link-hover-bg;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   //Top Nav Bar
   .app-navbar {
     border-radius: 0;
@@ -412,19 +449,7 @@
 
         > .dropdown .dropdown-menu {
           margin: 0;
-          top: 95%;
           background-color: @dropdown-bg;
-          > li > a:after {
-            border-bottom: 8px solid #fff;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            top: -8px;
-            content: "";
-            display: inline-block;
-            left: 42px;
-            margin-left: -6px;
-            position: absolute;
-          }
           a {
             color: @text-color;
             padding: 1em;
@@ -455,7 +480,6 @@
       padding: 0;
     }
   }
-
   //Left & Right Panels
   .app-left-panel, .app-right-panel {
     .nav {
@@ -496,14 +520,10 @@
             background-color: @wm-left-panel-link-hover-bg;
           }
           .app-icon {
-            margin-left: 0.13em;
-            margin-right: 0.53em;
-            margin-top: .2em;
-            font-size: 1.143em;
+            margin-right: 0.3em;
           }
           .badge {
-            right: @padding-large-horizontal;
-            top: @padding-large-horizontal;
+            top: 1.2em !important;
             padding: 4px 6px;
           }
         }
@@ -530,9 +550,18 @@
             background-color: @wm-left-panel-dropdown-menu-bg;
             li {
               a {
-                padding: 0.92em .92em .92em 3em;
+                padding: 0.92em .92em .92em 2.5em;
                 font-size: 1.02em;
                 border-color: transparent;
+              }
+            }
+          }
+          .dropdown-menu {
+            color: @wm-left-panel-link-hover-text-color;
+            background-color: @wm-left-panel-dropdown-menu-bg;
+            .dropdown-submenu {
+              i.app-icon {
+                margin-right: 0.615em;
               }
             }
           }
@@ -837,7 +866,6 @@
         th {
           .header-data {
             text-transform: uppercase;
-            color: @kbd-bg;
           }
           .sort-buttons-container {
             .sort-button {
@@ -894,11 +922,8 @@
 
     .app-datagrid {
       .app-datagrid-cell {
-        &.cell-editing {
+        &.cell-editing:not(.checkbox-widget) {
            padding: @padding-small-vertical @padding-small-horizontal;
-          .app-checkbox {
-            margin: 2px -5px;
-          }
         }
       }
       .form-search {
@@ -920,6 +945,15 @@
 
   .app-datanavigator {
     .pagination.basic {
+      &.pagination-sm {
+        li a {
+          width: 20pt;
+          height: 20pt;
+        }
+        li.pagination-page a{
+          padding: 6px 0;
+        }
+      }
        .pagination-prev, .pagination-next, .pagination-first, .pagination-last{
           a {
             padding: 3px 7px;
@@ -969,7 +1003,6 @@
         li {
            &.pagecount {
               a {
-                 height: initial;
                  background-color: @pagination-active-bg;
                  border-color: @pagination-active-bg;
                  input {
@@ -1479,13 +1512,13 @@
     }
     .fc-body {
       .fc-row {
-        min-height: 3em;
-        .fc-content-skeleton {
-          padding: .5em .5em 2.2em 0;
-          color: @wm-calendar-text-color;
-          font-size: 1.52em;
-        }
+        min-height: 5em;
       }
+    }
+    .fc-day-number {
+      padding: .5em .3em;
+      color: @wm-calendar-text-color;
+      font-size: 1.52em;
     }
   }
 /*********************************************************************************************************************************************/

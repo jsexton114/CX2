@@ -1708,6 +1708,34 @@
       "responseType" : "SINGLE"
     }
   },
+  "DeleteProjectForms" : {
+    "name" : "DeleteProjectForms",
+    "description" : "DeleteProjectForms",
+    "version" : "V2",
+    "queryString" : "delete from ProjectForms where ID=:projectForm",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "DELETE",
+    "parameters" : [ {
+      "name" : "projectForm",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "26",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "DELETE"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "DeleteRoleForMuncipality" : {
     "name" : "DeleteRoleForMuncipality",
     "description" : "DeleteRoleForMuncipality",

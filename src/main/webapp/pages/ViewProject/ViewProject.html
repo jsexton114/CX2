@@ -243,14 +243,13 @@
                                             <wm-grid-column binding="masterForms.vendor.companyName" caption="Primary Vendor" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="masterForms.balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         </wm-grid-column-group>
-                                        <wm-grid-column-group name="group" caption="User"></wm-grid-column-group>
                                         <wm-grid-column binding="addedAt" caption="Date Added" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="users.fullName" caption="Added By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="comments" caption="Comments" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="Add Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Form" action="Widgets.dialogAddFormsToProject.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.GoToForms.invoke()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.DeleteProjectForms.invoke()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneINSPECTIONS" title="INSPECTIONS"></wm-tabpane>
