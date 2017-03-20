@@ -39,7 +39,7 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
-    "orderBy" : "projectName asc",
+    "orderBy" : "active desc,municipalities.municipalityName asc,projectName asc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "municipalities",

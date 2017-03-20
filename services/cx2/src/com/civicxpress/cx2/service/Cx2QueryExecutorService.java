@@ -91,10 +91,6 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetFormTypeFieldsByTypeId(ExportType exportType, Long formTypeId, Pageable pageable);
 
-    Page<CountOfCxprojectsResponse> executeCountOfCXProjects(Pageable pageable);
-
-    Downloadable exportCountOfCXProjects(ExportType exportType, Pageable pageable);
-
     Page<CountOfProjectsForUsersAndSharedWithByMunicipalityResponse> executeCountOfProjectsForUsersAndSharedWithByMunicipality(Integer municipalityId, Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
 
     Downloadable exportCountOfProjectsForUsersAndSharedWithByMunicipality(ExportType exportType, Integer municipalityId, Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
@@ -138,6 +134,10 @@ public interface Cx2QueryExecutorService {
     Page<CountOfProcessFormsByMuncipalityResponse> executeCountOfProcessFormsByMuncipality(Integer municipalityId, Boolean closed, Integer userId, Pageable pageable);
 
     Downloadable exportCountOfProcessFormsByMuncipality(ExportType exportType, Integer municipalityId, Boolean closed, Integer userId, Pageable pageable);
+
+    Page<CountOfCxprojectsActiveResponse> executeCountOfCXProjectsActive(Pageable pageable);
+
+    Downloadable exportCountOfCXProjectsActive(ExportType exportType, Pageable pageable);
 
     Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer form, Pageable pageable);
 

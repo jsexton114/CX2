@@ -275,18 +275,6 @@ group by FeeType) wmTempTable
     <query-param name="formTypeId" type="java.lang.Long"/>
     </query>
 
-    <sql-query name="CountOfCXProjects">
-        <![CDATA[
-        select count(*) as count from Projects
-        ]]>
-    </sql-query>
-
-    <sql-query name="CountOfCXProjects__count">
-        <![CDATA[
-        select count(*) from (select count(*) as count from Projects) wmTempTable
-        ]]>
-    </sql-query>
-
     <sql-query name="CountOfProjectsForUsersAndSharedWithByMunicipality">
         <![CDATA[
         select count(*) as count from Projects where MunicipalityId=:municipalityId and Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))
@@ -480,6 +468,18 @@ group by V.companyName) wmTempTable
     <query-param name="MunicipalityId" type="java.lang.Integer"/>
     <query-param name="closed" type="java.lang.Boolean"/>
     <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfCXProjectsActive">
+        <![CDATA[
+        select count(*) as count from Projects where active='true'
+        ]]>
+    </sql-query>
+
+    <sql-query name="CountOfCXProjectsActive__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from Projects where active='true') wmTempTable
+        ]]>
     </sql-query>
 
     <query name="distinctInspectionDesignsForFormType">

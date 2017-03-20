@@ -19,7 +19,7 @@ import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class CountOfCxprojectsResponse implements Serializable {
+public class CountOfCxprojectsActiveResponse implements Serializable {
 
     @ColumnAlias("count")
     private Integer _count;
@@ -35,9 +35,9 @@ public class CountOfCxprojectsResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CountOfCxprojectsResponse)) return false;
-        final CountOfCxprojectsResponse countOfCxprojectsResponse = (CountOfCxprojectsResponse) o;
-        return Objects.equals(get_count(), countOfCxprojectsResponse.get_count());
+        if (!(o instanceof CountOfCxprojectsActiveResponse)) return false;
+        final CountOfCxprojectsActiveResponse countOfCxprojectsActiveResponse = (CountOfCxprojectsActiveResponse) o;
+        return Objects.equals(get_count(), countOfCxprojectsActiveResponse.get_count());
     }
 
     @Override

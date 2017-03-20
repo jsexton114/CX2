@@ -1042,12 +1042,12 @@
       } ]
     }
   },
-  "CountOfCXProjects" : {
-    "name" : "CountOfCXProjects",
-    "description" : "CountOfCXProjects",
+  "CountOfCXProjectsActive" : {
+    "name" : "CountOfCXProjectsActive",
+    "description" : "CountOfCXProjectsActive",
     "version" : "V2",
-    "queryString" : "select count(*) as count from Projects",
-    "countQueryString" : "select count(*) from (select count(*) as count from Projects) wmTempTable",
+    "queryString" : "select count(*) as count from Projects where active='true'",
+    "countQueryString" : "select count(*) from (select count(*) as count from Projects where active='true') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -1058,7 +1058,7 @@
       "method" : "GET"
     },
     "response" : {
-      "typeRef" : "com.civicxpress.cx2.models.query.CountOfCxprojectsResponse",
+      "typeRef" : "com.civicxpress.cx2.models.query.CountOfCxprojectsActiveResponse",
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {

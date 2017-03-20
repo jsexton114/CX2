@@ -18,7 +18,6 @@
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn6">
                                         <wm-label padding="unset 0.5em" name="label1" caption="This page allows CXAdmin to &quot;undelete&quot; Projects that have been &quot;soft deleted&quot; by standard or municipality users."></wm-label>
                                         <wm-label padding="unset 0.5em" name="label2" caption="When &quot;Active&quot;=true, the Project appears on the MyProjects and MunicipalityProjects datagrids. When &quot;Active&quot;=false, a user has used the delete icon on either of those pages and the project has been removed from their view."></wm-label>
-                                        <wm-label padding="unset 0.5em" name="label3" caption="Periodically, projects that have been &quot;soft deleted&quot; will need to be removed completely from the database via the delete icon here, or a more automated solution."></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow7">
@@ -33,7 +32,6 @@
                                                 <wm-grid-column binding="active" caption="Active" type="boolean" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                             <wm-liveform novalidate="false" errormessage="Update Failed" title="Edit Project" formlayout="dialog" iconclass="wi wi-building" dataset="bind:Variables.lvProjectsData.dataSet" captionalign="left" captionposition="top"
                                             name="liveformProjects" defaultmode="Edit">
