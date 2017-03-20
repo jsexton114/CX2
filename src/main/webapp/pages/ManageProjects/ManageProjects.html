@@ -32,6 +32,7 @@
                                                 <wm-grid-column binding="active" caption="Active" type="boolean" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                             <wm-liveform novalidate="false" errormessage="Update Failed" title="Edit Project" formlayout="dialog" iconclass="wi wi-building" dataset="bind:Variables.lvProjectsData.dataSet" captionalign="left" captionposition="top"
                                             name="liveformProjects" defaultmode="Edit">

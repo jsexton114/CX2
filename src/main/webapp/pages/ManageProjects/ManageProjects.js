@@ -26,6 +26,14 @@ Application.$controller("gridProjectsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.goToPage_ViewProject.setData({
+                'ProjectGUID': $rowData.projectGuid
+            });
+            $scope.Variables.goToPage_ViewProject.navigate();
+        };
+
     }
 ]);
 
