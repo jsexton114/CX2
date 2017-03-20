@@ -876,11 +876,11 @@ public class FormService {
     	BigDecimal totalFees = new BigDecimal("0.00").setScale(2, RoundingMode.HALF_UP);
     	DBQueryParams queryParams = new DBQueryParams();
     	
-		BigDecimal flatFee = formTypeData.getBigDecimal("FlatFee").setScale(2, RoundingMode.HALF_UP);
-		BigDecimal sfFee = formTypeData.getBigDecimal("SfFee").setScale(2, RoundingMode.HALF_UP);
-		BigDecimal unitFee = formTypeData.getBigDecimal("UnitFee").setScale(2, RoundingMode.HALF_UP);
-		BigDecimal stateFee = formTypeData.getBigDecimal("StateFee").setScale(2, RoundingMode.HALF_UP);
-		BigDecimal basementFee = formTypeData.getBigDecimal("BasementFee").setScale(2, RoundingMode.HALF_UP);
+		BigDecimal flatFee = formTypeData.getBigDecimal("FlatFee") != null ? formTypeData.getBigDecimal("FlatFee").setScale(2, RoundingMode.HALF_UP) : null;
+		BigDecimal sfFee = formTypeData.getBigDecimal("SfFee") != null ? formTypeData.getBigDecimal("SfFee").setScale(2, RoundingMode.HALF_UP) : null;
+		BigDecimal unitFee = formTypeData.getBigDecimal("UnitFee") != null ? formTypeData.getBigDecimal("UnitFee").setScale(2, RoundingMode.HALF_UP) : null;
+		BigDecimal stateFee = formTypeData.getBigDecimal("StateFee") != null ? formTypeData.getBigDecimal("StateFee").setScale(2, RoundingMode.HALF_UP) : null;
+		BigDecimal basementFee = formTypeData.getBigDecimal("BasementFee") != null ? formTypeData.getBigDecimal("BasementFee").setScale(2, RoundingMode.HALF_UP) : null;
     	
 		if (flatFee != null && !flatFee.equals(0)) {
 			totalFees = totalFees.add(flatFee);

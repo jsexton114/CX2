@@ -2,9 +2,9 @@ var HTML5Demos;
 
 angular.module('cx2LeadTools', []);
 
-angular.module('cx2LeadTools').run(['$location', function($location) {
-    console.log($location.search());
-}]);
+var docId = null;
+docId = window.location.search.split("=")[1];
+console.log(docId);
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -72,7 +72,8 @@ function getCookie(cname) {
                 // Or when show/hide annotations list
                 this.affectedContainers = ".affectedContainers";
                 // All mobile version controls containers
-                this.mobileVersionControlsContainers = ".mobileVersionControls";
+                this.mobileVersionControlsContainers =
+                    ".mobileVersionControls";
                 this.getTextOperation = null;
                 // Operations names
                 this._documentViewerOperationDictionary = {
@@ -110,7 +111,8 @@ function getCookie(cname) {
                 });
                 $.ajaxSetup({
                     beforeSend: function(xhr) {
-                        xhr.setRequestHeader('X-WM-XSRF-TOKEN', getCookie('wm_xsrf_token'));
+                        xhr.setRequestHeader('X-WM-XSRF-TOKEN', getCookie(
+                            'wm_xsrf_token'));
                     }
                 });
                 this.InitUI();
@@ -123,17 +125,18 @@ function getCookie(cname) {
                     enumerable: true,
                     configurable: true
                 });
-            Object.defineProperty(DocumentViewerDemoApp.prototype, "demoName", {
-                set: function(value) {
-                    this._demoName = value;
-                    // demo title
-                    $("#demoTitle").text(value);
-                    // demo name label in the about dialog
-                    $("#demoName").text(value);
-                },
-                enumerable: true,
-                configurable: true
-            });
+            Object.defineProperty(DocumentViewerDemoApp.prototype,
+                "demoName", {
+                    set: function(value) {
+                        this._demoName = value;
+                        // demo title
+                        $("#demoTitle").text(value);
+                        // demo name label in the about dialog
+                        $("#demoName").text(value);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
             DocumentViewerDemoApp.prototype.onResize = function(e) {
                 // Hide all menus
                 var menus = $(".dropup.clearfix");
@@ -153,7 +156,8 @@ function getCookie(cname) {
             DocumentViewerDemoApp.prototype.updateContainers = function() {
                 var headerToolbarContainerHeight = $(this.headerToolbarContainer)
                     .height();
-                var footerToolbarContainerHeight = this.demoMode == DemoMode.Default ?
+                var footerToolbarContainerHeight = this.demoMode ==
+                    DemoMode.Default ?
                     $(this.footerToolbarContainer).height() : 0;
                 // Check visibility
                 var visibleThumbnails = $(this.thumbnailsContainer).is(
@@ -176,7 +180,8 @@ function getCookie(cname) {
                 // Update affected containers top/bottom
                 $(this.affectedContainers).css("top",
                     headerToolbarContainerHeight);
-                var affectedContainersBottom = footerToolbarContainerHeight;
+                var affectedContainersBottom =
+                    footerToolbarContainerHeight;
                 if (visibleAnnotationsListControls)
                     affectedContainersBottom += $(this.annotationsListControlsContainer)
                     .height();
@@ -190,7 +195,8 @@ function getCookie(cname) {
                 var thumbnailsBookmarksContainerWidth = $(this.thumbnailsContainer)
                     .width();
                 // Now update viewer container
-                var imageViewerContainerDivLeft = navigationbarContainerWidth;
+                var imageViewerContainerDivLeft =
+                    navigationbarContainerWidth;
                 if (visibleThumbnails || visibleBookmarks)
                     imageViewerContainerDivLeft +=
                     thumbnailsBookmarksContainerWidth;
@@ -200,7 +206,8 @@ function getCookie(cname) {
                 this._documentViewer.view.imageViewer.onSizeChanged();
                 if (this.documentViewer.thumbnails != null) {
                     this.documentViewer.thumbnails.imageViewer.onSizeChanged();
-                    this.documentViewer.thumbnails.imageViewer.invalidate(lt.LeadRectD
+                    this.documentViewer.thumbnails.imageViewer.invalidate(
+                        lt.LeadRectD
                         .empty);
                 }
             };
@@ -215,7 +222,8 @@ function getCookie(cname) {
                 $(this.thumbnailsContainer).hide();
                 $(this.bookmarksContainer).hide();
                 $(this.annotationsListControlsContainer).hide();
-                if (lt.LTHelper.device == lt.LTDevice.mobile || lt.LTHelper.device ==
+                if (lt.LTHelper.device == lt.LTDevice.mobile || lt.LTHelper
+                    .device ==
                     lt.LTDevice.tablet) {
                     $(".shortcutsbar").css({
                         "overflow-y": "hidden",
@@ -233,7 +241,8 @@ function getCookie(cname) {
                 // Open document from url dialog
                 this.openDocumentFromUrlDlg = new HTML5Demos.Dialogs.OpenDocumentFromUrlDlg();
                 // Document Converter dialog
-                this.documentConverterDlg = new DocumentViewerDemo.Converter.Dialogs
+                this.documentConverterDlg = new DocumentViewerDemo.Converter
+                    .Dialogs
                     .DocumentConverterDlg();
                 // Use same SharePoint helper instance for both open and save dialogs
                 var sharePointHelper = new HTML5Demos.DriveHelper.LTSharePoint
@@ -244,7 +253,8 @@ function getCookie(cname) {
                     sharePointHelper;
                 this.openFromDocumentStorageDlg.InitDriveHelpers();
                 // Save to dialog
-                this.saveToDlg = new DocumentViewerDemo.Converter.Dialogs.SaveToDlg();
+                this.saveToDlg = new DocumentViewerDemo.Converter.Dialogs
+                    .SaveToDlg();
                 this.saveToDlg.sharePointHelper = sharePointHelper;
                 this.saveToDlg.InitDriveHelpers();
                 // Text result dialog
@@ -266,13 +276,15 @@ function getCookie(cname) {
                     // Customize render mode dialog
                     this.customizeRenderModeDlg = new HTML5Demos.Dialogs.CustomRenderModeDlg();
                     // Automation password dialog
-                    this.automationPasswordDlg = new lt.Annotations.JavaScript.PasswordDialog();
+                    this.automationPasswordDlg = new lt.Annotations.JavaScript
+                        .PasswordDialog();
                     // User name dialog
                     this.inputDlg = new HTML5Demos.Dialogs.InputDlg();
                     // Document viewer options dialog
                     this.documentViewerOptionsDlg = new HTML5Demos.Dialogs.DocumentViewerOptionsDlg();
                     this.documentViewerOptionsDlg.ok = function() {
-                        _this.hookPrepareAjax = _this.documentViewerOptionsDlg.hookPrepareAjax;
+                        _this.hookPrepareAjax = _this.documentViewerOptionsDlg
+                            .hookPrepareAjax;
                     };
                     // Link value dialog
                     this.linkValueDlg = new HTML5Demos.Dialogs.LinkValueDlg();
@@ -302,8 +314,10 @@ function getCookie(cname) {
                  * At the start, we add a hook with JQuery to add this attribute to an element
                  * when created if it doesn't have it.
                  */
-                if (lt.LTHelper.browser == lt.LTBrowser.internetExplorer && (
-                        lt.LTHelper.version == 9 || lt.LTHelper.version == 10)) {
+                if (lt.LTHelper.browser == lt.LTBrowser.internetExplorer &&
+                    (
+                        lt.LTHelper.version == 9 || lt.LTHelper.version == 10
+                    )) {
                     // First, get all our elements without a "type" attribute
                     $("button:not([type])").each(function(idx, el) {
                         el.setAttribute("type", "button");
@@ -330,7 +344,8 @@ function getCookie(cname) {
                     .map(function(mode) {
                         return mode.toLowerCase();
                     });
-                var pathname = decodeURIComponent(window.location.pathname).toLowerCase();
+                var pathname = decodeURIComponent(window.location.pathname)
+                    .toLowerCase();
                 if (pathname) {
                     // check for the name of the demo in the url path
                     demoNames.some(function(demoName, demoIndex) {
@@ -553,12 +568,14 @@ function getCookie(cname) {
                                 // If the kernel is not release, log it (for debugging)
                                 if (response.kernelType != null && response.kernelType !=
                                     "Release") {
-                                    console.log("Server LEADTOOLS Kernel type: " +
+                                    console.log(
+                                        "Server LEADTOOLS Kernel type: " +
                                         response.kernelType);
                                 }
                                 // Load default sample, which is on the server root.
                                 // We will need to remove the ServiceApiPath, so make sure it is set correctly.
-                                var serviceBase = lt.Documents.DocumentFactory.serviceUri;
+                                var serviceBase = lt.Documents.DocumentFactory
+                                    .serviceUri;
                                 var serviceApiPath = lt.Documents.DocumentFactory
                                     .serviceApiPath;
                                 if (serviceApiPath) {
@@ -577,7 +594,8 @@ function getCookie(cname) {
                                     defaultDocument +
                                     "'. If this is the incorrect URL, check your values in serviceConfig.json"
                                 );
-                                _this.loadDocument(defaultDocument, null, false);
+                                _this.loadDocument(defaultDocument, null,
+                                    false);
                             })
                             .fail(function(jqXHR, statusText, errorThrown) {
                                 window.alert(
@@ -600,7 +618,8 @@ function getCookie(cname) {
                         } else if (!value && this._prepareAjaxEventHandler !=
                             null) {
                             // Remove our handler to DocumentFactory.prepareAjax
-                            lt.Documents.DocumentFactory.prepareAjax.remove(this._prepareAjaxEventHandler);
+                            lt.Documents.DocumentFactory.prepareAjax.remove(
+                                this._prepareAjaxEventHandler);
                             this._prepareAjaxEventHandler = null;
                         }
                     },
@@ -654,8 +673,10 @@ function getCookie(cname) {
                 lt.Documents.DocumentFactory.servicePath = (json && json[
                         "servicePath"] !== undefined) ? json["servicePath"] :
                     null;
-                lt.Documents.DocumentFactory.serviceApiPath = (json && json[
-                        "serviceApiPath"] !== undefined) ? json["serviceApiPath"] :
+                lt.Documents.DocumentFactory.serviceApiPath = (json &&
+                        json[
+                            "serviceApiPath"] !== undefined) ? json[
+                        "serviceApiPath"] :
                     "api";
             };
             // Create the document viewer
@@ -675,13 +696,15 @@ function getCookie(cname) {
                 // createOptions.bookmarksContainer = document.getElementById("bookmarks");
                 createOptions.useAnnotations = this.demoMode == DemoMode.Default;
                 // Now create the viewer
-                this._documentViewer = lt.Documents.UI.DocumentViewerFactory.createDocumentViewer(
-                    createOptions);
+                this._documentViewer = lt.Documents.UI.DocumentViewerFactory
+                    .createDocumentViewer(
+                        createOptions);
                 // Uncomment to use Ajax to load Images, instead of the typical image.src way
                 // You can also change this value from Preferences/Document Viewer options dialog.
                 //this._documentViewer.useAjaxImageLoading = false;
                 // UseElements Mode
-                this._useElements = this._documentViewer.view.imageViewer.useElements;
+                this._useElements = this._documentViewer.view.imageViewer
+                    .useElements;
                 // Speeding up the Annotations
                 this._documentViewer.view.imageViewer.enableRequestAnimationFrame =
                     true;
@@ -696,7 +719,8 @@ function getCookie(cname) {
                 var imageViewer = this._documentViewer.view.imageViewer;
                 // Helps with debugging of there was a rendering error
                 imageViewer.renderError.add(function(sender, e) {
-                    var item = e.item != null ? imageViewer.items.indexOf(e
+                    var item = e.item != null ? imageViewer.items.indexOf(
+                        e
                         .item) : -1;
                     var message = "Error during render item " + item +
                         " part" + (e.part) + ": " + (e.error.message);
@@ -726,7 +750,8 @@ function getCookie(cname) {
                         var stopTransitionListening = function() {
                             transitionCallbackPending = false;
                             imageViewer.viewDiv.removeEventListener(
-                                "transitionend", transitionEndCallback, false);
+                                "transitionend", transitionEndCallback, false
+                            );
                             lt.LTHelper.removeClass(imageViewer.foreCanvas,
                                 canvasTransitionClass);
                         };
@@ -740,7 +765,8 @@ function getCookie(cname) {
                                 /// START ///
                                 transitionCallbackPending = true;
                                 imageViewer.viewDiv.addEventListener(
-                                    "transitionend", transitionEndCallback, false
+                                    "transitionend", transitionEndCallback,
+                                    false
                                 );
                                 lt.LTHelper.addClass(imageViewer.foreCanvas,
                                     canvasTransitionClass);
@@ -778,7 +804,8 @@ function getCookie(cname) {
                         return _this.imageViewer_PostRenderItem(sender, e);
                     });
                 if (this._documentViewer.thumbnails != null)
-                    this._documentViewer.thumbnails.imageViewer.postRenderItem.add(
+                    this._documentViewer.thumbnails.imageViewer.postRenderItem
+                    .add(
                         function(sender, e) {
                             return _this.imageViewer_PostRenderItem(sender, e);
                         });
@@ -801,23 +828,29 @@ function getCookie(cname) {
                         $(this.imageViewerContainerDiv).show();
                         this._documentViewer.view.imageViewer.updateTransform();
                     }
-                    if ($(this.navigationbar.showThumbnailsBtn).is(":disabled"))
-                        $(this.navigationbar.showThumbnailsBtn).prop("disabled",
+                    if ($(this.navigationbar.showThumbnailsBtn).is(
+                            ":disabled"))
+                        $(this.navigationbar.showThumbnailsBtn).prop(
+                            "disabled",
                             false);
-                    if ($(this.navigationbar.showAnnotationsListControlsBtn).is(
+                    if ($(this.navigationbar.showAnnotationsListControlsBtn)
+                        .is(
                             ":disabled"))
                         $(this.navigationbar.showAnnotationsListControlsBtn).prop(
                             "disabled", false);
                     if (this._documentViewer.document.isStructureSupported) {
-                        if ($(this.navigationbar.showBookmarksBtn).is(":disabled"))
-                            $(this.navigationbar.showBookmarksBtn).prop("disabled",
+                        if ($(this.navigationbar.showBookmarksBtn).is(
+                                ":disabled"))
+                            $(this.navigationbar.showBookmarksBtn).prop(
+                                "disabled",
                                 false);
                     } else {
                         $(this.navigationbar.showBookmarksBtn).removeClass(
                             "activeNavigationbarBtn");
                         if (!($(this.navigationbar.showBookmarksBtn).is(
                                 ":disabled")))
-                            $(this.navigationbar.showBookmarksBtn).prop("disabled",
+                            $(this.navigationbar.showBookmarksBtn).prop(
+                                "disabled",
                                 true);
                         if ($(this.bookmarksContainer).is(":visible"))
                             $(this.bookmarksContainer).hide();
@@ -830,24 +863,29 @@ function getCookie(cname) {
                         "activeNavigationbarBtn");
                     if (!($(this.navigationbar.showThumbnailsBtn).is(
                             ":disabled")))
-                        $(this.navigationbar.showThumbnailsBtn).prop("disabled",
+                        $(this.navigationbar.showThumbnailsBtn).prop(
+                            "disabled",
                             true);
                     if ($(this.thumbnailsContainer).is(":visible"))
                         $(this.thumbnailsContainer).hide();
                     $(this.navigationbar.showBookmarksBtn).removeClass(
                         "activeNavigationbarBtn");
-                    if (!($(this.navigationbar.showBookmarksBtn).is(":disabled")))
-                        $(this.navigationbar.showBookmarksBtn).prop("disabled",
+                    if (!($(this.navigationbar.showBookmarksBtn).is(
+                            ":disabled")))
+                        $(this.navigationbar.showBookmarksBtn).prop(
+                            "disabled",
                             true);
                     if ($(this.bookmarksContainer).is(":visible"))
                         $(this.bookmarksContainer).hide();
                     $(this.navigationbar.showAnnotationsListControlsBtn).removeClass(
                         "activeNavigationbarBtn");
-                    if (!($(this.navigationbar.showAnnotationsListControlsBtn).is(
-                            ":disabled")))
+                    if (!($(this.navigationbar.showAnnotationsListControlsBtn)
+                            .is(
+                                ":disabled")))
                         $(this.navigationbar.showAnnotationsListControlsBtn).prop(
                             "disabled", true);
-                    if ($(this.annotationsListControlsContainer).is(":visible"))
+                    if ($(this.annotationsListControlsContainer).is(
+                            ":visible"))
                         $(this.annotationsListControlsContainer).hide();
                 }
                 $(this._editPart.findTextPanel.panel).removeClass(
@@ -857,9 +895,11 @@ function getCookie(cname) {
             DocumentViewerDemoApp.prototype.updateUIState = function() {
                 this.commandsBinder.run();
             };
-            DocumentViewerDemoApp.showServiceError = function(message, jqXHR,
+            DocumentViewerDemoApp.showServiceError = function(message,
+                jqXHR,
                 statusText, errorThrown) {
-                var serviceError = lt.Documents.ServiceError.parseError(jqXHR,
+                var serviceError = lt.Documents.ServiceError.parseError(
+                    jqXHR,
                     statusText, errorThrown);
                 var serviceMessage;
                 if (!serviceError.isParseError && !serviceError.isBrowserError) {
@@ -867,13 +907,15 @@ function getCookie(cname) {
                     parts.push(serviceError.detail);
                     parts.push("\nMethod name: " + serviceError.methodName);
                     parts.push("Exception type: " + serviceError.exceptionType);
-                    if (serviceError.exceptionType.indexOf("Leadtools") != -1) {
+                    if (serviceError.exceptionType.indexOf("Leadtools") !=
+                        -1) {
                         // This is a LEADTOOLS error, get the details
                         parts.push("Code: " + serviceError.code);
                     }
                     if (serviceError.link) {
                         parts.push("Link: " + serviceError.link);
-                        console.error("Service Error - Help Link:", serviceError.link,
+                        console.error("Service Error - Help Link:",
+                            serviceError.link,
                             serviceError);
                     } else
                         console.error("Service Error", serviceError);
@@ -884,7 +926,8 @@ function getCookie(cname) {
                 }
                 window.alert(message + "\n" + serviceMessage);
             };
-            DocumentViewerDemoApp.prototype.setDocument = function(document) {
+            DocumentViewerDemoApp.prototype.setDocument = function(
+                document) {
                 this._annotationsPart.closeDocument();
                 // Check if the document is encrypted
                 if (document.isEncrypted && !document.isDecrypted) {
@@ -919,23 +962,24 @@ function getCookie(cname) {
                     });
                 };
             };
-            DocumentViewerDemoApp.prototype.checkParseStructure = function(
-                document) {
-                // See if we need to parse the document structure
-                if (document.isStructureSupported) {
-                    if (document.structure.isParsed) {
-                        this.finishSetDocument(document);
-                        // Customize bookmarks list
-                        this.populateBookmarks(document.structure);
+            DocumentViewerDemoApp.prototype.checkParseStructure =
+                function(
+                    document) {
+                    // See if we need to parse the document structure
+                    if (document.isStructureSupported) {
+                        if (document.structure.isParsed) {
+                            this.finishSetDocument(document);
+                            // Customize bookmarks list
+                            this.populateBookmarks(document.structure);
+                        } else {
+                            this.parseStructure(document);
+                        }
                     } else {
-                        this.parseStructure(document);
+                        // Structure not supported
+                        this.clearBookmarks();
+                        this.finishSetDocument(document);
                     }
-                } else {
-                    // Structure not supported
-                    this.clearBookmarks();
-                    this.finishSetDocument(document);
-                }
-            };
+                };
             DocumentViewerDemoApp.prototype.parseStructure = function(
                 document) {
                 var _this = this;
@@ -972,7 +1016,8 @@ function getCookie(cname) {
                         list.removeChild(list.childNodes[i]);
                 }
             };
-            DocumentViewerDemoApp.prototype.addBookmarks = function(bookmarks,
+            DocumentViewerDemoApp.prototype.addBookmarks = function(
+                bookmarks,
                 baseElement) {
                 var _this = this;
                 if (bookmarks == null)
@@ -1023,7 +1068,8 @@ function getCookie(cname) {
                 // Unmark all bookmarks
                 HTML5Demos.Utils.DemoHelper.checked($(".bookmark"), false);
                 // Mark the selected one
-                HTML5Demos.Utils.DemoHelper.checked($(e.currentTarget), true);
+                HTML5Demos.Utils.DemoHelper.checked($(e.currentTarget),
+                    true);
             };
             DocumentViewerDemoApp.prototype.finishSetDocument = function(
                 document) {
@@ -1035,7 +1081,8 @@ function getCookie(cname) {
                     .add(function(sender, e) {
                         return _this.thumbnailsActiveItemChanged(sender, e);
                     });
-                this.setInterpolationMode(document, !this._documentViewer.commands
+                this.setInterpolationMode(document, !this._documentViewer
+                    .commands
                     .canRun(lt.Documents.UI.DocumentViewerCommands.viewItemType,
                         lt.Documents.UI.DocumentViewerItemType.svg));
                 // Update the UI
@@ -1076,7 +1123,8 @@ function getCookie(cname) {
                 function(sender, e) {
                     // If we have an error, show it
                     if (e.error != null) {
-                        if (e.operation == lt.Documents.UI.DocumentViewerOperation.getPage &&
+                        if (e.operation == lt.Documents.UI.DocumentViewerOperation
+                            .getPage &&
                             this._useElements) {
                             // If this was an error retrieving a page, get rid of our "Loading" CSS
                             var index = e.pageNumber - 1;
@@ -1092,8 +1140,9 @@ function getCookie(cname) {
                             this._operationErrors.push(e.operation);
                             var postPre = e.isPostOperation ? "Post-" : "Pre-";
                             var message = "Error in '" + (this._documentViewerOperationDictionary[
-                                e.operation]) + "' " + postPre + "operation. \n" + (e
-                                .error.message);
+                                    e.operation]) + "' " + postPre + "operation. \n" +
+                                (e
+                                    .error.message);
                             window.alert(message);
                         }
                     }
@@ -1112,25 +1161,29 @@ function getCookie(cname) {
                         case lt.Documents.UI.DocumentViewerOperation.setDocument:
                             if (this._currentBarcodes.length > 0) {
                                 this._currentBarcodes = [];
-                                this._documentViewer.view.imageViewer.invalidate(lt.LeadRectD
+                                this._documentViewer.view.imageViewer.invalidate(lt
+                                    .LeadRectD
                                     .empty);
                             }
                             break;
                         case lt.Documents.UI.DocumentViewerOperation.loadingThumbnails:
                             !e.isPostOperation ? $(this._loadingThumbnailsBar).css(
-                                "display", "block") : $(this._loadingThumbnailsBar).css(
-                                "display", "none");
+                                    "display", "block") : $(this._loadingThumbnailsBar)
+                                .css(
+                                    "display", "none");
                             break;
                         case lt.Documents.UI.DocumentViewerOperation.loadingAnnotations:
                             !e.isPostOperation ? $(this._loadingAnnotationsBar).css(
-                                "display", "block") : $(this._loadingAnnotationsBar).css(
-                                "display", "none");
+                                    "display", "block") : $(this._loadingAnnotationsBar)
+                                .css(
+                                    "display", "none");
                             break;
                         case lt.Documents.UI.DocumentViewerOperation.getText:
                             {
                                 if (!e.isPostOperation) {
                                     if (this._isInsideBusyOperation) {
-                                        this.loadingDlg.processing("Get Text For Page " + e
+                                        this.loadingDlg.processing("Get Text For Page " +
+                                            e
                                             .pageNumber);
                                     } else {
                                         // This was not requested by the demo(e.g select text interactive mode), cancel it, and let the demo get the text
@@ -1147,7 +1200,8 @@ function getCookie(cname) {
                             }
                             break;
                         case lt.Documents.UI.DocumentViewerOperation.gotoPage:
-                            HTML5Demos.Utils.DemoHelper.checked($(".bookmark"), false);
+                            HTML5Demos.Utils.DemoHelper.checked($(".bookmark"),
+                                false);
                             break;
                         case lt.Documents.UI.DocumentViewerOperation.createAutomation:
                             if (e.isPostOperation)
@@ -1182,7 +1236,8 @@ function getCookie(cname) {
                     if (e.isPostOperation)
                         this.updateUIState();
                 };
-            DocumentViewerDemoApp.prototype.showLinkTooltip = function(link,
+            DocumentViewerDemoApp.prototype.showLinkTooltip = function(
+                link,
                 interactiveEventArgs) {
                 // Get the link and check if its an external one
                 var tooltipLink = null;
@@ -1199,7 +1254,8 @@ function getCookie(cname) {
                             tooltipLink = link.value;
                         }
                     }
-                } else if (link.linkType == lt.Documents.DocumentLinkType.targetPage) {
+                } else if (link.linkType == lt.Documents.DocumentLinkType
+                    .targetPage) {
                     tooltipLink = "Goto page " + link.target.pageNumber.toString();
                 }
                 if (tooltipLink != null) {
@@ -1233,23 +1289,25 @@ function getCookie(cname) {
                     this._operationErrors = [];
                 }
             };
-            DocumentViewerDemoApp.prototype.toggleInertiaScroll = function(
-                turnOn) {
-                // These commands have ImageViewerPanZoomInteractiveMode in the tag, update the value
-                var commandNames = [lt.Documents.UI.DocumentViewerCommands.interactivePanZoom,
-                    lt.Documents.UI.DocumentViewerCommands.interactivePan
-                ];
-                for (var i = 0; i < commandNames.length; i++) {
-                    var mode = this._documentViewer.commands.getCommand(
-                        commandNames[i]).tag;
-                    if (mode != null) {
-                        var options = mode.inertiaScrollOptions;
-                        options.isEnabled = turnOn ? true : !options.isEnabled;
-                        mode.inertiaScrollOptions = options;
-                        this.preferencesPart.enableInertiaScroll = options.isEnabled;
+            DocumentViewerDemoApp.prototype.toggleInertiaScroll =
+                function(
+                    turnOn) {
+                    // These commands have ImageViewerPanZoomInteractiveMode in the tag, update the value
+                    var commandNames = [lt.Documents.UI.DocumentViewerCommands
+                        .interactivePanZoom,
+                        lt.Documents.UI.DocumentViewerCommands.interactivePan
+                    ];
+                    for (var i = 0; i < commandNames.length; i++) {
+                        var mode = this._documentViewer.commands.getCommand(
+                            commandNames[i]).tag;
+                        if (mode != null) {
+                            var options = mode.inertiaScrollOptions;
+                            options.isEnabled = turnOn ? true : !options.isEnabled;
+                            mode.inertiaScrollOptions = options;
+                            this.preferencesPart.enableInertiaScroll = options.isEnabled;
+                        }
                     }
-                }
-            };
+                };
             DocumentViewerDemoApp.prototype.getPagesText = function(
                 pageNumber) {
                 this.beginBusyOperation();
@@ -1279,7 +1337,8 @@ function getCookie(cname) {
                 this._documentViewer.commands.run(lt.Documents.UI.DocumentViewerCommands
                     .textGet, pageNumber);
             };
-            DocumentViewerDemoApp.prototype.finishGetText = function(success) {
+            DocumentViewerDemoApp.prototype.finishGetText = function(
+                success) {
                 if (success) {
                     // Check if the get text operation, intended for other operations
                     if (this.getTextOperation != null) {
@@ -1288,7 +1347,8 @@ function getCookie(cname) {
                                 this._filePart.doExportText();
                                 break;
                             case lt.Documents.UI.DocumentViewerCommands.textSelectAll:
-                                this._documentViewer.commands.run(lt.Documents.UI.DocumentViewerCommands
+                                this._documentViewer.commands.run(lt.Documents.UI
+                                    .DocumentViewerCommands
                                     .textSelectAll, 0);
                                 break;
                             case lt.Documents.UI.DocumentViewerCommands.textFindNext:
@@ -1302,7 +1362,8 @@ function getCookie(cname) {
                     this._documentViewer.view.imageViewer.invalidate(lt.LeadRectD
                         .empty);
                     if (this._documentViewer.thumbnails != null)
-                        this._documentViewer.thumbnails.imageViewer.invalidate(lt
+                        this._documentViewer.thumbnails.imageViewer.invalidate(
+                            lt
                             .LeadRectD.empty);
                 }
                 this._getTextPagesList = [];
@@ -1312,29 +1373,32 @@ function getCookie(cname) {
                 if (!isFindTextOperation)
                     this.endBusyOperation();
             };
-            DocumentViewerDemoApp.prototype.setInterpolationMode = function(
-                document, isSvg) {
-                var interpolationMode = lt.Controls.InterpolationMode.none;
-                // If we are viewing as SVG, then we should not do any interpolation.
-                // Also don't do interpolation if we're in UseElements Mode, because all browsers (except IE) will do decent interpolation of img elements.
-                if (document != null && !isSvg && (!this._useElements || (lt.LTHelper
-                        .browser === lt.LTBrowser.internetExplorer || lt.LTHelper
-                        .browser === lt.LTBrowser.edge))) {
-                    // We are viewing as an image, instruct the image viewer in the view to perform interpolation to smooth out the image
-                    // when zoomed out
-                    // If the document is B/W, then it is faster to perform the interpolation using scale to gray. Otherwise, use resample
-                    if (document.defaultBitsPerPixel == 1) {
-                        interpolationMode = lt.Controls.InterpolationMode.scaleToGray;
-                    } else {
-                        interpolationMode = lt.Controls.InterpolationMode.resample;
+            DocumentViewerDemoApp.prototype.setInterpolationMode =
+                function(
+                    document, isSvg) {
+                    var interpolationMode = lt.Controls.InterpolationMode.none;
+                    // If we are viewing as SVG, then we should not do any interpolation.
+                    // Also don't do interpolation if we're in UseElements Mode, because all browsers (except IE) will do decent interpolation of img elements.
+                    if (document != null && !isSvg && (!this._useElements ||
+                            (lt.LTHelper
+                                .browser === lt.LTBrowser.internetExplorer || lt.LTHelper
+                                .browser === lt.LTBrowser.edge))) {
+                        // We are viewing as an image, instruct the image viewer in the view to perform interpolation to smooth out the image
+                        // when zoomed out
+                        // If the document is B/W, then it is faster to perform the interpolation using scale to gray. Otherwise, use resample
+                        if (document.defaultBitsPerPixel == 1) {
+                            interpolationMode = lt.Controls.InterpolationMode.scaleToGray;
+                        } else {
+                            interpolationMode = lt.Controls.InterpolationMode.resample;
+                        }
                     }
-                }
-                this._documentViewer.view.imageViewer.interpolationMode =
-                    interpolationMode;
-            };
+                    this._documentViewer.view.imageViewer.interpolationMode =
+                        interpolationMode;
+                };
             DocumentViewerDemoApp.prototype.imageViewer_PostRenderItem =
                 function(sender, e) {
-                    if (this.demoMode === DemoMode.Barcode && sender === this._documentViewer
+                    if (this.demoMode === DemoMode.Barcode && sender === this
+                        ._documentViewer
                         .view.imageViewer)
                         this.drawBarcodes(e.item, e.context);
                     if (this.preferencesPart.showTextIndicators) {
@@ -1372,10 +1436,12 @@ function getCookie(cname) {
                 context.font = hasText ? "bold " + fontSize + "px Arial" :
                     fontSize + "px Arial";
                 context.fillStyle = hasText ? "blue" : "gray";
-                context.fillText(text, (topRight.x - fontSize), (topRight.y +
+                context.fillText(text, (topRight.x - fontSize), (topRight
+                    .y +
                     fontSize));
             };
-            DocumentViewerDemoApp.prototype.runValueLink = function(linkValue) {
+            DocumentViewerDemoApp.prototype.runValueLink = function(
+                linkValue) {
                 var _this = this;
                 // Check if this is an email address
                 if (linkValue.toLowerCase().slice(0, "mailto:".length) !=
@@ -1396,7 +1462,8 @@ function getCookie(cname) {
                     } else {
                         this.linkValueDlg.show(linkValue);
                         this.linkValueDlg.closed = function() {
-                            _this._automaticallyRunLinks = _this.linkValueDlg.doNotShowAgain;
+                            _this._automaticallyRunLinks = _this.linkValueDlg
+                                .doNotShowAgain;
                         };
                     }
                 }
@@ -1418,7 +1485,8 @@ function getCookie(cname) {
                 this.loadingDlg.show(false, false, "Loading Document...");
                 // Setup the document load options
                 var loadOptions = new lt.Documents.LoadDocumentOptions();
-                loadOptions.loadEmbeddedAnnotations = loadEmbeddedAnnotations;
+                loadOptions.loadEmbeddedAnnotations =
+                    loadEmbeddedAnnotations;
                 if (documentName)
                     loadOptions.name = documentName;
                 // Check if annotations passed as file uri
@@ -1436,7 +1504,8 @@ function getCookie(cname) {
                     .fail(function(jqXHR, statusText, errorThrown) {
                         _this.endBusyOperation();
                         DocumentViewerDemoApp.showServiceError(
-                            "Error loading the document.", jqXHR, statusText,
+                            "Error loading the document.", jqXHR,
+                            statusText,
                             errorThrown);
                     })
                     .done(function(document) {
@@ -1448,10 +1517,13 @@ function getCookie(cname) {
                             fileReader.onload = function(ev) {
                                 // done reading annotations
                                 var annotations = ev.target.result;
-                                if (annotations != null && annotations.length > 0) {
+                                if (annotations != null && annotations.length >
+                                    0) {
                                     var annCodecs = new lt.Annotations.Core.AnnCodecs();
-                                    var containers = annCodecs.loadAll(annotations);
-                                    if (containers != null && containers.length > 0) {
+                                    var containers = annCodecs.loadAll(
+                                        annotations);
+                                    if (containers != null && containers.length >
+                                        0) {
                                         var setAnnotationsPromise = document.annotations
                                             .setAnnotations(containers);
                                         setAnnotationsPromise.fail(function(jqXHR,
@@ -1474,7 +1546,8 @@ function getCookie(cname) {
                                     // Text is empty
                                     _this.setDocument(document);
                                     window.alert(
-                                        "The provided annotations file is empty.");
+                                        "The provided annotations file is empty."
+                                    );
                                 }
                             };
                             fileReader.onerror = function(ev) {
@@ -1486,7 +1559,8 @@ function getCookie(cname) {
                             };
                         } else {
                             // we're here either because the annotations were a URI or we don't support FileReader
-                            if (annotations && !loadOptions.annotationsUri && !lt
+                            if (annotations && !loadOptions.annotationsUri &&
+                                !lt
                                 .LTHelper.supportsFileReader) {
                                 alert(
                                     "Your browser does not support the FileReader API, so annotations could not be loaded."
@@ -1505,10 +1579,12 @@ function getCookie(cname) {
                     documentFile);
                 uploadPromise.done(function(uploadedDocumentUrl) {
                     _this.loadingDlg.progress(100);
-                    _this.loadDocument(uploadedDocumentUrl, annotationsFile,
+                    _this.loadDocument(uploadedDocumentUrl,
+                        annotationsFile,
                         loadEmbeddedAnnotations, documentFile.name);
                 });
-                uploadPromise.fail(function(jqXHR, statusText, errorThrown) {
+                uploadPromise.fail(function(jqXHR, statusText,
+                    errorThrown) {
                     var serviceError = lt.Documents.ServiceError.parseError(
                         jqXHR, statusText, errorThrown);
                     if (serviceError.isAbortError) {
@@ -1539,7 +1615,8 @@ function getCookie(cname) {
                 var prepareToSavePromise = this._documentViewer.prepareToSave();
                 prepareToSavePromise.done(function() {
                     // Now convert it
-                    var convertPromise = documentToConvert.convert(jobData);
+                    var convertPromise = documentToConvert.convert(
+                        jobData);
                     convertPromise.done(function(docConversion) {
                         // If we have an archive, that's all we will have.
                         // If it doesn't exist, handle the document and possible annotations
@@ -1549,7 +1626,8 @@ function getCookie(cname) {
                         } else if (docConversion.document &&
                             docConversion.document.url) {
                             var items = [docConversion.document];
-                            if (docConversion.annotations && docConversion.annotations
+                            if (docConversion.annotations &&
+                                docConversion.annotations
                                 .url) {
                                 items.push(docConversion.annotations);
                             }
@@ -1646,8 +1724,10 @@ function getCookie(cname) {
                                     currentPageNumber, [
                                         DocumentViewerDemoApp._barcodeSymbologyNames[
                                             barcodeData.symbology],
-                                        barcodeData.value, [barcodeData.bounds.top,
-                                            barcodeData.bounds.right, barcodeData.bounds
+                                        barcodeData.value, [barcodeData.bounds
+                                            .top,
+                                            barcodeData.bounds.right,
+                                            barcodeData.bounds
                                             .bottom, barcodeData.bounds.left
                                         ]
                                         .map(function(val) {
@@ -1659,7 +1739,8 @@ function getCookie(cname) {
                             });
                         }
                         // Draw the barcodes
-                        _this._documentViewer.view.imageViewer.invalidate(lt.LeadRectD
+                        _this._documentViewer.view.imageViewer.invalidate(
+                            lt.LeadRectD
                             .empty);
                         index++;
                         if (index < length) {
@@ -1679,7 +1760,8 @@ function getCookie(cname) {
                     _this._allBarcodes = null;
                     _this.processingPagesDlg.finishProcessing();
                     _this.processingPagesDlg.updateStatus(
-                        "Barcode reading failed on page " + currentPageNumber +
+                        "Barcode reading failed on page " +
+                        currentPageNumber +
                         ".");
                     DocumentViewerDemoApp.showServiceError(
                         "Error reading barcodes", jqXHR, statusText,
@@ -1688,7 +1770,8 @@ function getCookie(cname) {
                 var chooseNext = function() {
                     var newPage = pages[index];
                     currentPageNumber = newPage.pageNumber;
-                    _this.processingPagesDlg.updateStatus("Processing page " +
+                    _this.processingPagesDlg.updateStatus(
+                        "Processing page " +
                         currentPageNumber);
                     newPage.readBarcodes(searchArea, 0, null)
                         .done(pageDone)
@@ -1698,7 +1781,8 @@ function getCookie(cname) {
                 //this.beginBusyOperation();
                 //this.endBusyOperation();
             };
-            DocumentViewerDemoApp.prototype.checkBarcodeData = function(index,
+            DocumentViewerDemoApp.prototype.checkBarcodeData = function(
+                index,
                 searchArea) {
                 if (this._currentBarcodes && this._currentBarcodes[index] &&
                     this._currentBarcodes[index].length > 0) {
@@ -1736,29 +1820,33 @@ function getCookie(cname) {
                     this.processingPagesDlg.finishProcessing();
                     barcodePages.forEach(function(barcodeDataPage, pageIndex) {
                         barcodeDataPage.forEach(function(barcodeData) {
-                            _this.processingPagesDlg.addData(pageIndex + 1, [
-                                DocumentViewerDemoApp._barcodeSymbologyNames[
-                                    barcodeData.symbology],
-                                barcodeData.value, [barcodeData.bounds.top,
-                                    barcodeData.bounds.right, barcodeData.bounds
-                                    .bottom, barcodeData.bounds.left
-                                ]
-                                .map(function(val) {
-                                    // clean up
-                                    return parseFloat(val.toFixed(2));
-                                })
-                                .join(", "),
-                            ]);
+                            _this.processingPagesDlg.addData(pageIndex +
+                                1, [
+                                    DocumentViewerDemoApp._barcodeSymbologyNames[
+                                        barcodeData.symbology],
+                                    barcodeData.value, [barcodeData.bounds.top,
+                                        barcodeData.bounds.right, barcodeData
+                                        .bounds
+                                        .bottom, barcodeData.bounds.left
+                                    ]
+                                    .map(function(val) {
+                                        // clean up
+                                        return parseFloat(val.toFixed(2));
+                                    })
+                                    .join(", "),
+                                ]);
                         });
                     });
                 };
             DocumentViewerDemoApp.prototype.drawBarcodes = function(item,
                 context) {
                 var _this = this;
-                var itemIndex = this._documentViewer.view.imageViewer.items.indexOf(
-                    item);
+                var itemIndex = this._documentViewer.view.imageViewer.items
+                    .indexOf(
+                        item);
                 if (this._currentBarcodes != null && this._currentBarcodes[
-                        itemIndex] && this._currentBarcodes[itemIndex].length > 0) {
+                        itemIndex] && this._currentBarcodes[itemIndex].length >
+                    0) {
                     var imageViewer = this._documentViewer.view.imageViewer;
                     var mat = this._documentViewer.view.imageViewer.getItemImageTransform(
                         item);
@@ -1790,15 +1878,18 @@ function getCookie(cname) {
             );
             // Friendly Names
             DocumentViewerDemoApp._barcodeSymbologyNames = [
-                "Unknown", "EAN-13", "EAN-8", "UPC-A", "UPC-E", "Code 3 Of 9",
+                "Unknown", "EAN-13", "EAN-8", "UPC-A", "UPC-E",
+                "Code 3 Of 9",
                 "Code 128", "Code Interleaved 2 Of 5", "CODABAR",
                 "UCC/EAN 128", "Code 93", "EAN-EXT-5", "EAN-EXT-2", "MSI",
                 "Code 11", "Code Standard 2 Of 5", "GS1 Databar",
-                "GS1 Databar Limited", "GS1 Databar Expanded", "Patch Code",
+                "GS1 Databar Limited", "GS1 Databar Expanded",
+                "Patch Code",
                 "POSTNET", "Planet", "Australian Post 4State",
                 "Royal Mail (RM4SCC)", "USPS OneCode Intelligent Mail",
                 "GS1 Databar Stacked", "GS1 Databar Expanded Stacked",
-                "PDF417", "MicroPDF417", "Datamatrix", "QR", "Aztec", "Maxi",
+                "PDF417", "MicroPDF417", "Datamatrix", "QR", "Aztec",
+                "Maxi",
                 "MicroQR"
             ];
             return DocumentViewerDemoApp;
@@ -1811,7 +1902,8 @@ window.onload = function() {
         // Run mobile version
         HTML5Demos.DocumentViewerDemo.DocumentViewerDemoApp.isMobileVersion =
             true;
-        if (window.location.href.toLocaleLowerCase().indexOf("index.mobile.html") ==
+        if (window.location.href.toLocaleLowerCase().indexOf(
+                "index.mobile.html") ==
             -1) {
             var demoMode = "";
             if (window.location.href.indexOf("?mode") > -1)
@@ -1822,7 +1914,8 @@ window.onload = function() {
         }
     } else {
         // Run desktop version
-        if (window.location.href.toLocaleLowerCase().indexOf("index.html") == -1) {
+        if (window.location.href.toLocaleLowerCase().indexOf("index.html") == -
+            1) {
             var demoMode = "";
             if (window.location.href.indexOf("?mode") > -1)
                 demoMode = window.location.href.substring(window.location.href.indexOf(

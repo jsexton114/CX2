@@ -3382,7 +3382,7 @@ if (lt.LTHelper.browser == lt.LTBrowser.internetExplorer && 9 >= lt.LTHelper.ver
                     .ArrayBufferSlicer.slice(e, g, g + h),
                     e = c.LTHelper.base64EncodeFromArrayBuffer(n),
                     a = {
-                        url: [b.serviceUri, "uploadDocument"].join(
+                        url: [b.serviceUri, b._controllerName, "UploadDocument"].join(
                             "/"),
                         type: "POST",
                         contentType: "application/json",
@@ -3392,7 +3392,7 @@ if (lt.LTHelper.browser == lt.LTBrowser.internetExplorer && 9 >= lt.LTHelper.ver
                             userData: b._serviceUserData
                         })
                     };
-                if (!b.doPrepareAjax(this, b._className, "uploadDocument", a))
+                if (!b.doPrepareAjax(this, b._className, "UploadDocument", a))
                     return o.reject(null, "Canceled", "Canceled").promise();
                 $.ajax(a).done(function(a) {
                     o.resolve("undefined" === typeof a.userData ? null :
