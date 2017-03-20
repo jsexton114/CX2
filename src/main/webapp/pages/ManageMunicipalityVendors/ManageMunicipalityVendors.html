@@ -224,7 +224,7 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn40" horizontalalign="center" padding=".5em unset">
                         <wm-composite name="composite2">
                             <wm-label class="col-md-3 form-control-static" name="label7" caption="Review Status" horizontalalign="left" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container2">
+                            <wm-container class="col-md-9" name="container2" width="169px">
                                 <wm-select name="selectStatusFromPending" dataset="Pending,Approved,Suspended" datavalue="Pending"></wm-select>
                             </wm-container>
                         </wm-composite>
@@ -232,17 +232,17 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow24">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn42" horizontalalign="center" padding=".5em unset">
-                        <wm-composite name="composite3">
-                            <wm-label class="col-md-3 form-control-static" name="label8" caption="Expiration Date" horizontalalign="left" fontweight="bold"></wm-label>
+                        <wm-composite name="composite3" required="true">
+                            <wm-label class="col-md-3 form-control-static" name="label8" caption="Expiration Date" horizontalalign="left" fontweight="bold" required="false"></wm-label>
                             <wm-container class="col-md-9" name="container3">
-                                <wm-date name="datetimeExpirationFormPending" mindate="bind:today" datepattern="MM-dd-yyyy" placeholder="Select Date" datavalue="CURRENT_DATE"></wm-date>
+                                <wm-date name="datetimeExpirationFormPending" mindate="bind:today" datepattern="MM-dd-yyyy" placeholder="Select Date" datavalue="bind:Widgets.gridPending.selecteditem.expiresDate" required="true"></wm-date>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdateFromPending" on-click="Variables.UpdateVendorStatusFromPending.invoke()" iconclass="wi wi-update"></wm-button>
+                <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdateFromPending" on-click="Variables.UpdateVendorStatusFromPending.invoke()" iconclass="wi wi-update" disabled="bind:Widgets.datetimeExpirationFormPending.datavalue <= 0"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button2" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
@@ -254,7 +254,7 @@
                     <wm-gridcolumn columnwidth="12" horizontalalign="center" padding=".5em unset" name="gridcolumn41">
                         <wm-composite name="composite4">
                             <wm-label class="col-md-3 form-control-static" caption="Review Status" horizontalalign="left" name="label9" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container4">
+                            <wm-container class="col-md-9" name="container4" width="169px">
                                 <wm-select dataset="Pending,Approved,Suspended" datavalue="Approved" name="selectFromApproved"></wm-select>
                             </wm-container>
                         </wm-composite>
@@ -262,17 +262,17 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow25_1">
                     <wm-gridcolumn columnwidth="12" horizontalalign="center" padding=".5em unset" name="gridcolumn42_1">
-                        <wm-composite name="composite5">
+                        <wm-composite name="composite5" required="true">
                             <wm-label class="col-md-3 form-control-static" caption="Expiration Date" horizontalalign="left" name="label10" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container5">
-                                <wm-date mindate="bind:today" datepattern="MM-dd-yyyy" name="datetimeFormApproved" datavalue="bind:Widgets.gridApprovedVendors.selecteditem.expiresDate" hourstep="0"></wm-date>
+                                <wm-date mindate="bind:today" datepattern="MM-dd-yyyy" name="datetimeFormApproved" datavalue="bind:Widgets.gridApprovedVendors.selecteditem.expiresDate" hourstep="0" placeholder="Select Date" required="true"></wm-date>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" on-click="Variables.UpdateVendorStatusFromApproved.invoke()" name="buttonFromApproved" iconclass="wi wi-update"></wm-button>
+                <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" on-click="Variables.UpdateVendorStatusFromApproved.invoke()" name="buttonFromApproved" iconclass="wi wi-update" disabled="bind:Widgets.datetimeFormApproved.datavalue <= 0"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button4" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
@@ -284,7 +284,7 @@
                     <wm-gridcolumn columnwidth="12" horizontalalign="center" padding=".5em unset" name="gridcolumn41_1">
                         <wm-composite name="composite7">
                             <wm-label class="col-md-3 form-control-static" caption="Review Status" horizontalalign="left" name="label11" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container6">
+                            <wm-container class="col-md-9" name="container6" width="169px">
                                 <wm-select dataset="Pending,Approved,Suspended" datavalue="Suspended" name="selectFromSuspended"></wm-select>
                             </wm-container>
                         </wm-composite>
@@ -292,17 +292,17 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow25_2">
                     <wm-gridcolumn columnwidth="12" horizontalalign="center" padding=".5em unset" name="gridcolumn42_2">
-                        <wm-composite name="composite8">
+                        <wm-composite name="composite8" required="true">
                             <wm-label class="col-md-3 form-control-static" caption="Expiration Date" horizontalalign="left" name="label12" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container7">
-                                <wm-date mindate="bind:today" datepattern="MM-dd-yyyy" datavalue="bind:Widgets.gridSuspended.selecteditem.expiresDate" name="datetimeFromSuspended"></wm-date>
+                                <wm-date mindate="bind:today" datepattern="MM-dd-yyyy" datavalue="bind:Widgets.gridSuspended.selecteditem.expiresDate" name="datetimeFromSuspended" placeholder="Select Date" required="true"></wm-date>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions4">
-                <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" on-click="Variables.UpdateVendorStatusFromSuspended.invoke()" name="buttonFromSuspended" iconclass="wi wi-update"></wm-button>
+                <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" on-click="Variables.UpdateVendorStatusFromSuspended.invoke()" name="buttonFromSuspended" iconclass="wi wi-update" disabled="bind:Widgets.datetimeFromSuspended.datavalue <= 0"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button6" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
