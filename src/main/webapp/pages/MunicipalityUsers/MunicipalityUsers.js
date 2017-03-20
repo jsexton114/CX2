@@ -12,6 +12,7 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
          * e.g. to get value of text widget named 'username' use following script
          * '$scope.Widgets.username.datavalue'
          */
+
     };
 
 
@@ -84,6 +85,15 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
         }
     };
 
+
+    $scope.lvInsertRoleonError = function(variable, data) {
+
+        //Do nothing
+    };
+
+
+
+
 }]);
 
 
@@ -119,13 +129,13 @@ Application.$controller("liveform3Controller", ["$scope",
     }
 ]);
 
-Application.$controller("gridEmployeesController", ["$scope",
+Application.$controller("gridInspectorController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
 
         $scope.customButtonAction = function($event) {
-            $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityEmployee";
+            $scope.Variables.stvSelectedRole.dataSet.dataValue = "Inspector";
         };
 
 
@@ -137,39 +147,122 @@ Application.$controller("gridEmployeesController", ["$scope",
         };
 
 
-        $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.FetchRolesForUserWithMunicipality.setInput({
-                'user': $rowData.ID
-            });
-            $scope.Variables.FetchRolesForUserWithMunicipality.update();
+        // $scope.customRowAction = function($event, $rowData) {
+        //     $scope.Variables.FetchRolesForUserWithMunicipality.setInput({
+        //         'user': $rowData.ID
+        //     });
+        //     $scope.Variables.FetchRolesForUserWithMunicipality.update();
+        // };
+
+
+        $scope.customRowAction1 = function($event, $rowData) {
+            debugger
+            $scope.Variables.stvDeleteRole.dataSet.role = "Inspector";
+            $scope.Variables.stvDeleteRole.dataSet.user = $rowData.ID;
+            $scope.Variables.stvDeleteRoleText.dataSet.dataValue = "This action will also revoke all higher privileges that have been granted (InspectorManager). Would you like to proceed?";
+            $scope.Widgets.dialogDeleteRoleConfrim.open();
         };
 
     }
 ]);
 
-Application.$controller("dialogAddEmployeeORAdminController", ["$scope",
+Application.$controller("dialogAddRoleController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
 
+        function insertAdmin() {
+            $scope.Variables.lvInsertRole.setInput({
+                'roleName': 'MunicipalityAdmin',
+                'municipalityId': parseInt($scope.Widgets.selectMunicipality.datavalue.ID),
+                'userId': $scope.Widgets.textSelectUser.datavalue
+            });
+            $scope.Variables.lvInsertRole.insertRecord();
+        }
+
+        function insertCodeManager() {
+            $scope.Variables.lvInsertRole.setInput({
+                'roleName': 'CodeManager',
+                'municipalityId': parseInt($scope.Widgets.selectMunicipality.datavalue.ID),
+                'userId': $scope.Widgets.textSelectUser.datavalue
+            });
+            $scope.Variables.lvInsertRole.insertRecord();
+        }
+
+        function insertCodeOfficer() {
+            $scope.Variables.lvInsertRole.setInput({
+                'roleName': 'CodeOfficer',
+                'municipalityId': parseInt($scope.Widgets.selectMunicipality.datavalue.ID),
+                'userId': $scope.Widgets.textSelectUser.datavalue
+            });
+            $scope.Variables.lvInsertRole.insertRecord();
+        }
+
+        function insertInspectorManager() {
+            $scope.Variables.lvInsertRole.setInput({
+                'roleName': 'InspectorManager',
+                'municipalityId': parseInt($scope.Widgets.selectMunicipality.datavalue.ID),
+                'userId': $scope.Widgets.textSelectUser.datavalue
+            });
+            $scope.Variables.lvInsertRole.insertRecord();
+        }
+
+        function insertInspector() {
+            $scope.Variables.lvInsertRole.setInput({
+                'roleName': 'Inspector',
+                'municipalityId': parseInt($scope.Widgets.selectMunicipality.datavalue.ID),
+                'userId': $scope.Widgets.textSelectUser.datavalue
+            });
+            $scope.Variables.lvInsertRole.insertRecord();
+        }
+
+        function insertMunicipalityEmployee() {
+            $scope.Variables.lvInsertRole.setInput({
+                'roleName': 'MunicipalityEmployee',
+                'municipalityId': parseInt($scope.Widgets.selectMunicipality.datavalue.ID),
+                'userId': $scope.Widgets.textSelectUser.datavalue
+            });
+            $scope.Variables.lvInsertRole.insertRecord();
+        }
+
+
         $scope.buttonRoleClick = function($event, $isolateScope) {
-            // Checking if adding emp or admin
-            if ($scope.Variables.AdminOrEmp.dataSet.dataValue == "MunicipalityEmployee")
-                $scope.Variables.NewRole.update();
-            else {
-                // Checking if he is already a emp
-                if ($scope.Variables.CheckingUserWithMunicipalityInRoles.dataSet.content[0].exist > 0) {
-                    //already a emp then add as admin
-                    $scope.Variables.NewRole.update();
-                } else {
-                    // Adding both employee and admin
-                    $scope.Variables.NewRole.update();
-                    $scope.Variables.NewRole.setInput({
-                        'RoleName': 'MunicipalityEmployee'
-                    });
-                    $scope.Variables.NewRole.update();
-                }
+            // lvInsertRole
+
+            switch ($scope.Variables.stvSelectedRole.dataSet.dataValue) {
+                case "MunicipalityEmployee":
+                    insertMunicipalityEmployee();
+                    break;
+                case "Inspector":
+                    insertMunicipalityEmployee();
+                    insertInspector();
+                    break;
+                case "InspectorManager":
+                    insertMunicipalityEmployee();
+                    insertInspector();
+                    insertInspectorManager();
+                    break;
+                case "CodeOfficer":
+                    insertMunicipalityEmployee();
+                    insertCodeOfficer();
+                    break;
+                case "CodeManager":
+                    insertMunicipalityEmployee();
+                    insertCodeOfficer();
+                    insertCodeManager();
+                    break;
+                case "MunicipalityAdmin":
+                    insertAdmin();
+                    insertCodeManager();
+                    insertCodeOfficer();
+                    insertInspectorManager();
+                    insertInspector();
+                    insertMunicipalityEmployee();
+                    break;
+
             }
+
+
         };
 
     }
@@ -216,7 +309,7 @@ Application.$controller("gridAdminController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customButtonAction2 = function($event) {
-            $scope.Variables.AdminOrEmp.dataSet.dataValue = "MunicipalityAdmin";
+            $scope.Variables.stvSelectedRole.dataSet.dataValue = "MunicipalityAdmin";
         };
 
 
@@ -225,6 +318,7 @@ Application.$controller("gridAdminController", ["$scope",
             $scope.Variables.getMunicipalityGroupIdIDs.update();
             $scope.Widgets.Admindialog.open();
         };
+
 
     }
 ]);
@@ -288,17 +382,181 @@ Application.$controller("grid7Controller", ["$scope",
     }
 ]);
 
-Application.$controller("confirmdialogConfrimAdminDeleteController", ["$scope",
+Application.$controller("confirmdialogConfrimRoleDeleteController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
 
         $scope.confirmdialogConfrimAdminDeleteOk = function($event, $isolateScope) {
             $scope.Variables.DeleteEmployeeWithAdmin.update();
-            $scope.Variables.DeleteAdmin.setInput({
+            $scope.Variables.svDeleteAdminRole.setInput({
                 'user': parseInt($scope.Widgets.gridEmployees.selecteditem.ID)
             });
-            $scope.Variables.DeleteAdmin.update();
+            $scope.Variables.svDeleteAdminRole.update();
+        };
+
+    }
+]);
+
+Application.$controller("gridEmployeesController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.customButtonAction = function($event) {
+            $scope.Variables.stvSelectedRole.dataSet.dataValue = "MunicipalityEmployee";
+        };
+
+
+        $scope.customRow1Action = function($event, $rowData) {
+            $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
+            $scope.Variables.getMunicipalityGroupIdIDs.update();
+            $scope.Widgets.EmployeeDialog.open();
+
+        };
+
+
+        // $scope.customRowAction = function($event, $rowData) {
+        //     $scope.Variables.FetchRolesForUserWithMunicipality.setInput({
+        //         'user': $rowData.ID
+        //     });
+        //     $scope.Variables.FetchRolesForUserWithMunicipality.update();
+        // };
+
+        $scope.customRowAction1 = function($event, $rowData) {
+            $scope.Variables.stvDeleteRole.dataSet.role = "MunicipalityEmployee";
+            $scope.Variables.stvDeleteRole.dataSet.user = $rowData.ID;
+            $scope.Variables.stvDeleteRoleText.dataSet.dataValue = "This action will also revoke all higher privileges that have been granted (Municipality Admin, Inspection roles, and Code Enforcement roles). Would you like to proceed?";
+            $scope.Widgets.dialogDeleteRoleConfrim.open();
+        };
+
+    }
+]);
+
+Application.$controller("gridInspectorManagerController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.customButtonAction = function($event) {
+            $scope.Variables.stvSelectedRole.dataSet.dataValue = "InspectorManager";
+        };
+
+
+        $scope.customRow1Action = function($event, $rowData) {
+            $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
+            $scope.Variables.getMunicipalityGroupIdIDs.update();
+            $scope.Widgets.EmployeeDialog.open();
+
+        };
+
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.FetchRolesForUserWithMunicipality.setInput({
+                'user': $rowData.ID
+            });
+            $scope.Variables.FetchRolesForUserWithMunicipality.update();
+        };
+    }
+]);
+
+Application.$controller("gridCodeOfficerController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.customButtonAction = function($event) {
+            $scope.Variables.stvSelectedRole.dataSet.dataValue = "CodeOfficer";
+        };
+
+
+        $scope.customRow1Action = function($event, $rowData) {
+            $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
+            $scope.Variables.getMunicipalityGroupIdIDs.update();
+            $scope.Widgets.EmployeeDialog.open();
+
+        };
+
+
+        $scope.customRowAction1 = function($event, $rowData) {
+            debugger
+            $scope.Variables.stvDeleteRole.dataSet.role = "CodeOfficer";
+            $scope.Variables.stvDeleteRole.dataSet.user = $rowData.ID;
+            $scope.Variables.stvDeleteRoleText.dataSet.dataValue = "This action will also revoke all higher privileges that have been granted (CodeOfficer). Would you like to proceed?";
+            $scope.Widgets.dialogDeleteRoleConfrim.open();
+        };
+
+    }
+]);
+
+Application.$controller("gridCodeManagerController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+        $scope.customButtonAction = function($event) {
+            $scope.Variables.stvSelectedRole.dataSet.dataValue = "CodeManager";
+        };
+
+
+        $scope.customRow1Action = function($event, $rowData) {
+            $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $rowData.ID);
+            $scope.Variables.getMunicipalityGroupIdIDs.update();
+            $scope.Widgets.EmployeeDialog.open();
+
+        };
+
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.FetchRolesForUserWithMunicipality.setInput({
+                'user': $rowData.ID
+            });
+            $scope.Variables.FetchRolesForUserWithMunicipality.update();
+        };
+    }
+]);
+
+Application.$controller("dialogDeleteRoleConfrimController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+        $scope.selectedDelete;
+        $scope.buttonProceedRoleDeleteClick = function($event, $isolateScope) {
+            debugger
+            switch ($scope.Variables.stvDeleteRole.dataSet.role) {
+                case "MunicipalityEmployee":
+                    $scope.Variables.svDeleteAllMunicipalityRoles.setInput({
+                        'UserId': $scope.Variables.stvDeleteRole.dataSet.user
+                    });
+                    $scope.Variables.svDeleteAllMunicipalityRoles.update();
+                    break;
+                case "Inspector":
+                    $scope.Variables.svDeleteRole.setInput({
+                        'role': 'Inspector',
+                        'user': $scope.Variables.stvDeleteRole.dataSet.user
+                    });
+                    $scope.Variables.svDeleteRole.update();
+                    $scope.Variables.svDeleteRole.setInput({
+                        'role': 'InspectorManager',
+                        'user': $scope.Variables.stvDeleteRole.dataSet.user
+                    });
+                    $scope.Variables.svDeleteRole.update();
+                    break;
+
+                case "CodeOfficer":
+                    $scope.Variables.svDeleteRole.setInput({
+                        'role': 'CodeOfficer',
+                        'user': $scope.Variables.stvDeleteRole.dataSet.user
+                    });
+                    $scope.Variables.svDeleteRole.update();
+                    $scope.Variables.svDeleteRole.setInput({
+                        'role': 'InspectorManager',
+                        'user': $scope.Variables.stvDeleteRole.dataSet.user
+                    });
+                    $scope.Variables.svDeleteRole.update();
+                    break;
+
+
+            }
         };
 
     }

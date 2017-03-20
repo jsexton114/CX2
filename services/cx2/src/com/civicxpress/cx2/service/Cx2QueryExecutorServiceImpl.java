@@ -1751,6 +1751,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("SubDivisonCount", params, exportType, SubDivisonCountResponse.class, pageable);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeDeleteAllMunicipalityRoles(Integer municipalityId, Integer userId) {
+        Map params = new HashMap(2);
+
+        params.put("MunicipalityId", municipalityId);
+        params.put("UserId", userId);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteAllMunicipalityRoles", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<GetRolesForMunicipalityResponse> executeGetRolesForMunicipality(String role, Integer municipality, Pageable pageable) {

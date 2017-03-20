@@ -1559,6 +1559,16 @@ public class QueryExecutionController {
         return queryService.exportSubDivisonCount(exportType, municipalityId, pageable);
     }
 
+    @RequestMapping(value = "/queries/DeleteAllMunicipalityRoles", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "DeleteAllMunicipalityRoles")
+    public IntegerWrapper executeDeleteAllMunicipalityRoles(@RequestParam(value = "MunicipalityId") Integer municipalityId, @RequestParam(value = "UserId") Integer userId) {
+        LOGGER.debug("Executing named query: DeleteAllMunicipalityRoles");
+        Integer _result = queryService.executeDeleteAllMunicipalityRoles(municipalityId, userId);
+        LOGGER.debug("got the result for named query: DeleteAllMunicipalityRoles, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/GetRolesForMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "GetRolesForMunicipality")

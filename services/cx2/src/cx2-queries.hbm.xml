@@ -1333,6 +1333,14 @@ ORDER BY DateModified DESC
     <query-param name="municipalityId" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="DeleteAllMunicipalityRoles">
+        <![CDATA[
+        delete from Roles where MunicipalityId=:MunicipalityId and UserId=:UserId
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="GetRolesForMunicipality">
         <![CDATA[
         select U.* from Users U,Roles R where  R.RoleName=:role and R.MunicipalityId=:municipality and R.UserId=U.ID

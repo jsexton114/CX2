@@ -339,6 +339,8 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportSubDivisonCount(ExportType exportType, Integer municipalityId, Pageable pageable);
 
+    Integer executeDeleteAllMunicipalityRoles(Integer municipalityId, Integer userId);
+
     Page<GetRolesForMunicipalityResponse> executeGetRolesForMunicipality(String role, Integer municipality, Pageable pageable);
 
     Downloadable exportGetRolesForMunicipality(ExportType exportType, String role, Integer municipality, Pageable pageable);

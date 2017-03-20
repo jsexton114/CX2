@@ -1613,6 +1613,41 @@
       } ]
     }
   },
+  "DeleteAllMunicipalityRoles" : {
+    "name" : "DeleteAllMunicipalityRoles",
+    "description" : "DeleteAllMunicipalityRoles",
+    "version" : "V2",
+    "queryString" : "delete from Roles where MunicipalityId=:MunicipalityId and UserId=:UserId",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "DELETE",
+    "parameters" : [ {
+      "name" : "MunicipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "UserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "92",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "DELETE"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "DeleteCategoryMapping" : {
     "name" : "DeleteCategoryMapping",
     "description" : "DeleteCategoryMapping",
