@@ -127,7 +127,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
     $scope.svSetFormStatusonSuccess = function(variable, data) {
         setFormStatusProgressValue($scope.Widgets.selectStatus._proxyModel.id);
-        debugger
+
         //Checking to send mail
         if ($scope.Widgets.selectStatus.datavalue.sendEmail) {
 

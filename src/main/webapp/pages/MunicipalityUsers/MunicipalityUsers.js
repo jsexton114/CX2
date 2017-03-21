@@ -521,7 +521,6 @@ Application.$controller("dialogDeleteRoleConfrimController", ["$scope",
         $scope.ctrlScope = $scope;
         $scope.selectedDelete;
         $scope.buttonProceedRoleDeleteClick = function($event, $isolateScope) {
-            debugger
             switch ($scope.Variables.stvDeleteRole.dataSet.role) {
                 case "MunicipalityEmployee":
                     $scope.Variables.svDeleteAllMunicipalityRoles.setInput({
