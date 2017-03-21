@@ -562,8 +562,8 @@ function getCookie(cname) {
                                     );
                                 }
                                 // If the kernel is not release, log it (for debugging)
-                                if (response.kernelType != null && response.kernelType !=
-                                    "Release") {
+                                if (response.kernelType != null && response.kernelType.toLowerCase() !=
+                                    "release") {
                                     console.log(
                                         "Server LEADTOOLS Kernel type: " +
                                         response.kernelType);
@@ -596,11 +596,10 @@ function getCookie(cname) {
                                 xhr.onreadystatechange = function() {
                                     if (this.readyState == 4 && this.status == 200) {
                                         //this.response is what you're looking for
-                                        console.log(this);
                                         _this.uploadDocument(this.response, null, false);
-                                        _this.endBusyOperation();
                                     }
                                 };
+
                                 xhr.open('GET', '../../services/form/downloadDocument?documentId=' + docId + '&_csrf=' + getCookie('wm_xsrf_token'));
                                 xhr.responseType = 'blob';
                                 xhr.send();
