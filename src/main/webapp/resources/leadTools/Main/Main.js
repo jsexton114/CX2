@@ -5,6 +5,21 @@ angular.module('cx2LeadTools', []);
 var docId = null;
 angular.module('cx2LeadTools').run(['$http', function($http) {
     docId = window.location.search.split("=")[1];
+
+    if (!docId) {
+        return;
+    }
+
+    $http({
+        method: 'GET',
+        params: {
+            'documentId': docId,
+            '_csrf': getCookie('wm_xsrf_token')
+        },
+        url: '../../services/form/downloadDocument'
+    }).then(function(response) {
+        console.log(response);
+    });
 }]);
 
 function getCookie(cname) {
