@@ -7,6 +7,8 @@ import org.springframework.http.HttpMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.Exception;
+import java.lang.Object;
+import java.util.HashMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +25,27 @@ public class DocumentProxyController {
     @Autowired
     private DocumentProxyService documentProxyService;
 
-    @RequestMapping(value = "/**", produces = "application/json")
+    @RequestMapping(value = "/**", method = RequestMethod.GET)
     @ResponseBody
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String forwardRequest(@RequestBody String body, HttpMethod method, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public byte[] forwardGetRequest(HttpMethod method, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return documentProxyService.forwardGetRequest(method, request, response);
+    }
+
+    @RequestMapping(value = "/**", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public HashMap<String, Object> forwardRequest(@RequestBody String body, HttpMethod method, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return documentProxyService.forwardRequest(body, method, request, response);
+    }
+
+    @RequestMapping(value = "/**", method = RequestMethod.OPTIONS, produces = "application/json")
+    @ResponseBody
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public HashMap<String, Object> forwardOptionsRequest(@RequestBody String body, HttpMethod method, HttpServletRequest request, HttpServletResponse response) throws Exception {
         return documentProxyService.forwardRequest(body, method, request, response);
     }
 }

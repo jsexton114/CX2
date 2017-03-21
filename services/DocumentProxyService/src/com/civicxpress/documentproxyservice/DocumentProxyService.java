@@ -18,6 +18,12 @@ import org.springframework.http.*;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.HashMap;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
@@ -43,17 +49,17 @@ public class DocumentProxyService {
     @Autowired
     private SecurityService securityService;
     
-    private static String serviceHost = "localhost";
-    private static Integer servicePort = 19000;
-    private static String apiPath = "/documents-service/api/";
+    private static String serviceHost = "192.168.2.233";
+    private static Integer servicePort = 8080;
+    private static String apiPath = "/documentsService/api/";
     
     // This service stands as a proxy from the application to the LEADTOOLS documents-service. This file should remain unedited.
     
-    public String forwardRequest(String body, HttpMethod method, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public HashMap<String, Object> forwardRequest(String body, HttpMethod method, HttpServletRequest request, HttpServletResponse response) throws Exception {
         String[] uriParts = request.getRequestURI().split("/");
-        String requestPath = "/documents-service/api/" + uriParts[uriParts.length - 2] + "/" + uriParts[uriParts.length - 1];
+        String requestPath = apiPath + uriParts[uriParts.length - 2] + "/" + uriParts[uriParts.length - 1];
 
-        URI uri = new URI("http", null, "localhost", 19000, requestPath, request.getQueryString(), null);
+        URI uri = new URI("http", null, serviceHost, servicePort, requestPath, request.getQueryString(), null);
         
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -61,7 +67,25 @@ public class DocumentProxyService {
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.exchange(uri, method, new HttpEntity<String>(body, headers), String.class);
+        
+        Gson gson = new Gson();
+        Type type = new TypeToken<HashMap<String, Object>>(){}.getType();
 
+        return gson.fromJson(responseEntity.getBody(), type);
+    }
+    
+    public byte[] forwardGetRequest(HttpMethod method, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String[] uriParts = request.getRequestURI().split("/");
+        String requestPath = apiPath + uriParts[uriParts.length - 2] + "/" + uriParts[uriParts.length - 1];
+
+        URI uri = new URI("http", null, serviceHost, servicePort, requestPath, request.getQueryString(), null);
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.ALL));
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<byte[]> responseEntity = restTemplate.exchange(uri, method, new HttpEntity<String>(headers), byte[].class);
+        
         return responseEntity.getBody();
     }
 }

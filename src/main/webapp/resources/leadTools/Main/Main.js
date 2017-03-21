@@ -3,8 +3,9 @@ var HTML5Demos;
 angular.module('cx2LeadTools', []);
 
 var docId = null;
-docId = window.location.search.split("=")[1];
-console.log(docId);
+angular.module('cx2LeadTools').run(['$http', function($http) {
+    docId = window.location.search.split("=")[1];
+}]);
 
 function getCookie(cname) {
     var name = cname + "=";

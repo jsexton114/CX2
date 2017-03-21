@@ -3347,7 +3347,7 @@ if (lt.LTHelper.browser == lt.LTBrowser.internetExplorer && 9 >= lt.LTHelper.ver
             b.beginUpload = function() {
                 var a = $.Deferred(),
                     c = {
-                        url: [b.serviceUri, "beginUpload"].join(
+                        url: [b.serviceUri, b._controllerName, "BeginUpload"].join(
                             "/"),
                         type: "POST",
                         contentType: "application/json",
@@ -3355,7 +3355,7 @@ if (lt.LTHelper.browser == lt.LTBrowser.internetExplorer && 9 >= lt.LTHelper.ver
                             userData: b._serviceUserData
                         })
                     };
-                if (!b.doPrepareAjax(this, b._className, "beginUpload", c))
+                if (!b.doPrepareAjax(this, b._className, "BeginUpload", c))
                     return a.reject(null, "Canceled", "Canceled").promise();
                 $.ajax(c).done(function(b) {
                     a.resolve(b.uploadUri,
