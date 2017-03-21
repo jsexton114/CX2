@@ -58,7 +58,7 @@ public class FormMessagingMailService {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
-  public String sendStatusUpdateMail(String sender,String comments,String username ,String recipient,String municipality,String formType,String municipalitySignature,String formTitle,String formGUID) throws MessagingException {
+  public String sendMessagingMail(String sender,String comments,String username ,String recipient,String municipality,String formType,String municipalitySignature,String formTitle,String formGUID) throws MessagingException {
         
       
         

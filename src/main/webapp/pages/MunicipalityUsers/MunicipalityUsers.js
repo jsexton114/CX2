@@ -156,7 +156,7 @@ Application.$controller("gridInspectorController", ["$scope",
 
 
         $scope.customRowAction1 = function($event, $rowData) {
-            debugger
+
             $scope.Variables.stvDeleteRole.dataSet.role = "Inspector";
             $scope.Variables.stvDeleteRole.dataSet.user = $rowData.ID;
             $scope.Variables.stvDeleteRoleText.dataSet.dataValue = "This action will also revoke all higher privileges that have been granted (InspectorManager). Would you like to proceed?";
@@ -479,7 +479,7 @@ Application.$controller("gridCodeOfficerController", ["$scope",
 
 
         $scope.customRowAction1 = function($event, $rowData) {
-            debugger
+
             $scope.Variables.stvDeleteRole.dataSet.role = "CodeOfficer";
             $scope.Variables.stvDeleteRole.dataSet.user = $rowData.ID;
             $scope.Variables.stvDeleteRoleText.dataSet.dataValue = "This action will also revoke all higher privileges that have been granted (CodeOfficer). Would you like to proceed?";
@@ -506,12 +506,12 @@ Application.$controller("gridCodeManagerController", ["$scope",
         };
 
 
-        $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.FetchRolesForUserWithMunicipality.setInput({
-                'user': $rowData.ID
-            });
-            $scope.Variables.FetchRolesForUserWithMunicipality.update();
-        };
+        // $scope.customRowAction = function($event, $rowData) {
+        //     $scope.Variables.FetchRolesForUserWithMunicipality.setInput({
+        //         'user': $rowData.ID
+        //     });
+        //     $scope.Variables.FetchRolesForUserWithMunicipality.update();
+        // };
     }
 ]);
 
@@ -523,12 +523,14 @@ Application.$controller("dialogDeleteRoleConfrimController", ["$scope",
         $scope.buttonProceedRoleDeleteClick = function($event, $isolateScope) {
             switch ($scope.Variables.stvDeleteRole.dataSet.role) {
                 case "MunicipalityEmployee":
+                    // Delete All Municipality Roles
                     $scope.Variables.svDeleteAllMunicipalityRoles.setInput({
                         'UserId': $scope.Variables.stvDeleteRole.dataSet.user
                     });
                     $scope.Variables.svDeleteAllMunicipalityRoles.update();
                     break;
                 case "Inspector":
+                    //Delete Inspector,InspectorManager Roles
                     $scope.Variables.svDeleteRole.setInput({
                         'role': 'Inspector',
                         'user': $scope.Variables.stvDeleteRole.dataSet.user
@@ -542,6 +544,7 @@ Application.$controller("dialogDeleteRoleConfrimController", ["$scope",
                     break;
 
                 case "CodeOfficer":
+                    //Delete CodeOfficer,InspectorManager Roles
                     $scope.Variables.svDeleteRole.setInput({
                         'role': 'CodeOfficer',
                         'user': $scope.Variables.stvDeleteRole.dataSet.user
