@@ -174,7 +174,7 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-wizardstep>
-                            <wm-wizardstep name="wizardstepVendor" title="Vendor" ng-if="loaded &amp;&amp; vendorInfo" enableskip="false">
+                            <wm-wizardstep name="wizardstepVendor" title="Contractor" ng-if="loaded &amp;&amp; vendorInfo" enableskip="false">
                                 <wm-composite name="composite12" required="true" show="false">
                                     <wm-label class="col-md-3 control-label" name="label23"></wm-label>
                                     <wm-container class="col-md-9" name="container11">
@@ -184,8 +184,8 @@
                                 <wm-layoutgrid name="layoutgrid15_1">
                                     <wm-gridrow name="gridrow48_1" padding="2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn91_1">
-                                            <wm-label padding="unset 0.5em" name="label30" caption="What vendor or company is associated with this form?"></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label20_1" caption="Please click the &quot;+Add Vendor&quot; button to locate the vendor(s) that you would like to link to the form, then proceed to the next step. If multiple Vendors are involved, be sure to specify the correct Primary Vendor."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label30" caption="What company or contractor is associated with this form?"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label20_1" caption="Please click the &quot;+Add Contractor&quot; button to locate the contractor that you would like to link to the form, then proceed to the next step. If multiple contractors are involved, be sure to specify the correct Primary Contractor."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow49_1">
@@ -199,7 +199,7 @@
                                                 <wm-grid-column binding="EmailAddress" caption="Email Address" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="Website" caption="Website" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-action key="customButton" display-name="Add Vendor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Vendor" action="Widgets.dialogAddVendor.open()" shortcutkey="" disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleVendors &amp;&amp; Variables.stvVendors.dataSet.length > 0"
+                                                <wm-grid-action key="customButton" display-name="Add Contractor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Contractor" action="Widgets.dialogAddVendor.open()" shortcutkey="" disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleVendors &amp;&amp; Variables.stvVendors.dataSet.length > 0"
                                                 icon="wi wi-plus"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
@@ -224,7 +224,7 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn83">
                                             <wm-composite name="compositeVendorIsOwner" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection">
-                                                <wm-checkbox caption="Vendor is Owner" class="col-md-push-3 col-md-9" name="checkboxVendorIsOwner" disabled="bind:Widgets.checkboxOtherOwner.datavalue" on-change="checkboxVendorIsOwnerChange($event, $scope, newVal, oldVal)"></wm-checkbox>
+                                                <wm-checkbox caption="Contractor is Owner" class="col-md-push-3 col-md-9" name="checkboxVendorIsOwner" disabled="bind:Widgets.checkboxOtherOwner.datavalue" on-change="checkboxVendorIsOwnerChange($event, $scope, newVal, oldVal)"></wm-checkbox>
                                             </wm-composite>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -519,7 +519,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view4">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Vendor Search" iconclass="wi wi-work" name="dialogAddVendor">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Contractor Search" iconclass="wi wi-work" name="dialogAddVendor">
             <wm-layoutgrid name="layoutgrid12">
                 <wm-gridrow name="gridrow36">
                     <wm-gridcolumn columnwidth="1" name="gridcolumn100_1"></wm-gridcolumn>
@@ -532,7 +532,7 @@
                     <wm-gridcolumn columnwidth="1" name="gridcolumn102"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" name="gridcolumn103">
                         <wm-composite name="composite9">
-                            <wm-checkbox caption="Set as Primary Vendor" name="checkboxVendorIsPrimary" datavalue="bind:!Variables.stvVendors.dataSet.length" disabled="bind:!Variables.stvVendors.dataSet.length"></wm-checkbox>
+                            <wm-checkbox caption="Set as Primary Contractor" name="checkboxVendorIsPrimary" datavalue="bind:!Variables.stvVendors.dataSet.length" disabled="bind:!Variables.stvVendors.dataSet.length"></wm-checkbox>
                         </wm-composite>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn104"></wm-gridcolumn>
@@ -554,7 +554,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions4">
-                <wm-button class="btn-primary" caption="Add Vendor" on-click="closeDialog();buttonAddVendorClick($event, $scope)" name="buttonAddVendor" iconclass="wi wi-plus" disabled="bind:!Widgets.searchVendors.datavalue.id"></wm-button>
+                <wm-button class="btn-primary" caption="Add Contractor" on-click="closeDialog();buttonAddVendorClick($event, $scope)" name="buttonAddVendor" iconclass="wi wi-plus" disabled="bind:!Widgets.searchVendors.datavalue.id"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button10" iconclass="wi wi-cancel" on-click="Widgets.dialogAddVendor.close()"></wm-button>
             </wm-dialogactions>
         </wm-dialog>

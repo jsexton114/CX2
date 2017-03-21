@@ -32,7 +32,7 @@
                             <wm-grid-column binding="formDesign" caption="Form Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="address" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="primaryVendor" caption="Primary Vendor" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="primaryVendor" caption="Primary Contractor" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                             </wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
