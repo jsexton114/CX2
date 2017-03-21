@@ -130,6 +130,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         debugger
         //Checking to send mail
         if ($scope.Widgets.selectStatus.datavalue.sendEmail) {
+
             var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID
                 //Sending mail to  CreatedBy
             $scope.Variables.svSendStatusUpdate.setInput({
@@ -139,12 +140,21 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
             });
             $scope.Variables.svSendStatusUpdate.update();
             //Sending mail to SharedWith
+
             var contacts = $scope.sharedWith;
-            for (let i = 0; i < contacts.length; i++) {
+            if ((contacts.length) > 0) {
+                //Check if shared with users
+                $scope.formStatusMailingList = '';
+                for (let i = 0; i < contacts.length; i++) {
+                    $scope.formStatusMailingList = $scope.formStatusMailingList + contacts[i].usersBySharedWithUser.email + ",";
+                }
+
+                // Send Mail to Shared With Users
+                $scope.formStatusMailingList = $scope.formStatusMailingList.substring(0, $scope.formStatusMailingList.length - 1);
                 $scope.Variables.svSendStatusUpdate.setInput({
                     'formLink': tempLink,
-                    'username': contacts[i].usersBySharedWithUser.firstName,
-                    'recipient': contacts[i].usersBySharedWithUser.email
+                    'username': 'User',
+                    'recipient': $scope.formStatusMailingList
                 });
                 $scope.Variables.svSendStatusUpdate.update();
             }

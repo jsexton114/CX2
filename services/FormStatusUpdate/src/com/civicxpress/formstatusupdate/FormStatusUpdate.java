@@ -22,7 +22,7 @@ import javax.mail.Transport;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
+import java.util.*;
 //import com.civicxpress.formstatusupdate.model.*;
 
 /**
@@ -73,7 +73,19 @@ public class FormStatusUpdate {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
         
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+        //message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+        
+        ArrayList recipientList= new ArrayList(Arrays.asList(recipient.split(",")));
+
+
+        InternetAddress[] recipientAddress = new InternetAddress[recipientList.size()];
+        
+         for (int i = 0; i < recipientList.size(); i++)
+          {
+             recipientAddress[i] = new InternetAddress(recipientList.get(i).toString());
+         }
+        
+        message.setRecipients(Message.RecipientType.TO, recipientAddress);
         
         String formURL=  formLink;
         logger.info(formLink);
