@@ -128,6 +128,7 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
         }
     };
 
+
 }]);
 
 
@@ -233,10 +234,11 @@ Application.$controller("dialogUpdateTaskController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonTaskUpdateClick = function($event, $isolateScope) {
+
             $scope.Variables.UpdateTask.setInput({
                 'assignedTo': $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.id
             });
-            $scope.Variables.UpdateTask.insertRecord();
+            $scope.Variables.UpdateTask.updateRecord();
 
         };
 

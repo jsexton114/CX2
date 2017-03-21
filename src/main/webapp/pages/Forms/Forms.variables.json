@@ -17022,12 +17022,8 @@
       "target" : "Message",
       "value" : "bind:Widgets.textAddMessage.datavalue",
       "type" : "string"
-    }, {
-      "target" : "PostedAt",
-      "value" : "bind:today",
-      "type" : "string"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "cx2",
     "operation" : "executeInsertFormMessage",
     "operationId" : "QueryExecutionController_executeInsertFormMessage",

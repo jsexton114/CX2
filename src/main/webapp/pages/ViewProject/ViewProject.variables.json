@@ -10513,6 +10513,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "onSuccess" : "Widgets.dialogUpdateTask.close();Variables.ProjectTasksData.listRecords();Variables.TaskUpdatedSuccessfully.invoke();UpdateTaskonSuccess($event, $scope)",
+    "onError" : "UpdateTaskonError($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
