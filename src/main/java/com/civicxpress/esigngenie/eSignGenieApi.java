@@ -83,7 +83,7 @@ public class eSignGenieApi {
 
     // "Upload files with HTTPWebrequest (multipart/form-data)", Cristian Romanescu, 6/8/2010, retrieved 3/4/2017
     // http://stackoverflow.com/questions/566462/upload-files-with-httpwebrequest-multipart-form-data
-    private static String httpUploadFile(String url, byte[] pdfBytes, String filename, String paramName, String contentType,
+    private static String httpUploadFile(String url, byte[] fileBytes, String filename, String paramName, String contentType,
                                          LinkedHashMap nvc, String accessTokenString)
             throws MalformedURLException, IOException {
 
@@ -116,7 +116,8 @@ public class eSignGenieApi {
         byte[] headerBytes = header.getBytes(StandardCharsets.UTF_8);
         rs.write(headerBytes, 0, headerBytes.length);
 
-        rs.write(pdfBytes, 0, pdfBytes.length);
+        String s = new String(fileBytes, 0, fileBytes.length, StandardCharsets.UTF_8);
+        rs.write(s.getBytes());
         rs.flush();
 
         byte[] trailer = ("\r\n--" + boundary + "--\r\n").getBytes(StandardCharsets.UTF_8);

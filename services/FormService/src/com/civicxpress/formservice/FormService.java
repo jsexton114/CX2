@@ -133,6 +133,11 @@ public class FormService {
     	return userPermissions;
     }
     
+    private static String getDocumentSignatureLink() throws IOException {
+        // TODO: implementation. This is just a stub to test publishing.
+        return null;
+    }
+    
     private byte[] createDynamicFormPdf(Connection cx2Conn, String formGuid) throws Exception {
         DBQueryParams params = new DBQueryParams();
         params.addString("formGuid", formGuid);
@@ -178,7 +183,7 @@ public class FormService {
         document.save(os);
         
         document.close();
-        
+
         byte[] pdfBytes = os.toByteArray();
         os.close();
         
