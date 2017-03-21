@@ -2,26 +2,6 @@ var HTML5Demos;
 
 angular.module('cx2LeadTools', []);
 
-var docId = null;
-angular.module('cx2LeadTools').run(['$http', function($http) {
-    docId = window.location.search.split("=")[1];
-
-    if (!docId) {
-        return;
-    }
-
-    $http({
-        method: 'GET',
-        params: {
-            'documentId': docId,
-            '_csrf': getCookie('wm_xsrf_token')
-        },
-        url: '../../services/form/downloadDocument'
-    }).then(function(response) {
-        console.log(response);
-    });
-}]);
-
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -605,13 +585,25 @@ function getCookie(cname) {
                                 if (serviceBase.charAt(serviceBase.length - 1) !==
                                     "/")
                                     serviceBase += "/";
-                                var defaultDocument = serviceBase + _this._defaultSampleDocument;
-                                console.log("Loading initial document from '" +
-                                    defaultDocument +
-                                    "'. If this is the incorrect URL, check your values in serviceConfig.json"
-                                );
-                                _this.loadDocument(defaultDocument, null,
-                                    false);
+
+                                var docId = window.location.search.split("=")[1];
+
+                                if (!docId) {
+                                    window.close();
+                                }
+
+                                var xhr = new XMLHttpRequest();
+                                xhr.onreadystatechange = function() {
+                                    if (this.readyState == 4 && this.status == 200) {
+                                        //this.response is what you're looking for
+                                        console.log(this);
+                                        _this.uploadDocument(this.response, null, false);
+                                        _this.endBusyOperation();
+                                    }
+                                };
+                                xhr.open('GET', '../../services/form/downloadDocument?documentId=' + docId + '&_csrf=' + getCookie('wm_xsrf_token'));
+                                xhr.responseType = 'blob';
+                                xhr.send();
                             })
                             .fail(function(jqXHR, statusText, errorThrown) {
                                 window.alert(

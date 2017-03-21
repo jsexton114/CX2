@@ -404,6 +404,11 @@ Application.$controller("gridDocumentsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.updaterowAction = function($event, $rowData) {
+            window.open('resources/leadTools/index.html?docId=' + $rowData.id);
+        };
+
     }
 ]);
 
