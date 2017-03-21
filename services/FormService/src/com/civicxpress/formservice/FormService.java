@@ -134,19 +134,18 @@ public class FormService {
     }
     
     public String getDocumentSignatureLink(String formGuid) throws IOException, java.sql.SQLException {
-        // TODO: implementation. This is just a stub to test publishing.
-        DBRow userData = getUserData();
-        
+        UserDataPojo userData = getUserData();
         String folderAccessUrl = null;
 
         // in FormService, instantiate these values
-        String title = "Form Title";
+        Long formTypeId = getFormTypeId(formGuid);        
+        String title = getFriendlyFormType(formTypeId);
         Map<String, Object> formData = getFormData(formGuid);
         String clientId  = "a4bb2dd0071640b6936f5cf80cf533b4"; // TODO: this should come from the municipalities eSign Genie settiings
         String clientSecret = "268ebb57a93e4ef197235c68111ed5a6";  // TODO: this should come from the municipalities eSign Genie settiings
-        String firstNameOfRecipientParty = userData.getString("FirstName");
-        String lastNameOfRecipientParty = userData.getString("LastName");
-        String emailIdOfRecipientParty = "jason_sexton@hotmail.com"; // i.e. userData.getString("Email")
+        String firstNameOfRecipientParty = userData.getFirstName();
+        String lastNameOfRecipientParty = userData.getLastName();
+        String emailIdOfRecipientParty = userData.getEmail();
 
         // then call this method in ESignGenie
         folderAccessUrl = ESignGenieApi.createAndSignDocument(title, formData, clientId, clientSecret,
@@ -155,36 +154,28 @@ public class FormService {
 
         return folderAccessUrl;
     }
+
+    private Long getFormTypeId(String formGuid) throws java.sql.SQLException {
+        // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
+        Long formTypeId;
+        DBQueryParams params = new DBQueryParams();
+        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        params.addString("formGuid", formGuid);
+        DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", params).get(0);
+        formTypeId = masterFormData.getLong("FormTypeId");
+        cx2Conn.close();
+        return formTypeId;
+    }
     
-        // Test method only. Actual data will be produced in FormService
-    private static Map<String, Object> getTestFormData() {
-        Map<String, Object> formData = new java.util.LinkedHashMap<String, Object>();
-        formData.put("ID", "10");
-        formData.put("FormGUID", "17B9E89A-D104-E711-80C9-0CC47A46DD63");
-        formData.put("FormTitle", "");
-        formData.put("CreatedBy", "jkeller@tekdoginc.com");
-        formData.put("CreatedDate", "3/9/2017");
-        formData.put("ModifiedDate", "");
-        formData.put("ModifiedBy", "");
-        formData.put("TotalSqft", "33");
-        formData.put("TotalUnits", "");
-        formData.put("Basement", "");
-        formData.put("VendorId", "");
-        formData.put("PropertyType", "");
-        formData.put("FEMANationalFloodInsuranceProgramSpecialFloodHazardArea", "0");
-        formData.put("VerifiedPerFloodInsuranceRateMapPanel", "");
-        formData.put("FirstFloorSqft", "15");
-        formData.put("SecondFloorSqft", "");
-        formData.put("Height", "");
-        formData.put("StructureHeight", "");
-        formData.put("StructureWidth", "");
-        formData.put("StructureLength", "");
-        formData.put("SidingMaterial", "mustard");
-        formData.put("WillElectricBeInstalled", "0");
-        formData.put("IntendedUseOfAccessoryStructure", "things");
-        formData.put("ApproximateValue", "100");
-        formData.put("PropertyType3", "Industrial");
-        return formData;
+    private String getFriendlyFormType(Long formTypeId) throws java.sql.SQLException { 
+        String friendlyFormType = null;
+        DBQueryParams params = new DBQueryParams();
+        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        params.addString("formTypeId", formTypeId.toString());
+        DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM [FormTypes] WHERE ID=:formTypeId", params).get(0);
+        friendlyFormType  = formTypeData.getString("FormType");
+        cx2Conn.close();
+        return friendlyFormType;
     }
 
     private Map<String, Object> getFormData(String formGuid) throws com.microsoft.sqlserver.jdbc.SQLServerException, java.sql.SQLException {
@@ -194,54 +185,51 @@ public class FormService {
         params.addString("formGuid", formGuid);
         DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", params).get(0);
         params.addLong("formTypeId", masterFormData.getLong("FormTypeId"));
-        List<DBRow> fields = DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypeFields WHERE FormTypeId=:formTypeId", params);
         Map<String, Object> formData = getFormData(masterFormData.getLong("FormTypeId"), formGuid);
+        cx2Conn.close();
         return formData;
     }
     
-    private DBRow getUserData() throws com.microsoft.sqlserver.jdbc.SQLServerException, java.sql.SQLException {
+    private UserDataPojo getUserData() throws com.microsoft.sqlserver.jdbc.SQLServerException, java.sql.SQLException {
         // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
         DBQueryParams params = new DBQueryParams();
         params.addLong("userId", Long.parseLong(securityService.getUserId()));
-        DBRow userData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Users WHERE ID=:userId", params);
+        DBRow userDataRow = DBUtils.selectOne(cx2Conn, "SELECT * FROM Users WHERE ID=:userId", params);
+        UserDataPojo userData = new UserDataPojo();
+        userData.setFirstName(userDataRow.getString("FirstName"));
+        userData.setLastName(userDataRow.getString("LastName"));
+        userData.setEmail(userDataRow.getString("Email"));
+        cx2Conn.close(); 
         return userData;
     }
     
-    /*
-    private byte[] createDynamicFormPdf(Connection cx2Conn, String formGuid) throws Exception {
-        DBQueryParams params = new DBQueryParams();
-        params.addString("formGuid", formGuid);
+    public class UserDataPojo { 
+        private String firstName;
+        private String lastName;
+        private String email;
         
-        DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", params).get(0);
+        public String getFirstName() {
+            return firstName;
+        }
+        public void setFirstName(String firstName) {
+            this.firstName = firstName;
+        }
+        public String getLastName() {
+            return lastName;
+        }
+        public void setLastName(String lastName) {
+            this.lastName = lastName;
+        }
+        public String getEmail() {
+            return email;
+        }
+        public void setEmail(String email) {
+            this.email= email;
+        }
         
-        params.addLong("formTypeId", masterFormData.getLong("FormTypeId"));
-        
-        List<DBRow> fields = DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypeFields WHERE FormTypeId=:formTypeId", params);
-        
-        Map<String, Object> formData = getFormData(masterFormData.getLong("FormTypeId"), formGuid);
-
-        return null;        
     }
     
-    public String getDocumentSignatureLink(String formGuid) throws Exception {
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
-
-        DBQueryParams params = new DBQueryParams();
-        params.addLong("userId", Long.parseLong(securityService.getUserId()));
-        DBRow userData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Users WHERE ID=:userId", params);
-
-        String formTitle = "TestThing";
-        byte[] pdfBytes = createDynamicFormPdf(cx2Conn, formGuid);
-
-        String url = eSignGenieApi.createFolder(pdfBytes, formTitle, "a4bb2dd0071640b6936f5cf80cf533b4", "268ebb57a93e4ef197235c68111ed5a6", userData.getString("FirstName"), userData.getString("LastName"), userData.getString("Email"));
-
-        cx2Conn.close();
-
-        return url;
-    }
-    */
-
     public class UserPermissionsPojo {
         private Boolean isEmployee;
     	private Boolean isAdmin;

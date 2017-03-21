@@ -7,9 +7,11 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.net.URL;
 import java.util.Map;
 
 /**
@@ -30,9 +32,11 @@ public class PdfUtilities    {
         document.addPage( page );
         contentStream = new PDPageContentStream(document, page);
 
+        File logo = getLogoFile();
+
         // add an image
         try {
-            PDImageXObject ximage = PDImageXObject.createFromFile("CXLogo-200.png", document); // TODO: pass municipality image
+            PDImageXObject ximage = PDImageXObject.createFromFile(logo.getAbsolutePath(), document); // TODO: show  municipality image
             float scale = 0.5f; // alter this value to set the image size
             contentStream.drawImage(ximage, 480, 695, ximage.getWidth()*scale, ximage.getHeight()*scale);
         } catch (IOException ioex) {
@@ -116,6 +120,21 @@ public class PdfUtilities    {
                 ),
                 " "
         );
+    }
+
+    private static File getLogoFile() throws IOException {
+        // HACK: quick fix to get a *^&% image on the WM server
+        URL imageURL = new URL("http://www.civicxpress.com/wp-content/uploads/2016/12/CXLogo-200.png");
+        BufferedImage originalImage = ImageIO.read(imageURL);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(originalImage, "png", baos );
+        File logo = File.createTempFile("logo", ".png");
+        FileOutputStream fos = new FileOutputStream(logo);
+        baos.writeTo(fos);
+        fos.close();
+        logo.deleteOnExit();
+        System.out.println(logo.getAbsolutePath());
+        return logo;
     }
 
 }
