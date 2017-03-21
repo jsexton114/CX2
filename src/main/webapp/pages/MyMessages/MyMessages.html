@@ -1,4 +1,4 @@
-<wm-page data-ng-controller="MyFeesPageController" pagetitle="My Fees" name="page1">
+<wm-page data-ng-controller="MyMessagesPageController" pagetitle="My Messages" name="page1">
     <wm-header content="header" name="header1"></wm-header>
     <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
     <wm-content name="content1">
@@ -10,8 +10,8 @@
                         <wm-breadcrumb dataset="bind:Variables.Breadcrumb.dataSet" name="breadcrumb1"></wm-breadcrumb>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow3">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn3_1"></wm-gridcolumn>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn3"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn4">
                         <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" content="selectMunicipality" class="panel-transparent">
                             <wm-param name="municipalityId" value="bind:pageParams.municipalityId" type="integer"></wm-param>
@@ -19,9 +19,9 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-panel iconclass="wi wi-attach-money" autoclose="outsideClick" name="panelFees" title="My Fees" class="panel-primary"></wm-panel>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                        <wm-panel iconclass="wi wi-message" autoclose="outsideClick" name="panel2" title="My Messages" class="panel-primary"></wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
