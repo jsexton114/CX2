@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.civicxpress.pdfutilities.PdfUtilities; // used in WM
+import com.civicxpress.pdfutilities.PdfUtilities;  // used in WM
 
 /**
  * Created by jason on 3/14/2017.
@@ -25,16 +25,11 @@ public class ESignGenieApi {
             throws IOException {
         String uploadResponse = null;
         String folderAccessUrl = null;
-        byte[] fileBytes = null;
         String filePath = null;
-
-        formData.put("Signature  ", "${s:1:______________}");
-        filePath = PdfUtilities.createDynamicFormPdf(title, formData);
+        filePath = PdfUtilities.createDynamicFormPdf(title, formData, true);
         System.out.println("filePath: " + filePath);
-
         uploadResponse = ESignGenieApi.createFolder(filePath, title + ".pdf",
                 title, clientId, clientSecret, firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);
-
         System.out.println(uploadResponse);
         folderAccessUrl = getFolderAccessUrl(uploadResponse);
         System.out.println("folderAccessURL: " + folderAccessUrl);

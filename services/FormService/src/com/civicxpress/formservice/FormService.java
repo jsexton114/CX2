@@ -133,7 +133,7 @@ public class FormService {
     	return userPermissions;
     }
     
-    public String getDocumentSignatureLink(String guid) throws IOException, java.sql.SQLException {
+    public String getDocumentSignatureLink(String formGuid) throws IOException, java.sql.SQLException {
         // TODO: implementation. This is just a stub to test publishing.
         DBRow userData = getUserData();
         
@@ -141,7 +141,7 @@ public class FormService {
 
         // in FormService, instantiate these values
         String title = "Form Title";
-        Map<String, Object> formData = getFormData(guid);
+        Map<String, Object> formData = getFormData(formGuid);
         String clientId  = "a4bb2dd0071640b6936f5cf80cf533b4"; // TODO: this should come from the municipalities eSign Genie settiings
         String clientSecret = "268ebb57a93e4ef197235c68111ed5a6";  // TODO: this should come from the municipalities eSign Genie settiings
         String firstNameOfRecipientParty = userData.getString("FirstName");

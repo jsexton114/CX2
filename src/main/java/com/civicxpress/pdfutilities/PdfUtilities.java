@@ -5,7 +5,9 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -15,36 +17,62 @@ import java.util.Map;
  */
 public class PdfUtilities    {
 
-    public static String createDynamicFormPdf(String title, Map<String, Object> formData) throws IOException {
+    public static String createDynamicFormPdf(String title, Map<String, Object> formData, boolean addSignatureLine) throws IOException {
         final float LINE_HEIGHT = 20;
-        final float COLUMN_WIDTH = 200;
+        final float COLUMN_WIDTH = 275;
         PDDocument document;
         PDPage page;
         PDFont font;
         PDPageContentStream contentStream;
-        String entryValue;
 
         page = new PDPage();
         document = new PDDocument();
         document.addPage( page );
-        font = PDType1Font.HELVETICA_BOLD;
         contentStream = new PDPageContentStream(document, page);
+
+        // add an image
+        try {
+            PDImageXObject ximage = PDImageXObject.createFromFile("CXLogo-200.png", document); // TODO: pass municipality image
+            float scale = 0.5f; // alter this value to set the image size
+            contentStream.drawImage(ximage, 480, 695, ximage.getWidth()*scale, ximage.getHeight()*scale);
+        } catch (IOException ioex) {
+            System.out.println("No image for you");
+        }
+
+        // add the line
+        contentStream.setLineWidth(1);
+        contentStream.moveTo(20, 685);
+        contentStream.lineTo(580, 685);
+        contentStream.closeAndStroke();
+
         contentStream.beginText();
-        contentStream.setFont( font, 14 );
-        contentStream.moveTextPositionByAmount( 100, 700 );
-        contentStream.drawString(title);
-        font = PDType1Font.HELVETICA;
-        contentStream.setFont( font, 12 );
+        contentStream.setFont( PDType1Font.HELVETICA_BOLD, 14 );
+        contentStream.newLineAtOffset( 100, 690 );
+        contentStream.showText(title);
+        contentStream.setFont( PDType1Font.HELVETICA, 12 );
+        contentStream.newLineAtOffset(0, -15);
 
         for (Map.Entry<String, Object> entry : formData.entrySet())
         {
-            entryValue = "";
-            if (entry.getValue() != null) entryValue = entry.getValue().toString();
-            contentStream.moveTextPositionByAmount( 0, -LINE_HEIGHT );
-            contentStream.drawString(entry.getKey());
-            contentStream.moveTextPositionByAmount( COLUMN_WIDTH, 0);
-            contentStream.drawString(entryValue);
-            contentStream.moveTextPositionByAmount( -COLUMN_WIDTH, 0);
+            String formattedEntryKey = "";
+            String entryValue = "";
+            formattedEntryKey = splitCamelCase(formatTextLength(entry.getKey().trim(), 40));
+            if (entry.getValue() != null) entryValue = formatTextLength(entry.getValue().toString(), 30);;
+            contentStream.setNonStrokingColor(Color.gray);
+            contentStream.setFont(PDType1Font.HELVETICA, 12);
+            contentStream.newLineAtOffset( 0, -LINE_HEIGHT );
+            contentStream.showText(formattedEntryKey + ":");
+            contentStream.setNonStrokingColor(Color.black);
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+            contentStream.newLineAtOffset( COLUMN_WIDTH, 0);
+            contentStream.showText(entryValue);
+            contentStream.newLineAtOffset( -COLUMN_WIDTH, 0);
+        }
+
+        if (addSignatureLine) {
+            // HACK: This class shouldn't know about eSign Genie syntax
+            // TODO: isolate the eSign Genie syntax or change the createDynamicFormPdf arguments to accomdate the needs
+            addESignGenieSignature(LINE_HEIGHT, COLUMN_WIDTH, contentStream);
         }
 
         contentStream.endText();
@@ -56,4 +84,39 @@ public class PdfUtilities    {
         return file.getPath();
     }
 
+    private static void addESignGenieSignature(float LINE_HEIGHT, float COLUMN_WIDTH, PDPageContentStream contentStream) throws IOException {
+        contentStream.setNonStrokingColor(Color.black);
+        contentStream.setFont(PDType1Font.HELVETICA, 12);
+        contentStream.newLineAtOffset( 0, -LINE_HEIGHT * 2);
+        contentStream.showText("Signature  ");
+        contentStream.setNonStrokingColor(Color.white);
+        contentStream.newLineAtOffset( COLUMN_WIDTH, 0);
+        contentStream.showText("${s:1:______________}");
+    }
+
+    private static String formatTextLength(String text, int maximumLength) {
+        final String ELLIPSES = "...";
+        String formattedText = null;
+        if (text.length() > maximumLength) {
+            formattedText = text.substring(0, maximumLength - ELLIPSES.length()) + ELLIPSES;
+        } else {
+            formattedText = text;
+        }
+        return formattedText;
+    }
+
+    // "How do I convert CamelCase into human-readable names in Java?", polygenelubricants, answered Apr 1 '10 at 11:35, retrieved 3/21/2017
+    // http://stackoverflow.com/questions/2559759/how-do-i-convert-camelcase-into-human-readable-names-in-java
+    private static String splitCamelCase(String s) {
+        return s.replaceAll(
+                String.format("%s|%s|%s",
+                        "(?<=[A-Z])(?=[A-Z][a-z])",
+                        "(?<=[^A-Z])(?=[A-Z])",
+                        "(?<=[A-Za-z])(?=[^A-Za-z])"
+                ),
+                " "
+        );
+    }
+
 }
+

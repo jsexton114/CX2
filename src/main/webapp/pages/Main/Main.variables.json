@@ -1095,33 +1095,5 @@
       "value" : "bind:Widgets.selectForm.datavalue.ID"
     } ],
     "pageTransitions" : "none"
-  },
-  "SignDocument" : {
-    "_id" : "wm-SignDocument-wm.ServiceVariable-1490116933402",
-    "name" : "SignDocument",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "guid",
-      "value" : "983DD3B3-C40C-E711-80C9-0CC47A46DD63",
-      "type" : "string"
-    } ],
-    "type" : "string",
-    "service" : "FormService",
-    "operation" : "getDocumentSignatureLink",
-    "operationId" : "FormController_getDocumentSignatureLink",
-    "operationType" : "get",
-    "serviceType" : "JavaService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "SignDocumentonSuccess($event, $scope)",
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "Form"
   }
 }

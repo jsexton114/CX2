@@ -49,8 +49,8 @@ public class FormController {
     @RequestMapping(value = "/documentSignatureLink", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String getDocumentSignatureLink(@RequestParam(value = "guid", required = false) String guid) throws IOException, SQLException {
-        return formService.getDocumentSignatureLink(guid);
+    public String getDocumentSignatureLink(@RequestParam(value = "formGuid", required = false) String formGuid) throws IOException, SQLException {
+        return formService.getDocumentSignatureLink(formGuid);
     }
 
     @RequestMapping(value = "/formData", method = RequestMethod.GET)
