@@ -1125,6 +1125,7 @@ function getCookie(cname) {
                 this._documentViewer.setDocument(null);
                 this.updateDemoUIState();
                 this.clearBookmarks();
+                window.close();
             };
             DocumentViewerDemoApp.prototype.documentViewer_Operation =
                 function(sender, e) {
