@@ -41,7 +41,7 @@ public class FormStatusUpdate {
     private static final Logger logger = LoggerFactory.getLogger(FormStatusUpdate.class);
     private static final String RESET_NOTIFICATION_MAIL_ID ="civicxpress@gmail.com ";
     private static final String RESET_NOTIFICATION_MAIL_PASSWORD ="civicxpress2016!";
-    private static final String FORM_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/Forms?FormGUID=";
+    //private static final String FORM_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/Forms?FormGUID=";
     
     @Autowired
     private SecurityService securityService;
@@ -55,7 +55,7 @@ public class FormStatusUpdate {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
- public String sendStatusUpdateMail(String username ,String recipient,String emailSubject,String emailBody,String municipality,String formType,String municipalitySignature,String formTitle,String formGUID) throws MessagingException {
+ public String sendStatusUpdateMail(String username ,String recipient,String emailSubject,String emailBody,String municipality,String formType,String municipalitySignature,String formTitle,String formLink) throws MessagingException {
         
       
         
@@ -75,8 +75,8 @@ public class FormStatusUpdate {
         
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
         
-        String formURL=  FORM_URL+formGUID;
-        logger.info(formGUID);
+        String formURL=  formLink;
+        logger.info(formLink);
         
         String emailContent = "Hi" + " "+username+","+"<br /><br />";
         

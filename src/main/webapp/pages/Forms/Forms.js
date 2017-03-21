@@ -127,23 +127,26 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
     $scope.svSetFormStatusonSuccess = function(variable, data) {
         setFormStatusProgressValue($scope.Widgets.selectStatus._proxyModel.id);
-
+        debugger
         //Checking to send mail
         if ($scope.Widgets.selectStatus.datavalue.sendEmail) {
-            //Sending mail to  CreatedBy
-            $scope.Variables.SendStatusUpdate.setInput({
+            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID
+                //Sending mail to  CreatedBy
+            $scope.Variables.svSendStatusUpdate.setInput({
+                'formLink': tempLink,
                 'username': $scope.Variables.CurrentForm.dataSet.data[0].users.firstName,
                 'recipient': $scope.Variables.CurrentForm.dataSet.data[0].users.email
             });
-            $scope.Variables.SendStatusUpdate.update();
+            $scope.Variables.svSendStatusUpdate.update();
             //Sending mail to SharedWith
             var contacts = $scope.sharedWith;
             for (let i = 0; i < contacts.length; i++) {
-                $scope.Variables.SendStatusUpdate.setInput({
+                $scope.Variables.svSendStatusUpdate.setInput({
+                    'formLink': tempLink,
                     'username': contacts[i].usersBySharedWithUser.firstName,
                     'recipient': contacts[i].usersBySharedWithUser.email
                 });
-                $scope.Variables.SendStatusUpdate.update();
+                $scope.Variables.svSendStatusUpdate.update();
             }
         }
 

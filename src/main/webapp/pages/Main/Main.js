@@ -3,6 +3,8 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
+        debugger
+
         //current date
         //$scope.Variables.Today.dataSet.dataValue = Date.parse(new Date().toDateString());
 
@@ -77,8 +79,8 @@ Application.$controller("pagedialogNewFormController", ["$scope",
 ]);
 
 Application.$controller("pdlgNewFormController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
