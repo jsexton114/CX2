@@ -315,14 +315,16 @@
                                                     <wm-grid-column binding="masterInspections.inspectionOutcome.outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="masterInspections.requestedFor" caption="Requested For" type="string" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true"
                                                     readonly="false"></wm-grid-column>
-                                                    <wm-grid-action key="addNewRow" display-name="Request Inspection" show="true" class="btn-primary" iconclass="wi wi-plus" title="Request Inspection" action="Widgets.dialogInspectionRequest.open()"
-                                                    shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-action key="addNewRow" display-name="Request Inspection" show="bind:Variables.CurrentForm.firstRecord.formStatuses.allowInspections" class="btn-primary" iconclass="wi wi-plus"
+                                                    title="Request Inspection" action="Widgets.dialogInspectionRequest.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="bind:Variables.svUserPermissions.dataSet.isEmployee" class="btn-transparent" action="Variables.lvDeleteFormsToInspections.deleteRecord()"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow83">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn155_3" horizontalalign="center">
-                                                <wm-label padding="unset 0.5em" name="label91" caption="Sorry, inspections can not be sc" show="bind:(Variables.CurrentForm.firstRecord.formTypes.inspections=='false')&amp;&amp;(Variables.CurrentForm.firstRecord.formStatuses.allowInspections=='false')"></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label91" caption="Sorry, inspections can not be scheduled while the form is in the current status. Please check back later." show="bind:!(Variables.CurrentForm.firstRecord.formStatuses.allowInspections)"
+                                                fontweight="bold" color="red"></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
@@ -959,7 +961,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions10">
-                <wm-button class="btn-primary" caption="Request" type="button" margin="unset 0.5em" name="button2InspectionRequest" on-click="Variables.lvMasterInspectionsInsert.createRecord()" iconclass="wi wi-plus"></wm-button>
+                <wm-button class="btn-primary" caption="Request" type="button" margin="unset 0.5em" name="button2InspectionRequest" on-click="Variables.lvMasterInspectionsInsert.createRecord()" iconclass="wi wi-plus" show="true" disabled="bind:!Widgets.selectInspectionDesign.datavalue || !Widgets.dateInspectionRequest.datavalue"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button21" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
