@@ -9,6 +9,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.lang.Exception;
 import org.apache.http.HttpEntity;
+import java.io.IOException;
 import java.lang.Object;
 import java.util.Map;
 import com.civicxpress.formservice.FormService.UserPermissionsPojo;
@@ -48,8 +49,8 @@ public class FormController {
     @RequestMapping(value = "/documentSignatureLink", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String getDocumentSignatureLink(@RequestParam(value = "formGuid", required = false) String formGuid) throws Exception {
-        return formService.getDocumentSignatureLink(formGuid);
+    public String getDocumentSignatureLink(@RequestParam(value = "guid", required = false) String guid) throws IOException, SQLException {
+        return formService.getDocumentSignatureLink(guid);
     }
 
     @RequestMapping(value = "/formData", method = RequestMethod.GET)

@@ -5,7 +5,7 @@ package com.civicxpress.formservice;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.civicxpress.esigngenie.eSignGenieApi;
+import com.civicxpress.esigngenie.ESignGenieApi;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -133,11 +133,82 @@ public class FormService {
     	return userPermissions;
     }
     
-    private static String getDocumentSignatureLink() throws IOException {
+    public String getDocumentSignatureLink(String guid) throws IOException, java.sql.SQLException {
         // TODO: implementation. This is just a stub to test publishing.
-        return null;
+        DBRow userData = getUserData();
+        
+        String folderAccessUrl = null;
+
+        // in FormService, instantiate these values
+        String title = "Form Title";
+        Map<String, Object> formData = getFormData(guid);
+        String clientId  = "a4bb2dd0071640b6936f5cf80cf533b4"; // TODO: this should come from the municipalities eSign Genie settiings
+        String clientSecret = "268ebb57a93e4ef197235c68111ed5a6";  // TODO: this should come from the municipalities eSign Genie settiings
+        String firstNameOfRecipientParty = userData.getString("FirstName");
+        String lastNameOfRecipientParty = userData.getString("LastName");
+        String emailIdOfRecipientParty = "jason_sexton@hotmail.com"; // i.e. userData.getString("Email")
+
+        // then call this method in ESignGenie
+        folderAccessUrl = ESignGenieApi.createAndSignDocument(title, formData, clientId, clientSecret,
+                firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);
+        
+
+        return folderAccessUrl;
     }
     
+        // Test method only. Actual data will be produced in FormService
+    private static Map<String, Object> getTestFormData() {
+        Map<String, Object> formData = new java.util.LinkedHashMap<String, Object>();
+        formData.put("ID", "10");
+        formData.put("FormGUID", "17B9E89A-D104-E711-80C9-0CC47A46DD63");
+        formData.put("FormTitle", "");
+        formData.put("CreatedBy", "jkeller@tekdoginc.com");
+        formData.put("CreatedDate", "3/9/2017");
+        formData.put("ModifiedDate", "");
+        formData.put("ModifiedBy", "");
+        formData.put("TotalSqft", "33");
+        formData.put("TotalUnits", "");
+        formData.put("Basement", "");
+        formData.put("VendorId", "");
+        formData.put("PropertyType", "");
+        formData.put("FEMANationalFloodInsuranceProgramSpecialFloodHazardArea", "0");
+        formData.put("VerifiedPerFloodInsuranceRateMapPanel", "");
+        formData.put("FirstFloorSqft", "15");
+        formData.put("SecondFloorSqft", "");
+        formData.put("Height", "");
+        formData.put("StructureHeight", "");
+        formData.put("StructureWidth", "");
+        formData.put("StructureLength", "");
+        formData.put("SidingMaterial", "mustard");
+        formData.put("WillElectricBeInstalled", "0");
+        formData.put("IntendedUseOfAccessoryStructure", "things");
+        formData.put("ApproximateValue", "100");
+        formData.put("PropertyType3", "Industrial");
+        return formData;
+    }
+
+    private Map<String, Object> getFormData(String formGuid) throws com.microsoft.sqlserver.jdbc.SQLServerException, java.sql.SQLException {
+        // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
+        DBQueryParams params = new DBQueryParams();
+        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        params.addString("formGuid", formGuid);
+        DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", params).get(0);
+        params.addLong("formTypeId", masterFormData.getLong("FormTypeId"));
+        List<DBRow> fields = DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypeFields WHERE FormTypeId=:formTypeId", params);
+        Map<String, Object> formData = getFormData(masterFormData.getLong("FormTypeId"), formGuid);
+        return formData;
+    }
+    
+    private DBRow getUserData() throws com.microsoft.sqlserver.jdbc.SQLServerException, java.sql.SQLException {
+        // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
+        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        DBQueryParams params = new DBQueryParams();
+        params.addLong("userId", Long.parseLong(securityService.getUserId()));
+        DBRow userData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Users WHERE ID=:userId", params);
+        return userData;
+    }
+    
+    /*
     private byte[] createDynamicFormPdf(Connection cx2Conn, String formGuid) throws Exception {
         DBQueryParams params = new DBQueryParams();
         params.addString("formGuid", formGuid);
@@ -149,64 +220,28 @@ public class FormService {
         List<DBRow> fields = DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypeFields WHERE FormTypeId=:formTypeId", params);
         
         Map<String, Object> formData = getFormData(masterFormData.getLong("FormTypeId"), formGuid);
-        
-        final float LINE_HEIGHT = 20;
-        final float COLUMN_WIDTH = 200;
-        PDDocument document = new PDDocument();
-        PDPage page = new PDPage();
-        document.addPage( page );
 
-        PDFont font = PDType1Font.HELVETICA_BOLD;
-        PDPageContentStream contentStream = new PDPageContentStream(document, page);
-
-        contentStream.beginText();
-        contentStream.setFont( font, 14 );
-        contentStream.moveTextPositionByAmount( 100, 700 );
-        contentStream.drawString(masterFormData.getString("FormTitle"));
-
-        font = PDType1Font.HELVETICA;
-        contentStream.setFont( font, 12 );
-        for (Map.Entry<String, Object> entry : formData.entrySet())
-        {
-            contentStream.moveTextPositionByAmount( 0, -LINE_HEIGHT );
-            contentStream.drawString(entry.getKey());
-            contentStream.moveTextPositionByAmount( COLUMN_WIDTH, 0);
-            contentStream.drawString(entry.getValue() == null ? "" : entry.getValue().toString());
-            contentStream.moveTextPositionByAmount( -COLUMN_WIDTH, 0);
-        }
-        
-        // TODO: Add signature thing
-
-        contentStream.endText();
-        contentStream.close();
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        document.save(os);
-        
-        document.close();
-
-        byte[] pdfBytes = os.toByteArray();
-        os.close();
-        
-        return pdfBytes;
+        return null;        
     }
     
     public String getDocumentSignatureLink(String formGuid) throws Exception {
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
-        
+
         DBQueryParams params = new DBQueryParams();
         params.addLong("userId", Long.parseLong(securityService.getUserId()));
         DBRow userData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Users WHERE ID=:userId", params);
-        
-    	String formTitle = "TestThing";
-    	byte[] pdfBytes = createDynamicFormPdf(cx2Conn, formGuid);
 
-    	String url = eSignGenieApi.createFolder(pdfBytes, formTitle, "a4bb2dd0071640b6936f5cf80cf533b4", "268ebb57a93e4ef197235c68111ed5a6", userData.getString("FirstName"), userData.getString("LastName"), userData.getString("Email"));
-        
+        String formTitle = "TestThing";
+        byte[] pdfBytes = createDynamicFormPdf(cx2Conn, formGuid);
+
+        String url = eSignGenieApi.createFolder(pdfBytes, formTitle, "a4bb2dd0071640b6936f5cf80cf533b4", "268ebb57a93e4ef197235c68111ed5a6", userData.getString("FirstName"), userData.getString("LastName"), userData.getString("Email"));
+
         cx2Conn.close();
-        
-    	return url;
+
+        return url;
     }
-    
+    */
+
     public class UserPermissionsPojo {
         private Boolean isEmployee;
     	private Boolean isAdmin;

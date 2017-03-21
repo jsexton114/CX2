@@ -59,6 +59,11 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
         $scope.projectsCount = data.content[0].count;
     };
 
+
+    $scope.SignDocumentonSuccess = function(variable, data) {
+        window.open(data);
+    };
+
 }]);
 
 Application.$controller("dialogNewFormController", ["$scope",
