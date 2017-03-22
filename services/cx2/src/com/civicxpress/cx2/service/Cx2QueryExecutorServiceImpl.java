@@ -2103,6 +2103,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<AllFeesOfFormsForCreatedByAndSharedWithResponse> executeAllFeesOfFormsForCreatedByAndSharedWith(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("allowPayment", allowPayment);
+        params.put("paidStatus", paidStatus);
+        params.put("userId", userId);
+
+        return queryExecutor.executeNamedQuery("AllFeesOfFormsForCreatedByAndSharedWith", params, AllFeesOfFormsForCreatedByAndSharedWithResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportAllFeesOfFormsForCreatedByAndSharedWith(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("allowPayment", allowPayment);
+        params.put("paidStatus", paidStatus);
+        params.put("userId", userId);
+
+        return queryExecutor.exportNamedQueryData("AllFeesOfFormsForCreatedByAndSharedWith", params, exportType, AllFeesOfFormsForCreatedByAndSharedWithResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<VendorsCountForMunicipalitiesResponse> executeVendorsCountForMunicipalities(Integer municipalityId, Pageable pageable) {
         Map params = new HashMap(1);
 

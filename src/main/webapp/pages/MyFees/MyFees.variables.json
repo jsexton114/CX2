@@ -17,5 +17,41 @@
     "type" : "string",
     "isList" : true,
     "saveInPhonegap" : false
+  },
+  "svAllFeesOfForms" : {
+    "_id" : "wm-svAllFeesOfForms-wm.ServiceVariable-1490173039006",
+    "name" : "svAllFeesOfForms",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "allowPayment",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "paidStatus",
+      "value" : "Unpaid",
+      "type" : "string"
+    }, {
+      "target" : "userId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.AllFeesOfFormsForCreatedByAndSharedWithResponse",
+    "service" : "cx2",
+    "operation" : "executeAllFeesOfFormsForCreatedByAndSharedWith",
+    "operationId" : "QueryExecutionController_executeAllFeesOfFormsForCreatedByAndSharedWith",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }

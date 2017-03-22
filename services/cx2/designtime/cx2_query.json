@@ -720,6 +720,121 @@
       } ]
     }
   },
+  "AllFeesOfFormsForCreatedByAndSharedWith" : {
+    "name" : "AllFeesOfFormsForCreatedByAndSharedWith",
+    "description" : "AllFeesOfFormsForCreatedByAndSharedWith",
+    "version" : "V2",
+    "queryString" : "select \nid as feeId,\nmasterForms.formGuid as formGuid,\nmasterForms.formTitle as formTitle,\nmasterForms.formTypes.formType as FormType,\nmasterForms.formTypes.municipalities.municipalityName as municipality,\nmasterForms.giscontacts.gisrecords.fullAddress as address,\nfeeType as feeType,\namount as amount\nfrom Fees where masterForms.formStatuses.allowPayment=:allowPayment and paidStatus=:paidStatus and formGuid IN \n       (select formGuid from MasterForms where userId=:userId or formGuid IN \n              (select relatedGuid from  SharedWith where sharedWithUser = :userId)\n        )",
+    "countQueryString" : "select count(*)  from MasterForms where userId=:userId or formGuid IN \n              (select relatedGuid from  SharedWith where sharedWithUser = :userId)\n        )",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "allowPayment",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    }, {
+      "name" : "paidStatus",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Paid",
+      "required" : true
+    }, {
+      "name" : "userId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.AllFeesOfFormsForCreatedByAndSharedWithResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "feeId",
+        "fieldName" : "feeId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "formGuid",
+        "fieldName" : "formGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formTitle",
+        "fieldName" : "formTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "FormType",
+        "fieldName" : "formType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "municipality",
+        "fieldName" : "municipality",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "address",
+        "fieldName" : "address",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "feeType",
+        "fieldName" : "feeType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "amount",
+        "fieldName" : "amount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigDecimal",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "CheckIfCompanyUserIsVendorAdmin" : {
     "name" : "CheckIfCompanyUserIsVendorAdmin",
     "description" : "CheckIfCompanyUserIsVendorAdmin",

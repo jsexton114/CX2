@@ -399,6 +399,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateProjectDescription(UpdateProjectDescriptionRequest updateProjectDescriptionRequest);
 
+    Page<AllFeesOfFormsForCreatedByAndSharedWithResponse> executeAllFeesOfFormsForCreatedByAndSharedWith(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
+
+    Downloadable exportAllFeesOfFormsForCreatedByAndSharedWith(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
+
     Page<VendorsCountForMunicipalitiesResponse> executeVendorsCountForMunicipalities(Integer municipalityId, Pageable pageable);
 
     Downloadable exportVendorsCountForMunicipalities(ExportType exportType, Integer municipalityId, Pageable pageable);

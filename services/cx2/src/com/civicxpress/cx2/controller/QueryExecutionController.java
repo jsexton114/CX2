@@ -1851,6 +1851,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/AllFeesOfFormsForCreatedByAndSharedWith", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "AllFeesOfFormsForCreatedByAndSharedWith")
+    public Page<AllFeesOfFormsForCreatedByAndSharedWithResponse> executeAllFeesOfFormsForCreatedByAndSharedWith(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: AllFeesOfFormsForCreatedByAndSharedWith");
+        Page<AllFeesOfFormsForCreatedByAndSharedWithResponse> _result = queryService.executeAllFeesOfFormsForCreatedByAndSharedWith(allowPayment, paidStatus, userId, pageable);
+        LOGGER.debug("got the result for named query: AllFeesOfFormsForCreatedByAndSharedWith, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query AllFeesOfFormsForCreatedByAndSharedWith")
+    @RequestMapping(value = "/queries/AllFeesOfFormsForCreatedByAndSharedWith/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportAllFeesOfFormsForCreatedByAndSharedWith(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: AllFeesOfFormsForCreatedByAndSharedWith");
+
+        return queryService.exportAllFeesOfFormsForCreatedByAndSharedWith(exportType, allowPayment, paidStatus, userId, pageable);
+    }
+
     @RequestMapping(value = "/queries/VendorsCountForMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "VendorsCountForMunicipalities")

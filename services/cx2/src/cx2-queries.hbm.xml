@@ -1613,6 +1613,38 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
     <query-param name="project" type="java.lang.String"/>
     </sql-query>
 
+    <query name="AllFeesOfFormsForCreatedByAndSharedWith">
+        <![CDATA[
+        select 
+id as feeId,
+masterForms.formGuid as formGuid,
+masterForms.formTitle as formTitle,
+masterForms.formTypes.formType as FormType,
+masterForms.formTypes.municipalities.municipalityName as municipality,
+masterForms.giscontacts.gisrecords.fullAddress as address,
+feeType as feeType,
+amount as amount
+from Fees where masterForms.formStatuses.allowPayment=:allowPayment and paidStatus=:paidStatus and formGuid IN 
+       (select formGuid from MasterForms where userId=:userId or formGuid IN 
+              (select relatedGuid from  SharedWith where sharedWithUser = :userId)
+        )
+        ]]>
+    <query-param name="allowPayment" type="java.lang.Boolean"/>
+    <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="AllFeesOfFormsForCreatedByAndSharedWith__count">
+        <![CDATA[
+        select count(*)  from MasterForms where userId=:userId or formGuid IN 
+              (select relatedGuid from  SharedWith where sharedWithUser = :userId)
+        )
+        ]]>
+    <query-param name="allowPayment" type="java.lang.Boolean"/>
+    <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="VendorsCountForMunicipalities">
         <![CDATA[
         select count(*) as vendorsCount from VendorApprovals where MunicipalityId=:MunicipalityId
