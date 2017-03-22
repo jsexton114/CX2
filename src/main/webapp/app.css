@@ -82,3 +82,10 @@ div.app-checkbox label.disabled input[type=checkbox]:checked + .caption:before {
 .modal-open #wm-app-content {
     overflow: hidden;
 }
+@media (min-width: 768px) {
+    .modal-larger {
+        width: 70% !important;
+        height: 80% !important;
+        margin: 30px auto !important;
+    }
+}

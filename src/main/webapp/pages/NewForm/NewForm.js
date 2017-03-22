@@ -194,7 +194,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         submitForm();
     };
 
-
     $scope.svSubmitFormonSuccess = function(variable, data) {
         if ($scope.signature === true) {
             $scope.Variables.svGetSignLink.setInput('formGuid', data);
@@ -210,19 +209,16 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         $scope.Widgets.lfSubmitOnBehalf.formfields.country.value = 'USA';
     };
 
-
     $scope.wizardstep2Skip = function($isolateScope, currentStep, stepIndex) {
         $scope.Widgets.checkboxNewUser.reset();
         $scope.Widgets.searchOnBehalfOfUser.reset();
         $scope.Widgets.lfSubmitOnBehalf.clearData();
     };
 
-
     $scope.lfSubmitOnBehalfSuccess = function($event, $operation, $data) {
         $scope.Variables.svSubmitForm.setInput('behalfOfUserId', $data.id);
         submitForm();
     };
-
 
     $scope.newFormWizardCancel = function($isolateScope, steps) {
         $location.path("/");
@@ -246,7 +242,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
             $scope.Widgets.lfOwner.formfields.id.value = null;
         }
     };
-
 
     $scope.checkboxVendorIsOwnerChange = function($event, $isolateScope, newVal, oldVal) {
         if (newVal === true) {
@@ -272,11 +267,9 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         }
     };
 
-
     $scope.lfOwnerSuccess = function($event, $operation, $data) {
         submitForm($data.id);
     };
-
 
     $scope.svUploadDocumentsonSuccess = function(variable, data) {
         $scope.Variables.goToPage_UserOpenForms.navigate();
@@ -302,18 +295,16 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         }
     };
 
-
     $scope.checkboxOtherOwnerChange = function($event, $isolateScope, newVal, oldVal) {
         setLFFieldsRO($scope.Widgets.lfOwner, !newVal);
     };
 
     $scope.svGetOwnersonSuccess = function(variable, data) {};
 
-
     $scope.svGetSignLinkonSuccess = function(variable, data) {
-        window.open(data);
+        $scope.Variables.stvEsignUrl.dataSet.dataValue = data;
+        $scope.Widgets.dialogSignForm.open();
     };
-
 }]);
 
 
@@ -555,6 +546,24 @@ Application.$controller("gridOwnersController", ["$scope",
 
         $scope.selectOwner = function($event, $rowData) {
             $event.preventDefault();
+        };
+    }
+]);
+
+Application.$controller("eSignIframeDialogController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogSignFormController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.dialogSignFormClose = function($event, $isolateScope) {
+            $scope.Variables.goToPage_UserOpenForms.navigate();
         };
     }
 ]);

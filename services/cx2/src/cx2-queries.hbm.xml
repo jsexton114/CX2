@@ -162,7 +162,7 @@ LEFT JOIN Users AS U ON U.ID=MF.UserId
 LEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners
 LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
 LEFT OUTER JOIN (
-		SELECT GF.RelatedFormGuid as formGuid,
+		SELECT TOP 1 GF.RelatedFormGuid as formGuid,
 				GR.Lot,
 				SD.Subdivision,
 				GR.FullAddress
@@ -1263,7 +1263,7 @@ LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
 LEFT JOIN Users AS U ON U.ID=MF.UserId
 LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
 LEFT OUTER JOIN (
-		SELECT GF.RelatedFormGuid as formGuid,
+		SELECT TOP 1 GF.RelatedFormGuid as formGuid,
 				GR.Lot,
 				SD.Subdivision,
 				GR.FullAddress
@@ -1581,7 +1581,7 @@ LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
 LEFT JOIN Users AS U ON U.ID=MF.UserId
 LEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners
 LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
-LEFT OUTER JOIN (SELECT GF.RelatedFormGuid as formGuid,
+LEFT OUTER JOIN (SELECT TOP 1 GF.RelatedFormGuid as formGuid,
 				GR.Lot,
 				SD.Subdivision,
 				GR.FullAddress
