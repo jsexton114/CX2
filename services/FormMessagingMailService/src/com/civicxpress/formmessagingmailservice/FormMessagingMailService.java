@@ -111,7 +111,7 @@ public class FormMessagingMailService {
          
         emailContent = emailContent+"<a href ='"+formURL+ "'>Click Here</a>";
          
-        emailContent = emailContent+" to view the form, then browse to the Messages tab.";
+        emailContent = emailContent+" to view the form and write a message.";
          
         emailContent = emailContent+"<br /><br />";
         
