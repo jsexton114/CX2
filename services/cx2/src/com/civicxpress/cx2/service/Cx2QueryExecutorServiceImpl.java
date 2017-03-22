@@ -870,6 +870,32 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("CheckIfCompanyUserIsVendorAdmin", params, exportType, CheckIfCompanyUserIsVendorAdminResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse> executeAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(Boolean allowPayment, Integer municipalityId, String paidStatus, Integer userId, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("allowPayment", allowPayment);
+        params.put("municipalityId", municipalityId);
+        params.put("paidStatus", paidStatus);
+        params.put("userId", userId);
+
+        return queryExecutor.executeNamedQuery("AllFeesOfFormsForCreatedByAndSharedWithByMunicipality", params, AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(ExportType exportType, Boolean allowPayment, Integer municipalityId, String paidStatus, Integer userId, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("allowPayment", allowPayment);
+        params.put("municipalityId", municipalityId);
+        params.put("paidStatus", paidStatus);
+        params.put("userId", userId);
+
+        return queryExecutor.exportNamedQueryData("AllFeesOfFormsForCreatedByAndSharedWithByMunicipality", params, exportType, AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeUpdateProjectDetails(UpdateProjectDetailsRequest updateProjectDetailsRequest) {

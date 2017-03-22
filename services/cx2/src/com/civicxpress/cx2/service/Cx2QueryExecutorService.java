@@ -179,6 +179,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCheckIfCompanyUserIsVendorAdmin(ExportType exportType, Integer user, Integer vendor, Pageable pageable);
 
+    Page<AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse> executeAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(Boolean allowPayment, Integer municipalityId, String paidStatus, Integer userId, Pageable pageable);
+
+    Downloadable exportAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(ExportType exportType, Boolean allowPayment, Integer municipalityId, String paidStatus, Integer userId, Pageable pageable);
+
     Integer executeUpdateProjectDetails(UpdateProjectDetailsRequest updateProjectDetailsRequest);
 
     Integer executeInsertUserPreference(InsertUserPreferenceRequest insertUserPreferenceRequest);

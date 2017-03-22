@@ -789,6 +789,25 @@ public class QueryExecutionController {
         return queryService.exportCheckIfCompanyUserIsVendorAdmin(exportType, user, vendor, pageable);
     }
 
+    @RequestMapping(value = "/queries/AllFeesOfFormsForCreatedByAndSharedWithByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "AllFeesOfFormsForCreatedByAndSharedWithByMunicipality")
+    public Page<AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse> executeAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: AllFeesOfFormsForCreatedByAndSharedWithByMunicipality");
+        Page<AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse> _result = queryService.executeAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(allowPayment, municipalityId, paidStatus, userId, pageable);
+        LOGGER.debug("got the result for named query: AllFeesOfFormsForCreatedByAndSharedWithByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query AllFeesOfFormsForCreatedByAndSharedWithByMunicipality")
+    @RequestMapping(value = "/queries/AllFeesOfFormsForCreatedByAndSharedWithByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: AllFeesOfFormsForCreatedByAndSharedWithByMunicipality");
+
+        return queryService.exportAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(exportType, allowPayment, municipalityId, paidStatus, userId, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdateProjectDetails", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdateProjectDetails")
