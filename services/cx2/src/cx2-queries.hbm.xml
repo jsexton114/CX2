@@ -1756,12 +1756,13 @@ group by formTypes.formType
 
     <sql-query name="InsertFormMessage">
         <![CDATA[
-        insert into FormMessages(UserId,RelatedFormGUID,Message,PostedAt) values(:UserId,:RelatedFormGUID,:Message,:PostedAt)
+        insert into FormMessages(UserId,RelatedFormGUID,Message,PostedAt,MunicipalityMessage) values(:UserId,:RelatedFormGUID,:Message,:PostedAt,:MunicipalityMessage)
         ]]>
     <query-param name="UserId" type="java.lang.Integer"/>
     <query-param name="RelatedFormGUID" type="java.lang.String"/>
     <query-param name="Message" type="java.lang.String"/>
     <query-param name="PostedAt" type="java.sql.Timestamp"/>
+    <query-param name="MunicipalityMessage" type="java.lang.Boolean"/>
     </sql-query>
 
     <query name="ProjectsForUsersAndSharedWith">

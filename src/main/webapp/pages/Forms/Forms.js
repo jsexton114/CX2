@@ -78,6 +78,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
     $scope.PostFormMessageonSuccess = function(variable, data) {
         $scope.Widgets.textAddMessage.datavalue = undefined;
+        $scope.Widgets.textInternalAddMessage.datavalue = undefined;
         let people = $scope.Variables.PeopleList.dataSet;
         if (people.length === 0) {
             // DO nothing
@@ -95,6 +96,8 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         // Posting Message
         $scope.Variables.PostFormMessage.setInput({
             'PostedAt': moment().valueOf(),
+            'MunicipalityMessage': false,
+            'Message': $scope.Widgets.textAddMessage.datavalue
         });
         $scope.Variables.PostFormMessage.update();
     };
@@ -164,7 +167,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     };
 
     $scope.SendFormMessagesMailonSuccess = function(variable, data) {
-        $scope.Variables.PeopleList.dataSet = undefined;
+        $scope.Variables.PeopleList.dataSet = [];
     };
 
     $scope.svUserPermissionsonSuccess = function(variable, data) {
@@ -209,6 +212,17 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
             'AddedBy': $scope.Variables.CurrentUserDetails.dataSet.id
         });
         $scope.Variables.svInsertFormsToInspectionsMapping.update();
+    };
+
+
+    $scope.buttonAddInternalMessageClick = function($event, $isolateScope) {
+        // Posting Message
+        $scope.Variables.PostFormMessage.setInput({
+            'PostedAt': moment().valueOf(),
+            'MunicipalityMessage': true,
+            'Message': $scope.Widgets.textInternalAddMessage.datavalue
+        });
+        $scope.Variables.PostFormMessage.update();
     };
 
 }]);
@@ -443,6 +457,7 @@ Application.$controller("dialogTagPeopleController", ["$scope",
         $scope.ctrlScope = $scope;
         var selectedPeople = [];
         $scope.ButtonTagPeopleClick = function($event, $isolateScope) {
+            debugger
             if ($scope.Widgets.textSearchPeople.datavalue != undefined) {
                 var temp = $scope.Widgets.textSearchPeople.datavalue;
                 var data = $scope.Variables.PeopleList.dataSet;

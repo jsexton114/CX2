@@ -5115,7 +5115,7 @@
     "name" : "InsertFormMessage",
     "description" : "InsertFormMessage",
     "version" : "V1",
-    "queryString" : "insert into FormMessages(UserId,RelatedFormGUID,Message,PostedAt) values(:UserId,:RelatedFormGUID,:Message,:PostedAt)",
+    "queryString" : "insert into FormMessages(UserId,RelatedFormGUID,Message,PostedAt,MunicipalityMessage) values(:UserId,:RelatedFormGUID,:Message,:PostedAt,:MunicipalityMessage)",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -5126,28 +5126,35 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "3",
-      "required" : false
+      "required" : true
     }, {
       "name" : "RelatedFormGUID",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "22523747-49EA-E611-80C9-0CC47A46DD63",
-      "required" : false
+      "testValue" : "D044D9AD-7B0E-E711-80C9-0CC47A46DD63",
+      "required" : true
     }, {
       "name" : "Message",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "FirstMessage",
-      "required" : false
+      "required" : true
     }, {
       "name" : "PostedAt",
       "type" : "timestamp",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1486458194000",
+      "testValue" : 1486458194000,
       "required" : false
+    }, {
+      "name" : "MunicipalityMessage",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
     } ],
     "request" : {
       "wrapped" : true,
@@ -5156,7 +5163,7 @@
     },
     "response" : {
       "typeRef" : "java.lang.Integer",
-      "returns" : "PRIMITIVE",
+      "returns" : "ENTITY",
       "responseType" : "SINGLE"
     }
   },

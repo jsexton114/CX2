@@ -19,14 +19,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class InsertFormMessageRequest implements Serializable {
 
+    @NotNull
     @JsonProperty("UserId")
     private Integer userId;
+    @NotNull
     @JsonProperty("RelatedFormGUID")
     private String relatedFormGuid;
+    @NotNull
     @JsonProperty("Message")
     private String message;
     @JsonProperty("PostedAt")
     private Timestamp postedAt;
+    @NotNull
+    @JsonProperty("MunicipalityMessage")
+    private Boolean municipalityMessage;
 
     public Integer getUserId() {
         return this.userId;
@@ -60,6 +66,14 @@ public class InsertFormMessageRequest implements Serializable {
         this.postedAt = postedAt;
     }
 
+    public Boolean getMunicipalityMessage() {
+        return this.municipalityMessage;
+    }
+
+    public void setMunicipalityMessage(Boolean municipalityMessage) {
+        this.municipalityMessage = municipalityMessage;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,7 +82,8 @@ public class InsertFormMessageRequest implements Serializable {
         return Objects.equals(getUserId(), insertFormMessageRequest.getUserId()) &&
                 Objects.equals(getRelatedFormGuid(), insertFormMessageRequest.getRelatedFormGuid()) &&
                 Objects.equals(getMessage(), insertFormMessageRequest.getMessage()) &&
-                Objects.equals(getPostedAt(), insertFormMessageRequest.getPostedAt());
+                Objects.equals(getPostedAt(), insertFormMessageRequest.getPostedAt()) &&
+                Objects.equals(getMunicipalityMessage(), insertFormMessageRequest.getMunicipalityMessage());
     }
 
     @Override
@@ -76,6 +91,7 @@ public class InsertFormMessageRequest implements Serializable {
         return Objects.hash(getUserId(),
                 getRelatedFormGuid(),
                 getMessage(),
-                getPostedAt());
+                getPostedAt(),
+                getMunicipalityMessage());
     }
 }

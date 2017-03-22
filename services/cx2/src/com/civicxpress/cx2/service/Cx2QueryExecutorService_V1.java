@@ -342,7 +342,7 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeUserSubscriptionsCount(Pageable pageable);
 
     @Deprecated
-    public int executeInsertFormMessage(Integer userId, String relatedFormGuid, String message, Timestamp postedAt);
+    public int executeInsertFormMessage(Integer userId, String relatedFormGuid, String message, Timestamp postedAt, Boolean municipalityMessage);
 
     @Deprecated
     public Page<Object> executeProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId);
