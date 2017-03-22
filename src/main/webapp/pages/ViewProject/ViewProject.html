@@ -156,6 +156,55 @@
                                     </wm-grid>
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneDOCUMENTS" title="ATTACHMENTS"></wm-tabpane>
+                                <wm-tabpane name="tabpaneMAPS" title="LOCATION">
+                                    <wm-layoutgrid name="layoutgrid17">
+                                        <wm-gridrow name="gridrow61">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn127">
+                                                <wm-grid title="" dataset="bind:Variables.ProjectGISRecords.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                                    <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.section" caption="Section" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetNumber" caption="Street Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.city" caption="City" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-action key="customButton" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Location" action="Widgets.dialogAddGISRecord.open()"
+                                                    shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogDeleteGISRecordConf.open()"
+                                                    disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.ProjectGISRecords.dataSet[$i].gisrecords" zoom="17" markertype="Address" address="streetNumber streetName city states.stateName"
+                                                show="bind:Variables.ProjectGISRecords.dataSet.totalElements > 0"></wm-prefab>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-tabpane>
+                                <wm-tabpane name="tabpaneVENDOR" title="CONTRACTOR"></wm-tabpane>
+                                <wm-tabpane name="tabpaneFORMS" title="FORMS">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectForms.dataSet" navigation="Classic" name="gridProjectForms" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                        <wm-grid-column-group name="group1" caption="Form Details">
+                                            <wm-grid-column binding="masterForms.formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="masterForms.users.fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="masterForms.formStatuses.formTypes.formType" caption="Form Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="masterForms.formStatuses.status" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="masterForms.giscontacts.gisrecords.fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="masterForms.vendor.companyName" caption="Primary Vendor" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="masterForms.balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        </wm-grid-column-group>
+                                        <wm-grid-column binding="addedAt" caption="Date Added" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="users.fullName" caption="Added By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="comments" caption="Comments" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="Add Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Form" action="Widgets.dialogAddFormsToProject.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.GoToForms.invoke()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.DeleteProjectForms.invoke()" disabled="false"></wm-grid-row-action>
+                                    </wm-grid>
+                                </wm-tabpane>
+                                <wm-tabpane name="tabpaneINSPECTIONS" title="INSPECTIONS"></wm-tabpane>
+                                <wm-tabpane name="tabpaneFEES" title="FEES"></wm-tabpane>
                                 <wm-tabpane name="tabpane4" title="MESSAGES">
                                     <wm-layoutgrid name="layoutgrid16">
                                         <wm-gridrow name="gridrow58" padding="unset unset 1em unset">
@@ -206,57 +255,8 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneMAPS" title="LOCATION">
-                                    <wm-layoutgrid name="layoutgrid17">
-                                        <wm-gridrow name="gridrow61">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn127">
-                                                <wm-grid title="" dataset="bind:Variables.ProjectGISRecords.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                                                    <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.section" caption="Section" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.streetNumber" caption="Street Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.city" caption="City" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-action key="customButton" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Location" action="Widgets.dialogAddGISRecord.open()"
-                                                    shortcutkey="" disabled="false"></wm-grid-action>
-                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogDeleteGISRecordConf.open()"
-                                                    disabled="false"></wm-grid-row-action>
-                                                </wm-grid>
-                                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.ProjectGISRecords.dataSet[$i].gisrecords" zoom="17" markertype="Address" address="streetNumber streetName city states.stateName"
-                                                show="bind:Variables.ProjectGISRecords.dataSet.totalElements > 0"></wm-prefab>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                    </wm-layoutgrid>
-                                </wm-tabpane>
-                                <wm-tabpane name="tabpaneVENDOR" title="CONTRACTOR"></wm-tabpane>
-                                <wm-tabpane name="tabpaneFORMS" title="FORMS">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectForms.dataSet" navigation="Classic" name="gridProjectForms" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                                        <wm-grid-column-group name="group1" caption="Form Details">
-                                            <wm-grid-column binding="masterForms.formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="masterForms.users.fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="masterForms.formStatuses.formTypes.formType" caption="Form Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="masterForms.formStatuses.status" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="masterForms.giscontacts.gisrecords.fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="masterForms.vendor.companyName" caption="Primary Vendor" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="masterForms.balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        </wm-grid-column-group>
-                                        <wm-grid-column binding="addedAt" caption="Date Added" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="users.fullName" caption="Added By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="comments" caption="Comments" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="Add Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Form" action="Widgets.dialogAddFormsToProject.open()" shortcutkey="" disabled="false"></wm-grid-action>
-                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.GoToForms.invoke()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.DeleteProjectForms.invoke()" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
-                                </wm-tabpane>
-                                <wm-tabpane name="tabpaneINSPECTIONS" title="INSPECTIONS"></wm-tabpane>
-                                <wm-tabpane name="tabpaneFEES" title="FEES"></wm-tabpane>
                                 <wm-tabpane name="tabpane13" title="HISTORY"></wm-tabpane>
-                                <wm-tabpane name="tabpaneMUNICIPALITYMESSAGES" title="INTERNAL"></wm-tabpane>
+                                <wm-tabpane name="tabpaneMUNICIPALITYMESSAGES" title="INTERNAL" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"></wm-tabpane>
                             </wm-tabs>
                         </wm-panel>
                     </wm-gridcolumn>
