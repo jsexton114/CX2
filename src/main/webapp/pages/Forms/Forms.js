@@ -457,7 +457,7 @@ Application.$controller("dialogTagPeopleController", ["$scope",
         $scope.ctrlScope = $scope;
         var selectedPeople = [];
         $scope.ButtonTagPeopleClick = function($event, $isolateScope) {
-            debugger
+
             if ($scope.Widgets.textSearchPeople.datavalue != undefined) {
                 var temp = $scope.Widgets.textSearchPeople.datavalue;
                 var data = $scope.Variables.PeopleList.dataSet;
