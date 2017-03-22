@@ -562,6 +562,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("SetPrimaryVendorStatusForFormandVendor", params);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<AllFeeformCountResponse> executeAllFeeformCount(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("allowPayment", allowPayment);
+        params.put("paidStatus", paidStatus);
+        params.put("userId", userId);
+
+        return queryExecutor.executeNamedQuery("AllFeeformCount", params, AllFeeformCountResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportAllFeeformCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("allowPayment", allowPayment);
+        params.put("paidStatus", paidStatus);
+        params.put("userId", userId);
+
+        return queryExecutor.exportNamedQueryData("AllFeeformCount", params, exportType, AllFeeformCountResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeDeleteCategoryMapping(Integer form) {
@@ -889,6 +913,32 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("VendorId", vendorId);
 
         return queryExecutor.exportNamedQueryData("CountOfMuncipalityApplicationsByVendor", params, exportType, CountOfMuncipalityApplicationsByVendorResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<AllFeeFormCountByMunicipalityResponse> executeAllFeeFormCountByMunicipality(Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("allowPayment", allowPayment);
+        params.put("paidStatus", paidStatus);
+        params.put("municipalityId", municipalityId);
+        params.put("userId", userId);
+
+        return queryExecutor.executeNamedQuery("AllFeeFormCountByMunicipality", params, AllFeeFormCountByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportAllFeeFormCountByMunicipality(ExportType exportType, Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("allowPayment", allowPayment);
+        params.put("paidStatus", paidStatus);
+        params.put("municipalityId", municipalityId);
+        params.put("userId", userId);
+
+        return queryExecutor.exportNamedQueryData("AllFeeFormCountByMunicipality", params, exportType, AllFeeFormCountByMunicipalityResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -2262,6 +2312,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("relatedFormGuid", relatedFormGuid);
 
         return queryExecutor.exportNamedQueryData("GetGis2formsByForm", params, exportType, GetGis2formsByFormResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<UnpaidFormFeeCountResponse> executeUnpaidFormFeeCount(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("allowPayment", allowPayment);
+        params.put("paidStatus", paidStatus);
+        params.put("userId", userId);
+
+        return queryExecutor.executeNamedQuery("UnpaidFormFeeCount", params, UnpaidFormFeeCountResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportUnpaidFormFeeCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("allowPayment", allowPayment);
+        params.put("paidStatus", paidStatus);
+        params.put("userId", userId);
+
+        return queryExecutor.exportNamedQueryData("UnpaidFormFeeCount", params, exportType, UnpaidFormFeeCountResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

@@ -1095,5 +1095,83 @@
       "value" : "bind:Widgets.selectForm.datavalue.ID"
     } ],
     "pageTransitions" : "none"
+  },
+  "svFeeCountForUser" : {
+    "_id" : "wm-svFeeCountForUser-wm.ServiceVariable-1490174768989",
+    "name" : "svFeeCountForUser",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "allowPayment",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "paidStatus",
+      "value" : "Unpaid",
+      "type" : "string"
+    }, {
+      "target" : "userId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.AllFeeformCountResponse",
+    "service" : "cx2",
+    "operation" : "executeAllFeeformCount",
+    "operationId" : "QueryExecutionController_executeAllFeeformCount",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "svFeeCountForUseronSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "svFeeCountForUserByMunicipality" : {
+    "_id" : "wm-svFeeCountForUserByMunicipality-wm.ServiceVariable-1490174316300",
+    "name" : "svFeeCountForUserByMunicipality",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "allowPayment",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "paidStatus",
+      "value" : "Unpaid",
+      "type" : "string"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "userId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.AllFeeFormCountByMunicipalityResponse",
+    "service" : "cx2",
+    "operation" : "executeAllFeeFormCountByMunicipality",
+    "operationId" : "QueryExecutionController_executeAllFeeFormCountByMunicipality",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "svFeeCountForUserByMunicipalityonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }

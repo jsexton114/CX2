@@ -14,12 +14,16 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
                 $scope.Variables.CountOfClosedFormsForUser.update();
                 $scope.Variables.CountOfOpenFormsForUser.update();
                 $scope.Variables.CountOfAllProjectsForUsersAndSharedWith.update();
+                $scope.Variables.svFeeCountForUser.update();
+
 
             } else {
                 // For selected municipality
                 $scope.Variables.CountOfClosedFormsForMunicipality.update();
                 $scope.Variables.CountOfOpenFormsForMunicipality.update();
                 $scope.Variables.CountOfProjectsForUsersAndSharedWithByMunicipality.update();
+                $scope.Variables.svFeeCountForUserByMunicipality.update();
+
             }
         });
     };
@@ -61,6 +65,16 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
     $scope.serviceVariable1onSuccess = function(variable, data) {
         window.open(data);
+    };
+
+
+    $scope.svFeeCountForUserByMunicipalityonSuccess = function(variable, data) {
+        $scope.feeCount = data.content[0]._count;
+    };
+
+
+    $scope.svFeeCountForUseronSuccess = function(variable, data) {
+        $scope.feeCount = data.content[0]._count;
     };
 
 }]);

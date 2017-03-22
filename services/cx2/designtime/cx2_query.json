@@ -720,6 +720,117 @@
       } ]
     }
   },
+  "AllFeeFormCountByMunicipality" : {
+    "name" : "AllFeeFormCountByMunicipality",
+    "description" : "AllFeeFormCountByMunicipality",
+    "version" : "V2",
+    "queryString" : "select \ncount (*) as count\nfrom Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidStatus=:paidStatus and  municipalityId=:municipalityId and formGuid IN \n       (select formGuid from MasterForms where userId=:userId or formGuid IN \n              (select relatedGuid from  SharedWith where sharedWithUser = :userId)\n        )",
+    "countQueryString" : "select count(*)  from MasterForms where userId=:userId or formGuid IN \n              (select relatedGuid from  SharedWith where sharedWithUser = :userId)\n        )",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "allowPayment",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    }, {
+      "name" : "paidStatus",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Unpaid",
+      "required" : true
+    }, {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "userId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.AllFeeFormCountByMunicipalityResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "count",
+        "fieldName" : "_count",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Long",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "AllFeeformCount" : {
+    "name" : "AllFeeformCount",
+    "description" : "AllFeeformCount",
+    "version" : "V2",
+    "queryString" : "select \ncount (*) as count\nfrom Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidStatus=:paidStatus  and formGuid IN \n       (select formGuid from MasterForms where userId=:userId or formGuid IN \n              (select relatedGuid from  SharedWith where sharedWithUser = :userId)\n        )",
+    "countQueryString" : "select count(*)  from MasterForms where userId=:userId or formGuid IN \n              (select relatedGuid from  SharedWith where sharedWithUser = :userId)\n        )",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "allowPayment",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    }, {
+      "name" : "paidStatus",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Unpaid",
+      "required" : true
+    }, {
+      "name" : "userId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.AllFeeformCountResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "count",
+        "fieldName" : "_count",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Long",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "AllFeesOfFormsForCreatedByAndSharedWith" : {
     "name" : "AllFeesOfFormsForCreatedByAndSharedWith",
     "description" : "AllFeesOfFormsForCreatedByAndSharedWith",
@@ -7172,6 +7283,58 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "UnpaidFormFeeCount" : {
+    "name" : "UnpaidFormFeeCount",
+    "description" : "UnpaidFormFeeCount",
+    "version" : "V2",
+    "queryString" : "select \ncount (*) as count\nfrom Fees where masterForms.formStatuses.allowPayment=:allowPayment and paidStatus=:paidStatus and formGuid IN \n       (select formGuid from MasterForms where userId=:userId or formGuid IN \n              (select relatedGuid from  SharedWith where sharedWithUser = :userId)\n        )",
+    "countQueryString" : "select count(*)  from MasterForms where userId=:userId or formGuid IN \n              (select relatedGuid from  SharedWith where sharedWithUser = :userId)\n        )",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "allowPayment",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    }, {
+      "name" : "paidStatus",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Unpaid",
+      "required" : true
+    }, {
+      "name" : "userId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.UnpaidFormFeeCountResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "count",
+        "fieldName" : "_count",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Long",
           "list" : false
         }
       } ]

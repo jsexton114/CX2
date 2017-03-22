@@ -397,6 +397,31 @@ group by FeeType) wmTempTable
     <query-param name="vendor" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="AllFeeformCount">
+        <![CDATA[
+        select 
+count (*) as count
+from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidStatus=:paidStatus  and formGuid IN 
+       (select formGuid from MasterForms where userId=:userId or formGuid IN 
+              (select relatedGuid from  SharedWith where sharedWithUser = :userId)
+        )
+        ]]>
+    <query-param name="allowPayment" type="java.lang.Boolean"/>
+    <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="AllFeeformCount__count">
+        <![CDATA[
+        select count(*)  from MasterForms where userId=:userId or formGuid IN 
+              (select relatedGuid from  SharedWith where sharedWithUser = :userId)
+        )
+        ]]>
+    <query-param name="allowPayment" type="java.lang.Boolean"/>
+    <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="DeleteCategoryMapping">
         <![CDATA[
         delete from FormCategoryMapping where FormTypeId=:form
@@ -644,6 +669,33 @@ where formTypeId=:form
         ]]>
     <query-param name="VendorId" type="java.lang.Integer"/>
     </sql-query>
+
+    <query name="AllFeeFormCountByMunicipality">
+        <![CDATA[
+        select 
+count (*) as count
+from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidStatus=:paidStatus and  municipalityId=:municipalityId and formGuid IN 
+       (select formGuid from MasterForms where userId=:userId or formGuid IN 
+              (select relatedGuid from  SharedWith where sharedWithUser = :userId)
+        )
+        ]]>
+    <query-param name="allowPayment" type="java.lang.Boolean"/>
+    <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="AllFeeFormCountByMunicipality__count">
+        <![CDATA[
+        select count(*)  from MasterForms where userId=:userId or formGuid IN 
+              (select relatedGuid from  SharedWith where sharedWithUser = :userId)
+        )
+        ]]>
+    <query-param name="allowPayment" type="java.lang.Boolean"/>
+    <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </query>
 
     <sql-query name="userSubscriptionsCountForMunicipality">
         <![CDATA[
@@ -1743,6 +1795,31 @@ from Fees where masterForms.formStatuses.allowPayment=:allowPayment and paidStat
         select count(*) from Gis2forms where relatedFormGuid=:relatedFormGuid
         ]]>
     <query-param name="relatedFormGuid" type="java.lang.String"/>
+    </query>
+
+    <query name="UnpaidFormFeeCount">
+        <![CDATA[
+        select 
+count (*) as count
+from Fees where masterForms.formStatuses.allowPayment=:allowPayment and paidStatus=:paidStatus and formGuid IN 
+       (select formGuid from MasterForms where userId=:userId or formGuid IN 
+              (select relatedGuid from  SharedWith where sharedWithUser = :userId)
+        )
+        ]]>
+    <query-param name="allowPayment" type="java.lang.Boolean"/>
+    <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="UnpaidFormFeeCount__count">
+        <![CDATA[
+        select count(*)  from MasterForms where userId=:userId or formGuid IN 
+              (select relatedGuid from  SharedWith where sharedWithUser = :userId)
+        )
+        ]]>
+    <query-param name="allowPayment" type="java.lang.Boolean"/>
+    <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="userId" type="java.lang.Integer"/>
     </query>
 
     <query name="FormsTypesForDashboard">

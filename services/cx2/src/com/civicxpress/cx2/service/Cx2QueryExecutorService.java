@@ -121,6 +121,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeSetPrimaryVendorStatusForFormandVendor(SetPrimaryVendorStatusForFormandVendorRequest setPrimaryVendorStatusForFormandVendorRequest);
 
+    Page<AllFeeformCountResponse> executeAllFeeformCount(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
+
+    Downloadable exportAllFeeformCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
+
     Integer executeDeleteCategoryMapping(Integer form);
 
     Page<GetUserIdFromPasswordResetTokenResponse> executeGetUserIdFromPasswordResetToken(String token, Pageable pageable);
@@ -182,6 +186,10 @@ public interface Cx2QueryExecutorService {
     Page<CountOfMuncipalityApplicationsByVendorResponse> executeCountOfMuncipalityApplicationsByVendor(Integer vendorId, Pageable pageable);
 
     Downloadable exportCountOfMuncipalityApplicationsByVendor(ExportType exportType, Integer vendorId, Pageable pageable);
+
+    Page<AllFeeFormCountByMunicipalityResponse> executeAllFeeFormCountByMunicipality(Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable);
+
+    Downloadable exportAllFeeFormCountByMunicipality(ExportType exportType, Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable);
 
     Page<UserSubscriptionsCountForMunicipalityResponse> executeUserSubscriptionsCountForMunicipality(Integer municipalityId, Pageable pageable);
 
@@ -428,6 +436,10 @@ public interface Cx2QueryExecutorService {
     Page<GetGis2formsByFormResponse> executeGetGis2formsByForm(String relatedFormGuid, Pageable pageable);
 
     Downloadable exportGetGis2formsByForm(ExportType exportType, String relatedFormGuid, Pageable pageable);
+
+    Page<UnpaidFormFeeCountResponse> executeUnpaidFormFeeCount(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
+
+    Downloadable exportUnpaidFormFeeCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
 
     Page<FormsTypesForDashboardResponse> executeFormsTypesForDashboard(Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
 

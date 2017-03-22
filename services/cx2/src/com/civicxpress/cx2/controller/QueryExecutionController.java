@@ -512,6 +512,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/AllFeeformCount", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "AllFeeformCount")
+    public Page<AllFeeformCountResponse> executeAllFeeformCount(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: AllFeeformCount");
+        Page<AllFeeformCountResponse> _result = queryService.executeAllFeeformCount(allowPayment, paidStatus, userId, pageable);
+        LOGGER.debug("got the result for named query: AllFeeformCount, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query AllFeeformCount")
+    @RequestMapping(value = "/queries/AllFeeformCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportAllFeeformCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: AllFeeformCount");
+
+        return queryService.exportAllFeeformCount(exportType, allowPayment, paidStatus, userId, pageable);
+    }
+
     @RequestMapping(value = "/queries/DeleteCategoryMapping", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "DeleteCategoryMapping")
@@ -807,6 +826,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: CountOfMuncipalityApplicationsByVendor");
 
         return queryService.exportCountOfMuncipalityApplicationsByVendor(exportType, vendorId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/AllFeeFormCountByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "AllFeeFormCountByMunicipality")
+    public Page<AllFeeFormCountByMunicipalityResponse> executeAllFeeFormCountByMunicipality(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: AllFeeFormCountByMunicipality");
+        Page<AllFeeFormCountByMunicipalityResponse> _result = queryService.executeAllFeeFormCountByMunicipality(allowPayment, paidStatus, municipalityId, userId, pageable);
+        LOGGER.debug("got the result for named query: AllFeeFormCountByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query AllFeeFormCountByMunicipality")
+    @RequestMapping(value = "/queries/AllFeeFormCountByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportAllFeeFormCountByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: AllFeeFormCountByMunicipality");
+
+        return queryService.exportAllFeeFormCountByMunicipality(exportType, allowPayment, paidStatus, municipalityId, userId, pageable);
     }
 
     @RequestMapping(value = "/queries/userSubscriptionsCountForMunicipality", method = RequestMethod.GET)
@@ -1993,6 +2031,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetGis2formsByForm");
 
         return queryService.exportGetGis2formsByForm(exportType, relatedFormGuid, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UnpaidFormFeeCount", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UnpaidFormFeeCount")
+    public Page<UnpaidFormFeeCountResponse> executeUnpaidFormFeeCount(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: UnpaidFormFeeCount");
+        Page<UnpaidFormFeeCountResponse> _result = queryService.executeUnpaidFormFeeCount(allowPayment, paidStatus, userId, pageable);
+        LOGGER.debug("got the result for named query: UnpaidFormFeeCount, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query UnpaidFormFeeCount")
+    @RequestMapping(value = "/queries/UnpaidFormFeeCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportUnpaidFormFeeCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: UnpaidFormFeeCount");
+
+        return queryService.exportUnpaidFormFeeCount(exportType, allowPayment, paidStatus, userId, pageable);
     }
 
     @RequestMapping(value = "/queries/FormsTypesForDashboard", method = RequestMethod.GET)
