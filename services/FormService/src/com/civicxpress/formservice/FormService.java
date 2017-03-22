@@ -74,10 +74,10 @@ public class FormService {
     private SecurityService securityService;
     
     @Value("${cx2.url}")
-    private String sqlUrl;
+    private String sqlUrl = "jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2";
     
     @Value("${cx2.username}")
-    private String defaultSqlUser;
+    private String defaultSqlUser = "cx2";
     
     @Value("${cx2.schemaName}")
     private String defaultSqlDatabase;
@@ -95,26 +95,19 @@ public class FormService {
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
     
-//    public static void main(String args[]) { // Function for testing/debugging purposes
-//    	try {
-//    		Connection cx2Conn = DBUtils.getConnection("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2", "cx2", "F!yingFishCove1957");
-//	    	DBQueryParams queryParams = new DBQueryParams();
-//    		
-//    		queryParams.addLong("createUserId", 1L);
-//	    	
-//	    	queryParams.addString("formGuid", "03B5484A-DFFA-E611-80C9-0CC47A46DD63");
-//	    	
-//	    	DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", queryParams).get(0);
-//	    	
-//	    	queryParams.addLong("formTypeId", masterFormData.getLong("FormTypeId"));
-//	    	
-//	    	System.out.println(DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getLong("PrefixNumberStart"));
-//	    	System.out.println(DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getLong("CurrentPrefixNumber"));
-//    	} catch (Exception e) {
-//    		e.printStackTrace();
-//    		System.out.println("AHHHHHHHHHHHh!!!!!");
-//    	}
-//    }
+    public static void main(String args[]) { // Function for testing/debugging purposes
+    	try {
+    		Connection cx2Conn = DBUtils.getConnection("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2", "cx2", "F!yingFishCove1957");
+	    	DBQueryParams queryParams = new DBQueryParams();
+    		
+    		FormService formService = new FormService();
+    		
+    		formService.getDocumentSignatureLink("FB037B6C-2D0F-E711-80C9-0CC47A46DD63");
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		System.out.println("AHHHHHHHHHHHh!!!!!");
+    	}
+    }
     
     public UserPermissionsPojo getUserPermissions(String formGuid) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
@@ -130,18 +123,18 @@ public class FormService {
         String folderAccessUrl = null;
 
         // in FormService, instantiate these values
-        Long formTypeId = getFormTypeId(formGuid);
-        String title = getFriendlyFormType(formTypeId);
-        Map<String, Object> formData = getFormData(formGuid);
+        FormDataPojo formDataPojo = getFormDataPojo(formGuid);
+        String title = getFriendlyFormType(formDataPojo.getFormTypeId());
+        Map<String, Object> formData = getFormDataByLabel(formGuid);
         String clientId  = "a4bb2dd0071640b6936f5cf80cf533b4"; // TODO: this should come from the municipalities eSign Genie settiings
         String clientSecret = "268ebb57a93e4ef197235c68111ed5a6";  // TODO: this should come from the municipalities eSign Genie settiings
         String firstNameOfRecipientParty = userData.getFirstName();
         String lastNameOfRecipientParty = userData.getLastName();
         String emailIdOfRecipientParty = userData.getEmail();
-        byte[] municipalityLogo = getMunicipalityLogo(formTypeId);
+        byte[] municipalityLogo = getMunicipalityLogo(formDataPojo.getFormTypeId());
 
         // then call this method in ESignGenie
-        folderAccessUrl = ESignGenieApi.createAndSignDocument(title, formData, municipalityLogo, clientId, clientSecret,
+        folderAccessUrl = ESignGenieApi.createAndSignDocument(formDataPojo, title, formData, municipalityLogo, clientId, clientSecret,
                 firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);
         
 
@@ -157,17 +150,46 @@ public class FormService {
         cx2Conn.close();
         return municipalityLogo;
     }
+    
+    public class FormDataPojo {
+    	private Long formTypeId;
+    	private String formTitle;
+    	private String creatorFullName;
+    	
+		public Long getFormTypeId() {
+			return formTypeId;
+		}
+		public void setFormTypeId(Long formTypeId) {
+			this.formTypeId = formTypeId;
+		}
+		public String getFormTitle() {
+			return formTitle;
+		}
+		public void setFormTitle(String formTitle) {
+			this.formTitle = formTitle;
+		}
+		public String getCreatorFullName() {
+			return creatorFullName;
+		}
+		public void setCreatorFullName(String creatorFullName) {
+			this.creatorFullName = creatorFullName;
+		}
+    }
 
-    private Long getFormTypeId(String formGuid) throws SQLException {
+    private FormDataPojo getFormDataPojo(String formGuid) throws SQLException {
         // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
-        Long formTypeId;
+        FormDataPojo formDataPojo = new FormDataPojo();
         DBQueryParams params = new DBQueryParams();
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
         params.addString("formGuid", formGuid);
-        DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT FormTypeId FROM MasterForms WHERE FormGUID=:formGuid", params).get(0);
-        formTypeId = masterFormData.getLong("FormTypeId");
+        DBRow masterFormData = DBUtils.selectOne(cx2Conn, "SELECT MF.FormTypeId, MF.FormTitle, U.FullName FROM MasterForms MF, Users U WHERE U.ID=MF.UserId AND FormGUID=:formGuid", params);
+        
+        formDataPojo.setCreatorFullName(masterFormData.getString("FullName"));
+        formDataPojo.setFormTypeId(masterFormData.getLong("FormTypeId"));
+        formDataPojo.setFormTitle(masterFormData.getString("FormTitle"));
+        
         cx2Conn.close();
-        return formTypeId;
+        return formDataPojo;
     }
     
     private String getFriendlyFormType(Long formTypeId) throws SQLException { 
@@ -181,14 +203,24 @@ public class FormService {
         return friendlyFormType;
     }
 
-    private Map<String, Object> getFormData(String formGuid) throws SQLServerException, SQLException {
+    private Map<String, Object> getFormDataByLabel(String formGuid) throws SQLServerException, SQLException {
         // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
         DBQueryParams params = new DBQueryParams();
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
         params.addString("formGuid", formGuid);
-        DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", params).get(0);
+        DBRow masterFormData = DBUtils.selectOne(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", params);
         params.addLong("formTypeId", masterFormData.getLong("FormTypeId"));
-        Map<String, Object> formData = getFormData(masterFormData.getLong("FormTypeId"), formGuid);
+        List<DBRow> formFields = DBUtils.selectQuery(cx2Conn, "SELECT FTF.Label, FTF.FieldName FROM FormTypeFields FTF, FormFieldTypes FFT WHERE FormTypeId=:formTypeId AND FTF.FieldTypeId=FFT.ID AND FFT.SqlType IS NOT NULL ORDER BY DisplayOrder ASC", params);
+        
+        
+        Map<String, Object> rawFormData = getFormData(formGuid);
+        
+        Map<String, Object> formData = new HashMap<String, Object>();
+        
+        for (DBRow formFieldData : formFields) {
+        	formData.put(formFieldData.getString("Label"), rawFormData.get(formFieldData.getString("FieldName")));
+        }
+        
         cx2Conn.close();
         return formData;
     }
@@ -197,7 +229,7 @@ public class FormService {
         // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
         DBQueryParams params = new DBQueryParams();
-        params.addLong("userId", Long.parseLong(securityService.getUserId()));
+        params.addLong("userId", 1L);
         DBRow userDataRow = DBUtils.selectOne(cx2Conn, "SELECT FirstName, LastName, Email FROM Users WHERE ID=:userId", params);
         UserDataPojo userData = new UserDataPojo();
         userData.setFirstName(userDataRow.getString("FirstName"));
@@ -407,13 +439,17 @@ public class FormService {
     	return DBUtils.getConnection(muniUrl, muniDetails.getString("DbUser"), muniDetails.getString("DbPassword"));
     }
     
-    public Map<String, Object> getFormData(Long formTypeId, String formGuid) throws SQLException { // TODO: Wtf is formTypeId doing here?
+    public Map<String, Object> getFormData(String formGuid) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	
+    	DBQueryParams formTbNameParams = new DBQueryParams();
+    	formTbNameParams.addString("formGuid", formGuid);
+    	
+    	Long formTypeId = DBUtils.selectOne(cx2Conn, "SELECT FormTypeId FROM MasterForms WHERE FormGUID=:formGuid", formTbNameParams).getLong("FormTypeId");
+    	formTbNameParams.addLong("formTypeId", formTypeId);
 
     	String getFormInfoQuery = "SELECT FormTableName, MunicipalityId FROM FormTypes WHERE ID=:formTypeId";
 
-    	DBQueryParams formTbNameParams = new DBQueryParams();
-		formTbNameParams.addLong("formTypeId", formTypeId);
 		DBRow formInfo = DBUtils.selectQuery(cx2Conn, getFormInfoQuery, formTbNameParams).get(0);
 		String formTableName = formInfo.getString("FormTableName");
 		

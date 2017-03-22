@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.civicxpress.formservice.FormService.FormDataPojo;
 import com.civicxpress.pdfutilities.PdfUtilities;  // used in WM
 
 /**
@@ -20,13 +21,13 @@ import com.civicxpress.pdfutilities.PdfUtilities;  // used in WM
  */
 public class ESignGenieApi {
 
-    public static String createAndSignDocument(String title, Map<String, Object> formData, byte[] municipalityLogo, String clientId, String clientSecret,
+    public static String createAndSignDocument(FormDataPojo formDataPojo, String title, Map<String, Object> formData, byte[] municipalityLogo, String clientId, String clientSecret,
                                                 String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty)
             throws IOException {
         String uploadResponse = null;
         String folderAccessUrl = null;
         String filePath = null;
-        filePath = PdfUtilities.createDynamicFormPdf(title, formData, municipalityLogo, true);
+        filePath = PdfUtilities.createDynamicFormPdf(formDataPojo, title, formData, municipalityLogo, true);
         System.out.println("filePath: " + filePath);
         uploadResponse = ESignGenieApi.createFolder(filePath, title + ".pdf",
                 title, clientId, clientSecret, firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);

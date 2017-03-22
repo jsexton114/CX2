@@ -56,8 +56,8 @@ public class FormController {
     @RequestMapping(value = "/formData", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public Map<String, Object> getFormData(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
-        return formService.getFormData(formTypeId, formGuid);
+    public Map<String, Object> getFormData(@RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
+        return formService.getFormData(formGuid);
     }
 
     @RequestMapping(value = "/userPermissions", method = RequestMethod.GET)
@@ -65,6 +65,11 @@ public class FormController {
     @ApiOperation(value = "")
     public UserPermissionsPojo getUserPermissions(@RequestParam(value = "formGuid", required = false) String formGuid) throws SQLException {
         return formService.getUserPermissions(formGuid);
+    }
+
+    @RequestMapping(value = "/main", method = RequestMethod.POST)
+    public void main(@RequestBody String[] args) {
+        formService.main(args);
     }
 
     @RequestMapping(value = "/saveFormData", method = RequestMethod.POST)

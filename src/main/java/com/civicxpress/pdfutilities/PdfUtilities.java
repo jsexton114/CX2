@@ -7,6 +7,8 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
+import com.civicxpress.formservice.FormService.FormDataPojo;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,7 +20,7 @@ import java.util.Map;
  */
 public class PdfUtilities {
 
-    public static String createDynamicFormPdf(String title, Map<String, Object> formData, byte[] municipalityLogo, boolean addSignatureLine) throws IOException {
+    public static String createDynamicFormPdf(FormDataPojo formDataPojo, String title, Map<String, Object> formData, byte[] municipalityLogo, boolean addSignatureLine) throws IOException {
         final float LINE_HEIGHT = 20;
         final float COLUMN_WIDTH = 275;
         PDDocument document;
@@ -39,7 +41,7 @@ public class PdfUtilities {
             int width = 100;
             float aspectRatio = ((float) ximage.getHeight()/(float) ximage.getWidth());
             int height = (int) (aspectRatio * width);
-            contentStream.drawImage(ximage, 480, 695, width, height);
+            contentStream.drawImage(ximage, ((page.getMediaBox().getWidth() - width) / 2), 695, width, height);
         } catch (IOException ioex) {
             System.out.println("No image for you");
         }
@@ -54,15 +56,23 @@ public class PdfUtilities {
         contentStream.setFont( PDType1Font.HELVETICA_BOLD, 14 );
         contentStream.newLineAtOffset( 100, 690 );
         contentStream.showText(title);
+        
+//        float formTitleWidth = PDType1Font.HELVETICA.getStringWidth(formDataPojo.getFormTitle()) / 1000 * 10;
+        
+//        float formTitleOffset = (page.getMediaBox().getWidth() - formTitleWidth) / 2;
+        contentStream.newLineAtOffset(0, -LINE_HEIGHT);
+        contentStream.setFont( PDType1Font.HELVETICA, 10 );
+        contentStream.showText(formDataPojo.getFormTitle());
+        contentStream.newLineAtOffset(0, -LINE_HEIGHT);
+        contentStream.showText("Created By: " + formDataPojo.getCreatorFullName());
         contentStream.setFont( PDType1Font.HELVETICA, 12 );
         contentStream.newLineAtOffset(0, -15);
 
         for (Map.Entry<String, Object> entry : formData.entrySet())
         {
-            String formattedEntryKey = "";
+            String formattedEntryKey = entry.getKey() != null ? entry.getKey().trim() : "";
             String entryValue = "";
-            formattedEntryKey = splitCamelCase(formatTextLength(entry.getKey().trim(), 40));
-            if (entry.getValue() != null) entryValue = formatTextLength(entry.getValue().toString(), 30);;
+            if (entry.getValue() != null) entryValue = formatTextLength(entry.getValue().toString(), 30);
             contentStream.setNonStrokingColor(Color.gray);
             contentStream.setFont(PDType1Font.HELVETICA, 12);
             contentStream.newLineAtOffset( 0, -LINE_HEIGHT );
@@ -112,14 +122,14 @@ public class PdfUtilities {
 
     // "How do I convert CamelCase into human-readable names in Java?", polygenelubricants, answered Apr 1 '10 at 11:35, retrieved 3/21/2017
     // http://stackoverflow.com/questions/2559759/how-do-i-convert-camelcase-into-human-readable-names-in-java
-    private static String splitCamelCase(String s) {
-        return s.replaceAll(
-                String.format("%s|%s|%s",
-                        "(?<=[A-Z])(?=[A-Z][a-z])",
-                        "(?<=[^A-Z])(?=[A-Z])",
-                        "(?<=[A-Za-z])(?=[^A-Za-z])"
-                ),
-                " "
-        );
-    }
+//    private static String splitCamelCase(String s) {
+//        return s.replaceAll(
+//                String.format("%s|%s|%s",
+//                        "(?<=[A-Z])(?=[A-Z][a-z])",
+//                        "(?<=[^A-Z])(?=[A-Z])",
+//                        "(?<=[A-Za-z])(?=[^A-Za-z])"
+//                ),
+//                " "
+//        );
+//    }
 }

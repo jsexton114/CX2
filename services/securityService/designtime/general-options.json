@@ -13,7 +13,7 @@
     "policyType" : "MANUAL"
   },
   "csrfConfig" : {
-    "enforceCsrfSecurity" : true,
+    "enforceCsrfSecurity" : false,
     "headerName" : "X-WM-XSRF-TOKEN"
   },
   "authProviders" : [ "DATABASE" ],
