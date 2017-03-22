@@ -60,7 +60,7 @@ public class FormMessagingMailService {
      */
   public String sendMessagingMail(String sender,String comments,String username ,String recipient,String municipality,String formType,String municipalitySignature,String formTitle,String formGUID) throws MessagingException {
         
-      
+        //logger.info("_______________________________________________________________"+comments);
         
         Properties props = System.getProperties();
         props.put("mail.smtp.starttls.enable", "true");
