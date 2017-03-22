@@ -950,7 +950,8 @@ public class FormService {
 		}
 		
 		if (stateFee != null && !stateFee.equals(0)) {
-			BigDecimal calcedStateFee = totalFees.multiply(stateFee).setScale(2, RoundingMode.HALF_UP);
+			BigDecimal oneHundred = new BigDecimal("100.00").setScale(2, RoundingMode.HALF_UP);
+			BigDecimal calcedStateFee = totalFees.multiply(stateFee).divide(oneHundred).setScale(2, RoundingMode.HALF_UP);
 			totalFees = totalFees.add(calcedStateFee).setScale(2, RoundingMode.HALF_UP);
 			queryParams.addBigDecimal("stateFeeAmount", calcedStateFee);
 			queryParams.addString("stateFeeAccountingCode", formTypeData.getString("StateFeeAccountingCode"));

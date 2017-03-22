@@ -161,14 +161,14 @@ LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
 LEFT JOIN Users AS U ON U.ID=MF.UserId
 LEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners
 LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
-LEFT OUTER JOIN (
-		SELECT TOP 1 GF.RelatedFormGuid as formGuid,
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
 				GR.Lot,
 				SD.Subdivision,
 				GR.FullAddress
 				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
-) AS GR ON GR.FormGuid=MF.FormGUID
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
 where
     Closed=:closed
     AND FT.MunicipalityId=:MunicipalityId
@@ -1262,14 +1262,14 @@ LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
 LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
 LEFT JOIN Users AS U ON U.ID=MF.UserId
 LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
-LEFT OUTER JOIN (
-		SELECT TOP 1 GF.RelatedFormGuid as formGuid,
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
 				GR.Lot,
 				SD.Subdivision,
 				GR.FullAddress
 				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
-) AS GR ON GR.FormGuid=MF.FormGUID
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
 where
     Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
@@ -1581,12 +1581,14 @@ LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
 LEFT JOIN Users AS U ON U.ID=MF.UserId
 LEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners
 LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
-LEFT OUTER JOIN (SELECT TOP 1 GF.RelatedFormGuid as formGuid,
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
 				GR.Lot,
 				SD.Subdivision,
 				GR.FullAddress
 				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
-				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId) AS GR ON GR.FormGuid=MF.FormGUID
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
 where
     Closed=:closed
 	AND MF.FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId)
