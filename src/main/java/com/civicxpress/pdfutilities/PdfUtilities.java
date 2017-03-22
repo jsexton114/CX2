@@ -3,28 +3,26 @@ package com.civicxpress.pdfutilities;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.net.URL;
 import java.util.Map;
 
 /**
  * Created by jason on 3/15/2017.
  */
-public class PdfUtilities    {
+public class PdfUtilities {
 
-    public static String createDynamicFormPdf(String title, Map<String, Object> formData, boolean addSignatureLine) throws IOException {
+    public static String createDynamicFormPdf(String title, Map<String, Object> formData, byte[] municipalityLogo, boolean addSignatureLine) throws IOException {
         final float LINE_HEIGHT = 20;
         final float COLUMN_WIDTH = 275;
         PDDocument document;
         PDPage page;
-        PDFont font;
         PDPageContentStream contentStream;
 
         page = new PDPage();
@@ -32,13 +30,16 @@ public class PdfUtilities    {
         document.addPage( page );
         contentStream = new PDPageContentStream(document, page);
 
-        File logo = getLogoFile();
+        ByteArrayInputStream logoBais = new ByteArrayInputStream(municipalityLogo);
+        BufferedImage municipalityLogoImage = ImageIO.read(logoBais);
 
         // add an image
         try {
-            PDImageXObject ximage = PDImageXObject.createFromFile(logo.getAbsolutePath(), document); // TODO: show  municipality image
-            float scale = 0.5f; // alter this value to set the image size
-            contentStream.drawImage(ximage, 480, 695, ximage.getWidth()*scale, ximage.getHeight()*scale);
+            PDImageXObject ximage = LosslessFactory.createFromImage(document, municipalityLogoImage);
+            int width = 100;
+            float aspectRatio = ((float) ximage.getHeight()/(float) ximage.getWidth());
+            int height = (int) (aspectRatio * width);
+            contentStream.drawImage(ximage, 480, 695, width, height);
         } catch (IOException ioex) {
             System.out.println("No image for you");
         }
@@ -121,21 +122,4 @@ public class PdfUtilities    {
                 " "
         );
     }
-
-    private static File getLogoFile() throws IOException {
-        // HACK: quick fix to get a *^&% image on the WM server
-        URL imageURL = new URL("http://www.civicxpress.com/wp-content/uploads/2016/12/CXLogo-200.png");
-        BufferedImage originalImage = ImageIO.read(imageURL);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(originalImage, "png", baos );
-        File logo = File.createTempFile("logo", ".png");
-        FileOutputStream fos = new FileOutputStream(logo);
-        baos.writeTo(fos);
-        fos.close();
-        logo.deleteOnExit();
-        System.out.println(logo.getAbsolutePath());
-        return logo;
-    }
-
 }
-

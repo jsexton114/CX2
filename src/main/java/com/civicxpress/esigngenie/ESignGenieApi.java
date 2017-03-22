@@ -20,13 +20,13 @@ import com.civicxpress.pdfutilities.PdfUtilities;  // used in WM
  */
 public class ESignGenieApi {
 
-    public static String createAndSignDocument(String title, Map<String, Object> formData, String clientId, String clientSecret,
+    public static String createAndSignDocument(String title, Map<String, Object> formData, byte[] municipalityLogo, String clientId, String clientSecret,
                                                 String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty)
             throws IOException {
         String uploadResponse = null;
         String folderAccessUrl = null;
         String filePath = null;
-        filePath = PdfUtilities.createDynamicFormPdf(title, formData, true);
+        filePath = PdfUtilities.createDynamicFormPdf(title, formData, municipalityLogo, true);
         System.out.println("filePath: " + filePath);
         uploadResponse = ESignGenieApi.createFolder(filePath, title + ".pdf",
                 title, clientId, clientSecret, firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);

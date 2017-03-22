@@ -41,19 +41,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import java.io.ByteArrayOutputStream;
-
-import java.io.IOException;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.LongSerializationPolicy;
 import com.google.gson.reflect.TypeToken;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.tekdog.dbutils.*;
 
 //import com.civicxpress.formservice.model.*;
@@ -69,7 +61,7 @@ import com.tekdog.dbutils.*;
  * Complex Types/Objects will become part of the Request body in the generated API.
  */
 @ExposeToClient
-public class FormService { 
+public class FormService {
 
     private static final Logger logger = LoggerFactory.getLogger(FormService.class);
 
@@ -138,7 +130,7 @@ public class FormService {
         String folderAccessUrl = null;
 
         // in FormService, instantiate these values
-        Long formTypeId = getFormTypeId(formGuid);        
+        Long formTypeId = getFormTypeId(formGuid);
         String title = getFriendlyFormType(formTypeId);
         Map<String, Object> formData = getFormData(formGuid);
         String clientId  = "a4bb2dd0071640b6936f5cf80cf533b4"; // TODO: this should come from the municipalities eSign Genie settiings
@@ -146,28 +138,39 @@ public class FormService {
         String firstNameOfRecipientParty = userData.getFirstName();
         String lastNameOfRecipientParty = userData.getLastName();
         String emailIdOfRecipientParty = userData.getEmail();
+        byte[] municipalityLogo = getMunicipalityLogo(formTypeId);
 
         // then call this method in ESignGenie
-        folderAccessUrl = ESignGenieApi.createAndSignDocument(title, formData, clientId, clientSecret,
+        folderAccessUrl = ESignGenieApi.createAndSignDocument(title, formData, municipalityLogo, clientId, clientSecret,
                 firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);
         
 
         return folderAccessUrl;
     }
+    
+    private byte[] getMunicipalityLogo(Long formTypeId) throws SQLException {
+    	DBQueryParams params = new DBQueryParams();
+        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        params.addLong("formTypeId", formTypeId);
+        DBRow municipalityLogoRow = DBUtils.selectOne(cx2Conn, "SELECT M.Logo FROM Municipalities M, FormTypes FT WHERE FT.ID=:formTypeId AND M.ID=FT.MunicipalityId", params);
+        byte[] municipalityLogo = municipalityLogoRow.getBytes("Logo");
+        cx2Conn.close();
+        return municipalityLogo;
+    }
 
-    private Long getFormTypeId(String formGuid) throws java.sql.SQLException {
+    private Long getFormTypeId(String formGuid) throws SQLException {
         // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
         Long formTypeId;
         DBQueryParams params = new DBQueryParams();
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
         params.addString("formGuid", formGuid);
-        DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", params).get(0);
+        DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT FormTypeId FROM MasterForms WHERE FormGUID=:formGuid", params).get(0);
         formTypeId = masterFormData.getLong("FormTypeId");
         cx2Conn.close();
         return formTypeId;
     }
     
-    private String getFriendlyFormType(Long formTypeId) throws java.sql.SQLException { 
+    private String getFriendlyFormType(Long formTypeId) throws SQLException { 
         String friendlyFormType = null;
         DBQueryParams params = new DBQueryParams();
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
@@ -178,7 +181,7 @@ public class FormService {
         return friendlyFormType;
     }
 
-    private Map<String, Object> getFormData(String formGuid) throws com.microsoft.sqlserver.jdbc.SQLServerException, java.sql.SQLException {
+    private Map<String, Object> getFormData(String formGuid) throws SQLServerException, SQLException {
         // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
         DBQueryParams params = new DBQueryParams();
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
@@ -190,12 +193,12 @@ public class FormService {
         return formData;
     }
     
-    private UserDataPojo getUserData() throws com.microsoft.sqlserver.jdbc.SQLServerException, java.sql.SQLException {
+    private UserDataPojo getUserData() throws SQLServerException, SQLException {
         // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
         DBQueryParams params = new DBQueryParams();
         params.addLong("userId", Long.parseLong(securityService.getUserId()));
-        DBRow userDataRow = DBUtils.selectOne(cx2Conn, "SELECT * FROM Users WHERE ID=:userId", params);
+        DBRow userDataRow = DBUtils.selectOne(cx2Conn, "SELECT FirstName, LastName, Email FROM Users WHERE ID=:userId", params);
         UserDataPojo userData = new UserDataPojo();
         userData.setFirstName(userDataRow.getString("FirstName"));
         userData.setLastName(userDataRow.getString("LastName"));
@@ -981,11 +984,11 @@ public class FormService {
 	    	
 	    	queryParams.addString("formGuid", formGuid);
 	    	
-	    	DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", queryParams).get(0);
+	    	DBRow masterFormData = DBUtils.selectOne(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", queryParams);
 	    	
 	    	queryParams.addLong("formTypeId", masterFormData.getLong("FormTypeId"));
 	    	
-	    	DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0);
+	    	DBRow formTypeData = DBUtils.selectOne(cx2Conn, "SELECT * FROM FormTypes WHERE ID=:formTypeId", queryParams);
 	    	
 	    	/*
 	    	 * Begin form title creation
