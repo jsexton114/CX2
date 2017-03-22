@@ -23,9 +23,9 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="wi wi-attach-money" autoclose="outsideClick" name="panelFees" title="My Fees" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid2">
-                                <wm-gridrow name="gridrow4" padding="unset unset 1em unset">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn5" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="label1" caption="This list includes all fees that are eligible for payment at this time. Some fees may not populate until form processing is complete." fontweight="bold"></wm-label>
+                                <wm-gridrow name="gridrow4">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn5">
+                                        <wm-label padding="unset 0.5em" name="label2" caption="This list shows all fees that you are able to pay. It includes fees from forms that you have submitted and forms that have been shared with you."></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow5" padding="1em unset">
@@ -43,6 +43,11 @@
                                             <wm-grid-row-action key="deleterow" display-name="" show="bind:!itemInCart(row.getProperty('feeId'))" class="btn-transparent" iconclass="wi wi-add-shopping-cart" title="Add to Cart" action="Variables.svInsertIntoCart.invoke()"
                                             disabled="false"></wm-grid-row-action>
                                         </wm-grid>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow6">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn7_1">
+                                        <wm-label padding="unset 0.5em" name="label1" caption="This list includes all fees that are eligible for payment at this time. Some fees may not populate until form processing is complete." fontweight="bold"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
