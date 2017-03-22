@@ -1,8 +1,8 @@
-Application.$controller("MyFeesPageController", ["$scope", function ($scope) {
+Application.$controller("MyFeesPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
+    $scope.onPageReady = function() {
         /*
          * variables can be accessed through '$scope.Variables' property here
          * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
@@ -15,3 +15,23 @@ Application.$controller("MyFeesPageController", ["$scope", function ($scope) {
     };
 
 }]);
+
+Application.$controller("gridUnpaidFeesController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.itemInCart = function(feeId) {
+            let cartItems = $scope.Variables.svCartItemIds.dataSet.content;
+
+            if (!cartItems) {
+                return true; // By default, disable add to cart for anything if we don't have the cart data yet.
+            }
+
+            return !!_.find(cartItems, {
+                feeId: feeId
+            });
+        };
+
+    }
+]);

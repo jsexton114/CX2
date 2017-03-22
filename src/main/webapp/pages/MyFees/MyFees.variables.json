@@ -18,6 +18,52 @@
     "isList" : true,
     "saveInPhonegap" : false
   },
+  "ngViewForm" : {
+    "_id" : "wm-ngViewForm-wm.NavigationVariable-1490177654613",
+    "name" : "ngViewForm",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "Forms",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ {
+      "type" : "string",
+      "target" : "FormGUID",
+      "value" : "bind:Widgets.gridUnpaidFees.selecteditem.formGuid"
+    } ],
+    "pageTransitions" : "none"
+  },
+  "nvAlreadyInCart" : {
+    "_id" : "wm-nvAlreadyInCart-wm.NotificationVariable-1490177513896",
+    "name" : "nvAlreadyInCart",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "This fee has already been added to your cart",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "svAllFeesOfForms" : {
     "_id" : "wm-svAllFeesOfForms-wm.ServiceVariable-1490173039006",
     "name" : "svAllFeesOfForms",
@@ -53,5 +99,38 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "svInsertIntoCart" : {
+    "_id" : "wm-svInsertIntoCart-wm.ServiceVariable-1490177537247",
+    "name" : "svInsertIntoCart",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "FeeId",
+      "value" : "bind:Widgets.gridUnpaidFees.selecteditem.feeId",
+      "type" : "integer"
+    }, {
+      "target" : "UserId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "cx2",
+    "operation" : "executeInsertIntoCart",
+    "operationId" : "QueryExecutionController_executeInsertIntoCart",
+    "operationType" : "post",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.svAllFeesOfForms.invoke();Variables.svCartItemIds.invoke()",
+    "onError" : "Variables.nvAlreadyInCart.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
   }
 }
