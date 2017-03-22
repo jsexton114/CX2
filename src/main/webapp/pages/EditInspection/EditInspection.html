@@ -130,8 +130,9 @@
                                                                 generator="assigned" primary-key="false" key="sameDayInspectionFee" type="integer" is-related="false" step="0.01" pc-display="true" mobile-display="true" widget="currency" minvalue="0" maxvalue="1000000000000"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn58" padding="unset 1em unset unset">
-                                                                <wm-form-field name="sameDayInspectionFeeAcctCode" displayname="Same Day Inspection Fee Accounting Code" required="false" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayInspections.datavalue"
-                                                                generator="assigned" primary-key="false" key="sameDayInspectionFeeAcctCode" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                                                <wm-form-field name="sameDayInspectionFeeAcctCode" displayname="Same Day Inspection Fee Accounting Code" required="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.sameDayInspectionFee.datavalue > 0"
+                                                                show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayInspections.datavalue" generator="assigned" primary-key="false" key="sameDayInspectionFeeAcctCode" type="string"
+                                                                is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow38_1" padding="unset unset 1em unset">
@@ -144,8 +145,8 @@
                                                                 key="cancelFee" type="integer" is-related="false" step="0.01" pc-display="true" mobile-display="true" widget="currency" minvalue="0" maxvalue="1000000000000"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn87_1">
-                                                                <wm-form-field name="cancelFeeAccount" displayname="Cancellation Fee Accounting Code" required="false" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.allowCancel.datavalue" generator="assigned"
-                                                                primary-key="false" key="cancelFeeAccount" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                                                <wm-form-field name="cancelFeeAccount" displayname="Cancellation Fee Accounting Code" required="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.cancelFee.datavalue > 0" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.allowCancel.datavalue"
+                                                                generator="assigned" primary-key="false" key="cancelFeeAccount" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39" padding="unset unset 1em unset">
@@ -158,8 +159,9 @@
                                                                 primary-key="false" key="sameDayCancelFee" type="integer" is-related="false" step="0.01" pc-display="true" mobile-display="true" widget="currency" minvalue="0" maxvalue="999999999999"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn76_4" padding="unset 1em unset unset">
-                                                                <wm-form-field name="sameDayCancelAcctCode" displayname="Same Day Cancellation Accounting Code" required="false" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayCancel.datavalue"
-                                                                generator="assigned" primary-key="false" key="sameDayCancelAcctCode" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                                                <wm-form-field name="sameDayCancelAcctCode" displayname="Same Day Cancellation Accounting Code" required="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.sameDayCancelFee.datavalue > 0"
+                                                                show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayCancel.datavalue" generator="assigned" primary-key="false" key="sameDayCancelAcctCode" type="string" is-related="false"
+                                                                maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
