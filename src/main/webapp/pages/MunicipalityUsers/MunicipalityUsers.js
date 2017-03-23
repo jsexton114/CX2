@@ -94,6 +94,12 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
 
 
 
+
+    $scope.AllUsersonSuccess = function(variable, data) {
+        debugger
+        $scope.Variables.filterUsers.dataSet = data;
+    };
+
 }]);
 
 

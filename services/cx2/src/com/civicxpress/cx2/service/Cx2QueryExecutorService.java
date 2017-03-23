@@ -259,6 +259,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeDeleteRoleForMuncipality(String role, Integer municipality, Integer user);
 
+    Page<GetMunicipalityEmployeesResponse> executeGetMunicipalityEmployees(String roleName, Integer municipalityId, String email, Pageable pageable);
+
+    Downloadable exportGetMunicipalityEmployees(ExportType exportType, String roleName, Integer municipalityId, String email, Pageable pageable);
+
     Integer executeMapAsAdminForVendor(MapAsAdminForVendorRequest mapAsAdminForVendorRequest);
 
     Page<CountOfInspectionDesignByMunicipalityResponse> executeCountOfInspectionDesignByMunicipality(Integer municipalityId, Pageable pageable);

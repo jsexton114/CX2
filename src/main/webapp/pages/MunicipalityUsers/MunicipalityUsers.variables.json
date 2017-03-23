@@ -418,7 +418,11 @@
     "name" : "AllUsers",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "email",
+      "value" : "bind:Widgets.textSelectUser.query",
+      "type" : "string"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "Users",
@@ -426,9 +430,10 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "AllUsersonSuccess($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : true,
-    "autoUpdate" : false,
+    "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
     "ignoreCase" : true,
@@ -2075,6 +2080,38 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "filterUsers" : {
+    "_id" : "wm-filterUsers-wm.Variable-1490267167901",
+    "name" : "filterUsers",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "address1" : "",
+      "address2" : "",
+      "password" : "",
+      "city" : "",
+      "postalCode" : "",
+      "phoneNumber" : "",
+      "lastName" : "",
+      "communicationFrequency" : "",
+      "country" : "",
+      "email" : "",
+      "active" : "",
+      "states" : {
+        "id" : "",
+        "stateName" : ""
+      },
+      "id" : "",
+      "firstName" : "",
+      "banned" : "",
+      "stateId" : "",
+      "fullName" : ""
+    } ],
+    "type" : "com.civicxpress.cx2.Users",
+    "isList" : true,
+    "saveInPhonegap" : false
   },
   "GetAdminRolesForMunicipality" : {
     "_id" : "wm-GetEmployeeRolesForMunicipality-wm.ServiceVariable-1479737183806",

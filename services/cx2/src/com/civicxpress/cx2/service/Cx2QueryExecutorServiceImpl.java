@@ -1330,6 +1330,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("DeleteRoleForMuncipality", params);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetMunicipalityEmployeesResponse> executeGetMunicipalityEmployees(String roleName, Integer municipalityId, String email, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("RoleName", roleName);
+        params.put("municipalityId", municipalityId);
+        params.put("email", email);
+
+        return queryExecutor.executeNamedQuery("GetMunicipalityEmployees", params, GetMunicipalityEmployeesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetMunicipalityEmployees(ExportType exportType, String roleName, Integer municipalityId, String email, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("RoleName", roleName);
+        params.put("municipalityId", municipalityId);
+        params.put("email", email);
+
+        return queryExecutor.exportNamedQueryData("GetMunicipalityEmployees", params, exportType, GetMunicipalityEmployeesResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeMapAsAdminForVendor(MapAsAdminForVendorRequest mapAsAdminForVendorRequest) {

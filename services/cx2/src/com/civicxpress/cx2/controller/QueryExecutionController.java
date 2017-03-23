@@ -1175,6 +1175,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/GetMunicipalityEmployees", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "GetMunicipalityEmployees")
+    public Page<GetMunicipalityEmployeesResponse> executeGetMunicipalityEmployees(@RequestParam(value = "RoleName") String roleName, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "email") String email, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetMunicipalityEmployees");
+        Page<GetMunicipalityEmployeesResponse> _result = queryService.executeGetMunicipalityEmployees(roleName, municipalityId, email, pageable);
+        LOGGER.debug("got the result for named query: GetMunicipalityEmployees, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetMunicipalityEmployees")
+    @RequestMapping(value = "/queries/GetMunicipalityEmployees/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetMunicipalityEmployees(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "RoleName") String roleName, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "email") String email, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetMunicipalityEmployees");
+
+        return queryService.exportGetMunicipalityEmployees(exportType, roleName, municipalityId, email, pageable);
+    }
+
     @RequestMapping(value = "/queries/MapAsAdminForVendor", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "MapAsAdminForVendor")
