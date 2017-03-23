@@ -867,14 +867,14 @@
                 <wm-gridrow name="gridrow13" padding="unset unset 2em unset">
                     <wm-gridcolumn columnwidth="2" name="gridcolumn28_1"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="7" name="gridcolumn18_1">
-                        <wm-composite name="composite5">
+                        <wm-composite name="composite5" show="bind:Variables.stvTagSelection.dataSet.dataValue == 'users'">
                             <wm-label class="col-md-3 form-control-static" name="label8" caption="User Search" width="20%" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container5" width="80%">
                                 <wm-search name="textSearchPeople" placeholder="Search by Name or Email Address" dataset="bind:Variables.GetPeople.dataSet" searchkey="email,fullName" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" displayimagesrc="photo"
                                 datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="true" width="100%" orderby="fullName:asc"></wm-search>
                             </wm-container>
                         </wm-composite>
-                        <wm-composite name="composite7">
+                        <wm-composite name="composite7" show="bind:Variables.stvTagSelection.dataSet.dataValue == 'employees'">
                             <wm-label class="col-md-3 form-control-static" caption="User Search" width="20%" fontweight="bold" name="label100"></wm-label>
                             <wm-container class="col-md-9" width="80%" name="container14">
                                 <wm-search placeholder="Search by Name or Email Address" dataset="bind:Variables.svGetMunicipalityEmployees.dataSet" displaylabel="email" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="true"
