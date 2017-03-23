@@ -4796,9 +4796,9 @@
     "name" : "GetMunicipalityEmployees",
     "description" : "GetMunicipalityEmployees",
     "version" : "V2",
-    "queryString" : "select * \nfrom Users\nwhere Id in (select UserId from Roles where RoleName=:RoleName and MunicipalityId=:municipalityId) and Email like :email",
-    "countQueryString" : "select count(*) from (select * \nfrom Users\nwhere Id in (select UserId from Roles where RoleName=:RoleName and MunicipalityId=:municipalityId) and Email like :email) wmTempTable",
-    "nativeSql" : true,
+    "queryString" : "from Users\nwhere id IN (select userId from Roles where roleName=:RoleName and municipalityId=:municipalityId) and email like :email",
+    "countQueryString" : "select count(*) from Users\nwhere id IN (select userId from Roles where roleName=:RoleName and municipalityId=:municipalityId) and email like :email",
+    "nativeSql" : false,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
@@ -4829,163 +4829,9 @@
       "method" : "GET"
     },
     "response" : {
-      "typeRef" : "com.civicxpress.cx2.models.query.GetMunicipalityEmployeesResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "FirstName",
-        "fieldName" : "firstName",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "LastName",
-        "fieldName" : "lastName",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Email",
-        "fieldName" : "email",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Address1",
-        "fieldName" : "address1",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Address2",
-        "fieldName" : "address2",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "City",
-        "fieldName" : "city",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "PostalCode",
-        "fieldName" : "postalCode",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "PhoneNumber",
-        "fieldName" : "phoneNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "CommunicationFrequency",
-        "fieldName" : "communicationFrequency",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Active",
-        "fieldName" : "active",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "Photo",
-        "fieldName" : "photo",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "byte[]",
-          "list" : false
-        }
-      }, {
-        "name" : "Banned",
-        "fieldName" : "banned",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "Password",
-        "fieldName" : "password",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "StateId",
-        "fieldName" : "stateId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "Country",
-        "fieldName" : "country",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FullName",
-        "fieldName" : "fullName",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      } ]
+      "typeRef" : "com.civicxpress.cx2.Users",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
     }
   },
   "GetProcessGroupMemebersByFormGUID" : {

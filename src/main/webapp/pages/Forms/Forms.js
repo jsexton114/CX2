@@ -248,6 +248,18 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         $scope.Variables.GetTaggedPeopleListByMessage.update();
     };
 
+
+    $scope.buttonTagPeopleClick = function($event, $isolateScope) {
+        $scope.Variables.stvTagSelection.dataSet.dataValue = 'users';
+        $scope.Widgets.dialogTagPeople.open();
+    };
+
+
+    $scope.buttonInternalTagPeopleClick = function($event, $isolateScope) {
+        $scope.Variables.stvTagSelection.dataSet.dataValue = 'employees';
+        $scope.Widgets.dialogTagPeople.open();
+    };
+
 }]);
 
 Application.$controller("gridSharedwithController", ["$scope",

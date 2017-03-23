@@ -23,6 +23,7 @@ import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
+import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.models.query.*;
 

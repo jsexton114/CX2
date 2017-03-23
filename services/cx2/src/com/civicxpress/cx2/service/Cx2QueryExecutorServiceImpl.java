@@ -32,6 +32,7 @@ import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
+import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.models.query.*;
 
@@ -1332,14 +1333,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetMunicipalityEmployeesResponse> executeGetMunicipalityEmployees(String roleName, Integer municipalityId, String email, Pageable pageable) {
+    public Page<Users> executeGetMunicipalityEmployees(String roleName, Integer municipalityId, String email, Pageable pageable) {
         Map params = new HashMap(3);
 
         params.put("RoleName", roleName);
         params.put("municipalityId", municipalityId);
         params.put("email", email);
 
-        return queryExecutor.executeNamedQuery("GetMunicipalityEmployees", params, GetMunicipalityEmployeesResponse.class, pageable);
+        return queryExecutor.executeNamedQuery("GetMunicipalityEmployees", params, Users.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1351,7 +1352,7 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("municipalityId", municipalityId);
         params.put("email", email);
 
-        return queryExecutor.exportNamedQueryData("GetMunicipalityEmployees", params, exportType, GetMunicipalityEmployeesResponse.class, pageable);
+        return queryExecutor.exportNamedQueryData("GetMunicipalityEmployees", params, exportType, Users.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")

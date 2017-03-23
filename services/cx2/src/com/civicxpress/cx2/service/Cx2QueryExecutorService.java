@@ -22,6 +22,7 @@ import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
+import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.models.query.*;
 
@@ -259,7 +260,7 @@ public interface Cx2QueryExecutorService {
 
     Integer executeDeleteRoleForMuncipality(String role, Integer municipality, Integer user);
 
-    Page<GetMunicipalityEmployeesResponse> executeGetMunicipalityEmployees(String roleName, Integer municipalityId, String email, Pageable pageable);
+    Page<Users> executeGetMunicipalityEmployees(String roleName, Integer municipalityId, String email, Pageable pageable);
 
     Downloadable exportGetMunicipalityEmployees(ExportType exportType, String roleName, Integer municipalityId, String email, Pageable pageable);
 

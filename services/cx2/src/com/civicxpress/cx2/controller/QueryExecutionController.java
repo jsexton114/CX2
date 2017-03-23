@@ -45,6 +45,7 @@ import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
+import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.service.Cx2QueryExecutorService;
 import com.civicxpress.cx2.models.query.*;
@@ -1178,9 +1179,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetMunicipalityEmployees", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "GetMunicipalityEmployees")
-    public Page<GetMunicipalityEmployeesResponse> executeGetMunicipalityEmployees(@RequestParam(value = "RoleName") String roleName, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "email") String email, Pageable pageable) {
+    public Page<Users> executeGetMunicipalityEmployees(@RequestParam(value = "RoleName") String roleName, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "email") String email, Pageable pageable) {
         LOGGER.debug("Executing named query: GetMunicipalityEmployees");
-        Page<GetMunicipalityEmployeesResponse> _result = queryService.executeGetMunicipalityEmployees(roleName, municipalityId, email, pageable);
+        Page<Users> _result = queryService.executeGetMunicipalityEmployees(roleName, municipalityId, email, pageable);
         LOGGER.debug("got the result for named query: GetMunicipalityEmployees, result:{}", _result);
         return _result;
     }

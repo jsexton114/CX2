@@ -1020,27 +1020,25 @@ and (FT.MunicipalityInternalForm=0
     <query-param name="user" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="GetMunicipalityEmployees">
+    <query name="GetMunicipalityEmployees">
         <![CDATA[
-        select * 
-from Users
-where Id in (select UserId from Roles where RoleName=:RoleName and MunicipalityId=:municipalityId) and Email like :email
+        from Users
+where id IN (select userId from Roles where roleName=:RoleName and municipalityId=:municipalityId) and email like :email
         ]]>
     <query-param name="RoleName" type="java.lang.String"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="email" type="java.lang.String"/>
-    </sql-query>
+    </query>
 
-    <sql-query name="GetMunicipalityEmployees__count">
+    <query name="GetMunicipalityEmployees__count">
         <![CDATA[
-        select count(*) from (select * 
-from Users
-where Id in (select UserId from Roles where RoleName=:RoleName and MunicipalityId=:municipalityId) and Email like :email) wmTempTable
+        select count(*) from Users
+where id IN (select userId from Roles where roleName=:RoleName and municipalityId=:municipalityId) and email like :email
         ]]>
     <query-param name="RoleName" type="java.lang.String"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="email" type="java.lang.String"/>
-    </sql-query>
+    </query>
 
     <sql-query name="MapAsAdminForVendor">
         <![CDATA[

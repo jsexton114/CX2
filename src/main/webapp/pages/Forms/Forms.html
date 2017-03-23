@@ -450,7 +450,7 @@
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="3" name="gridcolumn159_1">
                                                 <wm-button class="btn-primary" caption="Post" type="button" margin="unset 0.5em" name="buttonAddMessage" iconclass="wi wi-send" on-click="buttonAddMessageClick($event, $scope)" disabled="bind:!Widgets.textAddMessage.datavalue"></wm-button>
-                                                <wm-button class="btn-secondary" caption="Tag People" type="button" name="buttonTagPeople" iconclass="wi wi-tag" on-click="Widgets.dialogTagPeople.open()" badgevalue="bind:Variables.PeopleList.dataSet.length"></wm-button>
+                                                <wm-button class="btn-secondary" caption="Tag People" type="button" name="buttonTagPeople" iconclass="wi wi-tag" on-click="buttonTagPeopleClick($event, $scope)" badgevalue="bind:Variables.PeopleList.dataSet.length"></wm-button>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
@@ -523,7 +523,8 @@
                                             <wm-gridcolumn columnwidth="3" name="gridcolumn160_1">
                                                 <wm-button class="btn-primary" caption="Post" type="button" margin="unset 0.5em" iconclass="wi wi-send" on-click="buttonAddInternalMessageClick($event, $scope)" disabled="bind:!Widgets.textInternalAddMessage.datavalue"
                                                 name="buttonAddInternalMessage"></wm-button>
-                                                <wm-button class="btn-secondary" caption="Tag People" type="button" iconclass="wi wi-tag" on-click="Widgets.dialogTagPeople.open()" badgevalue="bind:Variables.PeopleList.dataSet.length" name="buttonInternalTagPeople"></wm-button>
+                                                <wm-button class="btn-secondary" caption="Tag People" type="button" iconclass="wi wi-tag" on-click="buttonInternalTagPeopleClick($event, $scope)" badgevalue="bind:Variables.PeopleList.dataSet.length"
+                                                name="buttonInternalTagPeople"></wm-button>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
@@ -876,8 +877,8 @@
                         <wm-composite name="composite7">
                             <wm-label class="col-md-3 form-control-static" caption="User Search" width="20%" fontweight="bold" name="label100"></wm-label>
                             <wm-container class="col-md-9" width="80%" name="container14">
-                                <wm-search placeholder="Search by Name or Email Address" dataset="bind:Variables.svGetMunicipalityEmployees.dataSet" displaylabel="col0.active" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)"
-                                required="true" width="100%" name="textSearchInternalPeople" type="search"></wm-search>
+                                <wm-search placeholder="Search by Name or Email Address" dataset="bind:Variables.svGetMunicipalityEmployees.dataSet" displaylabel="email" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="true"
+                                width="100%" name="textSearchInternalPeople" type="search" displayimagesrc="photo"></wm-search>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
