@@ -19,10 +19,21 @@ import java.util.Map;
  * Created by jason on 3/15/2017.
  */
 public class PdfUtilities {
+	
+	private final static float LINE_HEIGHT = 20;
+    private final static float COLUMN_WIDTH = 275;
+	
+	private static void addTextCentered(PDPageContentStream contentStream, PDPage page, String text, PDType1Font font, float fontSize) throws IOException {
+		float textWidth = (font.getStringWidth(text) / 1000.0f) * fontSize;
+        
+        float textOffset = (page.getMediaBox().getWidth() - textWidth) / 2;
+        contentStream.newLineAtOffset(textOffset, -LINE_HEIGHT);
+        contentStream.setFont( font, fontSize );
+        contentStream.showText(text);
+        contentStream.newLineAtOffset(-textOffset, 0);
+	}
 
     public static String createDynamicFormPdf(FormDataPojo formDataPojo, String title, Map<String, Object> formData, byte[] municipalityLogo, boolean addSignatureLine) throws IOException {
-        final float LINE_HEIGHT = 20;
-        final float COLUMN_WIDTH = 275;
         PDDocument document;
         PDPage page;
         PDPageContentStream contentStream;
@@ -38,7 +49,7 @@ public class PdfUtilities {
         // add an image
         try {
             PDImageXObject ximage = LosslessFactory.createFromImage(document, municipalityLogoImage);
-            int width = 100;
+            int width = 160;
             float aspectRatio = ((float) ximage.getHeight()/(float) ximage.getWidth());
             int height = (int) (aspectRatio * width);
             contentStream.drawImage(ximage, ((page.getMediaBox().getWidth() - width) / 2), 695, width, height);
@@ -46,27 +57,24 @@ public class PdfUtilities {
             System.out.println("No image for you");
         }
 
-        // add the line
+        // Dividing line
         contentStream.setLineWidth(1);
-        contentStream.moveTo(20, 685);
-        contentStream.lineTo(580, 685);
+        contentStream.moveTo(20, 630);
+        contentStream.lineTo(580, 630);
         contentStream.closeAndStroke();
 
         contentStream.beginText();
-        contentStream.setFont( PDType1Font.HELVETICA_BOLD, 14 );
-        contentStream.newLineAtOffset( 100, 690 );
-        contentStream.showText(title);
+        contentStream.newLineAtOffset( 0, 700 );
+        // Form Type
+        addTextCentered(contentStream, page, title, PDType1Font.HELVETICA_BOLD, 14f);
+        // Form Title
+        addTextCentered(contentStream, page, formDataPojo.getFormTitle(), PDType1Font.HELVETICA, 10f);
+        // Creator
+        addTextCentered(contentStream, page, ("Created By: " + formDataPojo.getCreatorFullName()), PDType1Font.HELVETICA, 10f);
         
-//        float formTitleWidth = PDType1Font.HELVETICA.getStringWidth(formDataPojo.getFormTitle()) / 1000 * 10;
-        
-//        float formTitleOffset = (page.getMediaBox().getWidth() - formTitleWidth) / 2;
-        contentStream.newLineAtOffset(0, -LINE_HEIGHT);
-        contentStream.setFont( PDType1Font.HELVETICA, 10 );
-        contentStream.showText(formDataPojo.getFormTitle());
-        contentStream.newLineAtOffset(0, -LINE_HEIGHT);
-        contentStream.showText("Created By: " + formDataPojo.getCreatorFullName());
+        // Add dynamic form fields
         contentStream.setFont( PDType1Font.HELVETICA, 12 );
-        contentStream.newLineAtOffset(0, -15);
+        contentStream.newLineAtOffset(100, -15);
 
         for (Map.Entry<String, Object> entry : formData.entrySet())
         {
