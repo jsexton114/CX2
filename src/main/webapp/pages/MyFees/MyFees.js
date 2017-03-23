@@ -29,6 +29,23 @@ Application.$controller("MyFeesPageController", ["$scope", function($scope) {
         $scope.Widgets.gridUnpaidFees.dataset = data.content;
     };
 
+
+    $scope.lvInsertAllFeesTocartonError = function(variable, data) {
+        // Do nothing		
+    };
+
+
+    $scope.lvInsertAllFeesTocartonSuccess = function(variable, data) {
+
+        //Checking if no municipality is selected
+        if ($scope.Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue == undefined) {
+            $scope.Variables.svAllFeesOfForms.update();
+        } else {
+            // For selected municipality
+            $scope.Variables.svAllFeesOfFormsByMunicipality.update();
+        }
+    };
+
 }]);
 
 Application.$controller("gridUnpaidFeesController", ["$scope",
@@ -45,6 +62,20 @@ Application.$controller("gridUnpaidFeesController", ["$scope",
 
             return !!_.find(cartItems, {
                 feeId: feeId
+            });
+        };
+
+
+        $scope.addNewRowAction = function($event) {
+            let feeData = $scope.Widgets.gridUnpaidFees.dataset;
+            _.forEach(feeData, function(obj) {
+
+                $scope.Variables.lvInsertAllFeesTocart.setInput({
+                    'feeId': obj.feeId,
+                    'userId': $scope.Variables.CurrentUserDetails.dataSet.id
+                });
+                $scope.Variables.lvInsertAllFeesTocart.insertRecord();
+                console.log(obj.feeId);
             });
         };
 
