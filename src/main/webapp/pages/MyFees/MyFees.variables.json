@@ -92,8 +92,9 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "svAllFeesOfFormsonSuccess($event, $scope)",
     "startUpdate" : false,
-    "autoUpdate" : true,
+    "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
@@ -105,7 +106,23 @@
     "name" : "svAllFeesOfFormsByMunicipality",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "allowPayment",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "paidStatus",
+      "value" : "Unpaid",
+      "type" : "string"
+    }, {
+      "target" : "userId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
     "type" : "com.civicxpress.cx2.models.query.AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse",
     "service" : "cx2",
     "operation" : "executeAllFeesOfFormsForCreatedByAndSharedWithByMunicipality",
@@ -116,6 +133,7 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "svAllFeesOfFormsByMunicipalityonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
