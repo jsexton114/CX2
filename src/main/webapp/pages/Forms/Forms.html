@@ -424,8 +424,8 @@
                                                             </wm-container>
                                                             <wm-container class="popover media-body" name="container5">
                                                                 <wm-label name="Content" caption="bind:Variables.FormMessagesData.dataSet.message" class="p media-heading"></wm-label>
-                                                                <wm-anchor margin="unset 0.5em" name="anchorViewTaggedPeople" caption="Tags" class="pull-left" iconclass="wi wi-tag" on-click="Widgets.dialogShowTaggedPeople.open()" textdecoration="underline"
-                                                                fontsize="8" fontunit="pt"></wm-anchor>
+                                                                <wm-anchor margin="unset 0.5em" name="anchorViewTaggedPeople" caption="Tags" class="pull-left" iconclass="wi wi-tag" on-click="anchorViewTaggedPeopleClick($event, $scope, item, currentItemWidgets)"
+                                                                textdecoration="underline" fontsize="8" fontunit="pt"></wm-anchor>
                                                                 <wm-container class="pull-right" name="container5_1">
                                                                     <wm-label name="label4" class="small" caption="by " padding="unset 0.5em unset unset"></wm-label>
                                                                     <wm-label name="Name" class="small" caption="bind:Variables.FormMessagesData.dataSet.data[$i].users.firstName +&quot; &quot;+Variables.FormMessagesData.dataSet.data[$i].users.lastName"></wm-label>
@@ -495,8 +495,8 @@
                                                             </wm-container>
                                                             <wm-container class="popover media-body" name="container12">
                                                                 <wm-label caption="bind:Variables.lvMunicipalityFormMessagesData.dataSet.message" class="p media-heading" name="label93_1"></wm-label>
-                                                                <wm-anchor margin="unset 0.5em" caption="Tags" class="pull-left" iconclass="wi wi-tag" on-click="Widgets.dialogShowTaggedPeople.open()" textdecoration="underline" fontsize="8"
-                                                                fontunit="pt" name="anchor4"></wm-anchor>
+                                                                <wm-anchor margin="unset 0.5em" caption="Tags" class="pull-left" iconclass="wi wi-tag" on-click="anchorViewInternalTaggedPeopleClick($event, $scope, item, currentItemWidgets)"
+                                                                textdecoration="underline" fontsize="8" fontunit="pt" name="anchorViewInternalTaggedPeople"></wm-anchor>
                                                                 <wm-container class="pull-right" name="container13">
                                                                     <wm-label class="small" caption="by " padding="unset 0.5em unset unset" name="label94_1"></wm-label>
                                                                     <wm-label class="small" caption="bind:Variables.lvMunicipalityFormMessagesData.dataSet.data[$i].users.firstName +&quot; &quot;+Variables.lvMunicipalityFormMessagesData.dataSet.data[$i].users.lastName"

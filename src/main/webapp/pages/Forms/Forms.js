@@ -123,7 +123,8 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
         // Send Mails of Message
         $scope.Variables.SendFormMessagesMail.setInput({
-            "recipient": $scope.messageMailingList
+            'recipient': $scope.messageMailingList,
+            'comments': data.content[0].message
         });
         $scope.Variables.SendFormMessagesMail.update();
     };
@@ -223,6 +224,28 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
             'Message': $scope.Widgets.textInternalAddMessage.datavalue
         });
         $scope.Variables.PostFormMessage.update();
+    };
+
+
+    $scope.anchorViewTaggedPeopleClick = function($event, $isolateScope, item, currentItemWidgets) {
+        $scope.Variables.GetTaggedPeopleListByMessage.setFilter({
+            'formMessageId': item.id
+        });
+        $scope.Variables.GetTaggedPeopleListByMessage.update();
+
+    };
+
+
+    $scope.GetTaggedPeopleListByMessageonSuccess = function(variable, data) {
+        $scope.Widgets.dialogShowTaggedPeople.open();
+    };
+
+
+    $scope.anchorViewInternalTaggedPeopleClick = function($event, $isolateScope, item, currentItemWidgets) {
+        $scope.Variables.GetTaggedPeopleListByMessage.setFilter({
+            'formMessageId': item.id
+        });
+        $scope.Variables.GetTaggedPeopleListByMessage.update();
     };
 
 }]);

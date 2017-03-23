@@ -67,6 +67,7 @@ Application.$controller("gridUnpaidFeesController", ["$scope",
 
 
         $scope.addNewRowAction = function($event) {
+            debugger
             let feeData = $scope.Widgets.gridUnpaidFees.dataset;
             _.forEach(feeData, function(obj) {
 

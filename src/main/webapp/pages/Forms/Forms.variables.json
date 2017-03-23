@@ -9380,11 +9380,7 @@
     "name" : "GetTaggedPeopleListByMessage",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ {
-      "target" : "formMessageId",
-      "value" : "bind:Widgets.livelistFormMessages.selecteditem.id",
-      "type" : "number"
-    } ],
+    "dataBinding" : [ ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "FormMessageTagging",
@@ -9392,6 +9388,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "GetTaggedPeopleListByMessageonSuccess($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : true,
@@ -9779,7 +9776,7 @@
       "primaryFields" : [ "id" ]
     },
     "bindCount" : 1,
-    "spinnerContext" : "viewShowTaggedPeople",
+    "spinnerContext" : "page",
     "spinnerMessage" : "Please wait......",
     "tableName" : "FormMessageTagging",
     "tableType" : "TABLE",
@@ -18816,10 +18813,6 @@
     "dataBinding" : [ {
       "target" : "sender",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.firstName+\" \"+Variables.CurrentUserDetails.dataSet.lastName",
-      "type" : "string"
-    }, {
-      "target" : "comments",
-      "value" : "bind:Widgets.textAddMessage.datavalue",
       "type" : "string"
     }, {
       "target" : "municipality",
