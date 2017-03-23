@@ -68,6 +68,8 @@ public class FormController {
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public void main(@RequestBody String[] args) {
         formService.main(args);
     }
