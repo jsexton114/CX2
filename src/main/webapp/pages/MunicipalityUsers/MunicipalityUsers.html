@@ -335,9 +335,9 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewAddRole">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="bind:&quot;Add &quot;+Variables.stvSelectedRole.dataSet.dataValue" iconclass="wi wi-person-add" name="dialogAddRole">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add User Role" iconclass="wi wi-person-add" name="dialogAddRole">
             <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-primary" caption="Add User" name="buttonRole" on-click="buttonRoleClick($event, $scope)" iconclass="wi wi-plus" disabled="bind:!Widgets.textSelectUser.datavalue"></wm-button>
+                <wm-button class="btn-primary" caption="Add Role" name="buttonRole" on-click="buttonRoleClick($event, $scope)" iconclass="wi wi-plus" disabled="bind:!Widgets.textSelectUser.datavalue"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button4" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid6">
@@ -582,7 +582,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions7">
-                <wm-button class="btn-primary" caption="Remove" type="button" margin="unset 0.5em" name="buttonProceedRoleDelete" on-click="buttonProceedRoleDeleteClick($event, $scope)" iconclass="wi wi-trash"></wm-button>
+                <wm-button class="btn-primary" caption="OK" type="button" margin="unset 0.5em" name="buttonProceedRoleDelete" on-click="buttonProceedRoleDeleteClick($event, $scope)" iconclass="wi wi-check"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="buttonCloseDeleteRoleConfrim" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
