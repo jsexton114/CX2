@@ -44,7 +44,6 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 
 
     $scope.GetMessageIdForCurrentPostonSuccess = function(variable, data) {
-        debugger
         var people = $scope.Variables.PeopleList.dataSet;
         var m = data;
         $scope.messageMailingList = '';
@@ -63,14 +62,14 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
         }
         $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
 
-        // // Send Mails of Message
-        // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID
-        // $scope.Variables.svSendFormMessagesMail.setInput({
-        //     'formLink': tempLink,
-        //     'recipient': $scope.messageMailingList,
-        //     'comments': data.content[0].message
-        // });
-        // $scope.Variables.svSendFormMessagesMail.update();
+        // Send Mails of Message
+        var tempLink = window.location.hostname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.ProjectGUID
+        $scope.Variables.svSendProjectMessagesMail.setInput({
+            'projectLink': tempLink,
+            'recipient': $scope.messageMailingList,
+            'comments': m.message
+        });
+        $scope.Variables.svSendProjectMessagesMail.update();
     };
 
 
@@ -204,6 +203,11 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
         $scope.Variables.PeopleList.dataSet = [];
     };
 
+
+
+    $scope.svSendProjectMessagesMailonSuccess = function(variable, data) {
+        $scope.Variables.PeopleList.dataSet = [];
+    };
 
 }]);
 

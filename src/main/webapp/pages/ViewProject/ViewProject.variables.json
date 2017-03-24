@@ -6678,6 +6678,34 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.FormMessages"
   },
+  "MessageMailsSent" : {
+    "_id" : "wm-MessageMailsSent-wm.NotificationVariable-1490349583893",
+    "name" : "MessageMailsSent",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "bind:\"A notification has been sent to \"+messageMailingList",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "NewMessage" : {
     "_id" : "wm-NewMessage-wm.Variable-1487764320657",
     "name" : "NewMessage",
@@ -11431,6 +11459,46 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "svSendProjectMessagesMail" : {
+    "_id" : "wm-svSendProjectMessagesMail-wm.ServiceVariable-1490349473542",
+    "name" : "svSendProjectMessagesMail",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "sender",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.firstName+\" \"+Variables.CurrentUserDetails.dataSet.lastName",
+      "type" : "string"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Variables.CurrentProject.firstRecord.municipalities.municipalityName",
+      "type" : "string"
+    }, {
+      "target" : "municipalitySignature",
+      "value" : "bind:Variables.CurrentProject.firstRecord.municipalities.globalEmailSig",
+      "type" : "string"
+    }, {
+      "target" : "projectTitle",
+      "value" : "bind:Variables.CurrentProject.firstRecord.projectName",
+      "type" : "string"
+    } ],
+    "type" : "string",
+    "service" : "ProjectMessagingMailService",
+    "operation" : "sendMessagingMail",
+    "operationId" : "ProjectMessagingMailController_sendMessagingMail",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.MessageMailsSent.invoke();svSendProjectMessagesMailonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProjectMessagingMail"
   },
   "TaskUpdatedSuccessfully" : {
     "_id" : "wm-TaskUpdatedSuccessfully-wm.NotificationVariable-1488787411443",
