@@ -226,10 +226,10 @@ public class FormService {
     }
     
     private UserDataPojo getUserData() throws SQLServerException, SQLException {
-        // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
+        // NOTE: all DB code should be refactored out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
         DBQueryParams params = new DBQueryParams();
-        params.addLong("userId", 1L);
+        params.addLong("userId", Long.parseLong(securityService.getUserId()));
         DBRow userDataRow = DBUtils.selectOne(cx2Conn, "SELECT FirstName, LastName, Email FROM Users WHERE ID=:userId", params);
         UserDataPojo userData = new UserDataPojo();
         userData.setFirstName(userDataRow.getString("FirstName"));
