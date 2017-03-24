@@ -105,11 +105,13 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
     $scope.InsertTaskonSuccess = function(variable, data) {
         if ($scope.Widgets.selectProjectAssignedTo.datavalue != undefined) {
             var user = $scope.Widgets.selectProjectAssignedTo.datavalue.firstName + ' ' + $scope.Widgets.selectProjectAssignedTo.datavalue.lastName;
-            $scope.Variables.AssignedTaskMail.setInput({
+            var tempLink = window.location.hostname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.FormGUID
+            $scope.Variables.svAssignedTaskMail.setInput({
+                'projectLink': tempLink,
                 'username': user,
                 'recipient': $scope.Widgets.selectProjectAssignedTo.datavalue.email
             });
-            $scope.Variables.AssignedTaskMail.update();
+            $scope.Variables.svAssignedTaskMail.update();
         }
     };
 
@@ -118,11 +120,13 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
         if ($scope.Widgets.selectUpdateProjectAssignedTo.datavalue != undefined) {
             if ($scope.Widgets.gridTasks.selecteditem.usersByAssignedTo.id != $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.id) {
                 var user = $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.firstName + ' ' + $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.lastName;
-                $scope.Variables.AssignedTaskMail.setInput({
+                var tempLink = window.location.hostname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.FormGUID
+                $scope.Variables.svAssignedTaskMail.setInput({
+                    'projectLink': tempLink,
                     'username': user,
                     'recipient': $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.email
                 });
-                $scope.Variables.AssignedTaskMail.update();
+                $scope.Variables.svAssignedTaskMail.update();
 
             }
         }

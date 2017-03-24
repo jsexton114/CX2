@@ -181,47 +181,6 @@
     } ],
     "operation" : "toast"
   },
-  "AssignedTaskMail" : {
-    "_id" : "wm-AssignedTaskMail-wm.ServiceVariable-1487849129437",
-    "name" : "AssignedTaskMail",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "emailSubject",
-      "value" : "You have been assigned a project task",
-      "type" : "string"
-    }, {
-      "target" : "municipalitySignature",
-      "value" : "bind:Variables.CurrentProject.dataSet.data[$i].municipalities.globalEmailSig",
-      "type" : "string"
-    }, {
-      "target" : "projectGUID",
-      "value" : "bind:pageParams.ProjectGUID",
-      "type" : "string"
-    }, {
-      "target" : "projectName",
-      "value" : "bind:Variables.CurrentProject.dataSet.data[$i].projectName",
-      "type" : "string"
-    } ],
-    "type" : "string",
-    "service" : "ProjectTaskAssignment",
-    "operation" : "sendAssignedTaskMail",
-    "operationId" : "ProjectTaskAssignmentController_sendAssignedTaskMail",
-    "operationType" : "get",
-    "serviceType" : "JavaService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "ProjectTaskAssignment",
-    "spinnerContext" : "page",
-    "spinnerMessage" : "Sending Notification"
-  },
   "BreadCrum" : {
     "_id" : "wm-BreadCrum-wm.Variable-1486965868009",
     "name" : "BreadCrum",
@@ -10289,6 +10248,43 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Subdivisions"
+  },
+  "svAssignedTaskMail" : {
+    "_id" : "wm-AssignedTaskMail-wm.ServiceVariable-1487849129437",
+    "name" : "svAssignedTaskMail",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "emailSubject",
+      "value" : "You have been assigned a project task",
+      "type" : "string"
+    }, {
+      "target" : "municipalitySignature",
+      "value" : "bind:Variables.CurrentProject.dataSet.data[$i].municipalities.globalEmailSig",
+      "type" : "string"
+    }, {
+      "target" : "projectName",
+      "value" : "bind:Variables.CurrentProject.dataSet.data[$i].projectName",
+      "type" : "string"
+    } ],
+    "type" : "string",
+    "service" : "ProjectTaskAssignment",
+    "operation" : "sendAssignedTaskMail",
+    "operationId" : "ProjectTaskAssignmentController_sendAssignedTaskMail",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProjectTaskAssignment",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Sending Notification"
   },
   "TaskUpdatedSuccessfully" : {
     "_id" : "wm-TaskUpdatedSuccessfully-wm.NotificationVariable-1488787411443",

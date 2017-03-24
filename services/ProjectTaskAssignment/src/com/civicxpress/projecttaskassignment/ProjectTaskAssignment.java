@@ -42,13 +42,13 @@ public class ProjectTaskAssignment {
     private static final Logger logger = LoggerFactory.getLogger(ProjectTaskAssignment.class);
      private static final String RESET_NOTIFICATION_MAIL_ID ="civicxpress@gmail.com ";
     private static final String RESET_NOTIFICATION_MAIL_PASSWORD ="civicxpress2016!";
-    private static final String PROJECT_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/ViewProject?ProjectGUID=";
+   // private static final String PROJECT_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/ViewProject?ProjectGUID=";
    
 
     @Autowired
     private SecurityService securityService;
     
-     public String sendAssignedTaskMail(String username ,String recipient,String emailSubject,String municipalitySignature,String projectGUID,String projectName) throws MessagingException {
+     public String sendAssignedTaskMail(String username ,String recipient,String emailSubject,String municipalitySignature,String projectName,String projectLink) throws MessagingException {
         
       
         
@@ -68,8 +68,8 @@ public class ProjectTaskAssignment {
         
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
         
-        String projectURL=  PROJECT_URL+projectGUID;
-        logger.info(projectGUID);
+        String projectURL=  projectLink;
+        logger.info(projectLink);
         
         String emailContent = "Hi" + " "+username+","+"<br />";
         
