@@ -165,7 +165,7 @@ Application.$controller("gridInspectorController", ["$scope",
 
             $scope.Variables.stvDeleteRole.dataSet.role = "Inspector";
             $scope.Variables.stvDeleteRole.dataSet.user = $rowData.ID;
-            $scope.Variables.stvDeleteRoleText.dataSet.dataValue = "This action will also revoke all higher privileges that have been granted (InspectorManager). Would you like to proceed?";
+            $scope.Variables.stvDeleteRoleText.dataSet.dataValue = "Removing an Inspector will also remove them as Inspector Manager if they have been assigned that role. Would you like to proceed?";
             $scope.Widgets.dialogDeleteRoleConfrim.open();
         };
 
@@ -432,7 +432,7 @@ Application.$controller("gridEmployeesController", ["$scope",
         $scope.customRowAction1 = function($event, $rowData) {
             $scope.Variables.stvDeleteRole.dataSet.role = "MunicipalityEmployee";
             $scope.Variables.stvDeleteRole.dataSet.user = $rowData.ID;
-            $scope.Variables.stvDeleteRoleText.dataSet.dataValue = "This action will also revoke all higher privileges that have been granted (Municipality Admin, Inspection roles, and Code Enforcement roles). Would you like to proceed?";
+            $scope.Variables.stvDeleteRoleText.dataSet.dataValue = "Removing a Municipality Employee will also remove all other roles that have been assigned to them. Would you like to proceed?";
             $scope.Widgets.dialogDeleteRoleConfrim.open();
         };
 
@@ -488,7 +488,7 @@ Application.$controller("gridCodeOfficerController", ["$scope",
 
             $scope.Variables.stvDeleteRole.dataSet.role = "CodeOfficer";
             $scope.Variables.stvDeleteRole.dataSet.user = $rowData.ID;
-            $scope.Variables.stvDeleteRoleText.dataSet.dataValue = "This action will also revoke all higher privileges that have been granted (CodeOfficer). Would you like to proceed?";
+            $scope.Variables.stvDeleteRoleText.dataSet.dataValue = "Removing a Code Officer will also remove them as Code Manager if they have been assigned that role. Would you like to proceed?";
             $scope.Widgets.dialogDeleteRoleConfrim.open();
         };
 
