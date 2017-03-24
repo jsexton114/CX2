@@ -44,7 +44,7 @@ public class FormMessagingMailService {
     private static final Logger logger = LoggerFactory.getLogger(FormMessagingMailService.class);
      private static final String RESET_NOTIFICATION_MAIL_ID ="civicxpress@gmail.com ";
     private static final String RESET_NOTIFICATION_MAIL_PASSWORD ="civicxpress2016!";
-    private static final String FORM_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/Forms?FormGUID=";
+    //private static final String FORM_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/Forms?FormGUID=";
 
     @Autowired
     private SecurityService securityService;
@@ -58,7 +58,7 @@ public class FormMessagingMailService {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
-  public String sendMessagingMail(String sender,String comments,String username ,String recipient,String municipality,String formType,String municipalitySignature,String formTitle,String formGUID) throws MessagingException {
+  public String sendMessagingMail(String sender,String comments,String username ,String recipient,String municipality,String formType,String municipalitySignature,String formTitle,String formLink) throws MessagingException {
         
         //logger.info("_______________________________________________________________"+comments);
         
@@ -95,8 +95,8 @@ public class FormMessagingMailService {
         
         String emailSubject="New Message on CivicXpress form "+formTitle;
         
-        String formURL=  FORM_URL+formGUID;
-        logger.info(formGUID);
+        String formURL= formLink;
+        logger.info(formLink);
         
         String emailContent = "You have been tagged by "+sender+" on the following message (on "+municipality+" form ";
         emailContent = emailContent+"<a href ='"+formURL+"'>"+formTitle+"</a>):";

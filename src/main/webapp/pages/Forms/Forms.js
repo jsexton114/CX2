@@ -122,11 +122,13 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
 
         // Send Mails of Message
-        $scope.Variables.SendFormMessagesMail.setInput({
+        var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID
+        $scope.Variables.svSendFormMessagesMail.setInput({
+            'formLink': tempLink,
             'recipient': $scope.messageMailingList,
             'comments': data.content[0].message
         });
-        $scope.Variables.SendFormMessagesMail.update();
+        $scope.Variables.svSendFormMessagesMail.update();
     };
 
     $scope.svSetFormStatusonSuccess = function(variable, data) {
@@ -167,9 +169,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         $scope.Widgets.textareaNotes.reset();
     };
 
-    $scope.SendFormMessagesMailonSuccess = function(variable, data) {
-        $scope.Variables.PeopleList.dataSet = [];
-    };
+
 
     $scope.svUserPermissionsonSuccess = function(variable, data) {
         if (!data.canView) {
@@ -266,6 +266,11 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     };
 
     $scope.tabpaneIntenalMessagesSelect = function($event, $isolateScope) {
+        $scope.Variables.PeopleList.dataSet = [];
+    };
+
+
+    $scope.svSendFormMessagesMailonSuccess = function(variable, data) {
         $scope.Variables.PeopleList.dataSet = [];
     };
 

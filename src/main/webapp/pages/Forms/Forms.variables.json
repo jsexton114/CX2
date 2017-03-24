@@ -18805,56 +18805,6 @@
     } ],
     "operation" : "toast"
   },
-  "SendFormMessagesMail" : {
-    "_id" : "wm-SendMessageMail-wm.ServiceVariable-1487145794825",
-    "name" : "SendFormMessagesMail",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "sender",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.firstName+\" \"+Variables.CurrentUserDetails.dataSet.lastName",
-      "type" : "string"
-    }, {
-      "target" : "municipality",
-      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].municipalities.municipalityName",
-      "type" : "string"
-    }, {
-      "target" : "formType",
-      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTypes.formType",
-      "type" : "string"
-    }, {
-      "target" : "municipalitySignature",
-      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].municipalities.globalEmailSig",
-      "type" : "string"
-    }, {
-      "target" : "formTitle",
-      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTitle",
-      "type" : "string"
-    }, {
-      "target" : "formGUID",
-      "value" : "bind:pageParams.FormGUID",
-      "type" : "string"
-    } ],
-    "type" : "string",
-    "service" : "FormMessagingMailService",
-    "operation" : "sendMessagingMail",
-    "operationId" : "FormMessagingMailController_sendMessagingMail",
-    "operationType" : "get",
-    "serviceType" : "JavaService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "SendFormMessagesMailonSuccess($event, $scope);Variables.MessageMailsSent.invoke()",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "FormMessagingMail",
-    "spinnerContext" : "page",
-    "spinnerMessage" : "Sending Mails....."
-  },
   "SetPrimaryVendorStatusForFormandVendor" : {
     "_id" : "wm-SetPrimaryVendorStatusForFormandVendor-wm.ServiceVariable-1486370856019",
     "name" : "SetPrimaryVendorStatusForFormandVendor",
@@ -21091,6 +21041,52 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "Form"
+  },
+  "svSendFormMessagesMail" : {
+    "_id" : "wm-svSendFormMessagesMail-wm.ServiceVariable-1490337079877",
+    "name" : "svSendFormMessagesMail",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "sender",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.firstName+\" \"+Variables.CurrentUserDetails.dataSet.lastName",
+      "type" : "string"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].municipalities.municipalityName",
+      "type" : "string"
+    }, {
+      "target" : "formType",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTypes.formType",
+      "type" : "string"
+    }, {
+      "target" : "municipalitySignature",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].municipalities.globalEmailSig",
+      "type" : "string"
+    }, {
+      "target" : "formTitle",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTitle",
+      "type" : "string"
+    } ],
+    "type" : "string",
+    "service" : "FormMessagingMailService",
+    "operation" : "sendMessagingMail",
+    "operationId" : "FormMessagingMailController_sendMessagingMail",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.MessageMailsSent.invoke();svSendFormMessagesMailonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "FormMessagingMail",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Sending Mails....."
   },
   "svSendStatusUpdate" : {
     "_id" : "wm-svSendStatusUpdate-wm.ServiceVariable-1490074323410",
