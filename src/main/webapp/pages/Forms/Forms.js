@@ -260,6 +260,15 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         $scope.Widgets.dialogTagPeople.open();
     };
 
+
+    $scope.tabpaneMessagesSelect = function($event, $isolateScope) {
+        $scope.Variables.PeopleList.dataSet = [];
+    };
+
+    $scope.tabpaneIntenalMessagesSelect = function($event, $isolateScope) {
+        $scope.Variables.PeopleList.dataSet = [];
+    };
+
 }]);
 
 Application.$controller("gridSharedwithController", ["$scope",

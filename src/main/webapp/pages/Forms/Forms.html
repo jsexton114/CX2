@@ -405,7 +405,7 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneMessages" title="MESSAGES">
+                                <wm-tabpane name="tabpaneMessages" title="MESSAGES" on-select="tabpaneMessagesSelect($event, $scope)">
                                     <wm-layoutgrid name="layoutgrid16">
                                         <wm-gridrow name="gridrow58" padding="unset unset 1em unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn121">
@@ -476,7 +476,7 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpane15" title="INTERNAL" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee">
+                                <wm-tabpane name="tabpaneIntenalMessages" title="INTERNAL" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" on-select="tabpaneIntenalMessagesSelect($event, $scope)">
                                     <wm-layoutgrid name="layoutgrid30">
                                         <wm-gridrow padding="unset unset 1em unset" name="gridrow84_2">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn156_4">
@@ -877,8 +877,8 @@
                         <wm-composite name="composite7" show="bind:Variables.stvTagSelection.dataSet.dataValue == 'employees'">
                             <wm-label class="col-md-3 form-control-static" caption="Search Employees" width="30%" fontweight="bold" name="label100"></wm-label>
                             <wm-container class="col-md-9" width="70%" name="container14">
-                                <wm-search placeholder="Search by Name or Email Address" dataset="bind:Variables.svGetMunicipalityEmployees.dataSet" displaylabel="email" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="true"
-                                width="100%" name="textSearchInternalPeople" type="search" displayimagesrc="photo"></wm-search>
+                                <wm-search placeholder="Search by Name or Email Address" dataset="bind:Variables.svGetMunicipalityEmployees.dataSet" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)"
+                                required="true" width="100%" name="textSearchInternalPeople" type="search" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"></wm-search>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
