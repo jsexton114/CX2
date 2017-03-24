@@ -39,6 +39,7 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
@@ -232,6 +233,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: MunicipalitiesGroupsCounts");
 
         return queryService.exportMunicipalitiesGroupsCounts(exportType, municipality, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetRecentMessageIdForProject", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "GetRecentMessageIdForProject")
+    public FormMessages executeGetRecentMessageIdForProject(@RequestParam(value = "project") String project, @RequestParam(value = "PostedAt") Timestamp postedAt) {
+        LOGGER.debug("Executing named query: GetRecentMessageIdForProject");
+        FormMessages _result = queryService.executeGetRecentMessageIdForProject(project, postedAt);
+        LOGGER.debug("got the result for named query: GetRecentMessageIdForProject, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/InsertCategoryMapping", method = RequestMethod.POST)

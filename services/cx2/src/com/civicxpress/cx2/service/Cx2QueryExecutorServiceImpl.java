@@ -26,6 +26,7 @@ import com.wavemaker.runtime.data.dao.query.WMQueryExecutor;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
@@ -235,6 +236,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("municipality", municipality);
 
         return queryExecutor.exportNamedQueryData("MunicipalitiesGroupsCounts", params, exportType, MunicipalitiesGroupsCountsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public FormMessages executeGetRecentMessageIdForProject(String project, Timestamp postedAt) {
+        Map params = new HashMap(2);
+
+        params.put("project", project);
+        params.put("PostedAt", postedAt);
+
+        return queryExecutor.executeNamedQuery("GetRecentMessageIdForProject", params, FormMessages.class);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -2553,12 +2565,13 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeInsertProjectMessage(InsertProjectMessageRequest insertProjectMessageRequest) {
-        Map params = new HashMap(4);
+        Map params = new HashMap(5);
 
         params.put("UserId", insertProjectMessageRequest.getUserId());
         params.put("RelatedProjectGUID", insertProjectMessageRequest.getRelatedProjectGuid());
         params.put("Message", insertProjectMessageRequest.getMessage());
         params.put("PostedAt", insertProjectMessageRequest.getPostedAt());
+        params.put("MunicipalityMessage", insertProjectMessageRequest.getMunicipalityMessage());
 
         return queryExecutor.executeNamedQueryForUpdate("InsertProjectMessage", params);
     }

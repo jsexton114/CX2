@@ -45,9 +45,8 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 
     $scope.GetMessageIdForCurrentPostonSuccess = function(variable, data) {
         debugger
-        //Send Mails
         var people = $scope.Variables.PeopleList.dataSet;
-        var m = data.content[0];
+        var m = data;
         $scope.messageMailingList = '';
         // Insert people as Tagged People For RecentMessage
         for (var i = 0; i < people.length; i++) {
@@ -55,31 +54,47 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
                 "taggedPersonId": people[i].id,
                 "users": people[i],
                 "formMessages": m,
-                "formMessageId": data.content[0].id,
+                "formMessageId": m.id,
             });
             $scope.Variables.InsertTaggedPeople.insertRecord();
+
+            $scope.messageMailingList = $scope.messageMailingList + people[i].email + ",";
+
         }
+        $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
+
+        // // Send Mails of Message
+        // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID
+        // $scope.Variables.svSendFormMessagesMail.setInput({
+        //     'formLink': tempLink,
+        //     'recipient': $scope.messageMailingList,
+        //     'comments': data.content[0].message
+        // });
+        // $scope.Variables.svSendFormMessagesMail.update();
     };
 
 
     $scope.buttonAddMessageClick = function($event, $isolateScope) {
         // Posting Message
         $scope.Variables.PostProjectMessage.setInput({
-            'PostedAt': moment().valueOf()
+            'PostedAt': moment().valueOf(),
+            'MunicipalityMessage': false,
+            'Message': $scope.Widgets.textAddMessage.datavalue
         });
         $scope.Variables.PostProjectMessage.update();
     };
 
     $scope.PostProjectMessageonSuccess = function(variable, data) {
-        debugger
+
         $scope.Widgets.textAddMessage.datavalue = undefined;
+        $scope.Widgets.textInternalAddMessage.datavalue = undefined;
         let people = $scope.Variables.PeopleList.dataSet;
         if (people.length === 0) {
             // DO nothing
         } else {
             $scope.Variables.GetMessageIdForCurrentPost.setInput({
                 'PostedAt': variable.dataBinding.PostedAt,
-                'form': $scope.pageParams.ProjectGUID
+                'project': $scope.pageParams.ProjectGUID
             });
             $scope.Variables.GetMessageIdForCurrentPost.update();
 
@@ -130,6 +145,63 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
 
             }
         }
+    };
+
+    $scope.buttonAddInternalMessageClick = function($event, $isolateScope) {
+        // Posting Message
+        $scope.Variables.PostProjectMessage.setInput({
+            'PostedAt': moment().valueOf(),
+            'MunicipalityMessage': true,
+            'Message': $scope.Widgets.textInternalAddMessage.datavalue
+        });
+        $scope.Variables.PostProjectMessage.update();
+    };
+
+
+    $scope.anchorViewTaggedPeopleClick = function($event, $isolateScope, item, currentItemWidgets) {
+        $scope.Variables.GetTaggedPeopleListByMessage.setFilter({
+            'formMessageId': item.id
+        });
+        $scope.Variables.GetTaggedPeopleListByMessage.update();
+
+    };
+
+
+    $scope.GetTaggedPeopleListByMessageonSuccess = function(variable, data) {
+        $scope.Widgets.dialogShowTaggedPeople.open();
+    };
+
+
+    $scope.anchorViewInternalTaggedPeopleClick = function($event, $isolateScope, item, currentItemWidgets) {
+        $scope.Variables.GetTaggedPeopleListByMessage.setFilter({
+            'formMessageId': item.id
+        });
+        $scope.Variables.GetTaggedPeopleListByMessage.update();
+    };
+
+    $scope.buttonTagPeopleClick = function($event, $isolateScope) {
+        $scope.Variables.stvTagSelection.dataSet.dataValue = 'users';
+        $scope.Widgets.dialogTagPeople.open();
+    };
+
+
+    $scope.buttonInternalTagPeopleClick = function($event, $isolateScope) {
+        $scope.Variables.stvTagSelection.dataSet.dataValue = 'employees';
+        $scope.Widgets.dialogTagPeople.open();
+    };
+
+
+    $scope.tabpaneMessagesSelect = function($event, $isolateScope) {
+        $scope.Variables.PeopleList.dataSet = [];
+    };
+
+    $scope.tabpaneIntenalMessagesSelect = function($event, $isolateScope) {
+        $scope.Variables.PeopleList.dataSet = [];
+    };
+
+
+    $scope.svSendFormMessagesMailonSuccess = function(variable, data) {
+        $scope.Variables.PeopleList.dataSet = [];
     };
 
 
@@ -276,14 +348,21 @@ Application.$controller("dialogTagPeopleController", ["$scope",
 
         var selectedPeople = [];
         $scope.ButtonTagPeopleClick = function($event, $isolateScope) {
-            if ($scope.Widgets.textSearchPeople.datavalue != undefined) {
-                var temp = $scope.Widgets.textSearchPeople.datavalue;
+            var temp;
+            if ($scope.Variables.stvTagSelection.dataSet.dataValue == 'employees') {
+                temp = $scope.Widgets.textSearchInternalPeople.datavalue;
+            } else {
+                temp = $scope.Widgets.textSearchPeople.datavalue;
+            }
+            // Pushing selected users to List(Static Variable)
+            if (temp != "") {
                 var data = $scope.Variables.PeopleList.dataSet;
                 // checking for any people in PeopleList variable, if not add from search 
                 if (data.length == 0) {
                     data.push(temp);
                     // clear search after pushing
-                    $scope.Widgets.textSearchPeople.datavalue = undefined;
+                    $scope.Widgets.textSearchPeople.datavalue = "";
+                    $scope.Widgets.textSearchInternalPeople.datavalue = "";
                 } else {
                     // checking if adding value already exist in PeopleList variable 
                     var exist = 0;
@@ -297,7 +376,8 @@ Application.$controller("dialogTagPeopleController", ["$scope",
                     else
                         data.push(temp);
                     // clear search after pushing
-                    $scope.Widgets.textSearchPeople.datavalue = undefined;
+                    $scope.Widgets.textSearchPeople.datavalue = "";
+                    $scope.Widgets.textSearchInternalPeople.datavalue = "";
                 }
                 // Setting for adding to Tagging
                 selectedPeople = $scope.Variables.PeopleList.dataSet;
@@ -313,7 +393,8 @@ Application.$controller("dialogTagPeopleController", ["$scope",
             _.remove($scope.Variables.PeopleList.dataSet, {
                 id: item.id
             });
-
+            // Setting for adding to subscriptions
+            selectedPeople = $scope.Variables.PeopleList.dataSet;
         };
     }
 ]);

@@ -133,6 +133,22 @@
     <query-param name="municipality" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="GetRecentMessageIdForProject">
+        <![CDATA[
+        from FormMessages where RelatedProjectGUID=:project and postedAt=:PostedAt
+        ]]>
+    <query-param name="project" type="java.lang.String"/>
+    <query-param name="PostedAt" type="java.sql.Timestamp"/>
+    </query>
+
+    <query name="GetRecentMessageIdForProject__count">
+        <![CDATA[
+        select count(*) from FormMessages where RelatedProjectGUID=:project and postedAt=:PostedAt
+        ]]>
+    <query-param name="project" type="java.lang.String"/>
+    <query-param name="PostedAt" type="java.sql.Timestamp"/>
+    </query>
+
     <sql-query name="InsertCategoryMapping">
         <![CDATA[
         insert into FormCategoryMapping(FormTypeId,FormCategoryId) values(:FormTypeId,:FormCategoryId)
@@ -1988,11 +2004,12 @@ group by formTypes.formType
 
     <sql-query name="InsertProjectMessage">
         <![CDATA[
-        insert into FormMessages(UserId,RelatedProjectGUID,Message,PostedAt) values(:UserId,:RelatedProjectGUID,:Message,:PostedAt)
+        insert into FormMessages(UserId,RelatedProjectGUID,Message,PostedAt,MunicipalityMessage) values(:UserId,:RelatedProjectGUID,:Message,:PostedAt,:MunicipalityMessage)
         ]]>
     <query-param name="UserId" type="java.lang.Integer"/>
     <query-param name="RelatedProjectGUID" type="java.lang.String"/>
     <query-param name="Message" type="java.lang.String"/>
     <query-param name="PostedAt" type="java.sql.Timestamp"/>
+    <query-param name="MunicipalityMessage" type="java.lang.Boolean"/>
     </sql-query>
 </hibernate-mapping>

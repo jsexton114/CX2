@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
@@ -63,6 +64,8 @@ public interface Cx2QueryExecutorService {
     Page<MunicipalitiesGroupsCountsResponse> executeMunicipalitiesGroupsCounts(Integer municipality, Pageable pageable);
 
     Downloadable exportMunicipalitiesGroupsCounts(ExportType exportType, Integer municipality, Pageable pageable);
+
+    FormMessages executeGetRecentMessageIdForProject(String project, Timestamp postedAt);
 
     Integer executeInsertCategoryMapping(InsertCategoryMappingRequest insertCategoryMappingRequest);
 

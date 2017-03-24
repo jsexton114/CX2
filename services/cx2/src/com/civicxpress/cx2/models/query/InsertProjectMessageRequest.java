@@ -19,14 +19,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class InsertProjectMessageRequest implements Serializable {
 
+    @NotNull
     @JsonProperty("UserId")
     private Integer userId;
+    @NotNull
     @JsonProperty("RelatedProjectGUID")
     private String relatedProjectGuid;
+    @NotNull
     @JsonProperty("Message")
     private String message;
     @JsonProperty("PostedAt")
     private Timestamp postedAt;
+    @NotNull
+    @JsonProperty("MunicipalityMessage")
+    private Boolean municipalityMessage;
 
     public Integer getUserId() {
         return this.userId;
@@ -60,6 +66,14 @@ public class InsertProjectMessageRequest implements Serializable {
         this.postedAt = postedAt;
     }
 
+    public Boolean getMunicipalityMessage() {
+        return this.municipalityMessage;
+    }
+
+    public void setMunicipalityMessage(Boolean municipalityMessage) {
+        this.municipalityMessage = municipalityMessage;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,7 +82,8 @@ public class InsertProjectMessageRequest implements Serializable {
         return Objects.equals(getUserId(), insertProjectMessageRequest.getUserId()) &&
                 Objects.equals(getRelatedProjectGuid(), insertProjectMessageRequest.getRelatedProjectGuid()) &&
                 Objects.equals(getMessage(), insertProjectMessageRequest.getMessage()) &&
-                Objects.equals(getPostedAt(), insertProjectMessageRequest.getPostedAt());
+                Objects.equals(getPostedAt(), insertProjectMessageRequest.getPostedAt()) &&
+                Objects.equals(getMunicipalityMessage(), insertProjectMessageRequest.getMunicipalityMessage());
     }
 
     @Override
@@ -76,6 +91,7 @@ public class InsertProjectMessageRequest implements Serializable {
         return Objects.hash(getUserId(),
                 getRelatedProjectGuid(),
                 getMessage(),
-                getPostedAt());
+                getPostedAt(),
+                getMunicipalityMessage());
     }
 }

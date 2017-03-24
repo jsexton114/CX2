@@ -26,6 +26,7 @@ import com.wavemaker.runtime.data.dao.query.WMQueryExecutor;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
@@ -1282,13 +1283,14 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(value = "cx2TransactionManager")
     @Override
-    public int executeInsertProjectMessage(Integer userId, String relatedProjectGuid, String message, Timestamp postedAt) {
-        Map params = new HashMap(4);
+    public int executeInsertProjectMessage(Integer userId, String relatedProjectGuid, String message, Timestamp postedAt, Boolean municipalityMessage) {
+        Map params = new HashMap(5);
 
         params.put("UserId", userId);
         params.put("RelatedProjectGUID", relatedProjectGuid);
         params.put("Message", message);
         params.put("PostedAt", postedAt);
+        params.put("MunicipalityMessage", municipalityMessage);
 
         return queryExecutor.executeNamedQueryForUpdate("InsertProjectMessage", params);
     }

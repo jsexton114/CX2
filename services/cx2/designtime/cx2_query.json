@@ -5088,6 +5088,41 @@
       } ]
     }
   },
+  "GetRecentMessageIdForProject" : {
+    "name" : "GetRecentMessageIdForProject",
+    "description" : "GetRecentMessageIdForProject",
+    "version" : "V2",
+    "queryString" : "from FormMessages where RelatedProjectGUID=:project and postedAt=:PostedAt",
+    "countQueryString" : "select count(*) from FormMessages where RelatedProjectGUID=:project and postedAt=:PostedAt",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "project",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "49655B41-2598-49CB-B2B8-204EF05DDF1F",
+      "required" : true
+    }, {
+      "name" : "PostedAt",
+      "type" : "timestamp",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : 1490337000000,
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.FormMessages",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "GetRolesForMunicipality" : {
     "name" : "GetRolesForMunicipality",
     "description" : "GetRolesForMunicipality",
@@ -5855,7 +5890,7 @@
     "name" : "InsertProjectMessage",
     "description" : "InsertProjectMessage",
     "version" : "V1",
-    "queryString" : "insert into FormMessages(UserId,RelatedProjectGUID,Message,PostedAt) values(:UserId,:RelatedProjectGUID,:Message,:PostedAt)",
+    "queryString" : "insert into FormMessages(UserId,RelatedProjectGUID,Message,PostedAt,MunicipalityMessage) values(:UserId,:RelatedProjectGUID,:Message,:PostedAt,:MunicipalityMessage)",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -5866,28 +5901,35 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "3",
-      "required" : false
+      "required" : true
     }, {
       "name" : "RelatedProjectGUID",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "49655B41-2598-49CB-B2B8-204EF05DDF1F",
-      "required" : false
+      "required" : true
     }, {
       "name" : "Message",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "dd",
-      "required" : false
+      "required" : true
     }, {
       "name" : "PostedAt",
       "type" : "timestamp",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1487770995000",
+      "testValue" : 1487770995000,
       "required" : false
+    }, {
+      "name" : "MunicipalityMessage",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
     } ],
     "request" : {
       "wrapped" : true,
@@ -5896,7 +5938,7 @@
     },
     "response" : {
       "typeRef" : "java.lang.Integer",
-      "returns" : "PRIMITIVE",
+      "returns" : "ENTITY",
       "responseType" : "SINGLE"
     }
   },
