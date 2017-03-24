@@ -492,15 +492,21 @@ Application.$controller("dialogTagPeopleController", ["$scope",
         $scope.ctrlScope = $scope;
         var selectedPeople = [];
         $scope.ButtonTagPeopleClick = function($event, $isolateScope) {
-
-            if ($scope.Widgets.textSearchPeople.datavalue != undefined) {
-                var temp = $scope.Widgets.textSearchPeople.datavalue;
+            var temp;
+            if ($scope.Variables.stvTagSelection.dataSet.dataValue == 'employees') {
+                temp = $scope.Widgets.textSearchInternalPeople.datavalue;
+            } else {
+                temp = $scope.Widgets.textSearchPeople.datavalue;
+            }
+            // Pushing selected users to List(Static Variable)
+            if (temp != "") {
                 var data = $scope.Variables.PeopleList.dataSet;
                 // checking for any people in PeopleList variable, if not add from search 
                 if (data.length == 0) {
                     data.push(temp);
                     // clear search after pushing
-                    $scope.Widgets.textSearchPeople.datavalue = undefined;
+                    $scope.Widgets.textSearchPeople.datavalue = "";
+                    $scope.Widgets.textSearchInternalPeople.datavalue = "";
                 } else {
                     // checking if adding value already exist in PeopleList variable 
                     var exist = 0;
@@ -514,7 +520,8 @@ Application.$controller("dialogTagPeopleController", ["$scope",
                     else
                         data.push(temp);
                     // clear search after pushing
-                    $scope.Widgets.textSearchPeople.datavalue = undefined;
+                    $scope.Widgets.textSearchPeople.datavalue = "";
+                    $scope.Widgets.textSearchInternalPeople.datavalue = "";
                 }
                 // Setting for adding to Tagging
                 selectedPeople = $scope.Variables.PeopleList.dataSet;
@@ -530,7 +537,7 @@ Application.$controller("dialogTagPeopleController", ["$scope",
                 id: item.id
             });
             // Setting for adding to subscriptions
-            selectedMunicipalites = $scope.Variables.PeopleList.dataSet;
+            selectedPeople = $scope.Variables.PeopleList.dataSet;
         };
 
     }

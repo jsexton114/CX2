@@ -875,15 +875,15 @@
                             </wm-container>
                         </wm-composite>
                         <wm-composite name="composite7" show="bind:Variables.stvTagSelection.dataSet.dataValue == 'employees'">
-                            <wm-label class="col-md-3 form-control-static" caption="User Search" width="20%" fontweight="bold" name="label100"></wm-label>
-                            <wm-container class="col-md-9" width="80%" name="container14">
+                            <wm-label class="col-md-3 form-control-static" caption="Search Employees" width="30%" fontweight="bold" name="label100"></wm-label>
+                            <wm-container class="col-md-9" width="70%" name="container14">
                                 <wm-search placeholder="Search by Name or Email Address" dataset="bind:Variables.svGetMunicipalityEmployees.dataSet" displaylabel="email" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="true"
                                 width="100%" name="textSearchInternalPeople" type="search" displayimagesrc="photo"></wm-search>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="3" name="gridcolumn24" horizontalalign="left">
-                        <wm-button class="btn-primary" caption="Add Tag" type="button" margin="unset 0.5em" name="ButtonTagPeople" iconclass="wi wi-plus" on-click="ButtonTagPeopleClick($event, $scope)" horizontalalign="left" disabled="bind:!Widgets.textSearchPeople.datavalue"></wm-button>
+                        <wm-button class="btn-primary" caption="Add Tag" type="button" margin="unset 0.5em" name="ButtonTagPeople" iconclass="wi wi-plus" on-click="ButtonTagPeopleClick($event, $scope)" horizontalalign="left" disabled="bind:((Widgets.textSearchPeople.datavalue==&quot;&quot;))&amp;&amp;((Widgets.textSearchInternalPeople.datavalue==&quot;&quot;))"></wm-button>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow14" padding="unset unset 2em unset">
