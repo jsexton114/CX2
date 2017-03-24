@@ -307,3 +307,24 @@ Application.$controller("liveformInspectionSequenceController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("dialogShowMunicipalityGroupsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("gridMunicipalityGroupsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformMunicipalityGroupsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

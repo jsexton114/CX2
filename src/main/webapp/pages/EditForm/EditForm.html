@@ -417,14 +417,18 @@
                                                                 <wm-panel iconclass="wi wi-group" name="panel7_1" title="Permissions" class="panel-primary">
                                                                     <wm-gridrow name="gridrow25" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
+                                                                            <wm-anchor margin="unset 0.5em" name="anchorProceessOwner" iconclass="wi wi-group-add" caption="" on-click="Widgets.dialogShowMunicipalityGroups.open()"></wm-anchor>
                                                                             <wm-form-field name="municipalityGroupsByProcessOwners" displayname="Process Owner Group" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByProcessOwners"
                                                                             type="list" is-related="true" widget="select" dataset="bind:Variables.MunicipalityGroupsForProcess.dataSet" datafield="All Fields" displayfield="groupName" orderby="groupName:asc"
-                                                                            defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord" placeholder="Select user group" required="true" hint="This is the municipality user group that is assigned to process the form while in this status."></wm-form-field>
+                                                                            defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord" placeholder="Select user group" required="true" hint="This is the municipality user group that is assigned to process the form while in this status."
+                                                                            width="90%"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
-                                                                            <wm-form-field name="municipalityGroupsByWriteAccess" displayname="Write Access Group" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByWriteAccess" type="list"
-                                                                            is-related="true" widget="select" placeholder="Select user group" dataset="bind:Variables.MunicipalityGroupsForProcess.dataSet" datafield="All Fields" displayfield="groupName"
-                                                                            orderby="groupName:asc" defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord" required="true" hint="This is the municipality user group that has can make edits to the form information while in this status."></wm-form-field>
+                                                                            <wm-anchor margin="unset 0.5em" name="anchorWriteAcces" caption="" iconclass="wi wi-group-add" on-click="Widgets.dialogShowMunicipalityGroups.open()"></wm-anchor>
+                                                                            <wm-form-field name="municipalityGroupsByWriteAccess" displayname="Write Access Group" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByWriteAccess"
+                                                                            type="list" is-related="true" widget="select" placeholder="Select user group" dataset="bind:Variables.MunicipalityGroupsForProcess.dataSet" datafield="All Fields" displayfield="groupName"
+                                                                            orderby="groupName:asc" defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord" required="true" hint="This is the municipality user group that has can make edits to the form information while in this status."
+                                                                            width="90%"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                     <wm-gridrow name="gridrow120_1" padding="unset unset 1em unset">
@@ -755,6 +759,47 @@
                 <wm-button class="btn-primary" caption="Save" type="button" margin="unset 0.5em" name="buttonSaveFormField" iconclass="wi wi-save" on-click="buttonSaveFormFieldClick($event, $scope)" disabled="bind:(!Widgets.textFormFieldLabel.datavalue &amp;&amp; !!Widgets.selectFormFieldType.datavalue.sqlType) || !Widgets.selectFormFieldType.datavalue.id"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="button2Click($event, $scope)" name="button2" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewShowMunicipalityGroups">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Municipality Groups" iconclass="wi wi-group" name="dialogShowMunicipalityGroups" width="75%">
+            <wm-dialogactions name="dialogactions2">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button4"></wm-button>
+            </wm-dialogactions>
+            <wm-livegrid formlayout="dialog" name="livegridMunicipalityGroups">
+                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvMunicipalityGroupsData.dataSet" navigation="Classic" name="gridMunicipalityGroups">
+                    <wm-grid-column binding="groupName" caption="Group Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                    <wm-grid-column binding="groupDescription" caption="Group Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
+                    <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
+                    <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
+                    <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                </wm-grid>
+                <wm-liveform novalidate="false" errormessage="" title="Municipality Group" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvMunicipalityGroupsData.dataSet" captionalign="left" captionposition="top" name="liveformMunicipalityGroups">
+                    <wm-layoutgrid columns="1" name="layoutgrid21">
+                        <wm-gridrow name="gridrow75_1">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn109_1">
+                                <wm-form-field name="groupName" displayname="Group Name" required="false" show="true" generator="assigned" primary-key="false" key="groupName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                widget="text"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow76">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn110">
+                                <wm-form-field name="groupDescription" displayname="Group Description" required="false" show="true" generator="assigned" primary-key="false" key="groupDescription" type="string" is-related="false" maxchars="255" pc-display="true"
+                                mobile-display="true" widget="text"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow77">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn111_1">
+                                <wm-form-field name="municipalities" displayname="Municipalities" required="false" show="true" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                widget="select"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                    <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                    <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                    <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                </wm-liveform>
+            </wm-livegrid>
         </wm-dialog>
     </wm-view>
 </wm-page>
