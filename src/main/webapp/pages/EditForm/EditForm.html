@@ -768,11 +768,13 @@
             </wm-dialogactions>
             <wm-livegrid formlayout="dialog" name="livegridMunicipalityGroups">
                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvMunicipalityGroupsData.dataSet" navigation="Classic" name="gridMunicipalityGroups">
-                    <wm-grid-column binding="groupName" caption="Group Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                    <wm-grid-column binding="groupDescription" caption="Group Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                    <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                    <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                    <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                    <wm-grid-column binding="groupName" caption="Group Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                    <wm-grid-column binding="groupDescription" caption="Group Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                    <wm-grid-row-action key="customRow" display-name="" title="ShowGroupMembers" value="" iconclass="wi wi-group" class="btn-transparent" show="true"></wm-grid-row-action>
                 </wm-grid>
                 <wm-liveform novalidate="false" errormessage="" title="Municipality Group" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvMunicipalityGroupsData.dataSet" captionalign="left" captionposition="top" name="liveformMunicipalityGroups">
                     <wm-layoutgrid columns="1" name="layoutgrid21">
@@ -790,8 +792,8 @@
                         </wm-gridrow>
                         <wm-gridrow name="gridrow77">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn111_1">
-                                <wm-form-field name="municipalities" displayname="Municipalities" required="false" show="true" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true" mobile-display="true"
-                                widget="select"></wm-form-field>
+                                <wm-form-field name="municipalities" displayname="Municipalities" required="false" show="false" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                widget="select" dataset="bind:Variables.CurrentFormObj.dataSet.data[$i].municipalities" datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.CurrentFormObj.dataSet.data[$i].municipalities"></wm-form-field>
                             </wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>
