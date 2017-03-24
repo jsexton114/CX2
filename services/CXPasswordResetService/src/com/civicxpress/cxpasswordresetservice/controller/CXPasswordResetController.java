@@ -2,8 +2,8 @@
 package com.civicxpress.cxpasswordresetservice.controller;
 
 import com.civicxpress.cxpasswordresetservice.CXPasswordResetService;
-import javax.mail.MessagingException;
 import java.lang.String;
+import javax.mail.MessagingException;
 import java.lang.Object;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
@@ -24,8 +24,8 @@ public class CXPasswordResetController {
     @RequestMapping(value = "/generateAndSendPasswordTokenForUser", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public int generateAndSendPasswordTokenForUser(@RequestParam(value = "userID", required = false) int userID) throws MessagingException {
-        return cXPasswordResetService.generateAndSendPasswordTokenForUser(userID);
+    public int generateAndSendPasswordTokenForUser(@RequestParam(value = "userID", required = false) int userID, @RequestParam(value = "resetLink", required = false) String resetLink) throws MessagingException {
+        return cXPasswordResetService.generateAndSendPasswordTokenForUser(userID, resetLink);
     }
 
     @RequestMapping(value = "/resetPasswordUsingToken", method = RequestMethod.GET)

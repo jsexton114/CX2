@@ -24,7 +24,11 @@ Application.$controller("ForgotPasswordPageController", ["$scope", "wmToaster", 
             wmToaster.show('error', 'ERROR', 'That email address does not exist in our system.', 6000);
             $scope.Widgets.signup.show = true;
         } else {
-            $scope.Variables.sendResetPasswordbyUserID.setInput('userID', data.content[0].ID);
+            var tempLink = window.location.hostname + "/#/ResetPassword?token=";
+            $scope.Variables.sendResetPasswordbyUserID.setInput({
+                'resetLink': tempLink,
+                'userID': data.content[0].ID
+            });
             $scope.Variables.sendResetPasswordbyUserID.update({}, function(data) {
                 // success Toaster
                 wmToaster.show('success', 'SUCCESS', 'Please check your email for password reset instructions.', 6000);

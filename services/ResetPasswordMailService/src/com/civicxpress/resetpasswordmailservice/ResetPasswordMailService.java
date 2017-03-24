@@ -43,7 +43,7 @@ public class ResetPasswordMailService {
     private static final String RESET_NOTIFICATION_MAIL_PASSWORD ="civicxpress2016!";
     private static final String EMAIL_SUBJECT = "Account Password Reset";
     private static final String EMAIL_SUBJECT_WELCOME = "Welcome to CivicXpress";
-    private static final String RESET_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/ResetPassword?token=";
+    //private static final String RESET_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/ResetPassword?token=";
     
     @Autowired
     private SecurityService securityService;
@@ -57,7 +57,7 @@ public class ResetPasswordMailService {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
-    public String sendEmail(String recipient, String token) throws MessagingException {
+    public String sendEmail(String recipient, String token,String resetLink) throws MessagingException {
         
         String emailBody = "CivicXpress User, <br /><br />It looks like somebody forgot their password!  No problem, you can reset your password using the following link. <br /><br />";
         
@@ -77,7 +77,7 @@ public class ResetPasswordMailService {
         
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
         
-        String resetUrl = RESET_URL + token;
+        String resetUrl = resetLink + token;
         emailBody += "\n <a href ='"+resetUrl+ "'> Click Here to Reset </a> <br /><br />";
         emailBody += "This link is only good for the next 48 hours, after which time it will expire like old milk!  Yuck!<br /><br />Your friends at CivicXpress<br />support@tekdoginc.com<br />614-737-3743<br />";
         

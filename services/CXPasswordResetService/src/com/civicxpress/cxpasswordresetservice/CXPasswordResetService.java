@@ -32,7 +32,7 @@ public class CXPasswordResetService {
     @Autowired
     private ResetPasswordMailService resetPasswordMailService;
 
-    public int generateAndSendPasswordTokenForUser(int userID) throws MessagingException{
+    public int generateAndSendPasswordTokenForUser(int userID,String resetLink) throws MessagingException{
         String UUID = generateUUID();
         String email = "";
         Page<Object> objects = queryService.executeGetEmailId(null,userID);
@@ -41,7 +41,7 @@ public class CXPasswordResetService {
             HashMap map = (HashMap)list.get(0);
             email = String.valueOf(map.get("Email"));
             logger.info("Email ID for User ID "+userID +" : "+email);
-            resetPasswordMailService.sendEmail(email,UUID);
+            resetPasswordMailService.sendEmail(email,UUID,resetLink);
             return queryService.executeResetPasswordWithTokenForUser(userID, UUID);
         }
         

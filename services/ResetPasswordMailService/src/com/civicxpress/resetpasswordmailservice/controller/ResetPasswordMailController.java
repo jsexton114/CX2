@@ -23,8 +23,8 @@ public class ResetPasswordMailController {
     @RequestMapping(value = "/sendEmail", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String sendEmail(@RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "token", required = false) String token) throws MessagingException {
-        return resetPasswordMailService.sendEmail(recipient, token);
+    public String sendEmail(@RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "token", required = false) String token, @RequestParam(value = "resetLink", required = false) String resetLink) throws MessagingException {
+        return resetPasswordMailService.sendEmail(recipient, token, resetLink);
     }
 
     @RequestMapping(value = "/sendWelcomeEmail", produces = "application/json", method = RequestMethod.GET)
