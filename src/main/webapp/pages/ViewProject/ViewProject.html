@@ -225,7 +225,7 @@
                                                             <wm-container class="popover media-body" name="container5">
                                                                 <wm-label name="Content" caption="bind:Variables.ProjectMessagesData.dataSet.message" class="p media-heading"></wm-label>
                                                                 <wm-anchor margin="unset 0.5em" name="anchorViewTaggedPeople" caption="Tags" class="pull-left" iconclass="wi wi-tag" on-click="anchorViewTaggedPeopleClick($event, $scope, item, currentItemWidgets)"
-                                                                textdecoration="underline" fontsize="8" fontunit="pt"></wm-anchor>
+                                                                textdecoration="underline" fontsize="8" fontunit="pt" show="true"></wm-anchor>
                                                                 <wm-container class="pull-right" name="container5_1">
                                                                     <wm-label name="label4" class="small" caption="by " padding="unset 0.5em unset unset"></wm-label>
                                                                     <wm-label name="Name" class="small" caption="bind:Variables.ProjectMessagesData.dataSet.data[$i].users.firstName +&quot; &quot;+Variables.ProjectMessagesData.dataSet.data[$i].users.lastName"></wm-label>
@@ -839,7 +839,7 @@
                             </wm-container>
                         </wm-composite>
                         <wm-composite name="composite7" show="bind:Variables.stvTagSelection.dataSet.dataValue == 'employees'">
-                            <wm-label class="col-md-3 form-control-static" caption="Search Employees" width="30%" fontweight="bold" name="label100"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" caption="Employee Search" width="30%" fontweight="bold" name="label100"></wm-label>
                             <wm-container class="col-md-9" width="70%" name="container14">
                                 <wm-search placeholder="Search by Name or Email Address" dataset="bind:Variables.svGetMunicipalityEmployees.dataSet" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)"
                                 required="true" width="100%" name="textSearchInternalPeople" type="search" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"></wm-search>

@@ -875,7 +875,7 @@
                             </wm-container>
                         </wm-composite>
                         <wm-composite name="composite7" show="bind:Variables.stvTagSelection.dataSet.dataValue == 'employees'">
-                            <wm-label class="col-md-3 form-control-static" caption="Search Employees" width="30%" fontweight="bold" name="label100"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" caption="Employee Search" width="30%" fontweight="bold" name="label100"></wm-label>
                             <wm-container class="col-md-9" width="70%" name="container14">
                                 <wm-search placeholder="Search by Name or Email Address" dataset="bind:Variables.svGetMunicipalityEmployees.dataSet" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)"
                                 required="true" width="100%" name="textSearchInternalPeople" type="search" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"></wm-search>
