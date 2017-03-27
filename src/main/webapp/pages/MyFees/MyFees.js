@@ -6,28 +6,25 @@ Application.$controller("MyFeesPageController", ["$scope", function($scope) {
         $scope.$watch(function() {
             return $scope.Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue;
         }, function(newVal, oldVal) {
+            debugger
             //Checking if no municipality is selected
             if (newVal == undefined) {
-                $scope.Variables.svAllFeesOfForms.update();
+                $scope.Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.setInput({
+                    'MunicipalityId': -1
+                });
+                $scope.Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.update();
             } else {
                 // For selected municipality
-                $scope.Variables.svAllFeesOfFormsByMunicipality.update();
+                $scope.Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.setInput({
+                    'MunicipalityId': newVal.ID
+                });
+                $scope.Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.update();
 
             }
         });
     };
 
 
-    $scope.svAllFeesOfFormsByMunicipalityonSuccess = function(variable, data) {
-        debugger
-        $scope.Widgets.gridUnpaidFees.dataset = data.content;
-    };
-
-
-    $scope.svAllFeesOfFormsonSuccess = function(variable, data) {
-        debugger
-        $scope.Widgets.gridUnpaidFees.dataset = data.content;
-    };
 
 
     $scope.lvInsertAllFeesTocartonError = function(variable, data) {
@@ -39,7 +36,7 @@ Application.$controller("MyFeesPageController", ["$scope", function($scope) {
 
         //Checking if no municipality is selected
         if ($scope.Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue == undefined) {
-            $scope.Variables.svAllFeesOfForms.update();
+            $scope.Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.update();
         } else {
             // For selected municipality
             $scope.Variables.svAllFeesOfFormsByMunicipality.update();

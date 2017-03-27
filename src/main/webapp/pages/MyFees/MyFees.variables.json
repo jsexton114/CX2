@@ -638,82 +638,33 @@
     } ],
     "operation" : "toast"
   },
-  "svAllFeesOfForms" : {
+  "svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith" : {
     "_id" : "wm-svAllFeesOfForms-wm.ServiceVariable-1490173039006",
-    "name" : "svAllFeesOfForms",
+    "name" : "svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "allowPayment",
-      "value" : true,
-      "type" : "boolean"
-    }, {
-      "target" : "paidStatus",
-      "value" : "Unpaid",
-      "type" : "string"
-    }, {
-      "target" : "userId",
+      "target" : "UserId",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "com.civicxpress.cx2.models.query.AllFeesOfFormsForCreatedByAndSharedWithResponse",
+    "type" : "com.civicxpress.cx2.models.procedure.FetchUnpaidFeesOfFormsForCreatedByAndSharedWithResponse",
     "service" : "cx2",
-    "operation" : "executeAllFeesOfFormsForCreatedByAndSharedWith",
-    "operationId" : "QueryExecutionController_executeAllFeesOfFormsForCreatedByAndSharedWith",
+    "operation" : "executeFetchUnpaidFeesOfFormsForCreatedByAndSharedWith",
+    "operationId" : "ProcedureExecutionController_executeFetchUnpaidFeesOfFormsForCreatedByAndSharedWith",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
+    "isList" : false,
+    "maxResults" : 10,
     "designMaxResults" : 10,
     "onSuccess" : "svAllFeesOfFormsonSuccess($event, $scope)",
     "startUpdate" : false,
-    "autoUpdate" : false,
+    "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
-  "svAllFeesOfFormsByMunicipality" : {
-    "_id" : "wm-svAllFeesOfFormsByMunicipality-wm.ServiceVariable-1490185236761",
-    "name" : "svAllFeesOfFormsByMunicipality",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "allowPayment",
-      "value" : true,
-      "type" : "boolean"
-    }, {
-      "target" : "municipalityId",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
-      "type" : "integer"
-    }, {
-      "target" : "paidStatus",
-      "value" : "Unpaid",
-      "type" : "string"
-    }, {
-      "target" : "userId",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse",
-    "service" : "cx2",
-    "operation" : "executeAllFeesOfFormsForCreatedByAndSharedWithByMunicipality",
-    "operationId" : "QueryExecutionController_executeAllFeesOfFormsForCreatedByAndSharedWithByMunicipality",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "svAllFeesOfFormsByMunicipalityonSuccess($event, $scope)",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
+    "controller" : "ProcedureExecution",
     "spinnerContext" : "page"
   },
   "svInsertIntoCart" : {
@@ -740,7 +691,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.svAllFeesOfForms.invoke();Variables.svCartItemIds.invoke()",
+    "onSuccess" : "Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.invoke();Variables.svCartItemIds.invoke()",
     "onError" : "Variables.nvAlreadyInCart.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,

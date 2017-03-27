@@ -603,8 +603,6 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-
-
         $scope.button2InspectionRequestClick = function($event, $isolateScope) {
             if ($scope.Variables.CurrentForm.dataSet.data[0].formTypes.forceInspectionSequence) {
                 $scope.Variables.lvMasterInspectionsInsert.setInput({

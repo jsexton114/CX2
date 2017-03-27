@@ -1,1 +1,22 @@
-{ }
+{
+  "fetchUnpaidFeesOfFormsForCreatedByAndSharedWith" : {
+    "procedureString" : "EXEC cx2.fetchUnpaidFeesOfFormsForCreatedByAndSharedWith @MunicipalityId= ?,@UserId= ?",
+    "parameters" : [ {
+      "name" : "MunicipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true,
+      "parameterType" : "IN"
+    } ]
+  }
+}
