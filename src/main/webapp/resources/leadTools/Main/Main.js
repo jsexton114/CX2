@@ -285,6 +285,7 @@ function getCookie(cname) {
                                         if (!!window.opener && !!window.opener.refreshAttachments) {
                                             window.opener.refreshAttachments();
                                         }
+                                        alert('File saved successfully.');
                                         _this.endBusyOperation();
                                     },
                                     fail: function(data) {
