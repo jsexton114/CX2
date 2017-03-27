@@ -195,12 +195,12 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     };
 
     $scope.svSubmitFormonSuccess = function(variable, data) {
-        if ($scope.signature === true) {
-            $scope.Variables.svGetSignLink.setInput('formGuid', data);
-            $scope.Variables.svGetSignLink.update();
-        } else {
-            $scope.Variables.goToPage_UserOpenForms.navigate();
-        }
+        //if ($scope.signature === true) {
+        //    $scope.Variables.svGetSignLink.setInput('formGuid', data);
+        //    $scope.Variables.svGetSignLink.update();
+        //} else {
+        $scope.Variables.goToPage_UserOpenForms.navigate();
+        //}
     };
 
     $scope.checkboxNewUserChange = function($event, $isolateScope, newVal, oldVal) {
