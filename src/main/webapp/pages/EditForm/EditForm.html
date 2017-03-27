@@ -762,31 +762,29 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewShowMunicipalityGroups">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Municipality Groups" iconclass="wi wi-group" name="dialogShowMunicipalityGroups" width="75%">
-            <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button4"></wm-button>
-            </wm-dialogactions>
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Municipality User Groups" iconclass="wi wi-group" name="dialogShowMunicipalityGroups" width="75%">
             <wm-livegrid formlayout="dialog" name="livegridMunicipalityGroups">
-                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvMunicipalityGroupsData.dataSet" navigation="Classic" name="gridMunicipalityGroups">
+                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvMunicipalityGroupsData.dataSet" navigation="Classic" name="gridMunicipalityGroups" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                     <wm-grid-column binding="groupName" caption="Group Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                     <wm-grid-column binding="groupDescription" caption="Group Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                    <wm-grid-action key="addNewRow" display-name="New Group" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Group" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                    <wm-grid-action key="customButton" display-name="Close" title="Close" value="" iconclass="wi wi-cancel" class="btn-secondary" show="true" action="Widgets.dialogShowMunicipalityGroups.close()" shortcutkey=""></wm-grid-action>
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-group" title="Manage Users" action="Widgets.dialogManageSelectedGroup.open()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-group" title="ShowGroupMembers" action="Widgets.dialogManageSelectedGroup.open()" disabled="false"></wm-grid-row-action>
                 </wm-grid>
-                <wm-liveform novalidate="false" errormessage="" title="Municipality Group" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvMunicipalityGroupsData.dataSet" captionalign="left" captionposition="top" name="liveformMunicipalityGroups">
+                <wm-liveform novalidate="false" errormessage="" title="Group Details" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvMunicipalityGroupsData.dataSet" captionalign="left" captionposition="top" name="liveformMunicipalityGroups">
                     <wm-layoutgrid columns="1" name="layoutgrid21">
                         <wm-gridrow name="gridrow75_1">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn109_1">
-                                <wm-form-field name="groupName" displayname="Group Name" required="false" show="true" generator="assigned" primary-key="false" key="groupName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                                <wm-form-field name="groupName" displayname="Group Name" required="true" show="true" generator="assigned" primary-key="false" key="groupName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
                                 widget="text"></wm-form-field>
                             </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow76">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn110">
-                                <wm-form-field name="groupDescription" displayname="Group Description" required="false" show="true" generator="assigned" primary-key="false" key="groupDescription" type="string" is-related="false" maxchars="255" pc-display="true"
+                                <wm-form-field name="groupDescription" displayname="Group Description" required="true" show="true" generator="assigned" primary-key="false" key="groupDescription" type="string" is-related="false" maxchars="255" pc-display="true"
                                 mobile-display="true" widget="text"></wm-form-field>
                             </wm-gridcolumn>
                         </wm-gridrow>
@@ -798,36 +796,37 @@
                         </wm-gridrow>
                     </wm-layoutgrid>
                     <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                    <wm-form-action key="save" class="form-save btn-primary" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
                     <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
-                    <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
                 </wm-liveform>
             </wm-livegrid>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewManageSelectedGroup">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Manage Group" iconclass="wi wi-file-text" name="dialogManageSelectedGroup" width="60%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Group Members" iconclass="wi wi-people" name="dialogManageSelectedGroup" width="60%">
             <wm-layoutgrid name="layoutgrid21_1">
                 <wm-gridrow name="gridrow76_1">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn108">
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridMunicipalityGroups.selecteditem.groupName" name="label28" class="h1"></wm-label>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn108">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridMunicipalityGroups.selecteditem.groupName" name="label28" class="h3" fontweight="bold"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow77_1">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn110_1">
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridMunicipalityGroups.selecteditem.groupDescription" name="label32"></wm-label>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn110_1">
+                        <wm-label padding="unset 0.5em unset 1em" caption="bind:Widgets.gridMunicipalityGroups.selecteditem.groupDescription" name="label32"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow78">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn112">
                         <wm-livegrid formlayout="dialog" name="livegridGroupMembers">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvGroupMembersData.dataSet" navigation="Classic" name="gridGroupMembers">
-                                <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                <wm-grid-column binding="users.fullName" caption="Full Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvGroupMembersData.dataSet" navigation="Classic" name="gridGroupMembers" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                <wm-grid-column binding="users.fullName" caption="Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                <wm-grid-action key="addNewRow" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                <wm-grid-action key="customButton" display-name="Close" title="Close" value="" iconclass="wi wi-cancel" class="btn-secondary" show="true" action="Widgets.dialogManageSelectedGroup.close()" shortcutkey=""></wm-grid-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
-                            <wm-liveform novalidate="false" errormessage="" title="Manage Group Members" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvGroupMembersData.dataSet" captionalign="left" captionposition="top" name="liveformGroupMembers">
+                            <wm-liveform novalidate="false" errormessage="" title="Add User to Group" formlayout="dialog" iconclass="wi wi-person-add" dataset="bind:Variables.lvGroupMembersData.dataSet" captionalign="left" captionposition="top" name="liveformGroupMembers">
                                 <wm-layoutgrid columns="1" name="layoutgrid22">
                                     <wm-gridrow name="gridrow79">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn113">
@@ -837,22 +836,20 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow80">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn114">
-                                            <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" readonly="false" required="false" widget="autocomplete" placeholder="Select value"
-                                            displayexpression="email" searchkey="email,firstName" displaylabel="email" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"></wm-form-field>
+                                            <wm-form-field name="users" displayname="Which municipality employee would you like to add to the group?" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" readonly="false"
+                                            required="true" widget="autocomplete" placeholder="Search by Name or Email Address" displayexpression="email" searchkey="email,fullName" displaylabel="fullName + ' ('+email+')'" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"
+                                            orderby="fullName:asc"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                                 <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                <wm-form-action key="save" display-name="Add User" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                 <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                             </wm-liveform>
                         </wm-livegrid>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
-            <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button5"></wm-button>
-            </wm-dialogactions>
         </wm-dialog>
     </wm-view>
 </wm-page>
