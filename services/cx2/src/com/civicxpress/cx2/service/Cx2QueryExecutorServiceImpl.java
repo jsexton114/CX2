@@ -2562,6 +2562,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("CountOfVendorUsers", params, exportType, CountOfVendorUsersResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse> executeGetInspectionDesignByInspectionCategoriesAssignedToFormType(Integer formType, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("formType", formType);
+
+        return queryExecutor.executeNamedQuery("getInspectionDesignByInspectionCategoriesAssignedToFormType", params, GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(ExportType exportType, Integer formType, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("formType", formType);
+
+        return queryExecutor.exportNamedQueryData("getInspectionDesignByInspectionCategoriesAssignedToFormType", params, exportType, GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeInsertProjectMessage(InsertProjectMessageRequest insertProjectMessageRequest) {

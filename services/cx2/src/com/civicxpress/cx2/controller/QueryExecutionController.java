@@ -2246,6 +2246,25 @@ public class QueryExecutionController {
         return queryService.exportCountOfVendorUsers(exportType, vendor, pageable);
     }
 
+    @RequestMapping(value = "/queries/getInspectionDesignByInspectionCategoriesAssignedToFormType", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "getInspectionDesignByInspectionCategoriesAssignedToFormType")
+    public Page<GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse> executeGetInspectionDesignByInspectionCategoriesAssignedToFormType(@RequestParam(value = "formType") Integer formType, Pageable pageable) {
+        LOGGER.debug("Executing named query: getInspectionDesignByInspectionCategoriesAssignedToFormType");
+        Page<GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse> _result = queryService.executeGetInspectionDesignByInspectionCategoriesAssignedToFormType(formType, pageable);
+        LOGGER.debug("got the result for named query: getInspectionDesignByInspectionCategoriesAssignedToFormType, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getInspectionDesignByInspectionCategoriesAssignedToFormType")
+    @RequestMapping(value = "/queries/getInspectionDesignByInspectionCategoriesAssignedToFormType/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formType") Integer formType, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getInspectionDesignByInspectionCategoriesAssignedToFormType");
+
+        return queryService.exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(exportType, formType, pageable);
+    }
+
     @RequestMapping(value = "/queries/InsertProjectMessage", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "InsertProjectMessage")

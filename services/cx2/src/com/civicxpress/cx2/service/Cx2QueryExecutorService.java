@@ -483,6 +483,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfVendorUsers(ExportType exportType, Integer vendor, Pageable pageable);
 
+    Page<GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse> executeGetInspectionDesignByInspectionCategoriesAssignedToFormType(Integer formType, Pageable pageable);
+
+    Downloadable exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(ExportType exportType, Integer formType, Pageable pageable);
+
     Integer executeInsertProjectMessage(InsertProjectMessageRequest insertProjectMessageRequest);
 
 }

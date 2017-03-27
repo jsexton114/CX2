@@ -604,5 +604,21 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         $scope.ctrlScope = $scope;
 
 
+
+        $scope.button2InspectionRequestClick = function($event, $isolateScope) {
+            if ($scope.Variables.CurrentForm.dataSet.data[0].formTypes.forceInspectionSequence) {
+                $scope.Variables.lvMasterInspectionsInsert.setInput({
+                    'inspectionDesignId': $scope.Widgets.selectInspectionDesignBySequence.datavalue.inspectionDesignId
+                });
+                $scope.Variables.lvMasterInspectionsInsert.insertRecord();
+            } else {
+                $scope.Variables.lvMasterInspectionsInsert.setInput({
+                    'inspectionDesignId': $scope.Widgets.selectInspectionDesign.datavalue.id
+                });
+                $scope.Variables.lvMasterInspectionsInsert.insertRecord();
+
+            }
+        };
+
     }
 ]);

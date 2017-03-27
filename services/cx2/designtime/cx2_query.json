@@ -9457,6 +9457,53 @@
       } ]
     }
   },
+  "getInspectionDesignByInspectionCategoriesAssignedToFormType" : {
+    "name" : "getInspectionDesignByInspectionCategoriesAssignedToFormType",
+    "description" : "getInspectionDesignByInspectionCategoriesAssignedToFormType",
+    "version" : "V2",
+    "queryString" : "select I.ID , I.InspectDesignName\nfrom \nInspectionDesign I,\nInspectionCategoryMapping ICM,\nInspectionCategories IC,\nFormToInspectionCategoryMapping FICM\nwhere\nFICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID\nand IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID",
+    "countQueryString" : "select count(*) from (select I.ID , I.InspectDesignName\nfrom \nInspectionDesign I,\nInspectionCategoryMapping ICM,\nInspectionCategories IC,\nFormToInspectionCategoryMapping FICM\nwhere\nFICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID\nand IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "formType",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "106",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "InspectDesignName",
+        "fieldName" : "inspectDesignName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "getListofGroupName" : {
     "name" : "getListofGroupName",
     "description" : "get all the list of group Names based on mun ID",

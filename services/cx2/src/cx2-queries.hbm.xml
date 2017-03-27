@@ -2002,6 +2002,36 @@ group by formTypes.formType
     <query-param name="vendor" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="getInspectionDesignByInspectionCategoriesAssignedToFormType">
+        <![CDATA[
+        select I.ID , I.InspectDesignName
+from 
+InspectionDesign I,
+InspectionCategoryMapping ICM,
+InspectionCategories IC,
+FormToInspectionCategoryMapping FICM
+where
+FICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID
+and IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID
+        ]]>
+    <query-param name="formType" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getInspectionDesignByInspectionCategoriesAssignedToFormType__count">
+        <![CDATA[
+        select count(*) from (select I.ID , I.InspectDesignName
+from 
+InspectionDesign I,
+InspectionCategoryMapping ICM,
+InspectionCategories IC,
+FormToInspectionCategoryMapping FICM
+where
+FICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID
+and IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID) wmTempTable
+        ]]>
+    <query-param name="formType" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="InsertProjectMessage">
         <![CDATA[
         insert into FormMessages(UserId,RelatedProjectGUID,Message,PostedAt,MunicipalityMessage) values(:UserId,:RelatedProjectGUID,:Message,:PostedAt,:MunicipalityMessage)
