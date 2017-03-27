@@ -64,7 +64,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         return ownerGisRecordIds.length > 0 ? ownerGisRecordIds : undefined;
     };
 
-
     $scope.lvFormTypeonSuccess = function(variable, data) {
 
         var formType = data[0];
@@ -97,7 +96,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
         iterateLoading();
     }
-
 
     $scope.lvGetFormFieldsonSuccess = function(variable, data) {
         data.forEach(function(formField, index) {

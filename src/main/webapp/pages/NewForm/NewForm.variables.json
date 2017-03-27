@@ -5827,6 +5827,34 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Subdivisions"
   },
+  "nocFormSubmitted" : {
+    "_id" : "wm-nocFormSubmitted-wm.NotificationVariable-1490640781991",
+    "name" : "nocFormSubmitted",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "<strong>Success</strong><br/>Form submitted successfully.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "3000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "stvBreadCrumbs" : {
     "_id" : "wm-stvBreadCrumbs-wm.Variable-1485813638929",
     "name" : "stvBreadCrumbs",
@@ -6025,10 +6053,6 @@
       "target" : "formTypeId",
       "value" : "bind:pageParams.formTypeId",
       "type" : "integer"
-    }, {
-      "target" : "HashMap",
-      "value" : "bind:formData",
-      "type" : "java.util.HashMap"
     } ],
     "type" : "string",
     "service" : "FormService",
@@ -6040,7 +6064,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "svSubmitFormonSuccess($event, $scope)",
+    "onSuccess" : "svSubmitFormonSuccess($event, $scope);Variables.nocFormSubmitted.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
