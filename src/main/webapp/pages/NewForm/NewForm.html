@@ -367,9 +367,7 @@
                                 <wm-gridrow name="gridrow55">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn99">
                                         <wm-label padding="unset 0.5em" name="label27" caption="This form requires a digital signature. Click the &quot;Sign Now&quot; button to sign an electronic document version of this form."></wm-label>
-                                        <wm-text name="requiredSignature" required="true"></wm-text>
-                                        <wm-button class="btn-primary" caption="Sign Now" name="buttonSignNow" iconclass="wi wi-plus" on-click="">
-                                        </wm-button>
+                                        <wm-button class="btn-primary" caption="Sign Now" name="buttonSignNow" iconclass="wi wi-plus" on-click="Widgets.dialogSignForm.open()"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-wizardstep>
@@ -570,7 +568,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view6">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Sign Form" iconclass="wi wi-pen" name="dialogSignForm" class="modal-larger" on-close="dialogSignFormClose($event, $scope)">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Sign Form" iconclass="wi wi-pen" name="dialogSignForm" class="modal-larger" on-close="dialogSignFormClose($event, $scope)" on-opened="dialogSignFormOpened($event, $scope)">
             <wm-dialogactions name="dialogactions5"></wm-dialogactions>
             <wm-iframe name="iFrameEsignGenie" width="100%" height="600px" iframesrc="bind:Variables.stvEsignUrl.dataSet.dataValue"></wm-iframe>
         </wm-dialog>

@@ -561,7 +561,15 @@ Application.$controller("dialogSignFormController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.dialogSignFormClose = function($event, $isolateScope) {
-            $scope.Variables.goToPage_UserOpenForms.navigate();
+            //$scope.Variables.goToPage_UserOpenForms.navigate();
+            // TODO: get document status from eSign Genie, if not signed then page is not valid
         };
+
+        $scope.dialogSignFormOpened = function($event, $isolateScope) {
+            //$scope.Variables.svGetSignLink.setInput('formGuid', "983DD3B3-C40C-E711-80C9-0CC47A46DD63");
+            // TODO: update form values here instead of passing the GUID
+            $scope.Variables.svGetSignLink.update();
+        };
+
     }
 ]);
