@@ -13,6 +13,10 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         openClosedFormBreadCrumb = $scope.Variables.BreadCrumb.dataSet[1];
         $scope.disableMessageBox = true;
         $scope.showCannotAddFee = true;
+
+        window.refreshAttachments = function() {
+            $scope.Variables.Cx2DocumentData.update();
+        };
     };
 
     $scope.sharedWith;

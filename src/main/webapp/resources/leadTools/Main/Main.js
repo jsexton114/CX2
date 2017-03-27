@@ -253,6 +253,56 @@ function getCookie(cname) {
                     .SaveToDlg();
                 this.saveToDlg.sharePointHelper = sharePointHelper;
                 this.saveToDlg.InitDriveHelpers();
+
+                // Save to CX2
+                this.saveToCx2 = function(items) {
+                    var item = items[0];
+                    var itemUrlParts = item.url.split("/");
+                    var cacheGuid = itemUrlParts[itemUrlParts.length - 2];
+                    var filename = itemUrlParts[itemUrlParts.length - 1];
+                    var itemUrl = lt.Documents.DocumentFactory.serviceHost + lt.Documents.DocumentFactory.servicePath + "/" + lt.Documents.DocumentFactory
+                        .serviceApiPath + "/Document/get/" + cacheGuid + "/" + filename;
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var fileArray = [];
+                            fileArray.push(new File([this.response], filename));
+
+                            var fr = new FileReader();
+                            fr.addEventListener("load", function() {
+                                $.ajax({
+                                    type: "PUT",
+                                    url: '../../services/form/documentFromLT?_csrf=' + getCookie('wm_xsrf_token'),
+                                    data: {
+                                        base64FileData: fr.result.split(',')[1],
+                                        filename: filename,
+                                        mimetype: item._mimeType,
+                                        documentId: _this.docId
+                                    },
+                                    success: function() {
+                                        console.log(window.opener);
+                                        if (!!window.opener && !!window.opener.refreshAttachments) {
+                                            window.opener.refreshAttachments();
+                                        }
+                                        _this.endBusyOperation();
+                                    },
+                                    fail: function(data) {
+                                        alert('Saving failed');
+                                        _this.endBusyOperation();
+                                    }
+                                });
+                            }, false);
+
+                            fr.readAsDataURL(this.response);
+                        }
+                    };
+
+                    xhr.open('GET', itemUrl); //  + docId + '&_csrf=' + getCookie('wm_xsrf_token')
+                    xhr.responseType = 'blob';
+                    xhr.send();
+                };
+
                 // Text result dialog
                 this.textResultDlg = new HTML5Demos.Dialogs.TextResultDlg();
                 // Automation properties dialog
@@ -586,9 +636,9 @@ function getCookie(cname) {
                                     "/")
                                     serviceBase += "/";
 
-                                var docId = window.location.search.split("=")[1];
+                                _this.docId = window.location.search.split("=")[1];
 
-                                if (!docId) {
+                                if (!_this.docId) {
                                     window.close();
                                 }
 
@@ -600,7 +650,7 @@ function getCookie(cname) {
                                     }
                                 };
 
-                                xhr.open('GET', '../../services/form/downloadDocument?documentId=' + docId + '&_csrf=' + getCookie('wm_xsrf_token'));
+                                xhr.open('GET', '../../services/form/downloadDocument?documentId=' + _this.docId + '&_csrf=' + getCookie('wm_xsrf_token'));
                                 xhr.responseType = 'blob';
                                 xhr.send();
                             })
@@ -1630,7 +1680,7 @@ function getCookie(cname) {
                         // If it doesn't exist, handle the document and possible annotations
                         if (docConversion.archive && docConversion.archive
                             .url) {
-                            _this.saveToDlg.show([docConversion.archive]);
+                            _this.saveToCx2([docConversion.archive]);
                         } else if (docConversion.document &&
                             docConversion.document.url) {
                             var items = [docConversion.document];
@@ -1639,7 +1689,7 @@ function getCookie(cname) {
                                 .url) {
                                 items.push(docConversion.annotations);
                             }
-                            _this.saveToDlg.show(items);
+                            _this.saveToCx2(items);
                         }
                     });
                     convertPromise.fail(function(jqXHR, statusText,
@@ -1647,8 +1697,7 @@ function getCookie(cname) {
                         DocumentViewerDemoApp.showServiceError(
                             "Error converting the document.", jqXHR,
                             statusText, errorThrown);
-                    });
-                    convertPromise.always(function() {
+
                         _this.endBusyOperation();
                     });
                 });

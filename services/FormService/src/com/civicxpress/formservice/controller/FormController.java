@@ -105,6 +105,13 @@ public class FormController {
         return formService.submitForm(formTypeId, behalfOfUserId, ownerId, locationIds, vendorIds, primaryVendorId, usersWithWhomToShare, fieldDataJsonString, attachments);
     }
 
+    @RequestMapping(value = "/documentFromLT", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void updateDocumentFromLT(@RequestParam(value = "base64FileData", required = false) String base64FileData, @RequestParam(value = "filename", required = false) String filename, @RequestParam(value = "mimetype", required = false) String mimetype, @RequestParam(value = "documentId", required = false) Long documentId) throws SQLException {
+        formService.updateDocumentFromLT(base64FileData, filename, mimetype, documentId);
+    }
+
     @RequestMapping(value = "/formTypefield", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

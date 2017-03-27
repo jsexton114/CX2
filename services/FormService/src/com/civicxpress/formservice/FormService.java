@@ -14,6 +14,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.xerces.impl.dv.util.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -67,6 +69,7 @@ public class FormService {
 
 	private static SimpleDateFormat monthYearFormatter = new SimpleDateFormat("MMyyyy");
 	private static SimpleDateFormat yearMonthFormatter = new SimpleDateFormat("yyyyMM");
+	private static SimpleDateFormat usDateFormatter = new SimpleDateFormat("MM.dd.yyyy.hh:mm:ss");
 	
 	private static List<String> autoFeeTypes = Arrays.asList("Flat Fee;flatFee", "Square Feet Fee;sfFee", "Unit Fee;unitFee", "Basement Fee;basementFee", "State Fee;stateFee");
 
@@ -816,11 +819,48 @@ public class FormService {
 		}
     }
     
+    public void updateDocumentFromLT(String base64FileData, String filename, String mimetype, Long documentId) throws SQLException { // For use by LeadTools
+        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        
+        cx2Conn.setAutoCommit(false);
+        
+        try {
+        	DBQueryParams params = new DBQueryParams();
+	        params.addLong("documentId", documentId);
+	        
+	        DBRow documentData = getDocument(cx2Conn, documentId);
+	        
+	        if (documentData == null) {
+	        	throw new SQLException("Permission denied");
+	        }
+	        
+	        String newFileExt = filename.split("\\.")[1];
+	        
+	        String newFilename = (documentData.getString("Filename")+"-Annotated-"+usDateFormatter.format(new Date())+"."+newFileExt);
+	        
+	        params.addString("formGuid", documentData.getString("ItemGUID"));
+	        params.addString("filename", newFilename);
+	        params.addString("mimetype", mimetype);
+	        params.addBytes("contents", Base64.decode(base64FileData));
+	        
+	        String saveQuery = "INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents) VALUES (:formGuid, :filename, :mimetype, :contents)";
+	        
+	        DBUtils.simpleUpdateQuery(cx2Conn, saveQuery, params);
+	        
+	        cx2Conn.commit();
+        } catch (Exception e) {
+        	cx2Conn.rollback();
+        	throw e;
+        } finally {
+        	cx2Conn.close();
+        }
+    }
+    
     private DBRow getDocument(Connection cx2Conn, Long documentId) throws SQLException {
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("documentId", documentId);
     	
-    	DBRow documentData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM Document WHERE ID=:documentId", queryParams).get(0);
+    	DBRow documentData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Document WHERE ID=:documentId", queryParams);
     	
     	UserPermissionsPojo perms = getUserPermissions(documentData.getString("ItemGUID"));
     	
