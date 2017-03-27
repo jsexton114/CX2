@@ -729,16 +729,15 @@
         "scale" : 0
       }, {
         "fieldName" : "instructions",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
         "columnName" : "Instructions",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 1000,
+        "length" : 2147483647,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
         "scale" : 0
       }, {
         "fieldName" : "active",
@@ -1804,16 +1803,15 @@
           "scale" : 0
         }, {
           "fieldName" : "instructions",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
           "columnName" : "Instructions",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 1000,
+          "length" : 2147483647,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
           "scale" : 0
         }, {
           "fieldName" : "active",
@@ -2323,16 +2321,15 @@
           "scale" : 0
         }, {
           "fieldName" : "instructions",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
           "columnName" : "Instructions",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 1000,
+          "length" : 2147483647,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
           "scale" : 0
         }, {
           "fieldName" : "active",
@@ -3011,6 +3008,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.CurrentInspectionObj.listRecords()",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
@@ -3700,16 +3698,15 @@
         "scale" : 0
       }, {
         "fieldName" : "instructions",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
         "columnName" : "Instructions",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 1000,
+        "length" : 2147483647,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
         "scale" : 0
       }, {
         "fieldName" : "active",
