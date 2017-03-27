@@ -2534,6 +2534,7 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
+    "orderBy" : "dateCreated asc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "id",
@@ -2592,6 +2593,18 @@
         "isPrimaryKey" : false,
         "notNull" : true,
         "length" : 2147483647,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "dateCreated",
+        "type" : "datetime",
+        "fullyQualifiedType" : "datetime",
+        "columnName" : "DateCreated",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,

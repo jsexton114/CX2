@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Objects;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDateTime;
+
 public class DocumentId implements Serializable {
 
     private BigInteger id;
@@ -16,6 +19,8 @@ public class DocumentId implements Serializable {
     private String filename;
     private String mimetype;
     private byte[] contents;
+    @Type(type = "DateTime")
+    private LocalDateTime dateCreated;
 
     public BigInteger getId() {
         return this.id;
@@ -57,6 +62,14 @@ public class DocumentId implements Serializable {
         this.contents = contents;
     }
 
+    public LocalDateTime getDateCreated() {
+        return this.dateCreated;
+    }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,7 +79,8 @@ public class DocumentId implements Serializable {
                 Objects.equals(getItemGuid(), document.getItemGuid()) &&
                 Objects.equals(getFilename(), document.getFilename()) &&
                 Objects.equals(getMimetype(), document.getMimetype()) &&
-                Objects.equals(getContents(), document.getContents());
+                Objects.equals(getContents(), document.getContents()) &&
+                Objects.equals(getDateCreated(), document.getDateCreated());
     }
 
     @Override
@@ -75,6 +89,7 @@ public class DocumentId implements Serializable {
                 getItemGuid(),
                 getFilename(),
                 getMimetype(),
-                getContents());
+                getContents(),
+                getDateCreated());
     }
 }

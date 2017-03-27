@@ -15,6 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -32,6 +35,8 @@ public class Document implements Serializable {
     private String mimetype;
     @JsonProperty(access = Access.READ_ONLY)
     private byte[] contents;
+    @Type(type = "DateTime")
+    private LocalDateTime dateCreated;
 
     @Id
     @Column(name = "`ID`", nullable = false, scale = 0, precision = 18)
@@ -83,6 +88,16 @@ public class Document implements Serializable {
         this.contents = contents;
     }
 
+    @Id
+    @Column(name = "`DateCreated`", nullable = false)
+    public LocalDateTime getDateCreated() {
+        return this.dateCreated;
+    }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
 
 
     @Override
@@ -94,7 +109,8 @@ public class Document implements Serializable {
                 Objects.equals(getItemGuid(), document.getItemGuid()) &&
                 Objects.equals(getFilename(), document.getFilename()) &&
                 Objects.equals(getMimetype(), document.getMimetype()) &&
-                Objects.equals(getContents(), document.getContents());
+                Objects.equals(getContents(), document.getContents()) &&
+                Objects.equals(getDateCreated(), document.getDateCreated());
     }
 
     @Override
@@ -103,7 +119,8 @@ public class Document implements Serializable {
                 getItemGuid(),
                 getFilename(),
                 getMimetype(),
-                getContents());
+                getContents(),
+                getDateCreated());
     }
 }
 
