@@ -39,7 +39,7 @@ public class MasterCases implements Serializable {
     @ServerDefinedProperty( value = VariableType.DATE, scopes = { Scope.INSERT })
     private Date dateCreated;
     private Integer createdBy;
-    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT, Scope.UPDATE })
+    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime dateModified;
     private Integer modifiedBy;

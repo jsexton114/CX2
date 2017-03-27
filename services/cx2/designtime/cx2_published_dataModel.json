@@ -6764,14 +6764,14 @@
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : ""
+        "defaultValue" : null
       },
       "fieldName" : "instructions",
       "foreignKey" : false,
       "generatorType" : "assigned",
       "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 1000,
+      "javaType" : "text",
+      "length" : 2147483647,
       "name" : "Instructions",
       "nullable" : true,
       "oldName" : "Instructions",

@@ -103,7 +103,7 @@ public class InspectionDesign implements Serializable {
         this.inspectDesignName = inspectDesignName;
     }
 
-    @Column(name = "`Instructions`", nullable = true, length = 1000)
+    @Column(name = "`Instructions`", nullable = true, length = 2147483647)
     public String getInstructions() {
         return this.instructions;
     }
