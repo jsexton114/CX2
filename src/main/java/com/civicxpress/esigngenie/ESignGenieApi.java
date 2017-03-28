@@ -21,12 +21,15 @@ import com.civicxpress.pdfutilities.PdfUtilities;  // used in WM
  */
 public class ESignGenieApi {
 
-    public static String createAndSignDocument(FormDataPojo formDataPojo, String title, Map<String, Object> formData, byte[] municipalityLogo, String clientId, String clientSecret,
-                                                String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty)
+    public static FolderResponsePojo createAndSignDocument(FormDataPojo formDataPojo, String title, Map<String, Object> formData,
+            byte[] municipalityLogo, String clientId, String clientSecret,
+            String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty)
             throws IOException {
         String uploadResponse = null;
         String folderAccessUrl = null;
+        String folderId = null;
         String filePath = null;
+        FolderResponsePojo folderResponsePojo = new FolderResponsePojo();
         filePath = PdfUtilities.createDynamicFormPdf(formDataPojo, title, formData, municipalityLogo, true);
         System.out.println("filePath: " + filePath);
         uploadResponse = ESignGenieApi.createFolder(filePath, title + ".pdf",
@@ -34,22 +37,37 @@ public class ESignGenieApi {
         System.out.println(uploadResponse);
         folderAccessUrl = getFolderAccessUrl(uploadResponse);
         System.out.println("folderAccessURL: " + folderAccessUrl);
+        folderId = getFolderId(uploadResponse);
+        System.out.println("getFolderId: " + folderId);
+        folderResponsePojo.folderAccessUrl = folderAccessUrl;
+        folderResponsePojo.folderId = folderId;
 
-        return folderAccessUrl;
+        return folderResponsePojo;
     }
-
 
     public static String createFolder(String filePath, String filename,
                                       String folderName, String clientId, String clientSecret,
                                       String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty)
-                throws IOException {
+            throws IOException {
         final String WEBADDRESS = "https://www.esigngenie.com/esign/api/folders/createfolder";
+        String response = null;
         LinkedHashMap<String, String> nvc = new LinkedHashMap<String, String>();
-        Gson gson = new Gson();
+        String json;
+
+        json = constructSigningRequestJson(folderName, firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);
+        System.out.println("Signing request is " + json);
+        String accessToken = getAccessTokenValue(clientId, clientSecret);
+
+        nvc.put("data", json);
+        response = httpUploadFile(WEBADDRESS, filePath, filename, "file", "application/pdf", nvc, accessToken);
+
+        return response;
+    }
+
+    private static String getAccessTokenValue(String clientId, String clientSecret) {
         String accessTokenString = null;
         AccessTokenObject accessTokenObject;
-        String response;
-        String json;
+        Gson gson = new Gson();
 
         try {
             accessTokenString = generateAccessToken(clientId, clientSecret);
@@ -59,17 +77,43 @@ public class ESignGenieApi {
             System.out.println("There was an IO error trying to generate the eSign Genie access token.");
         }
 
-        json = constructSigningRequestJson(folderName, firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);
-        System.out.println("Signing request is " + json);
         accessTokenObject = gson.fromJson(accessTokenString, AccessTokenObject.class);
-        System.out.println("Access token is " + accessTokenObject.access_token);
-        nvc.put("data", json);
-        response = httpUploadFile(WEBADDRESS, filePath, filename, "file", "application/pdf", nvc, accessTokenObject.access_token);
-
-        return response;
+        accessTokenString = accessTokenObject.access_token;
+        System.out.println("Access token is " + accessTokenString);
+        return accessTokenString;
+    }
+    
+    public static String getContractStatus(String folderId, String clientId, String clientSecret) throws IOException {
+        String folderResponse = null;
+        String contractStatus = null;
+        folderResponse = getFolderData(folderId, clientId, clientSecret);
+        contractStatus = getContractStatus(folderResponse);
+        return contractStatus;
     }
 
-    private static String generateAccessToken(String clientId, String clientSecret) throws MalformedURLException, IOException {
+    private static String getFolderData(String folderId, String clientId, String clientSecret) throws IOException {
+        URL url= new URL("https://www.esigngenie.com/esign/api/folders/myfolder?folderId=" + folderId);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        String accessToken = getAccessTokenValue(clientId, clientSecret);
+        String folderData = "";
+        con.setDoOutput(true);
+        con.setRequestProperty("Authorization","Bearer " + accessToken);
+        if (con.getResponseCode() != HttpURLConnection.HTTP_OK) {
+            throw new RuntimeException("Failed : HTTP error code : "+ con.getResponseCode());
+        }
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+                (con.getInputStream())));
+        String output;
+        System.out.println("Output from Server .... \n");
+        while ((output = br.readLine()) != null) {
+            System.out.println(output);
+            folderData += output;
+        }
+        con.disconnect();
+        return folderData;
+    }
+
+    private static String generateAccessToken(String clientId, String clientSecret) throws IOException {
         URL url = new URL("https://www.esigngenie.com/esign/api/oauth2/access_token");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         String returnValue = null;
@@ -176,11 +220,29 @@ public class ESignGenieApi {
 
     private static String getFolderAccessUrl(String uploadResponse) {
         String folderAccessUrl = null;
-        Pattern p = Pattern.compile("\"folderAccessURL\":\"(.*?)\"");
+        Pattern p = Pattern.compile("\"folderAccessURL\":\\s*\"(.*?)\"");
         Matcher m = p.matcher(uploadResponse);
         boolean isFound = m.find();
         folderAccessUrl = m.group(1);
         return folderAccessUrl;
+    }
+
+    private static String getFolderId(String uploadResponse) {
+        String folderId = null;
+        Pattern p = Pattern.compile("\"folderId\":\\s*(\\d+)");
+        Matcher m = p.matcher(uploadResponse);
+        boolean isFound = m.find();
+        folderId = m.group(1);
+        return folderId;
+    }
+
+    private static String getContractStatus(String folderResponse) {
+        String contractStatus = null;
+        Pattern p = Pattern.compile("\"contractStatus\":\\s*\"(.*?)\"");
+        Matcher m = p.matcher(folderResponse);
+        boolean isFound = m.find();
+        contractStatus = m.group(1);
+        return contractStatus;
     }
 
     public final class AccessTokenObject {
@@ -193,6 +255,20 @@ public class ESignGenieApi {
             this.token_type = token_type;
             this.expires_in = expires_in;
         }
+    }
+
+    public static class FolderResponsePojo {
+        private String folderAccessUrl;
+        private String folderId;
+
+        public String getFolderAccessUrl() {
+            return folderAccessUrl;
+        }
+        public void setFolderAccessUrl(String folderAccessUrl) {
+            this.folderAccessUrl = folderAccessUrl;
+        }
+        public String getFolderId() { return folderId; }
+        public void setFolderId(String creatorFullName) { this.folderId = folderId; }
     }
 
 }

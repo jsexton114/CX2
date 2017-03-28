@@ -135,11 +135,12 @@ public class FormService {
         String lastNameOfRecipientParty = userData.getLastName();
         String emailIdOfRecipientParty = userData.getEmail();
         byte[] municipalityLogo = getMunicipalityLogo(formDataPojo.getFormTypeId());
+        ESignGenieApi.FolderResponsePojo folderResponsePojo = null;
 
         // then call this method in ESignGenie
-        folderAccessUrl = ESignGenieApi.createAndSignDocument(formDataPojo, title, formData, municipalityLogo, clientId, clientSecret,
+        folderResponsePojo = ESignGenieApi.createAndSignDocument(formDataPojo, title, formData, municipalityLogo, clientId, clientSecret,
                 firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);
-        
+        folderAccessUrl = folderResponsePojo.getFolderAccessUrl();
 
         return folderAccessUrl;
     }
