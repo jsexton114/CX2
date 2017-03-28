@@ -83,17 +83,25 @@ Application.$controller("gridUnpaidFeesController", ["$scope",
 
 
         $scope.addNewRowAction = function($event) {
-            debugger
-            let feeData = $scope.Widgets.gridUnpaidFees.dataset;
-            _.forEach(feeData, function(obj) {
 
-                $scope.Variables.lvInsertAllFeesTocart.setInput({
+            let feeData = $scope.Widgets.gridUnpaidFees.gridData;
+            //let feeData = $scope.Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.dataSet.content;
+            let targetList = []
+            _.forEach(feeData, function(obj) {
+                targetList.push({
                     'feeId': obj.feeId,
                     'userId': $scope.Variables.CurrentUserDetails.dataSet.id
                 });
-                $scope.Variables.lvInsertAllFeesTocart.insertRecord();
-                console.log(obj.feeId);
             });
+
+            let itemSet = {
+                'content': targetList
+            };
+            let temp = JSON.stringify(itemSet);
+            $scope.Variables.svInsertAllFeeToCart.setInput({
+                'responseString': temp
+            });
+            $scope.Variables.svInsertAllFeeToCart.update();
         };
 
     }
