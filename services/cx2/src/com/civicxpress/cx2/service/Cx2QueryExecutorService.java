@@ -24,7 +24,7 @@ import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
-import com.civicxpress.cx2.VendorApprovals;
+import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.models.query.*;
 
 public interface Cx2QueryExecutorService {
@@ -387,9 +387,9 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateAssessFeeYN(UpdateAssessFeeYnRequest updateAssessFeeYnRequest);
 
-    Page<VendorApprovals> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, Pageable pageable);
+    Page<Vendor> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, String companyName, Pageable pageable);
 
-    Downloadable exportVendorsByMunicipalityAndStatus(ExportType exportType, Integer municipalityId, String approvalStatus, Boolean active, Pageable pageable);
+    Downloadable exportVendorsByMunicipalityAndStatus(ExportType exportType, Integer municipalityId, String approvalStatus, Boolean active, String companyName, Pageable pageable);
 
     Integer executeSetModifiedDateForProject(SetModifiedDateForProjectRequest setModifiedDateForProjectRequest);
 

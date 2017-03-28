@@ -312,12 +312,76 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
         $scope.Variables.svGetSignLink.update();
 
-    }
+    };
 
     $scope.svGetSignLinkonSuccess = function(variable, data) {
         // TODO: get folderAccessUrl from folder response json
         $scope.Variables.stvEsignUrl.dataSet.dataValue = data;
         $scope.Widgets.dialogSignForm.open();
+    };
+
+    $scope.saveAsDraft = function($event, $isolateScope) {
+        console.log($scope.Widgets.lfOwner);
+        // if ($scope.ownerInfo === true) {
+        //     if (!!ownerId) {
+        //         $scope.Variables.svSubmitForm.setInput('ownerId', ownerId);
+        //     } else if ($scope.Widgets.checkboxOtherOwner.datavalue || $scope.Widgets.checkboxVendorIsOwner.datavalue) {
+        //         if (!$scope.Widgets.lfOwner.formfields.id.value) {
+        //             $scope.Widgets.lfOwner.formfields.gisrecords.value = {
+        //                 id: $scope.Widgets.gisRecordSelect.datavalue
+        //             };
+        //             $scope.Widgets.lfOwner.formfields.contactType.value = 'Owner';
+        //             $scope.Widgets.lfOwner.formfields.active.value = true;
+        //             $scope.Widgets.lfOwner.save();
+        //             return; // TBC
+        //         } else {
+        //             $scope.Variables.svSubmitForm.setInput('ownerId', $scope.Widgets.lfOwner.formfields.id.value);
+        //         }
+        //     } else if ($scope.Widgets.gridOwners.selectedItems.length > 0) {
+        //         $scope.Variables.svSubmitForm.setInput('ownerId', $scope.Widgets.gridOwners.selectedItems[0].id);
+        //     }
+        // }
+
+        // $scope.Variables.svSubmitForm.setInput('locationIds', generateIdString($scope.Variables.stvGisData.dataSet));
+        // $scope.Variables.svSubmitForm.setInput('vendorIds', generateIdString($scope.Variables.stvVendors.dataSet));
+        // $scope.Variables.svSubmitForm.setInput('usersWithWhomToShare', generateIdString($scope.Variables.stvContacts.dataSet));
+        // $scope.Variables.stvVendors.dataSet.some(function(vendorData, index) {
+        //     if (vendorData.Primary) {
+        //         $scope.Variables.svSubmitForm.setInput('primaryVendorId', vendorData.ID);
+        //         return true;
+        //     }
+        // });
+
+        // // Form data
+        // $scope.Variables.svSubmitForm.setInput('fieldDataJsonString', JSON.stringify($scope.formData));
+
+        // // Documents
+        // if ($scope.documents && $scope.Variables.stvDocuments.dataSet.length > 0) {
+        //     var documentFiles = [];
+
+        //     $scope.Variables.stvDocuments.dataSet.forEach(function(document, index) {
+        //         documentFiles.push(document.Contents);
+        //     });
+
+        //     $scope.Variables.svSubmitForm.setInput('attachments', documentFiles);
+        // } else {
+        //     $scope.Variables.svSubmitForm.setInput('attachments', []);
+        // }
+
+        // $scope.Variables.svSubmitForm.update();
+
+        // $scope.Widgets.lfOwner.formfields.firstName.value = vendorInfo.Company;
+        // $scope.Widgets.lfOwner.formfields.address1.value = vendorInfo.Address1;
+        // $scope.Widgets.lfOwner.formfields.address2.value = vendorInfo.Address2;
+        // $scope.Widgets.lfOwner.formfields.city.value = vendorInfo.City;
+        // $scope.Widgets.lfOwner.formfields.states.value = {
+        //     id: vendorInfo.StateId,
+        //     stateName: vendorInfo.State
+        // };
+        // $scope.Widgets.lfOwner.formfields.postalCode.value = vendorInfo.PostalCode;
+        // $scope.Widgets.lfOwner.formfields.phone.value = vendorInfo.PhoneNumber;
+        // $scope.Widgets.lfOwner.formfields.email.value = vendorInfo.EmailAddress;
+        // $scope.Widgets.lfOwner.formfields.country.value = vendorInfo.Country;
     };
 }]);
 
@@ -508,30 +572,30 @@ Application.$controller("dialogAddVendorController", ["$scope",
         $scope.buttonAddVendorClick = function($event, $isolateScope) {
             var newVendor = $scope.Widgets.searchVendors.datavalue;
             var rowIndex = _.findIndex($scope.Variables.stvVendors.dataSet, {
-                'ID': newVendor.vendor.id
+                'ID': newVendor.id
             });
 
             if (rowIndex === -1) {
                 $scope.Variables.stvVendors.dataSet.push({
-                    ID: newVendor.vendor.id,
-                    Company: newVendor.vendor.companyName,
-                    PhoneNumber: newVendor.vendor.companyPhone,
-                    EmailAddress: newVendor.vendor.companyEmail,
-                    Website: newVendor.vendor.companyWebsite,
-                    Address1: newVendor.vendor.address1,
-                    Address2: newVendor.vendor.address2,
-                    City: newVendor.vendor.city,
-                    State: newVendor.vendor.states.stateName,
-                    StateId: newVendor.vendor.states.id,
-                    PostalCode: newVendor.vendor.postalCode,
-                    Country: newVendor.vendor.country,
+                    ID: newVendor.id,
+                    Company: newVendor.companyName,
+                    PhoneNumber: newVendor.companyPhone,
+                    EmailAddress: newVendor.companyEmail,
+                    Website: newVendor.companyWebsite,
+                    Address1: newVendor.address1,
+                    Address2: newVendor.address2,
+                    City: newVendor.city,
+                    State: newVendor.states.stateName,
+                    StateId: newVendor.states.id,
+                    PostalCode: newVendor.postalCode,
+                    Country: newVendor.country,
                     Primary: ($scope.Variables.stvVendors.dataSet.length === 0 ? true : $scope.Widgets.checkboxVendorIsPrimary.datavalue)
                 });
             }
 
             if ($scope.Variables.stvVendors.dataSet.length > 1 && $scope.Widgets.checkboxVendorIsPrimary.datavalue) {
                 $scope.Widgets.gridVendors.changePrimaryVendor(null, {
-                    ID: newVendor.vendor.id
+                    ID: newVendor.id
                 });
             }
 

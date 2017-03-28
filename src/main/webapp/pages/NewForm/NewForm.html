@@ -8,6 +8,9 @@
                 <wm-gridrow name="gridrow9">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn16">
                         <wm-breadcrumb dataset="bind:Variables.stvBreadCrumbs.dataSet" name="breadcrumb1"></wm-breadcrumb>
+                        <wm-container name="container5_1" horizontalalign="right">
+                            <wm-button class="btn-primary" caption="Save as Draft" type="button" margin="unset 0.5em" name="btnSaveAsDraft" iconclass="wi wi-save" show="false"></wm-button>
+                        </wm-container>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow7">
@@ -552,7 +555,7 @@
                 <wm-gridrow name="gridrow36">
                     <wm-gridcolumn columnwidth="1" name="gridcolumn100_1"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" name="gridcolumn84">
-                        <wm-search name="searchVendors" dataset="bind:Variables.svVendors.dataSet" displaylabel="vendor.companyName" datafield="All Fields" placeholder="Search by Company Name" type="search"></wm-search>
+                        <wm-search name="searchVendors" dataset="bind:Variables.svVendors.dataSet" displaylabel="companyName" datafield="All Fields" placeholder="Search by Company Name" type="search" searchkey="companyName"></wm-search>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn101"></wm-gridcolumn>
                 </wm-gridrow>
@@ -568,14 +571,14 @@
                 <wm-gridrow name="gridrow39" padding="1em unset unset unset">
                     <wm-gridcolumn columnwidth="1" name="gridcolumn90"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn91">
-                        <wm-label padding="unset 0.5em" class="h4" show="bind:!!Widgets.searchVendors.datavalue" caption="Company Details" name="label23"></wm-label>
+                        <wm-label padding="unset 0.5em" class="h4" show="bind:!!Widgets.searchVendors.datavalue.id" caption="Company Details" name="label23"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn92"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow40">
                     <wm-gridcolumn columnwidth="1" name="gridcolumn93"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn94">
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.searchVendors.datavalue.vendor.companyName+&quot;, &quot;+Widgets.searchVendors.datavalue.vendor.fullAddress+&quot;, &quot;+Widgets.searchVendors.datavalue.vendor.companyPhone+&quot;, &quot;+Widgets.searchVendors.datavalue.vendor.companyEmail"
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.searchVendors.datavalue.companyName+&quot;, &quot;+Widgets.searchVendors.datavalue.fullAddress+&quot;, &quot;+Widgets.searchVendors.datavalue.companyPhone+&quot;, &quot;+Widgets.searchVendors.datavalue.companyEmail"
                         show="bind:!!Widgets.searchVendors.datavalue" name="label24"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn95"></wm-gridcolumn>

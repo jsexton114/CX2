@@ -1573,20 +1573,22 @@ ORDER BY DateModified DESC
 
     <query name="VendorsByMunicipalityAndStatus">
         <![CDATA[
-        from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus and vendor.active=:active
+        from Vendor where id in (select vendorId from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus) and active=:active and lower(companyName) like lower('%'||:companyName||'%')
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="approvalStatus" type="java.lang.String"/>
     <query-param name="active" type="java.lang.Boolean"/>
+    <query-param name="companyName" type="java.lang.String"/>
     </query>
 
     <query name="VendorsByMunicipalityAndStatus__count">
         <![CDATA[
-        select count(*) from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus and vendor.active=:active
+        select count(*) from Vendor where id in (select vendorId from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus) and active=:active and lower(companyName) like lower('%'||:companyName||'%')
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="approvalStatus" type="java.lang.String"/>
     <query-param name="active" type="java.lang.Boolean"/>
+    <query-param name="companyName" type="java.lang.String"/>
     </query>
 
     <sql-query name="SetModifiedDateForProject">

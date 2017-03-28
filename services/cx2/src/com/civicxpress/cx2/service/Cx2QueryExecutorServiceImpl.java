@@ -34,7 +34,7 @@ import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
-import com.civicxpress.cx2.VendorApprovals;
+import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.models.query.*;
 
 @Service
@@ -2024,26 +2024,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<VendorApprovals> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, Pageable pageable) {
-        Map params = new HashMap(3);
+    public Page<Vendor> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, String companyName, Pageable pageable) {
+        Map params = new HashMap(4);
 
         params.put("municipalityId", municipalityId);
         params.put("approvalStatus", approvalStatus);
         params.put("active", active);
+        params.put("companyName", companyName);
 
-        return queryExecutor.executeNamedQuery("VendorsByMunicipalityAndStatus", params, VendorApprovals.class, pageable);
+        return queryExecutor.executeNamedQuery("VendorsByMunicipalityAndStatus", params, Vendor.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportVendorsByMunicipalityAndStatus(ExportType exportType, Integer municipalityId, String approvalStatus, Boolean active, Pageable pageable) {
-        Map params = new HashMap(3);
+    public Downloadable exportVendorsByMunicipalityAndStatus(ExportType exportType, Integer municipalityId, String approvalStatus, Boolean active, String companyName, Pageable pageable) {
+        Map params = new HashMap(4);
 
         params.put("municipalityId", municipalityId);
         params.put("approvalStatus", approvalStatus);
         params.put("active", active);
+        params.put("companyName", companyName);
 
-        return queryExecutor.exportNamedQueryData("VendorsByMunicipalityAndStatus", params, exportType, VendorApprovals.class, pageable);
+        return queryExecutor.exportNamedQueryData("VendorsByMunicipalityAndStatus", params, exportType, Vendor.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")

@@ -80,7 +80,7 @@
       "type" : "string"
     }, {
       "target" : "VendorId",
-      "value" : "bind:Widgets.searchVendor.datavalue.vendorId",
+      "value" : "bind:Widgets.searchVendor.datavalue.id",
       "type" : "integer"
     } ],
     "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
@@ -13810,7 +13810,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 9,
+    "bindCount" : 10,
     "tableName" : "FormTypes",
     "tableType" : "TABLE",
     "properties" : [ "municipalities" ],
@@ -21294,6 +21294,41 @@
     "saveInPhonegap" : false,
     "controller" : "Form"
   },
+  "svVendors" : {
+    "_id" : "wm-svVendors-wm.ServiceVariable-1490726301783",
+    "name" : "svVendors",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Variables.lvFormType.dataSet.data[$i].municipalityId",
+      "type" : "integer"
+    }, {
+      "target" : "approvalStatus",
+      "value" : "Approved",
+      "type" : "string"
+    }, {
+      "target" : "active",
+      "value" : true,
+      "type" : "boolean"
+    } ],
+    "type" : "com.civicxpress.cx2.Vendor",
+    "service" : "cx2",
+    "operation" : "executeVendorsByMunicipalityAndStatus",
+    "operationId" : "QueryExecutionController_executeVendorsByMunicipalityAndStatus",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "TempStatusList" : {
     "_id" : "wm-TempStatusList-wm.Variable-1484503375441",
     "name" : "TempStatusList",
@@ -21390,14 +21425,14 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "CXVendorId",
-      "value" : "bind:Widgets.searchVendor.datavalue.vendorId",
+      "value" : "bind:Widgets.searchVendor.datavalue.id",
       "type" : "integer"
     }, {
       "target" : "FormGUID",
       "value" : "bind:pageParams.FormGUID",
       "type" : "string"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "cx2",
     "operation" : "executeUpdateVendorForMasterForms",
     "operationId" : "QueryExecutionController_executeUpdateVendorForMasterForms",
@@ -21414,42 +21449,6 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "panelTagVendor"
-  },
-  "Vendors" : {
-    "_id" : "wm-Vendors-wm.ServiceVariable-1488800077153",
-    "name" : "Vendors",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "municipalityId",
-      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].municipalityId",
-      "type" : "integer"
-    }, {
-      "target" : "approvalStatus",
-      "value" : "Approved",
-      "type" : "string"
-    }, {
-      "target" : "active",
-      "value" : true,
-      "type" : "boolean"
-    } ],
-    "type" : "com.civicxpress.cx2.VendorApprovals",
-    "service" : "cx2",
-    "operation" : "executeVendorsByMunicipalityAndStatus",
-    "operationId" : "QueryExecutionController_executeVendorsByMunicipalityAndStatus",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
   },
   "VendorsAddedToForm" : {
     "_id" : "wm-VendorsAddedToForm-wm.NotificationVariable-1486124027624",

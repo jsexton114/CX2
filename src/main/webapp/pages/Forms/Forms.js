@@ -70,7 +70,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
     $scope.RemoveOtherPrimaryVendorsonSuccess = function(variable, data) {
         $scope.Variables.SetPrimaryVendorStatusForFormandVendor.setInput({
-            'vendor': $scope.Widgets.searchVendor.datavalue.vendorId
+            'vendor': $scope.Widgets.searchVendor.datavalue.id
         });
 
         $scope.Variables.SetPrimaryVendorStatusForFormandVendor.update();

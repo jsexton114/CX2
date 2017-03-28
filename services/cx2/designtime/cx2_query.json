@@ -8669,8 +8669,8 @@
     "name" : "VendorsByMunicipalityAndStatus",
     "description" : "VendorsByMunicipalityAndStatus",
     "version" : "V2",
-    "queryString" : "from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus and vendor.active=:active",
-    "countQueryString" : "select count(*) from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus and vendor.active=:active",
+    "queryString" : "from Vendor where id in (select vendorId from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus) and active=:active and lower(companyName) like lower('%'||:companyName||'%')",
+    "countQueryString" : "select count(*) from Vendor where id in (select vendorId from VendorApprovals where municipalityId=:municipalityId and approvalStatus=:approvalStatus) and active=:active and lower(companyName) like lower('%'||:companyName||'%')",
     "nativeSql" : false,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -8694,6 +8694,13 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : true,
+      "required" : false
+    }, {
+      "name" : "companyName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "e",
       "required" : true
     } ],
     "request" : {
@@ -8702,7 +8709,7 @@
       "method" : "GET"
     },
     "response" : {
-      "typeRef" : "com.civicxpress.cx2.VendorApprovals",
+      "typeRef" : "com.civicxpress.cx2.Vendor",
       "returns" : "ENTITY",
       "responseType" : "PAGINATED"
     }
