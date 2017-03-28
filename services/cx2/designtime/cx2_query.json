@@ -5540,7 +5540,7 @@
     "name" : "InsertFormMessage",
     "description" : "InsertFormMessage",
     "version" : "V1",
-    "queryString" : "insert into FormMessages(UserId,RelatedFormGUID,Message,PostedAt,MunicipalityMessage) values(:UserId,:RelatedFormGUID,:Message,:PostedAt,:MunicipalityMessage)",
+    "queryString" : "insert into FormMessages(UserId,RelatedFormGUID,Message,MunicipalityMessage) values(:UserId,:RelatedFormGUID,:Message,:MunicipalityMessage)",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -5566,13 +5566,6 @@
       "variableType" : "PROMPT",
       "testValue" : "FirstMessage",
       "required" : true
-    }, {
-      "name" : "PostedAt",
-      "type" : "timestamp",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : 1486458194000,
-      "required" : false
     }, {
       "name" : "MunicipalityMessage",
       "type" : "boolean",

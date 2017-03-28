@@ -81,9 +81,14 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     };
 
     $scope.PostFormMessageonSuccess = function(variable, data) {
-        $scope.Widgets.textAddMessage.datavalue = undefined;
-        $scope.Widgets.textInternalAddMessage.datavalue = undefined;
+        $scope.Widgets.textAddMessage.reset();
+
+        if (!!$scope.Widgets.textInternalAddMessage) {
+            $scope.Widgets.textInternalAddMessage.reset();
+        }
+
         let people = $scope.Variables.PeopleList.dataSet;
+
         if (people.length === 0) {
             // DO nothing
         } else {
@@ -91,15 +96,14 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
                 'PostedAt': variable.dataBinding.PostedAt,
                 'form': $scope.pageParams.FormGUID
             });
-            $scope.Variables.GetMessageIdForCurrentPost.update();
 
+            $scope.Variables.GetMessageIdForCurrentPost.update();
         }
     };
 
     $scope.buttonAddMessageClick = function($event, $isolateScope) {
         // Posting Message
         $scope.Variables.PostFormMessage.setInput({
-            'PostedAt': moment().valueOf(),
             'MunicipalityMessage': false,
             'Message': $scope.Widgets.textAddMessage.datavalue
         });
@@ -173,8 +177,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         $scope.Widgets.textareaNotes.reset();
     };
 
-
-
     $scope.svUserPermissionsonSuccess = function(variable, data) {
         if (!data.canView) {
             $location.path("/");
@@ -207,9 +209,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         }
     };
 
-
-
-
     $scope.lvMasterInspectionsInsertonSuccess = function(variable, data) {
         $scope.Variables.svInsertFormsToInspectionsMapping.setInput({
             'RelatedInspectionGUID': data.inspectionGuid,
@@ -219,11 +218,9 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         $scope.Variables.svInsertFormsToInspectionsMapping.update();
     };
 
-
     $scope.buttonAddInternalMessageClick = function($event, $isolateScope) {
         // Posting Message
         $scope.Variables.PostFormMessage.setInput({
-            'PostedAt': moment().valueOf(),
             'MunicipalityMessage': true,
             'Message': $scope.Widgets.textInternalAddMessage.datavalue
         });
@@ -276,6 +273,22 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
     $scope.svSendFormMessagesMailonSuccess = function(variable, data) {
         $scope.Variables.PeopleList.dataSet = [];
+    };
+
+    $scope.textAddMessageKeyup = function($event, $isolateScope) {
+        if ($event.which === 13) { // Enter key
+            let targetInput = $($event.currentTarget);
+
+            if (targetInput.val() === undefined || !targetInput.val().length) {
+                return;
+            }
+
+            if (targetInput.attr('name') === 'textInternalAddMessage') {
+                $scope.buttonAddInternalMessageClick();
+            } else {
+                $scope.buttonAddMessageClick();
+            }
+        }
     };
 
 }]);

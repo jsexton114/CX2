@@ -2474,12 +2474,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeInsertFormMessage(InsertFormMessageRequest insertFormMessageRequest) {
-        Map params = new HashMap(5);
+        Map params = new HashMap(4);
 
         params.put("UserId", insertFormMessageRequest.getUserId());
         params.put("RelatedFormGUID", insertFormMessageRequest.getRelatedFormGuid());
         params.put("Message", insertFormMessageRequest.getMessage());
-        params.put("PostedAt", insertFormMessageRequest.getPostedAt());
         params.put("MunicipalityMessage", insertFormMessageRequest.getMunicipalityMessage());
 
         return queryExecutor.executeNamedQueryForUpdate("InsertFormMessage", params);

@@ -80,8 +80,9 @@ public class FormTypes implements Serializable {
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
-    private List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings = new ArrayList<>();
+    private List<FormDraft> formDrafts = new ArrayList<>();
     private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
+    private List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings = new ArrayList<>();
     private List<InspectionSequence> inspectionSequences = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
 
@@ -511,12 +512,12 @@ public class FormTypes implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<FormToInspectionCategoryMapping> getFormToInspectionCategoryMappings() {
-        return this.formToInspectionCategoryMappings;
+    public List<FormDraft> getFormDrafts() {
+        return this.formDrafts;
     }
 
-    public void setFormToInspectionCategoryMappings(List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings) {
-        this.formToInspectionCategoryMappings = formToInspectionCategoryMappings;
+    public void setFormDrafts(List<FormDraft> formDrafts) {
+        this.formDrafts = formDrafts;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -527,6 +528,16 @@ public class FormTypes implements Serializable {
 
     public void setFormTypeFieldses(List<FormTypeFields> formTypeFieldses) {
         this.formTypeFieldses = formTypeFieldses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<FormToInspectionCategoryMapping> getFormToInspectionCategoryMappings() {
+        return this.formToInspectionCategoryMappings;
+    }
+
+    public void setFormToInspectionCategoryMappings(List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings) {
+        this.formToInspectionCategoryMappings = formToInspectionCategoryMappings;
     }
 
     @JsonInclude(Include.NON_EMPTY)

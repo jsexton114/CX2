@@ -31,6 +31,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.FormCategoryMapping;
+import com.civicxpress.cx2.FormDraft;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormToInspectionCategoryMapping;
@@ -175,13 +176,13 @@ public class FormTypesController {
         return formTypesService.findAssociatedFormStatuseses(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/formToInspectionCategoryMappings", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the formToInspectionCategoryMappings instance associated with the given id.")
+    @RequestMapping(value="/{id:.+}/formDrafts", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the formDrafts instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<FormToInspectionCategoryMapping> findAssociatedFormToInspectionCategoryMappings(@PathVariable("id") Integer id, Pageable pageable) {
+    public Page<FormDraft> findAssociatedFormDrafts(@PathVariable("id") Integer id, Pageable pageable) {
 
-        LOGGER.debug("Fetching all associated formToInspectionCategoryMappings");
-        return formTypesService.findAssociatedFormToInspectionCategoryMappings(id, pageable);
+        LOGGER.debug("Fetching all associated formDrafts");
+        return formTypesService.findAssociatedFormDrafts(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/formTypeFieldses", method=RequestMethod.GET)
@@ -191,6 +192,15 @@ public class FormTypesController {
 
         LOGGER.debug("Fetching all associated formTypeFieldses");
         return formTypesService.findAssociatedFormTypeFieldses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/formToInspectionCategoryMappings", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the formToInspectionCategoryMappings instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<FormToInspectionCategoryMapping> findAssociatedFormToInspectionCategoryMappings(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated formToInspectionCategoryMappings");
+        return formTypesService.findAssociatedFormToInspectionCategoryMappings(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/inspectionSequences", method=RequestMethod.GET)

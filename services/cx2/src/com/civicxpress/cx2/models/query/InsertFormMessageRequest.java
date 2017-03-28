@@ -28,8 +28,6 @@ public class InsertFormMessageRequest implements Serializable {
     @NotNull
     @JsonProperty("Message")
     private String message;
-    @JsonProperty("PostedAt")
-    private Timestamp postedAt;
     @NotNull
     @JsonProperty("MunicipalityMessage")
     private Boolean municipalityMessage;
@@ -58,14 +56,6 @@ public class InsertFormMessageRequest implements Serializable {
         this.message = message;
     }
 
-    public Timestamp getPostedAt() {
-        return this.postedAt;
-    }
-
-    public void setPostedAt(Timestamp postedAt) {
-        this.postedAt = postedAt;
-    }
-
     public Boolean getMunicipalityMessage() {
         return this.municipalityMessage;
     }
@@ -82,7 +72,6 @@ public class InsertFormMessageRequest implements Serializable {
         return Objects.equals(getUserId(), insertFormMessageRequest.getUserId()) &&
                 Objects.equals(getRelatedFormGuid(), insertFormMessageRequest.getRelatedFormGuid()) &&
                 Objects.equals(getMessage(), insertFormMessageRequest.getMessage()) &&
-                Objects.equals(getPostedAt(), insertFormMessageRequest.getPostedAt()) &&
                 Objects.equals(getMunicipalityMessage(), insertFormMessageRequest.getMunicipalityMessage());
     }
 
@@ -91,7 +80,6 @@ public class InsertFormMessageRequest implements Serializable {
         return Objects.hash(getUserId(),
                 getRelatedFormGuid(),
                 getMessage(),
-                getPostedAt(),
                 getMunicipalityMessage());
     }
 }

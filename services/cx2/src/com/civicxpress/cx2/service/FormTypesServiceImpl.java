@@ -22,6 +22,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormCategoryMapping;
+import com.civicxpress.cx2.FormDraft;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormToInspectionCategoryMapping;
@@ -60,6 +61,10 @@ public class FormTypesServiceImpl implements FormTypesService {
     @Autowired
 	@Qualifier("cx2.MasterFormsService")
 	private MasterFormsService masterFormsService;
+
+    @Autowired
+	@Qualifier("cx2.FormDraftService")
+	private FormDraftService formDraftService;
 
     @Autowired
 	@Qualifier("cx2.FormToInspectionCategoryMappingService")
@@ -106,11 +111,11 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getFormToInspectionCategoryMappings() != null) {
-            for(FormToInspectionCategoryMapping formToInspectionCategoryMapping : formTypesCreated.getFormToInspectionCategoryMappings()) {
-                formToInspectionCategoryMapping.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormToInspectionCategoryMapping with information: {}", formToInspectionCategoryMapping);
-                formToInspectionCategoryMappingService.create(formToInspectionCategoryMapping);
+        if(formTypesCreated.getFormDrafts() != null) {
+            for(FormDraft formDraft : formTypesCreated.getFormDrafts()) {
+                formDraft.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormDraft with information: {}", formDraft);
+                formDraftService.create(formDraft);
             }
         }
 
@@ -119,6 +124,14 @@ public class FormTypesServiceImpl implements FormTypesService {
                 formTypeFieldse.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child FormTypeFields with information: {}", formTypeFieldse);
                 formTypeFieldsService.create(formTypeFieldse);
+            }
+        }
+
+        if(formTypesCreated.getFormToInspectionCategoryMappings() != null) {
+            for(FormToInspectionCategoryMapping formToInspectionCategoryMapping : formTypesCreated.getFormToInspectionCategoryMappings()) {
+                formToInspectionCategoryMapping.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormToInspectionCategoryMapping with information: {}", formToInspectionCategoryMapping);
+                formToInspectionCategoryMappingService.create(formToInspectionCategoryMapping);
             }
         }
 
@@ -246,13 +259,13 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormToInspectionCategoryMapping> findAssociatedFormToInspectionCategoryMappings(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formToInspectionCategoryMappings");
+    public Page<FormDraft> findAssociatedFormDrafts(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formDrafts");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("formTypes.id = '" + id + "'");
 
-        return formToInspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+        return formDraftService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -264,6 +277,17 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return formTypeFieldsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormToInspectionCategoryMapping> findAssociatedFormToInspectionCategoryMappings(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formToInspectionCategoryMappings");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formToInspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -331,6 +355,15 @@ public class FormTypesServiceImpl implements FormTypesService {
 	 */
 	protected void setMasterFormsService(MasterFormsService service) {
         this.masterFormsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormDraftService instance
+	 */
+	protected void setFormDraftService(FormDraftService service) {
+        this.formDraftService = service;
     }
 
     /**
