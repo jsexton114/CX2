@@ -35,7 +35,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.svFeesInCartByUser.invoke();Variables.svCartIds.invoke();Variables.nvDeleteFromCartSuccess.invoke()",
+    "onSuccess" : "Variables.svFeesInCartByUser.invoke();Variables.svCartItemIds.invoke();Variables.nvDeleteFromCartSuccess.invoke()",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,

@@ -638,9 +638,9 @@
     } ],
     "operation" : "toast"
   },
-  "svCartItemIds" : {
+  "svCartIds" : {
     "_id" : "wm-svCartItemIds-wm.ServiceVariable-1490684751702",
-    "name" : "svCartItemIds",
+    "name" : "svCartIds",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -658,7 +658,7 @@
     "isList" : true,
     "maxResults" : 9000,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.invoke()",
+    "onSuccess" : "Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.invoke();svCartIdsonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",

@@ -1208,6 +1208,19 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
+  "stvCartCount" : {
+    "_id" : "wm-stvCartCount-wm.Variable-1490685757724",
+    "name" : "stvCartCount",
+    "owner" : "App",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
   "successfully" : {
     "_id" : "wm-successfully-wm.NotificationVariable-1481869693445",
     "name" : "successfully",
@@ -1248,9 +1261,9 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
-  "svCartIds" : {
+  "svCartItemIds" : {
     "_id" : "wm-svCartItemIds-wm.ServiceVariable-1490685014948",
-    "name" : "svCartIds",
+    "name" : "svCartItemIds",
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -1268,6 +1281,7 @@
     "isList" : true,
     "maxResults" : 9000,
     "designMaxResults" : 10,
+    "onSuccess" : "svCartItemIdsonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",

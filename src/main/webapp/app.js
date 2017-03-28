@@ -12,6 +12,7 @@ Application.run(function($rootScope, Utils) {
     "use strict";
     /* perform any action on the variables within this block(on-page-load) */
     $rootScope.onAppVariablesReady = function() {
+
         /*
          * variables can be accessed through '$rootScope.Variables' property heret
          * e.g. $rootScope.Variables.staticVariable1.getData()
@@ -28,6 +29,11 @@ Application.run(function($rootScope, Utils) {
          */
     };
 
+
+    $rootScope.svCartItemIdsonSuccess = function(variable, data) {
+        // For count badge in top nav
+        $rootScope.Variables.stvCartCount.dataSet.dataValue = data.content.length;
+    };
     $rootScope.StandardUserMunicipalitesonSuccess = function(variable, data) {
         // For count badge in left nav
         $rootScope.Variables.NoOfMunicipalitiesForUser.dataSet.dataValue = data.totalElements;
@@ -247,6 +253,7 @@ Application.directive('ngFileModel', function() {
             });
         }
     };
+
 
 });
 
