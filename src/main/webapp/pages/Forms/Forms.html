@@ -313,10 +313,10 @@
                                                     <wm-grid-column binding="masterInspections.inspectionDesign.inspectDesignName" caption="Inspection Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="addedAt" caption="Date Requested" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="users.fullName" caption="Requested By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="masterInspections.inspectionOutcome.outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="masterInspections.requestedFor" caption="Requested For" type="string" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true"
+                                                    <wm-grid-column binding="masterInspections.requestedFor" caption="Requested For" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" filterwidget="date"
                                                     readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="masterInspections.inspectionOutcome.outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="Request Inspection" show="bind:Variables.CurrentForm.firstRecord.formStatuses.allowInspections" class="btn-primary" iconclass="wi wi-plus"
                                                     title="Request Inspection" action="Widgets.dialogInspectionRequest.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.svUserPermissions.dataSet.isEmployee || Variables.svUserPermissions.dataSet.isAdmin" class="btn-transparent"
@@ -985,31 +985,31 @@
     <wm-view class="dialog-view" name="viewInspectionRequest">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Inspection Request" iconclass="wi wi-date-range" name="dialogInspectionRequest">
             <wm-layoutgrid name="layoutgrid29_1">
-                <wm-gridrow name="gridrow81_3" padding="unset unset 1em unset">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn153_2" horizontalalign="center">
-                        <wm-composite name="composite5_2" padding="unset 2em" required="true" show="bind:Variables.CurrentForm.dataSet.data[$i].formTypes.forceInspectionSequence">
+                <wm-gridrow name="gridrow81_3" padding="unset unset 1em 1em">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn153_2">
+                        <wm-composite name="composite5_2" required="true" show="bind:Variables.CurrentForm.dataSet.data[$i].formTypes.forceInspectionSequence">
                             <wm-label class="col-md-3 form-control-static" name="label93" caption="Inspection Type" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container8">
-                                <wm-select name="selectInspectionDesignBySequence" dataset="bind:Variables.svDistinctInspectionDesignsForFormType.dataSet" datafield="All Fields" displayfield="inspectDesignName"></wm-select>
+                            <wm-container class="col-md-6" name="container8">
+                                <wm-select name="selectInspectionDesignBySequence" dataset="bind:Variables.svDistinctInspectionDesignsForFormType.dataSet" datafield="All Fields" displayfield="inspectDesignName" placeholder="Select Inspection"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow87" padding="unset unset 1em unset">
+                <wm-gridrow name="gridrow87" padding="unset unset 1em 1em">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn161">
-                        <wm-composite padding="unset 2em" required="true" name="composite8" show="bind:!Variables.CurrentForm.dataSet.data[$i].formTypes.forceInspectionSequence">
+                        <wm-composite required="true" name="composite8" show="bind:!Variables.CurrentForm.dataSet.data[$i].formTypes.forceInspectionSequence">
                             <wm-label class="col-md-3 form-control-static" caption="Inspection Type" fontweight="bold" name="label101"></wm-label>
-                            <wm-container class="col-md-9" name="container15">
-                                <wm-select dataset="bind:Variables.svInspectionDesignByInspectionCategoriesAssignedT.dataSet" datafield="All Fields" displayfield="inspectDesignName" name="selectInspectionDesign"></wm-select>
+                            <wm-container class="col-md-6" name="container15">
+                                <wm-select dataset="bind:Variables.svInspectionDesignByInspectionCategoriesAssignedT.dataSet" datafield="All Fields" displayfield="inspectDesignName" name="selectInspectionDesign" placeholder="Select Inspection"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow82" padding="unset unset 1em unset">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn155_1" horizontalalign="center">
-                        <wm-composite name="composite6" padding="unset 2em" required="true">
+                <wm-gridrow name="gridrow82" padding="unset unset 1em 1em">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn155_1">
+                        <wm-composite name="composite6" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label94" caption="Date" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container9">
+                            <wm-container class="col-md-6" name="container9">
                                 <wm-date name="dateInspectionRequest" mindate="CURRENT_DATE" datepattern="MM-dd-yyyy" placeholder="Select Date"></wm-date>
                             </wm-container>
                         </wm-composite>
