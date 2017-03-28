@@ -5920,6 +5920,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Variables.MunicipalityGroupsForProcess.listRecords()",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : true,
     "autoUpdate" : true,
@@ -9096,6 +9097,38 @@
     "type" : "string",
     "isList" : true,
     "saveInPhonegap" : false
+  },
+  "svGetListOfMunicipalityEmployees" : {
+    "_id" : "wm-svGetListOfMunicipalityEmployees-wm.ServiceVariable-1490701161134",
+    "name" : "svGetListOfMunicipalityEmployees",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipalityID",
+      "value" : "bind:Variables.CurrentFormObj.dataSet.data[$i].municipalityId",
+      "type" : "integer"
+    }, {
+      "target" : "Email",
+      "value" : "bind:'%'+Widgets.liveformGroupMembers.formWidgets.users.query+'%'",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.GetListofUsersResponse",
+    "service" : "cx2",
+    "operation" : "executeGetListofUsers",
+    "operationId" : "QueryExecutionController_executeGetListofUsers",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "svSaveFormField" : {
     "_id" : "wm-svSaveFormField-wm.ServiceVariable-1484838750507",

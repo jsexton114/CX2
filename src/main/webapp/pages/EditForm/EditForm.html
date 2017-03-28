@@ -826,7 +826,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow78">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn112">
-                        <wm-livegrid formlayout="dialog" name="livegridGroupMembers">
+                        <wm-livegrid formlayout="inline" name="livegridGroupMembers">
                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvGroupMembersData.dataSet" navigation="Classic" name="gridGroupMembers" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                                 <wm-grid-column binding="users.fullName" caption="Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                 <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
@@ -835,7 +835,7 @@
                                 <wm-grid-action key="customButton" display-name="Close" title="Close" value="" iconclass="wi wi-cancel" class="btn-secondary" show="true" action="Widgets.dialogManageSelectedGroup.close()" shortcutkey=""></wm-grid-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
-                            <wm-liveform novalidate="false" errormessage="" title="Add User to Group" formlayout="dialog" iconclass="wi wi-person-add" dataset="bind:Variables.lvGroupMembersData.dataSet" captionalign="left" captionposition="top" name="liveformGroupMembers">
+                            <wm-liveform novalidate="false" errormessage="" title="Add User to Group" formlayout="inline" iconclass="wi wi-person-add" dataset="bind:Variables.lvGroupMembersData.dataSet" captionalign="left" captionposition="top" name="liveformGroupMembers">
                                 <wm-layoutgrid columns="1" name="layoutgrid22">
                                     <wm-gridrow name="gridrow79">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn113">
@@ -845,9 +845,10 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow80">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn114">
-                                            <wm-form-field name="users" displayname="Which municipality employee would you like to add to the group?" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" readonly="false"
-                                            required="true" widget="autocomplete" placeholder="Search by Name or Email Address" displayexpression="email" searchkey="email,fullName" displaylabel="fullName + ' ('+email+')'" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"
-                                            orderby="fullName:asc"></wm-form-field>
+                                            <wm-label padding="unset 0.5em" name="label32_1" caption="bind:Widgets.users.query"></wm-label>
+                                            <wm-form-field name="users" displayname="Which municipality employee would you like to add to the group?" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true"
+                                            readonly="false" required="true" widget="autocomplete" placeholder="Search by Name or Email Address" displayexpression="email" searchkey="email,fullName" displaylabel="Email" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"
+                                            orderby="fullName:asc" dataset="bind:Variables.svGetListOfMunicipalityEmployees.dataSet"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
