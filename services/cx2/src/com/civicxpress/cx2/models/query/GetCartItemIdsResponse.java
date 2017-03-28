@@ -23,7 +23,7 @@ public class GetCartItemIdsResponse implements Serializable {
 
     @ColumnAlias("ID")
     private Integer id;
-    @ColumnAlias("FeeId")
+    @ColumnAlias("feeId")
     private Integer feeId;
 
     public Integer getId() {

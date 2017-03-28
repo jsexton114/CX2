@@ -6,7 +6,7 @@ Application.$controller("MyFeesPageController", ["$scope", function($scope) {
         $scope.$watch(function() {
             return $scope.Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue;
         }, function(newVal, oldVal) {
-            debugger
+
             //Checking if no municipality is selected
             if (newVal == undefined) {
                 $scope.Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.setInput({
@@ -41,6 +41,18 @@ Application.$controller("MyFeesPageController", ["$scope", function($scope) {
             // For selected municipality
             $scope.Variables.svAllFeesOfFormsByMunicipality.update();
         }
+    };
+
+
+    $scope.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWithonSuccess = function(variable, data) {
+        let cartItems = $scope.Variables.svCartItemIds.dataSet.content;
+        _.remove(data.content, function(obj) {
+            if (_.find(cartItems, {
+                    'feeId': obj.feeId
+                })) {
+                return true;
+            }
+        });
     };
 
 }]);

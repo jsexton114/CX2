@@ -9239,8 +9239,8 @@
     "name" : "getCartItemIds",
     "description" : "Get the card item IDs for the current user.",
     "version" : "V2",
-    "queryString" : "select ID, FeeId from MyCart where UserId=:userId",
-    "countQueryString" : "select count(*) from (select ID, FeeId from MyCart where UserId=:userId) wmTempTable",
+    "queryString" : "select ID, FeeId as feeId from MyCart where UserId=:userId",
+    "countQueryString" : "select count(*) from (select ID, FeeId as feeId from MyCart where UserId=:userId) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -9249,7 +9249,7 @@
       "type" : "long",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
+      "testValue" : "3",
       "required" : true
     } ],
     "request" : {
@@ -9271,7 +9271,7 @@
           "list" : false
         }
       }, {
-        "name" : "FeeId",
+        "name" : "feeId",
         "fieldName" : "feeId",
         "optional" : false,
         "fieldType" : {

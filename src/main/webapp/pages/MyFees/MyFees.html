@@ -30,7 +30,8 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow5" padding="1em unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn7">
-                                        <wm-grid title="" dataset="bind:Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.dataSet.content" navigation="Classic" name="gridUnpaidFees" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                        <wm-grid title="" dataset="bind:Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.dataSet.content" navigation="Classic" name="gridUnpaidFees" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL"
+                                        pagesize="20">
                                             <wm-grid-column binding="feeId" caption="Fee Id" type="string" pcdisplay="true" mobiledisplay="true" searchable="true" readonly="undefined"></wm-grid-column>
                                             <wm-grid-column binding="formType" caption="Form Type" type="string" pcdisplay="true" mobiledisplay="true" searchable="true" readonly="undefined"></wm-grid-column>
                                             <wm-grid-column binding="feeType" caption="Fee Type" type="string" pcdisplay="true" mobiledisplay="true" searchable="true" readonly="undefined"></wm-grid-column>

@@ -557,14 +557,14 @@ where formTypeId=:form
 
     <sql-query name="getCartItemIds">
         <![CDATA[
-        select ID, FeeId from MyCart where UserId=:userId
+        select ID, FeeId as feeId from MyCart where UserId=:userId
         ]]>
     <query-param name="userId" type="java.lang.Long"/>
     </sql-query>
 
     <sql-query name="getCartItemIds__count">
         <![CDATA[
-        select count(*) from (select ID, FeeId from MyCart where UserId=:userId) wmTempTable
+        select count(*) from (select ID, FeeId as feeId from MyCart where UserId=:userId) wmTempTable
         ]]>
     <query-param name="userId" type="java.lang.Long"/>
     </sql-query>

@@ -658,7 +658,7 @@
     "isList" : false,
     "maxResults" : 10,
     "designMaxResults" : 10,
-    "onSuccess" : "svAllFeesOfFormsonSuccess($event, $scope)",
+    "onSuccess" : "svfetchUnpaidFeesOfFormsForCreatedByAndSharedWithonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
