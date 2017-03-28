@@ -10,7 +10,6 @@ import java.lang.String;
 import java.lang.Exception;
 import org.apache.http.HttpEntity;
 import java.io.IOException;
-import com.civicxpress.esigngenie.ESignGenieApi.FolderResponsePojo;
 import java.lang.Object;
 import java.util.Map;
 import com.civicxpress.formservice.FormService.UserPermissionsPojo;
@@ -54,9 +53,11 @@ public class FormController {
         return formService.getDocumentSignatureLink(formGuid);
     }
 
-    @RequestMapping(value = "/documentSignatureLinkAndFolderId", method = RequestMethod.GET)
-    public FolderResponsePojo getDocumentSignatureLinkAndFolderId(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "ownerId", required = false) Long ownerId, @RequestParam(value = "locationIds", required = false) String locationIds, @RequestParam(value = "vendorIds", required = false) String vendorIds, @RequestParam(value = "primaryVendorId", required = false) Long primaryVendorId, @RequestParam(value = "fieldDataJsonString", required = false) String fieldDataJsonString) {
-        return formService.getDocumentSignatureLinkAndFolderId(formTypeId, ownerId, locationIds, vendorIds, primaryVendorId, fieldDataJsonString);
+    @RequestMapping(value = "/documentSignatureLinkAndFolderId", produces = "application/json", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public String getDocumentSignatureLinkAndFolderId(@RequestParam(value = "formTitle", required = false) String formTitle, @RequestParam(value = "creatorFullName", required = false) String creatorFullName, @RequestParam(value = "fieldDataJsonString", required = false) String fieldDataJsonString, @RequestBody byte[] municipalityLogo, @RequestParam(value = "clientId", required = false) String clientId, @RequestParam(value = "clientSecret", required = false) String clientSecret, @RequestParam(value = "firstNameOfRecipientParty", required = false) String firstNameOfRecipientParty, @RequestParam(value = "lastNameOfRecipientParty", required = false) String lastNameOfRecipientParty, @RequestParam(value = "emailIdOfRecipientParty", required = false) String emailIdOfRecipientParty) throws IOException {
+        return formService.getDocumentSignatureLinkAndFolderId(formTitle, creatorFullName, fieldDataJsonString, municipalityLogo, clientId, clientSecret, firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);
     }
 
     @RequestMapping(value = "/formData", method = RequestMethod.GET)

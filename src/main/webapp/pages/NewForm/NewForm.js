@@ -193,12 +193,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     };
 
     $scope.svSubmitFormonSuccess = function(variable, data) {
-        //if ($scope.signature === true) {
-        //    $scope.Variables.svGetSignLink.setInput('formGuid', data);
-        //    $scope.Variables.svGetSignLink.update();
-        //} else {
         $scope.Variables.goToPage_UserOpenForms.navigate();
-        //}
     };
 
     $scope.checkboxNewUserChange = function($event, $isolateScope, newVal, oldVal) {
@@ -299,7 +294,28 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
     $scope.svGetOwnersonSuccess = function(variable, data) {};
 
+    $scope.buttonCreateSigningDocumentClick = function($event, $isolateScope) {
+        $scope.Variables.svGetSignLink.setInput('formGuid', "983DD3B3-C40C-E711-80C9-0CC47A46DD63");
+        // TODO: update form values here instead of passing the GUID
+
+        //   getDocumentSignatureLinkAndFolderId(String formTitle, String creatorFullName, String fieldDataJsonString, byte[] municipalityLogo,
+        //            String clientId, String clientSecret, String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty) {
+
+        //$scope.Variables.svGetSignLink.setInput('formTitle', "form title test");
+        //$scope.Variables.svGetSignLink.setInput('creatorFullName', "creatorFullName test");
+        //$scope.Variables.svGetSignLink.setInput('fieldDataJsonString', JSON.stringify($scope.formData));
+        //$scope.Variables.svGetSignLink.setInput('clientId', "a4bb2dd0071640b6936f5cf80cf533b4");
+        //$scope.Variables.svGetSignLink.setInput('clientSecret', "268ebb57a93e4ef197235c68111ed5a6");
+        //$scope.Variables.svGetSignLink.setInput('firstNameOfRecipientParty', "Jason");
+        //$scope.Variables.svGetSignLink.setInput('lastNameOfRecipientParty', "Sexton");
+        //$scope.Variables.svGetSignLink.setInput('emailIdOfRecipientParty', "jason_sexton@hotmail.com");
+
+        $scope.Variables.svGetSignLink.update();
+
+    }
+
     $scope.svGetSignLinkonSuccess = function(variable, data) {
+        // TODO: get folderAccessUrl from folder response json
         $scope.Variables.stvEsignUrl.dataSet.dataValue = data;
         $scope.Widgets.dialogSignForm.open();
     };
@@ -566,9 +582,7 @@ Application.$controller("dialogSignFormController", ["$scope",
         };
 
         $scope.dialogSignFormOpened = function($event, $isolateScope) {
-            //$scope.Variables.svGetSignLink.setInput('formGuid', "983DD3B3-C40C-E711-80C9-0CC47A46DD63");
-            // TODO: update form values here instead of passing the GUID
-            $scope.Variables.svGetSignLink.update();
+
         };
 
     }

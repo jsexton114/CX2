@@ -145,12 +145,26 @@ public class FormService {
         return folderAccessUrl;
     }
 
-    public ESignGenieApi.FolderResponsePojo getDocumentSignatureLinkAndFolderId(Long formTypeId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String fieldDataJsonString) {
+    public String getDocumentSignatureLinkAndFolderId(String formTitle, String creatorFullName, String fieldDataJsonString, byte[] municipalityLogo,
+            String clientId, String clientSecret, String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty) 
+            throws IOException {
+                
         //createAndSignDocument(FormDataPojo formDataPojo, String title, Map<String, Object> formData, byte[] municipalityLogo, String clientId, String clientSecret, String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty)
         
-        // TODO: refactor title construction out of submitForm
-        // TODO: refactor getting field data from fieldDataJsonString out of submitForm
-        return null;
+        // TODO: call createAndSignDocument()
+        // TODO: response with json from folderResponsePojo
+        
+        String folderAccessUrl = null;
+        FormDataPojo formDataPojo = new FormDataPojo(); // TODO: point of this pojo...?, shouldn't be crossed to eSign anyway, fix it!
+        Map<String, Object> formData = null;
+        ESignGenieApi.FolderResponsePojo folderResponsePojo = null;
+        formDataPojo.setFormTitle(formTitle);
+        formDataPojo.setCreatorFullName(creatorFullName);
+        folderResponsePojo = ESignGenieApi.createAndSignDocument(formDataPojo, "title", formData, municipalityLogo, clientId, clientSecret,
+                firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);
+        folderAccessUrl = folderResponsePojo.getFolderAccessUrl();
+
+        return folderAccessUrl;
     }   
     
     private byte[] getMunicipalityLogo(Long formTypeId) throws SQLException {
