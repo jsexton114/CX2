@@ -58,7 +58,7 @@ Application.$controller("MyFeesPageController", ["$scope", function($scope) {
 
 
     $scope.svCartIdsonSuccess = function(variable, data) {
-        debugger
+
         $scope.Variables.stvCartCount.dataSet.dataValue = data.content.length;
     };
 

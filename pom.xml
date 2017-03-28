@@ -13,6 +13,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/AddMultipleFeeToCart/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/CXPasswordResetService/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -184,6 +191,8 @@
                         </goals>
                         <configuration>
                             <sources>
+                            
+                                <source>services/AddMultipleFeeToCart/src</source>
                                 <source>services/CXPasswordResetService/src</source>
                                 <source>services/DocumentProxyService/src</source>
                                 <source>services/DocumentService/src</source>
