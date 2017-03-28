@@ -638,6 +638,34 @@
     } ],
     "operation" : "toast"
   },
+  "svCartItemIds" : {
+    "_id" : "wm-svCartItemIds-wm.ServiceVariable-1490684751702",
+    "name" : "svCartItemIds",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "userId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.GetCartItemIdsResponse",
+    "service" : "cx2",
+    "operation" : "executeGetCartItemIds",
+    "operationId" : "QueryExecutionController_executeGetCartItemIds",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 9000,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith" : {
     "_id" : "wm-svAllFeesOfForms-wm.ServiceVariable-1490173039006",
     "name" : "svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith",
@@ -691,7 +719,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.invoke();Variables.svCartItemIds.invoke()",
+    "onSuccess" : "Variables.svCartIds.invoke()",
     "onError" : "Variables.nvAlreadyInCart.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,

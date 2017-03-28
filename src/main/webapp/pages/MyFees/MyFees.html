@@ -32,12 +32,16 @@
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                                         <wm-grid title="" dataset="bind:Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.dataSet.content" navigation="Classic" name="gridUnpaidFees" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL"
                                         pagesize="20">
-                                            <wm-grid-column binding="feeId" caption="Fee Id" type="string" pcdisplay="true" mobiledisplay="true" searchable="true" readonly="undefined"></wm-grid-column>
-                                            <wm-grid-column binding="formType" caption="Form Type" type="string" pcdisplay="true" mobiledisplay="true" searchable="true" readonly="undefined"></wm-grid-column>
-                                            <wm-grid-column binding="feeType" caption="Fee Type" type="string" pcdisplay="true" mobiledisplay="true" searchable="true" readonly="undefined"></wm-grid-column>
-                                            <wm-grid-column binding="formGuid" caption="Form Guid" type="string" pcdisplay="true" mobiledisplay="true" searchable="true" readonly="undefined"></wm-grid-column>
-                                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" pcdisplay="true" mobiledisplay="true" searchable="true" readonly="undefined"></wm-grid-column>
-                                            <wm-grid-column binding="municipalityName" caption="Municipality Name" type="string" pcdisplay="true" mobiledisplay="true" searchable="true" readonly="undefined"></wm-grid-column>
+                                            <wm-grid-column binding="feeId" caption="Fee Id" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="formType" caption="Form Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="feeType" caption="Fee Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="formGuid" caption="Form Guid" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="municipalityName" caption="Municipality Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="ViewForm" action="Variables.ngViewForm.invoke()" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="deleterow" display-name="" show="bind:!itemInCart(row.getProperty('feeId')) " class="btn-transparent" iconclass="wi wi-cart" title="InsertInToCart" action="Variables.svInsertIntoCart.invoke()"
+                                            disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                     </wm-gridcolumn>
                                 </wm-gridrow>

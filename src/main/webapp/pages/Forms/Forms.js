@@ -422,7 +422,7 @@ Application.$controller("gridFeesController", ["$scope",
         };
 
         $scope.itemInCart = function(feeId) {
-            let cartItems = $scope.Variables.svCartItemIds.dataSet.content;
+            let cartItems = $scope.Variables.svCartIds.dataSet.content;
 
             if (!cartItems) {
                 return true; // By default, disable add to cart for anything if we don't have the cart data yet.

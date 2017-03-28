@@ -20710,6 +20710,33 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Subdivisions"
   },
+  "svCartItemIds" : {
+    "_id" : "wm-svCartItemIds-wm.ServiceVariable-1489161244868",
+    "name" : "svCartItemIds",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "userId",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.GetCartItemIdsResponse",
+    "service" : "cx2",
+    "operation" : "executeGetCartItemIds",
+    "operationId" : "QueryExecutionController_executeGetCartItemIds",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 9000,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "svDistinctInspectionDesignsForFormType" : {
     "_id" : "wm-svDistinctInspectionDesignsForFormType-wm.ServiceVariable-1489569692114",
     "name" : "svDistinctInspectionDesignsForFormType",
@@ -20933,7 +20960,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.nvAddedToCart.invoke();Variables.svCartItemIds.invoke()",
+    "onSuccess" : "Variables.nvAddedToCart.invoke();Variables.svCartIds.invoke()",
     "onError" : "Variables.nvAlreadyInCart.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
