@@ -845,10 +845,10 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow80">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn114">
-                                            <wm-label padding="unset 0.5em" name="label32_1" caption="bind:Widgets.users.query"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label32_1" caption="bind:Widgets.users_formWidget.query"></wm-label>
                                             <wm-form-field name="users" displayname="Which municipality employee would you like to add to the group?" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true"
-                                            readonly="false" required="true" widget="autocomplete" placeholder="Search by Name or Email Address" displayexpression="email" searchkey="email,fullName" displaylabel="Email" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"
-                                            orderby="fullName:asc" dataset="bind:Variables.svGetListOfMunicipalityEmployees.dataSet"></wm-form-field>
+                                            readonly="false" required="true" widget="autocomplete" placeholder="Search by Name or Email Address" displayexpression="email" displaylabel="Email" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"
+                                            orderby="fullName:asc" dataset="bind:Variables.svGetListOfMunicipalityEmployees.dataSet" datafield="All Fields"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>

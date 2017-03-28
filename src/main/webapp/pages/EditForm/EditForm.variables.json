@@ -9109,7 +9109,7 @@
       "type" : "integer"
     }, {
       "target" : "Email",
-      "value" : "bind:'%'+Widgets.liveformGroupMembers.formWidgets.users.query+'%'",
+      "value" : "bind:'%'+Widgets.users_formWidget.query+'%'",
       "type" : "string"
     } ],
     "type" : "com.civicxpress.cx2.models.query.GetListofUsersResponse",
