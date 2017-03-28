@@ -494,24 +494,6 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.FormCategories"
   },
-  "navToNewForm" : {
-    "_id" : "wm-navToNewForm-wm.NavigationVariable-1488815020815",
-    "name" : "navToNewForm",
-    "owner" : "Page",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ {
-      "target" : "pageName",
-      "value" : "NewForm",
-      "type" : "string"
-    } ],
-    "operation" : "gotoPage",
-    "dataSet" : [ {
-      "type" : "integer",
-      "target" : "formTypeId",
-      "value" : "bind:Widgets.selectForm.datavalue"
-    } ],
-    "pageTransitions" : "none"
-  },
   "svFormTypes" : {
     "_id" : "wm-svFormTypes-wm.ServiceVariable-1488814824766",
     "name" : "svFormTypes",

@@ -19,6 +19,9 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         $scope.Variables.stvVendors.dataSet = [];
     };
 
+    $scope.formTypeId = parseInt($location.search().formTypeId);
+    $scope.draftId = !!$location.search().draftId ? parseInt($location.search().draftId) : $location.search().draftId;
+
     $scope.loaded = false;
 
     var itemsLoaded = 0;
@@ -320,8 +323,54 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         $scope.Widgets.dialogSignForm.open();
     };
 
+    function getDraftModel() {
+        var draftModel = {
+            formTypeId: $scope.formTypeId,
+            onBehalfOf: {},
+            formFields: {},
+            locations: [],
+            vendors: [],
+            owner: {},
+            attachments: []
+        };
+
+        // Submit on behalf
+        $scope.Widgets.lfSubmitOnBehalf.formFields.forEach(function(field, index) {
+            if (field.name === 'All fields') {
+                return;
+            }
+
+            draftModel.onBehalfOf[field.name] = field.value;
+        });
+
+        draftModel.onBehalfOf.newUser = $scope.Widgets.checkboxNewUser.datavalue;
+
+        // Form Fields
+        draftModel.formFields = angular.copy($scope.formData);
+
+        // Owner
+        if ($scope.ownerInfo === true) {
+            $scope.Widgets.lfOwner.formFields.forEach(function(field, index) {
+                if (field.name === 'All fields') {
+                    return;
+                }
+
+                draftModel.owner[field.name] = field.value;
+            });
+        }
+
+        // Locations
+
+        // Vendors
+
+        return draftModel;
+    }
+
     $scope.saveAsDraft = function($event, $isolateScope) {
-        console.log($scope.Widgets.lfOwner);
+        var draftModel = getDraftModel();
+
+        console.log(draftModel);
+
         // if ($scope.ownerInfo === true) {
         //     if (!!ownerId) {
         //         $scope.Variables.svSubmitForm.setInput('ownerId', ownerId);

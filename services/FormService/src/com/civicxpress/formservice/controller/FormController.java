@@ -81,6 +81,11 @@ public class FormController {
         formService.main(args);
     }
 
+    @RequestMapping(value = "/saveDraft", method = RequestMethod.GET)
+    public Long saveDraft(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formData", required = false) String formData, @RequestParam(value = "draftId", required = false) Long draftId) throws SQLException {
+        return formService.saveDraft(formTypeId, formData, draftId);
+    }
+
     @RequestMapping(value = "/saveFormData", method = RequestMethod.POST)
     public void saveFormData(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid, @RequestBody HashMap<String, Object> fieldData) throws SQLException {
         formService.saveFormData(formTypeId, formGuid, fieldData);

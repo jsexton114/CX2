@@ -56,7 +56,7 @@ public class MasterInspections implements Serializable {
     @Type(type = "DateTime")
     private LocalDateTime dateModified;
     private Integer assignedTo;
-    private Boolean closed;
+    private boolean closed;
     @Type(type = "DateTime")
     private LocalDateTime dateAssigned;
     private String inspectionZone;
@@ -205,12 +205,12 @@ public class MasterInspections implements Serializable {
         this.assignedTo = assignedTo;
     }
 
-    @Column(name = "`Closed`", nullable = true)
-    public Boolean getClosed() {
+    @Column(name = "`Closed`", nullable = false)
+    public boolean isClosed() {
         return this.closed;
     }
 
-    public void setClosed(Boolean closed) {
+    public void setClosed(boolean closed) {
         this.closed = closed;
     }
 

@@ -65,8 +65,8 @@ public class InspectionDesign implements Serializable {
     private boolean prefixDashes;
     private Integer createdBy;
     private Timestamp createdAt;
-    private Boolean requireFeesPaidBeforeScheduling;
-    private Boolean allowUnscheduledInspection;
+    private boolean requireFeesPaidBeforeScheduling;
+    private boolean allowUnscheduledInspection;
     private Users users;
     private Municipalities municipalities;
     private List<InspectionOutcome> inspectionOutcomes = new ArrayList<>();
@@ -355,21 +355,21 @@ public class InspectionDesign implements Serializable {
         this.createdAt = createdAt;
     }
 
-    @Column(name = "`RequireFeesPaidBeforeScheduling`", nullable = true)
-    public Boolean getRequireFeesPaidBeforeScheduling() {
+    @Column(name = "`RequireFeesPaidBeforeScheduling`", nullable = false)
+    public boolean isRequireFeesPaidBeforeScheduling() {
         return this.requireFeesPaidBeforeScheduling;
     }
 
-    public void setRequireFeesPaidBeforeScheduling(Boolean requireFeesPaidBeforeScheduling) {
+    public void setRequireFeesPaidBeforeScheduling(boolean requireFeesPaidBeforeScheduling) {
         this.requireFeesPaidBeforeScheduling = requireFeesPaidBeforeScheduling;
     }
 
-    @Column(name = "`AllowUnscheduledInspection`", nullable = true)
-    public Boolean getAllowUnscheduledInspection() {
+    @Column(name = "`AllowUnscheduledInspection`", nullable = false)
+    public boolean isAllowUnscheduledInspection() {
         return this.allowUnscheduledInspection;
     }
 
-    public void setAllowUnscheduledInspection(Boolean allowUnscheduledInspection) {
+    public void setAllowUnscheduledInspection(boolean allowUnscheduledInspection) {
         this.allowUnscheduledInspection = allowUnscheduledInspection;
     }
 

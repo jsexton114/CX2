@@ -1063,6 +1063,22 @@ public class FormService {
 		return queryParams;
     }
     
+    public Long saveDraft(Long formTypeId, String formData, Long draftId) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	
+    	DBQueryParams params = new DBQueryParams();
+    	
+    	if (draftId == null) {
+    		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormDraft (FormTypeId, FormData) VALUES (:formTypeId, :formData)", params);
+    		draftId = DBUtils.selectOne(cx2Conn, "SELECT @@IDENTITY as draftId", params).getLong("draftId");
+    	} else {
+    		params.addLong("draftId", draftId);
+    		DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE FormDraft SET FormData=:formData WHERE ID=:draftId", params);
+    	}
+    	
+    	return draftId;
+    }
+    
     public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, MultipartFile[] attachments) throws Exception {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	cx2Conn.setAutoCommit(false);

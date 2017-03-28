@@ -83,7 +83,7 @@ public class FormMessages implements Serializable {
         this.message = message;
     }
 
-    @Column(name = "`PostedAt`", nullable = true, insertable = false, updatable = false)
+    @Column(name = "`PostedAt`", nullable = false, insertable = false, updatable = false)
     public Timestamp getPostedAt() {
         return this.postedAt;
     }

@@ -32,7 +32,7 @@
         </wm-gridrow>
     </wm-layoutgrid>
     <wm-dialogactions name="dialogactions1">
-        <wm-button class="btn-primary" caption="Create" type="button" margin="unset 0.5em" name="buttonCreate" on-click="Variables.navToNewForm.invoke();closeDlg()" show="true" iconclass="wi wi-plus" disabled="bind:!Widgets.selectForm.datavalue"></wm-button>
+        <wm-button class="btn-primary" caption="Create" type="button" margin="unset 0.5em" name="buttonCreate" on-click="buttonCreateClick($event, $scope);closeDlg()" show="true" iconclass="wi wi-plus" disabled="bind:!Widgets.selectForm.datavalue"></wm-button>
         <wm-button class="btn-secondary" caption="Cancel" on-click="button1Click($event, $scope)" name="button1" iconclass="wi wi-cancel"></wm-button>
     </wm-dialogactions>
 </wm-partial>

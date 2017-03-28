@@ -1,4 +1,4 @@
-Application.$controller("newFormDialogPageController", ["$scope", function($scope) {
+Application.$controller("newFormDialogPageController", ["$scope", "$location", function($scope, $location) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -31,5 +31,9 @@ Application.$controller("newFormDialogPageController", ["$scope", function($scop
             $scope.Widgets.selectMunicipality.datavalue = newValue;
         }
     });
+
+    $scope.buttonCreateClick = function($event, $isolateScope) {
+        $location.path("/NewForm").search("formTypeId", $scope.Widgets.selectForm.datavalue);
+    };
 
 }]);

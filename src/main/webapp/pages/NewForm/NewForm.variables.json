@@ -6044,6 +6044,37 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
+  "svSaveAsDraft" : {
+    "_id" : "wm-svSaveAsDraft-wm.ServiceVariable-1490732471606",
+    "name" : "svSaveAsDraft",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "formTypeId",
+      "value" : "bind:pageParams.formTypeId",
+      "type" : "integer"
+    }, {
+      "target" : "draftId",
+      "value" : "bind:draftId",
+      "type" : "integer"
+    } ],
+    "type" : "integer",
+    "service" : "FormService",
+    "operation" : "saveDraft",
+    "operationId" : "FormController_saveDraft",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Form"
+  },
   "svSubmitForm" : {
     "_id" : "wm-svSubmitForm-wm.ServiceVariable-1485985033422",
     "name" : "svSubmitForm",
