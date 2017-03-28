@@ -10,6 +10,7 @@ import java.lang.String;
 import java.lang.Exception;
 import org.apache.http.HttpEntity;
 import java.io.IOException;
+import com.civicxpress.esigngenie.ESignGenieApi.FolderResponsePojo;
 import java.lang.Object;
 import java.util.Map;
 import com.civicxpress.formservice.FormService.UserPermissionsPojo;
@@ -51,6 +52,11 @@ public class FormController {
     @ApiOperation(value = "")
     public String getDocumentSignatureLink(@RequestParam(value = "formGuid", required = false) String formGuid) throws IOException, SQLException {
         return formService.getDocumentSignatureLink(formGuid);
+    }
+
+    @RequestMapping(value = "/documentSignatureLinkAndFolderId", method = RequestMethod.GET)
+    public FolderResponsePojo getDocumentSignatureLinkAndFolderId(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "ownerId", required = false) Long ownerId, @RequestParam(value = "locationIds", required = false) String locationIds, @RequestParam(value = "vendorIds", required = false) String vendorIds, @RequestParam(value = "primaryVendorId", required = false) Long primaryVendorId, @RequestParam(value = "fieldDataJsonString", required = false) String fieldDataJsonString) {
+        return formService.getDocumentSignatureLinkAndFolderId(formTypeId, ownerId, locationIds, vendorIds, primaryVendorId, fieldDataJsonString);
     }
 
     @RequestMapping(value = "/formData", method = RequestMethod.GET)

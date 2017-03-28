@@ -144,6 +144,14 @@ public class FormService {
 
         return folderAccessUrl;
     }
+
+    public ESignGenieApi.FolderResponsePojo getDocumentSignatureLinkAndFolderId(Long formTypeId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String fieldDataJsonString) {
+        //createAndSignDocument(FormDataPojo formDataPojo, String title, Map<String, Object> formData, byte[] municipalityLogo, String clientId, String clientSecret, String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty)
+        
+        // TODO: refactor title construction out of submitForm
+        // TODO: refactor getting field data from fieldDataJsonString out of submitForm
+        return null;
+    }   
     
     private byte[] getMunicipalityLogo(Long formTypeId) throws SQLException {
     	DBQueryParams params = new DBQueryParams();
