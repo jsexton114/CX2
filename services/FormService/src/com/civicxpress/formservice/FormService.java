@@ -103,9 +103,9 @@ public class FormService {
     		Connection cx2Conn = DBUtils.getConnection("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2", "cx2", "F!yingFishCove1957");
 	    	DBQueryParams queryParams = new DBQueryParams();
     		
-    		FormService formService = new FormService();
+    		//FormService formService = new FormService();
     		
-    		formService.getDocumentSignatureLink("FB037B6C-2D0F-E711-80C9-0CC47A46DD63");
+    		//formService.getDocumentSignatureLink("FB037B6C-2D0F-E711-80C9-0CC47A46DD63");
     	} catch (Exception e) {
     		e.printStackTrace();
     		System.out.println("AHHHHHHHHHHHh!!!!!");
@@ -121,52 +121,33 @@ public class FormService {
     	return userPermissions;
     }
     
-    public String getDocumentSignatureLink(String formGuid) throws IOException, java.sql.SQLException {
+    public String getSigningDocumentResponse(String formGuid, String formTitle, String creatorFullName, String fieldDataJsonString, String municipalityLogo, String clientId, String clientSecret, String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty) throws IOException, java.sql.SQLException {
+
+        System.out.println("fieldDataJsonString: " + fieldDataJsonString);
+        Gson gson = new Gson();
+        Object fieldData = gson.fromJson(fieldDataJsonString, Object.class);
+        System.out.println("fieldData: " + fieldData);
+        
+        // TODO: continue refactoring until all arguments come from WM NewForm buttonCreateSigningDocumentClick, not constructed here from the formGuid or formId
         UserDataPojo userData = getUserData();
         String folderAccessUrl = null;
 
         // in FormService, instantiate these values
-        FormDataPojo formDataPojo = getFormDataPojo(formGuid);
-        String title = getFriendlyFormType(formDataPojo.getFormTypeId());
+        FormDataPojo formDataPojo = new FormDataPojo(); 
+        formDataPojo.setFormTitle(formTitle);
+        formDataPojo.setCreatorFullName(creatorFullName);
         Map<String, Object> formData = getFormDataByLabel(formGuid);
-        String clientId  = "a4bb2dd0071640b6936f5cf80cf533b4"; // TODO: this should come from the municipalities eSign Genie settiings
-        String clientSecret = "268ebb57a93e4ef197235c68111ed5a6";  // TODO: this should come from the municipalities eSign Genie settiings
-        String firstNameOfRecipientParty = userData.getFirstName();
-        String lastNameOfRecipientParty = userData.getLastName();
-        String emailIdOfRecipientParty = userData.getEmail();
-        byte[] municipalityLogo = getMunicipalityLogo(formDataPojo.getFormTypeId());
+        byte[] testLogo = getMunicipalityLogo(107l); // TEST:
         ESignGenieApi.FolderResponsePojo folderResponsePojo = null;
 
         // then call this method in ESignGenie
-        folderResponsePojo = ESignGenieApi.createAndSignDocument(formDataPojo, title, formData, municipalityLogo, clientId, clientSecret,
+        folderResponsePojo = ESignGenieApi.createSigningDocument(formDataPojo, formTitle, formData, testLogo, clientId, clientSecret,
                 firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);
         folderAccessUrl = folderResponsePojo.getFolderAccessUrl();
 
         return folderAccessUrl;
     }
 
-    public String getDocumentSignatureLinkAndFolderId(String formTitle, String creatorFullName, String fieldDataJsonString, byte[] municipalityLogo,
-            String clientId, String clientSecret, String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty) 
-            throws IOException {
-                
-        //createAndSignDocument(FormDataPojo formDataPojo, String title, Map<String, Object> formData, byte[] municipalityLogo, String clientId, String clientSecret, String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty)
-        
-        // TODO: call createAndSignDocument()
-        // TODO: response with json from folderResponsePojo
-        
-        String folderAccessUrl = null;
-        FormDataPojo formDataPojo = new FormDataPojo(); // TODO: point of this pojo...?, shouldn't be crossed to eSign anyway, fix it!
-        Map<String, Object> formData = null;
-        ESignGenieApi.FolderResponsePojo folderResponsePojo = null;
-        formDataPojo.setFormTitle(formTitle);
-        formDataPojo.setCreatorFullName(creatorFullName);
-        folderResponsePojo = ESignGenieApi.createAndSignDocument(formDataPojo, "title", formData, municipalityLogo, clientId, clientSecret,
-                firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);
-        folderAccessUrl = folderResponsePojo.getFolderAccessUrl();
-
-        return folderAccessUrl;
-    }   
-    
     private byte[] getMunicipalityLogo(Long formTypeId) throws SQLException {
     	DBQueryParams params = new DBQueryParams();
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);

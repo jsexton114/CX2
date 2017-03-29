@@ -21,7 +21,7 @@ import com.civicxpress.pdfutilities.PdfUtilities;  // used in WM
  */
 public class ESignGenieApi {
 
-    public static FolderResponsePojo createAndSignDocument(FormDataPojo formDataPojo, String title, Map<String, Object> formData,
+    public static FolderResponsePojo createSigningDocument(FormDataPojo formDataPojo, String title, Map<String, Object> formData,
             byte[] municipalityLogo, String clientId, String clientSecret,
             String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty)
             throws IOException {
