@@ -49,6 +49,15 @@ public interface VendorsToProjectService {
 	 */
 	VendorsToProject findById(Integer vendorstoprojectId);
 
+    /**
+	 * Find and return the VendorsToProject for given projectGuid  andvendorId  if exists.
+	 *
+	 * @param projectGuid value of projectGuid; value cannot be null.
+	 * @param vendorId value of vendorId; value cannot be null.
+	 * @return VendorsToProject associated with the given inputs.
+     * @throws EntityNotFoundException if no matching VendorsToProject found.
+	 */
+    VendorsToProject getByProjectGuidAndVendorId(String projectGuid, Integer vendorId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing VendorsToProject. It replaces all fields of the existing VendorsToProject with the given vendorsToProject.

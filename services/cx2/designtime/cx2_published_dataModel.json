@@ -18406,7 +18406,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
@@ -18431,7 +18431,7 @@
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
@@ -18488,7 +18488,13 @@
       "sqlType" : "boolean",
       "unique" : false
     } ],
-    "constraints" : [ ],
+    "constraints" : [ {
+      "columns" : [ "ProjectGuid", "VendorId" ],
+      "composite" : true,
+      "name" : "UK_VendorsToProject_ProjyF1tH",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
     "entityName" : "VendorsToProject",
     "fullyQualifiedName" : "com.civicxpress.cx2.VendorsToProject",
     "name" : "VendorsToProject",

@@ -8512,6 +8512,48 @@
       "responseType" : "SINGLE"
     }
   },
+  "UpdateVendorsToProject" : {
+    "name" : "UpdateVendorsToProject",
+    "description" : "UpdateVendorsToProject",
+    "version" : "V2",
+    "queryString" : "update  VendorsToProject set PrimaryVendor=:PrimaryVendor Where ProjectGuid=:project and VendorId=:vendor",
+    "countQueryString" : "select count(*) from (update  VendorsToProject set PrimaryVendor=:PrimaryVendor Where ProjectGuid=:project and VendorId=:vendor) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "PrimaryVendor",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    }, {
+      "name" : "project",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "FA6E373E-7A7A-42E1-90A0-86649040A5E6",
+      "required" : true
+    }, {
+      "name" : "vendor",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "90",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.UpdateVendorsToProjectRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "UpdateWorkMunicipality" : {
     "name" : "UpdateWorkMunicipality",
     "description" : "UpdateWorkMunicipality",

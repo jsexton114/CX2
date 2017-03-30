@@ -610,6 +610,16 @@ public class QueryExecutionController {
         return queryService.exportCountOfProcessFormsByMuncipality(exportType, municipalityId, closed, userId, pageable);
     }
 
+    @RequestMapping(value = "/queries/UpdateVendorsToProject", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateVendorsToProject")
+    public IntegerWrapper executeUpdateVendorsToProject(@Valid @RequestBody UpdateVendorsToProjectRequest updateVendorsToProjectRequest) {
+        LOGGER.debug("Executing named query: UpdateVendorsToProject");
+        Integer _result = queryService.executeUpdateVendorsToProject(updateVendorsToProjectRequest);
+        LOGGER.debug("got the result for named query: UpdateVendorsToProject, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/CountOfCXProjectsActive", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CountOfCXProjectsActive")

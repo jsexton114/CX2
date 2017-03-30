@@ -677,6 +677,18 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("CountOfProcessFormsByMuncipality", params, exportType, CountOfProcessFormsByMuncipalityResponse.class, pageable);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateVendorsToProject(UpdateVendorsToProjectRequest updateVendorsToProjectRequest) {
+        Map params = new HashMap(3);
+
+        params.put("PrimaryVendor", updateVendorsToProjectRequest.getPrimaryVendor());
+        params.put("project", updateVendorsToProjectRequest.getProject());
+        params.put("vendor", updateVendorsToProjectRequest.getVendor());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateVendorsToProject", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<CountOfCxprojectsActiveResponse> executeCountOfCXProjectsActive(Pageable pageable) {

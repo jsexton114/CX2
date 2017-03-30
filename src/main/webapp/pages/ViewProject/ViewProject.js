@@ -412,6 +412,13 @@ Application.$controller("gridProjectVendorsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+        $scope.primaryVendorChange = function(newVal) {
+            $scope.Variables.svUpdateVendorsToProject.setInput({
+                'vendor': $scope.selecteditem.vendorId,
+                'PrimaryVendor': newVal
+            });
+            $scope.Variables.svUpdateVendorsToProject.update();
+        }
     }
 ]);
 
@@ -420,15 +427,6 @@ Application.$controller("dialogAddVendorController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        // $scope.buttonTagVendorClick = function($event, $isolateScope) {
-        //     debugger
-        //     $scope.Variables.lvVendorsToProjects.setInput({
-        //         'projectGuid': pageParams.ProjectGUID,
-        //         'vendorId': $scope.Widgets.searchVendor.datavalue.id,
-        //         'primaryVendor': $scope.Widgets.checkboxPrimaryVendor.datavalue
-        //     });
-        //     $scope.Variables.lvVendorsToProjects.insertRecord();
-        // };
 
     }
 ]);

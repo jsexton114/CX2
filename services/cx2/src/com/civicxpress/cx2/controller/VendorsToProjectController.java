@@ -97,6 +97,12 @@ public class VendorsToProjectController {
 
         return deletedVendorsToProject != null;
     }
+    @RequestMapping(value = "/projectGuid-vendorId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching VendorsToProject with given unique key values.")
+    public VendorsToProject getByProjectGuidAndVendorId(@RequestParam(name = "projectGuid") String projectGuid, @RequestParam(name = "vendorId") Integer vendorId) {
+        LOGGER.debug("Getting VendorsToProject with uniques key ProjectGuidAndVendorId");
+        return vendorsToProjectService.getByProjectGuidAndVendorId(projectGuid, vendorId);
+    }
 
     /**
      * @deprecated Use {@link #findVendorsToProjects(String, Pageable)} instead.

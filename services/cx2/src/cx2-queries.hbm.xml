@@ -511,6 +511,24 @@ group by V.companyName) wmTempTable
     <query-param name="UserId" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="UpdateVendorsToProject">
+        <![CDATA[
+        update  VendorsToProject set PrimaryVendor=:PrimaryVendor Where ProjectGuid=:project and VendorId=:vendor
+        ]]>
+    <query-param name="PrimaryVendor" type="java.lang.Boolean"/>
+    <query-param name="project" type="java.lang.String"/>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UpdateVendorsToProject__count">
+        <![CDATA[
+        select count(*) from (update  VendorsToProject set PrimaryVendor=:PrimaryVendor Where ProjectGuid=:project and VendorId=:vendor) wmTempTable
+        ]]>
+    <query-param name="PrimaryVendor" type="java.lang.Boolean"/>
+    <query-param name="project" type="java.lang.String"/>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="CountOfCXProjectsActive">
         <![CDATA[
         select count(*) as count from Projects where active='true'

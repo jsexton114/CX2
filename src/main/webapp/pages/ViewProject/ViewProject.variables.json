@@ -14683,6 +14683,35 @@
     "saveInPhonegap" : false,
     "controller" : "ProjectMessagingMail"
   },
+  "svUpdateVendorsToProject" : {
+    "_id" : "wm-svUpdateVendorsToProject-wm.ServiceVariable-1490877818025",
+    "name" : "svUpdateVendorsToProject",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "project",
+      "value" : "bind:pageParams.ProjectGUID",
+      "type" : "string"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "cx2",
+    "operation" : "executeUpdateVendorsToProject",
+    "operationId" : "QueryExecutionController_executeUpdateVendorsToProject",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.lvVendorsToProjects.listRecords()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "svVendors" : {
     "_id" : "wm-svVendors-wm.ServiceVariable-1490866400300",
     "name" : "svVendors",

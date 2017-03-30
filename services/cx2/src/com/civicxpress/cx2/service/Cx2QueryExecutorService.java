@@ -143,6 +143,8 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfProcessFormsByMuncipality(ExportType exportType, Integer municipalityId, Boolean closed, Integer userId, Pageable pageable);
 
+    Integer executeUpdateVendorsToProject(UpdateVendorsToProjectRequest updateVendorsToProjectRequest);
+
     Page<CountOfCxprojectsActiveResponse> executeCountOfCXProjectsActive(Pageable pageable);
 
     Downloadable exportCountOfCXProjectsActive(ExportType exportType, Pageable pageable);
