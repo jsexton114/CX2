@@ -402,8 +402,19 @@
                 <wm-button class="btn-primary" caption="Add User" name="button8" on-click="Variables.MunicipalityGroupMembersData.createRecord()" disabled="bind:!Widgets.searchUsers.datavalue" iconclass="wi wi-plus"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
-            <wm-search name="searchUsers" placeholder="Search by Name or Email Address" dataset="bind:Variables.getListOfUsers.dataSet" searchkey="Email" displaylabel="bind:$[FullName] + ' (' + $[Email] + ')'" datafield="All Fields" orderby="FullName:asc"
-            on-focus="Variables.getListOfUsers.invoke()" required="true"></wm-search>
+            <wm-layoutgrid name="layoutgrid17">
+                <wm-gridrow name="gridrow53">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn85_1">
+                        <wm-label padding="unset 0.5em" name="label61" caption="Which municipality employee would you like to add to the group?"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow54" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn87_1">
+                        <wm-search name="searchUsers" placeholder="Search by Name or Email Address" dataset="bind:Variables.getListOfUsers.dataSet" searchkey="Email" displaylabel="bind:$[FullName] + ' (' + $[Email] + ')'" datafield="All Fields" orderby="FullName:asc"
+                        on-focus="Variables.getListOfUsers.invoke()" required="true"></wm-search>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view6_1">

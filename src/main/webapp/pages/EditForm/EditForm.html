@@ -862,9 +862,9 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewAddUserToGroup">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Add User To Group" iconclass="wi wi-person-add" name="dialogAddUserToGroup">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add User to Group" iconclass="wi wi-person-add" name="dialogAddUserToGroup">
             <wm-layoutgrid name="layoutgrid23">
-                <wm-gridrow name="gridrow84" padding=".5em unset unset unset">
+                <wm-gridrow name="gridrow84">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn113">
                         <wm-label padding="unset 0.5em" name="label33" caption="Which municipality employee would you like to add to the group?"></wm-label>
                     </wm-gridcolumn>
@@ -872,13 +872,13 @@
                 <wm-gridrow name="gridrow83" padding="1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn112_1">
                         <wm-search placeholder="Search by Name or Email Address" dataset="bind:Variables.svGetListOfMunicipalityEmployees.dataSet" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)"
-                        required="true" width="100%" name="textSearchInternalPeople" type="search" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"></wm-search>
+                        required="true" width="100%" name="textSearchInternalPeople" type="search" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'" orderby="fullName:asc"></wm-search>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button4"></wm-button>
-                <wm-button class="btn-default" caption="Add" type="button" margin="unset 0.5em" name="buttonAddEmployeeToGroup" iconclass="wi wi-person-add" on-click="Variables.svAddEmployeesToGroup.invoke()"></wm-button>
+                <wm-button class="btn-primary" caption="Add User" type="button" margin="unset 0.5em" name="buttonAddEmployeeToGroup" iconclass="wi wi-plus" on-click="Variables.svAddEmployeesToGroup.invoke()" disabled="bind:!Widgets.textSearchInternalPeople.datavalue"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button4" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
