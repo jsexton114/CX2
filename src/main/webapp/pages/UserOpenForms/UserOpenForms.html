@@ -61,11 +61,11 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneDrafts" title="Drafts">
                                 <wm-grid editmode="inline" title="Formdraft List" dataset="bind:Variables.Cx2FormDraftData.dataSet" navigation="Classic" name="grid2">
-                                    <wm-grid-column binding="dateCreated" caption="Date Created" generator="assigned" pcdisplay="true" mobiledisplay="true" type="datetime" readonly="true"></wm-grid-column>
-                                    <wm-grid-column binding="formTypes.formType" caption="Form Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="FormTypes" readonly="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                                    <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                                    <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                                    <wm-grid-column binding="dateCreated" caption="Date Created" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true"></wm-grid-column>
+                                    <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                    <wm-grid-row-action key="updaterow" display-name="View" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-tabpane>
                         </wm-tabs>
