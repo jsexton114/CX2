@@ -146,6 +146,41 @@
       "responseType" : "SINGLE"
     }
   },
+  "AddUserToMunicipalityGroup" : {
+    "name" : "AddUserToMunicipalityGroup",
+    "description" : "AddUserToMunicipalityGroup",
+    "version" : "V2",
+    "queryString" : "insert into MunicipalityGroupMembers(MunicipalityGroupId,UserId) values(:MunicipalityGroupId,:UserId)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "MunicipalityGroupId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "20",
+      "required" : true
+    }, {
+      "name" : "UserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.AddUserToMunicipalityGroupRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "AddUsersToVendor" : {
     "name" : "AddUsersToVendor",
     "description" : "AddUsersToVendor",

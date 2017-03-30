@@ -9306,24 +9306,62 @@
     "isList" : true,
     "saveInPhonegap" : false
   },
+  "svAddEmployeesToGroup" : {
+    "_id" : "wm-svAddEmployeesToGroup-wm.ServiceVariable-1490852588700",
+    "name" : "svAddEmployeesToGroup",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserId",
+      "value" : "bind:Widgets.textSearchInternalPeople.datavalue.id",
+      "type" : "integer"
+    }, {
+      "target" : "MunicipalityGroupId",
+      "value" : "bind:Widgets.gridMunicipalityGroups.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "cx2",
+    "operation" : "executeAddUserToMunicipalityGroup",
+    "operationId" : "QueryExecutionController_executeAddUserToMunicipalityGroup",
+    "operationType" : "post",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Widgets.dialogAddUserToGroup.close();Variables.lvGroupMembersData.listRecords()",
+    "onError" : "svAddEmployeesToGrouponError($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "svGetListOfMunicipalityEmployees" : {
     "_id" : "wm-svGetListOfMunicipalityEmployees-wm.ServiceVariable-1490701161134",
     "name" : "svGetListOfMunicipalityEmployees",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "municipalityID",
-      "value" : "bind:Variables.CurrentFormObj.dataSet.data[$i].municipalityId",
+      "target" : "RoleName",
+      "value" : "MunicipalityEmployee",
+      "type" : "string"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Variables.CurrentFormObj.firstRecord.municipalityId",
       "type" : "integer"
     }, {
-      "target" : "Email",
-      "value" : "bind:'%'+Widgets.users_formWidget.query+'%'",
+      "target" : "email",
+      "value" : "bind:'%'+Widgets.textSearchInternalPeople.query+'%'",
       "type" : "string"
     } ],
-    "type" : "com.civicxpress.cx2.models.query.GetListofUsersResponse",
+    "type" : "com.civicxpress.cx2.Users",
     "service" : "cx2",
-    "operation" : "executeGetListofUsers",
-    "operationId" : "QueryExecutionController_executeGetListofUsers",
+    "operation" : "executeGetMunicipalityEmployees",
+    "operationId" : "QueryExecutionController_executeGetMunicipalityEmployees",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],

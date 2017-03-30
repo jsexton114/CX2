@@ -851,35 +851,35 @@
                                 <wm-grid-column binding="users.fullName" caption="Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                 <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                <wm-grid-action key="addNewRow" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                <wm-grid-action key="customButton" display-name="Close" title="Close" value="" iconclass="wi wi-cancel" class="btn-secondary" show="true" action="Widgets.dialogManageSelectedGroup.close()" shortcutkey=""></wm-grid-action>
+                                <wm-grid-action key="addNewRow" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="Widgets.dialogAddUserToGroup.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                <wm-grid-action key="customButton" display-name="Close" show="true" class="btn-secondary" iconclass="wi wi-cancel" title="Close" action="Widgets.dialogManageSelectedGroup.close()" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
-                            <wm-liveform novalidate="false" errormessage="" title="Add User to Group" formlayout="inline" iconclass="wi wi-person-add" dataset="bind:Variables.lvGroupMembersData.dataSet" captionalign="left" captionposition="top" name="liveformGroupMembers">
-                                <wm-layoutgrid columns="1" name="layoutgrid22">
-                                    <wm-gridrow name="gridrow79">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn113">
-                                            <wm-form-field name="municipalityGroups" displayname="Municipality Groups" show="false" primary-key="false" generator="assigned" key="municipalityGroups" type="list" is-related="true" readonly="false" required="false"
-                                            widget="select" placeholder="Select value" dataset="bind:Widgets.gridMunicipalityGroups.selecteditem" datafield="All Fields" displayfield="groupName" defaultvalue="bind:Widgets.gridMunicipalityGroups.selecteditem"></wm-form-field>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow80">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn114">
-                                            <wm-label padding="unset 0.5em" name="label32_1" caption="bind:Widgets.users_formWidget.query"></wm-label>
-                                            <wm-form-field name="users" displayname="Which municipality employee would you like to add to the group?" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true"
-                                            readonly="false" required="true" widget="autocomplete" placeholder="Search by Name or Email Address" displayexpression="email" displaylabel="Email" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"
-                                            orderby="fullName:asc" dataset="bind:Variables.svGetListOfMunicipalityEmployees.dataSet" datafield="All Fields"></wm-form-field>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
-                                <wm-form-action key="save" display-name="Add User" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                            </wm-liveform>
                         </wm-livegrid>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewAddUserToGroup">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add User To Group" iconclass="wi wi-person-add" name="dialogAddUserToGroup">
+            <wm-layoutgrid name="layoutgrid23">
+                <wm-gridrow name="gridrow84" padding=".5em unset unset unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn113">
+                        <wm-label padding="unset 0.5em" name="label33" caption="Which municipality employee would you like to add to the group?"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow83" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn112_1">
+                        <wm-search placeholder="Search by Name or Email Address" dataset="bind:Variables.svGetListOfMunicipalityEmployees.dataSet" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)"
+                        required="true" width="100%" name="textSearchInternalPeople" type="search" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"></wm-search>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions2">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button4"></wm-button>
+                <wm-button class="btn-default" caption="Add" type="button" margin="unset 0.5em" name="buttonAddEmployeeToGroup" iconclass="wi wi-person-add" on-click="Variables.svAddEmployeesToGroup.invoke()"></wm-button>
+            </wm-dialogactions>
         </wm-dialog>
     </wm-view>
 </wm-page>

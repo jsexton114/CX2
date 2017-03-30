@@ -205,6 +205,8 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateFeesStatus(UpdateFeesStatusRequest updateFeesStatusRequest);
 
+    Integer executeAddUserToMunicipalityGroup(AddUserToMunicipalityGroupRequest addUserToMunicipalityGroupRequest);
+
     Integer executeAddGIStoProjects(AddGistoProjectsRequest addGistoProjectsRequest);
 
     Page<CountOfUserFormsResponse> executeCountOfUserForms(Boolean closed, Integer creatorUser, Integer sharedWithUser, Pageable pageable);

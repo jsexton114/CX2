@@ -907,6 +907,16 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/AddUserToMunicipalityGroup", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "AddUserToMunicipalityGroup")
+    public IntegerWrapper executeAddUserToMunicipalityGroup(@Valid @RequestBody AddUserToMunicipalityGroupRequest addUserToMunicipalityGroupRequest) {
+        LOGGER.debug("Executing named query: AddUserToMunicipalityGroup");
+        Integer _result = queryService.executeAddUserToMunicipalityGroup(addUserToMunicipalityGroupRequest);
+        LOGGER.debug("got the result for named query: AddUserToMunicipalityGroup, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/AddGIStoProjects", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "AddGIStoProjects")

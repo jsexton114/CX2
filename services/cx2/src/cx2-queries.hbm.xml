@@ -769,6 +769,14 @@ from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidSt
     <query-param name="feeEntry" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="AddUserToMunicipalityGroup">
+        <![CDATA[
+        insert into MunicipalityGroupMembers(MunicipalityGroupId,UserId) values(:MunicipalityGroupId,:UserId)
+        ]]>
+    <query-param name="MunicipalityGroupId" type="java.lang.Integer"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="AddGIStoProjects">
         <![CDATA[
         insert into ProjectGISRecords(GISRecordId,RelatedProjectGUID,AddedByUser,AddedAt) values(:GISRecordId,:RelatedProjectGUID,:AddedByUser,:AddedAt)

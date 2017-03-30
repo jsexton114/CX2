@@ -1013,6 +1013,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
+    public Integer executeAddUserToMunicipalityGroup(AddUserToMunicipalityGroupRequest addUserToMunicipalityGroupRequest) {
+        Map params = new HashMap(2);
+
+        params.put("MunicipalityGroupId", addUserToMunicipalityGroupRequest.getMunicipalityGroupId());
+        params.put("UserId", addUserToMunicipalityGroupRequest.getUserId());
+
+        return queryExecutor.executeNamedQueryForUpdate("AddUserToMunicipalityGroup", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
     public Integer executeAddGIStoProjects(AddGistoProjectsRequest addGistoProjectsRequest) {
         Map params = new HashMap(4);
 
