@@ -1517,6 +1517,32 @@
         "isRelated" : false,
         "defaultValue" : "FALSE",
         "scale" : 0
+      }, {
+        "fieldName" : "codeEnforcement",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "CodeEnforcement",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "allowCases",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowCases",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
       } ],
       "entityName" : "FormTypes",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormTypes",
@@ -2682,6 +2708,32 @@
           "isRelated" : false,
           "defaultValue" : "FALSE",
           "scale" : 0
+        }, {
+          "fieldName" : "codeEnforcement",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "CodeEnforcement",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowCases",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowCases",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -3526,6 +3578,32 @@
           "isRelated" : false,
           "defaultValue" : "FALSE",
           "scale" : 0
+        }, {
+          "fieldName" : "codeEnforcement",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "CodeEnforcement",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowCases",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowCases",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -4156,6 +4234,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "codeEnforcement",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "CodeEnforcement",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowCases",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowCases",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -4928,6 +5032,32 @@
           "isRelated" : false,
           "defaultValue" : "FALSE",
           "scale" : 0
+        }, {
+          "fieldName" : "codeEnforcement",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "CodeEnforcement",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowCases",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowCases",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "inspectionDesign",
@@ -5360,7 +5490,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "RequireFeesPaidBeforeScheduling",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -5372,6 +5502,32 @@
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
           "columnName" : "AllowUnscheduledInspection",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "codeEnforcement",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "CodeEnforcement",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowCases",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowCases",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
@@ -7910,6 +8066,32 @@
         "isRelated" : false,
         "defaultValue" : "FALSE",
         "scale" : 0
+      }, {
+        "fieldName" : "codeEnforcement",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "CodeEnforcement",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "allowCases",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowCases",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
       } ],
       "entityName" : "FormTypes",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormTypes",
@@ -8704,6 +8886,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "codeEnforcement",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "CodeEnforcement",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowCases",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowCases",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -10267,6 +10475,32 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "FALSE",
+        "scale" : 0
+      }, {
+        "fieldName" : "codeEnforcement",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "CodeEnforcement",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "allowCases",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowCases",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "FormTypes",
