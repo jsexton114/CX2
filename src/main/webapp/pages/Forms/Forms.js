@@ -80,6 +80,15 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         $scope.Variables.gridSetPrimaryVendorStatusForFormandVendor.update();
     };
 
+    $scope.buttonAddMessageClick = function($event, $isolateScope) {
+        // Posting Message
+        $scope.Variables.PostFormMessage.setInput({
+            'municipalityMessage': false,
+            'message': $scope.Widgets.textAddMessage.datavalue
+        });
+        $scope.Variables.PostFormMessage.insertRecord();
+    };
+
     $scope.PostFormMessageonSuccess = function(variable, data) {
         $scope.Widgets.textAddMessage.reset();
 
@@ -92,52 +101,31 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         if (people.length === 0) {
             // DO nothing
         } else {
-            $scope.Variables.GetMessageIdForCurrentPost.setInput({
-                'PostedAt': variable.dataBinding.PostedAt,
-                'form': $scope.pageParams.FormGUID
-            });
+            $scope.messageMailingList = '';
+            // Insert people as Tagged People For RecentMessage
+            for (var i = 0; i < people.length; i++) {
+                $scope.Variables.InsertTaggedPeople.setInput({
+                    "taggedPersonId": people[i].id,
+                    "formMessageId": data.id,
+                });
+                $scope.Variables.InsertTaggedPeople.insertRecord();
 
-            $scope.Variables.GetMessageIdForCurrentPost.update();
+                $scope.messageMailingList = $scope.messageMailingList + people[i].email + ",";
+
+            }
+            $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
+
+            // Send Mails of Message
+            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID
+            $scope.Variables.svSendFormMessagesMail.setInput({
+                'formLink': tempLink,
+                'recipient': $scope.messageMailingList,
+                'comments': data.message
+            });
+            $scope.Variables.svSendFormMessagesMail.update();
         }
     };
 
-    $scope.buttonAddMessageClick = function($event, $isolateScope) {
-        // Posting Message
-        $scope.Variables.PostFormMessage.setInput({
-            'MunicipalityMessage': false,
-            'Message': $scope.Widgets.textAddMessage.datavalue
-        });
-        $scope.Variables.PostFormMessage.update();
-    };
-
-    $scope.GetMessageIdForCurrentPostonSuccess = function(variable, data) {
-        var people = $scope.Variables.PeopleList.dataSet;
-        var m = data.content[0];
-        $scope.messageMailingList = '';
-        // Insert people as Tagged People For RecentMessage
-        for (var i = 0; i < people.length; i++) {
-            $scope.Variables.InsertTaggedPeople.setInput({
-                "taggedPersonId": people[i].id,
-                "users": people[i],
-                "formMessages": m,
-                "formMessageId": data.content[0].id,
-            });
-            $scope.Variables.InsertTaggedPeople.insertRecord();
-
-            $scope.messageMailingList = $scope.messageMailingList + people[i].email + ",";
-
-        }
-        $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
-
-        // Send Mails of Message
-        var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID
-        $scope.Variables.svSendFormMessagesMail.setInput({
-            'formLink': tempLink,
-            'recipient': $scope.messageMailingList,
-            'comments': data.content[0].message
-        });
-        $scope.Variables.svSendFormMessagesMail.update();
-    };
 
     $scope.svSetFormStatusonSuccess = function(variable, data) {
         setFormStatusProgressValue($scope.Widgets.selectStatus._proxyModel.id);
@@ -221,10 +209,10 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     $scope.buttonAddInternalMessageClick = function($event, $isolateScope) {
         // Posting Message
         $scope.Variables.PostFormMessage.setInput({
-            'MunicipalityMessage': true,
-            'Message': $scope.Widgets.textInternalAddMessage.datavalue
+            'municipalityMessage': true,
+            'message': $scope.Widgets.textInternalAddMessage.datavalue
         });
-        $scope.Variables.PostFormMessage.update();
+        $scope.Variables.PostFormMessage.insertRecord();
     };
 
 
