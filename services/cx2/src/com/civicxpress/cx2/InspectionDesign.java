@@ -67,6 +67,8 @@ public class InspectionDesign implements Serializable {
     private Timestamp createdAt;
     private boolean requireFeesPaidBeforeScheduling;
     private boolean allowUnscheduledInspection;
+    private Boolean codeEnforcement;
+    private Boolean allowCases;
     private Users users;
     private Municipalities municipalities;
     private List<InspectionOutcome> inspectionOutcomes = new ArrayList<>();
@@ -371,6 +373,24 @@ public class InspectionDesign implements Serializable {
 
     public void setAllowUnscheduledInspection(boolean allowUnscheduledInspection) {
         this.allowUnscheduledInspection = allowUnscheduledInspection;
+    }
+
+    @Column(name = "`CodeEnforcement`", nullable = true)
+    public Boolean getCodeEnforcement() {
+        return this.codeEnforcement;
+    }
+
+    public void setCodeEnforcement(Boolean codeEnforcement) {
+        this.codeEnforcement = codeEnforcement;
+    }
+
+    @Column(name = "`AllowCases`", nullable = true)
+    public Boolean getAllowCases() {
+        return this.allowCases;
+    }
+
+    public void setAllowCases(Boolean allowCases) {
+        this.allowCases = allowCases;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
