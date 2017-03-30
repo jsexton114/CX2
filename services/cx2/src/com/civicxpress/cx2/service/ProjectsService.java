@@ -23,6 +23,7 @@ import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
 import com.civicxpress.cx2.ProjectTasks;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.VendorsToProject;
 
 /**
  * Service object for domain model class {@link Projects}.
@@ -228,6 +229,18 @@ public interface ProjectsService {
      * @see Page
      */
     Page<ProjectSharedWith> findAssociatedProjectSharedWiths(String projectGuid, Pageable pageable);
+
+    /*
+     * Returns the associated vendorsToProjects for given Projects id.
+     *
+     * @param projectGuid value of projectGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated VendorsToProject instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<VendorsToProject> findAssociatedVendorsToProjects(String projectGuid, Pageable pageable);
 
 }
 

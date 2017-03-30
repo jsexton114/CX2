@@ -57,6 +57,7 @@ public class Projects implements Serializable {
     private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
     private List<ProjectTasks> projectTaskses = new ArrayList<>();
     private List<ProjectSharedWith> projectSharedWiths = new ArrayList<>();
+    private List<VendorsToProject> vendorsToProjects = new ArrayList<>();
 
     @Id
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
@@ -289,6 +290,16 @@ public class Projects implements Serializable {
 
     public void setProjectSharedWiths(List<ProjectSharedWith> projectSharedWiths) {
         this.projectSharedWiths = projectSharedWiths;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
+    public List<VendorsToProject> getVendorsToProjects() {
+        return this.vendorsToProjects;
+    }
+
+    public void setVendorsToProjects(List<VendorsToProject> vendorsToProjects) {
+        this.vendorsToProjects = vendorsToProjects;
     }
 
     @Override

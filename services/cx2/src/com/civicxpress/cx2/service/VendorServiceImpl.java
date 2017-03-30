@@ -31,6 +31,7 @@ import com.civicxpress.cx2.VendorApprovals;
 import com.civicxpress.cx2.VendorLicenses;
 import com.civicxpress.cx2.VendorUsers;
 import com.civicxpress.cx2.Vendors2form;
+import com.civicxpress.cx2.VendorsToProject;
 
 
 /**
@@ -58,6 +59,10 @@ public class VendorServiceImpl implements VendorService {
     @Autowired
 	@Qualifier("cx2.VendorLicensesService")
 	private VendorLicensesService vendorLicensesService;
+
+    @Autowired
+	@Qualifier("cx2.VendorsToProjectService")
+	private VendorsToProjectService vendorsToProjectService;
 
     @Autowired
 	@Qualifier("cx2.VendorUsersService")
@@ -129,6 +134,14 @@ public class VendorServiceImpl implements VendorService {
                 vendors2form.setVendor(vendorCreated);
                 LOGGER.debug("Creating a new child Vendors2form with information: {}", vendors2form);
                 vendors2formService.create(vendors2form);
+            }
+        }
+
+        if(vendorCreated.getVendorsToProjects() != null) {
+            for(VendorsToProject vendorsToProject : vendorCreated.getVendorsToProjects()) {
+                vendorsToProject.setVendor(vendorCreated);
+                LOGGER.debug("Creating a new child VendorsToProject with information: {}", vendorsToProject);
+                vendorsToProjectService.create(vendorsToProject);
             }
         }
 
@@ -297,6 +310,17 @@ public class VendorServiceImpl implements VendorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<VendorsToProject> findAssociatedVendorsToProjects(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorsToProjects");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("vendor.id = '" + id + "'");
+
+        return vendorsToProjectService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorUserses");
 
@@ -340,6 +364,15 @@ public class VendorServiceImpl implements VendorService {
 	 */
 	protected void setVendorLicensesService(VendorLicensesService service) {
         this.vendorLicensesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service VendorsToProjectService instance
+	 */
+	protected void setVendorsToProjectService(VendorsToProjectService service) {
+        this.vendorsToProjectService = service;
     }
 
     /**

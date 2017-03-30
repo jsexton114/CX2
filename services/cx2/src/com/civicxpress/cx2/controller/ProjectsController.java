@@ -39,6 +39,7 @@ import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
 import com.civicxpress.cx2.ProjectTasks;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.VendorsToProject;
 import com.civicxpress.cx2.service.ProjectsService;
 
 
@@ -219,6 +220,15 @@ public class ProjectsController {
 
         LOGGER.debug("Fetching all associated projectSharedWiths");
         return projectsService.findAssociatedProjectSharedWiths(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/vendorsToProjects", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the vendorsToProjects instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<VendorsToProject> findAssociatedVendorsToProjects(@PathVariable("id") String id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated vendorsToProjects");
+        return projectsService.findAssociatedVendorsToProjects(id, pageable);
     }
 
     /**

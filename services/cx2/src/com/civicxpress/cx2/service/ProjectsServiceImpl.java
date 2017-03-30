@@ -30,6 +30,7 @@ import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
 import com.civicxpress.cx2.ProjectTasks;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.VendorsToProject;
 
 
 /**
@@ -57,6 +58,10 @@ public class ProjectsServiceImpl implements ProjectsService {
     @Autowired
 	@Qualifier("cx2.FormMessagesService")
 	private FormMessagesService formMessagesService;
+
+    @Autowired
+	@Qualifier("cx2.VendorsToProjectService")
+	private VendorsToProjectService vendorsToProjectService;
 
     @Autowired
 	@Qualifier("cx2.MasterInspectionsService")
@@ -148,6 +153,14 @@ public class ProjectsServiceImpl implements ProjectsService {
                 projectSharedWith.setProjects(projectsCreated);
                 LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWith);
                 projectSharedWithService.create(projectSharedWith);
+            }
+        }
+
+        if(projectsCreated.getVendorsToProjects() != null) {
+            for(VendorsToProject vendorsToProject : projectsCreated.getVendorsToProjects()) {
+                vendorsToProject.setProjects(projectsCreated);
+                LOGGER.debug("Creating a new child VendorsToProject with information: {}", vendorsToProject);
+                vendorsToProjectService.create(vendorsToProject);
             }
         }
         return projectsCreated;
@@ -312,6 +325,17 @@ public class ProjectsServiceImpl implements ProjectsService {
         return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<VendorsToProject> findAssociatedVendorsToProjects(String projectGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorsToProjects");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
+
+        return vendorsToProjectService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -346,6 +370,15 @@ public class ProjectsServiceImpl implements ProjectsService {
 	 */
 	protected void setFormMessagesService(FormMessagesService service) {
         this.formMessagesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service VendorsToProjectService instance
+	 */
+	protected void setVendorsToProjectService(VendorsToProjectService service) {
+        this.vendorsToProjectService = service;
     }
 
     /**
