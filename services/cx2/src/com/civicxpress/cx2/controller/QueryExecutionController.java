@@ -975,6 +975,16 @@ public class QueryExecutionController {
         return queryService.exportCountOfFormsForMunicipality(exportType, municipalityId, pageable);
     }
 
+    @RequestMapping(value = "/queries/DeleteDraft", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "DeleteDraft")
+    public IntegerWrapper executeDeleteDraft(@RequestParam(value = "draftId") Long draftId) {
+        LOGGER.debug("Executing named query: DeleteDraft");
+        Integer _result = queryService.executeDeleteDraft(draftId);
+        LOGGER.debug("got the result for named query: DeleteDraft, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/UpdateDevFormDetailsForCXAdmin", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdateDevFormDetailsForCXAdmin")

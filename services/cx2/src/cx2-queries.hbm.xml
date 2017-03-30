@@ -837,6 +837,13 @@ from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidSt
     <query-param name="MunicipalityId" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="DeleteDraft">
+        <![CDATA[
+        delete from FormDraft where id=:draftId
+        ]]>
+    <query-param name="draftId" type="java.lang.Long"/>
+    </sql-query>
+
     <sql-query name="UpdateDevFormDetailsForCXAdmin">
         <![CDATA[
         UPDATE FormTypes set Report=:Report, FormTableName=:FormTableName where ID=:form

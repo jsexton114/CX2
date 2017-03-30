@@ -219,6 +219,8 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfFormsForMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable);
 
+    Integer executeDeleteDraft(Long draftId);
+
     Integer executeUpdateDevFormDetailsForCXAdmin(UpdateDevFormDetailsForCxadminRequest updateDevFormDetailsForCxadminRequest);
 
     Integer executeUpdateVendorForMasterForms(UpdateVendorForMasterFormsRequest updateVendorForMasterFormsRequest);

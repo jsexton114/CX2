@@ -2059,6 +2059,34 @@
       "responseType" : "SINGLE"
     }
   },
+  "DeleteDraft" : {
+    "name" : "DeleteDraft",
+    "description" : "DeleteDraft",
+    "version" : "V2",
+    "queryString" : "delete from FormDraft where id=:draftId",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "DELETE",
+    "parameters" : [ {
+      "name" : "draftId",
+      "type" : "long",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "6",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "DELETE"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "DeleteExistingSubscriptionsForUser" : {
     "name" : "DeleteExistingSubscriptionsForUser",
     "description" : "DeleteExistingSubscriptionsForUser",

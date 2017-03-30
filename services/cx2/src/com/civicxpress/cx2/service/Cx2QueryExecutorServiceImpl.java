@@ -1093,6 +1093,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
+    public Integer executeDeleteDraft(Long draftId) {
+        Map params = new HashMap(1);
+
+        params.put("draftId", draftId);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteDraft", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
     public Integer executeUpdateDevFormDetailsForCXAdmin(UpdateDevFormDetailsForCxadminRequest updateDevFormDetailsForCxadminRequest) {
         Map params = new HashMap(3);
 
