@@ -40,6 +40,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
@@ -217,6 +218,15 @@ public class VendorController {
 
         LOGGER.debug("Fetching all associated masterFormses");
         return vendorService.findAssociatedMasterFormses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/projectses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the projectses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Projects> findAssociatedProjectses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated projectses");
+        return vendorService.findAssociatedProjectses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/vendorApprovalses", method=RequestMethod.GET)

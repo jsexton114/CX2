@@ -25,6 +25,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
@@ -47,6 +48,10 @@ public class VendorServiceImpl implements VendorService {
     @Autowired
 	@Qualifier("cx2.VendorApprovalsService")
 	private VendorApprovalsService vendorApprovalsService;
+
+    @Autowired
+	@Qualifier("cx2.ProjectsService")
+	private ProjectsService projectsService;
 
     @Autowired
 	@Qualifier("cx2.MasterFormsService")
@@ -102,6 +107,14 @@ public class VendorServiceImpl implements VendorService {
                 masterFormse.setVendor(vendorCreated);
                 LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
                 masterFormsService.create(masterFormse);
+            }
+        }
+
+        if(vendorCreated.getProjectses() != null) {
+            for(Projects projectse : vendorCreated.getProjectses()) {
+                projectse.setVendor(vendorCreated);
+                LOGGER.debug("Creating a new child Projects with information: {}", projectse);
+                projectsService.create(projectse);
             }
         }
 
@@ -266,6 +279,17 @@ public class VendorServiceImpl implements VendorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Projects> findAssociatedProjectses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("vendor.id = '" + id + "'");
+
+        return projectsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorApprovalses");
 
@@ -337,6 +361,15 @@ public class VendorServiceImpl implements VendorService {
 	 */
 	protected void setVendorApprovalsService(VendorApprovalsService service) {
         this.vendorApprovalsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ProjectsService instance
+	 */
+	protected void setProjectsService(ProjectsService service) {
+        this.projectsService = service;
     }
 
     /**

@@ -13294,6 +13294,31 @@
       "scale" : 0,
       "sqlType" : "boolean",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "cxvendorId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "CXVendorId",
+      "nullable" : true,
+      "oldName" : "CXVendorId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "Projects",
@@ -13360,6 +13385,23 @@
       "sourceTable" : "Projects",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Users",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "vendor",
+      "mappings" : [ {
+        "sourceColumn" : "CXVendorId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_Projects_TO_Vendor_CX4FVlH",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Projects",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Vendor",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -16805,6 +16847,23 @@
       "sourceTable" : "Vendor",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "MasterForms",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "projectses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "CXVendorId"
+      } ],
+      "name" : "FK_Projects_TO_Vendor_CX4FVlH",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Vendor",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Projects",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",

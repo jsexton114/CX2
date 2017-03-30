@@ -16,6 +16,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Vendor;
 import com.civicxpress.cx2.VendorAdmins;
 import com.civicxpress.cx2.VendorApprovals;
@@ -164,6 +165,18 @@ public interface VendorService {
      * @see Page
      */
     Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated projectses for given Vendor id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Projects instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Projects> findAssociatedProjectses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated vendorApprovalses for given Vendor id.

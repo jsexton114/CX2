@@ -46,9 +46,11 @@ public class Projects implements Serializable {
     private Integer modifiedBy;
     private Timestamp modifiedDate;
     private Boolean active;
+    private Integer cxvendorId;
     private Municipalities municipalities;
     private Users usersByCreatedBy;
     private Users usersByModifiedBy;
+    private Vendor vendor;
     private List<Fees> feeses = new ArrayList<>();
     private List<FormMessages> formMessageses = new ArrayList<>();
     private List<MasterCases> masterCaseses = new ArrayList<>();
@@ -170,6 +172,15 @@ public class Projects implements Serializable {
         this.active = active;
     }
 
+    @Column(name = "`CXVendorId`", nullable = true, scale = 0, precision = 10)
+    public Integer getCxvendorId() {
+        return this.cxvendorId;
+    }
+
+    public void setCxvendorId(Integer cxvendorId) {
+        this.cxvendorId = cxvendorId;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`MunicipalityId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public Municipalities getMunicipalities() {
@@ -210,6 +221,20 @@ public class Projects implements Serializable {
         }
 
         this.usersByModifiedBy = usersByModifiedBy;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`CXVendorId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Vendor getVendor() {
+        return this.vendor;
+    }
+
+    public void setVendor(Vendor vendor) {
+        if(vendor != null) {
+            this.cxvendorId = vendor.getId();
+        }
+
+        this.vendor = vendor;
     }
 
     @JsonInclude(Include.NON_EMPTY)
