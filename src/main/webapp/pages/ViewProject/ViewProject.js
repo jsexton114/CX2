@@ -408,7 +408,7 @@ Application.$controller("gridProjectFormsController", ["$scope",
     }
 ]);
 
-Application.$controller("gridFormVendorsController", ["$scope",
+Application.$controller("gridProjectVendorsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;

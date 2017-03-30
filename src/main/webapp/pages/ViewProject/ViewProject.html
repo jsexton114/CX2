@@ -191,7 +191,7 @@
                                         <wm-gridrow name="gridrow63">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn131">
                                                 <wm-livegrid formlayout="inline" name="livegridFormVendors">
-                                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvVendorsToProjects.dataSet" navigation="Classic" name="gridFormVendors" filtermode="multicolumn" exportformat="EXCEL"
+                                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvVendorsToProjects.dataSet" navigation="Classic" name="gridProjectVendors" filtermode="multicolumn" exportformat="EXCEL"
                                                     showrecordcount="true">
                                                         <wm-grid-column binding="primaryVendor" caption="Primary" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" searchable="false" show="true" readonly="false">
                                                             <wm-checkbox scopedatavalue="row['primaryVendor']" disabled="Enable" class="" data-ng-class="" on-change="primaryVendorChange(row['primaryVendor'])"></wm-checkbox>
@@ -205,7 +205,8 @@
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                         <wm-grid-action key="addNewRow" display-name="Add Contractor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Contractor" action="Widgets.dialogAddVendor.open()"
                                                         shortcutkey="" disabled="false"></wm-grid-action>
-                                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.lvDeleteVendorFromProject.deleteRecord()"
+                                                        disabled="false"></wm-grid-row-action>
                                                     </wm-grid>
                                                 </wm-livegrid>
                                             </wm-gridcolumn>

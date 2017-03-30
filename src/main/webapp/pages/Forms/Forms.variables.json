@@ -3283,6 +3283,21 @@
           "targetTable" : "Users",
           "scale" : 0
         }, {
+          "fieldName" : "vendor",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "CXVendorId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "defaultValue" : "",
+          "relatedColumnName" : "cxvendorId",
+          "targetTable" : "Vendor",
+          "scale" : 0
+        }, {
           "fieldName" : "projectGuid",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -7670,6 +7685,21 @@
           "defaultValue" : "",
           "relatedColumnName" : "modifiedBy",
           "targetTable" : "Users",
+          "scale" : 0
+        }, {
+          "fieldName" : "vendor",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "CXVendorId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "defaultValue" : "",
+          "relatedColumnName" : "cxvendorId",
+          "targetTable" : "Vendor",
           "scale" : 0
         }, {
           "fieldName" : "projectGuid",
@@ -16462,6 +16492,21 @@
           "targetTable" : "Users",
           "scale" : 0
         }, {
+          "fieldName" : "vendor",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "CXVendorId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "defaultValue" : "",
+          "relatedColumnName" : "cxvendorId",
+          "targetTable" : "Vendor",
+          "scale" : 0
+        }, {
           "fieldName" : "projectGuid",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -17594,6 +17639,21 @@
           "defaultValue" : "",
           "relatedColumnName" : "modifiedBy",
           "targetTable" : "Users",
+          "scale" : 0
+        }, {
+          "fieldName" : "vendor",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "CXVendorId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "defaultValue" : "",
+          "relatedColumnName" : "cxvendorId",
+          "targetTable" : "Vendor",
           "scale" : 0
         }, {
           "fieldName" : "projectGuid",
@@ -19190,6 +19250,21 @@
           "defaultValue" : "",
           "relatedColumnName" : "modifiedBy",
           "targetTable" : "Users",
+          "scale" : 0
+        }, {
+          "fieldName" : "vendor",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "CXVendorId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "defaultValue" : "",
+          "relatedColumnName" : "cxvendorId",
+          "targetTable" : "Vendor",
           "scale" : 0
         }, {
           "fieldName" : "projectGuid",
