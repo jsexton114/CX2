@@ -407,3 +407,28 @@ Application.$controller("gridProjectFormsController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("gridFormVendorsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogAddVendorController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        // $scope.buttonTagVendorClick = function($event, $isolateScope) {
+        //     debugger
+        //     $scope.Variables.lvVendorsToProjects.setInput({
+        //         'projectGuid': pageParams.ProjectGUID,
+        //         'vendorId': $scope.Widgets.searchVendor.datavalue.id,
+        //         'primaryVendor': $scope.Widgets.checkboxPrimaryVendor.datavalue
+        //     });
+        //     $scope.Variables.lvVendorsToProjects.insertRecord();
+        // };
+
+    }
+]);

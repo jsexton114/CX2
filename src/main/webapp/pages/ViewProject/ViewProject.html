@@ -180,7 +180,38 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneVENDOR" title="CONTRACTOR"></wm-tabpane>
+                                <wm-tabpane name="tabpaneVENDOR" title="CONTRACTOR">
+                                    <wm-layoutgrid name="layoutgrid18">
+                                        <wm-gridrow name="gridrow62">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn129">
+                                                <wm-label padding="unset 0.5em" name="label82" caption="The following vendors are associated with this form."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label35" caption="If multiple vendors are selected, please specify the correct &quot;primary&quot; vendor."></wm-label>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow63">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn131">
+                                                <wm-livegrid formlayout="inline" name="livegridFormVendors">
+                                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvVendorsToProjects.dataSet" navigation="Classic" name="gridFormVendors" filtermode="multicolumn" exportformat="EXCEL"
+                                                    showrecordcount="true">
+                                                        <wm-grid-column binding="primaryVendor" caption="Primary" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" searchable="false" show="true" readonly="false">
+                                                            <wm-checkbox scopedatavalue="row['primaryVendor']" disabled="Enable" class="" data-ng-class="" on-change="primaryVendorChange(row['primaryVendor'])"></wm-checkbox>
+                                                        </wm-grid-column>
+                                                        <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
+                                                        <wm-grid-column binding="vendor.companyPhone" caption="Phone Number" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
+                                                        <wm-grid-column binding="vendor.companyEmail" caption="Email Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
+                                                        <wm-grid-column binding="vendor.companyWebsite" caption="Website" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
+                                                        <wm-grid-column binding="sharedOn" caption="Date Added" type="datetime" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="timestamp"
+                                                        show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                        <wm-grid-action key="addNewRow" display-name="Add Contractor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Contractor" action="Widgets.dialogAddVendor.open()"
+                                                        shortcutkey="" disabled="false"></wm-grid-action>
+                                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" disabled="false"></wm-grid-row-action>
+                                                    </wm-grid>
+                                                </wm-livegrid>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-tabpane>
                                 <wm-tabpane name="tabpaneFORMS" title="FORMS">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectForms.dataSet" navigation="Classic" name="gridProjectForms" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                                         <wm-grid-column-group name="group1" caption="Form Details">
@@ -909,6 +940,47 @@
                     </wm-layoutgrid>
                 </wm-listtemplate>
             </wm-livelist>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewAddVendor">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Contractor Search" iconclass="wi wi-work" name="dialogAddVendor">
+            <wm-layoutgrid name="layoutgrid12">
+                <wm-gridrow name="gridrow38">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn87"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="10" name="gridcolumn88">
+                        <wm-search placeholder="Search by Company Name" datafield="All Fields" name="searchVendor" dataset="bind:Variables.svVendors.dataSet" displaylabel="companyName" searchkey="companyName"></wm-search>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn89"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow83_2">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn158"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="10" name="gridcolumn159">
+                        <wm-composite name="composite5_1">
+                            <wm-checkbox caption="Set as Primary Contractor" name="checkboxPrimaryVendor" checkedvalue="true" uncheckedvalue="false"></wm-checkbox>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn160"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow39" padding="1em unset unset unset">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn90"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn91">
+                        <wm-label padding="unset 0.5em" class="h4" show="bind:!!Widgets.searchVendor.datavalue.id" caption="Company Details" name="label23"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn92"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow40">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn93"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="10" horizontalalign="center" name="gridcolumn94">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.searchVendor.datavalue.companyName+&quot;, &quot;+Widgets.searchVendor.datavalue.fullAddress+&quot;, &quot;+Widgets.searchVendor.datavalue.companyPhone+&quot;, &quot;+Widgets.searchVendor.datavalue.companyEmail"
+                        show="bind:!!Widgets.searchVendor.datavalue.id" name="label24"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn95"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions4">
+                <wm-button class="btn-primary" caption="Add Contractor" type="button" margin="unset 0.5em" iconclass="wi wi-plus" show="bind:!!Widgets.searchVendor.datavalue.id" on-click="Variables.lvInsertVendorsToProjects.createRecord()" name="buttonTagVendor"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button11" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
         </wm-dialog>
     </wm-view>
 </wm-page>
