@@ -233,7 +233,7 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow41_3">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn82_2">
-                                            <wm-grid title="Select Owner" dataset="bind:Variables.svGetOwners.dataSet" navigation="Classic" name="gridOwners" show="bind:!Widgets.checkboxOtherOwner.datavalue &amp;&amp; !Widgets.checkboxVendorIsOwner.datavalue" iconclass="">
+                                            <wm-grid title="Select Owner" dataset="bind:Variables.svGetOwners.dataSet" navigation="Classic" name="gridOwners" show="bind:!Widgets.checkboxOtherOwner.datavalue &amp;&amp; !Widgets.checkboxVendorIsOwner.datavalue" iconclass="" on-datarender="gridOwnersDatarender($scope, $data)">
                                                 <wm-grid-column binding="nuffinmuffin" caption="&amp;#9745;" type="string" widget-type="checkbox" width="52px" readonly="true" searchable="false" show="true">
                                                     <wm-checkbox scopedatavalue="row.selected" class="" data-ng-class="" ng-click="selectOwner($event, row)"></wm-checkbox>
                                                 </wm-grid-column>

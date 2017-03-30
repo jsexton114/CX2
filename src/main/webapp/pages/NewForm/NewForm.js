@@ -1,4 +1,4 @@
-Application.$controller("NewFormPageController", ["$scope", "$location", "$timeout", function($scope, $location, $timeout) {
+Application.$controller("NewFormPageController", ["$scope", "$location", "$timeout", "$http", function($scope, $location, $timeout, $http) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -17,12 +17,17 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         $scope.Variables.stvDocuments.dataSet = [];
         $scope.Variables.stvGisData.dataSet = [];
         $scope.Variables.stvVendors.dataSet = [];
+
+        $scope.draftId = !!$location.search().draftId ? parseInt($location.search().draftId) : undefined;
+        if (!!$scope.draftId) {
+            // Check lvDraftonSuccess for what happens from here on out
+        } else {
+            $scope.formTypeId = parseInt($location.search().formTypeId);
+        }
     };
 
-    $scope.formTypeId = parseInt($location.search().formTypeId);
-    $scope.draftId = !!$location.search().draftId ? parseInt($location.search().draftId) : $location.search().draftId;
-
     $scope.loaded = false;
+    $scope.draftData = null;
 
     var itemsLoaded = 0;
     var totalItemsToLoad = 2;
@@ -50,7 +55,91 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
         if (itemsLoaded == totalItemsToLoad) {
             $scope.loaded = true;
+
+            $timeout(function() {
+                if ($scope.draftData !== null) { // Load draft data
+                    // Submit on Behalf
+                    if ($scope.submitOnBehalf === true) {
+                        angular.forEach($scope.draftData.onBehalfOf, function(value, key) {
+                            if (!$scope.Widgets.lfSubmitOnBehalf.formfields[key]) {
+                                return; // continue; this is not a part of the form, but rather a value for the 'New User' checkbox or other metadata
+                            }
+
+                            $scope.Widgets.lfSubmitOnBehalf.formfields[key].value = value;
+                        });
+
+                        $scope.Widgets.checkboxNewUser.datavalue = !!$scope.draftData.onBehalfOf.newUser;
+
+                        if (!$scope.draftData.onBehalfOf.newUser) {
+                            $scope.draftData.onBehalfOf.fullName = ($scope.draftData.onBehalfOf.firstName + " " + $scope.draftData.onBehalfOf.lastName);
+                            $scope.Widgets.searchOnBehalfOfUser.datavalue = $scope.draftData.onBehalfOf;
+                        }
+                    }
+
+                    // Form data
+                    angular.forEach($scope.draftData.formFields, function(value, key) {
+                        $scope.formData[key] = value;
+                    });
+
+                    // Location(s)
+                    $scope.Variables.stvGisData.dataSet = angular.copy($scope.draftData.locations);
+
+                    // Contractor(s)
+                    $scope.Variables.stvVendors.dataSet = angular.copy($scope.draftData.vendors);
+
+                    // Owner
+                    if ($scope.ownerInfo === true) {
+                        var newOwner = $scope.draftData.owner.ownerType === 'new';
+                        var ownerIsContractor = $scope.draftData.owner.ownerType === 'contractor';
+
+                        if (newOwner || ownerIsContractor) {
+                            $scope.Widgets.checkboxOtherOwner.datavalue = newOwner;
+                            $scope.Widgets.checkboxVendorIsOwner.datavalue = ownerIsContractor;
+
+                            angular.forEach($scope.draftData.owner, function(value, key) {
+                                if (!$scope.Widgets.lfOwner.formfields[key]) {
+                                    return; // continue; this is not a part of the form, but rather a value for checkboxes or other meta data
+                                }
+
+                                $scope.Widgets.lfOwner.formfields[key].value = value;
+                            });
+                        } else if ($scope.draftData.owner.ownerType === 'selected') {
+                            // Select owner in the table - see gridOwnersDatarender for continuation
+                        }
+                    }
+
+                    // Attachments
+                    if ($scope.documents === true) {
+                        $scope.draftData.attachments.forEach(function(attachment, index) {
+                            $scope.Variables.stvDocuments.dataSet.push({
+                                Filename: attachment.Filename,
+                                Mimetype: attachment.Mimetype,
+                                Contents: base64ToFile(attachment.Contents, attachment.Filename, attachment.Mimetype)
+                            });
+                        });
+
+                        console.log($scope.Variables.stvDocuments.dataSet);
+                    }
+                }
+            });
         }
+    }
+
+    function base64ToFile(base64String, filename, mimetype) {
+        var byteString = atob(base64String);
+
+        var arrayBuffer = new ArrayBuffer(byteString.length);
+        var uint8Array = new Uint8Array(arrayBuffer);
+
+        for (var i = 0; i < byteString.length; i++) {
+            uint8Array[i] = byteString.charCodeAt(i);
+        }
+
+        var blob = new Blob([arrayBuffer]);
+
+        return new File([blob], "filename", {
+            type: mimetype
+        });
     }
 
     $scope.svGetUserRolesonSuccess = function(variable, data) {
@@ -326,7 +415,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
     function getDraftModel() {
         var draftModel = {
-            formTypeId: $scope.formTypeId,
             onBehalfOf: {},
             formFields: {},
             locations: [],
@@ -341,7 +429,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
                 return;
             }
 
-            draftModel.onBehalfOf[field.name] = field.value;
+            draftModel.onBehalfOf[field.key] = field.value;
         });
 
         draftModel.onBehalfOf.newUser = $scope.Widgets.checkboxNewUser.datavalue;
@@ -351,88 +439,113 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
         // Owner
         if ($scope.ownerInfo === true) {
-            $scope.Widgets.lfOwner.formFields.forEach(function(field, index) {
-                if (field.name === 'All fields') {
-                    return;
-                }
+            var ownerType = '';
 
-                draftModel.owner[field.name] = field.value;
-            });
+            if (!!$scope.Widgets.checkboxOtherOwner.datavalue) {
+                ownerType = 'new';
+            } else if (!!$scope.Widgets.checkboxVendorIsOwner.datavalue) {
+                ownerType = 'contractor';
+            } else {
+                ownerType = 'selected';
+            }
+
+            if (ownerType !== 'selected') {
+                $scope.Widgets.lfOwner.formFields.forEach(function(field, index) {
+                    if (field.name === 'All fields') {
+                        return;
+                    }
+
+                    draftModel.owner[field.key] = field.value;
+                });
+            } else if ($scope.Widgets.gridOwners.selectedItems.length > 0) {
+                draftModel.owner.ownerId = $scope.Widgets.gridOwners.selectedItems[0].id;
+            } else {
+                draftModel.owner.ownerType = 'none';
+            }
+
+            draftModel.owner.ownerType = ownerType;
+        } else {
+            draftModel.owner.ownerType = 'none';
         }
 
         // Locations
+        draftModel.locations = angular.copy($scope.Variables.stvGisData.dataSet);
 
         // Vendors
+        draftModel.vendors = angular.copy($scope.Variables.stvVendors.dataSet);
 
         return draftModel;
+    }
+
+    function doDraftSave(draftModel) {
+        $scope.Variables.svSaveDraft.setInput("String", JSON.stringify(draftModel));
+        $scope.Variables.svSaveDraft.update();
     }
 
     $scope.saveAsDraft = function($event, $isolateScope) {
         var draftModel = getDraftModel();
 
-        console.log(draftModel);
+        // Attachments - Doing this within here because it involves multiple asynchronous calls to FileReader.readAsDataURL
+        if ($scope.documents === true && $scope.Variables.stvDocuments.dataSet.length > 0) {
+            var attachmentsLoaded = 0;
+            $scope.Variables.stvDocuments.dataSet.forEach(function(document, index) {
+                var fr = new FileReader();
+                fr.addEventListener("load", function() {
+                    draftModel.attachments.push({
+                        Contents: fr.result.split(',')[1],
+                        Filename: document.Filename,
+                        Mimetype: document.Mimetype
+                    });
 
-        // if ($scope.ownerInfo === true) {
-        //     if (!!ownerId) {
-        //         $scope.Variables.svSubmitForm.setInput('ownerId', ownerId);
-        //     } else if ($scope.Widgets.checkboxOtherOwner.datavalue || $scope.Widgets.checkboxVendorIsOwner.datavalue) {
-        //         if (!$scope.Widgets.lfOwner.formfields.id.value) {
-        //             $scope.Widgets.lfOwner.formfields.gisrecords.value = {
-        //                 id: $scope.Widgets.gisRecordSelect.datavalue
-        //             };
-        //             $scope.Widgets.lfOwner.formfields.contactType.value = 'Owner';
-        //             $scope.Widgets.lfOwner.formfields.active.value = true;
-        //             $scope.Widgets.lfOwner.save();
-        //             return; // TBC
-        //         } else {
-        //             $scope.Variables.svSubmitForm.setInput('ownerId', $scope.Widgets.lfOwner.formfields.id.value);
-        //         }
-        //     } else if ($scope.Widgets.gridOwners.selectedItems.length > 0) {
-        //         $scope.Variables.svSubmitForm.setInput('ownerId', $scope.Widgets.gridOwners.selectedItems[0].id);
-        //     }
-        // }
+                    attachmentsLoaded++;
 
-        // $scope.Variables.svSubmitForm.setInput('locationIds', generateIdString($scope.Variables.stvGisData.dataSet));
-        // $scope.Variables.svSubmitForm.setInput('vendorIds', generateIdString($scope.Variables.stvVendors.dataSet));
-        // $scope.Variables.svSubmitForm.setInput('usersWithWhomToShare', generateIdString($scope.Variables.stvContacts.dataSet));
-        // $scope.Variables.stvVendors.dataSet.some(function(vendorData, index) {
-        //     if (vendorData.Primary) {
-        //         $scope.Variables.svSubmitForm.setInput('primaryVendorId', vendorData.ID);
-        //         return true;
-        //     }
-        // });
+                    if (attachmentsLoaded === $scope.Variables.stvDocuments.dataSet.length) {
+                        doDraftSave(draftModel);
+                    }
+                }, false);
 
-        // // Form data
-        // $scope.Variables.svSubmitForm.setInput('fieldDataJsonString', JSON.stringify($scope.formData));
-
-        // // Documents
-        // if ($scope.documents && $scope.Variables.stvDocuments.dataSet.length > 0) {
-        //     var documentFiles = [];
-
-        //     $scope.Variables.stvDocuments.dataSet.forEach(function(document, index) {
-        //         documentFiles.push(document.Contents);
-        //     });
-
-        //     $scope.Variables.svSubmitForm.setInput('attachments', documentFiles);
-        // } else {
-        //     $scope.Variables.svSubmitForm.setInput('attachments', []);
-        // }
-
-        // $scope.Variables.svSubmitForm.update();
-
-        // $scope.Widgets.lfOwner.formfields.firstName.value = vendorInfo.Company;
-        // $scope.Widgets.lfOwner.formfields.address1.value = vendorInfo.Address1;
-        // $scope.Widgets.lfOwner.formfields.address2.value = vendorInfo.Address2;
-        // $scope.Widgets.lfOwner.formfields.city.value = vendorInfo.City;
-        // $scope.Widgets.lfOwner.formfields.states.value = {
-        //     id: vendorInfo.StateId,
-        //     stateName: vendorInfo.State
-        // };
-        // $scope.Widgets.lfOwner.formfields.postalCode.value = vendorInfo.PostalCode;
-        // $scope.Widgets.lfOwner.formfields.phone.value = vendorInfo.PhoneNumber;
-        // $scope.Widgets.lfOwner.formfields.email.value = vendorInfo.EmailAddress;
-        // $scope.Widgets.lfOwner.formfields.country.value = vendorInfo.Country;
+                fr.readAsDataURL(document.Contents);
+            });
+        } else {
+            doDraftSave(draftModel);
+        }
     };
+
+    $scope.svSaveDraftonSuccess = function(variable, data) {
+        $scope.draftId = data;
+    };
+
+    $scope.lvDraftonSuccess = function(variable, data) {
+        if (!data.length) { // Draft didn't exist for that ID, so we'll try to load the form if a formTypeId was provided
+            // TODO: Add draft not found notification
+            if (!!$location.search().formTypeId) {
+                $scope.formTypeId = parseInt($location.search().formTypeId);
+            }
+
+            return;
+        }
+
+        var draftData = data[0];
+
+        $scope.draftData = JSON.parse(draftData.formData);
+        $scope.formTypeId = draftData.formTypeId;
+    };
+
+
+    $scope.gridOwnersDatarender = function($isolateScope, $data) {
+        if (!!$scope.draftData.owner.ownerId) {
+            var selectedOwner = _.find($data, {
+                'id': $scope.draftData.owner.ownerId
+            });
+
+            $timeout(function() {
+                if (!!selectedOwner) {
+                    $isolateScope.selectItem(selectedOwner);
+                }
+            });
+        }
+    };
+
 }]);
 
 

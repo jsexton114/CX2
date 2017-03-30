@@ -92,7 +92,6 @@ Application.directive('profilePhoto', ['variableImageData', '$timeout', function
         restrict: 'C',
         link: function(scope, elem, attrs) {
             if (!!variableImageData.profilePhotoUpdated) {
-                console.log(variableImageData.profilePhotoUpdated);
                 $timeout(function() {
                     elem.attr('src', ("services/cx2/Users/" + scope.Variables.loggedInUser.dataSet.id + "/content/photo?ts=" + variableImageData.profilePhotoUpdated));
                 }, 0);
@@ -103,7 +102,6 @@ Application.directive('profilePhoto', ['variableImageData', '$timeout', function
             });
 
             scope.$on('profilePhotoUpdated', function(newImg) {
-                console.log(variableImageData.profilePhotoUpdated);
                 variableImageData.profilePhotoUpdated = moment().valueOf();
                 elem.attr("src", ("services/cx2/Users/" + scope.Variables.loggedInUser.dataSet.id + "/content/photo?ts=" + variableImageData.profilePhotoUpdated));
             });

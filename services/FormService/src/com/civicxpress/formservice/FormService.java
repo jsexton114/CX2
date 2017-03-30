@@ -1048,9 +1048,13 @@ public class FormService {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	
     	DBQueryParams params = new DBQueryParams();
-    	
+        params.addLong("formTypeId", formTypeId);
+        params.addLong("draftId", draftId);
+        params.addString("formData", formData);
+    	params.addLong("userId", Long.parseLong(securityService.getUserId()));
+
     	if (draftId == null) {
-    		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormDraft (FormTypeId, FormData) VALUES (:formTypeId, :formData)", params);
+    		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormDraft (FormTypeId, UserId, FormData) VALUES (:formTypeId, :userId, :formData)", params);
     		draftId = DBUtils.selectOne(cx2Conn, "SELECT @@IDENTITY as draftId", params).getLong("draftId");
     	} else {
     		params.addLong("draftId", draftId);

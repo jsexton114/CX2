@@ -56,7 +56,7 @@ public class FormController {
     @RequestMapping(value = "/signingDocumentResponse", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String getSigningDocumentResponse(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "formTitle", required = false) String formTitle, @RequestParam(value = "creatorFullName", required = false) String creatorFullName, @RequestParam(value = "fieldDataJson", required = false) String fieldDataJsonString, @RequestParam(value = "municipalityLogo", required = false) String municipalityLogo, @RequestParam(value = "clientId", required = false) String clientId, @RequestParam(value = "clientSecret", required = false) String clientSecret, @RequestParam(value = "firstNameOfRecipientParty", required = false) String firstNameOfRecipientParty, @RequestParam(value = "lastNameOfRecipientParty", required = false) String lastNameOfRecipientParty, @RequestParam(value = "emailIdOfRecipientParty", required = false) String emailIdOfRecipientParty) throws IOException, SQLException {
+    public String getSigningDocumentResponse(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "formTitle", required = false) String formTitle, @RequestParam(value = "creatorFullName", required = false) String creatorFullName, @RequestParam(value = "fieldDataJsonString", required = false) String fieldDataJsonString, @RequestParam(value = "municipalityLogo", required = false) String municipalityLogo, @RequestParam(value = "clientId", required = false) String clientId, @RequestParam(value = "clientSecret", required = false) String clientSecret, @RequestParam(value = "firstNameOfRecipientParty", required = false) String firstNameOfRecipientParty, @RequestParam(value = "lastNameOfRecipientParty", required = false) String lastNameOfRecipientParty, @RequestParam(value = "emailIdOfRecipientParty", required = false) String emailIdOfRecipientParty) throws IOException, SQLException {
         return formService.getSigningDocumentResponse(formGuid, formTitle, creatorFullName, fieldDataJsonString, municipalityLogo, clientId, clientSecret, firstNameOfRecipientParty, lastNameOfRecipientParty, emailIdOfRecipientParty);
     }
 
@@ -74,10 +74,10 @@ public class FormController {
         formService.main(args);
     }
 
-    @RequestMapping(value = "/saveDraft", method = RequestMethod.GET)
+    @RequestMapping(value = "/saveDraft", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public Long saveDraft(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formData", required = false) String formData, @RequestParam(value = "draftId", required = false) Long draftId) throws SQLException {
+    public Long saveDraft(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestBody String formData, @RequestParam(value = "draftId", required = false) Long draftId) throws SQLException {
         return formService.saveDraft(formTypeId, formData, draftId);
     }
 
