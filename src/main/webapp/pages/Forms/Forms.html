@@ -182,8 +182,8 @@
                                     <wm-layoutgrid name="layoutgrid18">
                                         <wm-gridrow name="gridrow62">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn129">
-                                                <wm-label padding="unset 0.5em" name="label82" caption="The following vendors are associated with this form."></wm-label>
-                                                <wm-label padding="unset 0.5em" name="label35" caption="If multiple vendors are selected, please specify the correct &quot;primary&quot; vendor."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label82" caption="The following contractors are associated with this form."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label35" caption="If multiple contractors are involved, please specify the correct &quot;primary&quot; contractor." show="bind:Variables.lvFormType.dataSet.data[$i].multipleVendors"></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow63">
@@ -199,8 +199,8 @@
                                                         <wm-grid-column binding="vendor.companyPhone" caption="Phone Number" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
                                                         <wm-grid-column binding="vendor.companyEmail" caption="Email Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
                                                         <wm-grid-column binding="vendor.companyWebsite" caption="Website" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
-                                                        <wm-grid-column binding="sharedOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="timestamp"
-                                                        show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="sharedOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true"
+                                                        filterwidget="date" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                         <wm-grid-action key="addNewRow" display-name="Add Contractor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Contractor" action="Widgets.dialogAddVendor.open()"
                                                         shortcutkey="" disabled="bind:(!Variables.lvFormType.dataSet.data[$i].multipleVendors &amp;&amp; Variables.Cx2Vendors2formData.dataSet.data.length > 0) || !Variables.svUserPermissions.dataSet.canEdit"></wm-grid-action>
@@ -833,7 +833,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions4">
-                <wm-button class="btn-primary" caption="Add Contractor" type="button" margin="unset 0.5em" iconclass="wi wi-plus" show="bind:!!Widgets.searchVendor.datavalue.id" on-click="buttonTagVendorClick($event, $scope)" name="buttonTagVendor"></wm-button>
+                <wm-button class="btn-primary" caption="Add Contractor" type="button" margin="unset 0.5em" iconclass="wi wi-plus" show="true" on-click="buttonTagVendorClick($event, $scope)" name="buttonTagVendor" disabled="bind:!Widgets.searchVendor.datavalue.id"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button11" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
