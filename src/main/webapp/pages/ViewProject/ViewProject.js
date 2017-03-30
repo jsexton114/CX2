@@ -43,59 +43,44 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
     };
 
 
-    $scope.GetMessageIdForCurrentPostonSuccess = function(variable, data) {
-        var people = $scope.Variables.PeopleList.dataSet;
-        var m = data;
-        $scope.messageMailingList = '';
-        // Insert people as Tagged People For RecentMessage
-        for (var i = 0; i < people.length; i++) {
-            $scope.Variables.InsertTaggedPeople.setInput({
-                "taggedPersonId": people[i].id,
-                "users": people[i],
-                "formMessages": m,
-                "formMessageId": m.id,
-            });
-            $scope.Variables.InsertTaggedPeople.insertRecord();
-
-            $scope.messageMailingList = $scope.messageMailingList + people[i].email + ",";
-
-        }
-        $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
-
-        // Send Mails of Message
-        var tempLink = window.location.hostname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.ProjectGUID
-        $scope.Variables.svSendProjectMessagesMail.setInput({
-            'projectLink': tempLink,
-            'recipient': $scope.messageMailingList,
-            'comments': m.message
-        });
-        $scope.Variables.svSendProjectMessagesMail.update();
-    };
-
-
     $scope.buttonAddMessageClick = function($event, $isolateScope) {
         // Posting Message
         $scope.Variables.PostProjectMessage.setInput({
-            'PostedAt': moment().valueOf(),
-            'MunicipalityMessage': false,
-            'Message': $scope.Widgets.textAddMessage.datavalue
+            'municipalityMessage': false,
+            'message': $scope.Widgets.textAddMessage.datavalue
         });
-        $scope.Variables.PostProjectMessage.update();
+        $scope.Variables.PostProjectMessage.insertRecord();
     };
 
     $scope.PostProjectMessageonSuccess = function(variable, data) {
-
         $scope.Widgets.textAddMessage.datavalue = undefined;
         $scope.Widgets.textInternalAddMessage.datavalue = undefined;
         let people = $scope.Variables.PeopleList.dataSet;
         if (people.length === 0) {
             // DO nothing
         } else {
-            $scope.Variables.GetMessageIdForCurrentPost.setInput({
-                'PostedAt': variable.dataBinding.PostedAt,
-                'project': $scope.pageParams.ProjectGUID
+            $scope.messageMailingList = '';
+            // Insert people as Tagged People For RecentMessage
+            for (var i = 0; i < people.length; i++) {
+                $scope.Variables.InsertTaggedPeople.setInput({
+                    "taggedPersonId": people[i].id,
+                    "formMessageId": data.id,
+                });
+                $scope.Variables.InsertTaggedPeople.insertRecord();
+
+                $scope.messageMailingList = $scope.messageMailingList + people[i].email + ",";
+
+            }
+            $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
+
+            // Send Mails of Message
+            var tempLink = window.location.hostname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.ProjectGUID
+            $scope.Variables.svSendProjectMessagesMail.setInput({
+                'projectLink': tempLink,
+                'recipient': $scope.messageMailingList,
+                'comments': data.message
             });
-            $scope.Variables.GetMessageIdForCurrentPost.update();
+            $scope.Variables.svSendProjectMessagesMail.update();
 
         }
     };
@@ -149,11 +134,10 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
     $scope.buttonAddInternalMessageClick = function($event, $isolateScope) {
         // Posting Message
         $scope.Variables.PostProjectMessage.setInput({
-            'PostedAt': moment().valueOf(),
-            'MunicipalityMessage': true,
-            'Message': $scope.Widgets.textInternalAddMessage.datavalue
+            'municipalityMessage': true,
+            'message': $scope.Widgets.textInternalAddMessage.datavalue
         });
-        $scope.Variables.PostProjectMessage.update();
+        $scope.Variables.PostProjectMessage.insertRecord();
     };
 
 

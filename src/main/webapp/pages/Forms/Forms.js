@@ -109,7 +109,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
                     "formMessageId": data.id,
                 });
                 $scope.Variables.InsertTaggedPeople.insertRecord();
-
                 $scope.messageMailingList = $scope.messageMailingList + people[i].email + ",";
 
             }
