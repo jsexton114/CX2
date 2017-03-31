@@ -250,7 +250,7 @@
                                                         <wm-gridrow name="gridrow20" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn36" padding="unset 1em unset unset">
                                                                 <wm-form-field name="stateFee" displayname="State Fee" show="true" primary-key="false" generator="assigned" key="stateFee" type="string" maxvalue="500" readonly="false" required="false" widget="text"
-                                                                maxchars="255" inputtype="number" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFee" hint="The value specified above is a percentage that gets multiplied by the total of all the Automatic Fees above that have been added to the form."
+                                                                maxchars="255" inputtype="number" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].stateFee | stringToNumber" hint="The value specified above is a percentage that gets multiplied by the total of all the Automatic Fees above that have been added to the form."
                                                                 step="0.01" minvalue="0"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn19" horizontalalign="left" padding="unset 1em unset unset">
