@@ -1,0 +1,49 @@
+<wm-page data-ng-controller="ScheduleInspectionsPageController" pagetitle="Schedule Inspections" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid3">
+                <wm-gridrow name="gridrow19">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn32">
+                        <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlink="link" itemicon="icon" itemlabel="label"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow17">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn29" padding="2em unset">
+                        <wm-label caption="Schedule Inspections" fontweight="bold" name="label2" class="h4"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn30" padding="2em unset">
+                        <wm-composite name="composite1" show="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet.content.length > 1">
+                            <wm-label class="col-md-3 form-control-static" name="label1" caption="Select Municipality" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-select name="selectMunicipality" dataset="bind:Variables.svGetMunicipalitiesForInspectionManager.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.svGetMunicipalitiesForInspectionManager.firstRecord"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow18">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn31">
+                        <wm-tabs name="tabsInspections">
+                            <wm-tabpane name="tabpaneScheduleInspections" title="Schedule Inspections">
+                                <wm-grid title="" dataset="bind:Variables.svGetInspectionsByOutcome.dataSet" navigation="Classic" name="grid1">
+                                    <wm-grid-column binding="assignedTo" caption="Assigned To" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                    <wm-grid-column binding="inspectionGuid" caption="Inspection Guid" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                    <wm-grid-column binding="outcome" caption="Outcome" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                    <wm-grid-column binding="inspectDesignName" caption="Inspect Design Name" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                    <wm-grid-column binding="requestedFor.columnMapper" caption="RequestedFor Column Mapper" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                    <wm-grid-column binding="requestedFor.sqlTypes" caption="RequestedFor Sql Types" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                    <wm-grid-column binding="inspectionTitle" caption="Inspection Title" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                    <wm-grid-column binding="inspectionZone" caption="Inspection Zone" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                </wm-grid>
+                            </wm-tabpane>
+                            <wm-tabpane name="tabpane2" title="w"></wm-tabpane>
+                        </wm-tabs>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

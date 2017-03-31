@@ -70,6 +70,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<GetInspectionsByOutcomeResponse> executeGetInspectionsByOutcome(Integer municipality, String outcome, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("municipality", municipality);
+        params.put("outcome", outcome);
+
+        return queryExecutor.executeNamedQuery("getInspectionsByOutcome", params, GetInspectionsByOutcomeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetInspectionsByOutcome(ExportType exportType, Integer municipality, String outcome, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("municipality", municipality);
+        params.put("outcome", outcome);
+
+        return queryExecutor.exportNamedQueryData("getInspectionsByOutcome", params, exportType, GetInspectionsByOutcomeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<AdminsMunicipalitiesResponse> executeAdminsMunicipalities(Integer user, Pageable pageable) {
         Map params = new HashMap(1);
 

@@ -80,6 +80,25 @@ public class QueryExecutionController {
         return queryService.exportGetRecentMessageId(exportType, form, postedAt, pageable);
     }
 
+    @RequestMapping(value = "/queries/getInspectionsByOutcome", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "getInspectionsByOutcome")
+    public Page<GetInspectionsByOutcomeResponse> executeGetInspectionsByOutcome(@RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "outcome") String outcome, Pageable pageable) {
+        LOGGER.debug("Executing named query: getInspectionsByOutcome");
+        Page<GetInspectionsByOutcomeResponse> _result = queryService.executeGetInspectionsByOutcome(municipality, outcome, pageable);
+        LOGGER.debug("got the result for named query: getInspectionsByOutcome, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getInspectionsByOutcome")
+    @RequestMapping(value = "/queries/getInspectionsByOutcome/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetInspectionsByOutcome(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "outcome") String outcome, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getInspectionsByOutcome");
+
+        return queryService.exportGetInspectionsByOutcome(exportType, municipality, outcome, pageable);
+    }
+
     @RequestMapping(value = "/queries/AdminsMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Admin'sMunicipalities")

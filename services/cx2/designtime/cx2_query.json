@@ -9609,6 +9609,105 @@
       } ]
     }
   },
+  "getInspectionsByOutcome" : {
+    "name" : "getInspectionsByOutcome",
+    "description" : "getInspectionsByOutcome",
+    "version" : "V2",
+    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\ninspectionDesign.inspectDesignName as inspectDesignName,\nrequestedFor as requestedFor\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and inspectionOutcome.outcome=:outcome and assignedTo is null\nOrder By inspectionZone DESC",
+    "countQueryString" : null,
+    "nativeSql" : false,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "outcome",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Requested",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.GetInspectionsByOutcomeResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "inspectionGuid",
+        "fieldName" : "inspectionGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "assignedTo",
+        "fieldName" : "assignedTo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "outcome",
+        "fieldName" : "outcome",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "inspectionTitle",
+        "fieldName" : "inspectionTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "inspectionZone",
+        "fieldName" : "inspectionZone",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "inspectDesignName",
+        "fieldName" : "inspectDesignName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "requestedFor",
+        "fieldName" : "requestedFor",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "com.wavemaker.commons.data.type.WMPersistentLocalDateTime",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "getListofGroupName" : {
     "name" : "getListofGroupName",
     "description" : "get all the list of group Names based on mun ID",

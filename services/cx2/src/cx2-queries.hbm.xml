@@ -18,6 +18,23 @@
     <query-param name="PostedAt" type="java.sql.Timestamp"/>
     </query>
 
+    <query name="getInspectionsByOutcome">
+        <![CDATA[
+        select 
+inspectionGuid as inspectionGuid,
+assignedTo as assignedTo,
+inspectionOutcome.outcome as outcome,
+inspectionTitle as inspectionTitle,
+inspectionZone as inspectionZone,
+inspectionDesign.inspectDesignName as inspectDesignName,
+requestedFor as requestedFor
+from MasterInspections where inspectionDesign.municipalities.id=:municipality and inspectionOutcome.outcome=:outcome and assignedTo is null
+Order By inspectionZone DESC
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="outcome" type="java.lang.String"/>
+    </query>
+
     <sql-query name="AdminsMunicipalities">
         <![CDATA[
         select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID  and R.RoleName='MunicipalityAdmin'

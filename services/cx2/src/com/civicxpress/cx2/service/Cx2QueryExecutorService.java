@@ -33,6 +33,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetRecentMessageId(ExportType exportType, String form, Timestamp postedAt, Pageable pageable);
 
+    Page<GetInspectionsByOutcomeResponse> executeGetInspectionsByOutcome(Integer municipality, String outcome, Pageable pageable);
+
+    Downloadable exportGetInspectionsByOutcome(ExportType exportType, Integer municipality, String outcome, Pageable pageable);
+
     Page<AdminsMunicipalitiesResponse> executeAdminsMunicipalities(Integer user, Pageable pageable);
 
     Downloadable exportAdminsMunicipalities(ExportType exportType, Integer user, Pageable pageable);

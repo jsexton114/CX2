@@ -1,0 +1,85 @@
+{
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1490949388908",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/MunicipalityInspections"
+    }, {
+      "label" : "Schedule Inspections",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/ScheduleInspections"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "svGetInspectionsByOutcome" : {
+    "_id" : "wm-svGetInspectionsByOutcome-wm.ServiceVariable-1490953648445",
+    "name" : "svGetInspectionsByOutcome",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "outcome",
+      "value" : "Requested",
+      "type" : "string"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.GetInspectionsByOutcomeResponse",
+    "service" : "cx2",
+    "operation" : "executeGetInspectionsByOutcome",
+    "operationId" : "QueryExecutionController_executeGetInspectionsByOutcome",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "svGetMunicipalitiesForInspectionManager" : {
+    "_id" : "wm-svGetMunicipalitiesForInspectionManager-wm.ServiceVariable-1490949755596",
+    "name" : "svGetMunicipalitiesForInspectionManager",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "role",
+      "value" : "InspectorManager",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.EmployeesOrAdminsMunicipalitiesResponse",
+    "service" : "cx2",
+    "operation" : "executeEmployeesOrAdminsMunicipalities",
+    "operationId" : "QueryExecutionController_executeEmployeesOrAdminsMunicipalities",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  }
+}
