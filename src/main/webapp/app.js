@@ -206,10 +206,34 @@ Application.directive('dynamicFormFields', function() {
         restrict: 'E',
         scope: {
             formFieldList: '=',
-            formData: '='
+            formData: '=',
+            columnCount: '='
         },
         replace: true,
-        templateUrl: 'dynamicFormFields.html'
+        templateUrl: 'dynamicFormFields.html',
+        link: function(scope, elem, attrs) {
+            var columnNumber = scope.columnCount || 2;
+
+            var unwatchFieldList = scope.$watch('formFieldList', function(newValue, oldValue) {
+                if (!newValue) {
+                    return;
+                }
+
+                var adjustedFieldList = [];
+                adjustedFieldList.push([]);
+
+                scope.formFieldList.forEach(function(formField, index) {
+                    if ((index + 1) % columnNumber === 0 || (!formField.formFieldTypes.sqlType && adjustedFieldList[adjustedFieldList.length - 1].length !== 0)) {
+                        adjustedFieldList.push([]);
+                    }
+
+                    adjustedFieldList[adjustedFieldList.length - 1].push(formField);
+                });
+
+                unwatchFieldList();
+                scope.formFieldList = adjustedFieldList;
+            });
+        }
     };
 });
 
@@ -290,8 +314,8 @@ Application.run(["$templateCache", function($templateCache) {
 
     $templateCache.put("dynamicFormFields.html",
         "<div class=\"app-grid-layout clearfix\" name=\"layoutgridDynamicFields\">\n" +
-        "<wm-gridrow ng-repeat=\"formField in formFieldList\" name=\"fieldGridrow{{$index}}\">\n" +
-        "    <div class=\"app-grid-column col-sm-12\" name=\"fieldGridcolumn{{$index}}\" ng-class=\"{'panel-primary': formField.formFieldTypes.label == 'Header'}\">\n" +
+        "<wm-gridrow ng-repeat=\"formFieldGroup in formFieldList\" name=\"fieldGridrow{{$index}}\">\n" +
+        "    <div ng-repeat=\"formField in formFieldGroup\" class=\"app-grid-column dynamic-field-column col-sm-{{12 / formFieldGroup.length}}\" name=\"fieldGridcolumn{{$index}}\" ng-class=\"{'panel-primary': formField.formFieldTypes.label == 'Header'}\">\n" +
         "        <hr ng-if=\"formField.formFieldTypes.label == 'Horizontal Line'\">\n" +
         "        <p ng-if=\"formField.formFieldTypes.label == 'Instruction Text'\" ng-bind-html=\"formField.defaultValue\"></p>\n" +
         "        <h3 class=\"panel-heading\" ng-if=\"formField.formFieldTypes.label == 'Header'\" ng-bind-html=\"formField.defaultValue\"></h3>\n\n" +

@@ -117,8 +117,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
                                 Contents: base64ToFile(attachment.Contents, attachment.Filename, attachment.Mimetype)
                             });
                         });
-
-                        console.log($scope.Variables.stvDocuments.dataSet);
                     }
                 }
             });
