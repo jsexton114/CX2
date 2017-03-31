@@ -207,12 +207,13 @@ Application.directive('dynamicFormFields', function() {
         scope: {
             formFieldList: '=',
             formData: '=',
-            columnCount: '='
+            columnCount: '@'
         },
         replace: true,
         templateUrl: 'dynamicFormFields.html',
         link: function(scope, elem, attrs) {
-            var columnNumber = scope.columnCount || 2;
+            var columnNumber = attrs.columnCount ? parseInt(attrs.columnCount) : 2;
+            scope.columnCount = columnNumber;
 
             var unwatchFieldList = scope.$watch('formFieldList', function(newValue, oldValue) {
                 if (!newValue) {
@@ -315,7 +316,7 @@ Application.run(["$templateCache", function($templateCache) {
     $templateCache.put("dynamicFormFields.html",
         "<div class=\"app-grid-layout clearfix\" name=\"layoutgridDynamicFields\">\n" +
         "<wm-gridrow ng-repeat=\"formFieldGroup in formFieldList\" name=\"fieldGridrow{{$index}}\">\n" +
-        "    <div ng-repeat=\"formField in formFieldGroup\" class=\"app-grid-column dynamic-field-column col-sm-{{12 / formFieldGroup.length}}\" name=\"fieldGridcolumn{{$index}}\" ng-class=\"{'panel-primary': formField.formFieldTypes.label == 'Header'}\">\n" +
+        "    <div ng-repeat=\"formField in formFieldGroup\" class=\"app-grid-column dynamic-field-column col-sm-{{12 / (!formField.formFieldTypes.sqlType && formField.formFieldTypes.label !== 'Calculated' ? formFieldGroup.length : columnCount)}}\" name=\"fieldGridcolumn{{$index}}\" ng-class=\"{'panel-primary': formField.formFieldTypes.label == 'Header'}\">\n" +
         "        <hr ng-if=\"formField.formFieldTypes.label == 'Horizontal Line'\">\n" +
         "        <p ng-if=\"formField.formFieldTypes.label == 'Instruction Text'\" ng-bind-html=\"formField.defaultValue\"></p>\n" +
         "        <h3 class=\"panel-heading\" ng-if=\"formField.formFieldTypes.label == 'Header'\" ng-bind-html=\"formField.defaultValue\"></h3>\n\n" +

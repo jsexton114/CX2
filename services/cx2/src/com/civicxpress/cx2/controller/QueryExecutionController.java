@@ -40,6 +40,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 
 import com.civicxpress.cx2.FormMessages;
+import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
@@ -97,6 +98,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: getInspectionsByOutcome");
 
         return queryService.exportGetInspectionsByOutcome(exportType, municipality, outcome, pageable);
+    }
+
+    @RequestMapping(value = "/queries/getCalculatableFormFields", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get form fields which can be added to a calculated field")
+    public Page<FormTypeFields> executeGetCalculatableFormFields(@RequestParam(value = "formTypeId") Integer formTypeId, Pageable pageable) {
+        LOGGER.debug("Executing named query: getCalculatableFormFields");
+        Page<FormTypeFields> _result = queryService.executeGetCalculatableFormFields(formTypeId, pageable);
+        LOGGER.debug("got the result for named query: getCalculatableFormFields, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getCalculatableFormFields")
+    @RequestMapping(value = "/queries/getCalculatableFormFields/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetCalculatableFormFields(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formTypeId") Integer formTypeId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getCalculatableFormFields");
+
+        return queryService.exportGetCalculatableFormFields(exportType, formTypeId, pageable);
     }
 
     @RequestMapping(value = "/queries/AdminsMunicipalities", method = RequestMethod.GET)

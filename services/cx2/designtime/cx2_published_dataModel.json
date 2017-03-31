@@ -4559,31 +4559,6 @@
       "unique" : false
     }, {
       "columnValue" : {
-        "type" : "database-defined",
-        "insertable" : false,
-        "updatable" : false,
-        "defaultValue" : null
-      },
-      "fieldName" : "addedAt",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "datetime",
-      "length" : 0,
-      "name" : "AddedAt",
-      "nullable" : true,
-      "oldName" : "AddedAt",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "datetime",
-      "unique" : false
-    }, {
-      "columnValue" : {
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
@@ -4606,6 +4581,31 @@
       "primaryKey" : false,
       "scale" : 0,
       "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "database-defined",
+        "insertable" : false,
+        "updatable" : false,
+        "defaultValue" : null
+      },
+      "fieldName" : "addedAt",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "datetime",
+      "length" : 0,
+      "name" : "AddedAt",
+      "nullable" : false,
+      "oldName" : "AddedAt",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "datetime",
       "unique" : false
     } ],
     "constraints" : [ ],
@@ -4928,6 +4928,31 @@
       "primaryKey" : false,
       "scale" : 0,
       "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "automaticFeeType",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "AutomaticFeeType",
+      "nullable" : true,
+      "oldName" : "AutomaticFeeType",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
       "unique" : false
     } ],
     "constraints" : [ ],

@@ -60,11 +60,35 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
         resetFormFieldDialog();
         $scope.Widgets.dlgFormTypeField.close();
     };
-
-
-
 }]);
 
+Application.directive("fieldCalculator", [function() {
+    "use strict";
+    return {
+        restrict: 'C',
+        scope: true,
+        link: function(scope, elem, attrs) {
+            console.log(scope);
+            var valueWidget = scope.Widgets.calculatedDefault;
+
+            var operationList = ['/', '*', '-', '+', '(', ')'];
+
+            scope.addField = function(fieldName) {
+                valueWidget.datavalue += '[' + fieldName + ']';
+            };
+
+            scope.addOperation = function(operation) {
+                if (operationList.indexOf(operation) > -1) {
+                    valueWidget.datavalue += operation;
+                }
+            };
+
+            scope.addNumber = function(number) {
+
+            };
+        }
+    };
+}]);
 
 Application.$controller("liveformUpdateFormTypeController", ["$scope",
     function($scope) {
@@ -187,6 +211,8 @@ Application.$controller("dlgFormTypeFieldController", ["$scope",
                     return $scope.Widgets.currencyDefaultValue;
                 case 'Boolean':
                     return $scope.Widgets.booleanDefaultValue;
+                case 'Calculated':
+                    return $scope.Widgets.calculatedDefault;
                 default:
                     return $scope.Widgets.textDefaultValue;
             }
@@ -351,5 +377,16 @@ Application.$controller("dialogAddUserToGroupController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridFieldsForCalcController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            console.log($scope.$parent);
+        };
     }
 ]);

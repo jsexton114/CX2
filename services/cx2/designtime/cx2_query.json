@@ -9340,6 +9340,34 @@
       } ]
     }
   },
+  "getCalculatableFormFields" : {
+    "name" : "getCalculatableFormFields",
+    "description" : "Get form fields which can be added to a calculated field",
+    "version" : "V2",
+    "queryString" : "from FormTypeFields where formTypeId=:formTypeId and (formFieldTypes.label='Number' or formFieldTypes.label='Currency' or formFieldTypes.label='Calculated')",
+    "countQueryString" : "select count(*) from FormTypeFields where formTypeId=:formTypeId and (formFieldTypes.label='Number' or formFieldTypes.label='Currency' or formFieldTypes.label='Calculated')",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "formTypeId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "107",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.FormTypeFields",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
+    }
+  },
   "getCartItemIds" : {
     "name" : "getCartItemIds",
     "description" : "Get the card item IDs for the current user.",

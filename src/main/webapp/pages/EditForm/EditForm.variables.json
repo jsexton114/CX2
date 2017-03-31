@@ -2831,6 +2831,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
+      }, {
+        "fieldName" : "automaticFeeType",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "AutomaticFeeType",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "FormTypeFields",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormTypeFields",
@@ -2838,7 +2851,7 @@
       "primaryFields" : [ "id" ]
     },
     "isDefault" : true,
-    "bindCount" : 1,
+    "bindCount" : 2,
     "tableName" : "FormTypeFields",
     "tableType" : "TABLE",
     "properties" : [ "formFieldTypes", "formTypes" ],
@@ -9253,6 +9266,23 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.FormStatuses"
   },
+  "stvAutoFeeTypes" : {
+    "_id" : "wm-stvAutoFeeTypes-wm.Variable-1490983675102",
+    "name" : "stvAutoFeeTypes",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Square Footage",
+      "value" : "sfFee"
+    }, {
+      "label" : "Unit Fee",
+      "value" : "unitFee"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "stvPossibleValues" : {
     "_id" : "wm-stvPossibleValues-wm.Variable-1487099880131",
     "name" : "stvPossibleValues",
@@ -9340,6 +9370,33 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "svGetCalculableFields" : {
+    "_id" : "wm-svGetCalculableFields-wm.ServiceVariable-1490988130249",
+    "name" : "svGetCalculableFields",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "formTypeId",
+      "value" : "bind:Variables.CurrentFormObj.dataSet.data[$i].id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.FormTypeFields",
+    "service" : "cx2",
+    "operation" : "executeGetCalculatableFormFields",
+    "operationId" : "QueryExecutionController_executeGetCalculatableFormFields",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "svGetListOfMunicipalityEmployees" : {
     "_id" : "wm-svGetListOfMunicipalityEmployees-wm.ServiceVariable-1490701161134",
     "name" : "svGetListOfMunicipalityEmployees",
@@ -9405,6 +9462,10 @@
       "target" : "fieldTypeId",
       "value" : "bind:Widgets.selectFormFieldType.datavalue.id",
       "type" : "integer"
+    }, {
+      "target" : "automaticFeeType",
+      "value" : "bind:Widgets.selectAutoFeeType.datavalue",
+      "type" : "string"
     } ],
     "service" : "FormService",
     "operation" : "saveFormTypeField",

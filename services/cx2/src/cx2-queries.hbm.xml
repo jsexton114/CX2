@@ -36,6 +36,20 @@ Order By inspectionZone DESC
     <query-param name="outcome" type="java.lang.String"/>
     </query>
 
+    <query name="getCalculatableFormFields">
+        <![CDATA[
+        from FormTypeFields where formTypeId=:formTypeId and (formFieldTypes.label='Number' or formFieldTypes.label='Currency' or formFieldTypes.label='Calculated')
+        ]]>
+    <query-param name="formTypeId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="getCalculatableFormFields__count">
+        <![CDATA[
+        select count(*) from FormTypeFields where formTypeId=:formTypeId and (formFieldTypes.label='Number' or formFieldTypes.label='Currency' or formFieldTypes.label='Calculated')
+        ]]>
+    <query-param name="formTypeId" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="AdminsMunicipalities">
         <![CDATA[
         select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID  and R.RoleName='MunicipalityAdmin'

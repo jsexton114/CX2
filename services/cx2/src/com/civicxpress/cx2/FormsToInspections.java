@@ -31,9 +31,9 @@ public class FormsToInspections implements Serializable {
     private Integer id;
     private String relatedFormGuid;
     private String relatedInspectionGuid;
+    private Integer addedBy;
     @Type(type = "DateTime")
     private LocalDateTime addedAt;
-    private Integer addedBy;
     private MasterInspections masterInspections;
     private MasterForms masterForms;
     private Users users;
@@ -67,15 +67,6 @@ public class FormsToInspections implements Serializable {
         this.relatedInspectionGuid = relatedInspectionGuid;
     }
 
-    @Column(name = "`AddedAt`", nullable = true, insertable = false, updatable = false)
-    public LocalDateTime getAddedAt() {
-        return this.addedAt;
-    }
-
-    public void setAddedAt(LocalDateTime addedAt) {
-        this.addedAt = addedAt;
-    }
-
     @Column(name = "`AddedBy`", nullable = true, scale = 0, precision = 10)
     public Integer getAddedBy() {
         return this.addedBy;
@@ -83,6 +74,15 @@ public class FormsToInspections implements Serializable {
 
     public void setAddedBy(Integer addedBy) {
         this.addedBy = addedBy;
+    }
+
+    @Column(name = "`AddedAt`", nullable = false, insertable = false, updatable = false)
+    public LocalDateTime getAddedAt() {
+        return this.addedAt;
+    }
+
+    public void setAddedAt(LocalDateTime addedAt) {
+        this.addedAt = addedAt;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -35,6 +35,7 @@ public class FormTypeFields implements Serializable {
     private String helpText;
     private String possibleValues;
     private int fieldTypeId;
+    private String automaticFeeType;
     private FormFieldTypes formFieldTypes;
     private FormTypes formTypes;
 
@@ -128,6 +129,15 @@ public class FormTypeFields implements Serializable {
 
     public void setFieldTypeId(int fieldTypeId) {
         this.fieldTypeId = fieldTypeId;
+    }
+
+    @Column(name = "`AutomaticFeeType`", nullable = true, length = 255)
+    public String getAutomaticFeeType() {
+        return this.automaticFeeType;
+    }
+
+    public void setAutomaticFeeType(String automaticFeeType) {
+        this.automaticFeeType = automaticFeeType;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

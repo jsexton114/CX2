@@ -27,6 +27,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormMessages;
+import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
@@ -88,6 +89,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("outcome", outcome);
 
         return queryExecutor.exportNamedQueryData("getInspectionsByOutcome", params, exportType, GetInspectionsByOutcomeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormTypeFields> executeGetCalculatableFormFields(Integer formTypeId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("formTypeId", formTypeId);
+
+        return queryExecutor.executeNamedQuery("getCalculatableFormFields", params, FormTypeFields.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetCalculatableFormFields(ExportType exportType, Integer formTypeId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("formTypeId", formTypeId);
+
+        return queryExecutor.exportNamedQueryData("getCalculatableFormFields", params, exportType, FormTypeFields.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

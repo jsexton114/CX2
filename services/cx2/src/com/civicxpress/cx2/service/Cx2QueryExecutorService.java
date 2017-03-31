@@ -17,6 +17,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormMessages;
+import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
@@ -36,6 +37,10 @@ public interface Cx2QueryExecutorService {
     Page<GetInspectionsByOutcomeResponse> executeGetInspectionsByOutcome(Integer municipality, String outcome, Pageable pageable);
 
     Downloadable exportGetInspectionsByOutcome(ExportType exportType, Integer municipality, String outcome, Pageable pageable);
+
+    Page<FormTypeFields> executeGetCalculatableFormFields(Integer formTypeId, Pageable pageable);
+
+    Downloadable exportGetCalculatableFormFields(ExportType exportType, Integer formTypeId, Pageable pageable);
 
     Page<AdminsMunicipalitiesResponse> executeAdminsMunicipalities(Integer user, Pageable pageable);
 

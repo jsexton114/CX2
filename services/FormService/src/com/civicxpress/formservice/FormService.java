@@ -502,7 +502,7 @@ public class FormService {
     	}
     }
     
-    public void saveFormTypeField(Long formTypeId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
+    public void saveFormTypeField(Long formTypeId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues, String automaticFeeType) throws SQLException {
     	String fieldName = label == null ? null : DBUtils.getSqlSafeString(label);
     	
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
@@ -526,9 +526,10 @@ public class FormService {
 	    	queryParams.addString("defaultValue", defaultValue);
 	    	queryParams.addString("helpText", helpText);
 	    	queryParams.addString("possibleValues", possibleValues);
+	    	queryParams.addString("automaticFeeType", automaticFeeType);
 	    	DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypeFields "
-	    			+ "(FormTypeId, FieldName, Label, DisplayOrder, Required, DefaultValue, HelpText, FieldTypeId, PossibleValues)"
-	    			+" VALUES (:formTypeId, :fieldName, :label, :displayOrder, :required, :defaultValue, :helpText, :fieldTypeId, :possibleValues)",
+	    			+ "(FormTypeId, FieldName, Label, DisplayOrder, Required, DefaultValue, HelpText, FieldTypeId, PossibleValues, AutomaticFeeType)"
+	    			+" VALUES (:formTypeId, :fieldName, :label, :displayOrder, :required, :defaultValue, :helpText, :fieldTypeId, :possibleValues, :automaticFeeType)",
 	    			queryParams);
 	    	
 	    	String fieldSqlType = DBUtils.selectQuery(cx2Conn, "SELECT SqlType FROM FormFieldTypes WHERE ID=:fieldTypeId", queryParams).get(0).getString("SqlType");
