@@ -10,7 +10,7 @@
                         <wm-label name="label5" caption="Inspections Dashboard" fontweight="bold" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn19_1" padding="2em unset">
-                        <wm-composite name="composite1" show="bind:Variables.AdminsMunicipalities.dataSet.content.length > 1">
+                        <wm-composite name="composite1" show="true">
                             <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
                                 <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
@@ -82,7 +82,7 @@
                         </wm-tile>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn12" padding="2em unset" horizontalalign="center">
-                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" accessroles="InspectorManager,MunicipalityAdmin,CXAdmin">
+                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" accessroles="InspectorManager,MunicipalityAdmin,CXAdmin" on-click="Variables.goToPage_ScheduleInspections.invoke()">
                             <wm-layoutgrid height="100%" name="layoutgrid6">
                                 <wm-gridrow height="100%" name="gridrow10_1">
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="1.4em unset unset unset" name="gridcolumn24_1" class="col-xs-3">

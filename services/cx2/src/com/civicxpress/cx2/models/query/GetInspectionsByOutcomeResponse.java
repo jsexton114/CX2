@@ -10,10 +10,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import org.joda.time.LocalDateTime;
+
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wavemaker.commons.data.type.WMPersistentLocalDateTime;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetInspectionsByOutcomeResponse implements Serializable {
@@ -28,10 +29,10 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
     private String inspectionTitle;
     @ColumnAlias("inspectionZone")
     private String inspectionZone;
+    @ColumnAlias("requestedFor")
+    private LocalDateTime requestedFor;
     @ColumnAlias("inspectDesignName")
     private String inspectDesignName;
-    @ColumnAlias("requestedFor")
-    private WMPersistentLocalDateTime requestedFor;
 
     public String getInspectionGuid() {
         return this.inspectionGuid;
@@ -73,20 +74,20 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
         this.inspectionZone = inspectionZone;
     }
 
+    public LocalDateTime getRequestedFor() {
+        return this.requestedFor;
+    }
+
+    public void setRequestedFor(LocalDateTime requestedFor) {
+        this.requestedFor = requestedFor;
+    }
+
     public String getInspectDesignName() {
         return this.inspectDesignName;
     }
 
     public void setInspectDesignName(String inspectDesignName) {
         this.inspectDesignName = inspectDesignName;
-    }
-
-    public WMPersistentLocalDateTime getRequestedFor() {
-        return this.requestedFor;
-    }
-
-    public void setRequestedFor(WMPersistentLocalDateTime requestedFor) {
-        this.requestedFor = requestedFor;
     }
 
     @Override
@@ -99,8 +100,8 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
                 Objects.equals(getOutcome(), getInspectionsByOutcomeResponse.getOutcome()) &&
                 Objects.equals(getInspectionTitle(), getInspectionsByOutcomeResponse.getInspectionTitle()) &&
                 Objects.equals(getInspectionZone(), getInspectionsByOutcomeResponse.getInspectionZone()) &&
-                Objects.equals(getInspectDesignName(), getInspectionsByOutcomeResponse.getInspectDesignName()) &&
-                Objects.equals(getRequestedFor(), getInspectionsByOutcomeResponse.getRequestedFor());
+                Objects.equals(getRequestedFor(), getInspectionsByOutcomeResponse.getRequestedFor()) &&
+                Objects.equals(getInspectDesignName(), getInspectionsByOutcomeResponse.getInspectDesignName());
     }
 
     @Override
@@ -110,7 +111,7 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
                 getOutcome(),
                 getInspectionTitle(),
                 getInspectionZone(),
-                getInspectDesignName(),
-                getRequestedFor());
+                getRequestedFor(),
+                getInspectDesignName());
     }
 }

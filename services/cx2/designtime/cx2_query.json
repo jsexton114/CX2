@@ -9613,7 +9613,7 @@
     "name" : "getInspectionsByOutcome",
     "description" : "getInspectionsByOutcome",
     "version" : "V2",
-    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\ninspectionDesign.inspectDesignName as inspectDesignName,\nrequestedFor as requestedFor\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and inspectionOutcome.outcome=:outcome and assignedTo is null\nOrder By inspectionZone DESC",
+    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\nrequestedFor as requestedFor,\ninspectionDesign.inspectDesignName as inspectDesignName\n\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and inspectionOutcome.outcome=:outcome and assignedTo is null\nOrder By inspectionZone DESC",
     "countQueryString" : null,
     "nativeSql" : false,
     "fetchCount" : false,
@@ -9688,21 +9688,21 @@
           "list" : false
         }
       }, {
+        "name" : "requestedFor",
+        "fieldName" : "requestedFor",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
         "name" : "inspectDesignName",
         "fieldName" : "inspectDesignName",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "requestedFor",
-        "fieldName" : "requestedFor",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.wavemaker.commons.data.type.WMPersistentLocalDateTime",
           "list" : false
         }
       } ]

@@ -15,7 +15,7 @@
                         <wm-label caption="Schedule Inspections" fontweight="bold" name="label2" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn30" padding="2em unset">
-                        <wm-composite name="composite1" show="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet.content.length > 1">
+                        <wm-composite name="composite1" show="true">
                             <wm-label class="col-md-3 form-control-static" name="label1" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
                                 <wm-select name="selectMunicipality" dataset="bind:Variables.svGetMunicipalitiesForInspectionManager.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.svGetMunicipalitiesForInspectionManager.firstRecord"></wm-select>
@@ -27,15 +27,14 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn31">
                         <wm-tabs name="tabsInspections">
                             <wm-tabpane name="tabpaneScheduleInspections" title="Schedule Inspections">
-                                <wm-grid title="" dataset="bind:Variables.svGetInspectionsByOutcome.dataSet" navigation="Classic" name="grid1">
-                                    <wm-grid-column binding="assignedTo" caption="Assigned To" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                                    <wm-grid-column binding="inspectionGuid" caption="Inspection Guid" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                                    <wm-grid-column binding="outcome" caption="Outcome" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                                    <wm-grid-column binding="inspectDesignName" caption="Inspect Design Name" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                                    <wm-grid-column binding="requestedFor.columnMapper" caption="RequestedFor Column Mapper" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                                    <wm-grid-column binding="requestedFor.sqlTypes" caption="RequestedFor Sql Types" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                                    <wm-grid-column binding="inspectionTitle" caption="Inspection Title" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                                    <wm-grid-column binding="inspectionZone" caption="Inspection Zone" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                <wm-grid title="" dataset="bind:Variables.svGetInspectionsByOutcome.dataSet" navigation="Classic" name="grid2">
+                                    <wm-grid-column binding="assignedTo" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="inspectionGuid" caption="Inspection Guid" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="requestedFor" caption="Requested For" type="string" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="inspectDesignName" caption="Inspect Design Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 </wm-grid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpane2" title="w"></wm-tabpane>

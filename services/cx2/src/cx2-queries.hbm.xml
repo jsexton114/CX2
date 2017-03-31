@@ -26,8 +26,9 @@ assignedTo as assignedTo,
 inspectionOutcome.outcome as outcome,
 inspectionTitle as inspectionTitle,
 inspectionZone as inspectionZone,
-inspectionDesign.inspectDesignName as inspectDesignName,
-requestedFor as requestedFor
+requestedFor as requestedFor,
+inspectionDesign.inspectDesignName as inspectDesignName
+
 from MasterInspections where inspectionDesign.municipalities.id=:municipality and inspectionOutcome.outcome=:outcome and assignedTo is null
 Order By inspectionZone DESC
         ]]>
