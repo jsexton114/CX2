@@ -379,7 +379,7 @@
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="New Status" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Status" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.StatusesData.dataSet.data.length > 2" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.StatusesData.dataSet.data.length > 1" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
                                                     disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                                 <wm-liveform novalidate="false" errormessage="" title="Form Status Options" formlayout="dialog" iconclass="wi wi-control-point" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top"
