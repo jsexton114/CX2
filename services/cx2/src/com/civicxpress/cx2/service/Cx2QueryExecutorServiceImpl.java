@@ -2460,6 +2460,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<GetInspectionsToBeScheduledByMunicipalityResponse> executeGetInspectionsToBeScheduledByMunicipality(Integer municipality, String outcome, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("municipality", municipality);
+        params.put("outcome", outcome);
+
+        return queryExecutor.executeNamedQuery("getInspectionsToBeScheduledByMunicipality", params, GetInspectionsToBeScheduledByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetInspectionsToBeScheduledByMunicipality(ExportType exportType, Integer municipality, String outcome, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("municipality", municipality);
+        params.put("outcome", outcome);
+
+        return queryExecutor.exportNamedQueryData("getInspectionsToBeScheduledByMunicipality", params, exportType, GetInspectionsToBeScheduledByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<FormsTypesForDashboardResponse> executeFormsTypesForDashboard(Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable) {
         Map params = new HashMap(3);
 

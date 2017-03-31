@@ -1,4 +1,36 @@
 {
+  "svCountInspectionsToBeScheduledByMunicipality" : {
+    "_id" : "wm-svCountInspectionsToBeScheduledByMunicipality-wm.ServiceVariable-1490961364008",
+    "name" : "svCountInspectionsToBeScheduledByMunicipality",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipality",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "outcome",
+      "value" : "Requested",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.GetInspectionsToBeScheduledByMunicipalityResponse",
+    "service" : "cx2",
+    "operation" : "executeGetInspectionsToBeScheduledByMunicipality",
+    "operationId" : "QueryExecutionController_executeGetInspectionsToBeScheduledByMunicipality",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "svCountofInspectionDesignByMunicipality" : {
     "_id" : "wm-CountofInspectionDesignByMunicipality-wm.ServiceVariable-1489516725559",
     "name" : "svCountofInspectionDesignByMunicipality",

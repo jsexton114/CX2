@@ -463,6 +463,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportUnpaidFormFeeCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
 
+    Page<GetInspectionsToBeScheduledByMunicipalityResponse> executeGetInspectionsToBeScheduledByMunicipality(Integer municipality, String outcome, Pageable pageable);
+
+    Downloadable exportGetInspectionsToBeScheduledByMunicipality(ExportType exportType, Integer municipality, String outcome, Pageable pageable);
+
     Page<FormsTypesForDashboardResponse> executeFormsTypesForDashboard(Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
 
     Downloadable exportFormsTypesForDashboard(ExportType exportType, Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);

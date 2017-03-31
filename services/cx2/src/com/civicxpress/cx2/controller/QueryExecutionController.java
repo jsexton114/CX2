@@ -2151,6 +2151,25 @@ public class QueryExecutionController {
         return queryService.exportUnpaidFormFeeCount(exportType, allowPayment, paidStatus, userId, pageable);
     }
 
+    @RequestMapping(value = "/queries/getInspectionsToBeScheduledByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "getInspectionsToBeScheduledByMunicipality")
+    public Page<GetInspectionsToBeScheduledByMunicipalityResponse> executeGetInspectionsToBeScheduledByMunicipality(@RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "outcome") String outcome, Pageable pageable) {
+        LOGGER.debug("Executing named query: getInspectionsToBeScheduledByMunicipality");
+        Page<GetInspectionsToBeScheduledByMunicipalityResponse> _result = queryService.executeGetInspectionsToBeScheduledByMunicipality(municipality, outcome, pageable);
+        LOGGER.debug("got the result for named query: getInspectionsToBeScheduledByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getInspectionsToBeScheduledByMunicipality")
+    @RequestMapping(value = "/queries/getInspectionsToBeScheduledByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetInspectionsToBeScheduledByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "outcome") String outcome, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getInspectionsToBeScheduledByMunicipality");
+
+        return queryService.exportGetInspectionsToBeScheduledByMunicipality(exportType, municipality, outcome, pageable);
+    }
+
     @RequestMapping(value = "/queries/FormsTypesForDashboard", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "FormsTypesForDashboard")

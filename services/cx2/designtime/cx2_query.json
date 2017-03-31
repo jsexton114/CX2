@@ -9708,6 +9708,51 @@
       } ]
     }
   },
+  "getInspectionsToBeScheduledByMunicipality" : {
+    "name" : "getInspectionsToBeScheduledByMunicipality",
+    "description" : "getInspectionsToBeScheduledByMunicipality",
+    "version" : "V2",
+    "queryString" : "select \ncount(*)\nas inspectionsToBeScheduled\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and inspectionOutcome.outcome=:outcome and assignedTo is null",
+    "countQueryString" : null,
+    "nativeSql" : false,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "outcome",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Requested",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.GetInspectionsToBeScheduledByMunicipalityResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "inspectionsToBeScheduled",
+        "fieldName" : "inspectionsToBeScheduled",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Long",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "getListofGroupName" : {
     "name" : "getListofGroupName",
     "description" : "get all the list of group Names based on mun ID",

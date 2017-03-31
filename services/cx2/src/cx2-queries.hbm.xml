@@ -1947,6 +1947,17 @@ from Fees where masterForms.formStatuses.allowPayment=:allowPayment and paidStat
     <query-param name="userId" type="java.lang.Integer"/>
     </query>
 
+    <query name="getInspectionsToBeScheduledByMunicipality">
+        <![CDATA[
+        select 
+count(*)
+as inspectionsToBeScheduled
+from MasterInspections where inspectionDesign.municipalities.id=:municipality and inspectionOutcome.outcome=:outcome and assignedTo is null
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="outcome" type="java.lang.String"/>
+    </query>
+
     <query name="FormsTypesForDashboard">
         <![CDATA[
         select formTypes.formType as formType ,count(formGuid) as counts from MasterForms where municipalityId=:municipality and DateSubmitted BETWEEN :startDate and :endDate
