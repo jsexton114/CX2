@@ -62,29 +62,68 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
     };
 }]);
 
-Application.directive("fieldCalculator", [function() {
+Application.$directive("fieldCalculator", [function() {
     "use strict";
     return {
-        restrict: 'C',
+        restrict: 'A',
         scope: true,
         link: function(scope, elem, attrs) {
-            console.log(scope);
             var valueWidget = scope.Widgets.calculatedDefault;
+
+            var calculation = valueWidget.datavalue || '';
 
             var operationList = ['/', '*', '-', '+', '(', ')'];
 
+            function getLastChar() {
+                return !!valueWidget.datavalue && !!!!valueWidget.datavalue.length ? valueWidget.datavalue.substr(valueWidget.datavalue.length - 1) : null;
+            }
+
             scope.addField = function(fieldName) {
-                valueWidget.datavalue += '[' + fieldName + ']';
+                var lastChar = getLastChar();
+
+                if (!lastChar || operationList.indexOf(lastChar) > -1) {
+                    calculation += '[' + fieldName + ']';
+
+                    valueWidget.datavalue = calculation;
+                }
             };
 
             scope.addOperation = function(operation) {
-                if (operationList.indexOf(operation) > -1) {
-                    valueWidget.datavalue += operation;
+                var lastChar = getLastChar();
+
+                if (!!lastChar && operationList.indexOf(operation) > -1 && operationList.indexOf(lastChar) === -1) {
+                    calculation += operation;
+
+                    valueWidget.datavalue = calculation;
                 }
             };
 
             scope.addNumber = function(number) {
+                var lastChar = getLastChar();
 
+                if (!lastChar || lastChar !== ']') {
+                    calculation += number;
+
+                    valueWidget.datavalue = calculation;
+                }
+            };
+
+            scope.backspace = function($event) {
+                var lastChar = getLastChar();
+
+                if (!lastChar) {
+                    return;
+                }
+
+                if (lastChar === ']') {
+                    var startDeleteIndex = calculation.lastIndexOf("[");
+
+                    calculation = calculation.slice(0, startDeleteIndex);
+                } else {
+                    calculation = calculation.slice(0, -1);
+                }
+
+                valueWidget.datavalue = calculation;
             };
         }
     };
@@ -386,7 +425,7 @@ Application.$controller("gridFieldsForCalcController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
-            console.log($scope.$parent);
+            $scope.$parent.addField($rowData.fieldName);
         };
     }
 ]);
