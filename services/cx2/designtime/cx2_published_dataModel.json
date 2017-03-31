@@ -4559,10 +4559,10 @@
       "unique" : false
     }, {
       "columnValue" : {
-        "type" : "server-defined",
-        "insertable" : true,
+        "type" : "database-defined",
+        "insertable" : false,
         "updatable" : false,
-        "variableType" : "DATE_TIME"
+        "defaultValue" : null
       },
       "fieldName" : "addedAt",
       "foreignKey" : false,
