@@ -6759,33 +6759,6 @@
     "isList" : true,
     "saveInPhonegap" : false
   },
-  "svDeleteDraft" : {
-    "_id" : "wm-serviceVariable1-wm.ServiceVariable-1490909190674",
-    "name" : "svDeleteDraft",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "draftId",
-      "value" : "bind:draftId",
-      "type" : "integer"
-    } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
-    "service" : "cx2",
-    "operation" : "executeDeleteDraft",
-    "operationId" : "QueryExecutionController_executeDeleteDraft",
-    "operationType" : "delete",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
   "svGetOwners" : {
     "_id" : "wm-svGetOwners-wm.ServiceVariable-1487623077217",
     "name" : "svGetOwners",
@@ -6906,6 +6879,10 @@
     "dataBinding" : [ {
       "target" : "formTypeId",
       "value" : "bind:formTypeId",
+      "type" : "integer"
+    }, {
+      "target" : "draftId",
+      "value" : "bind:draftId",
       "type" : "integer"
     } ],
     "type" : "string",

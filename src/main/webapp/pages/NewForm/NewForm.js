@@ -285,10 +285,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     };
 
     $scope.svSubmitFormonSuccess = function(variable, data) {
-        if (!!$scope.draftId) {
-            $scope.Variables.svDeleteDraft.update();
-        }
-
         $scope.Variables.goToPage_UserOpenForms.navigate();
     };
 

@@ -582,8 +582,7 @@ public class FormService {
 	        formCreateParams.addLong("newFormTypeId", newFormTypeId);
 	        
 	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormStatuses (FormTypeId, ConsiderClosed, SortOrder, Status, Description, SendEmail) "
-	        		+ "VALUES (:newFormTypeId, 0, 1, 'Draft', 'Draft', 0),"
-	        		+ " (:newFormTypeId, 0, 2, 'Submitted', 'Submitted', 1)", formCreateParams);
+	        		+ "VALUES (:newFormTypeId, 0, 1, 'Submitted', 'Submitted', 1)", formCreateParams);
 	        
 	        DBUtils.simpleUpdateQuery(muniDbConn, "CREATE TABLE "+formTableName+" ("
 	    			+"ID numeric(10) identity(1,1), "
@@ -1064,7 +1063,7 @@ public class FormService {
     	return draftId;
     }
     
-    public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, MultipartFile[] attachments) throws Exception {
+    public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, Long draftId, MultipartFile[] attachments) throws Exception {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
@@ -1265,18 +1264,22 @@ public class FormService {
 	    	}
 	    	
 	    	// Finish up by updating MasterForms and adding a history entry
-	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(1).getLong("ID");
+	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(0).getLong("ID");
 	    	queryParams.addLong("newFormStatusId", newFormStatusId);
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterForms SET FormStatusId=:newFormStatusId, TotalFees=:totalFees, TotalPayment='0', FormTitle=:formTitle, DateSubmitted=SYSUTCDATETIME() WHERE FormGUID=:formGuid", queryParams);
 	    	
-	    	queryParams.addLong("oldFormStatusId", masterFormData.getLong("FormStatusId"));
 	    	queryParams.addDateTime("createdTime", today.getTime());
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormHistory "
-	    			+"(FormGUID, FormTypeId, NewStatusId, OldStatusId, CreatedBy, CreatedTime) "
-	    			+"VALUES (:formGuid, :formTypeId, :newFormStatusId, :oldFormStatusId, :createUserId, :createdTime)",
+	    			+"(FormGUID, FormTypeId, NewStatusId, CreatedBy, CreatedTime) "
+	    			+"VALUES (:formGuid, :formTypeId, :newFormStatusId, :createUserId, :createdTime)",
 	    			queryParams);
+
+            if (draftId != null) {
+                queryParams.addLong("draftId", draftId);
+                DBUtils.simpleUpdateQuery(cx2Conn, "DELETE FROM FormDraft WHERE ID=:draftId", queryParams);
+            }
 	    	
 	    	cx2Conn.commit();
     	} catch (Exception e) {
