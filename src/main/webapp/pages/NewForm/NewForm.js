@@ -70,7 +70,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
                         $scope.Widgets.checkboxNewUser.datavalue = !!$scope.draftData.onBehalfOf.newUser;
 
-                        if (!$scope.draftData.onBehalfOf.newUser) {
+                        if (!$scope.draftData.onBehalfOf.newUser && !!$scope.draftData.onBehalfOf.id) {
                             $scope.draftData.onBehalfOf.fullName = ($scope.draftData.onBehalfOf.firstName + " " + $scope.draftData.onBehalfOf.lastName);
                             $scope.Widgets.searchOnBehalfOfUser.datavalue = $scope.draftData.onBehalfOf;
                         }
