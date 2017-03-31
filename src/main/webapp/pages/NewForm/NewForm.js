@@ -135,7 +135,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
         var blob = new Blob([arrayBuffer]);
 
-        return new File([blob], "filename", {
+        return new File([blob], filename, {
             type: mimetype
         });
     }
