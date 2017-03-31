@@ -386,6 +386,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
     $scope.buttonCreateSigningDocumentClick = function($event, $isolateScope) {
 
+        // TODO: get values from WM
         $scope.Variables.svGetSignLink.setInput('formGuid', "983DD3B3-C40C-E711-80C9-0CC47A46DD63");
         $scope.Variables.svGetSignLink.setInput('formTitle', "form title test");
         $scope.Variables.svGetSignLink.setInput('creatorFullName', "creatorFullName test");
