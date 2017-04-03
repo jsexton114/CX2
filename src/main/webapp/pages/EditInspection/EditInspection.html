@@ -131,7 +131,7 @@
                                                         <wm-gridrow name="gridrow37_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn54" padding="unset 1em unset unset">
                                                                 <wm-form-field name="allowUnscheduledInspection" displayname="Allow Unscheduled Inspection" show="true" primary-key="false" generator="assigned" key="allowUnscheduledInspection" type="boolean"
-                                                                readonly="false" required="false" widget="checkbox" defaultvalue="false" placeholder="" hint="This setting allows unscheduled (&quot;ad hoc&quot;) inspections to be performed."></wm-form-field>
+                                                                readonly="false" required="false" widget="checkbox" defaultvalue="false" placeholder="" hint="This setting allows unscheduled (&quot;ad hoc&quot;) inspections to be performed by an inspector."></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn55" padding="unset 1em unset unset">
                                                                 <wm-form-field name="codeEnforcement" displayname="Code Enforcement" show="true" primary-key="false" generator="assigned" key="codeEnforcement" type="boolean" readonly="false" required="false"
@@ -315,7 +315,9 @@
                                 <wm-layoutgrid name="layoutgrid12">
                                     <wm-gridrow name="gridrow41">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn67">
-                                            <wm-label padding="unset 0.5em" name="label8" caption="Inspection Outcomes are the results of an inspection. These are the options that an inspector in the field can select after this inspection has been performed."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label8" caption="Inspection Outcomes are the results of an inspection."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label11_1" caption="By default, four outcomes are included that cannot be removed- &quot;Requested&quot;, &quot;Scheduled&quot;, &quot;Rescheduled&quot;, and &quot;Cancelled&quot;."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label12" caption="In addition to rescheduling or cancelling an inspection, an Inspector in the field can select any other outcome to an inspection you'd like to build, &quot;Pass&quot; is included by default."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow42_1">
