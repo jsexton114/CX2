@@ -8,7 +8,7 @@ Application.$controller("TodayInspectionsPageController", ["$scope", function($s
 
 }]);
 
-Application.$controller("grid1Controller", ["$scope",
+Application.$controller("gridTodayInspectionsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
