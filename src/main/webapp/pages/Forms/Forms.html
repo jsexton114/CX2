@@ -990,7 +990,7 @@
                         <wm-composite name="composite5_2" required="true" show="bind:Variables.CurrentForm.dataSet.data[$i].formTypes.forceInspectionSequence">
                             <wm-label class="col-md-3 form-control-static" name="label93" caption="Inspection Type" fontweight="bold"></wm-label>
                             <wm-container class="col-md-6" name="container8">
-                                <wm-select name="selectInspectionDesignBySequence" dataset="bind:Variables.svDistinctInspectionDesignsForFormType.dataSet" datafield="All Fields" displayfield="inspectDesignName" placeholder="Select Inspection"></wm-select>
+                                <wm-select name="selectInspectionDesignBySequence" dataset="bind:Variables.svDistinctInspectionDesignsForFormType.dataSet" datafield="All Fields" displayfield="inspectDesignName" placeholder="Select Inspection" on-change="selectInspectionDesignBySequenceChange($event, $scope, newVal, oldVal)"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -1000,7 +1000,7 @@
                         <wm-composite required="true" name="composite8" show="bind:!Variables.CurrentForm.dataSet.data[$i].formTypes.forceInspectionSequence">
                             <wm-label class="col-md-3 form-control-static" caption="Inspection Type" fontweight="bold" name="label101"></wm-label>
                             <wm-container class="col-md-6" name="container15">
-                                <wm-select dataset="bind:Variables.svInspectionDesignByInspectionCategoriesAssignedT.dataSet" datafield="All Fields" displayfield="inspectDesignName" name="selectInspectionDesign" placeholder="Select Inspection"></wm-select>
+                                <wm-select dataset="bind:Variables.svInspectionDesignByInspectionCategoriesAssignedT.dataSet" datafield="All Fields" displayfield="inspectDesignName" name="selectInspectionDesign" placeholder="Select Inspection" on-change="selectInspectionDesignChange($event, $scope, newVal, oldVal)"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -1010,7 +1010,7 @@
                         <wm-composite name="composite6" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label94" caption="Date" fontweight="bold"></wm-label>
                             <wm-container class="col-md-6" name="container9">
-                                <wm-date name="dateInspectionRequest" mindate="CURRENT_DATE" datepattern="MM-dd-yyyy" placeholder="Select Date"></wm-date>
+                                <wm-date name="dateInspectionRequest" mindate="bind:Variables.minDaysForInspections.dataSet.dataValue" datepattern="MM-dd-yyyy" placeholder="Select Date" maxdate="bind:Variables.maxDaysForInspections.dataSet.dataValue"></wm-date>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>

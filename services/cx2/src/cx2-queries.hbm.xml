@@ -589,7 +589,7 @@ from MasterInspections where inspectionDesign.municipalities.id=:municipality an
 
     <query name="distinctInspectionDesignsForFormType">
         <![CDATA[
-        select DISTINCT inspectDesignId as inspectionDesignId,inspectionDesign.inspectDesignName as inspectDesignName,sequenceOrderNumber as sequenceOrderNumber,mustCompBeforeReqNxt as mustCompBeforeReqNxt from InspectionSequence
+        select DISTINCT inspectDesignId as inspectionDesignId,inspectionDesign.inspectDesignName as inspectDesignName,inspectionDesign.allowSameDayInspections as allowSameDayInspections,inspectionDesign. maxDaysInAdvance as maxDaysInAdvance,sequenceOrderNumber as sequenceOrderNumber,mustCompBeforeReqNxt as mustCompBeforeReqNxt from InspectionSequence
 where formTypeId=:form order by sequenceOrderNumber asc
         ]]>
     <query-param name="form" type="java.lang.Integer"/>
@@ -2157,7 +2157,7 @@ group by formTypes.formType
 
     <sql-query name="getInspectionDesignByInspectionCategoriesAssignedToFormType">
         <![CDATA[
-        select I.ID , I.InspectDesignName
+        select I.ID , I.InspectDesignName,I.MaxDaysInAdvance,I.AllowSameDayInspections
 from 
 InspectionDesign I,
 InspectionCategoryMapping ICM,
@@ -2172,7 +2172,7 @@ and IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID
 
     <sql-query name="getInspectionDesignByInspectionCategoriesAssignedToFormType__count">
         <![CDATA[
-        select count(*) from (select I.ID , I.InspectDesignName
+        select count(*) from (select I.ID , I.InspectDesignName,I.MaxDaysInAdvance,I.AllowSameDayInspections
 from 
 InspectionDesign I,
 InspectionCategoryMapping ICM,

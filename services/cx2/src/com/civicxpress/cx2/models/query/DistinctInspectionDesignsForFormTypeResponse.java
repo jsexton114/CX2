@@ -27,6 +27,10 @@ public class DistinctInspectionDesignsForFormTypeResponse implements Serializabl
     private Integer inspectionDesignId;
     @ColumnAlias("inspectDesignName")
     private String inspectDesignName;
+    @ColumnAlias("allowSameDayInspections")
+    private Boolean allowSameDayInspections;
+    @ColumnAlias("maxDaysInAdvance")
+    private Integer maxDaysInAdvance;
     @ColumnAlias("sequenceOrderNumber")
     private Integer sequenceOrderNumber;
     @ColumnAlias("mustCompBeforeReqNxt")
@@ -46,6 +50,22 @@ public class DistinctInspectionDesignsForFormTypeResponse implements Serializabl
 
     public void setInspectDesignName(String inspectDesignName) {
         this.inspectDesignName = inspectDesignName;
+    }
+
+    public Boolean getAllowSameDayInspections() {
+        return this.allowSameDayInspections;
+    }
+
+    public void setAllowSameDayInspections(Boolean allowSameDayInspections) {
+        this.allowSameDayInspections = allowSameDayInspections;
+    }
+
+    public Integer getMaxDaysInAdvance() {
+        return this.maxDaysInAdvance;
+    }
+
+    public void setMaxDaysInAdvance(Integer maxDaysInAdvance) {
+        this.maxDaysInAdvance = maxDaysInAdvance;
     }
 
     public Integer getSequenceOrderNumber() {
@@ -71,6 +91,8 @@ public class DistinctInspectionDesignsForFormTypeResponse implements Serializabl
         final DistinctInspectionDesignsForFormTypeResponse distinctInspectionDesignsForFormTypeResponse = (DistinctInspectionDesignsForFormTypeResponse) o;
         return Objects.equals(getInspectionDesignId(), distinctInspectionDesignsForFormTypeResponse.getInspectionDesignId()) &&
                 Objects.equals(getInspectDesignName(), distinctInspectionDesignsForFormTypeResponse.getInspectDesignName()) &&
+                Objects.equals(getAllowSameDayInspections(), distinctInspectionDesignsForFormTypeResponse.getAllowSameDayInspections()) &&
+                Objects.equals(getMaxDaysInAdvance(), distinctInspectionDesignsForFormTypeResponse.getMaxDaysInAdvance()) &&
                 Objects.equals(getSequenceOrderNumber(), distinctInspectionDesignsForFormTypeResponse.getSequenceOrderNumber()) &&
                 Objects.equals(getMustCompBeforeReqNxt(), distinctInspectionDesignsForFormTypeResponse.getMustCompBeforeReqNxt());
     }
@@ -79,6 +101,8 @@ public class DistinctInspectionDesignsForFormTypeResponse implements Serializabl
     public int hashCode() {
         return Objects.hash(getInspectionDesignId(),
                 getInspectDesignName(),
+                getAllowSameDayInspections(),
+                getMaxDaysInAdvance(),
                 getSequenceOrderNumber(),
                 getMustCompBeforeReqNxt());
     }

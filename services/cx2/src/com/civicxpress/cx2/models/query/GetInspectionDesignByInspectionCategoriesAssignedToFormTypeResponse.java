@@ -37,6 +37,10 @@ public class GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse
     private Integer id;
     @ColumnAlias("InspectDesignName")
     private String inspectDesignName;
+    @ColumnAlias("MaxDaysInAdvance")
+    private Integer maxDaysInAdvance;
+    @ColumnAlias("AllowSameDayInspections")
+    private Boolean allowSameDayInspections;
 
     public Integer getId() {
         return this.id;
@@ -54,18 +58,38 @@ public class GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse
         this.inspectDesignName = inspectDesignName;
     }
 
+    public Integer getMaxDaysInAdvance() {
+        return this.maxDaysInAdvance;
+    }
+
+    public void setMaxDaysInAdvance(Integer maxDaysInAdvance) {
+        this.maxDaysInAdvance = maxDaysInAdvance;
+    }
+
+    public Boolean getAllowSameDayInspections() {
+        return this.allowSameDayInspections;
+    }
+
+    public void setAllowSameDayInspections(Boolean allowSameDayInspections) {
+        this.allowSameDayInspections = allowSameDayInspections;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse)) return false;
         final GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse = (GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse) o;
         return Objects.equals(getId(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getId()) &&
-                Objects.equals(getInspectDesignName(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getInspectDesignName());
+                Objects.equals(getInspectDesignName(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getInspectDesignName()) &&
+                Objects.equals(getMaxDaysInAdvance(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getMaxDaysInAdvance()) &&
+                Objects.equals(getAllowSameDayInspections(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getAllowSameDayInspections());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId(),
-                getInspectDesignName());
+                getInspectDesignName(),
+                getMaxDaysInAdvance(),
+                getAllowSameDayInspections());
     }
 }

@@ -12904,7 +12904,7 @@
         "fullyQualifiedType" : "datetime",
         "columnName" : "AddedAt",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
@@ -18652,6 +18652,19 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Giscontacts"
   },
+  "maxDaysForInspections" : {
+    "_id" : "wm-maxDaysForInspections-wm.Variable-1491218065721",
+    "name" : "maxDaysForInspections",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : 1488565800000
+    },
+    "type" : "date",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
   "MessageMailsSent" : {
     "_id" : "wm-MessageMailsSent-wm.NotificationVariable-1487155097989",
     "name" : "MessageMailsSent",
@@ -18679,6 +18692,19 @@
       "type" : "string"
     } ],
     "operation" : "toast"
+  },
+  "minDaysForInspections" : {
+    "_id" : "wm-minDaysForInspections-wm.Variable-1491218044375",
+    "name" : "minDaysForInspections",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : 1488565800000
+    },
+    "type" : "date",
+    "isList" : false,
+    "saveInPhonegap" : false
   },
   "ncStatusUpdated" : {
     "_id" : "wm-ncStatusUpdated-wm.NotificationVariable-1485541271377",
