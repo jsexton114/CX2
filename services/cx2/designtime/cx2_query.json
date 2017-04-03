@@ -9174,11 +9174,11 @@
       } ]
     }
   },
-  "assignedInspectionsGreatorThanDate" : {
-    "name" : "assignedInspectionsGreatorThanDate",
-    "description" : "assignedInspectionsGreatorThanDate",
+  "assignedInspectionsBetweenDates" : {
+    "name" : "assignedInspectionsBetweenDates",
+    "description" : "assignedInspectionsBetweenDates",
     "version" : "V2",
-    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\nusersByAssignedTo.fullName as assignedToPersonName,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\nrequestedFor as requestedFor,\ngisrecords.fullAddress as fullAddress,\ngisrecords.lot as lot,\ngisrecords.subdivisions.subdivision as subdivision,\nusersByRequestedBy.fullName as fullName,\ninspectionDesign.inspectDesignName as inspectDesignName\n\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor>:requestedFor",
+    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\nusersByAssignedTo.fullName as assignedToPersonName,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\nrequestedFor as requestedFor,\ngisrecords.fullAddress as fullAddress,\ngisrecords.lot as lot,\ngisrecords.subdivisions.subdivision as subdivision,\nusersByRequestedBy.fullName as fullName,\ninspectionDesign.inspectDesignName as inspectDesignName\n\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor between :startDate and :endDate",
     "countQueryString" : null,
     "nativeSql" : false,
     "fetchCount" : false,
@@ -9205,11 +9205,18 @@
       "testValue" : "3",
       "required" : true
     }, {
-      "name" : "requestedFor",
+      "name" : "startDate",
       "type" : "datetime",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2017-04-06T12:56:29",
+      "testValue" : "2017-03-27T14:59:16",
+      "required" : true
+    }, {
+      "name" : "endDate",
+      "type" : "datetime",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-04-27T14:59:21",
       "required" : true
     } ],
     "request" : {
@@ -9218,7 +9225,7 @@
       "method" : "GET"
     },
     "response" : {
-      "typeRef" : "com.civicxpress.cx2.models.query.AssignedInspectionsGreatorThanDateResponse",
+      "typeRef" : "com.civicxpress.cx2.models.query.AssignedInspectionsBetweenDatesResponse",
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {

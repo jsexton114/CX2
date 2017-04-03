@@ -267,6 +267,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportManualFeeTypeCountForMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable);
 
+    Page<AssignedInspectionsBetweenDatesResponse> executeAssignedInspectionsBetweenDates(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
+
+    Downloadable exportAssignedInspectionsBetweenDates(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
+
     Integer executeInsertSubscription(InsertSubscriptionRequest insertSubscriptionRequest);
 
     Page<GetProcessGroupMemebersByFormGuidResponse> executeGetProcessGroupMemebersByFormGUID(String formGuid, Integer userId, Pageable pageable);
@@ -442,10 +446,6 @@ public interface Cx2QueryExecutorService {
     Page<AllFeesOfFormsForCreatedByAndSharedWithResponse> executeAllFeesOfFormsForCreatedByAndSharedWith(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
 
     Downloadable exportAllFeesOfFormsForCreatedByAndSharedWith(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
-
-    Page<AssignedInspectionsGreatorThanDateResponse> executeAssignedInspectionsGreatorThanDate(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable);
-
-    Downloadable exportAssignedInspectionsGreatorThanDate(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable);
 
     Page<VendorsCountForMunicipalitiesResponse> executeVendorsCountForMunicipalities(Integer municipalityId, Pageable pageable);
 

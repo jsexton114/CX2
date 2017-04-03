@@ -1037,6 +1037,31 @@ from MasterInspections where inspectionDesign.municipalities.id=:municipality an
     <query-param name="MunicipalityId" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="assignedInspectionsBetweenDates">
+        <![CDATA[
+        select 
+inspectionGuid as inspectionGuid,
+assignedTo as assignedTo,
+usersByAssignedTo.fullName as assignedToPersonName,
+inspectionOutcome.outcome as outcome,
+inspectionTitle as inspectionTitle,
+inspectionZone as inspectionZone,
+requestedFor as requestedFor,
+gisrecords.fullAddress as fullAddress,
+gisrecords.lot as lot,
+gisrecords.subdivisions.subdivision as subdivision,
+usersByRequestedBy.fullName as fullName,
+inspectionDesign.inspectDesignName as inspectDesignName
+
+from MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor between :startDate and :endDate
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="isClosed" type="java.lang.Boolean"/>
+    <query-param name="assignedTo" type="java.lang.Integer"/>
+    <query-param name="startDate" type="org.joda.time.LocalDateTime"/>
+    <query-param name="endDate" type="org.joda.time.LocalDateTime"/>
+    </query>
+
     <sql-query name="InsertSubscription">
         <![CDATA[
         insert into UserSubscriptions(UserId,MunicipalityId,DateSubscribed) values(:UserId,:MunicipalityId,:DateSubscribed)
@@ -1858,30 +1883,6 @@ from Fees where masterForms.formStatuses.allowPayment=:allowPayment and paidStat
     <query-param name="allowPayment" type="java.lang.Boolean"/>
     <query-param name="paidStatus" type="java.lang.String"/>
     <query-param name="userId" type="java.lang.Integer"/>
-    </query>
-
-    <query name="assignedInspectionsGreatorThanDate">
-        <![CDATA[
-        select 
-inspectionGuid as inspectionGuid,
-assignedTo as assignedTo,
-usersByAssignedTo.fullName as assignedToPersonName,
-inspectionOutcome.outcome as outcome,
-inspectionTitle as inspectionTitle,
-inspectionZone as inspectionZone,
-requestedFor as requestedFor,
-gisrecords.fullAddress as fullAddress,
-gisrecords.lot as lot,
-gisrecords.subdivisions.subdivision as subdivision,
-usersByRequestedBy.fullName as fullName,
-inspectionDesign.inspectDesignName as inspectDesignName
-
-from MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor>:requestedFor
-        ]]>
-    <query-param name="municipality" type="java.lang.Integer"/>
-    <query-param name="isClosed" type="java.lang.Boolean"/>
-    <query-param name="assignedTo" type="java.lang.Integer"/>
-    <query-param name="requestedFor" type="org.joda.time.LocalDateTime"/>
     </query>
 
     <sql-query name="VendorsCountForMunicipalities">

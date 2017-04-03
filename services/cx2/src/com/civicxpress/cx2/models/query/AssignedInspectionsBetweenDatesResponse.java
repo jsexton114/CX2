@@ -7,7 +7,6 @@ package com.civicxpress.cx2.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
@@ -15,20 +14,14 @@ import java.util.Objects;
 
 import org.joda.time.LocalDateTime;
 
-import com.civicxpress.cx2.ContractorTypes;
 import com.civicxpress.cx2.FormFieldTypes;
 import com.civicxpress.cx2.FormTypes;
-import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.MasterForms;
-import com.civicxpress.cx2.Municipalities;
-import com.civicxpress.cx2.Projects;
-import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
-import com.civicxpress.cx2.Vendor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class AssignedInspectionsGreatorThanDateResponse implements Serializable {
+public class AssignedInspectionsBetweenDatesResponse implements Serializable {
 
     @ColumnAlias("inspectionGuid")
     private String inspectionGuid;
@@ -154,20 +147,20 @@ public class AssignedInspectionsGreatorThanDateResponse implements Serializable 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AssignedInspectionsGreatorThanDateResponse)) return false;
-        final AssignedInspectionsGreatorThanDateResponse assignedInspectionsGreatorThanDateResponse = (AssignedInspectionsGreatorThanDateResponse) o;
-        return Objects.equals(getInspectionGuid(), assignedInspectionsGreatorThanDateResponse.getInspectionGuid()) &&
-                Objects.equals(getAssignedTo(), assignedInspectionsGreatorThanDateResponse.getAssignedTo()) &&
-                Objects.equals(getAssignedToPersonName(), assignedInspectionsGreatorThanDateResponse.getAssignedToPersonName()) &&
-                Objects.equals(getOutcome(), assignedInspectionsGreatorThanDateResponse.getOutcome()) &&
-                Objects.equals(getInspectionTitle(), assignedInspectionsGreatorThanDateResponse.getInspectionTitle()) &&
-                Objects.equals(getInspectionZone(), assignedInspectionsGreatorThanDateResponse.getInspectionZone()) &&
-                Objects.equals(getRequestedFor(), assignedInspectionsGreatorThanDateResponse.getRequestedFor()) &&
-                Objects.equals(getFullAddress(), assignedInspectionsGreatorThanDateResponse.getFullAddress()) &&
-                Objects.equals(getLot(), assignedInspectionsGreatorThanDateResponse.getLot()) &&
-                Objects.equals(getSubdivision(), assignedInspectionsGreatorThanDateResponse.getSubdivision()) &&
-                Objects.equals(getFullName(), assignedInspectionsGreatorThanDateResponse.getFullName()) &&
-                Objects.equals(getInspectDesignName(), assignedInspectionsGreatorThanDateResponse.getInspectDesignName());
+        if (!(o instanceof AssignedInspectionsBetweenDatesResponse)) return false;
+        final AssignedInspectionsBetweenDatesResponse assignedInspectionsBetweenDatesResponse = (AssignedInspectionsBetweenDatesResponse) o;
+        return Objects.equals(getInspectionGuid(), assignedInspectionsBetweenDatesResponse.getInspectionGuid()) &&
+                Objects.equals(getAssignedTo(), assignedInspectionsBetweenDatesResponse.getAssignedTo()) &&
+                Objects.equals(getAssignedToPersonName(), assignedInspectionsBetweenDatesResponse.getAssignedToPersonName()) &&
+                Objects.equals(getOutcome(), assignedInspectionsBetweenDatesResponse.getOutcome()) &&
+                Objects.equals(getInspectionTitle(), assignedInspectionsBetweenDatesResponse.getInspectionTitle()) &&
+                Objects.equals(getInspectionZone(), assignedInspectionsBetweenDatesResponse.getInspectionZone()) &&
+                Objects.equals(getRequestedFor(), assignedInspectionsBetweenDatesResponse.getRequestedFor()) &&
+                Objects.equals(getFullAddress(), assignedInspectionsBetweenDatesResponse.getFullAddress()) &&
+                Objects.equals(getLot(), assignedInspectionsBetweenDatesResponse.getLot()) &&
+                Objects.equals(getSubdivision(), assignedInspectionsBetweenDatesResponse.getSubdivision()) &&
+                Objects.equals(getFullName(), assignedInspectionsBetweenDatesResponse.getFullName()) &&
+                Objects.equals(getInspectDesignName(), assignedInspectionsBetweenDatesResponse.getInspectDesignName());
     }
 
     @Override

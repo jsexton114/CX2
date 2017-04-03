@@ -34,7 +34,22 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow4">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn5"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn5">
+                        <wm-grid title="" dataset="bind:Variables.svYesterdayInspections.dataSet" navigation="Classic" name="gridTodayInspections">
+                            <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Contractor'" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="fullAddress" caption="Full Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="assignedToPersonName" caption="Assigned To Person Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="assignedTo" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Contractor'" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="inspectionGuid" caption="Inspection Guid" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="fullName" caption="Full Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="requestedFor" caption="Requested For" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="inspectDesignName" caption="Inspect Design Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                        </wm-grid>
+                    </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
