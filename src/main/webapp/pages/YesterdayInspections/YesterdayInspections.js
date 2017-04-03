@@ -10,3 +10,10 @@ Application.$controller("YesterdayInspectionsPageController", ["$scope", functio
     };
 
 }]);
+
+Application.$controller("gridTodayInspectionsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
