@@ -125,6 +125,26 @@ Application.$directive("fieldCalculator", [function() {
 
                 valueWidget.datavalue = calculation;
             };
+
+            // Field buttons
+            scope.fieldGroups = [];
+            scope.fieldGroups.push([]);
+
+            scope.perRow = 3;
+
+            var fieldsWatcher = scope.$watch(function() {
+                return scope.$eval(attrs.fieldList);
+            }, function(newVal, oldVal) {
+                if (!!newVal) {
+                    newVal.forEach(function(field, index) {
+                        scope.fieldGroups[scope.fieldGroups.length - 1].push(field);
+
+                        if ((index + 1) % scope.perRow === 0) {
+                            scope.fieldGroups.push([]);
+                        }
+                    });
+                }
+            });
         }
     };
 }]);
@@ -416,16 +436,5 @@ Application.$controller("dialogAddUserToGroupController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-    }
-]);
-
-Application.$controller("gridFieldsForCalcController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-
-        $scope.customRowAction = function($event, $rowData) {
-            $scope.$parent.addField($rowData.fieldName);
-        };
     }
 ]);

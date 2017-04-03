@@ -4,3 +4,14 @@
         margin: 30px auto;
     }
 }
+
+.calc-grid .app-grid-column {
+    padding: 2px !important;
+}
+
+[name=layoutgridFieldButtons] button span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+}

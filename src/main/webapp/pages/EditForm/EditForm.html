@@ -724,9 +724,18 @@
                         <wm-container name="container9" show="bind:Widgets.selectFormFieldType.datavalue.label === 'Calculated'">
                             <wm-composite name="compositeFieldCalculator">
                                 <wm-label class="col-md-3 control-label" name="label37" caption="Calculation"></wm-label>
-                                <div class="app-container" field-calculator name="container9">
+                                <div class="app-container" field-calculator="" field-list="Variables.svGetCalculableFields.dataSet.content" name="container9">
                                     <wm-textarea name="calculatedDefault" placeholder="Enter equation" readonly="true" required="bind:Widgets.selectFormFieldType.datavalue.label === 'Calculated'"></wm-textarea>
-                                    <wm-layoutgrid name="layoutgrid23_1" columns="4">
+
+                                    <wm-layoutgrid name="layoutgridFieldButtons">
+                                        <wm-gridrow ng-repeat="fieldGroup in fieldGroups" name="fieldButtonRow{{$index}}">
+                                            <wm-gridcolumn ng-repeat="field in fieldGroup" style="padding: 2px" columnwidth="{{12 / perRow}}" name="fieldgridcol{{$index}}">
+                                                <button class="btn btn-primary btn-block" ng-click="addField(field.fieldName, $event)"><span title="{{field.label}}">{{field.label}}</span>
+                                                </button>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                    <wm-layoutgrid name="fieldCalcLayoutGrid" class="calc-grid" columns="4">
                                         <wm-gridrow name="gridrow89">
                                             <wm-gridcolumn columnwidth="3" name="gridcolumn121">
                                                 <wm-button class="btn-primary btn-block" caption="÷" type="button" margin="unset 0.5em" name="buttonDivide" on-click="addOperation('/', $event)" shortcutkey="/"></wm-button>
@@ -793,14 +802,6 @@
                                             <wm-gridcolumn columnwidth="3" name="gridcolumn140"></wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
-                                    <wm-grid title="Fields" dataset="bind:Variables.svGetCalculableFields.dataSet" navigation="Classic" name="gridFieldsForCalc">
-                                        <wm-grid-column binding="fieldName" caption="Field Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="label" caption="Label" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="formFieldTypes.label" caption="Type" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormFieldTypes"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-row-action key="customRow" display-name="Add" show="true" class="btn-transparent" iconclass="wi wi-settings" title="Add Field" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
                                 </div>
                             </wm-composite>
                         </wm-container>
