@@ -197,7 +197,8 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn57_3">
                                                                 <wm-form-field name="allowSameDayCancel" displayname="Allow Same Day Cancellations" show="true" primary-key="false" generator="assigned" key="allowSameDayCancel" type="boolean" readonly="false"
-                                                                required="false" widget="checkbox" defaultvalue="FALSE" placeholder="" hint="If enabled, users will be able to cancel this inspection on the same day that it is scheduled to be performed. The municipality can optionally assess a fee for same day cancellations below."></wm-form-field>
+                                                                required="false" widget="checkbox" defaultvalue="FALSE" placeholder="" hint="If enabled, users will be able to cancel this inspection on the same day that it is scheduled to be performed. The municipality can optionally assess a fee for same day cancellations below."
+                                                                disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowCancel.datavalue"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
@@ -236,7 +237,7 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow43" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn70">
-                                                                <wm-form-field name="sameDayCancelFee" displayname="Same Day Cancellation Fee" show="true" primary-key="false" generator="assigned" key="sameDayCancelFee" type="integer" maxvalue="999999999999"
+                                                                <wm-form-field name="sameDayCancelFee" displayname="Same Day Cancellation Fee" show="true" primary-key="false" generator="assigned" key="sameDayCancelFee" type="integer" maxvalue="1000000000000"
                                                                 readonly="false" required="false" step="0.01" widget="currency" minvalue="0" placeholder="Enter value" disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayCancel.datavalue"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn71">
