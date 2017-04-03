@@ -26,6 +26,7 @@ import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.Vendor;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.wavemaker.commons.data.type.WMPersistentLocalDateTime;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetRolesForUserResponse implements Serializable {

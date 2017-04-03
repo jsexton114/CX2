@@ -15,6 +15,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.joda.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -1150,6 +1151,25 @@ public class QueryExecutionController {
         return queryService.exportCountOfAllProjectsForUsersAndSharedWith(exportType, active, creatorUser, sharedWithUser, pageable);
     }
 
+    @RequestMapping(value = "/queries/assignedInspectionsLessThanDate", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "assignedInspectionsLessThanDate")
+    public Page<AssignedInspectionsLessThanDateResponse> executeAssignedInspectionsLessThanDate(@RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "requestedFor") LocalDateTime requestedFor, Pageable pageable) {
+        LOGGER.debug("Executing named query: assignedInspectionsLessThanDate");
+        Page<AssignedInspectionsLessThanDateResponse> _result = queryService.executeAssignedInspectionsLessThanDate(municipality, isClosed, assignedTo, requestedFor, pageable);
+        LOGGER.debug("got the result for named query: assignedInspectionsLessThanDate, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query assignedInspectionsLessThanDate")
+    @RequestMapping(value = "/queries/assignedInspectionsLessThanDate/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportAssignedInspectionsLessThanDate(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "requestedFor") LocalDateTime requestedFor, Pageable pageable) {
+        LOGGER.debug("Exporting named query: assignedInspectionsLessThanDate");
+
+        return queryService.exportAssignedInspectionsLessThanDate(exportType, municipality, isClosed, assignedTo, requestedFor, pageable);
+    }
+
     @RequestMapping(value = "/queries/InsertTagForMessage", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "InsertTagForMessage")
@@ -2025,6 +2045,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: AllFeesOfFormsForCreatedByAndSharedWith");
 
         return queryService.exportAllFeesOfFormsForCreatedByAndSharedWith(exportType, allowPayment, paidStatus, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/assignedInspectionsGreatorThanDate", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "assignedInspectionsGreatorThanDate")
+    public Page<AssignedInspectionsGreatorThanDateResponse> executeAssignedInspectionsGreatorThanDate(@RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "requestedFor") LocalDateTime requestedFor, Pageable pageable) {
+        LOGGER.debug("Executing named query: assignedInspectionsGreatorThanDate");
+        Page<AssignedInspectionsGreatorThanDateResponse> _result = queryService.executeAssignedInspectionsGreatorThanDate(municipality, isClosed, assignedTo, requestedFor, pageable);
+        LOGGER.debug("got the result for named query: assignedInspectionsGreatorThanDate, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query assignedInspectionsGreatorThanDate")
+    @RequestMapping(value = "/queries/assignedInspectionsGreatorThanDate/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportAssignedInspectionsGreatorThanDate(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "requestedFor") LocalDateTime requestedFor, Pageable pageable) {
+        LOGGER.debug("Exporting named query: assignedInspectionsGreatorThanDate");
+
+        return queryService.exportAssignedInspectionsGreatorThanDate(exportType, municipality, isClosed, assignedTo, requestedFor, pageable);
     }
 
     @RequestMapping(value = "/queries/VendorsCountForMunicipalities", method = RequestMethod.GET)

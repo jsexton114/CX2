@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.joda.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -1298,6 +1299,32 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("CountOfAllProjectsForUsersAndSharedWith", params, exportType, CountOfAllProjectsForUsersAndSharedWithResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<AssignedInspectionsLessThanDateResponse> executeAssignedInspectionsLessThanDate(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("municipality", municipality);
+        params.put("isClosed", isClosed);
+        params.put("assignedTo", assignedTo);
+        params.put("requestedFor", requestedFor);
+
+        return queryExecutor.executeNamedQuery("assignedInspectionsLessThanDate", params, AssignedInspectionsLessThanDateResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportAssignedInspectionsLessThanDate(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("municipality", municipality);
+        params.put("isClosed", isClosed);
+        params.put("assignedTo", assignedTo);
+        params.put("requestedFor", requestedFor);
+
+        return queryExecutor.exportNamedQueryData("assignedInspectionsLessThanDate", params, exportType, AssignedInspectionsLessThanDateResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeInsertTagForMessage(InsertTagForMessageRequest insertTagForMessageRequest) {
@@ -2314,6 +2341,32 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("userId", userId);
 
         return queryExecutor.exportNamedQueryData("AllFeesOfFormsForCreatedByAndSharedWith", params, exportType, AllFeesOfFormsForCreatedByAndSharedWithResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<AssignedInspectionsGreatorThanDateResponse> executeAssignedInspectionsGreatorThanDate(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("municipality", municipality);
+        params.put("isClosed", isClosed);
+        params.put("assignedTo", assignedTo);
+        params.put("requestedFor", requestedFor);
+
+        return queryExecutor.executeNamedQuery("assignedInspectionsGreatorThanDate", params, AssignedInspectionsGreatorThanDateResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportAssignedInspectionsGreatorThanDate(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("municipality", municipality);
+        params.put("isClosed", isClosed);
+        params.put("assignedTo", assignedTo);
+        params.put("requestedFor", requestedFor);
+
+        return queryExecutor.exportNamedQueryData("assignedInspectionsGreatorThanDate", params, exportType, AssignedInspectionsGreatorThanDateResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

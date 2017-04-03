@@ -9174,6 +9174,322 @@
       } ]
     }
   },
+  "assignedInspectionsGreatorThanDate" : {
+    "name" : "assignedInspectionsGreatorThanDate",
+    "description" : "assignedInspectionsGreatorThanDate",
+    "version" : "V2",
+    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\nusersByAssignedTo.fullName as assignedToPersonName,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\nrequestedFor as requestedFor,\ngisrecords.fullAddress as fullAddress,\ngisrecords.lot as lot,\ngisrecords.subdivisions.subdivision as subdivision,\nusersByRequestedBy.fullName as fullName,\ninspectionDesign.inspectDesignName as inspectDesignName\n\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor>:requestedFor",
+    "countQueryString" : null,
+    "nativeSql" : false,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "isClosed",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "assignedTo",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    }, {
+      "name" : "requestedFor",
+      "type" : "datetime",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-04-06T12:56:29",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.AssignedInspectionsGreatorThanDateResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "inspectionGuid",
+        "fieldName" : "inspectionGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "assignedTo",
+        "fieldName" : "assignedTo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "assignedToPersonName",
+        "fieldName" : "assignedToPersonName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "outcome",
+        "fieldName" : "outcome",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "inspectionTitle",
+        "fieldName" : "inspectionTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "inspectionZone",
+        "fieldName" : "inspectionZone",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "requestedFor",
+        "fieldName" : "requestedFor",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "com.wavemaker.commons.data.type.WMPersistentLocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "fullAddress",
+        "fieldName" : "fullAddress",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "lot",
+        "fieldName" : "lot",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "subdivision",
+        "fieldName" : "subdivision",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fullName",
+        "fieldName" : "fullName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "inspectDesignName",
+        "fieldName" : "inspectDesignName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "assignedInspectionsLessThanDate" : {
+    "name" : "assignedInspectionsLessThanDate",
+    "description" : "assignedInspectionsLessThanDate",
+    "version" : "V2",
+    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\nusersByAssignedTo.fullName as assignedToPersonName,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\nrequestedFor as requestedFor,\ngisrecords.fullAddress as fullAddress,\ngisrecords.lot as lot,\ngisrecords.subdivisions.subdivision as subdivision,\nusersByRequestedBy.fullName as fullName,\ninspectionDesign.inspectDesignName as inspectDesignName\n\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor",
+    "countQueryString" : null,
+    "nativeSql" : false,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "isClosed",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "assignedTo",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    }, {
+      "name" : "requestedFor",
+      "type" : "datetime",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-04-05T12:24:41",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.AssignedInspectionsLessThanDateResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "inspectionGuid",
+        "fieldName" : "inspectionGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "assignedTo",
+        "fieldName" : "assignedTo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "assignedToPersonName",
+        "fieldName" : "assignedToPersonName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "outcome",
+        "fieldName" : "outcome",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "inspectionTitle",
+        "fieldName" : "inspectionTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "inspectionZone",
+        "fieldName" : "inspectionZone",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "requestedFor",
+        "fieldName" : "requestedFor",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "com.wavemaker.commons.data.type.WMPersistentLocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "fullAddress",
+        "fieldName" : "fullAddress",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "lot",
+        "fieldName" : "lot",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "subdivision",
+        "fieldName" : "subdivision",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fullName",
+        "fieldName" : "fullName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "inspectDesignName",
+        "fieldName" : "inspectDesignName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "bannedDetails" : {
     "name" : "bannedDetails",
     "description" : "user to display banner dertails based on user emailid",

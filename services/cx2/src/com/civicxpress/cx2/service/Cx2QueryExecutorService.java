@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.joda.time.LocalDateTime;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -256,6 +257,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfAllProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
 
+    Page<AssignedInspectionsLessThanDateResponse> executeAssignedInspectionsLessThanDate(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable);
+
+    Downloadable exportAssignedInspectionsLessThanDate(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable);
+
     Integer executeInsertTagForMessage(InsertTagForMessageRequest insertTagForMessageRequest);
 
     Page<ManualFeeTypeCountForMunicipalityResponse> executeManualFeeTypeCountForMunicipality(Integer municipalityId, Pageable pageable);
@@ -437,6 +442,10 @@ public interface Cx2QueryExecutorService {
     Page<AllFeesOfFormsForCreatedByAndSharedWithResponse> executeAllFeesOfFormsForCreatedByAndSharedWith(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
 
     Downloadable exportAllFeesOfFormsForCreatedByAndSharedWith(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
+
+    Page<AssignedInspectionsGreatorThanDateResponse> executeAssignedInspectionsGreatorThanDate(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable);
+
+    Downloadable exportAssignedInspectionsGreatorThanDate(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable);
 
     Page<VendorsCountForMunicipalitiesResponse> executeVendorsCountForMunicipalities(Integer municipalityId, Pageable pageable);
 
