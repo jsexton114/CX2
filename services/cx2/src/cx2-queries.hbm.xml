@@ -543,6 +543,20 @@ group by V.companyName) wmTempTable
     <query-param name="UserId" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="countAssignedInspectionsBetweenDates">
+        <![CDATA[
+        select 
+count(*) as inspectionsCount
+
+from MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor between :startDate and :endDate
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="isClosed" type="java.lang.Boolean"/>
+    <query-param name="assignedTo" type="java.lang.Integer"/>
+    <query-param name="startDate" type="org.joda.time.LocalDateTime"/>
+    <query-param name="endDate" type="org.joda.time.LocalDateTime"/>
+    </query>
+
     <sql-query name="UpdateVendorsToProject">
         <![CDATA[
         update  VendorsToProject set PrimaryVendor=:PrimaryVendor Where ProjectGuid=:project and VendorId=:vendor
@@ -1912,6 +1926,19 @@ from Fees where masterForms.formStatuses.allowPayment=:allowPayment and paidStat
         ]]>
     <query-param name="userId" type="java.lang.Integer"/>
     </sql-query>
+
+    <query name="countAssignedInspectionsLessThanDate">
+        <![CDATA[
+        select 
+count(*) as inspectionsCount
+
+from MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="isClosed" type="java.lang.Boolean"/>
+    <query-param name="assignedTo" type="java.lang.Integer"/>
+    <query-param name="requestedFor" type="org.joda.time.LocalDateTime"/>
+    </query>
 
     <sql-query name="DeleteFromVendorUsers">
         <![CDATA[

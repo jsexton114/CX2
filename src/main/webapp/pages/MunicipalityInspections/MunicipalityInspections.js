@@ -1,17 +1,12 @@
-Application.$controller("MunicipalityInspectionsPageController", ["$scope", function ($scope) {
+Application.$controller("MunicipalityInspectionsPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
+    $scope.onPageReady = function() {
+        $scope.yesterDayStart = moment().startOf('day').subtract(1, 'days').valueOf();
+        $scope.toDayStart = moment().startOf('day').valueOf();
+        $scope.toDayEnd = moment().endOf('day').valueOf();
+        $scope.tomorrowEnd = moment().endOf('day').add(1, 'days').valueOf();
     };
 
 }]);

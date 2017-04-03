@@ -9535,6 +9535,131 @@
       } ]
     }
   },
+  "countAssignedInspectionsBetweenDates" : {
+    "name" : "countAssignedInspectionsBetweenDates",
+    "description" : "countAssignedInspectionsBetweenDates",
+    "version" : "V2",
+    "queryString" : "select \ncount(*) as inspectionsCount\n\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor between :startDate and :endDate",
+    "countQueryString" : null,
+    "nativeSql" : false,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "isClosed",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "assignedTo",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    }, {
+      "name" : "startDate",
+      "type" : "datetime",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-03-27T15:35:15",
+      "required" : true
+    }, {
+      "name" : "endDate",
+      "type" : "datetime",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-04-26T15:35:22",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CountAssignedInspectionsBetweenDatesResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "inspectionsCount",
+        "fieldName" : "inspectionsCount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Long",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "countAssignedInspectionsLessThanDate" : {
+    "name" : "countAssignedInspectionsLessThanDate",
+    "description" : "countAssignedInspectionsLessThanDate",
+    "version" : "V2",
+    "queryString" : "select \ncount(*) as inspectionsCount\n\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor",
+    "countQueryString" : null,
+    "nativeSql" : false,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "isClosed",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "assignedTo",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    }, {
+      "name" : "requestedFor",
+      "type" : "datetime",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-04-04T15:36:45",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CountAssignedInspectionsLessThanDateResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "inspectionsCount",
+        "fieldName" : "inspectionsCount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Long",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "deleteMunicipalityGroup" : {
     "name" : "deleteMunicipalityGroup",
     "description" : "deleteMunicipalityGroup based on userID and MunicipalityGroupId",

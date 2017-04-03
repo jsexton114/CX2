@@ -153,6 +153,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfProcessFormsByMuncipality(ExportType exportType, Integer municipalityId, Boolean closed, Integer userId, Pageable pageable);
 
+    Page<CountAssignedInspectionsBetweenDatesResponse> executeCountAssignedInspectionsBetweenDates(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
+
+    Downloadable exportCountAssignedInspectionsBetweenDates(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
+
     Integer executeUpdateVendorsToProject(UpdateVendorsToProjectRequest updateVendorsToProjectRequest);
 
     Page<CountOfCxprojectsActiveResponse> executeCountOfCXProjectsActive(Pageable pageable);
@@ -454,6 +458,10 @@ public interface Cx2QueryExecutorService {
     Page<GetRolesForUserResponse> executeGetRolesForUser(Integer userId, Pageable pageable);
 
     Downloadable exportGetRolesForUser(ExportType exportType, Integer userId, Pageable pageable);
+
+    Page<CountAssignedInspectionsLessThanDateResponse> executeCountAssignedInspectionsLessThanDate(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable);
+
+    Downloadable exportCountAssignedInspectionsLessThanDate(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable);
 
     Integer executeDeleteFromVendorUsers(Integer user, Integer vendor);
 
