@@ -145,6 +145,51 @@ Application.directive('cxCheckboxSet', [function() {
     };
 }]);
 
+Application.directive('cxCalculatedField', [function() {
+    "use strict";
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+            formField: '=',
+            formData: '='
+        },
+        template: '<div><input class="form-control" type="text" disabled="disabled" ng-value="calculateField()" /></div>',
+        link: function(scope, elem, attrs, dynamicFormFieldsCtrl) {
+            scope.calculateField = calculateField;
+
+            var compiledCalculation = null;
+
+            function calculateField() {
+                if (compiledCalculation === null) {
+                    compileCalculation();
+                }
+
+                return scope.$eval(compiledCalculation);
+            }
+
+            function compileCalculation() {
+                compiledCalculation = "";
+
+                var rawCalculation = scope.formField.defaultValue;
+                var calcRegex = /\[([a-zA-Z0-9]+)\]/gm;
+
+                var match = calcRegex.exec(rawCalculation);
+
+                compiledCalculation = angular.copy(rawCalculation);
+                while (match !== null) {
+                    var toReplace = match[0];
+                    var fieldName = match[1];
+
+                    compiledCalculation = compiledCalculation.replace(toReplace, 'formData[\'' + fieldName + '\']');
+
+                    match = calcRegex.exec(rawCalculation);
+                }
+            }
+        }
+    };
+}]);
+
 Application.directive('datetimePicker', ['uibDateParser', function(uibDateParser) {
     "use strict";
     return {
@@ -232,7 +277,7 @@ Application.directive('dynamicFormFields', function() {
                 });
 
                 unwatchFieldList();
-                scope.formFieldList = adjustedFieldList;
+                scope.adjustedFieldList = adjustedFieldList;
             });
         }
     };
@@ -315,12 +360,12 @@ Application.run(["$templateCache", function($templateCache) {
 
     $templateCache.put("dynamicFormFields.html",
         "<div class=\"app-grid-layout clearfix\" name=\"layoutgridDynamicFields\">\n" +
-        "<wm-gridrow ng-repeat=\"formFieldGroup in formFieldList\" name=\"fieldGridrow{{$index}}\">\n" +
+        "<wm-gridrow ng-repeat=\"formFieldGroup in adjustedFieldList\" name=\"fieldGridrow{{$index}}\">\n" +
         "    <div ng-repeat=\"formField in formFieldGroup\" class=\"app-grid-column dynamic-field-column col-sm-{{12 / (!formField.formFieldTypes.sqlType && formField.formFieldTypes.label !== 'Calculated' ? formFieldGroup.length : columnCount)}}\" name=\"fieldGridcolumn{{$index}}\" ng-class=\"{'panel-primary': formField.formFieldTypes.label == 'Header'}\">\n" +
         "        <hr ng-if=\"formField.formFieldTypes.label == 'Horizontal Line'\">\n" +
         "        <p ng-if=\"formField.formFieldTypes.label == 'Instruction Text'\" ng-bind-html=\"formField.defaultValue\"></p>\n" +
         "        <h3 class=\"panel-heading\" ng-if=\"formField.formFieldTypes.label == 'Header'\" ng-bind-html=\"formField.defaultValue\"></h3>\n\n" +
-        "        <wm-composite ng-if=\"!!formField.formFieldTypes.sqlType\" name=\"fieldComposite{{$index}}\">\n" +
+        "        <wm-composite ng-if=\"!!formField.formFieldTypes.sqlType || formField.formFieldTypes.label === 'Calculated'\" name=\"fieldComposite{{$index}}\">\n" +
         "            <label class=\"col-md-12 control-label app-label\" name=\"fieldLabel{{$index}}\" style=\"margin-top: 6px\" ng-class=\"{required: formField.required}\"> {{formField.label}} <i ng-if=\"!!formField.helpText &amp;&amp; formField.helpText != ''\" class=\"wi wi-help fa-lg\" title=\"{{formField.helpText}}\"></i>\n" +
         "            </label>\n\n" +
         "            <wm-container class=\"col-md-12\" name=\"container3\">\n" +
@@ -338,6 +383,7 @@ Application.run(["$templateCache", function($templateCache) {
         "                </div>\n" +
         "                <select ng-if=\"formField.formFieldTypes.label == 'Select'\" style=\"margin-bottom: 6px\" ng-options=\"item for item in (formField.possibleValues.split(','))\" ng-model=\"formData[formField.fieldName]\" ng-required=\"formField.required\"></select>\n" +
         "                <cx-checkbox-set ng-if=\"formField.formFieldTypes.label == 'Multi-Select'\" choices=\"formField.possibleValues\" model=\"formData[formField.fieldName]\" field-name=\"formField.fieldName\"></cx-checkbox-set>\n" +
+        "                <cx-calculated-field ng-if=\"formField.formFieldTypes.label === 'Calculated'\" form-field=\"formField\" form-data=\"formData\"></cx-calculated-field>\n" +
         "            </wm-container>\n" +
         "        </wm-composite>\n" +
         "    </div>\n" +
