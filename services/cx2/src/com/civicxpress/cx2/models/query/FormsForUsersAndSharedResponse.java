@@ -22,7 +22,6 @@ import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wavemaker.commons.data.type.WMPersistentLocalDateTime;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class FormsForUsersAndSharedResponse implements Serializable {

@@ -26,7 +26,6 @@ import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.Vendor;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wavemaker.commons.data.type.WMPersistentLocalDateTime;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class AssignedInspectionsGreatorThanDateResponse implements Serializable {
@@ -44,7 +43,7 @@ public class AssignedInspectionsGreatorThanDateResponse implements Serializable 
     @ColumnAlias("inspectionZone")
     private String inspectionZone;
     @ColumnAlias("requestedFor")
-    private WMPersistentLocalDateTime requestedFor;
+    private LocalDateTime requestedFor;
     @ColumnAlias("fullAddress")
     private String fullAddress;
     @ColumnAlias("lot")
@@ -104,11 +103,11 @@ public class AssignedInspectionsGreatorThanDateResponse implements Serializable 
         this.inspectionZone = inspectionZone;
     }
 
-    public WMPersistentLocalDateTime getRequestedFor() {
+    public LocalDateTime getRequestedFor() {
         return this.requestedFor;
     }
 
-    public void setRequestedFor(WMPersistentLocalDateTime requestedFor) {
+    public void setRequestedFor(LocalDateTime requestedFor) {
         this.requestedFor = requestedFor;
     }
 

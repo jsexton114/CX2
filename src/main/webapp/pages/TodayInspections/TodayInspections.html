@@ -24,17 +24,38 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow18">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn31">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn31" padding="1em unset">
                         <wm-composite name="composite1" margin="unset unset unset 0.2em">
                             <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
                             <wm-container class="col-md-9" name="container1" width="180px">
                                 <wm-select name="selectView" dataset="bind:Variables.SelectView.dataSet" datafield="All Fields" displayfield="viewName" datavalue="bind:Variables.PreferenceForUser.firstRecord"></wm-select>
                             </wm-container>
                         </wm-composite>
+                        <wm-composite name="composite3" show="false">
+                            <wm-label class="col-md-3 control-label" name="label4" caption="YesterdayDate"></wm-label>
+                            <wm-container class="col-md-9" name="container3">
+                                <!--<wm-datetime name="datetimeYesterdayDate" datavalue="bind:selectedDay"></wm-datetime>-->
+                            </wm-container>
+                        </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow4">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn5"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn5">
+                        <wm-grid title="" dataset="bind:Variables.svTodayInspections.dataSet" navigation="Classic" name="grid1">
+                            <wm-grid-column binding="subdivision" caption="Subdivision" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                            <wm-grid-column binding="fullAddress" caption="Full Address" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                            <wm-grid-column binding="assignedToPersonName" caption="Assigned To Person Name" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                            <wm-grid-column binding="assignedTo" caption="Assigned To" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                            <wm-grid-column binding="lot" caption="Lot" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionGuid" caption="Inspection Guid" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                            <wm-grid-column binding="fullName" caption="Full Name" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                            <wm-grid-column binding="outcome" caption="Outcome" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                            <wm-grid-column binding="requestedFor" caption="Requested For" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectDesignName" caption="Inspect Design Name" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionTitle" caption="Inspection Title" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                            <wm-grid-column binding="inspectionZone" caption="Inspection Zone" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                        </wm-grid>
+                    </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>

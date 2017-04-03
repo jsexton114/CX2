@@ -152,5 +152,45 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "svTodayInspections" : {
+    "_id" : "wm-svTodayInspections-wm.ServiceVariable-1491205069890",
+    "name" : "svTodayInspections",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipality",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "isClosed",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "assignedTo",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "requestedFor",
+      "value" : "bind:selectedDay",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.AssignedInspectionsLessThanDateResponse",
+    "service" : "cx2",
+    "operation" : "executeAssignedInspectionsLessThanDate",
+    "operationId" : "QueryExecutionController_executeAssignedInspectionsLessThanDate",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }

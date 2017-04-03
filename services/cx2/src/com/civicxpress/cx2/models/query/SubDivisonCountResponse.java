@@ -24,7 +24,6 @@ import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.Vendor;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wavemaker.commons.data.type.WMPersistentLocalDateTime;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class SubDivisonCountResponse implements Serializable {
