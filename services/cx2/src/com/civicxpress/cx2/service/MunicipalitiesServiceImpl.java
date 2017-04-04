@@ -140,19 +140,19 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
             }
         }
 
-        if(municipalitiesCreated.getFeeses() != null) {
-            for(Fees feese : municipalitiesCreated.getFeeses()) {
-                feese.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child Fees with information: {}", feese);
-                feesService.create(feese);
-            }
-        }
-
         if(municipalitiesCreated.getCaseTypeses() != null) {
             for(CaseTypes caseTypese : municipalitiesCreated.getCaseTypeses()) {
                 caseTypese.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child CaseTypes with information: {}", caseTypese);
                 caseTypesService.create(caseTypese);
+            }
+        }
+
+        if(municipalitiesCreated.getFeeses() != null) {
+            for(Fees feese : municipalitiesCreated.getFeeses()) {
+                feese.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child Fees with information: {}", feese);
+                feesService.create(feese);
             }
         }
 
@@ -354,17 +354,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated feeses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalities.id = '" + id + "'");
-
-        return feesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<CaseTypes> findAssociatedCaseTypeses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated caseTypeses");
 
@@ -372,6 +361,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
         queryBuilder.append("municipalities.id = '" + id + "'");
 
         return caseTypesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated feeses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return feesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

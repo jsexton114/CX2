@@ -38,6 +38,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
@@ -220,6 +221,24 @@ public class UsersController {
 		return usersService.count(query);
 	}
 
+    @RequestMapping(value="/{id:.+}/codeListsForCreatedBy", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the codeListsForCreatedBy instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<CodeList> findAssociatedCodeListsForCreatedBy(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated codeListsForCreatedBy");
+        return usersService.findAssociatedCodeListsForCreatedBy(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/codeListsForUpdatedBy", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the codeListsForUpdatedBy instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<CodeList> findAssociatedCodeListsForUpdatedBy(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated codeListsForUpdatedBy");
+        return usersService.findAssociatedCodeListsForUpdatedBy(id, pageable);
+    }
+
     @RequestMapping(value="/{id:.+}/codeSetsesForCreatedBy", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the codeSetsesForCreatedBy instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -328,6 +347,24 @@ public class UsersController {
         return usersService.findAssociatedLetterTemplatesesForModifiedBy(id, pageable);
     }
 
+    @RequestMapping(value="/{id:.+}/masterCasesesForCreatedBy", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterCasesesForCreatedBy instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated masterCasesesForCreatedBy");
+        return usersService.findAssociatedMasterCasesesForCreatedBy(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/masterCasesesForModifiedBy", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterCasesesForModifiedBy instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated masterCasesesForModifiedBy");
+        return usersService.findAssociatedMasterCasesesForModifiedBy(id, pageable);
+    }
+
     @RequestMapping(value="/{id:.+}/masterFormses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -362,24 +399,6 @@ public class UsersController {
 
         LOGGER.debug("Fetching all associated masterInspectionsesForModifiedBy");
         return usersService.findAssociatedMasterInspectionsesForModifiedBy(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/masterCasesesForCreatedBy", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the masterCasesesForCreatedBy instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated masterCasesesForCreatedBy");
-        return usersService.findAssociatedMasterCasesesForCreatedBy(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/masterCasesesForModifiedBy", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the masterCasesesForModifiedBy instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated masterCasesesForModifiedBy");
-        return usersService.findAssociatedMasterCasesesForModifiedBy(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/municipalityGroupMemberses", method=RequestMethod.GET)

@@ -15,13 +15,16 @@
     "table" : "CaseStatuses",
     "schema" : "cx2"
   }, {
+    "table" : "CodeSets",
+    "schema" : "cx2"
+  }, {
+    "table" : "Fees",
+    "schema" : "cx2"
+  }, {
     "table" : "CaseTypes",
     "schema" : "cx2"
   }, {
     "table" : "Document",
-    "schema" : "cx2"
-  }, {
-    "table" : "Fees",
     "schema" : "cx2"
   }, {
     "table" : "FormCategories",
@@ -36,16 +39,13 @@
     "table" : "FormHistory",
     "schema" : "cx2"
   }, {
-    "table" : "FormStatuses",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormTypes",
-    "schema" : "cx2"
-  }, {
     "table" : "FormDraft",
     "schema" : "cx2"
   }, {
     "table" : "FormMessages",
+    "schema" : "cx2"
+  }, {
+    "table" : "FormStatuses",
     "schema" : "cx2"
   }, {
     "table" : "FormFieldTypes",
@@ -60,22 +60,25 @@
     "table" : "FormTypeFields",
     "schema" : "cx2"
   }, {
+    "table" : "FormTypes",
+    "schema" : "cx2"
+  }, {
     "table" : "FormToInspectionCategoryMapping",
     "schema" : "cx2"
   }, {
     "table" : "GIS2Forms",
     "schema" : "cx2"
   }, {
-    "table" : "GISRecords",
-    "schema" : "cx2"
-  }, {
     "table" : "GISContacts",
     "schema" : "cx2"
   }, {
-    "table" : "GlobalSettings",
+    "table" : "GISRecords",
     "schema" : "cx2"
   }, {
     "table" : "InspectionDesign",
+    "schema" : "cx2"
+  }, {
+    "table" : "GlobalSettings",
     "schema" : "cx2"
   }, {
     "table" : "Holidays",
@@ -102,9 +105,6 @@
     "table" : "ManualFeeTypes",
     "schema" : "cx2"
   }, {
-    "table" : "MasterCases",
-    "schema" : "cx2"
-  }, {
     "table" : "MasterForms",
     "schema" : "cx2"
   }, {
@@ -112,6 +112,9 @@
     "schema" : "cx2"
   }, {
     "table" : "Municipalities",
+    "schema" : "cx2"
+  }, {
+    "table" : "MasterCases",
     "schema" : "cx2"
   }, {
     "table" : "MasterProjects",
@@ -147,9 +150,6 @@
     "table" : "SharedWith",
     "schema" : "cx2"
   }, {
-    "table" : "Users",
-    "schema" : "cx2"
-  }, {
     "table" : "MyCart",
     "schema" : "cx2"
   }, {
@@ -159,13 +159,16 @@
     "table" : "Subdivisions",
     "schema" : "cx2"
   }, {
+    "table" : "Users",
+    "schema" : "cx2"
+  }, {
+    "table" : "Vendor",
+    "schema" : "cx2"
+  }, {
     "table" : "UserPasswordResetTokens",
     "schema" : "cx2"
   }, {
     "table" : "UserSubscriptions",
-    "schema" : "cx2"
-  }, {
-    "table" : "Vendor",
     "schema" : "cx2"
   }, {
     "table" : "VendorApprovals",
@@ -195,7 +198,7 @@
     "table" : "VendorUsers",
     "schema" : "cx2"
   }, {
-    "table" : "CodeSets",
+    "table" : "CodeList",
     "schema" : "cx2"
   } ],
   "schemaFilter" : [ "cx2" ],

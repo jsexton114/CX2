@@ -213,15 +213,6 @@ public class MunicipalitiesController {
         return municipalitiesService.findAssociatedCodeSetses(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/feeses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the feeses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Fees> findAssociatedFeeses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated feeses");
-        return municipalitiesService.findAssociatedFeeses(id, pageable);
-    }
-
     @RequestMapping(value="/{id:.+}/caseTypeses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the caseTypeses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -229,6 +220,15 @@ public class MunicipalitiesController {
 
         LOGGER.debug("Fetching all associated caseTypeses");
         return municipalitiesService.findAssociatedCaseTypeses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/feeses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the feeses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Fees> findAssociatedFeeses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated feeses");
+        return municipalitiesService.findAssociatedFeeses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/formCategorieses", method=RequestMethod.GET)

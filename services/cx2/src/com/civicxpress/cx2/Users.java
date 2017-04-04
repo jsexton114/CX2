@@ -55,6 +55,8 @@ public class Users implements Serializable {
     private String country;
     private String fullName;
     private States states;
+    private List<CodeList> codeListsForCreatedBy = new ArrayList<>();
+    private List<CodeList> codeListsForUpdatedBy = new ArrayList<>();
     private List<CodeSets> codeSetsesForCreatedBy = new ArrayList<>();
     private List<CodeSets> codeSetsesForUpdatedBy = new ArrayList<>();
     private List<Fees> feeses = new ArrayList<>();
@@ -67,12 +69,12 @@ public class Users implements Serializable {
     private List<InspectionGis> inspectionGises = new ArrayList<>();
     private List<LetterTemplates> letterTemplatesesForCreatedBy = new ArrayList<>();
     private List<LetterTemplates> letterTemplatesesForModifiedBy = new ArrayList<>();
+    private List<MasterCases> masterCasesesForCreatedBy = new ArrayList<>();
+    private List<MasterCases> masterCasesesForModifiedBy = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<MasterInspections> masterInspectionsesForAssignedTo = new ArrayList<>();
     private List<MasterInspections> masterInspectionsesForRequestedBy = new ArrayList<>();
     private List<MasterInspections> masterInspectionsesForModifiedBy = new ArrayList<>();
-    private List<MasterCases> masterCasesesForCreatedBy = new ArrayList<>();
-    private List<MasterCases> masterCasesesForModifiedBy = new ArrayList<>();
     private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<ProjectForms> projectFormses = new ArrayList<>();
     private List<Projects> projectsesForCreatedBy = new ArrayList<>();
@@ -263,6 +265,26 @@ public class Users implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
+    public List<CodeList> getCodeListsForCreatedBy() {
+        return this.codeListsForCreatedBy;
+    }
+
+    public void setCodeListsForCreatedBy(List<CodeList> codeListsForCreatedBy) {
+        this.codeListsForCreatedBy = codeListsForCreatedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByUpdatedBy")
+    public List<CodeList> getCodeListsForUpdatedBy() {
+        return this.codeListsForUpdatedBy;
+    }
+
+    public void setCodeListsForUpdatedBy(List<CodeList> codeListsForUpdatedBy) {
+        this.codeListsForUpdatedBy = codeListsForUpdatedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
     public List<CodeSets> getCodeSetsesForCreatedBy() {
         return this.codeSetsesForCreatedBy;
     }
@@ -382,6 +404,26 @@ public class Users implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
+    public List<MasterCases> getMasterCasesesForCreatedBy() {
+        return this.masterCasesesForCreatedBy;
+    }
+
+    public void setMasterCasesesForCreatedBy(List<MasterCases> masterCasesesForCreatedBy) {
+        this.masterCasesesForCreatedBy = masterCasesesForCreatedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByModifiedBy")
+    public List<MasterCases> getMasterCasesesForModifiedBy() {
+        return this.masterCasesesForModifiedBy;
+    }
+
+    public void setMasterCasesesForModifiedBy(List<MasterCases> masterCasesesForModifiedBy) {
+        this.masterCasesesForModifiedBy = masterCasesesForModifiedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<MasterForms> getMasterFormses() {
         return this.masterFormses;
@@ -419,26 +461,6 @@ public class Users implements Serializable {
 
     public void setMasterInspectionsesForModifiedBy(List<MasterInspections> masterInspectionsesForModifiedBy) {
         this.masterInspectionsesForModifiedBy = masterInspectionsesForModifiedBy;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
-    public List<MasterCases> getMasterCasesesForCreatedBy() {
-        return this.masterCasesesForCreatedBy;
-    }
-
-    public void setMasterCasesesForCreatedBy(List<MasterCases> masterCasesesForCreatedBy) {
-        this.masterCasesesForCreatedBy = masterCasesesForCreatedBy;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByModifiedBy")
-    public List<MasterCases> getMasterCasesesForModifiedBy() {
-        return this.masterCasesesForModifiedBy;
-    }
-
-    public void setMasterCasesesForModifiedBy(List<MasterCases> masterCasesesForModifiedBy) {
-        this.masterCasesesForModifiedBy = masterCasesesForModifiedBy;
     }
 
     @JsonInclude(Include.NON_EMPTY)

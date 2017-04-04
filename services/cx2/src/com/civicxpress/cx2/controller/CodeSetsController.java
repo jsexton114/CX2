@@ -30,6 +30,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.service.CodeSetsService;
 
@@ -141,6 +142,14 @@ public class CodeSetsController {
 		return codeSetsService.count(query);
 	}
 
+    @RequestMapping(value="/{id:.+}/codeLists", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the codeLists instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<CodeList> findAssociatedCodeLists(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated codeLists");
+        return codeSetsService.findAssociatedCodeLists(id, pageable);
+    }
 
     /**
 	 * This setter method should only be used by unit tests

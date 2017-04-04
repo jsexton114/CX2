@@ -14,6 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
 
 /**
@@ -125,6 +126,17 @@ public interface CodeSetsService {
 	 */
 	long count(String query);
 
+    /*
+     * Returns the associated codeLists for given CodeSets id.
+     *
+     * @param codeSetId value of codeSetId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated CodeList instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<CodeList> findAssociatedCodeLists(Integer codeSetId, Pageable pageable);
 
 }
 

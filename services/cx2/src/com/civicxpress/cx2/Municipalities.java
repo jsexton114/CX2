@@ -68,8 +68,8 @@ public class Municipalities implements Serializable {
     private int formLimit;
     private States states;
     private List<CodeSets> codeSetses = new ArrayList<>();
-    private List<Fees> feeses = new ArrayList<>();
     private List<CaseTypes> caseTypeses = new ArrayList<>();
+    private List<Fees> feeses = new ArrayList<>();
     private List<FormCategories> formCategorieses = new ArrayList<>();
     private List<FormTypes> formTypeses = new ArrayList<>();
     private List<Gisrecords> gisrecordses = new ArrayList<>();
@@ -383,22 +383,22 @@ public class Municipalities implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<Fees> getFeeses() {
-        return this.feeses;
-    }
-
-    public void setFeeses(List<Fees> feeses) {
-        this.feeses = feeses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<CaseTypes> getCaseTypeses() {
         return this.caseTypeses;
     }
 
     public void setCaseTypeses(List<CaseTypes> caseTypeses) {
         this.caseTypeses = caseTypeses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<Fees> getFeeses() {
+        return this.feeses;
+    }
+
+    public void setFeeses(List<Fees> feeses) {
+        this.feeses = feeses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

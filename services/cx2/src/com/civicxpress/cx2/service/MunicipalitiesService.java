@@ -155,18 +155,6 @@ public interface MunicipalitiesService {
     Page<CodeSets> findAssociatedCodeSetses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated feeses for given Municipalities id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated Fees instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated caseTypeses for given Municipalities id.
      *
      * @param id value of id; value cannot be null
@@ -177,6 +165,18 @@ public interface MunicipalitiesService {
      * @see Page
      */
     Page<CaseTypes> findAssociatedCaseTypeses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated feeses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Fees instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated formCategorieses for given Municipalities id.

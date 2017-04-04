@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
 
 
@@ -34,6 +35,9 @@ public class CodeSetsServiceImpl implements CodeSetsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CodeSetsServiceImpl.class);
 
+    @Autowired
+	@Qualifier("cx2.CodeListService")
+	private CodeListService codeListService;
 
     @Autowired
     @Qualifier("cx2.CodeSetsDao")
@@ -48,6 +52,13 @@ public class CodeSetsServiceImpl implements CodeSetsService {
 	public CodeSets create(CodeSets codeSets) {
         LOGGER.debug("Creating a new CodeSets with information: {}", codeSets);
         CodeSets codeSetsCreated = this.wmGenericDao.create(codeSets);
+        if(codeSetsCreated.getCodeLists() != null) {
+            for(CodeList codeList : codeSetsCreated.getCodeLists()) {
+                codeList.setCodeSets(codeSetsCreated);
+                LOGGER.debug("Creating a new child CodeList with information: {}", codeList);
+                codeListService.create(codeList);
+            }
+        }
         return codeSetsCreated;
     }
 
@@ -122,7 +133,25 @@ public class CodeSetsServiceImpl implements CodeSetsService {
         return this.wmGenericDao.count(query);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CodeList> findAssociatedCodeLists(Integer codeSetId, Pageable pageable) {
+        LOGGER.debug("Fetching all associated codeLists");
 
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("codeSets.codeSetId = '" + codeSetId + "'");
+
+        return codeListService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service CodeListService instance
+	 */
+	protected void setCodeListService(CodeListService service) {
+        this.codeListService = service;
+    }
 
 }
 
