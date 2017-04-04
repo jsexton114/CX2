@@ -50,6 +50,7 @@ public class MasterForms implements Serializable {
     private Integer ownerId;
     private Timestamp dateModified;
     private Timestamp dateSubmitted;
+    private String propertyType;
     private FormTypes formTypes;
     private FormStatuses formStatuses;
     private Giscontacts giscontacts;
@@ -227,6 +228,15 @@ public class MasterForms implements Serializable {
 
     public void setDateSubmitted(Timestamp dateSubmitted) {
         this.dateSubmitted = dateSubmitted;
+    }
+
+    @Column(name = "`PropertyType`", nullable = true, length = 255)
+    public String getPropertyType() {
+        return this.propertyType;
+    }
+
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

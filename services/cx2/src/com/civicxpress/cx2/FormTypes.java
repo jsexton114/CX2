@@ -78,6 +78,7 @@ public class FormTypes implements Serializable {
     private boolean requireSignature;
     private boolean codeEnforcement;
     private boolean trackViolations;
+    private String propertyType;
     private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
@@ -485,6 +486,15 @@ public class FormTypes implements Serializable {
 
     public void setTrackViolations(boolean trackViolations) {
         this.trackViolations = trackViolations;
+    }
+
+    @Column(name = "`PropertyType`", nullable = true, length = 255)
+    public String getPropertyType() {
+        return this.propertyType;
+    }
+
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
