@@ -1,4 +1,23 @@
 {
+  "Breadcrumb" : {
+    "_id" : "wm-Breadcrumb-wm.Variable-1491338252194",
+    "name" : "Breadcrumb",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/CodeEnforcementDashboard"
+    }, {
+      "label" : "Municipality Code Sets",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/MunicipalityCodeSets"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "lvCodeSetsData" : {
     "_id" : "wm-lvCodeSetsData-wm.LiveVariable-1491306042481",
     "name" : "lvCodeSetsData",

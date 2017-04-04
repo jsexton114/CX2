@@ -15,3 +15,18 @@ Application.$controller("MunicipalityCodeListPageController", ["$scope", functio
     };
 
 }]);
+
+
+Application.$controller("gridCodeListController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformCodeListController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

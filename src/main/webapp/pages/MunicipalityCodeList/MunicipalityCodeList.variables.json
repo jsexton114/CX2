@@ -1,4 +1,27 @@
 {
+  "Breadcrumb" : {
+    "_id" : "wm-Breadcrumb-wm.Variable-1491338704490",
+    "name" : "Breadcrumb",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/CXAdmin"
+    }, {
+      "label" : "Municipality Code Sets",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/MunicipalityCodeSets"
+    }, {
+      "label" : "Municipality Code List",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/MunicipalityCodeList"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "lvCodeListData" : {
     "_id" : "wm-lvCodeListData-wm.LiveVariable-1491308746170",
     "name" : "lvCodeListData",
