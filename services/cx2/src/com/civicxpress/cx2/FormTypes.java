@@ -77,7 +77,7 @@ public class FormTypes implements Serializable {
     private Boolean forceInspectionSequence;
     private boolean requireSignature;
     private boolean codeEnforcement;
-    private boolean allowCases;
+    private boolean trackViolations;
     private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
@@ -478,13 +478,13 @@ public class FormTypes implements Serializable {
         this.codeEnforcement = codeEnforcement;
     }
 
-    @Column(name = "`AllowCases`", nullable = false)
-    public boolean isAllowCases() {
-        return this.allowCases;
+    @Column(name = "`TrackViolations`", nullable = false)
+    public boolean isTrackViolations() {
+        return this.trackViolations;
     }
 
-    public void setAllowCases(boolean allowCases) {
-        this.allowCases = allowCases;
+    public void setTrackViolations(boolean trackViolations) {
+        this.trackViolations = trackViolations;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

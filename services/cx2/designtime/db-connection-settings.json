@@ -84,19 +84,25 @@
     "table" : "InspectionCategories",
     "schema" : "cx2"
   }, {
-    "table" : "InspectionGis",
+    "table" : "InspectionOutcome",
     "schema" : "cx2"
   }, {
-    "table" : "InspectionOutcome",
+    "table" : "InspectionGis",
     "schema" : "cx2"
   }, {
     "table" : "InspectionOutcomeFee",
     "schema" : "cx2"
   }, {
+    "table" : "LetterTemplates",
+    "schema" : "cx2"
+  }, {
     "table" : "InspectionSequence",
     "schema" : "cx2"
   }, {
-    "table" : "LetterTemplates",
+    "table" : "ManualFeeTypes",
+    "schema" : "cx2"
+  }, {
+    "table" : "MasterCases",
     "schema" : "cx2"
   }, {
     "table" : "MasterForms",
@@ -105,16 +111,10 @@
     "table" : "MasterInspections",
     "schema" : "cx2"
   }, {
-    "table" : "MasterCases",
-    "schema" : "cx2"
-  }, {
-    "table" : "ManualFeeTypes",
+    "table" : "Municipalities",
     "schema" : "cx2"
   }, {
     "table" : "MasterProjects",
-    "schema" : "cx2"
-  }, {
-    "table" : "Municipalities",
     "schema" : "cx2"
   }, {
     "table" : "InspectionCategoryMapping",
@@ -129,16 +129,16 @@
     "table" : "ProjectForms",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectGISRecords",
-    "schema" : "cx2"
-  }, {
     "table" : "Projects",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectTasks",
+    "table" : "ProjectGISRecords",
     "schema" : "cx2"
   }, {
     "table" : "ProjectSharedWith",
+    "schema" : "cx2"
+  }, {
+    "table" : "ProjectTasks",
     "schema" : "cx2"
   }, {
     "table" : "Roles",
@@ -147,13 +147,13 @@
     "table" : "SharedWith",
     "schema" : "cx2"
   }, {
+    "table" : "Users",
+    "schema" : "cx2"
+  }, {
     "table" : "MyCart",
     "schema" : "cx2"
   }, {
     "table" : "StandardViews",
-    "schema" : "cx2"
-  }, {
-    "table" : "Users",
     "schema" : "cx2"
   }, {
     "table" : "Subdivisions",
@@ -165,12 +165,6 @@
     "table" : "UserSubscriptions",
     "schema" : "cx2"
   }, {
-    "table" : "States",
-    "schema" : "cx2"
-  }, {
-    "table" : "UserViewPreferences",
-    "schema" : "cx2"
-  }, {
     "table" : "Vendor",
     "schema" : "cx2"
   }, {
@@ -178,6 +172,12 @@
     "schema" : "cx2"
   }, {
     "table" : "VendorLicenses",
+    "schema" : "cx2"
+  }, {
+    "table" : "States",
+    "schema" : "cx2"
+  }, {
+    "table" : "UserViewPreferences",
     "schema" : "cx2"
   }, {
     "table" : "VendorAdmins",
