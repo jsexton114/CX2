@@ -36,7 +36,7 @@ public class CodeList implements Serializable {
     private String codeNumber;
     private String codeTitle;
     private String code;
-    private Boolean activeYn;
+    private boolean activeYn;
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime created;
@@ -90,12 +90,12 @@ public class CodeList implements Serializable {
         this.code = code;
     }
 
-    @Column(name = "`ActiveYN`", nullable = true)
-    public Boolean getActiveYn() {
+    @Column(name = "`ActiveYN`", nullable = false)
+    public boolean isActiveYn() {
         return this.activeYn;
     }
 
-    public void setActiveYn(Boolean activeYn) {
+    public void setActiveYn(boolean activeYn) {
         this.activeYn = activeYn;
     }
 

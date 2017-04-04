@@ -40,7 +40,7 @@ public class CodeSets implements Serializable {
 
     private Integer codeSetId;
     private String codeSetTitle;
-    private Boolean globalYn;
+    private boolean globalYn;
     private Integer municipalityId;
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT })
     @Type(type = "DateTime")
@@ -77,12 +77,12 @@ public class CodeSets implements Serializable {
         this.codeSetTitle = codeSetTitle;
     }
 
-    @Column(name = "`GlobalYN`", nullable = true)
-    public Boolean getGlobalYn() {
+    @Column(name = "`GlobalYN`", nullable = false)
+    public boolean isGlobalYn() {
         return this.globalYn;
     }
 
-    public void setGlobalYn(Boolean globalYn) {
+    public void setGlobalYn(boolean globalYn) {
         this.globalYn = globalYn;
     }
 

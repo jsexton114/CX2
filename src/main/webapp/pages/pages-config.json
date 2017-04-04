@@ -331,6 +331,16 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
+  "name" : "dynamicFieldEditor",
+  "type" : "PARTIAL",
+  "params" : [ {
+    "name" : "formTypeId",
+    "type" : "integer"
+  }, {
+    "name" : "inspectionDesignId",
+    "type" : "integer"
+  } ]
+}, {
   "name" : "footer",
   "type" : "FOOTER",
   "params" : [ ]

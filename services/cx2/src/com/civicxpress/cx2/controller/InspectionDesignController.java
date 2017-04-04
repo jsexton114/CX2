@@ -30,6 +30,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.InspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionOutcome;
@@ -145,6 +146,15 @@ public class InspectionDesignController {
 		LOGGER.debug("counting InspectionDesigns");
 		return inspectionDesignService.count(query);
 	}
+
+    @RequestMapping(value="/{id:.+}/formTypeFieldses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the formTypeFieldses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<FormTypeFields> findAssociatedFormTypeFieldses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated formTypeFieldses");
+        return inspectionDesignService.findAssociatedFormTypeFieldses(id, pageable);
+    }
 
     @RequestMapping(value="/{id:.+}/inspectionOutcomes", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the inspectionOutcomes instance associated with the given id.")

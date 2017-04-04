@@ -71,6 +71,7 @@ public class InspectionDesign implements Serializable {
     private boolean trackViolations;
     private Users users;
     private Municipalities municipalities;
+    private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
     private List<InspectionOutcome> inspectionOutcomes = new ArrayList<>();
     private List<LetterTemplates> letterTemplateses = new ArrayList<>();
     private List<InspectionSequence> inspectionSequences = new ArrayList<>();
@@ -420,6 +421,16 @@ public class InspectionDesign implements Serializable {
         }
 
         this.municipalities = municipalities;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
+    public List<FormTypeFields> getFormTypeFieldses() {
+        return this.formTypeFieldses;
+    }
+
+    public void setFormTypeFieldses(List<FormTypeFields> formTypeFieldses) {
+        this.formTypeFieldses = formTypeFieldses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

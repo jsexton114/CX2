@@ -270,13 +270,23 @@ Application.directive('dynamicFormFields', function() {
 
                 var adjustedFieldList = [];
                 adjustedFieldList.push([]);
+                var currentColumnCount = 0;
 
                 scope.formFieldList.forEach(function(formField, index) {
-                    if ((index + 1) % columnNumber === 0 || (!formField.formFieldTypes.sqlType && adjustedFieldList[adjustedFieldList.length - 1].length !== 0)) {
+                    var needsSingleLine = (!formField.formFieldTypes.sqlType && formField.formFieldTypes.label !== 'Calculated');
+
+                    if (needsSingleLine && adjustedFieldList[adjustedFieldList.length - 1].length > 0) {
+                        currentColumnCount = 0;
                         adjustedFieldList.push([]);
                     }
 
                     adjustedFieldList[adjustedFieldList.length - 1].push(formField);
+                    currentColumnCount++;
+
+                    if (currentColumnCount === columnNumber || needsSingleLine) {
+                        currentColumnCount = 0;
+                        adjustedFieldList.push([]);
+                    }
                 });
 
                 unwatchFieldList();

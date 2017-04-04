@@ -1,4 +1,4 @@
-Application.$controller("NewFormPageController", ["$scope", "$location", "$timeout", "$http", function($scope, $location, $timeout, $http) {
+Application.$controller("NewFormPageController", ["$scope", "$location", "$timeout", "$http", "$compile", function($scope, $location, $timeout, $http, $compile) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -24,6 +24,8 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         } else {
             $scope.formTypeId = parseInt($location.search().formTypeId);
         }
+
+        $(".app-wizard-actions-right").prepend($compile('<button class="btn btn-primary" style="margin-right: 24px" type="button" margin="unset 0.5em" name="btnSaveAsDraft" ng-click="saveAsDraft($event, $scope)"><i class="wi wi-save"></i> Save as Draft</button>')($scope));
     };
 
     $scope.loaded = false;

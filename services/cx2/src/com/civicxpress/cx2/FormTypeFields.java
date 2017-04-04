@@ -36,7 +36,9 @@ public class FormTypeFields implements Serializable {
     private String possibleValues;
     private int fieldTypeId;
     private String automaticFeeType;
+    private Integer inspectionDesignId;
     private FormFieldTypes formFieldTypes;
+    private InspectionDesign inspectionDesign;
     private FormTypes formTypes;
 
     @Id
@@ -140,6 +142,15 @@ public class FormTypeFields implements Serializable {
         this.automaticFeeType = automaticFeeType;
     }
 
+    @Column(name = "`InspectionDesignId`", nullable = true, scale = 0, precision = 10)
+    public Integer getInspectionDesignId() {
+        return this.inspectionDesignId;
+    }
+
+    public void setInspectionDesignId(Integer inspectionDesignId) {
+        this.inspectionDesignId = inspectionDesignId;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`FieldTypeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public FormFieldTypes getFormFieldTypes() {
@@ -152,6 +163,20 @@ public class FormTypeFields implements Serializable {
         }
 
         this.formFieldTypes = formFieldTypes;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`InspectionDesignId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public InspectionDesign getInspectionDesign() {
+        return this.inspectionDesign;
+    }
+
+    public void setInspectionDesign(InspectionDesign inspectionDesign) {
+        if(inspectionDesign != null) {
+            this.inspectionDesignId = inspectionDesign.getId();
+        }
+
+        this.inspectionDesign = inspectionDesign;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

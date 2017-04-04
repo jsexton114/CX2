@@ -1250,16 +1250,15 @@
         "scale" : 0
       }, {
         "fieldName" : "instructions",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
         "columnName" : "Instructions",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 1000,
+        "length" : 2147483647,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
         "scale" : 0
       }, {
         "fieldName" : "active",
@@ -1267,12 +1266,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "Active",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "FALSE",
         "scale" : 0
       }, {
         "fieldName" : "municipalityInternalInspection",
@@ -1280,12 +1279,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "MunicipalityInternalInspection",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "FALSE",
         "scale" : 0
       }, {
         "fieldName" : "allowSameDayInspections",
@@ -1293,12 +1292,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "AllowSameDayInspections",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "FALSE",
         "scale" : 0
       }, {
         "fieldName" : "sameDayInspectionFee",
@@ -1332,12 +1331,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "AllowCancel",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "FALSE",
         "scale" : 0
       }, {
         "fieldName" : "cancelFee",
@@ -1371,12 +1370,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "AllowSameDayCancel",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "FALSE",
         "scale" : 0
       }, {
         "fieldName" : "sameDayCancelFee",
@@ -1436,12 +1435,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "AllowAdHoc",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "FALSE",
         "scale" : 0
       }, {
         "fieldName" : "callInOnly",
@@ -1449,12 +1448,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "CallInOnly",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "FALSE",
         "scale" : 0
       }, {
         "fieldName" : "callInMessage",
@@ -1579,12 +1578,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "PrefixDashes",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "FALSE",
         "scale" : 0
       }, {
         "fieldName" : "createdAt",
@@ -1598,6 +1597,58 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "requireFeesPaidBeforeScheduling",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "RequireFeesPaidBeforeScheduling",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "allowUnscheduledInspection",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowUnscheduledInspection",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "codeEnforcement",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "CodeEnforcement",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "trackViolations",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "TrackViolations",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "InspectionDesign",

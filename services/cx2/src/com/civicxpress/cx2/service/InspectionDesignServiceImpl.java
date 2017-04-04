@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.InspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionOutcome;
@@ -48,6 +49,10 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 	private InspectionSequenceService inspectionSequenceService;
 
     @Autowired
+	@Qualifier("cx2.FormTypeFieldsService")
+	private FormTypeFieldsService formTypeFieldsService;
+
+    @Autowired
 	@Qualifier("cx2.InspectionOutcomeService")
 	private InspectionOutcomeService inspectionOutcomeService;
 
@@ -72,6 +77,14 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 	public InspectionDesign create(InspectionDesign inspectionDesign) {
         LOGGER.debug("Creating a new InspectionDesign with information: {}", inspectionDesign);
         InspectionDesign inspectionDesignCreated = this.wmGenericDao.create(inspectionDesign);
+        if(inspectionDesignCreated.getFormTypeFieldses() != null) {
+            for(FormTypeFields formTypeFieldse : inspectionDesignCreated.getFormTypeFieldses()) {
+                formTypeFieldse.setInspectionDesign(inspectionDesignCreated);
+                LOGGER.debug("Creating a new child FormTypeFields with information: {}", formTypeFieldse);
+                formTypeFieldsService.create(formTypeFieldse);
+            }
+        }
+
         if(inspectionDesignCreated.getInspectionOutcomes() != null) {
             for(InspectionOutcome inspectionOutcome : inspectionDesignCreated.getInspectionOutcomes()) {
                 inspectionOutcome.setInspectionDesign(inspectionDesignCreated);
@@ -187,6 +200,17 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formTypeFieldses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionDesign.id = '" + id + "'");
+
+        return formTypeFieldsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<InspectionOutcome> findAssociatedInspectionOutcomes(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionOutcomes");
 
@@ -256,6 +280,15 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 	 */
 	protected void setInspectionSequenceService(InspectionSequenceService service) {
         this.inspectionSequenceService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormTypeFieldsService instance
+	 */
+	protected void setFormTypeFieldsService(FormTypeFieldsService service) {
+        this.formTypeFieldsService = service;
     }
 
     /**

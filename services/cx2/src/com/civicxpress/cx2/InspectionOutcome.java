@@ -37,10 +37,10 @@ public class InspectionOutcome implements Serializable {
     private Integer id;
     private Integer inspectDesignId;
     private String outcome;
-    private Boolean assessFeeYn;
-    private Boolean considerClosed;
+    private boolean assessFeeYn;
+    private boolean considerClosed;
     private Integer outcomeOrder;
-    private Boolean sendEmail;
+    private boolean sendEmail;
     private String emailSubjectLine;
     private String emailBodyText;
     private InspectionDesign inspectionDesign;
@@ -76,21 +76,21 @@ public class InspectionOutcome implements Serializable {
         this.outcome = outcome;
     }
 
-    @Column(name = "`AssessFeeYN`", nullable = true)
-    public Boolean getAssessFeeYn() {
+    @Column(name = "`AssessFeeYN`", nullable = false)
+    public boolean isAssessFeeYn() {
         return this.assessFeeYn;
     }
 
-    public void setAssessFeeYn(Boolean assessFeeYn) {
+    public void setAssessFeeYn(boolean assessFeeYn) {
         this.assessFeeYn = assessFeeYn;
     }
 
-    @Column(name = "`ConsiderClosed`", nullable = true)
-    public Boolean getConsiderClosed() {
+    @Column(name = "`ConsiderClosed`", nullable = false)
+    public boolean isConsiderClosed() {
         return this.considerClosed;
     }
 
-    public void setConsiderClosed(Boolean considerClosed) {
+    public void setConsiderClosed(boolean considerClosed) {
         this.considerClosed = considerClosed;
     }
 
@@ -103,12 +103,12 @@ public class InspectionOutcome implements Serializable {
         this.outcomeOrder = outcomeOrder;
     }
 
-    @Column(name = "`SendEmail`", nullable = true)
-    public Boolean getSendEmail() {
+    @Column(name = "`SendEmail`", nullable = false)
+    public boolean isSendEmail() {
         return this.sendEmail;
     }
 
-    public void setSendEmail(Boolean sendEmail) {
+    public void setSendEmail(boolean sendEmail) {
         this.sendEmail = sendEmail;
     }
 

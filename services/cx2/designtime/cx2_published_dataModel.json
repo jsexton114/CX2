@@ -380,7 +380,7 @@
       "javaType" : "boolean",
       "length" : 0,
       "name" : "ActiveYN",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "ActiveYN",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -652,7 +652,7 @@
       "javaType" : "boolean",
       "length" : 0,
       "name" : "GlobalYN",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "GlobalYN",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -5607,6 +5607,31 @@
       "scale" : 0,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "inspectionDesignId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "InspectionDesignId",
+      "nullable" : true,
+      "oldName" : "InspectionDesignId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "FormTypeFields",
@@ -5639,6 +5664,23 @@
       "sourceTable" : "FormTypeFields",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "FormFieldTypes",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "inspectionDesign",
+      "mappings" : [ {
+        "sourceColumn" : "InspectionDesignId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_FormTypeFields_TO_InsOrrAo",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "FormTypeFields",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "InspectionDesign",
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
@@ -7623,6 +7665,23 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fieldName" : "formTypeFieldses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "InspectionDesignId"
+      } ],
+      "name" : "FK_FormTypeFields_TO_InsOrrAo",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "InspectionDesign",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "FormTypeFields",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
       "fieldName" : "inspectionOutcomes",
       "mappings" : [ {
         "sourceColumn" : "ID",
@@ -8901,7 +8960,7 @@
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : "true"
+        "defaultValue" : "false"
       },
       "fieldName" : "assessFeeYn",
       "foreignKey" : false,
@@ -8910,7 +8969,7 @@
       "javaType" : "boolean",
       "length" : 0,
       "name" : "AssessFeeYN",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "AssessFeeYN",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -8935,7 +8994,7 @@
       "javaType" : "boolean",
       "length" : 0,
       "name" : "ConsiderClosed",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "ConsiderClosed",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -8985,7 +9044,7 @@
       "javaType" : "boolean",
       "length" : 0,
       "name" : "SendEmail",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "SendEmail",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -10975,31 +11034,6 @@
       "primaryKey" : false,
       "scale" : 0,
       "sqlType" : "timestamp",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "propertyType",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "PropertyType",
-      "nullable" : true,
-      "oldName" : "PropertyType",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
       "unique" : false
     } ],
     "constraints" : [ ],
