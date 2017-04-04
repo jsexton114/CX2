@@ -165,7 +165,10 @@ Application.directive('cxCalculatedField', [function() {
                     compileCalculation();
                 }
 
-                return scope.$eval(compiledCalculation);
+                var calculatedValue = scope.$eval(compiledCalculation);
+                scope.formData[scope.formField.fieldName] = calculatedValue;
+
+                return calculatedValue;
             }
 
             function compileCalculation() {
