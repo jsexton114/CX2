@@ -1,0 +1,65 @@
+<wm-page data-ng-controller="MunicipalityCodeListPageController" pagetitle="Municipality Code List" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn2"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                        <wm-livegrid formlayout="dialog" name="livegridCodeList">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvCodeListData.dataSet" navigation="Classic" name="gridCodeList">
+                                <wm-grid-column binding="codeNumber" caption="Code Number" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="codeTitle" caption="Code Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="code" caption="Code" type="text" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="activeYn" caption="Active Yn" type="boolean" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                            </wm-grid>
+                            <wm-liveform novalidate="false" errormessage="" title="Code List" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvCodeListData.dataSet" captionalign="left" captionposition="top" name="liveformCodeList">
+                                <wm-layoutgrid columns="1" name="layoutgrid2">
+                                    <wm-gridrow name="gridrow4">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn4">
+                                            <wm-form-field name="codeNumber" displayname="Code Number" required="false" show="true" generator="assigned" primary-key="false" key="codeNumber" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow5">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn5">
+                                            <wm-form-field name="codeTitle" displayname="Code Title" required="false" show="true" generator="assigned" primary-key="false" key="codeTitle" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow6">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                                            <wm-form-field name="code" displayname="Code" required="false" show="true" generator="assigned" primary-key="false" key="code" type="text" is-related="false" maxchars="5000" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow7">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn7">
+                                            <wm-form-field name="activeYn" displayname="Active Yn" required="false" show="true" generator="assigned" primary-key="false" key="activeYn" type="boolean" is-related="false" defaultvalue="true" pc-display="true" mobile-display="true" widget="checkbox"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow8">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn8">
+                                            <wm-form-field name="codeSets" displayname="Code Sets" required="false" show="true" generator="assigned" primary-key="false" key="codeSets" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select" dataset="bind:Variables.lvCurrentCodeSetObj.dataSet"
+                                            datafield="All Fields" displayfield="codeSetTitle" defaultvalue="bind:Variables.lvCurrentCodeSetObj.firstRecord"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                                <wm-form-field name="codeId" displayname="Code Id" required="true" show="false" generator="identity" primary-key="true" key="codeId" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                                <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                                <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                            </wm-liveform>
+                        </wm-livegrid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

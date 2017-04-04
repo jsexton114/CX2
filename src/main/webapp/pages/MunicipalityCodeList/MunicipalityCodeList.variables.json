@@ -1,29 +1,6 @@
 {
-  "BreadCrum" : {
-    "_id" : "wm-BreadCrum-wm.Variable-1491300170082",
-    "name" : "BreadCrum",
-    "owner" : "Page",
-    "category" : "wm.Variable",
-    "dataBinding" : [ ],
-    "dataSet" : [ {
-      "label" : "Home",
-      "icon" : "glyphicon glyphicon-home",
-      "link" : "#/CXAdmin"
-    }, {
-      "label" : "Global Code Sets",
-      "icon" : "wi wi-ellipsis-v",
-      "link" : "#/CXCodeSets"
-    }, {
-      "label" : "Global Code List",
-      "icon" : "wi wi-ellipsis-v",
-      "link" : "#/CXCodeList"
-    } ],
-    "type" : "string",
-    "isList" : true,
-    "saveInPhonegap" : false
-  },
   "lvCodeListData" : {
-    "_id" : "wm-lvCodeListData-wm.LiveVariable-1491300584460",
+    "_id" : "wm-lvCodeListData-wm.LiveVariable-1491308746170",
     "name" : "lvCodeListData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
@@ -35,7 +12,7 @@
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "CodeList",
-    "isList" : true,
+    "isList" : false,
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
@@ -766,8 +743,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "codeId" ]
     },
-    "isDefault" : true,
-    "bindCount" : 1,
+    "spinnerContext" : "page",
     "tableName" : "CodeList",
     "tableType" : "TABLE",
     "properties" : [ "codeSets", "usersByCreatedBy", "usersByUpdatedBy" ],
@@ -794,7 +770,7 @@
     "package" : "com.civicxpress.cx2.CodeList"
   },
   "lvCurrentCodeSetObj" : {
-    "_id" : "wm-lvCurrentCodeSetObj-wm.LiveVariable-1491300517072",
+    "_id" : "wm-lvCurrentCodeSetObj-wm.LiveVariable-1491308822611",
     "name" : "lvCurrentCodeSetObj",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
@@ -1789,7 +1765,6 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "codeSetId" ]
     },
-    "bindCount" : 2,
     "spinnerContext" : "page",
     "tableName" : "CodeSets",
     "tableType" : "TABLE",

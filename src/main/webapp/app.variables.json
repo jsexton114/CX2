@@ -625,6 +625,36 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
+  "goToPage_MunicipalityCodeList" : {
+    "_id" : "wm-goToPage_MunicipalityCodeList-wm.NavigationVariable-1491306546863",
+    "name" : "goToPage_MunicipalityCodeList",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "MunicipalityCodeList",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "pageName" : "MunicipalityCodeList",
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "CodeSetId",
+      "value" : "bind:Widgets.gridCodeSets.selecteditem.codeSetId"
+    } ],
+    "pageTransitions" : "none"
+  },
+  "goToPage_MunicipalityCodeSets" : {
+    "_id" : "wm-goToPage_MunicipalityCodeSets-wm.NavigationVariable-1491305595721",
+    "name" : "goToPage_MunicipalityCodeSets",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "MunicipalityCodeSets",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
   "goToPage_MunicipalityInspections" : {
     "_id" : "wm-goToPage_MunicipalityInspections-wm.NavigationVariable-1488260207805",
     "name" : "goToPage_MunicipalityInspections",
