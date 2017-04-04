@@ -6077,7 +6077,11 @@
     "name" : "lvLetterTemplatesData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "formDesignId",
+      "value" : "bind:pageParams.FormTypeId",
+      "type" : "number"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "LetterTemplates",
@@ -7751,6 +7755,7 @@
       "watchOn" : "Cx2UsersData",
       "package" : "com.civicxpress.cx2.LetterTemplates"
     } ],
+    "filterFields" : { },
     "package" : "com.civicxpress.cx2.LetterTemplates"
   },
   "lvMunicipalityGroupsData" : {
