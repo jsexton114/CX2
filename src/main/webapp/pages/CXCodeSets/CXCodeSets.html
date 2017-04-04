@@ -1,0 +1,63 @@
+<wm-page data-ng-controller="CXCodeSetsPageController" pagetitle="Cx Code Sets" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow13_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn13_1">
+                        <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn1">
+                        <wm-livegrid formlayout="dialog" name="livegridCodeSets">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvCodeSetsData.dataSet" navigation="Classic" name="gridCodeSets">
+                                <wm-grid-column binding="codeSetTitle" caption="Code Set Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="created" caption="Created" type="datetime" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="datetime" show="true"></wm-grid-column>
+                                <wm-grid-column binding="usersByCreatedBy.fullName" caption="Full Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                <wm-grid-row-action key="customRow" display-name="" title="manageCodeList" value="" iconclass="wi wi-playlist-add" class="btn-transparent" show="true" action="Variables.goToPage_CXCodeList.invoke()"
+                                icon="wi wi-playlist-add"></wm-grid-row-action>
+                            </wm-grid>
+                            <wm-liveform novalidate="false" errormessage="" title="CodeSets" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvCodeSetsData.dataSet" captionalign="left" captionposition="top" name="liveformCodeSets">
+                                <wm-layoutgrid columns="1" name="layoutgrid3">
+                                    <wm-gridrow name="gridrow14">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn14">
+                                            <wm-form-field name="codeSetTitle" displayname="Code Set Title" required="false" show="true" generator="assigned" primary-key="false" key="codeSetTitle" type="string" is-related="false" maxchars="255" pc-display="true"
+                                            mobile-display="true" widget="text"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow15">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn15">
+                                            <wm-form-field name="globalYn" displayname="Global Yn" required="false" show="false" generator="assigned" primary-key="false" key="globalYn" type="boolean" is-related="false" pc-display="true" mobile-display="true"
+                                            widget="checkbox" defaultvalue="true"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow16">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn16">
+                                            <wm-form-field name="municipalities" displayname="Municipalities" required="false" show="false" generator="assigned" primary-key="false" key="municipalities" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                            widget="select"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                                <wm-form-field name="codeSetId" displayname="Code Set Id" required="true" show="false" generator="identity" primary-key="true" key="codeSetId" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true"
+                                widget="number"></wm-form-field>
+                                <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                                <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                            </wm-liveform>
+                        </wm-livegrid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

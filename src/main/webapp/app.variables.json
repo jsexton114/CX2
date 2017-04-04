@@ -272,6 +272,36 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
+  "goToPage_CXCodeList" : {
+    "_id" : "wm-goToPage_CXCodeList-wm.NavigationVariable-1491300073169",
+    "name" : "goToPage_CXCodeList",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "CXCodeList",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "pageName" : "CXCodeList",
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "CodeSetId",
+      "value" : "bind:Widgets.gridCodeSets.selecteditem.codeSetId"
+    } ],
+    "pageTransitions" : "none"
+  },
+  "goToPage_CXCodeSets" : {
+    "_id" : "wm-goToPage_CXCodeSets-wm.NavigationVariable-1491299254750",
+    "name" : "goToPage_CXCodeSets",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "CXCodeSets",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
   "goToPage_CXGlobalSettings" : {
     "_id" : "wm-goToPage_CXGlobalSettings-wm.NavigationVariable-1481624413329",
     "name" : "goToPage_CXGlobalSettings",
