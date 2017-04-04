@@ -113,19 +113,27 @@ Application.$controller("liveformUpdateInspectiondesignController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.allowCancelChange = function($event, $isolateScope, newVal, oldVal) {
+            if (newVal === false) {
+                $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayCancel.datavalue = false;
+
+            }
+        };
+
     }
 ]);
 
 Application.$controller("gridLettersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveformLettersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

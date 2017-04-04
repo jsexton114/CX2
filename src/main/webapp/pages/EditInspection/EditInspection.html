@@ -135,70 +135,63 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn55" padding="unset 1em unset unset">
                                                                 <wm-form-field name="codeEnforcement" displayname="Code Enforcement" show="true" primary-key="false" generator="assigned" key="codeEnforcement" type="boolean" readonly="false" required="false"
-                                                                widget="checkbox" defaultvalue="false" hint="This setting will classify this inspection as a Code Enforcement inspection for reporting purposes." placeholder=""></wm-form-field>
+                                                                widget="checkbox" defaultvalue="false" hint="This setting will classify this inspection as a Code Enforcement inspection for reporting purposes, and enables a &quot;Code Enforcement&quot; tab on this page that contains additional settings."
+                                                                placeholder=""></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn58" padding="unset 1em unset unset">
-                                                                <wm-form-field name="trackViolations" displayname="Track Violations" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.codeEnforcement.datavalue" primary-key="false" generator="assigned"
-                                                                key="trackViolations" type="boolean" readonly="false" required="true" widget="checkbox" defaultvalue="false"></wm-form-field>
-                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn58" padding="unset 1em unset unset"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn56_1">
+                                                                <wm-form-field name="requireFeesPaidBeforeScheduling" displayname="Require Fees Paid Before Requesting" show="true" primary-key="false" generator="assigned" key="requireFeesPaidBeforeScheduling"
+                                                                type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="false" placeholder="" hint="When enabled, users will not be able to request this inspection until all form fees have been paid."></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn63_2" padding="unset 1em unset unset">
                                                                 <wm-form-field name="scheduleDateOnly" displayname="Schedule Date Only" show="true" primary-key="false" generator="assigned" key="scheduleDateOnly" type="date" readonly="false" required="false"
                                                                 widget="date" placeholder="Select date" outputformat="yyyy-MM-dd"></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn63_2" padding="unset 1em unset unset">
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn77" padding="unset 1em unset unset">
                                                                 <wm-form-field name="scheduleDateAndTime" displayname="Schedule Date And Time" show="true" primary-key="false" generator="assigned" key="scheduleDateAndTime" type="timestamp" readonly="false"
                                                                 required="false" widget="timestamp" placeholder="Select date time" outputformat="timestamp"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn77" padding="unset 1em unset unset">
-                                                                <wm-form-field name="totalInspectionsDaily" displayname="Total Inspections Daily" show="true" primary-key="false" generator="assigned" key="totalInspectionsDaily" type="integer" maxvalue="1000"
-                                                                readonly="false" required="false" step="1" widget="number" inputtype="number" placeholder="Enter value" minvalue="1" hint="This is the maximum number of this inspection that can be scheduled per day."></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow38_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn56" padding="unset 1em unset unset">
-                                                                <wm-form-field name="totalInspectionsHourly" displayname="Total Inspections Hourly" show="true" primary-key="false" generator="assigned" key="totalInspectionsHourly" type="integer" maxvalue="100"
-                                                                readonly="false" required="false" step="1" widget="number" inputtype="number" placeholder="Enter value" minvalue="1" hint="This is the maximum number of this inspection that can be scheduled per hour."></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn57" padding="unset 1em unset unset">
                                                                 <wm-form-field name="maxDaysInAdvance" displayname="Max Days in Advance" show="true" primary-key="false" generator="assigned" key="maxDaysInAdvance" type="integer" maxvalue="365" readonly="false"
                                                                 required="false" step="1" widget="number" inputtype="number" placeholder="Enter value" hint="This is the maximum number of calendar days in advance that this inspection can be requested by the user."
                                                                 minvalue="1"></wm-form-field>
                                                             </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn57" padding="unset 1em unset unset">
+                                                                <wm-form-field name="totalInspectionsHourly" displayname="Total Inspections Hourly" show="true" primary-key="false" generator="assigned" key="totalInspectionsHourly" type="integer" maxvalue="100"
+                                                                readonly="false" required="false" step="1" widget="number" inputtype="number" placeholder="Enter value" minvalue="1" hint="This is the maximum number of this inspection that can be scheduled per hour."></wm-form-field>
+                                                            </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn87_1">
-                                                                <wm-form-field name="callInOnly" displayname="Call In Only" show="true" primary-key="false" generator="assigned" key="callInOnly" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="FALSE" placeholder=""></wm-form-field>
+                                                                <wm-form-field name="totalInspectionsDaily" displayname="Total Inspections Daily" show="true" primary-key="false" generator="assigned" key="totalInspectionsDaily" type="integer" maxvalue="1000"
+                                                                readonly="false" required="false" step="1" widget="number" inputtype="number" placeholder="Enter value" minvalue="1" hint="This is the maximum number of this inspection that can be scheduled per day."></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn60_1" padding="unset 1em unset unset">
-                                                                <wm-form-field name="allowSameDayInspections" displayname="Allow Same Day Inspections" show="true" primary-key="false" generator="assigned" key="allowSameDayInspections" type="boolean" readonly="false"
-                                                                required="false" widget="checkbox" defaultvalue="FALSE" placeholder="" hint="If enabled, users will be able to request this inspection for later in the same day. The municipality can optionally assess a fee for same day inspections below."></wm-form-field>
+                                                                <wm-form-field name="callInOnly" displayname="Call In Only" show="true" primary-key="false" generator="assigned" key="callInOnly" type="boolean" readonly="false" required="false" widget="checkbox"
+                                                                defaultvalue="FALSE" placeholder=""></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn61_1" padding="unset 1em unset unset">
-                                                                <wm-form-field name="allowCancel" displayname="Allow Cancellations" show="true" primary-key="false" generator="assigned" key="allowCancel" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="FALSE" placeholder="" hint="If enabled, users will be able to cancel this inspection while it is in the &quot;Requested&quot; or &quot;Scheduled&quot; Outcomes. The municipality can optionally assess a fee for cancellations below."></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn64_2">
-                                                                <wm-form-field name="requireFeesPaidBeforeScheduling" displayname="Require Fees Paid Before Requesting" show="true" primary-key="false" generator="assigned" key="requireFeesPaidBeforeScheduling"
-                                                                type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="false" placeholder="" hint="When enabled, users will not be able to request this inspection until all form fees have been paid."></wm-form-field>
+                                                            <wm-gridcolumn columnwidth="8" name="gridcolumn61_1" padding="unset 1em unset unset">
+                                                                <wm-form-field name="callInMessage" displayname="Call In Message" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.callInOnly.datavalue" primary-key="false" generator="assigned"
+                                                                key="callInMessage" type="string" readonly="false" required="false" widget="textarea" maxchars="1000" placeholder="Enter text"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow60" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn81">
-                                                                <wm-form-field name="allowSameDayCancel" displayname="Allow Same Day Cancellations" show="true" primary-key="false" generator="assigned" key="allowSameDayCancel" type="boolean" readonly="false"
-                                                                required="false" widget="checkbox" defaultvalue="FALSE" placeholder="" hint="If enabled, users will be able to cancel this inspection on the same day that it is scheduled to be performed. The municipality can optionally assess a fee for same day cancellations below."
-                                                                disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowCancel.datavalue"></wm-form-field>
+                                                                <wm-form-field name="allowSameDayInspections" displayname="Allow Same Day Inspections" show="true" primary-key="false" generator="assigned" key="allowSameDayInspections" type="boolean" readonly="false"
+                                                                required="false" widget="checkbox" defaultvalue="FALSE" placeholder="" hint="If enabled, users will be able to request this inspection for later in the same day. The municipality can optionally assess a fee for same day inspections below."></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn82">
-                                                                <wm-form-field name="sameDayInspectionFee" displayname="Same Day Inspection Fee" show="true" primary-key="false" generator="assigned" key="sameDayInspectionFee" type="integer" maxvalue="1000000000000"
-                                                                readonly="false" required="false" step="0.01" widget="currency" minvalue="0" placeholder="Enter value" disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayInspections.datavalue"></wm-form-field>
+                                                                <wm-form-field name="allowCancel" displayname="Allow Cancellations" show="true" primary-key="false" generator="assigned" key="allowCancel" type="boolean" readonly="false" required="false" widget="checkbox"
+                                                                defaultvalue="FALSE" placeholder="" on-change="allowCancelChange($event, $scope, newVal, oldVal)" hint="If enabled, users will be able to cancel this inspection while it is in the &quot;Requested&quot; or &quot;Scheduled&quot; Outcomes. The municipality can optionally assess a fee for cancellations below."></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn57_3">
-                                                                <wm-form-field name="sameDayInspectionFeeAcctCode" displayname="Same Day Inspection Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="sameDayInspectionFeeAcctCode"
-                                                                type="string" readonly="false" required="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.sameDayInspectionFee.datavalue > 0" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                                                disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayInspections.datavalue"></wm-form-field>
+                                                                <wm-form-field name="allowSameDayCancel" displayname="Allow Same Day Cancellations" show="true" primary-key="false" generator="assigned" key="allowSameDayCancel" type="boolean" readonly="false"
+                                                                required="false" widget="checkbox" defaultvalue="FALSE" placeholder="" hint="If enabled, users will be able to cancel this inspection on the same day that it is scheduled to be performed. The municipality can optionally assess a fee for same day cancellations below. &quot;Allow Cancellations&quot; must be selected to enable this setting."
+                                                                disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowCancel.datavalue"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
@@ -211,35 +204,47 @@
                                                     <wm-layoutgrid name="layoutgrid13">
                                                         <wm-gridrow name="gridrow42" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn66_1">
-                                                                <wm-label padding="unset 0.5em" name="label11" caption="These are the &quot;high level&quot; fees that can be assessed with this inspection design, which are enabled with the settings above. Additional fees can be charged based on each individual inspection outcome on the &quot;Outcomes&quot; tab."></wm-label>
+                                                                <wm-label padding="unset 0.5em" name="label11" caption="These are the &quot;high level&quot; inspection fees that can be assessed with this inspection design, which are enabled with the &quot;Allow Same Day Inspections&quot;, &quot;Allow Cancellations&quot;, and &quot;Allow Same Day Cancellations&quot; settings above."></wm-label>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow43" padding="unset unset 1em unset">
+                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn70">
+                                                                <wm-form-field name="sameDayInspectionFee" displayname="Same Day Inspection Fee" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayInspections.datavalue" primary-key="false"
+                                                                generator="assigned" key="sameDayInspectionFee" type="integer" maxvalue="1000000000000" readonly="false" required="false" step="0.01" widget="currency" minvalue="0" placeholder="Enter value"
+                                                                disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayInspections.datavalue"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn71">
+                                                                <wm-form-field name="sameDayInspectionFeeAcctCode" displayname="Same Day Inspection Fee Accounting Code" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayInspections.datavalue"
+                                                                primary-key="false" generator="assigned" key="sameDayInspectionFeeAcctCode" type="string" readonly="false" required="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.sameDayInspectionFee.datavalue > 0"
+                                                                widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayInspections.datavalue"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow40_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn61">
-                                                                <wm-form-field name="cancelFee" displayname="Cancellation Fee" show="true" primary-key="false" generator="assigned" key="cancelFee" type="integer" maxvalue="1000000000000" readonly="false" required="false"
-                                                                step="0.01" widget="currency" minvalue="0" placeholder="Enter value" disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowCancel.datavalue"></wm-form-field>
+                                                                <wm-form-field name="cancelFee" displayname="Cancellation Fee" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.allowCancel.datavalue" primary-key="false" generator="assigned" key="cancelFee"
+                                                                type="integer" maxvalue="1000000000000" readonly="false" required="false" step="0.01" widget="currency" minvalue="0" placeholder="Enter value" disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowCancel.datavalue"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn64_1">
-                                                                <wm-form-field name="cancelFeeAccount" displayname="Cancellation Fee Accounting Code" show="true" primary-key="false" generator="assigned" key="cancelFeeAccount" type="string" readonly="false"
-                                                                required="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.cancelFee.datavalue > 0" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowCancel.datavalue"></wm-form-field>
+                                                                <wm-form-field name="cancelFeeAccount" displayname="Cancellation Fee Accounting Code" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.allowCancel.datavalue" primary-key="false"
+                                                                generator="assigned" key="cancelFeeAccount" type="string" readonly="false" required="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.cancelFee.datavalue > 0" widget="text" maxchars="255"
+                                                                inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowCancel.datavalue"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow41_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn63">
-                                                                <wm-form-field name="sameDayCancelFee" displayname="Same Day Cancellation Fee" show="true" primary-key="false" generator="assigned" key="sameDayCancelFee" type="integer" maxvalue="1000000000000"
-                                                                readonly="false" required="false" step="0.01" widget="currency" minvalue="0" placeholder="Enter value" disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayCancel.datavalue"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn65">
-                                                                <wm-form-field name="sameDayCancelAcctCode" displayname="Same Day Cancellation Accounting Code" show="true" primary-key="false" generator="assigned" key="sameDayCancelAcctCode" type="string"
-                                                                readonly="false" required="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.sameDayCancelFee.datavalue > 0" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                                <wm-form-field name="sameDayCancelFee" displayname="Same Day Cancellation Fee" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayCancel.datavalue" primary-key="false"
+                                                                generator="assigned" key="sameDayCancelFee" type="integer" maxvalue="1000000000000" readonly="false" required="false" step="0.01" widget="currency" minvalue="0" placeholder="Enter value"
                                                                 disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayCancel.datavalue"></wm-form-field>
                                                             </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn65">
+                                                                <wm-form-field name="sameDayCancelAcctCode" displayname="Same Day Cancellation Accounting Code" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayCancel.datavalue" primary-key="false"
+                                                                generator="assigned" key="sameDayCancelAcctCode" type="string" readonly="false" required="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.sameDayCancelFee.datavalue > 0" widget="text"
+                                                                maxchars="255" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayCancel.datavalue"></wm-form-field>
+                                                            </wm-gridcolumn>
                                                         </wm-gridrow>
-                                                        <wm-gridrow name="gridrow43" padding="unset unset 1em unset">
-                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn70"></wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn71">
-                                                                <wm-form-field name="callInMessage" displayname="Call In Message" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.callInOnly.datavalue" primary-key="false" generator="assigned"
-                                                                key="callInMessage" type="string" readonly="false" required="false" widget="textarea" maxchars="1000" placeholder="Enter text"></wm-form-field>
+                                                        <wm-gridrow name="gridrow49_1">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn66_3">
+                                                                <wm-label padding="unset 0.5em" name="label13" caption="Additional fees can be charged based on each individual inspection outcome on the &quot;Outcomes&quot; tab."></wm-label>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
@@ -406,7 +411,7 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpaneCXADMIN" title="CX Admin" accessroles="CXAdmin"></wm-tabpane>
+                            <wm-tabpane name="tabpane7" title="Code Enforcement" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.codeEnforcement.datavalue"></wm-tabpane>
                             <wm-tabpane name="tabpaneLetters" title="Letters">
                                 <wm-livegrid formlayout="dialog" name="livegridLetters">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvLetterTemplatesData.dataSet" navigation="Classic" name="gridLetters">
@@ -457,6 +462,7 @@
                                     </wm-liveform>
                                 </wm-livegrid>
                             </wm-tabpane>
+                            <wm-tabpane name="tabpaneCXADMIN" title="CX Admin" accessroles="CXAdmin"></wm-tabpane>
                         </wm-tabs>
                     </wm-gridcolumn>
                 </wm-gridrow>
