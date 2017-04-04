@@ -96,8 +96,8 @@ public class FormController {
     @RequestMapping(value = "/saveFormTypeField", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void saveFormTypeField(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "label", required = false) String label, @RequestParam(value = "fieldTypeId", required = false) Long fieldTypeId, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues, @RequestParam(value = "automaticFeeType", required = false) String automaticFeeType) throws SQLException {
-        formService.saveFormTypeField(formTypeId, label, fieldTypeId, displayOrder, required, defaultValue, helpText, possibleValues, automaticFeeType);
+    public void saveFormTypeField(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "inspectionDesignId", required = false) Long inspectionDesignId, @RequestParam(value = "label", required = false) String label, @RequestParam(value = "fieldTypeId", required = false) Long fieldTypeId, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues, @RequestParam(value = "automaticFeeType", required = false) String automaticFeeType) throws SQLException {
+        formService.saveFormTypeField(formTypeId, inspectionDesignId, label, fieldTypeId, displayOrder, required, defaultValue, helpText, possibleValues, automaticFeeType);
     }
 
     @RequestMapping(value = "/formStatus", method = RequestMethod.PUT)

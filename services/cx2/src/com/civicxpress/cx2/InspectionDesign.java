@@ -69,6 +69,7 @@ public class InspectionDesign implements Serializable {
     private boolean allowUnscheduledInspection;
     private boolean codeEnforcement;
     private boolean trackViolations;
+    private String inspectionTableName;
     private Users users;
     private Municipalities municipalities;
     private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
@@ -393,6 +394,15 @@ public class InspectionDesign implements Serializable {
 
     public void setTrackViolations(boolean trackViolations) {
         this.trackViolations = trackViolations;
+    }
+
+    @Column(name = "`InspectionTableName`", nullable = false, length = 255)
+    public String getInspectionTableName() {
+        return this.inspectionTableName;
+    }
+
+    public void setInspectionTableName(String inspectionTableName) {
+        this.inspectionTableName = inspectionTableName;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

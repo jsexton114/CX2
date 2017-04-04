@@ -502,53 +502,69 @@ public class FormService {
     	}
     }
     
-    public void saveFormTypeField(Long formTypeId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues, String automaticFeeType) throws SQLException {
-    	String fieldName = label == null ? null : DBUtils.getSqlSafeString(label);
-    	
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
-    	cx2Conn.setAutoCommit(false);
-    	DBQueryParams queryParams = new DBQueryParams();
-    	queryParams.addLong("formTypeId",  formTypeId);
-    	
-    	DBRow muniData = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId, FormTableName from FormTypes WHERE ID=:formTypeId", queryParams).get(0);
-    	
-    	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, muniData.getLong("MunicipalityId"));
-    	muniDbConn.setAutoCommit(false);
-    	
-    	try {
-    		fieldName += DBUtils.selectQuery(muniDbConn, "SELECT NEXT VALUE FOR DynamicFieldIndex as DynamicFieldIndex").get(0).getString("DynamicFieldIndex");
-    		
-	    	queryParams.addString("label", label);
-	    	queryParams.addString("fieldName", fieldName);
-	    	queryParams.addLong("fieldTypeId", fieldTypeId);
-	    	queryParams.addInteger("displayOrder", displayOrder);
-	    	queryParams.addBoolean("required", required);
-	    	queryParams.addString("defaultValue", defaultValue);
-	    	queryParams.addString("helpText", helpText);
-	    	queryParams.addString("possibleValues", possibleValues);
-	    	queryParams.addString("automaticFeeType", automaticFeeType);
-	    	DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypeFields "
-	    			+ "(FormTypeId, FieldName, Label, DisplayOrder, Required, DefaultValue, HelpText, FieldTypeId, PossibleValues, AutomaticFeeType)"
-	    			+" VALUES (:formTypeId, :fieldName, :label, :displayOrder, :required, :defaultValue, :helpText, :fieldTypeId, :possibleValues, :automaticFeeType)",
-	    			queryParams);
-	    	
-	    	String fieldSqlType = DBUtils.selectQuery(cx2Conn, "SELECT SqlType FROM FormFieldTypes WHERE ID=:fieldTypeId", queryParams).get(0).getString("SqlType");
-	    	
-	    	if (fieldSqlType != null && !fieldSqlType.isEmpty()) {
-	    		DBUtils.simpleQuery(muniDbConn, "ALTER TABLE "+muniData.getString("FormTableName")+" ADD "+fieldName+" "+fieldSqlType);
-	    	}
-	    	
-	    	cx2Conn.commit();
-	    	muniDbConn.commit();
-    	} catch (SQLException e) {
-    		cx2Conn.rollback();
-    		muniDbConn.rollback();
-    		logger.error(e.getLocalizedMessage());
-    		throw e;
-    	} finally {
-    		cx2Conn.close();
-    		muniDbConn.close();
-    	}
+    public void saveFormTypeField(Long formTypeId, Long inspectionDesignId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues, String automaticFeeType) throws SQLException {
+      	String fieldName = label == null ? null : DBUtils.getSqlSafeString(label);
+    
+      	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+      	cx2Conn.setAutoCommit(false);
+      	DBQueryParams queryParams = new DBQueryParams();
+    
+      	Boolean forInspection = (inspectionDesignId != null);
+    
+      	if (forInspection) {
+      	    queryParams.addLong("parentItemId", inspectionDesignId);
+      	} else if (formTypeId != null) {
+            queryParams.addLong("parentItemId",  formTypeId);
+      	} else {
+            throw new SQLException("Must provide a valid parent item ID");
+        }
+    
+      	DBRow muniData = null;
+    
+        if (forInspection) {
+            muniData = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId, InspectionTableName as ItemTableName from InspectionDesign WHERE ID=:parentItemId", queryParams);
+        }
+        else {
+            muniData = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId, FormTableName as ItemTableName from FormTypes WHERE ID=:parentItemId", queryParams);
+        }
+    
+      	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, muniData.getLong("MunicipalityId"));
+      	muniDbConn.setAutoCommit(false);
+    
+      	try {
+      		fieldName += DBUtils.selectQuery(muniDbConn, "SELECT NEXT VALUE FOR DynamicFieldIndex as DynamicFieldIndex").get(0).getString("DynamicFieldIndex");
+    
+        	queryParams.addString("label", label);
+        	queryParams.addString("fieldName", fieldName);
+        	queryParams.addLong("fieldTypeId", fieldTypeId);
+        	queryParams.addInteger("displayOrder", displayOrder);
+        	queryParams.addBoolean("required", required);
+        	queryParams.addString("defaultValue", defaultValue);
+        	queryParams.addString("helpText", helpText);
+        	queryParams.addString("possibleValues", possibleValues);
+        	queryParams.addString("automaticFeeType", automaticFeeType);
+        	DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypeFields "
+        			+ "(" + (forInspection ? "InspectionDesignId" : "FormTypeId") + ", FieldName, Label, DisplayOrder, Required, DefaultValue, HelpText, FieldTypeId, PossibleValues, AutomaticFeeType)"
+        			+" VALUES (:parentItemId, :fieldName, :label, :displayOrder, :required, :defaultValue, :helpText, :fieldTypeId, :possibleValues, :automaticFeeType)",
+        			queryParams);
+    
+        	String fieldSqlType = DBUtils.selectQuery(cx2Conn, "SELECT SqlType FROM FormFieldTypes WHERE ID=:fieldTypeId", queryParams).get(0).getString("SqlType");
+    
+        	if (fieldSqlType != null && !fieldSqlType.isEmpty()) {
+        		DBUtils.simpleQuery(muniDbConn, "ALTER TABLE "+muniData.getString("ItemTableName")+" ADD "+fieldName+" "+fieldSqlType);
+        	}
+    
+        	cx2Conn.commit();
+        	muniDbConn.commit();
+      	} catch (SQLException e) {
+      		cx2Conn.rollback();
+      		muniDbConn.rollback();
+      		logger.error(e.getLocalizedMessage());
+      		throw e;
+      	} finally {
+      		cx2Conn.close();
+      		muniDbConn.close();
+      	}
     }
     
     public Long saveFormType(Long municipalityId, String formType) throws SQLException {

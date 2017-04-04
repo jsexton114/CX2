@@ -311,7 +311,11 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpaneFields" title="Fields"></wm-tabpane>
+                            <wm-tabpane name="tabpaneFields" title="Fields">
+                                <wm-container name="container1" content="dynamicFieldEditor">
+                                    <wm-param name="inspectionDesignId" value="bind:pageParams.InspectionDesignId" type="integer"></wm-param>
+                                </wm-container>
+                            </wm-tabpane>
                             <wm-tabpane name="tabpaneOutcomes" title="Outcomes">
                                 <wm-layoutgrid name="layoutgrid12">
                                     <wm-gridrow name="gridrow41">

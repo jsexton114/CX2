@@ -565,6 +565,19 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "inspectionTableName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "InspectionTableName",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formTypes",
@@ -1473,6 +1486,10 @@
       "target" : "automaticFeeType",
       "value" : "bind:Widgets.selectAutoFeeType.datavalue",
       "type" : "string"
+    }, {
+      "target" : "inspectionDesignId",
+      "value" : "bind:pageParams.inspectionDesignId",
+      "type" : "integer"
     } ],
     "service" : "FormService",
     "operation" : "saveFormTypeField",
