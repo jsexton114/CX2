@@ -1640,6 +1640,25 @@ public class QueryExecutionController {
         return queryService.exportGetListofUsers(exportType, municipalityId, email, pageable);
     }
 
+    @RequestMapping(value = "/queries/countOfGlobalCodeList", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "countOfGlobalCodeList")
+    public Page<CountOfGlobalCodeListResponse> executeCountOfGlobalCodeList(Pageable pageable) {
+        LOGGER.debug("Executing named query: countOfGlobalCodeList");
+        Page<CountOfGlobalCodeListResponse> _result = queryService.executeCountOfGlobalCodeList(pageable);
+        LOGGER.debug("got the result for named query: countOfGlobalCodeList, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query countOfGlobalCodeList")
+    @RequestMapping(value = "/queries/countOfGlobalCodeList/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfGlobalCodeList(@PathVariable("exportType") ExportType exportType, Pageable pageable) {
+        LOGGER.debug("Exporting named query: countOfGlobalCodeList");
+
+        return queryService.exportCountOfGlobalCodeList(exportType, pageable);
+    }
+
     @RequestMapping(value = "/queries/InsertNewRole", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "InsertNewRole")

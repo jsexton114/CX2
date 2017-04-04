@@ -1873,6 +1873,24 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("getListofUsers", params, exportType, GetListofUsersResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountOfGlobalCodeListResponse> executeCountOfGlobalCodeList(Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("countOfGlobalCodeList", params, CountOfGlobalCodeListResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountOfGlobalCodeList(ExportType exportType, Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.exportNamedQueryData("countOfGlobalCodeList", params, exportType, CountOfGlobalCodeListResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeInsertNewRole(InsertNewRoleRequest insertNewRoleRequest) {

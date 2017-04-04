@@ -1475,6 +1475,18 @@ ORDER BY DateModified DESC
     <query-param name="Email" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="countOfGlobalCodeList">
+        <![CDATA[
+        select count(*) as countCodeList from CodeList where CodeSetId IN(select CodeSetId from CodeSets where GlobalYN=1)
+        ]]>
+    </sql-query>
+
+    <sql-query name="countOfGlobalCodeList__count">
+        <![CDATA[
+        select count(*) from (select count(*) as countCodeList from CodeList where CodeSetId IN(select CodeSetId from CodeSets where GlobalYN=1)) wmTempTable
+        ]]>
+    </sql-query>
+
     <sql-query name="InsertNewRole">
         <![CDATA[
         insert into Roles(RoleName,MunicipalityId,Description,UserId) values (:RoleName,:MunicipalityId,:Description,:UserId)

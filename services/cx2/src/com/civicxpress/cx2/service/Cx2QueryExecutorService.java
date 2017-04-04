@@ -359,6 +359,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetListofUsers(ExportType exportType, Integer municipalityId, String email, Pageable pageable);
 
+    Page<CountOfGlobalCodeListResponse> executeCountOfGlobalCodeList(Pageable pageable);
+
+    Downloadable exportCountOfGlobalCodeList(ExportType exportType, Pageable pageable);
+
     Integer executeInsertNewRole(InsertNewRoleRequest insertNewRoleRequest);
 
     Page<BannedDetailsResponse> executeBannedDetails(String emailid, Pageable pageable);

@@ -9660,6 +9660,37 @@
       } ]
     }
   },
+  "countOfGlobalCodeList" : {
+    "name" : "countOfGlobalCodeList",
+    "description" : "countOfGlobalCodeList",
+    "version" : "V2",
+    "queryString" : "select count(*) as countCodeList from CodeList where CodeSetId IN(select CodeSetId from CodeSets where GlobalYN=1)",
+    "countQueryString" : "select count(*) from (select count(*) as countCodeList from CodeList where CodeSetId IN(select CodeSetId from CodeSets where GlobalYN=1)) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CountOfGlobalCodeListResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "countCodeList",
+        "fieldName" : "countCodeList",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "deleteMunicipalityGroup" : {
     "name" : "deleteMunicipalityGroup",
     "description" : "deleteMunicipalityGroup based on userID and MunicipalityGroupId",
