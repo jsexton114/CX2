@@ -68,7 +68,7 @@ public class InspectionDesign implements Serializable {
     private boolean requireFeesPaidBeforeScheduling;
     private boolean allowUnscheduledInspection;
     private boolean codeEnforcement;
-    private boolean allowCases;
+    private boolean trackViolations;
     private Users users;
     private Municipalities municipalities;
     private List<InspectionOutcome> inspectionOutcomes = new ArrayList<>();
@@ -385,13 +385,13 @@ public class InspectionDesign implements Serializable {
         this.codeEnforcement = codeEnforcement;
     }
 
-    @Column(name = "`AllowCases`", nullable = false)
-    public boolean isAllowCases() {
-        return this.allowCases;
+    @Column(name = "`TrackViolations`", nullable = false)
+    public boolean isTrackViolations() {
+        return this.trackViolations;
     }
 
-    public void setAllowCases(boolean allowCases) {
-        this.allowCases = allowCases;
+    public void setTrackViolations(boolean trackViolations) {
+        this.trackViolations = trackViolations;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
