@@ -9092,10 +9092,10 @@
       "unique" : false
     }, {
       "columnValue" : {
-        "type" : "user-defined",
+        "type" : "server-defined",
         "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
+        "updatable" : false,
+        "variableType" : "USER_ID"
       },
       "fieldName" : "createdBy",
       "foreignKey" : true,
@@ -9142,10 +9142,10 @@
       "unique" : false
     }, {
       "columnValue" : {
-        "type" : "user-defined",
+        "type" : "server-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : ""
+        "variableType" : "USER_ID"
       },
       "fieldName" : "modifiedBy",
       "foreignKey" : true,

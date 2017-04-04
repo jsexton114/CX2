@@ -37,10 +37,12 @@ public class LetterTemplates implements Serializable {
     private String letterBody;
     private Integer formDesignId;
     private Integer inspectionDesignId;
+    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.INSERT })
     private Integer createdBy;
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime createdDate;
+    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.UPDATE, Scope.INSERT })
     private Integer modifiedBy;
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
     @Type(type = "DateTime")
@@ -97,7 +99,7 @@ public class LetterTemplates implements Serializable {
         this.inspectionDesignId = inspectionDesignId;
     }
 
-    @Column(name = "`CreatedBy`", nullable = true, scale = 0, precision = 10)
+    @Column(name = "`CreatedBy`", nullable = true, updatable = false, scale = 0, precision = 10)
     public Integer getCreatedBy() {
         return this.createdBy;
     }
