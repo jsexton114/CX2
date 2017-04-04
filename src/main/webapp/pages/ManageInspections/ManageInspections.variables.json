@@ -8,7 +8,7 @@
     "dataSet" : [ {
       "label" : "Home",
       "icon" : "glyphicon glyphicon-home",
-      "link" : "#/MunicipalityAdministration"
+      "link" : "#/MunicipalityInspections"
     }, {
       "label" : "Manage Inspections",
       "icon" : "wi wi-ellipsis-v",
@@ -1649,6 +1649,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "inspectionTableName",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "InspectionTableName",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
         "scale" : 0
       } ],
       "entityName" : "InspectionDesign",

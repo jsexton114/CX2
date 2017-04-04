@@ -82,6 +82,21 @@
                         </wm-tile>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn12" padding="2em unset" horizontalalign="center">
+                        <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_MunicipalityCodeSets.invoke()">
+                            <wm-layoutgrid height="100%" name="layoutgrid9">
+                                <wm-gridrow height="100%" name="gridrow12">
+                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="1.4em unset unset unset" name="gridcolumn26_2" class="col-xs-3">
+                                        <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-hammer"></wm-icon>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" name="gridcolumn27_1" class="col-xs-9">
+                                        <wm-label name="tileTitle" caption="Code Sets" class="p" fontsize="1.5" fontunit="em"></wm-label>
+                                        <wm-label name="tileStatLabel" caption="bind:Variables.svCountOfMunicipalityCodeList.firstRecord.countCodeList" fontsize="3" fontunit="em" class="p"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-tile>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn11" padding="2em unset" horizontalalign="center">
                         <wm-tile name="GISRecordsTile" width="240px" height="160px" class="bg-primary" on-click="GISRecordsTileClick($event, $scope)">
                             <wm-layoutgrid height="100%" name="layoutgrid2">
                                 <wm-gridrow height="100%" name="gridrow10">
@@ -96,7 +111,9 @@
                             </wm-layoutgrid>
                         </wm-tile>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn11" padding="2em unset" horizontalalign="center">
+                </wm-gridrow>
+                <wm-gridrow name="gridrow10_2">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn21" padding="2em unset" horizontalalign="center">
                         <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_WorkSchedule.invoke()">
                             <wm-layoutgrid height="100%" name="layoutgrid6">
                                 <wm-gridrow height="100%" name="gridrow10_1">
@@ -110,9 +127,7 @@
                             </wm-layoutgrid>
                         </wm-tile>
                     </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow10_2">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn21" padding="2em unset" horizontalalign="center">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn22" horizontalalign="center" padding="2em unset">
                         <wm-tile name="statTile" width="240px" height="160px" class="bg-primary" on-click="Variables.goToPage_MunicipalitySettings.invoke()">
                             <wm-layoutgrid height="100%" name="layoutgrid5">
                                 <wm-gridrow height="100%" name="gridrow9_1">
@@ -126,7 +141,6 @@
                             </wm-layoutgrid>
                         </wm-tile>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn22" horizontalalign="center" padding="2em unset"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn23_2"></wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
