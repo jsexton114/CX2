@@ -67,12 +67,13 @@ public class InspectionDesign implements Serializable {
     private Timestamp createdAt;
     private boolean requireFeesPaidBeforeScheduling;
     private boolean allowUnscheduledInspection;
-    private Boolean codeEnforcement;
-    private Boolean allowCases;
+    private boolean codeEnforcement;
+    private boolean allowCases;
     private Users users;
     private Municipalities municipalities;
     private List<InspectionOutcome> inspectionOutcomes = new ArrayList<>();
     private List<InspectionSequence> inspectionSequences = new ArrayList<>();
+    private List<LetterTemplates> letterTemplateses = new ArrayList<>();
     private List<MasterInspections> masterInspectionses = new ArrayList<>();
     private List<InspectionCategoryMapping> inspectionCategoryMappings = new ArrayList<>();
 
@@ -375,21 +376,21 @@ public class InspectionDesign implements Serializable {
         this.allowUnscheduledInspection = allowUnscheduledInspection;
     }
 
-    @Column(name = "`CodeEnforcement`", nullable = true)
-    public Boolean getCodeEnforcement() {
+    @Column(name = "`CodeEnforcement`", nullable = false)
+    public boolean isCodeEnforcement() {
         return this.codeEnforcement;
     }
 
-    public void setCodeEnforcement(Boolean codeEnforcement) {
+    public void setCodeEnforcement(boolean codeEnforcement) {
         this.codeEnforcement = codeEnforcement;
     }
 
-    @Column(name = "`AllowCases`", nullable = true)
-    public Boolean getAllowCases() {
+    @Column(name = "`AllowCases`", nullable = false)
+    public boolean isAllowCases() {
         return this.allowCases;
     }
 
-    public void setAllowCases(Boolean allowCases) {
+    public void setAllowCases(boolean allowCases) {
         this.allowCases = allowCases;
     }
 
@@ -439,6 +440,16 @@ public class InspectionDesign implements Serializable {
 
     public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
         this.inspectionSequences = inspectionSequences;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
+    public List<LetterTemplates> getLetterTemplateses() {
+        return this.letterTemplateses;
+    }
+
+    public void setLetterTemplateses(List<LetterTemplates> letterTemplateses) {
+        this.letterTemplateses = letterTemplateses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

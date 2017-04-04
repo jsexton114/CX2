@@ -38,6 +38,7 @@ import com.civicxpress.cx2.FormToInspectionCategoryMapping;
 import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.InspectionSequence;
+import com.civicxpress.cx2.LetterTemplates;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.service.FormTypesService;
 
@@ -210,6 +211,15 @@ public class FormTypesController {
 
         LOGGER.debug("Fetching all associated inspectionSequences");
         return formTypesService.findAssociatedInspectionSequences(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/letterTemplateses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the letterTemplateses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<LetterTemplates> findAssociatedLetterTemplateses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated letterTemplateses");
+        return formTypesService.findAssociatedLetterTemplateses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/masterFormses", method=RequestMethod.GET)

@@ -22,6 +22,7 @@ import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionGis;
+import com.civicxpress.cx2.LetterTemplates;
 import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
@@ -255,28 +256,28 @@ public interface UsersService {
     Page<InspectionGis> findAssociatedInspectionGises(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated masterCasesesForCreatedBy for given Users id.
+     * Returns the associated letterTemplatesesForCreatedBy for given Users id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated MasterCases instances.
+     * @return Paginated list of associated LetterTemplates instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(Integer id, Pageable pageable);
+    Page<LetterTemplates> findAssociatedLetterTemplatesesForCreatedBy(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated masterCasesesForModifiedBy for given Users id.
+     * Returns the associated letterTemplatesesForModifiedBy for given Users id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated MasterCases instances.
+     * @return Paginated list of associated LetterTemplates instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(Integer id, Pageable pageable);
+    Page<LetterTemplates> findAssociatedLetterTemplatesesForModifiedBy(Integer id, Pageable pageable);
 
     /*
      * Returns the associated masterFormses for given Users id.
@@ -325,6 +326,30 @@ public interface UsersService {
      * @see Page
      */
     Page<MasterInspections> findAssociatedMasterInspectionsesForModifiedBy(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated masterCasesesForCreatedBy for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterCases instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated masterCasesesForModifiedBy for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterCases instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(Integer id, Pageable pageable);
 
     /*
      * Returns the associated municipalityGroupMemberses for given Users id.

@@ -31,6 +31,7 @@ import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionGis;
+import com.civicxpress.cx2.LetterTemplates;
 import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
@@ -60,6 +61,10 @@ import com.civicxpress.cx2.VendorUsers;
 public class UsersServiceImpl implements UsersService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.LetterTemplatesService")
+	private LetterTemplatesService letterTemplatesService;
 
     @Autowired
 	@Qualifier("cx2.FormsToInspectionsService")
@@ -98,12 +103,12 @@ public class UsersServiceImpl implements UsersService {
 	private VendorUsersService vendorUsersService;
 
     @Autowired
-	@Qualifier("cx2.MunicipalityGroupMembersService")
-	private MunicipalityGroupMembersService municipalityGroupMembersService;
-
-    @Autowired
 	@Qualifier("cx2.Gis2formsService")
 	private Gis2formsService gis2formsService;
+
+    @Autowired
+	@Qualifier("cx2.MunicipalityGroupMembersService")
+	private MunicipalityGroupMembersService municipalityGroupMembersService;
 
     @Autowired
 	@Qualifier("cx2.FormMessagesService")
@@ -238,19 +243,19 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getMasterCasesesForCreatedBy() != null) {
-            for(MasterCases masterCasesesForCreatedBy : usersCreated.getMasterCasesesForCreatedBy()) {
-                masterCasesesForCreatedBy.setUsersByCreatedBy(usersCreated);
-                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForCreatedBy);
-                masterCasesService.create(masterCasesesForCreatedBy);
+        if(usersCreated.getLetterTemplatesesForCreatedBy() != null) {
+            for(LetterTemplates letterTemplatesesForCreatedBy : usersCreated.getLetterTemplatesesForCreatedBy()) {
+                letterTemplatesesForCreatedBy.setUsersByCreatedBy(usersCreated);
+                LOGGER.debug("Creating a new child LetterTemplates with information: {}", letterTemplatesesForCreatedBy);
+                letterTemplatesService.create(letterTemplatesesForCreatedBy);
             }
         }
 
-        if(usersCreated.getMasterCasesesForModifiedBy() != null) {
-            for(MasterCases masterCasesesForModifiedBy : usersCreated.getMasterCasesesForModifiedBy()) {
-                masterCasesesForModifiedBy.setUsersByModifiedBy(usersCreated);
-                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForModifiedBy);
-                masterCasesService.create(masterCasesesForModifiedBy);
+        if(usersCreated.getLetterTemplatesesForModifiedBy() != null) {
+            for(LetterTemplates letterTemplatesesForModifiedBy : usersCreated.getLetterTemplatesesForModifiedBy()) {
+                letterTemplatesesForModifiedBy.setUsersByModifiedBy(usersCreated);
+                LOGGER.debug("Creating a new child LetterTemplates with information: {}", letterTemplatesesForModifiedBy);
+                letterTemplatesService.create(letterTemplatesesForModifiedBy);
             }
         }
 
@@ -283,6 +288,22 @@ public class UsersServiceImpl implements UsersService {
                 masterInspectionsesForModifiedBy.setUsersByModifiedBy(usersCreated);
                 LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionsesForModifiedBy);
                 masterInspectionsService.create(masterInspectionsesForModifiedBy);
+            }
+        }
+
+        if(usersCreated.getMasterCasesesForCreatedBy() != null) {
+            for(MasterCases masterCasesesForCreatedBy : usersCreated.getMasterCasesesForCreatedBy()) {
+                masterCasesesForCreatedBy.setUsersByCreatedBy(usersCreated);
+                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForCreatedBy);
+                masterCasesService.create(masterCasesesForCreatedBy);
+            }
+        }
+
+        if(usersCreated.getMasterCasesesForModifiedBy() != null) {
+            for(MasterCases masterCasesesForModifiedBy : usersCreated.getMasterCasesesForModifiedBy()) {
+                masterCasesesForModifiedBy.setUsersByModifiedBy(usersCreated);
+                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForModifiedBy);
+                masterCasesService.create(masterCasesesForModifiedBy);
             }
         }
 
@@ -609,24 +630,24 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterCasesesForCreatedBy");
+    public Page<LetterTemplates> findAssociatedLetterTemplatesesForCreatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated letterTemplatesesForCreatedBy");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
 
-        return masterCasesService.findAll(queryBuilder.toString(), pageable);
+        return letterTemplatesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterCasesesForModifiedBy");
+    public Page<LetterTemplates> findAssociatedLetterTemplatesesForModifiedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated letterTemplatesesForModifiedBy");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
 
-        return masterCasesService.findAll(queryBuilder.toString(), pageable);
+        return letterTemplatesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -671,6 +692,28 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
 
         return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterCasesesForCreatedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
+
+        return masterCasesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterCasesesForModifiedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
+
+        return masterCasesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -874,6 +917,15 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service LetterTemplatesService instance
+	 */
+	protected void setLetterTemplatesService(LetterTemplatesService service) {
+        this.letterTemplatesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service FormsToInspectionsService instance
 	 */
 	protected void setFormsToInspectionsService(FormsToInspectionsService service) {
@@ -955,19 +1007,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalityGroupMembersService instance
+	 * @param service Gis2formsService instance
 	 */
-	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
-        this.municipalityGroupMembersService = service;
+	protected void setGis2formsService(Gis2formsService service) {
+        this.gis2formsService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service Gis2formsService instance
+	 * @param service MunicipalityGroupMembersService instance
 	 */
-	protected void setGis2formsService(Gis2formsService service) {
-        this.gis2formsService = service;
+	protected void setMunicipalityGroupMembersService(MunicipalityGroupMembersService service) {
+        this.municipalityGroupMembersService = service;
     }
 
     /**

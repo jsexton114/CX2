@@ -29,6 +29,7 @@ import com.civicxpress.cx2.FormToInspectionCategoryMapping;
 import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.InspectionSequence;
+import com.civicxpress.cx2.LetterTemplates;
 import com.civicxpress.cx2.MasterForms;
 
 
@@ -41,6 +42,10 @@ import com.civicxpress.cx2.MasterForms;
 public class FormTypesServiceImpl implements FormTypesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FormTypesServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.LetterTemplatesService")
+	private LetterTemplatesService letterTemplatesService;
 
     @Autowired
 	@Qualifier("cx2.FormStatusesService")
@@ -140,6 +145,14 @@ public class FormTypesServiceImpl implements FormTypesService {
                 inspectionSequence.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
                 inspectionSequenceService.create(inspectionSequence);
+            }
+        }
+
+        if(formTypesCreated.getLetterTemplateses() != null) {
+            for(LetterTemplates letterTemplatese : formTypesCreated.getLetterTemplateses()) {
+                letterTemplatese.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child LetterTemplates with information: {}", letterTemplatese);
+                letterTemplatesService.create(letterTemplatese);
             }
         }
 
@@ -303,6 +316,17 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated letterTemplateses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return letterTemplatesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
 
@@ -310,6 +334,15 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return masterFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service LetterTemplatesService instance
+	 */
+	protected void setLetterTemplatesService(LetterTemplatesService service) {
+        this.letterTemplatesService = service;
     }
 
     /**

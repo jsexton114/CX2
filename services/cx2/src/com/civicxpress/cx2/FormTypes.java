@@ -76,8 +76,8 @@ public class FormTypes implements Serializable {
     private String instructions;
     private Boolean forceInspectionSequence;
     private boolean requireSignature;
-    private Boolean codeEnforcement;
-    private Boolean allowCases;
+    private boolean codeEnforcement;
+    private boolean allowCases;
     private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
@@ -86,6 +86,7 @@ public class FormTypes implements Serializable {
     private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
     private List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings = new ArrayList<>();
     private List<InspectionSequence> inspectionSequences = new ArrayList<>();
+    private List<LetterTemplates> letterTemplateses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
 
     @Id
@@ -468,21 +469,21 @@ public class FormTypes implements Serializable {
         this.requireSignature = requireSignature;
     }
 
-    @Column(name = "`CodeEnforcement`", nullable = true)
-    public Boolean getCodeEnforcement() {
+    @Column(name = "`CodeEnforcement`", nullable = false)
+    public boolean isCodeEnforcement() {
         return this.codeEnforcement;
     }
 
-    public void setCodeEnforcement(Boolean codeEnforcement) {
+    public void setCodeEnforcement(boolean codeEnforcement) {
         this.codeEnforcement = codeEnforcement;
     }
 
-    @Column(name = "`AllowCases`", nullable = true)
-    public Boolean getAllowCases() {
+    @Column(name = "`AllowCases`", nullable = false)
+    public boolean isAllowCases() {
         return this.allowCases;
     }
 
-    public void setAllowCases(Boolean allowCases) {
+    public void setAllowCases(boolean allowCases) {
         this.allowCases = allowCases;
     }
 
@@ -568,6 +569,16 @@ public class FormTypes implements Serializable {
 
     public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
         this.inspectionSequences = inspectionSequences;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<LetterTemplates> getLetterTemplateses() {
+        return this.letterTemplateses;
+    }
+
+    public void setLetterTemplateses(List<LetterTemplates> letterTemplateses) {
+        this.letterTemplateses = letterTemplateses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

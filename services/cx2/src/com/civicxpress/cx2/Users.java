@@ -63,12 +63,14 @@ public class Users implements Serializable {
     private List<Gis2forms> gis2formses = new ArrayList<>();
     private List<InspectionDesign> inspectionDesigns = new ArrayList<>();
     private List<InspectionGis> inspectionGises = new ArrayList<>();
-    private List<MasterCases> masterCasesesForCreatedBy = new ArrayList<>();
-    private List<MasterCases> masterCasesesForModifiedBy = new ArrayList<>();
+    private List<LetterTemplates> letterTemplatesesForCreatedBy = new ArrayList<>();
+    private List<LetterTemplates> letterTemplatesesForModifiedBy = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
     private List<MasterInspections> masterInspectionsesForAssignedTo = new ArrayList<>();
     private List<MasterInspections> masterInspectionsesForRequestedBy = new ArrayList<>();
     private List<MasterInspections> masterInspectionsesForModifiedBy = new ArrayList<>();
+    private List<MasterCases> masterCasesesForCreatedBy = new ArrayList<>();
+    private List<MasterCases> masterCasesesForModifiedBy = new ArrayList<>();
     private List<MunicipalityGroupMembers> municipalityGroupMemberses = new ArrayList<>();
     private List<ProjectForms> projectFormses = new ArrayList<>();
     private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
@@ -339,22 +341,22 @@ public class Users implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
-    public List<MasterCases> getMasterCasesesForCreatedBy() {
-        return this.masterCasesesForCreatedBy;
+    public List<LetterTemplates> getLetterTemplatesesForCreatedBy() {
+        return this.letterTemplatesesForCreatedBy;
     }
 
-    public void setMasterCasesesForCreatedBy(List<MasterCases> masterCasesesForCreatedBy) {
-        this.masterCasesesForCreatedBy = masterCasesesForCreatedBy;
+    public void setLetterTemplatesesForCreatedBy(List<LetterTemplates> letterTemplatesesForCreatedBy) {
+        this.letterTemplatesesForCreatedBy = letterTemplatesesForCreatedBy;
     }
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByModifiedBy")
-    public List<MasterCases> getMasterCasesesForModifiedBy() {
-        return this.masterCasesesForModifiedBy;
+    public List<LetterTemplates> getLetterTemplatesesForModifiedBy() {
+        return this.letterTemplatesesForModifiedBy;
     }
 
-    public void setMasterCasesesForModifiedBy(List<MasterCases> masterCasesesForModifiedBy) {
-        this.masterCasesesForModifiedBy = masterCasesesForModifiedBy;
+    public void setLetterTemplatesesForModifiedBy(List<LetterTemplates> letterTemplatesesForModifiedBy) {
+        this.letterTemplatesesForModifiedBy = letterTemplatesesForModifiedBy;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -395,6 +397,26 @@ public class Users implements Serializable {
 
     public void setMasterInspectionsesForModifiedBy(List<MasterInspections> masterInspectionsesForModifiedBy) {
         this.masterInspectionsesForModifiedBy = masterInspectionsesForModifiedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
+    public List<MasterCases> getMasterCasesesForCreatedBy() {
+        return this.masterCasesesForCreatedBy;
+    }
+
+    public void setMasterCasesesForCreatedBy(List<MasterCases> masterCasesesForCreatedBy) {
+        this.masterCasesesForCreatedBy = masterCasesesForCreatedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByModifiedBy")
+    public List<MasterCases> getMasterCasesesForModifiedBy() {
+        return this.masterCasesesForModifiedBy;
+    }
+
+    public void setMasterCasesesForModifiedBy(List<MasterCases> masterCasesesForModifiedBy) {
+        this.masterCasesesForModifiedBy = masterCasesesForModifiedBy;
     }
 
     @JsonInclude(Include.NON_EMPTY)

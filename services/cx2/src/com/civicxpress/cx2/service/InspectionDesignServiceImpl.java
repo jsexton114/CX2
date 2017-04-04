@@ -25,6 +25,7 @@ import com.civicxpress.cx2.InspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionSequence;
+import com.civicxpress.cx2.LetterTemplates;
 import com.civicxpress.cx2.MasterInspections;
 
 
@@ -37,6 +38,10 @@ import com.civicxpress.cx2.MasterInspections;
 public class InspectionDesignServiceImpl implements InspectionDesignService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InspectionDesignServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.LetterTemplatesService")
+	private LetterTemplatesService letterTemplatesService;
 
     @Autowired
 	@Qualifier("cx2.InspectionSequenceService")
@@ -80,6 +85,14 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
                 inspectionSequence.setInspectionDesign(inspectionDesignCreated);
                 LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
                 inspectionSequenceService.create(inspectionSequence);
+            }
+        }
+
+        if(inspectionDesignCreated.getLetterTemplateses() != null) {
+            for(LetterTemplates letterTemplatese : inspectionDesignCreated.getLetterTemplateses()) {
+                letterTemplatese.setInspectionDesign(inspectionDesignCreated);
+                LOGGER.debug("Creating a new child LetterTemplates with information: {}", letterTemplatese);
+                letterTemplatesService.create(letterTemplatese);
             }
         }
 
@@ -196,6 +209,17 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated letterTemplateses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionDesign.id = '" + id + "'");
+
+        return letterTemplatesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterInspections> findAssociatedMasterInspectionses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterInspectionses");
 
@@ -214,6 +238,15 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
         queryBuilder.append("inspectionDesign.id = '" + id + "'");
 
         return inspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service LetterTemplatesService instance
+	 */
+	protected void setLetterTemplatesService(LetterTemplatesService service) {
+        this.letterTemplatesService = service;
     }
 
     /**
