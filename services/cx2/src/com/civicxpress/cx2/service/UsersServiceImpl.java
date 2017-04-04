@@ -23,6 +23,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormMessageTagging;
@@ -103,6 +104,10 @@ public class UsersServiceImpl implements UsersService {
 	private VendorUsersService vendorUsersService;
 
     @Autowired
+	@Qualifier("cx2.CodeSetsService")
+	private CodeSetsService codeSetsService;
+
+    @Autowired
 	@Qualifier("cx2.Gis2formsService")
 	private Gis2formsService gis2formsService;
 
@@ -151,12 +156,12 @@ public class UsersServiceImpl implements UsersService {
 	private ProjectSharedWithService projectSharedWithService;
 
     @Autowired
-	@Qualifier("cx2.RolesService")
-	private RolesService rolesService;
-
-    @Autowired
 	@Qualifier("cx2.UserViewPreferencesService")
 	private UserViewPreferencesService userViewPreferencesService;
+
+    @Autowired
+	@Qualifier("cx2.RolesService")
+	private RolesService rolesService;
 
     @Autowired
 	@Qualifier("cx2.VendorAdminsService")
@@ -179,6 +184,22 @@ public class UsersServiceImpl implements UsersService {
 	public Users create(Users users) {
         LOGGER.debug("Creating a new Users with information: {}", users);
         Users usersCreated = this.wmGenericDao.create(users);
+        if(usersCreated.getCodeSetsesForCreatedBy() != null) {
+            for(CodeSets codeSetsesForCreatedBy : usersCreated.getCodeSetsesForCreatedBy()) {
+                codeSetsesForCreatedBy.setUsersByCreatedBy(usersCreated);
+                LOGGER.debug("Creating a new child CodeSets with information: {}", codeSetsesForCreatedBy);
+                codeSetsService.create(codeSetsesForCreatedBy);
+            }
+        }
+
+        if(usersCreated.getCodeSetsesForUpdatedBy() != null) {
+            for(CodeSets codeSetsesForUpdatedBy : usersCreated.getCodeSetsesForUpdatedBy()) {
+                codeSetsesForUpdatedBy.setUsersByUpdatedBy(usersCreated);
+                LOGGER.debug("Creating a new child CodeSets with information: {}", codeSetsesForUpdatedBy);
+                codeSetsService.create(codeSetsesForUpdatedBy);
+            }
+        }
+
         if(usersCreated.getFeeses() != null) {
             for(Fees feese : usersCreated.getFeeses()) {
                 feese.setUsers(usersCreated);
@@ -259,22 +280,6 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getMasterCasesesForCreatedBy() != null) {
-            for(MasterCases masterCasesesForCreatedBy : usersCreated.getMasterCasesesForCreatedBy()) {
-                masterCasesesForCreatedBy.setUsersByCreatedBy(usersCreated);
-                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForCreatedBy);
-                masterCasesService.create(masterCasesesForCreatedBy);
-            }
-        }
-
-        if(usersCreated.getMasterCasesesForModifiedBy() != null) {
-            for(MasterCases masterCasesesForModifiedBy : usersCreated.getMasterCasesesForModifiedBy()) {
-                masterCasesesForModifiedBy.setUsersByModifiedBy(usersCreated);
-                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForModifiedBy);
-                masterCasesService.create(masterCasesesForModifiedBy);
-            }
-        }
-
         if(usersCreated.getMasterFormses() != null) {
             for(MasterForms masterFormse : usersCreated.getMasterFormses()) {
                 masterFormse.setUsers(usersCreated);
@@ -304,6 +309,22 @@ public class UsersServiceImpl implements UsersService {
                 masterInspectionsesForModifiedBy.setUsersByModifiedBy(usersCreated);
                 LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionsesForModifiedBy);
                 masterInspectionsService.create(masterInspectionsesForModifiedBy);
+            }
+        }
+
+        if(usersCreated.getMasterCasesesForCreatedBy() != null) {
+            for(MasterCases masterCasesesForCreatedBy : usersCreated.getMasterCasesesForCreatedBy()) {
+                masterCasesesForCreatedBy.setUsersByCreatedBy(usersCreated);
+                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForCreatedBy);
+                masterCasesService.create(masterCasesesForCreatedBy);
+            }
+        }
+
+        if(usersCreated.getMasterCasesesForModifiedBy() != null) {
+            for(MasterCases masterCasesesForModifiedBy : usersCreated.getMasterCasesesForModifiedBy()) {
+                masterCasesesForModifiedBy.setUsersByModifiedBy(usersCreated);
+                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForModifiedBy);
+                masterCasesService.create(masterCasesesForModifiedBy);
             }
         }
 
@@ -542,6 +563,28 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<CodeSets> findAssociatedCodeSetsesForCreatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated codeSetsesForCreatedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
+
+        return codeSetsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CodeSets> findAssociatedCodeSetsesForUpdatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated codeSetsesForUpdatedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByUpdatedBy.id = '" + id + "'");
+
+        return codeSetsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated feeses");
 
@@ -652,28 +695,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterCasesesForCreatedBy");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
-
-        return masterCasesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterCasesesForModifiedBy");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
-
-        return masterCasesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
 
@@ -714,6 +735,28 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
 
         return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterCasesesForCreatedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
+
+        return masterCasesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterCasesesForModifiedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
+
+        return masterCasesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1007,6 +1050,15 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service CodeSetsService instance
+	 */
+	protected void setCodeSetsService(CodeSetsService service) {
+        this.codeSetsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service Gis2formsService instance
 	 */
 	protected void setGis2formsService(Gis2formsService service) {
@@ -1115,19 +1167,19 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service RolesService instance
+	 * @param service UserViewPreferencesService instance
 	 */
-	protected void setRolesService(RolesService service) {
-        this.rolesService = service;
+	protected void setUserViewPreferencesService(UserViewPreferencesService service) {
+        this.userViewPreferencesService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service UserViewPreferencesService instance
+	 * @param service RolesService instance
 	 */
-	protected void setUserViewPreferencesService(UserViewPreferencesService service) {
-        this.userViewPreferencesService = service;
+	protected void setRolesService(RolesService service) {
+        this.rolesService = service;
     }
 
     /**

@@ -108,19 +108,19 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getFormStatuseses() != null) {
-            for(FormStatuses formStatusese : formTypesCreated.getFormStatuseses()) {
-                formStatusese.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
-                formStatusesService.create(formStatusese);
-            }
-        }
-
         if(formTypesCreated.getFormDrafts() != null) {
             for(FormDraft formDraft : formTypesCreated.getFormDrafts()) {
                 formDraft.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child FormDraft with information: {}", formDraft);
                 formDraftService.create(formDraft);
+            }
+        }
+
+        if(formTypesCreated.getFormStatuseses() != null) {
+            for(FormStatuses formStatusese : formTypesCreated.getFormStatuseses()) {
+                formStatusese.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
+                formStatusesService.create(formStatusese);
             }
         }
 
@@ -261,17 +261,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formStatuseses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return formStatusesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormDraft> findAssociatedFormDrafts(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formDrafts");
 
@@ -279,6 +268,17 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return formDraftService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatuseses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formStatusesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

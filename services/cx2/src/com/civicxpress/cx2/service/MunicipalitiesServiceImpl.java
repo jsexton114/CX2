@@ -22,6 +22,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.CaseTypes;
+import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormTypes;
@@ -49,6 +50,10 @@ import com.civicxpress.cx2.VendorApprovals;
 public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MunicipalitiesServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.CodeSetsService")
+	private CodeSetsService codeSetsService;
 
     @Autowired
 	@Qualifier("cx2.ManualFeeTypesService")
@@ -127,11 +132,11 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	public Municipalities create(Municipalities municipalities) {
         LOGGER.debug("Creating a new Municipalities with information: {}", municipalities);
         Municipalities municipalitiesCreated = this.wmGenericDao.create(municipalities);
-        if(municipalitiesCreated.getCaseTypeses() != null) {
-            for(CaseTypes caseTypese : municipalitiesCreated.getCaseTypeses()) {
-                caseTypese.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child CaseTypes with information: {}", caseTypese);
-                caseTypesService.create(caseTypese);
+        if(municipalitiesCreated.getCodeSetses() != null) {
+            for(CodeSets codeSetse : municipalitiesCreated.getCodeSetses()) {
+                codeSetse.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child CodeSets with information: {}", codeSetse);
+                codeSetsService.create(codeSetse);
             }
         }
 
@@ -140,6 +145,14 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
                 feese.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child Fees with information: {}", feese);
                 feesService.create(feese);
+            }
+        }
+
+        if(municipalitiesCreated.getCaseTypeses() != null) {
+            for(CaseTypes caseTypese : municipalitiesCreated.getCaseTypeses()) {
+                caseTypese.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child CaseTypes with information: {}", caseTypese);
+                caseTypesService.create(caseTypese);
             }
         }
 
@@ -330,13 +343,13 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CaseTypes> findAssociatedCaseTypeses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated caseTypeses");
+    public Page<CodeSets> findAssociatedCodeSetses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated codeSetses");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("municipalities.id = '" + id + "'");
 
-        return caseTypesService.findAll(queryBuilder.toString(), pageable);
+        return codeSetsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -348,6 +361,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
         queryBuilder.append("municipalities.id = '" + id + "'");
 
         return feesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CaseTypes> findAssociatedCaseTypeses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated caseTypeses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return caseTypesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -502,6 +526,15 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
         queryBuilder.append("municipalities.id = '" + id + "'");
 
         return vendorApprovalsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service CodeSetsService instance
+	 */
+	protected void setCodeSetsService(CodeSetsService service) {
+        this.codeSetsService = service;
     }
 
     /**

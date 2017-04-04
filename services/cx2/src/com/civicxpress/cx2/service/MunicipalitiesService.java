@@ -15,6 +15,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.CaseTypes;
+import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormTypes;
@@ -142,16 +143,16 @@ public interface MunicipalitiesService {
 	long count(String query);
 
     /*
-     * Returns the associated caseTypeses for given Municipalities id.
+     * Returns the associated codeSetses for given Municipalities id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated CaseTypes instances.
+     * @return Paginated list of associated CodeSets instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<CaseTypes> findAssociatedCaseTypeses(Integer id, Pageable pageable);
+    Page<CodeSets> findAssociatedCodeSetses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated feeses for given Municipalities id.
@@ -164,6 +165,18 @@ public interface MunicipalitiesService {
      * @see Page
      */
     Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated caseTypeses for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated CaseTypes instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<CaseTypes> findAssociatedCaseTypeses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated formCategorieses for given Municipalities id.
