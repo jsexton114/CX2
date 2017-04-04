@@ -695,11 +695,11 @@
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvLetterTemplatesData.dataSet" navigation="Classic" name="gridLetters" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                         <wm-grid-column binding="letterTitle" caption="Letter Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="usersByCreatedBy.fullName" caption="Created By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="createdDate" caption="Created Date" type="datetime" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="datetime"
-                                        show="true" filterwidget="date"></wm-grid-column>
+                                        <wm-grid-column binding="createdDate" caption="Date Created" type="datetime" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="datetime" show="true"
+                                        filterwidget="date"></wm-grid-column>
                                         <wm-grid-column binding="usersByModifiedBy.fullName" caption="Modified By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="modifiedDate" caption="Modified Date" type="datetime" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="datetime"
-                                        show="true" filterwidget="date"></wm-grid-column>
+                                        <wm-grid-column binding="modifiedDate" caption="Date Modified" type="datetime" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="datetime" show="true"
+                                        filterwidget="date"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="New Letter" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Letter" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
@@ -715,7 +715,7 @@
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow100">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn144">
-                                                    <wm-form-field name="letterBody" displayname="Letter Body" show="true" primary-key="false" generator="assigned" key="letterBody" type="text" readonly="false" required="false" widget="text" maxchars="2147483647"
+                                                    <wm-form-field name="letterBody" displayname="Letter Body" show="true" primary-key="false" generator="assigned" key="letterBody" type="text" readonly="false" required="false" widget="textarea" maxchars="2147483647"
                                                     inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
