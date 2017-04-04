@@ -40,6 +40,9 @@ public class InspectionOutcome implements Serializable {
     private Boolean assessFeeYn;
     private Boolean considerClosed;
     private Integer outcomeOrder;
+    private Boolean sendEmail;
+    private String emailSubjectLine;
+    private String emailBodyText;
     private InspectionDesign inspectionDesign;
     private List<InspectionOutcomeFee> inspectionOutcomeFees = new ArrayList<>();
     private List<MasterInspections> masterInspectionses = new ArrayList<>();
@@ -98,6 +101,33 @@ public class InspectionOutcome implements Serializable {
 
     public void setOutcomeOrder(Integer outcomeOrder) {
         this.outcomeOrder = outcomeOrder;
+    }
+
+    @Column(name = "`SendEmail`", nullable = true)
+    public Boolean getSendEmail() {
+        return this.sendEmail;
+    }
+
+    public void setSendEmail(Boolean sendEmail) {
+        this.sendEmail = sendEmail;
+    }
+
+    @Column(name = "`EmailSubjectLine`", nullable = true, length = 255)
+    public String getEmailSubjectLine() {
+        return this.emailSubjectLine;
+    }
+
+    public void setEmailSubjectLine(String emailSubjectLine) {
+        this.emailSubjectLine = emailSubjectLine;
+    }
+
+    @Column(name = "`EmailBodyText`", nullable = true, length = 5000)
+    public String getEmailBodyText() {
+        return this.emailBodyText;
+    }
+
+    public void setEmailBodyText(String emailBodyText) {
+        this.emailBodyText = emailBodyText;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -338,33 +338,65 @@
                                                 <wm-liveform novalidate="false" errormessage="The Outcome Order must be unique. Please select a different number." title="Outcome Details" formlayout="dialog" iconclass="wi wi-thumbs-up-down" dataset="bind:Variables.InspectionOutcomeData.dataSet"
                                                 captionalign="left" captionposition="top" name="liveformOutcome">
                                                     <wm-layoutgrid columns="1" name="layoutgrid4_1">
-                                                        <wm-gridrow name="gridrow8">
-                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn8" padding="unset unset 2em unset">
-                                                                <wm-form-field name="outcome" displayname="Outcome Name" show="true" primary-key="false" generator="assigned" key="outcome" type="string" readonly="false" required="true" widget="text" maxchars="255"
-                                                                inputtype="text" placeholder="Enter text" hint="What would you like this outcome to be named?"></wm-form-field>
+                                                        <wm-gridrow name="gridrow46_1">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn63_1">
+                                                                <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panelOutcomeSettings" class="panel-primary" title="OutcomeSettings">
+                                                                    <wm-layoutgrid name="layoutgrid15">
+                                                                        <wm-gridrow name="gridrow47_1">
+                                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn64_3">
+                                                                                <wm-form-field name="outcome" displayname="Outcome Name" show="true" primary-key="false" generator="assigned" key="outcome" type="string" readonly="false" required="true" widget="text"
+                                                                                maxchars="255" inputtype="text" placeholder="Enter text" hint="What would you like this outcome to be named?"></wm-form-field>
+                                                                            </wm-gridcolumn>
+                                                                        </wm-gridrow>
+                                                                        <wm-gridrow name="gridrow48_1">
+                                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn66_2">
+                                                                                <wm-form-field name="outcomeOrder" displayname="Outcome Order" show="true" primary-key="false" generator="assigned" key="outcomeOrder" type="integer" readonly="false" required="true"
+                                                                                step="0" widget="select" placeholder="Select value" dataset="bind:Variables.SortOrder.dataSet" datafield="dataValue" displayfield="dataValue" hint="This determines the sort order of the inspection outcomes."></wm-form-field>
+                                                                            </wm-gridcolumn>
+                                                                        </wm-gridrow>
+                                                                        <wm-gridrow name="gridrow49">
+                                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn68_2">
+                                                                                <wm-form-field name="assessFeeYn" displayname="Assess Fee" show="true" primary-key="false" generator="assigned" key="assessFeeYn" type="boolean" readonly="false" required="false"
+                                                                                widget="checkbox" defaultvalue="true" placeholder="" checkedvalue="true" uncheckedvalue="false" hint="If selected, this outcome will result in one or many fees being assessed. Click the &quot;Fees&quot; action icon on the Outcomes tab to add fees to this inspection outcome."></wm-form-field>
+                                                                            </wm-gridcolumn>
+                                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn69_1">
+                                                                                <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" readonly="false" required="false"
+                                                                                widget="checkbox" defaultvalue="false" placeholder="" uncheckedvalue="false" checkedvalue="true" hint="If selected, this outcome will result in the inspections process being considered &quot;Closed&quot;, and should be reserved for the final outcome."></wm-form-field>
+                                                                            </wm-gridcolumn>
+                                                                        </wm-gridrow>
+                                                                    </wm-layoutgrid>
+                                                                </wm-panel>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
-                                                        <wm-gridrow name="gridrow1">
-                                                            <wm-gridcolumn name="gridcolumn1" columnwidth="12" padding="unset unset 3em unset">
-                                                                <wm-form-field name="outcomeOrder" displayname="Outcome Order" show="true" primary-key="false" generator="assigned" key="outcomeOrder" type="integer" readonly="false" required="true" step="0"
-                                                                widget="select" placeholder="Select value" dataset="bind:Variables.SortOrder.dataSet" datafield="dataValue" displayfield="dataValue" hint="This determines the sort order of the inspection outcomes."></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow9">
-                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn9">
-                                                                <wm-form-field name="assessFeeYn" displayname="Assess Fee" show="true" primary-key="false" generator="assigned" key="assessFeeYn" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="true" placeholder="" checkedvalue="true" uncheckedvalue="false" hint="If selected, this outcome will result in one or many fees being assessed. Click the &quot;Fees&quot; action icon on the Outcomes tab to add fees to this inspection outcome."></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn10">
-                                                                <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="false" placeholder="" uncheckedvalue="false" checkedvalue="true" hint="If selected, this outcome will result in the inspections process being considered &quot;Closed&quot;, and should be reserved for the final outcome."></wm-form-field>
+                                                        <wm-gridrow name="gridrow45_2">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn62_1">
+                                                                <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" class="panel-primary" name="panelEmailSettings" title="EmailSettings">
+                                                                    <wm-layoutgrid name="layoutgrid16">
+                                                                        <wm-gridrow name="gridrow50">
+                                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn71_1">
+                                                                                <wm-form-field name="sendEmail" displayname="Send Email" show="true" primary-key="false" generator="assigned" key="sendEmail" type="boolean" readonly="false" required="false"
+                                                                                widget="checkbox" defaultvalue="FALSE"></wm-form-field>
+                                                                            </wm-gridcolumn>
+                                                                        </wm-gridrow>
+                                                                        <wm-gridrow name="gridrow51_1">
+                                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn72">
+                                                                                <wm-form-field name="emailSubjectLine" displayname="Email Subject Line" show="true" primary-key="false" generator="assigned" key="emailSubjectLine" type="string" readonly="false"
+                                                                                required="false" widget="text" maxchars="255"></wm-form-field>
+                                                                            </wm-gridcolumn>
+                                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn73">
+                                                                                <wm-form-field name="emailBodyText" displayname="Email Body Text" show="true" primary-key="false" generator="assigned" key="emailBodyText" type="text" readonly="false" required="false"
+                                                                                widget="text" maxchars="5000"></wm-form-field>
+                                                                            </wm-gridcolumn>
+                                                                        </wm-gridrow>
+                                                                    </wm-layoutgrid>
+                                                                </wm-panel>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
-                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
-                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false"
-                                                    required="false" widget="select" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord"
-                                                    placeholder="Select value"></wm-form-field>
+                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false" required="false"
+                                                    widget="select" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord" placeholder="Select value"></wm-form-field>
+                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
+                                                    placeholder="Enter value"></wm-form-field>
                                                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
                                                     update-mode="true"></wm-form-action>
