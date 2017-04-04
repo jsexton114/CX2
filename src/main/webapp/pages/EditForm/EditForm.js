@@ -202,6 +202,13 @@ Application.$controller("liveformUpdateFormTypeController", ["$scope",
             }
         };
 
+        $scope.collectFeesChange = function($event, $isolateScope, newVal, oldVal) {
+            if (newVal === false) {
+                $scope.Widgets.liveformUpdateFormType.formWidgets.automaticFees.datavalue = false;
+
+            }
+        };
+
     }
 ]);
 
@@ -444,15 +451,15 @@ Application.$controller("dialogAddUserToGroupController", ["$scope",
 
 
 Application.$controller("gridLettersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveformLettersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
