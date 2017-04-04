@@ -2075,6 +2075,25 @@ public class QueryExecutionController {
         return queryService.exportSearchFormByVendor(exportType, startd, endd, formTypeId, municipalityId, closed, vendorId, pageable);
     }
 
+    @RequestMapping(value = "/queries/countOfMunicipalityCodeList", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "countOfMunicipalityCodeList")
+    public Page<CountOfMunicipalityCodeListResponse> executeCountOfMunicipalityCodeList(@RequestParam(value = "MunicipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: countOfMunicipalityCodeList");
+        Page<CountOfMunicipalityCodeListResponse> _result = queryService.executeCountOfMunicipalityCodeList(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: countOfMunicipalityCodeList, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query countOfMunicipalityCodeList")
+    @RequestMapping(value = "/queries/countOfMunicipalityCodeList/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfMunicipalityCodeList(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: countOfMunicipalityCodeList");
+
+        return queryService.exportCountOfMunicipalityCodeList(exportType, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdateProjectDescription", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdateProjectDescription")
