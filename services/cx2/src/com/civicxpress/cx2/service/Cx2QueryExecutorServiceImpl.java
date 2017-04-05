@@ -2450,6 +2450,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormsWithCodeEnforcementByMunicipalityResponse> executeFormsWithCodeEnforcementByMunicipality(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("formsWithCodeEnforcementByMunicipality", params, FormsWithCodeEnforcementByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportFormsWithCodeEnforcementByMunicipality(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("formsWithCodeEnforcementByMunicipality", params, exportType, FormsWithCodeEnforcementByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<VendorsCountForMunicipalitiesResponse> executeVendorsCountForMunicipalities(Integer municipalityId, Pageable pageable) {
         Map params = new HashMap(1);
 

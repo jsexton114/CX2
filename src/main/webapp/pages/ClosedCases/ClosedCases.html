@@ -1,0 +1,39 @@
+<wm-page data-ng-controller="ClosedCasesPageController" pagetitle="Closed Cases" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1" columns="3">
+                <wm-gridrow name="gridrow7">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn17_1" padding="2em unset">
+                        <wm-label name="label5" caption="Closed Cases" fontweight="bold" class="h4"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn19_1" padding="2em unset">
+                        <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
+                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow9">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn19">
+                        <wm-grid title="" dataset="bind:Variables.svClosedCases.dataSet" navigation="Classic" name="gridClosedCases">
+                            <wm-grid-column binding="formType" caption="Form Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="status" caption="Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="codeEnforcement" caption="Code Enforcement" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="fullName" caption="Full Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formGuid" caption="Form Guid" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-row-action key="updaterow" display-name="" title="ViewCase" iconclass="wi wi-search" show="true" class="btn-transparent" action="Variables.ngViewCase.invoke()"></wm-grid-row-action>
+                        </wm-grid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

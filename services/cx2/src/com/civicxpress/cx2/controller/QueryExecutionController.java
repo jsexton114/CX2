@@ -2133,6 +2133,25 @@ public class QueryExecutionController {
         return queryService.exportAllFeesOfFormsForCreatedByAndSharedWith(exportType, allowPayment, paidStatus, userId, pageable);
     }
 
+    @RequestMapping(value = "/queries/formsWithCodeEnforcementByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "formsWithCodeEnforcementByMunicipality")
+    public Page<FormsWithCodeEnforcementByMunicipalityResponse> executeFormsWithCodeEnforcementByMunicipality(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: formsWithCodeEnforcementByMunicipality");
+        Page<FormsWithCodeEnforcementByMunicipalityResponse> _result = queryService.executeFormsWithCodeEnforcementByMunicipality(codeEnforcement, closed, municipalityId, pageable);
+        LOGGER.debug("got the result for named query: formsWithCodeEnforcementByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query formsWithCodeEnforcementByMunicipality")
+    @RequestMapping(value = "/queries/formsWithCodeEnforcementByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportFormsWithCodeEnforcementByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: formsWithCodeEnforcementByMunicipality");
+
+        return queryService.exportFormsWithCodeEnforcementByMunicipality(exportType, codeEnforcement, closed, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/VendorsCountForMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "VendorsCountForMunicipalities")

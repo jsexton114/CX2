@@ -1,0 +1,56 @@
+{
+  "ngViewCase" : {
+    "_id" : "wm-ngViewCase-wm.NavigationVariable-1491396151603",
+    "name" : "ngViewCase",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "ViewCase",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "CaseId",
+      "value" : "bind:Widgets.gridClosedCases.selecteditem.formGuid"
+    } ],
+    "pageTransitions" : "none"
+  },
+  "svClosedCases" : {
+    "_id" : "wm-svClosedCases-wm.ServiceVariable-1491395702100",
+    "name" : "svClosedCases",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "codeEnforcement",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "closed",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.FormsWithCodeEnforcementByMunicipalityResponse",
+    "service" : "cx2",
+    "operation" : "executeFormsWithCodeEnforcementByMunicipality",
+    "operationId" : "QueryExecutionController_executeFormsWithCodeEnforcementByMunicipality",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  }
+}

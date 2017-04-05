@@ -614,7 +614,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "CodeEnforcement",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -622,17 +622,30 @@
           "defaultValue" : "false",
           "scale" : 0
         }, {
-          "fieldName" : "allowCases",
+          "fieldName" : "trackViolations",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
-          "columnName" : "AllowCases",
+          "columnName" : "TrackViolations",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "propertyType",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PropertyType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {

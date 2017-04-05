@@ -18,6 +18,10 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
+  "name" : "ClosedCases",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
   "name" : "CodeEnforcementDashboard",
   "type" : "PAGE",
   "params" : [ ]
@@ -250,6 +254,10 @@
     "type" : "integer"
   } ]
 }, {
+  "name" : "OpenCases",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
   "name" : "ProcessForms",
   "type" : "PAGE",
   "params" : [ ]
@@ -310,7 +318,10 @@
 }, {
   "name" : "ViewCase",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "CaseId",
+    "type" : "string"
+  } ]
 }, {
   "name" : "ViewInspection",
   "type" : "PAGE",

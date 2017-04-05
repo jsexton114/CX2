@@ -1933,6 +1933,23 @@ from Fees where masterForms.formStatuses.allowPayment=:allowPayment and paidStat
     <query-param name="userId" type="java.lang.Integer"/>
     </query>
 
+    <query name="formsWithCodeEnforcementByMunicipality">
+        <![CDATA[
+        select formGuid as formGuid,
+       formTitle as formTitle,
+      users.fullName as fullName,
+      balanceDue as balanceDue,
+      formStatuses.status as status,
+      formTypes.formType as formType,
+       formTypes.codeEnforcement as codeEnforcement
+from MasterForms
+where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipalityId=:municipalityId
+        ]]>
+    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="VendorsCountForMunicipalities">
         <![CDATA[
         select count(*) as vendorsCount from VendorApprovals where MunicipalityId=:MunicipalityId

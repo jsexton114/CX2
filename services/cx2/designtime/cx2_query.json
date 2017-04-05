@@ -9875,6 +9875,112 @@
       } ]
     }
   },
+  "formsWithCodeEnforcementByMunicipality" : {
+    "name" : "formsWithCodeEnforcementByMunicipality",
+    "description" : "formsWithCodeEnforcementByMunicipality",
+    "version" : "V2",
+    "queryString" : "select formGuid as formGuid,\n       formTitle as formTitle,\n      users.fullName as fullName,\n      balanceDue as balanceDue,\n      formStatuses.status as status,\n      formTypes.formType as formType,\n       formTypes.codeEnforcement as codeEnforcement\nfrom MasterForms\nwhere formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipalityId=:municipalityId",
+    "countQueryString" : null,
+    "nativeSql" : false,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "codeEnforcement",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "closed",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    }, {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.FormsWithCodeEnforcementByMunicipalityResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "formGuid",
+        "fieldName" : "formGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formTitle",
+        "fieldName" : "formTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fullName",
+        "fieldName" : "fullName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "balanceDue",
+        "fieldName" : "balanceDue",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "status",
+        "fieldName" : "status",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formType",
+        "fieldName" : "formType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "codeEnforcement",
+        "fieldName" : "codeEnforcement",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "getCalculatableFormFields" : {
     "name" : "getCalculatableFormFields",
     "description" : "Get form fields which can be added to a calculated field",
