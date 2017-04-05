@@ -30,8 +30,14 @@
                                 <wm-gridrow name="gridrow6">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn9" padding="1em unset 2em unset">
                                         <wm-grid title="" dataset="bind:Variables.ExecuteGetFormsForMunicpality.dataSet" navigation="Classic" name="gridFormTypes" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                                            <wm-grid-column binding="FormType" caption="Form Design Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="CreatedDate" caption="Date Created" type="string" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="FormType" caption="Form Design" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="CreatedDate" caption="Date Created" type="string" readonly="true" edit-widget-type="text" show="true" filterwidget="date">{{row.getProperty('CreatedDate') | toLocalDateString:true}}</wm-grid-column>
+                                            <wm-grid-column binding="Active" caption="Active" type="string" widget-type="checkbox" edit-widget-type="text" show="true" readonly="false">
+                                                <wm-checkbox scopedatavalue="row['Active']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                            </wm-grid-column>
+                                            <wm-grid-column binding="MunicipalityInternalForm" caption="Internal Only" type="string" widget-type="checkbox" edit-widget-type="text" show="true" readonly="false">
+                                                <wm-checkbox scopedatavalue="row['MunicipalityInternalForm']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                            </wm-grid-column>
                                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                             <wm-grid-action key="customButton" display-name="New Design" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Design" action="Widgets.dialogCreateForm.open()" accessroles="CXAdmin,MunicipalityAdmin"
                                             shortcutkey="" disabled="false" icon="wi wi-note-add"></wm-grid-action>

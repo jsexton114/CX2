@@ -476,6 +476,19 @@
           "isRelated" : false,
           "defaultValue" : "5",
           "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -684,19 +697,6 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "FALSE",
-        "scale" : 0
-      }, {
-        "fieldName" : "digitalSignatures",
-        "type" : "boolean",
-        "fullyQualifiedType" : "boolean",
-        "columnName" : "DigitalSignatures",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
         "scale" : 0
       }, {
         "fieldName" : "inspections",
@@ -1007,6 +1007,58 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "requireSignature",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "RequireSignature",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "FALSE",
+        "scale" : 0
+      }, {
+        "fieldName" : "codeEnforcement",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "CodeEnforcement",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "trackViolations",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "TrackViolations",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "propertyType",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "PropertyType",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
         "scale" : 0
       } ],
       "entityName" : "FormTypes",
@@ -1519,6 +1571,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "5",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
           "scale" : 0
         } ]
       }, {
@@ -2076,6 +2141,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "5",
+        "scale" : 0
+      }, {
+        "fieldName" : "allowOfflineCc",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowOfflineCC",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "true",
         "scale" : 0
       } ],
       "entityName" : "Municipalities",
