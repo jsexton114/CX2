@@ -90,8 +90,8 @@ Application.filter('toLocalDateString', [function() {
     var dateFormat = 'MM-DD-YYYY z';
     var dateTimeFormat = 'MM-DD-YYYY hh:mm a z';
 
-    return function(dateObject, hasTime, timezone) {
-        return moment.utc(dateObject).local().format(hasTime ? dateTimeFormat : dateFormat);
+    return function(dateObject, noTime, timezone) {
+        return moment.utc(dateObject).local().format(noTime ? dateFormat : dateTimeFormat);
     };
 }]);
 
