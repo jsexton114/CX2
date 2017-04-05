@@ -85,19 +85,19 @@ public class GisrecordsServiceImpl implements GisrecordsService {
             }
         }
 
-        if(gisrecordsCreated.getGis2formses() != null) {
-            for(Gis2forms gis2formse : gisrecordsCreated.getGis2formses()) {
-                gis2formse.setGisrecords(gisrecordsCreated);
-                LOGGER.debug("Creating a new child Gis2forms with information: {}", gis2formse);
-                gis2formsService.create(gis2formse);
-            }
-        }
-
         if(gisrecordsCreated.getGiscontactses() != null) {
             for(Giscontacts giscontactse : gisrecordsCreated.getGiscontactses()) {
                 giscontactse.setGisrecords(gisrecordsCreated);
                 LOGGER.debug("Creating a new child Giscontacts with information: {}", giscontactse);
                 giscontactsService.create(giscontactse);
+            }
+        }
+
+        if(gisrecordsCreated.getGis2formses() != null) {
+            for(Gis2forms gis2formse : gisrecordsCreated.getGis2formses()) {
+                gis2formse.setGisrecords(gisrecordsCreated);
+                LOGGER.debug("Creating a new child Gis2forms with information: {}", gis2formse);
+                gis2formsService.create(gis2formse);
             }
         }
 
@@ -211,17 +211,6 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Gis2forms> findAssociatedGis2formses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated gis2formses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("gisrecords.id = '" + id + "'");
-
-        return gis2formsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<Giscontacts> findAssociatedGiscontactses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated giscontactses");
 
@@ -229,6 +218,17 @@ public class GisrecordsServiceImpl implements GisrecordsService {
         queryBuilder.append("gisrecords.id = '" + id + "'");
 
         return giscontactsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Gis2forms> findAssociatedGis2formses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated gis2formses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("gisrecords.id = '" + id + "'");
+
+        return gis2formsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

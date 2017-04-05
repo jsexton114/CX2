@@ -19,6 +19,7 @@ import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterInspections;
+import com.civicxpress.cx2.Violations;
 
 /**
  * Service object for domain model class {@link MasterInspections}.
@@ -176,6 +177,18 @@ public interface MasterInspectionsService {
      * @see Page
      */
     Page<MasterCases> findAssociatedMasterCaseses(String inspectionGuid, Pageable pageable);
+
+    /*
+     * Returns the associated violationses for given MasterInspections id.
+     *
+     * @param inspectionGuid value of inspectionGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Violations instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Violations> findAssociatedViolationses(String inspectionGuid, Pageable pageable);
 
 }
 

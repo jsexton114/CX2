@@ -75,6 +75,7 @@ public class MasterInspections implements Serializable {
     private List<FormsToInspections> formsToInspectionses = new ArrayList<>();
     private List<InspectionGis> inspectionGises = new ArrayList<>();
     private List<MasterCases> masterCaseses = new ArrayList<>();
+    private List<Violations> violationses = new ArrayList<>();
 
     @Id
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
@@ -405,6 +406,16 @@ public class MasterInspections implements Serializable {
 
     public void setMasterCaseses(List<MasterCases> masterCaseses) {
         this.masterCaseses = masterCaseses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "masterInspections")
+    public List<Violations> getViolationses() {
+        return this.violationses;
+    }
+
+    public void setViolationses(List<Violations> violationses) {
+        this.violationses = violationses;
     }
 
     @Override

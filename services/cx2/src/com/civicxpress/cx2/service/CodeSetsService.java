@@ -16,6 +16,8 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
+import com.civicxpress.cx2.CodesToForm;
+import com.civicxpress.cx2.CodesToInspection;
 
 /**
  * Service object for domain model class {@link CodeSets}.
@@ -137,6 +139,30 @@ public interface CodeSetsService {
      * @see Page
      */
     Page<CodeList> findAssociatedCodeLists(Integer codeSetId, Pageable pageable);
+
+    /*
+     * Returns the associated codesToForms for given CodeSets id.
+     *
+     * @param codeSetId value of codeSetId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated CodesToForm instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<CodesToForm> findAssociatedCodesToForms(Integer codeSetId, Pageable pageable);
+
+    /*
+     * Returns the associated codesToInspections for given CodeSets id.
+     *
+     * @param codeSetId value of codeSetId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated CodesToInspection instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<CodesToInspection> findAssociatedCodesToInspections(Integer codeSetId, Pageable pageable);
 
 }
 

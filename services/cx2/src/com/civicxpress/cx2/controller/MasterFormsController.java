@@ -39,6 +39,7 @@ import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.Vendors2form;
+import com.civicxpress.cx2.Violations;
 import com.civicxpress.cx2.service.MasterFormsService;
 
 
@@ -219,6 +220,15 @@ public class MasterFormsController {
 
         LOGGER.debug("Fetching all associated vendors2forms");
         return masterFormsService.findAssociatedVendors2forms(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/violationses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the violationses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Violations> findAssociatedViolationses(@PathVariable("id") String id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated violationses");
+        return masterFormsService.findAssociatedViolationses(id, pageable);
     }
 
     /**

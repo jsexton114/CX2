@@ -30,6 +30,7 @@ import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.Vendors2form;
+import com.civicxpress.cx2.Violations;
 
 
 /**
@@ -61,6 +62,10 @@ public class MasterFormsServiceImpl implements MasterFormsService {
     @Autowired
 	@Qualifier("cx2.FormMessagesService")
 	private FormMessagesService formMessagesService;
+
+    @Autowired
+	@Qualifier("cx2.ViolationsService")
+	private ViolationsService violationsService;
 
     @Autowired
 	@Qualifier("cx2.MasterInspectionsService")
@@ -148,6 +153,14 @@ public class MasterFormsServiceImpl implements MasterFormsService {
                 vendors2form.setMasterForms(masterFormsCreated);
                 LOGGER.debug("Creating a new child Vendors2form with information: {}", vendors2form);
                 vendors2formService.create(vendors2form);
+            }
+        }
+
+        if(masterFormsCreated.getViolationses() != null) {
+            for(Violations violationse : masterFormsCreated.getViolationses()) {
+                violationse.setMasterForms(masterFormsCreated);
+                LOGGER.debug("Creating a new child Violations with information: {}", violationse);
+                violationsService.create(violationse);
             }
         }
         return masterFormsCreated;
@@ -312,6 +325,17 @@ public class MasterFormsServiceImpl implements MasterFormsService {
         return vendors2formService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Violations> findAssociatedViolationses(String formGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated violationses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("masterForms.formGuid = '" + formGuid + "'");
+
+        return violationsService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -355,6 +379,15 @@ public class MasterFormsServiceImpl implements MasterFormsService {
 	 */
 	protected void setFormMessagesService(FormMessagesService service) {
         this.formMessagesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ViolationsService instance
+	 */
+	protected void setViolationsService(ViolationsService service) {
+        this.violationsService = service;
     }
 
     /**

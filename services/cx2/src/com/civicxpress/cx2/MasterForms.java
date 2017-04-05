@@ -65,6 +65,7 @@ public class MasterForms implements Serializable {
     private List<ProjectForms> projectFormses = new ArrayList<>();
     private List<SharedWith> sharedWiths = new ArrayList<>();
     private List<Vendors2form> vendors2forms = new ArrayList<>();
+    private List<Violations> violationses = new ArrayList<>();
 
     @Id
     @Column(name = "`FormGUID`", nullable = false, length = 32)
@@ -405,6 +406,16 @@ public class MasterForms implements Serializable {
 
     public void setVendors2forms(List<Vendors2form> vendors2forms) {
         this.vendors2forms = vendors2forms;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "masterForms")
+    public List<Violations> getViolationses() {
+        return this.violationses;
+    }
+
+    public void setViolationses(List<Violations> violationses) {
+        this.violationses = violationses;
     }
 
     @Override

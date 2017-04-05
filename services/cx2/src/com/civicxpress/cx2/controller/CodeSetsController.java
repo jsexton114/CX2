@@ -32,6 +32,8 @@ import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
+import com.civicxpress.cx2.CodesToForm;
+import com.civicxpress.cx2.CodesToInspection;
 import com.civicxpress.cx2.service.CodeSetsService;
 
 
@@ -149,6 +151,24 @@ public class CodeSetsController {
 
         LOGGER.debug("Fetching all associated codeLists");
         return codeSetsService.findAssociatedCodeLists(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/codesToForms", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the codesToForms instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<CodesToForm> findAssociatedCodesToForms(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated codesToForms");
+        return codeSetsService.findAssociatedCodesToForms(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/codesToInspections", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the codesToInspections instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<CodesToInspection> findAssociatedCodesToInspections(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated codesToInspections");
+        return codeSetsService.findAssociatedCodesToInspections(id, pageable);
     }
 
     /**

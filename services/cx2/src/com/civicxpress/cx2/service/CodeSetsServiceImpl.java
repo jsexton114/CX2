@@ -23,6 +23,8 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
+import com.civicxpress.cx2.CodesToForm;
+import com.civicxpress.cx2.CodesToInspection;
 
 
 /**
@@ -36,8 +38,16 @@ public class CodeSetsServiceImpl implements CodeSetsService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CodeSetsServiceImpl.class);
 
     @Autowired
+	@Qualifier("cx2.CodesToFormService")
+	private CodesToFormService codesToFormService;
+
+    @Autowired
 	@Qualifier("cx2.CodeListService")
 	private CodeListService codeListService;
+
+    @Autowired
+	@Qualifier("cx2.CodesToInspectionService")
+	private CodesToInspectionService codesToInspectionService;
 
     @Autowired
     @Qualifier("cx2.CodeSetsDao")
@@ -57,6 +67,22 @@ public class CodeSetsServiceImpl implements CodeSetsService {
                 codeList.setCodeSets(codeSetsCreated);
                 LOGGER.debug("Creating a new child CodeList with information: {}", codeList);
                 codeListService.create(codeList);
+            }
+        }
+
+        if(codeSetsCreated.getCodesToForms() != null) {
+            for(CodesToForm codesToForm : codeSetsCreated.getCodesToForms()) {
+                codesToForm.setCodeSets(codeSetsCreated);
+                LOGGER.debug("Creating a new child CodesToForm with information: {}", codesToForm);
+                codesToFormService.create(codesToForm);
+            }
+        }
+
+        if(codeSetsCreated.getCodesToInspections() != null) {
+            for(CodesToInspection codesToInspection : codeSetsCreated.getCodesToInspections()) {
+                codesToInspection.setCodeSets(codeSetsCreated);
+                LOGGER.debug("Creating a new child CodesToInspection with information: {}", codesToInspection);
+                codesToInspectionService.create(codesToInspection);
             }
         }
         return codeSetsCreated;
@@ -144,6 +170,37 @@ public class CodeSetsServiceImpl implements CodeSetsService {
         return codeListService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CodesToForm> findAssociatedCodesToForms(Integer codeSetId, Pageable pageable) {
+        LOGGER.debug("Fetching all associated codesToForms");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("codeSets.codeSetId = '" + codeSetId + "'");
+
+        return codesToFormService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CodesToInspection> findAssociatedCodesToInspections(Integer codeSetId, Pageable pageable) {
+        LOGGER.debug("Fetching all associated codesToInspections");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("codeSets.codeSetId = '" + codeSetId + "'");
+
+        return codesToInspectionService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service CodesToFormService instance
+	 */
+	protected void setCodesToFormService(CodesToFormService service) {
+        this.codesToFormService = service;
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -151,6 +208,15 @@ public class CodeSetsServiceImpl implements CodeSetsService {
 	 */
 	protected void setCodeListService(CodeListService service) {
         this.codeListService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service CodesToInspectionService instance
+	 */
+	protected void setCodesToInspectionService(CodesToInspectionService service) {
+        this.codesToInspectionService = service;
     }
 
 }

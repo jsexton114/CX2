@@ -462,6 +462,19 @@
         "isRelated" : false,
         "defaultValue" : "5",
         "scale" : 0
+      }, {
+        "fieldName" : "allowOfflineCc",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowOfflineCC",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "true",
+        "scale" : 0
       } ],
       "entityName" : "Municipalities",
       "fullyQualifiedName" : "com.civicxpress.cx2.Municipalities",

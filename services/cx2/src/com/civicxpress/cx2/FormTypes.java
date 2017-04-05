@@ -80,14 +80,15 @@ public class FormTypes implements Serializable {
     private boolean trackViolations;
     private String propertyType;
     private Municipalities municipalities;
+    private List<CodesToForm> codesToForms = new ArrayList<>();
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
+    private List<FormDraft> formDrafts = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
     private List<FormStatuses> formStatuseses = new ArrayList<>();
-    private List<FormDraft> formDrafts = new ArrayList<>();
-    private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
     private List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings = new ArrayList<>();
-    private List<LetterTemplates> letterTemplateses = new ArrayList<>();
+    private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
     private List<InspectionSequence> inspectionSequences = new ArrayList<>();
+    private List<LetterTemplates> letterTemplateses = new ArrayList<>();
     private List<MasterForms> masterFormses = new ArrayList<>();
 
     @Id
@@ -513,12 +514,32 @@ public class FormTypes implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<CodesToForm> getCodesToForms() {
+        return this.codesToForms;
+    }
+
+    public void setCodesToForms(List<CodesToForm> codesToForms) {
+        this.codesToForms = codesToForms;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
     public List<FormCategoryMapping> getFormCategoryMappings() {
         return this.formCategoryMappings;
     }
 
     public void setFormCategoryMappings(List<FormCategoryMapping> formCategoryMappings) {
         this.formCategoryMappings = formCategoryMappings;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<FormDraft> getFormDrafts() {
+        return this.formDrafts;
+    }
+
+    public void setFormDrafts(List<FormDraft> formDrafts) {
+        this.formDrafts = formDrafts;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -543,12 +564,12 @@ public class FormTypes implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<FormDraft> getFormDrafts() {
-        return this.formDrafts;
+    public List<FormToInspectionCategoryMapping> getFormToInspectionCategoryMappings() {
+        return this.formToInspectionCategoryMappings;
     }
 
-    public void setFormDrafts(List<FormDraft> formDrafts) {
-        this.formDrafts = formDrafts;
+    public void setFormToInspectionCategoryMappings(List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings) {
+        this.formToInspectionCategoryMappings = formToInspectionCategoryMappings;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -563,12 +584,12 @@ public class FormTypes implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<FormToInspectionCategoryMapping> getFormToInspectionCategoryMappings() {
-        return this.formToInspectionCategoryMappings;
+    public List<InspectionSequence> getInspectionSequences() {
+        return this.inspectionSequences;
     }
 
-    public void setFormToInspectionCategoryMappings(List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings) {
-        this.formToInspectionCategoryMappings = formToInspectionCategoryMappings;
+    public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
+        this.inspectionSequences = inspectionSequences;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -579,16 +600,6 @@ public class FormTypes implements Serializable {
 
     public void setLetterTemplateses(List<LetterTemplates> letterTemplateses) {
         this.letterTemplateses = letterTemplateses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<InspectionSequence> getInspectionSequences() {
-        return this.inspectionSequences;
-    }
-
-    public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
-        this.inspectionSequences = inspectionSequences;
     }
 
     @JsonInclude(Include.NON_EMPTY)

@@ -15,6 +15,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.CodeList;
+import com.civicxpress.cx2.Violations;
 
 /**
  * Service object for domain model class {@link CodeList}.
@@ -125,6 +126,17 @@ public interface CodeListService {
 	 */
 	long count(String query);
 
+    /*
+     * Returns the associated violationses for given CodeList id.
+     *
+     * @param codeId value of codeId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Violations instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Violations> findAssociatedViolationses(Integer codeId, Pageable pageable);
 
 }
 

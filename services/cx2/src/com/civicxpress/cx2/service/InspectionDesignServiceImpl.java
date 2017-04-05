@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.CodesToInspection;
 import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.InspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionDesign;
@@ -65,6 +66,10 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 	private MasterInspectionsService masterInspectionsService;
 
     @Autowired
+	@Qualifier("cx2.CodesToInspectionService")
+	private CodesToInspectionService codesToInspectionService;
+
+    @Autowired
     @Qualifier("cx2.InspectionDesignDao")
     private WMGenericDao<InspectionDesign, Integer> wmGenericDao;
 
@@ -77,6 +82,14 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 	public InspectionDesign create(InspectionDesign inspectionDesign) {
         LOGGER.debug("Creating a new InspectionDesign with information: {}", inspectionDesign);
         InspectionDesign inspectionDesignCreated = this.wmGenericDao.create(inspectionDesign);
+        if(inspectionDesignCreated.getCodesToInspections() != null) {
+            for(CodesToInspection codesToInspection : inspectionDesignCreated.getCodesToInspections()) {
+                codesToInspection.setInspectionDesign(inspectionDesignCreated);
+                LOGGER.debug("Creating a new child CodesToInspection with information: {}", codesToInspection);
+                codesToInspectionService.create(codesToInspection);
+            }
+        }
+
         if(inspectionDesignCreated.getFormTypeFieldses() != null) {
             for(FormTypeFields formTypeFieldse : inspectionDesignCreated.getFormTypeFieldses()) {
                 formTypeFieldse.setInspectionDesign(inspectionDesignCreated);
@@ -93,19 +106,19 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
             }
         }
 
-        if(inspectionDesignCreated.getLetterTemplateses() != null) {
-            for(LetterTemplates letterTemplatese : inspectionDesignCreated.getLetterTemplateses()) {
-                letterTemplatese.setInspectionDesign(inspectionDesignCreated);
-                LOGGER.debug("Creating a new child LetterTemplates with information: {}", letterTemplatese);
-                letterTemplatesService.create(letterTemplatese);
-            }
-        }
-
         if(inspectionDesignCreated.getInspectionSequences() != null) {
             for(InspectionSequence inspectionSequence : inspectionDesignCreated.getInspectionSequences()) {
                 inspectionSequence.setInspectionDesign(inspectionDesignCreated);
                 LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
                 inspectionSequenceService.create(inspectionSequence);
+            }
+        }
+
+        if(inspectionDesignCreated.getLetterTemplateses() != null) {
+            for(LetterTemplates letterTemplatese : inspectionDesignCreated.getLetterTemplateses()) {
+                letterTemplatese.setInspectionDesign(inspectionDesignCreated);
+                LOGGER.debug("Creating a new child LetterTemplates with information: {}", letterTemplatese);
+                letterTemplatesService.create(letterTemplatese);
             }
         }
 
@@ -200,6 +213,17 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<CodesToInspection> findAssociatedCodesToInspections(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated codesToInspections");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionDesign.id = '" + id + "'");
+
+        return codesToInspectionService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formTypeFieldses");
 
@@ -222,17 +246,6 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated letterTemplateses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("inspectionDesign.id = '" + id + "'");
-
-        return letterTemplatesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<InspectionSequence> findAssociatedInspectionSequences(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionSequences");
 
@@ -240,6 +253,17 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
         queryBuilder.append("inspectionDesign.id = '" + id + "'");
 
         return inspectionSequenceService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated letterTemplateses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionDesign.id = '" + id + "'");
+
+        return letterTemplatesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -316,6 +340,15 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 	 */
 	protected void setMasterInspectionsService(MasterInspectionsService service) {
         this.masterInspectionsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service CodesToInspectionService instance
+	 */
+	protected void setCodesToInspectionService(CodesToInspectionService service) {
+        this.codesToInspectionService = service;
     }
 
 }

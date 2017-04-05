@@ -31,6 +31,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.CodeList;
+import com.civicxpress.cx2.Violations;
 import com.civicxpress.cx2.service.CodeListService;
 
 
@@ -141,6 +142,14 @@ public class CodeListController {
 		return codeListService.count(query);
 	}
 
+    @RequestMapping(value="/{id:.+}/violationses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the violationses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Violations> findAssociatedViolationses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated violationses");
+        return codeListService.findAssociatedViolationses(id, pageable);
+    }
 
     /**
 	 * This setter method should only be used by unit tests

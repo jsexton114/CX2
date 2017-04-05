@@ -30,6 +30,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.CodesToInspection;
 import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.InspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionDesign;
@@ -147,6 +148,15 @@ public class InspectionDesignController {
 		return inspectionDesignService.count(query);
 	}
 
+    @RequestMapping(value="/{id:.+}/codesToInspections", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the codesToInspections instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<CodesToInspection> findAssociatedCodesToInspections(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated codesToInspections");
+        return inspectionDesignService.findAssociatedCodesToInspections(id, pageable);
+    }
+
     @RequestMapping(value="/{id:.+}/formTypeFieldses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the formTypeFieldses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -165,15 +175,6 @@ public class InspectionDesignController {
         return inspectionDesignService.findAssociatedInspectionOutcomes(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/letterTemplateses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the letterTemplateses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<LetterTemplates> findAssociatedLetterTemplateses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated letterTemplateses");
-        return inspectionDesignService.findAssociatedLetterTemplateses(id, pageable);
-    }
-
     @RequestMapping(value="/{id:.+}/inspectionSequences", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the inspectionSequences instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -181,6 +182,15 @@ public class InspectionDesignController {
 
         LOGGER.debug("Fetching all associated inspectionSequences");
         return inspectionDesignService.findAssociatedInspectionSequences(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/letterTemplateses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the letterTemplateses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<LetterTemplates> findAssociatedLetterTemplateses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated letterTemplateses");
+        return inspectionDesignService.findAssociatedLetterTemplateses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/masterInspectionses", method=RequestMethod.GET)

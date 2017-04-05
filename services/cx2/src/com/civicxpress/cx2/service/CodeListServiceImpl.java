@@ -22,6 +22,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.CodeList;
+import com.civicxpress.cx2.Violations;
 
 
 /**
@@ -34,6 +35,9 @@ public class CodeListServiceImpl implements CodeListService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CodeListServiceImpl.class);
 
+    @Autowired
+	@Qualifier("cx2.ViolationsService")
+	private ViolationsService violationsService;
 
     @Autowired
     @Qualifier("cx2.CodeListDao")
@@ -48,6 +52,13 @@ public class CodeListServiceImpl implements CodeListService {
 	public CodeList create(CodeList codeList) {
         LOGGER.debug("Creating a new CodeList with information: {}", codeList);
         CodeList codeListCreated = this.wmGenericDao.create(codeList);
+        if(codeListCreated.getViolationses() != null) {
+            for(Violations violationse : codeListCreated.getViolationses()) {
+                violationse.setCodeList(codeListCreated);
+                LOGGER.debug("Creating a new child Violations with information: {}", violationse);
+                violationsService.create(violationse);
+            }
+        }
         return codeListCreated;
     }
 
@@ -122,7 +133,25 @@ public class CodeListServiceImpl implements CodeListService {
         return this.wmGenericDao.count(query);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Violations> findAssociatedViolationses(Integer codeId, Pageable pageable) {
+        LOGGER.debug("Fetching all associated violationses");
 
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("codeList.codeId = '" + codeId + "'");
+
+        return violationsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service ViolationsService instance
+	 */
+	protected void setViolationsService(ViolationsService service) {
+        this.violationsService = service;
+    }
 
 }
 

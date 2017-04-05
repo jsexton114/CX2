@@ -56,6 +56,8 @@ public class CodeSets implements Serializable {
     private Users usersByCreatedBy;
     private Users usersByUpdatedBy;
     private List<CodeList> codeLists = new ArrayList<>();
+    private List<CodesToForm> codesToForms = new ArrayList<>();
+    private List<CodesToInspection> codesToInspections = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -181,6 +183,26 @@ public class CodeSets implements Serializable {
 
     public void setCodeLists(List<CodeList> codeLists) {
         this.codeLists = codeLists;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "codeSets")
+    public List<CodesToForm> getCodesToForms() {
+        return this.codesToForms;
+    }
+
+    public void setCodesToForms(List<CodesToForm> codesToForms) {
+        this.codesToForms = codesToForms;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "codeSets")
+    public List<CodesToInspection> getCodesToInspections() {
+        return this.codesToInspections;
+    }
+
+    public void setCodesToInspections(List<CodesToInspection> codesToInspections) {
+        this.codesToInspections = codesToInspections;
     }
 
     @Override

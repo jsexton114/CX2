@@ -723,7 +723,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "CodeEnforcement",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -731,17 +731,30 @@
           "defaultValue" : "false",
           "scale" : 0
         }, {
-          "fieldName" : "allowCases",
+          "fieldName" : "trackViolations",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
-          "columnName" : "AllowCases",
+          "columnName" : "TrackViolations",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "propertyType",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PropertyType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -1744,6 +1757,19 @@
           "isRelated" : false,
           "defaultValue" : "5",
           "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -2485,7 +2511,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "formGuid" ]
     },
-    "bindCount" : 7,
+    "bindCount" : 8,
     "spinnerContext" : "page",
     "tableName" : "MasterForms",
     "tableType" : "TABLE",
@@ -4459,6 +4485,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "5",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
           "scale" : 0
         } ]
       }, {
@@ -6971,7 +7010,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "CodeEnforcement",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -6979,17 +7018,30 @@
           "defaultValue" : "false",
           "scale" : 0
         }, {
-          "fieldName" : "allowCases",
+          "fieldName" : "trackViolations",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
-          "columnName" : "AllowCases",
+          "columnName" : "TrackViolations",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "propertyType",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PropertyType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -8818,7 +8870,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "CodeEnforcement",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -8826,17 +8878,30 @@
           "defaultValue" : "false",
           "scale" : 0
         }, {
-          "fieldName" : "allowCases",
+          "fieldName" : "trackViolations",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
-          "columnName" : "AllowCases",
+          "columnName" : "TrackViolations",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "propertyType",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PropertyType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -10383,6 +10448,19 @@
           "isRelated" : false,
           "defaultValue" : "5",
           "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "states",
@@ -11203,6 +11281,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "5",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
           "scale" : 0
         } ]
       }, {
@@ -13380,6 +13471,19 @@
           "isRelated" : false,
           "defaultValue" : "5",
           "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -13918,7 +14022,7 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "CodeEnforcement",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
@@ -13926,17 +14030,30 @@
         "defaultValue" : "false",
         "scale" : 0
       }, {
-        "fieldName" : "allowCases",
+        "fieldName" : "trackViolations",
         "type" : "boolean",
         "fullyQualifiedType" : "boolean",
-        "columnName" : "AllowCases",
+        "columnName" : "TrackViolations",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "propertyType",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "PropertyType",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
         "scale" : 0
       } ],
       "entityName" : "FormTypes",
@@ -14393,6 +14510,19 @@
           "isRelated" : false,
           "defaultValue" : "5",
           "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -14562,12 +14692,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "AssessFeeYN",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         }, {
           "fieldName" : "considerClosed",
@@ -14575,7 +14705,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "ConsiderClosed",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -14593,6 +14723,70 @@
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "sendEmail",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "SendEmail",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "emailSubjectLine",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "EmailSubjectLine",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "emailBodyText",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "EmailBodyText",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "autoReInspection",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AutoReInspection",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "daysToAutoReInspection",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "DaysToAutoReInspection",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -15922,7 +16116,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "CodeEnforcement",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -15930,17 +16124,30 @@
           "defaultValue" : "false",
           "scale" : 0
         }, {
-          "fieldName" : "allowCases",
+          "fieldName" : "trackViolations",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
-          "columnName" : "AllowCases",
+          "columnName" : "TrackViolations",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "inspectionTableName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "InspectionTableName",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -17258,6 +17465,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "5",
+        "scale" : 0
+      }, {
+        "fieldName" : "allowOfflineCc",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowOfflineCC",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "true",
         "scale" : 0
       } ],
       "entityName" : "Municipalities",
@@ -21651,6 +21871,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "5",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
           "scale" : 0
         } ]
       }, {

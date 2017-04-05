@@ -23,6 +23,7 @@ import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.SharedWith;
 import com.civicxpress.cx2.Vendors2form;
+import com.civicxpress.cx2.Violations;
 
 /**
  * Service object for domain model class {@link MasterForms}.
@@ -228,6 +229,18 @@ public interface MasterFormsService {
      * @see Page
      */
     Page<Vendors2form> findAssociatedVendors2forms(String formGuid, Pageable pageable);
+
+    /*
+     * Returns the associated violationses for given MasterForms id.
+     *
+     * @param formGuid value of formGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Violations instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Violations> findAssociatedViolationses(String formGuid, Pageable pageable);
 
 }
 
