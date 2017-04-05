@@ -66,6 +66,7 @@ public class Municipalities implements Serializable {
     private String dbPassword;
     private int userLimit;
     private int formLimit;
+    private Boolean allowOfflineCc;
     private States states;
     private List<CodeSets> codeSetses = new ArrayList<>();
     private List<CaseTypes> caseTypeses = new ArrayList<>();
@@ -355,6 +356,15 @@ public class Municipalities implements Serializable {
 
     public void setFormLimit(int formLimit) {
         this.formLimit = formLimit;
+    }
+
+    @Column(name = "`AllowOfflineCC`", nullable = true)
+    public Boolean getAllowOfflineCc() {
+        return this.allowOfflineCc;
+    }
+
+    public void setAllowOfflineCc(Boolean allowOfflineCc) {
+        this.allowOfflineCc = allowOfflineCc;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
