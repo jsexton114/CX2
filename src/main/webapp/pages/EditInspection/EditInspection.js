@@ -85,6 +85,15 @@ Application.$controller("liveformOutcomeController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.ConsiderClosedDialogChange = function($event, $isolateScope, newVal, oldVal) {
+            if (newVal === false) {
+                $scope.Widgets.liveformOutcome.formWidgets.autoReInspection.datavalue = false;
+                $scope.Widgets.liveformOutcome.formWidgets.daysToAutoReInspection.datavalue = null;
+
+            }
+        };
+
     }
 ]);
 

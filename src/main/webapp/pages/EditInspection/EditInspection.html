@@ -332,10 +332,10 @@
                                                     <wm-grid-column binding="outcomeOrder" caption="Outcome Order" type="integer" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="outcome" caption="Outcome" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="assessFeeYn" caption="Assess Fee" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
-                                                        <wm-checkbox scopedatavalue="row['assessFeeYn']" disabled="Enable" class="" data-ng-class="" on-change="assessFeeChange(row['assessFeeYn'])"></wm-checkbox>
+                                                        <wm-checkbox scopedatavalue="row['assessFeeYn']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
                                                     <wm-grid-column binding="considerClosed" caption="Consider Closed" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
-                                                        <wm-checkbox scopedatavalue="row['considerClosed']" disabled="Enable" class="" data-ng-class="" on-change="considerClosedChange(row['considerClosed'])"></wm-checkbox>
+                                                        <wm-checkbox scopedatavalue="row['considerClosed']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="New Outcome" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Outcome" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
@@ -368,7 +368,20 @@
                                                                             </wm-gridcolumn>
                                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn69_1">
                                                                                 <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" readonly="false" required="false"
-                                                                                widget="checkbox" defaultvalue="false" placeholder="" uncheckedvalue="false" checkedvalue="true" hint="If selected, this outcome will result in the inspections process being considered &quot;Closed&quot;, and should be reserved for the final outcome."></wm-form-field>
+                                                                                widget="checkbox" defaultvalue="false" placeholder="" uncheckedvalue="false" checkedvalue="true" hint="If selected, this outcome will result in the inspections process being considered &quot;Closed&quot;, and should be reserved for the final outcome."
+                                                                                on-change="ConsiderClosedDialogChange($event, $scope, newVal, oldVal)"></wm-form-field>
+                                                                            </wm-gridcolumn>
+                                                                        </wm-gridrow>
+                                                                        <wm-gridrow name="gridrow50">
+                                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn71_1">
+                                                                                <wm-form-field name="autoReInspection" displayname="Auto Re-Inspect" show="true" primary-key="false" generator="assigned" key="autoReInspection" type="boolean" readonly="false"
+                                                                                required="false" widget="checkbox" defaultvalue="false" hint="If this inspection is &quot;Consider Closed&quot; when it reaches this outcome, this setting will allow automatically rescheduling the inspection."
+                                                                                disabled="bind:!Widgets.liveformOutcome.formWidgets.considerClosed.datavalue"></wm-form-field>
+                                                                            </wm-gridcolumn>
+                                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn72">
+                                                                                <wm-form-field name="daysToAutoReInspection" displayname="Days Until Re-Inspect" show="true" primary-key="false" generator="assigned" key="daysToAutoReInspection" type="integer"
+                                                                                readonly="false" required="bind:Widgets.liveformOutcome.formWidgets.autoReInspection.datavalue" step="0" widget="number" minvalue="1" maxvalue="7305" hint="After the number of days specified here, this inspection will be automatically rescheduled."
+                                                                                disabled="bind:!Widgets.liveformOutcome.formWidgets.autoReInspection.datavalue" placeholder=""></wm-form-field>
                                                                             </wm-gridcolumn>
                                                                         </wm-gridrow>
                                                                     </wm-layoutgrid>
@@ -379,20 +392,21 @@
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn62_1">
                                                                 <wm-panel iconclass="wi wi-email" autoclose="outsideClick" class="panel-primary" name="panelEmailSettings" title="Email Settings">
                                                                     <wm-layoutgrid name="layoutgrid16">
-                                                                        <wm-gridrow name="gridrow50">
-                                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn71_1">
+                                                                        <wm-gridrow name="gridrow51_1">
+                                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn73">
                                                                                 <wm-form-field name="sendEmail" displayname="Send Email" show="true" primary-key="false" generator="assigned" key="sendEmail" type="boolean" readonly="false" required="false"
-                                                                                widget="checkbox" defaultvalue="FALSE" hint="If selected, a system-generated email will be sent to the user who requested the inspection when the inspection enters this outcome."></wm-form-field>
+                                                                                widget="checkbox" defaultvalue="FALSE" hint="If selected, a system-generated email will be sent to the user who requested the inspection when the inspection enters this outcome."
+                                                                                placeholder=""></wm-form-field>
                                                                             </wm-gridcolumn>
-                                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn72">
+                                                                            <wm-gridcolumn name="gridcolumn1" columnwidth="6">
                                                                                 <wm-form-field name="emailSubjectLine" displayname="Email Subject Line" show="true" primary-key="false" generator="assigned" key="emailSubjectLine" type="string" readonly="false"
-                                                                                required="false" widget="text" maxchars="255" width="100%"></wm-form-field>
+                                                                                required="false" widget="text" maxchars="255" width="100%" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                                             </wm-gridcolumn>
                                                                         </wm-gridrow>
-                                                                        <wm-gridrow name="gridrow51_1">
-                                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn73">
+                                                                        <wm-gridrow name="gridrow2">
+                                                                            <wm-gridcolumn name="gridcolumn2" columnwidth="12">
                                                                                 <wm-form-field name="emailBodyText" displayname="Email Body Text" show="true" primary-key="false" generator="assigned" key="emailBodyText" type="text" readonly="false" required="false"
-                                                                                widget="textarea" maxchars="5000" width="100%"></wm-form-field>
+                                                                                widget="textarea" maxchars="5000" width="100%" placeholder="Enter value"></wm-form-field>
                                                                             </wm-gridcolumn>
                                                                         </wm-gridrow>
                                                                     </wm-layoutgrid>
@@ -400,10 +414,10 @@
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
-                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false" required="false"
-                                                    widget="select" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord" placeholder="Select value"></wm-form-field>
-                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
-                                                    placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false"
+                                                    required="false" widget="select" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord"
+                                                    placeholder="Select value"></wm-form-field>
                                                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
                                                     update-mode="true"></wm-form-action>
