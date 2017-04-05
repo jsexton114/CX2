@@ -42,10 +42,10 @@ public class CodeList implements Serializable {
     private LocalDateTime created;
     @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.INSERT })
     private Integer createdBy;
-    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT, Scope.UPDATE })
+    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime updated;
-    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.INSERT, Scope.UPDATE })
+    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.UPDATE, Scope.INSERT })
     private Integer updatedBy;
     private Integer codeSetId;
     private CodeSets codeSets;

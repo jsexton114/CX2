@@ -43,6 +43,8 @@ public class InspectionOutcome implements Serializable {
     private boolean sendEmail;
     private String emailSubjectLine;
     private String emailBodyText;
+    private Boolean autoReInspection;
+    private Integer daysToAutoReInspection;
     private InspectionDesign inspectionDesign;
     private List<InspectionOutcomeFee> inspectionOutcomeFees = new ArrayList<>();
     private List<MasterInspections> masterInspectionses = new ArrayList<>();
@@ -128,6 +130,24 @@ public class InspectionOutcome implements Serializable {
 
     public void setEmailBodyText(String emailBodyText) {
         this.emailBodyText = emailBodyText;
+    }
+
+    @Column(name = "`AutoReInspection`", nullable = true)
+    public Boolean getAutoReInspection() {
+        return this.autoReInspection;
+    }
+
+    public void setAutoReInspection(Boolean autoReInspection) {
+        this.autoReInspection = autoReInspection;
+    }
+
+    @Column(name = "`DaysToAutoReInspection`", nullable = true, scale = 0, precision = 10)
+    public Integer getDaysToAutoReInspection() {
+        return this.daysToAutoReInspection;
+    }
+
+    public void setDaysToAutoReInspection(Integer daysToAutoReInspection) {
+        this.daysToAutoReInspection = daysToAutoReInspection;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
