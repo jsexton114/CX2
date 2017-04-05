@@ -2,11 +2,7 @@ Application.$controller("dynamicFieldEditorPageController", ["$scope", function(
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function() {
-        $scope.$watch('pageParams', function(newValue, oldValue) {
-            console.log(newValue);
-        });
-    };
+    $scope.onPageReady = function() {};
 
     function resetFormFieldDialog() {
         $scope.Widgets.textFormFieldLabel.reset();

@@ -10171,10 +10171,10 @@
       "unique" : false
     }, {
       "columnValue" : {
-        "type" : "server-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "variableType" : "DATE_TIME"
+        "type" : "database-defined",
+        "insertable" : false,
+        "updatable" : false,
+        "defaultValue" : null
       },
       "fieldName" : "createdDate",
       "foreignKey" : false,
@@ -10221,10 +10221,10 @@
       "unique" : false
     }, {
       "columnValue" : {
-        "type" : "server-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "variableType" : "DATE_TIME"
+        "type" : "database-defined",
+        "insertable" : false,
+        "updatable" : false,
+        "defaultValue" : null
       },
       "fieldName" : "modifiedDate",
       "foreignKey" : false,
