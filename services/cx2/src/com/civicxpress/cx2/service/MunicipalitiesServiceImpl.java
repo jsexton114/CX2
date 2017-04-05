@@ -180,14 +180,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
             }
         }
 
-        if(municipalitiesCreated.getInspectionDesigns() != null) {
-            for(InspectionDesign inspectionDesign : municipalitiesCreated.getInspectionDesigns()) {
-                inspectionDesign.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child InspectionDesign with information: {}", inspectionDesign);
-                inspectionDesignService.create(inspectionDesign);
-            }
-        }
-
         if(municipalitiesCreated.getHolidayses() != null) {
             for(Holidays holidayse : municipalitiesCreated.getHolidayses()) {
                 holidayse.setMunicipalities(municipalitiesCreated);
@@ -204,11 +196,11 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
             }
         }
 
-        if(municipalitiesCreated.getMasterFormses() != null) {
-            for(MasterForms masterFormse : municipalitiesCreated.getMasterFormses()) {
-                masterFormse.setMunicipalities(municipalitiesCreated);
-                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
-                masterFormsService.create(masterFormse);
+        if(municipalitiesCreated.getInspectionDesigns() != null) {
+            for(InspectionDesign inspectionDesign : municipalitiesCreated.getInspectionDesigns()) {
+                inspectionDesign.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child InspectionDesign with information: {}", inspectionDesign);
+                inspectionDesignService.create(inspectionDesign);
             }
         }
 
@@ -217,6 +209,14 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
                 manualFeeTypese.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child ManualFeeTypes with information: {}", manualFeeTypese);
                 manualFeeTypesService.create(manualFeeTypese);
+            }
+        }
+
+        if(municipalitiesCreated.getMasterFormses() != null) {
+            for(MasterForms masterFormse : municipalitiesCreated.getMasterFormses()) {
+                masterFormse.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child MasterForms with information: {}", masterFormse);
+                masterFormsService.create(masterFormse);
             }
         }
 
@@ -409,17 +409,6 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<InspectionDesign> findAssociatedInspectionDesigns(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated inspectionDesigns");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("municipalities.id = '" + id + "'");
-
-        return inspectionDesignService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<Holidays> findAssociatedHolidayses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated holidayses");
 
@@ -442,13 +431,13 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterFormses");
+    public Page<InspectionDesign> findAssociatedInspectionDesigns(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionDesigns");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("municipalities.id = '" + id + "'");
 
-        return masterFormsService.findAll(queryBuilder.toString(), pageable);
+        return inspectionDesignService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -460,6 +449,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
         queryBuilder.append("municipalities.id = '" + id + "'");
 
         return manualFeeTypesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterFormses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return masterFormsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

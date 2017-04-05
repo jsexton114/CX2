@@ -131,6 +131,8 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateGlobalEmailSig(UpdateGlobalEmailSigRequest updateGlobalEmailSigRequest);
 
+    Integer executeUpdateTrackViolations(UpdateTrackViolationsRequest updateTrackViolationsRequest);
+
     Integer executeDeleteFromVendorAdmins(Integer user, Integer vendor);
 
     Integer executeSetPrimaryVendorStatusForFormandVendor(SetPrimaryVendorStatusForFormandVendorRequest setPrimaryVendorStatusForFormandVendorRequest);

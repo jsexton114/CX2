@@ -598,6 +598,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
+    public Integer executeUpdateTrackViolations(UpdateTrackViolationsRequest updateTrackViolationsRequest) {
+        Map params = new HashMap(2);
+
+        params.put("TrackViolations", updateTrackViolationsRequest.getTrackViolations());
+        params.put("formType", updateTrackViolationsRequest.getFormType());
+
+        return queryExecutor.executeNamedQueryForUpdate("updateTrackViolations", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
     public Integer executeDeleteFromVendorAdmins(Integer user, Integer vendor) {
         Map params = new HashMap(2);
 

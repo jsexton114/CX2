@@ -10973,6 +10973,41 @@
       "responseType" : "SINGLE"
     }
   },
+  "updateTrackViolations" : {
+    "name" : "updateTrackViolations",
+    "description" : "updateTrackViolations",
+    "version" : "V2",
+    "queryString" : "update FormTypes set TrackViolations=:TrackViolations where ID=:formType",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "TrackViolations",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    }, {
+      "name" : "formType",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "58",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.UpdateTrackViolationsRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "userSubscriptionsCount" : {
     "name" : "userSubscriptionsCount",
     "description" : "userSubscriptionsCount",

@@ -75,8 +75,8 @@ public class InspectionDesign implements Serializable {
     private List<CodesToInspection> codesToInspections = new ArrayList<>();
     private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
     private List<InspectionOutcome> inspectionOutcomes = new ArrayList<>();
-    private List<InspectionSequence> inspectionSequences = new ArrayList<>();
     private List<LetterTemplates> letterTemplateses = new ArrayList<>();
+    private List<InspectionSequence> inspectionSequences = new ArrayList<>();
     private List<MasterInspections> masterInspectionses = new ArrayList<>();
     private List<InspectionCategoryMapping> inspectionCategoryMappings = new ArrayList<>();
 
@@ -466,22 +466,22 @@ public class InspectionDesign implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
-    public List<InspectionSequence> getInspectionSequences() {
-        return this.inspectionSequences;
-    }
-
-    public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
-        this.inspectionSequences = inspectionSequences;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
     public List<LetterTemplates> getLetterTemplateses() {
         return this.letterTemplateses;
     }
 
     public void setLetterTemplateses(List<LetterTemplates> letterTemplateses) {
         this.letterTemplateses = letterTemplateses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
+    public List<InspectionSequence> getInspectionSequences() {
+        return this.inspectionSequences;
+    }
+
+    public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
+        this.inspectionSequences = inspectionSequences;
     }
 
     @JsonInclude(Include.NON_EMPTY)

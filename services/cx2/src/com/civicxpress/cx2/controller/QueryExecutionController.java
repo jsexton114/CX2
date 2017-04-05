@@ -544,6 +544,16 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/updateTrackViolations", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "updateTrackViolations")
+    public IntegerWrapper executeUpdateTrackViolations(@Valid @RequestBody UpdateTrackViolationsRequest updateTrackViolationsRequest) {
+        LOGGER.debug("Executing named query: updateTrackViolations");
+        Integer _result = queryService.executeUpdateTrackViolations(updateTrackViolationsRequest);
+        LOGGER.debug("got the result for named query: updateTrackViolations, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/DeleteFromVendorAdmins", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "DeleteFromVendorAdmins")

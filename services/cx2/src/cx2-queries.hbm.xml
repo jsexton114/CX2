@@ -428,6 +428,14 @@ group by FeeType) wmTempTable
     <query-param name="municipality" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="updateTrackViolations">
+        <![CDATA[
+        update FormTypes set TrackViolations=:TrackViolations where ID=:formType
+        ]]>
+    <query-param name="TrackViolations" type="java.lang.Boolean"/>
+    <query-param name="formType" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="DeleteFromVendorAdmins">
         <![CDATA[
         delete from VendorAdmins where UserId=:user and VendorId=:vendor

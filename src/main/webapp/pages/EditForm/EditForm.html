@@ -545,7 +545,54 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpane8" title="Code Enforcement" show="bind:Widgets.liveformUpdateFormType.formWidgets.codeEnforcement.datavalue"></wm-tabpane>
+                            <wm-tabpane name="tabpane8" title="Code Enforcement" show="bind:Widgets.liveformUpdateFormType.formWidgets.codeEnforcement.datavalue">
+                                <wm-layoutgrid name="layoutgrid23_1">
+                                    <wm-gridrow name="gridrow80">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn114">
+                                            <wm-composite name="composite3_1">
+                                                <wm-checkbox caption="Track Violations" class="col-md-push-3 col-md-9" name="checkboxTrackViolations" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.CurrentFormObj.firstRecord.trackViolations"
+                                                on-change="Variables.svupdateTrackViolations.invoke()"></wm-checkbox>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow81">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn115_1">
+                                            <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" name="panelCodeSets" title="Code Sets" class="panel-primary" show="bind:Widgets.checkboxTrackViolations.datavalue">
+                                                <wm-livegrid formlayout="dialog" name="livegridCodeSets">
+                                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvCodesToForm.dataSet" navigation="Classic" name="gridCodeSets">
+                                                        <wm-grid-column binding="dateAdded" caption="Date Added" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true"></wm-grid-column>
+                                                        <wm-grid-column binding="codeSets.codeSetTitle" caption="Set Title" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="CodeSets"></wm-grid-column>
+                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                        <wm-grid-action key="addNewRow" display-name="Add Code Set" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                        <wm-grid-row-action key="updaterow" display-name="" show="false" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                                    </wm-grid>
+                                                    <wm-liveform novalidate="false" errormessage="" title="Code Set" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvCodesToForm.dataSet" captionalign="left" captionposition="top" name="liveformCodeSets">
+                                                        <wm-layoutgrid columns="1" name="layoutgrid25">
+                                                            <wm-gridrow name="gridrow84_1">
+                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn117">
+                                                                    <wm-form-field name="codeSets" displayname="Code Sets" required="false" show="true" generator="assigned" primary-key="false" key="codeSets" type="list" is-related="true" pc-display="true"
+                                                                    mobile-display="true" widget="select" dataset="bind:Variables.lvMunicipalityCodeSets.dataSet" datafield="All Fields" displayfield="codeSetTitle"></wm-form-field>
+                                                                </wm-gridcolumn>
+                                                            </wm-gridrow>
+                                                            <wm-gridrow name="gridrow85">
+                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn118">
+                                                                    <wm-form-field name="formTypes" displayname="Form Types" required="false" show="false" generator="assigned" primary-key="false" key="formTypes" type="list" is-related="true" pc-display="true"
+                                                                    mobile-display="true" widget="select" dataset="bind:Variables.CurrentFormObj.dataSet" datafield="All Fields" displayfield="formType" defaultvalue="bind:Variables.CurrentFormObj.firstRecord"></wm-form-field>
+                                                                </wm-gridcolumn>
+                                                            </wm-gridrow>
+                                                        </wm-layoutgrid>
+                                                        <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true"
+                                                        widget="number"></wm-form-field>
+                                                        <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                                                        <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                                                    </wm-liveform>
+                                                </wm-livegrid>
+                                            </wm-panel>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-tabpane>
                             <wm-tabpane name="tabpaneInspections" title="Inspections" show="bind:Widgets.liveformUpdateFormType.formWidgets.inspections.datavalue">
                                 <wm-layoutgrid name="layoutgrid1">
                                     <wm-gridrow name="gridrow2" padding="unset unset 1em unset">
