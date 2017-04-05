@@ -10,7 +10,7 @@
       "icon" : "glyphicon glyphicon-home",
       "link" : "#/CXAdmin"
     }, {
-      "label" : "CX Code Sets",
+      "label" : "Global Code Sets",
       "icon" : "wi wi-ellipsis-v",
       "link" : "#/CXCodeSets"
     } ],
@@ -453,6 +453,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "5",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
           "scale" : 0
         } ]
       }, {
@@ -973,7 +986,7 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "GlobalYN",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",

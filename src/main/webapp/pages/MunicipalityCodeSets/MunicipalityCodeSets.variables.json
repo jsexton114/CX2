@@ -8,7 +8,7 @@
     "dataSet" : [ {
       "label" : "Home",
       "icon" : "glyphicon glyphicon-home",
-      "link" : "#/CodeEnforcementDashboard"
+      "link" : "#/MunicipalityAdministration"
     }, {
       "label" : "Municipality Code Sets",
       "icon" : "wi wi-ellipsis-v",
@@ -457,6 +457,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "5",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
           "scale" : 0
         } ]
       }, {
@@ -977,7 +990,7 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "GlobalYN",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
@@ -1491,6 +1504,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "5",
+        "scale" : 0
+      }, {
+        "fieldName" : "allowOfflineCc",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowOfflineCC",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "true",
         "scale" : 0
       } ],
       "entityName" : "Municipalities",
