@@ -19,9 +19,9 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn1">
                         <wm-livegrid formlayout="dialog" name="livegridCodeSets">
                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvCodeSetsData.dataSet" navigation="Classic" name="gridCodeSets" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                                <wm-grid-column binding="codeSetTitle" caption="Code Set" type="string" generator="assigned" edit-widget-type="text" searchable="false" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="codeSetTitle" caption="Code Set" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="usersByCreatedBy.fullName" caption="Created By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                <wm-grid-column binding="created" caption="Date Created" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" searchable="false" show="true" filterwidget="text">{{row.getProperty('created') | toLocalDateString}}</wm-grid-column>
+                                <wm-grid-column binding="created" caption="Date Created" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('created') | toLocalDateString}}</wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false"
                                 show="true"></wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="New Code Set" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Code Set" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>

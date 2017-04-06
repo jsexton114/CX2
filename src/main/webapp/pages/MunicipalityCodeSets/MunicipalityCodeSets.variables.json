@@ -469,7 +469,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -714,6 +714,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "usersByUpdatedBy",
@@ -956,6 +969,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -1516,7 +1542,7 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "true",
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "Municipalities",
