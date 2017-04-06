@@ -77,7 +77,6 @@ public class FormTypes implements Serializable {
     private Boolean forceInspectionSequence;
     private boolean requireSignature;
     private boolean codeEnforcement;
-    private boolean trackViolations;
     private String propertyType;
     private Municipalities municipalities;
     private List<CodesToForm> codesToForms = new ArrayList<>();
@@ -478,15 +477,6 @@ public class FormTypes implements Serializable {
 
     public void setCodeEnforcement(boolean codeEnforcement) {
         this.codeEnforcement = codeEnforcement;
-    }
-
-    @Column(name = "`TrackViolations`", nullable = false)
-    public boolean isTrackViolations() {
-        return this.trackViolations;
-    }
-
-    public void setTrackViolations(boolean trackViolations) {
-        this.trackViolations = trackViolations;
     }
 
     @Column(name = "`PropertyType`", nullable = true, length = 255)

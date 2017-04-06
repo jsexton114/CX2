@@ -67,7 +67,6 @@ public class InspectionDesign implements Serializable {
     private Timestamp createdAt;
     private boolean requireFeesPaidBeforeScheduling;
     private boolean allowUnscheduledInspection;
-    private boolean codeEnforcement;
     private boolean trackViolations;
     private String inspectionTableName;
     private Users users;
@@ -377,15 +376,6 @@ public class InspectionDesign implements Serializable {
 
     public void setAllowUnscheduledInspection(boolean allowUnscheduledInspection) {
         this.allowUnscheduledInspection = allowUnscheduledInspection;
-    }
-
-    @Column(name = "`CodeEnforcement`", nullable = false)
-    public boolean isCodeEnforcement() {
-        return this.codeEnforcement;
-    }
-
-    public void setCodeEnforcement(boolean codeEnforcement) {
-        this.codeEnforcement = codeEnforcement;
     }
 
     @Column(name = "`TrackViolations`", nullable = false)

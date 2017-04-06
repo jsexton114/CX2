@@ -4920,31 +4920,6 @@
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : "false"
-      },
-      "fieldName" : "trackViolations",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "boolean",
-      "length" : 0,
-      "name" : "TrackViolations",
-      "nullable" : false,
-      "oldName" : "TrackViolations",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "boolean",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
         "defaultValue" : ""
       },
       "fieldName" : "propertyType",
@@ -9045,31 +9020,6 @@
       "name" : "AllowUnscheduledInspection",
       "nullable" : false,
       "oldName" : "AllowUnscheduledInspection",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "boolean",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : "false"
-      },
-      "fieldName" : "codeEnforcement",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "boolean",
-      "length" : 0,
-      "name" : "CodeEnforcement",
-      "nullable" : false,
-      "oldName" : "CodeEnforcement",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
@@ -13592,7 +13542,7 @@
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : "true"
+        "defaultValue" : "false"
       },
       "fieldName" : "allowOfflineCc",
       "foreignKey" : false,
