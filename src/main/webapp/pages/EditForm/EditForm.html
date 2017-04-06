@@ -427,13 +427,13 @@
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                     <wm-gridrow name="gridrow120_1" padding="unset unset 1em unset">
-                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn36_1" padding="unset 1em unset unset">
-                                                                            <wm-form-field name="allowSharedWithEdits" displayname="Allow &quot;Shared With&quot; Edits" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean"
-                                                                            widget="checkbox" placeholder="" hint="This allows users that the form has been shared with to edit the form while in this status." defaultvalue="false"></wm-form-field>
-                                                                        </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn42_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowAuthorEdits" displayname="Allow &quot;Created By&quot; Edits" show="true" primary-key="false" generator="assigned" key="allowAuthorEdits" type="boolean"
                                                                             widget="checkbox" placeholder="" hint="This allows the user who submitted the form to edit the form information while in this status." defaultvalue="false"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn36_1" padding="unset 1em unset unset">
+                                                                            <wm-form-field name="allowSharedWithEdits" displayname="Allow &quot;Shared With&quot; Edits" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean"
+                                                                            widget="checkbox" placeholder="" hint="This allows users that the form has been shared with to edit the form while in this status." defaultvalue="false" disabled="bind:!Widgets.lfFormTypeStatus.formWidgets.allowAuthorEdits.datavalue"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
                                                                             <wm-form-field name="publicRead" displayname="Allow Public Read Access" show="true" primary-key="false" generator="assigned" key="publicRead" type="boolean" widget="checkbox" defaultvalue="false"

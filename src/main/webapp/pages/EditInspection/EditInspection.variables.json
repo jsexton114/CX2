@@ -987,32 +987,6 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "scheduleDateOnly",
-        "type" : "date",
-        "fullyQualifiedType" : "date",
-        "columnName" : "ScheduleDateOnly",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
-        "fieldName" : "scheduleDateAndTime",
-        "type" : "timestamp",
-        "fullyQualifiedType" : "timestamp",
-        "columnName" : "ScheduleDateAndTime",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
         "fieldName" : "titlePrefix",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -1154,6 +1128,32 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "scheduleDateOnly",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "ScheduleDateOnly",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "TRUE",
+        "scale" : 0
+      }, {
+        "fieldName" : "scheduleDateAndTime",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "ScheduleDateAndTime",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "FALSE",
         "scale" : 0
       } ],
       "entityName" : "InspectionDesign",
@@ -2100,32 +2100,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "scheduleDateOnly",
-          "type" : "date",
-          "fullyQualifiedType" : "date",
-          "columnName" : "ScheduleDateOnly",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "scheduleDateAndTime",
-          "type" : "timestamp",
-          "fullyQualifiedType" : "timestamp",
-          "columnName" : "ScheduleDateAndTime",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "titlePrefix",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -2267,6 +2241,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "scheduleDateOnly",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "ScheduleDateOnly",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "TRUE",
+          "scale" : 0
+        }, {
+          "fieldName" : "scheduleDateAndTime",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "ScheduleDateAndTime",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
           "scale" : 0
         } ]
       }, {
@@ -2644,32 +2644,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "scheduleDateOnly",
-          "type" : "date",
-          "fullyQualifiedType" : "date",
-          "columnName" : "ScheduleDateOnly",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "scheduleDateAndTime",
-          "type" : "timestamp",
-          "fullyQualifiedType" : "timestamp",
-          "columnName" : "ScheduleDateAndTime",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "titlePrefix",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -2811,6 +2785,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "scheduleDateOnly",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "ScheduleDateOnly",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "TRUE",
+          "scale" : 0
+        }, {
+          "fieldName" : "scheduleDateAndTime",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "ScheduleDateAndTime",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
           "scale" : 0
         } ]
       }, {
@@ -3693,32 +3693,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "scheduleDateOnly",
-          "type" : "date",
-          "fullyQualifiedType" : "date",
-          "columnName" : "ScheduleDateOnly",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "scheduleDateAndTime",
-          "type" : "timestamp",
-          "fullyQualifiedType" : "timestamp",
-          "columnName" : "ScheduleDateAndTime",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "titlePrefix",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -3860,6 +3834,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "scheduleDateOnly",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "ScheduleDateOnly",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "TRUE",
+          "scale" : 0
+        }, {
+          "fieldName" : "scheduleDateAndTime",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "ScheduleDateAndTime",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
           "scale" : 0
         } ]
       }, {
@@ -4892,32 +4892,6 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "scheduleDateOnly",
-        "type" : "date",
-        "fullyQualifiedType" : "date",
-        "columnName" : "ScheduleDateOnly",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
-        "fieldName" : "scheduleDateAndTime",
-        "type" : "timestamp",
-        "fullyQualifiedType" : "timestamp",
-        "columnName" : "ScheduleDateAndTime",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
         "fieldName" : "titlePrefix",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -5059,6 +5033,32 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "scheduleDateOnly",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "ScheduleDateOnly",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "TRUE",
+        "scale" : 0
+      }, {
+        "fieldName" : "scheduleDateAndTime",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "ScheduleDateAndTime",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "FALSE",
         "scale" : 0
       } ],
       "entityName" : "InspectionDesign",
@@ -6014,32 +6014,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "scheduleDateOnly",
-          "type" : "date",
-          "fullyQualifiedType" : "date",
-          "columnName" : "ScheduleDateOnly",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "scheduleDateAndTime",
-          "type" : "timestamp",
-          "fullyQualifiedType" : "timestamp",
-          "columnName" : "ScheduleDateAndTime",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "titlePrefix",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -6181,6 +6155,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "scheduleDateOnly",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "ScheduleDateOnly",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "TRUE",
+          "scale" : 0
+        }, {
+          "fieldName" : "scheduleDateAndTime",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "ScheduleDateAndTime",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
           "scale" : 0
         } ]
       }, {
