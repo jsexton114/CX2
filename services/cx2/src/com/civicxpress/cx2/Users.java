@@ -46,15 +46,15 @@ public class Users implements Serializable {
     private String postalCode;
     private String phoneNumber;
     private String communicationFrequency;
-    private Boolean active;
+    private boolean active;
     @JsonProperty(access = Access.READ_ONLY)
     private byte[] photo;
-    private Boolean banned;
+    private boolean banned;
     private String password;
     private Integer stateId;
     private String country;
     private String fullName;
-    private Boolean differentBillingInfo;
+    private boolean differentBillingInfo;
     private States states;
     private List<BillingInformation> billingInformations = new ArrayList<>();
     private List<CodeList> codeListsForCreatedBy = new ArrayList<>();
@@ -190,12 +190,12 @@ public class Users implements Serializable {
         this.communicationFrequency = communicationFrequency;
     }
 
-    @Column(name = "`Active`", nullable = true)
-    public Boolean getActive() {
+    @Column(name = "`Active`", nullable = false)
+    public boolean isActive() {
         return this.active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
@@ -208,12 +208,12 @@ public class Users implements Serializable {
         this.photo = photo;
     }
 
-    @Column(name = "`Banned`", nullable = true)
-    public Boolean getBanned() {
+    @Column(name = "`Banned`", nullable = false)
+    public boolean isBanned() {
         return this.banned;
     }
 
-    public void setBanned(Boolean banned) {
+    public void setBanned(boolean banned) {
         this.banned = banned;
     }
 
@@ -253,12 +253,12 @@ public class Users implements Serializable {
         this.fullName = fullName;
     }
 
-    @Column(name = "`DifferentBillingInfo`", nullable = true)
-    public Boolean getDifferentBillingInfo() {
+    @Column(name = "`DifferentBillingInfo`", nullable = false)
+    public boolean isDifferentBillingInfo() {
         return this.differentBillingInfo;
     }
 
-    public void setDifferentBillingInfo(Boolean differentBillingInfo) {
+    public void setDifferentBillingInfo(boolean differentBillingInfo) {
         this.differentBillingInfo = differentBillingInfo;
     }
 

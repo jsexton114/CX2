@@ -43,7 +43,7 @@ public class InspectionOutcome implements Serializable {
     private boolean sendEmail;
     private String emailSubjectLine;
     private String emailBodyText;
-    private Boolean autoReInspection;
+    private boolean autoReInspection;
     private Integer daysToAutoReInspection;
     private InspectionDesign inspectionDesign;
     private List<InspectionOutcomeFee> inspectionOutcomeFees = new ArrayList<>();
@@ -132,12 +132,12 @@ public class InspectionOutcome implements Serializable {
         this.emailBodyText = emailBodyText;
     }
 
-    @Column(name = "`AutoReInspection`", nullable = true)
-    public Boolean getAutoReInspection() {
+    @Column(name = "`AutoReInspection`", nullable = false)
+    public boolean isAutoReInspection() {
         return this.autoReInspection;
     }
 
-    public void setAutoReInspection(Boolean autoReInspection) {
+    public void setAutoReInspection(boolean autoReInspection) {
         this.autoReInspection = autoReInspection;
     }
 
