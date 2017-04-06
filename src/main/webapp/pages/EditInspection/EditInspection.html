@@ -134,64 +134,62 @@
                                                                 readonly="false" required="false" widget="checkbox" defaultvalue="false" placeholder="" hint="This setting allows unscheduled (&quot;ad hoc&quot;) inspections to be performed by an inspector."></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn55" padding="unset 1em unset unset">
-                                                                <wm-form-field name="codeEnforcement" displayname="Code Enforcement" show="true" primary-key="false" generator="assigned" key="codeEnforcement" type="boolean" readonly="false" required="false"
-                                                                widget="checkbox" defaultvalue="false" hint="This setting will classify this inspection as a Code Enforcement inspection for reporting purposes, and enables a &quot;Code Enforcement&quot; tab on this page that contains additional settings."
-                                                                placeholder=""></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn58" padding="unset 1em unset unset"></wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn56_1">
                                                                 <wm-form-field name="requireFeesPaidBeforeScheduling" displayname="Require Fees Paid Before Requesting" show="true" primary-key="false" generator="assigned" key="requireFeesPaidBeforeScheduling"
                                                                 type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="false" placeholder="" hint="When enabled, users will not be able to request this inspection until all form fees have been paid."></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn63_2" padding="unset 1em unset unset">
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn56_1">
                                                                 <wm-form-field name="scheduleDateOnly" displayname="Schedule Date Only" show="true" primary-key="false" generator="assigned" key="scheduleDateOnly" type="date" readonly="false" required="false"
                                                                 widget="date" placeholder="Select date" outputformat="yyyy-MM-dd"></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn77" padding="unset 1em unset unset">
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn63_2" padding="unset 1em unset unset">
                                                                 <wm-form-field name="scheduleDateAndTime" displayname="Schedule Date And Time" show="true" primary-key="false" generator="assigned" key="scheduleDateAndTime" type="timestamp" readonly="false"
                                                                 required="false" widget="timestamp" placeholder="Select date time" outputformat="timestamp"></wm-form-field>
                                                             </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow38_1" padding="unset unset 1em unset">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn56" padding="unset 1em unset unset">
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn77" padding="unset 1em unset unset">
                                                                 <wm-form-field name="maxDaysInAdvance" displayname="Max Days in Advance" show="true" primary-key="false" generator="assigned" key="maxDaysInAdvance" type="integer" maxvalue="365" readonly="false"
                                                                 required="false" step="1" widget="number" inputtype="number" placeholder="Enter value" hint="This is the maximum number of calendar days in advance that this inspection can be requested by the user."
                                                                 minvalue="1"></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn57" padding="unset 1em unset unset">
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow38_1" padding="unset unset 1em unset">
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn56" padding="unset 1em unset unset">
                                                                 <wm-form-field name="totalInspectionsHourly" displayname="Total Inspections Hourly" show="true" primary-key="false" generator="assigned" key="totalInspectionsHourly" type="integer" maxvalue="100"
                                                                 readonly="false" required="false" step="1" widget="number" inputtype="number" placeholder="Enter value" minvalue="1" hint="This is the maximum number of this inspection that can be scheduled per hour."></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn87_1">
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn57" padding="unset 1em unset unset">
                                                                 <wm-form-field name="totalInspectionsDaily" displayname="Total Inspections Daily" show="true" primary-key="false" generator="assigned" key="totalInspectionsDaily" type="integer" maxvalue="1000"
                                                                 readonly="false" required="false" step="1" widget="number" inputtype="number" placeholder="Enter value" minvalue="1" hint="This is the maximum number of this inspection that can be scheduled per day."></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn87_1">
+                                                                <wm-form-field name="callInOnly" displayname="Call In Only" show="true" primary-key="false" generator="assigned" key="callInOnly" type="boolean" readonly="false" required="false" widget="checkbox"
+                                                                defaultvalue="FALSE" placeholder=""></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn60_1" padding="unset 1em unset unset">
-                                                                <wm-form-field name="callInOnly" displayname="Call In Only" show="true" primary-key="false" generator="assigned" key="callInOnly" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="FALSE" placeholder=""></wm-form-field>
+                                                                <wm-form-field name="allowSameDayInspections" displayname="Allow Same Day Inspections" show="true" primary-key="false" generator="assigned" key="allowSameDayInspections" type="boolean" readonly="false"
+                                                                required="false" widget="checkbox" defaultvalue="FALSE" placeholder="" hint="If enabled, users will be able to request this inspection for later in the same day. The municipality can optionally assess a fee for same day inspections below."></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="8" name="gridcolumn61_1" padding="unset 1em unset unset">
-                                                                <wm-form-field name="callInMessage" displayname="Call In Message" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.callInOnly.datavalue" primary-key="false" generator="assigned"
-                                                                key="callInMessage" type="string" readonly="false" required="false" widget="textarea" maxchars="1000" placeholder="Enter text"></wm-form-field>
+                                                                <wm-form-field name="allowCancel" displayname="Allow Cancellations" show="true" primary-key="false" generator="assigned" key="allowCancel" type="boolean" readonly="false" required="false" widget="checkbox"
+                                                                defaultvalue="FALSE" placeholder="" on-change="allowCancelChange($event, $scope, newVal, oldVal)" hint="If enabled, users will be able to cancel this inspection while it is in the &quot;Requested&quot; or &quot;Scheduled&quot; Outcomes. The municipality can optionally assess a fee for cancellations below."></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow60" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn81">
-                                                                <wm-form-field name="allowSameDayInspections" displayname="Allow Same Day Inspections" show="true" primary-key="false" generator="assigned" key="allowSameDayInspections" type="boolean" readonly="false"
-                                                                required="false" widget="checkbox" defaultvalue="FALSE" placeholder="" hint="If enabled, users will be able to request this inspection for later in the same day. The municipality can optionally assess a fee for same day inspections below."></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn82">
-                                                                <wm-form-field name="allowCancel" displayname="Allow Cancellations" show="true" primary-key="false" generator="assigned" key="allowCancel" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="FALSE" placeholder="" on-change="allowCancelChange($event, $scope, newVal, oldVal)" hint="If enabled, users will be able to cancel this inspection while it is in the &quot;Requested&quot; or &quot;Scheduled&quot; Outcomes. The municipality can optionally assess a fee for cancellations below."></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn57_3">
                                                                 <wm-form-field name="allowSameDayCancel" displayname="Allow Same Day Cancellations" show="true" primary-key="false" generator="assigned" key="allowSameDayCancel" type="boolean" readonly="false"
                                                                 required="false" widget="checkbox" defaultvalue="FALSE" placeholder="" hint="If enabled, users will be able to cancel this inspection on the same day that it is scheduled to be performed. The municipality can optionally assess a fee for same day cancellations below. &quot;Allow Cancellations&quot; must be selected to enable this setting."
                                                                 disabled="bind:!Widgets.liveformUpdateInspectiondesign.formWidgets.allowCancel.datavalue"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn82">
+                                                                <wm-form-field name="trackViolations" displayname="Track Violations" show="true" primary-key="false" generator="assigned" key="trackViolations" type="boolean" readonly="false" required="true"
+                                                                widget="checkbox" defaultvalue="false"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn57_3">
+                                                                <wm-form-field name="callInMessage" displayname="Call In Message" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.callInOnly.datavalue" primary-key="false" generator="assigned"
+                                                                key="callInMessage" type="string" readonly="false" required="false" widget="textarea" maxchars="1000" placeholder="Enter text"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
@@ -252,12 +250,12 @@
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
-                                    <wm-form-field name="createdAt" displayname="Created At" show="false" primary-key="false" generator="assigned" key="createdAt" type="timestamp" readonly="false" required="false" widget="timestamp" placeholder="Select date time"
-                                    outputformat="timestamp"></wm-form-field>
-                                    <wm-form-field name="users" displayname="Users" show="false" primary-key="false" generator="assigned" key="users" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"></wm-form-field>
+                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
                                     <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" readonly="false" required="false"
                                     widget="select" placeholder="Select value"></wm-form-field>
-                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="users" displayname="Users" show="false" primary-key="false" generator="assigned" key="users" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"></wm-form-field>
+                                    <wm-form-field name="createdAt" displayname="Created At" show="false" primary-key="false" generator="assigned" key="createdAt" type="timestamp" readonly="false" required="false" widget="timestamp" placeholder="Select date time"
+                                    outputformat="timestamp"></wm-form-field>
                                     <wm-layoutgrid columns="1" name="layoutgrid6_2"></wm-layoutgrid>
                                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                     <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" disabled="false" type="button" update-mode="true"></wm-form-action>
@@ -427,7 +425,7 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpane7" title="Code Enforcement" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.codeEnforcement.datavalue"></wm-tabpane>
+                            <wm-tabpane name="tabpane7" title="Violations" show="bind:Widgets.liveformUpdateInspectiondesign.formWidgets.trackViolations.datavalue"></wm-tabpane>
                             <wm-tabpane name="tabpaneLetters" title="Letters">
                                 <wm-livegrid formlayout="dialog" name="livegridLetters">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvLetterTemplatesData.dataSet" navigation="Classic" name="gridLetters" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
