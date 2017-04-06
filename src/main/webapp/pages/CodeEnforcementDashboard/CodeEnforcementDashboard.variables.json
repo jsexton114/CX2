@@ -27,6 +27,42 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "svClosedCasesCount" : {
+    "_id" : "wm-svClosedCasesCount-wm.ServiceVariable-1491479427504",
+    "name" : "svClosedCasesCount",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "codeEnforcement",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "closed",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.CounCasesByStatusAndMunicipalityResponse",
+    "service" : "cx2",
+    "operation" : "executeCounCasesByStatusAndMunicipality",
+    "operationId" : "QueryExecutionController_executeCounCasesByStatusAndMunicipality",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "svCounNewCasesAndAfterDate" : {
     "_id" : "wm-svCounNewCasesAndAfterDate-wm.ServiceVariable-1491477710216",
     "name" : "svCounNewCasesAndAfterDate",
@@ -81,6 +117,42 @@
     "service" : "cx2",
     "operation" : "executeCountOfMunicipalityCodeList",
     "operationId" : "QueryExecutionController_executeCountOfMunicipalityCodeList",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "svOpenCasesCount" : {
+    "_id" : "wm-svOpenCasesCount-wm.ServiceVariable-1491479296272",
+    "name" : "svOpenCasesCount",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "codeEnforcement",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "closed",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.CounCasesByStatusAndMunicipalityResponse",
+    "service" : "cx2",
+    "operation" : "executeCounCasesByStatusAndMunicipality",
+    "operationId" : "QueryExecutionController_executeCounCasesByStatusAndMunicipality",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],

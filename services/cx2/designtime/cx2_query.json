@@ -1373,6 +1373,58 @@
       } ]
     }
   },
+  "CounCasesByStatusAndMunicipality" : {
+    "name" : "CounCasesByStatusAndMunicipality",
+    "description" : "CounCasesByStatusAndMunicipality",
+    "version" : "V2",
+    "queryString" : "select count(*) as caseFormsCount\nfrom MasterForms\nwhere formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipalityId=:municipalityId",
+    "countQueryString" : null,
+    "nativeSql" : false,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "codeEnforcement",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "closed",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CounCasesByStatusAndMunicipalityResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "caseFormsCount",
+        "fieldName" : "caseFormsCount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Long",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "CounNewCasesAndAfterDate" : {
     "name" : "CounNewCasesAndAfterDate",
     "description" : "CounNewCasesAndAfterDate",

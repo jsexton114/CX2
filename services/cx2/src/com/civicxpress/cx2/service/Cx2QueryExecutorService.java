@@ -65,6 +65,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetEmailId(ExportType exportType, Integer userId, Pageable pageable);
 
+    Page<CounCasesByStatusAndMunicipalityResponse> executeCounCasesByStatusAndMunicipality(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Pageable pageable);
+
+    Downloadable exportCounCasesByStatusAndMunicipality(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Pageable pageable);
+
     Integer executeAddUsersToVendor(AddUsersToVendorRequest addUsersToVendorRequest);
 
     Integer executeUpdatePasswordAndCF(UpdatePasswordAndCfRequest updatePasswordAndCfRequest);

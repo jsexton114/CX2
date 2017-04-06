@@ -121,6 +121,17 @@ where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipa
     <query-param name="userID" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="CounCasesByStatusAndMunicipality">
+        <![CDATA[
+        select count(*) as caseFormsCount
+from MasterForms
+where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipalityId=:municipalityId
+        ]]>
+    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="AddUsersToVendor">
         <![CDATA[
         insert into  VendorUsers(VendorId,UserId,JoiningDate) values(:VendorId,:UserId,:JoiningDate)

@@ -226,6 +226,25 @@ public class QueryExecutionController {
         return queryService.exportGetEmailId(exportType, userId, pageable);
     }
 
+    @RequestMapping(value = "/queries/CounCasesByStatusAndMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CounCasesByStatusAndMunicipality")
+    public Page<CounCasesByStatusAndMunicipalityResponse> executeCounCasesByStatusAndMunicipality(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: CounCasesByStatusAndMunicipality");
+        Page<CounCasesByStatusAndMunicipalityResponse> _result = queryService.executeCounCasesByStatusAndMunicipality(codeEnforcement, closed, municipalityId, pageable);
+        LOGGER.debug("got the result for named query: CounCasesByStatusAndMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CounCasesByStatusAndMunicipality")
+    @RequestMapping(value = "/queries/CounCasesByStatusAndMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCounCasesByStatusAndMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CounCasesByStatusAndMunicipality");
+
+        return queryService.exportCounCasesByStatusAndMunicipality(exportType, codeEnforcement, closed, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/AddUsersToVendor", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "AddUsersToVendor")

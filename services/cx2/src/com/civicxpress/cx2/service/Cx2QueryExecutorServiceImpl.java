@@ -231,6 +231,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("getEmailId", params, exportType, GetEmailIdResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CounCasesByStatusAndMunicipalityResponse> executeCounCasesByStatusAndMunicipality(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("CounCasesByStatusAndMunicipality", params, CounCasesByStatusAndMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCounCasesByStatusAndMunicipality(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("CounCasesByStatusAndMunicipality", params, exportType, CounCasesByStatusAndMunicipalityResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeAddUsersToVendor(AddUsersToVendorRequest addUsersToVendorRequest) {
