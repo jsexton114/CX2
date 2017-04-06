@@ -142,19 +142,9 @@ Application.$controller("pagedialogNewFormController", ["$scope",
     }
 ]);
 
-Application.$controller("grid1Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
 
-Application.$controller("liveform2Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
+
 
 Application.$controller("usersDialogController", ["$scope",
     function($scope) {
@@ -163,7 +153,7 @@ Application.$controller("usersDialogController", ["$scope",
     }
 ]);
 
-Application.$controller("liveform4Controller", ["$scope",
+Application.$controller("liveformBillingInfoController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
@@ -182,4 +172,25 @@ Application.$controller("liveform3Controller", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
     }
+]);
+
+Application.$controller("gridBillingInfoController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("grid1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveform2Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

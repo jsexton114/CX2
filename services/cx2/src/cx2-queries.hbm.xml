@@ -627,6 +627,14 @@ where formTypeId=:form
     <query-param name="VendorId" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="updateUserBillingInfoPreference">
+        <![CDATA[
+        update Users set DifferentBillingInfo=:differentBillingInfo where ID=:user
+        ]]>
+    <query-param name="differentBillingInfo" type="java.lang.Boolean"/>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="getCartItemIds">
         <![CDATA[
         select ID, FeeId as feeId from MyCart where UserId=:userId

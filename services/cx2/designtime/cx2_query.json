@@ -11121,6 +11121,41 @@
       "responseType" : "SINGLE"
     }
   },
+  "updateUserBillingInfoPreference" : {
+    "name" : "updateUserBillingInfoPreference",
+    "description" : "updateUserBillingInfoPreference",
+    "version" : "V2",
+    "queryString" : "update Users set DifferentBillingInfo=:differentBillingInfo where ID=:user",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "differentBillingInfo",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "user",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.UpdateUserBillingInfoPreferenceRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "userSubscriptionsCount" : {
     "name" : "userSubscriptionsCount",
     "description" : "userSubscriptionsCount",

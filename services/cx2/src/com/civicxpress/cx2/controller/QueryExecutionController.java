@@ -756,6 +756,16 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/updateUserBillingInfoPreference", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "updateUserBillingInfoPreference")
+    public IntegerWrapper executeUpdateUserBillingInfoPreference(@Valid @RequestBody UpdateUserBillingInfoPreferenceRequest updateUserBillingInfoPreferenceRequest) {
+        LOGGER.debug("Executing named query: updateUserBillingInfoPreference");
+        Integer _result = queryService.executeUpdateUserBillingInfoPreference(updateUserBillingInfoPreferenceRequest);
+        LOGGER.debug("got the result for named query: updateUserBillingInfoPreference, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/getCartItemIds", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get the card item IDs for the current user.")

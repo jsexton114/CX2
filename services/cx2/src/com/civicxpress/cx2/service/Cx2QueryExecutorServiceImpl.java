@@ -842,6 +842,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("AddingVendorsToForm", params);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateUserBillingInfoPreference(UpdateUserBillingInfoPreferenceRequest updateUserBillingInfoPreferenceRequest) {
+        Map params = new HashMap(2);
+
+        params.put("differentBillingInfo", updateUserBillingInfoPreferenceRequest.getDifferentBillingInfo());
+        params.put("user", updateUserBillingInfoPreferenceRequest.getUser());
+
+        return queryExecutor.executeNamedQueryForUpdate("updateUserBillingInfoPreference", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<GetCartItemIdsResponse> executeGetCartItemIds(Long userId, Pageable pageable) {

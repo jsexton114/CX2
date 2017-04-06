@@ -175,6 +175,8 @@ public interface Cx2QueryExecutorService {
 
     Integer executeAddingVendorsToForm(AddingVendorsToFormRequest addingVendorsToFormRequest);
 
+    Integer executeUpdateUserBillingInfoPreference(UpdateUserBillingInfoPreferenceRequest updateUserBillingInfoPreferenceRequest);
+
     Page<GetCartItemIdsResponse> executeGetCartItemIds(Long userId, Pageable pageable);
 
     Downloadable exportGetCartItemIds(ExportType exportType, Long userId, Pageable pageable);
