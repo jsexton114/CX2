@@ -146,3 +146,21 @@ Application.$controller("liveformLettersController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+
+
+
+
+Application.$controller("gridInspectionCodeSetsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformInspectionCodeSetsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
