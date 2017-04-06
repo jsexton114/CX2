@@ -1,4 +1,23 @@
 {
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1491463566043",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/CodeEnforcementDashboard"
+    }, {
+      "label" : "OpenCases",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/OpenCases"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "ngViewCase" : {
     "_id" : "wm-ngViewCase-wm.NavigationVariable-1491395998061",
     "name" : "ngViewCase",

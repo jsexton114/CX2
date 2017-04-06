@@ -5,6 +5,12 @@
         <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
         <wm-page-content columnwidth="10" name="page_content1">
             <wm-layoutgrid name="layoutgrid1" columns="3">
+                <wm-gridrow name="gridrow3">
+
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn5">
+                        <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" itemlabel="label" itemicon="icon" itemlink="link" name="breadcrumb1"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow7">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn17_1" padding="2em unset">
                         <wm-label name="label5" caption="Closed Cases" fontweight="bold" class="h4"></wm-label>
