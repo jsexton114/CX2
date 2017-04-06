@@ -1370,6 +1370,30 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.FormFieldTypes"
   },
+  "ncRecordCreated" : {
+    "_id" : "wm-ncRecordCreated-wm.NotificationVariable-1485543432129",
+    "name" : "ncRecordCreated",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "SUCCESS<br />Record added successfully",
+      "type" : "string"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "stvAutoFeeTypes" : {
     "_id" : "wm-stvAutoFeeTypes-wm.Variable-1490983675102",
     "name" : "stvAutoFeeTypes",
@@ -1407,7 +1431,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "formTypeId",
-      "value" : "bind:pageParams.formTypeId",
+      "value" : "bind:pageParams.formTypeId || pageParams.inspectionDesignId",
       "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.FormTypeFields",
@@ -1521,6 +1545,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "svSaveInspectionFieldonSuccess($event, $scope);Variables.Cx2FormTypeFieldsData.listRecords();Variables.ncRecordCreated.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -1543,7 +1568,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "svUpdateFormTypeFieldonSuccess($event, $scope);Variables.CXDevInfoUpdatedSuccess.invoke();Variables.Cx2FormTypeFieldsData.listRecords()",
+    "onSuccess" : "svUpdateFormTypeFieldonSuccess($event, $scope);Variables.Cx2FormTypeFieldsData.listRecords()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

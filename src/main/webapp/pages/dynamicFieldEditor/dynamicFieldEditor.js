@@ -24,6 +24,10 @@ Application.$controller("dynamicFieldEditorPageController", ["$scope", function(
         $scope.Widgets.dlgFormTypeField.close();
     };
 
+    $scope.svSaveInspectionFieldonSuccess = function(variable, data) {
+        $scope.svSaveFormFieldonSuccess(variable, data);
+    };
+
     $scope.liveformUpdateFormTypeBeforeservicecall = function($event, $operation, $data) {
         if ($operation === 'update') {
             if ($scope.Widgets.gisOptionSelect.datavalue === 'Multiple') {
@@ -145,6 +149,7 @@ Application.$directive("fieldCalculator", [function() {
             });
         }
     };
+
 }]);
 
 Application.$controller("gridFieldsController", ["$scope",
