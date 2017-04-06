@@ -21,158 +21,69 @@
                                     </wm-grid-column>
                                     <wm-grid-column binding="phone" caption="Phone Number" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="email" caption="Email Address" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="allowManualPayment" caption="Allow Manual Payment" type="boolean" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="manualPaymentPercent" caption="Manual Payment Percent" type="integer" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="allowOfflineCc" caption="Allow Offline CC" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                        <wm-checkbox scopedatavalue="row['allowOfflineCc']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                    </wm-grid-column>
                                     <wm-grid-column binding="active" caption="Active" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                         <wm-checkbox scopedatavalue="row['active']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                     </wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New Municipality" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Municipality" action="addNewRow();addNewRowAction($event)" shortcutkey=""
-                                    disabled="false"></wm-grid-action>
+                                    <wm-grid-action key="addNewRow" display-name="New Municipality" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Municipality" action="addNewRow();addNewRowAction($event)" shortcutkey="" disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
-                                <wm-liveform novalidate="false" errormessage="" title="Municipality Details" formlayout="dialog" iconclass="wi wi-account-balance" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" captionalign="left" captionposition="top"
-                                name="liveform1">
-                                    <wm-layoutgrid columns="2" name="layoutgrid1">
-                                        <wm-gridrow name="gridrow1">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn1">
-                                                <wm-form-field name="municipalityName" displayname="Municipality Name" show="true" primary-key="false" generator="assigned" key="municipalityName" type="string" readonly="false" required="true" widget="text"
-                                                maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn2">
-                                                <wm-form-field name="address1" displayname="Address 1" show="true" primary-key="false" generator="assigned" key="address1" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
-                                                placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow2">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn3">
-                                                <wm-form-field name="address2" displayname="Address 2" show="true" primary-key="false" generator="assigned" key="address2" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
-                                                placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn4">
-                                                <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow3">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn5">
-                                                <wm-form-field name="states" displayname="States" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" readonly="false" required="false" widget="select" displayexpression="stateName"
-                                                placeholder="Search" orderby="stateName:asc"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn6">
-                                                <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
-                                                placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow4">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn7">
-                                                <wm-form-field name="phone" displayname="Phone" show="true" primary-key="false" generator="assigned" key="phone" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
-                                                placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn8">
-                                                <wm-form-field name="email" displayname="Email" show="true" primary-key="false" generator="assigned" key="email" type="string" readonly="false" required="true" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow5">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn9">
-                                                <wm-form-field name="allowManualPayment" displayname="Allow Manual Payment" show="true" primary-key="false" generator="assigned" key="allowManualPayment" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                placeholder=""></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn10">
-                                                <wm-form-field name="manualPaymentPercent" displayname="Manual Payment Percent" show="true" primary-key="false" generator="assigned" key="manualPaymentPercent" type="integer" readonly="false" required="false"
-                                                step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow6">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn11">
-                                                <wm-form-field name="globalEmailSig" displayname="Global Email Sig" show="true" primary-key="false" generator="assigned" key="globalEmailSig" type="string" readonly="false" required="false" widget="textarea"
-                                                maxchars="255" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn12">
-                                                <wm-form-field name="logo" displayname="Logo" show="true" primary-key="false" generator="assigned" key="logo" type="blob" readonly="false" required="false" widget="upload" maxchars="255" href="services/cx2/Municipalities/1/content/logo?0.16853062382606043"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow7">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn13">
-                                                <wm-form-field name="mondayYn" displayname="Monday Yn" show="true" primary-key="false" generator="assigned" key="mondayYn" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn14">
-                                                <wm-form-field name="tuesdayYn" displayname="Tuesday Yn" show="true" primary-key="false" generator="assigned" key="tuesdayYn" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow1">
-                                            <wm-gridcolumn name="gridcolumn1" columnwidth="6">
-                                                <wm-form-field name="wednesdayYn" displayname="Wednesday Yn" show="true" primary-key="false" generator="assigned" key="wednesdayYn" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn name="gridcolumn2" columnwidth="6">
-                                                <wm-form-field name="thursdayYn" displayname="Thursday Yn" show="true" primary-key="false" generator="assigned" key="thursdayYn" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow2">
-                                            <wm-gridcolumn name="gridcolumn3" columnwidth="6">
-                                                <wm-form-field name="fridayYn" displayname="Friday Yn" show="true" primary-key="false" generator="assigned" key="fridayYn" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn name="gridcolumn4" columnwidth="6">
-                                                <wm-form-field name="saturdayYn" displayname="Saturday Yn" show="true" primary-key="false" generator="assigned" key="saturdayYn" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow3">
-                                            <wm-gridcolumn name="gridcolumn5" columnwidth="6">
-                                                <wm-form-field name="sundayYn" displayname="Sunday Yn" show="true" primary-key="false" generator="assigned" key="sundayYn" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn name="gridcolumn6" columnwidth="6">
-                                                <wm-form-field name="timeZone" displayname="Time Zone" show="true" primary-key="false" generator="assigned" key="timeZone" type="string" readonly="false" required="false" widget="select" maxchars="255" placeholder="Enter value"
-                                                dataset="Eastern,Central,Mountain,Pacific" defaultvalue="EST"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow4">
-                                            <wm-gridcolumn name="gridcolumn7" columnwidth="6">
-                                                <wm-form-field name="openTime" displayname="Open Time" show="true" primary-key="false" generator="assigned" key="openTime" type="time" readonly="false" required="false" widget="time" placeholder="Select time"
-                                                outputformat="HH:mm:ss"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn name="gridcolumn8" columnwidth="6">
-                                                <wm-form-field name="closeTime" displayname="Close Time" show="true" primary-key="false" generator="assigned" key="closeTime" type="time" readonly="false" required="false" widget="time" placeholder="Select time"
-                                                outputformat="HH:mm:ss"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow5">
-                                            <wm-gridcolumn name="gridcolumn9" columnwidth="6">
-                                                <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="TRUE" placeholder=""></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn name="gridcolumn1" columnwidth="6">
-                                                <wm-form-field name="dbName" displayname="Db Name" show="true" primary-key="false" generator="assigned" key="dbName" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
-                                                placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow1">
-                                            <wm-gridcolumn name="gridcolumn2" columnwidth="6">
-                                                <wm-form-field name="dbUser" displayname="Db User" show="true" primary-key="false" generator="assigned" key="dbUser" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
-                                                placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn name="gridcolumn3" columnwidth="6">
-                                                <wm-form-field name="dbPassword" displayname="Db Password" show="true" primary-key="false" generator="assigned" key="dbPassword" type="string" readonly="false" required="false" widget="password" maxchars="255"
-                                                inputtype="password" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow1">
-                                            <wm-gridcolumn name="gridcolumn1" columnwidth="6">
-                                                <wm-form-field name="userLimit" displayname="User Limit" show="true" primary-key="false" generator="assigned" key="userLimit" type="integer" readonly="false" required="true" step="0" widget="number" defaultvalue="10"
-                                                inputtype="number" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn name="gridcolumn2" columnwidth="6">
-                                                <wm-form-field name="formLimit" displayname="Form Limit" show="true" primary-key="false" generator="assigned" key="formLimit" type="integer" readonly="false" required="true" step="0" widget="number" defaultvalue="5"
-                                                inputtype="number" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow1">
-                                            <wm-gridcolumn name="gridcolumn1" columnwidth="6">
-                                                <wm-form-field name="allowOfflineCc" displayname="Allow Offline Cc" show="true" primary-key="false" generator="assigned" key="allowOfflineCc" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                defaultvalue="true"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                    </wm-layoutgrid>
-                                    <wm-form-field name="municipalityGuid" displayname="Municipality Guid" show="false" primary-key="false" generator="assigned" key="municipalityGuid" type="string" readonly="false" required="false" widget="text" maxchars="255"
-                                    defaultvalue="bind:GUID" disabled="true" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                <wm-liveform novalidate="false" errormessage="" title="Municipality Details" formlayout="dialog" iconclass="wi wi-account-balance" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" captionalign="left" captionposition="top" name="liveform1">
+                                    <wm-panel name="panel2" title="General Settings" class="panel-primary" iconclass="wi wi-settings">
+                                        <wm-layoutgrid columns="2" name="layoutgrid1">
+                                            <wm-gridrow name="gridrow1">
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn1">
+                                                    <wm-form-field name="municipalityName" displayname="Municipality Name" show="true" primary-key="false" generator="assigned" key="municipalityName" type="string" readonly="false" required="true" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn2">
+                                                    <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="TRUE" placeholder=""></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow3">
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn6">
+                                                    <wm-form-field name="userLimit" displayname="User Limit" show="true" primary-key="false" generator="assigned" key="userLimit" type="integer" readonly="false" required="true" step="0" widget="number" defaultvalue="10" inputtype="number" placeholder="Enter value"
+                                                    minvalue="1" maxvalue="100000"></wm-form-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn7">
+                                                    <wm-form-field name="formLimit" displayname="Form Limit" show="true" primary-key="false" generator="assigned" key="formLimit" type="integer" readonly="false" required="true" step="0" widget="number" defaultvalue="5" inputtype="number" placeholder="Enter value"
+                                                    minvalue="1" maxvalue="100000"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow4">
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn8">
+                                                    <wm-form-field name="allowOfflineCc" displayname="Allow Offline CC" show="true" primary-key="false" generator="assigned" key="allowOfflineCc" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="FALSE" placeholder=""></wm-form-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn8_1"></wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow4_1">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn8_1">
+                                                    <wm-label padding="unset 0.5em" name="label3_1" caption="Other Municipality Settings (Municipality Details, Global Email Signature, Municipality Logo, Operating Hours, and Work Holidays) are controlled on the &quot;Municipality Setings&quot; and &quot;Work Schedule&quot; pages accessible via the Municipality Administration dashboard."></wm-label>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-layoutgrid>
+                                    </wm-panel>
+                                    <wm-panel name="panel3" title="Database Settings" iconclass="wi wi-database" class="panel-primary">
+                                        <wm-layoutgrid columns="2" name="layoutgrid1_1">
+                                            <wm-gridrow name="gridrow2">
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn3">
+                                                    <wm-form-field name="dbName" displayname="DB Name" show="true" primary-key="false" generator="assigned" key="dbName" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn3_1"></wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow2_1">
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn4">
+                                                    <wm-form-field name="dbUser" displayname="DB Username" show="true" primary-key="false" generator="assigned" key="dbUser" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn5">
+                                                    <wm-form-field name="dbPassword" displayname="DB Password" show="true" primary-key="false" generator="assigned" key="dbPassword" type="string" readonly="false" required="false" widget="password" maxchars="255" inputtype="password" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-layoutgrid>
+                                    </wm-panel>
                                     <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
                                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
