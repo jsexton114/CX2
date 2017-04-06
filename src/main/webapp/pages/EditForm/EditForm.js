@@ -111,6 +111,14 @@ Application.$controller("lfFormTypeStatusController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.allowAuthorEditsChange = function($event, $isolateScope, newVal, oldVal) {
+            if (newVal === false) {
+                $scope.Widgets.lfFormTypeStatus.formWidgets.allowSharedWithEdits.datavalue = false;
+
+            }
+        };
+
     }
 ]);
 
@@ -223,15 +231,15 @@ Application.$controller("liveformLettersController", ["$scope",
 
 
 Application.$controller("gridCodeSetsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveformCodeSetsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

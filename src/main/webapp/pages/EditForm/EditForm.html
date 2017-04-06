@@ -360,7 +360,7 @@
                                     <wm-gridrow name="gridrow58">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn85">
                                             <wm-label padding="unset 0.5em" name="label17" caption="Form Statuses are the steps that a form takes while being processed, from submission to completion."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label34" caption="Users can save their form as a draft first, or they can submit them directly to the municipality which will move them into the first form status in the list below."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label34" caption="Users can save their form as a draft first, or they can submit the form directly to the municipality, which causes the form to move into the first status listed below."></wm-label>
                                             <wm-label padding="unset 0.5em" name="label35" caption="&quot;Submitted&quot; is the first status provided by default on new form types, and a minimum of one form status is required."></wm-label>
                                             <wm-label padding="unset 0.5em" name="label18" caption="Use the &quot;Edit&quot; icon to view the Form Status Options and control how you would like this form design to be processed by your municipality."></wm-label>
                                         </wm-gridcolumn>
@@ -389,13 +389,13 @@
                                                                             <wm-form-field name="status" displayname="Status Name" show="true" primary-key="false" generator="assigned" key="status" type="string" widget="text" maxchars="255" inputtype="text"
                                                                             placeholder="Enter value" required="true"></wm-form-field>
                                                                         </wm-gridcolumn>
-                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn34_1" padding="unset 1em unset unset">
-                                                                            <wm-form-field name="description" displayname="Status Description" show="true" primary-key="false" generator="assigned" key="description" type="string" widget="textarea" maxchars="255"
-                                                                            placeholder="Enter value" required="true"></wm-form-field>
-                                                                        </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn49" padding="unset 1em unset unset">
                                                                             <wm-form-field name="sortOrder" displayname="Sort Order" show="true" primary-key="false" generator="assigned" key="sortOrder" type="long" step="0" widget="select" placeholder="Select value"
                                                                             dataset="bind:Variables.SortOrder.dataSet" datafield="dataValue" displayfield="dataValue" required="true"></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn34_1" padding="unset 1em unset unset">
+                                                                            <wm-form-field name="description" displayname="Status Description" show="true" primary-key="false" generator="assigned" key="description" type="string" widget="textarea" maxchars="255"
+                                                                            placeholder="Enter value" required="true"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-panel>
@@ -429,11 +429,12 @@
                                                                     <wm-gridrow name="gridrow120_1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn42_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowAuthorEdits" displayname="Allow &quot;Created By&quot; Edits" show="true" primary-key="false" generator="assigned" key="allowAuthorEdits" type="boolean"
-                                                                            widget="checkbox" placeholder="" hint="This allows the user who submitted the form to edit the form information while in this status." defaultvalue="false"></wm-form-field>
+                                                                            widget="checkbox" placeholder="" hint="This allows the user who submitted the form to make edits to the form information during this status." defaultvalue="false" on-change="allowAuthorEditsChange($event, $scope, newVal, oldVal)"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn36_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowSharedWithEdits" displayname="Allow &quot;Shared With&quot; Edits" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean"
-                                                                            widget="checkbox" placeholder="" hint="This allows users that the form has been shared with to edit the form while in this status." defaultvalue="false" disabled="bind:!Widgets.lfFormTypeStatus.formWidgets.allowAuthorEdits.datavalue"></wm-form-field>
+                                                                            widget="checkbox" placeholder="" hint="If &quot;Allow Created By Edits&quot; is enabled, you can also allow users who the form has been shared with to edit the form information during this status."
+                                                                            defaultvalue="false" disabled="bind:!Widgets.lfFormTypeStatus.formWidgets.allowAuthorEdits.datavalue"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
                                                                             <wm-form-field name="publicRead" displayname="Allow Public Read Access" show="true" primary-key="false" generator="assigned" key="publicRead" type="boolean" widget="checkbox" defaultvalue="false"
