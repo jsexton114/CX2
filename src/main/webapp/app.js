@@ -10,7 +10,7 @@ Application.config(['vcRecaptchaServiceProvider', '$routeProvider', function(vcR
     });
 }]);
 
-Application.run(function($rootScope, Utils) {
+Application.run(['$rootScope', 'Utils', '$window', function($rootScope, Utils, $window) {
     "use strict";
     /* perform any action on the variables within this block(on-page-load) */
     $rootScope.onAppVariablesReady = function() {
@@ -31,7 +31,6 @@ Application.run(function($rootScope, Utils) {
          */
     };
 
-
     $rootScope.svCartItemIdsonSuccess = function(variable, data) {
         // For count badge in top nav
         $rootScope.Variables.stvCartCount.dataSet.dataValue = data.content.length;
@@ -40,7 +39,6 @@ Application.run(function($rootScope, Utils) {
         // For count badge in left nav
         $rootScope.Variables.NoOfMunicipalitiesForUser.dataSet.dataValue = data.totalElements;
     };
-
 
     // Gets value of a cookie by its name
     function getCookie(name) {
@@ -54,11 +52,28 @@ Application.run(function($rootScope, Utils) {
         params.url += '&_csrf=' + getCookie('wm_xsrf_token');
         _simulateFileDownload(params);
     };
-});
+}]);
 
 Application.factory('_', ['$window', function($window) {
     "use strict";
     return $window._;
+}]);
+
+Application.directive('sticky', ['$timeout', function($timeout) {
+    "use strict";
+    return {
+        restrict: 'CA',
+        link: function(scope, elem, attrs) {
+            $timeout(function() {
+                var $window = $(window);
+                var navTop = elem.offset().top;
+
+                $window.on('scroll', function() {
+                    elem.toggleClass('stuckTop', $window.scrollTop() > navTop);
+                });
+            });
+        }
+    };
 }]);
 
 Application.factory('pwordValidator', [function() {
