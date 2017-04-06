@@ -38,6 +38,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.BillingInformation;
 import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.Fees;
@@ -222,6 +223,15 @@ public class UsersController {
 		return usersService.count(query);
 	}
 
+    @RequestMapping(value="/{id:.+}/billingInformations", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the billingInformations instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<BillingInformation> findAssociatedBillingInformations(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated billingInformations");
+        return usersService.findAssociatedBillingInformations(id, pageable);
+    }
+
     @RequestMapping(value="/{id:.+}/codeListsForCreatedBy", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the codeListsForCreatedBy instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -348,6 +358,24 @@ public class UsersController {
         return usersService.findAssociatedLetterTemplatesesForModifiedBy(id, pageable);
     }
 
+    @RequestMapping(value="/{id:.+}/masterCasesesForCreatedBy", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterCasesesForCreatedBy instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated masterCasesesForCreatedBy");
+        return usersService.findAssociatedMasterCasesesForCreatedBy(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/masterCasesesForModifiedBy", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterCasesesForModifiedBy instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated masterCasesesForModifiedBy");
+        return usersService.findAssociatedMasterCasesesForModifiedBy(id, pageable);
+    }
+
     @RequestMapping(value="/{id:.+}/masterFormses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the masterFormses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -382,24 +410,6 @@ public class UsersController {
 
         LOGGER.debug("Fetching all associated masterInspectionsesForModifiedBy");
         return usersService.findAssociatedMasterInspectionsesForModifiedBy(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/masterCasesesForCreatedBy", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the masterCasesesForCreatedBy instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated masterCasesesForCreatedBy");
-        return usersService.findAssociatedMasterCasesesForCreatedBy(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/masterCasesesForModifiedBy", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the masterCasesesForModifiedBy instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated masterCasesesForModifiedBy");
-        return usersService.findAssociatedMasterCasesesForModifiedBy(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/municipalityGroupMemberses", method=RequestMethod.GET)

@@ -23,6 +23,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.BillingInformation;
 import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.Fees;
@@ -178,6 +179,10 @@ public class UsersServiceImpl implements UsersService {
 	private VendorAdminsService vendorAdminsService;
 
     @Autowired
+	@Qualifier("cx2.BillingInformationService")
+	private BillingInformationService billingInformationService;
+
+    @Autowired
 	@Qualifier("cx2.UserSubscriptionsService")
 	private UserSubscriptionsService userSubscriptionsService;
 
@@ -194,6 +199,14 @@ public class UsersServiceImpl implements UsersService {
 	public Users create(Users users) {
         LOGGER.debug("Creating a new Users with information: {}", users);
         Users usersCreated = this.wmGenericDao.create(users);
+        if(usersCreated.getBillingInformations() != null) {
+            for(BillingInformation billingInformation : usersCreated.getBillingInformations()) {
+                billingInformation.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child BillingInformation with information: {}", billingInformation);
+                billingInformationService.create(billingInformation);
+            }
+        }
+
         if(usersCreated.getCodeListsForCreatedBy() != null) {
             for(CodeList codeListsForCreatedBy : usersCreated.getCodeListsForCreatedBy()) {
                 codeListsForCreatedBy.setUsersByCreatedBy(usersCreated);
@@ -306,6 +319,22 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getMasterCasesesForCreatedBy() != null) {
+            for(MasterCases masterCasesesForCreatedBy : usersCreated.getMasterCasesesForCreatedBy()) {
+                masterCasesesForCreatedBy.setUsersByCreatedBy(usersCreated);
+                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForCreatedBy);
+                masterCasesService.create(masterCasesesForCreatedBy);
+            }
+        }
+
+        if(usersCreated.getMasterCasesesForModifiedBy() != null) {
+            for(MasterCases masterCasesesForModifiedBy : usersCreated.getMasterCasesesForModifiedBy()) {
+                masterCasesesForModifiedBy.setUsersByModifiedBy(usersCreated);
+                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForModifiedBy);
+                masterCasesService.create(masterCasesesForModifiedBy);
+            }
+        }
+
         if(usersCreated.getMasterFormses() != null) {
             for(MasterForms masterFormse : usersCreated.getMasterFormses()) {
                 masterFormse.setUsers(usersCreated);
@@ -335,22 +364,6 @@ public class UsersServiceImpl implements UsersService {
                 masterInspectionsesForModifiedBy.setUsersByModifiedBy(usersCreated);
                 LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionsesForModifiedBy);
                 masterInspectionsService.create(masterInspectionsesForModifiedBy);
-            }
-        }
-
-        if(usersCreated.getMasterCasesesForCreatedBy() != null) {
-            for(MasterCases masterCasesesForCreatedBy : usersCreated.getMasterCasesesForCreatedBy()) {
-                masterCasesesForCreatedBy.setUsersByCreatedBy(usersCreated);
-                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForCreatedBy);
-                masterCasesService.create(masterCasesesForCreatedBy);
-            }
-        }
-
-        if(usersCreated.getMasterCasesesForModifiedBy() != null) {
-            for(MasterCases masterCasesesForModifiedBy : usersCreated.getMasterCasesesForModifiedBy()) {
-                masterCasesesForModifiedBy.setUsersByModifiedBy(usersCreated);
-                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForModifiedBy);
-                masterCasesService.create(masterCasesesForModifiedBy);
             }
         }
 
@@ -605,6 +618,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<BillingInformation> findAssociatedBillingInformations(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated billingInformations");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return billingInformationService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<CodeList> findAssociatedCodeListsForCreatedBy(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated codeListsForCreatedBy");
 
@@ -759,6 +783,28 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterCasesesForCreatedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
+
+        return masterCasesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterCasesesForModifiedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
+
+        return masterCasesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
 
@@ -799,28 +845,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
 
         return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterCasesesForCreatedBy");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
-
-        return masterCasesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterCasesesForModifiedBy");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
-
-        return masterCasesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1293,6 +1317,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setVendorAdminsService(VendorAdminsService service) {
         this.vendorAdminsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service BillingInformationService instance
+	 */
+	protected void setBillingInformationService(BillingInformationService service) {
+        this.billingInformationService = service;
     }
 
     /**

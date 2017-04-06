@@ -32,8 +32,9 @@ public class States implements Serializable {
 
     private Integer id;
     private String stateName;
-    private List<Giscontacts> giscontactses = new ArrayList<>();
+    private List<BillingInformation> billingInformations = new ArrayList<>();
     private List<Gisrecords> gisrecordses = new ArrayList<>();
+    private List<Giscontacts> giscontactses = new ArrayList<>();
     private List<GlobalSettings> globalSettingses = new ArrayList<>();
     private List<Municipalities> municipalitieses = new ArrayList<>();
     private List<Users> userses = new ArrayList<>();
@@ -61,12 +62,12 @@ public class States implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
-    public List<Giscontacts> getGiscontactses() {
-        return this.giscontactses;
+    public List<BillingInformation> getBillingInformations() {
+        return this.billingInformations;
     }
 
-    public void setGiscontactses(List<Giscontacts> giscontactses) {
-        this.giscontactses = giscontactses;
+    public void setBillingInformations(List<BillingInformation> billingInformations) {
+        this.billingInformations = billingInformations;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -77,6 +78,16 @@ public class States implements Serializable {
 
     public void setGisrecordses(List<Gisrecords> gisrecordses) {
         this.gisrecordses = gisrecordses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "states")
+    public List<Giscontacts> getGiscontactses() {
+        return this.giscontactses;
+    }
+
+    public void setGiscontactses(List<Giscontacts> giscontactses) {
+        this.giscontactses = giscontactses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

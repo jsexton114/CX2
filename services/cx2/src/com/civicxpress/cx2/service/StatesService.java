@@ -14,6 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.BillingInformation;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.GlobalSettings;
@@ -132,16 +133,16 @@ public interface StatesService {
 	long count(String query);
 
     /*
-     * Returns the associated giscontactses for given States id.
+     * Returns the associated billingInformations for given States id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated Giscontacts instances.
+     * @return Paginated list of associated BillingInformation instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<Giscontacts> findAssociatedGiscontactses(Integer id, Pageable pageable);
+    Page<BillingInformation> findAssociatedBillingInformations(Integer id, Pageable pageable);
 
     /*
      * Returns the associated gisrecordses for given States id.
@@ -154,6 +155,18 @@ public interface StatesService {
      * @see Page
      */
     Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated giscontactses for given States id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Giscontacts instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Giscontacts> findAssociatedGiscontactses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated globalSettingses for given States id.

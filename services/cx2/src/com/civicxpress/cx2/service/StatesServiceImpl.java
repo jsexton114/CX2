@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.BillingInformation;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.GlobalSettings;
@@ -65,6 +66,10 @@ public class StatesServiceImpl implements StatesService {
 	private GisrecordsService gisrecordsService;
 
     @Autowired
+	@Qualifier("cx2.BillingInformationService")
+	private BillingInformationService billingInformationService;
+
+    @Autowired
     @Qualifier("cx2.StatesDao")
     private WMGenericDao<States, Integer> wmGenericDao;
 
@@ -77,11 +82,11 @@ public class StatesServiceImpl implements StatesService {
 	public States create(States states) {
         LOGGER.debug("Creating a new States with information: {}", states);
         States statesCreated = this.wmGenericDao.create(states);
-        if(statesCreated.getGiscontactses() != null) {
-            for(Giscontacts giscontactse : statesCreated.getGiscontactses()) {
-                giscontactse.setStates(statesCreated);
-                LOGGER.debug("Creating a new child Giscontacts with information: {}", giscontactse);
-                giscontactsService.create(giscontactse);
+        if(statesCreated.getBillingInformations() != null) {
+            for(BillingInformation billingInformation : statesCreated.getBillingInformations()) {
+                billingInformation.setStates(statesCreated);
+                LOGGER.debug("Creating a new child BillingInformation with information: {}", billingInformation);
+                billingInformationService.create(billingInformation);
             }
         }
 
@@ -90,6 +95,14 @@ public class StatesServiceImpl implements StatesService {
                 gisrecordse.setStates(statesCreated);
                 LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordse);
                 gisrecordsService.create(gisrecordse);
+            }
+        }
+
+        if(statesCreated.getGiscontactses() != null) {
+            for(Giscontacts giscontactse : statesCreated.getGiscontactses()) {
+                giscontactse.setStates(statesCreated);
+                LOGGER.debug("Creating a new child Giscontacts with information: {}", giscontactse);
+                giscontactsService.create(giscontactse);
             }
         }
 
@@ -200,13 +213,13 @@ public class StatesServiceImpl implements StatesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Giscontacts> findAssociatedGiscontactses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated giscontactses");
+    public Page<BillingInformation> findAssociatedBillingInformations(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated billingInformations");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("states.id = '" + id + "'");
 
-        return giscontactsService.findAll(queryBuilder.toString(), pageable);
+        return billingInformationService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -218,6 +231,17 @@ public class StatesServiceImpl implements StatesService {
         queryBuilder.append("states.id = '" + id + "'");
 
         return gisrecordsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Giscontacts> findAssociatedGiscontactses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated giscontactses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("states.id = '" + id + "'");
+
+        return giscontactsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -316,6 +340,15 @@ public class StatesServiceImpl implements StatesService {
 	 */
 	protected void setGisrecordsService(GisrecordsService service) {
         this.gisrecordsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service BillingInformationService instance
+	 */
+	protected void setBillingInformationService(BillingInformationService service) {
+        this.billingInformationService = service;
     }
 
 }

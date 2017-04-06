@@ -30,6 +30,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.BillingInformation;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.GlobalSettings;
@@ -147,13 +148,13 @@ public class StatesController {
 		return statesService.count(query);
 	}
 
-    @RequestMapping(value="/{id:.+}/giscontactses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the giscontactses instance associated with the given id.")
+    @RequestMapping(value="/{id:.+}/billingInformations", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the billingInformations instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Giscontacts> findAssociatedGiscontactses(@PathVariable("id") Integer id, Pageable pageable) {
+    public Page<BillingInformation> findAssociatedBillingInformations(@PathVariable("id") Integer id, Pageable pageable) {
 
-        LOGGER.debug("Fetching all associated giscontactses");
-        return statesService.findAssociatedGiscontactses(id, pageable);
+        LOGGER.debug("Fetching all associated billingInformations");
+        return statesService.findAssociatedBillingInformations(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/gisrecordses", method=RequestMethod.GET)
@@ -163,6 +164,15 @@ public class StatesController {
 
         LOGGER.debug("Fetching all associated gisrecordses");
         return statesService.findAssociatedGisrecordses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/giscontactses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the giscontactses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Giscontacts> findAssociatedGiscontactses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated giscontactses");
+        return statesService.findAssociatedGiscontactses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/globalSettingses", method=RequestMethod.GET)

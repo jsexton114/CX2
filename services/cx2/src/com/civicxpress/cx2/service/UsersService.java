@@ -14,6 +14,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.BillingInformation;
 import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.Fees;
@@ -161,6 +162,18 @@ public interface UsersService {
 	 * @return The count of the Users.
 	 */
 	long count(String query);
+
+    /*
+     * Returns the associated billingInformations for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated BillingInformation instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<BillingInformation> findAssociatedBillingInformations(Integer id, Pageable pageable);
 
     /*
      * Returns the associated codeListsForCreatedBy for given Users id.
@@ -331,6 +344,30 @@ public interface UsersService {
     Page<LetterTemplates> findAssociatedLetterTemplatesesForModifiedBy(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated masterCasesesForCreatedBy for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterCases instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated masterCasesesForModifiedBy for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterCases instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated masterFormses for given Users id.
      *
      * @param id value of id; value cannot be null
@@ -377,30 +414,6 @@ public interface UsersService {
      * @see Page
      */
     Page<MasterInspections> findAssociatedMasterInspectionsesForModifiedBy(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated masterCasesesForCreatedBy for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated MasterCases instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated masterCasesesForModifiedBy for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated MasterCases instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(Integer id, Pageable pageable);
 
     /*
      * Returns the associated municipalityGroupMemberses for given Users id.

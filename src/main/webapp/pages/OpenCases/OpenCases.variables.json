@@ -25,13 +25,13 @@
     "category" : "wm.NavigationVariable",
     "dataBinding" : [ {
       "target" : "pageName",
-      "value" : "ViewCase",
+      "value" : "Forms",
       "type" : "string"
     } ],
     "operation" : "gotoPage",
     "dataSet" : [ {
-      "type" : "integer",
-      "target" : "CaseId",
+      "type" : "string",
+      "target" : "FormGUID",
       "value" : "bind:Widgets.gridOpenCases.selecteditem.formGuid"
     } ],
     "pageTransitions" : "none"
