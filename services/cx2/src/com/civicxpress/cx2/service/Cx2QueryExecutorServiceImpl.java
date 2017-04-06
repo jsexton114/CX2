@@ -167,6 +167,32 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<CounNewCasesAndAfterDateResponse> executeCounNewCasesAndAfterDate(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("municipalityId", municipalityId);
+        params.put("dateSubmitted", dateSubmitted);
+
+        return queryExecutor.executeNamedQuery("CounNewCasesAndAfterDate", params, CounNewCasesAndAfterDateResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCounNewCasesAndAfterDate(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("municipalityId", municipalityId);
+        params.put("dateSubmitted", dateSubmitted);
+
+        return queryExecutor.exportNamedQueryData("CounNewCasesAndAfterDate", params, exportType, CounNewCasesAndAfterDateResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<StandardUserMunicipalitesResponse> executeStandardUserMunicipalites(Integer user, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -1238,6 +1264,32 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("role", role);
 
         return queryExecutor.exportNamedQueryData("EmployeesOrAdminsMunicipalities", params, exportType, EmployeesOrAdminsMunicipalitiesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormsWithCodeEnforcementByMunicipalityAndAfterDateResponse> executeFormsWithCodeEnforcementByMunicipalityAndAfterDate(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("municipalityId", municipalityId);
+        params.put("dateSubmitted", dateSubmitted);
+
+        return queryExecutor.executeNamedQuery("formsWithCodeEnforcementByMunicipalityAndAfterDate", params, FormsWithCodeEnforcementByMunicipalityAndAfterDateResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportFormsWithCodeEnforcementByMunicipalityAndAfterDate(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("municipalityId", municipalityId);
+        params.put("dateSubmitted", dateSubmitted);
+
+        return queryExecutor.exportNamedQueryData("formsWithCodeEnforcementByMunicipalityAndAfterDate", params, exportType, FormsWithCodeEnforcementByMunicipalityAndAfterDateResponse.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")

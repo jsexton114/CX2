@@ -27,6 +27,46 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "svCounNewCasesAndAfterDate" : {
+    "_id" : "wm-svCounNewCasesAndAfterDate-wm.ServiceVariable-1491477710216",
+    "name" : "svCounNewCasesAndAfterDate",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "codeEnforcement",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "closed",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "dateSubmitted",
+      "value" : "bind:weekDayStart",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.CounNewCasesAndAfterDateResponse",
+    "service" : "cx2",
+    "operation" : "executeCounNewCasesAndAfterDate",
+    "operationId" : "QueryExecutionController_executeCounNewCasesAndAfterDate",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "svCountOfMunicipalityCodeList" : {
     "_id" : "wm-svCountOfMunicipalityCodeList-wm.ServiceVariable-1491309724675",
     "name" : "svCountOfMunicipalityCodeList",

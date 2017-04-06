@@ -88,6 +88,18 @@ Order By inspectionZone DESC
     <query-param name="FormGUID" type="java.lang.String"/>
     </sql-query>
 
+    <query name="CounNewCasesAndAfterDate">
+        <![CDATA[
+        select count(*) as newCasesCount
+from MasterForms
+where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipalityId=:municipalityId and dateSubmitted>:dateSubmitted
+        ]]>
+    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="dateSubmitted" type="java.sql.Timestamp"/>
+    </query>
+
     <sql-query name="StandardUserMunicipalites">
         <![CDATA[
         select M.* from Municipalities M,UserSubscriptions US,Users U where U.ID=:USER and U.ID=US.UserId and US.MunicipalityId=M.ID ORDER BY M.MunicipalityName ASC
@@ -938,6 +950,24 @@ from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidSt
     <query-param name="user" type="java.lang.Integer"/>
     <query-param name="role" type="java.lang.String"/>
     </sql-query>
+
+    <query name="formsWithCodeEnforcementByMunicipalityAndAfterDate">
+        <![CDATA[
+        select formGuid as formGuid,
+       formTitle as formTitle,
+      users.fullName as fullName,
+      balanceDue as balanceDue,
+      formStatuses.status as status,
+      formTypes.formType as formType,
+       formTypes.codeEnforcement as codeEnforcement
+from MasterForms
+where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipalityId=:municipalityId and dateSubmitted>:dateSubmitted
+        ]]>
+    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="dateSubmitted" type="java.sql.Timestamp"/>
+    </query>
 
     <sql-query name="UpdateForceInspectionSequenceForForm">
         <![CDATA[

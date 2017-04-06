@@ -53,6 +53,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdatePrimaryVendorInMasterForms(UpdatePrimaryVendorInMasterFormsRequest updatePrimaryVendorInMasterFormsRequest);
 
+    Page<CounNewCasesAndAfterDateResponse> executeCounNewCasesAndAfterDate(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);
+
+    Downloadable exportCounNewCasesAndAfterDate(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);
+
     Page<StandardUserMunicipalitesResponse> executeStandardUserMunicipalites(Integer user, Pageable pageable);
 
     Downloadable exportStandardUserMunicipalites(ExportType exportType, Integer user, Pageable pageable);
@@ -246,6 +250,10 @@ public interface Cx2QueryExecutorService {
     Page<EmployeesOrAdminsMunicipalitiesResponse> executeEmployeesOrAdminsMunicipalities(Integer user, String role, Pageable pageable);
 
     Downloadable exportEmployeesOrAdminsMunicipalities(ExportType exportType, Integer user, String role, Pageable pageable);
+
+    Page<FormsWithCodeEnforcementByMunicipalityAndAfterDateResponse> executeFormsWithCodeEnforcementByMunicipalityAndAfterDate(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);
+
+    Downloadable exportFormsWithCodeEnforcementByMunicipalityAndAfterDate(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);
 
     Integer executeUpdateForceInspectionSequenceForForm(UpdateForceInspectionSequenceForFormRequest updateForceInspectionSequenceForFormRequest);
 

@@ -1,0 +1,79 @@
+{
+  "BreadCrum" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1491476381320",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/CodeEnforcementDashboard"
+    }, {
+      "label" : "OpenCases",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/NewCases"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "ngViewCase" : {
+    "_id" : "wm-ngViewCase-wm.NavigationVariable-1491476568873",
+    "name" : "ngViewCase",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "Forms",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ {
+      "type" : "string",
+      "target" : "FormGUID",
+      "value" : "bind:Widgets.gridNewCases.selecteditem.formGuid"
+    } ],
+    "pageTransitions" : "none"
+  },
+  "svNewCases" : {
+    "_id" : "wm-svNewCases-wm.ServiceVariable-1491476499145",
+    "name" : "svNewCases",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "codeEnforcement",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "closed",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "dateSubmitted",
+      "value" : "bind:weekDayStart",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.FormsWithCodeEnforcementByMunicipalityAndAfterDateResponse",
+    "service" : "cx2",
+    "operation" : "executeFormsWithCodeEnforcementByMunicipalityAndAfterDate",
+    "operationId" : "QueryExecutionController_executeFormsWithCodeEnforcementByMunicipalityAndAfterDate",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  }
+}
