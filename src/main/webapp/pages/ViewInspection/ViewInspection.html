@@ -24,28 +24,28 @@
                                 <wm-gridrow name="gridrow7">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn10"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn11" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="label7" class="h1" caption="[InspectionDesign]"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label7" class="h1" caption="bind:Variables.lvInspection.dataSet.data[$i].inspectionDesign.inspectDesignName"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow84_1">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn155_2"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn156_1" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="label65_1" caption="[InspectionTitle]" fontsize="18"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label65_1" caption="bind:Variables.lvInspection.dataSet.data[$i].inspectionTitle" fontsize="18"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn157"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow83_1">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn156_3"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn156_2" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="label66" caption="Requested By: [CreatedByUser]" fontsize="15"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label66" caption="bind:'Requested By: ' + Variables.lvCreator.dataSet.data[$i].fullName" fontsize="15"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn157_1"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow14">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn24_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn28" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="labelInspectionStatus" caption="Outcome: [InspectionOutcome]" class="h3"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="labelInspectionStatus" caption="bind:'Outcome: ' + Variables.lvInspection.dataSet.data[$i].inspectionOutcome.outcome" class="h3"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn25"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -103,7 +103,16 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                         <wm-panel iconclass="wi wi-list" autoclose="outsideClick" name="panelInspection" title="Inspection Content" class="panel-primary">
                             <wm-tabs name="INSTRUCTIONS">
-                                <wm-tabpane name="tabpaneInspections" title="INSPECTION" show="true"></wm-tabpane>
+                                <wm-tabpane name="tabpaneInspections" title="INSPECTION" show="true">
+                                    <dynamic-form-fields form-field-list="Variables.lvDynamicFields.dataSet.data" form-data="Variables.svFieldData.dataSet.content"></dynamic-form-fields>
+                                    <wm-layoutgrid name="layoutgrid2">
+                                        <wm-gridrow name="formSaveControlRow" padding="2em unset unset unset">
+                                            <wm-gridcolumn columnwidth="12" name="formSaveControlColumn" horizontalalign="right">
+                                                <wm-button class="btn-primary" caption="Save" type="button" margin="1% 3% 1% unset" name="btnSaveFormData" iconclass="wi wi-save" on-click="Variables.svSaveFormData.invoke()" show="bind:true"></wm-button>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-tabpane>
                                 <wm-tabpane name="tabpaneLocation" title="LOCATION" show="true"></wm-tabpane>
                                 <wm-tabpane name="tabpaneAttachments" title="ATTACHMENTS" show="true"></wm-tabpane>
                                 <wm-tabpane name="tabpaneVIOLATIONS" title="VIOLATIONS"></wm-tabpane>

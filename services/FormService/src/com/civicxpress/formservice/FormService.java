@@ -5,6 +5,8 @@ package com.civicxpress.formservice;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.civicxpress.MultiDatabaseHelper;
+import com.civicxpress.dynamicfieldservice.DynamicFieldService;
 import com.civicxpress.esigngenie.ESignGenieApi;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -122,7 +124,6 @@ public class FormService {
     }
     
     public String getSigningDocumentResponse(String formGuid, String formTitle, String creatorFullName, String fieldDataJsonString, String municipalityLogo, String clientId, String clientSecret, String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty) throws IOException, java.sql.SQLException {
-
         System.out.println("fieldDataJsonString: " + fieldDataJsonString);
         Gson gson = new Gson();
         Object fieldData = gson.fromJson(fieldDataJsonString, Object.class);
@@ -133,7 +134,7 @@ public class FormService {
         String folderAccessUrl = null;
 
         // in FormService, instantiate these values
-        FormDataPojo formDataPojo = new FormDataPojo(); 
+        FormDataPojo formDataPojo = new FormDataPojo();
         formDataPojo.setFormTitle(formTitle);
         formDataPojo.setCreatorFullName(creatorFullName);
         Map<String, Object> formData = getFormDataByLabel(formGuid);
@@ -435,17 +436,6 @@ public class FormService {
     	return userIsProcessOwner;
     }
     
-    private Connection getMunicipalityDbConnection(Connection conn, Long municipalityId) throws SQLException {
-    	String getMuniDbDetailsQuery = "SELECT DbName, DbUser, DbPassword FROM Municipalities WHERE ID=:municipalityId";
-    	DBQueryParams muniDbDetailsParams = new DBQueryParams();
-        muniDbDetailsParams.addLong("municipalityId", municipalityId);
-    	
-    	DBRow muniDetails = DBUtils.selectQuery(conn, getMuniDbDetailsQuery, muniDbDetailsParams).get(0);
-    	
-    	String muniUrl = sqlUrl.replaceAll("databaseName=.+", "databaseName="+muniDetails.getString("DbName"));
-    	return DBUtils.getConnection(muniUrl, muniDetails.getString("DbUser"), muniDetails.getString("DbPassword"));
-    }
-    
     public Map<String, Object> getFormData(String formGuid) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	
@@ -457,120 +447,33 @@ public class FormService {
 
     	String getFormInfoQuery = "SELECT FormTableName, MunicipalityId FROM FormTypes WHERE ID=:formTypeId";
 
-		DBRow formInfo = DBUtils.selectQuery(cx2Conn, getFormInfoQuery, formTbNameParams).get(0);
+		DBRow formInfo = DBUtils.selectOne(cx2Conn, getFormInfoQuery, formTbNameParams);
 		String formTableName = formInfo.getString("FormTableName");
 		
 		Long municipalityId = formInfo.getLong("MunicipalityId");
 		
-		Connection formDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
+		Connection formDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
 		
 		cx2Conn.close();
 		
-		DBQueryParams formDbParams = new DBQueryParams();
-		formDbParams.addString("formGuid", formGuid);
-		DBRow formDataRow = DBUtils.selectQuery(formDbConn, ("SELECT * FROM "+formTableName+" WHERE FormGUID=:formGuid"), formDbParams).get(0);
-		
-		formDbConn.close();
-        
-        return formDataRow.getFieldValues();
+		return DynamicFieldService.getFieldData(formDbConn, formGuid, "form", formTableName);
     }
     
-    public void updateFormTypeField(Long formTypeFieldId, String label, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
-    	cx2Conn.setAutoCommit(false);
-    	DBQueryParams queryParams = new DBQueryParams();
-    	
-    	try {
-	    	queryParams.addString("label", label);
-	    	queryParams.addInteger("displayOrder", displayOrder);
-	    	queryParams.addBoolean("required", required);
-	    	queryParams.addString("defaultValue", defaultValue);
-	    	queryParams.addString("helpText", helpText);
-	    	queryParams.addString("possibleValues", possibleValues);
-	    	queryParams.addLong("formTypeFieldId", formTypeFieldId);
-	    	DBUtils.simpleQuery(cx2Conn, "UPDATE FormTypeFields "
-	    			+ "SET Label=:label, DisplayOrder=:displayOrder, Required=:required, DefaultValue=:defaultValue, HelpText=:helpText, PossibleValues=:possibleValues WHERE ID=:formTypeFieldId",
-	    			queryParams);
-	    	
-	    	cx2Conn.commit();
-    	} catch (SQLException e) {
-    		cx2Conn.rollback();
-    		logger.error(e.getLocalizedMessage());
-    		throw e;
-    	} finally {
-    		cx2Conn.close();
-    	}
-    }
-    
-    public void saveFormTypeField(Long formTypeId, Long inspectionDesignId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues, String automaticFeeType) throws SQLException {
-      	String fieldName = label == null ? null : DBUtils.getSqlSafeString(label);
-    
+    public void saveFormTypeField(Long formTypeId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues, String automaticFeeType) throws SQLException {
       	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
-      	cx2Conn.setAutoCommit(false);
       	DBQueryParams queryParams = new DBQueryParams();
     
-      	Boolean forInspection = (inspectionDesignId != null);
-    
-      	if (forInspection) {
-      	    queryParams.addLong("parentItemId", inspectionDesignId);
-      	} else if (formTypeId != null) {
-            queryParams.addLong("parentItemId",  formTypeId);
-      	} else {
-            throw new SQLException("Must provide a valid parent item ID");
-        }
-    
-      	DBRow muniData = null;
-    
-        if (forInspection) {
-            muniData = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId, InspectionTableName as ItemTableName from InspectionDesign WHERE ID=:parentItemId", queryParams);
-        }
-        else {
-            muniData = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId, FormTableName as ItemTableName from FormTypes WHERE ID=:parentItemId", queryParams);
-        }
-    
-      	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, muniData.getLong("MunicipalityId"));
-      	muniDbConn.setAutoCommit(false);
-    
-      	try {
-      		fieldName += DBUtils.selectQuery(muniDbConn, "SELECT NEXT VALUE FOR DynamicFieldIndex as DynamicFieldIndex").get(0).getString("DynamicFieldIndex");
-    
-        	queryParams.addString("label", label);
-        	queryParams.addString("fieldName", fieldName);
-        	queryParams.addLong("fieldTypeId", fieldTypeId);
-        	queryParams.addInteger("displayOrder", displayOrder);
-        	queryParams.addBoolean("required", required);
-        	queryParams.addString("defaultValue", defaultValue);
-        	queryParams.addString("helpText", helpText);
-        	queryParams.addString("possibleValues", possibleValues);
-        	queryParams.addString("automaticFeeType", automaticFeeType);
-        	DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypeFields "
-        			+ "(" + (forInspection ? "InspectionDesignId" : "FormTypeId") + ", FieldName, Label, DisplayOrder, Required, DefaultValue, HelpText, FieldTypeId, PossibleValues, AutomaticFeeType)"
-        			+" VALUES (:parentItemId, :fieldName, :label, :displayOrder, :required, :defaultValue, :helpText, :fieldTypeId, :possibleValues, :automaticFeeType)",
-        			queryParams);
-    
-        	String fieldSqlType = DBUtils.selectQuery(cx2Conn, "SELECT SqlType FROM FormFieldTypes WHERE ID=:fieldTypeId", queryParams).get(0).getString("SqlType");
-    
-        	if (fieldSqlType != null && !fieldSqlType.isEmpty()) {
-        		DBUtils.simpleQuery(muniDbConn, "ALTER TABLE "+muniData.getString("ItemTableName")+" ADD "+fieldName+" "+fieldSqlType);
-        	}
-    
-        	cx2Conn.commit();
-        	muniDbConn.commit();
-      	} catch (SQLException e) {
-      		cx2Conn.rollback();
-      		muniDbConn.rollback();
-      		logger.error(e.getLocalizedMessage());
-      		throw e;
-      	} finally {
-      		cx2Conn.close();
-      		muniDbConn.close();
-      	}
+        queryParams.addLong("formTypeId",  formTypeId);
+
+        DBRow muniData = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId, FormTableName as ItemTableName from FormTypes WHERE ID=:formTypeId", queryParams);
+
+      	DynamicFieldService.saveDynamicField(cx2Conn, formTypeId, muniData.getLong("MunicipalityId"), "FormTypeId", muniData.getString("ItemTableName"), label, fieldTypeId, displayOrder, required, defaultValue, helpText, possibleValues, automaticFeeType);
     }
     
     public Long saveFormType(Long municipalityId, String formType) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	cx2Conn.setAutoCommit(false);
-        Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
+        Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
         muniDbConn.setAutoCommit(false);
     	Long newFormTypeId = null;
         
@@ -641,7 +544,7 @@ public class FormService {
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("formTypeId", formTypeId);
     	Long municipalityId = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getLong("MunicipalityId");
-    	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
+    	Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
     	String newFormGuid = null;
     	
     	try {
@@ -709,10 +612,15 @@ public class FormService {
     	return newFormGuid;
     }
     
-    public void saveFormData(Long formTypeId, String formGuid, HashMap<String, Object> fieldData) throws SQLException {
+    public void saveFormData(String formGuid, HashMap<String, Object> fieldData) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	
     	cx2Conn.setAutoCommit(false);
+    	
+    	DBQueryParams params = new DBQueryParams();
+    	params.addString("formGuid", formGuid);
+    	
+    	Long formTypeId = DBUtils.selectOne(cx2Conn, "SELECT FormTypeId FROM MasterForms where FormGUID=:formGuid", params).getLong("FormTypeId");
     	
     	try {
     		saveFormData(cx2Conn, formTypeId, formGuid, fieldData, false);
@@ -735,62 +643,11 @@ public class FormService {
     	queryParams.addLong("formTypeId", formTypeId);
     	queryParams.addString("formGuid", formGuid);
     	
-    	DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId, FormTableName FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0);
-    	
-    	List<DBRow> formFieldsMetaData = DBUtils.selectQuery(cx2Conn, "SELECT FTF.FieldName as FieldName, FFT.SqlType as SqlType FROM FormTypeFields FTF, FormFieldTypes FFT WHERE FFT.ID=FTF.FieldTypeId AND FTF.FormTypeId=:formTypeId", queryParams);
+    	DBRow formTypeData = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId, FormTableName FROM FormTypes WHERE ID=:formTypeId", queryParams);
     	
     	Long municipalityId = formTypeData.getLong("MunicipalityId");
     	
-    	Connection muniDbConn = getMunicipalityDbConnection(cx2Conn, municipalityId);
-    	muniDbConn.setAutoCommit(false);
-    	
-    	try {
-	    	StringBuilder formSaveQuery = new StringBuilder("UPDATE "+formTypeData.getString("FormTableName")+" SET ");
-	    	
-	    	for (DBRow formFieldsMetaRow : formFieldsMetaData) {
-	    		String sqlSafeFieldName = DBUtils.getSqlSafeString(formFieldsMetaRow.getString("FieldName"));
-	    		Object fieldValue;
-	    		
-	    		String sqlType = formFieldsMetaRow.getString("SqlType");
-	    		
-	    		if (!fieldData.containsKey(sqlSafeFieldName) || sqlType == null) {
-	    			continue;
-	    		}
-	    		
-	    		if (sqlType.equals("datetime2") || sqlType.equals("date")) {
-	    			Long dateMs = fieldData.get(sqlSafeFieldName) != null ? Double.valueOf(fieldData.get(sqlSafeFieldName).toString()).longValue() : null;
-	    			
-	    			if (sqlType.equals("datetime2")) {
-	    				queryParams.addDateTime(sqlSafeFieldName, dateMs);
-	    			} else {
-	    				queryParams.addDate(sqlSafeFieldName, dateMs);
-	    			}
-	    		} else if (sqlType.contains("numeric") && fieldData.get(sqlSafeFieldName) != null) {
-	    			queryParams.addBigDecimal(sqlSafeFieldName, new BigDecimal(fieldData.get(sqlSafeFieldName).toString()));
-	    		} else {
-	    			fieldValue = fieldData.get(sqlSafeFieldName);
-		    		queryParams.addObject(sqlSafeFieldName, fieldValue);
-	    		}
-	    		
-	    		formSaveQuery.append(sqlSafeFieldName+"=:"+sqlSafeFieldName);
-	    		
-	    		formSaveQuery.append(",");
-	    	}
-	    	
-	    	formSaveQuery.deleteCharAt(formSaveQuery.length()-1);
-	    	
-	    	formSaveQuery.append(" WHERE FormGUID=:formGuid");
-	    	
-	    	DBUtils.simpleQuery(muniDbConn, formSaveQuery.toString(), queryParams);
-	    	
-	    	muniDbConn.commit();
-    	} catch (SQLException e) {
-    		muniDbConn.rollback();
-    		logger.error(e.getLocalizedMessage());
-    		throw e;
-    	} finally {
-    	   	muniDbConn.close();
-    	}
+    	DynamicFieldService.saveDynamicFieldData(cx2Conn, municipalityId, formTypeData.getString("FormTableName"), formGuid, formTypeId, "form", fieldData);
     }
     
     private void uploadDocuments(Connection cx2Conn, MultipartFile[] files, String formGuid, Boolean isNew) throws SQLException, IOException {
@@ -969,7 +826,7 @@ public class FormService {
     				queryParams);
     		
     		if (formTypeData.getBoolean("AutomaticFees") && DBUtils.selectQuery(cx2Conn, "SELECT RecalculateAutoFees FROM FormStatuses WHERE ID=:newFormStatusId", queryParams).get(0).getBoolean("RecalculateAutoFees")) {
-    			muniDbConn = getMunicipalityDbConnection(cx2Conn, formTypeData.getLong("MunicipalityId"));
+    			muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, formTypeData.getLong("MunicipalityId"));
     			DBRow formFieldValues = DBUtils.selectQuery(muniDbConn, "SELECT * FROM "+DBUtils.getSqlSafeString(formTypeData.getString("FormTableName"))+" WHERE FormGUID=:formGuid", queryParams).get(0);
     			
     			DBQueryParams feeQueryParams = calculateAutoFees(formTypeData, formFieldValues.getFieldValues());

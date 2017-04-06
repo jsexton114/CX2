@@ -329,7 +329,10 @@
 }, {
   "name" : "ViewInspection",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "inspectionGuid",
+    "type" : "string"
+  } ]
 }, {
   "name" : "ViewProject",
   "type" : "PAGE",

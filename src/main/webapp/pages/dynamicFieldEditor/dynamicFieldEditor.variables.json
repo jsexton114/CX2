@@ -540,19 +540,6 @@
           "defaultValue" : "false",
           "scale" : 0
         }, {
-          "fieldName" : "codeEnforcement",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "CodeEnforcement",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "false",
-          "scale" : 0
-        }, {
           "fieldName" : "trackViolations",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -1156,19 +1143,6 @@
           "defaultValue" : "false",
           "scale" : 0
         }, {
-          "fieldName" : "trackViolations",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "TrackViolations",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "false",
-          "scale" : 0
-        }, {
           "fieldName" : "propertyType",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -1508,15 +1482,23 @@
     "saveInPhonegap" : false,
     "controller" : "Form"
   },
-  "svUpdateFormTypeField" : {
-    "_id" : "wm-svUpdateFormTypeField-wm.ServiceVariable-1488821399315",
-    "name" : "svUpdateFormTypeField",
+  "svSaveInspectionField" : {
+    "_id" : "wm-svSaveInspectionField-wm.ServiceVariable-1491493424131",
+    "name" : "svSaveInspectionField",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
+      "target" : "inspectionDesignId",
+      "value" : "bind:pageParams.inspectionDesignId",
+      "type" : "integer"
+    }, {
       "target" : "label",
       "value" : "bind:Widgets.textFormFieldLabel.datavalue",
       "type" : "string"
+    }, {
+      "target" : "fieldTypeId",
+      "value" : "bind:Widgets.selectFormFieldType.datavalue.id",
+      "type" : "integer"
     }, {
       "target" : "displayOrder",
       "value" : "bind:Widgets.textFormFieldDisplayOrder.datavalue",
@@ -1530,9 +1512,31 @@
       "value" : "bind:Widgets.textareaFormFieldHelpText.datavalue",
       "type" : "string"
     } ],
-    "service" : "FormService",
-    "operation" : "updateFormTypeField",
-    "operationId" : "FormController_updateFormTypeField",
+    "service" : "InspectionService",
+    "operation" : "saveDynamicField",
+    "operationId" : "InspectionController_saveDynamicField",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Inspection"
+  },
+  "svUpdateFormTypeField" : {
+    "_id" : "wm-svUpdateFormTypeField-wm.ServiceVariable-1488821399315",
+    "name" : "svUpdateFormTypeField",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "service" : "DynamicFieldService",
+    "operation" : "updateDynamicField",
+    "operationId" : "DynamicFieldController_updateDynamicField",
     "operationType" : "put",
     "serviceType" : "JavaService",
     "dataSet" : [ ],
@@ -1545,6 +1549,6 @@
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "Form"
+    "controller" : "DynamicField"
   }
 }

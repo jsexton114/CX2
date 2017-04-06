@@ -14,6 +14,31 @@ Application.$controller("UserOpenFormsPageController", ["$scope", function($scop
          */
     };
 
+    $scope.formGridOptions = {
+        enableSorting: true,
+        paginationPageSizes: [20, 50, 100],
+        enablePaginationControls: true,
+        columnDefs: [{
+            name: 'formTitle',
+            displayName: 'Form Title'
+        }, {
+            name: 'createdBy',
+            displayName: 'Created By'
+        }, {
+            name: 'formDesign',
+            displayName: 'Form Design'
+        }, {
+            name: 'formStatus',
+            displayName: 'Form Status'
+        }, {
+            name: 'address',
+            displayName: 'Address'
+        }, {
+            name: 'balanceDue',
+            displayName: 'Balance Due'
+        }]
+    };
+
 }]);
 
 

@@ -731,19 +731,6 @@
           "defaultValue" : "false",
           "scale" : 0
         }, {
-          "fieldName" : "trackViolations",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "TrackViolations",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "false",
-          "scale" : 0
-        }, {
           "fieldName" : "propertyType",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -1768,7 +1755,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -2011,6 +1998,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -4497,7 +4497,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -4740,6 +4740,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -7018,19 +7031,6 @@
           "defaultValue" : "false",
           "scale" : 0
         }, {
-          "fieldName" : "trackViolations",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "TrackViolations",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "false",
-          "scale" : 0
-        }, {
           "fieldName" : "propertyType",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -7284,6 +7284,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -8112,6 +8125,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -8878,19 +8904,6 @@
           "defaultValue" : "false",
           "scale" : 0
         }, {
-          "fieldName" : "trackViolations",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "TrackViolations",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "false",
-          "scale" : 0
-        }, {
           "fieldName" : "propertyType",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -9541,6 +9554,19 @@
         "systemInserted" : true,
         "systemUpdated" : true,
         "scale" : 0
+      }, {
+        "fieldName" : "differentBillingInfo",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "DifferentBillingInfo",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
       } ],
       "entityName" : "Users",
       "fullyQualifiedName" : "com.civicxpress.cx2.Users",
@@ -9824,6 +9850,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -10459,7 +10498,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -11293,7 +11332,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -12005,6 +12044,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -12975,6 +13027,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -13482,7 +13547,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -14030,19 +14095,6 @@
         "defaultValue" : "false",
         "scale" : 0
       }, {
-        "fieldName" : "trackViolations",
-        "type" : "boolean",
-        "fullyQualifiedType" : "boolean",
-        "columnName" : "TrackViolations",
-        "isPrimaryKey" : false,
-        "notNull" : true,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "false",
-        "scale" : 0
-      }, {
         "fieldName" : "propertyType",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -14521,7 +14573,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -15584,6 +15636,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "inspectionCategories",
@@ -16111,19 +16176,6 @@
           "defaultValue" : "false",
           "scale" : 0
         }, {
-          "fieldName" : "codeEnforcement",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "CodeEnforcement",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "false",
-          "scale" : 0
-        }, {
           "fieldName" : "trackViolations",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -16391,6 +16443,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "usersByModifiedBy",
@@ -16632,6 +16697,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -17477,7 +17555,7 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "true",
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "Municipalities",
@@ -18233,6 +18311,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -19871,6 +19962,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -20617,6 +20721,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "usersBySharedWithUser",
@@ -20858,6 +20975,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -21883,7 +22013,7 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {

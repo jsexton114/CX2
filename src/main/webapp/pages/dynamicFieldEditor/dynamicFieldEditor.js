@@ -215,7 +215,11 @@ Application.$controller("dlgFormTypeFieldController", ["$scope",
                 variable = $scope.Variables.svUpdateFormTypeField;
                 variable.setInput('formTypeFieldId', formTypeFieldToEdit.id);
             } else {
-                variable = $scope.Variables.svSaveFormField;
+                if (!!$scope.pageParams.inspectionDesignId) {
+                    variable = $scope.Variables.svSaveInspectionField;
+                } else {
+                    variable = $scope.Variables.svSaveFormField;
+                }
             }
 
             variable.setInput('required', !!$scope.Widgets.checkboxFormFieldRequired.datavalue);

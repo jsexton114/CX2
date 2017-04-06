@@ -1,4 +1,6 @@
 Application.requires.push('vcRecaptcha');
+Application.requires.push('ui.grid');
+Application.requires.push('ui.grid.pagination');
 
 Application.config(['vcRecaptchaServiceProvider', '$routeProvider', function(vcRecaptchaServiceProvider, $routeProvider) {
     vcRecaptchaServiceProvider.setSiteKey("6LcNeBUUAAAAAE7ACQkzLMRlZ4kHI9-ebthTlQ61");
