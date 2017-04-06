@@ -1442,11 +1442,12 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
-where
+where  FT.CodeEnforcement=:codeEnforcement and 
     Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
 ORDER BY DateModified DESC
         ]]>
+    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
     <query-param name="closed" type="java.lang.Boolean"/>
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>

@@ -796,9 +796,10 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Object> executeFormsForUsersAndShared(Pageable pageable, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId) {
-        Map params = new HashMap(4);
+    public Page<Object> executeFormsForUsersAndShared(Pageable pageable, Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId) {
+        Map params = new HashMap(5);
 
+        params.put("codeEnforcement", codeEnforcement);
         params.put("closed", closed);
         params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);

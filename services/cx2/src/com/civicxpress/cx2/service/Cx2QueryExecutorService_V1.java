@@ -232,7 +232,7 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeGetMunicipalityGroupIdIDs(Pageable pageable, Integer userId);
 
     @Deprecated
-    public Page<Object> executeFormsForUsersAndShared(Pageable pageable, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId);
+    public Page<Object> executeFormsForUsersAndShared(Pageable pageable, Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId);
 
     @Deprecated
     public Page<Object> executeGetUserID(Pageable pageable, String email);

@@ -39,6 +39,10 @@
       "target" : "municipalityId",
       "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
       "type" : "integer"
+    }, {
+      "target" : "codeEnforcement",
+      "value" : false,
+      "type" : "boolean"
     } ],
     "type" : "com.civicxpress.cx2.models.query.FormsForUsersAndSharedResponse",
     "service" : "cx2",
@@ -650,6 +654,45 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "codeEnforcement",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "CodeEnforcement",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "trackViolations",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "TrackViolations",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "propertyType",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "PropertyType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -1651,6 +1694,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "5",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
           "scale" : 0
         } ]
       }, {

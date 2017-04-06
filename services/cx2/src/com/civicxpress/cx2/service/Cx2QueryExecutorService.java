@@ -349,9 +349,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportUserSubscriptionsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable);
 
-    Page<FormsForUsersAndSharedResponse> executeFormsForUsersAndShared(Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
+    Page<FormsForUsersAndSharedResponse> executeFormsForUsersAndShared(Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
 
-    Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
+    Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
 
     Page<GetUserIdResponse> executeGetUserID(String email, Pageable pageable);
 

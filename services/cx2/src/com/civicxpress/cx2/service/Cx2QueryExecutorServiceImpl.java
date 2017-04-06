@@ -1818,9 +1818,10 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormsForUsersAndSharedResponse> executeFormsForUsersAndShared(Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
-        Map params = new HashMap(4);
+    public Page<FormsForUsersAndSharedResponse> executeFormsForUsersAndShared(Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
+        Map params = new HashMap(5);
 
+        params.put("codeEnforcement", codeEnforcement);
         params.put("closed", closed);
         params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);
@@ -1831,9 +1832,10 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
-        Map params = new HashMap(4);
+    public Downloadable exportFormsForUsersAndShared(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
+        Map params = new HashMap(5);
 
+        params.put("codeEnforcement", codeEnforcement);
         params.put("closed", closed);
         params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);
