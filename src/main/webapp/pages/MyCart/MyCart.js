@@ -6,11 +6,9 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
     };
 
-    // $scope.svFeesInCartByUseronSuccess = function(variable, data) {
-    //     $scope.Widgets.gridFeesList.totalSumInCart = _.sumBy(data.content, function(obj) {
-    //         return _.toNumber(obj.fees.amount);
-    //     });
-    // };
+    $scope.svFeesInCartByUseronSuccess = function(variable, data) {
+        $scope.$broadcast('feeListUpdate', data.content);
+    };
 }]);
 
 Application.$controller("pagedialogNewFormController", ["$scope",
@@ -20,15 +18,24 @@ Application.$controller("pagedialogNewFormController", ["$scope",
     }
 ]);
 
-
-
 Application.$controller("gridFeesListController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
 
+        $scope.feeTotal = 0;
+
+        $scope.$on('feeListUpdate', function(event, fees) {
+            var newFeeTotal = 0;
+
+            fees.forEach(function(fee, index) {
+                newFeeTotal += fee.amount;
+            });
+
+            $scope.feeTotal = newFeeTotal;
+        });
+
         $scope.customButtonAction = function($event) {
-            debugger
             let temp = $scope.Variables.loggedInUser.dataSet.roles;
             for (let i = 0; i < temp.length; i++) {
                 if ((temp[i] == "MunicipalityEmployee")) {
