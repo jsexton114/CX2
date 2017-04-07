@@ -130,6 +130,21 @@ Application.$controller("liveformUpdateInspectiondesignController", ["$scope",
             }
         };
 
+        $scope.scheduleDateOnlyChange = function($event, $isolateScope, newVal, oldVal) {
+            if (newVal === true) {
+                $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.scheduleDateAndTime.datavalue = false;
+                $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.totalInspectionsHourly.datavalue = "";
+
+            }
+        };
+
+        $scope.scheduleDateAndTimeChange = function($event, $isolateScope, newVal, oldVal) {
+            if (newVal === true) {
+                $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.scheduleDateOnly.datavalue = false;
+
+            }
+        };
+
     }
 ]);
 
@@ -152,15 +167,15 @@ Application.$controller("liveformLettersController", ["$scope",
 
 
 Application.$controller("gridInspectionCodeSetsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveformInspectionCodeSetsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
