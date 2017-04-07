@@ -89,15 +89,20 @@ Application.directive('sticky', ['$timeout', 'stickyItems', function($timeout, s
                 stickyItems.byName[attrs.sticky] = thisStickyItem;
 
                 $window.on('scroll', function() {
+                    updateStickyness();
+                });
+                $window.on('resize', function() {
+                    updateStickyness(true);
+                });
+
+                function updateStickyness(isResize) {
                     thisStickyItem.isSticky = $window.scrollTop() > navTop || (!!stickyBottomOf && stickyBottomOf.isSticky);
 
-                    if (wasSticky && thisStickyItem.isSticky) {
+                    if (thisStickyItem.isSticky === wasSticky && !isResize) {
                         return;
                     }
 
-                    if (!thisStickyItem.isSticky || !wasSticky) {
-                        elWidth = elem.outerWidth();
-                    }
+                    elWidth = elem.parent().width();
 
                     if (!!stickyBottomElem) {
                         targetTop = stickyBottomElem.outerHeight();
@@ -114,7 +119,7 @@ Application.directive('sticky', ['$timeout', 'stickyItems', function($timeout, s
                     elem.toggleClass('stuckTop', thisStickyItem.isSticky);
 
                     wasSticky = thisStickyItem.isSticky;
-                });
+                }
             });
         }
     };
