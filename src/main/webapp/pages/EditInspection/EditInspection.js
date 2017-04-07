@@ -136,11 +136,18 @@ Application.$controller("liveformUpdateInspectiondesignController", ["$scope",
                 $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.totalInspectionsHourly.datavalue = "";
 
             }
+            if (newVal === false) {
+                $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.scheduleDateAndTime.datavalue = true;
+            }
         };
 
         $scope.scheduleDateAndTimeChange = function($event, $isolateScope, newVal, oldVal) {
             if (newVal === true) {
                 $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.scheduleDateOnly.datavalue = false;
+
+            }
+            if (newVal === false) {
+                $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.scheduleDateOnly.datavalue = true;
 
             }
         };
