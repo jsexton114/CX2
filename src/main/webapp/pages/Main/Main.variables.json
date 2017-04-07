@@ -439,12 +439,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "AllowOfflineCC",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -946,7 +946,7 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "Active",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
@@ -971,11 +971,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "Banned",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
+        "defaultValue" : "",
         "scale" : 0
       }, {
         "fieldName" : "password",
@@ -1016,6 +1017,19 @@
         "isRelated" : false,
         "systemInserted" : true,
         "systemUpdated" : true,
+        "scale" : 0
+      }, {
+        "fieldName" : "differentBillingInfo",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "DifferentBillingInfo",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "Users",

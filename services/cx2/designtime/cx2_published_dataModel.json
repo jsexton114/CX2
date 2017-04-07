@@ -2513,6 +2513,23 @@
       "targetColumnsUniqueKey" : false,
       "targetTable" : "MyCart",
       "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "transactionToFeeses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "FeeId"
+      } ],
+      "name" : "FK_TransactionToFees_TO_htvDe",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Fees",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "TransactionToFees",
+      "virtual" : false
     } ],
     "schema" : "cx2",
     "type" : "TABLE"
@@ -14545,6 +14562,236 @@
         "updatable" : true,
         "defaultValue" : ""
       },
+      "fieldName" : "transactionId",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "TransactionId",
+      "nullable" : false,
+      "oldName" : "TransactionId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "paymentMethod",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "PaymentMethod",
+      "nullable" : true,
+      "oldName" : "PaymentMethod",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "paymentNumber",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "PaymentNumber",
+      "nullable" : true,
+      "oldName" : "PaymentNumber",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "amountReceived",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "float",
+      "length" : 0,
+      "name" : "AmountReceived",
+      "nullable" : true,
+      "oldName" : "AmountReceived",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 2,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "comments",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "Comments",
+      "nullable" : true,
+      "oldName" : "Comments",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "server-defined",
+        "insertable" : true,
+        "updatable" : false,
+        "variableType" : "USER_ID"
+      },
+      "fieldName" : "createdBy",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "CreatedBy",
+      "nullable" : true,
+      "oldName" : "CreatedBy",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "server-defined",
+        "insertable" : true,
+        "updatable" : false,
+        "variableType" : "DATE_TIME"
+      },
+      "fieldName" : "dateCreated",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "datetime",
+      "length" : 0,
+      "name" : "DateCreated",
+      "nullable" : true,
+      "oldName" : "DateCreated",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "datetime",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "PaymentHistory",
+    "fullyQualifiedName" : "com.civicxpress.cx2.PaymentHistory",
+    "name" : "PaymentHistory",
+    "oldName" : "PaymentHistory",
+    "primaryKey" : {
+      "columns" : [ "TransactionId" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__PaymentH__55433A6B4F84BC09",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "users",
+      "mappings" : [ {
+        "sourceColumn" : "CreatedBy",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_PaymentHistory_TO_Use2KZl6",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PaymentHistory",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "transactionToFeeses",
+      "mappings" : [ {
+        "sourceColumn" : "TransactionId",
+        "targetColumn" : "TransactionId"
+      } ],
+      "name" : "FK_TransactionToFees_TO_k8uEx",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PaymentHistory",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "TransactionToFees",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
       "fieldName" : "id",
       "foreignKey" : false,
       "generatorType" : "identity",
@@ -14752,6 +14999,209 @@
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "ProjectForms",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "addedByUser",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "AddedByUser",
+      "nullable" : true,
+      "oldName" : "AddedByUser",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "addedAt",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "timestamp",
+      "length" : 0,
+      "name" : "AddedAt",
+      "nullable" : true,
+      "oldName" : "AddedAt",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "timestamp",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "gisrecordId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "GISRecordId",
+      "nullable" : true,
+      "oldName" : "GISRecordId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
+      "fieldName" : "relatedProjectGuid",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 32,
+      "name" : "RelatedProjectGUID",
+      "nullable" : true,
+      "oldName" : "RelatedProjectGUID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : true,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    } ],
+    "constraints" : [ {
+      "columns" : [ "RelatedProjectGUID", "GISRecordId" ],
+      "composite" : true,
+      "name" : "UK_ProjectGISRecords_RelzxLmy",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
+    "entityName" : "ProjectGisrecords",
+    "fullyQualifiedName" : "com.civicxpress.cx2.ProjectGisrecords",
+    "name" : "ProjectGISRecords",
+    "oldName" : "ProjectGISRecords",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__ProjectG__3214EC279F8E03C8",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "projects",
+      "mappings" : [ {
+        "sourceColumn" : "RelatedProjectGUID",
+        "targetColumn" : "ProjectGUID"
+      } ],
+      "name" : "FK_ProjectGISRecords_TO_JvNRe",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "ProjectGISRecords",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Projects",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "gisrecords",
+      "mappings" : [ {
+        "sourceColumn" : "GISRecordId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_ProjectGISRecords_TO_UWfj9",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "ProjectGISRecords",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "GISRecords",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "users",
+      "mappings" : [ {
+        "sourceColumn" : "AddedByUser",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_ProjectGISRecords_TO_v7j4l",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "ProjectGISRecords",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Users",
       "virtual" : false
@@ -15275,23 +15725,6 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "projectSharedWiths",
-      "mappings" : [ {
-        "sourceColumn" : "ProjectGUID",
-        "targetColumn" : "RelatedProjectGUID"
-      } ],
-      "name" : "FK_ProjectSharedWith_TO_Mtgv9",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "Projects",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "ProjectSharedWith",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
       "fieldName" : "projectTaskses",
       "mappings" : [ {
         "sourceColumn" : "ProjectGUID",
@@ -15309,6 +15742,23 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fieldName" : "projectSharedWiths",
+      "mappings" : [ {
+        "sourceColumn" : "ProjectGUID",
+        "targetColumn" : "RelatedProjectGUID"
+      } ],
+      "name" : "FK_ProjectSharedWith_TO_Mtgv9",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Projects",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "ProjectSharedWith",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
       "fieldName" : "vendorsToProjects",
       "mappings" : [ {
         "sourceColumn" : "ProjectGUID",
@@ -15321,412 +15771,6 @@
       "sourceTable" : "Projects",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "VendorsToProject",
-      "virtual" : false
-    } ],
-    "schema" : "cx2",
-    "type" : "TABLE"
-  }, {
-    "catalog" : "cx2",
-    "columns" : [ {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "addedByUser",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "AddedByUser",
-      "nullable" : true,
-      "oldName" : "AddedByUser",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "addedAt",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "timestamp",
-      "length" : 0,
-      "name" : "AddedAt",
-      "nullable" : true,
-      "oldName" : "AddedAt",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "timestamp",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "gisrecordId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "GISRecordId",
-      "nullable" : true,
-      "oldName" : "GISRecordId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "relatedProjectGuid",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 32,
-      "name" : "RelatedProjectGUID",
-      "nullable" : true,
-      "oldName" : "RelatedProjectGUID",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    } ],
-    "constraints" : [ {
-      "columns" : [ "RelatedProjectGUID", "GISRecordId" ],
-      "composite" : true,
-      "name" : "UK_ProjectGISRecords_RelzxLmy",
-      "type" : "UNIQUE",
-      "virtual" : false
-    } ],
-    "entityName" : "ProjectGisrecords",
-    "fullyQualifiedName" : "com.civicxpress.cx2.ProjectGisrecords",
-    "name" : "ProjectGISRecords",
-    "oldName" : "ProjectGISRecords",
-    "primaryKey" : {
-      "columns" : [ "ID" ],
-      "composite" : false,
-      "generator" : {
-        "generatorType" : "identity",
-        "generatorValue" : null
-      },
-      "name" : "PK__ProjectG__3214EC279F8E03C8",
-      "virtual" : false
-    },
-    "relations" : [ {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "projects",
-      "mappings" : [ {
-        "sourceColumn" : "RelatedProjectGUID",
-        "targetColumn" : "ProjectGUID"
-      } ],
-      "name" : "FK_ProjectGISRecords_TO_JvNRe",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "ProjectGISRecords",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Projects",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "gisrecords",
-      "mappings" : [ {
-        "sourceColumn" : "GISRecordId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_ProjectGISRecords_TO_UWfj9",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "ProjectGISRecords",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "GISRecords",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "users",
-      "mappings" : [ {
-        "sourceColumn" : "AddedByUser",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_ProjectGISRecords_TO_v7j4l",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "ProjectGISRecords",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Users",
-      "virtual" : false
-    } ],
-    "schema" : "cx2",
-    "type" : "TABLE"
-  }, {
-    "catalog" : "cx2",
-    "columns" : [ {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "relatedProjectGuid",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 32,
-      "name" : "RelatedProjectGUID",
-      "nullable" : true,
-      "oldName" : "RelatedProjectGUID",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "projectSharedWithUser",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ProjectSharedWithUser",
-      "nullable" : true,
-      "oldName" : "ProjectSharedWithUser",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "projectSharedOn",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "timestamp",
-      "length" : 0,
-      "name" : "ProjectSharedOn",
-      "nullable" : true,
-      "oldName" : "ProjectSharedOn",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "timestamp",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "projectSharedBy",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ProjectSharedBy",
-      "nullable" : true,
-      "oldName" : "ProjectSharedBy",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    } ],
-    "constraints" : [ {
-      "columns" : [ "RelatedProjectGUID", "ProjectSharedWithUser" ],
-      "composite" : true,
-      "name" : "UK_ProjectSharedWith_RelxbhtY",
-      "type" : "UNIQUE",
-      "virtual" : false
-    } ],
-    "entityName" : "ProjectSharedWith",
-    "fullyQualifiedName" : "com.civicxpress.cx2.ProjectSharedWith",
-    "name" : "ProjectSharedWith",
-    "oldName" : "ProjectSharedWith",
-    "primaryKey" : {
-      "columns" : [ "ID" ],
-      "composite" : false,
-      "generator" : {
-        "generatorType" : "identity",
-        "generatorValue" : null
-      },
-      "name" : "PK__ProjectS__3214EC275A2FB818",
-      "virtual" : false
-    },
-    "relations" : [ {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "usersByProjectSharedBy",
-      "mappings" : [ {
-        "sourceColumn" : "ProjectSharedBy",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_ProjectSharedWith_TO_JZLjU",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "ProjectSharedWith",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Users",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "projects",
-      "mappings" : [ {
-        "sourceColumn" : "RelatedProjectGUID",
-        "targetColumn" : "ProjectGUID"
-      } ],
-      "name" : "FK_ProjectSharedWith_TO_Mtgv9",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "ProjectSharedWith",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Projects",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "usersByProjectSharedWithUser",
-      "mappings" : [ {
-        "sourceColumn" : "ProjectSharedWithUser",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_ProjectSharedWith_TO_zISDK",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "ProjectSharedWith",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Users",
       "virtual" : false
     } ],
     "schema" : "cx2",
@@ -16171,6 +16215,209 @@
         "updatable" : true,
         "defaultValue" : ""
       },
+      "fieldName" : "relatedProjectGuid",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 32,
+      "name" : "RelatedProjectGUID",
+      "nullable" : true,
+      "oldName" : "RelatedProjectGUID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : true,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "projectSharedWithUser",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ProjectSharedWithUser",
+      "nullable" : true,
+      "oldName" : "ProjectSharedWithUser",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "projectSharedOn",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "timestamp",
+      "length" : 0,
+      "name" : "ProjectSharedOn",
+      "nullable" : true,
+      "oldName" : "ProjectSharedOn",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "timestamp",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "projectSharedBy",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ProjectSharedBy",
+      "nullable" : true,
+      "oldName" : "ProjectSharedBy",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    } ],
+    "constraints" : [ {
+      "columns" : [ "RelatedProjectGUID", "ProjectSharedWithUser" ],
+      "composite" : true,
+      "name" : "UK_ProjectSharedWith_RelxbhtY",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
+    "entityName" : "ProjectSharedWith",
+    "fullyQualifiedName" : "com.civicxpress.cx2.ProjectSharedWith",
+    "name" : "ProjectSharedWith",
+    "oldName" : "ProjectSharedWith",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__ProjectS__3214EC275A2FB818",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "usersByProjectSharedBy",
+      "mappings" : [ {
+        "sourceColumn" : "ProjectSharedBy",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_ProjectSharedWith_TO_JZLjU",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "ProjectSharedWith",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "projects",
+      "mappings" : [ {
+        "sourceColumn" : "RelatedProjectGUID",
+        "targetColumn" : "ProjectGUID"
+      } ],
+      "name" : "FK_ProjectSharedWith_TO_Mtgv9",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "ProjectSharedWith",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Projects",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "usersByProjectSharedWithUser",
+      "mappings" : [ {
+        "sourceColumn" : "ProjectSharedWithUser",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_ProjectSharedWith_TO_zISDK",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "ProjectSharedWith",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
       "fieldName" : "roleName",
       "foreignKey" : false,
       "generatorType" : "assigned",
@@ -16516,6 +16763,755 @@
       "sourceTable" : "SharedWith",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Users",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "feeId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "FeeId",
+      "nullable" : true,
+      "oldName" : "FeeId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "userId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "UserId",
+      "nullable" : true,
+      "oldName" : "UserId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    } ],
+    "constraints" : [ {
+      "columns" : [ "FeeId", "UserId" ],
+      "composite" : true,
+      "name" : "UK_MyCart_FeeId_UserId",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
+    "entityName" : "MyCart",
+    "fullyQualifiedName" : "com.civicxpress.cx2.MyCart",
+    "name" : "MyCart",
+    "oldName" : "MyCart",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__MyCart__3214EC277078EC1C",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "fees",
+      "mappings" : [ {
+        "sourceColumn" : "FeeId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_MyCart_TO_Fees_FeeId_ID",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "MyCart",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Fees",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "users",
+      "mappings" : [ {
+        "sourceColumn" : "UserId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_MyCart_TO_Users_UserId_ID",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "MyCart",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "viewName",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "ViewName",
+      "nullable" : true,
+      "oldName" : "ViewName",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "viewDescription",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "ViewDescription",
+      "nullable" : true,
+      "oldName" : "ViewDescription",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "StandardViews",
+    "fullyQualifiedName" : "com.civicxpress.cx2.StandardViews",
+    "name" : "StandardViews",
+    "oldName" : "StandardViews",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__Standard__3214EC277A841664",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "userViewPreferenceses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "PreferenceId"
+      } ],
+      "name" : "FK_UserViewPreferences_TRnEui",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "StandardViews",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "UserViewPreferences",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "municipalityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "MunicipalityId",
+      "nullable" : true,
+      "oldName" : "MunicipalityId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "subdivisionGuid",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "SubdivisionGuid",
+      "nullable" : true,
+      "oldName" : "SubdivisionGuid",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "subdivision",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "Subdivision",
+      "nullable" : true,
+      "oldName" : "Subdivision",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : "a"
+      },
+      "fieldName" : "subShortCode",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "SubShortCode",
+      "nullable" : true,
+      "oldName" : "SubShortCode",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "Subdivisions",
+    "fullyQualifiedName" : "com.civicxpress.cx2.Subdivisions",
+    "name" : "Subdivisions",
+    "oldName" : "Subdivisions",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__Subdivis__3214EC27F746907C",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "municipalities",
+      "mappings" : [ {
+        "sourceColumn" : "MunicipalityId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_Municipalities_TO_Sub5J3KK",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Subdivisions",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Municipalities",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "gisrecordses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "SubdivisionId"
+      } ],
+      "name" : "FK_Subdivisions_TO_GISReIdY6C",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Subdivisions",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "GISRecords",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "stateName",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "StateName",
+      "nullable" : true,
+      "oldName" : "StateName",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "States",
+    "fullyQualifiedName" : "com.civicxpress.cx2.States",
+    "name" : "States",
+    "oldName" : "States",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__States__3214EC270A0E39C7",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "billingInformations",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "State"
+      } ],
+      "name" : "FK_BillingInformation_TO4qvXe",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "States",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "BillingInformation",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "gisrecordses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "StateId"
+      } ],
+      "name" : "FK_States_TO_GISRecords_lSctW",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "States",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "GISRecords",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "giscontactses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "StateId"
+      } ],
+      "name" : "FK_GISContacts_TO_StatesMyTHT",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "States",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "GISContacts",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "globalSettingses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "CXState"
+      } ],
+      "name" : "FK_GlobalSettings_TO_StalnfDT",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "States",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "GlobalSettings",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "municipalitieses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "StateId"
+      } ],
+      "name" : "FK_States_TO_MunicipalitbKcZP",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "States",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Municipalities",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "userses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "StateId"
+      } ],
+      "name" : "FK_States_TO_Users_ID_StateId",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "States",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "vendors",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "StateId"
+      } ],
+      "name" : "FK_States_TO_Vendor_ID_SxuzXA",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "States",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Vendor",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "feeId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "FeeId",
+      "nullable" : true,
+      "oldName" : "FeeId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "transactionId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "TransactionId",
+      "nullable" : true,
+      "oldName" : "TransactionId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "TransactionToFees",
+    "fullyQualifiedName" : "com.civicxpress.cx2.TransactionToFees",
+    "name" : "TransactionToFees",
+    "oldName" : "TransactionToFees",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__Transact__3214EC277017A05A",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "fees",
+      "mappings" : [ {
+        "sourceColumn" : "FeeId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_TransactionToFees_TO_htvDe",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "TransactionToFees",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Fees",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "paymentHistory",
+      "mappings" : [ {
+        "sourceColumn" : "TransactionId",
+        "targetColumn" : "TransactionId"
+      } ],
+      "name" : "FK_TransactionToFees_TO_k8uEx",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "TransactionToFees",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "PaymentHistory",
       "virtual" : false
     } ],
     "schema" : "cx2",
@@ -17389,6 +18385,23 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fieldName" : "paymentHistories",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "CreatedBy"
+      } ],
+      "name" : "FK_PaymentHistory_TO_Use2KZl6",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Users",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "PaymentHistory",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
       "fieldName" : "projectFormses",
       "mappings" : [ {
         "sourceColumn" : "ID",
@@ -17401,6 +18414,23 @@
       "sourceTable" : "Users",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "ProjectForms",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "projectGisrecordses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "AddedByUser"
+      } ],
+      "name" : "FK_ProjectGISRecords_TO_v7j4l",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Users",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "ProjectGISRecords",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -17440,18 +18470,35 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "projectGisrecordses",
+      "fieldName" : "projectTasksesForAssignedTo",
       "mappings" : [ {
         "sourceColumn" : "ID",
-        "targetColumn" : "AddedByUser"
+        "targetColumn" : "AssignedTo"
       } ],
-      "name" : "FK_ProjectGISRecords_TO_v7j4l",
+      "name" : "FK_ProjectTasks_TO_Usersk7bHC",
       "primary" : false,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "Users",
       "targetColumnsUniqueKey" : false,
-      "targetTable" : "ProjectGISRecords",
+      "targetTable" : "ProjectTasks",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "projectTasksesForCreatedBy",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "CreatedBy"
+      } ],
+      "name" : "FK_ProjectTasks_TO_Usersv8OhV",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Users",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "ProjectTasks",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -17486,40 +18533,6 @@
       "sourceTable" : "Users",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "ProjectSharedWith",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "projectTasksesForAssignedTo",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "AssignedTo"
-      } ],
-      "name" : "FK_ProjectTasks_TO_Usersk7bHC",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "Users",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "ProjectTasks",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "projectTasksesForCreatedBy",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "CreatedBy"
-      } ],
-      "name" : "FK_ProjectTasks_TO_Usersv8OhV",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "Users",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "ProjectTasks",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -17661,6 +18674,23 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fieldName" : "vendorUserses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "UserId"
+      } ],
+      "name" : "FK_Users_TO_VendorUsers_DGZrC",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Users",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "VendorUsers",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
       "fieldName" : "violationsesForModifiedBy",
       "mappings" : [ {
         "sourceColumn" : "ID",
@@ -17690,751 +18720,6 @@
       "sourceTable" : "Users",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Violations",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "vendorUserses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "UserId"
-      } ],
-      "name" : "FK_Users_TO_VendorUsers_DGZrC",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "Users",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "VendorUsers",
-      "virtual" : false
-    } ],
-    "schema" : "cx2",
-    "type" : "TABLE"
-  }, {
-    "catalog" : "cx2",
-    "columns" : [ {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "feeId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "FeeId",
-      "nullable" : true,
-      "oldName" : "FeeId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "userId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "UserId",
-      "nullable" : true,
-      "oldName" : "UserId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    } ],
-    "constraints" : [ {
-      "columns" : [ "FeeId", "UserId" ],
-      "composite" : true,
-      "name" : "UK_MyCart_FeeId_UserId",
-      "type" : "UNIQUE",
-      "virtual" : false
-    } ],
-    "entityName" : "MyCart",
-    "fullyQualifiedName" : "com.civicxpress.cx2.MyCart",
-    "name" : "MyCart",
-    "oldName" : "MyCart",
-    "primaryKey" : {
-      "columns" : [ "ID" ],
-      "composite" : false,
-      "generator" : {
-        "generatorType" : "identity",
-        "generatorValue" : null
-      },
-      "name" : "PK__MyCart__3214EC277078EC1C",
-      "virtual" : false
-    },
-    "relations" : [ {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "fees",
-      "mappings" : [ {
-        "sourceColumn" : "FeeId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_MyCart_TO_Fees_FeeId_ID",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "MyCart",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Fees",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "users",
-      "mappings" : [ {
-        "sourceColumn" : "UserId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_MyCart_TO_Users_UserId_ID",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "MyCart",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Users",
-      "virtual" : false
-    } ],
-    "schema" : "cx2",
-    "type" : "TABLE"
-  }, {
-    "catalog" : "cx2",
-    "columns" : [ {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "viewName",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "ViewName",
-      "nullable" : true,
-      "oldName" : "ViewName",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "viewDescription",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "ViewDescription",
-      "nullable" : true,
-      "oldName" : "ViewDescription",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    } ],
-    "constraints" : [ ],
-    "entityName" : "StandardViews",
-    "fullyQualifiedName" : "com.civicxpress.cx2.StandardViews",
-    "name" : "StandardViews",
-    "oldName" : "StandardViews",
-    "primaryKey" : {
-      "columns" : [ "ID" ],
-      "composite" : false,
-      "generator" : {
-        "generatorType" : "identity",
-        "generatorValue" : null
-      },
-      "name" : "PK__Standard__3214EC277A841664",
-      "virtual" : false
-    },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "userViewPreferenceses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "PreferenceId"
-      } ],
-      "name" : "FK_UserViewPreferences_TRnEui",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "StandardViews",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "UserViewPreferences",
-      "virtual" : false
-    } ],
-    "schema" : "cx2",
-    "type" : "TABLE"
-  }, {
-    "catalog" : "cx2",
-    "columns" : [ {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "municipalityId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "MunicipalityId",
-      "nullable" : true,
-      "oldName" : "MunicipalityId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "subdivisionGuid",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "SubdivisionGuid",
-      "nullable" : true,
-      "oldName" : "SubdivisionGuid",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "subdivision",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "Subdivision",
-      "nullable" : true,
-      "oldName" : "Subdivision",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : "a"
-      },
-      "fieldName" : "subShortCode",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "SubShortCode",
-      "nullable" : true,
-      "oldName" : "SubShortCode",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    } ],
-    "constraints" : [ ],
-    "entityName" : "Subdivisions",
-    "fullyQualifiedName" : "com.civicxpress.cx2.Subdivisions",
-    "name" : "Subdivisions",
-    "oldName" : "Subdivisions",
-    "primaryKey" : {
-      "columns" : [ "ID" ],
-      "composite" : false,
-      "generator" : {
-        "generatorType" : "identity",
-        "generatorValue" : null
-      },
-      "name" : "PK__Subdivis__3214EC27F746907C",
-      "virtual" : false
-    },
-    "relations" : [ {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "municipalities",
-      "mappings" : [ {
-        "sourceColumn" : "MunicipalityId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_Municipalities_TO_Sub5J3KK",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "Subdivisions",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Municipalities",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "gisrecordses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "SubdivisionId"
-      } ],
-      "name" : "FK_Subdivisions_TO_GISReIdY6C",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "Subdivisions",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "GISRecords",
-      "virtual" : false
-    } ],
-    "schema" : "cx2",
-    "type" : "TABLE"
-  }, {
-    "catalog" : "cx2",
-    "columns" : [ {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "userId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "UserId",
-      "nullable" : false,
-      "oldName" : "UserId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "token",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "Token",
-      "nullable" : false,
-      "oldName" : "Token",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "expirationDate",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "date",
-      "length" : 0,
-      "name" : "ExpirationDate",
-      "nullable" : false,
-      "oldName" : "ExpirationDate",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "date",
-      "unique" : false
-    } ],
-    "constraints" : [ ],
-    "entityName" : "UserPasswordResetTokens",
-    "fullyQualifiedName" : "com.civicxpress.cx2.UserPasswordResetTokens",
-    "name" : "UserPasswordResetTokens",
-    "oldName" : "UserPasswordResetTokens",
-    "primaryKey" : {
-      "columns" : [ "ID" ],
-      "composite" : false,
-      "generator" : {
-        "generatorType" : "identity",
-        "generatorValue" : null
-      },
-      "name" : "PK__UserPass__3214EC279DF66F1F",
-      "virtual" : false
-    },
-    "relations" : [ {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "users",
-      "mappings" : [ {
-        "sourceColumn" : "UserId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_UserPasswordResetTokeDFFzi",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "UserPasswordResetTokens",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Users",
-      "virtual" : false
-    } ],
-    "schema" : "cx2",
-    "type" : "TABLE"
-  }, {
-    "catalog" : "cx2",
-    "columns" : [ {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "userId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "UserId",
-      "nullable" : true,
-      "oldName" : "UserId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "municipalityId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "MunicipalityId",
-      "nullable" : true,
-      "oldName" : "MunicipalityId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "dateSubscribed",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "timestamp",
-      "length" : 0,
-      "name" : "DateSubscribed",
-      "nullable" : true,
-      "oldName" : "DateSubscribed",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "timestamp",
-      "unique" : false
-    } ],
-    "constraints" : [ {
-      "columns" : [ "MunicipalityId", "UserId" ],
-      "composite" : true,
-      "name" : "UK_UserSubscriptions_Munppet9",
-      "type" : "UNIQUE",
-      "virtual" : false
-    } ],
-    "entityName" : "UserSubscriptions",
-    "fullyQualifiedName" : "com.civicxpress.cx2.UserSubscriptions",
-    "name" : "UserSubscriptions",
-    "oldName" : "UserSubscriptions",
-    "primaryKey" : {
-      "columns" : [ "ID" ],
-      "composite" : false,
-      "generator" : {
-        "generatorType" : "identity",
-        "generatorValue" : null
-      },
-      "name" : "PK__UserSubs__3214EC27615FFA49",
-      "virtual" : false
-    },
-    "relations" : [ {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "municipalities",
-      "mappings" : [ {
-        "sourceColumn" : "MunicipalityId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_Municipalities_TO_UseigTh3",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "UserSubscriptions",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Municipalities",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "users",
-      "mappings" : [ {
-        "sourceColumn" : "UserId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_Users_TO_UserSubscripzZqBQ",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "UserSubscriptions",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Users",
       "virtual" : false
     } ],
     "schema" : "cx2",
@@ -19312,6 +19597,305 @@
         "updatable" : true,
         "defaultValue" : ""
       },
+      "fieldName" : "userId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "UserId",
+      "nullable" : false,
+      "oldName" : "UserId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "token",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "Token",
+      "nullable" : false,
+      "oldName" : "Token",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "expirationDate",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "date",
+      "length" : 0,
+      "name" : "ExpirationDate",
+      "nullable" : false,
+      "oldName" : "ExpirationDate",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "date",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "UserPasswordResetTokens",
+    "fullyQualifiedName" : "com.civicxpress.cx2.UserPasswordResetTokens",
+    "name" : "UserPasswordResetTokens",
+    "oldName" : "UserPasswordResetTokens",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__UserPass__3214EC279DF66F1F",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "users",
+      "mappings" : [ {
+        "sourceColumn" : "UserId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_UserPasswordResetTokeDFFzi",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "UserPasswordResetTokens",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "userId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "UserId",
+      "nullable" : true,
+      "oldName" : "UserId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "municipalityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "MunicipalityId",
+      "nullable" : true,
+      "oldName" : "MunicipalityId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "dateSubscribed",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "timestamp",
+      "length" : 0,
+      "name" : "DateSubscribed",
+      "nullable" : true,
+      "oldName" : "DateSubscribed",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "timestamp",
+      "unique" : false
+    } ],
+    "constraints" : [ {
+      "columns" : [ "MunicipalityId", "UserId" ],
+      "composite" : true,
+      "name" : "UK_UserSubscriptions_Munppet9",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
+    "entityName" : "UserSubscriptions",
+    "fullyQualifiedName" : "com.civicxpress.cx2.UserSubscriptions",
+    "name" : "UserSubscriptions",
+    "oldName" : "UserSubscriptions",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__UserSubs__3214EC27615FFA49",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "municipalities",
+      "mappings" : [ {
+        "sourceColumn" : "MunicipalityId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_Municipalities_TO_UseigTh3",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "UserSubscriptions",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Municipalities",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "users",
+      "mappings" : [ {
+        "sourceColumn" : "UserId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_Users_TO_UserSubscripzZqBQ",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "UserSubscriptions",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
       "fieldName" : "municipalityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -19812,196 +20396,6 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "stateName",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "StateName",
-      "nullable" : true,
-      "oldName" : "StateName",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    } ],
-    "constraints" : [ ],
-    "entityName" : "States",
-    "fullyQualifiedName" : "com.civicxpress.cx2.States",
-    "name" : "States",
-    "oldName" : "States",
-    "primaryKey" : {
-      "columns" : [ "ID" ],
-      "composite" : false,
-      "generator" : {
-        "generatorType" : "identity",
-        "generatorValue" : null
-      },
-      "name" : "PK__States__3214EC270A0E39C7",
-      "virtual" : false
-    },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "billingInformations",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "State"
-      } ],
-      "name" : "FK_BillingInformation_TO4qvXe",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "States",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "BillingInformation",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "gisrecordses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "StateId"
-      } ],
-      "name" : "FK_States_TO_GISRecords_lSctW",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "States",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "GISRecords",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "giscontactses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "StateId"
-      } ],
-      "name" : "FK_GISContacts_TO_StatesMyTHT",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "States",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "GISContacts",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "globalSettingses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "CXState"
-      } ],
-      "name" : "FK_GlobalSettings_TO_StalnfDT",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "States",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "GlobalSettings",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "municipalitieses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "StateId"
-      } ],
-      "name" : "FK_States_TO_MunicipalitbKcZP",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "States",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Municipalities",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "userses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "StateId"
-      } ],
-      "name" : "FK_States_TO_Users_ID_StateId",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "States",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Users",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "vendors",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "StateId"
-      } ],
-      "name" : "FK_States_TO_Vendor_ID_SxuzXA",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "States",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Vendor",
-      "virtual" : false
-    } ],
-    "schema" : "cx2",
-    "type" : "TABLE"
-  }, {
-    "catalog" : "cx2",
-    "columns" : [ {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
@@ -20252,94 +20646,6 @@
       "sourceTable" : "VendorAdmins",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Vendor",
-      "virtual" : false
-    } ],
-    "schema" : "cx2",
-    "type" : "TABLE"
-  }, {
-    "catalog" : "cx2",
-    "columns" : [ {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "licenseType",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "LicenseType",
-      "nullable" : true,
-      "oldName" : "LicenseType",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    } ],
-    "constraints" : [ ],
-    "entityName" : "VendorLicenseTypes",
-    "fullyQualifiedName" : "com.civicxpress.cx2.VendorLicenseTypes",
-    "name" : "VendorLicenseTypes",
-    "oldName" : "VendorLicenseTypes",
-    "primaryKey" : {
-      "columns" : [ "ID" ],
-      "composite" : false,
-      "generator" : {
-        "generatorType" : "identity",
-        "generatorValue" : null
-      },
-      "name" : "PK__VendorLi__3214EC277AEBDDB5",
-      "virtual" : false
-    },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "vendorLicenseses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "LicensesTypeId"
-      } ],
-      "name" : "FK_VendorLicenseTypes_TOdtvyu",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "VendorLicenseTypes",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "VendorLicenses",
       "virtual" : false
     } ],
     "schema" : "cx2",
@@ -20717,6 +21023,167 @@
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "vendorId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "VendorId",
+      "nullable" : true,
+      "oldName" : "VendorId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "userId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "UserId",
+      "nullable" : true,
+      "oldName" : "UserId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "joiningDate",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "date",
+      "length" : 0,
+      "name" : "JoiningDate",
+      "nullable" : true,
+      "oldName" : "JoiningDate",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "date",
+      "unique" : false
+    } ],
+    "constraints" : [ {
+      "columns" : [ "VendorId", "UserId" ],
+      "composite" : true,
+      "name" : "UK_VendorUsers_VendorId_8TnR0",
+      "type" : "UNIQUE",
+      "virtual" : false
+    } ],
+    "entityName" : "VendorUsers",
+    "fullyQualifiedName" : "com.civicxpress.cx2.VendorUsers",
+    "name" : "VendorUsers",
+    "oldName" : "VendorUsers",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null
+      },
+      "name" : "PK__VendorUs__3214EC27B20D0B7F",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "users",
+      "mappings" : [ {
+        "sourceColumn" : "UserId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_Users_TO_VendorUsers_DGZrC",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "VendorUsers",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "vendor",
+      "mappings" : [ {
+        "sourceColumn" : "VendorId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_Vendor_TO_VendorUserss3HfL",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "VendorUsers",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Vendor",
+      "virtual" : false
+    } ],
+    "schema" : "cx2",
+    "type" : "TABLE"
+  }, {
+    "catalog" : "cx2",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
         "defaultValue" : null
       },
       "fieldName" : "violationId",
@@ -21059,7 +21526,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : false,
+      "partOfAnyRelation" : true,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -21075,65 +21542,15 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "vendorId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "VendorId",
-      "nullable" : true,
-      "oldName" : "VendorId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "userId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "UserId",
-      "nullable" : true,
-      "oldName" : "UserId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : ""
-      },
-      "fieldName" : "joiningDate",
+      "fieldName" : "licenseType",
       "foreignKey" : false,
       "generatorType" : "assigned",
       "generatorValue" : null,
-      "javaType" : "date",
-      "length" : 0,
-      "name" : "JoiningDate",
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "LicenseType",
       "nullable" : true,
-      "oldName" : "JoiningDate",
+      "oldName" : "LicenseType",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
@@ -21141,20 +21558,14 @@
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
-      "sqlType" : "date",
+      "sqlType" : "string",
       "unique" : false
     } ],
-    "constraints" : [ {
-      "columns" : [ "VendorId", "UserId" ],
-      "composite" : true,
-      "name" : "UK_VendorUsers_VendorId_8TnR0",
-      "type" : "UNIQUE",
-      "virtual" : false
-    } ],
-    "entityName" : "VendorUsers",
-    "fullyQualifiedName" : "com.civicxpress.cx2.VendorUsers",
-    "name" : "VendorUsers",
-    "oldName" : "VendorUsers",
+    "constraints" : [ ],
+    "entityName" : "VendorLicenseTypes",
+    "fullyQualifiedName" : "com.civicxpress.cx2.VendorLicenseTypes",
+    "name" : "VendorLicenseTypes",
+    "oldName" : "VendorLicenseTypes",
     "primaryKey" : {
       "columns" : [ "ID" ],
       "composite" : false,
@@ -21162,42 +21573,25 @@
         "generatorType" : "identity",
         "generatorValue" : null
       },
-      "name" : "PK__VendorUs__3214EC27B20D0B7F",
+      "name" : "PK__VendorLi__3214EC277AEBDDB5",
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "users",
+      "fieldName" : "vendorLicenseses",
       "mappings" : [ {
-        "sourceColumn" : "UserId",
-        "targetColumn" : "ID"
+        "sourceColumn" : "ID",
+        "targetColumn" : "LicensesTypeId"
       } ],
-      "name" : "FK_Users_TO_VendorUsers_DGZrC",
-      "primary" : true,
+      "name" : "FK_VendorLicenseTypes_TOdtvyu",
+      "primary" : false,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "VendorUsers",
+      "sourceTable" : "VendorLicenseTypes",
       "targetColumnsUniqueKey" : false,
-      "targetTable" : "Users",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "vendor",
-      "mappings" : [ {
-        "sourceColumn" : "VendorId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "FK_Vendor_TO_VendorUserss3HfL",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "VendorUsers",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "Vendor",
+      "targetTable" : "VendorLicenses",
       "virtual" : false
     } ],
     "schema" : "cx2",

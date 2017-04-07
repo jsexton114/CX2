@@ -40,6 +40,7 @@ import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.MunicipalityGroupMembers;
 import com.civicxpress.cx2.MyCart;
+import com.civicxpress.cx2.PaymentHistory;
 import com.civicxpress.cx2.ProjectForms;
 import com.civicxpress.cx2.ProjectGisrecords;
 import com.civicxpress.cx2.ProjectSharedWith;
@@ -161,6 +162,10 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.UserPasswordResetTokensService")
 	private UserPasswordResetTokensService userPasswordResetTokensService;
+
+    @Autowired
+	@Qualifier("cx2.PaymentHistoryService")
+	private PaymentHistoryService paymentHistoryService;
 
     @Autowired
 	@Qualifier("cx2.ProjectSharedWithService")
@@ -375,11 +380,27 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getPaymentHistories() != null) {
+            for(PaymentHistory paymentHistorie : usersCreated.getPaymentHistories()) {
+                paymentHistorie.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child PaymentHistory with information: {}", paymentHistorie);
+                paymentHistoryService.create(paymentHistorie);
+            }
+        }
+
         if(usersCreated.getProjectFormses() != null) {
             for(ProjectForms projectFormse : usersCreated.getProjectFormses()) {
                 projectFormse.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child ProjectForms with information: {}", projectFormse);
                 projectFormsService.create(projectFormse);
+            }
+        }
+
+        if(usersCreated.getProjectGisrecordses() != null) {
+            for(ProjectGisrecords projectGisrecordse : usersCreated.getProjectGisrecordses()) {
+                projectGisrecordse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child ProjectGisrecords with information: {}", projectGisrecordse);
+                projectGisrecordsService.create(projectGisrecordse);
             }
         }
 
@@ -399,11 +420,19 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getProjectGisrecordses() != null) {
-            for(ProjectGisrecords projectGisrecordse : usersCreated.getProjectGisrecordses()) {
-                projectGisrecordse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child ProjectGisrecords with information: {}", projectGisrecordse);
-                projectGisrecordsService.create(projectGisrecordse);
+        if(usersCreated.getProjectTasksesForAssignedTo() != null) {
+            for(ProjectTasks projectTasksesForAssignedTo : usersCreated.getProjectTasksesForAssignedTo()) {
+                projectTasksesForAssignedTo.setUsersByAssignedTo(usersCreated);
+                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForAssignedTo);
+                projectTasksService.create(projectTasksesForAssignedTo);
+            }
+        }
+
+        if(usersCreated.getProjectTasksesForCreatedBy() != null) {
+            for(ProjectTasks projectTasksesForCreatedBy : usersCreated.getProjectTasksesForCreatedBy()) {
+                projectTasksesForCreatedBy.setUsersByCreatedBy(usersCreated);
+                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForCreatedBy);
+                projectTasksService.create(projectTasksesForCreatedBy);
             }
         }
 
@@ -420,22 +449,6 @@ public class UsersServiceImpl implements UsersService {
                 projectSharedWithsForProjectSharedWithUser.setUsersByProjectSharedWithUser(usersCreated);
                 LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWithsForProjectSharedWithUser);
                 projectSharedWithService.create(projectSharedWithsForProjectSharedWithUser);
-            }
-        }
-
-        if(usersCreated.getProjectTasksesForAssignedTo() != null) {
-            for(ProjectTasks projectTasksesForAssignedTo : usersCreated.getProjectTasksesForAssignedTo()) {
-                projectTasksesForAssignedTo.setUsersByAssignedTo(usersCreated);
-                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForAssignedTo);
-                projectTasksService.create(projectTasksesForAssignedTo);
-            }
-        }
-
-        if(usersCreated.getProjectTasksesForCreatedBy() != null) {
-            for(ProjectTasks projectTasksesForCreatedBy : usersCreated.getProjectTasksesForCreatedBy()) {
-                projectTasksesForCreatedBy.setUsersByCreatedBy(usersCreated);
-                LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTasksesForCreatedBy);
-                projectTasksService.create(projectTasksesForCreatedBy);
             }
         }
 
@@ -503,6 +516,14 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getVendorUserses() != null) {
+            for(VendorUsers vendorUserse : usersCreated.getVendorUserses()) {
+                vendorUserse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child VendorUsers with information: {}", vendorUserse);
+                vendorUsersService.create(vendorUserse);
+            }
+        }
+
         if(usersCreated.getViolationsesForModifiedBy() != null) {
             for(Violations violationsesForModifiedBy : usersCreated.getViolationsesForModifiedBy()) {
                 violationsesForModifiedBy.setUsersByModifiedBy(usersCreated);
@@ -516,14 +537,6 @@ public class UsersServiceImpl implements UsersService {
                 violationsesForCreatedBy.setUsersByCreatedBy(usersCreated);
                 LOGGER.debug("Creating a new child Violations with information: {}", violationsesForCreatedBy);
                 violationsService.create(violationsesForCreatedBy);
-            }
-        }
-
-        if(usersCreated.getVendorUserses() != null) {
-            for(VendorUsers vendorUserse : usersCreated.getVendorUserses()) {
-                vendorUserse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child VendorUsers with information: {}", vendorUserse);
-                vendorUsersService.create(vendorUserse);
             }
         }
         return usersCreated;
@@ -860,6 +873,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<PaymentHistory> findAssociatedPaymentHistories(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated paymentHistories");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return paymentHistoryService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<ProjectForms> findAssociatedProjectFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectFormses");
 
@@ -867,6 +891,17 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("users.id = '" + id + "'");
 
         return projectFormsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectGisrecordses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return projectGisrecordsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -893,13 +928,24 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<ProjectGisrecords> findAssociatedProjectGisrecordses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectGisrecordses");
+    public Page<ProjectTasks> findAssociatedProjectTasksesForAssignedTo(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTasksesForAssignedTo");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
+        queryBuilder.append("usersByAssignedTo.id = '" + id + "'");
 
-        return projectGisrecordsService.findAll(queryBuilder.toString(), pageable);
+        return projectTasksService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectTasks> findAssociatedProjectTasksesForCreatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectTasksesForCreatedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
+
+        return projectTasksService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -922,28 +968,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersByProjectSharedWithUser.id = '" + id + "'");
 
         return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<ProjectTasks> findAssociatedProjectTasksesForAssignedTo(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectTasksesForAssignedTo");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByAssignedTo.id = '" + id + "'");
-
-        return projectTasksService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<ProjectTasks> findAssociatedProjectTasksesForCreatedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectTasksesForCreatedBy");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
-
-        return projectTasksService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1036,6 +1060,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorUserses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return vendorUsersService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Violations> findAssociatedViolationsesForModifiedBy(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated violationsesForModifiedBy");
 
@@ -1054,17 +1089,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
 
         return violationsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated vendorUserses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return vendorUsersService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
@@ -1281,6 +1305,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setUserPasswordResetTokensService(UserPasswordResetTokensService service) {
         this.userPasswordResetTokensService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service PaymentHistoryService instance
+	 */
+	protected void setPaymentHistoryService(PaymentHistoryService service) {
+        this.paymentHistoryService = service;
     }
 
     /**
