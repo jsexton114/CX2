@@ -1,0 +1,66 @@
+<wm-page data-ng-controller="MunicipalityCheckOutPageController" pagetitle="Municipality Check Out" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn1">
+                        <wm-breadcrumb dataset="bind:Variables.Breadcrumb.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
+                        <wm-panel iconclass="wi wi-attach-money" autoclose="outsideClick" name="panelCheckOut" title="Check out" class="panel-primary">
+                            <wm-layoutgrid name="layoutgrid2">
+                                <wm-gridrow name="gridrow4" padding="1em unset">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn4">
+                                        <wm-label padding="unset 0.5em" name="label5" caption="bind:'Total: $'+Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart" class="h1"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow5" padding=".2em unset">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                                        <wm-label padding="unset 0.5em" name="label6" caption="Payment Type" class="h2"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow6" padding=".2em unset 1em unset">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn8">
+                                        <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:Variables.stvPaymentOptions.dataSet[0].paymentType"
+                                        usekeys="false"></wm-radioset>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow7" padding=".2em unset">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn10">
+                                        <wm-composite name="compositePaymentNumber" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check')||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card')">
+                                            <wm-label class="col-md-3 control-label" name="labelPaymentNumber" caption="bind:Widgets.radiosetPaymentOptions.datavalue=='Check'?'Check Number':'Transaction ID'"></wm-label>
+                                            <wm-container class="col-md-9" name="container2">
+                                                <wm-text name="textPaymentNumber"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow8" padding="1em unset">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn12">
+                                        <wm-composite name="compositeComments">
+                                            <wm-label class="col-md-3 control-label" name="labelComments" caption="Comments"></wm-label>
+                                            <wm-container class="col-md-9" name="container3">
+                                                <wm-textarea name="textareaComments" placeholder="Place Your Comments"></wm-textarea>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow9">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn14" horizontalalign="right">
+                                        <wm-button class="btn-default btn-primary" caption="Submit" type="button" margin="unset 0.5em" name="buttonSubmit"></wm-button>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

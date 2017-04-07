@@ -2946,10 +2946,10 @@
     "name" : "FeesInCartByUser",
     "description" : "FeesInCartByUser",
     "version" : "V2",
-    "queryString" : "from MyCart where userId=:user and fees.paidStatus='Unpaid'",
-    "countQueryString" : "select count(*) from MyCart where userId=:user and fees.paidStatus='Unpaid'",
+    "queryString" : "select id as id,\n       fees.masterForms.formTitle as formTitle,\n       fees.masterForms.formGuid as formGuid,\n       fees.masterForms.formTypes.formType as formType,\n       fees.masterForms.formTypes.municipalities.municipalityName\n       as municipalityName,\n       fees.masterForms.giscontacts.gisrecords.fullAddress as \n       fullAddress,\n       fees.feeType as feeType,\n       fees.amount as amount\nfrom MyCart \nwhere userId=:user and fees.paidStatus='Unpaid'",
+    "countQueryString" : null,
     "nativeSql" : false,
-    "fetchCount" : true,
+    "fetchCount" : false,
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "user",
@@ -2965,9 +2965,82 @@
       "method" : "GET"
     },
     "response" : {
-      "typeRef" : "com.civicxpress.cx2.MyCart",
-      "returns" : "ENTITY",
-      "responseType" : "PAGINATED"
+      "typeRef" : "com.civicxpress.cx2.models.query.FeesInCartByUserResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "id",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "formTitle",
+        "fieldName" : "formTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formGuid",
+        "fieldName" : "formGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formType",
+        "fieldName" : "formType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "municipalityName",
+        "fieldName" : "municipalityName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fullAddress",
+        "fieldName" : "fullAddress",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "feeType",
+        "fieldName" : "feeType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "amount",
+        "fieldName" : "amount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigDecimal",
+          "list" : false
+        }
+      } ]
     }
   },
   "FetchRolesForUserWithMunicipality" : {
@@ -11270,6 +11343,44 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "byte[]",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "sumOfFeesInUsersCart" : {
+    "name" : "sumOfFeesInUsersCart",
+    "description" : "sumOfFeesInUsersCart",
+    "version" : "V2",
+    "queryString" : "select sum(fees.amount) as sumOfFeesInCart from MyCart where userId=:user and fees.paidStatus='Unpaid'",
+    "countQueryString" : "select count(*)  from MyCart where userId=:user and fees.paidStatus='Unpaid'",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "user",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.SumOfFeesInUsersCartResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "sumOfFeesInCart",
+        "fieldName" : "sumOfFeesInCart",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigDecimal",
           "list" : false
         }
       } ]

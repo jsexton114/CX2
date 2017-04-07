@@ -1,0 +1,74 @@
+{
+  "Breadcrumb" : {
+    "_id" : "wm-Breadcrumb-wm.Variable-1491545834973",
+    "name" : "Breadcrumb",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Home",
+      "icon" : "glyphicon glyphicon-home",
+      "link" : "#/Main"
+    }, {
+      "label" : "My Cart",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/MyCart"
+    }, {
+      "label" : "CheckOut",
+      "icon" : "wi wi-ellipsis-v",
+      "link" : "#/MunicipalityCheckOut"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "stvPaymentOptions" : {
+    "_id" : "wm-stvPaymentOptions-wm.Variable-1491546466742",
+    "name" : "stvPaymentOptions",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "paymentType" : "Cash"
+    }, {
+      "paymentType" : "Check"
+    }, {
+      "paymentType" : "Credit Card"
+    }, {
+      "paymentType" : "Account Credit"
+    }, {
+      "paymentType" : "Offline Credit Card"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "svSumOfFeesInUsersCart" : {
+    "_id" : "wm-svSumOfFeesInUsersCart-wm.ServiceVariable-1491548183610",
+    "name" : "svSumOfFeesInUsersCart",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.SumOfFeesInUsersCartResponse",
+    "service" : "cx2",
+    "operation" : "executeSumOfFeesInUsersCart",
+    "operationId" : "QueryExecutionController_executeSumOfFeesInUsersCart",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  }
+}

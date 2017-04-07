@@ -35,7 +35,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.svFeesInCartByUser.invoke();Variables.svCartItemIds.invoke();Variables.nvDeleteFromCartSuccess.invoke()",
+    "onSuccess" : "Variables.svFeesInCartOfUser.invoke();Variables.svCartItemIds.invoke();Variables.nvDeleteFromCartSuccess.invoke()",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
@@ -482,7 +482,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -507,11 +507,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Banned",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         }, {
           "fieldName" : "password",
@@ -552,6 +553,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -622,9 +636,9 @@
     } ],
     "operation" : "toast"
   },
-  "svFeesInCartByUser" : {
+  "svFeesInCartOfUser" : {
     "_id" : "wm-svFeesInCartByUser-wm.ServiceVariable-1489057728480",
-    "name" : "svFeesInCartByUser",
+    "name" : "svFeesInCartOfUser",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -632,7 +646,7 @@
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "com.civicxpress.cx2.MyCart",
+    "type" : "com.civicxpress.cx2.models.query.FeesInCartByUserResponse",
     "service" : "cx2",
     "operation" : "executeFeesInCartByUser",
     "operationId" : "QueryExecutionController_executeFeesInCartByUser",
@@ -640,9 +654,37 @@
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : true,
-    "maxResults" : 20,
+    "maxResults" : 10,
     "designMaxResults" : 10,
     "onSuccess" : "svFeesInCartByUseronSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
+  "svSumOfFeesInUsersCart" : {
+    "_id" : "wm-svSumOfFeesInUsersCart-wm.ServiceVariable-1491548842832",
+    "name" : "svSumOfFeesInUsersCart",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.SumOfFeesInUsersCartResponse",
+    "service" : "cx2",
+    "operation" : "executeSumOfFeesInUsersCart",
+    "operationId" : "QueryExecutionController_executeSumOfFeesInUsersCart",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",

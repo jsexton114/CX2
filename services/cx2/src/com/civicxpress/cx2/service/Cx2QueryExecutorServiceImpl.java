@@ -32,7 +32,6 @@ import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
-import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
@@ -575,6 +574,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public SumOfFeesInUsersCartResponse executeSumOfFeesInUsersCart(Integer user) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQuery("sumOfFeesInUsersCart", params, SumOfFeesInUsersCartResponse.class);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<CountOfCompnayFormsByVendorIdResponse> executeCountOfCompnayFormsByVendorId(Boolean closed, Integer vendorId, Pageable pageable) {
         Map params = new HashMap(2);
 
@@ -979,12 +988,12 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MyCart> executeFeesInCartByUser(Integer user, Pageable pageable) {
+    public Page<FeesInCartByUserResponse> executeFeesInCartByUser(Integer user, Pageable pageable) {
         Map params = new HashMap(1);
 
         params.put("user", user);
 
-        return queryExecutor.executeNamedQuery("FeesInCartByUser", params, MyCart.class, pageable);
+        return queryExecutor.executeNamedQuery("FeesInCartByUser", params, FeesInCartByUserResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -994,7 +1003,7 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
         params.put("user", user);
 
-        return queryExecutor.exportNamedQueryData("FeesInCartByUser", params, exportType, MyCart.class, pageable);
+        return queryExecutor.exportNamedQueryData("FeesInCartByUser", params, exportType, FeesInCartByUserResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

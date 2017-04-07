@@ -399,6 +399,20 @@ group by FeeType) wmTempTable
     <query-param name="isActive" type="java.lang.Boolean"/>
     </sql-query>
 
+    <query name="sumOfFeesInUsersCart">
+        <![CDATA[
+        select sum(fees.amount) as sumOfFeesInCart from MyCart where userId=:user and fees.paidStatus='Unpaid'
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </query>
+
+    <query name="sumOfFeesInUsersCart__count">
+        <![CDATA[
+        select count(*)  from MyCart where userId=:user and fees.paidStatus='Unpaid'
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="CountOfCompnayFormsByVendorId">
         <![CDATA[
         select count(*) as count from MasterForms where Closed=:closed and  FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId )
@@ -714,14 +728,18 @@ where formTypeId=:form
 
     <query name="FeesInCartByUser">
         <![CDATA[
-        from MyCart where userId=:user and fees.paidStatus='Unpaid'
-        ]]>
-    <query-param name="user" type="java.lang.Integer"/>
-    </query>
-
-    <query name="FeesInCartByUser__count">
-        <![CDATA[
-        select count(*) from MyCart where userId=:user and fees.paidStatus='Unpaid'
+        select id as id,
+       fees.masterForms.formTitle as formTitle,
+       fees.masterForms.formGuid as formGuid,
+       fees.masterForms.formTypes.formType as formType,
+       fees.masterForms.formTypes.municipalities.municipalityName
+       as municipalityName,
+       fees.masterForms.giscontacts.gisrecords.fullAddress as 
+       fullAddress,
+       fees.feeType as feeType,
+       fees.amount as amount
+from MyCart 
+where userId=:user and fees.paidStatus='Unpaid'
         ]]>
     <query-param name="user" type="java.lang.Integer"/>
     </query>

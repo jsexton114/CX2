@@ -45,7 +45,6 @@ import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
-import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
@@ -515,6 +514,16 @@ public class QueryExecutionController {
         return queryService.exportFormsByCategory(exportType, formCategory, isActive, pageable);
     }
 
+    @RequestMapping(value = "/queries/sumOfFeesInUsersCart", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "sumOfFeesInUsersCart")
+    public SumOfFeesInUsersCartResponse executeSumOfFeesInUsersCart(@RequestParam(value = "user") Integer user) {
+        LOGGER.debug("Executing named query: sumOfFeesInUsersCart");
+        SumOfFeesInUsersCartResponse _result = queryService.executeSumOfFeesInUsersCart(user);
+        LOGGER.debug("got the result for named query: sumOfFeesInUsersCart, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/CountOfCompnayFormsByVendorId", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CountOfCompnayFormsByVendorId")
@@ -874,9 +883,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/FeesInCartByUser", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "FeesInCartByUser")
-    public Page<MyCart> executeFeesInCartByUser(@RequestParam(value = "user") Integer user, Pageable pageable) {
+    public Page<FeesInCartByUserResponse> executeFeesInCartByUser(@RequestParam(value = "user") Integer user, Pageable pageable) {
         LOGGER.debug("Executing named query: FeesInCartByUser");
-        Page<MyCart> _result = queryService.executeFeesInCartByUser(user, pageable);
+        Page<FeesInCartByUserResponse> _result = queryService.executeFeesInCartByUser(user, pageable);
         LOGGER.debug("got the result for named query: FeesInCartByUser, result:{}", _result);
         return _result;
     }

@@ -22,7 +22,6 @@ import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
-import com.civicxpress.cx2.MyCart;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
@@ -125,6 +124,8 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportFormsByCategory(ExportType exportType, Integer formCategory, Boolean isActive, Pageable pageable);
 
+    SumOfFeesInUsersCartResponse executeSumOfFeesInUsersCart(Integer user);
+
     Page<CountOfCompnayFormsByVendorIdResponse> executeCountOfCompnayFormsByVendorId(Boolean closed, Integer vendorId, Pageable pageable);
 
     Downloadable exportCountOfCompnayFormsByVendorId(ExportType exportType, Boolean closed, Integer vendorId, Pageable pageable);
@@ -199,7 +200,7 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportUserCount(ExportType exportType, Pageable pageable);
 
-    Page<MyCart> executeFeesInCartByUser(Integer user, Pageable pageable);
+    Page<FeesInCartByUserResponse> executeFeesInCartByUser(Integer user, Pageable pageable);
 
     Downloadable exportFeesInCartByUser(ExportType exportType, Integer user, Pageable pageable);
 
