@@ -482,12 +482,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "AllowOfflineCC",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -1035,19 +1035,6 @@
         "defaultValue" : "false",
         "scale" : 0
       }, {
-        "fieldName" : "trackViolations",
-        "type" : "boolean",
-        "fullyQualifiedType" : "boolean",
-        "columnName" : "TrackViolations",
-        "isPrimaryKey" : false,
-        "notNull" : true,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "false",
-        "scale" : 0
-      }, {
         "fieldName" : "propertyType",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -1578,12 +1565,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "AllowOfflineCC",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -2148,12 +2135,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "AllowOfflineCC",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "true",
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "Municipalities",

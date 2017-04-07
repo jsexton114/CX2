@@ -467,7 +467,7 @@
                                         <wm-gridrow name="gridrow69">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn143">
                                                 <wm-grid title="" dataset="bind:Variables.FormHistoryData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                                                    <wm-grid-column binding="createdTime" caption="Date Created" type="timestamp" width="20%" generator="assigned" readonly="true" edit-widget-type="timestamp" show="true" filterwidget="text">{{row.getProperty('createdTime') | toLocalDateString:true}}</wm-grid-column>
+                                                    <wm-grid-column binding="createdTime" caption="Date Updated" type="timestamp" width="20%" generator="assigned" readonly="true" edit-widget-type="timestamp" show="true" filterwidget="text">{{row.getProperty('createdTime') | toLocalDateString}}</wm-grid-column>
                                                     <wm-grid-column binding="formStatusesByOldStatusId.status" caption="Previous Status" type="string" width="10%" generator="assigned"
                                                     readonly="true" edit-widget-type="text" show="true" related-entity-name="FormStatuses"></wm-grid-column>
                                                     <wm-grid-column binding="formStatusesByNewStatusId.status" caption="New Status" type="string" width="10%" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormStatuses"></wm-grid-column>
