@@ -39,7 +39,7 @@ public class MasterCases implements Serializable {
     @ServerDefinedProperty( value = VariableType.DATE, scopes = { Scope.INSERT })
     private Date dateCreated;
     private Integer createdBy;
-    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
+    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT, Scope.UPDATE })
     @Type(type = "DateTime")
     private LocalDateTime dateModified;
     private Integer modifiedBy;
@@ -71,7 +71,7 @@ public class MasterCases implements Serializable {
         this.caseTitle = caseTitle;
     }
 
-    @Column(name = "`RelatedInspectionGuid`", nullable = true, length = 255)
+    @Column(name = "`RelatedInspectionGuid`", nullable = true, length = 32)
     public String getRelatedInspectionGuid() {
         return this.relatedInspectionGuid;
     }

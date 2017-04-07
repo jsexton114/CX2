@@ -52,7 +52,7 @@ public class MasterInspections implements Serializable {
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime dateRequested;
-    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
+    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT, Scope.UPDATE })
     @Type(type = "DateTime")
     private LocalDateTime dateModified;
     private Integer assignedTo;
@@ -62,6 +62,7 @@ public class MasterInspections implements Serializable {
     private String inspectionZone;
     @Type(type = "DateTime")
     private LocalDateTime requestedFor;
+    private int id;
     private InspectionOutcome inspectionOutcome;
     private MasterForms masterForms;
     private Gisrecords gisrecords;
@@ -80,7 +81,7 @@ public class MasterInspections implements Serializable {
     @Id
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
     @GeneratedValue(generator = "generator")
-    @Column(name = "`InspectionGuid`", nullable = false, length = 255)
+    @Column(name = "`InspectionGuid`", nullable = false, length = 32)
     public String getInspectionGuid() {
         return this.inspectionGuid;
     }
@@ -240,6 +241,15 @@ public class MasterInspections implements Serializable {
 
     public void setRequestedFor(LocalDateTime requestedFor) {
         this.requestedFor = requestedFor;
+    }
+
+    @Column(name = "`ID`", nullable = false, scale = 0, precision = 10)
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

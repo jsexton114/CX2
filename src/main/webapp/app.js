@@ -65,11 +65,27 @@ Application.directive('sticky', ['$timeout', function($timeout) {
         restrict: 'CA',
         link: function(scope, elem, attrs) {
             $timeout(function() {
+                var wasSticky = false;
                 var $window = $(window);
+                var elWidth = elem.width();
                 var navTop = elem.offset().top;
 
                 $window.on('scroll', function() {
-                    elem.toggleClass('stuckTop', $window.scrollTop() > navTop);
+                    var isStickyTime = $window.scrollTop() > navTop;
+
+                    if (!isStickyTime || !wasSticky) {
+                        elWidth = elem.width();
+                    }
+
+                    if (isStickyTime) {
+                        elem.css('width', elWidth + 'px');
+                    } else {
+                        elem.css('width', '');
+                    }
+
+                    elem.toggleClass('stuckTop', isStickyTime);
+
+                    wasSticky = isStickyTime;
                 });
             });
         }

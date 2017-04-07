@@ -110,7 +110,7 @@ public class Violations implements Serializable {
         this.modifiedBy = modifiedBy;
     }
 
-    @Column(name = "`RelatedInspectionGuid`", nullable = true, length = 255)
+    @Column(name = "`RelatedInspectionGuid`", nullable = true, length = 32)
     public String getRelatedInspectionGuid() {
         return this.relatedInspectionGuid;
     }

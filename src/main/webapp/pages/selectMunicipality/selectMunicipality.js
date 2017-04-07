@@ -22,6 +22,10 @@ Application.$controller("selectMunicipalityPageController", ["$scope", function(
         var variable = $scope.pageParams.muniType === 'a' ? $scope.Variables.AdminsMunicipalities : ($scope.pageParams.muniType === 'e' ? $scope.Variables.EmployeesMunicipalities : $scope.Variables.StandardUserMunicipalities);
         var data = variable.dataSet;
 
+        if (!variable.dataSet.content) {
+            return null;
+        }
+
         $scope.muniCount = variable.dataSet.content.length;
 
         return (!!$scope.pageParams.municipalityId ? _.find(data.content, {

@@ -46,7 +46,7 @@ public class InspectionGis implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "`RelatedInspectionGuid`", nullable = true, length = 255)
+    @Column(name = "`RelatedInspectionGuid`", nullable = false, length = 32)
     public String getRelatedInspectionGuid() {
         return this.relatedInspectionGuid;
     }

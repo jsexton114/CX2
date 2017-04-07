@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Connection;
@@ -31,8 +31,8 @@ public class InspectionService {
 
     private static final Logger logger = LoggerFactory.getLogger(InspectionService.class);
 
-    @Autowired
-    private SecurityService securityService;
+//    @Autowired
+//    private SecurityService securityService;
 
     @Value("${cx2.url}")
     private String sqlUrl;
@@ -46,13 +46,60 @@ public class InspectionService {
     @Value("${cx2.password}")
     private String defaultSqlPassword;
 
-    public Long saveInspectionDesign() {
-        return 1L;
+    public Long saveInspectionDesign(Long municipalityId, String inspectionName) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	cx2Conn.setAutoCommit(false);
+        Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+        muniDbConn.setAutoCommit(false);
+    	Long newInspectionDesignId = null;
+        
+        try {
+        	String inspectionTableName = (DBUtils.getSqlSafeString(inspectionName) + DBUtils.selectOne(muniDbConn, "SELECT NEXT VALUE FOR DynamicFieldIndex as DynamicFieldIndex", null).getString("DynamicFieldIndex"));
+        	StringBuilder formTitlePrefix = new StringBuilder();
+        	String[] formTypeParts = inspectionName.trim().replaceAll("[^a-zA-Z0-9 ]|[\n]|[\r\n]", "").split(" ");
+        	for (int i = 0; i < formTypeParts.length; i++) {
+        		String formTypePart = formTypeParts[i];
+        		if (formTypePart.trim().isEmpty()) {
+        			continue;
+        		}
+        		
+        		formTitlePrefix.append(formTypePart.substring(0, 1).toUpperCase());
+        	}
+        	
+        	DBQueryParams inspectionCreateParams = new DBQueryParams();
+	        inspectionCreateParams.addString("inspectionName", inspectionName);
+	        inspectionCreateParams.addLong("municipalityId", municipalityId);
+	        inspectionCreateParams.addString("inspectionTableName", inspectionTableName);
+	        inspectionCreateParams.addString("titlePrefix", formTitlePrefix.toString());
+	        
+	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO InspectionDesign (InspectionDesignName, MunicipalityId, InspectionTableName, TitlePrefix) VALUES (:inspectionName, :municipalityId, :inspectionTableName, :titlePrefix)", inspectionCreateParams);
+	        
+	        newInspectionDesignId = DBUtils.selectOne(cx2Conn, "SELECT @@IDENTITY as inspectionId", null).getLong("inspectionId");
+	        inspectionCreateParams.addLong("newInspectionDesignId", newInspectionDesignId);
+	        
+	        DBUtils.simpleUpdateQuery(muniDbConn, "CREATE TABLE "+inspectionTableName+" ("
+	    			+"ID numeric(10) identity(1,1), "
+	            	+"InspectionGUID uniqueidentifier NOT NULL"
+	            	+")");
+	        
+	        cx2Conn.commit();
+	        muniDbConn.commit();
+        } catch (SQLException e) {
+        	cx2Conn.rollback();
+        	muniDbConn.rollback();
+        	logger.error(e.getLocalizedMessage());
+        	throw e;
+        } finally {
+            cx2Conn.close();
+            muniDbConn.close();
+        }
+        
+        return newInspectionDesignId;
     }
     
     public void scheduleInspection() {}
     
-    public void setInspectionStatus(String inspectionGuid, Long inspectionStatusId, String comments) {
+    public void setInspectionOutcome(String inspectionGuid, Long inspectionStatusId, String comments) {
         //
     }
     

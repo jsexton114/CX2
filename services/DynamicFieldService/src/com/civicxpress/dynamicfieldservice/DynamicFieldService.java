@@ -163,7 +163,7 @@ public class DynamicFieldService {
     		throw new SQLException("Invalid parent object type");
     	}
     	
-    	List<DBRow> formFieldsMetaData = DBUtils.selectQuery(cx2Conn, "SELECT FTF.FieldName as FieldName, FFT.SqlType as SqlType FROM FormTypeFields FTF, FormFieldTypes FFT WHERE FFT.ID=FTF."+parentObjectIdName+" AND FTF.FormTypeId=:parentObjectId", queryParams);
+    	List<DBRow> formFieldsMetaData = DBUtils.selectQuery(cx2Conn, "SELECT FTF.FieldName as FieldName, FFT.SqlType as SqlType FROM FormTypeFields FTF, FormFieldTypes FFT WHERE FFT.ID=FTF.FieldTypeId AND FTF."+parentObjectIdName+"=:parentObjectId", queryParams);
     	
     	Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
     	muniDbConn.setAutoCommit(false);

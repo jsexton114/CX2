@@ -34,6 +34,8 @@ public class InspectionController {
     }
 
     @RequestMapping(value = "/saveDynamicField", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public void saveDynamicField(@RequestParam(value = "inspectionDesignId", required = false) Long inspectionDesignId, @RequestParam(value = "label", required = false) String label, @RequestParam(value = "fieldTypeId", required = false) Long fieldTypeId, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues) throws SQLException {
         inspectionService.saveDynamicField(inspectionDesignId, label, fieldTypeId, displayOrder, required, defaultValue, helpText, possibleValues);
     }
@@ -46,8 +48,8 @@ public class InspectionController {
     @RequestMapping(value = "/saveInspectionDesign", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public Long saveInspectionDesign() {
-        return inspectionService.saveInspectionDesign();
+    public Long saveInspectionDesign(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "inspectionName", required = false) String inspectionName) throws SQLException {
+        return inspectionService.saveInspectionDesign(municipalityId, inspectionName);
     }
 
     @RequestMapping(value = "/scheduleInspection", method = RequestMethod.GET)
@@ -57,10 +59,8 @@ public class InspectionController {
         inspectionService.scheduleInspection();
     }
 
-    @RequestMapping(value = "/inspectionStatus", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public void setInspectionStatus(@RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "inspectionStatusId", required = false) Long inspectionStatusId, @RequestParam(value = "comments", required = false) String comments) {
-        inspectionService.setInspectionStatus(inspectionGuid, inspectionStatusId, comments);
+    @RequestMapping(value = "/inspectionOutcome", method = RequestMethod.PUT)
+    public void setInspectionOutcome(@RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "inspectionStatusId", required = false) Long inspectionStatusId, @RequestParam(value = "comments", required = false) String comments) {
+        inspectionService.setInspectionOutcome(inspectionGuid, inspectionStatusId, comments);
     }
 }

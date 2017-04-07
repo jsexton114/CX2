@@ -163,7 +163,7 @@ public class Fees implements Serializable {
         this.comments = comments;
     }
 
-    @Column(name = "`InspectionGuid`", nullable = true, length = 255)
+    @Column(name = "`InspectionGuid`", nullable = true, length = 32)
     public String getInspectionGuid() {
         return this.inspectionGuid;
     }
