@@ -397,32 +397,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "scheduleDateOnly",
-          "type" : "date",
-          "fullyQualifiedType" : "date",
-          "columnName" : "ScheduleDateOnly",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "scheduleDateAndTime",
-          "type" : "timestamp",
-          "fullyQualifiedType" : "timestamp",
-          "columnName" : "ScheduleDateAndTime",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "",
-          "scale" : 0
-        }, {
           "fieldName" : "titlePrefix",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -564,6 +538,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "scheduleDateOnly",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "ScheduleDateOnly",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "TRUE",
+          "scale" : 0
+        }, {
+          "fieldName" : "scheduleDateAndTime",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "ScheduleDateAndTime",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "FALSE",
           "scale" : 0
         } ]
       }, {
@@ -1394,6 +1394,34 @@
     } ],
     "operation" : "toast"
   },
+  "nocFieldDeleted" : {
+    "_id" : "wm-nocFieldDeleted-wm.NotificationVariable-1491594430847",
+    "name" : "nocFieldDeleted",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "<strong>Success</strong><br/>Field deleted successfully.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "stvAutoFeeTypes" : {
     "_id" : "wm-stvAutoFeeTypes-wm.Variable-1490983675102",
     "name" : "stvAutoFeeTypes",
@@ -1423,6 +1451,34 @@
     "type" : "string",
     "isList" : true,
     "saveInPhonegap" : false
+  },
+  "svDeleteDynamicField" : {
+    "_id" : "wm-svDeleteDynamicField-wm.ServiceVariable-1491594435655",
+    "name" : "svDeleteDynamicField",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "id",
+      "value" : "bind:Widgets.gridFields.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "boolean",
+    "service" : "cx2",
+    "operation" : "deleteFormTypeFields",
+    "operationId" : "FormTypeFieldsController_deleteFormTypeFields",
+    "operationType" : "delete",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.nocFieldDeleted.invoke();Variables.Cx2FormTypeFieldsData.listRecords()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "FormTypeFields"
   },
   "svGetCalculableFields" : {
     "_id" : "wm-svGetCalculableFields-wm.ServiceVariable-1490988130249",

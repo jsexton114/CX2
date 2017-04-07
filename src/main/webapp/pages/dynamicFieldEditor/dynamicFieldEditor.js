@@ -291,3 +291,10 @@ Application.$controller("gridPossibleValuesController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("dlgDeleteDynamicFieldController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

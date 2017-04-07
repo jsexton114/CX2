@@ -11,8 +11,8 @@
             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
             <wm-grid-action key="addNewRow" display-name="New Field" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Field" action="Widgets.dlgFormTypeField.open()" shortcutkey="" disabled="false"></wm-grid-action>
             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
-            <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.Cx2FormTypeFieldsData.dataSet.data.length > 1" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="Authenticated"
-            disabled="false"></wm-grid-row-action>
+            <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.Cx2FormTypeFieldsData.dataSet.data.length > 1" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dlgDeleteDynamicField.open()"
+            accessroles="Authenticated" disabled="false"></wm-grid-row-action>
         </wm-grid>
     </wm-livegrid>
     <wm-view class="dialog-view" name="view1">
@@ -198,6 +198,21 @@
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-primary" caption="Save" type="button" margin="unset 0.5em" name="buttonSaveFormField" iconclass="wi wi-save" on-click="buttonSaveFormFieldClick($event, $scope)" disabled="bind:(!Widgets.textFormFieldLabel.datavalue &amp;&amp; !!Widgets.selectFormFieldType.datavalue.sqlType) || !Widgets.selectFormFieldType.datavalue.id"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="button2Click($event, $scope)" name="button2" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view2">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Delete Dynamic Field" iconclass="wi wi-text-fields" name="dlgDeleteDynamicField">
+            <wm-layoutgrid name="layoutgrid4">
+                <wm-gridrow name="gridrow18">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn34">
+                        <wm-label padding="unset 0.5em" name="label13_1" caption="bind:'Are you sure you want to delete ' + (!!Widgets.gridFields.selecteditem.label ? (' the &quot;'+Widgets.gridFields.selecteditem.label+'&quot;') : ' this') +' field?'"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions2">
+                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button22" iconclass="wi wi-cancel" on-click="Widgets.dlgDeleteDynamicField.close()"></wm-button>
+                <wm-button class="btn-primary" caption="Yes" on-click="closeDialog();Variables.svDeleteDynamicField.invoke()" name="button21" iconclass="wi wi-check"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
