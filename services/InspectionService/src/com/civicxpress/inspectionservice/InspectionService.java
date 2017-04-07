@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.civicxpress.MultiDatabaseHelper;
@@ -31,8 +33,8 @@ public class InspectionService {
 
     private static final Logger logger = LoggerFactory.getLogger(InspectionService.class);
 
-//    @Autowired
-//    private SecurityService securityService;
+    @Autowired
+    private SecurityService securityService;
 
     @Value("${cx2.url}")
     private String sqlUrl;
@@ -97,7 +99,78 @@ public class InspectionService {
         return newInspectionDesignId;
     }
     
-    public void scheduleInspection() {}
+    public void scheduleInspection(String formGuid, Long inspectionDesignId, Date requestedFor) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	DBQueryParams queryParams = new DBQueryParams();
+    	queryParams.addLong("inspectionDesignId", inspectionDesignId);
+    	
+    	DBRow inspectionDesignData = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId, InspectionTableName FROM InspectionDesign WHERE ID=:inspectionDesignId", queryParams);
+    	Long municipalityId = inspectionDesignData.getLong("MunicipalityId");
+    	Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+    	String newInspectionGuid = null;
+    	
+    	try {
+	    	muniDbConn.setAutoCommit(false);
+	    	queryParams.addString("formGuid", formGuid);
+	    	queryParams.addLong("requestedBy", Long.parseLong(securityService.getUserId()));
+	    	queryParams.addDate("requestedFor", requestedFor);
+	    	
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterInspections (InspectionDesignId, RequestedFor, FormGuid, RequestedBy) "
+	    			+"VALUES (:inspectionDesignId, :requestedFor, :formGuid, :requestedBy)", queryParams);
+	    	
+	    	Long newInspectionId = DBUtils.selectOne(muniDbConn, "SELECT @@IDENTITY as newInspectionId", null).getLong("newInspectionId");
+	    	queryParams.addLong("newInspectionId", newInspectionId);
+	    	newInspectionGuid = DBUtils.selectOne(cx2Conn, "SELECT InspectionGuid FROM MasterInspections WHERE ID=:newInspectionId", queryParams).getString("InspectionGuid");
+	    	queryParams.addString("newInspectionGuid", newInspectionGuid);
+	    	
+	    	String inspectionTableName = inspectionDesignData.getString("InspectionTableName");
+	    	
+	    	List<DBRow> formTypeFieldList = DBUtils.selectQuery(cx2Conn, "SELECT FTF.*, FFT.* FROM FormTypeFields FTF, FormFieldTypes FFT WHERE FTF.FieldTypeId=FFT.ID AND FTF.FormTypeId=:formTypeId", queryParams);
+	    	
+	    	StringBuilder newInspectionQueryFieldNames = new StringBuilder("InspectionGUID");
+	    	StringBuilder newInspectionQueryVariableNames = new StringBuilder(":newInspectionGuid");
+	    	
+	    	for (DBRow formTypeField : formTypeFieldList) {
+	    		String defaultValue = formTypeField.getString("DefaultValue");
+	    		
+	    		if (defaultValue != null && !defaultValue.isEmpty()) {
+	    			String fieldName = formTypeField.getString("FieldName");
+	    			String sqlType = formTypeField.getString("SqlType");
+	    			
+	    			try {
+		    			if (sqlType.contains("numeric")) {
+		        			queryParams.addBigDecimal(fieldName, formTypeField.getBigDecimal("DefaultValue"));
+		    			} else if (sqlType.contains("bit")) {
+		    				queryParams.addBoolean(fieldName, formTypeField.getBoolean("DefaultValue"));
+		    			} else {
+		    				queryParams.addObject(fieldName, formTypeField.getObject("DefaultValue"));
+		    			}
+	    			} catch (Exception e) {
+	    				continue;
+	    			}
+	    			newInspectionQueryFieldNames.append(", "+fieldName);
+	    			newInspectionQueryVariableNames.append(", :"+fieldName);
+	    		}
+	    	}
+	    	
+	    	String newInspectionQuery = "INSERT INTO "+inspectionTableName+" ("+newInspectionQueryFieldNames.toString()+") VALUES ("+newInspectionQueryVariableNames.toString()+")";
+	    	
+	    	DBUtils.simpleQuery(muniDbConn, newInspectionQuery, queryParams);
+	    	
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormsToInspections (RelatedFormGUID, RelatedInspectionGUID, AddedBy) VALUES (:formGuid, :newInspectionGuid, :requestedBy)", queryParams);
+	    	
+	    	muniDbConn.commit();
+	    	cx2Conn.commit();
+    	} catch (SQLException e) {
+    		muniDbConn.rollback();
+    		cx2Conn.rollback();
+    		logger.error(e.getLocalizedMessage());
+    		throw e;
+    	} finally {
+    		muniDbConn.close();
+    		cx2Conn.close();
+    	}
+    }
     
     public void setInspectionOutcome(String inspectionGuid, Long inspectionStatusId, String comments) {
         //

@@ -10,6 +10,7 @@ import java.lang.Long;
 import java.lang.Integer;
 import java.lang.Boolean;
 import java.util.HashMap;
+import java.util.Date;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +56,8 @@ public class InspectionController {
     @RequestMapping(value = "/scheduleInspection", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void scheduleInspection() {
-        inspectionService.scheduleInspection();
+    public void scheduleInspection(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "inspectionDesignId", required = false) Long inspectionDesignId, @RequestParam(value = "requestedFor", required = false) Date requestedFor) throws SQLException {
+        inspectionService.scheduleInspection(formGuid, inspectionDesignId, requestedFor);
     }
 
     @RequestMapping(value = "/inspectionOutcome", method = RequestMethod.PUT)

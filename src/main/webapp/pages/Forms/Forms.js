@@ -198,15 +198,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         }
     };
 
-    $scope.lvMasterInspectionsInsertonSuccess = function(variable, data) {
-        $scope.Variables.svInsertFormsToInspectionsMapping.setInput({
-            'RelatedInspectionGUID': data.inspectionGuid,
-            'RelatedFormGUID': data.formGuid,
-            'AddedBy': $scope.Variables.CurrentUserDetails.dataSet.id
-        });
-        $scope.Variables.svInsertFormsToInspectionsMapping.update();
-    };
-
     $scope.buttonAddInternalMessageClick = function($event, $isolateScope) {
         // Posting Message
         $scope.Variables.PostFormMessage.setInput({
@@ -610,23 +601,10 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.button2InspectionRequestClick = function($event, $isolateScope) {
-            if ($scope.Variables.CurrentForm.dataSet.data[0].formTypes.forceInspectionSequence) {
-                $scope.Variables.lvMasterInspectionsInsert.setInput({
-                    'inspectionDesignId': $scope.Widgets.selectInspectionDesignBySequence.datavalue.inspectionDesignId
-                });
-                $scope.Variables.lvMasterInspectionsInsert.insertRecord();
-            } else {
-                $scope.Variables.lvMasterInspectionsInsert.setInput({
-                    'inspectionDesignId': $scope.Widgets.selectInspectionDesign.datavalue.id
-                });
-                $scope.Variables.lvMasterInspectionsInsert.insertRecord();
-
-            }
+            $scope.Variables.svScheduleInspection.update();
         };
 
-
         $scope.selectInspectionDesignChange = function($event, $isolateScope, newVal, oldVal) {
-
             if (newVal.allowSameDayInspections) {
                 $scope.Variables.minDaysForInspections.dataSet.dataValue = moment().startOf('day').add(1, 'days').valueOf();
             }
@@ -635,9 +613,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
             }
         };
 
-
         $scope.selectInspectionDesignBySequenceChange = function($event, $isolateScope, newVal, oldVal) {
-
             if (newVal.allowSameDayInspections) {
                 $scope.Variables.minDaysForInspections.dataSet.dataValue = moment().startOf('day').add(1, 'days').valueOf();
             }
