@@ -11213,6 +11213,34 @@
       } ]
     }
   },
+  "removeFeesFromAllUserCarts" : {
+    "name" : "removeFeesFromAllUserCarts",
+    "description" : "removeFeesFromAllUserCarts",
+    "version" : "V2",
+    "queryString" : "delete from MyCart where FeeId In (:feeList)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "DELETE",
+    "parameters" : [ {
+      "name" : "feeList",
+      "type" : "integer",
+      "list" : true,
+      "variableType" : "PROMPT",
+      "testValue" : [ "4", "5" ],
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "DELETE"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "resetPasswordForUser" : {
     "name" : "resetPasswordForUser",
     "description" : "Resets password for a user, given user ID as Integer and password as String.",
@@ -11413,6 +11441,41 @@
     "request" : {
       "wrapped" : true,
       "typeRef" : "com.civicxpress.cx2.models.query.UpdateAssessFeeYnRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "updateMultipleFeeStatus" : {
+    "name" : "updateMultipleFeeStatus",
+    "description" : "updateMultipleFeeStatus",
+    "version" : "V2",
+    "queryString" : "Update Fees SET PaidStatus=:PaidStatus where ID IN(:feeList)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "PaidStatus",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Paid",
+      "required" : true
+    }, {
+      "name" : "feeList",
+      "type" : "integer",
+      "list" : true,
+      "variableType" : "PROMPT",
+      "testValue" : [ "1", "2", "3" ],
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.UpdateMultipleFeeStatusRequest",
       "method" : "PUT"
     },
     "response" : {

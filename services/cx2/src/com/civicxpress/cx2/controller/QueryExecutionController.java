@@ -1755,6 +1755,16 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/removeFeesFromAllUserCarts", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "removeFeesFromAllUserCarts")
+    public IntegerWrapper executeRemoveFeesFromAllUserCarts(@RequestParam(value = "feeList") List<Integer> feeList) {
+        LOGGER.debug("Executing named query: removeFeesFromAllUserCarts");
+        Integer _result = queryService.executeRemoveFeesFromAllUserCarts(feeList);
+        LOGGER.debug("got the result for named query: removeFeesFromAllUserCarts, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/bannedDetails", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "user to display banner dertails based on user emailid")
@@ -2456,6 +2466,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: MunicipalityCount");
 
         return queryService.exportMunicipalityCount(exportType, pageable);
+    }
+
+    @RequestMapping(value = "/queries/updateMultipleFeeStatus", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "updateMultipleFeeStatus")
+    public IntegerWrapper executeUpdateMultipleFeeStatus(@Valid @RequestBody UpdateMultipleFeeStatusRequest updateMultipleFeeStatusRequest) {
+        LOGGER.debug("Executing named query: updateMultipleFeeStatus");
+        Integer _result = queryService.executeUpdateMultipleFeeStatus(updateMultipleFeeStatusRequest);
+        LOGGER.debug("got the result for named query: updateMultipleFeeStatus, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/userSubscriptionsCount", method = RequestMethod.GET)

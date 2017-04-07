@@ -2013,6 +2013,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("InsertNewRole", params);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeRemoveFeesFromAllUserCarts(List<Integer> feeList) {
+        Map params = new HashMap(1);
+
+        params.put("feeList", feeList);
+
+        return queryExecutor.executeNamedQueryForUpdate("removeFeesFromAllUserCarts", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<BannedDetailsResponse> executeBannedDetails(String emailid, Pageable pageable) {
@@ -2831,6 +2841,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
 
         return queryExecutor.exportNamedQueryData("MunicipalityCount", params, exportType, MunicipalityCountResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateMultipleFeeStatus(UpdateMultipleFeeStatusRequest updateMultipleFeeStatusRequest) {
+        Map params = new HashMap(2);
+
+        params.put("PaidStatus", updateMultipleFeeStatusRequest.getPaidStatus());
+        params.put("feeList", updateMultipleFeeStatusRequest.getFeeList());
+
+        return queryExecutor.executeNamedQueryForUpdate("updateMultipleFeeStatus", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

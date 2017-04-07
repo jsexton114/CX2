@@ -1573,6 +1573,13 @@ ORDER BY DateModified DESC
     <query-param name="UserId" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="removeFeesFromAllUserCarts">
+        <![CDATA[
+        delete from MyCart where FeeId In (:feeList)
+        ]]>
+    <query-param name="feeList" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="bannedDetails">
         <![CDATA[
         select Banned from Users where Email =:emailid
@@ -2194,6 +2201,14 @@ group by formTypes.formType
         <![CDATA[
         select count(*) from (select count(*) as municipalitiesCount from Municipalities) wmTempTable
         ]]>
+    </sql-query>
+
+    <sql-query name="updateMultipleFeeStatus">
+        <![CDATA[
+        Update Fees SET PaidStatus=:PaidStatus where ID IN(:feeList)
+        ]]>
+    <query-param name="PaidStatus" type="java.lang.String"/>
+    <query-param name="feeList" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="userSubscriptionsCount">

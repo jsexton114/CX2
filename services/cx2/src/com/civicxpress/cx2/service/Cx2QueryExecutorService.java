@@ -382,6 +382,8 @@ public interface Cx2QueryExecutorService {
 
     Integer executeInsertNewRole(InsertNewRoleRequest insertNewRoleRequest);
 
+    Integer executeRemoveFeesFromAllUserCarts(List<Integer> feeList);
+
     Page<BannedDetailsResponse> executeBannedDetails(String emailid, Pageable pageable);
 
     Downloadable exportBannedDetails(ExportType exportType, String emailid, Pageable pageable);
@@ -527,6 +529,8 @@ public interface Cx2QueryExecutorService {
     Page<MunicipalityCountResponse> executeMunicipalityCount(Pageable pageable);
 
     Downloadable exportMunicipalityCount(ExportType exportType, Pageable pageable);
+
+    Integer executeUpdateMultipleFeeStatus(UpdateMultipleFeeStatusRequest updateMultipleFeeStatusRequest);
 
     Page<UserSubscriptionsCountResponse> executeUserSubscriptionsCount(Pageable pageable);
 

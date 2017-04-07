@@ -26,12 +26,16 @@ Application.$controller("gridFeesListController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-    }
-]);
 
-Application.$controller("gridFeesListController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+        $scope.customButtonAction = function($event) {
+            debugger
+            let temp = $scope.Variables.loggedInUser.dataSet.roles;
+            for (let i = 0; i < temp.length; i++) {
+                if ((temp[i] == "MunicipalityEmployee")) {
+                    $scope.Variables.goToPage_MunicipalityCheckOut.navigate();
+                }
+            }
+        };
+
+    }
 ]);
