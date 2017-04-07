@@ -59,33 +59,61 @@ Application.factory('_', ['$window', function($window) {
     return $window._;
 }]);
 
-Application.directive('sticky', ['$timeout', function($timeout) {
+Application.factory('stickyItems', function() {
     "use strict";
     return {
-        restrict: 'CA',
+        byName: {}
+    };
+});
+
+Application.directive('sticky', ['$timeout', 'stickyItems', function($timeout, stickyItems) {
+    "use strict";
+    return {
+        restrict: 'A',
         link: function(scope, elem, attrs) {
             $timeout(function() {
                 var wasSticky = false;
                 var $window = $(window);
-                var elWidth = elem.width();
+                var elWidth = elem.outerWidth();
                 var navTop = elem.offset().top;
+                var targetTop = 0;
+
+                var stickyBottomOf = attrs.stickyBottomOf ? stickyItems.byName[attrs.stickyBottomOf] : null;
+                var stickyBottomElem = !!stickyBottomOf ? stickyBottomOf.elem : null;
+
+                var thisStickyItem = {
+                    elem: elem,
+                    isSticky: false
+                };
+
+                stickyItems.byName[attrs.sticky] = thisStickyItem;
 
                 $window.on('scroll', function() {
-                    var isStickyTime = $window.scrollTop() > navTop;
+                    thisStickyItem.isSticky = $window.scrollTop() > navTop || (!!stickyBottomOf && stickyBottomOf.isSticky);
 
-                    if (!isStickyTime || !wasSticky) {
-                        elWidth = elem.width();
+                    if (wasSticky && thisStickyItem.isSticky) {
+                        return;
                     }
 
-                    if (isStickyTime) {
+                    if (!thisStickyItem.isSticky || !wasSticky) {
+                        elWidth = elem.outerWidth();
+                    }
+
+                    if (!!stickyBottomElem) {
+                        targetTop = stickyBottomElem.outerHeight();
+                    }
+
+                    if (thisStickyItem.isSticky) {
                         elem.css('width', elWidth + 'px');
+                        elem.css('top', targetTop + 'px');
                     } else {
                         elem.css('width', '');
+                        elem.css('top', '');
                     }
 
-                    elem.toggleClass('stuckTop', isStickyTime);
+                    elem.toggleClass('stuckTop', thisStickyItem.isSticky);
 
-                    wasSticky = isStickyTime;
+                    wasSticky = thisStickyItem.isSticky;
                 });
             });
         }
