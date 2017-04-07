@@ -9920,6 +9920,34 @@
       } ]
     }
   },
+  "deleteInspectionDesign" : {
+    "name" : "deleteInspectionDesign",
+    "description" : "df",
+    "version" : "V2",
+    "queryString" : "delete from InspectionDesign where id=:inspectionId",
+    "countQueryString" : null,
+    "nativeSql" : false,
+    "fetchCount" : false,
+    "type" : "DELETE",
+    "parameters" : [ {
+      "name" : "inspectionId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "DELETE"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "deleteMunicipalityGroup" : {
     "name" : "deleteMunicipalityGroup",
     "description" : "deleteMunicipalityGroup based on userID and MunicipalityGroupId",

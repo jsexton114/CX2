@@ -1026,6 +1026,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("NoOfItemsInUserCart", params, exportType, NoOfItemsInUserCartResponse.class, pageable);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeDeleteInspectionDesign(Integer inspectionId) {
+        Map params = new HashMap(1);
+
+        params.put("inspectionId", inspectionId);
+
+        return queryExecutor.executeNamedQueryForUpdate("deleteInspectionDesign", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<CheckIfCompanyUserIsVendorAdminResponse> executeCheckIfCompanyUserIsVendorAdmin(Integer user, Integer vendor, Pageable pageable) {

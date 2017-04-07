@@ -208,6 +208,8 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportNoOfItemsInUserCart(ExportType exportType, Integer user, Pageable pageable);
 
+    Integer executeDeleteInspectionDesign(Integer inspectionId);
+
     Page<CheckIfCompanyUserIsVendorAdminResponse> executeCheckIfCompanyUserIsVendorAdmin(Integer user, Integer vendor, Pageable pageable);
 
     Downloadable exportCheckIfCompanyUserIsVendorAdmin(ExportType exportType, Integer user, Integer vendor, Pageable pageable);

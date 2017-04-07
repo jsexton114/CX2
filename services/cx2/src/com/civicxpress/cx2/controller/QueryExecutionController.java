@@ -918,6 +918,16 @@ public class QueryExecutionController {
         return queryService.exportNoOfItemsInUserCart(exportType, user, pageable);
     }
 
+    @RequestMapping(value = "/queries/deleteInspectionDesign", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "df")
+    public IntegerWrapper executeDeleteInspectionDesign(@RequestParam(value = "inspectionId") Integer inspectionId) {
+        LOGGER.debug("Executing named query: deleteInspectionDesign");
+        Integer _result = queryService.executeDeleteInspectionDesign(inspectionId);
+        LOGGER.debug("got the result for named query: deleteInspectionDesign, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/CheckIfCompanyUserIsVendorAdmin", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CheckIfCompanyUserIsVendorAdmin")

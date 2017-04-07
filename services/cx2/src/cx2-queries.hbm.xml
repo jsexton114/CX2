@@ -758,6 +758,13 @@ where userId=:user and fees.paidStatus='Unpaid'
     <query-param name="user" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="deleteInspectionDesign">
+        <![CDATA[
+        delete from InspectionDesign where id=:inspectionId
+        ]]>
+    <query-param name="inspectionId" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="CheckIfCompanyUserIsVendorAdmin">
         <![CDATA[
         select count(*) as count from VendorAdmins where UserId=:user and VendorId=:vendor

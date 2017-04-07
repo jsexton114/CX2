@@ -24,12 +24,7 @@ Application.$controller("gridInspectiondesignController", ["$scope",
 	}
 ]);
 
-Application.$controller("liveformInspectiondesignController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
-]);
+
 
 Application.$controller("gridInspectioncategoriesController", ["$scope",
 	function($scope) {
@@ -39,6 +34,25 @@ Application.$controller("gridInspectioncategoriesController", ["$scope",
 ]);
 
 Application.$controller("liveformInspectioncategoriesController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("dlgCreateInspectionDesignController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	
+        $scope.buttonCreateDesignClick = function ($event, $isolateScope) { 
+
+        };
+ 
+    }
+]);
+
+Application.$controller("dlgDeleteInspectionDesignController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;

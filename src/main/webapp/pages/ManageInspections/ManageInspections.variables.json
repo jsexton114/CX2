@@ -18,34 +18,6 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
-  "EmployeesMunicipalities" : {
-    "_id" : "wm-EmployeesMunicipalities-wm.ServiceVariable-1488443280047",
-    "name" : "EmployeesMunicipalities",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "user",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.EmployeesMunicipalitiesResponse",
-    "service" : "cx2",
-    "operation" : "executeEmployeesMunicipalities",
-    "operationId" : "QueryExecutionController_executeEmployeesMunicipalities",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
   "InspectionCategoriesData" : {
     "_id" : "wm-InspectionCategoriesData-wm.LiveVariable-1488444491377",
     "name" : "InspectionCategoriesData",
@@ -64,7 +36,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : true,
+    "startUpdate" : false,
     "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
@@ -488,12 +460,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "AllowOfflineCC",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -574,7 +546,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : true,
+    "startUpdate" : false,
     "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
@@ -752,7 +724,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -777,11 +749,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Banned",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         }, {
           "fieldName" : "password",
@@ -822,6 +795,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -1240,12 +1226,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "AllowOfflineCC",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -1508,32 +1494,6 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "scheduleDateOnly",
-        "type" : "date",
-        "fullyQualifiedType" : "date",
-        "columnName" : "ScheduleDateOnly",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
-        "fieldName" : "scheduleDateAndTime",
-        "type" : "timestamp",
-        "fullyQualifiedType" : "timestamp",
-        "columnName" : "ScheduleDateAndTime",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "",
-        "scale" : 0
-      }, {
         "fieldName" : "titlePrefix",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -1651,19 +1611,6 @@
         "defaultValue" : "false",
         "scale" : 0
       }, {
-        "fieldName" : "codeEnforcement",
-        "type" : "boolean",
-        "fullyQualifiedType" : "boolean",
-        "columnName" : "CodeEnforcement",
-        "isPrimaryKey" : false,
-        "notNull" : true,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "false",
-        "scale" : 0
-      }, {
         "fieldName" : "trackViolations",
         "type" : "boolean",
         "fullyQualifiedType" : "boolean",
@@ -1688,6 +1635,32 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "scheduleDateOnly",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "ScheduleDateOnly",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "TRUE",
+        "scale" : 0
+      }, {
+        "fieldName" : "scheduleDateAndTime",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "ScheduleDateAndTime",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "FALSE",
         "scale" : 0
       } ],
       "entityName" : "InspectionDesign",
@@ -1716,6 +1689,62 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.InspectionDesign"
   },
+  "nocInspectionDeleted" : {
+    "_id" : "wm-nocInspectionDeleted-wm.NotificationVariable-1491593384205",
+    "name" : "nocInspectionDeleted",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "<strong>Success</strong><br/>Inspection Design deleted successfully.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "nocRecordCreated" : {
+    "_id" : "wm-nocRecordCreated-wm.NotificationVariable-1491592288857",
+    "name" : "nocRecordCreated",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "<strong>Success</strong><br/>Inspection Design created successfully.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "SelectedMunicipalityObject" : {
     "_id" : "wm-SelectedMunicipalityObject-wm.LiveVariable-1488443525858",
     "name" : "SelectedMunicipalityObject",
@@ -1734,7 +1763,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : true,
+    "startUpdate" : false,
     "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
@@ -2170,12 +2199,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "AllowOfflineCC",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "true",
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "Municipalities",
@@ -2197,5 +2226,65 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Municipalities"
+  },
+  "svCreateInspectionDesign" : {
+    "_id" : "wm-svCreateInspectionDesign-wm.ServiceVariable-1491591974890",
+    "name" : "svCreateInspectionDesign",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "inspectionName",
+      "value" : "bind:Widgets.textInspectionDesignName.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "integer",
+    "service" : "InspectionService",
+    "operation" : "saveInspectionDesign",
+    "operationId" : "InspectionController_saveInspectionDesign",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.nocRecordCreated.invoke();Variables.InspectionDesignData.listRecords()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Inspection"
+  },
+  "svDeleteInspectionDesign" : {
+    "_id" : "wm-svDeleteInspectionDesign-wm.ServiceVariable-1491593066322",
+    "name" : "svDeleteInspectionDesign",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "id",
+      "value" : "bind:Widgets.gridInspectiondesign.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "boolean",
+    "service" : "cx2",
+    "operation" : "deleteInspectionDesign",
+    "operationId" : "InspectionDesignController_deleteInspectionDesign",
+    "operationType" : "delete",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.InspectionDesignData.listRecords();Variables.nocInspectionDeleted.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "InspectionDesign"
   }
 }

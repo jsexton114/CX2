@@ -72,7 +72,7 @@ public class InspectionService {
 	        inspectionCreateParams.addString("inspectionTableName", inspectionTableName);
 	        inspectionCreateParams.addString("titlePrefix", formTitlePrefix.toString());
 	        
-	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO InspectionDesign (InspectionDesignName, MunicipalityId, InspectionTableName, TitlePrefix) VALUES (:inspectionName, :municipalityId, :inspectionTableName, :titlePrefix)", inspectionCreateParams);
+	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO InspectionDesign (InspectDesignName, MunicipalityId, InspectionTableName, TitlePrefix) VALUES (:inspectionName, :municipalityId, :inspectionTableName, :titlePrefix)", inspectionCreateParams);
 	        
 	        newInspectionDesignId = DBUtils.selectOne(cx2Conn, "SELECT @@IDENTITY as inspectionId", null).getLong("inspectionId");
 	        inspectionCreateParams.addLong("newInspectionDesignId", newInspectionDesignId);
