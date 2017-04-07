@@ -16,7 +16,7 @@
                             <wm-layoutgrid name="layoutgrid2">
                                 <wm-gridrow name="gridrow4" padding="1em unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn4">
-                                        <wm-label padding="unset 0.5em" name="label5" caption="bind:'Total: $'+Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart" class="h1"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label5" caption="bind:'Total: '+ ((Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart || 0) | toCurrency:'$':2)" class="h1"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow5" padding=".2em unset">
@@ -52,7 +52,7 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow9">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn14" horizontalalign="right">
-                                        <wm-button class="btn-default btn-primary" caption="Submit" type="button" margin="unset 0.5em" name="buttonSubmit" on-click="Variables.lvCheckOut.createRecord()"></wm-button>
+                                        <wm-button class="btn-primary" caption="Pay" type="button" margin="unset 0.5em" name="buttonSubmit" on-click="Variables.lvCheckOut.createRecord()" iconclass="wi wi-attach-money" disabled="bind:!Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
