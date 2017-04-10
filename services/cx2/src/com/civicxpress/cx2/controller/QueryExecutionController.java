@@ -2478,6 +2478,25 @@ public class QueryExecutionController {
         return queryService.exportMunicipalityCount(exportType, pageable);
     }
 
+    @RequestMapping(value = "/queries/getInspectorsByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Inspectors by Municipality")
+    public Page<Users> executeGetInspectorsByMunicipality(@RequestParam(value = "municipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: getInspectorsByMunicipality");
+        Page<Users> _result = queryService.executeGetInspectorsByMunicipality(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: getInspectorsByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getInspectorsByMunicipality")
+    @RequestMapping(value = "/queries/getInspectorsByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetInspectorsByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getInspectorsByMunicipality");
+
+        return queryService.exportGetInspectorsByMunicipality(exportType, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/updateMultipleFeeStatus", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "updateMultipleFeeStatus")

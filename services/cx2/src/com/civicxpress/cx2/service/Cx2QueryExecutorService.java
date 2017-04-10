@@ -532,6 +532,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportMunicipalityCount(ExportType exportType, Pageable pageable);
 
+    Page<Users> executeGetInspectorsByMunicipality(Integer municipalityId, Pageable pageable);
+
+    Downloadable exportGetInspectorsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable);
+
     Integer executeUpdateMultipleFeeStatus(UpdateMultipleFeeStatusRequest updateMultipleFeeStatusRequest);
 
     Page<UserSubscriptionsCountResponse> executeUserSubscriptionsCount(Pageable pageable);

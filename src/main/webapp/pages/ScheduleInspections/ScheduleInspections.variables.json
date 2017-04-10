@@ -18,6 +18,60 @@
     "isList" : true,
     "saveInPhonegap" : false
   },
+  "svAssignInspector" : {
+    "_id" : "wm-svAssignInspector-wm.ServiceVariable-1491856078500",
+    "name" : "svAssignInspector",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "service" : "InspectionService",
+    "operation" : "assignInspector",
+    "operationId" : "InspectionController_assignInspector",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "svAssignInspectoronSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Inspection"
+  },
+  "svGetAssignedInspections" : {
+    "_id" : "wm-svGetAssignedInspections-wm.ServiceVariable-1491853176508",
+    "name" : "svGetAssignedInspections",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "outcome",
+      "value" : "bind:'Scheduled'",
+      "type" : "string"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.GetInspectionsByOutcomeResponse",
+    "service" : "cx2",
+    "operation" : "executeGetInspectionsByOutcome",
+    "operationId" : "QueryExecutionController_executeGetInspectionsByOutcome",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "svGetInspectionsByOutcome" : {
     "_id" : "wm-svGetInspectionsByOutcome-wm.ServiceVariable-1490953648445",
     "name" : "svGetInspectionsByOutcome",
@@ -25,7 +79,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "outcome",
-      "value" : "Requested",
+      "value" : "bind:'Requested'",
       "type" : "string"
     }, {
       "target" : "municipality",
@@ -49,6 +103,33 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "svGetInspectors" : {
+    "_id" : "wm-svGetInspectors-wm.ServiceVariable-1491851371501",
+    "name" : "svGetInspectors",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.Users",
+    "service" : "cx2",
+    "operation" : "executeGetInspectorsByMunicipality",
+    "operationId" : "QueryExecutionController_executeGetInspectorsByMunicipality",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
   },
   "svGetMunicipalitiesForInspectionManager" : {
     "_id" : "wm-svGetMunicipalitiesForInspectionManager-wm.ServiceVariable-1490949755596",

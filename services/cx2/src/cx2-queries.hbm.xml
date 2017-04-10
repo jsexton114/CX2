@@ -18,23 +18,27 @@
     <query-param name="PostedAt" type="java.sql.Timestamp"/>
     </query>
 
-    <query name="getInspectionsByOutcome">
+    <sql-query name="getInspectionsByOutcome">
         <![CDATA[
         select 
-inspectionGuid as inspectionGuid,
-assignedTo as assignedTo,
-inspectionOutcome.outcome as outcome,
-inspectionTitle as inspectionTitle,
-inspectionZone as inspectionZone,
-requestedFor as requestedFor,
-inspectionDesign.inspectDesignName as inspectDesignName
-
-from MasterInspections where inspectionOutcome.outcome=:outcome and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo is null
+I.inspectionGuid as inspectionGuid,
+U.FullName as assignedTo,
+IO.outcome as outcome,
+I.inspectionTitle as inspectionTitle,
+I.inspectionZone as inspectionZone,
+I.requestedFor as requestedFor,
+I.DateAssigned as dateAssigned,
+ID.inspectDesignName as inspectDesignName
+from MasterInspections I
+LEFT OUTER JOIN Users U ON U.ID=I.AssignedTo
+JOIN InspectionDesign ID ON ID.ID=I.InspectionDesignId
+JOIN InspectionOutcome IO ON I.InspectionOutcomeId=IO.ID
+where IO.outcome=:outcome and (:municipality IS NULL OR ID.MunicipalityId=:municipality)
 Order By inspectionZone DESC
         ]]>
     <query-param name="outcome" type="java.lang.String"/>
     <query-param name="municipality" type="java.lang.Integer"/>
-    </query>
+    </sql-query>
 
     <query name="getCalculatableFormFields">
         <![CDATA[
@@ -2209,6 +2213,20 @@ group by formTypes.formType
         select count(*) from (select count(*) as municipalitiesCount from Municipalities) wmTempTable
         ]]>
     </sql-query>
+
+    <query name="getInspectorsByMunicipality">
+        <![CDATA[
+        from Users where id in (select userId from Roles where (roleName='Inspector' or roleName='Inspector Manager') and municipalityId=:municipalityId)
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </query>
+
+    <query name="getInspectorsByMunicipality__count">
+        <![CDATA[
+        select count(*) from Users where id in (select userId from Roles where (roleName='Inspector' or roleName='Inspector Manager') and municipalityId=:municipalityId)
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </query>
 
     <sql-query name="updateMultipleFeeStatus">
         <![CDATA[

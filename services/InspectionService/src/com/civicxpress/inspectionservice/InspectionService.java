@@ -252,6 +252,39 @@ public class InspectionService {
     	}
     }
     
+    public void assignInspector(Long inspectorId, String inspectionGuid, Date dateAssigned) throws SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	cx2Conn.setAutoCommit(false);
+    	
+    	try {
+    		DBQueryParams params = new DBQueryParams();
+    		params.addString("inspectionGuid", inspectionGuid);
+    		params.addLong("inspectorId", inspectorId);
+    		params.addDate("dateAssigned", dateAssigned);
+    		
+    		DBRow inspectionData = DBUtils.selectOne(cx2Conn, "SELECT * FROM MasterInspections WHERE InspectionGuid=:inspectionGuid", params);
+    		
+    		params.addLong("inspectionDesignId", inspectionData.getLong("InspectionDesignId"));
+    		
+    		Long newInspectionOutcomeId = DBUtils.selectOne(cx2Conn, "SELECT ID FROM InspectionOutcome WHERE InspectDesignId=:inspectionDesignId AND Outcome='Scheduled'", params).getLong("ID");
+    		
+    		params.addLong("newInspectionOutcomeId", newInspectionOutcomeId);
+    		
+    		if (!newInspectionOutcomeId.equals(inspectionData.getLong("InspectionOutcomeId"))) {
+    			DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterInspections SET InspectionOutcomeId=:newInspectionOutcomeId WHERE InspectionGuid=:inspectionGuid", params);
+    		}
+    		
+    		DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterInspections SET AssignedTo=:inspectorId, DateAssigned=:dateAssigned WHERE InspectionGuid=:inspectionGuid", params);
+    		
+    		cx2Conn.commit();
+    	} catch (SQLException e) {
+    		cx2Conn.rollback();
+    		throw e;
+    	} finally {
+    		cx2Conn.close();
+    	}
+    }
+    
     public void setInspectionOutcome(String inspectionGuid, Long inspectionStatusId, String comments) {
         //
     }

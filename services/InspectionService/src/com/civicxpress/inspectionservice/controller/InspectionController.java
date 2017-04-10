@@ -2,15 +2,15 @@
 package com.civicxpress.inspectionservice.controller;
 
 import com.civicxpress.inspectionservice.InspectionService;
+import java.lang.Long;
 import java.lang.String;
+import java.util.Date;
 import java.sql.SQLException;
 import java.lang.Object;
 import java.util.Map;
-import java.lang.Long;
 import java.lang.Integer;
 import java.lang.Boolean;
 import java.util.HashMap;
-import java.util.Date;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,13 @@ public class InspectionController {
 
     @Autowired
     private InspectionService inspectionService;
+
+    @RequestMapping(value = "/assignInspector", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void assignInspector(@RequestParam(value = "inspectorId", required = false) Long inspectorId, @RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "dateAssigned", required = false) Date dateAssigned) throws SQLException {
+        inspectionService.assignInspector(inspectorId, inspectionGuid, dateAssigned);
+    }
 
     @RequestMapping(value = "/dynamicFielddata", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

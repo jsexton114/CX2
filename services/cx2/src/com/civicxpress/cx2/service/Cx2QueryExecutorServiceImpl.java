@@ -2853,6 +2853,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("MunicipalityCount", params, exportType, MunicipalityCountResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Users> executeGetInspectorsByMunicipality(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("getInspectorsByMunicipality", params, Users.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetInspectorsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("getInspectorsByMunicipality", params, exportType, Users.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeUpdateMultipleFeeStatus(UpdateMultipleFeeStatusRequest updateMultipleFeeStatusRequest) {

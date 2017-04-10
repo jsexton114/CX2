@@ -10,10 +10,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import org.joda.time.LocalDateTime;
+
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wavemaker.commons.data.type.WMPersistentLocalDateTime;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetInspectionsByOutcomeResponse implements Serializable {
@@ -21,7 +22,7 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
     @ColumnAlias("inspectionGuid")
     private String inspectionGuid;
     @ColumnAlias("assignedTo")
-    private Integer assignedTo;
+    private String assignedTo;
     @ColumnAlias("outcome")
     private String outcome;
     @ColumnAlias("inspectionTitle")
@@ -29,7 +30,9 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
     @ColumnAlias("inspectionZone")
     private String inspectionZone;
     @ColumnAlias("requestedFor")
-    private WMPersistentLocalDateTime requestedFor;
+    private LocalDateTime requestedFor;
+    @ColumnAlias("dateAssigned")
+    private LocalDateTime dateAssigned;
     @ColumnAlias("inspectDesignName")
     private String inspectDesignName;
 
@@ -41,11 +44,11 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
         this.inspectionGuid = inspectionGuid;
     }
 
-    public Integer getAssignedTo() {
+    public String getAssignedTo() {
         return this.assignedTo;
     }
 
-    public void setAssignedTo(Integer assignedTo) {
+    public void setAssignedTo(String assignedTo) {
         this.assignedTo = assignedTo;
     }
 
@@ -73,12 +76,20 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
         this.inspectionZone = inspectionZone;
     }
 
-    public WMPersistentLocalDateTime getRequestedFor() {
+    public LocalDateTime getRequestedFor() {
         return this.requestedFor;
     }
 
-    public void setRequestedFor(WMPersistentLocalDateTime requestedFor) {
+    public void setRequestedFor(LocalDateTime requestedFor) {
         this.requestedFor = requestedFor;
+    }
+
+    public LocalDateTime getDateAssigned() {
+        return this.dateAssigned;
+    }
+
+    public void setDateAssigned(LocalDateTime dateAssigned) {
+        this.dateAssigned = dateAssigned;
     }
 
     public String getInspectDesignName() {
@@ -100,6 +111,7 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
                 Objects.equals(getInspectionTitle(), getInspectionsByOutcomeResponse.getInspectionTitle()) &&
                 Objects.equals(getInspectionZone(), getInspectionsByOutcomeResponse.getInspectionZone()) &&
                 Objects.equals(getRequestedFor(), getInspectionsByOutcomeResponse.getRequestedFor()) &&
+                Objects.equals(getDateAssigned(), getInspectionsByOutcomeResponse.getDateAssigned()) &&
                 Objects.equals(getInspectDesignName(), getInspectionsByOutcomeResponse.getInspectDesignName());
     }
 
@@ -111,6 +123,7 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
                 getInspectionTitle(),
                 getInspectionZone(),
                 getRequestedFor(),
+                getDateAssigned(),
                 getInspectDesignName());
     }
 }

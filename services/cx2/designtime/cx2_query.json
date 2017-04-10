@@ -10938,9 +10938,9 @@
     "name" : "getInspectionsByOutcome",
     "description" : "getInspectionsByOutcome",
     "version" : "V2",
-    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\nrequestedFor as requestedFor,\ninspectionDesign.inspectDesignName as inspectDesignName\n\nfrom MasterInspections where inspectionOutcome.outcome=:outcome and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo is null\nOrder By inspectionZone DESC",
+    "queryString" : "select \nI.inspectionGuid as inspectionGuid,\nU.FullName as assignedTo,\nIO.outcome as outcome,\nI.inspectionTitle as inspectionTitle,\nI.inspectionZone as inspectionZone,\nI.requestedFor as requestedFor,\nI.DateAssigned as dateAssigned,\nID.inspectDesignName as inspectDesignName\nfrom MasterInspections I\nLEFT OUTER JOIN Users U ON U.ID=I.AssignedTo\nJOIN InspectionDesign ID ON ID.ID=I.InspectionDesignId\nJOIN InspectionOutcome IO ON I.InspectionOutcomeId=IO.ID\nwhere IO.outcome=:outcome and (:municipality IS NULL OR ID.MunicipalityId=:municipality)\nOrder By inspectionZone DESC",
     "countQueryString" : null,
-    "nativeSql" : false,
+    "nativeSql" : true,
     "fetchCount" : false,
     "type" : "SELECT",
     "parameters" : [ {
@@ -10948,7 +10948,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "Requested",
+      "testValue" : "Scheduled",
       "required" : true
     }, {
       "name" : "municipality",
@@ -10982,7 +10982,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       }, {
@@ -11018,7 +11018,16 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "com.wavemaker.commons.data.type.WMPersistentLocalDateTime",
+          "typeRef" : "org.joda.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "dateAssigned",
+        "fieldName" : "dateAssigned",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
           "list" : false
         }
       }, {
@@ -11076,6 +11085,34 @@
           "list" : false
         }
       } ]
+    }
+  },
+  "getInspectorsByMunicipality" : {
+    "name" : "getInspectorsByMunicipality",
+    "description" : "Inspectors by Municipality",
+    "version" : "V2",
+    "queryString" : "from Users where id in (select userId from Roles where (roleName='Inspector' or roleName='Inspector Manager') and municipalityId=:municipalityId)",
+    "countQueryString" : "select count(*) from Users where id in (select userId from Roles where (roleName='Inspector' or roleName='Inspector Manager') and municipalityId=:municipalityId)",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.Users",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
     }
   },
   "getListofGroupName" : {
