@@ -332,7 +332,7 @@ public class InspectionDesign implements Serializable {
         this.createdBy = createdBy;
     }
 
-    @Column(name = "`CreatedAt`", nullable = true)
+    @Column(name = "`CreatedAt`", nullable = false)
     public Timestamp getCreatedAt() {
         return this.createdAt;
     }

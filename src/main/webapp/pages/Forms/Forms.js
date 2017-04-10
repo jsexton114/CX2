@@ -13,8 +13,8 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         currentBreadCrumb = breadCrumbs[breadCrumbs.length - 1];
         currentBreadCrumb.link += $scope.pageParams.FormGUID;
         openClosedFormBreadCrumb = $scope.Variables.BreadCrumb.dataSet[1];
-        $scope.disableMessageBox = true;
-        $scope.showCannotAddFee = true;
+        $scope.expiresOn = null;
+        $scope.isExpired = false;
 
         window.refreshAttachments = function() {
             $scope.Variables.Cx2DocumentData.update();
@@ -25,7 +25,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     $scope.allFormStatus;
 
     $scope.FormStatusonSuccess = function(variable, data) {
-        setFormStatusProgressValue();
+        setFormStatusProgressValue(); // Expiration handled inside
     };
 
     $scope.canAddVendor = function() {
@@ -39,6 +39,15 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         var currentStatusId = newStatusId || $scope.Variables.CurrentForm.dataSet.data[0].formStatusId;
 
         if (!!statusListData && !!currentStatusId) {
+            if (!!$scope.expirationStatusId) {
+                var expirationStatus = _.find(statusListData, {
+                    id: $scope.expirationStatusId
+                });
+
+                $scope.expiresOn = expirationStatus.status;
+                $scope.isExpired = (currentStatusId === $scope.expirationStatusId);
+            }
+
             $scope.allFormStatus = statusListData;
             // For showing current Status of form
             var currentStatusIndex = _.findIndex(statusListData, {
@@ -193,8 +202,22 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     };
 
     $scope.CurrentFormonSuccess = function(variable, data) {
-        if (data[0].formStatuses.allowPayment) {
-            $scope.showCannotAddFee = false;
+        var currentForm = data[0];
+        var formType = currentForm.formTypes;
+
+        if (!!formType.expirationType) {
+            if (formType.expirationType === 'FormStatusId') { // Status
+                $scope.expirationStatusId = formType.expirationStatusId; // See FormStatusonSuccess for more details
+            } else { // Dates
+                var fieldName = (formType.expirationType.charAt(0).toUpperCase() + formType.expirationType.substring(1));
+
+                $scope.expiresOn = moment(currentForm[fieldName]).startOf('day').add(formType.expirationDays, 'days').valueOf();
+
+                $scope.isExpired = (moment().valueOf() > $scope.expiresOn);
+            }
+        } else {
+            $scope.expiresOn = null;
+            $scope.isExpired = false;
         }
     };
 

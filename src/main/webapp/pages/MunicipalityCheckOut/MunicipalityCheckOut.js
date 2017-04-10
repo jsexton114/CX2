@@ -51,12 +51,8 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
             'feeListString': mappedList
         });
         $scope.Variables.svMapFeeWithTransaction.update();
-        //Updating the Balance amount of fee in MasterForm after Payment
-        $scope.Variables.svUpdateBalanceDueInMasterForm.setInput({
-            'feeList': fees
-        });
-        $scope.Widgets.alertdialogPaymentSuccess.open();
 
+        $scope.Widgets.alertdialogPaymentSuccess.open();
     };
 
 }]);

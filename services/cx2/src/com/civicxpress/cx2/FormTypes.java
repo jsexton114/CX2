@@ -78,6 +78,9 @@ public class FormTypes implements Serializable {
     private boolean requireSignature;
     private boolean codeEnforcement;
     private String propertyType;
+    private String expirationType;
+    private Integer expirationDays;
+    private Integer expirationStatusId;
     private Municipalities municipalities;
     private List<CodesToForm> codesToForms = new ArrayList<>();
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
@@ -486,6 +489,33 @@ public class FormTypes implements Serializable {
 
     public void setPropertyType(String propertyType) {
         this.propertyType = propertyType;
+    }
+
+    @Column(name = "`ExpirationType`", nullable = true, length = 255)
+    public String getExpirationType() {
+        return this.expirationType;
+    }
+
+    public void setExpirationType(String expirationType) {
+        this.expirationType = expirationType;
+    }
+
+    @Column(name = "`ExpirationDays`", nullable = true, scale = 0, precision = 10)
+    public Integer getExpirationDays() {
+        return this.expirationDays;
+    }
+
+    public void setExpirationDays(Integer expirationDays) {
+        this.expirationDays = expirationDays;
+    }
+
+    @Column(name = "`ExpirationStatusId`", nullable = true, scale = 0, precision = 10)
+    public Integer getExpirationStatusId() {
+        return this.expirationStatusId;
+    }
+
+    public void setExpirationStatusId(Integer expirationStatusId) {
+        this.expirationStatusId = expirationStatusId;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -43,6 +43,14 @@
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn157_1"></wm-gridcolumn>
                                 </wm-gridrow>
+                                <wm-gridrow name="gridrow88">
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn162"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn163" horizontalalign="center">
+                                        <wm-label padding="unset 0.5em" name="labelExpiration" caption="bind:'Expires On: ' + (Variables.CurrentForm.dataSet.data[$i].formTypes.expirationType !== 'FormStatusId' ? (expiresOn | toLocalDateString:true) : (expiresOn + ' status.'))"
+                                        ng-class="{'text-success': !isExpired, 'text-danger': isExpired}" show="bind:!!expiresOn"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn164_1"></wm-gridcolumn>
+                                </wm-gridrow>
                                 <wm-gridrow name="gridrow14">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn24_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn28" horizontalalign="center">
@@ -402,7 +410,8 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow79_1">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn151_1" horizontalalign="center">
-                                                <wm-label padding="unset 0.5em" name="label87_1" show="bind:showCannotAddFee" caption="Sorry, fees can not be paid while the form is in the current status. Please check back later." color="#e34343" fontweight="bold"></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label87_1" show="bind:!(Variables.stvCurrentStatus.dataSet.allowPayment === true || Variables.svUserPermissions.dataSet.isAdmin === true || Variables.svUserPermissions.dataSet.isEmployee === true)"
+                                                caption="Sorry, fees can not be paid while the form is in the current status. Please check back later." color="#e34343" fontweight="bold"></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
