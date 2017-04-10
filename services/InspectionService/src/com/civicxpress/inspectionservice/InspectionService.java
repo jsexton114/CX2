@@ -13,7 +13,10 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +35,9 @@ import com.wavemaker.runtime.service.annotations.ExposeToClient;
 public class InspectionService {
 
     private static final Logger logger = LoggerFactory.getLogger(InspectionService.class);
+    
+    private static SimpleDateFormat monthYearFormatter = new SimpleDateFormat("MMyyyy");
+	private static SimpleDateFormat yearMonthFormatter = new SimpleDateFormat("yyyyMM");
 
     @Autowired
     private SecurityService securityService;
@@ -57,7 +63,7 @@ public class InspectionService {
         
         try {
         	String inspectionTableName = (DBUtils.getSqlSafeString(inspectionName) + DBUtils.selectOne(muniDbConn, "SELECT NEXT VALUE FOR DynamicFieldIndex as DynamicFieldIndex", null).getString("DynamicFieldIndex"));
-        	StringBuilder formTitlePrefix = new StringBuilder();
+        	StringBuilder inspectionTitlePrefix = new StringBuilder();
         	String[] formTypeParts = inspectionName.trim().replaceAll("[^a-zA-Z0-9 ]|[\n]|[\r\n]", "").split(" ");
         	for (int i = 0; i < formTypeParts.length; i++) {
         		String formTypePart = formTypeParts[i];
@@ -65,14 +71,14 @@ public class InspectionService {
         			continue;
         		}
         		
-        		formTitlePrefix.append(formTypePart.substring(0, 1).toUpperCase());
+        		inspectionTitlePrefix.append(formTypePart.substring(0, 1).toUpperCase());
         	}
         	
         	DBQueryParams inspectionCreateParams = new DBQueryParams();
 	        inspectionCreateParams.addString("inspectionName", inspectionName);
 	        inspectionCreateParams.addLong("municipalityId", municipalityId);
 	        inspectionCreateParams.addString("inspectionTableName", inspectionTableName);
-	        inspectionCreateParams.addString("titlePrefix", formTitlePrefix.toString());
+	        inspectionCreateParams.addString("titlePrefix", inspectionTitlePrefix.toString());
 	        
 	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO InspectionDesign (InspectDesignName, MunicipalityId, InspectionTableName, TitlePrefix) VALUES (:inspectionName, :municipalityId, :inspectionTableName, :titlePrefix)", inspectionCreateParams);
 	        
@@ -104,7 +110,7 @@ public class InspectionService {
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("inspectionDesignId", inspectionDesignId);
     	
-    	DBRow inspectionDesignData = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId, InspectionTableName FROM InspectionDesign WHERE ID=:inspectionDesignId", queryParams);
+    	DBRow inspectionDesignData = DBUtils.selectOne(cx2Conn, "SELECT * FROM InspectionDesign WHERE ID=:inspectionDesignId", queryParams);
     	Long municipalityId = inspectionDesignData.getLong("MunicipalityId");
     	Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
     	String newInspectionGuid = null;
@@ -115,8 +121,61 @@ public class InspectionService {
 	    	queryParams.addLong("requestedBy", Long.parseLong(securityService.getUserId()));
 	    	queryParams.addDate("requestedFor", requestedFor);
 	    	
-	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterInspections (InspectionDesignId, RequestedFor, FormGuid, RequestedBy) "
-	    			+"VALUES (:inspectionDesignId, :requestedFor, :formGuid, :requestedBy)", queryParams);
+	    	/*
+	    	 * Begin Inspection title creation
+	    	 */
+	    	// Inspection title prefix
+	    	StringBuilder inspectionTitle = new StringBuilder(inspectionDesignData.getString("TitlePrefix"));
+	    	
+	    	// Inspection title date
+	    	String dateOption = inspectionDesignData.getString("PrefixDate");
+	    	Boolean addDashes = inspectionDesignData.getBoolean("PrefixDashes");
+	    	
+    		Calendar today = new GregorianCalendar();
+	    	
+	    	if (!dateOption.equalsIgnoreCase("None")) {
+	    		if (addDashes) {
+	    			inspectionTitle.append('-');
+	    		}
+	    		
+	    		if (dateOption.equals("YearMonth")) {
+	    			inspectionTitle.append(yearMonthFormatter.format(today.getTime()));
+	    		} else {
+	    			inspectionTitle.append(monthYearFormatter.format(today.getTime()));
+	    		}
+	    	}
+
+	    	if (addDashes) {
+	    		inspectionTitle.append('-');
+	    	}
+	    	
+	    	// Inspection title number
+	    	String numberOption = !dateOption.equalsIgnoreCase("None") ? inspectionDesignData.getString("PrefixNumber") : "AutoIncrement";
+	    	Long prefixNumberStart = inspectionDesignData.getLong("PrefixNumberStart");
+	    	Integer prefixNumberStep = inspectionDesignData.getInteger("PrefixNumberStep");
+	    	Long currentPrefixNumber = inspectionDesignData.getLong("CurrentPrefixNumber");
+    		Integer numberResetOn = inspectionDesignData.getInteger("PrefixNumberResetOn");
+	    	Integer newResetTime = numberOption.equalsIgnoreCase("ResetMonth") ? today.get(Calendar.MONTH)+1 : today.get(Calendar.YEAR);
+	    	Long newPrefixNumber;
+	    	
+	    	if (!numberOption.equalsIgnoreCase("AutoIncrement") && !newResetTime.equals(numberResetOn)) {
+	    		newPrefixNumber = prefixNumberStart;
+	    	} else {
+	    		newPrefixNumber = currentPrefixNumber == null ? prefixNumberStart : (currentPrefixNumber + prefixNumberStep.longValue());
+	    	}
+	    	
+	    	inspectionTitle.append(newPrefixNumber.toString());
+	    	
+	    	queryParams.addLong("newPrefixNumber", newPrefixNumber);
+	    	queryParams.addInteger("newResetTime", newResetTime);
+	    	
+	    	queryParams.addString("inspectionTitle", inspectionTitle.toString());
+	    	/*
+	    	 * End Inspection title creation
+	    	 */
+	    	
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterInspections (InspectionDesignId, InspectionTitle, RequestedFor, FormGuid, RequestedBy) "
+	    			+"VALUES (:inspectionDesignId, :inspectionTitle, :requestedFor, :formGuid, :requestedBy)", queryParams);
 	    	
 	    	Long newInspectionId = DBUtils.selectOne(muniDbConn, "SELECT @@IDENTITY as newInspectionId", null).getLong("newInspectionId");
 	    	queryParams.addLong("newInspectionId", newInspectionId);
@@ -125,12 +184,12 @@ public class InspectionService {
 	    	
 	    	String inspectionTableName = inspectionDesignData.getString("InspectionTableName");
 	    	
-	    	List<DBRow> formTypeFieldList = DBUtils.selectQuery(cx2Conn, "SELECT FTF.*, FFT.* FROM FormTypeFields FTF, FormFieldTypes FFT WHERE FTF.FieldTypeId=FFT.ID AND FTF.FormTypeId=:formTypeId", queryParams);
+	    	List<DBRow> dynamicFieldList = DBUtils.selectQuery(cx2Conn, "SELECT FTF.*, FFT.* FROM FormTypeFields FTF, FormFieldTypes FFT WHERE FTF.FieldTypeId=FFT.ID AND FTF.FormTypeId=:formTypeId", queryParams);
 	    	
 	    	StringBuilder newInspectionQueryFieldNames = new StringBuilder("InspectionGUID");
 	    	StringBuilder newInspectionQueryVariableNames = new StringBuilder(":newInspectionGuid");
 	    	
-	    	for (DBRow formTypeField : formTypeFieldList) {
+	    	for (DBRow formTypeField : dynamicFieldList) {
 	    		String defaultValue = formTypeField.getString("DefaultValue");
 	    		
 	    		if (defaultValue != null && !defaultValue.isEmpty()) {
@@ -158,6 +217,8 @@ public class InspectionService {
 	    	DBUtils.simpleQuery(muniDbConn, newInspectionQuery, queryParams);
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormsToInspections (RelatedFormGUID, RelatedInspectionGUID, AddedBy) VALUES (:formGuid, :newInspectionGuid, :requestedBy)", queryParams);
+	    	
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE InspectionDesign SET CurrentPrefixNumber=:newPrefixNumber, PrefixNumberResetOn=:newResetTime WHERE ID=:inspectionDesignId", queryParams);
 	    	
 	    	muniDbConn.commit();
 	    	cx2Conn.commit();

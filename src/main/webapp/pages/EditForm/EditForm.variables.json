@@ -2550,12 +2550,12 @@
           "fullyQualifiedType" : "string",
           "columnName" : "PrefixDate",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 255,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "MonthYear",
           "scale" : 0
         }, {
           "fieldName" : "prefixNumber",
@@ -2563,25 +2563,25 @@
           "fullyQualifiedType" : "string",
           "columnName" : "PrefixNumber",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 255,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "AutoIncrement",
           "scale" : 0
         }, {
-          "fieldName" : "prefixStartNumber",
+          "fieldName" : "prefixNumberStart",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
-          "columnName" : "PrefixStartNumber",
+          "columnName" : "PrefixNumberStart",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "1",
           "scale" : 0
         }, {
           "fieldName" : "prefixNumberStep",
@@ -2589,12 +2589,12 @@
           "fullyQualifiedType" : "integer",
           "columnName" : "PrefixNumberStep",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "1",
           "scale" : 0
         }, {
           "fieldName" : "prefixDashes",
@@ -2699,6 +2699,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "currentPrefixNumber",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "CurrentPrefixNumber",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 38,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberResetOn",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "PrefixNumberResetOn",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -6117,12 +6143,12 @@
           "fullyQualifiedType" : "string",
           "columnName" : "PrefixDate",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 255,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "MonthYear",
           "scale" : 0
         }, {
           "fieldName" : "prefixNumber",
@@ -6130,25 +6156,25 @@
           "fullyQualifiedType" : "string",
           "columnName" : "PrefixNumber",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 255,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "AutoIncrement",
           "scale" : 0
         }, {
-          "fieldName" : "prefixStartNumber",
+          "fieldName" : "prefixNumberStart",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
-          "columnName" : "PrefixStartNumber",
+          "columnName" : "PrefixNumberStart",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "1",
           "scale" : 0
         }, {
           "fieldName" : "prefixNumberStep",
@@ -6156,12 +6182,12 @@
           "fullyQualifiedType" : "integer",
           "columnName" : "PrefixNumberStep",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "1",
           "scale" : 0
         }, {
           "fieldName" : "prefixDashes",
@@ -6266,6 +6292,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "currentPrefixNumber",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "CurrentPrefixNumber",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 38,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberResetOn",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "PrefixNumberResetOn",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -8630,12 +8682,12 @@
           "fullyQualifiedType" : "string",
           "columnName" : "PrefixDate",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 255,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "MonthYear",
           "scale" : 0
         }, {
           "fieldName" : "prefixNumber",
@@ -8643,25 +8695,25 @@
           "fullyQualifiedType" : "string",
           "columnName" : "PrefixNumber",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 255,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "AutoIncrement",
           "scale" : 0
         }, {
-          "fieldName" : "prefixStartNumber",
+          "fieldName" : "prefixNumberStart",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
-          "columnName" : "PrefixStartNumber",
+          "columnName" : "PrefixNumberStart",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "1",
           "scale" : 0
         }, {
           "fieldName" : "prefixNumberStep",
@@ -8669,12 +8721,12 @@
           "fullyQualifiedType" : "integer",
           "columnName" : "PrefixNumberStep",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "1",
           "scale" : 0
         }, {
           "fieldName" : "prefixDashes",
@@ -8779,6 +8831,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "FALSE",
+          "scale" : 0
+        }, {
+          "fieldName" : "currentPrefixNumber",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "CurrentPrefixNumber",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 38,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "prefixNumberResetOn",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "PrefixNumberResetOn",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {

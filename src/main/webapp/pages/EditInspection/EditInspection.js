@@ -14,17 +14,11 @@ Application.$controller("EditInspectionPageController", ["$scope", function($sco
          */
     };
 
-
     $scope.CurrentInspectionObjonSuccess = function(variable, data) {
         $scope.Variables.stvCodeSetScope.dataSet[1].dataValue = data[0].municipalities.municipalityName;
     };
 
 }]);
-
-
-
-
-
 
 Application.$controller("gridFieldsController", ["$scope",
     function($scope) {
@@ -123,36 +117,70 @@ Application.$controller("liveformOutcomeFeeController", ["$scope",
     }
 ]);
 
-Application.$controller("liveformUpdateInspectiondesignController", ["$scope",
+Application.$controller("lfUpdateInspectionDesignController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
 
+        $scope.generateInspectionTitlePreview = function() {
+            var prefix = $scope.Widgets.lfUpdateInspectionDesign.formWidgets.titlePrefix.datavalue;
+            var dateOption = $scope.Widgets.lfUpdateInspectionDesign.formWidgets.prefixDate.datavalue;
+            var numberOption = $scope.Widgets.lfUpdateInspectionDesign.formWidgets.prefixNumber.datavalue;
+            var prefixDashes = $scope.Widgets.lfUpdateInspectionDesign.formWidgets.prefixDashes.datavalue;
+            var numberStart = $scope.Widgets.lfUpdateInspectionDesign.formWidgets.prefixNumberStart.datavalue;
+
+            var inspectionTitlePreview = '' + prefix;
+
+            var today = new Date();
+
+            if (dateOption !== 'None') {
+                var year = today.getFullYear();
+                var month = today.getMonth() + 1;
+
+                month = (month < 10) ? '0' + month : month;
+                if (prefixDashes === true) {
+                    inspectionTitlePreview += '-';
+                }
+                if (dateOption === 'MonthYear') {
+                    inspectionTitlePreview += month + '' + year;
+                } else {
+                    inspectionTitlePreview += year + '' + month;
+                }
+            }
+
+            if (prefixDashes === true) {
+                inspectionTitlePreview += '-';
+            }
+
+            inspectionTitlePreview += numberStart;
+
+            return inspectionTitlePreview;
+        };
+
         $scope.allowCancelChange = function($event, $isolateScope, newVal, oldVal) {
             if (newVal === false) {
-                $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.allowSameDayCancel.datavalue = false;
-
+                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.allowSameDayCancel.datavalue = false;
             }
         };
 
         $scope.scheduleDateOnlyChange = function($event, $isolateScope, newVal, oldVal) {
             if (newVal === true) {
-                $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.scheduleDateAndTime.datavalue = false;
-                $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.totalInspectionsHourly.datavalue = "";
+                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateAndTime.datavalue = false;
+                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.totalInspectionsHourly.datavalue = "";
 
             }
             if (newVal === false) {
-                $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.scheduleDateAndTime.datavalue = true;
+                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateAndTime.datavalue = true;
             }
         };
 
         $scope.scheduleDateAndTimeChange = function($event, $isolateScope, newVal, oldVal) {
             if (newVal === true) {
-                $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.scheduleDateOnly.datavalue = false;
+                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateOnly.datavalue = false;
 
             }
             if (newVal === false) {
-                $scope.Widgets.liveformUpdateInspectiondesign.formWidgets.scheduleDateOnly.datavalue = true;
+                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateOnly.datavalue = true;
 
             }
         };
