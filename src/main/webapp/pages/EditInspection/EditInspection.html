@@ -401,13 +401,13 @@
                                                                             </wm-gridcolumn>
                                                                             <wm-gridcolumn name="gridcolumn1" columnwidth="6">
                                                                                 <wm-form-field name="emailSubjectLine" displayname="Email Subject Line" show="true" primary-key="false" generator="assigned" key="emailSubjectLine" type="string" readonly="false"
-                                                                                required="false" widget="text" maxchars="255" width="100%" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                                required="bind:Widgets.liveformOutcome.formWidgets.sendEmail.datavalue" widget="text" maxchars="255" width="100%" inputtype="text" placeholder="Enter value" disabled="bind:!Widgets.liveformOutcome.formWidgets.sendEmail.datavalue"></wm-form-field>
                                                                             </wm-gridcolumn>
                                                                         </wm-gridrow>
                                                                         <wm-gridrow name="gridrow2">
                                                                             <wm-gridcolumn name="gridcolumn2" columnwidth="12">
-                                                                                <wm-form-field name="emailBodyText" displayname="Email Body Text" show="true" primary-key="false" generator="assigned" key="emailBodyText" type="text" readonly="false" required="false"
-                                                                                widget="textarea" maxchars="5000" width="100%" placeholder="Enter value"></wm-form-field>
+                                                                                <wm-form-field name="emailBodyText" displayname="Email Body Text" show="true" primary-key="false" generator="assigned" key="emailBodyText" type="text" readonly="false" required="bind:Widgets.liveformOutcome.formWidgets.sendEmail.datavalue"
+                                                                                widget="textarea" maxchars="5000" width="100%" placeholder="Enter value" disabled="bind:!Widgets.liveformOutcome.formWidgets.sendEmail.datavalue"></wm-form-field>
                                                                             </wm-gridcolumn>
                                                                         </wm-gridrow>
                                                                     </wm-layoutgrid>

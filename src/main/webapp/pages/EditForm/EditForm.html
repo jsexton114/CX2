@@ -454,13 +454,13 @@
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="8" name="gridcolumn38" padding="unset 1em unset unset">
                                                                             <wm-form-field name="emailSubjectLine" displayname="Email Subject Line" show="true" primary-key="false" generator="assigned" key="emailSubjectLine" type="string" widget="text" maxchars="255"
-                                                                            inputtype="text" placeholder="Enter value" width="100%"></wm-form-field>
+                                                                            inputtype="text" placeholder="Enter value" width="100%" required="bind:Widgets.lfFormTypeStatus.formWidgets.sendEmail.datavalue" disabled="bind:!Widgets.lfFormTypeStatus.formWidgets.sendEmail.datavalue"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                     <wm-gridrow name="gridrow1_1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn37_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="emailTextBody" displayname="Email Body Text" show="true" primary-key="false" generator="assigned" key="emailTextBody" type="string" widget="textarea" maxchars="4000"
-                                                                            placeholder="Enter value" width="100%"></wm-form-field>
+                                                                            placeholder="Enter value" width="100%" disabled="bind:!Widgets.lfFormTypeStatus.formWidgets.sendEmail.datavalue" required="bind:Widgets.lfFormTypeStatus.formWidgets.sendEmail.datavalue"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-panel>
