@@ -2392,16 +2392,6 @@ public class QueryExecutionController {
         return queryService.exportGetGis2formsByForm(exportType, relatedFormGuid, pageable);
     }
 
-    @RequestMapping(value = "/queries/updateBalanceDueInMasterForm", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "updateBalanceDueInMasterForm")
-    public IntegerWrapper executeUpdateBalanceDueInMasterForm(@Valid @RequestBody UpdateBalanceDueInMasterFormRequest updateBalanceDueInMasterFormRequest) {
-        LOGGER.debug("Executing named query: updateBalanceDueInMasterForm");
-        Integer _result = queryService.executeUpdateBalanceDueInMasterForm(updateBalanceDueInMasterFormRequest);
-        LOGGER.debug("got the result for named query: updateBalanceDueInMasterForm, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
     @RequestMapping(value = "/queries/UnpaidFormFeeCount", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UnpaidFormFeeCount")

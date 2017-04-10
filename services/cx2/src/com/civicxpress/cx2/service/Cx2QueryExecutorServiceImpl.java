@@ -2755,17 +2755,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("GetGis2formsByForm", params, exportType, GetGis2formsByFormResponse.class, pageable);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateBalanceDueInMasterForm(UpdateBalanceDueInMasterFormRequest updateBalanceDueInMasterFormRequest) {
-        Map params = new HashMap(2);
-
-        params.put("balanceDue", updateBalanceDueInMasterFormRequest.getBalanceDue());
-        params.put("feeList", updateBalanceDueInMasterFormRequest.getFeeList());
-
-        return queryExecutor.executeNamedQueryForUpdate("updateBalanceDueInMasterForm", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<UnpaidFormFeeCountResponse> executeUnpaidFormFeeCount(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {

@@ -35,7 +35,7 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
         $scope.Variables.svRemoveFeesFromAllUserCarts.update();
         // Mapping paid Fees with Transaction
         let feeData = $scope.Variables.svCartItemIds.dataSet.content;
-        let targetList = []
+        let targetList = [];
         _.forEach(feeData, function(obj) {
             targetList.push({
                 'feeId': obj.feeId,
@@ -55,8 +55,6 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
         $scope.Variables.svUpdateBalanceDueInMasterForm.setInput({
             'feeList': fees
         });
-        $scope.Variables.svUpdateBalanceDueInMasterForm.update();
-
         $scope.Widgets.alertdialogPaymentSuccess.open();
 
     };

@@ -515,34 +515,6 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
-  "svUpdateBalanceDueInMasterForm" : {
-    "_id" : "wm-svUpdateBalanceDueInMasterForm-wm.ServiceVariable-1491801965078",
-    "name" : "svUpdateBalanceDueInMasterForm",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "balanceDue",
-      "value" : "0",
-      "type" : "string"
-    } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
-    "service" : "cx2",
-    "operation" : "executeUpdateBalanceDueInMasterForm",
-    "operationId" : "QueryExecutionController_executeUpdateBalanceDueInMasterForm",
-    "operationType" : "put",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
   "svUpdateMultipleFeeStatus" : {
     "_id" : "wm-svUpdateMultipleFeeStatus-wm.ServiceVariable-1491555294883",
     "name" : "svUpdateMultipleFeeStatus",

@@ -11477,41 +11477,6 @@
       "responseType" : "SINGLE"
     }
   },
-  "updateBalanceDueInMasterForm" : {
-    "name" : "updateBalanceDueInMasterForm",
-    "description" : "updateBalanceDueInMasterForm",
-    "version" : "V2",
-    "queryString" : "Update MasterForms set BalanceDue=:balanceDue where FormGUID IN\n(\nselect FormGuid from Fees where ID IN\n(:feeList)\n)",
-    "countQueryString" : "select count(*) from (Update MasterForms set BalanceDue=:balanceDue where FormGUID IN\n(\nselect FormGuid from Fees where ID IN\n(:feeList)\n)) wmTempTable",
-    "nativeSql" : true,
-    "fetchCount" : true,
-    "type" : "UPDATE",
-    "parameters" : [ {
-      "name" : "balanceDue",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "0",
-      "required" : true
-    }, {
-      "name" : "feeList",
-      "type" : "integer",
-      "list" : true,
-      "variableType" : "PROMPT",
-      "testValue" : [ "1", "2", "3" ],
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : true,
-      "typeRef" : "com.civicxpress.cx2.models.query.UpdateBalanceDueInMasterFormRequest",
-      "method" : "PUT"
-    },
-    "response" : {
-      "typeRef" : "java.lang.Integer",
-      "returns" : "ENTITY",
-      "responseType" : "SINGLE"
-    }
-  },
   "updateMultipleFeeStatus" : {
     "name" : "updateMultipleFeeStatus",
     "description" : "updateMultipleFeeStatus",
