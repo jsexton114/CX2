@@ -1019,7 +1019,7 @@
                         <wm-composite name="composite6" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label94" caption="Date" fontweight="bold"></wm-label>
                             <wm-container class="col-md-6" name="container9">
-                                <wm-date name="dateInspectionRequest" mindate="bind:minDaysForInspection" datepattern="MM-dd-yyyy" placeholder="Select Date" maxdate="bind:maxDaysForInspection"></wm-date>
+                                <wm-date name="dateInspectionRequest" mindate="bind:minDaysForInspection" datepattern="MM-dd-yyyy" placeholder="Select Date" maxdate="bind:maxDaysForInspection" disabled="bind:!(Variables.CurrentForm.dataSet.data[0].formTypes.forceInspectionSequence ? Widgets.selectInspectionDesignBySequence.datavalue.inspectionDesignId : Widgets.selectInspectionDesign.datavalue.id)"></wm-date>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>

@@ -625,6 +625,12 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         $scope.maxDaysForInspection = moment().startOf('day').add(15, 'years').valueOf();
 
         function updateMinMaxDates(inspectionDesignData) {
+            $scope.Widgets.dateInspectionRequest.reset();
+
+            if (!inspectionDesignData) {
+                return;
+            }
+
             $scope.minDaysForInspection = moment().startOf('day').add(inspectionDesignData.allowSameDayInspections ? 0 : 1, 'days').valueOf();
 
             if (inspectionDesignData.maxDaysInAdvance > 0) {
