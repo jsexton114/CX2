@@ -15,12 +15,10 @@
                         <wm-label caption="Today's Inspections" fontweight="bold" name="label2" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn30" padding="2em unset">
-                        <wm-composite name="composite1" show="true">
-                            <wm-label class="col-md-3 form-control-static" name="label1" caption="Select Municipality" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectMunicipality" dataset="bind:Variables.svGetMunicipalitiesForInspector.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.svGetMunicipalitiesForInspector.firstRecord"></wm-select>
-                            </wm-container>
-                        </wm-composite>
+                        <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" class="panel-transparent" content="selectMunicipality">
+                            <wm-param name="muniType" value="e" type="string"></wm-param>
+                            <wm-param name="municipalityId" value="bind:pageParams.municipalityId" type="integer"></wm-param>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow18">

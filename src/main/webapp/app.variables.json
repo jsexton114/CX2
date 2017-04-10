@@ -877,10 +877,18 @@
     "name" : "goToPage_ScheduleInspections",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "ScheduleInspections",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "ScheduleInspections",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_Support" : {
@@ -910,10 +918,22 @@
     "name" : "goToPage_TodayInspections",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "TodayInspections",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "TodayInspections",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID"
+    }, {
+      "type" : "string",
+      "target" : "muniType",
+      "value" : "e"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_TomorrowInspections" : {
@@ -921,10 +941,18 @@
     "name" : "goToPage_TomorrowInspections",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "TomorrowInspections",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "TomorrowInspections",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_UserClosedForms" : {
@@ -1047,10 +1075,18 @@
     "name" : "goToPage_YesterdayInspections",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "YesterdayInspections",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "YesterdayInspections",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID"
+    } ],
     "pageTransitions" : "none"
   },
   "loggedInUser" : {

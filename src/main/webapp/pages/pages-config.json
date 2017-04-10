@@ -280,7 +280,10 @@
 }, {
   "name" : "ScheduleInspections",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "municipalityId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "Support",
   "type" : "PAGE",
@@ -292,11 +295,17 @@
 }, {
   "name" : "TodayInspections",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "municipalityId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "TomorrowInspections",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "municipalityId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "UserClosedForms",
   "type" : "PAGE",
@@ -351,7 +360,10 @@
 }, {
   "name" : "YesterdayInspections",
   "type" : "PAGE",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "municipalityId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "dynamicFieldEditor",
   "type" : "PARTIAL",

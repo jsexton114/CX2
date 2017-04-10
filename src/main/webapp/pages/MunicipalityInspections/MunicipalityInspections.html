@@ -10,12 +10,9 @@
                         <wm-label name="label5" caption="Inspections Dashboard" fontweight="bold" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn19_1" padding="2em unset">
-                        <wm-composite name="composite1" show="true">
-                            <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
-                            </wm-container>
-                        </wm-composite>
+                        <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" class="panel-transparent" content="selectMunicipality">
+                            <wm-param name="muniType" value="e" type="string"></wm-param>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow8">
