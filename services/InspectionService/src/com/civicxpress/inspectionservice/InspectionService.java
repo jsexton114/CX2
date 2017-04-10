@@ -110,6 +110,8 @@ public class InspectionService {
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("inspectionDesignId", inspectionDesignId);
     	
+    	cx2Conn.setAutoCommit(false);
+    	
     	DBRow inspectionDesignData = DBUtils.selectOne(cx2Conn, "SELECT * FROM InspectionDesign WHERE ID=:inspectionDesignId", queryParams);
     	Long municipalityId = inspectionDesignData.getLong("MunicipalityId");
     	Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
@@ -177,7 +179,7 @@ public class InspectionService {
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterInspections (InspectionDesignId, InspectionTitle, RequestedFor, FormGuid, RequestedBy) "
 	    			+"VALUES (:inspectionDesignId, :inspectionTitle, :requestedFor, :formGuid, :requestedBy)", queryParams);
 	    	
-	    	Long newInspectionId = DBUtils.selectOne(muniDbConn, "SELECT @@IDENTITY as newInspectionId", null).getLong("newInspectionId");
+	    	Long newInspectionId = DBUtils.selectOne(cx2Conn, "SELECT @@IDENTITY as newInspectionId", null).getLong("newInspectionId");
 	    	queryParams.addLong("newInspectionId", newInspectionId);
 	    	newInspectionGuid = DBUtils.selectOne(cx2Conn, "SELECT InspectionGuid FROM MasterInspections WHERE ID=:newInspectionId", queryParams).getString("InspectionGuid");
 	    	queryParams.addString("newInspectionGuid", newInspectionGuid);
@@ -189,27 +191,29 @@ public class InspectionService {
 	    	StringBuilder newInspectionQueryFieldNames = new StringBuilder("InspectionGUID");
 	    	StringBuilder newInspectionQueryVariableNames = new StringBuilder(":newInspectionGuid");
 	    	
-	    	for (DBRow formTypeField : dynamicFieldList) {
-	    		String defaultValue = formTypeField.getString("DefaultValue");
-	    		
-	    		if (defaultValue != null && !defaultValue.isEmpty()) {
-	    			String fieldName = formTypeField.getString("FieldName");
-	    			String sqlType = formTypeField.getString("SqlType");
-	    			
-	    			try {
-		    			if (sqlType.contains("numeric")) {
-		        			queryParams.addBigDecimal(fieldName, formTypeField.getBigDecimal("DefaultValue"));
-		    			} else if (sqlType.contains("bit")) {
-		    				queryParams.addBoolean(fieldName, formTypeField.getBoolean("DefaultValue"));
-		    			} else {
-		    				queryParams.addObject(fieldName, formTypeField.getObject("DefaultValue"));
+	    	if (dynamicFieldList != null) {
+		    	for (DBRow formTypeField : dynamicFieldList) {
+		    		String defaultValue = formTypeField.getString("DefaultValue");
+		    		
+		    		if (defaultValue != null && !defaultValue.isEmpty()) {
+		    			String fieldName = formTypeField.getString("FieldName");
+		    			String sqlType = formTypeField.getString("SqlType");
+		    			
+		    			try {
+			    			if (sqlType.contains("numeric")) {
+			        			queryParams.addBigDecimal(fieldName, formTypeField.getBigDecimal("DefaultValue"));
+			    			} else if (sqlType.contains("bit")) {
+			    				queryParams.addBoolean(fieldName, formTypeField.getBoolean("DefaultValue"));
+			    			} else {
+			    				queryParams.addObject(fieldName, formTypeField.getObject("DefaultValue"));
+			    			}
+		    			} catch (Exception e) {
+		    				continue;
 		    			}
-	    			} catch (Exception e) {
-	    				continue;
-	    			}
-	    			newInspectionQueryFieldNames.append(", "+fieldName);
-	    			newInspectionQueryVariableNames.append(", :"+fieldName);
-	    		}
+		    			newInspectionQueryFieldNames.append(", "+fieldName);
+		    			newInspectionQueryVariableNames.append(", :"+fieldName);
+		    		}
+		    	}
 	    	}
 	    	
 	    	String newInspectionQuery = "INSERT INTO "+inspectionTableName+" ("+newInspectionQueryFieldNames.toString()+") VALUES ("+newInspectionQueryVariableNames.toString()+")";

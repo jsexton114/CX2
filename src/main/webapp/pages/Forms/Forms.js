@@ -6,8 +6,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        $scope.Variables.minDaysForInspections.dataSet.dataValue = moment().startOf('day').valueOf();
-        $scope.Variables.maxDaysForInspections.dataSet.dataValue = moment().startOf('day').add(15, 'years').valueOf();
         $scope.today = moment().valueOf();
         var breadCrumbs = $scope.Variables.BreadCrumb.dataSet;
         currentBreadCrumb = breadCrumbs[breadCrumbs.length - 1];
@@ -623,26 +621,29 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
+        $scope.minDaysForInspection = moment().startOf('day').valueOf();
+        $scope.maxDaysForInspection = moment().startOf('day').add(15, 'years').valueOf();
+
+        function updateMinMaxDates(inspectionDesignData) {
+            $scope.minDaysForInspection = moment().startOf('day').add(inspectionDesignData.allowSameDayInspections ? 0 : 1, 'days').valueOf();
+
+            if (inspectionDesignData.maxDaysInAdvance > 0) {
+                $scope.maxDaysForInspection = moment().startOf('day').add(inspectionDesignData.maxDaysInAdvance, 'days').valueOf();
+            } else {
+                $scope.maxDaysForInspection = moment().startOf('day').add(15, 'years').valueOf();
+            }
+        }
+
         $scope.button2InspectionRequestClick = function($event, $isolateScope) {
             $scope.Variables.svScheduleInspection.update();
         };
 
         $scope.selectInspectionDesignChange = function($event, $isolateScope, newVal, oldVal) {
-            if (newVal.allowSameDayInspections) {
-                $scope.Variables.minDaysForInspections.dataSet.dataValue = moment().startOf('day').add(1, 'days').valueOf();
-            }
-            if (newVal.maxDaysInAdvance > 0) {
-                $scope.Variables.maxDaysForInspections.dataSet.dataValue = moment().startOf('day').add(newVal.maxDaysInAdvance, 'days').valueOf();
-            }
+            updateMinMaxDates(newVal);
         };
 
         $scope.selectInspectionDesignBySequenceChange = function($event, $isolateScope, newVal, oldVal) {
-            if (newVal.allowSameDayInspections) {
-                $scope.Variables.minDaysForInspections.dataSet.dataValue = moment().startOf('day').add(1, 'days').valueOf();
-            }
-            if (newVal.maxDaysInAdvance > 0) {
-                $scope.Variables.maxDaysForInspections.dataSet.dataValue = moment().startOf('day').add(newVal.maxDaysInAdvance, 'days').valueOf();
-            }
+            updateMinMaxDates(newVal);
         };
 
     }
