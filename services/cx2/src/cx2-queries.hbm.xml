@@ -2145,6 +2145,30 @@ from MasterInspections where inspectionDesign.municipalities.id=:municipality an
     <query-param name="relatedFormGuid" type="java.lang.String"/>
     </query>
 
+    <sql-query name="updateBalanceDueInMasterForm">
+        <![CDATA[
+        Update MasterForms set BalanceDue=:balanceDue where FormGUID IN
+(
+select FormGuid from Fees where ID IN
+(:feeList)
+)
+        ]]>
+    <query-param name="balanceDue" type="java.lang.String"/>
+    <query-param name="feeList" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="updateBalanceDueInMasterForm__count">
+        <![CDATA[
+        select count(*) from (Update MasterForms set BalanceDue=:balanceDue where FormGUID IN
+(
+select FormGuid from Fees where ID IN
+(:feeList)
+)) wmTempTable
+        ]]>
+    <query-param name="balanceDue" type="java.lang.String"/>
+    <query-param name="feeList" type="java.lang.Integer"/>
+    </sql-query>
+
     <query name="UnpaidFormFeeCount">
         <![CDATA[
         select 

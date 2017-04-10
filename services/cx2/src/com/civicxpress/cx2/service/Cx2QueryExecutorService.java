@@ -514,6 +514,8 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetGis2formsByForm(ExportType exportType, String relatedFormGuid, Pageable pageable);
 
+    Integer executeUpdateBalanceDueInMasterForm(UpdateBalanceDueInMasterFormRequest updateBalanceDueInMasterFormRequest);
+
     Page<UnpaidFormFeeCountResponse> executeUnpaidFormFeeCount(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
 
     Downloadable exportUnpaidFormFeeCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);

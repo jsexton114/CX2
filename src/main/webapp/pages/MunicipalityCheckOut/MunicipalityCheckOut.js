@@ -16,6 +16,7 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
 
 
     $scope.lvCheckOutonSuccess = function(variable, data) {
+        debugger
         var fees = [];
 
         var temp = $scope.Variables.svCartItemIds.dataSet.content;
@@ -33,7 +34,7 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
             'feeList': fees
         });
         $scope.Variables.svRemoveFeesFromAllUserCarts.update();
-
+        // Mapping paid Fees with Transaction
         let feeData = $scope.Variables.svCartItemIds.dataSet.content;
         let targetList = []
         _.forEach(feeData, function(obj) {
@@ -51,7 +52,28 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
             'feeListString': mappedList
         });
         $scope.Variables.svMapFeeWithTransaction.update();
+        //Updating the Balance amount of fee in MasterForm after Payment
+        $scope.Variables.svUpdateBalanceDueInMasterForm.setInput({
+            'feeList': fees
+        });
+        $scope.Variables.svUpdateBalanceDueInMasterForm.update();
+
+        $scope.Widgets.alertdialogPaymentSuccess.open();
 
     };
 
 }]);
+
+Application.$controller("confirmdialogPaymentSuccessController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("alertdialogPaymentSuccessController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
