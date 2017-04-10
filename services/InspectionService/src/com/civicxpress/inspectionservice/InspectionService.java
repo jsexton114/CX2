@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -214,6 +215,20 @@ public class InspectionService {
 		    			newInspectionQueryVariableNames.append(", :"+fieldName);
 		    		}
 		    	}
+	    	}
+	    	
+	    	Calendar todayCal = Calendar.getInstance();
+	    	Calendar requestedForCal = Calendar.getInstance();
+	    	requestedForCal.setTime(requestedFor);
+	    	
+	    	// Same day fee
+	    	BigDecimal sameDayFee = inspectionDesignData.getBigDecimal("SameDayInspectionFee");
+	    	if (todayCal.get(Calendar.YEAR) == requestedForCal.get(Calendar.YEAR) && todayCal.get(Calendar.DAY_OF_YEAR) == requestedForCal.get(Calendar.DAY_OF_YEAR)
+	    			&& sameDayFee != null && !sameDayFee.equals(new BigDecimal("0"))) {
+	    		queryParams.addBigDecimal("sameDayFee", sameDayFee);
+	    		queryParams.addString("sameDayAccountingCode", inspectionDesignData.getString("SameDayInspectionFeeAcctCode"));
+	    		
+	    		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Fees (InspectionGuid, Amount, FeeType, AutoFeeYN, AccountingCode, PaidStatus) VALUES (:newInspectionGuid, :sameDayFee, 'Same Day Scheduling Fee', 1, :sameDayAccountingCode, 'Unpaid')", queryParams);
 	    	}
 	    	
 	    	String newInspectionQuery = "INSERT INTO "+inspectionTableName+" ("+newInspectionQueryFieldNames.toString()+") VALUES ("+newInspectionQueryVariableNames.toString()+")";

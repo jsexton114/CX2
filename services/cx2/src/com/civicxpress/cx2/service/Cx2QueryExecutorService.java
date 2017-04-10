@@ -174,9 +174,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfCXProjectsActive(ExportType exportType, Pageable pageable);
 
-    Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer form, Pageable pageable);
+    Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer formTypeId, Pageable pageable);
 
-    Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer form, Pageable pageable);
+    Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer formTypeId, Pageable pageable);
 
     Page<FormsToInspections> executeInspectionsOfForm(String form, Pageable pageable);
 

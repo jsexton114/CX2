@@ -621,8 +621,14 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
+        $scope.inspectionObject = null;
         $scope.minDaysForInspection = moment().startOf('day').valueOf();
         $scope.maxDaysForInspection = moment().startOf('day').add(15, 'years').valueOf();
+
+        $scope.isSameDayRequest = function() {
+            console.log($scope.Widgets.dateInspectionRequest.datavalue);
+            return moment().startOf('day').diff(moment($scope.Widgets.dateInspectionRequest.datavalue).startOf('day'), 'days') === 0;
+        };
 
         function updateMinMaxDates(inspectionDesignData) {
             $scope.Widgets.dateInspectionRequest.reset();
@@ -645,10 +651,12 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         };
 
         $scope.selectInspectionDesignChange = function($event, $isolateScope, newVal, oldVal) {
+            $scope.inspectionObject = newVal;
             updateMinMaxDates(newVal);
         };
 
         $scope.selectInspectionDesignBySequenceChange = function($event, $isolateScope, newVal, oldVal) {
+            $scope.inspectionObject = newVal;
             updateMinMaxDates(newVal);
         };
 

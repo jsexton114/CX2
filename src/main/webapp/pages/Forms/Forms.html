@@ -1024,10 +1024,17 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow89">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn165">
+                        <wm-composite name="composite9">
+                            <wm-checkbox caption="bind:'I accept the ' + (inspectionObject.sameDayInspectionFee | toCurrency:'$':2) + ' fee for same day inspections.'" class="col-md-9 text-danger" name="checkboxSameDayFeeConfirm" required="bind:isSameDayRequest() &amp;&amp; inspectionObject.sameDayInspectionFee > 0"
+                            show="bind:isSameDayRequest() &amp;&amp; inspectionObject.sameDayInspectionFee > 0"></wm-checkbox>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions10">
-                <wm-button class="btn-primary" caption="Request Inspection" type="button" margin="unset 0.5em" name="button2InspectionRequest" on-click="button2InspectionRequestClick($event, $scope)" iconclass="wi wi-plus" show="true" disabled="bind:!(Widgets.selectInspectionDesign.datavalue||Widgets.selectInspectionDesignBySequence.datavalue) || !Widgets.dateInspectionRequest.datavalue
-"></wm-button>
+                <wm-button class="btn-primary" caption="Request Inspection" type="button" margin="unset 0.5em" name="button2InspectionRequest" on-click="button2InspectionRequestClick($event, $scope)" iconclass="wi wi-plus" show="true" disabled="bind:!inspectionObject || !Widgets.dateInspectionRequest.datavalue || (isSameDayRequest() &amp;&amp; inspectionObject.sameDayInspectionFee > 0 &amp;&amp; !Widgets.checkboxSameDayFeeConfirm.datavalue)"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button21" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>

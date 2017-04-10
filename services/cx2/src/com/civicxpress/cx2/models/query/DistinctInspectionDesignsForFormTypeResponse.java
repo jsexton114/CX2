@@ -34,6 +34,8 @@ public class DistinctInspectionDesignsForFormTypeResponse implements Serializabl
     private Integer sequenceOrderNumber;
     @ColumnAlias("mustCompBeforeReqNxt")
     private Boolean mustCompBeforeReqNxt;
+    @ColumnAlias("sameDayInspectionFee")
+    private Integer sameDayInspectionFee;
 
     public Integer getInspectionDesignId() {
         return this.inspectionDesignId;
@@ -83,6 +85,14 @@ public class DistinctInspectionDesignsForFormTypeResponse implements Serializabl
         this.mustCompBeforeReqNxt = mustCompBeforeReqNxt;
     }
 
+    public Integer getSameDayInspectionFee() {
+        return this.sameDayInspectionFee;
+    }
+
+    public void setSameDayInspectionFee(Integer sameDayInspectionFee) {
+        this.sameDayInspectionFee = sameDayInspectionFee;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,7 +103,8 @@ public class DistinctInspectionDesignsForFormTypeResponse implements Serializabl
                 Objects.equals(getAllowSameDayInspections(), distinctInspectionDesignsForFormTypeResponse.getAllowSameDayInspections()) &&
                 Objects.equals(getMaxDaysInAdvance(), distinctInspectionDesignsForFormTypeResponse.getMaxDaysInAdvance()) &&
                 Objects.equals(getSequenceOrderNumber(), distinctInspectionDesignsForFormTypeResponse.getSequenceOrderNumber()) &&
-                Objects.equals(getMustCompBeforeReqNxt(), distinctInspectionDesignsForFormTypeResponse.getMustCompBeforeReqNxt());
+                Objects.equals(getMustCompBeforeReqNxt(), distinctInspectionDesignsForFormTypeResponse.getMustCompBeforeReqNxt()) &&
+                Objects.equals(getSameDayInspectionFee(), distinctInspectionDesignsForFormTypeResponse.getSameDayInspectionFee());
     }
 
     @Override
@@ -103,6 +114,7 @@ public class DistinctInspectionDesignsForFormTypeResponse implements Serializabl
                 getAllowSameDayInspections(),
                 getMaxDaysInAdvance(),
                 getSequenceOrderNumber(),
-                getMustCompBeforeReqNxt());
+                getMustCompBeforeReqNxt(),
+                getSameDayInspectionFee());
     }
 }

@@ -10015,17 +10015,17 @@
     "name" : "distinctInspectionDesignsForFormType",
     "description" : "distinctInspectionDesignsForFormType",
     "version" : "V2",
-    "queryString" : "select DISTINCT inspectDesignId as inspectionDesignId,inspectionDesign.inspectDesignName as inspectDesignName,inspectionDesign.allowSameDayInspections as allowSameDayInspections,inspectionDesign. maxDaysInAdvance as maxDaysInAdvance,sequenceOrderNumber as sequenceOrderNumber,mustCompBeforeReqNxt as mustCompBeforeReqNxt from InspectionSequence\nwhere formTypeId=:form order by sequenceOrderNumber asc",
-    "countQueryString" : "select count(*)  from InspectionSequence\nwhere formTypeId=:form",
+    "queryString" : "select DISTINCT inspectDesignId as inspectionDesignId,inspectionDesign.inspectDesignName as inspectDesignName,inspectionDesign.allowSameDayInspections as allowSameDayInspections,inspectionDesign. maxDaysInAdvance as maxDaysInAdvance,sequenceOrderNumber as sequenceOrderNumber,mustCompBeforeReqNxt as mustCompBeforeReqNxt, inspectionDesign.sameDayInspectionFee as sameDayInspectionFee from InspectionSequence\nwhere formTypeId=:formTypeId order by sequenceOrderNumber asc",
+    "countQueryString" : "select count(*)  from InspectionSequence\nwhere formTypeId=:formTypeId",
     "nativeSql" : false,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "form",
+      "name" : "formTypeId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "58",
+      "testValue" : "107",
       "required" : true
     } ],
     "request" : {
@@ -10089,6 +10089,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "sameDayInspectionFee",
+        "fieldName" : "sameDayInspectionFee",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       } ]
@@ -10567,8 +10576,8 @@
     "name" : "getInspectionDesignByInspectionCategoriesAssignedToFormType",
     "description" : "getInspectionDesignByInspectionCategoriesAssignedToFormType",
     "version" : "V2",
-    "queryString" : "select I.ID , I.InspectDesignName,I.MaxDaysInAdvance,I.AllowSameDayInspections\nfrom \nInspectionDesign I,\nInspectionCategoryMapping ICM,\nInspectionCategories IC,\nFormToInspectionCategoryMapping FICM\nwhere\nFICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID\nand IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID",
-    "countQueryString" : "select count(*) from (select I.ID , I.InspectDesignName,I.MaxDaysInAdvance,I.AllowSameDayInspections\nfrom \nInspectionDesign I,\nInspectionCategoryMapping ICM,\nInspectionCategories IC,\nFormToInspectionCategoryMapping FICM\nwhere\nFICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID\nand IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID) wmTempTable",
+    "queryString" : "select I.*\nfrom \nInspectionDesign I,\nInspectionCategoryMapping ICM,\nInspectionCategories IC,\nFormToInspectionCategoryMapping FICM\nwhere\nFICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID\nand IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID",
+    "countQueryString" : "select count(*) from (select I.*\nfrom \nInspectionDesign I,\nInspectionCategoryMapping ICM,\nInspectionCategories IC,\nFormToInspectionCategoryMapping FICM\nwhere\nFICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID\nand IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -10577,7 +10586,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "106",
+      "testValue" : "107",
       "required" : true
     } ],
     "request" : {
@@ -10599,8 +10608,170 @@
           "list" : false
         }
       }, {
+        "name" : "MunicipalityId",
+        "fieldName" : "municipalityId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
         "name" : "InspectDesignName",
         "fieldName" : "inspectDesignName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Instructions",
+        "fieldName" : "instructions",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Active",
+        "fieldName" : "active",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "MunicipalityInternalInspection",
+        "fieldName" : "municipalityInternalInspection",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "AllowSameDayInspections",
+        "fieldName" : "allowSameDayInspections",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "SameDayInspectionFee",
+        "fieldName" : "sameDayInspectionFee",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "SameDayInspectionFeeAcctCode",
+        "fieldName" : "sameDayInspectionFeeAcctCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "AllowCancel",
+        "fieldName" : "allowCancel",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "CancelFee",
+        "fieldName" : "cancelFee",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "CancelFeeAccount",
+        "fieldName" : "cancelFeeAccount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "AllowSameDayCancel",
+        "fieldName" : "allowSameDayCancel",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "SameDayCancelFee",
+        "fieldName" : "sameDayCancelFee",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "SameDayCancelAcctCode",
+        "fieldName" : "sameDayCancelAcctCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "TotalInspectionsDaily",
+        "fieldName" : "totalInspectionsDaily",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "TotalInspectionsHourly",
+        "fieldName" : "totalInspectionsHourly",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "AllowAdHoc",
+        "fieldName" : "allowAdHoc",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "CallInOnly",
+        "fieldName" : "callInOnly",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "CallInMessage",
+        "fieldName" : "callInMessage",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -10617,12 +10788,147 @@
           "list" : false
         }
       }, {
-        "name" : "AllowSameDayInspections",
-        "fieldName" : "allowSameDayInspections",
+        "name" : "TitlePrefix",
+        "fieldName" : "titlePrefix",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixDate",
+        "fieldName" : "prefixDate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixNumber",
+        "fieldName" : "prefixNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixNumberStart",
+        "fieldName" : "prefixNumberStart",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixNumberStep",
+        "fieldName" : "prefixNumberStep",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixDashes",
+        "fieldName" : "prefixDashes",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "CreatedBy",
+        "fieldName" : "createdBy",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "CreatedAt",
+        "fieldName" : "createdAt",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "RequireFeesPaidBeforeScheduling",
+        "fieldName" : "requireFeesPaidBeforeScheduling",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "AllowUnscheduledInspection",
+        "fieldName" : "allowUnscheduledInspection",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "TrackViolations",
+        "fieldName" : "trackViolations",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "InspectionTableName",
+        "fieldName" : "inspectionTableName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ScheduleDateOnly",
+        "fieldName" : "scheduleDateOnly",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ScheduleDateAndTime",
+        "fieldName" : "scheduleDateAndTime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "CurrentPrefixNumber",
+        "fieldName" : "currentPrefixNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigInteger",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixNumberResetOn",
+        "fieldName" : "prefixNumberResetOn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       } ]

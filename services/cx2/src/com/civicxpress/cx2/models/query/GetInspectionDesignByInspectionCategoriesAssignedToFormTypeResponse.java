@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import org.joda.time.LocalDateTime;
+
 import com.civicxpress.cx2.ContractorTypes;
 import com.civicxpress.cx2.FormFieldTypes;
 import com.civicxpress.cx2.FormStatuses;
@@ -34,12 +36,78 @@ public class GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse
 
     @ColumnAlias("ID")
     private Integer id;
+    @ColumnAlias("MunicipalityId")
+    private Integer municipalityId;
     @ColumnAlias("InspectDesignName")
     private String inspectDesignName;
-    @ColumnAlias("MaxDaysInAdvance")
-    private Integer maxDaysInAdvance;
+    @ColumnAlias("Instructions")
+    private String instructions;
+    @ColumnAlias("Active")
+    private Boolean active;
+    @ColumnAlias("MunicipalityInternalInspection")
+    private Boolean municipalityInternalInspection;
     @ColumnAlias("AllowSameDayInspections")
     private Boolean allowSameDayInspections;
+    @ColumnAlias("SameDayInspectionFee")
+    private Integer sameDayInspectionFee;
+    @ColumnAlias("SameDayInspectionFeeAcctCode")
+    private String sameDayInspectionFeeAcctCode;
+    @ColumnAlias("AllowCancel")
+    private Boolean allowCancel;
+    @ColumnAlias("CancelFee")
+    private Integer cancelFee;
+    @ColumnAlias("CancelFeeAccount")
+    private String cancelFeeAccount;
+    @ColumnAlias("AllowSameDayCancel")
+    private Boolean allowSameDayCancel;
+    @ColumnAlias("SameDayCancelFee")
+    private Integer sameDayCancelFee;
+    @ColumnAlias("SameDayCancelAcctCode")
+    private String sameDayCancelAcctCode;
+    @ColumnAlias("TotalInspectionsDaily")
+    private Integer totalInspectionsDaily;
+    @ColumnAlias("TotalInspectionsHourly")
+    private Integer totalInspectionsHourly;
+    @ColumnAlias("AllowAdHoc")
+    private Boolean allowAdHoc;
+    @ColumnAlias("CallInOnly")
+    private Boolean callInOnly;
+    @ColumnAlias("CallInMessage")
+    private String callInMessage;
+    @ColumnAlias("MaxDaysInAdvance")
+    private Integer maxDaysInAdvance;
+    @ColumnAlias("TitlePrefix")
+    private String titlePrefix;
+    @ColumnAlias("PrefixDate")
+    private String prefixDate;
+    @ColumnAlias("PrefixNumber")
+    private String prefixNumber;
+    @ColumnAlias("PrefixNumberStart")
+    private Integer prefixNumberStart;
+    @ColumnAlias("PrefixNumberStep")
+    private Integer prefixNumberStep;
+    @ColumnAlias("PrefixDashes")
+    private Boolean prefixDashes;
+    @ColumnAlias("CreatedBy")
+    private Integer createdBy;
+    @ColumnAlias("CreatedAt")
+    private LocalDateTime createdAt;
+    @ColumnAlias("RequireFeesPaidBeforeScheduling")
+    private Boolean requireFeesPaidBeforeScheduling;
+    @ColumnAlias("AllowUnscheduledInspection")
+    private Boolean allowUnscheduledInspection;
+    @ColumnAlias("TrackViolations")
+    private Boolean trackViolations;
+    @ColumnAlias("InspectionTableName")
+    private String inspectionTableName;
+    @ColumnAlias("ScheduleDateOnly")
+    private Boolean scheduleDateOnly;
+    @ColumnAlias("ScheduleDateAndTime")
+    private Boolean scheduleDateAndTime;
+    @ColumnAlias("CurrentPrefixNumber")
+    private BigInteger currentPrefixNumber;
+    @ColumnAlias("PrefixNumberResetOn")
+    private Integer prefixNumberResetOn;
 
     public Integer getId() {
         return this.id;
@@ -47,6 +115,14 @@ public class GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getMunicipalityId() {
+        return this.municipalityId;
+    }
+
+    public void setMunicipalityId(Integer municipalityId) {
+        this.municipalityId = municipalityId;
     }
 
     public String getInspectDesignName() {
@@ -57,12 +133,28 @@ public class GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse
         this.inspectDesignName = inspectDesignName;
     }
 
-    public Integer getMaxDaysInAdvance() {
-        return this.maxDaysInAdvance;
+    public String getInstructions() {
+        return this.instructions;
     }
 
-    public void setMaxDaysInAdvance(Integer maxDaysInAdvance) {
-        this.maxDaysInAdvance = maxDaysInAdvance;
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public Boolean getActive() {
+        return this.active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Boolean getMunicipalityInternalInspection() {
+        return this.municipalityInternalInspection;
+    }
+
+    public void setMunicipalityInternalInspection(Boolean municipalityInternalInspection) {
+        this.municipalityInternalInspection = municipalityInternalInspection;
     }
 
     public Boolean getAllowSameDayInspections() {
@@ -73,22 +165,328 @@ public class GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse
         this.allowSameDayInspections = allowSameDayInspections;
     }
 
+    public Integer getSameDayInspectionFee() {
+        return this.sameDayInspectionFee;
+    }
+
+    public void setSameDayInspectionFee(Integer sameDayInspectionFee) {
+        this.sameDayInspectionFee = sameDayInspectionFee;
+    }
+
+    public String getSameDayInspectionFeeAcctCode() {
+        return this.sameDayInspectionFeeAcctCode;
+    }
+
+    public void setSameDayInspectionFeeAcctCode(String sameDayInspectionFeeAcctCode) {
+        this.sameDayInspectionFeeAcctCode = sameDayInspectionFeeAcctCode;
+    }
+
+    public Boolean getAllowCancel() {
+        return this.allowCancel;
+    }
+
+    public void setAllowCancel(Boolean allowCancel) {
+        this.allowCancel = allowCancel;
+    }
+
+    public Integer getCancelFee() {
+        return this.cancelFee;
+    }
+
+    public void setCancelFee(Integer cancelFee) {
+        this.cancelFee = cancelFee;
+    }
+
+    public String getCancelFeeAccount() {
+        return this.cancelFeeAccount;
+    }
+
+    public void setCancelFeeAccount(String cancelFeeAccount) {
+        this.cancelFeeAccount = cancelFeeAccount;
+    }
+
+    public Boolean getAllowSameDayCancel() {
+        return this.allowSameDayCancel;
+    }
+
+    public void setAllowSameDayCancel(Boolean allowSameDayCancel) {
+        this.allowSameDayCancel = allowSameDayCancel;
+    }
+
+    public Integer getSameDayCancelFee() {
+        return this.sameDayCancelFee;
+    }
+
+    public void setSameDayCancelFee(Integer sameDayCancelFee) {
+        this.sameDayCancelFee = sameDayCancelFee;
+    }
+
+    public String getSameDayCancelAcctCode() {
+        return this.sameDayCancelAcctCode;
+    }
+
+    public void setSameDayCancelAcctCode(String sameDayCancelAcctCode) {
+        this.sameDayCancelAcctCode = sameDayCancelAcctCode;
+    }
+
+    public Integer getTotalInspectionsDaily() {
+        return this.totalInspectionsDaily;
+    }
+
+    public void setTotalInspectionsDaily(Integer totalInspectionsDaily) {
+        this.totalInspectionsDaily = totalInspectionsDaily;
+    }
+
+    public Integer getTotalInspectionsHourly() {
+        return this.totalInspectionsHourly;
+    }
+
+    public void setTotalInspectionsHourly(Integer totalInspectionsHourly) {
+        this.totalInspectionsHourly = totalInspectionsHourly;
+    }
+
+    public Boolean getAllowAdHoc() {
+        return this.allowAdHoc;
+    }
+
+    public void setAllowAdHoc(Boolean allowAdHoc) {
+        this.allowAdHoc = allowAdHoc;
+    }
+
+    public Boolean getCallInOnly() {
+        return this.callInOnly;
+    }
+
+    public void setCallInOnly(Boolean callInOnly) {
+        this.callInOnly = callInOnly;
+    }
+
+    public String getCallInMessage() {
+        return this.callInMessage;
+    }
+
+    public void setCallInMessage(String callInMessage) {
+        this.callInMessage = callInMessage;
+    }
+
+    public Integer getMaxDaysInAdvance() {
+        return this.maxDaysInAdvance;
+    }
+
+    public void setMaxDaysInAdvance(Integer maxDaysInAdvance) {
+        this.maxDaysInAdvance = maxDaysInAdvance;
+    }
+
+    public String getTitlePrefix() {
+        return this.titlePrefix;
+    }
+
+    public void setTitlePrefix(String titlePrefix) {
+        this.titlePrefix = titlePrefix;
+    }
+
+    public String getPrefixDate() {
+        return this.prefixDate;
+    }
+
+    public void setPrefixDate(String prefixDate) {
+        this.prefixDate = prefixDate;
+    }
+
+    public String getPrefixNumber() {
+        return this.prefixNumber;
+    }
+
+    public void setPrefixNumber(String prefixNumber) {
+        this.prefixNumber = prefixNumber;
+    }
+
+    public Integer getPrefixNumberStart() {
+        return this.prefixNumberStart;
+    }
+
+    public void setPrefixNumberStart(Integer prefixNumberStart) {
+        this.prefixNumberStart = prefixNumberStart;
+    }
+
+    public Integer getPrefixNumberStep() {
+        return this.prefixNumberStep;
+    }
+
+    public void setPrefixNumberStep(Integer prefixNumberStep) {
+        this.prefixNumberStep = prefixNumberStep;
+    }
+
+    public Boolean getPrefixDashes() {
+        return this.prefixDashes;
+    }
+
+    public void setPrefixDashes(Boolean prefixDashes) {
+        this.prefixDashes = prefixDashes;
+    }
+
+    public Integer getCreatedBy() {
+        return this.createdBy;
+    }
+
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Boolean getRequireFeesPaidBeforeScheduling() {
+        return this.requireFeesPaidBeforeScheduling;
+    }
+
+    public void setRequireFeesPaidBeforeScheduling(Boolean requireFeesPaidBeforeScheduling) {
+        this.requireFeesPaidBeforeScheduling = requireFeesPaidBeforeScheduling;
+    }
+
+    public Boolean getAllowUnscheduledInspection() {
+        return this.allowUnscheduledInspection;
+    }
+
+    public void setAllowUnscheduledInspection(Boolean allowUnscheduledInspection) {
+        this.allowUnscheduledInspection = allowUnscheduledInspection;
+    }
+
+    public Boolean getTrackViolations() {
+        return this.trackViolations;
+    }
+
+    public void setTrackViolations(Boolean trackViolations) {
+        this.trackViolations = trackViolations;
+    }
+
+    public String getInspectionTableName() {
+        return this.inspectionTableName;
+    }
+
+    public void setInspectionTableName(String inspectionTableName) {
+        this.inspectionTableName = inspectionTableName;
+    }
+
+    public Boolean getScheduleDateOnly() {
+        return this.scheduleDateOnly;
+    }
+
+    public void setScheduleDateOnly(Boolean scheduleDateOnly) {
+        this.scheduleDateOnly = scheduleDateOnly;
+    }
+
+    public Boolean getScheduleDateAndTime() {
+        return this.scheduleDateAndTime;
+    }
+
+    public void setScheduleDateAndTime(Boolean scheduleDateAndTime) {
+        this.scheduleDateAndTime = scheduleDateAndTime;
+    }
+
+    public BigInteger getCurrentPrefixNumber() {
+        return this.currentPrefixNumber;
+    }
+
+    public void setCurrentPrefixNumber(BigInteger currentPrefixNumber) {
+        this.currentPrefixNumber = currentPrefixNumber;
+    }
+
+    public Integer getPrefixNumberResetOn() {
+        return this.prefixNumberResetOn;
+    }
+
+    public void setPrefixNumberResetOn(Integer prefixNumberResetOn) {
+        this.prefixNumberResetOn = prefixNumberResetOn;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse)) return false;
         final GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse = (GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse) o;
         return Objects.equals(getId(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getId()) &&
+                Objects.equals(getMunicipalityId(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getMunicipalityId()) &&
                 Objects.equals(getInspectDesignName(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getInspectDesignName()) &&
+                Objects.equals(getInstructions(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getInstructions()) &&
+                Objects.equals(getActive(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getActive()) &&
+                Objects.equals(getMunicipalityInternalInspection(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getMunicipalityInternalInspection()) &&
+                Objects.equals(getAllowSameDayInspections(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getAllowSameDayInspections()) &&
+                Objects.equals(getSameDayInspectionFee(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getSameDayInspectionFee()) &&
+                Objects.equals(getSameDayInspectionFeeAcctCode(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getSameDayInspectionFeeAcctCode()) &&
+                Objects.equals(getAllowCancel(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getAllowCancel()) &&
+                Objects.equals(getCancelFee(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getCancelFee()) &&
+                Objects.equals(getCancelFeeAccount(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getCancelFeeAccount()) &&
+                Objects.equals(getAllowSameDayCancel(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getAllowSameDayCancel()) &&
+                Objects.equals(getSameDayCancelFee(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getSameDayCancelFee()) &&
+                Objects.equals(getSameDayCancelAcctCode(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getSameDayCancelAcctCode()) &&
+                Objects.equals(getTotalInspectionsDaily(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getTotalInspectionsDaily()) &&
+                Objects.equals(getTotalInspectionsHourly(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getTotalInspectionsHourly()) &&
+                Objects.equals(getAllowAdHoc(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getAllowAdHoc()) &&
+                Objects.equals(getCallInOnly(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getCallInOnly()) &&
+                Objects.equals(getCallInMessage(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getCallInMessage()) &&
                 Objects.equals(getMaxDaysInAdvance(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getMaxDaysInAdvance()) &&
-                Objects.equals(getAllowSameDayInspections(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getAllowSameDayInspections());
+                Objects.equals(getTitlePrefix(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getTitlePrefix()) &&
+                Objects.equals(getPrefixDate(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getPrefixDate()) &&
+                Objects.equals(getPrefixNumber(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getPrefixNumber()) &&
+                Objects.equals(getPrefixNumberStart(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getPrefixNumberStart()) &&
+                Objects.equals(getPrefixNumberStep(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getPrefixNumberStep()) &&
+                Objects.equals(getPrefixDashes(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getPrefixDashes()) &&
+                Objects.equals(getCreatedBy(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getCreatedBy()) &&
+                Objects.equals(getCreatedAt(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getCreatedAt()) &&
+                Objects.equals(getRequireFeesPaidBeforeScheduling(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getRequireFeesPaidBeforeScheduling()) &&
+                Objects.equals(getAllowUnscheduledInspection(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getAllowUnscheduledInspection()) &&
+                Objects.equals(getTrackViolations(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getTrackViolations()) &&
+                Objects.equals(getInspectionTableName(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getInspectionTableName()) &&
+                Objects.equals(getScheduleDateOnly(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getScheduleDateOnly()) &&
+                Objects.equals(getScheduleDateAndTime(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getScheduleDateAndTime()) &&
+                Objects.equals(getCurrentPrefixNumber(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getCurrentPrefixNumber()) &&
+                Objects.equals(getPrefixNumberResetOn(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getPrefixNumberResetOn());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId(),
+                getMunicipalityId(),
                 getInspectDesignName(),
+                getInstructions(),
+                getActive(),
+                getMunicipalityInternalInspection(),
+                getAllowSameDayInspections(),
+                getSameDayInspectionFee(),
+                getSameDayInspectionFeeAcctCode(),
+                getAllowCancel(),
+                getCancelFee(),
+                getCancelFeeAccount(),
+                getAllowSameDayCancel(),
+                getSameDayCancelFee(),
+                getSameDayCancelAcctCode(),
+                getTotalInspectionsDaily(),
+                getTotalInspectionsHourly(),
+                getAllowAdHoc(),
+                getCallInOnly(),
+                getCallInMessage(),
                 getMaxDaysInAdvance(),
-                getAllowSameDayInspections());
+                getTitlePrefix(),
+                getPrefixDate(),
+                getPrefixNumber(),
+                getPrefixNumberStart(),
+                getPrefixNumberStep(),
+                getPrefixDashes(),
+                getCreatedBy(),
+                getCreatedAt(),
+                getRequireFeesPaidBeforeScheduling(),
+                getAllowUnscheduledInspection(),
+                getTrackViolations(),
+                getInspectionTableName(),
+                getScheduleDateOnly(),
+                getScheduleDateAndTime(),
+                getCurrentPrefixNumber(),
+                getPrefixNumberResetOn());
     }
 }
