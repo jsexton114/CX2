@@ -71,22 +71,22 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetInspectionsByOutcomeResponse> executeGetInspectionsByOutcome(Integer municipality, String outcome, Pageable pageable) {
+    public Page<GetInspectionsByOutcomeResponse> executeGetInspectionsByOutcome(String outcome, Integer municipality, Pageable pageable) {
         Map params = new HashMap(2);
 
-        params.put("municipality", municipality);
         params.put("outcome", outcome);
+        params.put("municipality", municipality);
 
         return queryExecutor.executeNamedQuery("getInspectionsByOutcome", params, GetInspectionsByOutcomeResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportGetInspectionsByOutcome(ExportType exportType, Integer municipality, String outcome, Pageable pageable) {
+    public Downloadable exportGetInspectionsByOutcome(ExportType exportType, String outcome, Integer municipality, Pageable pageable) {
         Map params = new HashMap(2);
 
-        params.put("municipality", municipality);
         params.put("outcome", outcome);
+        params.put("municipality", municipality);
 
         return queryExecutor.exportNamedQueryData("getInspectionsByOutcome", params, exportType, GetInspectionsByOutcomeResponse.class, pageable);
     }
@@ -793,11 +793,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CountAssignedInspectionsBetweenDatesResponse> executeCountAssignedInspectionsBetweenDates(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
+    public Page<CountAssignedInspectionsBetweenDatesResponse> executeCountAssignedInspectionsBetweenDates(Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
         Map params = new HashMap(5);
 
-        params.put("municipality", municipality);
         params.put("isClosed", isClosed);
+        params.put("municipality", municipality);
         params.put("assignedTo", assignedTo);
         params.put("startDate", startDate);
         params.put("endDate", endDate);
@@ -807,11 +807,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportCountAssignedInspectionsBetweenDates(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
+    public Downloadable exportCountAssignedInspectionsBetweenDates(ExportType exportType, Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
         Map params = new HashMap(5);
 
-        params.put("municipality", municipality);
         params.put("isClosed", isClosed);
+        params.put("municipality", municipality);
         params.put("assignedTo", assignedTo);
         params.put("startDate", startDate);
         params.put("endDate", endDate);
@@ -1446,26 +1446,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<AssignedInspectionsLessThanDateResponse> executeAssignedInspectionsLessThanDate(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable) {
+    public Page<AssignedInspectionsLessThanDateResponse> executeAssignedInspectionsLessThanDate(Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable) {
         Map params = new HashMap(4);
 
-        params.put("municipality", municipality);
         params.put("isClosed", isClosed);
         params.put("assignedTo", assignedTo);
         params.put("requestedFor", requestedFor);
+        params.put("municipality", municipality);
 
         return queryExecutor.executeNamedQuery("assignedInspectionsLessThanDate", params, AssignedInspectionsLessThanDateResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportAssignedInspectionsLessThanDate(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable) {
+    public Downloadable exportAssignedInspectionsLessThanDate(ExportType exportType, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable) {
         Map params = new HashMap(4);
 
-        params.put("municipality", municipality);
         params.put("isClosed", isClosed);
         params.put("assignedTo", assignedTo);
         params.put("requestedFor", requestedFor);
+        params.put("municipality", municipality);
 
         return queryExecutor.exportNamedQueryData("assignedInspectionsLessThanDate", params, exportType, AssignedInspectionsLessThanDateResponse.class, pageable);
     }
@@ -1503,11 +1503,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<AssignedInspectionsBetweenDatesResponse> executeAssignedInspectionsBetweenDates(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
+    public Page<AssignedInspectionsBetweenDatesResponse> executeAssignedInspectionsBetweenDates(Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
         Map params = new HashMap(5);
 
-        params.put("municipality", municipality);
         params.put("isClosed", isClosed);
+        params.put("municipality", municipality);
         params.put("assignedTo", assignedTo);
         params.put("startDate", startDate);
         params.put("endDate", endDate);
@@ -1517,11 +1517,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportAssignedInspectionsBetweenDates(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
+    public Downloadable exportAssignedInspectionsBetweenDates(ExportType exportType, Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
         Map params = new HashMap(5);
 
-        params.put("municipality", municipality);
         params.put("isClosed", isClosed);
+        params.put("municipality", municipality);
         params.put("assignedTo", assignedTo);
         params.put("startDate", startDate);
         params.put("endDate", endDate);
@@ -2632,26 +2632,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CountAssignedInspectionsLessThanDateResponse> executeCountAssignedInspectionsLessThanDate(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable) {
+    public Page<CountAssignedInspectionsLessThanDateResponse> executeCountAssignedInspectionsLessThanDate(Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable) {
         Map params = new HashMap(4);
 
-        params.put("municipality", municipality);
         params.put("isClosed", isClosed);
         params.put("assignedTo", assignedTo);
         params.put("requestedFor", requestedFor);
+        params.put("municipality", municipality);
 
         return queryExecutor.executeNamedQuery("countAssignedInspectionsLessThanDate", params, CountAssignedInspectionsLessThanDateResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportCountAssignedInspectionsLessThanDate(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable) {
+    public Downloadable exportCountAssignedInspectionsLessThanDate(ExportType exportType, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable) {
         Map params = new HashMap(4);
 
-        params.put("municipality", municipality);
         params.put("isClosed", isClosed);
         params.put("assignedTo", assignedTo);
         params.put("requestedFor", requestedFor);
+        params.put("municipality", municipality);
 
         return queryExecutor.exportNamedQueryData("countAssignedInspectionsLessThanDate", params, exportType, CountAssignedInspectionsLessThanDateResponse.class, pageable);
     }
@@ -2792,22 +2792,22 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetInspectionsToBeScheduledByMunicipalityResponse> executeGetInspectionsToBeScheduledByMunicipality(Integer municipality, String outcome, Pageable pageable) {
+    public Page<GetInspectionsToBeScheduledByMunicipalityResponse> executeGetInspectionsToBeScheduledByMunicipality(String outcome, Integer municipality, Pageable pageable) {
         Map params = new HashMap(2);
 
-        params.put("municipality", municipality);
         params.put("outcome", outcome);
+        params.put("municipality", municipality);
 
         return queryExecutor.executeNamedQuery("getInspectionsToBeScheduledByMunicipality", params, GetInspectionsToBeScheduledByMunicipalityResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportGetInspectionsToBeScheduledByMunicipality(ExportType exportType, Integer municipality, String outcome, Pageable pageable) {
+    public Downloadable exportGetInspectionsToBeScheduledByMunicipality(ExportType exportType, String outcome, Integer municipality, Pageable pageable) {
         Map params = new HashMap(2);
 
-        params.put("municipality", municipality);
         params.put("outcome", outcome);
+        params.put("municipality", municipality);
 
         return queryExecutor.exportNamedQueryData("getInspectionsToBeScheduledByMunicipality", params, exportType, GetInspectionsToBeScheduledByMunicipalityResponse.class, pageable);
     }

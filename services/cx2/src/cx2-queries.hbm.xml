@@ -29,11 +29,11 @@ inspectionZone as inspectionZone,
 requestedFor as requestedFor,
 inspectionDesign.inspectDesignName as inspectDesignName
 
-from MasterInspections where inspectionDesign.municipalities.id=:municipality and inspectionOutcome.outcome=:outcome and assignedTo is null
+from MasterInspections where inspectionOutcome.outcome=:outcome and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo is null
 Order By inspectionZone DESC
         ]]>
-    <query-param name="municipality" type="java.lang.Integer"/>
     <query-param name="outcome" type="java.lang.String"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
     </query>
 
     <query name="getCalculatableFormFields">
@@ -593,10 +593,10 @@ group by V.companyName) wmTempTable
         select 
 count(*) as inspectionsCount
 
-from MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor between :startDate and :endDate
+from MasterInspections where closed=:isClosed and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo=:assignedTo and requestedFor between :startDate and :endDate
         ]]>
-    <query-param name="municipality" type="java.lang.Integer"/>
     <query-param name="isClosed" type="java.lang.Boolean"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
     <query-param name="assignedTo" type="java.lang.Integer"/>
     <query-param name="startDate" type="org.joda.time.LocalDateTime"/>
     <query-param name="endDate" type="org.joda.time.LocalDateTime"/>
@@ -1103,12 +1103,12 @@ gisrecords.subdivisions.subdivision as subdivision,
 usersByRequestedBy.fullName as fullName,
 inspectionDesign.inspectDesignName as inspectDesignName
 
-from MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor
+from MasterInspections where closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality)
         ]]>
-    <query-param name="municipality" type="java.lang.Integer"/>
     <query-param name="isClosed" type="java.lang.Boolean"/>
     <query-param name="assignedTo" type="java.lang.Integer"/>
     <query-param name="requestedFor" type="org.joda.time.LocalDateTime"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
     </query>
 
     <sql-query name="InsertTagForMessage">
@@ -1149,10 +1149,10 @@ gisrecords.subdivisions.subdivision as subdivision,
 usersByRequestedBy.fullName as fullName,
 inspectionDesign.inspectDesignName as inspectDesignName
 
-from MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor between :startDate and :endDate
+from MasterInspections where closed=:isClosed and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo=:assignedTo and requestedFor between :startDate and :endDate
         ]]>
-    <query-param name="municipality" type="java.lang.Integer"/>
     <query-param name="isClosed" type="java.lang.Boolean"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
     <query-param name="assignedTo" type="java.lang.Integer"/>
     <query-param name="startDate" type="org.joda.time.LocalDateTime"/>
     <query-param name="endDate" type="org.joda.time.LocalDateTime"/>
@@ -2065,12 +2065,12 @@ where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipa
         select 
 count(*) as inspectionsCount
 
-from MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor
+from MasterInspections where closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality)
         ]]>
-    <query-param name="municipality" type="java.lang.Integer"/>
     <query-param name="isClosed" type="java.lang.Boolean"/>
     <query-param name="assignedTo" type="java.lang.Integer"/>
     <query-param name="requestedFor" type="org.joda.time.LocalDateTime"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
     </query>
 
     <sql-query name="DeleteFromVendorUsers">
@@ -2199,10 +2199,10 @@ from Fees where masterForms.formStatuses.allowPayment=:allowPayment and paidStat
         select 
 count(*)
 as inspectionsToBeScheduled
-from MasterInspections where inspectionDesign.municipalities.id=:municipality and inspectionOutcome.outcome=:outcome and assignedTo is null
+from MasterInspections where  inspectionOutcome.outcome=:outcome and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo is null
         ]]>
-    <query-param name="municipality" type="java.lang.Integer"/>
     <query-param name="outcome" type="java.lang.String"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
     </query>
 
     <query name="FormsTypesForDashboard">

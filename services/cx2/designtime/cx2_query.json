@@ -9369,25 +9369,25 @@
     "name" : "assignedInspectionsBetweenDates",
     "description" : "assignedInspectionsBetweenDates",
     "version" : "V2",
-    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\nusersByAssignedTo.fullName as assignedToPersonName,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\nrequestedFor as requestedFor,\ngisrecords.fullAddress as fullAddress,\ngisrecords.lot as lot,\ngisrecords.subdivisions.subdivision as subdivision,\nusersByRequestedBy.fullName as fullName,\ninspectionDesign.inspectDesignName as inspectDesignName\n\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor between :startDate and :endDate",
+    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\nusersByAssignedTo.fullName as assignedToPersonName,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\nrequestedFor as requestedFor,\ngisrecords.fullAddress as fullAddress,\ngisrecords.lot as lot,\ngisrecords.subdivisions.subdivision as subdivision,\nusersByRequestedBy.fullName as fullName,\ninspectionDesign.inspectDesignName as inspectDesignName\n\nfrom MasterInspections where closed=:isClosed and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo=:assignedTo and requestedFor between :startDate and :endDate",
     "countQueryString" : null,
     "nativeSql" : false,
     "fetchCount" : false,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "municipality",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : true
-    }, {
       "name" : "isClosed",
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : false,
       "required" : true
+    }, {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : false
     }, {
       "name" : "assignedTo",
       "type" : "integer",
@@ -9479,7 +9479,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "org.joda.time.LocalDateTime",
+          "typeRef" : "com.wavemaker.commons.data.type.WMPersistentLocalDateTime",
           "list" : false
         }
       }, {
@@ -9534,19 +9534,12 @@
     "name" : "assignedInspectionsLessThanDate",
     "description" : "assignedInspectionsLessThanDate",
     "version" : "V2",
-    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\nusersByAssignedTo.fullName as assignedToPersonName,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\nrequestedFor as requestedFor,\ngisrecords.fullAddress as fullAddress,\ngisrecords.lot as lot,\ngisrecords.subdivisions.subdivision as subdivision,\nusersByRequestedBy.fullName as fullName,\ninspectionDesign.inspectDesignName as inspectDesignName\n\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor",
+    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\nusersByAssignedTo.fullName as assignedToPersonName,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\nrequestedFor as requestedFor,\ngisrecords.fullAddress as fullAddress,\ngisrecords.lot as lot,\ngisrecords.subdivisions.subdivision as subdivision,\nusersByRequestedBy.fullName as fullName,\ninspectionDesign.inspectDesignName as inspectDesignName\n\nfrom MasterInspections where closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality)",
     "countQueryString" : null,
     "nativeSql" : false,
     "fetchCount" : false,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "municipality",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : true
-    }, {
       "name" : "isClosed",
       "type" : "boolean",
       "list" : false,
@@ -9567,6 +9560,13 @@
       "variableType" : "PROMPT",
       "testValue" : "2017-04-05T12:24:41",
       "required" : true
+    }, {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : false
     } ],
     "request" : {
       "wrapped" : false,
@@ -9637,7 +9637,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "org.joda.time.LocalDateTime",
+          "typeRef" : "com.wavemaker.commons.data.type.WMPersistentLocalDateTime",
           "list" : false
         }
       }, {
@@ -9730,25 +9730,25 @@
     "name" : "countAssignedInspectionsBetweenDates",
     "description" : "countAssignedInspectionsBetweenDates",
     "version" : "V2",
-    "queryString" : "select \ncount(*) as inspectionsCount\n\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor between :startDate and :endDate",
+    "queryString" : "select \ncount(*) as inspectionsCount\n\nfrom MasterInspections where closed=:isClosed and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo=:assignedTo and requestedFor between :startDate and :endDate",
     "countQueryString" : null,
     "nativeSql" : false,
     "fetchCount" : false,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "municipality",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : true
-    }, {
       "name" : "isClosed",
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : false,
       "required" : true
+    }, {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : false
     }, {
       "name" : "assignedTo",
       "type" : "integer",
@@ -9796,19 +9796,12 @@
     "name" : "countAssignedInspectionsLessThanDate",
     "description" : "countAssignedInspectionsLessThanDate",
     "version" : "V2",
-    "queryString" : "select \ncount(*) as inspectionsCount\n\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor",
+    "queryString" : "select \ncount(*) as inspectionsCount\n\nfrom MasterInspections where closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality)",
     "countQueryString" : null,
     "nativeSql" : false,
     "fetchCount" : false,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "municipality",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : true
-    }, {
       "name" : "isClosed",
       "type" : "boolean",
       "list" : false,
@@ -9829,6 +9822,13 @@
       "variableType" : "PROMPT",
       "testValue" : "2017-04-04T15:36:45",
       "required" : true
+    }, {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
     } ],
     "request" : {
       "wrapped" : false,
@@ -10632,25 +10632,25 @@
     "name" : "getInspectionsByOutcome",
     "description" : "getInspectionsByOutcome",
     "version" : "V2",
-    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\nrequestedFor as requestedFor,\ninspectionDesign.inspectDesignName as inspectDesignName\n\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and inspectionOutcome.outcome=:outcome and assignedTo is null\nOrder By inspectionZone DESC",
+    "queryString" : "select \ninspectionGuid as inspectionGuid,\nassignedTo as assignedTo,\ninspectionOutcome.outcome as outcome,\ninspectionTitle as inspectionTitle,\ninspectionZone as inspectionZone,\nrequestedFor as requestedFor,\ninspectionDesign.inspectDesignName as inspectDesignName\n\nfrom MasterInspections where inspectionOutcome.outcome=:outcome and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo is null\nOrder By inspectionZone DESC",
     "countQueryString" : null,
     "nativeSql" : false,
     "fetchCount" : false,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "municipality",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : true
-    }, {
       "name" : "outcome",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "Requested",
       "required" : true
+    }, {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : false
     } ],
     "request" : {
       "wrapped" : false,
@@ -10712,7 +10712,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "org.joda.time.LocalDateTime",
+          "typeRef" : "com.wavemaker.commons.data.type.WMPersistentLocalDateTime",
           "list" : false
         }
       }, {
@@ -10731,25 +10731,25 @@
     "name" : "getInspectionsToBeScheduledByMunicipality",
     "description" : "getInspectionsToBeScheduledByMunicipality",
     "version" : "V2",
-    "queryString" : "select \ncount(*)\nas inspectionsToBeScheduled\nfrom MasterInspections where inspectionDesign.municipalities.id=:municipality and inspectionOutcome.outcome=:outcome and assignedTo is null",
+    "queryString" : "select \ncount(*)\nas inspectionsToBeScheduled\nfrom MasterInspections where  inspectionOutcome.outcome=:outcome and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo is null",
     "countQueryString" : null,
     "nativeSql" : false,
     "fetchCount" : false,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "municipality",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true
-    }, {
       "name" : "outcome",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "Requested",
       "required" : true
+    }, {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
     } ],
     "request" : {
       "wrapped" : false,

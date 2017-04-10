@@ -34,9 +34,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetRecentMessageId(ExportType exportType, String form, Timestamp postedAt, Pageable pageable);
 
-    Page<GetInspectionsByOutcomeResponse> executeGetInspectionsByOutcome(Integer municipality, String outcome, Pageable pageable);
+    Page<GetInspectionsByOutcomeResponse> executeGetInspectionsByOutcome(String outcome, Integer municipality, Pageable pageable);
 
-    Downloadable exportGetInspectionsByOutcome(ExportType exportType, Integer municipality, String outcome, Pageable pageable);
+    Downloadable exportGetInspectionsByOutcome(ExportType exportType, String outcome, Integer municipality, Pageable pageable);
 
     Page<FormTypeFields> executeGetCalculatableFormFields(Integer formTypeId, Pageable pageable);
 
@@ -164,9 +164,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfProcessFormsByMuncipality(ExportType exportType, Integer municipalityId, Boolean closed, Integer userId, Pageable pageable);
 
-    Page<CountAssignedInspectionsBetweenDatesResponse> executeCountAssignedInspectionsBetweenDates(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
+    Page<CountAssignedInspectionsBetweenDatesResponse> executeCountAssignedInspectionsBetweenDates(Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
 
-    Downloadable exportCountAssignedInspectionsBetweenDates(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
+    Downloadable exportCountAssignedInspectionsBetweenDates(ExportType exportType, Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
 
     Integer executeUpdateVendorsToProject(UpdateVendorsToProjectRequest updateVendorsToProjectRequest);
 
@@ -280,9 +280,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfAllProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
 
-    Page<AssignedInspectionsLessThanDateResponse> executeAssignedInspectionsLessThanDate(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable);
+    Page<AssignedInspectionsLessThanDateResponse> executeAssignedInspectionsLessThanDate(Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable);
 
-    Downloadable exportAssignedInspectionsLessThanDate(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable);
+    Downloadable exportAssignedInspectionsLessThanDate(ExportType exportType, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable);
 
     Integer executeInsertTagForMessage(InsertTagForMessageRequest insertTagForMessageRequest);
 
@@ -290,9 +290,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportManualFeeTypeCountForMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable);
 
-    Page<AssignedInspectionsBetweenDatesResponse> executeAssignedInspectionsBetweenDates(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
+    Page<AssignedInspectionsBetweenDatesResponse> executeAssignedInspectionsBetweenDates(Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
 
-    Downloadable exportAssignedInspectionsBetweenDates(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
+    Downloadable exportAssignedInspectionsBetweenDates(ExportType exportType, Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
 
     Integer executeInsertSubscription(InsertSubscriptionRequest insertSubscriptionRequest);
 
@@ -492,9 +492,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetRolesForUser(ExportType exportType, Integer userId, Pageable pageable);
 
-    Page<CountAssignedInspectionsLessThanDateResponse> executeCountAssignedInspectionsLessThanDate(Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable);
+    Page<CountAssignedInspectionsLessThanDateResponse> executeCountAssignedInspectionsLessThanDate(Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable);
 
-    Downloadable exportCountAssignedInspectionsLessThanDate(ExportType exportType, Integer municipality, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Pageable pageable);
+    Downloadable exportCountAssignedInspectionsLessThanDate(ExportType exportType, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable);
 
     Integer executeDeleteFromVendorUsers(Integer user, Integer vendor);
 
@@ -520,9 +520,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportUnpaidFormFeeCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
 
-    Page<GetInspectionsToBeScheduledByMunicipalityResponse> executeGetInspectionsToBeScheduledByMunicipality(Integer municipality, String outcome, Pageable pageable);
+    Page<GetInspectionsToBeScheduledByMunicipalityResponse> executeGetInspectionsToBeScheduledByMunicipality(String outcome, Integer municipality, Pageable pageable);
 
-    Downloadable exportGetInspectionsToBeScheduledByMunicipality(ExportType exportType, Integer municipality, String outcome, Pageable pageable);
+    Downloadable exportGetInspectionsToBeScheduledByMunicipality(ExportType exportType, String outcome, Integer municipality, Pageable pageable);
 
     Page<FormsTypesForDashboardResponse> executeFormsTypesForDashboard(Integer municipality, Timestamp startDate, Timestamp endDate, Pageable pageable);
 

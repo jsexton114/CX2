@@ -12,13 +12,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.civicxpress.cx2.FormFieldTypes;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.wavemaker.commons.data.type.WMPersistentLocalDateTime;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class AssignedInspectionsBetweenDatesResponse implements Serializable {
@@ -36,7 +35,7 @@ public class AssignedInspectionsBetweenDatesResponse implements Serializable {
     @ColumnAlias("inspectionZone")
     private String inspectionZone;
     @ColumnAlias("requestedFor")
-    private LocalDateTime requestedFor;
+    private WMPersistentLocalDateTime requestedFor;
     @ColumnAlias("fullAddress")
     private String fullAddress;
     @ColumnAlias("lot")
@@ -96,11 +95,11 @@ public class AssignedInspectionsBetweenDatesResponse implements Serializable {
         this.inspectionZone = inspectionZone;
     }
 
-    public LocalDateTime getRequestedFor() {
+    public WMPersistentLocalDateTime getRequestedFor() {
         return this.requestedFor;
     }
 
-    public void setRequestedFor(LocalDateTime requestedFor) {
+    public void setRequestedFor(WMPersistentLocalDateTime requestedFor) {
         this.requestedFor = requestedFor;
     }
 

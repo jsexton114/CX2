@@ -13,8 +13,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.civicxpress.cx2.FormFieldTypes;
 import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
@@ -25,6 +23,7 @@ import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.Vendor;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.wavemaker.commons.data.type.WMPersistentLocalDateTime;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetOwnersForGisRecordsResponse implements Serializable {
