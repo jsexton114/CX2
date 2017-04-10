@@ -16,7 +16,6 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
 
 
     $scope.lvCheckOutonSuccess = function(variable, data) {
-        debugger
         var fees = [];
 
         var temp = $scope.Variables.svCartItemIds.dataSet.content;

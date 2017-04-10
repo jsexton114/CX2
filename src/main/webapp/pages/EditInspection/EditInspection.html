@@ -451,23 +451,27 @@
                                                 <wm-liveform novalidate="false" errormessage="" title="Code Set Details" formlayout="dialog" iconclass="wi wi-hammer" dataset="bind:Variables.lvCodesToInspection.dataSet" captionalign="left" captionposition="top"
                                                 name="liveformInspectionCodeSets">
                                                     <wm-layoutgrid columns="1" name="layoutgrid18">
-                                                        <wm-gridrow name="gridrow51_2">
-                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn69_2">
-                                                                <wm-form-field name="codeSets" displayname="Select Code Set" required="true" show="true" generator="assigned" primary-key="false" key="codeSets" type="list" is-related="true" pc-display="true"
-                                                                mobile-display="true" widget="select" dataset="bind:Variables.lvMunicipalityCodeSets.dataSet" datafield="All Fields" displayfield="codeSetTitle" orderby="codeSetTitle:asc"></wm-form-field>
+                                                        <wm-gridrow name="gridrow54_1">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn73_2">
+                                                                <wm-form-field name="formCodeSetScope" displayname="Scope" widget="select" show="true" type="custom" dataset="bind:Variables.stvCodeSetScope.dataSet" datafield="dataValue" displayfield="dataValue"
+                                                                defaultvalue="bind:Variables.stvCodeSetScope.dataSet[0].dataValue" on-change="formCodeSetScopeChange($event, $scope, newVal, oldVal)" key="formCodeSetScope" placeholder="Select value"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
-                                                        <wm-gridrow name="gridrow52">
-                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn70_1">
-                                                                <wm-form-field name="inspectionDesign" displayname="Inspection Design" required="false" show="false" generator="assigned" primary-key="false" key="inspectionDesign" type="list" is-related="true"
-                                                                pc-display="true" mobile-display="true" widget="select" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord"></wm-form-field>
+                                                        <wm-gridrow name="gridrow51_2">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn69_2">
+                                                                <wm-form-field name="codeSets" displayname="Select Code Set" show="true" primary-key="false" generator="assigned" key="codeSets" type="list" is-related="true" readonly="false" required="true"
+                                                                widget="select" dataset="bind:Variables.lvListOfCodeSets.dataSet" datafield="All Fields" displayfield="codeSetTitle" orderby="codeSetTitle:asc" placeholder="Select value"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
-                                                    <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true"
-                                                    widget="number"></wm-form-field>
-                                                    <wm-form-action key="save" class="form-save btn-primary" iconclass="wi wi-plus" display-name="Add Code Set" show="true" type="submit" update-mode="true"></wm-form-action>
-                                                    <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false"
+                                                    required="false" widget="select" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord"
+                                                    placeholder="Select value"></wm-form-field>
+                                                    <wm-form-action key="save" display-name="Add Code Set" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add Code Set" action="saveAction($event)" disabled="false"
+                                                    type="submit" update-mode="true"></wm-form-action>
+                                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
+                                                    update-mode="true"></wm-form-action>
                                                 </wm-liveform>
                                             </wm-livegrid>
                                         </wm-gridcolumn>

@@ -39,6 +39,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "CurrentInspectionObjonSuccess($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : true,
@@ -6803,19 +6804,15 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.LetterTemplates"
   },
-  "lvMunicipalityCodeSets" : {
+  "lvListOfCodeSets" : {
     "_id" : "wm-lvMunicipalityCodeSets-wm.LiveVariable-1491459226500",
-    "name" : "lvMunicipalityCodeSets",
+    "name" : "lvListOfCodeSets",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "globalYn",
-      "value" : false,
+      "value" : true,
       "type" : "boolean"
-    }, {
-      "target" : "municipalityId",
-      "value" : "bind:Variables.CurrentInspectionObj.firstRecord.municipalityId",
-      "type" : "number"
     } ],
     "operation" : "read",
     "dataSet" : [ ],
@@ -7979,6 +7976,21 @@
       "dataValue" : "50"
     } ],
     "type" : "number",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "stvCodeSetScope" : {
+    "_id" : "wm-stvCodeSetScope-wm.Variable-1491805879609",
+    "name" : "stvCodeSetScope",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "dataValue" : "Global"
+    }, {
+      "dataValue" : ""
+    } ],
+    "type" : "string",
     "isList" : true,
     "saveInPhonegap" : false
   },

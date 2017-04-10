@@ -36,6 +36,7 @@ Application.$controller("gridFeesListController", ["$scope",
         });
 
         $scope.customButtonAction = function($event) {
+            $scope.Variables.svCartItemIds.update();
             let temp = $scope.Variables.loggedInUser.dataSet.roles;
             for (let i = 0; i < temp.length; i++) {
                 if ((temp[i] == "MunicipalityEmployee")) {

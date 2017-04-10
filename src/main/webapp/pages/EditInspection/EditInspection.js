@@ -14,6 +14,11 @@ Application.$controller("EditInspectionPageController", ["$scope", function($sco
          */
     };
 
+
+    $scope.CurrentInspectionObjonSuccess = function(variable, data) {
+        $scope.Variables.stvCodeSetScope.dataSet[1].dataValue = data[0].municipalities.municipalityName;
+    };
+
 }]);
 
 
@@ -184,5 +189,31 @@ Application.$controller("liveformInspectionCodeSetsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+
+        $scope.formCodeSetScopeChange = function($event, $isolateScope, newVal, oldVal) {
+
+            if (newVal == "Global") {
+                $scope.Variables.lvListOfCodeSets.setFilter({
+                    'globalYn': false
+                });
+                $scope.Variables.lvListOfCodeSets.update();
+            } else {
+                $scope.Variables.lvListOfCodeSets.setFilter({
+                    'globalYn': false,
+                    'municipalityId': $scope.Variables.CurrentInspectionObj.firstRecord.municipalityId
+                });
+                $scope.Variables.lvListOfCodeSets.update();
+            }
+        };
+
+
+        $scope.saveAction = function($event) {
+            $scope.Variables.lvListOfCodeSets.setFilter({
+                'globalYn': false
+            });
+            $scope.Variables.lvListOfCodeSets.update();
+        };
+
     }
 ]);
