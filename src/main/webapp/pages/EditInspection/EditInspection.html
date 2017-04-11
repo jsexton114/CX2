@@ -342,7 +342,7 @@
                                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="customRow" display-name="" show="bind:row['assessFeeYn']" class="btn-transparent" iconclass="wi wi-attach-money" title="Fees" action="Widgets.dialogOutcomeFee.open()"
                                                     disabled="false"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="deleterow" display-name="" show="bind:!((row.getProperty('outcome')=='Requested')||(row.getProperty('outcome')=='Scheduled')||(row.getProperty('outcome')=='Rescheduled')||(row.getProperty('outcome')=='Cancelled'))"
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="bind:!((row.getProperty('outcome')=='Requested')||(row.getProperty('outcome')=='Scheduled')||(row.getProperty('outcome')=='Rescheduled')||(row.getProperty('outcome')=='Cancelled')||(row.getProperty('outcome')=='Pass'))"
                                                     class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                                 <wm-liveform novalidate="false" errormessage="The Outcome Order must be unique. Please select a different number." title="Outcome Options" formlayout="dialog" iconclass="wi wi-thumbs-up-down" dataset="bind:Variables.InspectionOutcomeData.dataSet"
