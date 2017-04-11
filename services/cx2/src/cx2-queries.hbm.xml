@@ -772,23 +772,75 @@ ORDER BY DateModified DESC
         ]]>
     </sql-query>
 
-    <query name="FeesInCartByUser">
+    <sql-query name="FeesInCartByUser">
         <![CDATA[
-        select id as id,
-       fees.masterForms.formTitle as formTitle,
-       fees.masterForms.formGuid as formGuid,
-       fees.masterForms.formTypes.formType as formType,
-       fees.masterForms.formTypes.municipalities.municipalityName
-       as municipalityName,
-       fees.masterForms.giscontacts.gisrecords.fullAddress as 
-       fullAddress,
+        select MC.id as id,
+       MF.FormTitle as itemTitle,
+       MF.FormGuid as itemGuid,
+       FT.formType as parentItemName,
+       muni.MunicipalityName as municipalityName,
+       (select top 1 gis.fullAddress from GISRecords gis, GIS2Forms gtf where gis.ID=gtf.GisRecordID and gtf.RelatedFormGUID=MF.FormGUID) as fullAddress,
        fees.feeType as feeType,
        fees.amount as amount
-from MyCart 
-where userId=:user and fees.paidStatus='Unpaid'
+from MyCart MC
+INNER JOIN Fees fees ON fees.id=MC.feeId
+INNER JOIN MasterForms MF ON MF.FormGUID=fees.FormGuid
+INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId
+INNER JOIN Municipalities muni ON muni.ID=FT.MunicipalityID
+where MC.userId=:user and fees.PaidStatus='Unpaid'
+UNION
+select MC.id as id,
+       MI.InspectionTitle as itemTitle,
+       MI.InspectionGuid as itemGuid,
+       ID.InspectDesignName as parentItemName,
+       muni.MunicipalityName as municipalityName,
+       (select top 1 gis.fullAddress from GISRecords gis, InspectionGis IG where gis.ID=IG.GisRecordID and IG.RelatedInspectionGuid=MI.InspectionGuid) as fullAddress,
+       fees.feeType as feeType,
+       fees.amount as amount
+from MyCart MC
+INNER JOIN Fees fees ON fees.id=MC.feeId
+INNER JOIN MasterInspections MI ON MI.InspectionGuid=fees.InspectionGuid
+INNER JOIN InspectionDesign ID ON ID.ID=MI.InspectionDesignId
+INNER JOIN Municipalities muni ON muni.ID=ID.MunicipalityId
+where MC.userId=:user and fees.PaidStatus='Unpaid'
         ]]>
     <query-param name="user" type="java.lang.Integer"/>
-    </query>
+    </sql-query>
+
+    <sql-query name="FeesInCartByUser__count">
+        <![CDATA[
+        select count(*) from (select MC.id as id,
+       MF.FormTitle as itemTitle,
+       MF.FormGuid as itemGuid,
+       FT.formType as parentItemName,
+       muni.MunicipalityName as municipalityName,
+       (select top 1 gis.fullAddress from GISRecords gis, GIS2Forms gtf where gis.ID=gtf.GisRecordID and gtf.RelatedFormGUID=MF.FormGUID) as fullAddress,
+       fees.feeType as feeType,
+       fees.amount as amount
+from MyCart MC
+INNER JOIN Fees fees ON fees.id=MC.feeId
+INNER JOIN MasterForms MF ON MF.FormGUID=fees.FormGuid
+INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId
+INNER JOIN Municipalities muni ON muni.ID=FT.MunicipalityID
+where MC.userId=:user and fees.PaidStatus='Unpaid'
+UNION
+select MC.id as id,
+       MI.InspectionTitle as itemTitle,
+       MI.InspectionGuid as itemGuid,
+       ID.InspectDesignName as parentItemName,
+       muni.MunicipalityName as municipalityName,
+       (select top 1 gis.fullAddress from GISRecords gis, InspectionGis IG where gis.ID=IG.GisRecordID and IG.RelatedInspectionGuid=MI.InspectionGuid) as fullAddress,
+       fees.feeType as feeType,
+       fees.amount as amount
+from MyCart MC
+INNER JOIN Fees fees ON fees.id=MC.feeId
+INNER JOIN MasterInspections MI ON MI.InspectionGuid=fees.InspectionGuid
+INNER JOIN InspectionDesign ID ON ID.ID=MI.InspectionDesignId
+INNER JOIN Municipalities muni ON muni.ID=ID.MunicipalityId
+where MC.userId=:user and fees.PaidStatus='Unpaid') wmTempTable
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
 
     <sql-query name="NoOfItemsInUserCart">
         <![CDATA[

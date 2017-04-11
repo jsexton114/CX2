@@ -15,9 +15,9 @@
                         <wm-panel iconclass="wi wi-shopping-cart" autoclose="outsideClick" name="panelMyCart" title="My Cart" class="panel-primary">
                             <wm-grid title="" dataset="bind:Variables.svFeesInCartOfUser.dataSet" navigation="Classic" name="gridFeesList">
                                 <wm-grid-column binding="municipalityName" caption="Municipality Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="parentItemName" caption="Item Name" show="true" readonly="undefined"></wm-grid-column>
+                                <wm-grid-column binding="itemTitle" caption="Item Title" show="true" readonly="undefined"></wm-grid-column>
                                 <wm-grid-column binding="fullAddress" caption="Full Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="formType" caption="Form Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="feeType" caption="Fee Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>

@@ -17,7 +17,7 @@
                                 <wm-gridrow name="gridrow6" padding="2em unset unset unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center">
-                                        <wm-picture name="picture2" class="muni-logo"></wm-picture>
+                                        <wm-picture name="picture2" class="muni-logo" picturesource="bind:!!Variables.lvInspection.dataSet.data[$i].inspectionDesign.municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.lvInspection.dataSet.data[$i].inspectionDesign.municipalityId+&quot;/content/logo&quot; : &quot;&quot;"></wm-picture>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn14"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -42,18 +42,24 @@
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn157_1"></wm-gridcolumn>
                                 </wm-gridrow>
+                                <wm-gridrow name="gridrow16">
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn34"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn35" horizontalalign="center">
+                                        <wm-label padding="unset 0.5em" name="label9" caption="bind:'For form: <a href=&quot;#/Forms?FormGUID=' + Variables.lvInspection.dataSet.data[$i].formGuid + '&quot;>' + Variables.lvInspection.dataSet.data[$i].masterForms.formTitle + '</a>'"
+                                        fontsize="16" show="bind:!!Variables.lvInspection.dataSet.data[$i].formGuid"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn36"></wm-gridcolumn>
+                                </wm-gridrow>
                                 <wm-gridrow name="gridrow14">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn24_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn28" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="labelInspectionStatus" caption="bind:'Outcome: ' + Variables.lvInspection.dataSet.data[$i].inspectionOutcome.outcome" class="h3"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="labelInspectionOutcome" caption="bind:'Outcome: ' + Variables.lvInspection.dataSet.data[$i].inspectionOutcome.outcome" class="h3"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn25"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow15">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn29"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="8" name="gridcolumn26" horizontalalign="center">
-                                        <wm-progress name="progressStatus" datavalue="10" type="success" captionplacement="inside" displayformat="9%"></wm-progress>
-                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn26" horizontalalign="center"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn30"></wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -62,7 +68,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5_1">
-                        <wm-panel iconclass="wi wi-mode-edit" autoclose="outsideClick" name="panelInspectionReview" title="Inspection Outcome" class="panel-primary" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" show="true">
+                        <wm-panel iconclass="wi wi-mode-edit" autoclose="outsideClick" name="panelInspectionReview" title="Inspection Outcome" class="panel-primary" accessroles="CXAdmin,Inspector,InspectorManager" show="true">
                             <wm-layoutgrid name="layoutgrid3">
                                 <wm-gridrow name="gridrow9" padding=".5em unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn16"></wm-gridcolumn>
@@ -70,7 +76,7 @@
                                         <wm-composite name="composite1" required="true">
                                             <wm-label class="col-md-3 control-label" name="label4" caption="Outcome"></wm-label>
                                             <wm-container class="col-md-9" name="container2_1">
-                                                <wm-select name="selectStatus" required="true"></wm-select>
+                                                <wm-select name="selectOutcome" required="true" dataset="bind:Variables.lvOutcomes.dataSet" datafield="id" displayfield="outcome" datavalue="bind:Variables.lvInspection.dataSet.data[$i].inspectionOutcomeId"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -91,7 +97,8 @@
                                 <wm-gridrow name="gridrow11" padding="unset unset 1em unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn21_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn22" horizontalalign="center">
-                                        <wm-button class="btn-primary" caption="Update Status" type="button" margin="unset 0.5em" name="buttonUpdateStatus" iconclass="wi wi-update" disabled="bind:!Widgets.selectStatus.datavalue.id || !Widgets.textareaNotes.datavalue"></wm-button>
+                                        <wm-button class="btn-primary" caption="Update Outcome" type="button" margin="unset 0.5em" name="buttonUpdateOutcome" iconclass="wi wi-update" disabled="bind:!Widgets.selectOutcome.datavalue || !Widgets.textareaNotes.datavalue"
+                                        on-click="buttonUpdateOutcomeClick($event, $scope)"></wm-button>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn23"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -104,20 +111,101 @@
                         <wm-panel iconclass="wi wi-list" autoclose="outsideClick" name="panelInspection" title="Inspection Content" class="panel-primary">
                             <wm-tabs name="INSTRUCTIONS">
                                 <wm-tabpane name="tabpaneInspections" title="INSPECTION" show="true">
-                                    <dynamic-form-fields form-field-list="Variables.lvDynamicFields.dataSet.data" form-data="Variables.svFieldData.dataSet.content"></dynamic-form-fields>
+                                    <dynamic-form-fields form-field-list="Variables.lvDynamicFields.dataSet.data" form-data="Variables.svFieldData.dataSet"></dynamic-form-fields>
                                     <wm-layoutgrid name="layoutgrid2">
                                         <wm-gridrow name="formSaveControlRow" padding="2em unset unset unset">
                                             <wm-gridcolumn columnwidth="12" name="formSaveControlColumn" horizontalalign="right">
-                                                <wm-button class="btn-primary" caption="Save" type="button" margin="1% 3% 1% unset" name="btnSaveFormData" iconclass="wi wi-save" on-click="Variables.svSaveFormData.invoke()" show="bind:true"></wm-button>
+                                                <wm-button class="btn-primary" caption="Save" type="button" margin="1% 3% 1% unset" name="btnSaveFormData" iconclass="wi wi-save" on-click="Variables.svSaveDynamicFields.invoke()" show="bind:true" accessroles="Inspector,InspectorManager,CXAdmin,MunicipalityAdmin"></wm-button>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneLocation" title="LOCATION" show="true"></wm-tabpane>
+                                <wm-tabpane name="tabpaneLocation" title="LOCATION" show="true">
+                                    <wm-layoutgrid name="layoutgrid17">
+                                        <wm-gridrow name="gridrow60">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn125">
+                                                <wm-label padding="unset 0.5em" name="label29" caption="The following locations have been associated with the form for this inspection."></wm-label>
+                                                <wm-grid title="" dataset="bind:Variables.lvGis.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                    <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.section" caption="Section" type="string" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetNumber" caption="Street Number" type="string" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.city" caption="City" type="string" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow61">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn127">
+                                                <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.lvGis.dataSet[$i].gisrecords" zoom="17" markertype="Address" address="streetNumber streetName city states.stateName" show="bind:Variables.lvGis.dataSet.totalElements > 0"></wm-prefab>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-tabpane>
                                 <wm-tabpane name="tabpaneAttachments" title="ATTACHMENTS" show="true"></wm-tabpane>
                                 <wm-tabpane name="tabpaneVIOLATIONS" title="VIOLATIONS"></wm-tabpane>
-                                <wm-tabpane name="tabpaneFORMS" title="FORMS" show="true"></wm-tabpane>
-                                <wm-tabpane name="tabpaneFees" title="FEES" show="true"></wm-tabpane>
+                                <wm-tabpane name="tabpaneFees" title="FEES" show="true">
+                                    <wm-livegrid formlayout="dialog" name="livegrid4">
+                                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvFees.dataSet" navigation="Classic" name="gridFees" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                            <wm-grid-column binding="feeType" caption="Fee" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}" edit-widget-type="text" show="true"
+                                            readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="amount" caption="Amount" type="big_decimal" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
+                                            formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'pendingFee-class':row.paidStatus=='Pending'}"
+                                            edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="paidStatus" caption="Payment Status" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
+                                            edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="paidDate" caption="Payment Date" type="date" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'pendingFee-class':row.paidStatus=='Pending'}"
+                                            datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="comments" caption="Comments" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
+                                            edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                            <wm-grid-action key="addNewRow" display-name="Add Fee" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Fee" action="addNewRowAction($event);addNewRow()" accessroles="CXAdmin,Inspector,InspectorManager"
+                                            shortcutkey="" disabled="false"></wm-grid-action>
+                                            <wm-grid-row-action key="updaterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid'" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event);editRow()"
+                                            accessroles="CXAdmin,Inspector,InspectorManager" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="deleterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid'" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
+                                            accessroles="CXAdmin,Inspector,InspectorManager" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="customRow" display-name="" show="bind:!itemInCart(row.getProperty('id')) &amp;&amp; row.getProperty('paidStatus') === 'Unpaid'" class="btn-transparent" iconclass="wi wi-add-shopping-cart"
+                                            title="Add to Cart" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                        </wm-grid>
+                                        <wm-liveform novalidate="false" errormessage="" title="Fee Details" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.lvFees.dataSet" captionalign="left" captionposition="top" name="liveformFees"
+                                        on-beforeservicecall="liveformFeesBeforeservicecall($event, $operation, $data)" on-success="liveformFeesSuccess($event, $operation, $data)">
+                                            <wm-layoutgrid columns="1" name="layoutgrid13">
+                                                <wm-gridrow name="gridrow45_2">
+                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn104_2">
+                                                        <wm-label name="labelmanfeeselect" caption="Which fee would you like to manually add to the form?" required="true" show="bind:isNewFee"></wm-label>
+                                                        <wm-select name="selectManualFeeType" displayname="Manual Fee Type" show="bind:isNewFee" required="bind:isNewFee" type="string" dataset="bind:Variables.lvManualFeeTypes.dataSet" displayfield="feeType"
+                                                        placeholder="Select Fee" datafield="All Fields" orderby="feeType:asc"></wm-select>
+                                                        <wm-label name="labelmanfeeselect2" caption="If the manual fee type you're looking for is not listed, please contact your Municipality Admin." show="bind:isNewFee" class="help-block"
+                                                        fontsize="0.8" fontunit="em"></wm-label>
+                                                        <wm-form-field name="feeType" displayname="Fee" show="bind:!isNewFee" primary-key="false" generator="assigned" key="feeType" type="string" readonly="true" required="true" widget="text"
+                                                        maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.feeType"></wm-form-field>
+                                                        <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="big_decimal" readonly="false" required="true" step="0.01"
+                                                        widget="currency" maxchars="255" placeholder="Enter Amount" minvalue="0"></wm-form-field>
+                                                        <wm-form-field name="comments" displayname="Comments" show="true" primary-key="false" generator="assigned" key="comments" type="string" readonly="false" required="false" widget="text"
+                                                        maxchars="500" inputtype="text" placeholder="Enter Comments"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                            <wm-form-field name="accountingCode" displayname="Accounting Code" show="false" primary-key="false" generator="assigned" key="accountingCode" type="string" readonly="false" required="true" widget="text" maxchars="255"
+                                            inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.accountingCode"></wm-form-field>
+                                            <wm-form-field name="paidStatus" displayname="Paid Status" show="false" primary-key="false" generator="assigned" key="paidStatus" type="string" readonly="false" required="true" widget="text"
+                                            defaultvalue="Unpaid" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                            <wm-form-field name="autoFeeYn" displayname="Auto Fee Yn" show="false" primary-key="false" generator="assigned" key="autoFeeYn" type="boolean" readonly="false" required="true" widget="checkbox"
+                                            defaultvalue="false" placeholder=""></wm-form-field>
+                                            <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
+                                            placeholder=""></wm-form-field>
+                                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"
+                                            type="submit" update-mode="true"></wm-form-action>
+                                            <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                        </wm-liveform>
+                                    </wm-livegrid>
+                                </wm-tabpane>
                                 <wm-tabpane name="tabpaneCodeEnforment" title="CODE ENFORCEMENT" show="true"></wm-tabpane>
                                 <wm-tabpane name="tabpaneMessages" title="MESSAGES"></wm-tabpane>
                                 <wm-tabpane name="tabpaneHistory" title="HISTORY"></wm-tabpane>
@@ -130,4 +218,146 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="viewParcel">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Parcel Details" iconclass="wi wi-chrome-reader-mode" name="dialogParcel">
+            <wm-layoutgrid name="layoutgrid10_1">
+                <wm-gridrow name="gridrow30_1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn72_1">
+                        <wm-label padding="unset 0.5em" caption="Parcel" name="label12_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn73_1">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.parcel" name="label13_1"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow34">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn80">
+                        <wm-label padding="unset 0.5em" caption="Subdivision" name="label18"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn81">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.subdivisions.subdivision" name="label19"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow70">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn145">
+                        <wm-label padding="unset 0.5em" name="label36" caption="Lot"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn146">
+                        <wm-label padding="unset 0.5em" name="label46" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.lot"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow71">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn147">
+                        <wm-label padding="unset 0.5em" name="label37" caption="Section"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn148">
+                        <wm-label padding="unset 0.5em" name="label47" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.section"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow31_1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn74_1">
+                        <wm-label padding="unset 0.5em" caption="Street Number" name="label14_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn75_1">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.streetNumber" name="label15_1"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow33">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn78">
+                        <wm-label padding="unset 0.5em" caption="Unit Number" name="label17"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn79">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.unitNumber" name="label20"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow74">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn153">
+                        <wm-label padding="unset 0.5em" name="label40" caption="Street Direction"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn154">
+                        <wm-label padding="unset 0.5em" name="label48" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.streetDirection"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow32">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn76">
+                        <wm-label padding="unset 0.5em" caption="Street Name" name="label16"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn77">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.streetName" name="label21"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow75">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn155">
+                        <wm-label padding="unset 0.5em" name="label40_1" caption="Street Type"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn156">
+                        <wm-label padding="unset 0.5em" name="label49" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.streetType"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow72">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn149">
+                        <wm-label padding="unset 0.5em" name="label38" caption="City"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn150">
+                        <wm-label padding="unset 0.5em" name="label50" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.city"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow76">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn141_1">
+                        <wm-label padding="unset 0.5em" name="label41" caption="State"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn142">
+                        <wm-label padding="unset 0.5em" name="label51" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.states.stateName"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow77">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn143_1">
+                        <wm-label padding="unset 0.5em" name="label42" caption="Postal Code"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn144">
+                        <wm-label padding="unset 0.5em" name="label52" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.postalCode"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow78">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn145_1">
+                        <wm-label padding="unset 0.5em" name="label43" caption="Country"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn146_1">
+                        <wm-label padding="unset 0.5em" name="label53" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.country"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow79">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn147_1">
+                        <wm-label padding="unset 0.5em" name="label44" caption="Latitude"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn148_1">
+                        <wm-label padding="unset 0.5em" name="label54" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.latitude"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow80">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn149_1">
+                        <wm-label padding="unset 0.5em" name="label45" caption="Longitude"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn150_1">
+                        <wm-label padding="unset 0.5em" name="label55" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.longitude"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow73">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn151">
+                        <wm-label padding="unset 0.5em" name="label39" caption="Inspection Zone"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn152">
+                        <wm-label padding="unset 0.5em" name="label56" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.inspectionZone"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow45_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn104_1" padding="2em unset unset unset">
+                        <wm-prefab prefabname="googlemaps" name="googlemaps2" address="streetNumber streetName city states.stateName" locations="bind:Widgets.gridLocation.selecteditem.gisrecords" markertype="Address" zoom="18"></wm-prefab>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions2">
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
 </wm-page>

@@ -141,8 +141,8 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         //Checking to send mail
         if ($scope.Widgets.selectStatus.datavalue.sendEmail) {
 
-            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID
-                //Sending mail to  CreatedBy
+            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID;
+            //Sending mail to  CreatedBy
             $scope.Variables.svSendStatusUpdate.setInput({
                 'formLink': tempLink,
                 'username': $scope.Variables.CurrentForm.dataSet.data[0].users.firstName,

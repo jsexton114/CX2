@@ -25,12 +25,12 @@ public class FeesInCartByUserResponse implements Serializable {
 
     @ColumnAlias("id")
     private Integer id;
-    @ColumnAlias("formTitle")
-    private String formTitle;
-    @ColumnAlias("formGuid")
-    private String formGuid;
-    @ColumnAlias("formType")
-    private String formType;
+    @ColumnAlias("itemTitle")
+    private String itemTitle;
+    @ColumnAlias("itemGuid")
+    private String itemGuid;
+    @ColumnAlias("parentItemName")
+    private String parentItemName;
     @ColumnAlias("municipalityName")
     private String municipalityName;
     @ColumnAlias("fullAddress")
@@ -48,28 +48,28 @@ public class FeesInCartByUserResponse implements Serializable {
         this.id = id;
     }
 
-    public String getFormTitle() {
-        return this.formTitle;
+    public String getItemTitle() {
+        return this.itemTitle;
     }
 
-    public void setFormTitle(String formTitle) {
-        this.formTitle = formTitle;
+    public void setItemTitle(String itemTitle) {
+        this.itemTitle = itemTitle;
     }
 
-    public String getFormGuid() {
-        return this.formGuid;
+    public String getItemGuid() {
+        return this.itemGuid;
     }
 
-    public void setFormGuid(String formGuid) {
-        this.formGuid = formGuid;
+    public void setItemGuid(String itemGuid) {
+        this.itemGuid = itemGuid;
     }
 
-    public String getFormType() {
-        return this.formType;
+    public String getParentItemName() {
+        return this.parentItemName;
     }
 
-    public void setFormType(String formType) {
-        this.formType = formType;
+    public void setParentItemName(String parentItemName) {
+        this.parentItemName = parentItemName;
     }
 
     public String getMunicipalityName() {
@@ -110,9 +110,9 @@ public class FeesInCartByUserResponse implements Serializable {
         if (!(o instanceof FeesInCartByUserResponse)) return false;
         final FeesInCartByUserResponse feesInCartByUserResponse = (FeesInCartByUserResponse) o;
         return Objects.equals(getId(), feesInCartByUserResponse.getId()) &&
-                Objects.equals(getFormTitle(), feesInCartByUserResponse.getFormTitle()) &&
-                Objects.equals(getFormGuid(), feesInCartByUserResponse.getFormGuid()) &&
-                Objects.equals(getFormType(), feesInCartByUserResponse.getFormType()) &&
+                Objects.equals(getItemTitle(), feesInCartByUserResponse.getItemTitle()) &&
+                Objects.equals(getItemGuid(), feesInCartByUserResponse.getItemGuid()) &&
+                Objects.equals(getParentItemName(), feesInCartByUserResponse.getParentItemName()) &&
                 Objects.equals(getMunicipalityName(), feesInCartByUserResponse.getMunicipalityName()) &&
                 Objects.equals(getFullAddress(), feesInCartByUserResponse.getFullAddress()) &&
                 Objects.equals(getFeeType(), feesInCartByUserResponse.getFeeType()) &&
@@ -122,9 +122,9 @@ public class FeesInCartByUserResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId(),
-                getFormTitle(),
-                getFormGuid(),
-                getFormType(),
+                getItemTitle(),
+                getItemGuid(),
+                getParentItemName(),
                 getMunicipalityName(),
                 getFullAddress(),
                 getFeeType(),

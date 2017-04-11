@@ -317,11 +317,11 @@ public class InspectionService {
     	queryParams.addLong("inspectionDesignId", inspectionDesignId);
     	queryParams.addString("formGuid", inspectionGuid);
     	
-    	DBRow inspectionDesignData = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId, FormTableName FROM InspectionDesign WHERE ID=:inspectionDesignId", queryParams);
+    	DBRow inspectionDesignData = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId, InspectionTableName FROM InspectionDesign WHERE ID=:inspectionDesignId", queryParams);
     	
     	Long municipalityId = inspectionDesignData.getLong("MunicipalityId");
     	
-    	DynamicFieldService.saveDynamicFieldData(cx2Conn, municipalityId, inspectionDesignData.getString("FormTableName"), inspectionGuid, inspectionDesignId, "inspection", fieldData);
+    	DynamicFieldService.saveDynamicFieldData(cx2Conn, municipalityId, inspectionDesignData.getString("InspectionTableName"), inspectionGuid, inspectionDesignId, "inspection", fieldData);
     }
     
     public void saveDynamicField(Long inspectionDesignId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
@@ -341,7 +341,7 @@ public class InspectionService {
     	DBQueryParams formTbNameParams = new DBQueryParams();
     	formTbNameParams.addString("inspectionGuid", inspectionGuid);
     	
-    	Long inspectionDesignId = DBUtils.selectOne(cx2Conn, "SELECT FormTypeId FROM MasterForms WHERE FormGUID=:formGuid", formTbNameParams).getLong("FormTypeId");
+    	Long inspectionDesignId = DBUtils.selectOne(cx2Conn, "SELECT InspectionDesignId FROM MasterInspections WHERE InspectionGuid=:inspectionGuid", formTbNameParams).getLong("InspectionDesignId");
     	formTbNameParams.addLong("inspectionDesignId", inspectionDesignId);
 
     	String getInspectionInfoQuery = "SELECT InspectionTableName, MunicipalityId FROM InspectionDesign WHERE ID=:inspectionDesignId";
