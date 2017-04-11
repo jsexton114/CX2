@@ -2016,6 +2016,25 @@ public class QueryExecutionController {
         return queryService.exportGetOwnersForGisRecords(exportType, gisRecordIds, pageable);
     }
 
+    @RequestMapping(value = "/queries/CountOfMunicipalityCodeSets", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountOfMunicipalityCodeSets")
+    public Page<CountOfMunicipalityCodeSetsResponse> executeCountOfMunicipalityCodeSets(@RequestParam(value = "MunicipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfMunicipalityCodeSets");
+        Page<CountOfMunicipalityCodeSetsResponse> _result = queryService.executeCountOfMunicipalityCodeSets(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: CountOfMunicipalityCodeSets, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfMunicipalityCodeSets")
+    @RequestMapping(value = "/queries/CountOfMunicipalityCodeSets/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfMunicipalityCodeSets(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfMunicipalityCodeSets");
+
+        return queryService.exportCountOfMunicipalityCodeSets(exportType, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/InsertFormsToInspectionsMapping", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "InsertFormsToInspectionsMapping")

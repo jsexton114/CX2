@@ -436,6 +436,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetOwnersForGisRecords(ExportType exportType, List<Integer> gisRecordIds, Pageable pageable);
 
+    Page<CountOfMunicipalityCodeSetsResponse> executeCountOfMunicipalityCodeSets(Integer municipalityId, Pageable pageable);
+
+    Downloadable exportCountOfMunicipalityCodeSets(ExportType exportType, Integer municipalityId, Pageable pageable);
+
     Integer executeInsertFormsToInspectionsMapping(InsertFormsToInspectionsMappingRequest insertFormsToInspectionsMappingRequest);
 
     Page<FetchRolesForUserWithMunicipalityResponse> executeFetchRolesForUserWithMunicipality(Integer user, Integer municipality, Pageable pageable);

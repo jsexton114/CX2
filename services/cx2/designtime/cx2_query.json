@@ -1795,6 +1795,44 @@
       } ]
     }
   },
+  "CountOfMunicipalityCodeSets" : {
+    "name" : "CountOfMunicipalityCodeSets",
+    "description" : "CountOfMunicipalityCodeSets",
+    "version" : "V2",
+    "queryString" : "select count(*) as count from CodeSets where MunicipalityId=:MunicipalityId and GlobalYN='false'",
+    "countQueryString" : "select count(*) from (select count(*) as count from CodeSets where MunicipalityId=:MunicipalityId and GlobalYN='false') wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "MunicipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CountOfMunicipalityCodeSetsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "count",
+        "fieldName" : "_count",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "CountOfMunicipalityProjects" : {
     "name" : "CountOfMunicipalityProjects",
     "description" : "CountOfMunicipalityProjects",

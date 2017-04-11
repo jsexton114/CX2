@@ -2309,6 +2309,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("getOwnersForGisRecords", params, exportType, GetOwnersForGisRecordsResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountOfMunicipalityCodeSetsResponse> executeCountOfMunicipalityCodeSets(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("CountOfMunicipalityCodeSets", params, CountOfMunicipalityCodeSetsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountOfMunicipalityCodeSets(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("CountOfMunicipalityCodeSets", params, exportType, CountOfMunicipalityCodeSetsResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeInsertFormsToInspectionsMapping(InsertFormsToInspectionsMappingRequest insertFormsToInspectionsMappingRequest) {

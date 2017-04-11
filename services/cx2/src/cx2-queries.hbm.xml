@@ -1839,6 +1839,20 @@ ORDER BY DateModified DESC
     <query-param name="gisRecordIds" type="java.lang.Integer"/>
     </query>
 
+    <sql-query name="CountOfMunicipalityCodeSets">
+        <![CDATA[
+        select count(*) as count from CodeSets where MunicipalityId=:MunicipalityId and GlobalYN='false'
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CountOfMunicipalityCodeSets__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from CodeSets where MunicipalityId=:MunicipalityId and GlobalYN='false') wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="InsertFormsToInspectionsMapping">
         <![CDATA[
         insert into FormsToInspections(RelatedFormGUID,RelatedInspectionGUID,AddedBy) values(:RelatedFormGUID,:RelatedInspectionGUID,:AddedBy)
