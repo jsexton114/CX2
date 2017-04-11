@@ -28,7 +28,7 @@
                         <wm-panel iconclass="wi wi-find-in-page" autoclose="outsideClick" name="panelInspectionDesigns" title="My Inspection Designs" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegridInspectiondesign">
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionDesignData.dataSet" navigation="Classic" name="gridInspectiondesign" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                    <wm-grid-column binding="inspectDesignName" caption="Inspection Design" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="inspectDesignName" caption="Inspection" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="createdAt" caption="Date Created" type="timestamp" generator="assigned" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false">{{row.getProperty('createdAt') | toLocalDateString:true}}</wm-grid-column>
                                     <wm-grid-column binding="active" caption="Active" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox"
                                     show="true" readonly="false">
@@ -89,36 +89,36 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view1">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Create Inspection Design" iconclass="wi wi-file-text" name="dlgCreateInspectionDesign">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Create Inspection Design" iconclass="wi wi-find-in-page" name="dlgCreateInspectionDesign">
             <wm-layoutgrid name="layoutgrid4">
                 <wm-gridrow name="gridrow8_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn13">
-                        <wm-composite name="composite2">
-                            <wm-label class="col-md-3 control-label" name="label7" caption="Design Name"></wm-label>
-                            <wm-container class="col-md-9" name="container2">
-                                <wm-text name="textInspectionDesignName" placeholder="Enter Design Name"></wm-text>
+                        <wm-composite name="composite2" required="true">
+                            <wm-label class="col-md-5 form-control-static" name="label7" caption="Inspection Design Name" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-7" name="container2">
+                                <wm-text name="textInspectionDesignName" placeholder="Enter text"></wm-text>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-primary" caption="Create" on-click="Variables.svCreateInspectionDesign.invoke();Widgets.dlgCreateInspectionDesign.close()" name="buttonCreateDesign" iconclass="wi wi-plus" disabled="bind:!Widgets.textInspectionDesignName.datavalue"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="buttonCancelCreation" on-click="Widgets.dlgCreateInspectionDesign.close()" iconclass="wi wi-cancel"></wm-button>
-                <wm-button class="btn-primary" caption="Create" on-click="Variables.svCreateInspectionDesign.invoke();Widgets.dlgCreateInspectionDesign.close()" name="buttonCreateDesign" iconclass="wi wi-add"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view2">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Delete Inspection Design" iconclass="wi wi-delete" name="dlgDeleteInspectionDesign">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Delete Inspection Design" iconclass="wi wi-trash" name="dlgDeleteInspectionDesign">
             <wm-layoutgrid name="layoutgrid4_1">
                 <wm-gridrow name="gridrow8_2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn13_1">
-                        <wm-label padding="unset 0.5em" name="label8" caption="bind:'Are you sure you want to delete the &quot;'+Widgets.gridInspectiondesign.selecteditem.inspectDesignName+'&quot; inspection design?'"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label8" caption="bind:'Are you sure you want to delete the &quot;'+Widgets.gridInspectiondesign.selecteditem.inspectDesignName+'&quot; inspection?'"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-primary" caption="Yes" on-click="closeDialog();Variables.svDeleteInspectionDesign.invoke()" name="button3" iconclass="wi wi-check"></wm-button>
+                <wm-button class="btn-primary" caption="OK" on-click="closeDialog();Variables.svDeleteInspectionDesign.invoke()" name="button3" iconclass="wi wi-check"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button4" iconclass="wi wi-cancel" on-click="Widgets.dlgDeleteInspectionDesign.close()"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
