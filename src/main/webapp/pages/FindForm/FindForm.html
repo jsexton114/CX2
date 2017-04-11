@@ -42,73 +42,76 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn21"></wm-gridcolumn>
                                     </wm-gridrow>
-                                    <wm-gridrow name="gridrow8" padding=".5em unset">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn11"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn12">
-                                            <wm-label padding="unset 0.5em unset unset" name="label6" caption="and Submitted Between" class="col-md-3 form-control-static" width="100%" fontweight="bold"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="3" name="gridcolumn26_1">
-                                            <wm-datetime name="datetimeStart" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="Start Date" datavalue="bind:startDate"></wm-datetime>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn27_1" horizontalalign="center">
-                                            <wm-label padding=".5em 0.5em unset 0.5em" name="label9" caption="and" class="control-label"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="3" name="gridcolumn28">
-                                            <wm-datetime name="datetimeEnd" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="End Date" datavalue="CURRENT_DATE"></wm-datetime>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn22"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow9" padding=".5em unset">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn13"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn30">
-                                            <wm-label class="col-md-3 form-control-static" name="label10" caption="and Form Category" width="100%" fontweight="bold"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="7" name="gridcolumn14">
-                                            <wm-select name="selectCategories" dataset="bind:Variables.MunicipalityCategories.dataSet" datafield="All Fields" displayfield="category" datavalue="bind:Variables.MunicipalityCategories.firstRecord"></wm-select>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn23"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow10" padding=".5em unset">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn31">
-                                            <wm-label class="col-md-3 form-control-static" caption="and Form Design" name="label9_1" width="100%" fontweight="bold"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="7" name="gridcolumn16">
-                                            <wm-select name="selectFormType" dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" datavalue="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.firstRecord"></wm-select>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn24"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow11" padding=".5em unset">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn17"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn18">
-                                            <wm-label class="col-md-3 form-control-static" name="label9_2" caption="and" width="100%" fontweight="bold"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="7" name="gridcolumn32_1">
-                                            <wm-radioset height="auto" name="radiosetStatus" dataset="Open,Closed" datafield="All Fields" selectedvalue="Open" usekeys="false" width="30%"></wm-radioset>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn25"></wm-gridcolumn>
-                                    </wm-gridrow>
+                                    <wm-container name="containerFilterConditions" show="bind:(Widgets.searchUser.datavalue.id)!=undefined">
+                                        <wm-gridrow name="gridrow8" padding=".5em unset">
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn11"></wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn12">
+                                                <wm-label padding="unset 0.5em unset unset" name="label6" caption="and Submitted Between" class="col-md-3 form-control-static" width="100%" fontweight="bold"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn26_1">
+                                                <wm-datetime name="datetimeStart" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="Start Date" datavalue="bind:startDate"></wm-datetime>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="1" name="gridcolumn27_1" horizontalalign="center">
+                                                <wm-label padding=".5em 0.5em unset 0.5em" name="label9" caption="and" class="control-label"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn28">
+                                                <wm-datetime name="datetimeEnd" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="End Date" datavalue="bind:toDayEnd"></wm-datetime>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="1" name="gridcolumn22"></wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow9" padding=".5em unset">
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn13"></wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn30">
+                                                <wm-label class="col-md-3 form-control-static" name="label10" caption="and Form Category" width="100%" fontweight="bold"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="7" name="gridcolumn14">
+                                                <wm-select name="selectCategories" dataset="bind:Variables.MunicipalityCategories.dataSet" datafield="All Fields" displayfield="category" placeholder="All Categories"></wm-select>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="1" name="gridcolumn23"></wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow10" padding=".5em unset">
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn31">
+                                                <wm-label class="col-md-3 form-control-static" caption="and Form Design" name="label9_1" width="100%" fontweight="bold"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="7" name="gridcolumn16">
+                                                <wm-select name="selectFormType" dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" placeholder="All Forms"></wm-select>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="1" name="gridcolumn24"></wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow11" padding=".5em unset">
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn17"></wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn18">
+                                                <wm-label class="col-md-3 form-control-static" name="label9_2" caption="and" width="100%" fontweight="bold"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="7" name="gridcolumn32_1">
+                                                <wm-radioset height="auto" name="radiosetStatus" dataset="Open,Closed,Both" datafield="All Fields" selectedvalue="Open" usekeys="false" width="30%" layout="inline"></wm-radioset>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="1" name="gridcolumn25"></wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-container>
                                     <wm-gridrow name="gridrow12" padding=".5em unset">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn19"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="9" name="gridcolumn20" horizontalalign="right">
-                                            <wm-button class="btn-primary" caption="Search" type="button" name="buttonSearch" on-click="Variables.FilteredMasterForms.listRecords()" iconclass="wi wi-search"></wm-button>
+                                            <wm-button class="btn-primary" caption="Search" type="button" name="buttonSearch" on-click="buttonSearchClick($event, $scope)" iconclass="wi wi-search"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn26"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow13">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn34">
                                             <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" name="panelSearchResults" margin="1em unset" title="Search Results" class="panel-primary">
-                                                <wm-grid title="" dataset="bind:Variables.FilteredMasterForms.dataSet" navigation="Classic" name="gridFliteredForms" filtermode="multicolumn" nodatamessage="No Forms Found" loadingdatamsg="Please while fetching Forms"
-                                                exportformat="EXCEL" showrecordcount="true">
-                                                    <wm-grid-column binding="formTitle" caption="Form Title" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormStatuses"></wm-grid-column>
-                                                    <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" generator="assigned" readonly="true" show="true" related-entity-name="FormTypes"></wm-grid-column>
-                                                    <wm-grid-column binding="vendor.companyName" caption="Primary Vendor" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Vendor"></wm-grid-column>
-                                                    <wm-grid-column binding="submittedOn" caption="Date Submitted" type="timestamp" primary-key="false" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate"
-                                                    show="true" filterwidget="date"></wm-grid-column>
-                                                    <wm-grid-column binding="users.email" caption="Submitted By" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                                <wm-grid title="" dataset="bind:Variables.svSearchAllFormsByUser.dataSet" navigation="Classic" name="gridUserForms">
+                                                    <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="createdBy" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="primaryVendor" caption="Primary Vendor" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="address" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="formCategory" caption="Form Category" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="municipalityName" caption="Municipality Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-row-action key="customRow" display-name="" title="View Form" value="" iconclass="wi wi-pageview" class="btn-transparent" show="true" action="customRowAction($event)"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-panel>
                                         </wm-gridcolumn>

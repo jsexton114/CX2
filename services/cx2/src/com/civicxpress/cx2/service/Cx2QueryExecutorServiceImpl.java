@@ -2330,6 +2330,40 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<SearchAllFormsByUserResponse> executeSearchAllFormsByUser(Boolean codeEnforcement, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
+        Map params = new HashMap(8);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
+        params.put("formcategoryID", formcategoryId);
+        params.put("formtypeID", formtypeId);
+        params.put("Closed", closed);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.executeNamedQuery("SearchAllFormsByUser", params, SearchAllFormsByUserResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportSearchAllFormsByUser(ExportType exportType, Boolean codeEnforcement, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
+        Map params = new HashMap(8);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
+        params.put("formcategoryID", formcategoryId);
+        params.put("formtypeID", formtypeId);
+        params.put("Closed", closed);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.exportNamedQueryData("SearchAllFormsByUser", params, exportType, SearchAllFormsByUserResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Vendor> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, String companyName, Pageable pageable) {
         Map params = new HashMap(4);
 

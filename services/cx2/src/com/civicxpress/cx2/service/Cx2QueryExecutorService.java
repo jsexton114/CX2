@@ -440,6 +440,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateAssessFeeYN(UpdateAssessFeeYnRequest updateAssessFeeYnRequest);
 
+    Page<SearchAllFormsByUserResponse> executeSearchAllFormsByUser(Boolean codeEnforcement, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+
+    Downloadable exportSearchAllFormsByUser(ExportType exportType, Boolean codeEnforcement, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+
     Page<Vendor> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, String companyName, Pageable pageable);
 
     Downloadable exportVendorsByMunicipalityAndStatus(ExportType exportType, Integer municipalityId, String approvalStatus, Boolean active, String companyName, Pageable pageable);
