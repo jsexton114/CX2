@@ -113,6 +113,16 @@
     "type" : "string"
   } ]
 }, {
+  "name" : "InspectionList",
+  "type" : "PAGE",
+  "params" : [ {
+    "name" : "municipalityId",
+    "type" : "integer"
+  }, {
+    "name" : "maxDay",
+    "type" : "string"
+  } ]
+}, {
   "name" : "InspectionsDevDataEntry",
   "type" : "PAGE",
   "params" : [ ]
@@ -293,20 +303,6 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
-  "name" : "TodayInspections",
-  "type" : "PAGE",
-  "params" : [ {
-    "name" : "municipalityId",
-    "type" : "integer"
-  } ]
-}, {
-  "name" : "TomorrowInspections",
-  "type" : "PAGE",
-  "params" : [ {
-    "name" : "municipalityId",
-    "type" : "integer"
-  } ]
-}, {
   "name" : "UserClosedForms",
   "type" : "PAGE",
   "params" : [ {
@@ -357,13 +353,6 @@
   "name" : "WorkSchedule",
   "type" : "PAGE",
   "params" : [ ]
-}, {
-  "name" : "YesterdayInspections",
-  "type" : "PAGE",
-  "params" : [ {
-    "name" : "municipalityId",
-    "type" : "integer"
-  } ]
 }, {
   "name" : "dynamicFieldEditor",
   "type" : "PARTIAL",

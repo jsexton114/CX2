@@ -65,26 +65,30 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "municipality",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
-      "type" : "integer"
-    }, {
       "target" : "isClosed",
       "value" : false,
       "type" : "boolean"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
     }, {
       "target" : "assignedTo",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     }, {
-      "target" : "requestedFor",
+      "target" : "startDate",
+      "value" : "bind:toDayStart",
+      "type" : "string"
+    }, {
+      "target" : "endDate",
       "value" : "bind:toDayEnd",
       "type" : "string"
     } ],
-    "type" : "com.civicxpress.cx2.models.query.CountAssignedInspectionsLessThanDateResponse",
+    "type" : "com.civicxpress.cx2.models.query.CountAssignedInspectionsBetweenDatesResponse",
     "service" : "cx2",
-    "operation" : "executeCountAssignedInspectionsLessThanDate",
-    "operationId" : "QueryExecutionController_executeCountAssignedInspectionsLessThanDate",
+    "operation" : "executeCountAssignedInspectionsBetweenDates",
+    "operationId" : "QueryExecutionController_executeCountAssignedInspectionsBetweenDates",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],

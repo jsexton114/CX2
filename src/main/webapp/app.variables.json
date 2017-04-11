@@ -474,6 +474,17 @@
     } ],
     "pageTransitions" : "none"
   },
+  "goToPage_InspectionList" : {
+    "_id" : "wm-goToPage_InspectionList-wm.NavigationVariable-1491918417233",
+    "name" : "goToPage_InspectionList",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "InspectionList",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
   "goToPage_InspectionsDevDataEntry" : {
     "_id" : "wm-goToPage_InspectionsDevDataEntry-wm.NavigationVariable-1488866783864",
     "name" : "goToPage_InspectionsDevDataEntry",
@@ -913,48 +924,6 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
-  "goToPage_TodayInspections" : {
-    "_id" : "wm-goToPage_TodayInspections-wm.NavigationVariable-1490933158107",
-    "name" : "goToPage_TodayInspections",
-    "owner" : "App",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ {
-      "target" : "pageName",
-      "value" : "TodayInspections",
-      "type" : "string"
-    } ],
-    "operation" : "gotoPage",
-    "pageName" : "TodayInspections",
-    "dataSet" : [ {
-      "type" : "integer",
-      "target" : "municipalityId",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID"
-    }, {
-      "type" : "string",
-      "target" : "muniType",
-      "value" : "e"
-    } ],
-    "pageTransitions" : "none"
-  },
-  "goToPage_TomorrowInspections" : {
-    "_id" : "wm-goToPage_TomorrowInspections-wm.NavigationVariable-1490961084570",
-    "name" : "goToPage_TomorrowInspections",
-    "owner" : "App",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ {
-      "target" : "pageName",
-      "value" : "TomorrowInspections",
-      "type" : "string"
-    } ],
-    "operation" : "gotoPage",
-    "pageName" : "TomorrowInspections",
-    "dataSet" : [ {
-      "type" : "integer",
-      "target" : "municipalityId",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID"
-    } ],
-    "pageTransitions" : "none"
-  },
   "goToPage_UserClosedForms" : {
     "_id" : "wm-goToPage_UserClosedForms-wm.NavigationVariable-1482831972576",
     "name" : "goToPage_UserClosedForms",
@@ -1068,25 +1037,6 @@
     "operation" : "gotoPage",
     "pageName" : "WorkSchedule",
     "dataSet" : [ ],
-    "pageTransitions" : "none"
-  },
-  "goToPage_YesterdayInspections" : {
-    "_id" : "wm-goToPage_YesterdayInspections-wm.NavigationVariable-1490961103232",
-    "name" : "goToPage_YesterdayInspections",
-    "owner" : "App",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ {
-      "target" : "pageName",
-      "value" : "YesterdayInspections",
-      "type" : "string"
-    } ],
-    "operation" : "gotoPage",
-    "pageName" : "YesterdayInspections",
-    "dataSet" : [ {
-      "type" : "integer",
-      "target" : "municipalityId",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID"
-    } ],
     "pageTransitions" : "none"
   },
   "loggedInUser" : {

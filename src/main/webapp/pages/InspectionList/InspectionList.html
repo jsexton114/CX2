@@ -1,4 +1,4 @@
-<wm-page data-ng-controller="TodayInspectionsPageController" pagetitle="Today's Inspections" name="page1">
+<wm-page data-ng-controller="InspectionListPageController" pagetitle="Inspection List" name="page1">
     <wm-header content="header" name="header1"></wm-header>
     <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
     <wm-content name="content1">
@@ -12,7 +12,8 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn29" padding="2em unset">
-                        <wm-label caption="Today's Inspections" fontweight="bold" name="label2" class="h4"></wm-label>
+                        <wm-label caption="bind:(!!pageParams.maxDay ? (pageParams.maxDay==='today' ? &quot;Today's&quot; : (pageParams.maxDay.charAt(0).toUpperCase() + pageParams.maxDay.substring(1)) ) : '') + ' Inspections'" fontweight="bold" name="label2"
+                        class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn30" padding="2em unset">
                         <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" class="panel-transparent" content="selectMunicipality">
@@ -22,7 +23,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow18">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn31" padding="1em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn31" padding="1em unset">
                         <wm-composite name="composite1" margin="unset unset unset 0.2em">
                             <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
                             <wm-container class="col-md-9" name="container1" width="180px">
@@ -35,22 +36,27 @@
                                 <!--<wm-datetime name="datetimeYesterdayDate" datavalue="bind:selectedDay"></wm-datetime>--></wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn6" horizontalalign="right">
+                        <wm-button class="btn-primary" caption="Refresh" type="button" margin="unset 0.5em" name="buttonRefreshInspectionList" iconclass="wi wi-refresh" on-click="buttonRefreshInspectionListClick($event, $scope)"></wm-button>
+                    </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow4">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                        <wm-grid title="" dataset="bind:Variables.svTodayInspections.dataSet" navigation="Classic" name="gridTodayInspections">
-                            <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Contractor'" readonly="false"></wm-grid-column>
+                        <wm-grid title="" dataset="bind:Variables.svInspectionList.dataSet" navigation="Classic" name="gridInspections">
+                            <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="fullAddress" caption="Full Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="assignedToPersonName" caption="Assigned To Person Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="assignedTo" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Contractor'" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="requestedByFullName" caption="Requested By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="assignedToPersonName" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="inspectionGuid" caption="Inspection Guid" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="fullName" caption="Full Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="requestedFor" caption="Requested For" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="inspectDesignName" caption="Inspect Design Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-row-action key="viewInspection" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="viewInspectionAction($event)" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>

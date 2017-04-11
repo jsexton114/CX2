@@ -1478,32 +1478,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("CountOfAllProjectsForUsersAndSharedWith", params, exportType, CountOfAllProjectsForUsersAndSharedWithResponse.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<AssignedInspectionsLessThanDateResponse> executeAssignedInspectionsLessThanDate(Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("isClosed", isClosed);
-        params.put("assignedTo", assignedTo);
-        params.put("requestedFor", requestedFor);
-        params.put("municipality", municipality);
-
-        return queryExecutor.executeNamedQuery("assignedInspectionsLessThanDate", params, AssignedInspectionsLessThanDateResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportAssignedInspectionsLessThanDate(ExportType exportType, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("isClosed", isClosed);
-        params.put("assignedTo", assignedTo);
-        params.put("requestedFor", requestedFor);
-        params.put("municipality", municipality);
-
-        return queryExecutor.exportNamedQueryData("assignedInspectionsLessThanDate", params, exportType, AssignedInspectionsLessThanDateResponse.class, pageable);
-    }
-
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeInsertTagForMessage(InsertTagForMessageRequest insertTagForMessageRequest) {

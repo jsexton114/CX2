@@ -61,7 +61,7 @@
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
     "startUpdate" : true,
-    "autoUpdate" : true,
+    "autoUpdate" : false,
     "transformationRequired" : false,
     "liveSource" : "cx2",
     "ignoreCase" : true,
@@ -153,38 +153,43 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
-  "svTodayInspections" : {
+  "svInspectionList" : {
     "_id" : "wm-svTodayInspections-wm.ServiceVariable-1491205069890",
-    "name" : "svTodayInspections",
+    "name" : "svInspectionList",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "municipality",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
-      "type" : "integer"
-    }, {
       "target" : "isClosed",
       "value" : false,
       "type" : "boolean"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
     }, {
       "target" : "assignedTo",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     }, {
-      "target" : "requestedFor",
-      "value" : "bind:toDayStart",
+      "target" : "startDate",
+      "value" : "bind:!!pageParams.maxDay && !!dateRanges[pageParams.maxDay] ? dateRanges[pageParams.maxDay].start : null",
+      "type" : "string"
+    }, {
+      "target" : "endDate",
+      "value" : "bind:!!pageParams.maxDay && !!dateRanges[pageParams.maxDay] ? dateRanges[pageParams.maxDay].end : null",
       "type" : "string"
     } ],
-    "type" : "com.civicxpress.cx2.models.query.AssignedInspectionsLessThanDateResponse",
+    "type" : "com.civicxpress.cx2.models.query.AssignedInspectionsBetweenDatesResponse",
     "service" : "cx2",
-    "operation" : "executeAssignedInspectionsLessThanDate",
-    "operationId" : "QueryExecutionController_executeAssignedInspectionsLessThanDate",
+    "operation" : "executeAssignedInspectionsBetweenDates",
+    "operationId" : "QueryExecutionController_executeAssignedInspectionsBetweenDates",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "orderBy" : "dateAssigned asc",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",

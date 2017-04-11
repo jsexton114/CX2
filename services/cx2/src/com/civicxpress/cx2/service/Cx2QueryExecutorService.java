@@ -284,10 +284,6 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfAllProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
 
-    Page<AssignedInspectionsLessThanDateResponse> executeAssignedInspectionsLessThanDate(Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable);
-
-    Downloadable exportAssignedInspectionsLessThanDate(ExportType exportType, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable);
-
     Integer executeInsertTagForMessage(InsertTagForMessageRequest insertTagForMessageRequest);
 
     Page<ManualFeeTypeCountForMunicipalityResponse> executeManualFeeTypeCountForMunicipality(Integer municipalityId, Pageable pageable);

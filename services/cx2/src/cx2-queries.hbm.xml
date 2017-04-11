@@ -597,7 +597,7 @@ group by V.companyName) wmTempTable
         select 
 count(*) as inspectionsCount
 
-from MasterInspections where closed=:isClosed and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo=:assignedTo and requestedFor between :startDate and :endDate
+from MasterInspections where closed=:isClosed and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo=:assignedTo and (:startDate is null or dateAssigned >= :startDate) and (:endDate is null or dateAssigned <= :endDate)
         ]]>
     <query-param name="isClosed" type="java.lang.Boolean"/>
     <query-param name="municipality" type="java.lang.Integer"/>
@@ -1133,30 +1133,6 @@ where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipa
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
     </sql-query>
 
-    <query name="assignedInspectionsLessThanDate">
-        <![CDATA[
-        select 
-inspectionGuid as inspectionGuid,
-assignedTo as assignedTo,
-usersByAssignedTo.fullName as assignedToPersonName,
-inspectionOutcome.outcome as outcome,
-inspectionTitle as inspectionTitle,
-inspectionZone as inspectionZone,
-requestedFor as requestedFor,
-gisrecords.fullAddress as fullAddress,
-gisrecords.lot as lot,
-gisrecords.subdivisions.subdivision as subdivision,
-usersByRequestedBy.fullName as fullName,
-inspectionDesign.inspectDesignName as inspectDesignName
-
-from MasterInspections where closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality)
-        ]]>
-    <query-param name="isClosed" type="java.lang.Boolean"/>
-    <query-param name="assignedTo" type="java.lang.Integer"/>
-    <query-param name="requestedFor" type="org.joda.time.LocalDateTime"/>
-    <query-param name="municipality" type="java.lang.Integer"/>
-    </query>
-
     <sql-query name="InsertTagForMessage">
         <![CDATA[
         Insert into FormMessageTagging(FormMessageId,TaggedPersonId) values(:FormMessageId,:TaggedPersonId)
@@ -1179,30 +1155,67 @@ from MasterInspections where closed=:isClosed and assignedTo=:assignedTo and req
     <query-param name="MunicipalityId" type="java.lang.Integer"/>
     </sql-query>
 
-    <query name="assignedInspectionsBetweenDates">
+    <sql-query name="assignedInspectionsBetweenDates">
         <![CDATA[
-        select 
-inspectionGuid as inspectionGuid,
-assignedTo as assignedTo,
-usersByAssignedTo.fullName as assignedToPersonName,
-inspectionOutcome.outcome as outcome,
-inspectionTitle as inspectionTitle,
-inspectionZone as inspectionZone,
-requestedFor as requestedFor,
-gisrecords.fullAddress as fullAddress,
-gisrecords.lot as lot,
-gisrecords.subdivisions.subdivision as subdivision,
-usersByRequestedBy.fullName as fullName,
-inspectionDesign.inspectDesignName as inspectDesignName
-
-from MasterInspections where closed=:isClosed and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality) and assignedTo=:assignedTo and requestedFor between :startDate and :endDate
+        select MI.inspectionGuid as inspectionGuid,
+MI.assignedTo as assignedTo,
+MI.DateAssigned as dateAssigned,
+assignedUser.fullName as assignedToPersonName,
+IO.outcome as outcome,
+MI.inspectionTitle as inspectionTitle,
+MI.inspectionZone as inspectionZone,
+MI.requestedFor as requestedFor,
+gis.fullAddress as fullAddress,
+gis.lot as lot,
+sub.subdivision as subdivision,
+requestedBy.fullName as requestedByFullName,
+ID.inspectDesignName as inspectDesignName
+from MasterInspections as MI
+LEFT OUTER JOIN GisRecords gis ON MI.GisId=gis.id
+LEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo
+LEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy
+LEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId
+LEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId
+LEFT OUTER JOIN Subdivisions sub ON sub.id=gis.subdivisionId
+where MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:municipality) and assignedTo=:assignedTo and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)
         ]]>
     <query-param name="isClosed" type="java.lang.Boolean"/>
     <query-param name="municipality" type="java.lang.Integer"/>
     <query-param name="assignedTo" type="java.lang.Integer"/>
     <query-param name="startDate" type="org.joda.time.LocalDateTime"/>
     <query-param name="endDate" type="org.joda.time.LocalDateTime"/>
-    </query>
+    </sql-query>
+
+    <sql-query name="assignedInspectionsBetweenDates__count">
+        <![CDATA[
+        select count(*) from (select MI.inspectionGuid as inspectionGuid,
+MI.assignedTo as assignedTo,
+MI.DateAssigned as dateAssigned,
+assignedUser.fullName as assignedToPersonName,
+IO.outcome as outcome,
+MI.inspectionTitle as inspectionTitle,
+MI.inspectionZone as inspectionZone,
+MI.requestedFor as requestedFor,
+gis.fullAddress as fullAddress,
+gis.lot as lot,
+sub.subdivision as subdivision,
+requestedBy.fullName as requestedByFullName,
+ID.inspectDesignName as inspectDesignName
+from MasterInspections as MI
+LEFT OUTER JOIN GisRecords gis ON MI.GisId=gis.id
+LEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo
+LEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy
+LEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId
+LEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId
+LEFT OUTER JOIN Subdivisions sub ON sub.id=gis.subdivisionId
+where MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:municipality) and assignedTo=:assignedTo and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)) wmTempTable
+        ]]>
+    <query-param name="isClosed" type="java.lang.Boolean"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="assignedTo" type="java.lang.Integer"/>
+    <query-param name="startDate" type="org.joda.time.LocalDateTime"/>
+    <query-param name="endDate" type="org.joda.time.LocalDateTime"/>
+    </sql-query>
 
     <sql-query name="InsertSubscription">
         <![CDATA[
@@ -2153,7 +2166,7 @@ where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipa
         select 
 count(*) as inspectionsCount
 
-from MasterInspections where closed=:isClosed and assignedTo=:assignedTo and requestedFor<:requestedFor and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality)
+from MasterInspections where closed=:isClosed and assignedTo=:assignedTo and dateAssigned<:requestedFor and (:municipality IS NULL OR inspectionDesign.municipalities.id=:municipality)
         ]]>
     <query-param name="isClosed" type="java.lang.Boolean"/>
     <query-param name="assignedTo" type="java.lang.Integer"/>

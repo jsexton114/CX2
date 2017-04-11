@@ -1285,25 +1285,6 @@ public class QueryExecutionController {
         return queryService.exportCountOfAllProjectsForUsersAndSharedWith(exportType, active, creatorUser, sharedWithUser, pageable);
     }
 
-    @RequestMapping(value = "/queries/assignedInspectionsLessThanDate", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "assignedInspectionsLessThanDate")
-    public Page<AssignedInspectionsLessThanDateResponse> executeAssignedInspectionsLessThanDate(@RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "requestedFor") LocalDateTime requestedFor, @RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
-        LOGGER.debug("Executing named query: assignedInspectionsLessThanDate");
-        Page<AssignedInspectionsLessThanDateResponse> _result = queryService.executeAssignedInspectionsLessThanDate(isClosed, assignedTo, requestedFor, municipality, pageable);
-        LOGGER.debug("got the result for named query: assignedInspectionsLessThanDate, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query assignedInspectionsLessThanDate")
-    @RequestMapping(value = "/queries/assignedInspectionsLessThanDate/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportAssignedInspectionsLessThanDate(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "requestedFor") LocalDateTime requestedFor, @RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
-        LOGGER.debug("Exporting named query: assignedInspectionsLessThanDate");
-
-        return queryService.exportAssignedInspectionsLessThanDate(exportType, isClosed, assignedTo, requestedFor, municipality, pageable);
-    }
-
     @RequestMapping(value = "/queries/InsertTagForMessage", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "InsertTagForMessage")
@@ -1336,7 +1317,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/assignedInspectionsBetweenDates", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "assignedInspectionsBetweenDates")
-    public Page<AssignedInspectionsBetweenDatesResponse> executeAssignedInspectionsBetweenDates(@RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "startDate") LocalDateTime startDate, @RequestParam(value = "endDate") LocalDateTime endDate, Pageable pageable) {
+    public Page<AssignedInspectionsBetweenDatesResponse> executeAssignedInspectionsBetweenDates(@RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "startDate", required = false) LocalDateTime startDate, @RequestParam(value = "endDate", required = false) LocalDateTime endDate, Pageable pageable) {
         LOGGER.debug("Executing named query: assignedInspectionsBetweenDates");
         Page<AssignedInspectionsBetweenDatesResponse> _result = queryService.executeAssignedInspectionsBetweenDates(isClosed, municipality, assignedTo, startDate, endDate, pageable);
         LOGGER.debug("got the result for named query: assignedInspectionsBetweenDates, result:{}", _result);
@@ -1346,7 +1327,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query assignedInspectionsBetweenDates")
     @RequestMapping(value = "/queries/assignedInspectionsBetweenDates/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportAssignedInspectionsBetweenDates(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "startDate") LocalDateTime startDate, @RequestParam(value = "endDate") LocalDateTime endDate, Pageable pageable) {
+    public Downloadable exportAssignedInspectionsBetweenDates(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "startDate", required = false) LocalDateTime startDate, @RequestParam(value = "endDate", required = false) LocalDateTime endDate, Pageable pageable) {
         LOGGER.debug("Exporting named query: assignedInspectionsBetweenDates");
 
         return queryService.exportAssignedInspectionsBetweenDates(exportType, isClosed, municipality, assignedTo, startDate, endDate, pageable);

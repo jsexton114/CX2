@@ -19,7 +19,6 @@ import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wavemaker.commons.data.type.WMPersistentLocalDateTime;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class AssignedInspectionsBetweenDatesResponse implements Serializable {
@@ -28,6 +27,8 @@ public class AssignedInspectionsBetweenDatesResponse implements Serializable {
     private String inspectionGuid;
     @ColumnAlias("assignedTo")
     private Integer assignedTo;
+    @ColumnAlias("dateAssigned")
+    private LocalDateTime dateAssigned;
     @ColumnAlias("assignedToPersonName")
     private String assignedToPersonName;
     @ColumnAlias("outcome")
@@ -37,15 +38,15 @@ public class AssignedInspectionsBetweenDatesResponse implements Serializable {
     @ColumnAlias("inspectionZone")
     private String inspectionZone;
     @ColumnAlias("requestedFor")
-    private WMPersistentLocalDateTime requestedFor;
+    private LocalDateTime requestedFor;
     @ColumnAlias("fullAddress")
     private String fullAddress;
     @ColumnAlias("lot")
     private String lot;
     @ColumnAlias("subdivision")
     private String subdivision;
-    @ColumnAlias("fullName")
-    private String fullName;
+    @ColumnAlias("requestedByFullName")
+    private String requestedByFullName;
     @ColumnAlias("inspectDesignName")
     private String inspectDesignName;
 
@@ -63,6 +64,14 @@ public class AssignedInspectionsBetweenDatesResponse implements Serializable {
 
     public void setAssignedTo(Integer assignedTo) {
         this.assignedTo = assignedTo;
+    }
+
+    public LocalDateTime getDateAssigned() {
+        return this.dateAssigned;
+    }
+
+    public void setDateAssigned(LocalDateTime dateAssigned) {
+        this.dateAssigned = dateAssigned;
     }
 
     public String getAssignedToPersonName() {
@@ -97,11 +106,11 @@ public class AssignedInspectionsBetweenDatesResponse implements Serializable {
         this.inspectionZone = inspectionZone;
     }
 
-    public WMPersistentLocalDateTime getRequestedFor() {
+    public LocalDateTime getRequestedFor() {
         return this.requestedFor;
     }
 
-    public void setRequestedFor(WMPersistentLocalDateTime requestedFor) {
+    public void setRequestedFor(LocalDateTime requestedFor) {
         this.requestedFor = requestedFor;
     }
 
@@ -129,12 +138,12 @@ public class AssignedInspectionsBetweenDatesResponse implements Serializable {
         this.subdivision = subdivision;
     }
 
-    public String getFullName() {
-        return this.fullName;
+    public String getRequestedByFullName() {
+        return this.requestedByFullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setRequestedByFullName(String requestedByFullName) {
+        this.requestedByFullName = requestedByFullName;
     }
 
     public String getInspectDesignName() {
@@ -152,6 +161,7 @@ public class AssignedInspectionsBetweenDatesResponse implements Serializable {
         final AssignedInspectionsBetweenDatesResponse assignedInspectionsBetweenDatesResponse = (AssignedInspectionsBetweenDatesResponse) o;
         return Objects.equals(getInspectionGuid(), assignedInspectionsBetweenDatesResponse.getInspectionGuid()) &&
                 Objects.equals(getAssignedTo(), assignedInspectionsBetweenDatesResponse.getAssignedTo()) &&
+                Objects.equals(getDateAssigned(), assignedInspectionsBetweenDatesResponse.getDateAssigned()) &&
                 Objects.equals(getAssignedToPersonName(), assignedInspectionsBetweenDatesResponse.getAssignedToPersonName()) &&
                 Objects.equals(getOutcome(), assignedInspectionsBetweenDatesResponse.getOutcome()) &&
                 Objects.equals(getInspectionTitle(), assignedInspectionsBetweenDatesResponse.getInspectionTitle()) &&
@@ -160,7 +170,7 @@ public class AssignedInspectionsBetweenDatesResponse implements Serializable {
                 Objects.equals(getFullAddress(), assignedInspectionsBetweenDatesResponse.getFullAddress()) &&
                 Objects.equals(getLot(), assignedInspectionsBetweenDatesResponse.getLot()) &&
                 Objects.equals(getSubdivision(), assignedInspectionsBetweenDatesResponse.getSubdivision()) &&
-                Objects.equals(getFullName(), assignedInspectionsBetweenDatesResponse.getFullName()) &&
+                Objects.equals(getRequestedByFullName(), assignedInspectionsBetweenDatesResponse.getRequestedByFullName()) &&
                 Objects.equals(getInspectDesignName(), assignedInspectionsBetweenDatesResponse.getInspectDesignName());
     }
 
@@ -168,6 +178,7 @@ public class AssignedInspectionsBetweenDatesResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getInspectionGuid(),
                 getAssignedTo(),
+                getDateAssigned(),
                 getAssignedToPersonName(),
                 getOutcome(),
                 getInspectionTitle(),
@@ -176,7 +187,7 @@ public class AssignedInspectionsBetweenDatesResponse implements Serializable {
                 getFullAddress(),
                 getLot(),
                 getSubdivision(),
-                getFullName(),
+                getRequestedByFullName(),
                 getInspectDesignName());
     }
 }
