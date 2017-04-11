@@ -871,6 +871,40 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<SearchAllFormsByAddressResponse> executeSearchAllFormsByAddress(Boolean codeEnforcement, Integer gisrecordId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
+        Map params = new HashMap(8);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("GISRecordId", gisrecordId);
+        params.put("municipalityId", municipalityId);
+        params.put("formcategoryID", formcategoryId);
+        params.put("formtypeID", formtypeId);
+        params.put("Closed", closed);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.executeNamedQuery("SearchAllFormsByAddress", params, SearchAllFormsByAddressResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportSearchAllFormsByAddress(ExportType exportType, Boolean codeEnforcement, Integer gisrecordId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
+        Map params = new HashMap(8);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("GISRecordId", gisrecordId);
+        params.put("municipalityId", municipalityId);
+        params.put("formcategoryID", formcategoryId);
+        params.put("formtypeID", formtypeId);
+        params.put("Closed", closed);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.exportNamedQueryData("SearchAllFormsByAddress", params, exportType, SearchAllFormsByAddressResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<FormsToInspections> executeInspectionsOfForm(String form, Pageable pageable) {
         Map params = new HashMap(1);
 

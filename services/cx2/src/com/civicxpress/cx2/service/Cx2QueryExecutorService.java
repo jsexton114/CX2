@@ -178,6 +178,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer formTypeId, Pageable pageable);
 
+    Page<SearchAllFormsByAddressResponse> executeSearchAllFormsByAddress(Boolean codeEnforcement, Integer gisrecordId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+
+    Downloadable exportSearchAllFormsByAddress(ExportType exportType, Boolean codeEnforcement, Integer gisrecordId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+
     Page<FormsToInspections> executeInspectionsOfForm(String form, Pageable pageable);
 
     Downloadable exportInspectionsOfForm(ExportType exportType, String form, Pageable pageable);

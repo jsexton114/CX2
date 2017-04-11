@@ -31,7 +31,7 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
 
 
     $scope.buttonSearchClick = function($event, $isolateScope) {
-        debugger
+
         switch ($scope.Widgets.radiosetStatus.datavalue) {
             case "Closed":
                 $scope.Variables.svSearchAllFormsByUser.setInput({
@@ -47,6 +47,46 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
                 break;
             case "Both":
                 $scope.Variables.svSearchAllFormsByUser.update();
+                break;
+        }
+    };
+
+
+    $scope.buttonSearchByAddressClick = function($event, $isolateScope) {
+
+        switch ($scope.Widgets.radiosetStatus.datavalue) {
+            case "Closed":
+                $scope.Variables.svSearchAllFormsByAddress.setInput({
+                    'Closed': true
+                });
+                break;
+            case "Open":
+                $scope.Variables.svSearchAllFormsByAddress.setInput({
+                    'Closed': false
+                });
+                break;
+            case "Both":
+                // Set Nothing
+                break;
+        }
+        switch ($scope.Widgets.radiosetSelectAddressType.datavalue) {
+            case "Address":
+                $scope.Variables.svSearchAllFormsByAddress.setInput({
+                    'GISRecordId': $scope.Widgets.searchAddress.datavalue.id
+                });
+                $scope.Variables.svSearchAllFormsByAddress.update();
+                break;
+            case "Subdivision":
+                $scope.Variables.svSearchAllFormsByAddress.setInput({
+                    'GISRecordId': $scope.Widgets.searchSubdivision.datavalue.id
+                });
+                $scope.Variables.svSearchAllFormsByAddress.update();
+                break;
+            case "Parcel":
+                $scope.Variables.svSearchAllFormsByAddress.setInput({
+                    'GISRecordId': $scope.Widgets.searchParcel.datavalue.id
+                });
+                $scope.Variables.svSearchAllFormsByAddress.update();
                 break;
         }
     };
@@ -73,12 +113,7 @@ Application.$controller("gridAdvancedController", ["$scope",
 
 
 
-Application.$controller("gridAddressController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
 
 Application.$controller("livefilter1Controller", ["$scope",
     function($scope) {
@@ -112,6 +147,23 @@ Application.$controller("gridUserFormsController", ["$scope",
                 'FormGUID': $rowData.formGuid
             });
             $scope.Variables.goToPage_FormsFormSearch.navigate();
+        };
+
+    }
+]);
+
+Application.$controller("gridFormsAddressController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.customRowAction = function($event, $rowData) {
+                $scope.Variables.goToPage_FormsFormSearch.setData({
+                    'FormGUID': $rowData.formGuid
+                });
+                $scope.Variables.goToPage_FormsFormSearch.navigate();
+            };
         };
 
     }

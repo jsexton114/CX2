@@ -7264,6 +7264,201 @@
       "responseType" : "SINGLE"
     }
   },
+  "SearchAllFormsByAddress" : {
+    "name" : "SearchAllFormsByAddress",
+    "description" : "SearchAllFormsByAddress",
+    "version" : "V2",
+    "queryString" : "SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere   FT.CodeEnforcement=:codeEnforcement \r\n     and (MF.FormGUID IN (select RelatedFormGUID from GIS2Forms where GISRecordId=:GISRecordId ))\r\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)\r\n\tAND (:formtypeID is null OR FT.ID =:formtypeID)\r\n\tand (:Closed IS NULL OR  Closed=:Closed)\r\n\tAND DateSubmitted BETWEEN :startd and :endd\r\n    \r\n    \r\nORDER BY DateModified DESC",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "codeEnforcement",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "GISRecordId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "formcategoryID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "6",
+      "required" : false
+    }, {
+      "name" : "formtypeID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "58",
+      "required" : false
+    }, {
+      "name" : "Closed",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : false
+    }, {
+      "name" : "startd",
+      "type" : "timestamp",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : 1480415375000,
+      "required" : true
+    }, {
+      "name" : "endd",
+      "type" : "timestamp",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : 1492597780000,
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.SearchAllFormsByAddressResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "formGuid",
+        "fieldName" : "formGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formTitle",
+        "fieldName" : "formTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "municipalityName",
+        "fieldName" : "municipalityName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "createdBy",
+        "fieldName" : "createdBy",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formDesign",
+        "fieldName" : "formDesign",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formStatus",
+        "fieldName" : "formStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "lot",
+        "fieldName" : "lot",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "subdivision",
+        "fieldName" : "subdivision",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "address",
+        "fieldName" : "address",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "primaryVendor",
+        "fieldName" : "primaryVendor",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "balanceDue",
+        "fieldName" : "balanceDue",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formTypeID",
+        "fieldName" : "formTypeId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "FormCategory",
+        "fieldName" : "formCategory",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "SearchAllFormsByUser" : {
     "name" : "SearchAllFormsByUser",
     "description" : "SearchAllFormsByUser",
