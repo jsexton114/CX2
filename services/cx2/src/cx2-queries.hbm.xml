@@ -1017,6 +1017,18 @@ from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidSt
     <query-param name="FormGUID" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="CountOfCXCodeSetsGlobal">
+        <![CDATA[
+        select count(*) as count from CodeSets where GlobalYN='true'
+        ]]>
+    </sql-query>
+
+    <sql-query name="CountOfCXCodeSetsGlobal__count">
+        <![CDATA[
+        select count(*) from (select count(*) as count from CodeSets where GlobalYN='true') wmTempTable
+        ]]>
+    </sql-query>
+
     <sql-query name="EmployeesOrAdminsMunicipalities">
         <![CDATA[
         select M.* from Municipalities M,Roles R,Users U where U.ID=:user and U.ID=R.UserId and R.MunicipalityId=M.ID and R.RoleName=:role

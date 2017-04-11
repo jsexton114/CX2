@@ -1536,6 +1536,37 @@
       } ]
     }
   },
+  "CountOfCXCodeSetsGlobal" : {
+    "name" : "CountOfCXCodeSetsGlobal",
+    "description" : "CountOfCXCodeSetsGlobal",
+    "version" : "V2",
+    "queryString" : "select count(*) as count from CodeSets where GlobalYN='true'",
+    "countQueryString" : "select count(*) from (select count(*) as count from CodeSets where GlobalYN='true') wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CountOfCxcodeSetsGlobalResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "count",
+        "fieldName" : "_count",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "CountOfCXProjectsActive" : {
     "name" : "CountOfCXProjectsActive",
     "description" : "CountOfCXProjectsActive",

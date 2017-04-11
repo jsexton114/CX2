@@ -258,6 +258,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateVendorForMasterForms(UpdateVendorForMasterFormsRequest updateVendorForMasterFormsRequest);
 
+    Page<CountOfCxcodeSetsGlobalResponse> executeCountOfCXCodeSetsGlobal(Pageable pageable);
+
+    Downloadable exportCountOfCXCodeSetsGlobal(ExportType exportType, Pageable pageable);
+
     Page<EmployeesOrAdminsMunicipalitiesResponse> executeEmployeesOrAdminsMunicipalities(Integer user, String role, Pageable pageable);
 
     Downloadable exportEmployeesOrAdminsMunicipalities(ExportType exportType, Integer user, String role, Pageable pageable);

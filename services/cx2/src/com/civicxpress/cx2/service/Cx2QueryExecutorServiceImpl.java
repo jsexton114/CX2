@@ -1323,6 +1323,24 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<CountOfCxcodeSetsGlobalResponse> executeCountOfCXCodeSetsGlobal(Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("CountOfCXCodeSetsGlobal", params, CountOfCxcodeSetsGlobalResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountOfCXCodeSetsGlobal(ExportType exportType, Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.exportNamedQueryData("CountOfCXCodeSetsGlobal", params, exportType, CountOfCxcodeSetsGlobalResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<EmployeesOrAdminsMunicipalitiesResponse> executeEmployeesOrAdminsMunicipalities(Integer user, String role, Pageable pageable) {
         Map params = new HashMap(2);
 

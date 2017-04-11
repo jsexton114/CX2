@@ -1160,6 +1160,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/CountOfCXCodeSetsGlobal", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountOfCXCodeSetsGlobal")
+    public Page<CountOfCxcodeSetsGlobalResponse> executeCountOfCXCodeSetsGlobal(Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfCXCodeSetsGlobal");
+        Page<CountOfCxcodeSetsGlobalResponse> _result = queryService.executeCountOfCXCodeSetsGlobal(pageable);
+        LOGGER.debug("got the result for named query: CountOfCXCodeSetsGlobal, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfCXCodeSetsGlobal")
+    @RequestMapping(value = "/queries/CountOfCXCodeSetsGlobal/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfCXCodeSetsGlobal(@PathVariable("exportType") ExportType exportType, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfCXCodeSetsGlobal");
+
+        return queryService.exportCountOfCXCodeSetsGlobal(exportType, pageable);
+    }
+
     @RequestMapping(value = "/queries/EmployeesOrAdminsMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "EmployeesOrAdminsMunicipalities")
