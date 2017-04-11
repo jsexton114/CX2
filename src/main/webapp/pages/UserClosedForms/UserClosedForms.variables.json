@@ -669,19 +669,6 @@
           "defaultValue" : "false",
           "scale" : 0
         }, {
-          "fieldName" : "trackViolations",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "TrackViolations",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "false",
-          "scale" : 0
-        }, {
           "fieldName" : "propertyType",
           "type" : "string",
           "fullyQualifiedType" : "string",
@@ -690,6 +677,45 @@
           "notNull" : false,
           "length" : 255,
           "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationType",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "ExpirationType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationDays",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ExpirationDays",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationStatusId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ExpirationStatusId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
@@ -1701,12 +1727,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "AllowOfflineCC",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "true",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -1879,7 +1905,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -1904,11 +1930,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Banned",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         }, {
           "fieldName" : "password",
@@ -1949,6 +1976,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {

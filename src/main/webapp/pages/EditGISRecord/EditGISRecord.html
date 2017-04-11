@@ -122,8 +122,10 @@
                                     <wm-grid-column binding="firstName" caption="First Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="lastName" caption="Last Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="phone" caption="Phone Number" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="active" caption="Active" type="boolean" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="notes" caption="Notes" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="active" caption="Active" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                        <wm-checkbox scopedatavalue="row['active']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                    </wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-action key="addNewRow" display-name="New Contact" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Contact" action="addNewRow()" shortcutkey="" disabled="false" icon="wi wi-person-add"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
@@ -213,14 +215,15 @@
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn40">
                                         <wm-grid title="" dataset="bind:Variables.FormsTaggedWithGISRecords.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                             <wm-grid-column binding="formTitle" caption="Form Title" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                            <wm-grid-column binding="giscontacts.gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
-                                            <wm-grid-column binding="giscontacts.gisrecords.lot" caption="Lot" type="string" readonly="true" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
                                             <wm-grid-column binding="users.fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" readonly="true" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==&quot;Standard&quot;"></wm-grid-column>
-                                            <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="formTypes.formType" caption="Form" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                             <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="giscontacts.gisrecords.subdivisions.subdivision" caption="Subdivision" type="string" readonly="true" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
+                                            <wm-grid-column binding="giscontacts.gisrecords.lot" caption="Lot" type="string" readonly="true" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==&quot;Homebuilder&quot;"></wm-grid-column>
                                             <wm-grid-column binding="vendor.companyName" caption="Primary Contractor" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==&quot;Standard&quot;" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" readonly="true" edit-widget-type="text" show="true"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
+                                            </wm-grid-column>
                                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                             <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
                                         </wm-grid>
@@ -232,7 +235,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow23" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn43">
-                        <wm-panel iconclass="wi wi-error-triangle" autoclose="outsideClick" name="panelCodeEnf" class="panel-primary" title="Code Enforcement"></wm-panel>
+                        <wm-panel iconclass="wi wi-hammer" autoclose="outsideClick" name="panelCodeEnf" class="panel-primary" title="Associated Cases"></wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow22" padding="unset unset 1em unset">
