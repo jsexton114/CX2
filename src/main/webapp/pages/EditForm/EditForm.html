@@ -32,11 +32,13 @@
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn17" horizontalalign="left" padding="unset 1em unset unset">
                                                             <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""
-                                                            hint="An &quot;Active&quot; form will appear to users as a selection in the New Form wizard. If &quot;Active&quot; is not selected, no new forms of this design can be submitted."></wm-form-field>
+                                                            hint="An &quot;Active&quot; form will appear to users as a selection in the New Form wizard. If &quot;Active&quot; is not selected, no new forms of this design can be submitted." defaultvalue="false"
+                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn3" padding="unset 1em unset unset">
                                                             <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="true" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" readonly="false"
-                                                            required="false" widget="checkbox" placeholder="" hint="This hides the form design from standard CivicXpress users and makes it available only to Municipality Employees."></wm-form-field>
+                                                            required="false" widget="checkbox" placeholder="" hint="This hides the form design from standard CivicXpress users and makes it available only to Municipality Employees." defaultvalue="false"
+                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow1333" padding="unset unset 1em unset">
@@ -100,7 +102,7 @@
                                                         <wm-gridrow name="gridrow51" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn76_3">
                                                                 <wm-form-field name="prefixDashes" displayname="Separate by Dashes" show="true" primary-key="false" generator="assigned" key="prefixDashes" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="false" disabled="bind:Variables.CurrentFormObj.dataSet.data[$i].currentPrefixNumber != null" placeholder=""></wm-form-field>
+                                                                defaultvalue="false" disabled="bind:Variables.CurrentFormObj.dataSet.data[$i].currentPrefixNumber != null" placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow46_1">
@@ -131,15 +133,16 @@
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn54" padding="unset 1em unset unset">
                                                                 <wm-form-field name="codeEnforcement" displayname="Code Enforcement" show="true" primary-key="false" generator="assigned" key="codeEnforcement" type="boolean" readonly="false" required="false"
                                                                 widget="checkbox" defaultvalue="false" hint="This setting will classify this form as a Code Enforcement form for reporting purposes, and enables a &quot;Code Enforcement&quot; tab on this page that contains additional settings."
-                                                                placeholder=""></wm-form-field>
+                                                                placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn55" padding="unset 1em unset unset">
                                                                 <wm-form-field name="inspections" displayname="Allow Inspections" show="true" primary-key="false" generator="assigned" key="inspections" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                placeholder="" hint="This option allows inspections as part of the form process and enables an &quot;Inspections&quot; tab on this page that contains additional settings."></wm-form-field>
+                                                                placeholder="" hint="This option allows inspections as part of the form process and enables an &quot;Inspections&quot; tab on this page that contains additional settings." defaultvalue="false"
+                                                                checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn141">
                                                                 <wm-form-field name="attachments" displayname="Allow Attachments" show="true" primary-key="false" generator="assigned" key="attachments" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                placeholder="" hint="This enables attaching multiple documents to a form."></wm-form-field>
+                                                                placeholder="" hint="This enables attaching multiple documents to a form." defaultvalue="false" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39" padding="unset unset 1em unset">
@@ -153,25 +156,13 @@
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn63_2" padding="unset 1em unset unset">
                                                                 <wm-form-field name="requireOwner" displayname="Require Owner" show="true" primary-key="false" generator="assigned" key="requireOwner" type="boolean" readonly="false" required="false" widget="checkbox"
                                                                 disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'" hint="This option requires that the user specify the Owner of the selected GIS record. They can select an Owner already associated with the Parcel, provide new Owner information, or (if Vendor is enabled) select the Vendor as the Owner."
-                                                                placeholder=""></wm-form-field>
+                                                                placeholder="" defaultvalue="false" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn76_4" padding="unset 1em unset unset">
                                                                 <wm-form-field name="gismap" displayname="Show GIS Map" show="true" primary-key="false" generator="assigned" key="gismap" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""
-                                                                disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'" hint="This enables a map that displays the GIS Records added to the form."></wm-form-field>
+                                                                disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'" hint="This enables a map that displays the GIS Records added to the form." defaultvalue="false"
+                                                                checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn107">
-                                                                <wm-form-field displayname="Form Expires By" widget="select" show="true" type="custom" name="expirationType" placeholder="Never" dataset="bind:Variables.stvExpirationTypes.dataSet" datafield="value"
-                                                                displayfield="label"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn108_1">
-                                                                <wm-form-field displayname="Days Until Expiration" widget="text" show="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue &amp;&amp; Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue !== 'FormStatusId'"
-                                                                type="custom" name="expirationDays" inputtype="number" placeholder="Enter days until expiration" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue &amp;&amp; Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue !== 'FormStatusId'"></wm-form-field>
-                                                                <wm-form-field displayname="Status" widget="select" show="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" type="custom" name="expirationStatusId"
-                                                                dataset="bind:Variables.StatusesData.dataSet" datafield="id" displayfield="status" required="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn109_2"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow38_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn61_1" padding="unset 1em unset unset">
@@ -189,18 +180,39 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn57" padding="unset 1em unset unset">
                                                                 <wm-form-field name="sharedWith" displayname="Allow Sharing" show="true" primary-key="false" generator="assigned" key="sharedWith" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="TRUE" placeholder="" hint="This enables sharing the form with other CivicXpress users and the ability to invite unregistered users to sign up to view the form."></wm-form-field>
+                                                                defaultvalue="true" placeholder="" hint="This enables sharing the form with other CivicXpress users and the ability to invite unregistered users to sign up to view the form." checkedvalue="true"
+                                                                uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn107" padding="unset 1em unset unset">
+                                                                <wm-form-field displayname="Form Expires" widget="select" show="true" type="custom" name="expirationType" placeholder="Never" dataset="bind:Variables.stvExpirationTypes.dataSet" datafield="value"
+                                                                displayfield="label"></wm-form-field>
+                                                                <wm-label padding="unset 0.5em" name="label32_1" class="help-block" fontsize="0.8" fontunit="em" caption="Select an option here if this form is only valid for a limited time period and will expire based on the date submitted, date last modified, or when it enters a form status."></wm-label>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn108_1" padding="unset 1em unset unset">
+                                                                <wm-form-field displayname="Days Until Expiration" widget="text" show="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue &amp;&amp; Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue !== 'FormStatusId'"
+                                                                type="custom" name="expirationDays" inputtype="number" placeholder="Enter value" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue &amp;&amp; Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue !== 'FormStatusId'"
+                                                                minvalue="1" step="1" maxvalue="29220"></wm-form-field>
+                                                                <wm-label padding="unset 0.5em" name="label33_2" class="help-block" fontsize="0.8" fontunit="em" show="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue &amp;&amp; Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue !== 'FormStatusId'"
+                                                                caption="This form will be set to expire after the specified number of days when the selected trigger event occurs."></wm-label>
+                                                                <wm-form-field displayname="Status" widget="select" show="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" type="custom" name="expirationStatusId"
+                                                                dataset="bind:Variables.StatusesData.dataSet" datafield="id" displayfield="status" required="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" placeholder="Select status"></wm-form-field>
+                                                                <wm-label padding="unset 0.5em" name="label34_1" class="help-block" fontsize="0.8" fontunit="em" show="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'"
+                                                                caption="The form expiration will be set when the form enters the status selected here."></wm-label>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn109_2"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow96">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn142">
                                                                 <wm-form-field name="requireSignature" displayname="Require Digital Signature" show="true" primary-key="false" generator="assigned" key="requireSignature" type="boolean" readonly="false" required="false"
-                                                                widget="checkbox" defaultvalue="FALSE" hint="When enabled, people will be required to provide an electronic signature upon submitting their form." placeholder=""></wm-form-field>
+                                                                widget="checkbox" defaultvalue="false" hint="When enabled, people will be required to provide an electronic signature upon submitting their form." placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn143_1">
                                                                 <wm-form-field name="collectFees" displayname="Collect Fees" show="true" primary-key="false" generator="assigned" key="collectFees" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="FALSE" placeholder="" checkedvalue="true" uncheckedvalue="false" on-change="collectFeesChange($event, $scope, newVal, oldVal)" hint="This enables fees to be collected with this form. &quot;Automatic&quot; fees are generated when a user submits the form and &quot;Manual&quot; fees must be added to the form by a municipality employee."></wm-form-field>
+                                                                defaultvalue="false" placeholder="" checkedvalue="true" uncheckedvalue="false" on-change="collectFeesChange($event, $scope, newVal, oldVal)" hint="This enables fees to be collected with this form. &quot;Automatic&quot; fees are generated when a user submits the form and &quot;Manual&quot; fees must be added to the form by a municipality employee."></wm-form-field>
                                                             </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn110_2"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
                                                 </wm-panel>
@@ -213,7 +225,7 @@
                                                         <wm-gridrow name="gridrow96_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn141_1">
                                                                 <wm-form-field name="automaticFees" displayname="Generate Automatic Fees" show="true" primary-key="false" generator="assigned" key="automaticFees" type="boolean" readonly="false" required="false"
-                                                                widget="checkbox" defaultvalue="FALSE" placeholder="" checkedvalue="true" uncheckedvalue="false" hint="When enabled, the &quot;Automatic&quot; fees that are set here will be assessed when this form is submitted. This cannot be enabled unless &quot;Collect Fees&quot; is selected above."
+                                                                widget="checkbox" defaultvalue="false" placeholder="" checkedvalue="true" uncheckedvalue="false" hint="When enabled, the &quot;Automatic&quot; fees that are set here will be assessed when this form is submitted. This cannot be enabled unless &quot;Collect Fees&quot; is selected above."
                                                                 disabled="bind:!Widgets.liveformUpdateFormType.formWidgets.collectFees.datavalue"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
@@ -434,22 +446,23 @@
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn name="gridcolumn3" columnwidth="4" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowAttachments" displayname="Allow Attachment Updates" show="true" primary-key="false" generator="assigned" key="allowAttachments" type="boolean" widget="checkbox"
-                                                                            placeholder="" hint="This allows users in the Process Owner and Write Access groups to add, delete, and markup attachments." defaultvalue="false"></wm-form-field>
+                                                                            placeholder="" hint="This allows users in the Process Owner and Write Access groups to add, delete, and markup attachments." defaultvalue="false" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                     <wm-gridrow name="gridrow120_1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn42_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowAuthorEdits" displayname="Allow &quot;Created By&quot; Edits" show="true" primary-key="false" generator="assigned" key="allowAuthorEdits" type="boolean"
-                                                                            widget="checkbox" placeholder="" hint="This allows the user who submitted the form to make edits to the form information during this status." defaultvalue="false" on-change="allowAuthorEditsChange($event, $scope, newVal, oldVal)"></wm-form-field>
+                                                                            widget="checkbox" placeholder="" hint="This allows the user who submitted the form to make edits to the form information during this status." defaultvalue="false" on-change="allowAuthorEditsChange($event, $scope, newVal, oldVal)"
+                                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn36_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowSharedWithEdits" displayname="Allow &quot;Shared With&quot; Edits" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean"
                                                                             widget="checkbox" placeholder="" hint="If &quot;Allow Created By Edits&quot; is enabled, you can also allow users who the form has been shared with to edit the form information during this status."
-                                                                            defaultvalue="false" disabled="bind:!Widgets.lfFormTypeStatus.formWidgets.allowAuthorEdits.datavalue"></wm-form-field>
+                                                                            defaultvalue="false" disabled="bind:!Widgets.lfFormTypeStatus.formWidgets.allowAuthorEdits.datavalue" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
                                                                             <wm-form-field name="publicRead" displayname="Allow Public Read Access" show="true" primary-key="false" generator="assigned" key="publicRead" type="boolean" widget="checkbox" defaultvalue="false"
-                                                                            hint="The form will be considered a &quot;Public Record&quot; while it is in this status, allowing the public to view the form."></wm-form-field>
+                                                                            hint="The form will be considered a &quot;Public Record&quot; while it is in this status, allowing the public to view the form." checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-panel>
@@ -461,7 +474,8 @@
                                                                     <wm-gridrow name="gridrow1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn name="gridcolumn2" columnwidth="4" padding="unset 1em unset unset">
                                                                             <wm-form-field name="sendEmail" displayname="Send Email" show="true" primary-key="false" generator="assigned" key="sendEmail" type="boolean" widget="checkbox" defaultvalue="false"
-                                                                            placeholder="" hint="If selected, a system-generated email will be sent to the user who submitted the form and the users who the form has been shared with when the form enters this status."></wm-form-field>
+                                                                            placeholder="" hint="If selected, a system-generated email will be sent to the user who submitted the form and the users who the form has been shared with when the form enters this status."
+                                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="8" name="gridcolumn38" padding="unset 1em unset unset">
                                                                             <wm-form-field name="emailSubjectLine" displayname="Email Subject Line" show="true" primary-key="false" generator="assigned" key="emailSubjectLine" type="string" widget="text" maxchars="255"
@@ -483,11 +497,13 @@
                                                                     <wm-gridrow name="gridrow23_2" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn43_2" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowPayment" displayname="Allow Payments" show="true" primary-key="false" generator="assigned" key="allowPayment" type="boolean" widget="checkbox" placeholder=""
-                                                                            defaultvalue="false" hint="This allows form fees to be paid by the end user while the form is in this status. Municipality employees can always process fees."></wm-form-field>
+                                                                            defaultvalue="false" hint="This allows form fees to be paid by the end user while the form is in this status. Municipality employees can always process fees." checkedvalue="true"
+                                                                            uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn44_2" padding="unset 1em unset unset">
                                                                             <wm-form-field name="recalculateAutoFees" displayname="Recalculate Automatic Fees" show="true" primary-key="false" generator="assigned" key="recalculateAutoFees" type="boolean" widget="checkbox"
-                                                                            placeholder="" defaultvalue="false" hint="If enabled, Automatic Fees will be recalculated when the form enters this status. Fees that have already been paid will not be recalculated."></wm-form-field>
+                                                                            placeholder="" defaultvalue="false" hint="If enabled, Automatic Fees will be recalculated when the form enters this status. Fees that have already been paid will not be recalculated."
+                                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn44_3" padding="unset 1em unset unset"></wm-gridcolumn>
                                                                     </wm-gridrow>
@@ -500,7 +516,8 @@
                                                                     <wm-gridrow name="gridrow23_1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn45_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowInspections" displayname="Allow Inspection Requests" show="true" primary-key="false" generator="assigned" key="allowInspections" type="boolean" widget="checkbox"
-                                                                            placeholder="" defaultvalue="false" hint="This allows inspections to be requested by the end user while the form is in this status. Municipality employees can always request an inspection."></wm-form-field>
+                                                                            placeholder="" defaultvalue="false" hint="This allows inspections to be requested by the end user while the form is in this status. Municipality employees can always request an inspection."
+                                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-panel>
@@ -512,7 +529,7 @@
                                                                     <wm-gridrow name="gridrow21" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn39_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowReporting" displayname="Allow Reporting" show="true" primary-key="false" generator="assigned" key="allowReporting" type="boolean" widget="checkbox" placeholder=""
-                                                                            defaultvalue="false"></wm-form-field>
+                                                                            defaultvalue="false" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn61_2" padding="unset 1em unset unset">
                                                                             <wm-form-field name="report" displayname="Report" show="true" primary-key="false" generator="assigned" key="report" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
@@ -527,11 +544,11 @@
                                                                     <wm-gridrow name="gridrow24_1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn48" padding="unset 1em unset unset">
                                                                             <wm-form-field name="createAsRecord" displayname="Create as Record" show="true" primary-key="false" generator="assigned" key="createAsRecord" type="boolean" widget="checkbox" placeholder=""
-                                                                            hint="This causes a PDF to be generated, saving a snapshot of the form at the point in time when the form enters this status." defaultvalue="false"></wm-form-field>
+                                                                            hint="This causes a PDF to be generated, saving a snapshot of the form at the point in time when the form enters this status." defaultvalue="false" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn46" padding="unset 1em unset unset">
                                                                             <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" widget="checkbox" defaultvalue="false"
-                                                                            placeholder="" hint="This should be reserved for the final form status and is used to indicate that form processing is complete."></wm-form-field>
+                                                                            placeholder="" hint="This should be reserved for the final form status and is used to indicate that form processing is complete." checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-panel>
