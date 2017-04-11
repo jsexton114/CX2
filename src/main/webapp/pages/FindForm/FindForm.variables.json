@@ -1430,6 +1430,45 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "expirationType",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "ExpirationType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationDays",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ExpirationDays",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationStatusId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ExpirationStatusId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -3861,6 +3900,45 @@
           "notNull" : false,
           "length" : 255,
           "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationType",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "ExpirationType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationDays",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ExpirationDays",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationStatusId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ExpirationStatusId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
@@ -6327,6 +6405,45 @@
           "notNull" : false,
           "length" : 255,
           "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationType",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "ExpirationType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationDays",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ExpirationDays",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationStatusId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ExpirationStatusId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
@@ -9714,6 +9831,45 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "expirationType",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "ExpirationType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationDays",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ExpirationDays",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "expirationStatusId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ExpirationStatusId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -12046,12 +12202,20 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "closed",
-      "value" : "bind:(Widgets.radiosetFromVendor.datavalue=='Closed')?true:false",
+      "target" : "codeEnforcement",
+      "value" : false,
       "type" : "boolean"
     }, {
       "target" : "vendorId",
       "value" : "bind:Widgets.selectVendor.datavalue.vendorId",
+      "type" : "integer"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMuncipalityForVENDOR.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "formtypeID",
+      "value" : "bind:Widgets.selectFormTypeFromVendor.datavalue.ID",
       "type" : "integer"
     }, {
       "target" : "startd",
@@ -12062,18 +12226,14 @@
       "value" : "bind:Widgets.datetimeVendorEnd.datavalue",
       "type" : "string"
     }, {
-      "target" : "FormTypeId",
-      "value" : "bind:Widgets.selectFormTypeFromVendor.datavalue.ID | stringToNumber",
-      "type" : "integer"
-    }, {
-      "target" : "municipalityId",
-      "value" : "bind:Widgets.selectMuncipalityForVENDOR.datavalue.ID",
+      "target" : "formcategoryID",
+      "value" : "bind:Widgets.selectCategoriesForVendor.datavalue.id",
       "type" : "integer"
     } ],
-    "type" : "com.civicxpress.cx2.MasterForms",
+    "type" : "com.civicxpress.cx2.models.query.SearchAllFormsByVendorResponse",
     "service" : "cx2",
-    "operation" : "executeSearchFormByVendor",
-    "operationId" : "QueryExecutionController_executeSearchFormByVendor",
+    "operation" : "executeSearchAllFormsByVendor",
+    "operationId" : "QueryExecutionController_executeSearchAllFormsByVendor",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],
@@ -12581,7 +12741,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 2,
+    "bindCount" : 1,
     "spinnerContext" : "page",
     "tableName" : "FormCategories",
     "tableType" : "TABLE",

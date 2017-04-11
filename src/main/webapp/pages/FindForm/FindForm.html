@@ -48,13 +48,13 @@
                                             <wm-label padding="unset 0.5em unset unset" name="label6" caption="and Submitted Between" class="col-md-3 form-control-static" width="100%" fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn26_1">
-                                            <wm-datetime name="datetimeStart" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="Start Date"></wm-datetime>
+                                            <wm-datetime name="datetimeStart" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="Start Date" datavalue="bind:startDate"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn27_1" horizontalalign="center">
                                             <wm-label padding=".5em 0.5em unset 0.5em" name="label9" caption="and" class="control-label"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn28">
-                                            <wm-datetime name="datetimeEnd" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="End Date"></wm-datetime>
+                                            <wm-datetime name="datetimeEnd" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="End Date" datavalue="CURRENT_DATE"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn22"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -150,13 +150,13 @@
                                             <wm-label padding="unset 0.5em unset unset" caption="and Submitted Between" class="col-md-3 form-control-static" width="100%" name="label21" fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn84">
-                                            <wm-datetime name="datetimeVendorStart" datepattern="MM-dd-yyyy hh:mm a" placeholder="Start Date"></wm-datetime>
+                                            <wm-datetime name="datetimeVendorStart" datepattern="MM-dd-yyyy hh:mm a" placeholder="Start Date" datavalue="bind:startDate"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn85">
                                             <wm-label padding=".5em 0.5em unset 0.5em" caption="and" class="control-label" name="label22"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn86">
-                                            <wm-datetime name="datetimeVendorEnd" datepattern="MM-dd-yyyy hh:mm a" placeholder="End Date"></wm-datetime>
+                                            <wm-datetime name="datetimeVendorEnd" datepattern="MM-dd-yyyy hh:mm a" placeholder="End Date" datavalue="CURRENT_DATE"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn87"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -166,7 +166,7 @@
                                             <wm-label class="col-md-3 form-control-static" caption="and Form Category" width="100%" name="label23" fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" name="gridcolumn90">
-                                            <wm-select dataset="bind:Variables.VendorMuncipalityCategories.dataSet" datafield="All Fields" displayfield="category" datavalue="bind:Variables.VendorMuncipalityCategories.firstRecord" name="selectCategoriesForVendor"></wm-select>
+                                            <wm-select dataset="bind:Variables.VendorMuncipalityCategories.dataSet" datafield="All Fields" displayfield="category" name="selectCategoriesForVendor" placeholder="Select Category"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn91"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -186,30 +186,32 @@
                                             <wm-label class="col-md-3 form-control-static" caption="and" name="label25" width="100%" fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" name="gridcolumn98">
-                                            <wm-radioset height="auto" dataset="Open,Closed" datafield="All Fields" selectedvalue="Open" usekeys="false" width="30%" name="radiosetFromVendor"></wm-radioset>
+                                            <wm-radioset height="auto" dataset="Open,Closed,Both" datafield="All Fields" selectedvalue="Open" usekeys="false" width="30%" name="radiosetFromVendor" layout="inline"></wm-radioset>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn99"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow padding=".5em unset" name="gridrow31">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn100"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="9" horizontalalign="right" name="gridcolumn101">
-                                            <wm-button class="btn-primary" caption="Search" type="button" on-click="Variables.SearchFormByVendor.invoke()" name="button3" iconclass="wi wi-search"></wm-button>
+                                            <wm-button class="btn-primary" caption="Search" type="button" on-click="buttonByVendorClick($event, $scope)" name="buttonByVendor" iconclass="wi wi-search"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn102"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow32">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn104">
                                             <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" margin="1em unset" title="Search Results" class="panel-primary" name="panel3">
-                                                <wm-grid title="" dataset="bind:Variables.SearchFormByVendor.dataSet" navigation="Classic" filtermode="multicolumn" nodatamessage="No Forms Found" loadingdatamsg="Please while fetching Forms" exportformat="EXCEL"
-                                                name="gridVENDOR" showrecordcount="true">
-                                                    <wm-grid-column binding="formTitle" caption="Form Title" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="formTypes.formType" caption="Form Design" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="vendor.companyName" caption="Primary Vendor" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="submittedOn" caption="Date Submitted" type="timestamp" primary-key="false" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate"
-                                                    show="true" filterwidget="date"></wm-grid-column>
-                                                    <wm-grid-column binding="users.email" caption="Submitted By" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid title="" dataset="bind:Variables.SearchFormByVendor.dataSet" navigation="Classic" name="gridVENDOR">
+                                                    <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="formDesign" caption="Form Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="createdBy" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="primaryVendor" caption="Primary Vendor" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="address" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="municipalityName" caption="Municipality Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-panel>

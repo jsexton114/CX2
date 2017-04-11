@@ -2917,6 +2917,40 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(Boolean codeEnforcement, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
+        Map params = new HashMap(8);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("vendorId", vendorId);
+        params.put("municipalityId", municipalityId);
+        params.put("formcategoryID", formcategoryId);
+        params.put("formtypeID", formtypeId);
+        params.put("Closed", closed);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.executeNamedQuery("SearchAllFormsByVendor", params, SearchAllFormsByVendorResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportSearchAllFormsByVendor(ExportType exportType, Boolean codeEnforcement, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
+        Map params = new HashMap(8);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("vendorId", vendorId);
+        params.put("municipalityId", municipalityId);
+        params.put("formcategoryID", formcategoryId);
+        params.put("formtypeID", formtypeId);
+        params.put("Closed", closed);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.exportNamedQueryData("SearchAllFormsByVendor", params, exportType, SearchAllFormsByVendorResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Projects> executeProjectsForUsersAndSharedWith(Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
         Map params = new HashMap(4);
 

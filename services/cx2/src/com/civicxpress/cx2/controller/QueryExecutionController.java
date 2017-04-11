@@ -2536,6 +2536,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/SearchAllFormsByVendor", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "SearchAllFormsByVendor")
+    public Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "formcategoryID", required = false) Integer formcategoryId, @RequestParam(value = "formtypeID", required = false) Integer formtypeId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "startd") Timestamp startd, @RequestParam(value = "endd") Timestamp endd, Pageable pageable) {
+        LOGGER.debug("Executing named query: SearchAllFormsByVendor");
+        Page<SearchAllFormsByVendorResponse> _result = queryService.executeSearchAllFormsByVendor(codeEnforcement, vendorId, municipalityId, formcategoryId, formtypeId, closed, startd, endd, pageable);
+        LOGGER.debug("got the result for named query: SearchAllFormsByVendor, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query SearchAllFormsByVendor")
+    @RequestMapping(value = "/queries/SearchAllFormsByVendor/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportSearchAllFormsByVendor(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "formcategoryID", required = false) Integer formcategoryId, @RequestParam(value = "formtypeID", required = false) Integer formtypeId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "startd") Timestamp startd, @RequestParam(value = "endd") Timestamp endd, Pageable pageable) {
+        LOGGER.debug("Exporting named query: SearchAllFormsByVendor");
+
+        return queryService.exportSearchAllFormsByVendor(exportType, codeEnforcement, vendorId, municipalityId, formcategoryId, formtypeId, closed, startd, endd, pageable);
+    }
+
     @RequestMapping(value = "/queries/ProjectsForUsersAndSharedWith", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "ProjectsForUsersAndSharedWith")

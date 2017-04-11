@@ -544,6 +544,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeInsertFormMessage(InsertFormMessageRequest insertFormMessageRequest);
 
+    Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(Boolean codeEnforcement, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+
+    Downloadable exportSearchAllFormsByVendor(ExportType exportType, Boolean codeEnforcement, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+
     Page<Projects> executeProjectsForUsersAndSharedWith(Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
 
     Downloadable exportProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
