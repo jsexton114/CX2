@@ -194,22 +194,22 @@
                                                         <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn107" padding="unset 1em unset unset">
                                                                 <wm-form-field displayname="Form Expires" widget="select" show="true" type="custom" name="expirationType" placeholder="Never" dataset="bind:Variables.stvExpirationTypes.dataSet" datafield="value"
-                                                                displayfield="label" width="180px"></wm-form-field>
+                                                                displayfield="label" width="180px" on-change="expirationTypeChange($event, $scope, newVal, oldVal)"></wm-form-field>
                                                                 <wm-label padding="unset 0.5em" name="label32_1" class="help-block" fontsize="0.8" fontunit="em" caption="Select an option here if this form is only valid for a limited time period and will expire based on the date submitted, date last modified, or when it enters a form status."></wm-label>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn108_1" padding="unset 1em unset unset">
-                                                                <wm-form-field displayname="Days Until Expiration" widget="text" show="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue &amp;&amp; Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue !== 'FormStatusId'"
-                                                                type="custom" name="expirationDays" inputtype="number" placeholder="Enter value" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue &amp;&amp; Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue !== 'FormStatusId'"
-                                                                minvalue="1" step="1" maxvalue="29220" width="180px"></wm-form-field>
-                                                                <wm-label padding="unset 0.5em" name="label33_2" class="help-block" fontsize="0.8" fontunit="em" show="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue &amp;&amp; Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue !== 'FormStatusId'"
+                                                                <wm-form-field displayname="Days Until Expiration" widget="text" show="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue" type="custom" name="expirationDays" inputtype="number"
+                                                                placeholder="Enter value" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue" minvalue="0" step="1" maxvalue="29220" width="180px"></wm-form-field>
+                                                                <wm-label padding="unset 0.5em" name="label33_2" class="help-block" fontsize="0.8" fontunit="em" show="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue"
                                                                 caption="This form will be set to expire after the specified number of days when the selected trigger event occurs."></wm-label>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn109_2">
                                                                 <wm-form-field displayname="Status" widget="select" show="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" type="custom" name="expirationStatusId"
                                                                 dataset="bind:Variables.StatusesData.dataSet" datafield="id" displayfield="status" required="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" placeholder="Select status"
                                                                 width="180px"></wm-form-field>
                                                                 <wm-label padding="unset 0.5em" name="label34_1" class="help-block" fontsize="0.8" fontunit="em" show="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'"
-                                                                caption="The form expiration will be set when the form enters the status selected here."></wm-label>
+                                                                caption="bind:'The form expiration will be set for ' + (!!Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue ? (Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue + ' days') : 'immediately') + ' after the form enters the status selected here.'"></wm-label>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn109_2"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow96">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn142">

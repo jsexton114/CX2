@@ -368,25 +368,6 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
-  "goToPage_EditCase" : {
-    "_id" : "wm-goToPage_EditCase-wm.NavigationVariable-1489476287938",
-    "name" : "goToPage_EditCase",
-    "owner" : "App",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ {
-      "target" : "pageName",
-      "value" : "EditCase",
-      "type" : "string"
-    } ],
-    "operation" : "gotoPage",
-    "pageName" : "EditCase",
-    "dataSet" : [ {
-      "type" : "integer",
-      "target" : "CaseTypeId",
-      "value" : "bind:Widgets.gridCasetypes.selecteditem.id"
-    } ],
-    "pageTransitions" : "none"
-  },
   "goToPage_EditForm" : {
     "_id" : "wm-goToPage_EditForm-wm.NavigationVariable-1480049657857",
     "name" : "goToPage_EditForm",
@@ -924,17 +905,6 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
-  "goToPage_Test" : {
-    "_id" : "wm-goToPage_Test-wm.NavigationVariable-1488178862265",
-    "name" : "goToPage_Test",
-    "owner" : "App",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
-    "operation" : "gotoPage",
-    "pageName" : "Test",
-    "dataSet" : [ ],
-    "pageTransitions" : "none"
-  },
   "goToPage_UserClosedForms" : {
     "_id" : "wm-goToPage_UserClosedForms-wm.NavigationVariable-1482831972576",
     "name" : "goToPage_UserClosedForms",
@@ -1003,17 +973,6 @@
     "dataBinding" : [ ],
     "operation" : "gotoPage",
     "pageName" : "VendorApplication",
-    "dataSet" : [ ],
-    "pageTransitions" : "none"
-  },
-  "goToPage_ViewCase" : {
-    "_id" : "wm-goToPage_ViewCase-wm.NavigationVariable-1489486004689",
-    "name" : "goToPage_ViewCase",
-    "owner" : "App",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
-    "operation" : "gotoPage",
-    "pageName" : "ViewCase",
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },

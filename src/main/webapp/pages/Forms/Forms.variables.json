@@ -21033,6 +21033,34 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Subdivisions"
   },
+  "svDateStatusEntered" : {
+    "_id" : "wm-svDateStatusEntered-wm.ServiceVariable-1492016781330",
+    "name" : "svDateStatusEntered",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "formGuid",
+      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formGuid",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.TimeFormEnteredStatusResponse",
+    "service" : "cx2",
+    "operation" : "executeTimeFormEnteredStatus",
+    "operationId" : "QueryExecutionController_executeTimeFormEnteredStatus",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "svDateStatusEnteredonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "svDistinctInspectionDesignsForFormType" : {
     "_id" : "wm-svDistinctInspectionDesignsForFormType-wm.ServiceVariable-1489569692114",
     "name" : "svDistinctInspectionDesignsForFormType",

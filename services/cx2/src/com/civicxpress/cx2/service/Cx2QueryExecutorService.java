@@ -256,6 +256,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateDevFormDetailsForCXAdmin(UpdateDevFormDetailsForCxadminRequest updateDevFormDetailsForCxadminRequest);
 
+    Page<TimeFormEnteredStatusResponse> executeTimeFormEnteredStatus(String formGuid, Pageable pageable);
+
+    Downloadable exportTimeFormEnteredStatus(ExportType exportType, String formGuid, Pageable pageable);
+
     Integer executeUpdateVendorForMasterForms(UpdateVendorForMasterFormsRequest updateVendorForMasterFormsRequest);
 
     Page<CountOfCxcodeSetsGlobalResponse> executeCountOfCXCodeSetsGlobal(Pageable pageable);

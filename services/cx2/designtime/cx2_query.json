@@ -12153,6 +12153,44 @@
       } ]
     }
   },
+  "timeFormEnteredStatus" : {
+    "name" : "timeFormEnteredStatus",
+    "description" : "Time the form most recently when from some status to the form's current status",
+    "version" : "V2",
+    "queryString" : "select CreatedTime from FormHistory\nwhere ID=(select top 1 ID FROM FormHistory\n    where NewStatusId!=OldStatusId\n    and NewStatusId=(select FormStatusId FROM MasterForms where FormGUID=:formGuid)\n    and FormGUID=:formGuid\n    ORDER BY CreatedTime DESC)",
+    "countQueryString" : "select count(*) from (select CreatedTime from FormHistory\nwhere ID=(select top 1 ID FROM FormHistory\n    where NewStatusId!=OldStatusId\n    and NewStatusId=(select FormStatusId FROM MasterForms where FormGUID=:formGuid)\n    and FormGUID=:formGuid\n    ORDER BY CreatedTime DESC)) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "formGuid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "EEF97676-1319-E711-80CB-0CC47A46DD63",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.TimeFormEnteredStatusResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "CreatedTime",
+        "fieldName" : "createdTime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "updateAssessFeeYN" : {
     "name" : "updateAssessFeeYN",
     "description" : "updateAssessFeeYNAndForInspectionOutcome",

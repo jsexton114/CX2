@@ -1310,6 +1310,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("UpdateDevFormDetailsForCXAdmin", params);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<TimeFormEnteredStatusResponse> executeTimeFormEnteredStatus(String formGuid, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("formGuid", formGuid);
+
+        return queryExecutor.executeNamedQuery("timeFormEnteredStatus", params, TimeFormEnteredStatusResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportTimeFormEnteredStatus(ExportType exportType, String formGuid, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("formGuid", formGuid);
+
+        return queryExecutor.exportNamedQueryData("timeFormEnteredStatus", params, exportType, TimeFormEnteredStatusResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeUpdateVendorForMasterForms(UpdateVendorForMasterFormsRequest updateVendorForMasterFormsRequest) {

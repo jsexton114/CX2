@@ -1150,6 +1150,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/timeFormEnteredStatus", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Time the form most recently when from some status to the form's current status")
+    public Page<TimeFormEnteredStatusResponse> executeTimeFormEnteredStatus(@RequestParam(value = "formGuid") String formGuid, Pageable pageable) {
+        LOGGER.debug("Executing named query: timeFormEnteredStatus");
+        Page<TimeFormEnteredStatusResponse> _result = queryService.executeTimeFormEnteredStatus(formGuid, pageable);
+        LOGGER.debug("got the result for named query: timeFormEnteredStatus, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query timeFormEnteredStatus")
+    @RequestMapping(value = "/queries/timeFormEnteredStatus/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportTimeFormEnteredStatus(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formGuid") String formGuid, Pageable pageable) {
+        LOGGER.debug("Exporting named query: timeFormEnteredStatus");
+
+        return queryService.exportTimeFormEnteredStatus(exportType, formGuid, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdateVendorForMasterForms", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdateVendorForMasterForms")

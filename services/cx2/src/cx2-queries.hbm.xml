@@ -1061,6 +1061,30 @@ from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidSt
     <query-param name="form" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="timeFormEnteredStatus">
+        <![CDATA[
+        select CreatedTime from FormHistory
+where ID=(select top 1 ID FROM FormHistory
+    where NewStatusId!=OldStatusId
+    and NewStatusId=(select FormStatusId FROM MasterForms where FormGUID=:formGuid)
+    and FormGUID=:formGuid
+    ORDER BY CreatedTime DESC)
+        ]]>
+    <query-param name="formGuid" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="timeFormEnteredStatus__count">
+        <![CDATA[
+        select count(*) from (select CreatedTime from FormHistory
+where ID=(select top 1 ID FROM FormHistory
+    where NewStatusId!=OldStatusId
+    and NewStatusId=(select FormStatusId FROM MasterForms where FormGUID=:formGuid)
+    and FormGUID=:formGuid
+    ORDER BY CreatedTime DESC)) wmTempTable
+        ]]>
+    <query-param name="formGuid" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="UpdateVendorForMasterForms">
         <![CDATA[
         update MasterForms set CXVendorId=:CXVendorId where FormGUID=:FormGUID

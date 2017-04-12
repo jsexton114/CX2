@@ -97,6 +97,15 @@ Application.$controller("liveformUpdateFormTypeController", ["$scope",
             }
         };
 
+        $scope.expirationTypeChange = function($event, $isolateScope, newVal, oldVal) {
+            if (!newVal) {
+                $scope.Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue = undefined;
+                $scope.Widgets.liveformUpdateFormType.formWidgets.expirationStatusId.datavalue = undefined;
+            } else {
+                $scope.Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue = 365;
+            }
+        };
+
     }
 ]);
 

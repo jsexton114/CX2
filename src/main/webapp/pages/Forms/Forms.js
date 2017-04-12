@@ -3,6 +3,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
     var currentBreadCrumb = null;
     var openClosedFormBreadCrumb = {};
+    var momentStatusEntered = null;
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
@@ -35,17 +36,9 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     function setFormStatusProgressValue(newStatusId) {
         var statusListData = $scope.Variables.FormStatus.dataSet.data;
         var currentStatusId = newStatusId || $scope.Variables.CurrentForm.dataSet.data[0].formStatusId;
+        $scope.currentStatusId = currentStatusId;
 
         if (!!statusListData && !!currentStatusId) {
-            if (!!$scope.expirationStatusId) {
-                var expirationStatus = _.find(statusListData, {
-                    id: $scope.expirationStatusId
-                });
-
-                $scope.expiresOn = expirationStatus.status;
-                $scope.isExpired = (currentStatusId === $scope.expirationStatusId);
-            }
-
             $scope.allFormStatus = statusListData;
             // For showing current Status of form
             var currentStatusIndex = _.findIndex(statusListData, {
@@ -124,7 +117,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
             $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
 
             // Send Mails of Message
-            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID
+            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID;
             $scope.Variables.svSendFormMessagesMail.setInput({
                 'formLink': tempLink,
                 'recipient': $scope.messageMailingList,
@@ -202,21 +195,30 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     $scope.CurrentFormonSuccess = function(variable, data) {
         var currentForm = data[0];
         var formType = currentForm.formTypes;
+        $scope.expirationType = formType.expirationType;
+        $scope.currentStatusId = currentForm.formStatusId;
 
-        if (!!formType.expirationType) {
+        if (!!$scope.expirationType) {
+            $scope.expirationDays = formType.expirationDays;
+
             if (formType.expirationType === 'FormStatusId') { // Status
                 $scope.expirationStatusId = formType.expirationStatusId; // See FormStatusonSuccess for more details
             } else { // Dates
+                $scope.expirationStatusId = null;
                 var fieldName = (formType.expirationType.charAt(0).toUpperCase() + formType.expirationType.substring(1));
 
                 $scope.expiresOn = moment(currentForm[fieldName]).startOf('day').add(formType.expirationDays, 'days').valueOf();
 
-                $scope.isExpired = (moment().valueOf() > $scope.expiresOn);
+                $scope.isExpired = (moment().valueOf() >= $scope.expiresOn);
             }
         } else {
+            $scope.expirationDays = null;
+            $scope.expirationStatusId = null;
             $scope.expiresOn = null;
             $scope.isExpired = false;
         }
+
+        $scope.Variables.svDateStatusEntered.update();
     };
 
     $scope.buttonAddInternalMessageClick = function($event, $isolateScope) {
@@ -289,6 +291,18 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
             } else {
                 $scope.buttonAddMessageClick();
             }
+        }
+    };
+
+    $scope.svDateStatusEnteredonSuccess = function(variable, data) {
+        momentStatusEntered = moment(data.content[0].createdTime);
+
+        if (!!$scope.expirationStatusId && $scope.expirationStatusId === $scope.currentStatusId) {
+            $scope.expiresOn = momentStatusEntered.add($scope.expirationDays, 'days').valueOf();
+            $scope.isExpired = (moment().valueOf() >= $scope.expiresOn);
+        } else if (!!$scope.expirationStatusId) {
+            $scope.expiresOn = null;
+            $scope.isExpired = false;
         }
     };
 
@@ -664,8 +678,8 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
 ]);
 
 Application.$controller("dialogVendorDetailsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
