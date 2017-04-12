@@ -10,7 +10,7 @@
       "type" : "number"
     }, {
       "target" : "municipalityInternalCategory",
-      "value" : "bind:(Widgets.selectType.datavalue=='Public')?false:true",
+      "value" : "bind:Widgets.selectType.datavalue=='Internal'",
       "type" : "boolean"
     } ],
     "operation" : "read",

@@ -27,7 +27,7 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" name="gridcolumn71" padding=".5em unset unset unset">
                                             <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord"
-                                            orderby="MunicipalityName:asc"></wm-select>
+                                            orderby="MunicipalityName:asc" on-change="selectMunicipalityChange($event, $scope, newVal, oldVal)"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn72"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -58,6 +58,17 @@
                                                 <wm-datetime name="datetimeEnd" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="End Date" datavalue="bind:toDayEnd"></wm-datetime>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="1" name="gridcolumn22"></wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow55">
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn143"></wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn144">
+                                                <wm-label class="col-md-3 control-label" name="label4" width="160px" caption="and Category Type"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="7" name="gridcolumn145">
+                                                <wm-select name="selectCatTypeUser" dataset="bind:Variables.stvCategoryType.dataSet" datavalue="bind:Variables.stvCategoryType.dataSet[0].value" on-change="selectTypeChange($event, $scope, newVal, oldVal)" datafield="value"
+                                                displayfield="type"></wm-select>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="1" name="gridcolumn146"></wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow9" padding=".5em unset">
                                             <wm-gridcolumn columnwidth="2" name="gridcolumn13"></wm-gridcolumn>
@@ -150,7 +161,7 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" padding=".5em unset unset unset" name="gridcolumn76">
                                             <wm-select dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"
-                                            name="selectMuncipalityForVENDOR"></wm-select>
+                                            name="selectMuncipalityForVENDOR" on-change="selectMuncipalityForVENDORChange($event, $scope, newVal, oldVal)"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn77"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -181,13 +192,23 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn87"></wm-gridcolumn>
                                     </wm-gridrow>
+                                    <wm-gridrow name="gridrow55">
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn143"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn144">
+                                            <wm-label class="col-md-3 control-label" name="label4" width="160px" caption="and Category Type"></wm-label>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="7" name="gridcolumn145">
+                                            <wm-select name="selectCatTypeContractor" dataset="bind:Variables.stvCategoryType.dataSet" datavalue="bind:Variables.stvCategoryType.dataSet[0].value" datafield="value" displayfield="type" on-change="selectCatTypeContractorChange($event, $scope, newVal, oldVal)"></wm-select>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn146"></wm-gridcolumn>
+                                    </wm-gridrow>
                                     <wm-gridrow padding=".5em unset" name="gridrow28">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn88"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn89">
                                             <wm-label class="col-md-3 form-control-static" caption="and Form Category" width="100%" name="label23" fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" name="gridcolumn90">
-                                            <wm-select dataset="bind:Variables.VendorMuncipalityCategories.dataSet" datafield="All Fields" displayfield="category" name="selectCategoriesForVendor" placeholder="Select Category"></wm-select>
+                                            <wm-select dataset="bind:Variables.MunicipalityCategories.dataSet" datafield="All Fields" displayfield="category" name="selectCategoriesForVendor" placeholder="Select Category"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn91"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -272,7 +293,7 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="7" padding=".5em unset unset unset" name="gridcolumn109">
                                             <wm-select dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"
-                                            name="selectMunicipalityForAddress"></wm-select>
+                                            name="selectMunicipalityForAddress" on-change="selectMunicipalityForAddressChange($event, $scope, newVal, oldVal)"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn110"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -391,6 +412,16 @@
                                             <wm-datetime name="datetimeAddressEnd" datepattern="MM-dd-yyyy hh:mm a" placeholder="End Date" datavalue="bind:toDayEnd"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn120"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow55">
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn143"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn144">
+                                            <wm-label class="col-md-3 control-label" name="label4" width="160px" caption="and Category Type"></wm-label>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="7" name="gridcolumn145">
+                                            <wm-select name="selectCatTypeAddress" dataset="bind:Variables.stvCategoryType.dataSet" datavalue="bind:Variables.stvCategoryType.dataSet[0].value" datafield="value" displayfield="type" on-change="selectCatTypeAddressChange($event, $scope, newVal, oldVal)"></wm-select>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn146"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow padding=".5em unset" name="gridrow37">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn121"></wm-gridcolumn>

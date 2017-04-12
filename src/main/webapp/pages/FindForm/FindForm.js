@@ -91,6 +91,63 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
         }
     };
 
+
+    $scope.selectTypeChange = function($event, $isolateScope, newVal, oldVal) {
+
+        $scope.Variables.MunicipalityCategories.setFilter({
+            'municipalityId': $scope.Widgets.selectMunicipality.datavalue.ID,
+            'municipalityInternalCategory': newVal
+        });
+        $scope.Variables.MunicipalityCategories.update();
+    };
+
+
+    $scope.selectCatTypeContractorChange = function($event, $isolateScope, newVal, oldVal) {
+
+        $scope.Variables.MunicipalityCategories.setFilter({
+            'municipalityId': $scope.Widgets.selectMuncipalityForVENDOR.datavalue.ID,
+            'municipalityInternalCategory': newVal
+        });
+        $scope.Variables.MunicipalityCategories.update();
+    };
+
+
+    $scope.selectCatTypeAddressChange = function($event, $isolateScope, newVal, oldVal) {
+
+        $scope.Variables.MunicipalityCategories.setFilter({
+            'municipalityId': $scope.Widgets.selectMunicipalityForAddress.datavalue.ID,
+            'municipalityInternalCategory': newVal
+        });
+        $scope.Variables.MunicipalityCategories.update();
+    };
+
+
+    $scope.selectMunicipalityChange = function($event, $isolateScope, newVal, oldVal) {
+        $scope.Variables.MunicipalityCategories.setFilter({
+            'municipalityId': newVal.ID,
+            'municipalityInternalCategory': $scope.Widgets.selectCatTypeUser.datavalue
+        });
+        $scope.Variables.MunicipalityCategories.update();
+    };
+
+
+    $scope.selectMuncipalityForVENDORChange = function($event, $isolateScope, newVal, oldVal) {
+        $scope.Variables.MunicipalityCategories.setFilter({
+            'municipalityId': newVal.ID,
+            'municipalityInternalCategory': $scope.Widgets.selectCatTypeContractor.datavalue
+        });
+        $scope.Variables.MunicipalityCategories.update();
+    };
+
+
+    $scope.selectMunicipalityForAddressChange = function($event, $isolateScope, newVal, oldVal) {
+        $scope.Variables.MunicipalityCategories.setFilter({
+            'municipalityId': newVal.ID,
+            'municipalityInternalCategory': $scope.Widgets.selectCatTypeAddress.datavalue
+        });
+        $scope.Variables.MunicipalityCategories.update();
+    };
+
 }]);
 
 
