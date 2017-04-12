@@ -41,6 +41,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.BillingInformation;
 import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
+import com.civicxpress.cx2.Document;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormMessageTagging;
@@ -268,6 +269,15 @@ public class UsersController {
 
         LOGGER.debug("Fetching all associated codeSetsesForUpdatedBy");
         return usersService.findAssociatedCodeSetsesForUpdatedBy(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/documents", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the documents instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Document> findAssociatedDocuments(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated documents");
+        return usersService.findAssociatedDocuments(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/feeses", method=RequestMethod.GET)

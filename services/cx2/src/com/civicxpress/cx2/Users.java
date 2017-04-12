@@ -61,6 +61,7 @@ public class Users implements Serializable {
     private List<CodeList> codeListsForUpdatedBy = new ArrayList<>();
     private List<CodeSets> codeSetsesForCreatedBy = new ArrayList<>();
     private List<CodeSets> codeSetsesForUpdatedBy = new ArrayList<>();
+    private List<Document> documents = new ArrayList<>();
     private List<Fees> feeses = new ArrayList<>();
     private List<FormHistory> formHistories = new ArrayList<>();
     private List<FormMessages> formMessageses = new ArrayList<>();
@@ -326,6 +327,16 @@ public class Users implements Serializable {
 
     public void setCodeSetsesForUpdatedBy(List<CodeSets> codeSetsesForUpdatedBy) {
         this.codeSetsesForUpdatedBy = codeSetsesForUpdatedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<Document> getDocuments() {
+        return this.documents;
+    }
+
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
     }
 
     @JsonInclude(Include.NON_EMPTY)

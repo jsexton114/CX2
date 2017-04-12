@@ -17,6 +17,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.BillingInformation;
 import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
+import com.civicxpress.cx2.Document;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormMessageTagging;
@@ -224,6 +225,18 @@ public interface UsersService {
      * @see Page
      */
     Page<CodeSets> findAssociatedCodeSetsesForUpdatedBy(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated documents for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Document instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Document> findAssociatedDocuments(Integer id, Pageable pageable);
 
     /*
      * Returns the associated feeses for given Users id.

@@ -1890,6 +1890,31 @@
       "scale" : 0,
       "sqlType" : "datetime",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "server-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "variableType" : "USER_ID"
+      },
+      "fieldName" : "createdBy",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "CreatedBy",
+      "nullable" : true,
+      "oldName" : "CreatedBy",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "number",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "Document",
@@ -1906,7 +1931,24 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ ],
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "users",
+      "mappings" : [ {
+        "sourceColumn" : "CreatedBy",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_Document_TO_Users_CreogJ8p",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Document",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Users",
+      "virtual" : false
+    } ],
     "schema" : "cx2",
     "type" : "TABLE"
   }, {
@@ -18418,6 +18460,23 @@
       "sourceTable" : "Users",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "CodeSets",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "documents",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "CreatedBy"
+      } ],
+      "name" : "FK_Document_TO_Users_CreogJ8p",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "Users",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "Document",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",

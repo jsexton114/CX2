@@ -21,6 +21,7 @@ public class DocumentId implements Serializable {
     private byte[] contents;
     @Type(type = "DateTime")
     private LocalDateTime dateCreated;
+    private Integer createdBy;
 
     public BigInteger getId() {
         return this.id;
@@ -70,6 +71,14 @@ public class DocumentId implements Serializable {
         this.dateCreated = dateCreated;
     }
 
+    public Integer getCreatedBy() {
+        return this.createdBy;
+    }
+
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,7 +89,8 @@ public class DocumentId implements Serializable {
                 Objects.equals(getFilename(), document.getFilename()) &&
                 Objects.equals(getMimetype(), document.getMimetype()) &&
                 Objects.equals(getContents(), document.getContents()) &&
-                Objects.equals(getDateCreated(), document.getDateCreated());
+                Objects.equals(getDateCreated(), document.getDateCreated()) &&
+                Objects.equals(getCreatedBy(), document.getCreatedBy());
     }
 
     @Override
@@ -90,6 +100,7 @@ public class DocumentId implements Serializable {
                 getFilename(),
                 getMimetype(),
                 getContents(),
-                getDateCreated());
+                getDateCreated(),
+                getCreatedBy());
     }
 }

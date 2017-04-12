@@ -85,6 +85,7 @@ public class DocumentServiceImpl implements DocumentService {
         documentId.setMimetype(document.getMimetype());
         documentId.setContents(document.getContents());
         documentId.setDateCreated(document.getDateCreated());
+        documentId.setCreatedBy(document.getCreatedBy());
 
         return this.wmGenericDao.findById(documentId);
     }

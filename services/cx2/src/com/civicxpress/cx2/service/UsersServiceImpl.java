@@ -26,6 +26,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.BillingInformation;
 import com.civicxpress.cx2.CodeList;
 import com.civicxpress.cx2.CodeSets;
+import com.civicxpress.cx2.Document;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormMessageTagging;
@@ -75,6 +76,10 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.FormsToInspectionsService")
 	private FormsToInspectionsService formsToInspectionsService;
+
+    @Autowired
+	@Qualifier("cx2.DocumentService")
+	private DocumentService documentService;
 
     @Autowired
 	@Qualifier("cx2.FormMessageTaggingService")
@@ -246,6 +251,14 @@ public class UsersServiceImpl implements UsersService {
                 codeSetsesForUpdatedBy.setUsersByUpdatedBy(usersCreated);
                 LOGGER.debug("Creating a new child CodeSets with information: {}", codeSetsesForUpdatedBy);
                 codeSetsService.create(codeSetsesForUpdatedBy);
+            }
+        }
+
+        if(usersCreated.getDocuments() != null) {
+            for(Document document : usersCreated.getDocuments()) {
+                document.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child Document with information: {}", document);
+                documentService.create(document);
             }
         }
 
@@ -699,6 +712,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Document> findAssociatedDocuments(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated documents");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return documentService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated feeses");
 
@@ -1131,6 +1155,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setFormsToInspectionsService(FormsToInspectionsService service) {
         this.formsToInspectionsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service DocumentService instance
+	 */
+	protected void setDocumentService(DocumentService service) {
+        this.documentService = service;
     }
 
     /**
