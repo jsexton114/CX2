@@ -45,7 +45,7 @@
                                 <wm-gridrow name="gridrow88">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn162"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn163" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="labelExpiration" caption="bind:'Expires On: ' + (expiresOn | toLocalDateString:true)" ng-class="{'text-success': !isExpired, 'text-danger': isExpired}" show="bind:!!expiresOn"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="labelExpiration" caption="bind:'Expires On: ' + (expiresOn | toLocalDateString:true)" ng-class="{'text-primary': !isExpired, 'text-danger': isExpired}" show="bind:!!expiresOn" fontsize="15"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn164_1"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -59,7 +59,7 @@
                                 <wm-gridrow name="gridrow15">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn29"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn26" horizontalalign="center">
-                                        <wm-progress name="progressStatus" datavalue="bind:currentProgress" type="success" captionplacement="inside" displayformat="9%"></wm-progress>
+                                        <wm-progress name="progressStatus" datavalue="bind:currentProgress" type="primary" captionplacement="inside" displayformat="9%"></wm-progress>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn30"></wm-gridcolumn>
                                 </wm-gridrow>

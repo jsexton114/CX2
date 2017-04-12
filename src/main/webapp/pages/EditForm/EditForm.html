@@ -32,17 +32,17 @@
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow3_1" padding="unset unset 1em unset">
-                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn112_3">
+                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn112_3" padding="unset 1em unset unset">
                                                             <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""
                                                             hint="An &quot;Active&quot; form will appear to users as a selection in the New Form wizard. If &quot;Active&quot; is not selected, no new forms of this design can be submitted." defaultvalue="false"
                                                             checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                         </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn113_1">
+                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn113_1" padding="unset 1em unset unset">
                                                             <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="true" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" readonly="false"
                                                             required="false" widget="checkbox" placeholder="" hint="This hides the form design from standard CivicXpress users and makes it available only to Municipality Employees." defaultvalue="false"
                                                             checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                         </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn114">
+                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn114" padding="unset 1em unset unset">
                                                             <wm-form-field name="codeEnforcement" displayname="Code Enforcement" show="true" primary-key="false" generator="assigned" key="codeEnforcement" type="boolean" readonly="false" required="false" widget="checkbox"
                                                             defaultvalue="false" hint="This setting will classify this form as a Code Enforcement form for reporting purposes, and when this form is submitted it is considered a &quot;Case&quot;." placeholder=""
                                                             checkedvalue="true" uncheckedvalue="false"></wm-form-field>
@@ -199,16 +199,16 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn108_1" padding="unset 1em unset unset">
                                                                 <wm-form-field displayname="Days Until Expiration" widget="text" show="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue" type="custom" name="expirationDays" inputtype="number"
-                                                                placeholder="Enter value" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue" minvalue="0" step="1" maxvalue="29220" width="180px"></wm-form-field>
+                                                                placeholder="Enter value" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue" minvalue="1" step="1" maxvalue="29220" width="180px"></wm-form-field>
                                                                 <wm-label padding="unset 0.5em" name="label33_2" class="help-block" fontsize="0.8" fontunit="em" show="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue"
                                                                 caption="This form will be set to expire after the specified number of days when the selected trigger event occurs."></wm-label>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn109_2">
-                                                                <wm-form-field displayname="Status" widget="select" show="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" type="custom" name="expirationStatusId"
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn109_2" padding="unset 1em unset unset">
+                                                                <wm-form-field displayname="Expiration Trigger Status" widget="select" show="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" type="custom" name="expirationStatusId"
                                                                 dataset="bind:Variables.StatusesData.dataSet" datafield="id" displayfield="status" required="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" placeholder="Select status"
                                                                 width="180px"></wm-form-field>
                                                                 <wm-label padding="unset 0.5em" name="label34_1" class="help-block" fontsize="0.8" fontunit="em" show="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'"
-                                                                caption="bind:'The form expiration will be set for ' + (!!Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue ? (Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue + ' days') : 'immediately') + ' after the form enters the status selected here.'"></wm-label>
+                                                                caption="bind:'This form will be set to expire ' + (!!Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue ? (Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue + ' days') : 'immediately') + ' after the form enters the status selected here.'"></wm-label>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow96">
