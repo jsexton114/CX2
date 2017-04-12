@@ -26,18 +26,25 @@
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn25">
                                                 <wm-panel iconclass="wi wi-info-outline" name="panelFormInfo" title="Form Details" class="panel-primary">
                                                     <wm-gridrow name="gridrow3" padding="unset unset 1em unset">
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="unset 1em unset unset">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn4" padding="unset 1em unset unset">
                                                             <wm-form-field name="formType" displayname="Form Design Name" show="true" primary-key="false" generator="assigned" key="formType" type="string" readonly="false" required="true" widget="text" maxchars="255"
                                                             inputtype="text" placeholder="Enter value"></wm-form-field>
                                                         </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn17" horizontalalign="left" padding="unset 1em unset unset">
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow3_1" padding="unset unset 1em unset">
+                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn112_3">
                                                             <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""
                                                             hint="An &quot;Active&quot; form will appear to users as a selection in the New Form wizard. If &quot;Active&quot; is not selected, no new forms of this design can be submitted." defaultvalue="false"
                                                             checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                         </wm-gridcolumn>
-                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn3" padding="unset 1em unset unset">
+                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn113_1">
                                                             <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="true" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" readonly="false"
                                                             required="false" widget="checkbox" placeholder="" hint="This hides the form design from standard CivicXpress users and makes it available only to Municipality Employees." defaultvalue="false"
+                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn114">
+                                                            <wm-form-field name="codeEnforcement" displayname="Code Enforcement" show="true" primary-key="false" generator="assigned" key="codeEnforcement" type="boolean" readonly="false" required="false" widget="checkbox"
+                                                            defaultvalue="false" hint="This setting will classify this form as a Code Enforcement form for reporting purposes, and when this form is submitted it is considered a &quot;Case&quot;." placeholder=""
                                                             checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
@@ -131,18 +138,18 @@
                                                     <wm-layoutgrid name="layoutgrid9_1">
                                                         <wm-gridrow name="gridrow37_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn54" padding="unset 1em unset unset">
-                                                                <wm-form-field name="codeEnforcement" displayname="Code Enforcement" show="true" primary-key="false" generator="assigned" key="codeEnforcement" type="boolean" readonly="false" required="false"
-                                                                widget="checkbox" defaultvalue="false" hint="This setting will classify this form as a Code Enforcement form for reporting purposes, and enables a &quot;Code Enforcement&quot; tab on this page that contains additional settings."
-                                                                placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                                <wm-form-field name="attachments" displayname="Allow Attachments" show="true" primary-key="false" generator="assigned" key="attachments" type="boolean" readonly="false" required="false" widget="checkbox"
+                                                                placeholder="" hint="This enables attaching multiple documents to a form." defaultvalue="false" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn55" padding="unset 1em unset unset">
+                                                                <wm-form-field name="sharedWith" displayname="Allow Sharing" show="true" primary-key="false" generator="assigned" key="sharedWith" type="boolean" readonly="false" required="false" widget="checkbox"
+                                                                defaultvalue="true" placeholder="" hint="This enables sharing the form with other CivicXpress users and the ability to invite unregistered users to sign up to view the form." checkedvalue="true"
+                                                                uncheckedvalue="false"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn141">
                                                                 <wm-form-field name="inspections" displayname="Allow Inspections" show="true" primary-key="false" generator="assigned" key="inspections" type="boolean" readonly="false" required="false" widget="checkbox"
                                                                 placeholder="" hint="This option allows inspections as part of the form process and enables an &quot;Inspections&quot; tab on this page that contains additional settings." defaultvalue="false"
                                                                 checkedvalue="true" uncheckedvalue="false"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn141">
-                                                                <wm-form-field name="attachments" displayname="Allow Attachments" show="true" primary-key="false" generator="assigned" key="attachments" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                placeholder="" hint="This enables attaching multiple documents to a form." defaultvalue="false" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39" padding="unset unset 1em unset">
@@ -180,9 +187,8 @@
                                                                 class="help-block" fontsize="0.8" fontunit="em"></wm-label>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn57" padding="unset 1em unset unset">
-                                                                <wm-form-field name="sharedWith" displayname="Allow Sharing" show="true" primary-key="false" generator="assigned" key="sharedWith" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="true" placeholder="" hint="This enables sharing the form with other CivicXpress users and the ability to invite unregistered users to sign up to view the form." checkedvalue="true"
-                                                                uncheckedvalue="false"></wm-form-field>
+                                                                <wm-form-field name="requireSignature" displayname="Require Digital Signature" show="true" primary-key="false" generator="assigned" key="requireSignature" type="boolean" readonly="false" required="false"
+                                                                widget="checkbox" defaultvalue="false" hint="When enabled, people will be required to provide an electronic signature upon submitting their form." placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
@@ -207,13 +213,10 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow96">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn142">
-                                                                <wm-form-field name="requireSignature" displayname="Require Digital Signature" show="true" primary-key="false" generator="assigned" key="requireSignature" type="boolean" readonly="false" required="false"
-                                                                widget="checkbox" defaultvalue="false" hint="When enabled, people will be required to provide an electronic signature upon submitting their form." placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn143_1">
                                                                 <wm-form-field name="collectFees" displayname="Collect Fees" show="true" primary-key="false" generator="assigned" key="collectFees" type="boolean" readonly="false" required="false" widget="checkbox"
                                                                 defaultvalue="false" placeholder="" checkedvalue="true" uncheckedvalue="false" on-change="collectFeesChange($event, $scope, newVal, oldVal)" hint="This enables fees to be collected with this form. &quot;Automatic&quot; fees are generated when a user submits the form and &quot;Manual&quot; fees must be added to the form by a municipality employee."></wm-form-field>
                                                             </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn143_1"></wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn110_2"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
