@@ -3,7 +3,6 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
 
     var currentBreadCrumb = null;
     var openClosedFormBreadCrumb = {};
-    var momentStatusEntered = null;
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
@@ -295,10 +294,10 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     };
 
     $scope.svDateStatusEnteredonSuccess = function(variable, data) {
-        momentStatusEntered = moment(data.content[0].createdTime);
+        var momentStatusEntered = moment(data.content[0].createdTime);
 
         if (!!$scope.expirationStatusId && $scope.expirationStatusId === $scope.currentStatusId) {
-            $scope.expiresOn = momentStatusEntered.add($scope.expirationDays, 'days').valueOf();
+            $scope.expiresOn = momentStatusEntered.startOf('day').add($scope.expirationDays, 'days').valueOf();
             $scope.isExpired = (moment().valueOf() >= $scope.expiresOn);
         } else if (!!$scope.expirationStatusId) {
             $scope.expiresOn = null;
