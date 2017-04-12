@@ -27,58 +27,16 @@
                 <wm-gridrow name="gridrow18">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn31">
                         <wm-tabs name="tabs1">
-                            <wm-tabpane name="tabpane1" title="Subdivisions">
-                                <wm-livegrid formlayout="dialog" name="livegrid1">
-                                    <wm-grid gridfirstrowselect="false" editmode="dialog" title="" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" on-click="Widgets.dialogSubdivisonParcels.open()"
-                                    showrecordcount="true">
-                                        <wm-grid-column binding="subdivision" caption="Subdivision" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="subShortCode" caption="Sub Short Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New Subdivision" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Subdivision" action="addNewRow();addNewRowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
-                                        shortcutkey="" disabled="false" icon="wi wi-playlist-add"></wm-grid-action>
-                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-list" title="View Details" action="Widgets.dialogSubdivisonParcels.open()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Subdivision Name" formlayout="dialog" iconclass="wi wi-file-text" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" captionalign="left" captionposition="top"
-                                    name="liveform1">
-                                        <wm-layoutgrid columns="1" name="layoutgrid1">
-                                            <wm-gridrow name="gridrow1">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn1">
-                                                    <wm-form-field name="subdivision" displayname="Subdivision Name" show="true" primary-key="false" generator="assigned" key="subdivision" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                                    required="true"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow2">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn2">
-                                                    <wm-form-field name="subShortCode" displayname="Sub Short Code" show="true" primary-key="false" generator="assigned" key="subShortCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                                    required="true"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                        </wm-layoutgrid>
-                                        <wm-form-field name="subdivisionGuid" displayname="Subdivision Guid" show="false" primary-key="false" generator="assigned" key="subdivisionGuid" type="string" widget="text" maxchars="255" defaultvalue="bind:GUID"
-                                        inputtype="text" placeholder="Enter value"></wm-form-field>
-                                        <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" dataset="bind:Variables.SelectedMunicipalityObj.dataSet"
-                                        datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord" placeholder="Select value"></wm-form-field>
-                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                        placeholder=""></wm-form-field>
-                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                    </wm-liveform>
-                                </wm-livegrid>
-                            </wm-tabpane>
                             <wm-tabpane name="tabpane2" title="Parcels">
                                 <wm-livegrid formlayout="dialog" name="livegrid3">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2GisrecordsData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                        <wm-grid-column binding="subdivisions.subdivision" caption="Subdivision" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Subdivisions"></wm-grid-column>
-                                        <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="lot" caption="Lot" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="section" caption="Section" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="streetNumber" caption="Street Number" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="streetName" caption="Street Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="city" caption="City" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-column binding="subdivisions.subdivision" caption="Subdivision" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Subdivisions"></wm-grid-column>
+                                        <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="lot" caption="Lot" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="section" caption="Section" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="fullAddress" caption="Address" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="New Parcel" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Parcel" action="addNewRow();addNewRowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
                                         shortcutkey="" disabled="false" icon="wi wi-add-location"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.goToPage_EditGISRecord.invoke()" disabled="false"></wm-grid-row-action>
@@ -93,12 +51,9 @@
                                                     placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn33_1">
-                                                    <wm-container name="container2" class="col-xs-12" horizontalalign="left">
-                                                        <wm-form-field name="subdivisions" displayname="Subdivision" show="true" primary-key="false" generator="assigned" key="subdivisions" type="list" is-related="true" readonly="false" required="false" widget="autocomplete"
-                                                        placeholder="Search by Subdivision Name" displayexpression="subdivision + ' ' + subdivision" orderby="subdivision:asc" class="col-xs-11" searchkey="subdivision" displaylabel="subdivision" dataset="bind:Variables.Cx2SubdivisionsData.dataSet"
-                                                        datafield="All Fields"></wm-form-field>
-                                                        <wm-icon name="icon1" iconclass="wi wi-search fa-2x" iconsize="10pt" class="col-xs-1 search-icon"></wm-icon>
-                                                    </wm-container>
+                                                    <wm-form-field name="subdivisions" displayname="Subdivision" show="true" primary-key="false" generator="assigned" key="subdivisions" type="list" is-related="true" readonly="false" required="false" widget="autocomplete"
+                                                    placeholder="Search by Subdivision Name" displayexpression="subdivision + ' ' + subdivision" orderby="subdivision:asc" searchkey="subdivision" displaylabel="subdivision" dataset="bind:Variables.Cx2SubdivisionsData.dataSet"
+                                                    datafield="All Fields"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn34">
                                                     <wm-form-field name="lot" displayname="Lot" show="true" primary-key="false" generator="assigned" key="lot" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
@@ -176,6 +131,46 @@
                                     </wm-liveform>
                                 </wm-livegrid>
                             </wm-tabpane>
+                            <wm-tabpane name="tabpane1" title="Subdivisions">
+                                <wm-livegrid formlayout="dialog" name="livegrid1">
+                                    <wm-grid gridfirstrowselect="false" editmode="dialog" title="" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" on-click="Widgets.dialogSubdivisonParcels.open()"
+                                    showrecordcount="true">
+                                        <wm-grid-column binding="subdivision" caption="Subdivision" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="subShortCode" caption="Sub Short Code" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-action key="addNewRow" display-name="New Subdivision" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Subdivision" action="addNewRow();addNewRowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
+                                        shortcutkey="" disabled="false" icon="wi wi-playlist-add"></wm-grid-action>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-list" title="View Details" action="Widgets.dialogSubdivisonParcels.open()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
+                                    </wm-grid>
+                                    <wm-liveform novalidate="false" errormessage="" title="Subdivision Name" formlayout="dialog" iconclass="wi wi-file-text" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" captionalign="left" captionposition="top"
+                                    name="liveform1">
+                                        <wm-layoutgrid columns="1" name="layoutgrid1">
+                                            <wm-gridrow name="gridrow1">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn1">
+                                                    <wm-form-field name="subdivision" displayname="Subdivision Name" show="true" primary-key="false" generator="assigned" key="subdivision" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                    required="true"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow2">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn2">
+                                                    <wm-form-field name="subShortCode" displayname="Sub Short Code" show="true" primary-key="false" generator="assigned" key="subShortCode" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                    required="true"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-layoutgrid>
+                                        <wm-form-field name="subdivisionGuid" displayname="Subdivision Guid" show="false" primary-key="false" generator="assigned" key="subdivisionGuid" type="string" widget="text" maxchars="255" defaultvalue="bind:GUID"
+                                        inputtype="text" placeholder="Enter value"></wm-form-field>
+                                        <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" dataset="bind:Variables.SelectedMunicipalityObj.dataSet"
+                                        datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord" placeholder="Select value"></wm-form-field>
+                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
+                                        placeholder=""></wm-form-field>
+                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                    </wm-liveform>
+                                </wm-livegrid>
+                            </wm-tabpane>
                         </wm-tabs>
                     </wm-gridcolumn>
                 </wm-gridrow>
@@ -184,38 +179,32 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="viewSubdivisonParcels">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Subdivision Details" iconclass="wi wi-file-text" name="dialogSubdivisonParcels" width="60%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Subdivision Details" iconclass="wi wi-view-list" name="dialogSubdivisonParcels" width="60%">
             <wm-layoutgrid name="layoutgrid4_1">
                 <wm-gridrow name="gridrow12">
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn30_1"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn26">
-                        <wm-label padding="unset 0.5em" caption="Subdivision" name="label3"></wm-label>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn30_1">
+                        <wm-label padding="unset 0.5em unset 3em" caption="Subdivision" name="label3" class="form-control-static"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn27">
-                        <wm-label padding="unset 0.5em" caption="Sub Short Code" name="label4"></wm-label>
+                    <wm-gridcolumn columnwidth="9" name="gridcolumn26">
+                        <wm-label padding="unset 0.5em" name="label7" caption="bind:Widgets.grid1.selecteditem.subdivision" fontweight="bold" fontsize="20" class="form-control-static"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn31_1"></wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow14">
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn32_2"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn33_2" padding=".5em unset">
-                        <wm-label padding="unset 0.5em" name="label7" caption="bind:Widgets.grid1.selecteditem.subdivision" fontweight="bold" fontsize="20"></wm-label>
+                <wm-gridrow name="gridrow14" padding="unset unset 2em unset">
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn32_2">
+                        <wm-label padding="unset 0.5em unset 3em" caption="Short Code" name="label4" class="form-control-static"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn34_1" padding=".5em unset">
-                        <wm-label padding="unset 0.5em" name="label8" caption="bind:Widgets.grid1.selecteditem.subShortCode" fontweight="bold" fontsize="20"></wm-label>
+                    <wm-gridcolumn columnwidth="9" name="gridcolumn33_2">
+                        <wm-label padding="unset 0.5em" name="label8" caption="bind:Widgets.grid1.selecteditem.subShortCode" fontweight="bold" fontsize="20" class="form-control-static"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn35_1"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow13">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn28">
                         <wm-panel iconclass="wi wi-location-on" autoclose="outsideClick" name="panel1" title="Parcels" class="panel-primary">
-                            <wm-grid title="" dataset="bind:Variables.SubDivision_Gisrecords.dataSet" navigation="Classic" name="grid3_1" filtermode="multicolumn" exportformat="EXCEL">
-                                <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                <wm-grid-column binding="lot" caption="Lot" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                <wm-grid-column binding="section" caption="Section" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                <wm-grid-column binding="streetNumber" caption="Street Number" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                <wm-grid-column binding="streetName" caption="Street Name" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
-                                <wm-grid-column binding="city" caption="City" type="string" generator="assigned" readonly="true" show="true"></wm-grid-column>
+                            <wm-grid title="" dataset="bind:Variables.SubDivision_Gisrecords.dataSet" navigation="Classic" name="grid3_1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                <wm-grid-column binding="lot" caption="Lot" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                <wm-grid-column binding="section" caption="Section" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                <wm-grid-column binding="fullAddress" caption="Address" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             </wm-grid>
                         </wm-panel>
                     </wm-gridcolumn>
