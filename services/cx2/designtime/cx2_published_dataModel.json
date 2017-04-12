@@ -2635,6 +2635,31 @@
       "scale" : 0,
       "sqlType" : "number",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : "true"
+      },
+      "fieldName" : "municipalityInternalCategory",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "boolean",
+      "length" : 0,
+      "name" : "MunicipalityInternalCategory",
+      "nullable" : false,
+      "oldName" : "MunicipalityInternalCategory",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "boolean",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "FormCategories",
@@ -7314,31 +7339,6 @@
       "unique" : false
     }, {
       "columnValue" : {
-        "type" : "database-defined",
-        "insertable" : false,
-        "updatable" : false,
-        "defaultValue" : null
-      },
-      "fieldName" : "fullAddress",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "FullAddress",
-      "nullable" : true,
-      "oldName" : "FullAddress",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
         "type" : "user-defined",
         "insertable" : true,
         "updatable" : true,
@@ -7561,6 +7561,31 @@
       "primaryKey" : false,
       "scale" : 0,
       "sqlType" : "boolean",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "database-defined",
+        "insertable" : false,
+        "updatable" : false,
+        "defaultValue" : null
+      },
+      "fieldName" : "fullAddress",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 1563,
+      "name" : "FullAddress",
+      "nullable" : false,
+      "oldName" : "FullAddress",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sqlType" : "string",
       "unique" : false
     } ],
     "constraints" : [ ],

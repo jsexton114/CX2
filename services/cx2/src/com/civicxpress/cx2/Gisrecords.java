@@ -54,7 +54,6 @@ public class Gisrecords implements Serializable {
     private String country;
     private String unitNumber;
     private String postalCode;
-    private String fullAddress;
     private String directionalSuffix;
     private String use;
     @Type(type = "DateTime")
@@ -65,6 +64,7 @@ public class Gisrecords implements Serializable {
     private String floodPlain;
     private Integer floodMapPanel;
     private boolean isHostile;
+    private String fullAddress;
     private Users users;
     private Municipalities municipalities;
     private States states;
@@ -250,15 +250,6 @@ public class Gisrecords implements Serializable {
         this.postalCode = postalCode;
     }
 
-    @Column(name = "`FullAddress`", nullable = true, insertable = false, updatable = false, length = 255)
-    public String getFullAddress() {
-        return this.fullAddress;
-    }
-
-    public void setFullAddress(String fullAddress) {
-        this.fullAddress = fullAddress;
-    }
-
     @Column(name = "`DirectionalSuffix`", nullable = true, length = 255)
     public String getDirectionalSuffix() {
         return this.directionalSuffix;
@@ -338,6 +329,15 @@ public class Gisrecords implements Serializable {
 
     public void setIsHostile(boolean isHostile) {
         this.isHostile = isHostile;
+    }
+
+    @Column(name = "`FullAddress`", nullable = false, insertable = false, updatable = false, length = 1563)
+    public String getFullAddress() {
+        return this.fullAddress;
+    }
+
+    public void setFullAddress(String fullAddress) {
+        this.fullAddress = fullAddress;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

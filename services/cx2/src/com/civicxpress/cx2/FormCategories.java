@@ -36,6 +36,7 @@ public class FormCategories implements Serializable {
     private String category;
     private String description;
     private Integer municipalityId;
+    private boolean municipalityInternalCategory;
     private Municipalities municipalities;
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
 
@@ -75,6 +76,15 @@ public class FormCategories implements Serializable {
 
     public void setMunicipalityId(Integer municipalityId) {
         this.municipalityId = municipalityId;
+    }
+
+    @Column(name = "`MunicipalityInternalCategory`", nullable = false)
+    public boolean isMunicipalityInternalCategory() {
+        return this.municipalityInternalCategory;
+    }
+
+    public void setMunicipalityInternalCategory(boolean municipalityInternalCategory) {
+        this.municipalityInternalCategory = municipalityInternalCategory;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

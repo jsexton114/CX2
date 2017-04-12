@@ -31,6 +31,10 @@
       "target" : "municipalityId",
       "value" : "bind:Variables.CurrentFormObj.dataSet.data[$i].municipalities.id",
       "type" : "number"
+    }, {
+      "target" : "municipalityInternalCategory",
+      "value" : "bind:(Widgets.liveform3.formWidgets.selectCategoryType.datavalue=='Internal')?true:false",
+      "type" : "boolean"
     } ],
     "operation" : "read",
     "dataSet" : [ ],
@@ -509,6 +513,19 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "municipalityInternalCategory",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "MunicipalityInternalCategory",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "true",
+        "scale" : 0
       } ],
       "entityName" : "FormCategories",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormCategories",
@@ -516,6 +533,7 @@
       "primaryFields" : [ "id" ]
     },
     "bindCount" : 3,
+    "spinnerContext" : "page",
     "tableName" : "FormCategories",
     "tableType" : "TABLE",
     "properties" : [ "municipalities" ],
@@ -3652,6 +3670,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "municipalityInternalCategory",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "MunicipalityInternalCategory",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
           "scale" : 0
         } ]
       }, {

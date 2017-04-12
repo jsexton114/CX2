@@ -93,28 +93,28 @@
     "table" : "InspectionDesign",
     "schema" : "cx2"
   }, {
+    "table" : "GisTransaction",
+    "schema" : "cx2"
+  }, {
     "table" : "Holidays",
     "schema" : "cx2"
   }, {
     "table" : "InspectionCategories",
     "schema" : "cx2"
   }, {
-    "table" : "InspectionOutcome",
+    "table" : "InspectionGis",
     "schema" : "cx2"
   }, {
-    "table" : "InspectionGis",
+    "table" : "InspectionOutcome",
     "schema" : "cx2"
   }, {
     "table" : "InspectionOutcomeFee",
     "schema" : "cx2"
   }, {
-    "table" : "LetterTemplates",
-    "schema" : "cx2"
-  }, {
     "table" : "InspectionSequence",
     "schema" : "cx2"
   }, {
-    "table" : "ManualFeeTypes",
+    "table" : "LetterTemplates",
     "schema" : "cx2"
   }, {
     "table" : "MasterCases",
@@ -127,6 +127,9 @@
     "schema" : "cx2"
   }, {
     "table" : "Municipalities",
+    "schema" : "cx2"
+  }, {
+    "table" : "ManualFeeTypes",
     "schema" : "cx2"
   }, {
     "table" : "MasterProjects",
@@ -147,16 +150,16 @@
     "table" : "ProjectForms",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectGISRecords",
-    "schema" : "cx2"
-  }, {
     "table" : "Projects",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectTasks",
+    "table" : "ProjectGISRecords",
     "schema" : "cx2"
   }, {
     "table" : "ProjectSharedWith",
+    "schema" : "cx2"
+  }, {
+    "table" : "ProjectTasks",
     "schema" : "cx2"
   }, {
     "table" : "Roles",
@@ -174,16 +177,16 @@
     "table" : "Subdivisions",
     "schema" : "cx2"
   }, {
-    "table" : "States",
-    "schema" : "cx2"
-  }, {
-    "table" : "TransactionToFees",
-    "schema" : "cx2"
-  }, {
     "table" : "Users",
     "schema" : "cx2"
   }, {
     "table" : "Vendor",
+    "schema" : "cx2"
+  }, {
+    "table" : "States",
+    "schema" : "cx2"
+  }, {
+    "table" : "TransactionToFees",
     "schema" : "cx2"
   }, {
     "table" : "UserPasswordResetTokens",
@@ -192,16 +195,16 @@
     "table" : "UserSubscriptions",
     "schema" : "cx2"
   }, {
-    "table" : "VendorApprovals",
-    "schema" : "cx2"
-  }, {
-    "table" : "VendorLicenses",
-    "schema" : "cx2"
-  }, {
     "table" : "UserViewPreferences",
     "schema" : "cx2"
   }, {
     "table" : "VendorAdmins",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorApprovals",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorLicenses",
     "schema" : "cx2"
   }, {
     "table" : "Vendors2Form",
@@ -210,16 +213,13 @@
     "table" : "VendorsToProject",
     "schema" : "cx2"
   }, {
-    "table" : "VendorUsers",
-    "schema" : "cx2"
-  }, {
     "table" : "Violations",
     "schema" : "cx2"
   }, {
-    "table" : "VendorLicenseTypes",
+    "table" : "VendorUsers",
     "schema" : "cx2"
   }, {
-    "table" : "GisTransaction",
+    "table" : "VendorLicenseTypes",
     "schema" : "cx2"
   } ],
   "schemaFilter" : [ "cx2" ],

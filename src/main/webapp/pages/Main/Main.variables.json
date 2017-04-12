@@ -486,6 +486,19 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "municipalityInternalCategory",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "MunicipalityInternalCategory",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "true",
+        "scale" : 0
       } ],
       "entityName" : "FormCategories",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormCategories",

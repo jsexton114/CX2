@@ -324,6 +324,10 @@
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.FormCategories.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                     <wm-grid-column binding="formCategories.category" caption="Form Category" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormCategories"></wm-grid-column>
                                                     <wm-grid-column binding="formCategories.description" caption="Description" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormCategories"></wm-grid-column>
+                                                    <wm-grid-column binding="formCategories.municipalityInternalCategory" caption="Internal Category" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" readonly="true"
+                                                    edit-widget-type="checkbox" show="true" related-entity-name="FormCategories">
+                                                        <wm-checkbox scopedatavalue="row['formCategories.municipalityInternalCategory']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                                    </wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="Add Category" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Category" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -331,6 +335,11 @@
                                                 <wm-liveform novalidate="false" errormessage="The selected category has already been assigned to this form." title="Add Form Category" formlayout="dialog" iconclass="wi wi-payment" dataset="bind:Variables.FormCategories.dataSet"
                                                 captionalign="left" captionposition="top" name="liveform3">
                                                     <wm-layoutgrid columns="1" name="layoutgrid9">
+                                                        <wm-gridrow name="gridrow80">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn111_2">
+                                                                <wm-form-field displayname="Select Type" widget="select" show="true" type="custom" name="selectCategoryType" dataset="Internal,Public" defaultvalue="Internal"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
                                                         <wm-gridrow name="gridrow37">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn62">
                                                                 <wm-form-field name="formCategories" displayname="What form category does this form belong in?" show="true" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true"
