@@ -3068,20 +3068,22 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormsTaggedWithGisrecordsResponse> executeFormsTaggedWithGISRecords(Integer gisrecordId, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Page<FormsTaggedWithGisrecordsResponse> executeFormsTaggedWithGISRecords(Boolean codeEnforcement, Integer gisrecordId, Pageable pageable) {
+        Map params = new HashMap(2);
 
-        params.put("gisrecordId", gisrecordId);
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("GISRecordId", gisrecordId);
 
         return queryExecutor.executeNamedQuery("FormsTaggedWithGISRecords", params, FormsTaggedWithGisrecordsResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportFormsTaggedWithGISRecords(ExportType exportType, Integer gisrecordId, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Downloadable exportFormsTaggedWithGISRecords(ExportType exportType, Boolean codeEnforcement, Integer gisrecordId, Pageable pageable) {
+        Map params = new HashMap(2);
 
-        params.put("gisrecordId", gisrecordId);
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("GISRecordId", gisrecordId);
 
         return queryExecutor.exportNamedQueryData("FormsTaggedWithGISRecords", params, exportType, FormsTaggedWithGisrecordsResponse.class, pageable);
     }

@@ -354,7 +354,7 @@ public interface Cx2QueryExecutorService_V1 {
     public int executeUpdateNewPassword(String password, Integer newUser);
 
     @Deprecated
-    public Page<Object> executeFormsTaggedWithGISRecords(Pageable pageable, Integer gisrecordId);
+    public Page<Object> executeFormsTaggedWithGISRecords(Pageable pageable, Boolean codeEnforcement, Integer gisrecordId);
 
     @Deprecated
     public Page<Object> executeCountOfVendorUsers(Pageable pageable, Integer vendor);

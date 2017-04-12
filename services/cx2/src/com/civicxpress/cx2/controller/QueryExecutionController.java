@@ -2644,9 +2644,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/FormsTaggedWithGISRecords", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "FormsTaggedWithGISRecords")
-    public Page<FormsTaggedWithGisrecordsResponse> executeFormsTaggedWithGISRecords(@RequestParam(value = "gisrecordId", required = false) Integer gisrecordId, Pageable pageable) {
+    public Page<FormsTaggedWithGisrecordsResponse> executeFormsTaggedWithGISRecords(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "GISRecordId") Integer gisrecordId, Pageable pageable) {
         LOGGER.debug("Executing named query: FormsTaggedWithGISRecords");
-        Page<FormsTaggedWithGisrecordsResponse> _result = queryService.executeFormsTaggedWithGISRecords(gisrecordId, pageable);
+        Page<FormsTaggedWithGisrecordsResponse> _result = queryService.executeFormsTaggedWithGISRecords(codeEnforcement, gisrecordId, pageable);
         LOGGER.debug("got the result for named query: FormsTaggedWithGISRecords, result:{}", _result);
         return _result;
     }
@@ -2654,10 +2654,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query FormsTaggedWithGISRecords")
     @RequestMapping(value = "/queries/FormsTaggedWithGISRecords/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportFormsTaggedWithGISRecords(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "gisrecordId", required = false) Integer gisrecordId, Pageable pageable) {
+    public Downloadable exportFormsTaggedWithGISRecords(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "GISRecordId") Integer gisrecordId, Pageable pageable) {
         LOGGER.debug("Exporting named query: FormsTaggedWithGISRecords");
 
-        return queryService.exportFormsTaggedWithGISRecords(exportType, gisrecordId, pageable);
+        return queryService.exportFormsTaggedWithGISRecords(exportType, codeEnforcement, gisrecordId, pageable);
     }
 
     @RequestMapping(value = "/queries/CountOfVendorUsers", method = RequestMethod.GET)

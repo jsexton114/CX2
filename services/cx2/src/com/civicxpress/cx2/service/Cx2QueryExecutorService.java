@@ -566,9 +566,9 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateNewPassword(UpdateNewPasswordRequest updateNewPasswordRequest);
 
-    Page<FormsTaggedWithGisrecordsResponse> executeFormsTaggedWithGISRecords(Integer gisrecordId, Pageable pageable);
+    Page<FormsTaggedWithGisrecordsResponse> executeFormsTaggedWithGISRecords(Boolean codeEnforcement, Integer gisrecordId, Pageable pageable);
 
-    Downloadable exportFormsTaggedWithGISRecords(ExportType exportType, Integer gisrecordId, Pageable pageable);
+    Downloadable exportFormsTaggedWithGISRecords(ExportType exportType, Boolean codeEnforcement, Integer gisrecordId, Pageable pageable);
 
     Page<CountOfVendorUsersResponse> executeCountOfVendorUsers(Integer vendor, Pageable pageable);
 

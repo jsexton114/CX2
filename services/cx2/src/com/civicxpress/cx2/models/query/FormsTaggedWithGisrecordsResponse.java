@@ -17,13 +17,10 @@ import org.joda.time.LocalDateTime;
 
 import com.civicxpress.cx2.ContractorTypes;
 import com.civicxpress.cx2.FormFieldTypes;
-import com.civicxpress.cx2.FormStatuses;
 import com.civicxpress.cx2.FormTypes;
-import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Municipalities;
-import com.civicxpress.cx2.MunicipalityGroups;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
@@ -33,141 +30,45 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class FormsTaggedWithGisrecordsResponse implements Serializable {
 
-    @JsonProperty("assignedToGroupId")
-    @ColumnAlias("assignedToGroupId")
-    private Integer assignedToGroupId;
-    @JsonProperty("balanceDue")
-    @ColumnAlias("balanceDue")
-    private String balanceDue;
-    @JsonProperty("closed")
-    @ColumnAlias("closed")
-    private Boolean closed;
-    @JsonProperty("cxvendorId")
-    @ColumnAlias("cxvendorId")
-    private Integer cxvendorId;
-    @JsonProperty("dateModified")
-    @ColumnAlias("dateModified")
-    private Date dateModified;
-    @JsonProperty("expiresDate")
-    @ColumnAlias("expiresDate")
-    private Date expiresDate;
     @JsonProperty("formGuid")
     @ColumnAlias("formGuid")
     private String formGuid;
-    @JsonProperty("formMessageses")
-    @ColumnAlias("formMessageses")
-    private List formMessageses;
-    @JsonProperty("formStatusId")
-    @ColumnAlias("formStatusId")
-    private Integer formStatusId;
-    @JsonProperty("formStatuses")
-    @ColumnAlias("formStatuses")
-    private FormStatuses formStatuses;
     @JsonProperty("formTitle")
     @ColumnAlias("formTitle")
     private String formTitle;
-    @JsonProperty("formTypeId")
-    @ColumnAlias("formTypeId")
+    @JsonProperty("municipalityName")
+    @ColumnAlias("municipalityName")
+    private String municipalityName;
+    @JsonProperty("createdBy")
+    @ColumnAlias("createdBy")
+    private String createdBy;
+    @JsonProperty("formDesign")
+    @ColumnAlias("formDesign")
+    private String formDesign;
+    @JsonProperty("formStatus")
+    @ColumnAlias("formStatus")
+    private String formStatus;
+    @JsonProperty("lot")
+    @ColumnAlias("lot")
+    private String lot;
+    @JsonProperty("subdivision")
+    @ColumnAlias("subdivision")
+    private String subdivision;
+    @JsonProperty("address")
+    @ColumnAlias("address")
+    private String address;
+    @JsonProperty("primaryVendor")
+    @ColumnAlias("primaryVendor")
+    private String primaryVendor;
+    @JsonProperty("balanceDue")
+    @ColumnAlias("balanceDue")
+    private String balanceDue;
+    @JsonProperty("formTypeID")
+    @ColumnAlias("formTypeID")
     private Integer formTypeId;
-    @JsonProperty("formTypes")
-    @ColumnAlias("formTypes")
-    private FormTypes formTypes;
-    @JsonProperty("gis2formses")
-    @ColumnAlias("gis2formses")
-    private List gis2formses;
-    @JsonProperty("giscontacts")
-    @ColumnAlias("giscontacts")
-    private Giscontacts giscontacts;
-    @JsonProperty("issuedDate")
-    @ColumnAlias("issuedDate")
-    private Date issuedDate;
-    @JsonProperty("municipalities")
-    @ColumnAlias("municipalities")
-    private Municipalities municipalities;
-    @JsonProperty("municipalityGroups")
-    @ColumnAlias("municipalityGroups")
-    private MunicipalityGroups municipalityGroups;
-    @JsonProperty("municipalityId")
-    @ColumnAlias("municipalityId")
-    private Integer municipalityId;
-    @JsonProperty("ownerId")
-    @ColumnAlias("ownerId")
-    private Integer ownerId;
-    @JsonProperty("recordType")
-    @ColumnAlias("recordType")
-    private String recordType;
-    @JsonProperty("sharedWiths")
-    @ColumnAlias("sharedWiths")
-    private List sharedWiths;
-    @JsonProperty("submittedOn")
-    @ColumnAlias("submittedOn")
-    private Date submittedOn;
-    @JsonProperty("totalFees")
-    @ColumnAlias("totalFees")
-    private String totalFees;
-    @JsonProperty("totalPayment")
-    @ColumnAlias("totalPayment")
-    private String totalPayment;
-    @JsonProperty("userId")
-    @ColumnAlias("userId")
-    private Integer userId;
-    @JsonProperty("users")
-    @ColumnAlias("users")
-    private Users users;
-    @JsonProperty("vendor")
-    @ColumnAlias("vendor")
-    private Vendor vendor;
-    @JsonProperty("vendors2forms")
-    @ColumnAlias("vendors2forms")
-    private List vendors2forms;
-
-    public Integer getAssignedToGroupId() {
-        return this.assignedToGroupId;
-    }
-
-    public void setAssignedToGroupId(Integer assignedToGroupId) {
-        this.assignedToGroupId = assignedToGroupId;
-    }
-
-    public String getBalanceDue() {
-        return this.balanceDue;
-    }
-
-    public void setBalanceDue(String balanceDue) {
-        this.balanceDue = balanceDue;
-    }
-
-    public Boolean getClosed() {
-        return this.closed;
-    }
-
-    public void setClosed(Boolean closed) {
-        this.closed = closed;
-    }
-
-    public Integer getCxvendorId() {
-        return this.cxvendorId;
-    }
-
-    public void setCxvendorId(Integer cxvendorId) {
-        this.cxvendorId = cxvendorId;
-    }
-
-    public Date getDateModified() {
-        return this.dateModified;
-    }
-
-    public void setDateModified(Date dateModified) {
-        this.dateModified = dateModified;
-    }
-
-    public Date getExpiresDate() {
-        return this.expiresDate;
-    }
-
-    public void setExpiresDate(Date expiresDate) {
-        this.expiresDate = expiresDate;
-    }
+    @JsonProperty("FormCategory")
+    @ColumnAlias("FormCategory")
+    private Integer formCategory;
 
     public String getFormGuid() {
         return this.formGuid;
@@ -175,30 +76,6 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
 
     public void setFormGuid(String formGuid) {
         this.formGuid = formGuid;
-    }
-
-    public List getFormMessageses() {
-        return this.formMessageses;
-    }
-
-    public void setFormMessageses(List formMessageses) {
-        this.formMessageses = formMessageses;
-    }
-
-    public Integer getFormStatusId() {
-        return this.formStatusId;
-    }
-
-    public void setFormStatusId(Integer formStatusId) {
-        this.formStatusId = formStatusId;
-    }
-
-    public FormStatuses getFormStatuses() {
-        return this.formStatuses;
-    }
-
-    public void setFormStatuses(FormStatuses formStatuses) {
-        this.formStatuses = formStatuses;
     }
 
     public String getFormTitle() {
@@ -209,6 +86,78 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
         this.formTitle = formTitle;
     }
 
+    public String getMunicipalityName() {
+        return this.municipalityName;
+    }
+
+    public void setMunicipalityName(String municipalityName) {
+        this.municipalityName = municipalityName;
+    }
+
+    public String getCreatedBy() {
+        return this.createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getFormDesign() {
+        return this.formDesign;
+    }
+
+    public void setFormDesign(String formDesign) {
+        this.formDesign = formDesign;
+    }
+
+    public String getFormStatus() {
+        return this.formStatus;
+    }
+
+    public void setFormStatus(String formStatus) {
+        this.formStatus = formStatus;
+    }
+
+    public String getLot() {
+        return this.lot;
+    }
+
+    public void setLot(String lot) {
+        this.lot = lot;
+    }
+
+    public String getSubdivision() {
+        return this.subdivision;
+    }
+
+    public void setSubdivision(String subdivision) {
+        this.subdivision = subdivision;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPrimaryVendor() {
+        return this.primaryVendor;
+    }
+
+    public void setPrimaryVendor(String primaryVendor) {
+        this.primaryVendor = primaryVendor;
+    }
+
+    public String getBalanceDue() {
+        return this.balanceDue;
+    }
+
+    public void setBalanceDue(String balanceDue) {
+        this.balanceDue = balanceDue;
+    }
+
     public Integer getFormTypeId() {
         return this.formTypeId;
     }
@@ -217,140 +166,12 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
         this.formTypeId = formTypeId;
     }
 
-    public FormTypes getFormTypes() {
-        return this.formTypes;
+    public Integer getFormCategory() {
+        return this.formCategory;
     }
 
-    public void setFormTypes(FormTypes formTypes) {
-        this.formTypes = formTypes;
-    }
-
-    public List getGis2formses() {
-        return this.gis2formses;
-    }
-
-    public void setGis2formses(List gis2formses) {
-        this.gis2formses = gis2formses;
-    }
-
-    public Giscontacts getGiscontacts() {
-        return this.giscontacts;
-    }
-
-    public void setGiscontacts(Giscontacts giscontacts) {
-        this.giscontacts = giscontacts;
-    }
-
-    public Date getIssuedDate() {
-        return this.issuedDate;
-    }
-
-    public void setIssuedDate(Date issuedDate) {
-        this.issuedDate = issuedDate;
-    }
-
-    public Municipalities getMunicipalities() {
-        return this.municipalities;
-    }
-
-    public void setMunicipalities(Municipalities municipalities) {
-        this.municipalities = municipalities;
-    }
-
-    public MunicipalityGroups getMunicipalityGroups() {
-        return this.municipalityGroups;
-    }
-
-    public void setMunicipalityGroups(MunicipalityGroups municipalityGroups) {
-        this.municipalityGroups = municipalityGroups;
-    }
-
-    public Integer getMunicipalityId() {
-        return this.municipalityId;
-    }
-
-    public void setMunicipalityId(Integer municipalityId) {
-        this.municipalityId = municipalityId;
-    }
-
-    public Integer getOwnerId() {
-        return this.ownerId;
-    }
-
-    public void setOwnerId(Integer ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getRecordType() {
-        return this.recordType;
-    }
-
-    public void setRecordType(String recordType) {
-        this.recordType = recordType;
-    }
-
-    public List getSharedWiths() {
-        return this.sharedWiths;
-    }
-
-    public void setSharedWiths(List sharedWiths) {
-        this.sharedWiths = sharedWiths;
-    }
-
-    public Date getSubmittedOn() {
-        return this.submittedOn;
-    }
-
-    public void setSubmittedOn(Date submittedOn) {
-        this.submittedOn = submittedOn;
-    }
-
-    public String getTotalFees() {
-        return this.totalFees;
-    }
-
-    public void setTotalFees(String totalFees) {
-        this.totalFees = totalFees;
-    }
-
-    public String getTotalPayment() {
-        return this.totalPayment;
-    }
-
-    public void setTotalPayment(String totalPayment) {
-        this.totalPayment = totalPayment;
-    }
-
-    public Integer getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Users getUsers() {
-        return this.users;
-    }
-
-    public void setUsers(Users users) {
-        this.users = users;
-    }
-
-    public Vendor getVendor() {
-        return this.vendor;
-    }
-
-    public void setVendor(Vendor vendor) {
-        this.vendor = vendor;
-    }
-
-    public List getVendors2forms() {
-        return this.vendors2forms;
-    }
-
-    public void setVendors2forms(List vendors2forms) {
-        this.vendors2forms = vendors2forms;
+    public void setFormCategory(Integer formCategory) {
+        this.formCategory = formCategory;
     }
 
     @Override
@@ -358,67 +179,35 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof FormsTaggedWithGisrecordsResponse)) return false;
         final FormsTaggedWithGisrecordsResponse formsTaggedWithGisrecordsResponse = (FormsTaggedWithGisrecordsResponse) o;
-        return Objects.equals(getAssignedToGroupId(), formsTaggedWithGisrecordsResponse.getAssignedToGroupId()) &&
-                Objects.equals(getBalanceDue(), formsTaggedWithGisrecordsResponse.getBalanceDue()) &&
-                Objects.equals(getClosed(), formsTaggedWithGisrecordsResponse.getClosed()) &&
-                Objects.equals(getCxvendorId(), formsTaggedWithGisrecordsResponse.getCxvendorId()) &&
-                Objects.equals(getDateModified(), formsTaggedWithGisrecordsResponse.getDateModified()) &&
-                Objects.equals(getExpiresDate(), formsTaggedWithGisrecordsResponse.getExpiresDate()) &&
-                Objects.equals(getFormGuid(), formsTaggedWithGisrecordsResponse.getFormGuid()) &&
-                Objects.equals(getFormMessageses(), formsTaggedWithGisrecordsResponse.getFormMessageses()) &&
-                Objects.equals(getFormStatusId(), formsTaggedWithGisrecordsResponse.getFormStatusId()) &&
-                Objects.equals(getFormStatuses(), formsTaggedWithGisrecordsResponse.getFormStatuses()) &&
+        return Objects.equals(getFormGuid(), formsTaggedWithGisrecordsResponse.getFormGuid()) &&
                 Objects.equals(getFormTitle(), formsTaggedWithGisrecordsResponse.getFormTitle()) &&
+                Objects.equals(getMunicipalityName(), formsTaggedWithGisrecordsResponse.getMunicipalityName()) &&
+                Objects.equals(getCreatedBy(), formsTaggedWithGisrecordsResponse.getCreatedBy()) &&
+                Objects.equals(getFormDesign(), formsTaggedWithGisrecordsResponse.getFormDesign()) &&
+                Objects.equals(getFormStatus(), formsTaggedWithGisrecordsResponse.getFormStatus()) &&
+                Objects.equals(getLot(), formsTaggedWithGisrecordsResponse.getLot()) &&
+                Objects.equals(getSubdivision(), formsTaggedWithGisrecordsResponse.getSubdivision()) &&
+                Objects.equals(getAddress(), formsTaggedWithGisrecordsResponse.getAddress()) &&
+                Objects.equals(getPrimaryVendor(), formsTaggedWithGisrecordsResponse.getPrimaryVendor()) &&
+                Objects.equals(getBalanceDue(), formsTaggedWithGisrecordsResponse.getBalanceDue()) &&
                 Objects.equals(getFormTypeId(), formsTaggedWithGisrecordsResponse.getFormTypeId()) &&
-                Objects.equals(getFormTypes(), formsTaggedWithGisrecordsResponse.getFormTypes()) &&
-                Objects.equals(getGis2formses(), formsTaggedWithGisrecordsResponse.getGis2formses()) &&
-                Objects.equals(getGiscontacts(), formsTaggedWithGisrecordsResponse.getGiscontacts()) &&
-                Objects.equals(getIssuedDate(), formsTaggedWithGisrecordsResponse.getIssuedDate()) &&
-                Objects.equals(getMunicipalities(), formsTaggedWithGisrecordsResponse.getMunicipalities()) &&
-                Objects.equals(getMunicipalityGroups(), formsTaggedWithGisrecordsResponse.getMunicipalityGroups()) &&
-                Objects.equals(getMunicipalityId(), formsTaggedWithGisrecordsResponse.getMunicipalityId()) &&
-                Objects.equals(getOwnerId(), formsTaggedWithGisrecordsResponse.getOwnerId()) &&
-                Objects.equals(getRecordType(), formsTaggedWithGisrecordsResponse.getRecordType()) &&
-                Objects.equals(getSharedWiths(), formsTaggedWithGisrecordsResponse.getSharedWiths()) &&
-                Objects.equals(getSubmittedOn(), formsTaggedWithGisrecordsResponse.getSubmittedOn()) &&
-                Objects.equals(getTotalFees(), formsTaggedWithGisrecordsResponse.getTotalFees()) &&
-                Objects.equals(getTotalPayment(), formsTaggedWithGisrecordsResponse.getTotalPayment()) &&
-                Objects.equals(getUserId(), formsTaggedWithGisrecordsResponse.getUserId()) &&
-                Objects.equals(getUsers(), formsTaggedWithGisrecordsResponse.getUsers()) &&
-                Objects.equals(getVendor(), formsTaggedWithGisrecordsResponse.getVendor()) &&
-                Objects.equals(getVendors2forms(), formsTaggedWithGisrecordsResponse.getVendors2forms());
+                Objects.equals(getFormCategory(), formsTaggedWithGisrecordsResponse.getFormCategory());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getAssignedToGroupId(),
-                getBalanceDue(),
-                getClosed(),
-                getCxvendorId(),
-                getDateModified(),
-                getExpiresDate(),
-                getFormGuid(),
-                getFormMessageses(),
-                getFormStatusId(),
-                getFormStatuses(),
+        return Objects.hash(getFormGuid(),
                 getFormTitle(),
+                getMunicipalityName(),
+                getCreatedBy(),
+                getFormDesign(),
+                getFormStatus(),
+                getLot(),
+                getSubdivision(),
+                getAddress(),
+                getPrimaryVendor(),
+                getBalanceDue(),
                 getFormTypeId(),
-                getFormTypes(),
-                getGis2formses(),
-                getGiscontacts(),
-                getIssuedDate(),
-                getMunicipalities(),
-                getMunicipalityGroups(),
-                getMunicipalityId(),
-                getOwnerId(),
-                getRecordType(),
-                getSharedWiths(),
-                getSubmittedOn(),
-                getTotalFees(),
-                getTotalPayment(),
-                getUserId(),
-                getUsers(),
-                getVendor(),
-                getVendors2forms());
+                getFormCategory());
     }
 }

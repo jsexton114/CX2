@@ -3918,18 +3918,25 @@
     "name" : "FormsTaggedWithGISRecords",
     "description" : "FormsTaggedWithGISRecords",
     "version" : "V1",
-    "queryString" : "from MasterForms where FormGUID IN (select relatedFormGuid from Gis2forms where gisrecordId=:gisrecordId ) ORDER BY DateModified DESC",
-    "countQueryString" : "select count(*) from MasterForms where FormGUID IN (select relatedFormGuid from Gis2forms where gisrecordId=:gisrecordId )",
-    "nativeSql" : false,
-    "fetchCount" : true,
+    "queryString" : "SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere   FT.CodeEnforcement=:codeEnforcement \r\n     and (MF.FormGUID IN (select RelatedFormGUID from GIS2Forms where GISRecordId=:GISRecordId ))\r\n   \r\n    \r\n    \r\nORDER BY DateModified DESC",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "gisrecordId",
+      "name" : "codeEnforcement",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "GISRecordId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "21924",
-      "required" : false
+      "testValue" : "2",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -3941,93 +3948,12 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "assignedToGroupId",
-        "fieldName" : "assignedToGroupId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "balanceDue",
-        "fieldName" : "balanceDue",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "closed",
-        "fieldName" : "closed",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "cxvendorId",
-        "fieldName" : "cxvendorId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "dateModified",
-        "fieldName" : "dateModified",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.Date",
-          "list" : false
-        }
-      }, {
-        "name" : "expiresDate",
-        "fieldName" : "expiresDate",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.Date",
-          "list" : false
-        }
-      }, {
         "name" : "formGuid",
         "fieldName" : "formGuid",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "formMessageses",
-        "fieldName" : "formMessageses",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.List",
-          "list" : false
-        }
-      }, {
-        "name" : "formStatusId",
-        "fieldName" : "formStatusId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "formStatuses",
-        "fieldName" : "formStatuses",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.FormStatuses",
           "list" : false
         }
       }, {
@@ -4040,7 +3966,88 @@
           "list" : false
         }
       }, {
-        "name" : "formTypeId",
+        "name" : "municipalityName",
+        "fieldName" : "municipalityName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "createdBy",
+        "fieldName" : "createdBy",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formDesign",
+        "fieldName" : "formDesign",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formStatus",
+        "fieldName" : "formStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "lot",
+        "fieldName" : "lot",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "subdivision",
+        "fieldName" : "subdivision",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "address",
+        "fieldName" : "address",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "primaryVendor",
+        "fieldName" : "primaryVendor",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "balanceDue",
+        "fieldName" : "balanceDue",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formTypeID",
         "fieldName" : "formTypeId",
         "optional" : false,
         "fieldType" : {
@@ -4049,156 +4056,12 @@
           "list" : false
         }
       }, {
-        "name" : "formTypes",
-        "fieldName" : "formTypes",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.FormTypes",
-          "list" : false
-        }
-      }, {
-        "name" : "gis2formses",
-        "fieldName" : "gis2formses",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.List",
-          "list" : false
-        }
-      }, {
-        "name" : "giscontacts",
-        "fieldName" : "giscontacts",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.Giscontacts",
-          "list" : false
-        }
-      }, {
-        "name" : "issuedDate",
-        "fieldName" : "issuedDate",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.Date",
-          "list" : false
-        }
-      }, {
-        "name" : "municipalities",
-        "fieldName" : "municipalities",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.Municipalities",
-          "list" : false
-        }
-      }, {
-        "name" : "municipalityGroups",
-        "fieldName" : "municipalityGroups",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.MunicipalityGroups",
-          "list" : false
-        }
-      }, {
-        "name" : "municipalityId",
-        "fieldName" : "municipalityId",
+        "name" : "FormCategory",
+        "fieldName" : "formCategory",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ownerId",
-        "fieldName" : "ownerId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "recordType",
-        "fieldName" : "recordType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "sharedWiths",
-        "fieldName" : "sharedWiths",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.List",
-          "list" : false
-        }
-      }, {
-        "name" : "submittedOn",
-        "fieldName" : "submittedOn",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.Date",
-          "list" : false
-        }
-      }, {
-        "name" : "totalFees",
-        "fieldName" : "totalFees",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "totalPayment",
-        "fieldName" : "totalPayment",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "userId",
-        "fieldName" : "userId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "users",
-        "fieldName" : "users",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.Users",
-          "list" : false
-        }
-      }, {
-        "name" : "vendor",
-        "fieldName" : "vendor",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "com.civicxpress.cx2.Vendor",
-          "list" : false
-        }
-      }, {
-        "name" : "vendors2forms",
-        "fieldName" : "vendors2forms",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.util.List",
           "list" : false
         }
       } ]
