@@ -43,7 +43,7 @@ public class Document implements Serializable {
     private byte[] contents;
     @Type(type = "DateTime")
     private LocalDateTime dateCreated;
-    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.UPDATE, Scope.INSERT })
+    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.INSERT, Scope.UPDATE })
     private Integer createdBy;
     private Users users;
 
@@ -108,7 +108,7 @@ public class Document implements Serializable {
     }
 
     @Id
-    @Column(name = "`CreatedBy`", nullable = true, scale = 0, precision = 10)
+    @Column(name = "`CreatedBy`", nullable = false, scale = 0, precision = 10)
     public Integer getCreatedBy() {
         return this.createdBy;
     }

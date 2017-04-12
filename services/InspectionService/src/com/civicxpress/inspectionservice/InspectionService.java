@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -356,5 +358,44 @@ public class InspectionService {
 		cx2Conn.close();
 		
 		return DynamicFieldService.getFieldData(formDbConn, inspectionGuid, "inspection", inspectionTableName);
+    }
+    
+    // Attachments
+    public void uploadDocuments(MultipartFile[] files, String inspectionGuid) throws SQLException, IOException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	cx2Conn.setAutoCommit(false);
+    	
+    	try {
+	    	StringBuilder documentAddQuery = new StringBuilder("INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents, CreatedBy) VALUES ");
+	    	
+	    	DBQueryParams queryParams = new DBQueryParams();
+	    	queryParams.addString("inspectionGuid", inspectionGuid);
+	    	queryParams.addLong("createdBy", Long.parseLong(securityService.getUserId()));
+	
+	        for (int i = 0; i < files.length; i++) {
+	        	MultipartFile file = files[i];
+	        	
+	        	if (i > 0) {
+	        		documentAddQuery.append(',');
+	        	}
+				
+	        	queryParams.addString("doc"+i+"filename", file.getOriginalFilename());
+	        	queryParams.addString("doc"+i+"mimetype", file.getContentType());
+	        	queryParams.addBytes("doc"+i+"contents", file.getBytes());
+	        	
+	        	documentAddQuery.append("(:inspectionGuid, :doc"+i+"filename, :doc"+i+"mimetype, :doc"+i+"contents, :createdBy)");
+	        }
+	        
+	        if (files.length > 0) {
+	        	DBUtils.simpleUpdateQuery(cx2Conn, documentAddQuery.toString(), queryParams);
+	        }
+	        
+	        cx2Conn.commit();
+    	} catch (Exception e) {
+    		cx2Conn.rollback();
+    		throw e;
+    	} finally {
+    		cx2Conn.close();
+    	}
     }
 }

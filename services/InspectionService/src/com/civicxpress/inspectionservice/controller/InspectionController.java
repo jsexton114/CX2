@@ -11,6 +11,8 @@ import java.util.Map;
 import java.lang.Integer;
 import java.lang.Boolean;
 import java.util.HashMap;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +74,10 @@ public class InspectionController {
     @ApiOperation(value = "")
     public void setInspectionOutcome(@RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "inspectionStatusId", required = false) Long inspectionStatusId, @RequestParam(value = "comments", required = false) String comments) {
         inspectionService.setInspectionOutcome(inspectionGuid, inspectionStatusId, comments);
+    }
+
+    @RequestMapping(value = "/uploadDocuments", method = RequestMethod.POST, consumes = "multipart/form-data")
+    public void uploadDocuments(@RequestPart(value = "files") MultipartFile[] files, @RequestParam(value = "inspectionGuid", required = false) String inspectionGuid) throws SQLException, IOException {
+        inspectionService.uploadDocuments(files, inspectionGuid);
     }
 }

@@ -651,7 +651,7 @@ public class FormService {
     }
     
     private void uploadDocuments(Connection cx2Conn, MultipartFile[] files, String formGuid, Boolean isNew) throws SQLException, IOException {
-    	StringBuilder documentAddQuery = new StringBuilder("INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents) VALUES ");
+    	StringBuilder documentAddQuery = new StringBuilder("INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents, CreatedBy) VALUES ");
     	
     	if (!isNew && !userIsAdmin(cx2Conn, formGuid) && !userCanEdit(cx2Conn, formGuid)) {
 	  		throw new SQLException("Permission Denied");
@@ -659,6 +659,7 @@ public class FormService {
     	
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addString("formGuid", formGuid);
+    	queryParams.addLong("createdBy", Long.parseLong(securityService.getUserId()));
 
         for (int i = 0; i < files.length; i++) {
         	MultipartFile file = files[i];
@@ -671,7 +672,7 @@ public class FormService {
         	queryParams.addString("doc"+i+"mimetype", file.getContentType());
         	queryParams.addBytes("doc"+i+"contents", file.getBytes());
         	
-        	documentAddQuery.append("(:formGuid, :doc"+i+"filename, :doc"+i+"mimetype, :doc"+i+"contents)");
+        	documentAddQuery.append("(:formGuid, :doc"+i+"filename, :doc"+i+"mimetype, :doc"+i+"contents, :createdBy)");
         }
         
         if (files.length > 0) {

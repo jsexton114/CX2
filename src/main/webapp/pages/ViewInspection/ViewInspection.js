@@ -39,6 +39,11 @@ Application.$controller("ViewInspectionPageController", ["$scope", function($sco
         // $scope.Variables.svRecordHistory.update();
     };
 
+
+    $scope.lvDocumentsonSuccess = function(variable, data) {
+        console.log(data);
+    };
+
 }]);
 
 var liveformFeesScope = {};
@@ -78,6 +83,31 @@ Application.$controller("gridFeesController", ["$scope",
     }
 ]);
 
+Application.$controller("dialogUploadDocumentController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+        $scope.docsToUpload = [];
+
+        $scope.dialogUploadDocumentClose = function($event, $isolateScope) {
+            $scope.docsToUpload = [];
+        };
+
+        $scope.buttonUploadFileClick = function($event, $isolateScope) {
+            var filesContents = [];
+
+            $scope.docsToUpload.forEach(function(doc, index) {
+                filesContents.push(doc.Contents);
+            });
+            $scope.Variables.svUploadDocument.setInput('files', filesContents);
+            $scope.Variables.svUploadDocument.update();
+            $scope.docsToUpload = [];
+            $scope.Widgets.dialogUploadDocument.close();
+        };
+
+    }
+]);
+
 Application.$controller("liveformFeesController", ["$scope",
     function($scope) {
         "use strict";
@@ -95,8 +125,19 @@ Application.$controller("gridLocationController", ["$scope",
 ]);
 
 Application.$controller("dialogParcelController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridDocumentsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.updaterowAction = function($event, $rowData) {
+            window.open('resources/leadTools/index.html?docId=' + $rowData.id);
+        };
+    }
 ]);
