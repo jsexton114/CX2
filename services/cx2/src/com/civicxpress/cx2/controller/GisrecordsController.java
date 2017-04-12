@@ -32,6 +32,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.Gis2forms;
+import com.civicxpress.cx2.GisTransaction;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.InspectionGis;
@@ -172,6 +173,15 @@ public class GisrecordsController {
 
         LOGGER.debug("Fetching all associated giscontactses");
         return gisrecordsService.findAssociatedGiscontactses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/gisTransactions", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the gisTransactions instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<GisTransaction> findAssociatedGisTransactions(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated gisTransactions");
+        return gisrecordsService.findAssociatedGisTransactions(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/inspectionGises", method=RequestMethod.GET)

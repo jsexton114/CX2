@@ -118,6 +118,14 @@ public class VendorServiceImpl implements VendorService {
             }
         }
 
+        if(vendorCreated.getVendorAdminses() != null) {
+            for(VendorAdmins vendorAdminse : vendorCreated.getVendorAdminses()) {
+                vendorAdminse.setVendor(vendorCreated);
+                LOGGER.debug("Creating a new child VendorAdmins with information: {}", vendorAdminse);
+                vendorAdminsService.create(vendorAdminse);
+            }
+        }
+
         if(vendorCreated.getVendorApprovalses() != null) {
             for(VendorApprovals vendorApprovalse : vendorCreated.getVendorApprovalses()) {
                 vendorApprovalse.setVendor(vendorCreated);
@@ -131,14 +139,6 @@ public class VendorServiceImpl implements VendorService {
                 vendorLicensese.setVendor(vendorCreated);
                 LOGGER.debug("Creating a new child VendorLicenses with information: {}", vendorLicensese);
                 vendorLicensesService.create(vendorLicensese);
-            }
-        }
-
-        if(vendorCreated.getVendorAdminses() != null) {
-            for(VendorAdmins vendorAdminse : vendorCreated.getVendorAdminses()) {
-                vendorAdminse.setVendor(vendorCreated);
-                LOGGER.debug("Creating a new child VendorAdmins with information: {}", vendorAdminse);
-                vendorAdminsService.create(vendorAdminse);
             }
         }
 
@@ -290,6 +290,17 @@ public class VendorServiceImpl implements VendorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<VendorAdmins> findAssociatedVendorAdminses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorAdminses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("vendor.id = '" + id + "'");
+
+        return vendorAdminsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<VendorApprovals> findAssociatedVendorApprovalses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated vendorApprovalses");
 
@@ -308,17 +319,6 @@ public class VendorServiceImpl implements VendorService {
         queryBuilder.append("vendor.id = '" + id + "'");
 
         return vendorLicensesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<VendorAdmins> findAssociatedVendorAdminses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated vendorAdminses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("vendor.id = '" + id + "'");
-
-        return vendorAdminsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

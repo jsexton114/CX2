@@ -23,6 +23,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.Gis2forms;
+import com.civicxpress.cx2.GisTransaction;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.InspectionGis;
@@ -47,6 +48,10 @@ public class GisrecordsServiceImpl implements GisrecordsService {
     @Autowired
 	@Qualifier("cx2.FeesService")
 	private FeesService feesService;
+
+    @Autowired
+	@Qualifier("cx2.GisTransactionService")
+	private GisTransactionService gisTransactionService;
 
     @Autowired
 	@Qualifier("cx2.InspectionGisService")
@@ -98,6 +103,14 @@ public class GisrecordsServiceImpl implements GisrecordsService {
                 giscontactse.setGisrecords(gisrecordsCreated);
                 LOGGER.debug("Creating a new child Giscontacts with information: {}", giscontactse);
                 giscontactsService.create(giscontactse);
+            }
+        }
+
+        if(gisrecordsCreated.getGisTransactions() != null) {
+            for(GisTransaction gisTransaction : gisrecordsCreated.getGisTransactions()) {
+                gisTransaction.setGisrecords(gisrecordsCreated);
+                LOGGER.debug("Creating a new child GisTransaction with information: {}", gisTransaction);
+                gisTransactionService.create(gisTransaction);
             }
         }
 
@@ -233,6 +246,17 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<GisTransaction> findAssociatedGisTransactions(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated gisTransactions");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("gisrecords.id = '" + id + "'");
+
+        return gisTransactionService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<InspectionGis> findAssociatedInspectionGises(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionGises");
 
@@ -280,6 +304,15 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 	 */
 	protected void setFeesService(FeesService service) {
         this.feesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service GisTransactionService instance
+	 */
+	protected void setGisTransactionService(GisTransactionService service) {
+        this.gisTransactionService = service;
     }
 
     /**

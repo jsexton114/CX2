@@ -22,6 +22,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -44,7 +47,7 @@ public class Gisrecords implements Serializable {
     private String city;
     private Integer stateId;
     private String streetType;
-    private String streetDirection;
+    private String directionalPrefix;
     private String inspectionZone;
     private String latitude;
     private String longitude;
@@ -52,12 +55,24 @@ public class Gisrecords implements Serializable {
     private String unitNumber;
     private String postalCode;
     private String fullAddress;
+    private String directionalSuffix;
+    private String use;
+    @Type(type = "DateTime")
+    private LocalDateTime dateModified;
+    private Integer modifiedBy;
+    private String zoningClassification;
+    private String floodZone;
+    private String floodPlain;
+    private Integer floodMapPanel;
+    private boolean isHostile;
+    private Users users;
     private Municipalities municipalities;
     private States states;
     private Subdivisions subdivisions;
     private List<Fees> feeses = new ArrayList<>();
     private List<Gis2forms> gis2formses = new ArrayList<>();
     private List<Giscontacts> giscontactses = new ArrayList<>();
+    private List<GisTransaction> gisTransactions = new ArrayList<>();
     private List<InspectionGis> inspectionGises = new ArrayList<>();
     private List<MasterInspections> masterInspectionses = new ArrayList<>();
     private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
@@ -172,13 +187,13 @@ public class Gisrecords implements Serializable {
         this.streetType = streetType;
     }
 
-    @Column(name = "`StreetDirection`", nullable = true, length = 255)
-    public String getStreetDirection() {
-        return this.streetDirection;
+    @Column(name = "`DirectionalPrefix`", nullable = true, length = 255)
+    public String getDirectionalPrefix() {
+        return this.directionalPrefix;
     }
 
-    public void setStreetDirection(String streetDirection) {
-        this.streetDirection = streetDirection;
+    public void setDirectionalPrefix(String directionalPrefix) {
+        this.directionalPrefix = directionalPrefix;
     }
 
     @Column(name = "`InspectionZone`", nullable = true, length = 255)
@@ -235,13 +250,108 @@ public class Gisrecords implements Serializable {
         this.postalCode = postalCode;
     }
 
-    @Column(name = "`FullAddress`", nullable = false, insertable = false, updatable = false, length = 1563)
+    @Column(name = "`FullAddress`", nullable = true, insertable = false, updatable = false, length = 255)
     public String getFullAddress() {
         return this.fullAddress;
     }
 
     public void setFullAddress(String fullAddress) {
         this.fullAddress = fullAddress;
+    }
+
+    @Column(name = "`DirectionalSuffix`", nullable = true, length = 255)
+    public String getDirectionalSuffix() {
+        return this.directionalSuffix;
+    }
+
+    public void setDirectionalSuffix(String directionalSuffix) {
+        this.directionalSuffix = directionalSuffix;
+    }
+
+    @Column(name = "`Use`", nullable = true, length = 1000)
+    public String getUse() {
+        return this.use;
+    }
+
+    public void setUse(String use) {
+        this.use = use;
+    }
+
+    @Column(name = "`DateModified`", nullable = true, insertable = false, updatable = false)
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
+    }
+
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
+    }
+
+    @Column(name = "`ModifiedBy`", nullable = true, scale = 0, precision = 10)
+    public Integer getModifiedBy() {
+        return this.modifiedBy;
+    }
+
+    public void setModifiedBy(Integer modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    @Column(name = "`ZoningClassification`", nullable = true, length = 255)
+    public String getZoningClassification() {
+        return this.zoningClassification;
+    }
+
+    public void setZoningClassification(String zoningClassification) {
+        this.zoningClassification = zoningClassification;
+    }
+
+    @Column(name = "`FloodZone`", nullable = true, length = 255)
+    public String getFloodZone() {
+        return this.floodZone;
+    }
+
+    public void setFloodZone(String floodZone) {
+        this.floodZone = floodZone;
+    }
+
+    @Column(name = "`FloodPlain`", nullable = true, length = 255)
+    public String getFloodPlain() {
+        return this.floodPlain;
+    }
+
+    public void setFloodPlain(String floodPlain) {
+        this.floodPlain = floodPlain;
+    }
+
+    @Column(name = "`FloodMapPanel`", nullable = true, scale = 0, precision = 10)
+    public Integer getFloodMapPanel() {
+        return this.floodMapPanel;
+    }
+
+    public void setFloodMapPanel(Integer floodMapPanel) {
+        this.floodMapPanel = floodMapPanel;
+    }
+
+    @Column(name = "`IsHostile`", nullable = false)
+    public boolean isIsHostile() {
+        return this.isHostile;
+    }
+
+    public void setIsHostile(boolean isHostile) {
+        this.isHostile = isHostile;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`ModifiedBy`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Users getUsers() {
+        return this.users;
+    }
+
+    public void setUsers(Users users) {
+        if(users != null) {
+            this.modifiedBy = users.getId();
+        }
+
+        this.users = users;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -314,6 +424,16 @@ public class Gisrecords implements Serializable {
 
     public void setGiscontactses(List<Giscontacts> giscontactses) {
         this.giscontactses = giscontactses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "gisrecords")
+    public List<GisTransaction> getGisTransactions() {
+        return this.gisTransactions;
+    }
+
+    public void setGisTransactions(List<GisTransaction> gisTransactions) {
+        this.gisTransactions = gisTransactions;
     }
 
     @JsonInclude(Include.NON_EMPTY)
