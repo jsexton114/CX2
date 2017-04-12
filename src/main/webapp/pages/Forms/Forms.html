@@ -214,6 +214,7 @@
                                                         shortcutkey="" disabled="bind:(!Variables.lvFormType.dataSet.data[$i].multipleVendors &amp;&amp; Variables.Cx2Vendors2formData.dataSet.data.length > 0) || !Variables.svUserPermissions.dataSet.canEdit"></wm-grid-action>
                                                         <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogVendorDeleteConf.open();deleterowAction($event)"
                                                         disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-row-action key="updaterow" display-name="" title="View" iconclass="wi wi-details" show="true" class="btn-transparent" action="Widgets.dialogVendorDetails.open()"></wm-grid-row-action>
                                                     </wm-grid>
                                                 </wm-livegrid>
                                             </wm-gridcolumn>
@@ -1039,6 +1040,71 @@
             <wm-dialogactions name="dialogactions10">
                 <wm-button class="btn-primary" caption="Request Inspection" type="button" margin="unset 0.5em" name="button2InspectionRequest" on-click="button2InspectionRequestClick($event, $scope)" iconclass="wi wi-plus" show="true" disabled="bind:!inspectionObject || !Widgets.dateInspectionRequest.datavalue || (isSameDayRequest() &amp;&amp; inspectionObject.sameDayInspectionFee > 0 &amp;&amp; !Widgets.checkboxSameDayFeeConfirm.datavalue)"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button21" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewVendorDetails">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Vendor Details" iconclass="wi wi-person" name="dialogVendorDetails">
+            <wm-layoutgrid name="layoutgrid31">
+                <wm-gridrow name="gridrow90_1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn166">
+                        <wm-label padding="unset 0.5em" caption="Name" name="label103"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn167_1">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridFormVendors.selecteditem.vendor.companyName" name="label104" fontweight="bold"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow91">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn168">
+                        <wm-label padding="unset 0.5em" caption="Type" name="label105"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn169">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridFormVendors.selecteditem.vendor.contractorTypes.contractorType" name="label106" fontweight="bold"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow92">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn170">
+                        <wm-label padding="unset 0.5em" caption="FEIN No" name="label107"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn171">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridFormVendors.selecteditem.vendor.feinNumber" name="label112" fontweight="bold"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow93">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn172">
+                        <wm-label padding="unset 0.5em" caption="Email" name="label108"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn173">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridFormVendors.selecteditem.vendor.companyEmail" name="label113" fontweight="bold"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow94">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn174_1">
+                        <wm-label padding="unset 0.5em" caption="WebSite" name="label109"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn175_1">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridFormVendors.selecteditem.vendor.companyWebsite" name="label114" fontweight="bold"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow95">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn176">
+                        <wm-label padding="unset 0.5em" caption="Phone" name="label110"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn177">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridFormVendors.selecteditem.vendor.companyPhone" name="label115" fontweight="bold"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow96">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn178">
+                        <wm-label padding="unset 0.5em" caption="Address" name="label111"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn179">
+                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridFormVendors.selecteditem.vendor.fullAddress" name="label116" fontweight="bold"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions11">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button25"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

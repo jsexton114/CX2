@@ -662,3 +662,10 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
 
     }
 ]);
+
+Application.$controller("dialogVendorDetailsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
