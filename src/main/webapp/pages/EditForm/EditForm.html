@@ -167,7 +167,8 @@
                                                         <wm-gridrow name="gridrow38_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn61_1" padding="unset 1em unset unset">
                                                                 <wm-form-field name="propertyType" displayname="Property Type" show="true" primary-key="false" generator="assigned" key="propertyType" type="string" readonly="false" required="true" widget="select"
-                                                                maxchars="255" dataset="bind:Variables.PropertyTypes.dataSet" datafield="dataValue" displayfield="dataValue" defaultvalue="bind:Variables.PropertyTypes.dataSet[0].dataValue" placeholder="Select value"></wm-form-field>
+                                                                maxchars="255" dataset="bind:Variables.PropertyTypes.dataSet" datafield="dataValue" displayfield="dataValue" defaultvalue="bind:Variables.PropertyTypes.dataSet[0].dataValue" placeholder="Select value"
+                                                                width="180px"></wm-form-field>
                                                                 <wm-label padding="unset 0.5em" caption="This allows you to designate what type of property this form pertains to and will affect reporting. This allows for creating versions of the same form that assess different fee structures for different property types."
                                                                 class="help-block" fontsize="0.8" fontunit="em" name="label39"></wm-label>
                                                             </wm-gridcolumn>
@@ -187,17 +188,18 @@
                                                         <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn107" padding="unset 1em unset unset">
                                                                 <wm-form-field displayname="Form Expires" widget="select" show="true" type="custom" name="expirationType" placeholder="Never" dataset="bind:Variables.stvExpirationTypes.dataSet" datafield="value"
-                                                                displayfield="label"></wm-form-field>
+                                                                displayfield="label" width="180px"></wm-form-field>
                                                                 <wm-label padding="unset 0.5em" name="label32_1" class="help-block" fontsize="0.8" fontunit="em" caption="Select an option here if this form is only valid for a limited time period and will expire based on the date submitted, date last modified, or when it enters a form status."></wm-label>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn108_1" padding="unset 1em unset unset">
                                                                 <wm-form-field displayname="Days Until Expiration" widget="text" show="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue &amp;&amp; Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue !== 'FormStatusId'"
                                                                 type="custom" name="expirationDays" inputtype="number" placeholder="Enter value" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue &amp;&amp; Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue !== 'FormStatusId'"
-                                                                minvalue="1" step="1" maxvalue="29220"></wm-form-field>
+                                                                minvalue="1" step="1" maxvalue="29220" width="180px"></wm-form-field>
                                                                 <wm-label padding="unset 0.5em" name="label33_2" class="help-block" fontsize="0.8" fontunit="em" show="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue &amp;&amp; Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue !== 'FormStatusId'"
                                                                 caption="This form will be set to expire after the specified number of days when the selected trigger event occurs."></wm-label>
                                                                 <wm-form-field displayname="Status" widget="select" show="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" type="custom" name="expirationStatusId"
-                                                                dataset="bind:Variables.StatusesData.dataSet" datafield="id" displayfield="status" required="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" placeholder="Select status"></wm-form-field>
+                                                                dataset="bind:Variables.StatusesData.dataSet" datafield="id" displayfield="status" required="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" placeholder="Select status"
+                                                                width="180px"></wm-form-field>
                                                                 <wm-label padding="unset 0.5em" name="label34_1" class="help-block" fontsize="0.8" fontunit="em" show="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'"
                                                                 caption="The form expiration will be set when the form enters the status selected here."></wm-label>
                                                             </wm-gridcolumn>
