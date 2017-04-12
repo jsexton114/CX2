@@ -15,7 +15,7 @@ Application.$controller("ViewInspectionPageController", ["$scope", function($sco
     };
 
     $scope.buttonUpdateOutcomeClick = function($event, $isolateScope) {
-
+        $scope.Variables.svSetInspectionOutcome.update();
     };
 
     $scope.svFieldDataonSuccess = function(variable, data) {};
@@ -41,7 +41,12 @@ Application.$controller("ViewInspectionPageController", ["$scope", function($sco
 
 
     $scope.lvDocumentsonSuccess = function(variable, data) {
-        console.log(data);
+
+    };
+
+
+    $scope.svSetInspectionOutcomeonSuccess = function(variable, data) {
+        $scope.Widgets.textareaNotes.reset();
     };
 
 }]);
@@ -139,5 +144,12 @@ Application.$controller("gridDocumentsController", ["$scope",
         $scope.updaterowAction = function($event, $rowData) {
             window.open('resources/leadTools/index.html?docId=' + $rowData.id);
         };
+    }
+]);
+
+Application.$controller("gridInspectionHistoryController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

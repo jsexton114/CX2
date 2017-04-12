@@ -23,6 +23,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.InspectionHistory;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionOutcomeFee;
 import com.civicxpress.cx2.MasterInspections;
@@ -43,6 +44,10 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
 	private InspectionOutcomeFeeService inspectionOutcomeFeeService;
 
     @Autowired
+	@Qualifier("cx2.InspectionHistoryService")
+	private InspectionHistoryService inspectionHistoryService;
+
+    @Autowired
 	@Qualifier("cx2.MasterInspectionsService")
 	private MasterInspectionsService masterInspectionsService;
 
@@ -59,6 +64,22 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
 	public InspectionOutcome create(InspectionOutcome inspectionOutcome) {
         LOGGER.debug("Creating a new InspectionOutcome with information: {}", inspectionOutcome);
         InspectionOutcome inspectionOutcomeCreated = this.wmGenericDao.create(inspectionOutcome);
+        if(inspectionOutcomeCreated.getInspectionHistoriesForNewOutcomeId() != null) {
+            for(InspectionHistory inspectionHistoriesForNewOutcomeId : inspectionOutcomeCreated.getInspectionHistoriesForNewOutcomeId()) {
+                inspectionHistoriesForNewOutcomeId.setInspectionOutcomeByNewOutcomeId(inspectionOutcomeCreated);
+                LOGGER.debug("Creating a new child InspectionHistory with information: {}", inspectionHistoriesForNewOutcomeId);
+                inspectionHistoryService.create(inspectionHistoriesForNewOutcomeId);
+            }
+        }
+
+        if(inspectionOutcomeCreated.getInspectionHistoriesForOldOutcomeId() != null) {
+            for(InspectionHistory inspectionHistoriesForOldOutcomeId : inspectionOutcomeCreated.getInspectionHistoriesForOldOutcomeId()) {
+                inspectionHistoriesForOldOutcomeId.setInspectionOutcomeByOldOutcomeId(inspectionOutcomeCreated);
+                LOGGER.debug("Creating a new child InspectionHistory with information: {}", inspectionHistoriesForOldOutcomeId);
+                inspectionHistoryService.create(inspectionHistoriesForOldOutcomeId);
+            }
+        }
+
         if(inspectionOutcomeCreated.getInspectionOutcomeFees() != null) {
             for(InspectionOutcomeFee inspectionOutcomeFee : inspectionOutcomeCreated.getInspectionOutcomeFees()) {
                 inspectionOutcomeFee.setInspectionOutcome(inspectionOutcomeCreated);
@@ -167,6 +188,28 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<InspectionHistory> findAssociatedInspectionHistoriesForNewOutcomeId(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionHistoriesForNewOutcomeId");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionOutcomeByNewOutcomeId.id = '" + id + "'");
+
+        return inspectionHistoryService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<InspectionHistory> findAssociatedInspectionHistoriesForOldOutcomeId(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionHistoriesForOldOutcomeId");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionOutcomeByOldOutcomeId.id = '" + id + "'");
+
+        return inspectionHistoryService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<InspectionOutcomeFee> findAssociatedInspectionOutcomeFees(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionOutcomeFees");
 
@@ -194,6 +237,15 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
 	 */
 	protected void setInspectionOutcomeFeeService(InspectionOutcomeFeeService service) {
         this.inspectionOutcomeFeeService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service InspectionHistoryService instance
+	 */
+	protected void setInspectionHistoryService(InspectionHistoryService service) {
+        this.inspectionHistoryService = service;
     }
 
     /**

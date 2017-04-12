@@ -287,8 +287,36 @@ public class InspectionService {
     	}
     }
     
-    public void setInspectionOutcome(String inspectionGuid, Long inspectionStatusId, String comments) {
-        //
+    public void setInspectionOutcome(String inspectionGuid, Long inspectionOutcomeId, String comments) throws SQLException {
+        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        cx2Conn.setAutoCommit(false);
+        
+        try {
+        	DBQueryParams params = new DBQueryParams();
+        	params.addString("inspectionGuid", inspectionGuid);
+        	params.addLong("newOutcomeId", inspectionOutcomeId);
+        	params.addLong("createdBy", Long.parseLong(securityService.getUserId()));
+        	
+        	DBRow inspectionData = DBUtils.selectOne(cx2Conn, "SELECT InspectionOutcomeId FROM MasterInspections WHERE InspectionGUID=:inspectionGuid", params);
+        	
+        	params.addLong("oldOutcomeId", inspectionData.getLong("InspectionOutcomeId"));
+        	params.addString("comments", comments);
+        	
+        	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterInspections SET InspectionOutcomeId=:newOutcomeId, "
+    				+"Closed=(SELECT ConsiderClosed FROM InspectionOutcome WHERE ID=:newOutcomeId) WHERE InspectionGUID=:inspectionGuid",
+    				params);
+    		
+    		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO InspectionHistory (InspectionGUID,NewOutcomeId,OldOutcomeId,Comments,CreatedBy) "
+    				+"VALUES (:inspectionGuid,:newOutcomeId,:oldOutcomeId,:comments,:createdBy)",
+    				params);
+        	
+        	cx2Conn.commit();
+        } catch (SQLException e) {
+        	cx2Conn.rollback();
+        	throw e;
+        } finally {
+        	cx2Conn.close();
+        }
     }
     
     // Dynamic fields

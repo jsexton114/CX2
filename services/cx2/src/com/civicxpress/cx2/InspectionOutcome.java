@@ -46,6 +46,8 @@ public class InspectionOutcome implements Serializable {
     private boolean autoReInspection;
     private Integer daysToAutoReInspection;
     private InspectionDesign inspectionDesign;
+    private List<InspectionHistory> inspectionHistoriesForNewOutcomeId = new ArrayList<>();
+    private List<InspectionHistory> inspectionHistoriesForOldOutcomeId = new ArrayList<>();
     private List<InspectionOutcomeFee> inspectionOutcomeFees = new ArrayList<>();
     private List<MasterInspections> masterInspectionses = new ArrayList<>();
 
@@ -162,6 +164,26 @@ public class InspectionOutcome implements Serializable {
         }
 
         this.inspectionDesign = inspectionDesign;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionOutcomeByNewOutcomeId")
+    public List<InspectionHistory> getInspectionHistoriesForNewOutcomeId() {
+        return this.inspectionHistoriesForNewOutcomeId;
+    }
+
+    public void setInspectionHistoriesForNewOutcomeId(List<InspectionHistory> inspectionHistoriesForNewOutcomeId) {
+        this.inspectionHistoriesForNewOutcomeId = inspectionHistoriesForNewOutcomeId;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionOutcomeByOldOutcomeId")
+    public List<InspectionHistory> getInspectionHistoriesForOldOutcomeId() {
+        return this.inspectionHistoriesForOldOutcomeId;
+    }
+
+    public void setInspectionHistoriesForOldOutcomeId(List<InspectionHistory> inspectionHistoriesForOldOutcomeId) {
+        this.inspectionHistoriesForOldOutcomeId = inspectionHistoriesForOldOutcomeId;
     }
 
     @JsonInclude(Include.NON_EMPTY)

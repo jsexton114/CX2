@@ -30,6 +30,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.InspectionHistory;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionOutcomeFee;
 import com.civicxpress.cx2.MasterInspections;
@@ -148,6 +149,24 @@ public class InspectionOutcomeController {
 		LOGGER.debug("counting InspectionOutcomes");
 		return inspectionOutcomeService.count(query);
 	}
+
+    @RequestMapping(value="/{id:.+}/inspectionHistoriesForNewOutcomeId", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionHistoriesForNewOutcomeId instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<InspectionHistory> findAssociatedInspectionHistoriesForNewOutcomeId(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated inspectionHistoriesForNewOutcomeId");
+        return inspectionOutcomeService.findAssociatedInspectionHistoriesForNewOutcomeId(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/inspectionHistoriesForOldOutcomeId", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionHistoriesForOldOutcomeId instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<InspectionHistory> findAssociatedInspectionHistoriesForOldOutcomeId(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated inspectionHistoriesForOldOutcomeId");
+        return inspectionOutcomeService.findAssociatedInspectionHistoriesForOldOutcomeId(id, pageable);
+    }
 
     @RequestMapping(value="/{id:.+}/inspectionOutcomeFees", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the inspectionOutcomeFees instance associated with the given id.")

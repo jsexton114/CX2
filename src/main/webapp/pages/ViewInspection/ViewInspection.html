@@ -103,6 +103,7 @@
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn23"></wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
+                            <wm-spinner show="false" name="spinnerUpdateOutcome" caption="Updating..." servicevariabletotrack="svSetInspectionOutcome"></wm-spinner>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
@@ -226,7 +227,15 @@
                                     </wm-livegrid>
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneMessages" title="MESSAGES"></wm-tabpane>
-                                <wm-tabpane name="tabpaneHistory" title="HISTORY"></wm-tabpane>
+                                <wm-tabpane name="tabpaneHistory" title="HISTORY">
+                                    <wm-grid title="" dataset="bind:Variables.lvInspectionHistory.dataSet" navigation="Classic" name="gridInspectionHistory">
+                                        <wm-grid-column binding="dateCreated" caption="Activity Date" type="datetime" generator="assigned" edit-widget-type="datetime" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="users.fullName" caption="Performed By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="inspectionOutcomeByNewOutcomeId.outcome" caption="Previous Outcome" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionOutcome"></wm-grid-column>
+                                        <wm-grid-column binding="inspectionOutcomeByOldOutcomeId.outcome" caption="Current Outcome" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionOutcome"></wm-grid-column>
+                                        <wm-grid-column binding="comments" caption="Comments" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    </wm-grid>
+                                </wm-tabpane>
                                 <wm-tabpane name="tabpaneINTERNAL" title="INTERNAL" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"></wm-tabpane>
                             </wm-tabs>
                         </wm-panel>

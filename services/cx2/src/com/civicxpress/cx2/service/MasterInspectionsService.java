@@ -17,6 +17,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionGis;
+import com.civicxpress.cx2.InspectionHistory;
 import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.Violations;
@@ -165,6 +166,18 @@ public interface MasterInspectionsService {
      * @see Page
      */
     Page<InspectionGis> findAssociatedInspectionGises(String inspectionGuid, Pageable pageable);
+
+    /*
+     * Returns the associated inspectionHistories for given MasterInspections id.
+     *
+     * @param inspectionGuid value of inspectionGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated InspectionHistory instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<InspectionHistory> findAssociatedInspectionHistories(String inspectionGuid, Pageable pageable);
 
     /*
      * Returns the associated masterCaseses for given MasterInspections id.

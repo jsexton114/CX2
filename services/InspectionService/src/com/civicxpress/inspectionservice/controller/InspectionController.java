@@ -72,8 +72,8 @@ public class InspectionController {
     @RequestMapping(value = "/inspectionOutcome", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void setInspectionOutcome(@RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "inspectionStatusId", required = false) Long inspectionStatusId, @RequestParam(value = "comments", required = false) String comments) {
-        inspectionService.setInspectionOutcome(inspectionGuid, inspectionStatusId, comments);
+    public void setInspectionOutcome(@RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "inspectionStatusId", required = false) Long inspectionOutcomeId, @RequestParam(value = "comments", required = false) String comments) throws SQLException {
+        inspectionService.setInspectionOutcome(inspectionGuid, inspectionOutcomeId, comments);
     }
 
     @RequestMapping(value = "/uploadDocuments", method = RequestMethod.POST, consumes = "multipart/form-data")
