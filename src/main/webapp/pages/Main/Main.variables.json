@@ -546,48 +546,7 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "CountOfAllProjectsForUsersAndSharedWithonSuccess($event, $scope)",
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
-  "CountOfClosedFormsForMunicipality" : {
-    "_id" : "wm-CountOfClosedForms-wm.ServiceVariable-1482840735117",
-    "name" : "CountOfClosedFormsForMunicipality",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "closed",
-      "value" : true,
-      "type" : "boolean"
-    }, {
-      "target" : "MunicipalityId",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
-      "type" : "integer"
-    }, {
-      "target" : "creatorUser",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    }, {
-      "target" : "sharedWithUser",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.CountOfUserFormsForMunicipalityResponse",
-    "service" : "cx2",
-    "operation" : "executeCountOfUserFormsForMunicipality",
-    "operationId" : "QueryExecutionController_executeCountOfUserFormsForMunicipality",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "CountOfClosedFormsForMunicipalityonSuccess($event, $scope)",
+    "onError" : "CountOfAllProjectsForUsersAndSharedWithonError($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -613,6 +572,14 @@
       "target" : "sharedWithUser",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
+    }, {
+      "target" : "codeEnforcement",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.models.query.CountOfUserFormsResponse",
     "service" : "cx2",
@@ -626,52 +593,12 @@
     "designMaxResults" : 10,
     "onSuccess" : "CountOfClosedFormsForUseronSuccess($event, $scope)",
     "startUpdate" : false,
-    "autoUpdate" : true,
+    "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
-  },
-  "CountOfOpenFormsForMunicipality" : {
-    "_id" : "wm-CountOfOpenForms-wm.ServiceVariable-1482840803439",
-    "name" : "CountOfOpenFormsForMunicipality",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "closed",
-      "value" : false,
-      "type" : "boolean"
-    }, {
-      "target" : "MunicipalityId",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
-      "type" : "integer"
-    }, {
-      "target" : "creatorUser",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    }, {
-      "target" : "sharedWithUser",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.CountOfUserFormsForMunicipalityResponse",
-    "service" : "cx2",
-    "operation" : "executeCountOfUserFormsForMunicipality",
-    "operationId" : "QueryExecutionController_executeCountOfUserFormsForMunicipality",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "CountOfOpenFormsForMunicipalityonSuccess($event, $scope)",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
   },
   "CountOfOpenFormsForUser" : {
     "_id" : "wm-CountOfOpenFormsForUser-wm.ServiceVariable-1484213908356",
@@ -690,6 +617,14 @@
       "target" : "sharedWithUser",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
+    }, {
+      "target" : "codeEnforcement",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.models.query.CountOfUserFormsResponse",
     "service" : "cx2",
@@ -702,47 +637,6 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "onSuccess" : "CountOfOpenFormsForUseronSuccess($event, $scope)",
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
-  "CountOfProjectsForUsersAndSharedWithByMunicipality" : {
-    "_id" : "wm-CountOfProjectsForUsersAndSharedWithByMunicipality-wm.ServiceVariable-1487137242377",
-    "name" : "CountOfProjectsForUsersAndSharedWithByMunicipality",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "municipalityId",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
-      "type" : "integer"
-    }, {
-      "target" : "Active",
-      "value" : true,
-      "type" : "boolean"
-    }, {
-      "target" : "creatorUser",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    }, {
-      "target" : "sharedWithUser",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.CountOfProjectsForUsersAndSharedWithByMunicipalityResponse",
-    "service" : "cx2",
-    "operation" : "executeCountOfProjectsForUsersAndSharedWithByMunicipality",
-    "operationId" : "QueryExecutionController_executeCountOfProjectsForUsersAndSharedWithByMunicipality",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "CountOfProjectsForUsersAndSharedWithByMunicipalityonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -1165,47 +1059,6 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "onSuccess" : "svFeeCountForUseronSuccess($event, $scope)",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
-  "svFeeCountForUserByMunicipality" : {
-    "_id" : "wm-svFeeCountForUserByMunicipality-wm.ServiceVariable-1490174316300",
-    "name" : "svFeeCountForUserByMunicipality",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "allowPayment",
-      "value" : true,
-      "type" : "boolean"
-    }, {
-      "target" : "paidStatus",
-      "value" : "Unpaid",
-      "type" : "string"
-    }, {
-      "target" : "municipalityId",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
-      "type" : "integer"
-    }, {
-      "target" : "userId",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.AllFeeFormCountByMunicipalityResponse",
-    "service" : "cx2",
-    "operation" : "executeAllFeeFormCountByMunicipality",
-    "operationId" : "QueryExecutionController_executeAllFeeFormCountByMunicipality",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "svFeeCountForUserByMunicipalityonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

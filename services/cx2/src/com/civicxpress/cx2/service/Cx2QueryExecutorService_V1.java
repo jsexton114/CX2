@@ -147,7 +147,7 @@ public interface Cx2QueryExecutorService_V1 {
     public int executeAddGIStoProjects(Integer gisrecordId, String relatedProjectGuid, Integer addedByUser, Timestamp addedAt);
 
     @Deprecated
-    public Page<Object> executeCountOfUserForms(Pageable pageable, Boolean closed, Integer creatorUser, Integer sharedWithUser);
+    public Page<Object> executeCountOfUserForms(Pageable pageable, Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Integer municipalityId);
 
     @Deprecated
     public Page<Object> executeCountOfFormsForMunicipality(Pageable pageable, Integer municipalityId);
@@ -174,7 +174,7 @@ public interface Cx2QueryExecutorService_V1 {
     public int executeDeleteToken(String token);
 
     @Deprecated
-    public Page<Object> executeCountOfAllProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser);
+    public Page<Object> executeCountOfAllProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer municipalityId, Integer creatorUser, Integer sharedWithUser);
 
     @Deprecated
     public int executeInsertTagForMessage(Integer formMessageId, Integer taggedPersonId);

@@ -23,15 +23,15 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class AllFeeformCountResponse implements Serializable {
 
-    @ColumnAlias("count")
-    private Long _count;
+    @ColumnAlias("feeSum")
+    private BigDecimal feeSum;
 
-    public Long get_count() {
-        return this._count;
+    public BigDecimal getFeeSum() {
+        return this.feeSum;
     }
 
-    public void set_count(Long _count) {
-        this._count = _count;
+    public void setFeeSum(BigDecimal feeSum) {
+        this.feeSum = feeSum;
     }
 
     @Override
@@ -39,11 +39,11 @@ public class AllFeeformCountResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof AllFeeformCountResponse)) return false;
         final AllFeeformCountResponse allFeeformCountResponse = (AllFeeformCountResponse) o;
-        return Objects.equals(get_count(), allFeeformCountResponse.get_count());
+        return Objects.equals(getFeeSum(), allFeeformCountResponse.getFeeSum());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(get_count());
+        return Objects.hash(getFeeSum());
     }
 }

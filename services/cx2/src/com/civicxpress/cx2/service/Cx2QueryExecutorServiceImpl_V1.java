@@ -474,12 +474,14 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Object> executeCountOfUserForms(Pageable pageable, Boolean closed, Integer creatorUser, Integer sharedWithUser) {
-        Map params = new HashMap(3);
+    public Page<Object> executeCountOfUserForms(Pageable pageable, Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Integer municipalityId) {
+        Map params = new HashMap(5);
 
+        params.put("codeEnforcement", codeEnforcement);
         params.put("closed", closed);
         params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
 
         return queryExecutor.executeNamedQuery("CountOfUserForms", params, Object.class, pageable);
     }
@@ -581,10 +583,11 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Object> executeCountOfAllProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser) {
-        Map params = new HashMap(3);
+    public Page<Object> executeCountOfAllProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer municipalityId, Integer creatorUser, Integer sharedWithUser) {
+        Map params = new HashMap(4);
 
         params.put("Active", active);
+        params.put("municipalityId", municipalityId);
         params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);
 

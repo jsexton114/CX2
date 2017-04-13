@@ -146,9 +146,9 @@ public interface Cx2QueryExecutorService {
 
     Integer executeSetPrimaryVendorStatusForFormandVendor(SetPrimaryVendorStatusForFormandVendorRequest setPrimaryVendorStatusForFormandVendorRequest);
 
-    Page<AllFeeformCountResponse> executeAllFeeformCount(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
+    Page<AllFeeformCountResponse> executeAllFeeformCount(Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable);
 
-    Downloadable exportAllFeeformCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable);
+    Downloadable exportAllFeeformCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable);
 
     Integer executeDeleteCategoryMapping(Integer form);
 
@@ -244,9 +244,9 @@ public interface Cx2QueryExecutorService {
 
     Integer executeAddGIStoProjects(AddGistoProjectsRequest addGistoProjectsRequest);
 
-    Page<CountOfUserFormsResponse> executeCountOfUserForms(Boolean closed, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
+    Page<CountOfUserFormsResponse> executeCountOfUserForms(Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Integer municipalityId, Pageable pageable);
 
-    Downloadable exportCountOfUserForms(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
+    Downloadable exportCountOfUserForms(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Integer municipalityId, Pageable pageable);
 
     Page<CountOfFormsForMunicipalityResponse> executeCountOfFormsForMunicipality(Integer municipalityId, Pageable pageable);
 
@@ -288,9 +288,9 @@ public interface Cx2QueryExecutorService {
 
     Integer executeDeleteToken(String token);
 
-    Page<CountOfAllProjectsForUsersAndSharedWithResponse> executeCountOfAllProjectsForUsersAndSharedWith(Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
+    Page<CountOfAllProjectsForUsersAndSharedWithResponse> executeCountOfAllProjectsForUsersAndSharedWith(Boolean active, Integer municipalityId, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
 
-    Downloadable exportCountOfAllProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
+    Downloadable exportCountOfAllProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer municipalityId, Integer creatorUser, Integer sharedWithUser, Pageable pageable);
 
     Integer executeInsertTagForMessage(InsertTagForMessageRequest insertTagForMessageRequest);
 

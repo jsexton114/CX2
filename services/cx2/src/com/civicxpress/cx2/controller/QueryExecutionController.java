@@ -624,9 +624,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/AllFeeformCount", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "AllFeeformCount")
-    public Page<AllFeeformCountResponse> executeAllFeeformCount(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+    public Page<AllFeeformCountResponse> executeAllFeeformCount(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
         LOGGER.debug("Executing named query: AllFeeformCount");
-        Page<AllFeeformCountResponse> _result = queryService.executeAllFeeformCount(allowPayment, paidStatus, userId, pageable);
+        Page<AllFeeformCountResponse> _result = queryService.executeAllFeeformCount(allowPayment, paidStatus, municipalityId, userId, pageable);
         LOGGER.debug("got the result for named query: AllFeeformCount, result:{}", _result);
         return _result;
     }
@@ -634,10 +634,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query AllFeeformCount")
     @RequestMapping(value = "/queries/AllFeeformCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportAllFeeformCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+    public Downloadable exportAllFeeformCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
         LOGGER.debug("Exporting named query: AllFeeformCount");
 
-        return queryService.exportAllFeeformCount(exportType, allowPayment, paidStatus, userId, pageable);
+        return queryService.exportAllFeeformCount(exportType, allowPayment, paidStatus, municipalityId, userId, pageable);
     }
 
     @RequestMapping(value = "/queries/DeleteCategoryMapping", method = RequestMethod.DELETE)
@@ -1095,9 +1095,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/CountOfUserForms", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "To get count for open or closed for user and SharedWith user")
-    public Page<CountOfUserFormsResponse> executeCountOfUserForms(@RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, Pageable pageable) {
+    public Page<CountOfUserFormsResponse> executeCountOfUserForms(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
         LOGGER.debug("Executing named query: CountOfUserForms");
-        Page<CountOfUserFormsResponse> _result = queryService.executeCountOfUserForms(closed, creatorUser, sharedWithUser, pageable);
+        Page<CountOfUserFormsResponse> _result = queryService.executeCountOfUserForms(codeEnforcement, closed, creatorUser, sharedWithUser, municipalityId, pageable);
         LOGGER.debug("got the result for named query: CountOfUserForms, result:{}", _result);
         return _result;
     }
@@ -1105,10 +1105,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query CountOfUserForms")
     @RequestMapping(value = "/queries/CountOfUserForms/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountOfUserForms(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, Pageable pageable) {
+    public Downloadable exportCountOfUserForms(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
         LOGGER.debug("Exporting named query: CountOfUserForms");
 
-        return queryService.exportCountOfUserForms(exportType, closed, creatorUser, sharedWithUser, pageable);
+        return queryService.exportCountOfUserForms(exportType, codeEnforcement, closed, creatorUser, sharedWithUser, municipalityId, pageable);
     }
 
     @RequestMapping(value = "/queries/CountOfFormsForMunicipality", method = RequestMethod.GET)
@@ -1307,9 +1307,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/CountOfAllProjectsForUsersAndSharedWith", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CountOfAllProjectsForUsersAndSharedWith")
-    public Page<CountOfAllProjectsForUsersAndSharedWithResponse> executeCountOfAllProjectsForUsersAndSharedWith(@RequestParam(value = "Active", required = false) Boolean active, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, Pageable pageable) {
+    public Page<CountOfAllProjectsForUsersAndSharedWithResponse> executeCountOfAllProjectsForUsersAndSharedWith(@RequestParam(value = "Active") Boolean active, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "creatorUser") Integer creatorUser, @RequestParam(value = "sharedWithUser") Integer sharedWithUser, Pageable pageable) {
         LOGGER.debug("Executing named query: CountOfAllProjectsForUsersAndSharedWith");
-        Page<CountOfAllProjectsForUsersAndSharedWithResponse> _result = queryService.executeCountOfAllProjectsForUsersAndSharedWith(active, creatorUser, sharedWithUser, pageable);
+        Page<CountOfAllProjectsForUsersAndSharedWithResponse> _result = queryService.executeCountOfAllProjectsForUsersAndSharedWith(active, municipalityId, creatorUser, sharedWithUser, pageable);
         LOGGER.debug("got the result for named query: CountOfAllProjectsForUsersAndSharedWith, result:{}", _result);
         return _result;
     }
@@ -1317,10 +1317,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query CountOfAllProjectsForUsersAndSharedWith")
     @RequestMapping(value = "/queries/CountOfAllProjectsForUsersAndSharedWith/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountOfAllProjectsForUsersAndSharedWith(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "Active", required = false) Boolean active, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, Pageable pageable) {
+    public Downloadable exportCountOfAllProjectsForUsersAndSharedWith(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "Active") Boolean active, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "creatorUser") Integer creatorUser, @RequestParam(value = "sharedWithUser") Integer sharedWithUser, Pageable pageable) {
         LOGGER.debug("Exporting named query: CountOfAllProjectsForUsersAndSharedWith");
 
-        return queryService.exportCountOfAllProjectsForUsersAndSharedWith(exportType, active, creatorUser, sharedWithUser, pageable);
+        return queryService.exportCountOfAllProjectsForUsersAndSharedWith(exportType, active, municipalityId, creatorUser, sharedWithUser, pageable);
     }
 
     @RequestMapping(value = "/queries/InsertTagForMessage", method = RequestMethod.POST)

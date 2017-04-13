@@ -23,16 +23,16 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class CountOfUserFormsResponse implements Serializable {
 
-    @JsonProperty("count")
-    @ColumnAlias("count")
-    private Integer _count;
+    @JsonProperty("formsCount")
+    @ColumnAlias("formsCount")
+    private Integer formsCount;
 
-    public Integer get_count() {
-        return this._count;
+    public Integer getFormsCount() {
+        return this.formsCount;
     }
 
-    public void set_count(Integer _count) {
-        this._count = _count;
+    public void setFormsCount(Integer formsCount) {
+        this.formsCount = formsCount;
     }
 
     @Override
@@ -40,11 +40,11 @@ public class CountOfUserFormsResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof CountOfUserFormsResponse)) return false;
         final CountOfUserFormsResponse countOfUserFormsResponse = (CountOfUserFormsResponse) o;
-        return Objects.equals(get_count(), countOfUserFormsResponse.get_count());
+        return Objects.equals(getFormsCount(), countOfUserFormsResponse.getFormsCount());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(get_count());
+        return Objects.hash(getFormsCount());
     }
 }

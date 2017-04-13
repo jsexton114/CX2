@@ -23,16 +23,16 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class CountOfAllProjectsForUsersAndSharedWithResponse implements Serializable {
 
-    @JsonProperty("count")
-    @ColumnAlias("count")
-    private Integer _count;
+    @JsonProperty("projectsCount")
+    @ColumnAlias("projectsCount")
+    private Integer projectsCount;
 
-    public Integer get_count() {
-        return this._count;
+    public Integer getProjectsCount() {
+        return this.projectsCount;
     }
 
-    public void set_count(Integer _count) {
-        this._count = _count;
+    public void setProjectsCount(Integer projectsCount) {
+        this.projectsCount = projectsCount;
     }
 
     @Override
@@ -40,11 +40,11 @@ public class CountOfAllProjectsForUsersAndSharedWithResponse implements Serializ
         if (this == o) return true;
         if (!(o instanceof CountOfAllProjectsForUsersAndSharedWithResponse)) return false;
         final CountOfAllProjectsForUsersAndSharedWithResponse countOfAllProjectsForUsersAndSharedWithResponse = (CountOfAllProjectsForUsersAndSharedWithResponse) o;
-        return Objects.equals(get_count(), countOfAllProjectsForUsersAndSharedWithResponse.get_count());
+        return Objects.equals(getProjectsCount(), countOfAllProjectsForUsersAndSharedWithResponse.getProjectsCount());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(get_count());
+        return Objects.hash(getProjectsCount());
     }
 }

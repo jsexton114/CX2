@@ -497,14 +497,15 @@ group by FeeType) wmTempTable
     <query name="AllFeeformCount">
         <![CDATA[
         select 
-count (*) as count
-from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidStatus=:paidStatus  and formGuid IN 
+sum (amount) as feeSum
+from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidStatus=:paidStatus and  (:municipalityId IS NULL OR municipalityId=:municipalityId) and formGuid IN 
        (select formGuid from MasterForms where userId=:userId or formGuid IN 
               (select relatedGuid from  SharedWith where sharedWithUser = :userId)
         )
         ]]>
     <query-param name="allowPayment" type="java.lang.Boolean"/>
     <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="userId" type="java.lang.Integer"/>
     </query>
 
@@ -516,6 +517,7 @@ from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidSt
         ]]>
     <query-param name="allowPayment" type="java.lang.Boolean"/>
     <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="userId" type="java.lang.Integer"/>
     </query>
 
@@ -1015,20 +1017,46 @@ from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidSt
 
     <sql-query name="CountOfUserForms">
         <![CDATA[
-        select count(*) as count from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))
+        SELECT count(MF.FormGuid) as formsCount
+
+FROM MasterForms MF
+LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
+LEFT JOIN Users AS U ON U.ID=MF.UserId
+
+
+where  FT.CodeEnforcement=:codeEnforcement and 
+    Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
+    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
         ]]>
+    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
     <query-param name="closed" type="java.lang.Boolean"/>
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="CountOfUserForms__count">
         <![CDATA[
-        select count(*) from (select count(*) as count from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))) wmTempTable
+        select count(*) from (SELECT count(MF.FormGuid) as formsCount
+
+FROM MasterForms MF
+LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
+LEFT JOIN Users AS U ON U.ID=MF.UserId
+
+
+where  FT.CodeEnforcement=:codeEnforcement and 
+    Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
+    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable
         ]]>
+    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
     <query-param name="closed" type="java.lang.Boolean"/>
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="CountOfFormsForMunicipality">
@@ -1205,18 +1233,28 @@ where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipa
 
     <sql-query name="CountOfAllProjectsForUsersAndSharedWith">
         <![CDATA[
-        select count(*) as count from Projects where  Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))
+        select count(*) as projectsCount
+from Projects 
+where Active=:Active  AND
+(:municipalityId IS NULL OR MunicipalityId=:municipalityId) and
+(CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))
         ]]>
     <query-param name="Active" type="java.lang.Boolean"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="CountOfAllProjectsForUsersAndSharedWith__count">
         <![CDATA[
-        select count(*) from (select count(*) as count from Projects where  Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))) wmTempTable
+        select count(*) from (select count(*) as projectsCount
+from Projects 
+where Active=:Active  AND
+(:municipalityId IS NULL OR MunicipalityId=:municipalityId) and
+(CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))) wmTempTable
         ]]>
     <query-param name="Active" type="java.lang.Boolean"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
     </sql-query>

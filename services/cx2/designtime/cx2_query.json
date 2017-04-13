@@ -818,7 +818,7 @@
     "name" : "AllFeeformCount",
     "description" : "AllFeeformCount",
     "version" : "V2",
-    "queryString" : "select \ncount (*) as count\nfrom Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidStatus=:paidStatus  and formGuid IN \n       (select formGuid from MasterForms where userId=:userId or formGuid IN \n              (select relatedGuid from  SharedWith where sharedWithUser = :userId)\n        )",
+    "queryString" : "select \nsum (amount) as feeSum\nfrom Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidStatus=:paidStatus and  (:municipalityId IS NULL OR municipalityId=:municipalityId) and formGuid IN \n       (select formGuid from MasterForms where userId=:userId or formGuid IN \n              (select relatedGuid from  SharedWith where sharedWithUser = :userId)\n        )",
     "countQueryString" : "select count(*)  from MasterForms where userId=:userId or formGuid IN \n              (select relatedGuid from  SharedWith where sharedWithUser = :userId)\n        )",
     "nativeSql" : false,
     "fetchCount" : true,
@@ -838,6 +838,13 @@
       "testValue" : "Unpaid",
       "required" : true
     }, {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : false
+    }, {
       "name" : "userId",
       "type" : "integer",
       "list" : false,
@@ -855,12 +862,12 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "count",
-        "fieldName" : "_count",
+        "name" : "feeSum",
+        "fieldName" : "feeSum",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Long",
+          "typeRef" : "java.math.BigDecimal",
           "list" : false
         }
       } ]
@@ -1488,8 +1495,8 @@
     "name" : "CountOfAllProjectsForUsersAndSharedWith",
     "description" : "CountOfAllProjectsForUsersAndSharedWith",
     "version" : "V1",
-    "queryString" : "select count(*) as count from Projects where  Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))",
-    "countQueryString" : "select count(*) from (select count(*) as count from Projects where  Active=:Active and (CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))) wmTempTable",
+    "queryString" : "select count(*) as projectsCount\nfrom Projects \nwhere Active=:Active  AND\n(:municipalityId IS NULL OR MunicipalityId=:municipalityId) and\n(CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))",
+    "countQueryString" : "select count(*) from (select count(*) as projectsCount\nfrom Projects \nwhere Active=:Active  AND\n(:municipalityId IS NULL OR MunicipalityId=:municipalityId) and\n(CreatedBy=:creatorUser or ProjectGUID IN (select RelatedProjectGUID from  ProjectSharedWith where ProjectSharedWithUser = :sharedWithUser ))) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -1499,21 +1506,28 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "true",
+      "required" : true
+    }, {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
       "required" : false
     }, {
       "name" : "creatorUser",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "42",
-      "required" : false
+      "testValue" : "1",
+      "required" : true
     }, {
       "name" : "sharedWithUser",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "42",
-      "required" : false
+      "testValue" : "1",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -1525,8 +1539,8 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "count",
-        "fieldName" : "_count",
+        "name" : "projectsCount",
+        "fieldName" : "projectsCount",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1993,12 +2007,19 @@
     "name" : "CountOfUserForms",
     "description" : "To get count for open or closed for user and SharedWith user",
     "version" : "V1",
-    "queryString" : "select count(*) as count from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))",
-    "countQueryString" : "select count(*) from (select count(*) as count from MasterForms where Closed=:closed and (UserId=:creatorUser or FormGUID IN (select RelatedGUID from  SharedWith where SharedWithUser = :sharedWithUser ))) wmTempTable",
+    "queryString" : "SELECT count(MF.FormGuid) as formsCount\n\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\n\n\nwhere  FT.CodeEnforcement=:codeEnforcement and \n    Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)",
+    "countQueryString" : "select count(*) from (SELECT count(MF.FormGuid) as formsCount\n\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\n\n\nwhere  FT.CodeEnforcement=:codeEnforcement and \n    Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
+      "name" : "codeEnforcement",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
       "name" : "closed",
       "type" : "boolean",
       "list" : false,
@@ -2010,14 +2031,21 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "3",
+      "testValue" : "1",
       "required" : false
     }, {
       "name" : "sharedWithUser",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "3",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
       "required" : false
     } ],
     "request" : {
@@ -2030,8 +2058,8 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "count",
-        "fieldName" : "_count",
+        "name" : "formsCount",
+        "fieldName" : "formsCount",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",

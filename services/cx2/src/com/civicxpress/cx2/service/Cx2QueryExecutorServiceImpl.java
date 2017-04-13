@@ -691,11 +691,12 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<AllFeeformCountResponse> executeAllFeeformCount(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
-        Map params = new HashMap(3);
+    public Page<AllFeeformCountResponse> executeAllFeeformCount(Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable) {
+        Map params = new HashMap(4);
 
         params.put("allowPayment", allowPayment);
         params.put("paidStatus", paidStatus);
+        params.put("municipalityId", municipalityId);
         params.put("userId", userId);
 
         return queryExecutor.executeNamedQuery("AllFeeformCount", params, AllFeeformCountResponse.class, pageable);
@@ -703,11 +704,12 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportAllFeeformCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
-        Map params = new HashMap(3);
+    public Downloadable exportAllFeeformCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable) {
+        Map params = new HashMap(4);
 
         params.put("allowPayment", allowPayment);
         params.put("paidStatus", paidStatus);
+        params.put("municipalityId", municipalityId);
         params.put("userId", userId);
 
         return queryExecutor.exportNamedQueryData("AllFeeformCount", params, exportType, AllFeeformCountResponse.class, pageable);
@@ -1246,24 +1248,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CountOfUserFormsResponse> executeCountOfUserForms(Boolean closed, Integer creatorUser, Integer sharedWithUser, Pageable pageable) {
-        Map params = new HashMap(3);
+    public Page<CountOfUserFormsResponse> executeCountOfUserForms(Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(5);
 
+        params.put("codeEnforcement", codeEnforcement);
         params.put("closed", closed);
         params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
 
         return queryExecutor.executeNamedQuery("CountOfUserForms", params, CountOfUserFormsResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportCountOfUserForms(ExportType exportType, Boolean closed, Integer creatorUser, Integer sharedWithUser, Pageable pageable) {
-        Map params = new HashMap(3);
+    public Downloadable exportCountOfUserForms(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(5);
 
+        params.put("codeEnforcement", codeEnforcement);
         params.put("closed", closed);
         params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
 
         return queryExecutor.exportNamedQueryData("CountOfUserForms", params, exportType, CountOfUserFormsResponse.class, pageable);
     }
@@ -1494,10 +1500,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CountOfAllProjectsForUsersAndSharedWithResponse> executeCountOfAllProjectsForUsersAndSharedWith(Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable) {
-        Map params = new HashMap(3);
+    public Page<CountOfAllProjectsForUsersAndSharedWithResponse> executeCountOfAllProjectsForUsersAndSharedWith(Boolean active, Integer municipalityId, Integer creatorUser, Integer sharedWithUser, Pageable pageable) {
+        Map params = new HashMap(4);
 
         params.put("Active", active);
+        params.put("municipalityId", municipalityId);
         params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);
 
@@ -1506,10 +1513,11 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportCountOfAllProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer creatorUser, Integer sharedWithUser, Pageable pageable) {
-        Map params = new HashMap(3);
+    public Downloadable exportCountOfAllProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer municipalityId, Integer creatorUser, Integer sharedWithUser, Pageable pageable) {
+        Map params = new HashMap(4);
 
         params.put("Active", active);
+        params.put("municipalityId", municipalityId);
         params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);
 

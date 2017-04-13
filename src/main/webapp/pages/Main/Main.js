@@ -3,27 +3,38 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        //current date
-        //$scope.Variables.Today.dataSet.dataValue = Date.parse(new Date().toDateString());
+
+        function calculateCount(municipality) {
+
+            $scope.Variables.CountOfClosedFormsForUser.setInput({
+                'municipalityId': municipality
+            });
+            $scope.Variables.CountOfClosedFormsForUser.update();
+            $scope.Variables.CountOfOpenFormsForUser.setInput({
+                'municipalityId': municipality
+            });
+
+            $scope.Variables.CountOfOpenFormsForUser.update();
+            $scope.Variables.CountOfAllProjectsForUsersAndSharedWith.setInput({
+                'municipalityId': municipality
+            });
+            $scope.Variables.CountOfAllProjectsForUsersAndSharedWith.update();
+            $scope.Variables.svFeeCountForUser.setInput({
+                'municipalityId': municipality
+            });
+            $scope.Variables.svFeeCountForUser.update();
+        }
 
         $scope.$watch(function() {
             return $scope.Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue;
         }, function(newVal, oldVal) {
+
             //Checking if no municipality is selected
             if (newVal == undefined) {
-                $scope.Variables.CountOfClosedFormsForUser.update();
-                $scope.Variables.CountOfOpenFormsForUser.update();
-                $scope.Variables.CountOfAllProjectsForUsersAndSharedWith.update();
-                $scope.Variables.svFeeCountForUser.update();
-
-
+                calculateCount(undefined);
             } else {
                 // For selected municipality
-                $scope.Variables.CountOfClosedFormsForMunicipality.update();
-                $scope.Variables.CountOfOpenFormsForMunicipality.update();
-                $scope.Variables.CountOfProjectsForUsersAndSharedWithByMunicipality.update();
-                $scope.Variables.svFeeCountForUserByMunicipality.update();
-
+                calculateCount($scope.Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID);
             }
         });
     };
@@ -37,45 +48,14 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
         $scope.Variables.CurrentUserDetails.update();
     };
 
-    $scope.CountOfClosedFormsForUseronSuccess = function(variable, data) {
-        $scope.closedCount = data.content[0].count;
-    };
 
-    $scope.CountOfOpenFormsForUseronSuccess = function(variable, data) {
-        $scope.openCount = data.content[0].count;
-        // To display on LeftNav
-        $scope.Variables.UserOpenFormsCount.dataSet.dataValue = data.content[0].count;
-    };
 
-    $scope.CountOfClosedFormsForMunicipalityonSuccess = function(variable, data) {
-        $scope.closedCount = data.content[0].count;
-    };
-
-    $scope.CountOfOpenFormsForMunicipalityonSuccess = function(variable, data) {
-        $scope.openCount = data.content[0].count;
-    };
-
-    $scope.CountOfAllProjectsForUsersAndSharedWithonSuccess = function(variable, data) {
-        $scope.projectsCount = data.content[0].count;
-    };
-
-    $scope.CountOfProjectsForUsersAndSharedWithByMunicipalityonSuccess = function(variable, data) {
-        $scope.projectsCount = data.content[0].count;
-    };
 
     $scope.serviceVariable1onSuccess = function(variable, data) {
         window.open(data);
     };
 
 
-    $scope.svFeeCountForUserByMunicipalityonSuccess = function(variable, data) {
-        $scope.feeCount = data.content[0]._count;
-    };
-
-
-    $scope.svFeeCountForUseronSuccess = function(variable, data) {
-        $scope.feeCount = data.content[0]._count;
-    };
 
 }]);
 
