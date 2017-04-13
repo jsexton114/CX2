@@ -950,8 +950,6 @@ public class FormService {
     	Type genericType = new TypeToken<HashMap<String, Object>>(){}.getType();
     	fieldData = gson.fromJson(fieldDataJsonString, genericType);
     	
-    	logger.debug(fieldData.toString());
-    	
     	try {
 	    	DBQueryParams queryParams = new DBQueryParams();
 	    	

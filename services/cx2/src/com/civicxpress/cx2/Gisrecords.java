@@ -61,7 +61,7 @@ public class Gisrecords implements Serializable {
     private String use;
     @Type(type = "DateTime")
     private LocalDateTime dateModified;
-    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.UPDATE, Scope.INSERT })
+    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.INSERT, Scope.UPDATE })
     private Integer modifiedBy;
     private String zoningClassification;
     private String floodZone;
@@ -75,8 +75,8 @@ public class Gisrecords implements Serializable {
     private Subdivisions subdivisions;
     private List<Fees> feeses = new ArrayList<>();
     private List<Giscontacts> giscontactses = new ArrayList<>();
-    private List<Gis2forms> gis2formses = new ArrayList<>();
     private List<GisTransaction> gisTransactions = new ArrayList<>();
+    private List<Gis2forms> gis2formses = new ArrayList<>();
     private List<InspectionGis> inspectionGises = new ArrayList<>();
     private List<MasterInspections> masterInspectionses = new ArrayList<>();
     private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
@@ -422,22 +422,22 @@ public class Gisrecords implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "gisrecords")
-    public List<Gis2forms> getGis2formses() {
-        return this.gis2formses;
-    }
-
-    public void setGis2formses(List<Gis2forms> gis2formses) {
-        this.gis2formses = gis2formses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "gisrecords")
     public List<GisTransaction> getGisTransactions() {
         return this.gisTransactions;
     }
 
     public void setGisTransactions(List<GisTransaction> gisTransactions) {
         this.gisTransactions = gisTransactions;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "gisrecords")
+    public List<Gis2forms> getGis2formses() {
+        return this.gis2formses;
+    }
+
+    public void setGis2formses(List<Gis2forms> gis2formses) {
+        this.gis2formses = gis2formses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
