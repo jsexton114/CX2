@@ -1,32 +1,43 @@
-Application.$controller("UserClosedFormsPageController", ["$scope", function ($scope) {
+Application.$controller("UserClosedFormsPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
+    $scope.onPageReady = function() {
+        $scope.$watch(function() {
+            return $scope.Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue;
+        }, function(newVal, oldVal) {
+
+            //Checking if no municipality is selected
+            if (newVal == undefined) {
+                $scope.Variables.FormsForUsersAndShared.setInput({
+                    'municipalityId': undefined
+                });
+                $scope.Variables.FormsForUsersAndShared.update();
+
+            } else {
+                // For selected municipality
+                $scope.Variables.FormsForUsersAndShared.setInput({
+                    'municipalityId': $scope.Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID
+                });
+                $scope.Variables.FormsForUsersAndShared.update();
+
+            }
+        });
     };
 
 }]);
 
 
 Application.$controller("gridOpenFormsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("dialogNewFormController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
