@@ -186,6 +186,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportInspectionsOfForm(ExportType exportType, String form, Pageable pageable);
 
+    Page<CasesByMunicipalityResponse> executeCasesByMunicipality(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Pageable pageable);
+
+    Downloadable exportCasesByMunicipality(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Pageable pageable);
+
     Integer executeAddingVendorsToForm(AddingVendorsToFormRequest addingVendorsToFormRequest);
 
     Integer executeUpdateUserBillingInfoPreference(UpdateUserBillingInfoPreferenceRequest updateUserBillingInfoPreferenceRequest);

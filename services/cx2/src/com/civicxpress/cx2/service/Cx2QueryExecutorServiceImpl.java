@@ -925,6 +925,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("InspectionsOfForm", params, exportType, FormsToInspections.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CasesByMunicipalityResponse> executeCasesByMunicipality(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("CasesByMunicipality", params, CasesByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCasesByMunicipality(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("CasesByMunicipality", params, exportType, CasesByMunicipalityResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeAddingVendorsToForm(AddingVendorsToFormRequest addingVendorsToFormRequest) {

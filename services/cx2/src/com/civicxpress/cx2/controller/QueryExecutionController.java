@@ -812,6 +812,25 @@ public class QueryExecutionController {
         return queryService.exportInspectionsOfForm(exportType, form, pageable);
     }
 
+    @RequestMapping(value = "/queries/CasesByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CasesByMunicipality")
+    public Page<CasesByMunicipalityResponse> executeCasesByMunicipality(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: CasesByMunicipality");
+        Page<CasesByMunicipalityResponse> _result = queryService.executeCasesByMunicipality(codeEnforcement, closed, municipalityId, pageable);
+        LOGGER.debug("got the result for named query: CasesByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CasesByMunicipality")
+    @RequestMapping(value = "/queries/CasesByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCasesByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CasesByMunicipality");
+
+        return queryService.exportCasesByMunicipality(exportType, codeEnforcement, closed, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/AddingVendorsToForm", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "AddingVendorsToForm")
