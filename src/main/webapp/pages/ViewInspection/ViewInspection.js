@@ -87,12 +87,12 @@ Application.$controller("ViewInspectionPageController", ["$scope", function($sco
 
             // Send Mails of Message
             var tempLink = window.location.hostname + "/#/ViewInspection?inspectionGuid=" + $scope.pageParams.inspectionGuid;
-            // $scope.Variables.svSendInspectionMessagesMail.setInput({
-            //     'inspectionLink': tempLink,
-            //     'recipient': $scope.messageMailingList,
-            //     'comments': data.message
-            // });
-            // $scope.Variables.svSendInspectionMessagesMail.update();
+            $scope.Variables.svSendInspectionMessagesMail.setInput({
+                'inspectionLink': tempLink,
+                'recipient': $scope.messageMailingList,
+                'comments': data.message
+            });
+            $scope.Variables.svSendInspectionMessagesMail.update();
         }
     };
 
@@ -149,7 +149,7 @@ Application.$controller("ViewInspectionPageController", ["$scope", function($sco
     };
 
 
-    $scope.svSendFormMessagesMailonSuccess = function(variable, data) {
+    $scope.svSendInspectionMessagesMailonSuccess = function(variable, data) {
         $scope.Variables.PeopleList.dataSet = [];
     };
 
@@ -168,6 +168,8 @@ Application.$controller("ViewInspectionPageController", ["$scope", function($sco
             }
         }
     };
+
+
 
 
 }]);

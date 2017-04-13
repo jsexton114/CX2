@@ -13704,6 +13704,34 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.InspectionOutcome"
   },
+  "MessageMailsSent" : {
+    "_id" : "wm-MessageMailsSent-wm.NotificationVariable-1492082922682",
+    "name" : "MessageMailsSent",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "bind:\"A notification has been sent to \"+messageMailingList",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "nocAttachmentAdded" : {
     "_id" : "wm-nocAttachmentAdded-wm.NotificationVariable-1486659696078",
     "name" : "nocAttachmentAdded",
@@ -15202,6 +15230,52 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "Inspection"
+  },
+  "svSendInspectionMessagesMail" : {
+    "_id" : "wm-svSendInspectionMessagesMail-wm.ServiceVariable-1492082839634",
+    "name" : "svSendInspectionMessagesMail",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "sender",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.firstName+\" \"+Variables.CurrentUserDetails.dataSet.lastName",
+      "type" : "string"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Variables.lvInspection.firstRecord.inspectionDesign.municipalities.municipalityName",
+      "type" : "string"
+    }, {
+      "target" : "inspectionType",
+      "value" : "bind:Variables.lvInspection.firstRecord.inspectionDesign.inspectDesignName",
+      "type" : "string"
+    }, {
+      "target" : "municipalitySignature",
+      "value" : "bind:Variables.lvInspection.firstRecord.inspectionDesign.inspectDesignName",
+      "type" : "string"
+    }, {
+      "target" : "inspectionTitle",
+      "value" : "bind:Variables.lvInspection.firstRecord.inspectionTitle",
+      "type" : "string"
+    } ],
+    "type" : "string",
+    "service" : "InspectionMessagingMailService",
+    "operation" : "sendMessagingMail",
+    "operationId" : "InspectionMessagingMailController_sendMessagingMail",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.MessageMailsSent.invoke();svSendInspectionMessagesMailonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "InspectionMessagingMail",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Sending Mails....."
   },
   "svSetInspectionOutcome" : {
     "_id" : "wm-svSetInspectionOutcome-wm.ServiceVariable-1492030660079",
