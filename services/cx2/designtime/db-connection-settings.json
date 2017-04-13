@@ -84,9 +84,6 @@
     "table" : "GISContacts",
     "schema" : "cx2"
   }, {
-    "table" : "GIS2Forms",
-    "schema" : "cx2"
-  }, {
     "table" : "GisTransaction",
     "schema" : "cx2"
   }, {
@@ -94,6 +91,9 @@
     "schema" : "cx2"
   }, {
     "table" : "GlobalSettings",
+    "schema" : "cx2"
+  }, {
+    "table" : "GIS2Forms",
     "schema" : "cx2"
   }, {
     "table" : "Holidays",
@@ -105,19 +105,25 @@
     "table" : "InspectionGis",
     "schema" : "cx2"
   }, {
-    "table" : "InspectionHistory",
+    "table" : "InspectionOutcome",
     "schema" : "cx2"
   }, {
-    "table" : "InspectionOutcome",
+    "table" : "InspectionHistory",
     "schema" : "cx2"
   }, {
     "table" : "InspectionOutcomeFee",
     "schema" : "cx2"
   }, {
+    "table" : "LetterTemplates",
+    "schema" : "cx2"
+  }, {
     "table" : "InspectionSequence",
     "schema" : "cx2"
   }, {
-    "table" : "LetterTemplates",
+    "table" : "ManualFeeTypes",
+    "schema" : "cx2"
+  }, {
+    "table" : "MasterCases",
     "schema" : "cx2"
   }, {
     "table" : "MasterForms",
@@ -126,16 +132,10 @@
     "table" : "MasterInspections",
     "schema" : "cx2"
   }, {
-    "table" : "MasterCases",
-    "schema" : "cx2"
-  }, {
-    "table" : "ManualFeeTypes",
+    "table" : "Municipalities",
     "schema" : "cx2"
   }, {
     "table" : "MasterProjects",
-    "schema" : "cx2"
-  }, {
-    "table" : "Municipalities",
     "schema" : "cx2"
   }, {
     "table" : "InspectionCategoryMapping",
@@ -153,16 +153,16 @@
     "table" : "ProjectForms",
     "schema" : "cx2"
   }, {
-    "table" : "Projects",
-    "schema" : "cx2"
-  }, {
     "table" : "ProjectGISRecords",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectSharedWith",
+    "table" : "Projects",
     "schema" : "cx2"
   }, {
     "table" : "ProjectTasks",
+    "schema" : "cx2"
+  }, {
+    "table" : "ProjectSharedWith",
     "schema" : "cx2"
   }, {
     "table" : "Roles",
@@ -186,22 +186,16 @@
     "table" : "TransactionToFees",
     "schema" : "cx2"
   }, {
-    "table" : "UserPasswordResetTokens",
-    "schema" : "cx2"
-  }, {
     "table" : "Users",
     "schema" : "cx2"
   }, {
     "table" : "Vendor",
     "schema" : "cx2"
   }, {
+    "table" : "UserPasswordResetTokens",
+    "schema" : "cx2"
+  }, {
     "table" : "UserSubscriptions",
-    "schema" : "cx2"
-  }, {
-    "table" : "UserViewPreferences",
-    "schema" : "cx2"
-  }, {
-    "table" : "VendorAdmins",
     "schema" : "cx2"
   }, {
     "table" : "VendorApprovals",
@@ -210,16 +204,22 @@
     "table" : "VendorLicenses",
     "schema" : "cx2"
   }, {
+    "table" : "UserViewPreferences",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorAdmins",
+    "schema" : "cx2"
+  }, {
     "table" : "Vendors2Form",
     "schema" : "cx2"
   }, {
     "table" : "VendorsToProject",
     "schema" : "cx2"
   }, {
-    "table" : "Violations",
+    "table" : "VendorUsers",
     "schema" : "cx2"
   }, {
-    "table" : "VendorUsers",
+    "table" : "Violations",
     "schema" : "cx2"
   }, {
     "table" : "VendorLicenseTypes",

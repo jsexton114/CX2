@@ -67,7 +67,6 @@ public class InspectionDesign implements Serializable {
     private boolean allowUnscheduledInspection;
     private boolean trackViolations;
     private String inspectionTableName;
-    private boolean scheduleDateOnly;
     private boolean scheduleDateAndTime;
     private BigInteger currentPrefixNumber;
     private Integer prefixNumberResetOn;
@@ -378,15 +377,6 @@ public class InspectionDesign implements Serializable {
 
     public void setInspectionTableName(String inspectionTableName) {
         this.inspectionTableName = inspectionTableName;
-    }
-
-    @Column(name = "`ScheduleDateOnly`", nullable = false)
-    public boolean isScheduleDateOnly() {
-        return this.scheduleDateOnly;
-    }
-
-    public void setScheduleDateOnly(boolean scheduleDateOnly) {
-        this.scheduleDateOnly = scheduleDateOnly;
     }
 
     @Column(name = "`ScheduleDateAndTime`", nullable = false)

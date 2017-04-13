@@ -1132,19 +1132,6 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "scheduleDateOnly",
-        "type" : "boolean",
-        "fullyQualifiedType" : "boolean",
-        "columnName" : "ScheduleDateOnly",
-        "isPrimaryKey" : false,
-        "notNull" : true,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "TRUE",
-        "scale" : 0
-      }, {
         "fieldName" : "scheduleDateAndTime",
         "type" : "boolean",
         "fullyQualifiedType" : "boolean",
@@ -2271,19 +2258,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "scheduleDateOnly",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "ScheduleDateOnly",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "TRUE",
-          "scale" : 0
-        }, {
           "fieldName" : "scheduleDateAndTime",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -2839,19 +2813,6 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "scheduleDateOnly",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "ScheduleDateOnly",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "scheduleDateAndTime",
@@ -3914,19 +3875,6 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "scheduleDateOnly",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "ScheduleDateOnly",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "scheduleDateAndTime",
@@ -5142,19 +5090,6 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "scheduleDateOnly",
-        "type" : "boolean",
-        "fullyQualifiedType" : "boolean",
-        "columnName" : "ScheduleDateOnly",
-        "isPrimaryKey" : false,
-        "notNull" : true,
-        "length" : 0,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "defaultValue" : "TRUE",
-        "scale" : 0
-      }, {
         "fieldName" : "scheduleDateAndTime",
         "type" : "boolean",
         "fullyQualifiedType" : "boolean",
@@ -6327,19 +6262,6 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
-        }, {
-          "fieldName" : "scheduleDateOnly",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "ScheduleDateOnly",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "TRUE",
           "scale" : 0
         }, {
           "fieldName" : "scheduleDateAndTime",
@@ -8224,6 +8146,23 @@
     }, {
       "label" : "Reset Every Year",
       "value" : "ResetYear"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "stvScheduleDateTimeOptions" : {
+    "_id" : "wm-stvScheduleDateTimeOptions-wm.Variable-1492103323663",
+    "name" : "stvScheduleDateTimeOptions",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Date Only",
+      "value" : false
+    }, {
+      "label" : "Date and Time",
+      "value" : true
     } ],
     "type" : "string",
     "isList" : true,
