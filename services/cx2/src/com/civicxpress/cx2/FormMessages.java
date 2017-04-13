@@ -40,6 +40,8 @@ public class FormMessages implements Serializable {
     private Timestamp postedAt;
     private Boolean municipalityMessage;
     private String relatedProjectGuid;
+    private String relatedInspectionGuid;
+    private MasterInspections masterInspections;
     private MasterForms masterForms;
     private Projects projects;
     private Users users;
@@ -108,6 +110,29 @@ public class FormMessages implements Serializable {
 
     public void setRelatedProjectGuid(String relatedProjectGuid) {
         this.relatedProjectGuid = relatedProjectGuid;
+    }
+
+    @Column(name = "`RelatedInspectionGUID`", nullable = true, length = 32)
+    public String getRelatedInspectionGuid() {
+        return this.relatedInspectionGuid;
+    }
+
+    public void setRelatedInspectionGuid(String relatedInspectionGuid) {
+        this.relatedInspectionGuid = relatedInspectionGuid;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`RelatedInspectionGUID`", referencedColumnName = "`InspectionGuid`", insertable = false, updatable = false)
+    public MasterInspections getMasterInspections() {
+        return this.masterInspections;
+    }
+
+    public void setMasterInspections(MasterInspections masterInspections) {
+        if(masterInspections != null) {
+            this.relatedInspectionGuid = masterInspections.getInspectionGuid();
+        }
+
+        this.masterInspections = masterInspections;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

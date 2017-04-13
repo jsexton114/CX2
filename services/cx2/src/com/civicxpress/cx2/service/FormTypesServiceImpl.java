@@ -121,14 +121,6 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getFormStatuseses() != null) {
-            for(FormStatuses formStatusese : formTypesCreated.getFormStatuseses()) {
-                formStatusese.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
-                formStatusesService.create(formStatusese);
-            }
-        }
-
         if(formTypesCreated.getFormDrafts() != null) {
             for(FormDraft formDraft : formTypesCreated.getFormDrafts()) {
                 formDraft.setFormTypes(formTypesCreated);
@@ -137,11 +129,11 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getFormTypeFieldses() != null) {
-            for(FormTypeFields formTypeFieldse : formTypesCreated.getFormTypeFieldses()) {
-                formTypeFieldse.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormTypeFields with information: {}", formTypeFieldse);
-                formTypeFieldsService.create(formTypeFieldse);
+        if(formTypesCreated.getFormStatuseses() != null) {
+            for(FormStatuses formStatusese : formTypesCreated.getFormStatuseses()) {
+                formStatusese.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormStatuses with information: {}", formStatusese);
+                formStatusesService.create(formStatusese);
             }
         }
 
@@ -153,11 +145,11 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getLetterTemplateses() != null) {
-            for(LetterTemplates letterTemplatese : formTypesCreated.getLetterTemplateses()) {
-                letterTemplatese.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child LetterTemplates with information: {}", letterTemplatese);
-                letterTemplatesService.create(letterTemplatese);
+        if(formTypesCreated.getFormTypeFieldses() != null) {
+            for(FormTypeFields formTypeFieldse : formTypesCreated.getFormTypeFieldses()) {
+                formTypeFieldse.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormTypeFields with information: {}", formTypeFieldse);
+                formTypeFieldsService.create(formTypeFieldse);
             }
         }
 
@@ -166,6 +158,14 @@ public class FormTypesServiceImpl implements FormTypesService {
                 inspectionSequence.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
                 inspectionSequenceService.create(inspectionSequence);
+            }
+        }
+
+        if(formTypesCreated.getLetterTemplateses() != null) {
+            for(LetterTemplates letterTemplatese : formTypesCreated.getLetterTemplateses()) {
+                letterTemplatese.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child LetterTemplates with information: {}", letterTemplatese);
+                letterTemplatesService.create(letterTemplatese);
             }
         }
 
@@ -285,17 +285,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formStatuseses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return formStatusesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormDraft> findAssociatedFormDrafts(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formDrafts");
 
@@ -307,13 +296,13 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formTypeFieldses");
+    public Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formStatuseses");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("formTypes.id = '" + id + "'");
 
-        return formTypeFieldsService.findAll(queryBuilder.toString(), pageable);
+        return formStatusesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -329,13 +318,13 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated letterTemplateses");
+    public Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formTypeFieldses");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("formTypes.id = '" + id + "'");
 
-        return letterTemplatesService.findAll(queryBuilder.toString(), pageable);
+        return formTypeFieldsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -347,6 +336,17 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return inspectionSequenceService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated letterTemplateses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return letterTemplatesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

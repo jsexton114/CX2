@@ -31,6 +31,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.Fees;
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.InspectionHistory;
@@ -154,6 +155,15 @@ public class MasterInspectionsController {
 
         LOGGER.debug("Fetching all associated feeses");
         return masterInspectionsService.findAssociatedFeeses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/formMessageses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the formMessageses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<FormMessages> findAssociatedFormMessageses(@PathVariable("id") String id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated formMessageses");
+        return masterInspectionsService.findAssociatedFormMessageses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/formsToInspectionses", method=RequestMethod.GET)

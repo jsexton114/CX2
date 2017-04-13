@@ -52,7 +52,7 @@ public class MasterInspections implements Serializable {
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime dateRequested;
-    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT, Scope.UPDATE })
+    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime dateModified;
     private Integer assignedTo;
@@ -73,6 +73,7 @@ public class MasterInspections implements Serializable {
     private Users usersByModifiedBy;
     private Projects projects;
     private List<Fees> feeses = new ArrayList<>();
+    private List<FormMessages> formMessageses = new ArrayList<>();
     private List<FormsToInspections> formsToInspectionses = new ArrayList<>();
     private List<InspectionGis> inspectionGises = new ArrayList<>();
     private List<InspectionHistory> inspectionHistories = new ArrayList<>();
@@ -387,6 +388,16 @@ public class MasterInspections implements Serializable {
 
     public void setFeeses(List<Fees> feeses) {
         this.feeses = feeses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "masterInspections")
+    public List<FormMessages> getFormMessageses() {
+        return this.formMessageses;
+    }
+
+    public void setFormMessageses(List<FormMessages> formMessageses) {
+        this.formMessageses = formMessageses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

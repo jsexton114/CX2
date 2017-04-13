@@ -15,6 +15,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.InspectionHistory;
@@ -142,6 +143,18 @@ public interface MasterInspectionsService {
      * @see Page
      */
     Page<Fees> findAssociatedFeeses(String inspectionGuid, Pageable pageable);
+
+    /*
+     * Returns the associated formMessageses for given MasterInspections id.
+     *
+     * @param inspectionGuid value of inspectionGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated FormMessages instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<FormMessages> findAssociatedFormMessageses(String inspectionGuid, Pageable pageable);
 
     /*
      * Returns the associated formsToInspectionses for given MasterInspections id.

@@ -172,18 +172,6 @@ public interface FormTypesService {
     Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated formStatuseses for given FormTypes id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated FormStatuses instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated formDrafts for given FormTypes id.
      *
      * @param id value of id; value cannot be null
@@ -196,16 +184,16 @@ public interface FormTypesService {
     Page<FormDraft> findAssociatedFormDrafts(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated formTypeFieldses for given FormTypes id.
+     * Returns the associated formStatuseses for given FormTypes id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated FormTypeFields instances.
+     * @return Paginated list of associated FormStatuses instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable);
+    Page<FormStatuses> findAssociatedFormStatuseses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated formToInspectionCategoryMappings for given FormTypes id.
@@ -220,16 +208,16 @@ public interface FormTypesService {
     Page<FormToInspectionCategoryMapping> findAssociatedFormToInspectionCategoryMappings(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated letterTemplateses for given FormTypes id.
+     * Returns the associated formTypeFieldses for given FormTypes id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated LetterTemplates instances.
+     * @return Paginated list of associated FormTypeFields instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable);
+    Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated inspectionSequences for given FormTypes id.
@@ -242,6 +230,18 @@ public interface FormTypesService {
      * @see Page
      */
     Page<InspectionSequence> findAssociatedInspectionSequences(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated letterTemplateses for given FormTypes id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated LetterTemplates instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated masterFormses for given FormTypes id.
