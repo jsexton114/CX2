@@ -4,7 +4,9 @@
             <wm-grid-column binding="displayOrder" caption="Display Order" type="integer" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
             <wm-grid-column binding="label" caption="Label" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
             <wm-grid-column binding="formFieldTypes.label" caption="Field Type" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormFieldTypes"></wm-grid-column>
-            <wm-grid-column binding="required" caption="Required" type="boolean" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false"></wm-grid-column>
+            <wm-grid-column binding="required" caption="Required" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                <wm-checkbox scopedatavalue="row['required']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+            </wm-grid-column>
             <wm-grid-column binding="defaultValue" caption="Default Value" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
             <wm-grid-column binding="helpText" caption="Help Text" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
             <wm-grid-column binding="possibleValues" caption="Possible Selections" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>

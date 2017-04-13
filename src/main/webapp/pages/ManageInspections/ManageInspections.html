@@ -12,7 +12,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
-                        <wm-label caption="Manage Inspections" fontweight="bold" name="label1" class="h4"></wm-label>
+                        <wm-label caption="Inspection Management" fontweight="bold" name="label1" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
@@ -25,7 +25,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2" padding="1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-panel iconclass="wi wi-find-in-page" autoclose="outsideClick" name="panelInspectionDesigns" title="My Inspection Designs" class="panel-primary">
+                        <wm-panel iconclass="wi wi-find-in-page" autoclose="outsideClick" name="panelInspectionDesigns" title="Municipality Inspections" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegridInspectiondesign">
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionDesignData.dataSet" navigation="Classic" name="gridInspectiondesign" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                     <wm-grid-column binding="inspectDesignName" caption="Inspection" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -38,7 +38,8 @@
                                         <wm-checkbox scopedatavalue="row['municipalityInternalInspection']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                     </wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New Design" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Design" action="Widgets.dlgCreateInspectionDesign.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                    <wm-grid-action key="addNewRow" display-name="New Inspection" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Inspection" action="Widgets.dlgCreateInspectionDesign.open()" shortcutkey=""
+                                    disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.goToPage_EditInspection.invoke()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dlgDeleteInspectionDesign.open()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
@@ -69,8 +70,8 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow8">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn9">
-                                                <wm-form-field name="inspectionCategoryDescription" displayname="Description" show="true" primary-key="false" generator="assigned" key="inspectionCategoryDescription" type="string" readonly="false" required="true"
-                                                widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                <wm-form-field name="inspectionCategoryDescription" displayname="Category Description" show="true" primary-key="false" generator="assigned" key="inspectionCategoryDescription" type="string" readonly="false"
+                                                required="true" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
@@ -89,13 +90,13 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view1">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Create Inspection Design" iconclass="wi wi-find-in-page" name="dlgCreateInspectionDesign">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="New Inspection Design" iconclass="wi wi-find-in-page" name="dlgCreateInspectionDesign">
             <wm-layoutgrid name="layoutgrid4">
                 <wm-gridrow name="gridrow8_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn13">
                         <wm-composite name="composite2" required="true">
-                            <wm-label class="col-md-5 form-control-static" name="label7" caption="Inspection Design Name" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-7" name="container2">
+                            <wm-label class="col-md-4 form-control-static" name="label7" caption="Inspection Name" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-8" name="container2">
                                 <wm-text name="textInspectionDesignName" placeholder="Enter text"></wm-text>
                             </wm-container>
                         </wm-composite>

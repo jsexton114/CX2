@@ -43,9 +43,9 @@
                                                             checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn114" padding="unset 1em unset unset">
-                                                            <wm-form-field name="codeEnforcement" displayname="Code Enforcement" show="true" primary-key="false" generator="assigned" key="codeEnforcement" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                            defaultvalue="false" hint="This setting will classify this form as a Code Enforcement form for reporting purposes, and when this form is submitted it is considered a &quot;Case&quot;." placeholder=""
-                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                            <wm-form-field name="codeEnforcement" displayname="Code Enforcement Form" show="true" primary-key="false" generator="assigned" key="codeEnforcement" type="boolean" readonly="false" required="false"
+                                                            widget="checkbox" defaultvalue="false" hint="This setting will classify this form as a Code Enforcement Form, which is considered in the system as a &quot;Case&quot; and directed to Code Enforcement Officers."
+                                                            placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow1333" padding="unset unset 1em unset">
@@ -321,6 +321,8 @@
                                     <wm-gridrow name="gridrow55">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn80">
                                             <wm-label padding="unset 0.5em" name="label15" caption="You can add this form to one or many form categories. This will affect where the form appears to CivicXpress users, makes the form searchable by category, and is used to generate municipality statistics and reporting."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label35_1" caption="&quot;Internal Only&quot; categories are only visible to municipality employees."></wm-label>
+                                            <wm-label padding="1em 0.5em unset 0.5em" name="label36_1" caption="Note: forms can be added to both public and internal categories. To control visibility of the form itself, you must use the &quot;Municipality Internal Form&quot; toggle on the &quot;Settings&quot; tab."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow26">
@@ -329,7 +331,7 @@
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.FormCategories.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                     <wm-grid-column binding="formCategories.category" caption="Form Category" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormCategories"></wm-grid-column>
                                                     <wm-grid-column binding="formCategories.description" caption="Description" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormCategories"></wm-grid-column>
-                                                    <wm-grid-column binding="formCategories.municipalityInternalCategory" caption="Internal Category" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" readonly="true"
+                                                    <wm-grid-column binding="formCategories.municipalityInternalCategory" caption="Internal Only" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" readonly="true"
                                                     edit-widget-type="checkbox" show="true" related-entity-name="FormCategories">
                                                         <wm-checkbox scopedatavalue="row['formCategories.municipalityInternalCategory']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
@@ -342,18 +344,19 @@
                                                     <wm-layoutgrid columns="1" name="layoutgrid9">
                                                         <wm-gridrow name="gridrow80">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn111_2">
-                                                                <wm-form-field displayname="Select Type" widget="select" show="true" type="custom" name="selectCategoryType" dataset="Internal,Public" defaultvalue="Internal"></wm-form-field>
+                                                                <wm-form-field displayname="Would you like to add this form to a public-facing or internal-only category?" widget="select" show="true" type="custom" name="selectCategoryType" dataset="Public,Internal"
+                                                                defaultvalue="Public" required="true"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow37">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn62">
-                                                                <wm-form-field name="formCategories" displayname="What form category does this form belong in?" show="true" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true"
+                                                                <wm-form-field name="formCategories" displayname="What category does this form belong in?" show="true" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true"
                                                                 readonly="false" required="true" widget="select" dataset="bind:Variables.Categories.dataSet" datafield="All Fields" displayfield="category" orderby="category:asc" placeholder="Select Category"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow30">
-                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn62_1">
-                                                                <wm-label name="label62_1" caption="If this form belongs in a category that isn't available above, you can create a new category on the Manage Forms page." margin="1em unset unset unset"></wm-label>
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn62_1" padding="2em unset unset unset">
+                                                                <wm-label name="label62_1" caption="If this form belongs in a category that isn't available above, you can create a new category on the Manage Forms page." margin="unset 0.5em unset unset"></wm-label>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
