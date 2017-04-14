@@ -159,10 +159,12 @@ Application.$controller("gridAdvancedController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.goToPage_FormsFormSearch.setData({
-                'FormGUID': $rowData.formGuid
-            });
-            $scope.Variables.goToPage_FormsFormSearch.navigate();
+            // $scope.Variables.goToPage_FormsFormSearch.setData({
+            //     'FormGUID': $rowData.formGuid
+            // });
+            // $scope.Variables.goToPage_FormsFormSearch.navigate();
+            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+            window.open(tempLink);
         };
 
     }
@@ -185,10 +187,12 @@ Application.$controller("gridVENDORController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.goToPage_FormsFormSearch.setData({
-                'FormGUID': $rowData.formGuid
-            });
-            $scope.Variables.goToPage_FormsFormSearch.navigate();
+            // $scope.Variables.goToPage_FormsFormSearch.setData({
+            //     'FormGUID': $rowData.formGuid
+            // });
+            // $scope.Variables.goToPage_FormsFormSearch.navigate();
+            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+            window.open(tempLink);
         };
 
     }
@@ -200,10 +204,12 @@ Application.$controller("gridUserFormsController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.goToPage_FormsFormSearch.setData({
-                'FormGUID': $rowData.formGuid
-            });
-            $scope.Variables.goToPage_FormsFormSearch.navigate();
+            // $scope.Variables.goToPage_FormsFormSearch.setData({
+            //     'FormGUID': $rowData.formGuid
+            // });
+            // $scope.Variables.goToPage_FormsFormSearch.navigate();
+            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+            window.open(tempLink);
         };
 
     }
@@ -216,10 +222,12 @@ Application.$controller("gridFormsAddressController", ["$scope",
 
         $scope.customRowAction = function($event, $rowData) {
             $scope.customRowAction = function($event, $rowData) {
-                $scope.Variables.goToPage_FormsFormSearch.setData({
-                    'FormGUID': $rowData.formGuid
-                });
-                $scope.Variables.goToPage_FormsFormSearch.navigate();
+                // $scope.Variables.goToPage_FormsFormSearch.setData({
+                //     'FormGUID': $rowData.formGuid
+                // });
+                // $scope.Variables.goToPage_FormsFormSearch.navigate();
+                var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+                window.open(tempLink);
             };
         };
 
