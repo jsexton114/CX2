@@ -3580,19 +3580,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "scheduleDateOnly",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "ScheduleDateOnly",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "TRUE",
-          "scale" : 0
-        }, {
           "fieldName" : "scheduleDateAndTime",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -3630,6 +3617,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "description",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Description",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
           "scale" : 0
         } ]
       }, {
@@ -4259,6 +4258,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "description",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Description",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
           "scale" : 0
         } ]
       }, {
@@ -9471,19 +9482,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "scheduleDateOnly",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "ScheduleDateOnly",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "TRUE",
-          "scale" : 0
-        }, {
           "fieldName" : "scheduleDateAndTime",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -9521,6 +9519,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "description",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Description",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
           "scale" : 0
         } ]
       }, {
@@ -13504,19 +13514,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "scheduleDateOnly",
-          "type" : "boolean",
-          "fullyQualifiedType" : "boolean",
-          "columnName" : "ScheduleDateOnly",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "defaultValue" : "TRUE",
-          "scale" : 0
-        }, {
           "fieldName" : "scheduleDateAndTime",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -13554,6 +13551,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "description",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Description",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
           "scale" : 0
         } ]
       }, {
@@ -15277,6 +15286,77 @@
     "spinnerContext" : "page",
     "spinnerMessage" : "Sending Mails....."
   },
+  "svSendOutcomeUpdate" : {
+    "_id" : "wm-svSendOutcomeUpdate-wm.ServiceVariable-1492165180115",
+    "name" : "svSendOutcomeUpdate",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "emailSubject",
+      "value" : "bind:Widgets.selectOutcome.datavalue.emailSubjectLine",
+      "type" : "string"
+    }, {
+      "target" : "emailBody",
+      "value" : "bind:Widgets.selectOutcome.datavalue.emailBodyText",
+      "type" : "string"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Variables.lvInspection.firstRecord.inspectionDesign.municipalities.municipalityName",
+      "type" : "string"
+    }, {
+      "target" : "inspectionDesign",
+      "value" : "bind:Variables.lvInspection.firstRecord.inspectionDesign.inspectDesignName",
+      "type" : "string"
+    }, {
+      "target" : "Lot",
+      "value" : "bind:Variables.lvInspection.firstRecord.gisrecords.lot",
+      "type" : "string"
+    }, {
+      "target" : "fullAddress",
+      "value" : "bind:Variables.lvInspection.firstRecord.gisrecords.fullAddress",
+      "type" : "string"
+    }, {
+      "target" : "inspectionOutcome",
+      "value" : "bind:Widgets.selectOutcome.datavalue.outcome",
+      "type" : "string"
+    }, {
+      "target" : "Subdivision",
+      "value" : "bind:Variables.lvInspection.firstRecord.gisrecords.subdivisions.subdivision",
+      "type" : "string"
+    }, {
+      "target" : "municipalitySignature",
+      "value" : "bind:Variables.lvInspection.firstRecord.inspectionDesign.municipalities.globalEmailSig",
+      "type" : "string"
+    }, {
+      "target" : "username",
+      "value" : "bind:Variables.lvInspection.firstRecord.usersByRequestedBy.fullName",
+      "type" : "string"
+    }, {
+      "target" : "recipient",
+      "value" : "bind:Variables.lvInspection.firstRecord.usersByRequestedBy.email",
+      "type" : "string"
+    }, {
+      "target" : "inspectionTitle",
+      "value" : "bind:Variables.lvInspection.firstRecord.inspectionTitle",
+      "type" : "string"
+    } ],
+    "type" : "string",
+    "service" : "InspectionOutcomeUpdate",
+    "operation" : "sendOutcomeUpdateMail",
+    "operationId" : "InspectionOutcomeUpdateController_sendOutcomeUpdateMail",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "InspectionOutcomeUpdate"
+  },
   "svSetInspectionOutcome" : {
     "_id" : "wm-svSetInspectionOutcome-wm.ServiceVariable-1492030660079",
     "name" : "svSetInspectionOutcome",
@@ -15288,7 +15368,7 @@
       "type" : "string"
     }, {
       "target" : "inspectionStatusId",
-      "value" : "bind:Widgets.selectOutcome.datavalue",
+      "value" : "bind:Widgets.selectOutcome.datavalue.id",
       "type" : "integer"
     }, {
       "target" : "comments",

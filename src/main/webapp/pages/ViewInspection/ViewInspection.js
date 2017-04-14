@@ -46,7 +46,18 @@ Application.$controller("ViewInspectionPageController", ["$scope", function($sco
 
 
     $scope.svSetInspectionOutcomeonSuccess = function(variable, data) {
+
+        if ($scope.Widgets.selectOutcome.datavalue.sendEmail) {
+            var tempLink = window.location.hostname + "/#/ViewInspection?inspectionGuid=" + $scope.pageParams.inspectionGuid;
+            //Sending mail to  CreatedBy
+            $scope.Variables.svSendOutcomeUpdate.setInput({
+                'formLink': tempLink,
+
+            });
+            $scope.Variables.svSendOutcomeUpdate.update();
+        }
         $scope.Widgets.textareaNotes.reset();
+
     };
 
 
