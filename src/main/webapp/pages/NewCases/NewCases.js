@@ -9,9 +9,11 @@ Application.$controller("NewCasesPageController", ["$scope", function($scope) {
 }]);
 
 
+
+
 Application.$controller("gridNewCasesController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);
