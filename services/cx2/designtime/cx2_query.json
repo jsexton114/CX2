@@ -4349,8 +4349,8 @@
     "name" : "GetFormTypesByCategoriesAndMunicipalities",
     "description" : "GetFormTypesByCategoriesAndMunicipalities",
     "version" : "V1",
-    "queryString" : "select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand (FT.MunicipalityInternalForm=0\n\t\tOR EXISTS (SELECT RoleName from Roles where\n\t\t\t\t\tUserId=:userId\n\t\t\t\t\tand (MunicipalityId=FT.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))",
-    "countQueryString" : "select count(*) from (select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand (FT.MunicipalityInternalForm=0\n\t\tOR EXISTS (SELECT RoleName from Roles where\n\t\t\t\t\tUserId=:userId\n\t\t\t\t\tand (MunicipalityId=FT.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))) wmTempTable",
+    "queryString" : "select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand FT.CodeEnforcement=:codeEnforcement\nand (FT.MunicipalityInternalForm=0\n\t\tOR EXISTS (SELECT RoleName from Roles where\n\t\t\t\t\tUserId=:userId\n\t\t\t\t\tand (MunicipalityId=FT.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))",
+    "countQueryString" : "select count(*) from (select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand FT.CodeEnforcement=:codeEnforcement\nand (FT.MunicipalityInternalForm=0\n\t\tOR EXISTS (SELECT RoleName from Roles where\n\t\t\t\t\tUserId=:userId\n\t\t\t\t\tand (MunicipalityId=FT.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -4368,6 +4368,13 @@
       "variableType" : "PROMPT",
       "testValue" : "2",
       "required" : false
+    }, {
+      "name" : "codeEnforcement",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
     }, {
       "name" : "userId",
       "type" : "integer",
@@ -4523,15 +4530,6 @@
       }, {
         "name" : "AutomaticFees",
         "fieldName" : "automaticFees",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "DigitalSignatures",
-        "fieldName" : "digitalSignatures",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4761,6 +4759,60 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "RequireSignature",
+        "fieldName" : "requireSignature",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "CodeEnforcement",
+        "fieldName" : "codeEnforcement",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "PropertyType",
+        "fieldName" : "propertyType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ExpirationType",
+        "fieldName" : "expirationType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ExpirationDays",
+        "fieldName" : "expirationDays",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ExpirationStatusId",
+        "fieldName" : "expirationStatusId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       } ]

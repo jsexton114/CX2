@@ -72,9 +72,6 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
     @JsonProperty("AutomaticFees")
     @ColumnAlias("AutomaticFees")
     private Boolean automaticFees;
-    @JsonProperty("DigitalSignatures")
-    @ColumnAlias("DigitalSignatures")
-    private Boolean digitalSignatures;
     @JsonProperty("Inspections")
     @ColumnAlias("Inspections")
     private Boolean inspections;
@@ -150,6 +147,24 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
     @JsonProperty("ForceInspectionSequence")
     @ColumnAlias("ForceInspectionSequence")
     private Boolean forceInspectionSequence;
+    @JsonProperty("RequireSignature")
+    @ColumnAlias("RequireSignature")
+    private Boolean requireSignature;
+    @JsonProperty("CodeEnforcement")
+    @ColumnAlias("CodeEnforcement")
+    private Boolean codeEnforcement;
+    @JsonProperty("PropertyType")
+    @ColumnAlias("PropertyType")
+    private String propertyType;
+    @JsonProperty("ExpirationType")
+    @ColumnAlias("ExpirationType")
+    private String expirationType;
+    @JsonProperty("ExpirationDays")
+    @ColumnAlias("ExpirationDays")
+    private Integer expirationDays;
+    @JsonProperty("ExpirationStatusId")
+    @ColumnAlias("ExpirationStatusId")
+    private Integer expirationStatusId;
 
     public Integer getId() {
         return this.id;
@@ -277,14 +292,6 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
 
     public void setAutomaticFees(Boolean automaticFees) {
         this.automaticFees = automaticFees;
-    }
-
-    public Boolean getDigitalSignatures() {
-        return this.digitalSignatures;
-    }
-
-    public void setDigitalSignatures(Boolean digitalSignatures) {
-        this.digitalSignatures = digitalSignatures;
     }
 
     public Boolean getInspections() {
@@ -487,6 +494,54 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
         this.forceInspectionSequence = forceInspectionSequence;
     }
 
+    public Boolean getRequireSignature() {
+        return this.requireSignature;
+    }
+
+    public void setRequireSignature(Boolean requireSignature) {
+        this.requireSignature = requireSignature;
+    }
+
+    public Boolean getCodeEnforcement() {
+        return this.codeEnforcement;
+    }
+
+    public void setCodeEnforcement(Boolean codeEnforcement) {
+        this.codeEnforcement = codeEnforcement;
+    }
+
+    public String getPropertyType() {
+        return this.propertyType;
+    }
+
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
+    }
+
+    public String getExpirationType() {
+        return this.expirationType;
+    }
+
+    public void setExpirationType(String expirationType) {
+        this.expirationType = expirationType;
+    }
+
+    public Integer getExpirationDays() {
+        return this.expirationDays;
+    }
+
+    public void setExpirationDays(Integer expirationDays) {
+        this.expirationDays = expirationDays;
+    }
+
+    public Integer getExpirationStatusId() {
+        return this.expirationStatusId;
+    }
+
+    public void setExpirationStatusId(Integer expirationStatusId) {
+        this.expirationStatusId = expirationStatusId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -508,7 +563,6 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
                 Objects.equals(getCreatedDate(), getFormTypesByCategoriesAndMunicipalitiesResponse.getCreatedDate()) &&
                 Objects.equals(getCollectFees(), getFormTypesByCategoriesAndMunicipalitiesResponse.getCollectFees()) &&
                 Objects.equals(getAutomaticFees(), getFormTypesByCategoriesAndMunicipalitiesResponse.getAutomaticFees()) &&
-                Objects.equals(getDigitalSignatures(), getFormTypesByCategoriesAndMunicipalitiesResponse.getDigitalSignatures()) &&
                 Objects.equals(getInspections(), getFormTypesByCategoriesAndMunicipalitiesResponse.getInspections()) &&
                 Objects.equals(getPayments(), getFormTypesByCategoriesAndMunicipalitiesResponse.getPayments()) &&
                 Objects.equals(getSharedWith(), getFormTypesByCategoriesAndMunicipalitiesResponse.getSharedWith()) &&
@@ -533,7 +587,13 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
                 Objects.equals(getMultipleVendors(), getFormTypesByCategoriesAndMunicipalitiesResponse.getMultipleVendors()) &&
                 Objects.equals(getRequireOwner(), getFormTypesByCategoriesAndMunicipalitiesResponse.getRequireOwner()) &&
                 Objects.equals(getInstructions(), getFormTypesByCategoriesAndMunicipalitiesResponse.getInstructions()) &&
-                Objects.equals(getForceInspectionSequence(), getFormTypesByCategoriesAndMunicipalitiesResponse.getForceInspectionSequence());
+                Objects.equals(getForceInspectionSequence(), getFormTypesByCategoriesAndMunicipalitiesResponse.getForceInspectionSequence()) &&
+                Objects.equals(getRequireSignature(), getFormTypesByCategoriesAndMunicipalitiesResponse.getRequireSignature()) &&
+                Objects.equals(getCodeEnforcement(), getFormTypesByCategoriesAndMunicipalitiesResponse.getCodeEnforcement()) &&
+                Objects.equals(getPropertyType(), getFormTypesByCategoriesAndMunicipalitiesResponse.getPropertyType()) &&
+                Objects.equals(getExpirationType(), getFormTypesByCategoriesAndMunicipalitiesResponse.getExpirationType()) &&
+                Objects.equals(getExpirationDays(), getFormTypesByCategoriesAndMunicipalitiesResponse.getExpirationDays()) &&
+                Objects.equals(getExpirationStatusId(), getFormTypesByCategoriesAndMunicipalitiesResponse.getExpirationStatusId());
     }
 
     @Override
@@ -554,7 +614,6 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
                 getCreatedDate(),
                 getCollectFees(),
                 getAutomaticFees(),
-                getDigitalSignatures(),
                 getInspections(),
                 getPayments(),
                 getSharedWith(),
@@ -579,6 +638,12 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
                 getMultipleVendors(),
                 getRequireOwner(),
                 getInstructions(),
-                getForceInspectionSequence());
+                getForceInspectionSequence(),
+                getRequireSignature(),
+                getCodeEnforcement(),
+                getPropertyType(),
+                getExpirationType(),
+                getExpirationDays(),
+                getExpirationStatusId());
     }
 }

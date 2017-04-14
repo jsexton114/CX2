@@ -7,3 +7,10 @@ Application.$controller("CodeEnforcementDashboardPageController", ["$scope", fun
     };
 
 }]);
+
+Application.$controller("dialogNewCaseController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

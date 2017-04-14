@@ -47,7 +47,7 @@ Application.$controller("gridFeesListController", ["$scope",
 
 
         $scope.updaterowAction = function($event, $rowData) {
-            debugger
+
             var tempLink
             if ($rowData.itemType == 'form') {
                 tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.itemGuid

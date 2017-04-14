@@ -1441,9 +1441,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetFormTypesByCategoriesAndMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "GetFormTypesByCategoriesAndMunicipalities")
-    public Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(@RequestParam(value = "formCategory", required = false) Integer formCategory, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+    public Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(@RequestParam(value = "formCategory", required = false) Integer formCategory, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
         LOGGER.debug("Executing named query: GetFormTypesByCategoriesAndMunicipalities");
-        Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> _result = queryService.executeGetFormTypesByCategoriesAndMunicipalities(formCategory, municipalityId, userId, pageable);
+        Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> _result = queryService.executeGetFormTypesByCategoriesAndMunicipalities(formCategory, municipalityId, codeEnforcement, userId, pageable);
         LOGGER.debug("got the result for named query: GetFormTypesByCategoriesAndMunicipalities, result:{}", _result);
         return _result;
     }
@@ -1451,10 +1451,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetFormTypesByCategoriesAndMunicipalities")
     @RequestMapping(value = "/queries/GetFormTypesByCategoriesAndMunicipalities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetFormTypesByCategoriesAndMunicipalities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formCategory", required = false) Integer formCategory, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+    public Downloadable exportGetFormTypesByCategoriesAndMunicipalities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formCategory", required = false) Integer formCategory, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
         LOGGER.debug("Exporting named query: GetFormTypesByCategoriesAndMunicipalities");
 
-        return queryService.exportGetFormTypesByCategoriesAndMunicipalities(exportType, formCategory, municipalityId, userId, pageable);
+        return queryService.exportGetFormTypesByCategoriesAndMunicipalities(exportType, formCategory, municipalityId, codeEnforcement, userId, pageable);
     }
 
     @RequestMapping(value = "/queries/DeleteRoleForMuncipality", method = RequestMethod.DELETE)

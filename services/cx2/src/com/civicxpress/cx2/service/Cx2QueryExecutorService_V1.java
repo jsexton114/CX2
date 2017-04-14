@@ -192,7 +192,7 @@ public interface Cx2QueryExecutorService_V1 {
     public Page<Object> executeAdminVendorsList(Pageable pageable, Integer user);
 
     @Deprecated
-    public Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, Integer formCategory, Integer municipalityId, Integer userId);
+    public Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, Integer formCategory, Integer municipalityId, Boolean codeEnforcement, Integer userId);
 
     @Deprecated
     public int executeDeleteRoleForMuncipality(String role, Integer municipality, Integer user);

@@ -542,6 +542,10 @@
       "target" : "userId",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
+    }, {
+      "target" : "codeEnforcement",
+      "value" : "bind:pageParams.isCase",
+      "type" : "boolean"
     } ],
     "type" : "com.civicxpress.cx2.models.query.GetFormTypesByCategoriesAndMunicipalitiesResponse",
     "service" : "cx2",
