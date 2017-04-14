@@ -31,6 +31,7 @@
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn9">
                                         <wm-grid title="" dataset="bind:Variables.lvGetMunicipalityFormTypes.dataSet" navigation="Classic" name="gridFormTypes" filtermode="multicolumn" exportformat="EXCEL">
                                             <wm-grid-column binding="formType" caption="Form Type" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="description" caption="Description" type="text" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="createdDate" caption="Created Date" type="date" generator="assigned" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="active" caption="Active" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                                 <wm-checkbox scopedatavalue="row['active']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
@@ -38,7 +39,9 @@
                                             <wm-grid-column binding="municipalityInternalForm" caption="Internal Only" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                                 <wm-checkbox scopedatavalue="row['municipalityInternalForm']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                             </wm-grid-column>
-                                            <wm-grid-column binding="description" caption="Description" type="text" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="codeEnforcement" caption="Code Enforcement" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                                <wm-checkbox scopedatavalue="row['codeEnforcement']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                            </wm-grid-column>
                                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                             <wm-grid-action key="addNewRow" display-name="New Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Form" action="Widgets.dialogCreateForm.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.goToPage_EditForm.invoke()" disabled="false"></wm-grid-row-action>
