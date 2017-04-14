@@ -96,8 +96,6 @@ public class GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse
     private Boolean trackViolations;
     @ColumnAlias("InspectionTableName")
     private String inspectionTableName;
-    @ColumnAlias("ScheduleDateOnly")
-    private Boolean scheduleDateOnly;
     @ColumnAlias("ScheduleDateAndTime")
     private Boolean scheduleDateAndTime;
     @ColumnAlias("CurrentPrefixNumber")
@@ -369,14 +367,6 @@ public class GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse
         this.inspectionTableName = inspectionTableName;
     }
 
-    public Boolean getScheduleDateOnly() {
-        return this.scheduleDateOnly;
-    }
-
-    public void setScheduleDateOnly(Boolean scheduleDateOnly) {
-        this.scheduleDateOnly = scheduleDateOnly;
-    }
-
     public Boolean getScheduleDateAndTime() {
         return this.scheduleDateAndTime;
     }
@@ -439,7 +429,6 @@ public class GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse
                 Objects.equals(getAllowUnscheduledInspection(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getAllowUnscheduledInspection()) &&
                 Objects.equals(getTrackViolations(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getTrackViolations()) &&
                 Objects.equals(getInspectionTableName(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getInspectionTableName()) &&
-                Objects.equals(getScheduleDateOnly(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getScheduleDateOnly()) &&
                 Objects.equals(getScheduleDateAndTime(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getScheduleDateAndTime()) &&
                 Objects.equals(getCurrentPrefixNumber(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getCurrentPrefixNumber()) &&
                 Objects.equals(getPrefixNumberResetOn(), getInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.getPrefixNumberResetOn());
@@ -480,7 +469,6 @@ public class GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse
                 getAllowUnscheduledInspection(),
                 getTrackViolations(),
                 getInspectionTableName(),
-                getScheduleDateOnly(),
                 getScheduleDateAndTime(),
                 getCurrentPrefixNumber(),
                 getPrefixNumberResetOn());

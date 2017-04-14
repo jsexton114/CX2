@@ -174,9 +174,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfCXProjectsActive(ExportType exportType, Pageable pageable);
 
-    Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer formTypeId, Pageable pageable);
+    Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer formTypeId, Boolean active, Pageable pageable);
 
-    Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer formTypeId, Pageable pageable);
+    Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer formTypeId, Boolean active, Pageable pageable);
 
     Page<SearchAllFormsByAddressResponse> executeSearchAllFormsByAddress(Boolean codeEnforcement, Integer gisrecordId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
 
@@ -582,9 +582,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfVendorUsers(ExportType exportType, Integer vendor, Pageable pageable);
 
-    Page<GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse> executeGetInspectionDesignByInspectionCategoriesAssignedToFormType(Integer formType, Pageable pageable);
+    Page<GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse> executeGetInspectionDesignByInspectionCategoriesAssignedToFormType(Boolean active, Integer formType, Pageable pageable);
 
-    Downloadable exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(ExportType exportType, Integer formType, Pageable pageable);
+    Downloadable exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(ExportType exportType, Boolean active, Integer formType, Pageable pageable);
 
     Integer executeInsertProjectMessage(InsertProjectMessageRequest insertProjectMessageRequest);
 

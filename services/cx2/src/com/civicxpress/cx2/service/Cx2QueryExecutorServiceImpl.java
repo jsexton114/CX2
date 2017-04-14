@@ -853,20 +853,22 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer formTypeId, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer formTypeId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
 
         params.put("formTypeId", formTypeId);
+        params.put("active", active);
 
         return queryExecutor.executeNamedQuery("distinctInspectionDesignsForFormType", params, DistinctInspectionDesignsForFormTypeResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer formTypeId, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer formTypeId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
 
         params.put("formTypeId", formTypeId);
+        params.put("active", active);
 
         return queryExecutor.exportNamedQueryData("distinctInspectionDesignsForFormType", params, exportType, DistinctInspectionDesignsForFormTypeResponse.class, pageable);
     }
@@ -3162,9 +3164,10 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse> executeGetInspectionDesignByInspectionCategoriesAssignedToFormType(Integer formType, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Page<GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse> executeGetInspectionDesignByInspectionCategoriesAssignedToFormType(Boolean active, Integer formType, Pageable pageable) {
+        Map params = new HashMap(2);
 
+        params.put("active", active);
         params.put("formType", formType);
 
         return queryExecutor.executeNamedQuery("getInspectionDesignByInspectionCategoriesAssignedToFormType", params, GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.class, pageable);
@@ -3172,9 +3175,10 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(ExportType exportType, Integer formType, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Downloadable exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(ExportType exportType, Boolean active, Integer formType, Pageable pageable) {
+        Map params = new HashMap(2);
 
+        params.put("active", active);
         params.put("formType", formType);
 
         return queryExecutor.exportNamedQueryData("getInspectionDesignByInspectionCategoriesAssignedToFormType", params, exportType, GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.class, pageable);

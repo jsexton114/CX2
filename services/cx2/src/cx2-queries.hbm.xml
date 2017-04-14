@@ -640,18 +640,13 @@ from MasterInspections where closed=:isClosed and (:municipality IS NULL OR insp
 
     <query name="distinctInspectionDesignsForFormType">
         <![CDATA[
-        select DISTINCT inspectDesignId as inspectionDesignId,inspectionDesign.inspectDesignName as inspectDesignName,inspectionDesign.allowSameDayInspections as allowSameDayInspections,inspectionDesign. maxDaysInAdvance as maxDaysInAdvance,sequenceOrderNumber as sequenceOrderNumber,mustCompBeforeReqNxt as mustCompBeforeReqNxt, inspectionDesign.sameDayInspectionFee as sameDayInspectionFee from InspectionSequence
-where formTypeId=:formTypeId order by sequenceOrderNumber asc
+        select DISTINCT inspectDesignId as inspectionDesignId,inspectionDesign.inspectDesignName as inspectDesignName,inspectionDesign.allowSameDayInspections as allowSameDayInspections,inspectionDesign. maxDaysInAdvance as maxDaysInAdvance,sequenceOrderNumber as sequenceOrderNumber,mustCompBeforeReqNxt as mustCompBeforeReqNxt, inspectionDesign.sameDayInspectionFee as sameDayInspectionFee
+from InspectionSequence
+where formTypeId=:formTypeId and inspectionDesign.active=:active
+order by sequenceOrderNumber asc
         ]]>
     <query-param name="formTypeId" type="java.lang.Integer"/>
-    </query>
-
-    <query name="distinctInspectionDesignsForFormType__count">
-        <![CDATA[
-        select count(*)  from InspectionSequence
-where formTypeId=:formTypeId
-        ]]>
-    <query-param name="formTypeId" type="java.lang.Integer"/>
+    <query-param name="active" type="java.lang.Boolean"/>
     </query>
 
     <sql-query name="SearchAllFormsByAddress">
@@ -2657,9 +2652,11 @@ InspectionCategoryMapping ICM,
 InspectionCategories IC,
 FormToInspectionCategoryMapping FICM
 where
+I.Active=:active and
 FICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID
 and IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID
         ]]>
+    <query-param name="active" type="java.lang.Boolean"/>
     <query-param name="formType" type="java.lang.Integer"/>
     </sql-query>
 
@@ -2672,9 +2669,11 @@ InspectionCategoryMapping ICM,
 InspectionCategories IC,
 FormToInspectionCategoryMapping FICM
 where
+I.Active=:active and
 FICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID
 and IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID) wmTempTable
         ]]>
+    <query-param name="active" type="java.lang.Boolean"/>
     <query-param name="formType" type="java.lang.Integer"/>
     </sql-query>
 

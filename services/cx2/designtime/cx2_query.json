@@ -10553,17 +10553,24 @@
     "name" : "distinctInspectionDesignsForFormType",
     "description" : "distinctInspectionDesignsForFormType",
     "version" : "V2",
-    "queryString" : "select DISTINCT inspectDesignId as inspectionDesignId,inspectionDesign.inspectDesignName as inspectDesignName,inspectionDesign.allowSameDayInspections as allowSameDayInspections,inspectionDesign. maxDaysInAdvance as maxDaysInAdvance,sequenceOrderNumber as sequenceOrderNumber,mustCompBeforeReqNxt as mustCompBeforeReqNxt, inspectionDesign.sameDayInspectionFee as sameDayInspectionFee from InspectionSequence\nwhere formTypeId=:formTypeId order by sequenceOrderNumber asc",
-    "countQueryString" : "select count(*)  from InspectionSequence\nwhere formTypeId=:formTypeId",
+    "queryString" : "select DISTINCT inspectDesignId as inspectionDesignId,inspectionDesign.inspectDesignName as inspectDesignName,inspectionDesign.allowSameDayInspections as allowSameDayInspections,inspectionDesign. maxDaysInAdvance as maxDaysInAdvance,sequenceOrderNumber as sequenceOrderNumber,mustCompBeforeReqNxt as mustCompBeforeReqNxt, inspectionDesign.sameDayInspectionFee as sameDayInspectionFee\nfrom InspectionSequence\nwhere formTypeId=:formTypeId and inspectionDesign.active=:active\norder by sequenceOrderNumber asc",
+    "countQueryString" : null,
     "nativeSql" : false,
-    "fetchCount" : true,
+    "fetchCount" : false,
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "formTypeId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "107",
+      "testValue" : "116",
+      "required" : true
+    }, {
+      "name" : "active",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
       "required" : true
     } ],
     "request" : {
@@ -11114,12 +11121,19 @@
     "name" : "getInspectionDesignByInspectionCategoriesAssignedToFormType",
     "description" : "getInspectionDesignByInspectionCategoriesAssignedToFormType",
     "version" : "V2",
-    "queryString" : "select I.*\nfrom \nInspectionDesign I,\nInspectionCategoryMapping ICM,\nInspectionCategories IC,\nFormToInspectionCategoryMapping FICM\nwhere\nFICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID\nand IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID",
-    "countQueryString" : "select count(*) from (select I.*\nfrom \nInspectionDesign I,\nInspectionCategoryMapping ICM,\nInspectionCategories IC,\nFormToInspectionCategoryMapping FICM\nwhere\nFICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID\nand IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID) wmTempTable",
+    "queryString" : "select I.*\nfrom \nInspectionDesign I,\nInspectionCategoryMapping ICM,\nInspectionCategories IC,\nFormToInspectionCategoryMapping FICM\nwhere\nI.Active=:active and\nFICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID\nand IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID",
+    "countQueryString" : "select count(*) from (select I.*\nfrom \nInspectionDesign I,\nInspectionCategoryMapping ICM,\nInspectionCategories IC,\nFormToInspectionCategoryMapping FICM\nwhere\nI.Active=:active and\nFICM.FormTypeId=:formType and FICM.InspectionCategoryId=IC.ID\nand IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
+      "name" : "active",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    }, {
       "name" : "formType",
       "type" : "integer",
       "list" : false,
@@ -11431,15 +11445,6 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ScheduleDateOnly",
-        "fieldName" : "scheduleDateOnly",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
           "list" : false
         }
       }, {

@@ -21973,9 +21973,13 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "form",
-      "value" : "bind:Variables.CurrentForm.firstRecord.formTypes.id",
+      "target" : "formTypeId",
+      "value" : "bind:Variables.CurrentForm.firstRecord.formTypeId",
       "type" : "integer"
+    }, {
+      "target" : "active",
+      "value" : true,
+      "type" : "boolean"
     } ],
     "type" : "com.civicxpress.cx2.models.query.DistinctInspectionDesignsForFormTypeResponse",
     "service" : "cx2",
@@ -22209,6 +22213,10 @@
       "target" : "formType",
       "value" : "bind:Variables.CurrentForm.firstRecord.formTypeId",
       "type" : "integer"
+    }, {
+      "target" : "active",
+      "value" : true,
+      "type" : "boolean"
     } ],
     "type" : "com.civicxpress.cx2.models.query.GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse",
     "service" : "cx2",

@@ -758,9 +758,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/distinctInspectionDesignsForFormType", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "distinctInspectionDesignsForFormType")
-    public Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(@RequestParam(value = "formTypeId") Integer formTypeId, Pageable pageable) {
+    public Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(@RequestParam(value = "formTypeId") Integer formTypeId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
         LOGGER.debug("Executing named query: distinctInspectionDesignsForFormType");
-        Page<DistinctInspectionDesignsForFormTypeResponse> _result = queryService.executeDistinctInspectionDesignsForFormType(formTypeId, pageable);
+        Page<DistinctInspectionDesignsForFormTypeResponse> _result = queryService.executeDistinctInspectionDesignsForFormType(formTypeId, active, pageable);
         LOGGER.debug("got the result for named query: distinctInspectionDesignsForFormType, result:{}", _result);
         return _result;
     }
@@ -768,10 +768,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query distinctInspectionDesignsForFormType")
     @RequestMapping(value = "/queries/distinctInspectionDesignsForFormType/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportDistinctInspectionDesignsForFormType(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formTypeId") Integer formTypeId, Pageable pageable) {
+    public Downloadable exportDistinctInspectionDesignsForFormType(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formTypeId") Integer formTypeId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
         LOGGER.debug("Exporting named query: distinctInspectionDesignsForFormType");
 
-        return queryService.exportDistinctInspectionDesignsForFormType(exportType, formTypeId, pageable);
+        return queryService.exportDistinctInspectionDesignsForFormType(exportType, formTypeId, active, pageable);
     }
 
     @RequestMapping(value = "/queries/SearchAllFormsByAddress", method = RequestMethod.GET)
@@ -2720,9 +2720,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/getInspectionDesignByInspectionCategoriesAssignedToFormType", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "getInspectionDesignByInspectionCategoriesAssignedToFormType")
-    public Page<GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse> executeGetInspectionDesignByInspectionCategoriesAssignedToFormType(@RequestParam(value = "formType") Integer formType, Pageable pageable) {
+    public Page<GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse> executeGetInspectionDesignByInspectionCategoriesAssignedToFormType(@RequestParam(value = "active") Boolean active, @RequestParam(value = "formType") Integer formType, Pageable pageable) {
         LOGGER.debug("Executing named query: getInspectionDesignByInspectionCategoriesAssignedToFormType");
-        Page<GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse> _result = queryService.executeGetInspectionDesignByInspectionCategoriesAssignedToFormType(formType, pageable);
+        Page<GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse> _result = queryService.executeGetInspectionDesignByInspectionCategoriesAssignedToFormType(active, formType, pageable);
         LOGGER.debug("got the result for named query: getInspectionDesignByInspectionCategoriesAssignedToFormType, result:{}", _result);
         return _result;
     }
@@ -2730,10 +2730,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query getInspectionDesignByInspectionCategoriesAssignedToFormType")
     @RequestMapping(value = "/queries/getInspectionDesignByInspectionCategoriesAssignedToFormType/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formType") Integer formType, Pageable pageable) {
+    public Downloadable exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "active") Boolean active, @RequestParam(value = "formType") Integer formType, Pageable pageable) {
         LOGGER.debug("Exporting named query: getInspectionDesignByInspectionCategoriesAssignedToFormType");
 
-        return queryService.exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(exportType, formType, pageable);
+        return queryService.exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(exportType, active, formType, pageable);
     }
 
     @RequestMapping(value = "/queries/InsertProjectMessage", method = RequestMethod.POST)
