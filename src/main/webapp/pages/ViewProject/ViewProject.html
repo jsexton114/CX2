@@ -23,7 +23,7 @@
                                 <wm-gridrow name="gridrow75_2" padding="0.5em unset">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn128"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn129">
-                                        <wm-label padding="unset 0.5em" name="label80" class="col-md-12 control-label" caption="Project Owner"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label80" class="col-md-12 form-control-static" caption="Project Owner" fontweight="bold"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn131">
                                         <wm-label padding="unset 0.5em" name="label81" fontsize="12" fontweight="bold" caption="bind:Variables.CurrentProject.firstRecord.usersByCreatedBy.firstName+&quot; &quot;+Variables.CurrentProject.firstRecord.usersByCreatedBy.lastName"></wm-label>
@@ -34,7 +34,7 @@
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn107_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn8">
                                         <wm-composite name="composite1" margin="unset unset unset 0.5em">
-                                            <wm-label class="col-md-12 control-label" name="label3" margin="0.5em unset" caption="Project Name" width="50%"></wm-label>
+                                            <wm-label class="col-md-12 form-control-static" name="label3" margin="0.5em unset" caption="Project Name" width="50%" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-12" name="container1" width="50%">
                                                 <wm-text name="textProjectName" readonly="false" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].projectName"></wm-text>
                                             </wm-container>
@@ -46,7 +46,7 @@
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn109_2"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn10">
                                         <wm-composite name="composite2" margin="unset unset unset 0.5em">
-                                            <wm-label class="col-md-12 control-label" name="label4" margin="0.5em unset" caption="Project Goals" width="50%"></wm-label>
+                                            <wm-label class="col-md-12 form-control-static" name="label4" margin="0.5em unset" caption="Project Goals" width="50%" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-12" name="container2" width="50%">
                                                 <wm-textarea readonly="false" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].projectGoals" name="textProjectGoals" placeholder="Enter text"></wm-textarea>
                                             </wm-container>
@@ -58,7 +58,7 @@
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn111_2"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn11">
                                         <wm-composite name="composite3" margin="0.5em unset 0.5em 0.5em">
-                                            <wm-label class="col-md-12 control-label" name="label5" margin="0.5em unset" caption="Estimated Start Date"></wm-label>
+                                            <wm-label class="col-md-12 form-control-static" name="label5" margin="0.5em unset" caption="Estimated Start Date" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-12" name="container3">
                                                 <wm-date name="datetimeEstimatedStartDate" readonly="false" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].estStartDate" outputformat="timestamp" datepattern="MM-dd-yyyy"></wm-date>
                                             </wm-container>
@@ -66,7 +66,7 @@
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn111_1">
                                         <wm-composite name="composite4" margin="0.5em unset 0.5em 0.5em">
-                                            <wm-label class="col-md-12 control-label" name="label6" margin="0.5em unset" caption="Estimated Completion Date"></wm-label>
+                                            <wm-label class="col-md-12 form-control-static" name="label6" margin="0.5em unset" caption="Estimated Completion Date" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-12" name="container4">
                                                 <wm-date name="datetimeEstimatedCompletionDat" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].estEndDate" readonly="false" outputformat="timestamp" datepattern="MM-dd-yyyy"></wm-date>
                                             </wm-container>

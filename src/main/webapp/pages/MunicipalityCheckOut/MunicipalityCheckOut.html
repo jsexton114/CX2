@@ -12,47 +12,51 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
-                        <wm-panel iconclass="wi wi-attach-money" autoclose="outsideClick" name="panelCheckOut" title="Check out" class="panel-primary">
+                        <wm-panel iconclass="wi wi-attach-money" autoclose="outsideClick" name="panelCheckOut" title="Check Out" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid2">
-                                <wm-gridrow name="gridrow4" padding="1em unset">
+                                <wm-gridrow name="gridrow4" padding="1em unset 4em unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn4">
                                         <wm-label padding="unset 0.5em" name="label5" caption="bind:'Total: '+ ((Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart || 0) | toCurrency:'$':2)" class="h1"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow5" padding=".2em unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                                        <wm-label padding="unset 0.5em" name="label6" caption="Payment Type" class="h2"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label6" caption="Payment Type" class="h3" fontweight="bold"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow6" padding=".2em unset 1em unset">
+                                <wm-gridrow name="gridrow6" padding="unset unset 2em unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn8">
                                         <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:Variables.stvPaymentOptions.dataSet[0].paymentType"
                                         usekeys="false"></wm-radioset>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow7" padding=".2em unset">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn10">
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn13"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn10">
                                         <wm-composite name="compositePaymentNumber" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check')||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card')">
-                                            <wm-label class="col-md-3 control-label" name="labelPaymentNumber" caption="bind:Widgets.radiosetPaymentOptions.datavalue=='Check'?'Check Number':'Transaction ID'"></wm-label>
+                                            <wm-label class="col-md-3 form-control-static" name="labelPaymentNumber" caption="bind:Widgets.radiosetPaymentOptions.datavalue=='Check'?'Check Number':'Transaction ID'" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-9" name="container2">
                                                 <wm-text name="textPaymentNumber"></wm-text>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn12_1"></wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow8" padding="1em unset">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn12">
+                                <wm-gridrow name="gridrow8">
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn14_1"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn12">
                                         <wm-composite name="compositeComments">
-                                            <wm-label class="col-md-3 control-label" name="labelComments" caption="Comments"></wm-label>
+                                            <wm-label class="col-md-3 form-control-static" name="labelComments" caption="Comments" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-9" name="container3">
                                                 <wm-textarea name="textareaComments" placeholder="Place Your Comments"></wm-textarea>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn11"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow9">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn14" horizontalalign="right">
-                                        <wm-button class="btn-primary" caption="Pay" type="button" margin="unset 0.5em" name="buttonSubmit" on-click="Variables.lvCheckOut.createRecord()" iconclass="wi wi-attach-money" disabled="bind:!Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart"></wm-button>
+                                        <wm-button class="btn-primary" caption="Submit Payment" type="button" margin="2em 3em 2em unset" name="buttonSubmit" on-click="Variables.lvCheckOut.createRecord()" iconclass="wi wi-attach-money" disabled="bind:!Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>

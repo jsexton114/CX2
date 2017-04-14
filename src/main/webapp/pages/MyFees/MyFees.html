@@ -36,8 +36,6 @@
                                             <wm-grid-column binding="formType" caption="Form Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="feeType" caption="Fee" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="formGuid" caption="[Form Guid]" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="feeId" caption="[Fee Id]" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                             <wm-grid-action key="addNewRow" display-name="Add All to Cart" show="true" class="btn-primary" iconclass="wi wi-add-shopping-cart" title="Add All to Cart" action="addNewRowAction($event)" shortcutkey=""
                                             disabled="false" icon="wi wi-add-shopping-cart"></wm-grid-action>
@@ -61,6 +59,6 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view2">
-        <wm-iframedialog name="iframedialog1" url="bind:Variables.stvFormLink.dataSet.dataValue" title="Form" width="80%"></wm-iframedialog>
+        <wm-iframedialog name="iframedialog1" url="bind:Variables.stvFormLink.dataSet.dataValue" title="View Form" width="90%" height="800px" iconclass="wi wi-assignment" oktext="Close"></wm-iframedialog>
     </wm-view>
 </wm-page>

@@ -18,7 +18,7 @@
                                 <wm-grid-column binding="parentItemName" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="feeType" caption="Fee Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="feeType" caption="Fee" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="bind:feeTotal | toCurrency:'$':'2'" show="true" class="btn-secondary" iconclass="" title="Total" action="" shortcutkey="" disabled="false"></wm-grid-action>
@@ -45,6 +45,6 @@
         <wm-pagedialog name="pagedialogNewForm" title="New Form" content="NewForm" oktext="Close" iconclass=""></wm-pagedialog>
     </wm-view>
     <wm-view class="dialog-view" name="view2">
-        <wm-iframedialog name="iframedialog1" width="80%" title="View Form" url="bind:Variables.stvFormLink.dataSet.dataValue" oktext="Close" iconclass="wi wi-assignment"></wm-iframedialog>
+        <wm-iframedialog name="iframedialog1" width="90%" title="View Form" url="bind:Variables.stvFormLink.dataSet.dataValue" oktext="Close" iconclass="wi wi-assignment" modal="false" height="800"></wm-iframedialog>
     </wm-view>
 </wm-page>
