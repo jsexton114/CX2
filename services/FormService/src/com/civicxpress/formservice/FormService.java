@@ -470,7 +470,7 @@ public class FormService {
       	DynamicFieldService.saveDynamicField(cx2Conn, formTypeId, muniData.getLong("MunicipalityId"), "FormTypeId", muniData.getString("ItemTableName"), label, fieldTypeId, displayOrder, required, defaultValue, helpText, possibleValues, automaticFeeType);
     }
     
-    public Long saveFormType(Long municipalityId, String formType) throws SQLException {
+    public Long saveFormType(Long municipalityId, String formType, String description) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	cx2Conn.setAutoCommit(false);
         Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
@@ -492,11 +492,12 @@ public class FormService {
         	
         	DBQueryParams formCreateParams = new DBQueryParams();
 	        formCreateParams.addString("formType", formType);
+	        formCreateParams.addString("description", description);
 	        formCreateParams.addLong("municipalityId", municipalityId);
 	        formCreateParams.addString("formTableName", formTableName);
 	        formCreateParams.addString("titlePrefix", formTitlePrefix.toString());
 	        
-	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypes (FormType, MunicipalityId, FormTableName, MunicipalityInternalForm, Active, TitlePrefix) VALUES (:formType, :municipalityId, :formTableName, 0, 0, :titlePrefix)", formCreateParams);
+	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO FormTypes (FormType, Description, MunicipalityId, FormTableName, MunicipalityInternalForm, Active, TitlePrefix) VALUES (:formType, :description, :municipalityId, :formTableName, 0, 0, :titlePrefix)", formCreateParams);
 	        
 	        newFormTypeId = DBUtils.selectQuery(cx2Conn, "SELECT @@IDENTITY as formId").get(0).getLong("formId");
 	        formCreateParams.addLong("newFormTypeId", newFormTypeId);

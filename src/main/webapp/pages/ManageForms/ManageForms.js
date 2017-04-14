@@ -96,9 +96,14 @@ Application.$controller("dialogDeleteFormDesignController", ["$scope",
     }
 ]);
 
-Application.$controller("gridFormTypesController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+Application.$controller("gridFormTypesController", ["$scope", "$location",
+    function($scope, $location) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.updaterowAction = function($event, $rowData) {
+            $location.path("/EditForm").search("FormTypeId", $rowData.id);
+        };
+
+    }
 ]);

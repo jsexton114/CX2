@@ -1,32 +1,4 @@
 {
-  "AdminsMunicipalities" : {
-    "_id" : "wm-AdminsMunicipalities-wm.ServiceVariable-1479981102943",
-    "name" : "AdminsMunicipalities",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "user",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.AdminsMunicipalitiesResponse",
-    "service" : "cx2",
-    "operation" : "executeAdminsMunicipalities",
-    "operationId" : "QueryExecutionController_executeAdminsMunicipalities",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
   "BreadCrum" : {
     "_id" : "wm-BreadCrum-wm.Variable-1479981050607",
     "name" : "BreadCrum",
@@ -3316,6 +3288,10 @@
     }, {
       "target" : "formType",
       "value" : "bind:Widgets.liveformCreateForm.formWidgets.formType.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "description",
+      "value" : "bind:Widgets.liveformCreateForm.formWidgets.description.datavalue",
       "type" : "string"
     } ],
     "type" : "integer",

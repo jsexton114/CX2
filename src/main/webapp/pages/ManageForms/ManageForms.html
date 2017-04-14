@@ -45,7 +45,7 @@
                                             </wm-grid-column>
                                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                             <wm-grid-action key="addNewRow" display-name="New Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Form" action="Widgets.dialogCreateForm.open()" shortcutkey="" disabled="false"></wm-grid-action>
-                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.goToPage_EditForm.invoke()" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogDeleteFormDesign.open()" disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                     </wm-gridcolumn>
@@ -126,37 +126,10 @@
                     </wm-gridrow>
                     <wm-gridrow name="gridrow12_1">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn13">
-                            <wm-form-field name="description" displayname="Form Description" show="true" primary-key="false" generator="assigned" key="description" type="text" readonly="false" required="true" widget="textarea" maxchars="5000" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="description" displayname="Form Description" show="true" primary-key="false" generator="assigned" key="description" type="text" readonly="false" required="false" widget="textarea" maxchars="5000" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>
-                <wm-form-field name="permissionsReaders" displayname="Permissions Readers" show="false" primary-key="false" generator="assigned" key="permissionsReaders" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="permissionsWriters" displayname="Permissions Writers" show="false" primary-key="false" generator="assigned" key="permissionsWriters" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="tbLocation" displayname="Tb Location" show="false" primary-key="false" generator="assigned" key="tbLocation" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="flatFee" displayname="Flat Fee" show="false" primary-key="false" generator="assigned" key="flatFee" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="flatFeeAccountingCode" displayname="Flat Fee Accounting Code" show="false" primary-key="false" generator="assigned" key="flatFeeAccountingCode" type="string" readonly="false" required="false" widget="text"
-                maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="sfFee" displayname="Sf Fee" show="false" primary-key="false" generator="assigned" key="sfFee" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="sfFeeAccountingCode" displayname="Sf Fee Accounting Code" show="false" primary-key="false" generator="assigned" key="sfFeeAccountingCode" type="string" readonly="false" required="false" widget="text"
-                maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="unitFee" displayname="Unit Fee" show="false" primary-key="false" generator="assigned" key="unitFee" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="unitFeeAccountingCode" displayname="Unit Fee Accounting Code" show="false" primary-key="false" generator="assigned" key="unitFeeAccountingCode" type="string" readonly="false" required="false" widget="text"
-                maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="stateFee" displayname="State Fee" show="false" primary-key="false" generator="assigned" key="stateFee" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="stateFeeAccountingCode" displayname="State Fee Accounting Code" show="false" primary-key="false" generator="assigned" key="stateFeeAccountingCode" type="string" readonly="false" required="false" widget="text"
-                maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="report" displayname="Report" show="false" primary-key="false" generator="assigned" key="report" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""></wm-form-field>
-                <wm-form-field name="pageName" displayname="Page Name" show="false" primary-key="false" generator="assigned" key="pageName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="false" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" readonly="false" required="false"
-                widget="checkbox" placeholder=""></wm-form-field>
-                <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" readonly="false" required="true" widget="select"
-                placeholder="Select value" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord" dataset="bind:Variables.SelectedMunicipalityObj.dataSet" datafield="All Fields" displayfield="municipalityName"></wm-form-field>
-                <wm-form-field name="createdDate" displayname="Created Date" show="false" primary-key="false" generator="assigned" key="createdDate" type="date" readonly="false" required="false" widget="date" placeholder="Select date"
-                outputformat="yyyy-MM-dd" defaultvalue="CURRENT_DATE"></wm-form-field>
-                <wm-form-field name="formTypeGuid" displayname="Form Type Guid" show="false" primary-key="false" generator="assigned" key="formTypeGuid" type="string" readonly="true" required="false" widget="text" maxchars="255" inputtype="text"
-                placeholder="Enter value" defaultvalue="bind:GUID"></wm-form-field>
-                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
                 <wm-form-action key="save" display-name="Create" show="true" class="btn-primary" iconclass="wi wi-plus" title="Create" action="Variables.svSaveFormType.invoke();Widgets.dialogCreateForm.close()" shortcutkey="" disabled="bind:!Widgets.liveformCreateForm.formWidgets.formType.datavalue"
                 type="button" update-mode="true"></wm-form-action>
                 <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="Widgets.dialogCreateForm.close()" shortcutkey="" disabled="false" type="button"
