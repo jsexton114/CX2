@@ -107,10 +107,7 @@ Application.$controller("gridUnpaidFeesController", ["$scope",
 
 
         $scope.updaterowAction = function($event, $rowData) {
-
-            $scope.Variables.stvFormLink.dataSet.dataValue = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-            $scope.Widgets.iframedialog1.open();
-            //window.open(tempLink, "", "width=700,height=700");
+            $scope.Widgets.pagedialogViewForm.open();
         };
 
     }
@@ -121,5 +118,19 @@ Application.$controller("iframedialog1Controller", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
+    }
+]);
+
+Application.$controller("pagedialogViewFormController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogViewInspectionController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);
