@@ -47,9 +47,9 @@ Application.$controller("gridFeesListController", ["$scope",
 
         $scope.updaterowAction = function($event, $rowData) {
             if ($rowData.itemType == 'form') {
-                $scope.Widgets.pageDialogViewForm.open();
+                $scope.Widgets.pagedialogViewForm.open();
             } else {
-                $scope.Widgets.pageDialogViewInspection.open();
+                $scope.Widgets.pagedialogViewInspection.open();
             }
         };
 
@@ -71,8 +71,8 @@ Application.$controller("pagedialogViewFormController", ["$scope",
 ]);
 
 Application.$controller("pagedialogViewInspectionController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

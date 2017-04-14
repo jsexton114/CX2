@@ -3,6 +3,7 @@ Application.$controller("_viewFormPageController", ["$scope", function($scope) {
 
     var currentBreadCrumb = null;
     var openClosedFormBreadCrumb = {};
+    $scope.isHostile = false;
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
