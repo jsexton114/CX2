@@ -812,6 +812,7 @@ ORDER BY DateModified DESC
        MF.FormGuid as itemGuid,
        FT.formType as parentItemName,
        muni.MunicipalityName as municipalityName,
+       'form' as itemType,
        (select top 1 gis.fullAddress from GISRecords gis, GIS2Forms gtf where gis.ID=gtf.GisRecordID and gtf.RelatedFormGUID=MF.FormGUID) as fullAddress,
        fees.feeType as feeType,
        fees.amount as amount
@@ -827,6 +828,7 @@ select MC.id as id,
        MI.InspectionGuid as itemGuid,
        ID.InspectDesignName as parentItemName,
        muni.MunicipalityName as municipalityName,
+         'inspection' as itemType,
        (select top 1 gis.fullAddress from GISRecords gis, InspectionGis IG where gis.ID=IG.GisRecordID and IG.RelatedInspectionGuid=MI.InspectionGuid) as fullAddress,
        fees.feeType as feeType,
        fees.amount as amount
@@ -847,6 +849,7 @@ where MC.userId=:user and fees.PaidStatus='Unpaid'
        MF.FormGuid as itemGuid,
        FT.formType as parentItemName,
        muni.MunicipalityName as municipalityName,
+       'form' as itemType,
        (select top 1 gis.fullAddress from GISRecords gis, GIS2Forms gtf where gis.ID=gtf.GisRecordID and gtf.RelatedFormGUID=MF.FormGUID) as fullAddress,
        fees.feeType as feeType,
        fees.amount as amount
@@ -862,6 +865,7 @@ select MC.id as id,
        MI.InspectionGuid as itemGuid,
        ID.InspectDesignName as parentItemName,
        muni.MunicipalityName as municipalityName,
+         'inspection' as itemType,
        (select top 1 gis.fullAddress from GISRecords gis, InspectionGis IG where gis.ID=IG.GisRecordID and IG.RelatedInspectionGuid=MI.InspectionGuid) as fullAddress,
        fees.feeType as feeType,
        fees.amount as amount

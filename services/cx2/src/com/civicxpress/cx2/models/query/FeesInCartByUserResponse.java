@@ -33,6 +33,8 @@ public class FeesInCartByUserResponse implements Serializable {
     private String parentItemName;
     @ColumnAlias("municipalityName")
     private String municipalityName;
+    @ColumnAlias("itemType")
+    private String itemType;
     @ColumnAlias("fullAddress")
     private String fullAddress;
     @ColumnAlias("feeType")
@@ -80,6 +82,14 @@ public class FeesInCartByUserResponse implements Serializable {
         this.municipalityName = municipalityName;
     }
 
+    public String getItemType() {
+        return this.itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
+
     public String getFullAddress() {
         return this.fullAddress;
     }
@@ -114,6 +124,7 @@ public class FeesInCartByUserResponse implements Serializable {
                 Objects.equals(getItemGuid(), feesInCartByUserResponse.getItemGuid()) &&
                 Objects.equals(getParentItemName(), feesInCartByUserResponse.getParentItemName()) &&
                 Objects.equals(getMunicipalityName(), feesInCartByUserResponse.getMunicipalityName()) &&
+                Objects.equals(getItemType(), feesInCartByUserResponse.getItemType()) &&
                 Objects.equals(getFullAddress(), feesInCartByUserResponse.getFullAddress()) &&
                 Objects.equals(getFeeType(), feesInCartByUserResponse.getFeeType()) &&
                 Objects.equals(getAmount(), feesInCartByUserResponse.getAmount());
@@ -126,6 +137,7 @@ public class FeesInCartByUserResponse implements Serializable {
                 getItemGuid(),
                 getParentItemName(),
                 getMunicipalityName(),
+                getItemType(),
                 getFullAddress(),
                 getFeeType(),
                 getAmount());

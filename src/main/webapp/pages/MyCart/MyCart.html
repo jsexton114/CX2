@@ -15,8 +15,8 @@
                         <wm-panel iconclass="wi wi-shopping-cart" autoclose="outsideClick" name="panelMyCart" title="My Cart" class="panel-primary">
                             <wm-grid title="" dataset="bind:Variables.svFeesInCartOfUser.dataSet" navigation="Classic" name="gridFeesList">
                                 <wm-grid-column binding="municipalityName" caption="Municipality Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="parentItemName" caption="Item Name" show="true" readonly="undefined"></wm-grid-column>
-                                <wm-grid-column binding="itemTitle" caption="Item Title" show="true" readonly="undefined"></wm-grid-column>
+                                <wm-grid-column binding="parentItemName" caption="Item Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                <wm-grid-column binding="itemTitle" caption="Item Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="fullAddress" caption="Full Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="feeType" caption="Fee Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -25,6 +25,7 @@
                                 <wm-grid-action key="customButton" display-name="Proceed to Checkout" show="true" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="customButtonAction($event)" shortcutkey=""
                                 disabled="bind:feeTotal <= 0"></wm-grid-action>
                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove From Cart" action="Variables.lvDeleteFromCart.deleteRecord()" disabled="false"></wm-grid-row-action>
+                                <wm-grid-row-action key="updaterow" display-name="" title="View" iconclass="wi wi-search" show="true" class="btn-transparent" action="updaterowAction($event)"></wm-grid-row-action>
                             </wm-grid>
                         </wm-panel>
                     </wm-gridcolumn>
