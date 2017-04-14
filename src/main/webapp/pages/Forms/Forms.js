@@ -305,6 +305,27 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         }
     };
 
+
+    $scope.Gis2formsDataonSuccess = function(variable, data) {
+        debugger
+        let isHostil = 0
+        if (data.content.length > 0) {
+            _.forEach(data.content, function(obj) {
+                if (obj.gisrecords.isHostile) {
+                    isHostil = 1
+                }
+            });
+
+        }
+        if (isHostil > 0) {
+            $scope.Widgets.labelHostil.show = true;
+        } else {
+            $scope.Widgets.labelHostil.show = false;
+        }
+
+
+    };
+
 }]);
 
 Application.$controller("gridSharedwithController", ["$scope",

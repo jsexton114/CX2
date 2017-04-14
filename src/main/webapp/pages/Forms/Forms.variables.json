@@ -782,6 +782,18 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "description",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Description",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -7519,6 +7531,18 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "description",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Description",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -9725,6 +9749,18 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "description",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Description",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "municipalityGroupsByProcessOwners",
@@ -10870,6 +10906,7 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "Gis2formsDataonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
@@ -15736,6 +15773,18 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "description",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
+        "columnName" : "Description",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 5000,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
         "scale" : 0
       } ],
       "entityName" : "FormTypes",
