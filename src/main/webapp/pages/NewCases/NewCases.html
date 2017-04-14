@@ -11,9 +11,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow7">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn17_1" padding="2em unset">
-                        <wm-label name="label5" caption="New Code Enforcement Cases" fontweight="bold" class="h4"></wm-label>
-                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn17_1" padding="2em unset"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn19_1" padding="2em unset">
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
@@ -23,24 +21,32 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow4">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                        <wm-label padding="unset 0.5em" name="labelDescription" caption="&quot;Open&quot; Code Enforcement cases that have been entered into the system within the past 7 days will appear here."></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
                 <wm-gridrow name="gridrow9">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn19">
-                        <wm-grid title="" dataset="bind:Variables.svNewCases.dataSet" navigation="Classic" name="gridNewCases" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="address" caption="Address" show="true" readonly="undefined"></wm-grid-column>
-                            <wm-grid-column binding="fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="formType" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="status" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
-                            </wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Case" action="Variables.ngViewCase.invoke()" disabled="false"></wm-grid-row-action>
-                        </wm-grid>
+                        <wm-panel iconclass="wi wi-new-releases" autoclose="outsideClick" name="panelNewCases" title="New Code Enforcement Cases" class="panel-primary">
+                            <wm-layoutgrid name="layoutgrid2">
+                                <wm-gridrow name="gridrow5">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                                        <wm-label padding="unset 0.5em" name="labelDescription" caption="&quot;Open&quot; Code Enforcement cases that have been entered into the system within the past 7 days will appear here."></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow6">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn8">
+                                        <wm-grid title="" dataset="bind:Variables.svNewCases.dataSet" navigation="Classic" name="gridNewCases" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="address" caption="Address" show="true" readonly="undefined"></wm-grid-column>
+                                            <wm-grid-column binding="fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="formType" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="status" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
+                                            </wm-grid-column>
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Case" action="Variables.ngViewCase.invoke()" disabled="false"></wm-grid-row-action>
+                                        </wm-grid>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
