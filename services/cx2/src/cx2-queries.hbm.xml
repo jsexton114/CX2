@@ -1960,6 +1960,24 @@ ORDER BY DateModified DESC
     <query-param name="ProjectSharedBy" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="checkInspectionLimit">
+        <![CDATA[
+        select count(*) as inspectionCount from MasterInspections mi where mi.InspectionDesignId=:inspectionDesignId and mi.DateAssigned >= :startOfDay and mi.DateAssigned <= :endOfDay
+        ]]>
+    <query-param name="inspectionDesignId" type="java.lang.Integer"/>
+    <query-param name="startOfDay" type="org.joda.time.LocalDateTime"/>
+    <query-param name="endOfDay" type="org.joda.time.LocalDateTime"/>
+    </sql-query>
+
+    <sql-query name="checkInspectionLimit__count">
+        <![CDATA[
+        select count(*) from (select count(*) as inspectionCount from MasterInspections mi where mi.InspectionDesignId=:inspectionDesignId and mi.DateAssigned >= :startOfDay and mi.DateAssigned <= :endOfDay) wmTempTable
+        ]]>
+    <query-param name="inspectionDesignId" type="java.lang.Integer"/>
+    <query-param name="startOfDay" type="org.joda.time.LocalDateTime"/>
+    <query-param name="endOfDay" type="org.joda.time.LocalDateTime"/>
+    </sql-query>
+
     <query name="getOwnersForGisRecords">
         <![CDATA[
         FROM Giscontacts WHERE contactType='Owner' AND active=1 AND gisRecordId IN :gisRecordIds

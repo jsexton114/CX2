@@ -23,7 +23,7 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     $scope.allFormStatus;
 
     $scope.FormStatusonSuccess = function(variable, data) {
-        setFormStatusProgressValue(); // Expiration handled inside
+        setFormStatusProgressValue();
     };
 
     $scope.canAddVendor = function() {
@@ -294,6 +294,10 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
     };
 
     $scope.svDateStatusEnteredonSuccess = function(variable, data) {
+        if (!data.content.length) {
+            return;
+        }
+
         var momentStatusEntered = moment(data.content[0].createdTime);
 
         if (!!$scope.expirationStatusId && $scope.expirationStatusId === $scope.currentStatusId) {
@@ -303,6 +307,14 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
             $scope.expiresOn = null;
             $scope.isExpired = false;
         }
+    };
+
+    $scope.lvHolidaysonSuccess = function(variable, data) {
+        $scope.holidayDateList = [];
+
+        data.forEach(function(holidayData, index) {
+            $scope.holidayDateList.push(holidayData.date);
+        });
     };
 
 
@@ -659,9 +671,16 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         $scope.minDaysForInspection = moment().startOf('day').valueOf();
         $scope.maxDaysForInspection = moment().startOf('day').add(15, 'years').valueOf();
 
+        function getRequestedFor() {
+            if (!$scope.inspectionObject) {
+                return null;
+            }
+
+            return $scope.inspectionObject.scheduleDateAndTime === true ? $scope.Widgets.datetimeInspectionRequest.datavalue : $scope.Widgets.dateInspectionRequest.datavalue;
+        }
+
         $scope.isSameDayRequest = function() {
-            console.log($scope.Widgets.dateInspectionRequest.datavalue);
-            return moment().startOf('day').diff(moment($scope.Widgets.dateInspectionRequest.datavalue).startOf('day'), 'days') === 0;
+            return moment().startOf('day').diff(moment(getRequestedFor()).startOf('day'), 'days') === 0;
         };
 
         function updateMinMaxDates(inspectionDesignData) {
@@ -681,6 +700,11 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         }
 
         $scope.button2InspectionRequestClick = function($event, $isolateScope) {
+            $scope.Variables.svScheduleInspection.setInput({
+                inspectionDesignId: inspectionObject.id,
+                requestedFor: getRequestedFor()
+            });
+
             $scope.Variables.svScheduleInspection.update();
         };
 
@@ -690,10 +714,51 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         };
 
         $scope.selectInspectionDesignBySequenceChange = function($event, $isolateScope, newVal, oldVal) {
-            $scope.inspectionObject = newVal;
+            $scope.inspectionObject = !!newVal ? newVal.inspectionDesign : null;
             updateMinMaxDates(newVal);
         };
 
+        function updateDailyInspectionLimit(selectedDate) {
+            $scope.Variables.svCountInspectionsDaily.setInput({
+                inspectionDesignId: $scope.inspectionObject.id,
+                startOfDay: moment(selectedDate).startOf('day').valueOf(),
+                endOfDay: moment(selectedDate).endOf('day').valueOf()
+            });
+
+            $scope.Variables.svCountInspectionsDaily.update();
+        }
+
+        $scope.dateInspectionRequestChange = function($event, $isolateScope, newVal, oldVal) {
+            updateDailyInspectionLimit(newVal);
+        };
+
+        $scope.$watch(function() {
+            return $scope.Variables.svCountInspectionsHourly.dataSet;
+        }, function(newValue, oldValue) {
+            if (newValue !== []) {
+                $scope.tooManyInspectionsForHour = newValue.inspectionCount >= $scope.inspectionObject.totalInspectionsHourly;
+            }
+        });
+
+        $scope.$watch(function() {
+            return $scope.Variables.svCountInspectionsDaily.dataSet;
+        }, function(newValue, oldValue) {
+            if (newValue !== []) {
+                $scope.tooManyInspectionsForDay = newValue.inspectionCount >= $scope.inspectionObject.totalInspectionsDaily;
+            }
+        });
+
+        $scope.datetimeInspectionRequestChange = function($event, $isolateScope, newVal, oldVal) {
+            updateDailyInspectionLimit(newVal);
+
+            $scope.Variables.svCountInspectionsHourly.setInput({
+                inspectionDesignId: $scope.inspectionObject.id,
+                startOfDay: moment(newVal).startOf('hour').valueOf(),
+                endOfDay: moment(newVal).endOf('hour').valueOf()
+            });
+
+            $scope.Variables.svCountInspectionsHourly.update();
+        };
     }
 ]);
 

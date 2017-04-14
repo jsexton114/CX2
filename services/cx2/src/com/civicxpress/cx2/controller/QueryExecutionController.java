@@ -2016,6 +2016,16 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/checkInspectionLimit", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Check to see if inspection limit for a day has been exceeded or not.")
+    public CheckInspectionLimitResponse executeCheckInspectionLimit(@RequestParam(value = "inspectionDesignId") Integer inspectionDesignId, @RequestParam(value = "startOfDay") LocalDateTime startOfDay, @RequestParam(value = "endOfDay") LocalDateTime endOfDay) {
+        LOGGER.debug("Executing named query: checkInspectionLimit");
+        CheckInspectionLimitResponse _result = queryService.executeCheckInspectionLimit(inspectionDesignId, startOfDay, endOfDay);
+        LOGGER.debug("got the result for named query: checkInspectionLimit, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/getOwnersForGisRecords", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Owners over multiple GIS Records")

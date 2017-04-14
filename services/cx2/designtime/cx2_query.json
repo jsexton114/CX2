@@ -10474,6 +10474,58 @@
       } ]
     }
   },
+  "checkInspectionLimit" : {
+    "name" : "checkInspectionLimit",
+    "description" : "Check to see if inspection limit for a day has been exceeded or not.",
+    "version" : "V2",
+    "queryString" : "select count(*) as inspectionCount from MasterInspections mi where mi.InspectionDesignId=:inspectionDesignId and mi.DateAssigned >= :startOfDay and mi.DateAssigned <= :endOfDay",
+    "countQueryString" : "select count(*) from (select count(*) as inspectionCount from MasterInspections mi where mi.InspectionDesignId=:inspectionDesignId and mi.DateAssigned >= :startOfDay and mi.DateAssigned <= :endOfDay) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "inspectionDesignId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "33",
+      "required" : true
+    }, {
+      "name" : "startOfDay",
+      "type" : "datetime",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-04-13T00:00:00",
+      "required" : true
+    }, {
+      "name" : "endOfDay",
+      "type" : "datetime",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-04-13T23:59:59",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CheckInspectionLimitResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "inspectionCount",
+        "fieldName" : "inspectionCount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "countAssignedInspectionsBetweenDates" : {
     "name" : "countAssignedInspectionsBetweenDates",
     "description" : "countAssignedInspectionsBetweenDates",

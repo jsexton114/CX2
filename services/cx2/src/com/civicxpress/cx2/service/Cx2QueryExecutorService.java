@@ -436,6 +436,8 @@ public interface Cx2QueryExecutorService {
 
     Integer executeAddMemeberToProject(AddMemeberToProjectRequest addMemeberToProjectRequest);
 
+    CheckInspectionLimitResponse executeCheckInspectionLimit(Integer inspectionDesignId, LocalDateTime startOfDay, LocalDateTime endOfDay);
+
     Page<GetOwnersForGisRecordsResponse> executeGetOwnersForGisRecords(List<Integer> gisRecordIds, Pageable pageable);
 
     Downloadable exportGetOwnersForGisRecords(ExportType exportType, List<Integer> gisRecordIds, Pageable pageable);

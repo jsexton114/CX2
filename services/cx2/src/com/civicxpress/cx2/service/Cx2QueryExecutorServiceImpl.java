@@ -2321,6 +2321,18 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public CheckInspectionLimitResponse executeCheckInspectionLimit(Integer inspectionDesignId, LocalDateTime startOfDay, LocalDateTime endOfDay) {
+        Map params = new HashMap(3);
+
+        params.put("inspectionDesignId", inspectionDesignId);
+        params.put("startOfDay", startOfDay);
+        params.put("endOfDay", endOfDay);
+
+        return queryExecutor.executeNamedQuery("checkInspectionLimit", params, CheckInspectionLimitResponse.class);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<GetOwnersForGisRecordsResponse> executeGetOwnersForGisRecords(List<Integer> gisRecordIds, Pageable pageable) {
         Map params = new HashMap(1);
 
