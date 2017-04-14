@@ -22,6 +22,7 @@ Application.$controller("MyFeesPageController", ["$scope", function($scope) {
 
             }
         });
+
     };
 
 
@@ -103,6 +104,22 @@ Application.$controller("gridUnpaidFeesController", ["$scope",
             });
             $scope.Variables.svInsertAllFeeToCart.update();
         };
+
+
+        $scope.updaterowAction = function($event, $rowData) {
+
+            $scope.Variables.stvFormLink.dataSet.dataValue = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+            $scope.Widgets.iframedialog1.open();
+            //window.open(tempLink, "", "width=700,height=700");
+        };
+
+    }
+]);
+
+Application.$controller("iframedialog1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
 
     }
 ]);

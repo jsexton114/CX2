@@ -48,15 +48,24 @@ Application.$controller("gridFeesListController", ["$scope",
 
         $scope.updaterowAction = function($event, $rowData) {
 
-            var tempLink
+
             if ($rowData.itemType == 'form') {
-                tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.itemGuid
-                window.open(tempLink);
+
+                $scope.Variables.stvFormLink.dataSet.dataValue = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.itemGuid;
+                $scope.Widgets.iframedialog1.open();
             } else {
-                tempLink = window.location.hostname + "/#/ViewInspection?inspectionGuid=" + $rowData.itemGuid
-                window.open(tempLink);
+                $scope.Variables.stvFormLink.dataSet.dataValue = window.location.hostname +
+                    "/#/ViewInspection?inspectionGuid=" + $rowData.itemGuid;
+                $scope.Widgets.iframedialog1.open();
             }
         };
 
+    }
+]);
+
+Application.$controller("iframedialog1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

@@ -163,8 +163,10 @@ Application.$controller("gridAdvancedController", ["$scope",
             //     'FormGUID': $rowData.formGuid
             // });
             // $scope.Variables.goToPage_FormsFormSearch.navigate();
-            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-            window.open(tempLink);
+            // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+            // window.open(tempLink);
+            $scope.Variables.stvFormLink.dataSet.dataValue = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+            $scope.Widgets.iframedialog1.open();
         };
 
     }
@@ -191,8 +193,10 @@ Application.$controller("gridVENDORController", ["$scope",
             //     'FormGUID': $rowData.formGuid
             // });
             // $scope.Variables.goToPage_FormsFormSearch.navigate();
-            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-            window.open(tempLink);
+            // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+            // window.open(tempLink);
+            $scope.Variables.stvFormLink.dataSet.dataValue = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+            $scope.Widgets.iframedialog1.open();
         };
 
     }
@@ -208,8 +212,10 @@ Application.$controller("gridUserFormsController", ["$scope",
             //     'FormGUID': $rowData.formGuid
             // });
             // $scope.Variables.goToPage_FormsFormSearch.navigate();
-            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-            window.open(tempLink);
+            // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+            // window.open(tempLink);
+            $scope.Variables.stvFormLink.dataSet.dataValue = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+            $scope.Widgets.iframedialog1.open();
         };
 
     }
@@ -226,10 +232,19 @@ Application.$controller("gridFormsAddressController", ["$scope",
                 //     'FormGUID': $rowData.formGuid
                 // });
                 // $scope.Variables.goToPage_FormsFormSearch.navigate();
-                var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-                window.open(tempLink);
+                // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+                // window.open(tempLink);
+                $scope.Variables.stvFormLink.dataSet.dataValue = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
+                $scope.Widgets.iframedialog1.open();
             };
         };
 
     }
+]);
+
+Application.$controller("iframedialog1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

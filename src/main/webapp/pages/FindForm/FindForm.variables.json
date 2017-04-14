@@ -1461,6 +1461,18 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "description",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Description",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -3965,6 +3977,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "description",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Description",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
           "scale" : 0
         } ]
       }, {
@@ -9837,6 +9861,19 @@
       "type" : "Internal",
       "value" : true
     } ],
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "stvFormLink" : {
+    "_id" : "wm-stvFormLink-wm.Variable-1492173158551",
+    "name" : "stvFormLink",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : ""
+    },
     "type" : "string",
     "isList" : false,
     "saveInPhonegap" : false

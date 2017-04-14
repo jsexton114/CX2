@@ -43,7 +43,7 @@
                                             disabled="false" icon="wi wi-add-shopping-cart"></wm-grid-action>
                                             <wm-grid-row-action key="deleterow" display-name="" show="bind:!itemInCart(row.getProperty('feeId'))" class="btn-transparent" iconclass="wi wi-add-shopping-cart" title="Add to Cart" action="Variables.svInsertIntoCart.invoke()"
                                             disabled="false"></wm-grid-row-action>
-                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.ngViewForm.invoke()" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
@@ -60,4 +60,7 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="view2">
+        <wm-iframedialog name="iframedialog1" url="bind:Variables.stvFormLink.dataSet.dataValue" title="Form" width="80%"></wm-iframedialog>
+    </wm-view>
 </wm-page>
