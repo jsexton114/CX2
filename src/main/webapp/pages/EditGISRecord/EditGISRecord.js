@@ -14,6 +14,14 @@ Application.$controller("EditGISRecordPageController", ["$scope", function($scop
          */
     };
 
+
+    $scope.liveformGisrecordsBeforeservicecall = function($event, $operation, $data) {
+        delete $data.dateModified;
+        delete $data.fullAddress;
+
+        $data.modifiedBy = parseInt(Variables.loggedInUser.dataSet.id);
+    };
+
 }]);
 
 
@@ -21,10 +29,7 @@ Application.$controller("liveformGisrecordsController", ["$scope", "$rootScope",
     function($scope, $rs) {
         "use strict";
 
-        if ($rs.Variables.loggedInUser.dataSet.roles[0] == "MunicipalityEmployee")
-            $scope.disable = true;
-        else
-            $scope.disable = false;
+        $scope.disable = ($rs.Variables.loggedInUser.dataSet.roles[0] === "MunicipalityEmployee");
     }
 ]);
 
@@ -44,50 +49,50 @@ Application.$controller("liveformGISContactsController", ["$scope",
 ]);
 
 Application.$controller("gridOpenFormsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("grid3Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("gridCasesController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("gridFormsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("gridTransactionsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveform3Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("dialogGisMapController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

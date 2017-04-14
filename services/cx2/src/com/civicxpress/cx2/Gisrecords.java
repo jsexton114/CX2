@@ -58,10 +58,10 @@ public class Gisrecords implements Serializable {
     private String unitNumber;
     private String postalCode;
     private String directionalSuffix;
-    private String use;
+    private String usedFor;
     @Type(type = "DateTime")
     private LocalDateTime dateModified;
-    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.UPDATE, Scope.INSERT })
+    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.INSERT, Scope.UPDATE })
     private Integer modifiedBy;
     private String zoningClassification;
     private String floodZone;
@@ -263,13 +263,13 @@ public class Gisrecords implements Serializable {
         this.directionalSuffix = directionalSuffix;
     }
 
-    @Column(name = "`Use`", nullable = true, length = 1000)
-    public String getUse() {
-        return this.use;
+    @Column(name = "`UsedFor`", nullable = true, length = 1000)
+    public String getUsedFor() {
+        return this.usedFor;
     }
 
-    public void setUse(String use) {
-        this.use = use;
+    public void setUsedFor(String usedFor) {
+        this.usedFor = usedFor;
     }
 
     @Column(name = "`DateModified`", nullable = true, insertable = false, updatable = false)

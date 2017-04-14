@@ -317,25 +317,16 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         });
     };
 
-
     $scope.Gis2formsDataonSuccess = function(variable, data) {
-        debugger
-        let isHostil = 0
+        $scope.isHostile = false;
         if (data.content.length > 0) {
-            _.forEach(data.content, function(obj) {
+            data.content.some(function(obj, index) {
                 if (obj.gisrecords.isHostile) {
-                    isHostil = 1
+                    $scope.isHostile = true;
+                    return true;
                 }
             });
-
         }
-        if (isHostil > 0) {
-            $scope.Widgets.labelHostil.show = true;
-        } else {
-            $scope.Widgets.labelHostil.show = false;
-        }
-
-
     };
 
 }]);
