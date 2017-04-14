@@ -35,6 +35,7 @@ public class GisTransaction implements Serializable {
     private String purchasedBy;
     private int gisRecordId;
     private String seller;
+    private String description;
     private Gisrecords gisrecords;
 
     @Id
@@ -109,6 +110,15 @@ public class GisTransaction implements Serializable {
 
     public void setSeller(String seller) {
         this.seller = seller;
+    }
+
+    @Column(name = "`Description`", nullable = true, length = 5000)
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -81,6 +81,7 @@ public class FormTypes implements Serializable {
     private String expirationType;
     private Integer expirationDays;
     private Integer expirationStatusId;
+    private String description;
     private Municipalities municipalities;
     private List<CodesToForm> codesToForms = new ArrayList<>();
     private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
@@ -516,6 +517,15 @@ public class FormTypes implements Serializable {
 
     public void setExpirationStatusId(Integer expirationStatusId) {
         this.expirationStatusId = expirationStatusId;
+    }
+
+    @Column(name = "`Description`", nullable = true, length = 5000)
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

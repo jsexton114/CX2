@@ -56,10 +56,8 @@ public class InspectionController {
     }
 
     @RequestMapping(value = "/saveInspectionDesign", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public Long saveInspectionDesign(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "inspectionName", required = false) String inspectionName) throws SQLException {
-        return inspectionService.saveInspectionDesign(municipalityId, inspectionName);
+    public Long saveInspectionDesign(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "inspectionName", required = false) String inspectionName, @RequestParam(value = "description", required = false) String description) throws SQLException {
+        return inspectionService.saveInspectionDesign(municipalityId, inspectionName, description);
     }
 
     @RequestMapping(value = "/scheduleInspection", method = RequestMethod.GET)

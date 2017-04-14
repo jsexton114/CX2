@@ -80,12 +80,7 @@ Application.$controller("liveform3Controller", ["$scope",
     }
 ]);
 
-Application.$controller("gridFormTypesController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
 
 Application.$controller("confirmDeleteFormDesignController", ["$scope",
     function($scope) {
@@ -99,4 +94,11 @@ Application.$controller("dialogDeleteFormDesignController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
     }
+]);
+
+Application.$controller("gridFormTypesController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

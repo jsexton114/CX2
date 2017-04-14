@@ -70,6 +70,7 @@ public class InspectionDesign implements Serializable {
     private boolean scheduleDateAndTime;
     private BigInteger currentPrefixNumber;
     private Integer prefixNumberResetOn;
+    private String description;
     private Users users;
     private Municipalities municipalities;
     private List<CodesToInspection> codesToInspections = new ArrayList<>();
@@ -404,6 +405,15 @@ public class InspectionDesign implements Serializable {
 
     public void setPrefixNumberResetOn(Integer prefixNumberResetOn) {
         this.prefixNumberResetOn = prefixNumberResetOn;
+    }
+
+    @Column(name = "`Description`", nullable = true, length = 5000)
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

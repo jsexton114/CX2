@@ -57,7 +57,7 @@ public class InspectionService {
     @Value("${cx2.password}")
     private String defaultSqlPassword;
 
-    public Long saveInspectionDesign(Long municipalityId, String inspectionName) throws SQLException {
+    public Long saveInspectionDesign(Long municipalityId, String inspectionName, String description) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	cx2Conn.setAutoCommit(false);
         Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
@@ -81,9 +81,10 @@ public class InspectionService {
 	        inspectionCreateParams.addString("inspectionName", inspectionName);
 	        inspectionCreateParams.addLong("municipalityId", municipalityId);
 	        inspectionCreateParams.addString("inspectionTableName", inspectionTableName);
+	         inspectionCreateParams.addString("description", description);
 	        inspectionCreateParams.addString("titlePrefix", inspectionTitlePrefix.toString());
 	        
-	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO InspectionDesign (InspectDesignName, MunicipalityId, InspectionTableName, TitlePrefix) VALUES (:inspectionName, :municipalityId, :inspectionTableName, :titlePrefix)", inspectionCreateParams);
+	        DBUtils.simpleQuery(cx2Conn, "INSERT INTO InspectionDesign (InspectDesignName, MunicipalityId, InspectionTableName,Description, TitlePrefix) VALUES (:inspectionName, :municipalityId, :inspectionTableName,:description, :titlePrefix)", inspectionCreateParams);
 	        
 	        newInspectionDesignId = DBUtils.selectOne(cx2Conn, "SELECT @@IDENTITY as inspectionId", null).getLong("inspectionId");
 	        inspectionCreateParams.addLong("newInspectionDesignId", newInspectionDesignId);
