@@ -29,6 +29,7 @@
                             <wm-livegrid formlayout="dialog" name="livegridInspectiondesign">
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionDesignData.dataSet" navigation="Classic" name="gridInspectiondesign" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                     <wm-grid-column binding="inspectDesignName" caption="Inspection" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="description" caption="Description" type="text" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="createdAt" caption="Date Created" type="timestamp" generator="assigned" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false">{{row.getProperty('createdAt') | toLocalDateString:true}}</wm-grid-column>
                                     <wm-grid-column binding="active" caption="Active" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox"
                                     show="true" readonly="false">
@@ -37,7 +38,6 @@
                                     <wm-grid-column binding="municipalityInternalInspection" caption="Internal Only" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                         <wm-checkbox scopedatavalue="row['municipalityInternalInspection']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                     </wm-grid-column>
-                                    <wm-grid-column binding="description" caption="Description" type="text" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-action key="addNewRow" display-name="New Inspection" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Inspection" action="Widgets.dlgCreateInspectionDesign.open()" shortcutkey=""
                                     disabled="false"></wm-grid-action>
