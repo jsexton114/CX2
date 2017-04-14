@@ -1252,6 +1252,155 @@
       } ]
     }
   },
+  "CasesByMunicipalityAndAfterDate" : {
+    "name" : "CasesByMunicipalityAndAfterDate",
+    "description" : "formsWithCodeEnforcementByMunicipalityAndAfterDate",
+    "version" : "V2",
+    "queryString" : "SELECT MF.FormGuid as formGuid,\n\tMF.FormTitle as formTitle,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere  FT.CodeEnforcement=:codeEnforcement and \n    Closed=:closed and  (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) and DateSubmitted>:dateSubmitted\nORDER BY DateModified DESC",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "codeEnforcement",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "closed",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "dateSubmitted",
+      "type" : "timestamp",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : 1490525677000,
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CasesByMunicipalityAndAfterDateResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "formGuid",
+        "fieldName" : "formGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formTitle",
+        "fieldName" : "formTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "municipalityName",
+        "fieldName" : "municipalityName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "createdBy",
+        "fieldName" : "createdBy",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formDesign",
+        "fieldName" : "formDesign",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formStatus",
+        "fieldName" : "formStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "lot",
+        "fieldName" : "lot",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "subdivision",
+        "fieldName" : "subdivision",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "address",
+        "fieldName" : "address",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "primaryVendor",
+        "fieldName" : "primaryVendor",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "balanceDue",
+        "fieldName" : "balanceDue",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "CheckIfCompanyUserIsVendorAdmin" : {
     "name" : "CheckIfCompanyUserIsVendorAdmin",
     "description" : "CheckIfCompanyUserIsVendorAdmin",
@@ -10747,119 +10896,6 @@
     },
     "response" : {
       "typeRef" : "com.civicxpress.cx2.models.query.FormsWithCodeEnforcementByMunicipalityResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "formGuid",
-        "fieldName" : "formGuid",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "formTitle",
-        "fieldName" : "formTitle",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "fullName",
-        "fieldName" : "fullName",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "balanceDue",
-        "fieldName" : "balanceDue",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "status",
-        "fieldName" : "status",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "formType",
-        "fieldName" : "formType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "codeEnforcement",
-        "fieldName" : "codeEnforcement",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      } ]
-    }
-  },
-  "formsWithCodeEnforcementByMunicipalityAndAfterDate" : {
-    "name" : "formsWithCodeEnforcementByMunicipalityAndAfterDate",
-    "description" : "formsWithCodeEnforcementByMunicipalityAndAfterDate",
-    "version" : "V2",
-    "queryString" : "select formGuid as formGuid,\n       formTitle as formTitle,\n      users.fullName as fullName,\n      balanceDue as balanceDue,\n      formStatuses.status as status,\n      formTypes.formType as formType,\n       formTypes.codeEnforcement as codeEnforcement\nfrom MasterForms\nwhere formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipalityId=:municipalityId and dateSubmitted>:dateSubmitted",
-    "countQueryString" : null,
-    "nativeSql" : false,
-    "fetchCount" : false,
-    "type" : "SELECT",
-    "parameters" : [ {
-      "name" : "codeEnforcement",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : false,
-      "required" : true
-    }, {
-      "name" : "closed",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : false,
-      "required" : true
-    }, {
-      "name" : "municipalityId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : true
-    }, {
-      "name" : "dateSubmitted",
-      "type" : "timestamp",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : 1490525677000,
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "GET"
-    },
-    "response" : {
-      "typeRef" : "com.civicxpress.cx2.models.query.FormsWithCodeEnforcementByMunicipalityAndAfterDateResponse",
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {

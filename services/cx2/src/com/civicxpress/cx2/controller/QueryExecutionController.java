@@ -1236,25 +1236,6 @@ public class QueryExecutionController {
         return queryService.exportEmployeesOrAdminsMunicipalities(exportType, user, role, pageable);
     }
 
-    @RequestMapping(value = "/queries/formsWithCodeEnforcementByMunicipalityAndAfterDate", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "formsWithCodeEnforcementByMunicipalityAndAfterDate")
-    public Page<FormsWithCodeEnforcementByMunicipalityAndAfterDateResponse> executeFormsWithCodeEnforcementByMunicipalityAndAfterDate(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "dateSubmitted") Timestamp dateSubmitted, Pageable pageable) {
-        LOGGER.debug("Executing named query: formsWithCodeEnforcementByMunicipalityAndAfterDate");
-        Page<FormsWithCodeEnforcementByMunicipalityAndAfterDateResponse> _result = queryService.executeFormsWithCodeEnforcementByMunicipalityAndAfterDate(codeEnforcement, closed, municipalityId, dateSubmitted, pageable);
-        LOGGER.debug("got the result for named query: formsWithCodeEnforcementByMunicipalityAndAfterDate, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query formsWithCodeEnforcementByMunicipalityAndAfterDate")
-    @RequestMapping(value = "/queries/formsWithCodeEnforcementByMunicipalityAndAfterDate/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportFormsWithCodeEnforcementByMunicipalityAndAfterDate(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "dateSubmitted") Timestamp dateSubmitted, Pageable pageable) {
-        LOGGER.debug("Exporting named query: formsWithCodeEnforcementByMunicipalityAndAfterDate");
-
-        return queryService.exportFormsWithCodeEnforcementByMunicipalityAndAfterDate(exportType, codeEnforcement, closed, municipalityId, dateSubmitted, pageable);
-    }
-
     @RequestMapping(value = "/queries/UpdateForceInspectionSequenceForForm", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdateForceInspectionSequenceForForm")
@@ -2629,6 +2610,25 @@ public class QueryExecutionController {
         Integer _result = queryService.executeInsertFormMessage(insertFormMessageRequest);
         LOGGER.debug("got the result for named query: InsertFormMessage, result:{}", _result);
         return _result;
+    }
+
+    @RequestMapping(value = "/queries/CasesByMunicipalityAndAfterDate", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "formsWithCodeEnforcementByMunicipalityAndAfterDate")
+    public Page<CasesByMunicipalityAndAfterDateResponse> executeCasesByMunicipalityAndAfterDate(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "dateSubmitted") Timestamp dateSubmitted, Pageable pageable) {
+        LOGGER.debug("Executing named query: CasesByMunicipalityAndAfterDate");
+        Page<CasesByMunicipalityAndAfterDateResponse> _result = queryService.executeCasesByMunicipalityAndAfterDate(codeEnforcement, closed, municipalityId, dateSubmitted, pageable);
+        LOGGER.debug("got the result for named query: CasesByMunicipalityAndAfterDate, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CasesByMunicipalityAndAfterDate")
+    @RequestMapping(value = "/queries/CasesByMunicipalityAndAfterDate/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCasesByMunicipalityAndAfterDate(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "dateSubmitted") Timestamp dateSubmitted, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CasesByMunicipalityAndAfterDate");
+
+        return queryService.exportCasesByMunicipalityAndAfterDate(exportType, codeEnforcement, closed, municipalityId, dateSubmitted, pageable);
     }
 
     @RequestMapping(value = "/queries/SearchAllFormsByVendor", method = RequestMethod.GET)

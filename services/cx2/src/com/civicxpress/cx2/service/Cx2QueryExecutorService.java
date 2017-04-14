@@ -274,10 +274,6 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportEmployeesOrAdminsMunicipalities(ExportType exportType, Integer user, String role, Pageable pageable);
 
-    Page<FormsWithCodeEnforcementByMunicipalityAndAfterDateResponse> executeFormsWithCodeEnforcementByMunicipalityAndAfterDate(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);
-
-    Downloadable exportFormsWithCodeEnforcementByMunicipalityAndAfterDate(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);
-
     Integer executeUpdateForceInspectionSequenceForForm(UpdateForceInspectionSequenceForFormRequest updateForceInspectionSequenceForFormRequest);
 
     Page<CountOfVendorsResponse> executeCountOfVendors(Integer vendor, Pageable pageable);
@@ -563,6 +559,10 @@ public interface Cx2QueryExecutorService {
     Downloadable exportUserSubscriptionsCount(ExportType exportType, Pageable pageable);
 
     Integer executeInsertFormMessage(InsertFormMessageRequest insertFormMessageRequest);
+
+    Page<CasesByMunicipalityAndAfterDateResponse> executeCasesByMunicipalityAndAfterDate(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);
+
+    Downloadable exportCasesByMunicipalityAndAfterDate(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);
 
     Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(Boolean codeEnforcement, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
 
