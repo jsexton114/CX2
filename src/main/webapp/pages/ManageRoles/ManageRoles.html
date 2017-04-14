@@ -14,7 +14,42 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="wi wi-contacts" autoclose="outsideClick" name="panel1" title="All CX Roles" class="panel-primary">
                             <wm-tabs name="tabs1">
-                                <wm-tabpane name="tabpane1" title="Municipality Roles">
+                                <wm-tabpane name="tabpane3" title="CX Admin">
+                                    <wm-livegrid formlayout="dialog" name="livegridCXAdmin">
+                                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.CXAdminRolesData.dataSet" navigation="Classic" name="gridCXAdmin">
+                                            <wm-grid-column binding="roleName" caption="Role Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="users.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                            <wm-grid-column binding="users.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                            <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                            <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                        </wm-grid>
+                                        <wm-liveform novalidate="false" errormessage="" title="Add CXAdmin" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.CXAdminRolesData.dataSet" captionalign="left" captionposition="top" name="liveformCXAdmin">
+                                            <wm-layoutgrid columns="1" name="layoutgrid6">
+                                                <wm-gridrow name="gridrow15">
+                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn17">
+                                                        <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select value"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                                <wm-gridrow name="gridrow16">
+                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn18">
+                                                        <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="autocomplete" placeholder="Select value" searchkey="firstName,lastName,email"
+                                                        displaylabel="email"></wm-form-field>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                            <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
+                                            <wm-form-field name="description" displayname="Description" show="false" primary-key="false" generator="assigned" key="description" type="string" widget="text" maxchars="255" inputtype="text"
+                                            placeholder="Enter value" defaultvalue="CXAdmin"></wm-form-field>
+                                            <wm-form-field name="roleName" displayname="Role Name" show="false" primary-key="false" generator="assigned" key="roleName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                            defaultvalue="CXAdmin"></wm-form-field>
+                                            <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                        </wm-liveform>
+                                    </wm-livegrid>
+                                </wm-tabpane>
+                                <wm-tabpane name="tabpane1" title="Municipality Roles" disabled="true">
                                     <wm-layoutgrid name="layoutgrid3">
                                         <wm-gridrow name="gridrow7">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn7" padding="1em unset">
@@ -80,7 +115,7 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpane5" title="Code Roles">
+                                <wm-tabpane name="tabpane5" title="Code Roles" disabled="true">
                                     <wm-layoutgrid name="layoutgrid8">
                                         <wm-gridrow name="gridrow19">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn22"></wm-gridcolumn>
@@ -91,7 +126,7 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpane4" title="Inspection Roles">
+                                <wm-tabpane name="tabpane4" title="Inspection Roles" disabled="true">
                                     <wm-layoutgrid name="layoutgrid7">
                                         <wm-gridrow name="gridrow17">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn19"></wm-gridcolumn>
@@ -102,7 +137,7 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpane2" title="Company Roles">
+                                <wm-tabpane name="tabpane2" title="Company Roles" show="true" disabled="true">
                                     <wm-layoutgrid name="layoutgrid3">
                                         <wm-gridrow name="gridrow7">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn7" padding="1em unset">
@@ -167,41 +202,6 @@
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
-                                </wm-tabpane>
-                                <wm-tabpane name="tabpane3" title="CX Admin">
-                                    <wm-livegrid formlayout="dialog" name="livegridCXAdmin">
-                                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.CXAdminRolesData.dataSet" navigation="Classic" name="gridCXAdmin">
-                                            <wm-grid-column binding="roleName" caption="Role Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="users.firstName" caption="First Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                            <wm-grid-column binding="users.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                            <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" show="true" related-entity-name="Users"></wm-grid-column>
-                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                            <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                        </wm-grid>
-                                        <wm-liveform novalidate="false" errormessage="" title="Add CXAdmin" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.CXAdminRolesData.dataSet" captionalign="left" captionposition="top" name="liveformCXAdmin">
-                                            <wm-layoutgrid columns="1" name="layoutgrid6">
-                                                <wm-gridrow name="gridrow15">
-                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn17">
-                                                        <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" placeholder="Select value"></wm-form-field>
-                                                    </wm-gridcolumn>
-                                                </wm-gridrow>
-                                                <wm-gridrow name="gridrow16">
-                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn18">
-                                                        <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="autocomplete" placeholder="Select value" searchkey="firstName,lastName,email"
-                                                        displaylabel="email"></wm-form-field>
-                                                    </wm-gridcolumn>
-                                                </wm-gridrow>
-                                            </wm-layoutgrid>
-                                            <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number"></wm-form-field>
-                                            <wm-form-field name="description" displayname="Description" show="false" primary-key="false" generator="assigned" key="description" type="string" widget="text" maxchars="255" inputtype="text"
-                                            placeholder="Enter value" defaultvalue="CXAdmin"></wm-form-field>
-                                            <wm-form-field name="roleName" displayname="Role Name" show="false" primary-key="false" generator="assigned" key="roleName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                            defaultvalue="CXAdmin"></wm-form-field>
-                                            <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                        </wm-liveform>
-                                    </wm-livegrid>
                                 </wm-tabpane>
                             </wm-tabs>
                         </wm-panel>
