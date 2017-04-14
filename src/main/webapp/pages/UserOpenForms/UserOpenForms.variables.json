@@ -673,6 +673,18 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "description",
+          "type" : "text",
+          "fullyQualifiedType" : "text",
+          "columnName" : "Description",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
