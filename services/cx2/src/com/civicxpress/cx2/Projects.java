@@ -45,7 +45,7 @@ public class Projects implements Serializable {
     private Timestamp createdDate;
     private Integer modifiedBy;
     private Timestamp modifiedDate;
-    private Boolean active;
+    private boolean active;
     private Integer cxvendorId;
     private Municipalities municipalities;
     private Users usersByCreatedBy;
@@ -163,12 +163,12 @@ public class Projects implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    @Column(name = "`Active`", nullable = true)
-    public Boolean getActive() {
+    @Column(name = "`Active`", nullable = false)
+    public boolean isActive() {
         return this.active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 

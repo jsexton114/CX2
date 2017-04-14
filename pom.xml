@@ -34,13 +34,6 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
-                <directory>services/DocumentService/src</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <filtering>true</filtering>
                 <directory>services/DynamicFieldService/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -229,7 +222,6 @@
                                 <source>services/AddMultipleFeeToCart/src</source>
                                 <source>services/CXPasswordResetService/src</source>
                                 <source>services/DocumentProxyService/src</source>
-                                <source>services/DocumentService/src</source>
                                 <source>services/DynamicFieldService/src</source>
                                 <source>services/FileService/src</source>
                                 <source>services/FormMessagingMailService/src</source>

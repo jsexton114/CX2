@@ -3760,12 +3760,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -4418,10 +4418,10 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "use",
+          "fieldName" : "usedFor",
           "type" : "string",
           "fullyQualifiedType" : "string",
-          "columnName" : "Use",
+          "columnName" : "UsedFor",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 1000,
@@ -8663,12 +8663,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -11975,10 +11975,10 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "use",
+        "fieldName" : "usedFor",
         "type" : "string",
         "fullyQualifiedType" : "string",
-        "columnName" : "Use",
+        "columnName" : "UsedFor",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 1000,
@@ -13177,10 +13177,10 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "use",
+        "fieldName" : "usedFor",
         "type" : "string",
         "fullyQualifiedType" : "string",
-        "columnName" : "Use",
+        "columnName" : "UsedFor",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 1000,
@@ -18075,12 +18075,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -18755,10 +18755,10 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "use",
+          "fieldName" : "usedFor",
           "type" : "string",
           "fullyQualifiedType" : "string",
-          "columnName" : "Use",
+          "columnName" : "UsedFor",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 1000,
@@ -20113,12 +20113,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {

@@ -692,7 +692,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
 
         $scope.button2InspectionRequestClick = function($event, $isolateScope) {
             $scope.Variables.svScheduleInspection.setInput({
-                inspectionDesignId: inspectionObject.id,
+                inspectionDesignId: $scope.inspectionObject.id,
                 requestedFor: getRequestedFor()
             });
 
@@ -726,7 +726,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         $scope.$watch(function() {
             return $scope.Variables.svCountInspectionsHourly.dataSet;
         }, function(newValue, oldValue) {
-            if (newValue !== []) {
+            if (!!newValue.inspectionCount && !!$scope.inspectionObject) {
                 $scope.tooManyInspectionsForHour = newValue.inspectionCount >= $scope.inspectionObject.totalInspectionsHourly;
             }
         });
@@ -734,7 +734,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         $scope.$watch(function() {
             return $scope.Variables.svCountInspectionsDaily.dataSet;
         }, function(newValue, oldValue) {
-            if (newValue !== []) {
+            if (!!newValue.inspectionCount && !!$scope.inspectionObject) {
                 $scope.tooManyInspectionsForDay = newValue.inspectionCount >= $scope.inspectionObject.totalInspectionsDaily;
             }
         });
