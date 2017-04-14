@@ -1,0 +1,63 @@
+div[name=panelForm] > div.panel-content {
+    min-height: 800px;
+}
+
+
+ul.app-search.dropdown-menu {
+    z-index: 99999999 !important;
+}
+
+/*******Chat Styles******/
+.chat .popover {
+    display: block !important;
+    position: relative !important;
+    margin: 0.5em;
+    padding: 1em;
+    border-radius: 1em;
+    z-index: 1;
+    float: left;
+    max-width: 70%;
+    width: initial;
+}
+
+.chatcontent {
+   height:calc(100% - 40pt);
+}
+.mine .popover {
+    background-color: #e34343;
+    color: white;
+    float: right;
+}
+
+.mine .popover a {
+    color: white;
+}
+
+.media-right {
+    float: left;
+}
+
+.mine .media-right {
+    float: right;
+}
+.wm-app .panel.messgeform {
+    background-color: transparent;
+    margin: 0;
+    height: 100%;
+}
+
+.wm-app .panel.messgeform .panel-body{
+    border: none;
+}
+.wm-app .userpic {
+    border: 3px rgba(0,0,0,0.1) solid;
+}
+
+
+/***************For Fees*************/
+.UnpaidFee-class{font-weight:bold;
+}
+/*.cartFee-class{color:blue;*/
+/*}*/
+.paidFee-class{color: #e34343;
+}

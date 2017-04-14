@@ -581,7 +581,9 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
-    <wm-view class="dialog-view" name="view1">
-        <wm-iframedialog name="iframedialog1" url="bind:Variables.stvFormLink.dataSet.dataValue" width="90%" title="View Form" iconclass="wi wi-assignment" height="800px" oktext="Close"></wm-iframedialog>
+    <wm-view class="dialog-view" name="view2">
+        <wm-pagedialog name="pagedialogViewForm" class="modal-larger" content="_viewForm" modal="true">
+            <wm-param name="FormGUID" value="bind:Variables.stvFormLink.dataSet.dataValue" type="string"></wm-param>
+        </wm-pagedialog>
     </wm-view>
 </wm-page>

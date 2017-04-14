@@ -25,6 +25,8 @@ Application.$controller("ScheduleInspectionsPageController", ["$scope", function
             });
         });
 
+        $scope.Widgets.gridUnassignedInspections.selecteditem = [];
+
         updateAssignments();
     };
 
@@ -37,6 +39,8 @@ Application.$controller("ScheduleInspectionsPageController", ["$scope", function
                 dateAssigned: inspection.requestedFor
             });
         });
+
+        $scope.Widgets.gridAssignedInspections.selecteditem = [];
 
         updateAssignments();
     };

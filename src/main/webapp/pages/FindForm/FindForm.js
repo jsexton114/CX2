@@ -165,8 +165,8 @@ Application.$controller("gridAdvancedController", ["$scope",
             // $scope.Variables.goToPage_FormsFormSearch.navigate();
             // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
             // window.open(tempLink);
-            $scope.Variables.stvFormLink.dataSet.dataValue = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-            $scope.Widgets.iframedialog1.open();
+            $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
+            $scope.Widgets.pagedialogViewForm.open();
         };
 
     }
@@ -195,8 +195,8 @@ Application.$controller("gridVENDORController", ["$scope",
             // $scope.Variables.goToPage_FormsFormSearch.navigate();
             // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
             // window.open(tempLink);
-            $scope.Variables.stvFormLink.dataSet.dataValue = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-            $scope.Widgets.iframedialog1.open();
+            $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
+            $scope.Widgets.pagedialogViewForm.open();
         };
 
     }
@@ -214,8 +214,8 @@ Application.$controller("gridUserFormsController", ["$scope",
             // $scope.Variables.goToPage_FormsFormSearch.navigate();
             // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
             // window.open(tempLink);
-            $scope.Variables.stvFormLink.dataSet.dataValue = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-            $scope.Widgets.iframedialog1.open();
+            $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
+            $scope.Widgets.pagedialogViewForm.open();
         };
 
     }
@@ -234,17 +234,17 @@ Application.$controller("gridFormsAddressController", ["$scope",
                 // $scope.Variables.goToPage_FormsFormSearch.navigate();
                 // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
                 // window.open(tempLink);
-                $scope.Variables.stvFormLink.dataSet.dataValue = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-                $scope.Widgets.iframedialog1.open();
+                $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
+                $scope.Widgets.pagedialogViewForm.open();
             };
         };
 
     }
 ]);
 
-Application.$controller("iframedialog1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+Application.$controller("pagedialogViewFormController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

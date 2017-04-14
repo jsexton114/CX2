@@ -340,6 +340,20 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
+  "name" : "_viewForm",
+  "type" : "PARTIAL",
+  "params" : [ {
+    "name" : "FormGUID",
+    "type" : "string"
+  } ]
+}, {
+  "name" : "_viewInspection",
+  "type" : "PARTIAL",
+  "params" : [ {
+    "name" : "inspectionGuid",
+    "type" : "string"
+  } ]
+}, {
   "name" : "dynamicFieldEditor",
   "type" : "PARTIAL",
   "params" : [ {

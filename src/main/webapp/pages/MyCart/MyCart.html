@@ -41,10 +41,14 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
-    <wm-view class="dialog-view" name="view1">
-        <wm-pagedialog name="pagedialogNewForm" title="New Form" content="NewForm" oktext="Close" iconclass=""></wm-pagedialog>
+    <wm-view class="dialog-view" name="view3">
+        <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewForm" modal="true" class="modal-larger" title="Form">
+            <wm-param name="FormGUID" value="bind:Widgets.gridFeesList.selecteditem.itemGuid" type="string"></wm-param>
+        </wm-pagedialog>
     </wm-view>
     <wm-view class="dialog-view" name="view2">
-        <wm-iframedialog name="iframedialog1" width="90%" title="View Form" url="bind:Variables.stvFormLink.dataSet.dataValue" oktext="Close" iconclass="wi wi-assignment" modal="false" height="800"></wm-iframedialog>
+        <wm-pagedialog name="pagedialogViewInspection" title="Inspection" oktext="Close" content="_viewInspection" class="modal-larger" modal="true">
+            <wm-param name="inspectionGuid" value="bind:Widgets.gridFeesList.selecteditem.itemGuid" type="string"></wm-param>
+        </wm-pagedialog>
     </wm-view>
 </wm-page>
