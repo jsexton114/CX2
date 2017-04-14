@@ -2505,7 +2505,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : false,
+    "startUpdate" : true,
     "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
@@ -3010,6 +3010,18 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "description",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
+        "columnName" : "Description",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 5000,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
         "scale" : 0
       } ],
       "entityName" : "GisTransaction",
@@ -4267,7 +4279,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 10,
+    "bindCount" : 12,
     "spinnerContext" : "page",
     "tableName" : "GISRecords",
     "tableType" : "TABLE",

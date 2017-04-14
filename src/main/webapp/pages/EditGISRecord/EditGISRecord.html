@@ -253,7 +253,7 @@
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Gistransaction Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvGisTransaction.dataSet" captionalign="left" captionposition="top" name="liveform3">
+                                    <wm-liveform novalidate="false" errormessage="" title="Gis Transaction" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvGisTransaction.dataSet" captionalign="left" captionposition="top" name="liveform3">
                                         <wm-layoutgrid columns="2" name="layoutgrid6">
                                             <wm-gridrow name="gridrow28">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn57">
@@ -277,11 +277,18 @@
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow30">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn62">
-                                                    <wm-form-field name="seller" displayname="Seller" show="true" primary-key="false" generator="assigned" key="seller" type="string" readonly="false" required="false" widget="text" maxchars="1000"></wm-form-field>
+                                                    <wm-form-field name="seller" displayname="Seller" show="true" primary-key="false" generator="assigned" key="seller" type="string" readonly="false" required="false" widget="text" maxchars="1000" inputtype="text"
+                                                    placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn name="gridcolumn1" columnwidth="6">
                                                     <wm-form-field name="purchasedBy" displayname="Purchased By" show="true" primary-key="false" generator="assigned" key="purchasedBy" type="string" readonly="false" required="false" widget="text" maxchars="1000"
                                                     inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                            <wm-gridrow name="gridrow1">
+                                                <wm-gridcolumn name="gridcolumn1" columnwidth="6">
+                                                    <wm-form-field name="gisrecords" displayname="Gisrecords" show="false" primary-key="false" generator="assigned" key="gisrecords" type="list" is-related="true" readonly="false" required="true" widget="select"
+                                                    dataset="bind:Variables.SelectedGISobj.dataSet" defaultvalue="bind:Variables.SelectedGISobj.firstRecord"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
