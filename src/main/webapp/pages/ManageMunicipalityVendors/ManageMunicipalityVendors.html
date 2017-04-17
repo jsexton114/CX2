@@ -30,12 +30,14 @@
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ReviewVendorApprovals.dataSet" navigation="Classic" name="gridPending" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                     <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
+                                    show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
+                                    show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="Widgets.dialogPendingApprovals.open()" disabled="false"></wm-grid-row-action>
-                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-livegrid>
@@ -49,12 +51,14 @@
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" navigation="Classic" name="gridApprovedVendors" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                     <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true" filterwidget="date"
+                                    readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
+                                    show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="Widgets.dialogReviewApproved.open()" disabled="false"></wm-grid-row-action>
-                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-livegrid>
@@ -68,12 +72,14 @@
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" navigation="Classic" name="gridSuspended" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                     <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true" filterwidget="date"
+                                    readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
+                                    show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="Widgets.dialogReviewSuspended.open()" disabled="false"></wm-grid-row-action>
-                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-perm-contact-calendar" title="View Profile" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-livegrid>
@@ -94,61 +100,68 @@
                 <wm-layoutgrid columns="3" name="layoutgrid5">
                     <wm-gridrow name="gridrow12">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn12_1">
-                            <wm-form-field name="companyName" displayname="Company Name" required="false" show="true" generator="assigned" primary-key="false" key="companyName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"
-                            defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyName
+                            <wm-form-field name="companyName" displayname="Company Name" required="false" show="true" generator="assigned" primary-key="false" key="companyName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyName
 "></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn13_1">
-                            <wm-form-field name="address1" displayname="Address1" required="false" show="true" generator="assigned" primary-key="false" key="address1" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].address1"></wm-form-field>
+                            <wm-form-field name="address1" displayname="Address1" required="false" show="true" generator="assigned" primary-key="false" key="address1" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].address1"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn14">
-                            <wm-form-field name="address2" displayname="Address2" required="false" show="true" generator="assigned" primary-key="false" key="address2" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].address2"></wm-form-field>
+                            <wm-form-field name="address2" displayname="Address2" required="false" show="true" generator="assigned" primary-key="false" key="address2" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].address2"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow13">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn15_1">
-                            <wm-form-field name="city" displayname="City" required="false" show="true" generator="assigned" primary-key="false" key="city" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].city"></wm-form-field>
+                            <wm-form-field name="city" displayname="City" required="false" show="true" generator="assigned" primary-key="false" key="city" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"
+                            defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].city"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn16">
                             <wm-form-field displayname="State" widget="text" show="true" type="custom" name="state" defaultvalue="bind:Variables.VendorProfile.dataSet.data[$i].states.stateName"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn17">
-                            <wm-form-field name="postalCode" displayname="Postal Code" required="false" show="true" generator="assigned" primary-key="false" key="postalCode" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].postalCode"></wm-form-field>
+                            <wm-form-field name="postalCode" displayname="Postal Code" required="false" show="true" generator="assigned" primary-key="false" key="postalCode" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].postalCode"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow14">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn18_2">
-                            <wm-form-field name="country" displayname="Country" required="false" show="true" generator="assigned" primary-key="false" key="country" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].country"></wm-form-field>
+                            <wm-form-field name="country" displayname="Country" required="false" show="true" generator="assigned" primary-key="false" key="country" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"
+                            defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].country"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn19">
-                            <wm-form-field name="companyPhone" displayname="Company Phone" required="false" show="true" generator="assigned" primary-key="false" key="companyPhone" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"
-                            defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyPhone"></wm-form-field>
+                            <wm-form-field name="companyPhone" displayname="Company Phone" required="false" show="true" generator="assigned" primary-key="false" key="companyPhone" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyPhone"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn20">
-                            <wm-form-field name="altPhone" displayname="Alternate Phone" required="false" show="true" generator="assigned" primary-key="false" key="altPhone" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].altPhone"></wm-form-field>
+                            <wm-form-field name="altPhone" displayname="Alternate Phone" required="false" show="true" generator="assigned" primary-key="false" key="altPhone" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].altPhone"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow15">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn21">
-                            <wm-form-field name="faxNumber" displayname="Fax Number" required="false" show="true" generator="assigned" primary-key="false" key="faxNumber" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].faxNumber"></wm-form-field>
+                            <wm-form-field name="faxNumber" displayname="Fax Number" required="false" show="true" generator="assigned" primary-key="false" key="faxNumber" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].faxNumber"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn22">
-                            <wm-form-field name="companyEmail" displayname="Company Email" required="false" show="true" generator="assigned" primary-key="false" key="companyEmail" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"
-                            defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyEmail"></wm-form-field>
+                            <wm-form-field name="companyEmail" displayname="Company Email" required="false" show="true" generator="assigned" primary-key="false" key="companyEmail" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyEmail"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn23">
-                            <wm-form-field name="companyWebsite" displayname="Company Website" required="false" show="true" generator="assigned" primary-key="false" key="companyWebsite" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"
-                            defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyWebsite"></wm-form-field>
+                            <wm-form-field name="companyWebsite" displayname="Company Website" required="false" show="true" generator="assigned" primary-key="false" key="companyWebsite" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyWebsite"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow16_1">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn24">
-                            <wm-form-field name="typeOfBusiness" displayname="Type of Business" required="false" show="true" generator="assigned" primary-key="false" key="typeOfBusiness" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"
-                            defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].typeOfBusiness"></wm-form-field>
+                            <wm-form-field name="typeOfBusiness" displayname="Type of Business" required="false" show="true" generator="assigned" primary-key="false" key="typeOfBusiness" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
+                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].typeOfBusiness"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn25">
-                            <wm-form-field name="businessClassification" displayname="Business Classification" required="false" show="true" generator="assigned" primary-key="false" key="businessClassification" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].businessClassification"></wm-form-field>
+                            <wm-form-field name="businessClassification" displayname="Business Classification" required="false" show="true" generator="assigned" primary-key="false" key="businessClassification" type="string" is-related="false" maxchars="255"
+                            pc-display="true" mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].businessClassification"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn26">
                             <wm-form-field displayname="Contractor Types" widget="text" show="true" type="custom" name="contractorTypes" defaultvalue="bind:Variables.VendorProfile.dataSet.data[$i].contractorTypes.contractorType"></wm-form-field>
@@ -156,26 +169,26 @@
                     </wm-gridrow>
                     <wm-gridrow name="gridrow17_1">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn27_1">
-                            <wm-form-field name="numberOfEmployees" displayname="Number of Employees" required="false" show="true" generator="assigned" primary-key="false" key="numberOfEmployees" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true"
-                            widget="number" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].numberOfEmployees"></wm-form-field>
+                            <wm-form-field name="numberOfEmployees" displayname="Number of Employees" required="false" show="true" generator="assigned" primary-key="false" key="numberOfEmployees" type="integer" is-related="false" step="0" pc-display="true"
+                            mobile-display="true" widget="number" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].numberOfEmployees"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn29">
-                            <wm-form-field name="stateRegNumber" displayname="State Registration Number" required="false" show="true" generator="assigned" primary-key="false" key="stateRegNumber" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].stateRegNumber"></wm-form-field>
+                            <wm-form-field name="stateRegNumber" displayname="State Registration Number" required="false" show="true" generator="assigned" primary-key="false" key="stateRegNumber" type="string" is-related="false" maxchars="255" pc-display="true"
+                            mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].stateRegNumber"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn35">
-                            <wm-form-field name="feinNumber" displayname="Employer Identification Number (EIN)" required="false" show="true" generator="assigned" primary-key="false" key="feinNumber" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].feinNumber"></wm-form-field>
+                            <wm-form-field name="feinNumber" displayname="Employer Identification Number (EIN)" required="false" show="true" generator="assigned" primary-key="false" key="feinNumber" type="string" is-related="false" maxchars="255" pc-display="true"
+                            mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].feinNumber"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow18">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn30">
-                            <wm-form-field name="insuranceCompany" displayname="Insurance Company" required="false" show="true" generator="assigned" primary-key="false" key="insuranceCompany" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].insuranceCompany"></wm-form-field>
+                            <wm-form-field name="insuranceCompany" displayname="Insurance Company" required="false" show="true" generator="assigned" primary-key="false" key="insuranceCompany" type="string" is-related="false" maxchars="255" pc-display="true"
+                            mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].insuranceCompany"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn31">
-                            <wm-form-field name="insuranceExpires" displayname="Insurance Expiration Date" required="false" show="true" generator="assigned" primary-key="false" key="insuranceExpires" type="date" is-related="false" pc-display="true" mobile-display="true" widget="date"
-                            defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].insuranceExpires" datepattern="MM-dd-yyyy"></wm-form-field>
+                            <wm-form-field name="insuranceExpires" displayname="Insurance Expiration Date" required="false" show="true" generator="assigned" primary-key="false" key="insuranceExpires" type="date" is-related="false" pc-display="true" mobile-display="true"
+                            widget="date" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].insuranceExpires" datepattern="MM-dd-yyyy"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn36">
                             <wm-form-field displayname="Certificate of Insurance (COI)" widget="text" show="true" type="custom" name="coi"></wm-form-field>
@@ -183,8 +196,8 @@
                     </wm-gridrow>
                     <wm-gridrow name="gridrow20_1">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn33_1">
-                            <wm-form-field name="lastUpdated" displayname="Last Updated" required="false" show="true" generator="assigned" primary-key="false" key="lastUpdated" type="date" is-related="false" pc-display="true" mobile-display="true" widget="date" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].lastUpdated"
-                            datepattern="MM-dd-yyyy"></wm-form-field>
+                            <wm-form-field name="lastUpdated" displayname="Last Updated" required="false" show="true" generator="assigned" primary-key="false" key="lastUpdated" type="date" is-related="false" pc-display="true" mobile-display="true" widget="date"
+                            defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].lastUpdated" datepattern="MM-dd-yyyy"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>

@@ -67,7 +67,7 @@
                                         placeholder="Enter value"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow4">
+                                <wm-gridrow name="gridrow4" padding="unset unset 3em unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn10">
                                         <wm-form-field name="faxNumber" displayname="Fax Number" show="true" primary-key="false" generator="assigned" key="faxNumber" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
                                         placeholder="Enter value"></wm-form-field>
@@ -91,7 +91,7 @@
                                         maxchars="255" placeholder="Select value" validationmessage="Business Classification is required" dataset="Individual,LLC,LLP,Corporation,Partnership,Professional Association, Other"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn15">
-                                        <wm-form-field name="contractorTypes" displayname="Contractor Types" show="true" primary-key="false" generator="assigned" key="contractorTypes" type="list" is-related="true" readonly="false" required="false" widget="select"
+                                        <wm-form-field name="contractorTypes" displayname="Contractor Type" show="true" primary-key="false" generator="assigned" key="contractorTypes" type="list" is-related="true" readonly="false" required="false" widget="select"
                                         placeholder="Select value" displayexpression="contractorType" orderby="contractorType:asc"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
@@ -125,7 +125,7 @@
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow8">
-                                    <wm-gridcolumn name="gridcolumn1" columnwidth="4">
+                                    <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
                                         <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="true" disabled="true"
                                         checkedvalue="true" uncheckedvalue="false" hint="When &quot;Active&quot;, your company can be selected on forms in the municipalities where it has been approved for business, and your company forms can move forward with inspection scheduling. If your insurance has expired, your company will become inactive in CivicXpress until you provide a new COI."></wm-form-field>
                                     </wm-gridcolumn>
