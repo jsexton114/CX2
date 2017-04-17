@@ -16,6 +16,7 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
 
 
     $scope.lvCheckOutonSuccess = function(variable, data) {
+
         var fees = [];
 
         var temp = $scope.Variables.svCartItemIds.dataSet.content;
@@ -38,8 +39,7 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
         let targetList = [];
         _.forEach(feeData, function(obj) {
             targetList.push({
-                'feeId': obj.feeId,
-                'transactionId': data.transactionId
+                'feeId': obj.feeId
             });
         });
 
@@ -47,8 +47,10 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
             'content': targetList
         };
         let mappedList = JSON.stringify(itemSet);
+
         $scope.Variables.svMapFeeWithTransaction.setInput({
-            'feeListString': mappedList
+            'feeListString': mappedList,
+            'transactionId': data.transactionId
         });
         $scope.Variables.svMapFeeWithTransaction.update();
 

@@ -62,14 +62,14 @@ public class MapMultipleFeesWithTransaction {
      
     ObjectMapper objectMapper = new ObjectMapper();
     
-    public void tagFeeWithTransaction(final String feeListString) {
+    public void tagFeeWithTransaction(final String feeListString,final Integer transactionId) {
      ObjectMapper objectMapper = new ObjectMapper();
      try {
         Map map = objectMapper.readValue(feeListString, Map.class);
         logger.info(feeListString);
         List list = (List) map.get("content");
         for(int i=0;i<list.size();i++){
-            createTable((Map)list.get(i));
+            createTable((Map)list.get(i),transactionId);
         }
     } catch (IOException e) {
         throw new RuntimeException(e);
@@ -79,11 +79,11 @@ public class MapMultipleFeesWithTransaction {
 
 
    // method to insert data into table
-public TransactionToFees createTable(Map feeItems)
+    public TransactionToFees createTable(Map feeItems,Integer transactionId)
     { 
         TransactionToFees transactionToFees = new TransactionToFees();
         transactionToFees.setFeeId((Integer)feeItems.get("feeId"));
-        transactionToFees.setTransactionId((Integer)feeItems.get("transactionId"));
+        transactionToFees.setTransactionId(transactionId);
         TransactionToFees persistedTable = transactionToFeesService.create(transactionToFees);
         return persistedTable;
     }

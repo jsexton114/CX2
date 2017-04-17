@@ -3,6 +3,7 @@ package com.civicxpress.mapmultiplefeeswithtransaction.controller;
 
 import com.civicxpress.mapmultiplefeeswithtransaction.MapMultipleFeesWithTransaction;
 import java.util.Map;
+import java.lang.Integer;
 import com.civicxpress.cx2.TransactionToFees;
 import java.lang.String;
 import org.springframework.web.bind.annotation.*;
@@ -22,16 +23,12 @@ public class MapMultipleFeesWithTransactionController {
     private MapMultipleFeesWithTransaction mapmultipleFeesWithTransaction;
 
     @RequestMapping(value = "/table", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public TransactionToFees createTable(@RequestBody Map feeItems) {
-        return mapmultipleFeesWithTransaction.createTable(feeItems);
+    public TransactionToFees createTable(@RequestBody Map feeItems, @RequestParam(value = "transactionId", required = false) Integer transactionId) {
+        return mapmultipleFeesWithTransaction.createTable(feeItems, transactionId);
     }
 
     @RequestMapping(value = "/tagFeeWithTransaction", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public void tagFeeWithTransaction(@RequestParam(value = "feeListString", required = false) String feeListString) {
-        mapmultipleFeesWithTransaction.tagFeeWithTransaction(feeListString);
+    public void tagFeeWithTransaction(@RequestParam(value = "feeListString", required = false) String feeListString, @RequestParam(value = "transactionId", required = false) Integer transactionId) {
+        mapmultipleFeesWithTransaction.tagFeeWithTransaction(feeListString, transactionId);
     }
 }
