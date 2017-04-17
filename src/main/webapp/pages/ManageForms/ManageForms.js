@@ -107,3 +107,24 @@ Application.$controller("gridFormTypesController", ["$scope", "$location",
 
     }
 ]);
+
+Application.$controller("dialogFormsInCategoryController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("gridFormsInCategoryController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformFormsInCategoryController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
