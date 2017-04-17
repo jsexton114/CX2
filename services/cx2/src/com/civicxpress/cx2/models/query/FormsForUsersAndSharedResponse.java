@@ -29,6 +29,9 @@ public class FormsForUsersAndSharedResponse implements Serializable {
     @JsonProperty("formGuid")
     @ColumnAlias("formGuid")
     private String formGuid;
+    @JsonProperty("dateModified")
+    @ColumnAlias("dateModified")
+    private LocalDateTime dateModified;
     @JsonProperty("formTitle")
     @ColumnAlias("formTitle")
     private String formTitle;
@@ -66,6 +69,14 @@ public class FormsForUsersAndSharedResponse implements Serializable {
 
     public void setFormGuid(String formGuid) {
         this.formGuid = formGuid;
+    }
+
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
+    }
+
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
     }
 
     public String getFormTitle() {
@@ -154,6 +165,7 @@ public class FormsForUsersAndSharedResponse implements Serializable {
         if (!(o instanceof FormsForUsersAndSharedResponse)) return false;
         final FormsForUsersAndSharedResponse formsForUsersAndSharedResponse = (FormsForUsersAndSharedResponse) o;
         return Objects.equals(getFormGuid(), formsForUsersAndSharedResponse.getFormGuid()) &&
+                Objects.equals(getDateModified(), formsForUsersAndSharedResponse.getDateModified()) &&
                 Objects.equals(getFormTitle(), formsForUsersAndSharedResponse.getFormTitle()) &&
                 Objects.equals(getMunicipalityName(), formsForUsersAndSharedResponse.getMunicipalityName()) &&
                 Objects.equals(getCreatedBy(), formsForUsersAndSharedResponse.getCreatedBy()) &&
@@ -169,6 +181,7 @@ public class FormsForUsersAndSharedResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getFormGuid(),
+                getDateModified(),
                 getFormTitle(),
                 getMunicipalityName(),
                 getCreatedBy(),
