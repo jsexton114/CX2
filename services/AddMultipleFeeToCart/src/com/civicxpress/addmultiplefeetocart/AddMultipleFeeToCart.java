@@ -66,7 +66,7 @@ public class AddMultipleFeeToCart {
 
 
 // insert the rest API data into table
-public void addFeesToCart(final String feeListString) {
+public void addFeesToCart(final String feeListString,final Integer userId) {
     
 
 
@@ -78,7 +78,7 @@ public void addFeesToCart(final String feeListString) {
         logger.info(feeListString);
         List list = (List) map.get("content");
         for(int i=0;i<list.size();i++){
-            createTable((Map)list.get(i));
+            createTable((Map)list.get(i),userId);
         }
     } catch (IOException e) {
         throw new RuntimeException(e);
@@ -87,11 +87,11 @@ public void addFeesToCart(final String feeListString) {
 }
 
 // method to insert data into table
-public MyCart createTable(Map cartItems)
+public MyCart createTable(Map cartItems,Integer userId)
     { 
         MyCart myCart = new MyCart();
         myCart.setFeeId((Integer)cartItems.get("feeId"));
-        myCart.setUserId((Integer)cartItems.get("userId"));
+        myCart.setUserId(userId);
         MyCart persistedTable = myCartService.create(myCart);
         
         return persistedTable;

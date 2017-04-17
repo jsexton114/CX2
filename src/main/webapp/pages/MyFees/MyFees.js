@@ -90,8 +90,7 @@ Application.$controller("gridUnpaidFeesController", ["$scope",
             let targetList = []
             _.forEach(feeData, function(obj) {
                 targetList.push({
-                    'feeId': obj.feeId,
-                    'userId': $scope.Variables.CurrentUserDetails.dataSet.id
+                    'feeId': obj.feeId
                 });
             });
 
@@ -100,7 +99,8 @@ Application.$controller("gridUnpaidFeesController", ["$scope",
             };
             let temp = JSON.stringify(itemSet);
             $scope.Variables.svInsertAllFeeToCart.setInput({
-                'responseString': temp
+                'feeListString': temp,
+                'userId': $scope.Variables.CurrentUserDetails.dataSet.id
             });
             $scope.Variables.svInsertAllFeeToCart.update();
         };

@@ -3,6 +3,7 @@ package com.civicxpress.addmultiplefeetocart.controller;
 
 import com.civicxpress.addmultiplefeetocart.AddMultipleFeeToCart;
 import java.lang.String;
+import java.lang.Integer;
 import java.util.Map;
 import com.civicxpress.cx2.MyCart;
 import org.springframework.web.bind.annotation.*;
@@ -22,16 +23,12 @@ public class AddMultipleFeeToCartController {
     private AddMultipleFeeToCart addMultipleFeeToCart;
 
     @RequestMapping(value = "/feesToCart", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public void addFeesToCart(@RequestParam(value = "responseString", required = false) String feeListString) {
-        addMultipleFeeToCart.addFeesToCart(feeListString);
+    public void addFeesToCart(@RequestParam(value = "feeListString", required = false) String feeListString, @RequestParam(value = "userId", required = false) Integer userId) {
+        addMultipleFeeToCart.addFeesToCart(feeListString, userId);
     }
 
     @RequestMapping(value = "/table", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public MyCart createTable(@RequestBody Map cartItems) {
-        return addMultipleFeeToCart.createTable(cartItems);
+    public MyCart createTable(@RequestBody Map cartItems, @RequestParam(value = "userId", required = false) Integer userId) {
+        return addMultipleFeeToCart.createTable(cartItems, userId);
     }
 }
