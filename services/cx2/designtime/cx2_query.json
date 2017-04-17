@@ -12561,7 +12561,7 @@
     "name" : "updateMultipleFeeStatus",
     "description" : "updateMultipleFeeStatus",
     "version" : "V2",
-    "queryString" : "Update Fees SET PaidStatus=:PaidStatus,PaidDate=:paidDate where ID IN(:feeList)",
+    "queryString" : "Update Fees SET PaidStatus=:PaidStatus,PaidDate=:paidDate,PaidByUserId=:PaidByUserId where ID IN(:feeList)",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -12581,11 +12581,18 @@
       "testValue" : "2017-04-17T10:50:18",
       "required" : true
     }, {
+      "name" : "PaidByUserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "USER_ID",
+      "testValue" : "3",
+      "required" : true
+    }, {
       "name" : "feeList",
       "type" : "integer",
       "list" : true,
       "variableType" : "PROMPT",
-      "testValue" : [ "1", "2", "3" ],
+      "testValue" : [ "1", "2" ],
       "required" : true
     } ],
     "request" : {

@@ -507,6 +507,36 @@ Application.$controller("gridFeesController", ["$scope",
                 $scope.Variables.svInsertIntoCart.update();
             }
         };
+
+        $scope.customButtonAction = function($event) {
+
+            let feeData = $scope.Widgets.gridFees.gridData;
+            //let feeData = $scope.Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.dataSet.content;
+            let targetList = []
+            _.forEach(feeData, function(obj) {
+
+                if ((!($scope.itemInCart(obj.id))) && (obj.paidStatus == 'Unpaid')) {
+                    targetList.push({
+                        'feeId': obj.id
+                    });
+                }
+
+            });
+
+            let itemSet = {
+                'content': targetList
+            };
+            let temp = JSON.stringify(itemSet);
+            $scope.Variables.svInsertAllFeeToCart.setInput({
+                'feeListString': temp,
+                'userId': $scope.Variables.CurrentUserDetails.dataSet.id
+            });
+            $scope.Variables.svInsertAllFeeToCart.update();
+
+
+
+        };
+
     }
 ]);
 

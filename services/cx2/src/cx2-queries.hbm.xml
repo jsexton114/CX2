@@ -2506,7 +2506,7 @@ group by formTypes.formType
 
     <sql-query name="updateMultipleFeeStatus">
         <![CDATA[
-        Update Fees SET PaidStatus=:PaidStatus,PaidDate=:_SYSTEM_CURRENT_DATE_TIME where ID IN(:feeList)
+        Update Fees SET PaidStatus=:PaidStatus,PaidDate=:_SYSTEM_CURRENT_DATE_TIME,PaidByUserId=:_SYSTEM_CURRENT_USER_ID where ID IN(:feeList)
         ]]>
     <query-param name="PaidStatus" type="java.lang.String"/>
     <query-param name="feeList" type="java.lang.Integer"/>
