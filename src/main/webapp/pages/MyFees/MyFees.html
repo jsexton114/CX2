@@ -25,7 +25,7 @@
                             <wm-layoutgrid name="layoutgrid2">
                                 <wm-gridrow name="gridrow4">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                                        <wm-label padding="unset 0.5em" name="label2" caption="This list shows all fees that you are able to pay. It includes fees from forms that you have submitted and forms that have been shared with you."></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label2" caption="This list shows all fees that you are able to pay. It includes fees from forms that you have submitted, inspections that have been requested, and forms that have been shared with you."></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow5" padding="1em unset">
@@ -41,13 +41,13 @@
                                             disabled="false" icon="wi wi-add-shopping-cart"></wm-grid-action>
                                             <wm-grid-row-action key="deleterow" display-name="" show="bind:!itemInCart(row.getProperty('feeId'))" class="btn-transparent" iconclass="wi wi-add-shopping-cart" title="Add to Cart" action="Variables.svInsertIntoCart.invoke()"
                                             disabled="false"></wm-grid-row-action>
-                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Source" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow6">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn7_1">
-                                        <wm-label padding="unset 0.5em" name="label1" caption="This list includes all fees that are eligible for payment at this time. Some fees may not populate until form processing is complete." fontweight="bold"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label1" caption="This list includes all fees that are eligible for payment at this time. Some fees may not populate until form processing or inspections are completed." fontweight="bold"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -59,12 +59,12 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view3">
-        <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewForm" modal="true" class="modal-larger" title="Form">
+        <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewForm" modal="true" class="modal-larger" title="View Form" iconclass="wi wi-assignment">
             <wm-param name="FormGUID" value="bind:Widgets.gridUnpaidFees.selecteditem.formGuid" type="string"></wm-param>
         </wm-pagedialog>
     </wm-view>
     <wm-view class="dialog-view" name="view2">
-        <wm-pagedialog name="pagedialogViewInspection" title="Inspection" oktext="Close" content="_viewInspection" class="modal-larger" modal="true">
+        <wm-pagedialog name="pagedialogViewInspection" title="View Inspection" oktext="Close" content="_viewInspection" class="modal-larger" modal="true" iconclass="wi wi-find-in-page">
             <wm-param name="inspectionGuid" value="bind:Widgets.gridUnpaidFees.selecteditem.formGuid" type="string"></wm-param>
         </wm-pagedialog>
     </wm-view>

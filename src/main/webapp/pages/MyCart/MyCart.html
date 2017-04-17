@@ -24,7 +24,7 @@
                                 <wm-grid-action key="addNewRow" display-name="bind:feeTotal | toCurrency:'$':'2'" show="true" class="btn-secondary" iconclass="" title="Total" action="" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-action key="customButton" display-name="Proceed to Checkout" show="true" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="customButtonAction($event)" shortcutkey=""
                                 disabled="bind:feeTotal <= 0"></wm-grid-action>
-                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
+                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Source" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove From Cart" action="Variables.lvDeleteFromCart.deleteRecord()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
                         </wm-panel>
@@ -42,12 +42,12 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view3">
-        <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewForm" modal="true" class="modal-larger" title="Form">
+        <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewForm" modal="true" class="modal-larger" title="View Form" iconclass="wi wi-assignment">
             <wm-param name="FormGUID" value="bind:Widgets.gridFeesList.selecteditem.itemGuid" type="string"></wm-param>
         </wm-pagedialog>
     </wm-view>
     <wm-view class="dialog-view" name="view2">
-        <wm-pagedialog name="pagedialogViewInspection" title="Inspection" oktext="Close" content="_viewInspection" class="modal-larger" modal="true">
+        <wm-pagedialog name="pagedialogViewInspection" title="View Inspection" oktext="Close" content="_viewInspection" class="modal-larger" modal="true" iconclass="wi wi-find-in-page">
             <wm-param name="inspectionGuid" value="bind:Widgets.gridFeesList.selecteditem.itemGuid" type="string"></wm-param>
         </wm-pagedialog>
     </wm-view>
