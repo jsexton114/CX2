@@ -702,6 +702,7 @@ ORDER BY DateModified DESC
         <![CDATA[
         SELECT MF.FormGuid as formGuid,
 	MF.FormTitle as formTitle,
+	MF.DateModified as dateModified,
 	MU.MunicipalityName as municipalityName,
 	U.FullName as createdBy,
 	FT.FormType as formDesign,
@@ -727,7 +728,42 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
 where  FT.CodeEnforcement=:codeEnforcement and 
     Closed=:closed and  (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
-ORDER BY DateModified DESC
+        ]]>
+    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
+    <query-param name="closed" type="java.lang.Boolean"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CasesByMunicipality__count">
+        <![CDATA[
+        select count(*) from (SELECT MF.FormGuid as formGuid,
+	MF.FormTitle as formTitle,
+	MF.DateModified as dateModified,
+	MU.MunicipalityName as municipalityName,
+	U.FullName as createdBy,
+	FT.FormType as formDesign,
+	FS.Status as formStatus,
+	GR.Lot as lot,
+	GR.Subdivision as subdivision,
+	GR.FullAddress as address,
+	V.CompanyName as primaryVendor,
+	MF.BalanceDue as balanceDue
+FROM MasterForms MF
+LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
+LEFT JOIN Users AS U ON U.ID=MF.UserId
+LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				SD.Subdivision,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
+where  FT.CodeEnforcement=:codeEnforcement and 
+    Closed=:closed and  (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable
         ]]>
     <query-param name="codeEnforcement" type="java.lang.Boolean"/>
     <query-param name="closed" type="java.lang.Boolean"/>

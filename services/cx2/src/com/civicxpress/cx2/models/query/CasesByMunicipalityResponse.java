@@ -27,6 +27,8 @@ public class CasesByMunicipalityResponse implements Serializable {
     private String formGuid;
     @ColumnAlias("formTitle")
     private String formTitle;
+    @ColumnAlias("dateModified")
+    private LocalDateTime dateModified;
     @ColumnAlias("municipalityName")
     private String municipalityName;
     @ColumnAlias("createdBy")
@@ -60,6 +62,14 @@ public class CasesByMunicipalityResponse implements Serializable {
 
     public void setFormTitle(String formTitle) {
         this.formTitle = formTitle;
+    }
+
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
+    }
+
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
     }
 
     public String getMunicipalityName() {
@@ -141,6 +151,7 @@ public class CasesByMunicipalityResponse implements Serializable {
         final CasesByMunicipalityResponse casesByMunicipalityResponse = (CasesByMunicipalityResponse) o;
         return Objects.equals(getFormGuid(), casesByMunicipalityResponse.getFormGuid()) &&
                 Objects.equals(getFormTitle(), casesByMunicipalityResponse.getFormTitle()) &&
+                Objects.equals(getDateModified(), casesByMunicipalityResponse.getDateModified()) &&
                 Objects.equals(getMunicipalityName(), casesByMunicipalityResponse.getMunicipalityName()) &&
                 Objects.equals(getCreatedBy(), casesByMunicipalityResponse.getCreatedBy()) &&
                 Objects.equals(getFormDesign(), casesByMunicipalityResponse.getFormDesign()) &&
@@ -156,6 +167,7 @@ public class CasesByMunicipalityResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getFormGuid(),
                 getFormTitle(),
+                getDateModified(),
                 getMunicipalityName(),
                 getCreatedBy(),
                 getFormDesign(),
