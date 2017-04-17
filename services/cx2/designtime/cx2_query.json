@@ -8848,7 +8848,7 @@
     "name" : "UpdateFeesStatus",
     "description" : "UpdateFeesStatus",
     "version" : "V2",
-    "queryString" : "update Fees set PaidStatus=:status where ID=:feeEntry",
+    "queryString" : "update Fees set PaidStatus=:status,PaidDate=:paidDate where ID=:feeEntry",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -8859,6 +8859,13 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "Cart",
+      "required" : true
+    }, {
+      "name" : "paidDate",
+      "type" : "datetime",
+      "list" : false,
+      "variableType" : "DATE_TIME",
+      "testValue" : "2017-04-17T10:46:35",
       "required" : true
     }, {
       "name" : "feeEntry",
@@ -12554,7 +12561,7 @@
     "name" : "updateMultipleFeeStatus",
     "description" : "updateMultipleFeeStatus",
     "version" : "V2",
-    "queryString" : "Update Fees SET PaidStatus=:PaidStatus where ID IN(:feeList)",
+    "queryString" : "Update Fees SET PaidStatus=:PaidStatus,PaidDate=:paidDate where ID IN(:feeList)",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -12565,6 +12572,13 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "Paid",
+      "required" : true
+    }, {
+      "name" : "paidDate",
+      "type" : "datetime",
+      "list" : false,
+      "variableType" : "DATE_TIME",
+      "testValue" : "2017-04-17T10:50:18",
       "required" : true
     }, {
       "name" : "feeList",

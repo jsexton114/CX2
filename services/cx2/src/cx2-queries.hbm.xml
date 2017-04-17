@@ -1026,7 +1026,7 @@ from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidSt
 
     <sql-query name="UpdateFeesStatus">
         <![CDATA[
-        update Fees set PaidStatus=:status where ID=:feeEntry
+        update Fees set PaidStatus=:status,PaidDate=:_SYSTEM_CURRENT_DATE_TIME where ID=:feeEntry
         ]]>
     <query-param name="status" type="java.lang.String"/>
     <query-param name="feeEntry" type="java.lang.Integer"/>
@@ -2506,7 +2506,7 @@ group by formTypes.formType
 
     <sql-query name="updateMultipleFeeStatus">
         <![CDATA[
-        Update Fees SET PaidStatus=:PaidStatus where ID IN(:feeList)
+        Update Fees SET PaidStatus=:PaidStatus,PaidDate=:_SYSTEM_CURRENT_DATE_TIME where ID IN(:feeList)
         ]]>
     <query-param name="PaidStatus" type="java.lang.String"/>
     <query-param name="feeList" type="java.lang.Integer"/>
