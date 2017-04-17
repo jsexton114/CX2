@@ -78,9 +78,9 @@ public class LetterTemplatesController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public LetterTemplates editLetterTemplates(@PathVariable("id") Integer id, @RequestBody LetterTemplates letterTemplates) throws EntityNotFoundException {
-        LOGGER.debug("Editing LetterTemplates with id: {}" , letterTemplates.getLetterId());
+        LOGGER.debug("Editing LetterTemplates with id: {}" , letterTemplates.getId());
 
-        letterTemplates.setLetterId(id);
+        letterTemplates.setId(id);
         letterTemplates = letterTemplatesService.update(letterTemplates);
         LOGGER.debug("LetterTemplates details with id: {}" , letterTemplates);
 

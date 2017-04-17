@@ -28,7 +28,7 @@ import org.joda.time.LocalDateTime;
 @Table(name = "`Violations`")
 public class Violations implements Serializable {
 
-    private Integer violationId;
+    private Integer id;
     private Integer codeId;
     private String notes;
     @Type(type = "DateTime")
@@ -41,19 +41,19 @@ public class Violations implements Serializable {
     private String relatedFormGuid;
     private MasterForms masterForms;
     private MasterInspections masterInspections;
-    private CodeList codeList;
+    private Code code;
     private Users usersByModifiedBy;
     private Users usersByCreatedBy;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`ViolationId`", nullable = false, scale = 0, precision = 10)
-    public Integer getViolationId() {
-        return this.violationId;
+    @Column(name = "`ID`", nullable = false, scale = 0, precision = 10)
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setViolationId(Integer violationId) {
-        this.violationId = violationId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Column(name = "`CodeId`", nullable = true, scale = 0, precision = 10)
@@ -157,17 +157,17 @@ public class Violations implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`CodeId`", referencedColumnName = "`CodeId`", insertable = false, updatable = false)
-    public CodeList getCodeList() {
-        return this.codeList;
+    @JoinColumn(name = "`CodeId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Code getCode() {
+        return this.code;
     }
 
-    public void setCodeList(CodeList codeList) {
-        if(codeList != null) {
-            this.codeId = codeList.getCodeId();
+    public void setCode(Code code) {
+        if(code != null) {
+            this.codeId = code.getId();
         }
 
-        this.codeList = codeList;
+        this.code = code;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -203,12 +203,12 @@ public class Violations implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Violations)) return false;
         final Violations violations = (Violations) o;
-        return Objects.equals(getViolationId(), violations.getViolationId());
+        return Objects.equals(getId(), violations.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getViolationId());
+        return Objects.hash(getId());
     }
 }
 

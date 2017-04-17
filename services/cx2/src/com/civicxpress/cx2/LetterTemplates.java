@@ -32,7 +32,7 @@ import com.wavemaker.runtime.data.replacers.providers.VariableType;
 @Table(name = "`LetterTemplates`")
 public class LetterTemplates implements Serializable {
 
-    private Integer letterId;
+    private Integer id;
     private String letterTitle;
     private String letterBody;
     private Integer formDesignId;
@@ -52,13 +52,13 @@ public class LetterTemplates implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`LetterId`", nullable = false, scale = 0, precision = 10)
-    public Integer getLetterId() {
-        return this.letterId;
+    @Column(name = "`ID`", nullable = false, scale = 0, precision = 10)
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setLetterId(Integer letterId) {
-        this.letterId = letterId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Column(name = "`LetterTitle`", nullable = true, length = 255)
@@ -194,12 +194,12 @@ public class LetterTemplates implements Serializable {
         if (this == o) return true;
         if (!(o instanceof LetterTemplates)) return false;
         final LetterTemplates letterTemplates = (LetterTemplates) o;
-        return Objects.equals(getLetterId(), letterTemplates.getLetterId());
+        return Objects.equals(getId(), letterTemplates.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getLetterId());
+        return Objects.hash(getId());
     }
 }
 

@@ -57,8 +57,8 @@ public class Users implements Serializable {
     private boolean differentBillingInfo;
     private States states;
     private List<BillingInformation> billingInformations = new ArrayList<>();
-    private List<CodeList> codeListsForCreatedBy = new ArrayList<>();
-    private List<CodeList> codeListsForUpdatedBy = new ArrayList<>();
+    private List<Code> codesForCreatedBy = new ArrayList<>();
+    private List<Code> codesForUpdatedBy = new ArrayList<>();
     private List<CodeSets> codeSetsesForCreatedBy = new ArrayList<>();
     private List<CodeSets> codeSetsesForUpdatedBy = new ArrayList<>();
     private List<Document> documents = new ArrayList<>();
@@ -292,22 +292,22 @@ public class Users implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
-    public List<CodeList> getCodeListsForCreatedBy() {
-        return this.codeListsForCreatedBy;
+    public List<Code> getCodesForCreatedBy() {
+        return this.codesForCreatedBy;
     }
 
-    public void setCodeListsForCreatedBy(List<CodeList> codeListsForCreatedBy) {
-        this.codeListsForCreatedBy = codeListsForCreatedBy;
+    public void setCodesForCreatedBy(List<Code> codesForCreatedBy) {
+        this.codesForCreatedBy = codesForCreatedBy;
     }
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByUpdatedBy")
-    public List<CodeList> getCodeListsForUpdatedBy() {
-        return this.codeListsForUpdatedBy;
+    public List<Code> getCodesForUpdatedBy() {
+        return this.codesForUpdatedBy;
     }
 
-    public void setCodeListsForUpdatedBy(List<CodeList> codeListsForUpdatedBy) {
-        this.codeListsForUpdatedBy = codeListsForUpdatedBy;
+    public void setCodesForUpdatedBy(List<Code> codesForUpdatedBy) {
+        this.codesForUpdatedBy = codesForUpdatedBy;
     }
 
     @JsonInclude(Include.NON_EMPTY)

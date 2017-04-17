@@ -39,7 +39,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.BillingInformation;
-import com.civicxpress.cx2.CodeList;
+import com.civicxpress.cx2.Code;
 import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.Document;
 import com.civicxpress.cx2.Fees;
@@ -236,22 +236,22 @@ public class UsersController {
         return usersService.findAssociatedBillingInformations(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/codeListsForCreatedBy", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the codeListsForCreatedBy instance associated with the given id.")
+    @RequestMapping(value="/{id:.+}/codesForCreatedBy", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the codesForCreatedBy instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<CodeList> findAssociatedCodeListsForCreatedBy(@PathVariable("id") Integer id, Pageable pageable) {
+    public Page<Code> findAssociatedCodesForCreatedBy(@PathVariable("id") Integer id, Pageable pageable) {
 
-        LOGGER.debug("Fetching all associated codeListsForCreatedBy");
-        return usersService.findAssociatedCodeListsForCreatedBy(id, pageable);
+        LOGGER.debug("Fetching all associated codesForCreatedBy");
+        return usersService.findAssociatedCodesForCreatedBy(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/codeListsForUpdatedBy", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the codeListsForUpdatedBy instance associated with the given id.")
+    @RequestMapping(value="/{id:.+}/codesForUpdatedBy", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the codesForUpdatedBy instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<CodeList> findAssociatedCodeListsForUpdatedBy(@PathVariable("id") Integer id, Pageable pageable) {
+    public Page<Code> findAssociatedCodesForUpdatedBy(@PathVariable("id") Integer id, Pageable pageable) {
 
-        LOGGER.debug("Fetching all associated codeListsForUpdatedBy");
-        return usersService.findAssociatedCodeListsForUpdatedBy(id, pageable);
+        LOGGER.debug("Fetching all associated codesForUpdatedBy");
+        return usersService.findAssociatedCodesForUpdatedBy(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/codeSetsesForCreatedBy", method=RequestMethod.GET)

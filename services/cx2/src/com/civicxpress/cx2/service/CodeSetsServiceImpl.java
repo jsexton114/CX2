@@ -21,7 +21,7 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.CodeList;
+import com.civicxpress.cx2.Code;
 import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.CodesToForm;
 import com.civicxpress.cx2.CodesToInspection;
@@ -42,12 +42,12 @@ public class CodeSetsServiceImpl implements CodeSetsService {
 	private CodesToFormService codesToFormService;
 
     @Autowired
-	@Qualifier("cx2.CodeListService")
-	private CodeListService codeListService;
-
-    @Autowired
 	@Qualifier("cx2.CodesToInspectionService")
 	private CodesToInspectionService codesToInspectionService;
+
+    @Autowired
+	@Qualifier("cx2.CodeService")
+	private CodeService codeService;
 
     @Autowired
     @Qualifier("cx2.CodeSetsDao")
@@ -62,11 +62,11 @@ public class CodeSetsServiceImpl implements CodeSetsService {
 	public CodeSets create(CodeSets codeSets) {
         LOGGER.debug("Creating a new CodeSets with information: {}", codeSets);
         CodeSets codeSetsCreated = this.wmGenericDao.create(codeSets);
-        if(codeSetsCreated.getCodeLists() != null) {
-            for(CodeList codeList : codeSetsCreated.getCodeLists()) {
-                codeList.setCodeSets(codeSetsCreated);
-                LOGGER.debug("Creating a new child CodeList with information: {}", codeList);
-                codeListService.create(codeList);
+        if(codeSetsCreated.getCodes() != null) {
+            for(Code code : codeSetsCreated.getCodes()) {
+                code.setCodeSets(codeSetsCreated);
+                LOGGER.debug("Creating a new child Code with information: {}", code);
+                codeService.create(code);
             }
         }
 
@@ -114,7 +114,7 @@ public class CodeSetsServiceImpl implements CodeSetsService {
         LOGGER.debug("Updating CodeSets with information: {}", codeSets);
         this.wmGenericDao.update(codeSets);
 
-        Integer codesetsId = codeSets.getCodeSetId();
+        Integer codesetsId = codeSets.getId();
 
         return this.wmGenericDao.findById(codesetsId);
     }
@@ -161,33 +161,33 @@ public class CodeSetsServiceImpl implements CodeSetsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CodeList> findAssociatedCodeLists(Integer codeSetId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated codeLists");
+    public Page<Code> findAssociatedCodes(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated codes");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("codeSets.codeSetId = '" + codeSetId + "'");
+        queryBuilder.append("codeSets.id = '" + id + "'");
 
-        return codeListService.findAll(queryBuilder.toString(), pageable);
+        return codeService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CodesToForm> findAssociatedCodesToForms(Integer codeSetId, Pageable pageable) {
+    public Page<CodesToForm> findAssociatedCodesToForms(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated codesToForms");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("codeSets.codeSetId = '" + codeSetId + "'");
+        queryBuilder.append("codeSets.id = '" + id + "'");
 
         return codesToFormService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CodesToInspection> findAssociatedCodesToInspections(Integer codeSetId, Pageable pageable) {
+    public Page<CodesToInspection> findAssociatedCodesToInspections(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated codesToInspections");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("codeSets.codeSetId = '" + codeSetId + "'");
+        queryBuilder.append("codeSets.id = '" + id + "'");
 
         return codesToInspectionService.findAll(queryBuilder.toString(), pageable);
     }
@@ -204,19 +204,19 @@ public class CodeSetsServiceImpl implements CodeSetsService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service CodeListService instance
+	 * @param service CodesToInspectionService instance
 	 */
-	protected void setCodeListService(CodeListService service) {
-        this.codeListService = service;
+	protected void setCodesToInspectionService(CodesToInspectionService service) {
+        this.codesToInspectionService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service CodesToInspectionService instance
+	 * @param service CodeService instance
 	 */
-	protected void setCodesToInspectionService(CodesToInspectionService service) {
-        this.codesToInspectionService = service;
+	protected void setCodeService(CodeService service) {
+        this.codeService = service;
     }
 
 }

@@ -30,7 +30,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
-import com.civicxpress.cx2.CodeList;
+import com.civicxpress.cx2.Code;
 import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.CodesToForm;
 import com.civicxpress.cx2.CodesToInspection;
@@ -81,9 +81,9 @@ public class CodeSetsController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public CodeSets editCodeSets(@PathVariable("id") Integer id, @RequestBody CodeSets codeSets) throws EntityNotFoundException {
-        LOGGER.debug("Editing CodeSets with id: {}" , codeSets.getCodeSetId());
+        LOGGER.debug("Editing CodeSets with id: {}" , codeSets.getId());
 
-        codeSets.setCodeSetId(id);
+        codeSets.setId(id);
         codeSets = codeSetsService.update(codeSets);
         LOGGER.debug("CodeSets details with id: {}" , codeSets);
 
@@ -144,13 +144,13 @@ public class CodeSetsController {
 		return codeSetsService.count(query);
 	}
 
-    @RequestMapping(value="/{id:.+}/codeLists", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the codeLists instance associated with the given id.")
+    @RequestMapping(value="/{id:.+}/codes", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the codes instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<CodeList> findAssociatedCodeLists(@PathVariable("id") Integer id, Pageable pageable) {
+    public Page<Code> findAssociatedCodes(@PathVariable("id") Integer id, Pageable pageable) {
 
-        LOGGER.debug("Fetching all associated codeLists");
-        return codeSetsService.findAssociatedCodeLists(id, pageable);
+        LOGGER.debug("Fetching all associated codes");
+        return codeSetsService.findAssociatedCodes(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/codesToForms", method=RequestMethod.GET)

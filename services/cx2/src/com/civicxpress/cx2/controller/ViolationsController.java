@@ -78,9 +78,9 @@ public class ViolationsController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Violations editViolations(@PathVariable("id") Integer id, @RequestBody Violations violations) throws EntityNotFoundException {
-        LOGGER.debug("Editing Violations with id: {}" , violations.getViolationId());
+        LOGGER.debug("Editing Violations with id: {}" , violations.getId());
 
-        violations.setViolationId(id);
+        violations.setId(id);
         violations = violationsService.update(violations);
         LOGGER.debug("Violations details with id: {}" , violations);
 

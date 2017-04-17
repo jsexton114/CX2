@@ -3342,7 +3342,7 @@
         "relatedTableName" : "CodeSets",
         "relatedEntityName" : "CodeSets",
         "relatedColumnName" : "codeSetId",
-        "relatedFieldName" : "codeSets.codeSetId",
+        "relatedFieldName" : "codeSets.id",
         "isList" : false,
         "targetTable" : "CodeSets",
         "scale" : 0,
@@ -3394,10 +3394,10 @@
           "systemUpdated" : true,
           "scale" : 0
         }, {
-          "fieldName" : "codeSetId",
+          "fieldName" : "id",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
-          "columnName" : "CodeSetId",
+          "columnName" : "ID",
           "isPrimaryKey" : true,
           "notNull" : true,
           "length" : 0,
@@ -6902,10 +6902,10 @@
           "scale" : 0
         } ]
       }, {
-        "fieldName" : "letterId",
+        "fieldName" : "id",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
-        "columnName" : "LetterId",
+        "columnName" : "ID",
         "isPrimaryKey" : true,
         "notNull" : true,
         "length" : 0,
@@ -6971,7 +6971,7 @@
       "entityName" : "LetterTemplates",
       "fullyQualifiedName" : "com.civicxpress.cx2.LetterTemplates",
       "tableType" : "TABLE",
-      "primaryFields" : [ "letterId" ]
+      "primaryFields" : [ "id" ]
     },
     "spinnerContext" : "page",
     "tableName" : "LetterTemplates",
@@ -7970,10 +7970,10 @@
           "scale" : 0
         } ]
       }, {
-        "fieldName" : "codeSetId",
+        "fieldName" : "id",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
-        "columnName" : "CodeSetId",
+        "columnName" : "ID",
         "isPrimaryKey" : true,
         "notNull" : true,
         "length" : 0,
@@ -8040,7 +8040,7 @@
       "entityName" : "CodeSets",
       "fullyQualifiedName" : "com.civicxpress.cx2.CodeSets",
       "tableType" : "TABLE",
-      "primaryFields" : [ "codeSetId" ]
+      "primaryFields" : [ "id" ]
     },
     "bindCount" : 1,
     "spinnerContext" : "page",

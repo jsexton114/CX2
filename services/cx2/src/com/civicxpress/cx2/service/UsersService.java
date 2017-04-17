@@ -15,7 +15,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.BillingInformation;
-import com.civicxpress.cx2.CodeList;
+import com.civicxpress.cx2.Code;
 import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.Document;
 import com.civicxpress.cx2.Fees;
@@ -180,28 +180,28 @@ public interface UsersService {
     Page<BillingInformation> findAssociatedBillingInformations(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated codeListsForCreatedBy for given Users id.
+     * Returns the associated codesForCreatedBy for given Users id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated CodeList instances.
+     * @return Paginated list of associated Code instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<CodeList> findAssociatedCodeListsForCreatedBy(Integer id, Pageable pageable);
+    Page<Code> findAssociatedCodesForCreatedBy(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated codeListsForUpdatedBy for given Users id.
+     * Returns the associated codesForUpdatedBy for given Users id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated CodeList instances.
+     * @return Paginated list of associated Code instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<CodeList> findAssociatedCodeListsForUpdatedBy(Integer id, Pageable pageable);
+    Page<Code> findAssociatedCodesForUpdatedBy(Integer id, Pageable pageable);
 
     /*
      * Returns the associated codeSetsesForCreatedBy for given Users id.

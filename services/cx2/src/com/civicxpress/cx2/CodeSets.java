@@ -38,7 +38,7 @@ import com.wavemaker.runtime.data.replacers.providers.VariableType;
 @Table(name = "`CodeSets`")
 public class CodeSets implements Serializable {
 
-    private Integer codeSetId;
+    private Integer id;
     private String codeSetTitle;
     private boolean globalYn;
     private Integer municipalityId;
@@ -55,19 +55,19 @@ public class CodeSets implements Serializable {
     private Municipalities municipalities;
     private Users usersByCreatedBy;
     private Users usersByUpdatedBy;
-    private List<CodeList> codeLists = new ArrayList<>();
+    private List<Code> codes = new ArrayList<>();
     private List<CodesToForm> codesToForms = new ArrayList<>();
     private List<CodesToInspection> codesToInspections = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`CodeSetId`", nullable = false, scale = 0, precision = 10)
-    public Integer getCodeSetId() {
-        return this.codeSetId;
+    @Column(name = "`ID`", nullable = false, scale = 0, precision = 10)
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setCodeSetId(Integer codeSetId) {
-        this.codeSetId = codeSetId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Column(name = "`CodeSetTitle`", nullable = true, length = 255)
@@ -177,12 +177,12 @@ public class CodeSets implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "codeSets")
-    public List<CodeList> getCodeLists() {
-        return this.codeLists;
+    public List<Code> getCodes() {
+        return this.codes;
     }
 
-    public void setCodeLists(List<CodeList> codeLists) {
-        this.codeLists = codeLists;
+    public void setCodes(List<Code> codes) {
+        this.codes = codes;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -210,12 +210,12 @@ public class CodeSets implements Serializable {
         if (this == o) return true;
         if (!(o instanceof CodeSets)) return false;
         final CodeSets codeSets = (CodeSets) o;
-        return Objects.equals(getCodeSetId(), codeSets.getCodeSetId());
+        return Objects.equals(getId(), codeSets.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCodeSetId());
+        return Objects.hash(getId());
     }
 }
 

@@ -603,15 +603,15 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "codeId",
+      "fieldName" : "id",
       "foreignKey" : false,
       "generatorType" : "identity",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "CodeId",
+      "name" : "ID",
       "nullable" : false,
-      "oldName" : "CodeId",
+      "oldName" : "ID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
@@ -848,12 +848,12 @@
       "unique" : false
     } ],
     "constraints" : [ ],
-    "entityName" : "CodeList",
-    "fullyQualifiedName" : "com.civicxpress.cx2.CodeList",
-    "name" : "CodeList",
-    "oldName" : "CodeList",
+    "entityName" : "Code",
+    "fullyQualifiedName" : "com.civicxpress.cx2.Code",
+    "name" : "Code",
+    "oldName" : "Code",
     "primaryKey" : {
-      "columns" : [ "CodeId" ],
+      "columns" : [ "ID" ],
       "composite" : false,
       "generator" : {
         "generatorType" : "identity",
@@ -869,13 +869,13 @@
       "fieldName" : "codeSets",
       "mappings" : [ {
         "sourceColumn" : "CodeSetId",
-        "targetColumn" : "CodeSetId"
+        "targetColumn" : "ID"
       } ],
       "name" : "FK_CodeList_TO_CodeSets_ByQor",
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "CodeList",
+      "sourceTable" : "Code",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "CodeSets",
       "virtual" : false
@@ -892,7 +892,7 @@
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "CodeList",
+      "sourceTable" : "Code",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Users",
       "virtual" : false
@@ -909,7 +909,7 @@
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "CodeList",
+      "sourceTable" : "Code",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Users",
       "virtual" : false
@@ -919,14 +919,14 @@
       "composite" : false,
       "fieldName" : "violationses",
       "mappings" : [ {
-        "sourceColumn" : "CodeId",
+        "sourceColumn" : "ID",
         "targetColumn" : "CodeId"
       } ],
       "name" : "FK_Violations1_TO_CodeLifrPdt",
       "primary" : false,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "CodeList",
+      "sourceTable" : "Code",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Violations",
       "virtual" : false
@@ -942,15 +942,15 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "codeSetId",
+      "fieldName" : "id",
       "foreignKey" : false,
       "generatorType" : "identity",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "CodeSetId",
+      "name" : "ID",
       "nullable" : false,
-      "oldName" : "CodeSetId",
+      "oldName" : "ID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
@@ -1142,7 +1142,7 @@
     "name" : "CodeSets",
     "oldName" : "CodeSets",
     "primaryKey" : {
-      "columns" : [ "CodeSetId" ],
+      "columns" : [ "ID" ],
       "composite" : false,
       "generator" : {
         "generatorType" : "identity",
@@ -1206,9 +1206,9 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "codeLists",
+      "fieldName" : "codes",
       "mappings" : [ {
-        "sourceColumn" : "CodeSetId",
+        "sourceColumn" : "ID",
         "targetColumn" : "CodeSetId"
       } ],
       "name" : "FK_CodeList_TO_CodeSets_ByQor",
@@ -1217,7 +1217,7 @@
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "CodeSets",
       "targetColumnsUniqueKey" : false,
-      "targetTable" : "CodeList",
+      "targetTable" : "Code",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -1225,7 +1225,7 @@
       "composite" : false,
       "fieldName" : "codesToForms",
       "mappings" : [ {
-        "sourceColumn" : "CodeSetId",
+        "sourceColumn" : "ID",
         "targetColumn" : "CodeSetId"
       } ],
       "name" : "FK_CodesToForm_TO_CodeSemiX9W",
@@ -1242,7 +1242,7 @@
       "composite" : false,
       "fieldName" : "codesToInspections",
       "mappings" : [ {
-        "sourceColumn" : "CodeSetId",
+        "sourceColumn" : "ID",
         "targetColumn" : "CodeSetId"
       } ],
       "name" : "FK_CodesToInspection_TO_wSjF4",
@@ -1553,7 +1553,7 @@
       "fieldName" : "codeSets",
       "mappings" : [ {
         "sourceColumn" : "CodeSetId",
-        "targetColumn" : "CodeSetId"
+        "targetColumn" : "ID"
       } ],
       "name" : "FK_CodesToForm_TO_CodeSemiX9W",
       "primary" : true,
@@ -1708,7 +1708,7 @@
       "fieldName" : "codeSets",
       "mappings" : [ {
         "sourceColumn" : "CodeSetId",
-        "targetColumn" : "CodeSetId"
+        "targetColumn" : "ID"
       } ],
       "name" : "FK_CodesToInspection_TO_wSjF4",
       "primary" : true,
@@ -11402,15 +11402,15 @@
         "updatable" : true,
         "defaultValue" : ""
       },
-      "fieldName" : "letterId",
+      "fieldName" : "id",
       "foreignKey" : false,
       "generatorType" : "identity",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "LetterId",
+      "name" : "ID",
       "nullable" : false,
-      "oldName" : "LetterId",
+      "oldName" : "ID",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
@@ -11627,7 +11627,7 @@
     "name" : "LetterTemplates",
     "oldName" : "LetterTemplates",
     "primaryKey" : {
-      "columns" : [ "LetterId" ],
+      "columns" : [ "ID" ],
       "composite" : false,
       "generator" : {
         "generatorType" : "identity",
@@ -19166,7 +19166,7 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "codeListsForCreatedBy",
+      "fieldName" : "codesForCreatedBy",
       "mappings" : [ {
         "sourceColumn" : "ID",
         "targetColumn" : "CreatedBy"
@@ -19177,13 +19177,13 @@
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "Users",
       "targetColumnsUniqueKey" : false,
-      "targetTable" : "CodeList",
+      "targetTable" : "Code",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "codeListsForUpdatedBy",
+      "fieldName" : "codesForUpdatedBy",
       "mappings" : [ {
         "sourceColumn" : "ID",
         "targetColumn" : "UpdatedBy"
@@ -19194,7 +19194,7 @@
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "Users",
       "targetColumnsUniqueKey" : false,
-      "targetTable" : "CodeList",
+      "targetTable" : "Code",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -22375,15 +22375,15 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "violationId",
+      "fieldName" : "id",
       "foreignKey" : false,
       "generatorType" : "identity",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "ViolationId",
+      "name" : "ID",
       "nullable" : false,
-      "oldName" : "ViolationId",
+      "oldName" : "ID",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
@@ -22600,7 +22600,7 @@
     "name" : "Violations",
     "oldName" : "Violations",
     "primaryKey" : {
-      "columns" : [ "ViolationId" ],
+      "columns" : [ "ID" ],
       "composite" : false,
       "generator" : {
         "generatorType" : "identity",
@@ -22647,10 +22647,10 @@
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "codeList",
+      "fieldName" : "code",
       "mappings" : [ {
         "sourceColumn" : "CodeId",
-        "targetColumn" : "CodeId"
+        "targetColumn" : "ID"
       } ],
       "name" : "FK_Violations1_TO_CodeLifrPdt",
       "primary" : true,
@@ -22658,7 +22658,7 @@
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "Violations",
       "targetColumnsUniqueKey" : false,
-      "targetTable" : "CodeList",
+      "targetTable" : "Code",
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",

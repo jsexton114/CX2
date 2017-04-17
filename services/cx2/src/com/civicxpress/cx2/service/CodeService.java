@@ -14,65 +14,65 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.CodeList;
+import com.civicxpress.cx2.Code;
 import com.civicxpress.cx2.Violations;
 
 /**
- * Service object for domain model class {@link CodeList}.
+ * Service object for domain model class {@link Code}.
  */
-public interface CodeListService {
+public interface CodeService {
 
     /**
-     * Creates a new CodeList. It does cascade insert for all the children in a single transaction.
+     * Creates a new Code. It does cascade insert for all the children in a single transaction.
      *
-     * This method overrides the input field values using Server side or database managed properties defined on CodeList if any.
+     * This method overrides the input field values using Server side or database managed properties defined on Code if any.
      *
-     * @param codeList Details of the CodeList to be created; value cannot be null.
-     * @return The newly created CodeList.
+     * @param codeInstance Details of the Code to be created; value cannot be null.
+     * @return The newly created Code.
      */
-	CodeList create(CodeList codeList);
+	Code create(Code codeInstance);
 
 
 	/**
-	 * Returns CodeList by given id if exists.
+	 * Returns Code by given id if exists.
 	 *
-	 * @param codelistId The id of the CodeList to get; value cannot be null.
-	 * @return CodeList associated with the given codelistId.
-     * @throws EntityNotFoundException If no CodeList is found.
+	 * @param codeId The id of the Code to get; value cannot be null.
+	 * @return Code associated with the given codeId.
+     * @throws EntityNotFoundException If no Code is found.
 	 */
-	CodeList getById(Integer codelistId) throws EntityNotFoundException;
+	Code getById(Integer codeId) throws EntityNotFoundException;
 
     /**
-	 * Find and return the CodeList by given id if exists, returns null otherwise.
+	 * Find and return the Code by given id if exists, returns null otherwise.
 	 *
-	 * @param codelistId The id of the CodeList to get; value cannot be null.
-	 * @return CodeList associated with the given codelistId.
+	 * @param codeId The id of the Code to get; value cannot be null.
+	 * @return Code associated with the given codeId.
 	 */
-	CodeList findById(Integer codelistId);
+	Code findById(Integer codeId);
 
 
 	/**
-	 * Updates the details of an existing CodeList. It replaces all fields of the existing CodeList with the given codeList.
+	 * Updates the details of an existing Code. It replaces all fields of the existing Code with the given codeInstance.
 	 *
-     * This method overrides the input field values using Server side or database managed properties defined on CodeList if any.
+     * This method overrides the input field values using Server side or database managed properties defined on Code if any.
      *
-	 * @param codeList The details of the CodeList to be updated; value cannot be null.
-	 * @return The updated CodeList.
-	 * @throws EntityNotFoundException if no CodeList is found with given input.
+	 * @param codeInstance The details of the Code to be updated; value cannot be null.
+	 * @return The updated Code.
+	 * @throws EntityNotFoundException if no Code is found with given input.
 	 */
-	CodeList update(CodeList codeList) throws EntityNotFoundException;
+	Code update(Code codeInstance) throws EntityNotFoundException;
 
     /**
-	 * Deletes an existing CodeList with the given id.
+	 * Deletes an existing Code with the given id.
 	 *
-	 * @param codelistId The id of the CodeList to be deleted; value cannot be null.
-	 * @return The deleted CodeList.
-	 * @throws EntityNotFoundException if no CodeList found with the given id.
+	 * @param codeId The id of the Code to be deleted; value cannot be null.
+	 * @return The deleted Code.
+	 * @throws EntityNotFoundException if no Code found with the given id.
 	 */
-	CodeList delete(Integer codelistId) throws EntityNotFoundException;
+	Code delete(Integer codeId) throws EntityNotFoundException;
 
 	/**
-	 * Find all CodeLists matching the given QueryFilter(s).
+	 * Find all Codes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.
      * This method returns Paginated results.
 	 *
@@ -80,30 +80,30 @@ public interface CodeListService {
 	 *
      * @param queryFilters Array of queryFilters to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching CodeLists.
+     * @return Paginated list of matching Codes.
      *
      * @see QueryFilter
      * @see Pageable
      * @see Page
 	 */
     @Deprecated
-	Page<CodeList> findAll(QueryFilter[] queryFilters, Pageable pageable);
+	Page<Code> findAll(QueryFilter[] queryFilters, Pageable pageable);
 
     /**
-	 * Find all CodeLists matching the given input query. This method returns Paginated results.
+	 * Find all Codes matching the given input query. This method returns Paginated results.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param query The query to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching CodeLists.
+     * @return Paginated list of matching Codes.
      *
      * @see Pageable
      * @see Page
 	 */
-    Page<CodeList> findAll(String query, Pageable pageable);
+    Page<Code> findAll(String query, Pageable pageable);
 
     /**
-	 * Exports all CodeLists matching the given input query to the given exportType format.
+	 * Exports all Codes matching the given input query to the given exportType format.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param exportType The format in which to export the data; value cannot be null.
@@ -118,25 +118,25 @@ public interface CodeListService {
     Downloadable export(ExportType exportType, String query, Pageable pageable);
 
 	/**
-	 * Retrieve the count of the CodeLists in the repository with matching query.
+	 * Retrieve the count of the Codes in the repository with matching query.
      * Note: Go through the documentation for <u>query</u> syntax.
      *
      * @param query query to filter results. No filters applied if the input is null/empty.
-	 * @return The count of the CodeList.
+	 * @return The count of the Code.
 	 */
 	long count(String query);
 
     /*
-     * Returns the associated violationses for given CodeList id.
+     * Returns the associated violationses for given Code id.
      *
-     * @param codeId value of codeId; value cannot be null
+     * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
      * @return Paginated list of associated Violations instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<Violations> findAssociatedViolationses(Integer codeId, Pageable pageable);
+    Page<Violations> findAssociatedViolationses(Integer id, Pageable pageable);
 
 }
 

@@ -13,14 +13,14 @@ import org.springframework.stereotype.Repository;
 
 import com.wavemaker.runtime.data.dao.WMGenericDaoImpl;
 
-import com.civicxpress.cx2.CodeList;
+import com.civicxpress.cx2.Code;
 
 /**
- * Specifies methods used to obtain and modify CodeList related information
+ * Specifies methods used to obtain and modify Code related information
  * which is stored in the database.
  */
-@Repository("cx2.CodeListDao")
-public class CodeListDao extends WMGenericDaoImpl<CodeList, Integer> {
+@Repository("cx2.CodeDao")
+public class CodeDao extends WMGenericDaoImpl<Code, Integer> {
 
     @Autowired
     @Qualifier("cx2Template")

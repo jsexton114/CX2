@@ -80,14 +80,14 @@ public class CodesToInspection implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`CodeSetId`", referencedColumnName = "`CodeSetId`", insertable = false, updatable = false)
+    @JoinColumn(name = "`CodeSetId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public CodeSets getCodeSets() {
         return this.codeSets;
     }
 
     public void setCodeSets(CodeSets codeSets) {
         if(codeSets != null) {
-            this.codeSetId = codeSets.getCodeSetId();
+            this.codeSetId = codeSets.getId();
         }
 
         this.codeSets = codeSets;

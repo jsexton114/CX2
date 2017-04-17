@@ -24,7 +24,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.BillingInformation;
-import com.civicxpress.cx2.CodeList;
+import com.civicxpress.cx2.Code;
 import com.civicxpress.cx2.CodeSets;
 import com.civicxpress.cx2.Document;
 import com.civicxpress.cx2.Fees;
@@ -143,16 +143,16 @@ public class UsersServiceImpl implements UsersService {
 	private ViolationsService violationsService;
 
     @Autowired
-	@Qualifier("cx2.CodeListService")
-	private CodeListService codeListService;
-
-    @Autowired
 	@Qualifier("cx2.ProjectGisrecordsService")
 	private ProjectGisrecordsService projectGisrecordsService;
 
     @Autowired
 	@Qualifier("cx2.SharedWithService")
 	private SharedWithService sharedWithService;
+
+    @Autowired
+	@Qualifier("cx2.CodeService")
+	private CodeService codeService;
 
     @Autowired
 	@Qualifier("cx2.ProjectFormsService")
@@ -227,19 +227,19 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getCodeListsForCreatedBy() != null) {
-            for(CodeList codeListsForCreatedBy : usersCreated.getCodeListsForCreatedBy()) {
-                codeListsForCreatedBy.setUsersByCreatedBy(usersCreated);
-                LOGGER.debug("Creating a new child CodeList with information: {}", codeListsForCreatedBy);
-                codeListService.create(codeListsForCreatedBy);
+        if(usersCreated.getCodesForCreatedBy() != null) {
+            for(Code codesForCreatedBy : usersCreated.getCodesForCreatedBy()) {
+                codesForCreatedBy.setUsersByCreatedBy(usersCreated);
+                LOGGER.debug("Creating a new child Code with information: {}", codesForCreatedBy);
+                codeService.create(codesForCreatedBy);
             }
         }
 
-        if(usersCreated.getCodeListsForUpdatedBy() != null) {
-            for(CodeList codeListsForUpdatedBy : usersCreated.getCodeListsForUpdatedBy()) {
-                codeListsForUpdatedBy.setUsersByUpdatedBy(usersCreated);
-                LOGGER.debug("Creating a new child CodeList with information: {}", codeListsForUpdatedBy);
-                codeListService.create(codeListsForUpdatedBy);
+        if(usersCreated.getCodesForUpdatedBy() != null) {
+            for(Code codesForUpdatedBy : usersCreated.getCodesForUpdatedBy()) {
+                codesForUpdatedBy.setUsersByUpdatedBy(usersCreated);
+                LOGGER.debug("Creating a new child Code with information: {}", codesForUpdatedBy);
+                codeService.create(codesForUpdatedBy);
             }
         }
 
@@ -681,24 +681,24 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CodeList> findAssociatedCodeListsForCreatedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated codeListsForCreatedBy");
+    public Page<Code> findAssociatedCodesForCreatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated codesForCreatedBy");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
 
-        return codeListService.findAll(queryBuilder.toString(), pageable);
+        return codeService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CodeList> findAssociatedCodeListsForUpdatedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated codeListsForUpdatedBy");
+    public Page<Code> findAssociatedCodesForUpdatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated codesForUpdatedBy");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("usersByUpdatedBy.id = '" + id + "'");
 
-        return codeListService.findAll(queryBuilder.toString(), pageable);
+        return codeService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1328,15 +1328,6 @@ public class UsersServiceImpl implements UsersService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service CodeListService instance
-	 */
-	protected void setCodeListService(CodeListService service) {
-        this.codeListService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service ProjectGisrecordsService instance
 	 */
 	protected void setProjectGisrecordsService(ProjectGisrecordsService service) {
@@ -1350,6 +1341,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setSharedWithService(SharedWithService service) {
         this.sharedWithService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service CodeService instance
+	 */
+	protected void setCodeService(CodeService service) {
+        this.codeService = service;
     }
 
     /**

@@ -77,7 +77,7 @@ public class LetterTemplatesServiceImpl implements LetterTemplatesService {
         LOGGER.debug("Updating LetterTemplates with information: {}", letterTemplates);
         this.wmGenericDao.update(letterTemplates);
 
-        Integer lettertemplatesId = letterTemplates.getLetterId();
+        Integer lettertemplatesId = letterTemplates.getId();
 
         return this.wmGenericDao.findById(lettertemplatesId);
     }

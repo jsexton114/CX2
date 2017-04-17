@@ -77,7 +77,7 @@ public class ViolationsServiceImpl implements ViolationsService {
         LOGGER.debug("Updating Violations with information: {}", violations);
         this.wmGenericDao.update(violations);
 
-        Integer violationsId = violations.getViolationId();
+        Integer violationsId = violations.getId();
 
         return this.wmGenericDao.findById(violationsId);
     }

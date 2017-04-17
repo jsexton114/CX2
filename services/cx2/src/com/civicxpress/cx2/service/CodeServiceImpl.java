@@ -21,86 +21,86 @@ import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.civicxpress.cx2.CodeList;
+import com.civicxpress.cx2.Code;
 import com.civicxpress.cx2.Violations;
 
 
 /**
- * ServiceImpl object for domain model class CodeList.
+ * ServiceImpl object for domain model class Code.
  *
- * @see CodeList
+ * @see Code
  */
-@Service("cx2.CodeListService")
-public class CodeListServiceImpl implements CodeListService {
+@Service("cx2.CodeService")
+public class CodeServiceImpl implements CodeService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CodeListServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CodeServiceImpl.class);
 
     @Autowired
 	@Qualifier("cx2.ViolationsService")
 	private ViolationsService violationsService;
 
     @Autowired
-    @Qualifier("cx2.CodeListDao")
-    private WMGenericDao<CodeList, Integer> wmGenericDao;
+    @Qualifier("cx2.CodeDao")
+    private WMGenericDao<Code, Integer> wmGenericDao;
 
-    public void setWMGenericDao(WMGenericDao<CodeList, Integer> wmGenericDao) {
+    public void setWMGenericDao(WMGenericDao<Code, Integer> wmGenericDao) {
         this.wmGenericDao = wmGenericDao;
     }
 
     @Transactional(value = "cx2TransactionManager")
     @Override
-	public CodeList create(CodeList codeList) {
-        LOGGER.debug("Creating a new CodeList with information: {}", codeList);
-        CodeList codeListCreated = this.wmGenericDao.create(codeList);
-        if(codeListCreated.getViolationses() != null) {
-            for(Violations violationse : codeListCreated.getViolationses()) {
-                violationse.setCodeList(codeListCreated);
+	public Code create(Code codeInstance) {
+        LOGGER.debug("Creating a new Code with information: {}", codeInstance);
+        Code codeInstanceCreated = this.wmGenericDao.create(codeInstance);
+        if(codeInstanceCreated.getViolationses() != null) {
+            for(Violations violationse : codeInstanceCreated.getViolationses()) {
+                violationse.setCode(codeInstanceCreated);
                 LOGGER.debug("Creating a new child Violations with information: {}", violationse);
                 violationsService.create(violationse);
             }
         }
-        return codeListCreated;
+        return codeInstanceCreated;
     }
 
 	@Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public CodeList getById(Integer codelistId) throws EntityNotFoundException {
-        LOGGER.debug("Finding CodeList by id: {}", codelistId);
-        CodeList codeList = this.wmGenericDao.findById(codelistId);
-        if (codeList == null){
-            LOGGER.debug("No CodeList found with id: {}", codelistId);
-            throw new EntityNotFoundException(String.valueOf(codelistId));
+	public Code getById(Integer codeId) throws EntityNotFoundException {
+        LOGGER.debug("Finding Code by id: {}", codeId);
+        Code codeInstance = this.wmGenericDao.findById(codeId);
+        if (codeInstance == null){
+            LOGGER.debug("No Code found with id: {}", codeId);
+            throw new EntityNotFoundException(String.valueOf(codeId));
         }
-        return codeList;
+        return codeInstance;
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public CodeList findById(Integer codelistId) {
-        LOGGER.debug("Finding CodeList by id: {}", codelistId);
-        return this.wmGenericDao.findById(codelistId);
+	public Code findById(Integer codeId) {
+        LOGGER.debug("Finding Code by id: {}", codeId);
+        return this.wmGenericDao.findById(codeId);
     }
 
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "cx2TransactionManager")
 	@Override
-	public CodeList update(CodeList codeList) throws EntityNotFoundException {
-        LOGGER.debug("Updating CodeList with information: {}", codeList);
-        this.wmGenericDao.update(codeList);
+	public Code update(Code codeInstance) throws EntityNotFoundException {
+        LOGGER.debug("Updating Code with information: {}", codeInstance);
+        this.wmGenericDao.update(codeInstance);
 
-        Integer codelistId = codeList.getCodeId();
+        Integer codeId = codeInstance.getId();
 
-        return this.wmGenericDao.findById(codelistId);
+        return this.wmGenericDao.findById(codeId);
     }
 
     @Transactional(value = "cx2TransactionManager")
 	@Override
-	public CodeList delete(Integer codelistId) throws EntityNotFoundException {
-        LOGGER.debug("Deleting CodeList with id: {}", codelistId);
-        CodeList deleted = this.wmGenericDao.findById(codelistId);
+	public Code delete(Integer codeId) throws EntityNotFoundException {
+        LOGGER.debug("Deleting Code with id: {}", codeId);
+        Code deleted = this.wmGenericDao.findById(codeId);
         if (deleted == null) {
-            LOGGER.debug("No CodeList found with id: {}", codelistId);
-            throw new EntityNotFoundException(String.valueOf(codelistId));
+            LOGGER.debug("No Code found with id: {}", codeId);
+            throw new EntityNotFoundException(String.valueOf(codeId));
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
@@ -108,22 +108,22 @@ public class CodeListServiceImpl implements CodeListService {
 
 	@Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public Page<CodeList> findAll(QueryFilter[] queryFilters, Pageable pageable) {
-        LOGGER.debug("Finding all CodeLists");
+	public Page<Code> findAll(QueryFilter[] queryFilters, Pageable pageable) {
+        LOGGER.debug("Finding all Codes");
         return this.wmGenericDao.search(queryFilters, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CodeList> findAll(String query, Pageable pageable) {
-        LOGGER.debug("Finding all CodeLists");
+    public Page<Code> findAll(String query, Pageable pageable) {
+        LOGGER.debug("Finding all Codes");
         return this.wmGenericDao.searchByQuery(query, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Downloadable export(ExportType exportType, String query, Pageable pageable) {
-        LOGGER.debug("exporting data in the service cx2 for table CodeList to {} format", exportType);
+        LOGGER.debug("exporting data in the service cx2 for table Code to {} format", exportType);
         return this.wmGenericDao.export(exportType, query, pageable);
     }
 
@@ -135,11 +135,11 @@ public class CodeListServiceImpl implements CodeListService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Violations> findAssociatedViolationses(Integer codeId, Pageable pageable) {
+    public Page<Violations> findAssociatedViolationses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated violationses");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("codeList.codeId = '" + codeId + "'");
+        queryBuilder.append("code.id = '" + id + "'");
 
         return violationsService.findAll(queryBuilder.toString(), pageable);
     }
