@@ -114,7 +114,7 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane2" title="Fee List">
                     <wm-livegrid formlayout="dialog" name="livegrid2">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Fees List" dataset="bind:Variables.Cx2FeesData.dataSet" navigation="Classic" name="grid2">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Fees List" dataset="bind:Variables.Cx2FeesData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                             <wm-grid-column binding="feeType" caption="Fee Type" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="autoFeeYn" caption="Auto Fee Yn" type="boolean" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="paidStatus" caption="Paid Status" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -237,14 +237,15 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane3" title="Paymenthistory(transactions)">
                     <wm-livegrid formlayout="dialog" name="livegrid3">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Paymenthistory(transactions)" dataset="bind:Variables.Cx2PaymentHistoryData.dataSet" navigation="Classic" name="grid3">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Paymenthistory(transactions)" dataset="bind:Variables.Cx2PaymentHistoryData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                             <wm-grid-column binding="transactionId" caption="Transaction Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
                             <wm-grid-column binding="paymentMethod" caption="Payment Method" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="paymentNumber" caption="Payment Number" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="amountReceived" caption="Amount Received" type="float" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="comments" caption="Comments" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-column binding="users.email" caption="Created By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                            <wm-grid-column binding="dateCreated" caption="Date Created" type="datetime" primary-key="false" generator="assigned" edit-widget-type="datetime" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -285,14 +286,14 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane4" title="FeeToTransactions">
                     <wm-livegrid formlayout="dialog" name="livegrid4">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Transactiontofees List" dataset="bind:Variables.Cx2TransactionToFeesData.dataSet" navigation="Classic" name="grid4">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Transactiontofees List" dataset="bind:Variables.Cx2TransactionToFeesData.dataSet" navigation="Classic" name="grid4" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                             <wm-grid-column binding="fees.id" caption="Fees Id" type="integer" primary-key="true" generator="identity" edit-widget-type="select" datafield="id" displayfield="id" show="true" related-entity-name="Fees" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="fees.feeType" caption="Fee Type" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Fees"></wm-grid-column>
                             <wm-grid-column binding="paymentHistory.transactionId" caption="Transaction Id" type="integer" primary-key="true" generator="identity" edit-widget-type="select" datafield="transactionId" displayfield="transactionId"
                             show="true" related-entity-name="PaymentHistory" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="paymentHistory.amountReceived" caption="Amount Received" type="float" generator="assigned" readonly="true" edit-widget-type="number" show="true" related-entity-name="PaymentHistory"></wm-grid-column>
                             <wm-grid-column binding="paymentHistory.comments" caption="History Comments" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="PaymentHistory"></wm-grid-column>
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
