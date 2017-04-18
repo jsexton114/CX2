@@ -113,19 +113,19 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getFormHistories() != null) {
-            for(FormHistory formHistorie : formTypesCreated.getFormHistories()) {
-                formHistorie.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormHistory with information: {}", formHistorie);
-                formHistoryService.create(formHistorie);
-            }
-        }
-
         if(formTypesCreated.getFormDrafts() != null) {
             for(FormDraft formDraft : formTypesCreated.getFormDrafts()) {
                 formDraft.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child FormDraft with information: {}", formDraft);
                 formDraftService.create(formDraft);
+            }
+        }
+
+        if(formTypesCreated.getFormHistories() != null) {
+            for(FormHistory formHistorie : formTypesCreated.getFormHistories()) {
+                formHistorie.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormHistory with information: {}", formHistorie);
+                formHistoryService.create(formHistorie);
             }
         }
 
@@ -137,14 +137,6 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getFormToInspectionCategoryMappings() != null) {
-            for(FormToInspectionCategoryMapping formToInspectionCategoryMapping : formTypesCreated.getFormToInspectionCategoryMappings()) {
-                formToInspectionCategoryMapping.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child FormToInspectionCategoryMapping with information: {}", formToInspectionCategoryMapping);
-                formToInspectionCategoryMappingService.create(formToInspectionCategoryMapping);
-            }
-        }
-
         if(formTypesCreated.getFormTypeFieldses() != null) {
             for(FormTypeFields formTypeFieldse : formTypesCreated.getFormTypeFieldses()) {
                 formTypeFieldse.setFormTypes(formTypesCreated);
@@ -153,11 +145,11 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getLetterTemplateses() != null) {
-            for(LetterTemplates letterTemplatese : formTypesCreated.getLetterTemplateses()) {
-                letterTemplatese.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child LetterTemplates with information: {}", letterTemplatese);
-                letterTemplatesService.create(letterTemplatese);
+        if(formTypesCreated.getFormToInspectionCategoryMappings() != null) {
+            for(FormToInspectionCategoryMapping formToInspectionCategoryMapping : formTypesCreated.getFormToInspectionCategoryMappings()) {
+                formToInspectionCategoryMapping.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child FormToInspectionCategoryMapping with information: {}", formToInspectionCategoryMapping);
+                formToInspectionCategoryMappingService.create(formToInspectionCategoryMapping);
             }
         }
 
@@ -166,6 +158,14 @@ public class FormTypesServiceImpl implements FormTypesService {
                 inspectionSequence.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
                 inspectionSequenceService.create(inspectionSequence);
+            }
+        }
+
+        if(formTypesCreated.getLetterTemplateses() != null) {
+            for(LetterTemplates letterTemplatese : formTypesCreated.getLetterTemplateses()) {
+                letterTemplatese.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child LetterTemplates with information: {}", letterTemplatese);
+                letterTemplatesService.create(letterTemplatese);
             }
         }
 
@@ -274,17 +274,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formHistories");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return formHistoryService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormDraft> findAssociatedFormDrafts(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formDrafts");
 
@@ -292,6 +281,17 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return formDraftService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormHistory> findAssociatedFormHistories(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formHistories");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return formHistoryService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -307,17 +307,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormToInspectionCategoryMapping> findAssociatedFormToInspectionCategoryMappings(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated formToInspectionCategoryMappings");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return formToInspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormTypeFields> findAssociatedFormTypeFieldses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated formTypeFieldses");
 
@@ -329,13 +318,13 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated letterTemplateses");
+    public Page<FormToInspectionCategoryMapping> findAssociatedFormToInspectionCategoryMappings(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formToInspectionCategoryMappings");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("formTypes.id = '" + id + "'");
 
-        return letterTemplatesService.findAll(queryBuilder.toString(), pageable);
+        return formToInspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -347,6 +336,17 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return inspectionSequenceService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated letterTemplateses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return letterTemplatesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

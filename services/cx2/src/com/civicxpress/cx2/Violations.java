@@ -31,14 +31,14 @@ public class Violations implements Serializable {
     private Integer id;
     private Integer codeId;
     private String notes;
-    @Type(type = "DateTime")
-    private LocalDateTime created;
     private Integer createdBy;
-    @Type(type = "DateTime")
-    private LocalDateTime modified;
     private Integer modifiedBy;
     private String relatedInspectionGuid;
     private String relatedFormGuid;
+    @Type(type = "DateTime")
+    private LocalDateTime dateCreated;
+    @Type(type = "DateTime")
+    private LocalDateTime dateModified;
     private MasterForms masterForms;
     private MasterInspections masterInspections;
     private Code code;
@@ -74,15 +74,6 @@ public class Violations implements Serializable {
         this.notes = notes;
     }
 
-    @Column(name = "`Created`", nullable = true)
-    public LocalDateTime getCreated() {
-        return this.created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
     @Column(name = "`CreatedBy`", nullable = true, scale = 0, precision = 10)
     public Integer getCreatedBy() {
         return this.createdBy;
@@ -90,15 +81,6 @@ public class Violations implements Serializable {
 
     public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
-    }
-
-    @Column(name = "`Modified`", nullable = true)
-    public LocalDateTime getModified() {
-        return this.modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
     }
 
     @Column(name = "`ModifiedBy`", nullable = true, scale = 0, precision = 10)
@@ -126,6 +108,24 @@ public class Violations implements Serializable {
 
     public void setRelatedFormGuid(String relatedFormGuid) {
         this.relatedFormGuid = relatedFormGuid;
+    }
+
+    @Column(name = "`DateCreated`", nullable = false)
+    public LocalDateTime getDateCreated() {
+        return this.dateCreated;
+    }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    @Column(name = "`DateModified`", nullable = true)
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
+    }
+
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

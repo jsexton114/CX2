@@ -320,6 +320,51 @@ public class InspectionService {
         }
     }
     
+    public void addViolation(String inspectionGuid, Long codeId, String notes, MultipartFile[] pictures) throws SQLException, IOException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	
+    	cx2Conn.setAutoCommit(false);
+    	
+    	try {
+	    	DBQueryParams params = new DBQueryParams();
+	    	params.addLong("codeId", codeId);
+	    	params.addString("notes", notes);
+	    	params.addLong("createdBy", Long.parseLong(securityService.getUserId()));
+	    	params.addString("inspectionGuid", inspectionGuid);
+	    	
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Violations (CodeId, Notes, CreatedBy, RelatedInspectionGuid) VALUES " +
+	    			"(:codeId, :notes, :createdBy, :inspectionGuid)", params);
+	    	
+	    	Long violationId = DBUtils.selectOne(cx2Conn, "SELECT @@IDENTITY as violationId", null).getLong("violationId");
+	    	params.addLong("violationId", violationId);
+	    	
+	    	StringBuilder picturesAddQuery = new StringBuilder("INSERT INTO Document (ViolationId, Filename, Mimetype, Contents, CreatedBy) VALUES ");
+	    	
+	    	for (int i = 0; i < pictures.length; i++) {
+	    		MultipartFile picture = pictures[i];
+	    		
+	    		if (i > 0) {
+	        		picturesAddQuery.append(',');
+	        	}
+				
+	        	params.addString("pic"+i+"filename", picture.getOriginalFilename());
+	        	params.addString("pic"+i+"mimetype", picture.getContentType());
+	        	params.addBytes("pic"+i+"contents", picture.getBytes());
+	        	
+	        	picturesAddQuery.append("(:violationId, :pic"+i+"filename, :pic"+i+"mimetype, :pic"+i+"contents, :createdBy)");
+	    	}
+	    	
+	    	DBUtils.simpleUpdateQuery(cx2Conn, picturesAddQuery.toString(), params);
+	    	
+	    	cx2Conn.commit();
+    	} catch (Exception e) {
+    		cx2Conn.rollback();
+    		throw e;
+    	} finally {
+    		cx2Conn.close();
+    	}
+    }
+    
     // Dynamic fields
     public void saveDynamicFieldData(String inspectionGuid, HashMap<String, Object> fieldData) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);

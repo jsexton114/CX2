@@ -18,6 +18,9 @@
     "table" : "CaseStatuses",
     "schema" : "cx2"
   }, {
+    "table" : "Code",
+    "schema" : "cx2"
+  }, {
     "table" : "CodeSets",
     "schema" : "cx2"
   }, {
@@ -27,13 +30,13 @@
     "table" : "CodesToForm",
     "schema" : "cx2"
   }, {
-    "table" : "CodesToInspection",
-    "schema" : "cx2"
-  }, {
     "table" : "Document",
     "schema" : "cx2"
   }, {
     "table" : "Fees",
+    "schema" : "cx2"
+  }, {
+    "table" : "CodesToInspection",
     "schema" : "cx2"
   }, {
     "table" : "FormCategories",
@@ -45,13 +48,16 @@
     "table" : "FormCategoryMapping",
     "schema" : "cx2"
   }, {
+    "table" : "FormDraft",
+    "schema" : "cx2"
+  }, {
     "table" : "FormHistory",
     "schema" : "cx2"
   }, {
     "table" : "FormMessages",
     "schema" : "cx2"
   }, {
-    "table" : "FormDraft",
+    "table" : "FormStatuses",
     "schema" : "cx2"
   }, {
     "table" : "FormFieldTypes",
@@ -60,13 +66,7 @@
     "table" : "FormMessageTagging",
     "schema" : "cx2"
   }, {
-    "table" : "FormStatuses",
-    "schema" : "cx2"
-  }, {
     "table" : "FormsToInspections",
-    "schema" : "cx2"
-  }, {
-    "table" : "FormToInspectionCategoryMapping",
     "schema" : "cx2"
   }, {
     "table" : "FormTypeFields",
@@ -75,22 +75,25 @@
     "table" : "FormTypes",
     "schema" : "cx2"
   }, {
-    "table" : "GISRecords",
+    "table" : "FormToInspectionCategoryMapping",
+    "schema" : "cx2"
+  }, {
+    "table" : "GIS2Forms",
     "schema" : "cx2"
   }, {
     "table" : "GISContacts",
     "schema" : "cx2"
   }, {
-    "table" : "GisTransaction",
+    "table" : "GISRecords",
     "schema" : "cx2"
   }, {
     "table" : "InspectionDesign",
     "schema" : "cx2"
   }, {
-    "table" : "GlobalSettings",
+    "table" : "GisTransaction",
     "schema" : "cx2"
   }, {
-    "table" : "GIS2Forms",
+    "table" : "GlobalSettings",
     "schema" : "cx2"
   }, {
     "table" : "Holidays",
@@ -102,22 +105,19 @@
     "table" : "InspectionGis",
     "schema" : "cx2"
   }, {
-    "table" : "InspectionOutcome",
+    "table" : "InspectionHistory",
     "schema" : "cx2"
   }, {
-    "table" : "InspectionHistory",
+    "table" : "InspectionOutcome",
     "schema" : "cx2"
   }, {
     "table" : "InspectionOutcomeFee",
     "schema" : "cx2"
   }, {
-    "table" : "LetterTemplates",
-    "schema" : "cx2"
-  }, {
     "table" : "InspectionSequence",
     "schema" : "cx2"
   }, {
-    "table" : "ManualFeeTypes",
+    "table" : "LetterTemplates",
     "schema" : "cx2"
   }, {
     "table" : "MasterCases",
@@ -130,6 +130,9 @@
     "schema" : "cx2"
   }, {
     "table" : "Municipalities",
+    "schema" : "cx2"
+  }, {
+    "table" : "ManualFeeTypes",
     "schema" : "cx2"
   }, {
     "table" : "MasterProjects",
@@ -150,16 +153,16 @@
     "table" : "ProjectForms",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectGISRecords",
-    "schema" : "cx2"
-  }, {
     "table" : "Projects",
     "schema" : "cx2"
   }, {
-    "table" : "ProjectTasks",
+    "table" : "ProjectGISRecords",
     "schema" : "cx2"
   }, {
     "table" : "ProjectSharedWith",
+    "schema" : "cx2"
+  }, {
+    "table" : "ProjectTasks",
     "schema" : "cx2"
   }, {
     "table" : "Roles",
@@ -177,16 +180,16 @@
     "table" : "Subdivisions",
     "schema" : "cx2"
   }, {
-    "table" : "States",
-    "schema" : "cx2"
-  }, {
-    "table" : "TransactionToFees",
-    "schema" : "cx2"
-  }, {
     "table" : "Users",
     "schema" : "cx2"
   }, {
     "table" : "Vendor",
+    "schema" : "cx2"
+  }, {
+    "table" : "States",
+    "schema" : "cx2"
+  }, {
+    "table" : "TransactionToFees",
     "schema" : "cx2"
   }, {
     "table" : "UserPasswordResetTokens",
@@ -195,16 +198,16 @@
     "table" : "UserSubscriptions",
     "schema" : "cx2"
   }, {
-    "table" : "VendorApprovals",
-    "schema" : "cx2"
-  }, {
-    "table" : "VendorLicenses",
-    "schema" : "cx2"
-  }, {
     "table" : "UserViewPreferences",
     "schema" : "cx2"
   }, {
     "table" : "VendorAdmins",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorApprovals",
+    "schema" : "cx2"
+  }, {
+    "table" : "VendorLicenses",
     "schema" : "cx2"
   }, {
     "table" : "Vendors2Form",
@@ -213,16 +216,13 @@
     "table" : "VendorsToProject",
     "schema" : "cx2"
   }, {
-    "table" : "VendorUsers",
-    "schema" : "cx2"
-  }, {
     "table" : "Violations",
     "schema" : "cx2"
   }, {
-    "table" : "VendorLicenseTypes",
+    "table" : "VendorUsers",
     "schema" : "cx2"
   }, {
-    "table" : "Code",
+    "table" : "VendorLicenseTypes",
     "schema" : "cx2"
   } ],
   "schemaFilter" : [ "cx2" ],

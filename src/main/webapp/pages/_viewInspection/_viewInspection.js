@@ -46,7 +46,6 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
 
 
     $scope.svSetInspectionOutcomeonSuccess = function(variable, data) {
-
         if ($scope.Widgets.selectOutcome.datavalue.sendEmail) {
             var tempLink = window.location.hostname + "/#/ViewInspection?inspectionGuid=" + $scope.pageParams.inspectionGuid;
             //Sending mail to  CreatedBy
@@ -56,10 +55,9 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
             });
             $scope.Variables.svSendOutcomeUpdate.update();
         }
+
         $scope.Widgets.textareaNotes.reset();
-
     };
-
 
     $scope.buttonAddMessageClick = function($event, $isolateScope) {
         // Posting Message
@@ -69,7 +67,6 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
         });
         $scope.Variables.PostInspectionMessage.insertRecord();
     };
-
 
     $scope.PostInspectionMessageonSuccess = function(variable, data) {
         $scope.Widgets.textAddMessage.reset();
@@ -116,7 +113,6 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
         $scope.Variables.PostInspectionMessage.insertRecord();
     };
 
-
     $scope.anchorViewTaggedPeopleClick = function($event, $isolateScope, item, currentItemWidgets) {
         $scope.Variables.GetTaggedPeopleListByMessage.setFilter({
             'formMessageId': item.id
@@ -125,11 +121,9 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
 
     };
 
-
     $scope.GetTaggedPeopleListByMessageonSuccess = function(variable, data) {
         $scope.Widgets.dialogShowTaggedPeople.open();
     };
-
 
     $scope.anchorViewInternalTaggedPeopleClick = function($event, $isolateScope, item, currentItemWidgets) {
         $scope.Variables.GetTaggedPeopleListByMessage.setFilter({
@@ -144,12 +138,10 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
         $scope.Widgets.dialogTagPeople.open();
     };
 
-
     $scope.buttonInternalTagPeopleClick = function($event, $isolateScope) {
         $scope.Variables.stvTagSelection.dataSet.dataValue = 'employees';
         $scope.Widgets.dialogTagPeople.open();
     };
-
 
     $scope.tabpaneMessagesSelect = function($event, $isolateScope) {
         $scope.Variables.PeopleList.dataSet = [];
@@ -158,7 +150,6 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
     $scope.tabpaneIntenalMessagesSelect = function($event, $isolateScope) {
         $scope.Variables.PeopleList.dataSet = [];
     };
-
 
     $scope.svSendInspectionMessagesMailonSuccess = function(variable, data) {
         $scope.Variables.PeopleList.dataSet = [];
@@ -354,13 +345,84 @@ Application.$controller("dialogShowTaggedPeopleController", ["$scope",
 ]);
 
 Application.$controller("gridViolationsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogViolationController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+        $scope.docsToUpload = [];
+
+        $scope.dialogUploadDocumentClose = function($event, $isolateScope) {
+            $scope.docsToUpload = [];
+        };
+
+        $scope.buttonRemovePictureClick = function($event, $isolateScope, item, currentItemWidgets) {
+            $scope.Variables.stvInspectionPicturesForUpload.dataSet.splice($scope.Variables.stvInspectionPicturesForUpload.dataSet.indexOf(item), 1);
+        };
+
+        $scope.buttonUploadViolationPicturesClick = function($event, $isolateScope) {
+            var filesContents = [];
+
+            $scope.docsToUpload.forEach(function(doc, index) {
+                let pictureData = {
+                    filename: doc.Filename,
+                    mimetype: doc.Mimetype,
+                    contents: doc.Contents,
+                    dataUrl: null
+                };
+
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    pictureData.dataUrl = e.target.result;
+                    $scope.$apply();
+                };
+
+                reader.readAsDataURL(doc.Contents);
+
+                $scope.Variables.stvInspectionPicturesForUpload.dataSet.push(pictureData);
+            });
+
+            $scope.docsToUpload = [];
+            document.getElementById('violationPictureUpload').value = '';
+        };
+
+        $scope.dialogViolationClose = function($event, $isolateScope) {
+            $scope.Widgets.selectCodeSet.reset();
+            $scope.Widgets.textareaViolationNotes.reset();
+            $scope.Variables.stvInspectionPicturesForUpload.dataSet = [];
+        };
+
+        $scope.buttonSaveViolationClick = function($event, $isolateScope) {
+            var pictures = [];
+
+            $scope.Variables.stvInspectionPicturesForUpload.dataSet.forEach(function(pic, index) {
+                pictures.push(pic.contents);
+            });
+
+            $scope.Variables.svAddViolation.setInput('pictures', pictures);
+            $scope.Variables.svAddViolation.update();
+            $scope.docsToUpload = [];
+
+            $scope.Widgets.dialogViolation.close();
+        };
+
+    }
+]);
+
+Application.$controller("dialogViewViolationController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;
 	}
 ]);
 
-Application.$controller("dialogViolationController", ["$scope",
+Application.$controller("dialogRemoveViolationController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;

@@ -2388,14 +2388,14 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
 
     <sql-query name="countOfMunicipalityCodeList">
         <![CDATA[
-        select count(*) as countCodeList from CodeList where CodeSetId IN(select CodeSetId from CodeSets where GlobalYN=0 and MunicipalityId=:MunicipalityId)
+        select count(*) as countCodeList from Code where CodeSetId IN(select CodeSetId from CodeSets where GlobalYN=0 and MunicipalityId=:MunicipalityId)
         ]]>
     <query-param name="MunicipalityId" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="countOfMunicipalityCodeList__count">
         <![CDATA[
-        select count(*) from (select count(*) as countCodeList from CodeList where CodeSetId IN(select CodeSetId from CodeSets where GlobalYN=0 and MunicipalityId=:MunicipalityId)) wmTempTable
+        select count(*) from (select count(*) as countCodeList from Code where CodeSetId IN(select CodeSetId from CodeSets where GlobalYN=0 and MunicipalityId=:MunicipalityId)) wmTempTable
         ]]>
     <query-param name="MunicipalityId" type="java.lang.Integer"/>
     </sql-query>

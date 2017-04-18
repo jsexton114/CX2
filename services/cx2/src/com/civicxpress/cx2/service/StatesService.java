@@ -145,18 +145,6 @@ public interface StatesService {
     Page<BillingInformation> findAssociatedBillingInformations(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated gisrecordses for given States id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated Gisrecords instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated giscontactses for given States id.
      *
      * @param id value of id; value cannot be null
@@ -167,6 +155,18 @@ public interface StatesService {
      * @see Page
      */
     Page<Giscontacts> findAssociatedGiscontactses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated gisrecordses for given States id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Gisrecords instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated globalSettingses for given States id.

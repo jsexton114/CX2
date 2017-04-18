@@ -2,17 +2,17 @@
 package com.civicxpress.inspectionservice.controller;
 
 import com.civicxpress.inspectionservice.InspectionService;
-import java.lang.Long;
 import java.lang.String;
-import java.util.Date;
+import java.lang.Long;
+import org.springframework.web.multipart.MultipartFile;
 import java.sql.SQLException;
+import java.io.IOException;
+import java.util.Date;
 import java.lang.Object;
 import java.util.Map;
 import java.lang.Integer;
 import java.lang.Boolean;
 import java.util.HashMap;
-import org.springframework.web.multipart.MultipartFile;
-import java.io.IOException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +28,11 @@ public class InspectionController {
 
     @Autowired
     private InspectionService inspectionService;
+
+    @RequestMapping(value = "/violation", method = RequestMethod.POST, consumes = "multipart/form-data")
+    public void addViolation(@RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "codeId", required = false) Long codeId, @RequestParam(value = "notes", required = false) String notes, @RequestPart(value = "pictures") MultipartFile[] pictures) throws SQLException, IOException {
+        inspectionService.addViolation(inspectionGuid, codeId, notes, pictures);
+    }
 
     @RequestMapping(value = "/assignInspector", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

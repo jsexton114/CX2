@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.TypeMismatchException;
-import org.joda.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +29,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
+import com.wavemaker.runtime.file.model.DownloadResponse;
 import com.wavemaker.runtime.file.model.Downloadable;
 import com.wavemaker.runtime.util.WMMultipartUtils;
 import com.wavemaker.runtime.util.WMRuntimeUtils;
@@ -40,7 +40,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.Document;
-import com.civicxpress.cx2.DocumentId;
 import com.civicxpress.cx2.service.DocumentService;
 
 
@@ -80,131 +79,71 @@ public class DocumentController {
         return documentService.create(document);
     }
 
-    @ApiOperation(value = "Returns the Document instance associated with the given composite-id.")
-    @RequestMapping(value = "/composite-id", method = RequestMethod.GET)
+
+    @ApiOperation(value = "Returns the Document instance associated with the given id.")
+    @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Document getDocument(@RequestParam("id") BigInteger id,@RequestParam("itemGuid") String itemGuid,@RequestParam("filename") String filename,@RequestParam("mimetype") String mimetype,@RequestParam("contents") byte[] contents,@RequestParam("dateCreated") LocalDateTime dateCreated,@RequestParam("createdBy") Integer createdBy) throws EntityNotFoundException {
+    public Document getDocument(@PathVariable("id") BigInteger id) throws EntityNotFoundException {
+        LOGGER.debug("Getting Document with id: {}" , id);
 
-        DocumentId documentId = new DocumentId();
-        documentId.setId(id);
-        documentId.setItemGuid(itemGuid);
-        documentId.setFilename(filename);
-        documentId.setMimetype(mimetype);
-        documentId.setContents(contents);
-        documentId.setDateCreated(dateCreated);
-        documentId.setCreatedBy(createdBy);
+        Document foundDocument = documentService.getById(id);
+        LOGGER.debug("Document details with id: {}" , foundDocument);
 
-        LOGGER.debug("Getting Document with id: {}" , documentId);
-        Document document = documentService.getById(documentId);
+        return foundDocument;
+    }
+
+    @ApiOperation(value = "Retrieves content for the given BLOB field in Document instance" )
+    @RequestMapping(value = "/{id}/content/{fieldName}", method = RequestMethod.GET, produces="application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public DownloadResponse getDocumentBLOBContent(@PathVariable("id") BigInteger id, @PathVariable("fieldName") String fieldName, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestParam(value="download", defaultValue = "false") boolean download) {
+
+        LOGGER.debug("Retrieves content for the given BLOB field {} in Document instance" , fieldName);
+
+        if(!WMRuntimeUtils.isLob(Document.class, fieldName)) {
+            throw new TypeMismatchException("Given field " + fieldName + " is not a valid BLOB type");
+        }
+        Document document = documentService.getById(id);
+
+        return WMMultipartUtils.buildDownloadResponseForBlob(document, fieldName, httpServletRequest, download);
+    }
+
+    @ApiOperation(value = "Updates the Document instance associated with the given id.")
+    @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Document editDocument(@PathVariable("id") BigInteger id, @RequestBody Document document) throws EntityNotFoundException {
+        LOGGER.debug("Editing Document with id: {}" , document.getId());
+
+        document.setId(id);
+        document = documentService.update(document);
         LOGGER.debug("Document details with id: {}" , document);
 
         return document;
     }
 
-    @ApiOperation(value = "Retrieves content for the given BLOB field in Document instance associated with the given composite-id.")
-    @RequestMapping(value = "/composite-id/content/{fieldName}", method = RequestMethod.GET)
+    @ApiOperation(value = "Updates the Document instance associated with the given id.This API should be used when Document instance fields that require multipart data.") 
+    @RequestMapping(value = "/{id:.+}", method = RequestMethod.POST, consumes = {"multipart/form-data"})
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public void getDocumentBLOBContent(@RequestParam("id") BigInteger id,@RequestParam("itemGuid") String itemGuid,@RequestParam("filename") String filename,@RequestParam("mimetype") String mimetype,@RequestParam("contents") byte[] contents,@RequestParam("dateCreated") LocalDateTime dateCreated,@RequestParam("createdBy") Integer createdBy, @PathVariable("fieldName") String fieldName, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws EntityNotFoundException {
-
-        LOGGER.debug("Retrieves content for the given BLOB field {} in Document instance" , fieldName);
-
-        if(!WMRuntimeUtils.isLob(Document.class, fieldName)) {
-            throw new TypeMismatchException("Given field " + fieldName +  " is not a valid BLOB type");
-        }
-
-        DocumentId documentId = new DocumentId();
-        documentId.setId(id);
-        documentId.setItemGuid(itemGuid);
-        documentId.setFilename(filename);
-        documentId.setMimetype(mimetype);
-        documentId.setContents(contents);
-        documentId.setDateCreated(dateCreated);
-        documentId.setCreatedBy(createdBy);
-
-        Document document = documentService.getById(documentId);
-        WMMultipartUtils.buildHttpResponseForBlob(document, fieldName, httpServletRequest, httpServletResponse);
-    }
-
-
-
-    @ApiOperation(value = "Updates the Document instance associated with the given composite-id.")
-    @RequestMapping(value = "/composite-id", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Document editDocument(@RequestParam("id") BigInteger id,@RequestParam("itemGuid") String itemGuid,@RequestParam("filename") String filename,@RequestParam("mimetype") String mimetype,@RequestParam("contents") byte[] contents,@RequestParam("dateCreated") LocalDateTime dateCreated,@RequestParam("createdBy") Integer createdBy, @RequestBody Document document) throws EntityNotFoundException {
-
-        document.setId(id);
-        document.setItemGuid(itemGuid);
-        document.setFilename(filename);
-        document.setMimetype(mimetype);
-        document.setContents(contents);
-        document.setDateCreated(dateCreated);
-        document.setCreatedBy(createdBy);
-
-        LOGGER.debug("Document details with id is updated with: {}" , document);
-
-        return documentService.update(document);
-    }
-
-    @ApiOperation(value = "Updates the Document instance associated with the given composite-id.This API should be used when Document instance fields that require multipart data.")
-    @RequestMapping(value = "/composite-id", method = RequestMethod.POST, consumes = "multipart/form-data")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Document editDocument(@RequestParam("id") BigInteger id,@RequestParam("itemGuid") String itemGuid,@RequestParam("filename") String filename,@RequestParam("mimetype") String mimetype,@RequestParam("contents") byte[] contents,@RequestParam("dateCreated") LocalDateTime dateCreated,@RequestParam("createdBy") Integer createdBy, MultipartHttpServletRequest multipartHttpServletRequest) throws EntityNotFoundException {
-        return this.editDocumentAndMultiparts(id, itemGuid, filename, mimetype, contents, dateCreated, createdBy, multipartHttpServletRequest);
-    }
-
-    @ApiOperation(value = "Updates the Document instance associated with the given composite-id.")
-    @RequestMapping(value = "/composite-id", method = RequestMethod.PUT,  consumes = "multipart/form-data")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Document editDocumentAndMultiparts(@RequestParam("id") BigInteger id,@RequestParam("itemGuid") String itemGuid,@RequestParam("filename") String filename,@RequestParam("mimetype") String mimetype,@RequestParam("contents") byte[] contents,@RequestParam("dateCreated") LocalDateTime dateCreated,@RequestParam("createdBy") Integer createdBy, MultipartHttpServletRequest multipartHttpServletRequest) throws EntityNotFoundException { 
-
-        DocumentId documentId = new DocumentId();
-        documentId.setId(id);
-        documentId.setItemGuid(itemGuid);
-        documentId.setFilename(filename);
-        documentId.setMimetype(mimetype);
-        documentId.setContents(contents);
-        documentId.setDateCreated(dateCreated);
-        documentId.setCreatedBy(createdBy);
-
+    public Document editDocument(@PathVariable("id") BigInteger id, MultipartHttpServletRequest multipartHttpServletRequest) throws EntityNotFoundException {
         Document newDocument = WMMultipartUtils.toObject(multipartHttpServletRequest, Document.class, "cx2");
-        Document oldDocument = documentService.getById(documentId);
-
-        WMMultipartUtils.updateLobsContent(oldDocument, newDocument);
-
         newDocument.setId(id);
-        newDocument.setItemGuid(itemGuid);
-        newDocument.setFilename(filename);
-        newDocument.setMimetype(mimetype);
-        newDocument.setContents(contents);
-        newDocument.setDateCreated(dateCreated);
-        newDocument.setCreatedBy(createdBy);
 
-        LOGGER.debug("Document details with id is updated with: {}" , newDocument);
+        Document oldDocument = documentService.getById(id);
+        WMMultipartUtils.updateLobsContent(oldDocument, newDocument);
+        LOGGER.debug("Updating Document with information: {}" , newDocument);
 
         return documentService.update(newDocument);
     }
 
-
-    @ApiOperation(value = "Deletes the Document instance associated with the given composite-id.")
-    @RequestMapping(value = "/composite-id", method = RequestMethod.DELETE)
+    @ApiOperation(value = "Deletes the Document instance associated with the given id.")
+    @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteDocument(@RequestParam("id") BigInteger id,@RequestParam("itemGuid") String itemGuid,@RequestParam("filename") String filename,@RequestParam("mimetype") String mimetype,@RequestParam("contents") byte[] contents,@RequestParam("dateCreated") LocalDateTime dateCreated,@RequestParam("createdBy") Integer createdBy) throws EntityNotFoundException {
+    public boolean deleteDocument(@PathVariable("id") BigInteger id) throws EntityNotFoundException {
+        LOGGER.debug("Deleting Document with id: {}" , id);
 
-        DocumentId documentId = new DocumentId();
-        documentId.setId(id);
-        documentId.setItemGuid(itemGuid);
-        documentId.setFilename(filename);
-        documentId.setMimetype(mimetype);
-        documentId.setContents(contents);
-        documentId.setDateCreated(dateCreated);
-        documentId.setCreatedBy(createdBy);
+        Document deletedDocument = documentService.delete(id);
 
-        LOGGER.debug("Deleting Document with id: {}" , documentId);
-        Document document = documentService.delete(documentId);
-
-        return document != null;
+        return deletedDocument != null;
     }
-
 
     /**
      * @deprecated Use {@link #findDocuments(String, Pageable)} instead.

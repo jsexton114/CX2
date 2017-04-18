@@ -12,8 +12,9 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -32,7 +33,6 @@ import com.wavemaker.runtime.data.replacers.providers.VariableType;
  */
 @Entity
 @Table(name = "`Document`")
-@IdClass(DocumentId.class)
 public class Document implements Serializable {
 
     private BigInteger id;
@@ -44,10 +44,12 @@ public class Document implements Serializable {
     @Type(type = "DateTime")
     private LocalDateTime dateCreated;
     @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.INSERT, Scope.UPDATE })
-    private Integer createdBy;
+    private int createdBy;
+    private Integer violationId;
     private Users users;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`ID`", nullable = false, scale = 0, precision = 18)
     public BigInteger getId() {
         return this.id;
@@ -57,7 +59,6 @@ public class Document implements Serializable {
         this.id = id;
     }
 
-    @Id
     @Column(name = "`ItemGUID`", nullable = true, length = 255)
     public String getItemGuid() {
         return this.itemGuid;
@@ -67,7 +68,6 @@ public class Document implements Serializable {
         this.itemGuid = itemGuid;
     }
 
-    @Id
     @Column(name = "`Filename`", nullable = false, length = 255)
     public String getFilename() {
         return this.filename;
@@ -77,7 +77,6 @@ public class Document implements Serializable {
         this.filename = filename;
     }
 
-    @Id
     @Column(name = "`Mimetype`", nullable = false, length = 255)
     public String getMimetype() {
         return this.mimetype;
@@ -87,7 +86,6 @@ public class Document implements Serializable {
         this.mimetype = mimetype;
     }
 
-    @Id
     @Column(name = "`Contents`", nullable = false)
     public byte[] getContents() {
         return this.contents;
@@ -97,7 +95,6 @@ public class Document implements Serializable {
         this.contents = contents;
     }
 
-    @Id
     @Column(name = "`DateCreated`", nullable = false)
     public LocalDateTime getDateCreated() {
         return this.dateCreated;
@@ -107,16 +104,23 @@ public class Document implements Serializable {
         this.dateCreated = dateCreated;
     }
 
-    @Id
     @Column(name = "`CreatedBy`", nullable = false, scale = 0, precision = 10)
-    public Integer getCreatedBy() {
+    public int getCreatedBy() {
         return this.createdBy;
     }
 
-    public void setCreatedBy(Integer createdBy) {
+    public void setCreatedBy(int createdBy) {
         this.createdBy = createdBy;
     }
 
+    @Column(name = "`ViolationId`", nullable = true, scale = 0, precision = 10)
+    public Integer getViolationId() {
+        return this.violationId;
+    }
+
+    public void setViolationId(Integer violationId) {
+        this.violationId = violationId;
+    }
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`CreatedBy`", referencedColumnName = "`ID`", insertable = false, updatable = false)
@@ -137,24 +141,12 @@ public class Document implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Document)) return false;
         final Document document = (Document) o;
-        return Objects.equals(getId(), document.getId()) &&
-                Objects.equals(getItemGuid(), document.getItemGuid()) &&
-                Objects.equals(getFilename(), document.getFilename()) &&
-                Objects.equals(getMimetype(), document.getMimetype()) &&
-                Objects.equals(getContents(), document.getContents()) &&
-                Objects.equals(getDateCreated(), document.getDateCreated()) &&
-                Objects.equals(getCreatedBy(), document.getCreatedBy());
+        return Objects.equals(getId(), document.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getItemGuid(),
-                getFilename(),
-                getMimetype(),
-                getContents(),
-                getDateCreated(),
-                getCreatedBy());
+        return Objects.hash(getId());
     }
 }
 

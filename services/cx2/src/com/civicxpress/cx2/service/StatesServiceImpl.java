@@ -90,19 +90,19 @@ public class StatesServiceImpl implements StatesService {
             }
         }
 
-        if(statesCreated.getGisrecordses() != null) {
-            for(Gisrecords gisrecordse : statesCreated.getGisrecordses()) {
-                gisrecordse.setStates(statesCreated);
-                LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordse);
-                gisrecordsService.create(gisrecordse);
-            }
-        }
-
         if(statesCreated.getGiscontactses() != null) {
             for(Giscontacts giscontactse : statesCreated.getGiscontactses()) {
                 giscontactse.setStates(statesCreated);
                 LOGGER.debug("Creating a new child Giscontacts with information: {}", giscontactse);
                 giscontactsService.create(giscontactse);
+            }
+        }
+
+        if(statesCreated.getGisrecordses() != null) {
+            for(Gisrecords gisrecordse : statesCreated.getGisrecordses()) {
+                gisrecordse.setStates(statesCreated);
+                LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordse);
+                gisrecordsService.create(gisrecordse);
             }
         }
 
@@ -224,17 +224,6 @@ public class StatesServiceImpl implements StatesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated gisrecordses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("states.id = '" + id + "'");
-
-        return gisrecordsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<Giscontacts> findAssociatedGiscontactses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated giscontactses");
 
@@ -242,6 +231,17 @@ public class StatesServiceImpl implements StatesService {
         queryBuilder.append("states.id = '" + id + "'");
 
         return giscontactsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated gisrecordses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("states.id = '" + id + "'");
+
+        return gisrecordsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
