@@ -48,6 +48,9 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
     @JsonProperty("formStatus")
     @ColumnAlias("formStatus")
     private String formStatus;
+    @JsonProperty("dateModified")
+    @ColumnAlias("dateModified")
+    private LocalDateTime dateModified;
     @JsonProperty("lot")
     @ColumnAlias("lot")
     private String lot;
@@ -66,9 +69,6 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
     @JsonProperty("formTypeID")
     @ColumnAlias("formTypeID")
     private Integer formTypeId;
-    @JsonProperty("FormCategory")
-    @ColumnAlias("FormCategory")
-    private Integer formCategory;
 
     public String getFormGuid() {
         return this.formGuid;
@@ -116,6 +116,14 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
 
     public void setFormStatus(String formStatus) {
         this.formStatus = formStatus;
+    }
+
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
+    }
+
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
     }
 
     public String getLot() {
@@ -166,14 +174,6 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
         this.formTypeId = formTypeId;
     }
 
-    public Integer getFormCategory() {
-        return this.formCategory;
-    }
-
-    public void setFormCategory(Integer formCategory) {
-        this.formCategory = formCategory;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -185,13 +185,13 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
                 Objects.equals(getCreatedBy(), formsTaggedWithGisrecordsResponse.getCreatedBy()) &&
                 Objects.equals(getFormDesign(), formsTaggedWithGisrecordsResponse.getFormDesign()) &&
                 Objects.equals(getFormStatus(), formsTaggedWithGisrecordsResponse.getFormStatus()) &&
+                Objects.equals(getDateModified(), formsTaggedWithGisrecordsResponse.getDateModified()) &&
                 Objects.equals(getLot(), formsTaggedWithGisrecordsResponse.getLot()) &&
                 Objects.equals(getSubdivision(), formsTaggedWithGisrecordsResponse.getSubdivision()) &&
                 Objects.equals(getAddress(), formsTaggedWithGisrecordsResponse.getAddress()) &&
                 Objects.equals(getPrimaryVendor(), formsTaggedWithGisrecordsResponse.getPrimaryVendor()) &&
                 Objects.equals(getBalanceDue(), formsTaggedWithGisrecordsResponse.getBalanceDue()) &&
-                Objects.equals(getFormTypeId(), formsTaggedWithGisrecordsResponse.getFormTypeId()) &&
-                Objects.equals(getFormCategory(), formsTaggedWithGisrecordsResponse.getFormCategory());
+                Objects.equals(getFormTypeId(), formsTaggedWithGisrecordsResponse.getFormTypeId());
     }
 
     @Override
@@ -202,12 +202,12 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
                 getCreatedBy(),
                 getFormDesign(),
                 getFormStatus(),
+                getDateModified(),
                 getLot(),
                 getSubdivision(),
                 getAddress(),
                 getPrimaryVendor(),
                 getBalanceDue(),
-                getFormTypeId(),
-                getFormCategory());
+                getFormTypeId());
     }
 }
