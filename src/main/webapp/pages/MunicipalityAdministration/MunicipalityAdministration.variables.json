@@ -168,34 +168,6 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
-  "svCountOfMunicipalityCodeList" : {
-    "_id" : "wm-svCountOfMunicipalityCodeList-wm.ServiceVariable-1491341640900",
-    "name" : "svCountOfMunicipalityCodeList",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "MunicipalityId",
-      "value" : "bind:Widgets.select1.datavalue.ID",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.CountOfMunicipalityCodeListResponse",
-    "service" : "cx2",
-    "operation" : "executeCountOfMunicipalityCodeList",
-    "operationId" : "QueryExecutionController_executeCountOfMunicipalityCodeList",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page"
-  },
   "svCountOfMunicipalityCodeSets" : {
     "_id" : "wm-svCountOfMunicipalityCodeSets-wm.ServiceVariable-1491938688461",
     "name" : "svCountOfMunicipalityCodeSets",
