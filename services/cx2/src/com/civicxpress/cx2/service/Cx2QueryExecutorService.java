@@ -50,6 +50,8 @@ public interface Cx2QueryExecutorService {
 
     Integer executeProjectSoftDelete(ProjectSoftDeleteRequest projectSoftDeleteRequest);
 
+    Integer executeUpdateMultipleFeeComments(UpdateMultipleFeeCommentsRequest updateMultipleFeeCommentsRequest);
+
     Integer executeUpdatePrimaryVendorInMasterForms(UpdatePrimaryVendorInMasterFormsRequest updatePrimaryVendorInMasterFormsRequest);
 
     Page<CounNewCasesAndAfterDateResponse> executeCounNewCasesAndAfterDate(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);
@@ -125,6 +127,10 @@ public interface Cx2QueryExecutorService {
     Downloadable exportFormsByCategory(ExportType exportType, Integer formCategory, Boolean isActive, Pageable pageable);
 
     SumOfFeesInUsersCartResponse executeSumOfFeesInUsersCart(Integer user);
+
+    Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Boolean codeEnforcement, Integer municipalityId, String formTitle, Pageable pageable);
+
+    Downloadable exportSearchWithFormTitle(ExportType exportType, Boolean codeEnforcement, Integer municipalityId, String formTitle, Pageable pageable);
 
     Page<CountOfCompnayFormsByVendorIdResponse> executeCountOfCompnayFormsByVendorId(Boolean closed, Integer vendorId, Pageable pageable);
 

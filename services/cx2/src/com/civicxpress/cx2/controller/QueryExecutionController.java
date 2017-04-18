@@ -158,6 +158,16 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/updateMultipleFeeComments", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "updateMultipleFeeComments")
+    public IntegerWrapper executeUpdateMultipleFeeComments(@Valid @RequestBody UpdateMultipleFeeCommentsRequest updateMultipleFeeCommentsRequest) {
+        LOGGER.debug("Executing named query: updateMultipleFeeComments");
+        Integer _result = queryService.executeUpdateMultipleFeeComments(updateMultipleFeeCommentsRequest);
+        LOGGER.debug("got the result for named query: updateMultipleFeeComments, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/UpdatePrimaryVendorInMasterForms", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdatePrimaryVendorInMasterForms")
@@ -522,6 +532,25 @@ public class QueryExecutionController {
         SumOfFeesInUsersCartResponse _result = queryService.executeSumOfFeesInUsersCart(user);
         LOGGER.debug("got the result for named query: sumOfFeesInUsersCart, result:{}", _result);
         return _result;
+    }
+
+    @RequestMapping(value = "/queries/searchWithFormTitle", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "searchWithFormTitle")
+    public Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "formTitle") String formTitle, Pageable pageable) {
+        LOGGER.debug("Executing named query: searchWithFormTitle");
+        Page<SearchWithFormTitleResponse> _result = queryService.executeSearchWithFormTitle(codeEnforcement, municipalityId, formTitle, pageable);
+        LOGGER.debug("got the result for named query: searchWithFormTitle, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query searchWithFormTitle")
+    @RequestMapping(value = "/queries/searchWithFormTitle/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportSearchWithFormTitle(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "formTitle") String formTitle, Pageable pageable) {
+        LOGGER.debug("Exporting named query: searchWithFormTitle");
+
+        return queryService.exportSearchWithFormTitle(exportType, codeEnforcement, municipalityId, formTitle, pageable);
     }
 
     @RequestMapping(value = "/queries/CountOfCompnayFormsByVendorId", method = RequestMethod.GET)

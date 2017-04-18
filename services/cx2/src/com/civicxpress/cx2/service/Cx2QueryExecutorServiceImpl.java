@@ -155,6 +155,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
+    public Integer executeUpdateMultipleFeeComments(UpdateMultipleFeeCommentsRequest updateMultipleFeeCommentsRequest) {
+        Map params = new HashMap(2);
+
+        params.put("comments", updateMultipleFeeCommentsRequest.getComments());
+        params.put("feeList", updateMultipleFeeCommentsRequest.getFeeList());
+
+        return queryExecutor.executeNamedQueryForUpdate("updateMultipleFeeComments", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
     public Integer executeUpdatePrimaryVendorInMasterForms(UpdatePrimaryVendorInMasterFormsRequest updatePrimaryVendorInMasterFormsRequest) {
         Map params = new HashMap(2);
 
@@ -580,6 +591,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("user", user);
 
         return queryExecutor.executeNamedQuery("sumOfFeesInUsersCart", params, SumOfFeesInUsersCartResponse.class);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Boolean codeEnforcement, Integer municipalityId, String formTitle, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("municipalityId", municipalityId);
+        params.put("formTitle", formTitle);
+
+        return queryExecutor.executeNamedQuery("searchWithFormTitle", params, SearchWithFormTitleResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportSearchWithFormTitle(ExportType exportType, Boolean codeEnforcement, Integer municipalityId, String formTitle, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("municipalityId", municipalityId);
+        params.put("formTitle", formTitle);
+
+        return queryExecutor.exportNamedQueryData("searchWithFormTitle", params, exportType, SearchWithFormTitleResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

@@ -3,20 +3,12 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
+
     };
 
 
     $scope.lvCheckOutonSuccess = function(variable, data) {
-
+        debugger
         var fees = [];
 
         var temp = $scope.Variables.svCartItemIds.dataSet.content;
@@ -25,10 +17,16 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
         }
 
         //Updating the Status of fees to Paid after Payment
+        debugger;
         $scope.Variables.svUpdateMultipleFeeStatus.setInput({
             'feeList': fees
         });
         $scope.Variables.svUpdateMultipleFeeStatus.update();
+        //Updating the Comments of fees from transaction comments
+        $scope.Variables.svUpdateMultipleFeeComments.setInput({
+            'feeList': _.join(fees, ',')
+        });
+        $scope.Variables.svUpdateMultipleFeeComments.update();
         // Removing the fee from All users Carts
         $scope.Variables.svRemoveFeesFromAllUserCarts.setInput({
             'feeList': fees
@@ -55,6 +53,11 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
         $scope.Variables.svMapFeeWithTransaction.update();
 
         $scope.Widgets.alertdialogPaymentSuccess.open();
+    };
+
+
+    $scope.svUpdateMultipleFeeCommentsonError = function(variable, data) {
+        debugger
     };
 
 }]);

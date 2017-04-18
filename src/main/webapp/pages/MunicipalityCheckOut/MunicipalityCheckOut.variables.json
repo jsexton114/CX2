@@ -515,17 +515,41 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "svUpdateMultipleFeeComments" : {
+    "_id" : "wm-svUpdateMultipleFeeComments-wm.ServiceVariable-1492494454591",
+    "name" : "svUpdateMultipleFeeComments",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "comments",
+      "value" : "bind:Widgets.textareaComments.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "cx2",
+    "operation" : "executeUpdateMultipleFeeComments",
+    "operationId" : "QueryExecutionController_executeUpdateMultipleFeeComments",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onError" : "svUpdateMultipleFeeCommentsonError($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "svUpdateMultipleFeeStatus" : {
     "_id" : "wm-svUpdateMultipleFeeStatus-wm.ServiceVariable-1491555294883",
     "name" : "svUpdateMultipleFeeStatus",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "isList" : true,
-      "target" : "feeList",
-      "value" : "bind:[1,2,3]",
-      "type" : "integer"
-    }, {
       "target" : "PaidStatus",
       "value" : "Paid",
       "type" : "string"

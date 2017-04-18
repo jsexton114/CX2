@@ -10446,6 +10446,42 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
+  "svSearchAllFormsByFormTitle" : {
+    "_id" : "wm-svSearchAllFormsByFormTitle-wm.ServiceVariable-1492504199784",
+    "name" : "svSearchAllFormsByFormTitle",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "codeEnforcement",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipalityAdvanced.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "formTitle",
+      "value" : "bind:'%'+Widgets.selectFormTypesForAdvanced.query+'%'",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.SearchWithFormTitleResponse",
+    "service" : "cx2",
+    "operation" : "executeSearchWithFormTitle",
+    "operationId" : "QueryExecutionController_executeSearchWithFormTitle",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "svSearchAllFormsByUser" : {
     "_id" : "wm-svSearchAllFormsByUser-wm.ServiceVariable-1491901178781",
     "name" : "svSearchAllFormsByUser",
