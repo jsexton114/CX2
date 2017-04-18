@@ -298,7 +298,7 @@
                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.ngViewForm.invoke()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -316,7 +316,7 @@
                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.ngViewCases.invoke()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -346,5 +346,10 @@
                 <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view2">
+        <wm-pagedialog name="pagedialogViewForm" class="modal-larger" content="_viewForm" modal="true" title="View Form" oktext="Close" iconclass="wi wi-assignment">
+            <wm-param name="FormGUID" value="bind:Variables.stvFormLink.dataSet.dataValue" type="string"></wm-param>
+        </wm-pagedialog>
     </wm-view>
 </wm-page>

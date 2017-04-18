@@ -66,6 +66,12 @@ Application.$controller("gridCasesController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
+            $scope.Widgets.pagedialogViewForm.open();
+        };
+
     }
 ]);
 
@@ -73,6 +79,12 @@ Application.$controller("gridFormsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
+            $scope.Widgets.pagedialogViewForm.open();
+        };
+
     }
 ]);
 
@@ -91,6 +103,13 @@ Application.$controller("liveform3Controller", ["$scope",
 ]);
 
 Application.$controller("dialogGisMapController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogViewFormController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
