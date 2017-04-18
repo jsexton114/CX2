@@ -8,7 +8,7 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
 
 
     $scope.lvCheckOutonSuccess = function(variable, data) {
-        debugger
+
         var fees = [];
 
         var temp = $scope.Variables.svCartItemIds.dataSet.content;
@@ -17,14 +17,14 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
         }
 
         //Updating the Status of fees to Paid after Payment
-        debugger;
+
         $scope.Variables.svUpdateMultipleFeeStatus.setInput({
             'feeList': fees
         });
         $scope.Variables.svUpdateMultipleFeeStatus.update();
         //Updating the Comments of fees from transaction comments
         $scope.Variables.svUpdateMultipleFeeComments.setInput({
-            'feeList': _.join(fees, ',')
+            'feeList': fees
         });
         $scope.Variables.svUpdateMultipleFeeComments.update();
         // Removing the fee from All users Carts
