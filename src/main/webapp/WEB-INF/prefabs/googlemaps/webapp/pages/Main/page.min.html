@@ -1,3 +1,9 @@
+<style id="Main.css">
+.angular-google-map-container {
+    height: 300px;
+}
+</style>
+<script id="Main.js">
 /*global WM,_,google,Application*/
 
 Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 'NgMap', '$timeout', '$http', 'wmToaster', 'CONSTANTS', '$compile',
@@ -437,17 +443,31 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
                 Utils.triggerFn(_deregisterFns.directions);
 
                 //watch for the directions
-                _deregisterFns.directions = $s.$watch(':: maps[0].directionsRenderers[0]', function(nv) {
+                _deregisterFns.directions = $s.$watch(':: maps[0].directionsRenderers', function(nv) {
                     //if there are no directions return back. nv is undefined between page navigation in studio mode
                     if (!nv) {
                         return;
                     }
-                    if (nv.directions) {
-                        var routeDetails;
-                        routeDetails = nv.directions.routes[0].legs[0];
-                        $s.distance  = routeDetails.distance.text;
-                        $s.duration  = routeDetails.duration.text;
-                    }
+                    var directionsObj = nv,
+                        distance = 0,
+                        duration = 0;
+                    //iterate throughout the object as there might be multiple waypoints and directions on the map.
+                    _.forEach(directionsObj, function(direction) {
+                        var routes = _.get(direction, 'directions.routes');
+                        _.forEach(routes, function(route) {
+                            var legs = route.legs;
+                            _.forEach(legs, function(leg) {
+                                distance += _.get(leg, 'distance.value') || 0;
+                                duration += _.get(leg, 'duration.value') || 0;
+                            })
+                        });
+                    });
+
+                    distance = distance ? _.round(distance/1000, 2) : '';
+                    duration = duration ? _.round(duration/3600, 2) : '';
+
+                    $s.distance = distance;
+                    $s.duration = duration;
                 });
             }
         }
@@ -792,3 +812,45 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
         prefabScope.clearAllMarkers = _removeMarkers;
         prefabScope.showInfoWindow  = $s.showInfoWindow;
     }]);
+</script>
+<script id="Main.variables.json">
+var _MainPage_Variables_ ={ }
+</script>
+<script id="Main.html" type="text/ng-template">
+<wm-page name="googlemap" data-ng-controller="GooglemapsController">
+    <wm-content name="googlemapview">
+        <wm-spinner show="bind:isMapLoading" class="spinner-transparent"></wm-spinner>
+        <ng-map id="map" default-style="false" min-zoom="2" zoom-to-include-markers="{{zoom === 'Auto' ? 'auto' : false}}" map-initialized="onMapLoad" class="full-height full-width" center="{{center}}" zoom="{{zoomLevel || 5}}" draggable="true">
+            <div ng-repeat="marker in markersData">
+                <marker position="{{marker.latlng}}" on-mouseover="onMarkerHover(event, marker)" on-click="onMarkerClick(event, marker)" icon="{{marker.iconData}}">
+                </marker>
+            </div>
+            <shape ng-if="radius" name="circle" ng-repeat="shape in markersData"
+                   stroke-color="{{shape.color}}"
+                   stroke-opacity="0.5"
+                   stroke-weight="2"
+                   fill-color="{{shape.color}}"
+                   fill-opacity="0.35"
+                   center="{{shape.latlng}}"
+                   radius="{{shape.radius}}">
+            </shape>
+            <directions
+                    ng-if="directionsData.wayPoints"
+                    travel-mode="{{travelMode}}"
+                    waypoints="{{directionsData.wayPoints}}"
+                    origin="{{directionsData.origin}}"
+                    destination="{{directionsData.destination}}">
+            </directions>
+            <directions
+                    ng-if="!directionsData.wayPoints"
+                    travel-mode="{{travelMode}}"
+                    origin="{{directionsData.origin}}"
+                    destination="{{directionsData.destination}}">
+            </directions>
+            <traffic-layer ng-if="trafficLayer"></traffic-layer>
+            <transit-layer ng-if="transitLayer"></transit-layer>
+            <heatmap-layer id="heatmapLayer" ng-if="isHeatMapDataReady" data="heatmapData"></heatmap-layer>
+        </ng-map>
+    </wm-content>
+</wm-page>
+</script>

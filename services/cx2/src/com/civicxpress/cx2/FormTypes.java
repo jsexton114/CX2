@@ -8,7 +8,6 @@ package com.civicxpress.cx2;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -83,16 +82,16 @@ public class FormTypes implements Serializable {
     private Integer expirationStatusId;
     private String description;
     private Municipalities municipalities;
-    private List<CodesToForm> codesToForms = new ArrayList<>();
-    private List<FormCategoryMapping> formCategoryMappings = new ArrayList<>();
-    private List<FormDraft> formDrafts = new ArrayList<>();
-    private List<FormHistory> formHistories = new ArrayList<>();
-    private List<FormStatuses> formStatuseses = new ArrayList<>();
-    private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
-    private List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings = new ArrayList<>();
-    private List<InspectionSequence> inspectionSequences = new ArrayList<>();
-    private List<LetterTemplates> letterTemplateses = new ArrayList<>();
-    private List<MasterForms> masterFormses = new ArrayList<>();
+    private List<CodesToForm> codesToForms;
+    private List<FormCategoryMapping> formCategoryMappings;
+    private List<FormDraft> formDrafts;
+    private List<FormHistory> formHistories;
+    private List<FormStatuses> formStatuseses;
+    private List<FormTypeFields> formTypeFieldses;
+    private List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings;
+    private List<InspectionSequence> inspectionSequences;
+    private List<LetterTemplates> letterTemplateses;
+    private List<MasterForms> masterFormses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

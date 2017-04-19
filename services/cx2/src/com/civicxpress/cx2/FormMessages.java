@@ -7,7 +7,6 @@ package com.civicxpress.cx2;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,7 +44,7 @@ public class FormMessages implements Serializable {
     private MasterForms masterForms;
     private Projects projects;
     private Users users;
-    private List<FormMessageTagging> formMessageTaggings = new ArrayList<>();
+    private List<FormMessageTagging> formMessageTaggings;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

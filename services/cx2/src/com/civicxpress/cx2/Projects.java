@@ -7,7 +7,6 @@ package com.civicxpress.cx2;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -51,15 +50,15 @@ public class Projects implements Serializable {
     private Users usersByCreatedBy;
     private Users usersByModifiedBy;
     private Vendor vendor;
-    private List<Fees> feeses = new ArrayList<>();
-    private List<FormMessages> formMessageses = new ArrayList<>();
-    private List<MasterCases> masterCaseses = new ArrayList<>();
-    private List<MasterInspections> masterInspectionses = new ArrayList<>();
-    private List<ProjectForms> projectFormses = new ArrayList<>();
-    private List<ProjectGisrecords> projectGisrecordses = new ArrayList<>();
-    private List<ProjectSharedWith> projectSharedWiths = new ArrayList<>();
-    private List<ProjectTasks> projectTaskses = new ArrayList<>();
-    private List<VendorsToProject> vendorsToProjects = new ArrayList<>();
+    private List<Fees> feeses;
+    private List<FormMessages> formMessageses;
+    private List<MasterCases> masterCaseses;
+    private List<MasterInspections> masterInspectionses;
+    private List<ProjectForms> projectFormses;
+    private List<ProjectGisrecords> projectGisrecordses;
+    private List<ProjectSharedWith> projectSharedWiths;
+    private List<ProjectTasks> projectTaskses;
+    private List<VendorsToProject> vendorsToProjects;
 
     @Id
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})

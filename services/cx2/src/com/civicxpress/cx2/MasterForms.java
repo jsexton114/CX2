@@ -8,7 +8,6 @@ package com.civicxpress.cx2;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -57,15 +56,15 @@ public class MasterForms implements Serializable {
     private Municipalities municipalities;
     private Users users;
     private Vendor vendor;
-    private List<Fees> feeses = new ArrayList<>();
-    private List<FormMessages> formMessageses = new ArrayList<>();
-    private List<FormsToInspections> formsToInspectionses = new ArrayList<>();
-    private List<Gis2forms> gis2formses = new ArrayList<>();
-    private List<MasterInspections> masterInspectionses = new ArrayList<>();
-    private List<ProjectForms> projectFormses = new ArrayList<>();
-    private List<SharedWith> sharedWiths = new ArrayList<>();
-    private List<Vendors2form> vendors2forms = new ArrayList<>();
-    private List<Violations> violationses = new ArrayList<>();
+    private List<Fees> feeses;
+    private List<FormMessages> formMessageses;
+    private List<FormsToInspections> formsToInspectionses;
+    private List<Gis2forms> gis2formses;
+    private List<MasterInspections> masterInspectionses;
+    private List<ProjectForms> projectFormses;
+    private List<SharedWith> sharedWiths;
+    private List<Vendors2form> vendors2forms;
+    private List<Violations> violationses;
 
     @Id
     @Column(name = "`FormGUID`", nullable = false, length = 32)

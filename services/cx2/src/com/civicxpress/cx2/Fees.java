@@ -8,7 +8,6 @@ package com.civicxpress.cx2;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -59,8 +58,8 @@ public class Fees implements Serializable {
     private Gisrecords gisrecords;
     private Municipalities municipalities;
     private Users users;
-    private List<MyCart> myCarts = new ArrayList<>();
-    private List<TransactionToFees> transactionToFeeses = new ArrayList<>();
+    private List<MyCart> myCarts;
+    private List<TransactionToFees> transactionToFeeses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

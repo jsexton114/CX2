@@ -7,6 +7,7 @@ package com.civicxpress.cx2.controller;
 
 
 import java.math.BigInteger;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +30,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
+import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.DownloadResponse;
 import com.wavemaker.runtime.file.model.Downloadable;
 import com.wavemaker.runtime.util.WMMultipartUtils;
@@ -187,6 +189,14 @@ public class DocumentController {
 		LOGGER.debug("counting Documents");
 		return documentService.count(query);
 	}
+
+    @ApiOperation(value = "Returns aggregated result with given aggregation info")
+	@RequestMapping(value = "/aggregations", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+	public Page<Map<String, Object>> getDocumentAggregatedValues(@RequestBody AggregationInfo aggregationInfo, Pageable pageable) {
+        LOGGER.debug("Fetching aggregated results for {}", aggregationInfo);
+        return documentService.getAggregatedValues(aggregationInfo, pageable);
+    }
 
 
     /**

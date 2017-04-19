@@ -7,7 +7,6 @@ package com.civicxpress.cx2;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -51,7 +50,7 @@ public class ProjectTasks implements Serializable {
     private ProjectTasks projectTasksByPredecessor;
     private Users usersByAssignedTo;
     private Users usersByCreatedBy;
-    private List<ProjectTasks> projectTasksesForPredecessor = new ArrayList<>();
+    private List<ProjectTasks> projectTasksesForPredecessor;
 
     @Id
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})

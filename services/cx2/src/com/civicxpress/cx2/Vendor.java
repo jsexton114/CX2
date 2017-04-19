@@ -7,7 +7,6 @@ package com.civicxpress.cx2;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -65,15 +64,15 @@ public class Vendor implements Serializable {
     private boolean active;
     private ContractorTypes contractorTypes;
     private States states;
-    private List<Fees> feeses = new ArrayList<>();
-    private List<MasterForms> masterFormses = new ArrayList<>();
-    private List<Projects> projectses = new ArrayList<>();
-    private List<VendorAdmins> vendorAdminses = new ArrayList<>();
-    private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
-    private List<VendorLicenses> vendorLicenseses = new ArrayList<>();
-    private List<Vendors2form> vendors2forms = new ArrayList<>();
-    private List<VendorsToProject> vendorsToProjects = new ArrayList<>();
-    private List<VendorUsers> vendorUserses = new ArrayList<>();
+    private List<Fees> feeses;
+    private List<MasterForms> masterFormses;
+    private List<Projects> projectses;
+    private List<VendorAdmins> vendorAdminses;
+    private List<VendorApprovals> vendorApprovalses;
+    private List<VendorLicenses> vendorLicenseses;
+    private List<Vendors2form> vendors2forms;
+    private List<VendorsToProject> vendorsToProjects;
+    private List<VendorUsers> vendorUserses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

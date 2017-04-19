@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,7 +25,7 @@ public class UpdateMultipleFeeStatusRequest implements Serializable {
     private String paidStatus;
     @NotNull
     @JsonProperty("feeList")
-    private List<Integer> feeList = new ArrayList<>();
+    private List<Integer> feeList;
 
     public String getPaidStatus() {
         return this.paidStatus;

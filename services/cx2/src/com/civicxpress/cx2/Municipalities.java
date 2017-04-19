@@ -7,7 +7,6 @@ package com.civicxpress.cx2;
 
 import java.io.Serializable;
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -68,23 +67,23 @@ public class Municipalities implements Serializable {
     private int formLimit;
     private boolean allowOfflineCc;
     private States states;
-    private List<CodeSets> codeSetses = new ArrayList<>();
-    private List<CaseTypes> caseTypeses = new ArrayList<>();
-    private List<Fees> feeses = new ArrayList<>();
-    private List<FormCategories> formCategorieses = new ArrayList<>();
-    private List<FormTypes> formTypeses = new ArrayList<>();
-    private List<Gisrecords> gisrecordses = new ArrayList<>();
-    private List<InspectionDesign> inspectionDesigns = new ArrayList<>();
-    private List<Holidays> holidayses = new ArrayList<>();
-    private List<InspectionCategories> inspectionCategorieses = new ArrayList<>();
-    private List<MasterForms> masterFormses = new ArrayList<>();
-    private List<ManualFeeTypes> manualFeeTypeses = new ArrayList<>();
-    private List<MunicipalityGroups> municipalityGroupses = new ArrayList<>();
-    private List<Projects> projectses = new ArrayList<>();
-    private List<Roles> roleses = new ArrayList<>();
-    private List<Subdivisions> subdivisionses = new ArrayList<>();
-    private List<UserSubscriptions> userSubscriptionses = new ArrayList<>();
-    private List<VendorApprovals> vendorApprovalses = new ArrayList<>();
+    private List<CodeSets> codeSetses;
+    private List<CaseTypes> caseTypeses;
+    private List<Fees> feeses;
+    private List<FormCategories> formCategorieses;
+    private List<FormTypes> formTypeses;
+    private List<Gisrecords> gisrecordses;
+    private List<InspectionDesign> inspectionDesigns;
+    private List<Holidays> holidayses;
+    private List<InspectionCategories> inspectionCategorieses;
+    private List<MasterForms> masterFormses;
+    private List<ManualFeeTypes> manualFeeTypeses;
+    private List<MunicipalityGroups> municipalityGroupses;
+    private List<Projects> projectses;
+    private List<Roles> roleses;
+    private List<Subdivisions> subdivisionses;
+    private List<UserSubscriptions> userSubscriptionses;
+    private List<VendorApprovals> vendorApprovalses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

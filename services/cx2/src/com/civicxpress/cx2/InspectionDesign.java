@@ -8,7 +8,6 @@ package com.civicxpress.cx2;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -73,13 +72,13 @@ public class InspectionDesign implements Serializable {
     private String description;
     private Users users;
     private Municipalities municipalities;
-    private List<CodesToInspection> codesToInspections = new ArrayList<>();
-    private List<FormTypeFields> formTypeFieldses = new ArrayList<>();
-    private List<InspectionOutcome> inspectionOutcomes = new ArrayList<>();
-    private List<InspectionSequence> inspectionSequences = new ArrayList<>();
-    private List<LetterTemplates> letterTemplateses = new ArrayList<>();
-    private List<MasterInspections> masterInspectionses = new ArrayList<>();
-    private List<InspectionCategoryMapping> inspectionCategoryMappings = new ArrayList<>();
+    private List<CodesToInspection> codesToInspections;
+    private List<FormTypeFields> formTypeFieldses;
+    private List<InspectionOutcome> inspectionOutcomes;
+    private List<InspectionSequence> inspectionSequences;
+    private List<LetterTemplates> letterTemplateses;
+    private List<MasterInspections> masterInspectionses;
+    private List<InspectionCategoryMapping> inspectionCategoryMappings;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

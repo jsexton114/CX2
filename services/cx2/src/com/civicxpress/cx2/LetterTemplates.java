@@ -41,7 +41,7 @@ public class LetterTemplates implements Serializable {
     private Integer createdBy;
     @Type(type = "DateTime")
     private LocalDateTime createdDate;
-    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.INSERT, Scope.UPDATE })
+    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.UPDATE, Scope.INSERT })
     private Integer modifiedBy;
     @Type(type = "DateTime")
     private LocalDateTime modifiedDate;

@@ -21,6 +21,7 @@ import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
+import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.UserViewPreferences;
@@ -139,6 +140,12 @@ public class UserViewPreferencesServiceImpl implements UserViewPreferencesServic
 	@Override
 	public long count(String query) {
         return this.wmGenericDao.count(query);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+	@Override
+    public Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable) {
+        return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
 

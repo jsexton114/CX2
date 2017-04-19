@@ -28,6 +28,7 @@
       "precision" : 10,
       "primaryKey" : true,
       "scale" : 0,
+      "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : true
     }, {
@@ -53,6 +54,7 @@
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
+      "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
     }, {
@@ -78,6 +80,7 @@
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
+      "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
     }, {
@@ -103,6 +106,7 @@
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
+      "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
     }, {
@@ -128,6 +132,7 @@
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
+      "sequenceSchema" : null,
       "sqlType" : "timestamp",
       "unique" : false
     }, {
@@ -153,6 +158,7 @@
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
+      "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
     }, {
@@ -178,6 +184,7 @@
       "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
+      "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : false
     }, {
@@ -203,6 +210,7 @@
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
+      "sequenceSchema" : null,
       "sqlType" : "datetime",
       "unique" : false
     }, {
@@ -228,6 +236,7 @@
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
+      "sequenceSchema" : null,
       "sqlType" : "date",
       "unique" : false
     }, {
@@ -253,6 +262,7 @@
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
+      "sequenceSchema" : null,
       "sqlType" : "date",
       "unique" : false
     }, {
@@ -278,6 +288,7 @@
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
+      "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
     }, {
@@ -303,6 +314,7 @@
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
+      "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
     } ],
@@ -316,7 +328,8 @@
       "composite" : false,
       "generator" : {
         "generatorType" : "identity",
-        "generatorValue" : null
+        "generatorValue" : null,
+        "schemaName" : null
       },
       "name" : "PK__NewResid__3214EC27E92DAFFE",
       "virtual" : false
